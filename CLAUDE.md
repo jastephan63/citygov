@@ -104,6 +104,26 @@ open dashboard.html
 The worked example `proposals/anmeldung-wohnsitz.json` is a hand-authored instance
 of the proposal format (steps 2–4 already done) and seeds the databank.
 
+### Bulk auto-draft (first-draft, review required)
+`scripts/auto_draft.py "<office-dir>"` (or `--all`) processes every Formular in an
+office: copies it into forms/, extracts real fields, mines the legal references the
+form + its Merkblätter actually CITE, auto-classifies fields, and loads a DRAFT
+service. Discipline it never breaks: every mapping is `proposed`/`auto`, every
+mined citation is `UNVERIFIED` — nothing reads as confirmed-compliant. The whole
+Verwaltung collection (199 services / 245 forms / 7449 fields) was drafted this way
+and must be REVIEWED. Draft limits, by design: (a) flat/scanned PDFs extract 0
+fields — re-extract or enter by hand; (b) generic data fields collapse into one
+"Übrige Sachangaben" catch-all per form — split into real requirements in review;
+(c) legal GAPS are not detected (draft requirements are field-derived) — gap
+detection needs the law-first pass; (d) every legal basis needs verifying against
+Gesetze/Fedlex (see conv 6 + extract_law.py) before any compliance claim is trusted.
+
+Review loop per service: open it in the dashboard → confirm the real service &
+title-vs-content (conv 1) → find the governing law's real Art./§ (extract_law.py /
+Fedlex) and replace the mined UNVERIFIED citations → split "Übrige Sachangaben"
+into real requirements (dedupe by data_point_key, conv 8) → flip true matches to
+`confirmed` → re-run `./build.sh`.
+
 ## Dashboard (`dashboard.html`, generated)
 Self-contained (JSON inlined, opens via `file://`, no server, offline). Left
 service filter + three views: **Abgleich** (reconciliation, 3 colour-coded buckets
