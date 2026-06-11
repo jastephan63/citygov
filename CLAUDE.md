@@ -105,24 +105,27 @@ The worked example `proposals/anmeldung-wohnsitz.json` is a hand-authored instan
 of the proposal format (steps 2–4 already done) and seeds the databank.
 
 ### Bulk auto-draft (first-draft, review required)
-`scripts/auto_draft.py "<office-dir>"` (or `--all`) processes every Formular in an
-office: copies it into forms/, extracts real fields, mines the legal references the
-form + its Merkblätter actually CITE, auto-classifies fields, and loads a DRAFT
-service. Discipline it never breaks: every mapping is `proposed`/`auto`, every
-mined citation is `UNVERIFIED` — nothing reads as confirmed-compliant. The whole
-Verwaltung collection (199 services / 245 forms / 7449 fields) was drafted this way
-and must be REVIEWED. Draft limits, by design: (a) flat/scanned PDFs extract 0
-fields — re-extract or enter by hand; (b) generic data fields collapse into one
-"Übrige Sachangaben" catch-all per form — split into real requirements in review;
-(c) legal GAPS are not detected (draft requirements are field-derived) — gap
-detection needs the law-first pass; (d) every legal basis needs verifying against
-Gesetze/Fedlex (see conv 6 + extract_law.py) before any compliance claim is trusted.
+`scripts/auto_draft.py "<office-dir>"` (or `--all`) processes every Formular:
+copies it into forms/, extracts real fields (AcroForm → flat-PDF text incl. Word
+'Label/[placeholder]' style → Word .doc/.docx via macOS `textutil`), and loads a
+DRAFT service with **one requirement per field** (the data point), each
+`legal_basis=[]` → "Rechtsgrundlage zu ermitteln". It does NOT assign a per-field
+basis: the correct basis is service-specific (a "Name" field on a weapons permit
+vs tax return vs registration differ), so guessing violates conv 6 — the forms'
+cited laws are recorded as research leads in the draft finding. Every mapping is
+`proposed`/`auto` — nothing reads as compliant. The whole Verwaltung collection
+(211 services / 8326 fields / 6588 per-field requirements) was drafted this way and
+must be REVIEWED. Draft limits, by design: (a) 11 scanned image PDFs need OCR (no
+tesseract here; macOS Vision via JXA or a brew install) + 8 prose declarations
+have no fillable fields; (b) per-field legal basis is the review work; (c) legal
+GAPS aren't detected (draft is field-derived); (d) over-collection is a review
+finding (a field whose basis search comes up empty).
 
 Review loop per service: open it in the dashboard → confirm the real service &
-title-vs-content (conv 1) → find the governing law's real Art./§ (extract_law.py /
-Fedlex) and replace the mined UNVERIFIED citations → split "Übrige Sachangaben"
-into real requirements (dedupe by data_point_key, conv 8) → flip true matches to
-`confirmed` → re-run `./build.sh`.
+title-vs-content (conv 1) → for each field find the governing law's real Art./§
+(extract_law.py for cantonal Gesetze / Fedlex for federal) and fill its
+legal_basis → flip true matches to `confirmed`; a field with no basis becomes
+`overcollection` → re-run `./build.sh`.
 
 ## Dashboard (`dashboard.html`, generated)
 Self-contained (JSON inlined, opens via `file://`, no server, offline). Left
