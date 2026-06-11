@@ -13,14 +13,14 @@
   "laws": [
     {
       "slug": "rhg",
-      "title": "Bundesgesetz über die Harmonisierung der Einwohnerregister (Registerharmonisierungsgesetz)",
+      "title": "Bundesgesetz über die Harmonisierung der Einwohnerregister und anderer amtlicher Personenregister (Registerharmonisierungsgesetz)",
       "short_title": "RHG",
       "jurisdiction_level": "federal",
-      "sr_number": null,
-      "source_note": "Querverweis: Art. 88 Abs. 2 GG (SHR 120.100) und § 1 V-EWR (SHR 431.101) verweisen ausdrücklich auf Art. 6 RHG; § 5 V-EWR auf Art. 9 RHG. SR-Nummer und Volltext nicht offline in ../Gesetze/ vorhanden — NICHT aus dem Gedächtnis ergänzt (conv 6).",
-      "last_checked": "UNVERIFIED",
+      "sr_number": "431.02",
+      "source_note": "Fedlex SR 431.02, https://www.fedlex.admin.ch/eli/cc/2006/619/de (Fassung 1.1.2022, abgerufen 2026-06-11). Art. 6 Volltext geprüft.",
+      "last_checked": "verified",
       "articles": [
-        {"ref": "rhg_6", "article_no": "6", "heading": "Mindestinhalt des Einwohnerregisters (Merkmalkatalog)", "text_excerpt": "Mindestmerkmale je Person; im kantonalen Recht (Art. 88 Abs. 2 GG) referenziert.", "last_checked": "UNVERIFIED"}
+        {"ref": "rhg_6", "article_no": "6", "heading": "Minimaler Inhalt", "text_excerpt": "Die Einwohnerregister enthalten je Person mindestens: ... e. amtlicher Name; f. alle Vornamen; g. Wohn-/Zustelladresse mit PLZ und Ort; h. Geburtsdatum und Geburtsort; j. Geschlecht; k. Zivilstand; l. Zugehörigkeit zu einer vom Kanton anerkannten Religionsgemeinschaft; q. bei Zuzug: Datum und Herkunftsgemeinde bzw. Herkunftsstaat; ...", "last_checked": "verified"}
       ]
     },
     {
@@ -69,9 +69,9 @@
       "data_type": "composite", "condition": null, "is_composite": true,
       "notes": "Name, Vorname, Geburtsdatum sind identity_part-Felder (conv 4).",
       "legal_basis": [
+        {"article_ref": "rhg_6", "citation_detail": "lit. e, f, h, j", "last_checked": "verified"},
         {"article_ref": "gg_88", "citation_detail": "Abs. 2", "last_checked": "Gesetze-PDF 120.100 (Stand 2026-01-01)"},
-        {"article_ref": "ver_1", "citation_detail": "Abs. 1", "last_checked": "Gesetze-PDF 431.101 (Stand 2016-07-01)"},
-        {"article_ref": "rhg_6", "citation_detail": "(Merkmalkatalog)", "last_checked": "UNVERIFIED"}
+        {"article_ref": "ver_1", "citation_detail": "Abs. 1", "last_checked": "Gesetze-PDF 431.101 (Stand 2016-07-01)"}
       ]
     },
     {
@@ -79,6 +79,7 @@
       "data_point": "Neue Wohnadresse", "label": "Wohnadresse am neuen Wohnsitz (mit Nachweis)",
       "data_type": "string", "condition": null, "is_composite": false,
       "legal_basis": [
+        {"article_ref": "rhg_6", "citation_detail": "lit. g", "last_checked": "verified"},
         {"article_ref": "gg_89", "citation_detail": "Abs. 1", "last_checked": "Gesetze-PDF 120.100 (Stand 2026-01-01)"},
         {"article_ref": "gg_90", "citation_detail": "Abs. 2", "last_checked": "Gesetze-PDF 120.100 (Stand 2026-01-01)"}
       ]
@@ -88,17 +89,28 @@
       "data_point": "Zuzugsdatum", "label": "Datum des Zuzugs (Meldepflicht innert 14 Tagen)",
       "data_type": "date", "condition": "Meldung innert 14 Tagen seit Zuzug (Art. 89 Abs. 1 GG)", "is_composite": false,
       "legal_basis": [
+        {"article_ref": "rhg_6", "citation_detail": "lit. q (bei Zuzug: Datum)", "last_checked": "verified"},
         {"article_ref": "gg_89", "citation_detail": "Abs. 1", "last_checked": "Gesetze-PDF 120.100 (Stand 2026-01-01)"}
       ]
     },
     {
       "ref": "zuzugsgrund", "data_point_key": "zuzugsgrund",
-      "data_point": "Art/Herkunft des Zuzugs", "label": "Zuzug innerkantonal/ausserkantonal/Ausland (Herkunfts-/Registerdaten)",
+      "data_point": "Art/Herkunft des Zuzugs", "label": "Zuzug innerkantonal/ausserkantonal/Ausland (Herkunftsgemeinde bzw. Herkunftsstaat)",
       "data_type": "enum", "condition": null, "is_composite": false,
-      "notes": "Jede Checkbox ist ein reason_facet (conv 4). Herkunft/Zuzugsort gehört zu den Registermerkmalen.",
+      "notes": "Jede Checkbox ist ein reason_facet (conv 4). Herkunftsgemeinde/-staat ist Registermerkmal (Art. 6 lit. q RHG).",
       "legal_basis": [
-        {"article_ref": "gg_88", "citation_detail": "Abs. 2", "last_checked": "Gesetze-PDF 120.100 (Stand 2026-01-01)"},
-        {"article_ref": "rhg_6", "citation_detail": "(Herkunfts-/Zuzugsmerkmale)", "last_checked": "UNVERIFIED"}
+        {"article_ref": "rhg_6", "citation_detail": "lit. q (Herkunftsgemeinde/-staat)", "last_checked": "verified"},
+        {"article_ref": "gg_88", "citation_detail": "Abs. 2", "last_checked": "Gesetze-PDF 120.100 (Stand 2026-01-01)"}
+      ]
+    },
+    {
+      "ref": "religionszugehoerigkeit", "data_point_key": "religionszugehoerigkeit",
+      "data_point": "Religionszugehörigkeit", "label": "Zugehörigkeit zu einer vom Kanton anerkannten Religionsgemeinschaft",
+      "data_type": "enum", "condition": null, "is_composite": false,
+      "notes": "Reale Rechtsgrundlage: Art. 6 lit. l RHG nennt die Religionszugehörigkeit als minimalen Registerinhalt. Das Feld 'Konfession' ist daher KEINE Over-collection.",
+      "legal_basis": [
+        {"article_ref": "rhg_6", "citation_detail": "lit. l", "last_checked": "verified"},
+        {"article_ref": "gg_88", "citation_detail": "Abs. 2 (Verweis auf Art. 6 RHG)", "last_checked": "Gesetze-PDF 120.100 (Stand 2026-01-01)"}
       ]
     },
     {
@@ -117,6 +129,7 @@
     {"requirement_ref": "aktuelle_adresse"},
     {"requirement_ref": "zuzugsdatum"},
     {"requirement_ref": "zuzugsgrund"},
+    {"requirement_ref": "religionszugehoerigkeit"},
     {"requirement_ref": "heimatschein"}
   ],
 
@@ -141,9 +154,10 @@
     {"ref": "f_grund_kanton",  "field_key": "grund_innerkantonal", "label": "Zuzug innerkantonal",  "section": "Art des Zuzugs", "field_type": "checkbox", "required": false, "raw_order": 6, "options": ["Zuzug innerkantonal"]},
     {"ref": "f_grund_ausser",  "field_key": "grund_ausserkantonal","label": "Zuzug ausserkantonal", "section": "Art des Zuzugs", "field_type": "checkbox", "required": false, "raw_order": 7, "options": ["Zuzug ausserkantonal"]},
     {"ref": "f_grund_ausland", "field_key": "grund_ausland", "label": "Zuzug aus dem Ausland",      "section": "Art des Zuzugs", "field_type": "checkbox", "required": false, "raw_order": 8, "options": ["Zuzug aus dem Ausland"]},
-    {"ref": "f_konfession",    "field_key": "konfession",    "label": "Konfession / Religion",      "section": "Weitere Angaben", "field_type": "text",  "required": false, "raw_order": 9, "notes": "Auf dem Formular abgefragt, aber ohne gesetzliche Grundlage fuer diesen Dienst."},
-    {"ref": "f_unterschrift",  "field_key": "unterschrift",  "label": "Unterschrift",               "section": "Bestaetigung", "field_type": "signature", "required": true,  "raw_order": 10},
-    {"ref": "f_datum",         "field_key": "ausfuelldatum", "label": "Ort, Datum",                 "section": "Bestaetigung", "field_type": "date",      "required": true,  "raw_order": 11}
+    {"ref": "f_konfession",    "field_key": "konfession",    "label": "Konfession / Religion",      "section": "Weitere Angaben", "field_type": "text",  "required": false, "raw_order": 9, "notes": "Rechtsgrundlage vorhanden: Art. 6 lit. l RHG."},
+    {"ref": "f_telefon",       "field_key": "telefon",       "label": "Telefonnummer",              "section": "Weitere Angaben", "field_type": "text",  "required": false, "raw_order": 10, "notes": "Nicht Teil des minimalen Registerinhalts (Art. 6 RHG); keine ersichtliche kantonale/kommunale Grundlage."},
+    {"ref": "f_unterschrift",  "field_key": "unterschrift",  "label": "Unterschrift",               "section": "Bestaetigung", "field_type": "signature", "required": true,  "raw_order": 11},
+    {"ref": "f_datum",         "field_key": "ausfuelldatum", "label": "Ort, Datum",                 "section": "Bestaetigung", "field_type": "date",      "required": true,  "raw_order": 12}
   ],
 
   "field_mappings": [
@@ -155,7 +169,8 @@
     {"form_field_ref": "f_grund_kanton", "requirement_ref": "zuzugsgrund",      "classification": "reason_facet",  "match_status": "confirmed", "mapped_by": "human"},
     {"form_field_ref": "f_grund_ausser", "requirement_ref": "zuzugsgrund",      "classification": "reason_facet",  "match_status": "confirmed", "mapped_by": "human"},
     {"form_field_ref": "f_grund_ausland","requirement_ref": "zuzugsgrund",      "classification": "reason_facet",  "match_status": "confirmed", "mapped_by": "human"},
-    {"form_field_ref": "f_konfession",   "requirement_ref": null,               "classification": "overcollection","match_status": "confirmed", "mapped_by": "human", "notes": "Keine gesetzliche Grundlage fuer Konfession bei der Wohnsitzanmeldung -> potenzielles DSG-Problem."},
+    {"form_field_ref": "f_konfession",   "requirement_ref": "religionszugehoerigkeit", "classification": "mapped",   "match_status": "confirmed", "mapped_by": "human", "notes": "Korrektur: Rechtsgrundlage Art. 6 lit. l RHG gefunden -> KEINE Over-collection."},
+    {"form_field_ref": "f_telefon",      "requirement_ref": null,               "classification": "overcollection","match_status": "confirmed", "mapped_by": "human", "notes": "Telefonnummer ohne Grundlage im minimalen Registerinhalt (Art. 6 RHG) und ohne sourced kantonale/kommunale Grundlage -> potenzielle Over-collection (DSG)."},
     {"form_field_ref": "f_unterschrift", "requirement_ref": null,               "classification": "form_mechanic", "match_status": "confirmed", "mapped_by": "human"},
     {"form_field_ref": "f_datum",        "requirement_ref": null,               "classification": "form_mechanic", "match_status": "confirmed", "mapped_by": "human"}
   ],
@@ -175,7 +190,8 @@
   ],
 
   "findings": [
-    {"type": "note", "severity": "info", "description": "Zitate aus den offiziellen SHR-PDFs (Gesetze/120.100, 431.101) offline via scripts/extract_law.py gelesen — reale Art./Abs.", "status": "open", "created_at": "SOURCED"},
-    {"type": "title_mismatch", "severity": "warning", "fingerprint": "law-basis-correction-heimatschein", "description": "Rechtsgrundlagen-Korrektur (conv 1, auf Gesetzesebene): Die Heimatschein-Pflicht beruht auf Art. 90 Abs. 2 GG (Hinterlegung bei Niederlassung), NICHT auf § 4 V-EWR (der die Ausstellung eines Heimatausweises auf Verlangen regelt). Platzhalter-Annahme durch Quelle ersetzt.", "status": "open", "created_at": "SOURCED"}
+    {"type": "note", "severity": "info", "description": "Kantonale Zitate aus den offiziellen SHR-PDFs (Gesetze/120.100, 431.101) offline gelesen; RHG (SR 431.02) aus Fedlex verifiziert.", "status": "open", "created_at": "SOURCED"},
+    {"type": "title_mismatch", "severity": "warning", "fingerprint": "law-basis-correction-heimatschein", "description": "Rechtsgrundlagen-Korrektur (conv 1, Gesetzesebene): Heimatschein-Pflicht beruht auf Art. 90 Abs. 2 GG (Hinterlegung bei Niederlassung), NICHT auf § 4 V-EWR (Ausstellung auf Verlangen). Platzhalter durch Quelle ersetzt.", "status": "open", "created_at": "SOURCED"},
+    {"type": "overcollection", "severity": "warning", "fingerprint": "false-overcollection-konfession", "description": "Korrektur einer FALSCHEN Over-collection: 'Konfession/Religion' galt als Over-collection, hat aber eine reale Grundlage — Art. 6 lit. l RHG nennt die Religionszugehörigkeit als minimalen Registerinhalt. Reklassiert overcollection -> mapped. Beweis, dass Quellenarbeit Fehlbefunde aufdeckt.", "status": "resolved", "created_at": "SOURCED"}
   ]
 }

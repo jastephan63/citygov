@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-11T15:59:40",
+  "generated_at": "2026-06-11T16:07:58",
   "verification_note": "Citations marked UNVERIFIED have NOT been checked against Fedlex / the cantonal register. Do not treat them as authoritative.",
   "services": [
     {
@@ -95,21 +95,21 @@
     {
       "id": 1,
       "slug": "rhg",
-      "title": "Bundesgesetz über die Harmonisierung der Einwohnerregister (Registerharmonisierungsgesetz)",
+      "title": "Bundesgesetz über die Harmonisierung der Einwohnerregister und anderer amtlicher Personenregister (Registerharmonisierungsgesetz)",
       "short_title": "RHG",
       "jurisdiction_level": "federal",
-      "sr_number": null,
+      "sr_number": "431.02",
       "cantonal_ref": null,
-      "source_note": "Querverweis: Art. 88 Abs. 2 GG (SHR 120.100) und § 1 V-EWR (SHR 431.101) verweisen ausdrücklich auf Art. 6 RHG; § 5 V-EWR auf Art. 9 RHG. SR-Nummer und Volltext nicht offline in ../Gesetze/ vorhanden — NICHT aus dem Gedächtnis ergänzt (conv 6).",
-      "last_checked": "UNVERIFIED",
+      "source_note": "Fedlex SR 431.02, https://www.fedlex.admin.ch/eli/cc/2006/619/de (Fassung 1.1.2022, abgerufen 2026-06-11). Art. 6 Volltext geprüft.",
+      "last_checked": "verified",
       "articles": [
         {
           "id": 1,
           "law_id": 1,
           "article_no": "6",
-          "heading": "Mindestinhalt des Einwohnerregisters (Merkmalkatalog)",
-          "text_excerpt": "Mindestmerkmale je Person; im kantonalen Recht (Art. 88 Abs. 2 GG) referenziert.",
-          "last_checked": "UNVERIFIED"
+          "heading": "Minimaler Inhalt",
+          "text_excerpt": "Die Einwohnerregister enthalten je Person mindestens: ... e. amtlicher Name; f. alle Vornamen; g. Wohn-/Zustelladresse mit PLZ und Ort; h. Geburtsdatum und Geburtsort; j. Geschlecht; k. Zivilstand; l. Zugehörigkeit zu einer vom Kanton anerkannten Religionsgemeinschaft; q. bei Zuzug: Datum und Herkunftsgemeinde bzw. Herkunftsstaat; ...",
+          "last_checked": "verified"
         }
       ]
     }
@@ -119,12 +119,26 @@
       "id": 4,
       "data_point_key": "zuzugsgrund",
       "data_point": "Art/Herkunft des Zuzugs",
-      "label": "Zuzug innerkantonal/ausserkantonal/Ausland (Herkunfts-/Registerdaten)",
+      "label": "Zuzug innerkantonal/ausserkantonal/Ausland (Herkunftsgemeinde bzw. Herkunftsstaat)",
       "data_type": "enum",
       "condition": null,
       "is_composite": 0,
-      "notes": "Jede Checkbox ist ein reason_facet (conv 4). Herkunft/Zuzugsort gehört zu den Registermerkmalen.",
+      "notes": "Jede Checkbox ist ein reason_facet (conv 4). Herkunftsgemeinde/-staat ist Registermerkmal (Art. 6 lit. q RHG).",
       "legal_basis": [
+        {
+          "law_id": 1,
+          "law_slug": "rhg",
+          "law_title": "Bundesgesetz über die Harmonisierung der Einwohnerregister und anderer amtlicher Personenregister (Registerharmonisierungsgesetz)",
+          "law_short": "RHG",
+          "jurisdiction": "federal",
+          "sr_number": "431.02",
+          "cantonal_ref": null,
+          "article_id": 1,
+          "article_no": "6",
+          "article_heading": "Minimaler Inhalt",
+          "citation_detail": "lit. q (Herkunftsgemeinde/-staat)",
+          "last_checked": "verified"
+        },
         {
           "law_id": 2,
           "law_slug": "sh-gemeindegesetz",
@@ -138,20 +152,6 @@
           "article_heading": "Einwohnerregister — Grundsatz / Inhalt",
           "citation_detail": "Abs. 2",
           "last_checked": "Gesetze-PDF 120.100 (Stand 2026-01-01)"
-        },
-        {
-          "law_id": 1,
-          "law_slug": "rhg",
-          "law_title": "Bundesgesetz über die Harmonisierung der Einwohnerregister (Registerharmonisierungsgesetz)",
-          "law_short": "RHG",
-          "jurisdiction": "federal",
-          "sr_number": null,
-          "cantonal_ref": null,
-          "article_id": 1,
-          "article_no": "6",
-          "article_heading": "Mindestinhalt des Einwohnerregisters (Merkmalkatalog)",
-          "citation_detail": "(Herkunfts-/Zuzugsmerkmale)",
-          "last_checked": "UNVERIFIED"
         }
       ],
       "services": [
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "id": 5,
+      "id": 6,
       "data_point_key": "heimatschein",
       "data_point": "Heimatschein / Zivilstandsdokument",
       "label": "Hinterlegung Heimatschein bei Niederlassung",
@@ -197,6 +197,20 @@
       "is_composite": 0,
       "notes": null,
       "legal_basis": [
+        {
+          "law_id": 1,
+          "law_slug": "rhg",
+          "law_title": "Bundesgesetz über die Harmonisierung der Einwohnerregister und anderer amtlicher Personenregister (Registerharmonisierungsgesetz)",
+          "law_short": "RHG",
+          "jurisdiction": "federal",
+          "sr_number": "431.02",
+          "cantonal_ref": null,
+          "article_id": 1,
+          "article_no": "6",
+          "article_heading": "Minimaler Inhalt",
+          "citation_detail": "lit. g",
+          "last_checked": "verified"
+        },
         {
           "law_id": 2,
           "law_slug": "sh-gemeindegesetz",
@@ -241,6 +255,20 @@
       "notes": "Name, Vorname, Geburtsdatum sind identity_part-Felder (conv 4).",
       "legal_basis": [
         {
+          "law_id": 1,
+          "law_slug": "rhg",
+          "law_title": "Bundesgesetz über die Harmonisierung der Einwohnerregister und anderer amtlicher Personenregister (Registerharmonisierungsgesetz)",
+          "law_short": "RHG",
+          "jurisdiction": "federal",
+          "sr_number": "431.02",
+          "cantonal_ref": null,
+          "article_id": 1,
+          "article_no": "6",
+          "article_heading": "Minimaler Inhalt",
+          "citation_detail": "lit. e, f, h, j",
+          "last_checked": "verified"
+        },
+        {
           "law_id": 2,
           "law_slug": "sh-gemeindegesetz",
           "law_title": "Gemeindegesetz (Kanton Schaffhausen)",
@@ -267,20 +295,49 @@
           "article_heading": "Inhalt des Einwohnerregisters",
           "citation_detail": "Abs. 1",
           "last_checked": "Gesetze-PDF 431.101 (Stand 2016-07-01)"
-        },
+        }
+      ],
+      "services": [
+        1
+      ]
+    },
+    {
+      "id": 5,
+      "data_point_key": "religionszugehoerigkeit",
+      "data_point": "Religionszugehörigkeit",
+      "label": "Zugehörigkeit zu einer vom Kanton anerkannten Religionsgemeinschaft",
+      "data_type": "enum",
+      "condition": null,
+      "is_composite": 0,
+      "notes": "Reale Rechtsgrundlage: Art. 6 lit. l RHG nennt die Religionszugehörigkeit als minimalen Registerinhalt. Das Feld 'Konfession' ist daher KEINE Over-collection.",
+      "legal_basis": [
         {
           "law_id": 1,
           "law_slug": "rhg",
-          "law_title": "Bundesgesetz über die Harmonisierung der Einwohnerregister (Registerharmonisierungsgesetz)",
+          "law_title": "Bundesgesetz über die Harmonisierung der Einwohnerregister und anderer amtlicher Personenregister (Registerharmonisierungsgesetz)",
           "law_short": "RHG",
           "jurisdiction": "federal",
-          "sr_number": null,
+          "sr_number": "431.02",
           "cantonal_ref": null,
           "article_id": 1,
           "article_no": "6",
-          "article_heading": "Mindestinhalt des Einwohnerregisters (Merkmalkatalog)",
-          "citation_detail": "(Merkmalkatalog)",
-          "last_checked": "UNVERIFIED"
+          "article_heading": "Minimaler Inhalt",
+          "citation_detail": "lit. l",
+          "last_checked": "verified"
+        },
+        {
+          "law_id": 2,
+          "law_slug": "sh-gemeindegesetz",
+          "law_title": "Gemeindegesetz (Kanton Schaffhausen)",
+          "law_short": "GG",
+          "jurisdiction": "cantonal",
+          "sr_number": null,
+          "cantonal_ref": "SHR 120.100",
+          "article_id": 2,
+          "article_no": "88",
+          "article_heading": "Einwohnerregister — Grundsatz / Inhalt",
+          "citation_detail": "Abs. 2 (Verweis auf Art. 6 RHG)",
+          "last_checked": "Gesetze-PDF 120.100 (Stand 2026-01-01)"
         }
       ],
       "services": [
@@ -297,6 +354,20 @@
       "is_composite": 0,
       "notes": null,
       "legal_basis": [
+        {
+          "law_id": 1,
+          "law_slug": "rhg",
+          "law_title": "Bundesgesetz über die Harmonisierung der Einwohnerregister und anderer amtlicher Personenregister (Registerharmonisierungsgesetz)",
+          "law_short": "RHG",
+          "jurisdiction": "federal",
+          "sr_number": "431.02",
+          "cantonal_ref": null,
+          "article_id": 1,
+          "article_no": "6",
+          "article_heading": "Minimaler Inhalt",
+          "citation_detail": "lit. q (bei Zuzug: Datum)",
+          "last_checked": "verified"
+        },
         {
           "law_id": 2,
           "law_slug": "sh-gemeindegesetz",
@@ -523,20 +594,42 @@
           "options": null,
           "required": 0,
           "raw_order": 9,
-          "notes": "Auf dem Formular abgefragt, aber ohne gesetzliche Grundlage fuer diesen Dienst.",
+          "notes": "Rechtsgrundlage vorhanden: Art. 6 lit. l RHG.",
           "mapping": {
             "id": 9,
             "form_field_id": 9,
+            "requirement_id": 5,
+            "classification": "mapped",
+            "match_status": "confirmed",
+            "mapped_by": "human",
+            "confidence": null,
+            "notes": "Korrektur: Rechtsgrundlage Art. 6 lit. l RHG gefunden -> KEINE Over-collection."
+          }
+        },
+        {
+          "id": 10,
+          "form_id": 1,
+          "field_key": "telefon",
+          "label": "Telefonnummer",
+          "section": "Weitere Angaben",
+          "field_type": "text",
+          "options": null,
+          "required": 0,
+          "raw_order": 10,
+          "notes": "Nicht Teil des minimalen Registerinhalts (Art. 6 RHG); keine ersichtliche kantonale/kommunale Grundlage.",
+          "mapping": {
+            "id": 10,
+            "form_field_id": 10,
             "requirement_id": null,
             "classification": "overcollection",
             "match_status": "confirmed",
             "mapped_by": "human",
             "confidence": null,
-            "notes": "Keine gesetzliche Grundlage fuer Konfession bei der Wohnsitzanmeldung -> potenzielles DSG-Problem."
+            "notes": "Telefonnummer ohne Grundlage im minimalen Registerinhalt (Art. 6 RHG) und ohne sourced kantonale/kommunale Grundlage -> potenzielle Over-collection (DSG)."
           }
         },
         {
-          "id": 10,
+          "id": 11,
           "form_id": 1,
           "field_key": "unterschrift",
           "label": "Unterschrift",
@@ -544,11 +637,11 @@
           "field_type": "signature",
           "options": null,
           "required": 1,
-          "raw_order": 10,
+          "raw_order": 11,
           "notes": null,
           "mapping": {
-            "id": 10,
-            "form_field_id": 10,
+            "id": 11,
+            "form_field_id": 11,
             "requirement_id": null,
             "classification": "form_mechanic",
             "match_status": "confirmed",
@@ -558,7 +651,7 @@
           }
         },
         {
-          "id": 11,
+          "id": 12,
           "form_id": 1,
           "field_key": "ausfuelldatum",
           "label": "Ort, Datum",
@@ -566,11 +659,11 @@
           "field_type": "date",
           "options": null,
           "required": 1,
-          "raw_order": 11,
+          "raw_order": 12,
           "notes": null,
           "mapping": {
-            "id": 11,
-            "form_field_id": 11,
+            "id": 12,
+            "form_field_id": 12,
             "requirement_id": null,
             "classification": "form_mechanic",
             "match_status": "confirmed",
@@ -667,8 +760,8 @@
       "service_id": 1,
       "form_id": null,
       "law_id": null,
-      "fingerprint": "note::anmeldung-wohnsitz::Zitate aus den offiziellen SHR-PDFs (Gesetze/120.100, 431.101) offline via scrip",
-      "description": "Zitate aus den offiziellen SHR-PDFs (Gesetze/120.100, 431.101) offline via scripts/extract_law.py gelesen — reale Art./Abs.",
+      "fingerprint": "note::anmeldung-wohnsitz::Kantonale Zitate aus den offiziellen SHR-PDFs (Gesetze/120.100, 431.101) offline",
+      "description": "Kantonale Zitate aus den offiziellen SHR-PDFs (Gesetze/120.100, 431.101) offline gelesen; RHG (SR 431.02) aus Fedlex verifiziert.",
       "status": "open",
       "created_at": "SOURCED"
     },
@@ -680,8 +773,20 @@
       "form_id": null,
       "law_id": null,
       "fingerprint": "law-basis-correction-heimatschein",
-      "description": "Rechtsgrundlagen-Korrektur (conv 1, auf Gesetzesebene): Die Heimatschein-Pflicht beruht auf Art. 90 Abs. 2 GG (Hinterlegung bei Niederlassung), NICHT auf § 4 V-EWR (der die Ausstellung eines Heimatausweises auf Verlangen regelt). Platzhalter-Annahme durch Quelle ersetzt.",
+      "description": "Rechtsgrundlagen-Korrektur (conv 1, Gesetzesebene): Heimatschein-Pflicht beruht auf Art. 90 Abs. 2 GG (Hinterlegung bei Niederlassung), NICHT auf § 4 V-EWR (Ausstellung auf Verlangen). Platzhalter durch Quelle ersetzt.",
       "status": "open",
+      "created_at": "SOURCED"
+    },
+    {
+      "id": 3,
+      "type": "overcollection",
+      "severity": "warning",
+      "service_id": 1,
+      "form_id": null,
+      "law_id": null,
+      "fingerprint": "false-overcollection-konfession",
+      "description": "Korrektur einer FALSCHEN Over-collection: 'Konfession/Religion' galt als Over-collection, hat aber eine reale Grundlage — Art. 6 lit. l RHG nennt die Religionszugehörigkeit als minimalen Registerinhalt. Reklassiert overcollection -> mapped. Beweis, dass Quellenarbeit Fehlbefunde aufdeckt.",
+      "status": "resolved",
       "created_at": "SOURCED"
     }
   ],
@@ -698,7 +803,7 @@
       "severity": "warning",
       "service_id": 1,
       "service": "Anmeldung Wohnsitz (Zuzug)",
-      "description": "Formularfeld 'Konfession / Religion' wird erhoben, hat aber keine gesetzliche Grundlage fuer diesen Dienst (DSG-Risiko)."
+      "description": "Formularfeld 'Telefonnummer' wird erhoben, hat aber keine gesetzliche Grundlage fuer diesen Dienst (DSG-Risiko)."
     },
     {
       "type": "citation_todo",
@@ -729,12 +834,6 @@
       "severity": "warning",
       "service_id": null,
       "description": "UNVERIFIED — keine Quelle: Kommunales Einwohnerregister-Reglement (gemeindespezifisch) Art. UNKNOWN (communal). Gegen Fedlex/kant. Register pruefen, nicht erfinden."
-    },
-    {
-      "type": "citation_todo",
-      "severity": "warning",
-      "service_id": null,
-      "description": "UNVERIFIED — keine Quelle: Bundesgesetz über die Harmonisierung der Einwohnerregister (Registerharmonisierungsgesetz) Art. 6 (federal). Gegen Fedlex/kant. Register pruefen, nicht erfinden."
     }
   ],
   "reconciliation": {
@@ -749,13 +848,13 @@
         "notes": "Worked example. Rechtsgrundlagen aus Gemeindegesetz (SHR 120.100) und Verordnung über das Einwohnerregister (SHR 431.101), Bundesbezug RHG."
       },
       "summary": {
-        "requirements_total": 5,
-        "matched": 3,
+        "requirements_total": 6,
+        "matched": 4,
         "proposed": 1,
         "legal_gaps": 1,
         "overcollection": 1,
-        "compliance_pct": 60,
-        "fields_total": 11
+        "compliance_pct": 67,
+        "fields_total": 12
       },
       "requirements": [
         {
@@ -766,6 +865,20 @@
           "condition": null,
           "is_composite": true,
           "legal_basis": [
+            {
+              "law_id": 1,
+              "law_slug": "rhg",
+              "law_title": "Bundesgesetz über die Harmonisierung der Einwohnerregister und anderer amtlicher Personenregister (Registerharmonisierungsgesetz)",
+              "law_short": "RHG",
+              "jurisdiction": "federal",
+              "sr_number": "431.02",
+              "cantonal_ref": null,
+              "article_id": 1,
+              "article_no": "6",
+              "article_heading": "Minimaler Inhalt",
+              "citation_detail": "lit. e, f, h, j",
+              "last_checked": "verified"
+            },
             {
               "law_id": 2,
               "law_slug": "sh-gemeindegesetz",
@@ -793,20 +906,6 @@
               "article_heading": "Inhalt des Einwohnerregisters",
               "citation_detail": "Abs. 1",
               "last_checked": "Gesetze-PDF 431.101 (Stand 2016-07-01)"
-            },
-            {
-              "law_id": 1,
-              "law_slug": "rhg",
-              "law_title": "Bundesgesetz über die Harmonisierung der Einwohnerregister (Registerharmonisierungsgesetz)",
-              "law_short": "RHG",
-              "jurisdiction": "federal",
-              "sr_number": null,
-              "cantonal_ref": null,
-              "article_id": 1,
-              "article_no": "6",
-              "article_heading": "Mindestinhalt des Einwohnerregisters (Merkmalkatalog)",
-              "citation_detail": "(Merkmalkatalog)",
-              "last_checked": "UNVERIFIED"
             }
           ],
           "status": "match",
@@ -855,6 +954,20 @@
           "condition": null,
           "is_composite": false,
           "legal_basis": [
+            {
+              "law_id": 1,
+              "law_slug": "rhg",
+              "law_title": "Bundesgesetz über die Harmonisierung der Einwohnerregister und anderer amtlicher Personenregister (Registerharmonisierungsgesetz)",
+              "law_short": "RHG",
+              "jurisdiction": "federal",
+              "sr_number": "431.02",
+              "cantonal_ref": null,
+              "article_id": 1,
+              "article_no": "6",
+              "article_heading": "Minimaler Inhalt",
+              "citation_detail": "lit. g",
+              "last_checked": "verified"
+            },
             {
               "law_id": 2,
               "law_slug": "sh-gemeindegesetz",
@@ -909,6 +1022,20 @@
           "is_composite": false,
           "legal_basis": [
             {
+              "law_id": 1,
+              "law_slug": "rhg",
+              "law_title": "Bundesgesetz über die Harmonisierung der Einwohnerregister und anderer amtlicher Personenregister (Registerharmonisierungsgesetz)",
+              "law_short": "RHG",
+              "jurisdiction": "federal",
+              "sr_number": "431.02",
+              "cantonal_ref": null,
+              "article_id": 1,
+              "article_no": "6",
+              "article_heading": "Minimaler Inhalt",
+              "citation_detail": "lit. q (bei Zuzug: Datum)",
+              "last_checked": "verified"
+            },
+            {
               "law_id": 2,
               "law_slug": "sh-gemeindegesetz",
               "law_title": "Gemeindegesetz (Kanton Schaffhausen)",
@@ -942,11 +1069,25 @@
         {
           "requirement_id": 4,
           "data_point": "Art/Herkunft des Zuzugs",
-          "label": "Zuzug innerkantonal/ausserkantonal/Ausland (Herkunfts-/Registerdaten)",
+          "label": "Zuzug innerkantonal/ausserkantonal/Ausland (Herkunftsgemeinde bzw. Herkunftsstaat)",
           "data_type": "enum",
           "condition": null,
           "is_composite": false,
           "legal_basis": [
+            {
+              "law_id": 1,
+              "law_slug": "rhg",
+              "law_title": "Bundesgesetz über die Harmonisierung der Einwohnerregister und anderer amtlicher Personenregister (Registerharmonisierungsgesetz)",
+              "law_short": "RHG",
+              "jurisdiction": "federal",
+              "sr_number": "431.02",
+              "cantonal_ref": null,
+              "article_id": 1,
+              "article_no": "6",
+              "article_heading": "Minimaler Inhalt",
+              "citation_detail": "lit. q (Herkunftsgemeinde/-staat)",
+              "last_checked": "verified"
+            },
             {
               "law_id": 2,
               "law_slug": "sh-gemeindegesetz",
@@ -960,20 +1101,6 @@
               "article_heading": "Einwohnerregister — Grundsatz / Inhalt",
               "citation_detail": "Abs. 2",
               "last_checked": "Gesetze-PDF 120.100 (Stand 2026-01-01)"
-            },
-            {
-              "law_id": 1,
-              "law_slug": "rhg",
-              "law_title": "Bundesgesetz über die Harmonisierung der Einwohnerregister (Registerharmonisierungsgesetz)",
-              "law_short": "RHG",
-              "jurisdiction": "federal",
-              "sr_number": null,
-              "cantonal_ref": null,
-              "article_id": 1,
-              "article_no": "6",
-              "article_heading": "Mindestinhalt des Einwohnerregisters (Merkmalkatalog)",
-              "citation_detail": "(Herkunfts-/Zuzugsmerkmale)",
-              "last_checked": "UNVERIFIED"
             }
           ],
           "status": "match",
@@ -1016,6 +1143,59 @@
         },
         {
           "requirement_id": 5,
+          "data_point": "Religionszugehörigkeit",
+          "label": "Zugehörigkeit zu einer vom Kanton anerkannten Religionsgemeinschaft",
+          "data_type": "enum",
+          "condition": null,
+          "is_composite": false,
+          "legal_basis": [
+            {
+              "law_id": 1,
+              "law_slug": "rhg",
+              "law_title": "Bundesgesetz über die Harmonisierung der Einwohnerregister und anderer amtlicher Personenregister (Registerharmonisierungsgesetz)",
+              "law_short": "RHG",
+              "jurisdiction": "federal",
+              "sr_number": "431.02",
+              "cantonal_ref": null,
+              "article_id": 1,
+              "article_no": "6",
+              "article_heading": "Minimaler Inhalt",
+              "citation_detail": "lit. l",
+              "last_checked": "verified"
+            },
+            {
+              "law_id": 2,
+              "law_slug": "sh-gemeindegesetz",
+              "law_title": "Gemeindegesetz (Kanton Schaffhausen)",
+              "law_short": "GG",
+              "jurisdiction": "cantonal",
+              "sr_number": null,
+              "cantonal_ref": "SHR 120.100",
+              "article_id": 2,
+              "article_no": "88",
+              "article_heading": "Einwohnerregister — Grundsatz / Inhalt",
+              "citation_detail": "Abs. 2 (Verweis auf Art. 6 RHG)",
+              "last_checked": "Gesetze-PDF 120.100 (Stand 2026-01-01)"
+            }
+          ],
+          "status": "match",
+          "captured_by_confirmed": [
+            {
+              "form": "Anmeldung bei der Einwohnerkontrolle",
+              "field_id": 9,
+              "label": "Konfession / Religion",
+              "section": "Weitere Angaben",
+              "field_type": "text",
+              "classification": "mapped",
+              "match_status": "confirmed",
+              "mapped_by": "human",
+              "requirement_id": 5
+            }
+          ],
+          "captured_by_proposed": []
+        },
+        {
+          "requirement_id": 6,
           "data_point": "Heimatschein / Zivilstandsdokument",
           "label": "Hinterlegung Heimatschein bei Niederlassung",
           "data_type": "document",
@@ -1137,6 +1317,17 @@
           "label": "Konfession / Religion",
           "section": "Weitere Angaben",
           "field_type": "text",
+          "classification": "mapped",
+          "match_status": "confirmed",
+          "mapped_by": "human",
+          "requirement_id": 5
+        },
+        {
+          "form": "Anmeldung bei der Einwohnerkontrolle",
+          "field_id": 10,
+          "label": "Telefonnummer",
+          "section": "Weitere Angaben",
+          "field_type": "text",
           "classification": "overcollection",
           "match_status": "confirmed",
           "mapped_by": "human",
@@ -1144,7 +1335,7 @@
         },
         {
           "form": "Anmeldung bei der Einwohnerkontrolle",
-          "field_id": 10,
+          "field_id": 11,
           "label": "Unterschrift",
           "section": "Bestaetigung",
           "field_type": "signature",
@@ -1155,7 +1346,7 @@
         },
         {
           "form": "Anmeldung bei der Einwohnerkontrolle",
-          "field_id": 11,
+          "field_id": 12,
           "label": "Ort, Datum",
           "section": "Bestaetigung",
           "field_type": "date",
@@ -1168,8 +1359,8 @@
       "overcollection_fields": [
         {
           "form": "Anmeldung bei der Einwohnerkontrolle",
-          "field_id": 9,
-          "label": "Konfession / Religion",
+          "field_id": 10,
+          "label": "Telefonnummer",
           "section": "Weitere Angaben",
           "field_type": "text",
           "classification": "overcollection",
@@ -1224,15 +1415,6 @@
       "sr_number": null,
       "article_no": "UNKNOWN",
       "heading": "Zusätzliche kommunale Personendaten / Meldepflichten",
-      "last_checked": "UNVERIFIED"
-    },
-    {
-      "law": "Bundesgesetz über die Harmonisierung der Einwohnerregister (Registerharmonisierungsgesetz)",
-      "law_slug": "rhg",
-      "jurisdiction": "federal",
-      "sr_number": null,
-      "article_no": "6",
-      "heading": "Mindestinhalt des Einwohnerregisters (Merkmalkatalog)",
       "last_checked": "UNVERIFIED"
     }
   ]
