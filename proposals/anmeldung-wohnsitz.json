@@ -1,0 +1,164 @@
+{
+  "_comment": "WORKED EXAMPLE / SEED. Citations are placeholders: every law/article is UNVERIFIED with article_no UNKNOWN (convention 6). The form is a synthesized representative Anmeldung, not a real cantonal file. This proposal is the exact shape scripts/extract_form.py + scripts/propose_mapping.py emit for real forms.",
+
+  "service": {
+    "slug": "anmeldung-wohnsitz",
+    "name": "Anmeldung Wohnsitz (Zuzug)",
+    "dienststelle": "Einwohnerkontrolle",
+    "department": "Gemeinde (kommunal)",
+    "description": "Anmeldung einer Person bei Zuzug in eine Schaffhauser Gemeinde: Erfassung von Identität, neuer Wohnadresse und Zuzugsdatum, Hinterlegung des Heimatausweises.",
+    "notes": "Worked example seeding the databank. Communal service with cantonal and federal legal bases."
+  },
+
+  "laws": [
+    {
+      "slug": "rhg",
+      "title": "Bundesgesetz über die Harmonisierung der Einwohnerregister (Registerharmonisierungsgesetz)",
+      "short_title": "RHG",
+      "jurisdiction_level": "federal",
+      "sr_number": null,
+      "source_note": "SR-Nummer und Artikel bewusst nicht aus dem Gedächtnis eingetragen (conv 6).",
+      "last_checked": "UNVERIFIED",
+      "articles": [
+        {"ref": "rhg_merkmale", "article_no": "UNKNOWN", "heading": "Zu registrierende Personenmerkmale", "text_excerpt": "Die Gemeinden registrieren je Person mindestens die amtlichen Identifikationsmerkmale (Name, Vorname, Geburtsdatum, ...).", "last_checked": "UNVERIFIED"}
+      ]
+    },
+    {
+      "slug": "sh-meldegesetz",
+      "title": "Kantonales Gesetz über das Meldewesen / die Einwohnerkontrolle (Kanton Schaffhausen)",
+      "short_title": "Meldegesetz SH",
+      "jurisdiction_level": "cantonal",
+      "cantonal_ref": null,
+      "source_note": "Kantonale Systematik-Nummer noch nicht gegen das kantonale Register verifiziert.",
+      "last_checked": "UNVERIFIED",
+      "articles": [
+        {"ref": "sh_anmeldepflicht", "article_no": "UNKNOWN", "heading": "Anmeldepflicht bei Zuzug", "text_excerpt": "Wer zuzieht, hat sich innert Frist bei der Einwohnerkontrolle anzumelden und die neue Wohnadresse sowie das Zuzugsdatum anzugeben.", "last_checked": "UNVERIFIED"},
+        {"ref": "sh_zuzugsgrund", "article_no": "UNKNOWN", "heading": "Anzugebende Angaben", "text_excerpt": "Bei der Anmeldung ist der Grund des Zuzugs anzugeben.", "last_checked": "UNVERIFIED"}
+      ]
+    },
+    {
+      "slug": "sh-meldereglement-gemeinde",
+      "title": "Kommunales Meldereglement (Gemeinde)",
+      "short_title": "Meldereglement",
+      "jurisdiction_level": "communal",
+      "source_note": "Gemeindespezifisch; noch zu beschaffen und zu verifizieren.",
+      "last_checked": "UNVERIFIED",
+      "articles": [
+        {"ref": "komm_heimatausweis", "article_no": "UNKNOWN", "heading": "Hinterlegung des Heimatausweises", "text_excerpt": "Bei der Anmeldung ist der Heimatausweis (Heimatschein) zu hinterlegen.", "last_checked": "UNVERIFIED"}
+      ]
+    }
+  ],
+
+  "requirements": [
+    {
+      "ref": "personalien", "data_point_key": "personalien",
+      "data_point": "Personalien", "label": "Amtliche Identität der zuziehenden Person",
+      "data_type": "composite", "condition": null, "is_composite": true,
+      "notes": "Zusammengesetzte Anforderung: Name, Vorname, Geburtsdatum sind identity_part-Felder, KEINE Over-collection (conv 4).",
+      "legal_basis": [
+        {"article_ref": "rhg_merkmale", "citation_detail": "Abs. UNKNOWN", "last_checked": "UNVERIFIED"},
+        {"article_ref": "sh_anmeldepflicht", "citation_detail": "Abs. UNKNOWN", "last_checked": "UNVERIFIED"}
+      ]
+    },
+    {
+      "ref": "aktuelle_adresse", "data_point_key": "wohnadresse_neu",
+      "data_point": "Neue Wohnadresse", "label": "Wohnadresse am neuen Wohnsitz",
+      "data_type": "string", "condition": null, "is_composite": false,
+      "legal_basis": [
+        {"article_ref": "sh_anmeldepflicht", "citation_detail": "Abs. UNKNOWN", "last_checked": "UNVERIFIED"}
+      ]
+    },
+    {
+      "ref": "zuzugsdatum", "data_point_key": "zuzugsdatum",
+      "data_point": "Zuzugsdatum", "label": "Datum des Zuzugs",
+      "data_type": "date", "condition": "Anmeldung innert Frist seit Zuzug", "is_composite": false,
+      "legal_basis": [
+        {"article_ref": "sh_anmeldepflicht", "citation_detail": "Abs. UNKNOWN", "last_checked": "UNVERIFIED"}
+      ]
+    },
+    {
+      "ref": "zuzugsgrund", "data_point_key": "zuzugsgrund",
+      "data_point": "Grund des Zuzugs", "label": "Grund des Zuzugs (Mehrfachauswahl)",
+      "data_type": "enum", "condition": null, "is_composite": false,
+      "notes": "Mehrfachauswahl: jede Checkbox-Option ist ein reason_facet, KEINE Over-collection (conv 4).",
+      "legal_basis": [
+        {"article_ref": "sh_zuzugsgrund", "citation_detail": "Abs. UNKNOWN", "last_checked": "UNVERIFIED"}
+      ]
+    },
+    {
+      "ref": "heimatausweis", "data_point_key": "heimatausweis",
+      "data_point": "Heimatausweis (Heimatschein)", "label": "Hinterlegung des Heimatausweises",
+      "data_type": "document", "condition": "bei Anmeldung zu hinterlegen", "is_composite": false,
+      "notes": "LEGAL GAP demonstrator: gesetzlich verlangt, aber kein Formularfeld erfasst es.",
+      "legal_basis": [
+        {"article_ref": "komm_heimatausweis", "citation_detail": "Abs. UNKNOWN", "last_checked": "UNVERIFIED"}
+      ]
+    }
+  ],
+
+  "service_requirements": [
+    {"requirement_ref": "personalien"},
+    {"requirement_ref": "aktuelle_adresse"},
+    {"requirement_ref": "zuzugsdatum"},
+    {"requirement_ref": "zuzugsgrund"},
+    {"requirement_ref": "heimatausweis"}
+  ],
+
+  "form": {
+    "slug": "anmeldung-wohnsitz-form",
+    "title": "Anmeldung bei der Einwohnerkontrolle",
+    "actual_purpose": "Erfasst Personalien, neue Wohnadresse, Zuzugsdatum und Zuzugsgrund bei Zuzug. Inhalt deckt sich mit dem Titel (kein Mismatch).",
+    "title_content_mismatch": false,
+    "mismatch_note": null,
+    "source_file": "forms/anmeldung-wohnsitz.pdf",
+    "file_type": "pdf",
+    "publisher_dienststelle": "Einwohnerkontrolle",
+    "last_extracted": "SEED"
+  },
+
+  "form_fields": [
+    {"ref": "f_name",          "field_key": "name",          "label": "Name",                       "section": "Personalien", "field_type": "text",      "required": true,  "raw_order": 1},
+    {"ref": "f_vorname",       "field_key": "vorname",       "label": "Vorname",                    "section": "Personalien", "field_type": "text",      "required": true,  "raw_order": 2},
+    {"ref": "f_geburtsdatum",  "field_key": "geburtsdatum",  "label": "Geburtsdatum",               "section": "Personalien", "field_type": "date",      "required": true,  "raw_order": 3},
+    {"ref": "f_adresse",       "field_key": "neue_adresse",  "label": "Neue Wohnadresse",           "section": "Wohnsitz",    "field_type": "text",      "required": true,  "raw_order": 4},
+    {"ref": "f_zuzugsdatum",   "field_key": "zuzugsdatum",   "label": "Zuzugsdatum",                "section": "Wohnsitz",    "field_type": "date",      "required": true,  "raw_order": 5},
+    {"ref": "f_grund_kanton",  "field_key": "grund_innerkantonal", "label": "Zuzug innerkantonal",  "section": "Zuzugsgrund", "field_type": "checkbox",  "required": false, "raw_order": 6, "options": ["Zuzug innerkantonal"]},
+    {"ref": "f_grund_ausser",  "field_key": "grund_ausserkantonal","label": "Zuzug ausserkantonal", "section": "Zuzugsgrund", "field_type": "checkbox",  "required": false, "raw_order": 7, "options": ["Zuzug ausserkantonal"]},
+    {"ref": "f_grund_ausland", "field_key": "grund_ausland", "label": "Zuzug aus dem Ausland",      "section": "Zuzugsgrund", "field_type": "checkbox",  "required": false, "raw_order": 8, "options": ["Zuzug aus dem Ausland"]},
+    {"ref": "f_konfession",    "field_key": "konfession",    "label": "Konfession / Religion",      "section": "Weitere Angaben", "field_type": "text",  "required": false, "raw_order": 9, "notes": "Auf dem Formular abgefragt, aber ohne gesetzliche Grundlage fuer diesen Dienst."},
+    {"ref": "f_unterschrift",  "field_key": "unterschrift",  "label": "Unterschrift",               "section": "Bestaetigung", "field_type": "signature", "required": true,  "raw_order": 10},
+    {"ref": "f_datum",         "field_key": "ausfuelldatum", "label": "Ort, Datum",                 "section": "Bestaetigung", "field_type": "date",      "required": true,  "raw_order": 11}
+  ],
+
+  "field_mappings": [
+    {"form_field_ref": "f_name",         "requirement_ref": "personalien",      "classification": "identity_part", "match_status": "confirmed", "mapped_by": "human"},
+    {"form_field_ref": "f_vorname",      "requirement_ref": "personalien",      "classification": "identity_part", "match_status": "confirmed", "mapped_by": "human"},
+    {"form_field_ref": "f_geburtsdatum", "requirement_ref": "personalien",      "classification": "identity_part", "match_status": "confirmed", "mapped_by": "human"},
+    {"form_field_ref": "f_adresse",      "requirement_ref": "aktuelle_adresse", "classification": "mapped",        "match_status": "confirmed", "mapped_by": "human"},
+    {"form_field_ref": "f_zuzugsdatum",  "requirement_ref": "zuzugsdatum",      "classification": "mapped",        "match_status": "proposed",  "mapped_by": "auto", "confidence": 0.92, "notes": "Auto-Vorschlag: Label/Konzept-Match. Noch nicht menschlich bestaetigt (conv 5)."},
+    {"form_field_ref": "f_grund_kanton", "requirement_ref": "zuzugsgrund",      "classification": "reason_facet",  "match_status": "confirmed", "mapped_by": "human"},
+    {"form_field_ref": "f_grund_ausser", "requirement_ref": "zuzugsgrund",      "classification": "reason_facet",  "match_status": "confirmed", "mapped_by": "human"},
+    {"form_field_ref": "f_grund_ausland","requirement_ref": "zuzugsgrund",      "classification": "reason_facet",  "match_status": "confirmed", "mapped_by": "human"},
+    {"form_field_ref": "f_konfession",   "requirement_ref": null,               "classification": "overcollection","match_status": "confirmed", "mapped_by": "human", "notes": "Keine gesetzliche Grundlage fuer Konfession bei der Wohnsitzanmeldung -> potenzielles DSG-Problem."},
+    {"form_field_ref": "f_unterschrift", "requirement_ref": null,               "classification": "form_mechanic", "match_status": "confirmed", "mapped_by": "human"},
+    {"form_field_ref": "f_datum",        "requirement_ref": null,               "classification": "form_mechanic", "match_status": "confirmed", "mapped_by": "human"}
+  ],
+
+  "process_steps": [
+    {"step_no": 1, "description": "Anmeldung entgegennehmen (Schalter oder online)", "mode": "manual"},
+    {"step_no": 2, "description": "Identitaet gegen Ausweis pruefen",                 "mode": "manual"},
+    {"step_no": 3, "description": "Personalien und Adresse im Einwohnerregister erfassen", "mode": "automatable"},
+    {"step_no": 4, "description": "Hinterlegung des Heimatausweises pruefen",        "mode": "manual"},
+    {"step_no": 5, "description": "Anmeldebestaetigung ausstellen",                  "mode": "automatable"}
+  ],
+
+  "documents": [
+    {"source_file": "forms/anmeldung-wohnsitz.pdf", "file_name": "anmeldung-wohnsitz.pdf", "department": "Gemeinde (kommunal)", "dienststelle": "Einwohnerkontrolle", "doc_type": "formular", "is_this_form": true, "classification_note": "Citizen-fillable Anmeldeformular -> enters reconciliation pipeline (conv 7)."},
+    {"source_file": "forms/merkblatt-anmeldung.pdf", "file_name": "merkblatt-anmeldung.pdf", "department": "Gemeinde (kommunal)", "dienststelle": "Einwohnerkontrolle", "doc_type": "helper", "classification_note": "Wegleitung/Merkblatt zum Ausfuellen -> NICHT in der Datenbank als Formular (conv 7)."},
+    {"source_file": "forms/gebuehrenrechner-anmeldung.xlsx", "file_name": "gebuehrenrechner-anmeldung.xlsx", "department": "Gemeinde (kommunal)", "dienststelle": "Einwohnerkontrolle", "doc_type": "calculation_tool", "formula_note": "Berechnet die Anmeldegebuehr; implementiert eine Tarifformel -> dokumentiert, aber KEIN Formular (conv 7).", "classification_note": "Excel-Rechner."}
+  ],
+
+  "findings": [
+    {"type": "note", "severity": "info", "description": "Worked-example service. Citations placeholder/UNVERIFIED; form synthesized to exercise all views and classifications.", "status": "open", "created_at": "SEED"}
+  ]
+}
