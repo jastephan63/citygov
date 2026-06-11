@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+
+# transient build/commit artifacts (never the source of truth)
+*.staging
+*.staging-*
+citygov.db.bak
+
+# runtime logs (findings live in the DB; these are raw run logs)
+logs/*.log
+
+# OS
+.DS_Store
+
+# NOTE: citygov.db, data_export.json and dashboard.html ARE committed.
+# They are generated artifacts, but kept in history so the worked example
+# is openable straight from the repo. They must only ever be regenerated
+# by the scripts (convention 9), never hand-edited.
