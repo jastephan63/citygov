@@ -146,7 +146,42 @@ TEMPLATE = r"""<!DOCTYPE html>
 <script id="data" type="application/json">/*DATA*/</script>
 <script>
 const DATA = JSON.parse(document.getElementById('data').textContent);
-const state = {service:'all', tab:'recon', tree:'list'};
+const state = {service:'all', tab:'recon', tree:'list', filter:''};
+
+// ---- indexes + in-browser reconciliation (computed, never stored) ----------
+const reqById={}, lawById={}, svcById={};
+DATA.requirements.forEach(r=>reqById[r.id]=r);
+DATA.laws.forEach(l=>lawById[l.id]=l);
+DATA.services.forEach(s=>svcById[s.id]=s);
+const reqsByService={}, formsByService={};
+DATA.service_requirements.forEach(sr=>{(reqsByService[sr.service_id]=reqsByService[sr.service_id]||[]).push(sr.requirement_id);});
+DATA.forms.forEach(f=>{(formsByService[f.service_id]=formsByService[f.service_id]||[]).push(f);});
+const _recCache={};
+function reconcile(sid){
+  if(_recCache[sid]) return _recCache[sid];
+  const reqIds=reqsByService[sid]||[], forms=formsByService[sid]||[];
+  const cap={}, over=[], fieldView=[];
+  forms.forEach(fm=>(fm.fields||[]).forEach(fl=>{
+    const m=fl.mapping, cls=m?m.classification:null;
+    const e={form:fm.title,label:fl.label,section:fl.section,field_type:fl.field_type,
+             classification:cls,match_status:m?m.match_status:null,mapped_by:m?m.mapped_by:null,
+             requirement_id:m?m.requirement_id:null};
+    fieldView.push(e);
+    if(!m) return;
+    if(cls==='overcollection') over.push(e);
+    else if(m.requirement_id!=null){const b=cap[m.requirement_id]=cap[m.requirement_id]||{confirmed:[],proposed:[]};
+      (m.match_status==='confirmed'?b.confirmed:b.proposed).push(e);}
+  }));
+  const reqView=[]; let nMatch=0,nProp=0,nGap=0;
+  reqIds.forEach(rid=>{const r=reqById[rid]; if(!r) return; const c=cap[rid]||{confirmed:[],proposed:[]};
+    let st; if(c.confirmed.length){st='match';nMatch++;}else if(c.proposed.length){st='proposed';nProp++;}else{st='legal_gap';nGap++;}
+    reqView.push(Object.assign({},r,{status:st,captured_by_confirmed:c.confirmed,captured_by_proposed:c.proposed}));});
+  const total=reqIds.length;
+  const res={requirements:reqView,fields:fieldView,overcollection_fields:over,
+    summary:{requirements_total:total,matched:nMatch,proposed:nProp,legal_gaps:nGap,
+      overcollection:over.length,compliance_pct:total?Math.round(100*nMatch/total):null,fields_total:fieldView.length}};
+  _recCache[sid]=res; return res;
+}
 
 const esc = s => (s==null?'':String(s)).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 const el = (h)=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild;};
@@ -174,8 +209,18 @@ function renderSidebar(){
   document.getElementById('warn').textContent = '⚠ Zitate „UNVERIFIED“ sind NICHT amtlich geprüft';
   const sv = document.getElementById('services');
   sv.innerHTML='';
+  const fb=el(`<input id="svcfilter" placeholder="Dienst suchen…" value="${esc(state.filter)}" `+
+    `style="width:100%;padding:7px 9px;margin-bottom:8px;background:var(--panel);border:1px solid var(--bd);`+
+    `border-radius:7px;color:var(--tx);font-size:12.5px">`);
+  sv.appendChild(fb);
+  fb.oninput=()=>{state.filter=fb.value;const f=state.filter.toLowerCase();
+    sv.querySelectorAll('.svc[data-name]').forEach(n=>{n.style.display=n.dataset.name.includes(f)?'':'none';});};
   sv.appendChild(svcRow({id:'all',name:'Alle Dienste',dienststelle:DATA.services.length+' Dienst(e)'}));
-  DATA.services.forEach(s=>sv.appendChild(svcRow(s)));
+  const f=state.filter.toLowerCase();
+  DATA.services.forEach(s=>{const r=svcRow(s);
+    r.dataset.name=(s.name+' '+(s.dienststelle||'')+' '+(s.department||'')).toLowerCase();
+    if(f && !r.dataset.name.includes(f)) r.style.display='none';
+    sv.appendChild(r);});
   document.querySelectorAll('.tab').forEach(b=>{
     b.classList.toggle('active', b.dataset.tab===state.tab);
     b.onclick=()=>{state.tab=b.dataset.tab;render();};
@@ -198,29 +243,45 @@ const curServices = () => state.service==='all' ? DATA.services : DATA.services.
 // ---------- reconciliation ----------
 function viewRecon(){
   const m=document.getElementById('main');
-  let h=`<h3 class="view">Abgleich · Was das Gesetz verlangt ↔ was das Formular fragt</h3>
-  <p class="hint">Drei Eimer: <b style="color:var(--match)">Match</b> · <b style="color:var(--gap)">Legal Gap</b> (Gesetz verlangt, Formular erfasst nicht) · <b style="color:var(--over)">Over-collection</b> (Formular fragt, keine Rechtsgrundlage). Vorschläge zählen NICHT als compliant.</p>`;
-  curServices().forEach(s=>{
-    const r=DATA.reconciliation[s.id]; if(!r){return;}
-    const sm=r.summary;
-    const form=(DATA.forms.find(f=>f.service_id===s.id));
-    h+=`<div class="card"><div class="summary">
-        <div class="gauge" style="color:${sm.compliance_pct>=80?'var(--match)':sm.compliance_pct>=50?'var(--over)':'var(--gap)'}">${sm.compliance_pct==null?'–':sm.compliance_pct+'%'}</div>
-        <div class="pill"><span class="n">${sm.matched}/${sm.requirements_total}</span><span class="l">Matched</span></div>
-        <div class="pill"><span class="n" style="color:var(--proposed)">${sm.proposed}</span><span class="l">Vorschlag</span></div>
-        <div class="pill"><span class="n" style="color:var(--gap)">${sm.legal_gaps}</span><span class="l">Legal Gap</span></div>
-        <div class="pill"><span class="n" style="color:var(--over)">${sm.overcollection}</span><span class="l">Over-collect.</span></div>
-        <div style="margin-left:auto;text-align:right"><div style="font-weight:600">${esc(s.name)}</div><div class="small muted">${esc(s.dienststelle||'')}</div></div>
-       </div>`;
-    if(form && form.title_content_mismatch)
-      h+=`<div class="warn" style="display:block;margin:8px 0">⚠ Titel/Inhalt-Mismatch (conv 1): ${esc(form.mismatch_note||'')}</div>`;
-    h+=`<div class="cols" style="margin-top:12px">
-        <div><div class="colhead">⚖︎ Gesetz verlangt (${r.requirements.length})</div>${r.requirements.map(reqItem).join('')||'<div class="nores">—</div>'}</div>
-        <div><div class="colhead">▦ Formular fragt${form?': '+esc(form.title):''} (${r.fields.length})</div>${r.fields.map(fieldItem).join('')||'<div class="nores">kein Formular</div>'}</div>
-       </div></div>`;
-  });
-  if(!curServices().some(s=>DATA.reconciliation[s.id])) h+='<div class="nores">Kein Dienst gewählt.</div>';
+  if(state.service==='all'){ m.innerHTML=reconOverview();
+    m.querySelectorAll('tr[data-sid]').forEach(tr=>tr.onclick=()=>{state.service=tr.dataset.sid;render();});
+    return; }
+  const s=svcById[state.service]; const r=reconcile(s.id);
+  const sm=r.summary; const form=(formsByService[s.id]||[])[0];
+  let h=`<h3 class="view">Abgleich · ${esc(s.name)}</h3>
+  <p class="hint">${esc(s.dienststelle||'')} — drei Eimer: <b style="color:var(--match)">Match</b> · <b style="color:var(--gap)">Legal Gap</b> · <b style="color:var(--over)">Over-collection</b>. Vorschläge zählen NICHT als compliant.</p>
+  <div class="card"><div class="summary">
+    <div class="gauge" style="color:${sm.compliance_pct>=80?'var(--match)':sm.compliance_pct>=50?'var(--over)':'var(--gap)'}">${sm.compliance_pct==null?'–':sm.compliance_pct+'%'}</div>
+    <div class="pill"><span class="n">${sm.matched}/${sm.requirements_total}</span><span class="l">Matched</span></div>
+    <div class="pill"><span class="n" style="color:var(--proposed)">${sm.proposed}</span><span class="l">Vorschlag</span></div>
+    <div class="pill"><span class="n" style="color:var(--gap)">${sm.legal_gaps}</span><span class="l">Legal Gap</span></div>
+    <div class="pill"><span class="n" style="color:var(--over)">${sm.overcollection}</span><span class="l">Over-collect.</span></div>
+   </div>`;
+  if(form && form.title_content_mismatch)
+    h+=`<div class="warn" style="display:block;margin:8px 0">⚠ Titel/Inhalt-Mismatch (conv 1): ${esc(form.mismatch_note||'')}</div>`;
+  h+=`<div class="cols" style="margin-top:12px">
+      <div><div class="colhead">⚖︎ Gesetz verlangt (${r.requirements.length})</div>${r.requirements.map(reqItem).join('')||'<div class="nores">—</div>'}</div>
+      <div><div class="colhead">▦ Formular fragt${form?': '+esc(form.title):''} (${r.fields.length})</div>${r.fields.map(fieldItem).join('')||'<div class="nores">keine Felder extrahiert (evtl. flaches PDF)</div>'}</div>
+     </div></div>`;
   m.innerHTML=h;
+}
+function reconOverview(){
+  let rows=DATA.services.map(s=>({s,sm:reconcile(s.id).summary}))
+    .sort((a,b)=>(b.sm.legal_gaps+b.sm.overcollection)-(a.sm.legal_gaps+a.sm.overcollection));
+  const f=state.filter.toLowerCase();
+  if(f) rows=rows.filter(x=>(x.s.name+' '+(x.s.dienststelle||'')+' '+(x.s.department||'')).toLowerCase().includes(f));
+  return `<h3 class="view">Abgleich · Übersicht aller Dienste (${rows.length})</h3>
+  <p class="hint">Auto-Entwürfe — Zeile anklicken für den Detail-Abgleich. Mappings sind <b>proposed</b>, Rechtsgrundlagen grösstenteils <b>UNVERIFIED</b> (juristisch zu prüfen). Sortiert nach Prüfbedarf (Gaps + Over-collection).</p>
+  <div class="card"><table><thead><tr><th>Dienst</th><th>Amt</th><th>Anf.</th><th>Match</th><th>Vorschlag</th><th>Gap</th><th>Over</th><th>Felder</th></tr></thead><tbody>
+  ${rows.map(({s,sm})=>`<tr data-sid="${s.id}" style="cursor:pointer">
+    <td><b>${esc(s.name.slice(0,52))}</b></td><td class="small muted">${esc(s.dienststelle||'')}</td>
+    <td>${sm.requirements_total}</td>
+    <td style="color:var(--match)">${sm.matched}</td>
+    <td style="color:var(--proposed)">${sm.proposed}</td>
+    <td style="color:var(--gap)">${sm.legal_gaps||''}</td>
+    <td style="color:var(--over)">${sm.overcollection||''}</td>
+    <td class="small">${sm.fields_total}</td></tr>`).join('')}
+  </tbody></table></div>`;
 }
 function reqItem(r){
   const cap=[...r.captured_by_confirmed,...r.captured_by_proposed];
@@ -241,7 +302,11 @@ function fieldItem(f){
 }
 
 // ---------- tree (list + diagram) ----------
-function serviceReqs(sid){ const r=DATA.reconciliation[sid]; return r?r.requirements:[]; }
+function serviceReqs(sid){ return reconcile(sid).requirements; }
+function needService(label){
+  return `<h3 class="view">${label}</h3><div class="nores">Bitte links einen einzelnen Dienst wählen `+
+         `(bei ${DATA.services.length} Diensten ist die Gesamtansicht zu gross).</div>`;
+}
 // build law -> article -> requirement structure for current selection
 function treeModel(){
   const sids = state.service==='all' ? DATA.services.map(s=>s.id) : [Number(state.service)];
@@ -257,6 +322,7 @@ function treeModel(){
 }
 function viewTree(){
   const m=document.getElementById('main');
+  if(state.service==='all'){ m.innerHTML=needService('Gesetzes-Baum · Gesetz → Artikel → Anforderung'); return; }
   const model=treeModel();
   let h=`<h3 class="view">Gesetzes-Baum · Gesetz → Artikel → Anforderung</h3>
   <p class="hint">Beide Darstellungen sind ein- und ausklappbar. Farbe = Zuständigkeitsebene; Status der Anforderung farbig markiert.</p>
@@ -293,9 +359,10 @@ function dgArt(A){
 // ---------- required information per law ----------
 function viewInfo(){
   const m=document.getElementById('main');
+  if(state.service==='all'){ m.innerHTML=needService('Geforderte Informationen · pro Gesetz'); return; }
   let h=`<h3 class="view">Geforderte Informationen · pro Gesetz</h3>
   <p class="hint">Welche Datenpunkte jedes Gesetz verlangt, mit Artikel-Zitat, Datentyp, Bedingung und erfassendem Formularfeld.</p>`;
-  const sids = state.service==='all'?DATA.services.map(s=>s.id):[Number(state.service)];
+  const sids = [Number(state.service)];
   // gather rows grouped by law
   const byLaw={};
   sids.forEach(sid=>serviceReqs(sid).forEach(req=>{

@@ -13,6 +13,11 @@ logs/*.log
 # OS
 .DS_Store
 
+# copied source forms (provenance kept via DB source_file paths; originals live
+# in ../Verwaltung). Don't bloat the repo with ~68MB of binaries.
+forms/**
+!forms/README.md
+
 # NOTE: citygov.db, data_export.json and dashboard.html ARE committed.
 # They are generated artifacts, but kept in history so the worked example
 # is openable straight from the repo. They must only ever be regenerated
