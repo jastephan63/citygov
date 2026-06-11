@@ -56,6 +56,7 @@
   .b-reason_facet{color:var(--reason);border-color:var(--reason);background:#a78bfa1a}
   .b-form_mechanic{color:var(--mechanic);border-color:var(--mechanic);background:#64748b22}
   .b-unver{color:var(--unver);border-color:var(--unver);background:#fb71851a}
+  .b-sourced{color:#fcd34d;border-color:#b45309;background:#78350f55}
   .b-confirmed{color:var(--match);border-color:var(--match);background:#22c55e1a}
   .b-auto,.b-proposedm{color:var(--proposed);border-color:var(--proposed);background:#38bdf81a}
   table{border-collapse:collapse;width:100%;font-size:12.5px}
@@ -122,66 +123,95 @@
   <main id="main"></main>
 </div>
 <script id="data" type="application/json">{
-  "generated_at": "2026-06-11T15:40:36",
+  "generated_at": "2026-06-11T15:59:40",
   "verification_note": "Citations marked UNVERIFIED have NOT been checked against Fedlex / the cantonal register. Do not treat them as authoritative.",
   "services": [
     {
       "id": 1,
       "slug": "anmeldung-wohnsitz",
       "name": "Anmeldung Wohnsitz (Zuzug)",
-      "dienststelle": "Einwohnerkontrolle",
-      "department": "Gemeinde (kommunal)",
-      "description": "Anmeldung einer Person bei Zuzug in eine Schaffhauser Gemeinde: Erfassung von Identität, neuer Wohnadresse und Zuzugsdatum, Hinterlegung des Heimatausweises.",
-      "notes": "Worked example seeding the databank. Communal service with cantonal and federal legal bases."
+      "dienststelle": "Einwohnerkontrolle (Gemeinde)",
+      "department": "Kommunale Ausführung; kantonale/eidg. Rechtsgrundlagen",
+      "description": "Anmeldung bei Zuzug in eine Schaffhauser Gemeinde: Erfassung von Identität (Registerdaten), neuer Wohnadresse, Zuzugsdatum; Hinterlegung des Heimatscheins bei Niederlassung.",
+      "notes": "Worked example. Rechtsgrundlagen aus Gemeindegesetz (SHR 120.100) und Verordnung über das Einwohnerregister (SHR 431.101), Bundesbezug RHG."
     }
   ],
   "laws": [
     {
       "id": 2,
-      "slug": "sh-meldegesetz",
-      "title": "Kantonales Gesetz über das Meldewesen / die Einwohnerkontrolle (Kanton Schaffhausen)",
-      "short_title": "Meldegesetz SH",
+      "slug": "sh-gemeindegesetz",
+      "title": "Gemeindegesetz (Kanton Schaffhausen)",
+      "short_title": "GG",
       "jurisdiction_level": "cantonal",
       "sr_number": null,
-      "cantonal_ref": null,
-      "source_note": "Kantonale Systematik-Nummer noch nicht gegen das kantonale Register verifiziert.",
-      "last_checked": "UNVERIFIED",
+      "cantonal_ref": "SHR 120.100",
+      "source_note": "Gesetze/120.100-3-1.de-1.pdf — Gemeindegesetz vom 17. August 1998 (Stand 1. Januar 2026), offline via PDFKit gelesen.",
+      "last_checked": "Gesetze-PDF 120.100 (Stand 2026-01-01)",
       "articles": [
         {
           "id": 2,
           "law_id": 2,
-          "article_no": "UNKNOWN",
-          "heading": "Anmeldepflicht bei Zuzug",
-          "text_excerpt": "Wer zuzieht, hat sich innert Frist bei der Einwohnerkontrolle anzumelden und die neue Wohnadresse sowie das Zuzugsdatum anzugeben.",
-          "last_checked": "UNVERIFIED"
+          "article_no": "88",
+          "heading": "Einwohnerregister — Grundsatz / Inhalt",
+          "text_excerpt": "Abs. 2: Der Inhalt des Einwohnerregisters richtet sich nach Art. 6 des Registerharmonisierungsgesetzes; im Weiteren werden zusätzliche Personendaten geführt.",
+          "last_checked": "Gesetze-PDF 120.100 (Stand 2026-01-01)"
         },
         {
           "id": 3,
           "law_id": 2,
-          "article_no": "UNKNOWN",
-          "heading": "Anzugebende Angaben",
-          "text_excerpt": "Bei der Anmeldung ist der Grund des Zuzugs anzugeben.",
-          "last_checked": "UNVERIFIED"
+          "article_no": "89",
+          "heading": "Meldepflicht",
+          "text_excerpt": "Abs. 1: Wer in eine Gemeinde zuzieht, in ihr umzieht oder wegzieht, hat dies innert 14 Tagen der zur Führung des Einwohnerregisters zuständigen Stelle zu melden.",
+          "last_checked": "Gesetze-PDF 120.100 (Stand 2026-01-01)"
+        },
+        {
+          "id": 4,
+          "law_id": 2,
+          "article_no": "90",
+          "heading": "Wahrheitspflicht — Dokumente / Heimatschein",
+          "text_excerpt": "Abs. 2: Angaben dokumentieren, aktuelle Zivilstandsdokumente vorweisen und, wenn sie sich niederlassen, einen Heimatschein oder ein ähnliches Zivilstandsdokument hinterlegen; Miet-/Pachtverträge soweit möglich vorweisen.",
+          "last_checked": "Gesetze-PDF 120.100 (Stand 2026-01-01)"
         }
       ]
     },
     {
       "id": 3,
-      "slug": "sh-meldereglement-gemeinde",
-      "title": "Kommunales Meldereglement (Gemeinde)",
-      "short_title": "Meldereglement",
+      "slug": "sh-verordnung-einwohnerregister",
+      "title": "Verordnung über das Einwohnerregister (Kanton Schaffhausen)",
+      "short_title": "V-EWR",
+      "jurisdiction_level": "cantonal",
+      "sr_number": null,
+      "cantonal_ref": "SHR 431.101",
+      "source_note": "Gesetze/431.101-1-2.de.pdf — vom 2. Juli 2013 (Stand 1. Juli 2016), offline via PDFKit gelesen. § 4 regelt die AUSSTELLUNG eines Heimatausweises auf Verlangen (nicht die Hinterlegung bei Anmeldung — vgl. Art. 90 GG).",
+      "last_checked": "Gesetze-PDF 431.101 (Stand 2016-07-01)",
+      "articles": [
+        {
+          "id": 5,
+          "law_id": 3,
+          "article_no": "§ 1",
+          "heading": "Inhalt des Einwohnerregisters",
+          "text_excerpt": "Abs. 1: Die Gemeinden führen die Daten, die gemäss Art. 6 RHG und Art. 88 Gemeindegesetz obligatorisch sind.",
+          "last_checked": "Gesetze-PDF 431.101 (Stand 2016-07-01)"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "slug": "sh-kommunales-ewr-reglement",
+      "title": "Kommunales Einwohnerregister-Reglement (gemeindespezifisch)",
+      "short_title": "Komm. Reglement",
       "jurisdiction_level": "communal",
       "sr_number": null,
       "cantonal_ref": null,
-      "source_note": "Gemeindespezifisch; noch zu beschaffen und zu verifizieren.",
+      "source_note": "Art. 88 Abs. 4 und Art. 89 Abs. 4 GG ermächtigen die Gemeinden, zusätzliche Personendaten bzw. Meldepflichten in einem Reglement festzulegen. Das konkrete Gemeinde-Reglement liegt nicht vor.",
       "last_checked": "UNVERIFIED",
       "articles": [
         {
-          "id": 4,
-          "law_id": 3,
+          "id": 6,
+          "law_id": 4,
           "article_no": "UNKNOWN",
-          "heading": "Hinterlegung des Heimatausweises",
-          "text_excerpt": "Bei der Anmeldung ist der Heimatausweis (Heimatschein) zu hinterlegen.",
+          "heading": "Zusätzliche kommunale Personendaten / Meldepflichten",
+          "text_excerpt": "Gemeindespezifisch; nicht beschafft.",
           "last_checked": "UNVERIFIED"
         }
       ]
@@ -194,15 +224,15 @@
       "jurisdiction_level": "federal",
       "sr_number": null,
       "cantonal_ref": null,
-      "source_note": "SR-Nummer und Artikel bewusst nicht aus dem Gedächtnis eingetragen (conv 6).",
+      "source_note": "Querverweis: Art. 88 Abs. 2 GG (SHR 120.100) und § 1 V-EWR (SHR 431.101) verweisen ausdrücklich auf Art. 6 RHG; § 5 V-EWR auf Art. 9 RHG. SR-Nummer und Volltext nicht offline in ../Gesetze/ vorhanden — NICHT aus dem Gedächtnis ergänzt (conv 6).",
       "last_checked": "UNVERIFIED",
       "articles": [
         {
           "id": 1,
           "law_id": 1,
-          "article_no": "UNKNOWN",
-          "heading": "Zu registrierende Personenmerkmale",
-          "text_excerpt": "Die Gemeinden registrieren je Person mindestens die amtlichen Identifikationsmerkmale (Name, Vorname, Geburtsdatum, ...).",
+          "article_no": "6",
+          "heading": "Mindestinhalt des Einwohnerregisters (Merkmalkatalog)",
+          "text_excerpt": "Mindestmerkmale je Person; im kantonalen Recht (Art. 88 Abs. 2 GG) referenziert.",
           "last_checked": "UNVERIFIED"
         }
       ]
@@ -212,25 +242,39 @@
     {
       "id": 4,
       "data_point_key": "zuzugsgrund",
-      "data_point": "Grund des Zuzugs",
-      "label": "Grund des Zuzugs (Mehrfachauswahl)",
+      "data_point": "Art/Herkunft des Zuzugs",
+      "label": "Zuzug innerkantonal/ausserkantonal/Ausland (Herkunfts-/Registerdaten)",
       "data_type": "enum",
       "condition": null,
       "is_composite": 0,
-      "notes": "Mehrfachauswahl: jede Checkbox-Option ist ein reason_facet, KEINE Over-collection (conv 4).",
+      "notes": "Jede Checkbox ist ein reason_facet (conv 4). Herkunft/Zuzugsort gehört zu den Registermerkmalen.",
       "legal_basis": [
         {
           "law_id": 2,
-          "law_slug": "sh-meldegesetz",
-          "law_title": "Kantonales Gesetz über das Meldewesen / die Einwohnerkontrolle (Kanton Schaffhausen)",
-          "law_short": "Meldegesetz SH",
+          "law_slug": "sh-gemeindegesetz",
+          "law_title": "Gemeindegesetz (Kanton Schaffhausen)",
+          "law_short": "GG",
           "jurisdiction": "cantonal",
           "sr_number": null,
+          "cantonal_ref": "SHR 120.100",
+          "article_id": 2,
+          "article_no": "88",
+          "article_heading": "Einwohnerregister — Grundsatz / Inhalt",
+          "citation_detail": "Abs. 2",
+          "last_checked": "Gesetze-PDF 120.100 (Stand 2026-01-01)"
+        },
+        {
+          "law_id": 1,
+          "law_slug": "rhg",
+          "law_title": "Bundesgesetz über die Harmonisierung der Einwohnerregister (Registerharmonisierungsgesetz)",
+          "law_short": "RHG",
+          "jurisdiction": "federal",
+          "sr_number": null,
           "cantonal_ref": null,
-          "article_id": 3,
-          "article_no": "UNKNOWN",
-          "article_heading": "Anzugebende Angaben",
-          "citation_detail": "Abs. UNKNOWN",
+          "article_id": 1,
+          "article_no": "6",
+          "article_heading": "Mindestinhalt des Einwohnerregisters (Merkmalkatalog)",
+          "citation_detail": "(Herkunfts-/Zuzugsmerkmale)",
           "last_checked": "UNVERIFIED"
         }
       ],
@@ -240,27 +284,27 @@
     },
     {
       "id": 5,
-      "data_point_key": "heimatausweis",
-      "data_point": "Heimatausweis (Heimatschein)",
-      "label": "Hinterlegung des Heimatausweises",
+      "data_point_key": "heimatschein",
+      "data_point": "Heimatschein / Zivilstandsdokument",
+      "label": "Hinterlegung Heimatschein bei Niederlassung",
       "data_type": "document",
-      "condition": "bei Anmeldung zu hinterlegen",
+      "condition": "bei Niederlassung zu hinterlegen (Art. 90 Abs. 2 GG)",
       "is_composite": 0,
-      "notes": "LEGAL GAP demonstrator: gesetzlich verlangt, aber kein Formularfeld erfasst es.",
+      "notes": "LEGAL-GAP-Demonstrator: gesetzlich verlangt (Art. 90 Abs. 2 GG), aber kein Formularfeld erfasst die Hinterlegung. Basis korrigiert von § 4 V-EWR (Ausstellung auf Verlangen) auf Art. 90 Abs. 2 GG.",
       "legal_basis": [
         {
-          "law_id": 3,
-          "law_slug": "sh-meldereglement-gemeinde",
-          "law_title": "Kommunales Meldereglement (Gemeinde)",
-          "law_short": "Meldereglement",
-          "jurisdiction": "communal",
+          "law_id": 2,
+          "law_slug": "sh-gemeindegesetz",
+          "law_title": "Gemeindegesetz (Kanton Schaffhausen)",
+          "law_short": "GG",
+          "jurisdiction": "cantonal",
           "sr_number": null,
-          "cantonal_ref": null,
+          "cantonal_ref": "SHR 120.100",
           "article_id": 4,
-          "article_no": "UNKNOWN",
-          "article_heading": "Hinterlegung des Heimatausweises",
-          "citation_detail": "Abs. UNKNOWN",
-          "last_checked": "UNVERIFIED"
+          "article_no": "90",
+          "article_heading": "Wahrheitspflicht — Dokumente / Heimatschein",
+          "citation_detail": "Abs. 2",
+          "last_checked": "Gesetze-PDF 120.100 (Stand 2026-01-01)"
         }
       ],
       "services": [
@@ -271,7 +315,7 @@
       "id": 2,
       "data_point_key": "wohnadresse_neu",
       "data_point": "Neue Wohnadresse",
-      "label": "Wohnadresse am neuen Wohnsitz",
+      "label": "Wohnadresse am neuen Wohnsitz (mit Nachweis)",
       "data_type": "string",
       "condition": null,
       "is_composite": 0,
@@ -279,17 +323,31 @@
       "legal_basis": [
         {
           "law_id": 2,
-          "law_slug": "sh-meldegesetz",
-          "law_title": "Kantonales Gesetz über das Meldewesen / die Einwohnerkontrolle (Kanton Schaffhausen)",
-          "law_short": "Meldegesetz SH",
+          "law_slug": "sh-gemeindegesetz",
+          "law_title": "Gemeindegesetz (Kanton Schaffhausen)",
+          "law_short": "GG",
           "jurisdiction": "cantonal",
           "sr_number": null,
-          "cantonal_ref": null,
-          "article_id": 2,
-          "article_no": "UNKNOWN",
-          "article_heading": "Anmeldepflicht bei Zuzug",
-          "citation_detail": "Abs. UNKNOWN",
-          "last_checked": "UNVERIFIED"
+          "cantonal_ref": "SHR 120.100",
+          "article_id": 3,
+          "article_no": "89",
+          "article_heading": "Meldepflicht",
+          "citation_detail": "Abs. 1",
+          "last_checked": "Gesetze-PDF 120.100 (Stand 2026-01-01)"
+        },
+        {
+          "law_id": 2,
+          "law_slug": "sh-gemeindegesetz",
+          "law_title": "Gemeindegesetz (Kanton Schaffhausen)",
+          "law_short": "GG",
+          "jurisdiction": "cantonal",
+          "sr_number": null,
+          "cantonal_ref": "SHR 120.100",
+          "article_id": 4,
+          "article_no": "90",
+          "article_heading": "Wahrheitspflicht — Dokumente / Heimatschein",
+          "citation_detail": "Abs. 2",
+          "last_checked": "Gesetze-PDF 120.100 (Stand 2026-01-01)"
         }
       ],
       "services": [
@@ -300,12 +358,40 @@
       "id": 1,
       "data_point_key": "personalien",
       "data_point": "Personalien",
-      "label": "Amtliche Identität der zuziehenden Person",
+      "label": "Amtliche Identität / Registermerkmale der Person",
       "data_type": "composite",
       "condition": null,
       "is_composite": 1,
-      "notes": "Zusammengesetzte Anforderung: Name, Vorname, Geburtsdatum sind identity_part-Felder, KEINE Over-collection (conv 4).",
+      "notes": "Name, Vorname, Geburtsdatum sind identity_part-Felder (conv 4).",
       "legal_basis": [
+        {
+          "law_id": 2,
+          "law_slug": "sh-gemeindegesetz",
+          "law_title": "Gemeindegesetz (Kanton Schaffhausen)",
+          "law_short": "GG",
+          "jurisdiction": "cantonal",
+          "sr_number": null,
+          "cantonal_ref": "SHR 120.100",
+          "article_id": 2,
+          "article_no": "88",
+          "article_heading": "Einwohnerregister — Grundsatz / Inhalt",
+          "citation_detail": "Abs. 2",
+          "last_checked": "Gesetze-PDF 120.100 (Stand 2026-01-01)"
+        },
+        {
+          "law_id": 3,
+          "law_slug": "sh-verordnung-einwohnerregister",
+          "law_title": "Verordnung über das Einwohnerregister (Kanton Schaffhausen)",
+          "law_short": "V-EWR",
+          "jurisdiction": "cantonal",
+          "sr_number": null,
+          "cantonal_ref": "SHR 431.101",
+          "article_id": 5,
+          "article_no": "§ 1",
+          "article_heading": "Inhalt des Einwohnerregisters",
+          "citation_detail": "Abs. 1",
+          "last_checked": "Gesetze-PDF 431.101 (Stand 2016-07-01)"
+        },
         {
           "law_id": 1,
           "law_slug": "rhg",
@@ -315,23 +401,9 @@
           "sr_number": null,
           "cantonal_ref": null,
           "article_id": 1,
-          "article_no": "UNKNOWN",
-          "article_heading": "Zu registrierende Personenmerkmale",
-          "citation_detail": "Abs. UNKNOWN",
-          "last_checked": "UNVERIFIED"
-        },
-        {
-          "law_id": 2,
-          "law_slug": "sh-meldegesetz",
-          "law_title": "Kantonales Gesetz über das Meldewesen / die Einwohnerkontrolle (Kanton Schaffhausen)",
-          "law_short": "Meldegesetz SH",
-          "jurisdiction": "cantonal",
-          "sr_number": null,
-          "cantonal_ref": null,
-          "article_id": 2,
-          "article_no": "UNKNOWN",
-          "article_heading": "Anmeldepflicht bei Zuzug",
-          "citation_detail": "Abs. UNKNOWN",
+          "article_no": "6",
+          "article_heading": "Mindestinhalt des Einwohnerregisters (Merkmalkatalog)",
+          "citation_detail": "(Merkmalkatalog)",
           "last_checked": "UNVERIFIED"
         }
       ],
@@ -343,25 +415,25 @@
       "id": 3,
       "data_point_key": "zuzugsdatum",
       "data_point": "Zuzugsdatum",
-      "label": "Datum des Zuzugs",
+      "label": "Datum des Zuzugs (Meldepflicht innert 14 Tagen)",
       "data_type": "date",
-      "condition": "Anmeldung innert Frist seit Zuzug",
+      "condition": "Meldung innert 14 Tagen seit Zuzug (Art. 89 Abs. 1 GG)",
       "is_composite": 0,
       "notes": null,
       "legal_basis": [
         {
           "law_id": 2,
-          "law_slug": "sh-meldegesetz",
-          "law_title": "Kantonales Gesetz über das Meldewesen / die Einwohnerkontrolle (Kanton Schaffhausen)",
-          "law_short": "Meldegesetz SH",
+          "law_slug": "sh-gemeindegesetz",
+          "law_title": "Gemeindegesetz (Kanton Schaffhausen)",
+          "law_short": "GG",
           "jurisdiction": "cantonal",
           "sr_number": null,
-          "cantonal_ref": null,
-          "article_id": 2,
-          "article_no": "UNKNOWN",
-          "article_heading": "Anmeldepflicht bei Zuzug",
-          "citation_detail": "Abs. UNKNOWN",
-          "last_checked": "UNVERIFIED"
+          "cantonal_ref": "SHR 120.100",
+          "article_id": 3,
+          "article_no": "89",
+          "article_heading": "Meldepflicht",
+          "citation_detail": "Abs. 1",
+          "last_checked": "Gesetze-PDF 120.100 (Stand 2026-01-01)"
         }
       ],
       "services": [
@@ -375,7 +447,7 @@
       "slug": "anmeldung-wohnsitz-form",
       "service_id": 1,
       "title": "Anmeldung bei der Einwohnerkontrolle",
-      "actual_purpose": "Erfasst Personalien, neue Wohnadresse, Zuzugsdatum und Zuzugsgrund bei Zuzug. Inhalt deckt sich mit dem Titel (kein Mismatch).",
+      "actual_purpose": "Erfasst Personalien, neue Wohnadresse, Zuzugsdatum und Art des Zuzugs. Inhalt deckt sich mit dem Titel.",
       "title_content_mismatch": 0,
       "mismatch_note": null,
       "source_file": "forms/anmeldung-wohnsitz.pdf",
@@ -489,8 +561,8 @@
             "classification": "mapped",
             "match_status": "proposed",
             "mapped_by": "auto",
-            "confidence": 0.92,
-            "notes": "Auto-Vorschlag: Label/Konzept-Match. Noch nicht menschlich bestaetigt (conv 5)."
+            "confidence": 0.95,
+            "notes": "Auto-Vorschlag (Label-Match). Noch nicht bestaetigt (conv 5)."
           }
         },
         {
@@ -498,7 +570,7 @@
           "form_id": 1,
           "field_key": "grund_innerkantonal",
           "label": "Zuzug innerkantonal",
-          "section": "Zuzugsgrund",
+          "section": "Art des Zuzugs",
           "field_type": "checkbox",
           "options": [
             "Zuzug innerkantonal"
@@ -522,7 +594,7 @@
           "form_id": 1,
           "field_key": "grund_ausserkantonal",
           "label": "Zuzug ausserkantonal",
-          "section": "Zuzugsgrund",
+          "section": "Art des Zuzugs",
           "field_type": "checkbox",
           "options": [
             "Zuzug ausserkantonal"
@@ -546,7 +618,7 @@
           "form_id": 1,
           "field_key": "grund_ausland",
           "label": "Zuzug aus dem Ausland",
-          "section": "Zuzugsgrund",
+          "section": "Art des Zuzugs",
           "field_type": "checkbox",
           "options": [
             "Zuzug aus dem Ausland"
@@ -663,7 +735,7 @@
       "id": 4,
       "service_id": 1,
       "step_no": 4,
-      "description": "Hinterlegung des Heimatausweises pruefen",
+      "description": "Hinterlegung des Heimatscheins pruefen (Art. 90 Abs. 2 GG)",
       "mode": "manual",
       "notes": null
     },
@@ -681,33 +753,33 @@
       "id": 3,
       "source_file": "forms/gebuehrenrechner-anmeldung.xlsx",
       "file_name": "gebuehrenrechner-anmeldung.xlsx",
-      "department": "Gemeinde (kommunal)",
+      "department": "Gemeinde",
       "dienststelle": "Einwohnerkontrolle",
       "doc_type": "calculation_tool",
-      "formula_note": "Berechnet die Anmeldegebuehr; implementiert eine Tarifformel -> dokumentiert, aber KEIN Formular (conv 7).",
-      "classification_note": "Excel-Rechner.",
+      "formula_note": "Berechnet die Anmeldegebuehr (Tarifformel) -> dokumentiert, kein Formular (conv 7).",
+      "classification_note": null,
       "form_id": null
     },
     {
       "id": 1,
       "source_file": "forms/anmeldung-wohnsitz.pdf",
       "file_name": "anmeldung-wohnsitz.pdf",
-      "department": "Gemeinde (kommunal)",
+      "department": "Gemeinde",
       "dienststelle": "Einwohnerkontrolle",
       "doc_type": "formular",
       "formula_note": null,
-      "classification_note": "Citizen-fillable Anmeldeformular -> enters reconciliation pipeline (conv 7).",
+      "classification_note": "Citizen-fillable Anmeldeformular -> reconciliation pipeline (conv 7).",
       "form_id": 1
     },
     {
       "id": 2,
       "source_file": "forms/merkblatt-anmeldung.pdf",
       "file_name": "merkblatt-anmeldung.pdf",
-      "department": "Gemeinde (kommunal)",
+      "department": "Gemeinde",
       "dienststelle": "Einwohnerkontrolle",
       "doc_type": "helper",
       "formula_note": null,
-      "classification_note": "Wegleitung/Merkblatt zum Ausfuellen -> NICHT in der Datenbank als Formular (conv 7).",
+      "classification_note": "Wegleitung/Merkblatt -> NICHT als Formular modelliert (conv 7).",
       "form_id": null
     }
   ],
@@ -719,10 +791,22 @@
       "service_id": 1,
       "form_id": null,
       "law_id": null,
-      "fingerprint": "note::anmeldung-wohnsitz::Worked-example service. Citations placeholder/UNVERIFIED; form synthesized to ex",
-      "description": "Worked-example service. Citations placeholder/UNVERIFIED; form synthesized to exercise all views and classifications.",
+      "fingerprint": "note::anmeldung-wohnsitz::Zitate aus den offiziellen SHR-PDFs (Gesetze/120.100, 431.101) offline via scrip",
+      "description": "Zitate aus den offiziellen SHR-PDFs (Gesetze/120.100, 431.101) offline via scripts/extract_law.py gelesen — reale Art./Abs.",
       "status": "open",
-      "created_at": "SEED"
+      "created_at": "SOURCED"
+    },
+    {
+      "id": 2,
+      "type": "title_mismatch",
+      "severity": "warning",
+      "service_id": 1,
+      "form_id": null,
+      "law_id": null,
+      "fingerprint": "law-basis-correction-heimatschein",
+      "description": "Rechtsgrundlagen-Korrektur (conv 1, auf Gesetzesebene): Die Heimatschein-Pflicht beruht auf Art. 90 Abs. 2 GG (Hinterlegung bei Niederlassung), NICHT auf § 4 V-EWR (der die Ausstellung eines Heimatausweises auf Verlangen regelt). Platzhalter-Annahme durch Quelle ersetzt.",
+      "status": "open",
+      "created_at": "SOURCED"
     }
   ],
   "derived_findings": [
@@ -731,7 +815,7 @@
       "severity": "critical",
       "service_id": 1,
       "service": "Anmeldung Wohnsitz (Zuzug)",
-      "description": "Anforderung 'Heimatausweis (Heimatschein)' ist gesetzlich verlangt, wird aber von keinem Formularfeld erfasst."
+      "description": "Anforderung 'Heimatschein / Zivilstandsdokument' ist gesetzlich verlangt, wird aber von keinem Formularfeld erfasst."
     },
     {
       "type": "overcollection",
@@ -744,25 +828,37 @@
       "type": "citation_todo",
       "severity": "info",
       "service_id": null,
-      "description": "Zitat unverifiziert: Kantonales Gesetz über das Meldewesen / die Einwohnerkontrolle (Kanton Schaffhausen) Art. UNKNOWN (cantonal). Gegen Fedlex/kant. Register pruefen."
+      "description": "Quelle: Gesetze-PDF 120.100 (Stand 2026-01-01) — Live-Abgleich offen: Gemeindegesetz (Kanton Schaffhausen) Art. 88 (cantonal)."
     },
     {
       "type": "citation_todo",
       "severity": "info",
       "service_id": null,
-      "description": "Zitat unverifiziert: Kantonales Gesetz über das Meldewesen / die Einwohnerkontrolle (Kanton Schaffhausen) Art. UNKNOWN (cantonal). Gegen Fedlex/kant. Register pruefen."
+      "description": "Quelle: Gesetze-PDF 120.100 (Stand 2026-01-01) — Live-Abgleich offen: Gemeindegesetz (Kanton Schaffhausen) Art. 89 (cantonal)."
     },
     {
       "type": "citation_todo",
       "severity": "info",
       "service_id": null,
-      "description": "Zitat unverifiziert: Kommunales Meldereglement (Gemeinde) Art. UNKNOWN (communal). Gegen Fedlex/kant. Register pruefen."
+      "description": "Quelle: Gesetze-PDF 120.100 (Stand 2026-01-01) — Live-Abgleich offen: Gemeindegesetz (Kanton Schaffhausen) Art. 90 (cantonal)."
     },
     {
       "type": "citation_todo",
       "severity": "info",
       "service_id": null,
-      "description": "Zitat unverifiziert: Bundesgesetz über die Harmonisierung der Einwohnerregister (Registerharmonisierungsgesetz) Art. UNKNOWN (federal). Gegen Fedlex/kant. Register pruefen."
+      "description": "Quelle: Gesetze-PDF 431.101 (Stand 2016-07-01) — Live-Abgleich offen: Verordnung über das Einwohnerregister (Kanton Schaffhausen) Art. § 1 (cantonal)."
+    },
+    {
+      "type": "citation_todo",
+      "severity": "warning",
+      "service_id": null,
+      "description": "UNVERIFIED — keine Quelle: Kommunales Einwohnerregister-Reglement (gemeindespezifisch) Art. UNKNOWN (communal). Gegen Fedlex/kant. Register pruefen, nicht erfinden."
+    },
+    {
+      "type": "citation_todo",
+      "severity": "warning",
+      "service_id": null,
+      "description": "UNVERIFIED — keine Quelle: Bundesgesetz über die Harmonisierung der Einwohnerregister (Registerharmonisierungsgesetz) Art. 6 (federal). Gegen Fedlex/kant. Register pruefen, nicht erfinden."
     }
   ],
   "reconciliation": {
@@ -771,10 +867,10 @@
         "id": 1,
         "slug": "anmeldung-wohnsitz",
         "name": "Anmeldung Wohnsitz (Zuzug)",
-        "dienststelle": "Einwohnerkontrolle",
-        "department": "Gemeinde (kommunal)",
-        "description": "Anmeldung einer Person bei Zuzug in eine Schaffhauser Gemeinde: Erfassung von Identität, neuer Wohnadresse und Zuzugsdatum, Hinterlegung des Heimatausweises.",
-        "notes": "Worked example seeding the databank. Communal service with cantonal and federal legal bases."
+        "dienststelle": "Einwohnerkontrolle (Gemeinde)",
+        "department": "Kommunale Ausführung; kantonale/eidg. Rechtsgrundlagen",
+        "description": "Anmeldung bei Zuzug in eine Schaffhauser Gemeinde: Erfassung von Identität (Registerdaten), neuer Wohnadresse, Zuzugsdatum; Hinterlegung des Heimatscheins bei Niederlassung.",
+        "notes": "Worked example. Rechtsgrundlagen aus Gemeindegesetz (SHR 120.100) und Verordnung über das Einwohnerregister (SHR 431.101), Bundesbezug RHG."
       },
       "summary": {
         "requirements_total": 5,
@@ -789,11 +885,39 @@
         {
           "requirement_id": 1,
           "data_point": "Personalien",
-          "label": "Amtliche Identität der zuziehenden Person",
+          "label": "Amtliche Identität / Registermerkmale der Person",
           "data_type": "composite",
           "condition": null,
           "is_composite": true,
           "legal_basis": [
+            {
+              "law_id": 2,
+              "law_slug": "sh-gemeindegesetz",
+              "law_title": "Gemeindegesetz (Kanton Schaffhausen)",
+              "law_short": "GG",
+              "jurisdiction": "cantonal",
+              "sr_number": null,
+              "cantonal_ref": "SHR 120.100",
+              "article_id": 2,
+              "article_no": "88",
+              "article_heading": "Einwohnerregister — Grundsatz / Inhalt",
+              "citation_detail": "Abs. 2",
+              "last_checked": "Gesetze-PDF 120.100 (Stand 2026-01-01)"
+            },
+            {
+              "law_id": 3,
+              "law_slug": "sh-verordnung-einwohnerregister",
+              "law_title": "Verordnung über das Einwohnerregister (Kanton Schaffhausen)",
+              "law_short": "V-EWR",
+              "jurisdiction": "cantonal",
+              "sr_number": null,
+              "cantonal_ref": "SHR 431.101",
+              "article_id": 5,
+              "article_no": "§ 1",
+              "article_heading": "Inhalt des Einwohnerregisters",
+              "citation_detail": "Abs. 1",
+              "last_checked": "Gesetze-PDF 431.101 (Stand 2016-07-01)"
+            },
             {
               "law_id": 1,
               "law_slug": "rhg",
@@ -803,23 +927,9 @@
               "sr_number": null,
               "cantonal_ref": null,
               "article_id": 1,
-              "article_no": "UNKNOWN",
-              "article_heading": "Zu registrierende Personenmerkmale",
-              "citation_detail": "Abs. UNKNOWN",
-              "last_checked": "UNVERIFIED"
-            },
-            {
-              "law_id": 2,
-              "law_slug": "sh-meldegesetz",
-              "law_title": "Kantonales Gesetz über das Meldewesen / die Einwohnerkontrolle (Kanton Schaffhausen)",
-              "law_short": "Meldegesetz SH",
-              "jurisdiction": "cantonal",
-              "sr_number": null,
-              "cantonal_ref": null,
-              "article_id": 2,
-              "article_no": "UNKNOWN",
-              "article_heading": "Anmeldepflicht bei Zuzug",
-              "citation_detail": "Abs. UNKNOWN",
+              "article_no": "6",
+              "article_heading": "Mindestinhalt des Einwohnerregisters (Merkmalkatalog)",
+              "citation_detail": "(Merkmalkatalog)",
               "last_checked": "UNVERIFIED"
             }
           ],
@@ -864,24 +974,38 @@
         {
           "requirement_id": 2,
           "data_point": "Neue Wohnadresse",
-          "label": "Wohnadresse am neuen Wohnsitz",
+          "label": "Wohnadresse am neuen Wohnsitz (mit Nachweis)",
           "data_type": "string",
           "condition": null,
           "is_composite": false,
           "legal_basis": [
             {
               "law_id": 2,
-              "law_slug": "sh-meldegesetz",
-              "law_title": "Kantonales Gesetz über das Meldewesen / die Einwohnerkontrolle (Kanton Schaffhausen)",
-              "law_short": "Meldegesetz SH",
+              "law_slug": "sh-gemeindegesetz",
+              "law_title": "Gemeindegesetz (Kanton Schaffhausen)",
+              "law_short": "GG",
               "jurisdiction": "cantonal",
               "sr_number": null,
-              "cantonal_ref": null,
-              "article_id": 2,
-              "article_no": "UNKNOWN",
-              "article_heading": "Anmeldepflicht bei Zuzug",
-              "citation_detail": "Abs. UNKNOWN",
-              "last_checked": "UNVERIFIED"
+              "cantonal_ref": "SHR 120.100",
+              "article_id": 3,
+              "article_no": "89",
+              "article_heading": "Meldepflicht",
+              "citation_detail": "Abs. 1",
+              "last_checked": "Gesetze-PDF 120.100 (Stand 2026-01-01)"
+            },
+            {
+              "law_id": 2,
+              "law_slug": "sh-gemeindegesetz",
+              "law_title": "Gemeindegesetz (Kanton Schaffhausen)",
+              "law_short": "GG",
+              "jurisdiction": "cantonal",
+              "sr_number": null,
+              "cantonal_ref": "SHR 120.100",
+              "article_id": 4,
+              "article_no": "90",
+              "article_heading": "Wahrheitspflicht — Dokumente / Heimatschein",
+              "citation_detail": "Abs. 2",
+              "last_checked": "Gesetze-PDF 120.100 (Stand 2026-01-01)"
             }
           ],
           "status": "match",
@@ -903,24 +1027,24 @@
         {
           "requirement_id": 3,
           "data_point": "Zuzugsdatum",
-          "label": "Datum des Zuzugs",
+          "label": "Datum des Zuzugs (Meldepflicht innert 14 Tagen)",
           "data_type": "date",
-          "condition": "Anmeldung innert Frist seit Zuzug",
+          "condition": "Meldung innert 14 Tagen seit Zuzug (Art. 89 Abs. 1 GG)",
           "is_composite": false,
           "legal_basis": [
             {
               "law_id": 2,
-              "law_slug": "sh-meldegesetz",
-              "law_title": "Kantonales Gesetz über das Meldewesen / die Einwohnerkontrolle (Kanton Schaffhausen)",
-              "law_short": "Meldegesetz SH",
+              "law_slug": "sh-gemeindegesetz",
+              "law_title": "Gemeindegesetz (Kanton Schaffhausen)",
+              "law_short": "GG",
               "jurisdiction": "cantonal",
               "sr_number": null,
-              "cantonal_ref": null,
-              "article_id": 2,
-              "article_no": "UNKNOWN",
-              "article_heading": "Anmeldepflicht bei Zuzug",
-              "citation_detail": "Abs. UNKNOWN",
-              "last_checked": "UNVERIFIED"
+              "cantonal_ref": "SHR 120.100",
+              "article_id": 3,
+              "article_no": "89",
+              "article_heading": "Meldepflicht",
+              "citation_detail": "Abs. 1",
+              "last_checked": "Gesetze-PDF 120.100 (Stand 2026-01-01)"
             }
           ],
           "status": "proposed",
@@ -941,24 +1065,38 @@
         },
         {
           "requirement_id": 4,
-          "data_point": "Grund des Zuzugs",
-          "label": "Grund des Zuzugs (Mehrfachauswahl)",
+          "data_point": "Art/Herkunft des Zuzugs",
+          "label": "Zuzug innerkantonal/ausserkantonal/Ausland (Herkunfts-/Registerdaten)",
           "data_type": "enum",
           "condition": null,
           "is_composite": false,
           "legal_basis": [
             {
               "law_id": 2,
-              "law_slug": "sh-meldegesetz",
-              "law_title": "Kantonales Gesetz über das Meldewesen / die Einwohnerkontrolle (Kanton Schaffhausen)",
-              "law_short": "Meldegesetz SH",
+              "law_slug": "sh-gemeindegesetz",
+              "law_title": "Gemeindegesetz (Kanton Schaffhausen)",
+              "law_short": "GG",
               "jurisdiction": "cantonal",
               "sr_number": null,
+              "cantonal_ref": "SHR 120.100",
+              "article_id": 2,
+              "article_no": "88",
+              "article_heading": "Einwohnerregister — Grundsatz / Inhalt",
+              "citation_detail": "Abs. 2",
+              "last_checked": "Gesetze-PDF 120.100 (Stand 2026-01-01)"
+            },
+            {
+              "law_id": 1,
+              "law_slug": "rhg",
+              "law_title": "Bundesgesetz über die Harmonisierung der Einwohnerregister (Registerharmonisierungsgesetz)",
+              "law_short": "RHG",
+              "jurisdiction": "federal",
+              "sr_number": null,
               "cantonal_ref": null,
-              "article_id": 3,
-              "article_no": "UNKNOWN",
-              "article_heading": "Anzugebende Angaben",
-              "citation_detail": "Abs. UNKNOWN",
+              "article_id": 1,
+              "article_no": "6",
+              "article_heading": "Mindestinhalt des Einwohnerregisters (Merkmalkatalog)",
+              "citation_detail": "(Herkunfts-/Zuzugsmerkmale)",
               "last_checked": "UNVERIFIED"
             }
           ],
@@ -968,7 +1106,7 @@
               "form": "Anmeldung bei der Einwohnerkontrolle",
               "field_id": 6,
               "label": "Zuzug innerkantonal",
-              "section": "Zuzugsgrund",
+              "section": "Art des Zuzugs",
               "field_type": "checkbox",
               "classification": "reason_facet",
               "match_status": "confirmed",
@@ -979,7 +1117,7 @@
               "form": "Anmeldung bei der Einwohnerkontrolle",
               "field_id": 7,
               "label": "Zuzug ausserkantonal",
-              "section": "Zuzugsgrund",
+              "section": "Art des Zuzugs",
               "field_type": "checkbox",
               "classification": "reason_facet",
               "match_status": "confirmed",
@@ -990,7 +1128,7 @@
               "form": "Anmeldung bei der Einwohnerkontrolle",
               "field_id": 8,
               "label": "Zuzug aus dem Ausland",
-              "section": "Zuzugsgrund",
+              "section": "Art des Zuzugs",
               "field_type": "checkbox",
               "classification": "reason_facet",
               "match_status": "confirmed",
@@ -1002,25 +1140,25 @@
         },
         {
           "requirement_id": 5,
-          "data_point": "Heimatausweis (Heimatschein)",
-          "label": "Hinterlegung des Heimatausweises",
+          "data_point": "Heimatschein / Zivilstandsdokument",
+          "label": "Hinterlegung Heimatschein bei Niederlassung",
           "data_type": "document",
-          "condition": "bei Anmeldung zu hinterlegen",
+          "condition": "bei Niederlassung zu hinterlegen (Art. 90 Abs. 2 GG)",
           "is_composite": false,
           "legal_basis": [
             {
-              "law_id": 3,
-              "law_slug": "sh-meldereglement-gemeinde",
-              "law_title": "Kommunales Meldereglement (Gemeinde)",
-              "law_short": "Meldereglement",
-              "jurisdiction": "communal",
+              "law_id": 2,
+              "law_slug": "sh-gemeindegesetz",
+              "law_title": "Gemeindegesetz (Kanton Schaffhausen)",
+              "law_short": "GG",
+              "jurisdiction": "cantonal",
               "sr_number": null,
-              "cantonal_ref": null,
+              "cantonal_ref": "SHR 120.100",
               "article_id": 4,
-              "article_no": "UNKNOWN",
-              "article_heading": "Hinterlegung des Heimatausweises",
-              "citation_detail": "Abs. UNKNOWN",
-              "last_checked": "UNVERIFIED"
+              "article_no": "90",
+              "article_heading": "Wahrheitspflicht — Dokumente / Heimatschein",
+              "citation_detail": "Abs. 2",
+              "last_checked": "Gesetze-PDF 120.100 (Stand 2026-01-01)"
             }
           ],
           "status": "legal_gap",
@@ -1088,7 +1226,7 @@
           "form": "Anmeldung bei der Einwohnerkontrolle",
           "field_id": 6,
           "label": "Zuzug innerkantonal",
-          "section": "Zuzugsgrund",
+          "section": "Art des Zuzugs",
           "field_type": "checkbox",
           "classification": "reason_facet",
           "match_status": "confirmed",
@@ -1099,7 +1237,7 @@
           "form": "Anmeldung bei der Einwohnerkontrolle",
           "field_id": 7,
           "label": "Zuzug ausserkantonal",
-          "section": "Zuzugsgrund",
+          "section": "Art des Zuzugs",
           "field_type": "checkbox",
           "classification": "reason_facet",
           "match_status": "confirmed",
@@ -1110,7 +1248,7 @@
           "form": "Anmeldung bei der Einwohnerkontrolle",
           "field_id": 8,
           "label": "Zuzug aus dem Ausland",
-          "section": "Zuzugsgrund",
+          "section": "Art des Zuzugs",
           "field_type": "checkbox",
           "classification": "reason_facet",
           "match_status": "confirmed",
@@ -1168,30 +1306,48 @@
   },
   "citation_todo": [
     {
-      "law": "Kantonales Gesetz über das Meldewesen / die Einwohnerkontrolle (Kanton Schaffhausen)",
-      "law_slug": "sh-meldegesetz",
+      "law": "Gemeindegesetz (Kanton Schaffhausen)",
+      "law_slug": "sh-gemeindegesetz",
       "jurisdiction": "cantonal",
       "sr_number": null,
-      "article_no": "UNKNOWN",
-      "heading": "Anmeldepflicht bei Zuzug",
-      "last_checked": "UNVERIFIED"
+      "article_no": "88",
+      "heading": "Einwohnerregister — Grundsatz / Inhalt",
+      "last_checked": "Gesetze-PDF 120.100 (Stand 2026-01-01)"
     },
     {
-      "law": "Kantonales Gesetz über das Meldewesen / die Einwohnerkontrolle (Kanton Schaffhausen)",
-      "law_slug": "sh-meldegesetz",
+      "law": "Gemeindegesetz (Kanton Schaffhausen)",
+      "law_slug": "sh-gemeindegesetz",
       "jurisdiction": "cantonal",
       "sr_number": null,
-      "article_no": "UNKNOWN",
-      "heading": "Anzugebende Angaben",
-      "last_checked": "UNVERIFIED"
+      "article_no": "89",
+      "heading": "Meldepflicht",
+      "last_checked": "Gesetze-PDF 120.100 (Stand 2026-01-01)"
     },
     {
-      "law": "Kommunales Meldereglement (Gemeinde)",
-      "law_slug": "sh-meldereglement-gemeinde",
+      "law": "Gemeindegesetz (Kanton Schaffhausen)",
+      "law_slug": "sh-gemeindegesetz",
+      "jurisdiction": "cantonal",
+      "sr_number": null,
+      "article_no": "90",
+      "heading": "Wahrheitspflicht — Dokumente / Heimatschein",
+      "last_checked": "Gesetze-PDF 120.100 (Stand 2026-01-01)"
+    },
+    {
+      "law": "Verordnung über das Einwohnerregister (Kanton Schaffhausen)",
+      "law_slug": "sh-verordnung-einwohnerregister",
+      "jurisdiction": "cantonal",
+      "sr_number": null,
+      "article_no": "§ 1",
+      "heading": "Inhalt des Einwohnerregisters",
+      "last_checked": "Gesetze-PDF 431.101 (Stand 2016-07-01)"
+    },
+    {
+      "law": "Kommunales Einwohnerregister-Reglement (gemeindespezifisch)",
+      "law_slug": "sh-kommunales-ewr-reglement",
       "jurisdiction": "communal",
       "sr_number": null,
       "article_no": "UNKNOWN",
-      "heading": "Hinterlegung des Heimatausweises",
+      "heading": "Zusätzliche kommunale Personendaten / Meldepflichten",
       "last_checked": "UNVERIFIED"
     },
     {
@@ -1199,8 +1355,8 @@
       "law_slug": "rhg",
       "jurisdiction": "federal",
       "sr_number": null,
-      "article_no": "UNKNOWN",
-      "heading": "Zu registrierende Personenmerkmale",
+      "article_no": "6",
+      "heading": "Mindestinhalt des Einwohnerregisters (Merkmalkatalog)",
       "last_checked": "UNVERIFIED"
     }
   ]
@@ -1212,9 +1368,18 @@ const state = {service:'all', tab:'recon', tree:'list'};
 const esc = s => (s==null?'':String(s)).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 const el = (h)=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild;};
 const jur = j => `<span class="badge b-${j}">${({federal:'Bund',cantonal:'Kanton',communal:'Gemeinde'}[j]||j)}</span>`;
-const unver = lc => lc!=='verified' ? ` <span class="badge b-unver" title="nicht gegen Fedlex/kant. Register verifiziert">${lc||'UNVERIFIED'}</span>` : '';
+function unver(lc){   // three verification levels
+  if(!lc || lc==='UNVERIFIED') return ` <span class="badge b-unver" title="nicht verifiziert, keine Quelle">UNVERIFIED</span>`;
+  if(lc==='verified') return ` <span class="badge b-match" title="live gegen Fedlex/Register verifiziert">verifiziert</span>`;
+  if(/^Gesetze/.test(lc)) return ` <span class="badge b-sourced" title="aus offizieller SHR-PDF gelesen (scripts/extract_law.py); Live-Abgleich offen">Quelle ${esc(lc.replace('Gesetze-PDF ',''))}</span>`;
+  return ` <span class="badge b-unver">${esc(lc)}</span>`;
+}
+function artLabel(no){
+  if(!no || no==='UNKNOWN') return 'Art. UNBEKANNT';
+  return /^(§|Art)/.test(no) ? no : 'Art. '+no;   // Swiss acts use Art. or §
+}
 function citeStr(lb){
-  const art = lb.article_no && lb.article_no!=='UNKNOWN' ? 'Art. '+lb.article_no : 'Art. UNBEKANNT';
+  const art = artLabel(lb.article_no);
   const det = lb.citation_detail ? ' '+lb.citation_detail : '';
   const sr  = lb.sr_number ? ' · SR '+lb.sr_number : (lb.cantonal_ref ? ' · '+lb.cantonal_ref : '');
   return `${jur(lb.jurisdiction)} <span class="mono">${esc(art+det)}</span> ${esc(lb.law_short||lb.law_title)}${esc(sr)}${unver(lb.last_checked)}`;
@@ -1330,7 +1495,7 @@ function listLaw(L){
     <div class="tnode">${L.arts.map(listArt).join('')}</div></div>`;
 }
 function listArt(A){
-  return `<div class="tgrp"><div class="tline"><span class="ttog">▾</span> <span class="mono">Art. ${esc(A.no==='UNKNOWN'?'UNBEKANNT':A.no)}</span> ${esc(A.heading||'')}${unver(A.lc)}</div>
+  return `<div class="tgrp"><div class="tline"><span class="ttog">▾</span> <span class="mono">${esc(artLabel(A.no))}</span> ${esc(A.heading||'')}${unver(A.lc)}</div>
     <div class="tnode">${A.reqs.map(r=>`<div class="tline">• ${esc(r.dp)} ${statusBadge(r.status)} <span class="muted small">${esc(r.type||'')}</span></div>`).join('')}</div></div>`;
 }
 function dgLaw(L){
@@ -1338,7 +1503,7 @@ function dgLaw(L){
     <div class="dgchildren">${L.arts.map(dgArt).join('')}</div></div>`;
 }
 function dgArt(A){
-  return `<div class="dgnode"><div class="dgbox" style="border-left-color:var(--mechanic)"><span class="ttl mono">Art. ${esc(A.no==='UNKNOWN'?'UNBEKANNT':A.no)}</span><div class="sub">${esc(A.heading||'')} ${A.lc!=='verified'?'· UNVERIFIED':''}</div></div>
+  return `<div class="dgnode"><div class="dgbox" style="border-left-color:var(--mechanic)"><span class="ttl mono">${esc(artLabel(A.no))}</span><div class="sub">${esc(A.heading||'')} ${A.lc!=='verified'?'· UNVERIFIED':''}</div></div>
     <div class="dgchildren">${A.reqs.map(r=>`<div class="dgnode"><div class="dgbox" style="border-left-color:var(--${r.status==='legal_gap'?'gap':r.status==='proposed'?'proposed':'match'})"><span class="ttl">${esc(r.dp)}</span> ${statusBadge(r.status)}<div class="sub">${esc(r.type||'')}</div></div></div>`).join('')}</div></div>`;
 }
 
@@ -1363,7 +1528,7 @@ function viewInfo(){
       <table><thead><tr><th>Datenpunkt</th><th>Artikel</th><th>Typ</th><th>Bedingung</th><th>Erfasst durch (Formularfeld)</th></tr></thead><tbody>
       ${rows.map(({req,lb,cap})=>`<tr>
         <td><b>${esc(req.data_point)}</b><div class="small muted">${esc(req.label||'')}</div></td>
-        <td class="mono small">Art. ${esc(lb.article_no==='UNKNOWN'?'UNBEKANNT':lb.article_no)}${lb.citation_detail?' '+esc(lb.citation_detail):''}${unver(lb.last_checked)}</td>
+        <td class="mono small">${esc(artLabel(lb.article_no))}${lb.citation_detail?' '+esc(lb.citation_detail):''}${unver(lb.last_checked)}</td>
         <td class="small">${esc(req.data_type||'')}</td>
         <td class="small">${esc(req.condition||'—')}</td>
         <td>${cap.length?cap.map(c=>`“${esc(c.label)}” <span class="badge b-${c.st==='confirmed'?'confirmed':'proposedm'}">${c.st}</span>`).join('<br>'):'<span class="badge b-legal_gap">Legal Gap — kein Feld</span>'}</td>

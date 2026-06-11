@@ -77,6 +77,7 @@ TEMPLATE = r"""<!DOCTYPE html>
   .b-reason_facet{color:var(--reason);border-color:var(--reason);background:#a78bfa1a}
   .b-form_mechanic{color:var(--mechanic);border-color:var(--mechanic);background:#64748b22}
   .b-unver{color:var(--unver);border-color:var(--unver);background:#fb71851a}
+  .b-sourced{color:#fcd34d;border-color:#b45309;background:#78350f55}
   .b-confirmed{color:var(--match);border-color:var(--match);background:#22c55e1a}
   .b-auto,.b-proposedm{color:var(--proposed);border-color:var(--proposed);background:#38bdf81a}
   table{border-collapse:collapse;width:100%;font-size:12.5px}
@@ -150,9 +151,18 @@ const state = {service:'all', tab:'recon', tree:'list'};
 const esc = s => (s==null?'':String(s)).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 const el = (h)=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild;};
 const jur = j => `<span class="badge b-${j}">${({federal:'Bund',cantonal:'Kanton',communal:'Gemeinde'}[j]||j)}</span>`;
-const unver = lc => lc!=='verified' ? ` <span class="badge b-unver" title="nicht gegen Fedlex/kant. Register verifiziert">${lc||'UNVERIFIED'}</span>` : '';
+function unver(lc){   // three verification levels
+  if(!lc || lc==='UNVERIFIED') return ` <span class="badge b-unver" title="nicht verifiziert, keine Quelle">UNVERIFIED</span>`;
+  if(lc==='verified') return ` <span class="badge b-match" title="live gegen Fedlex/Register verifiziert">verifiziert</span>`;
+  if(/^Gesetze/.test(lc)) return ` <span class="badge b-sourced" title="aus offizieller SHR-PDF gelesen (scripts/extract_law.py); Live-Abgleich offen">Quelle ${esc(lc.replace('Gesetze-PDF ',''))}</span>`;
+  return ` <span class="badge b-unver">${esc(lc)}</span>`;
+}
+function artLabel(no){
+  if(!no || no==='UNKNOWN') return 'Art. UNBEKANNT';
+  return /^(§|Art)/.test(no) ? no : 'Art. '+no;   // Swiss acts use Art. or §
+}
 function citeStr(lb){
-  const art = lb.article_no && lb.article_no!=='UNKNOWN' ? 'Art. '+lb.article_no : 'Art. UNBEKANNT';
+  const art = artLabel(lb.article_no);
   const det = lb.citation_detail ? ' '+lb.citation_detail : '';
   const sr  = lb.sr_number ? ' · SR '+lb.sr_number : (lb.cantonal_ref ? ' · '+lb.cantonal_ref : '');
   return `${jur(lb.jurisdiction)} <span class="mono">${esc(art+det)}</span> ${esc(lb.law_short||lb.law_title)}${esc(sr)}${unver(lb.last_checked)}`;
@@ -268,7 +278,7 @@ function listLaw(L){
     <div class="tnode">${L.arts.map(listArt).join('')}</div></div>`;
 }
 function listArt(A){
-  return `<div class="tgrp"><div class="tline"><span class="ttog">▾</span> <span class="mono">Art. ${esc(A.no==='UNKNOWN'?'UNBEKANNT':A.no)}</span> ${esc(A.heading||'')}${unver(A.lc)}</div>
+  return `<div class="tgrp"><div class="tline"><span class="ttog">▾</span> <span class="mono">${esc(artLabel(A.no))}</span> ${esc(A.heading||'')}${unver(A.lc)}</div>
     <div class="tnode">${A.reqs.map(r=>`<div class="tline">• ${esc(r.dp)} ${statusBadge(r.status)} <span class="muted small">${esc(r.type||'')}</span></div>`).join('')}</div></div>`;
 }
 function dgLaw(L){
@@ -276,7 +286,7 @@ function dgLaw(L){
     <div class="dgchildren">${L.arts.map(dgArt).join('')}</div></div>`;
 }
 function dgArt(A){
-  return `<div class="dgnode"><div class="dgbox" style="border-left-color:var(--mechanic)"><span class="ttl mono">Art. ${esc(A.no==='UNKNOWN'?'UNBEKANNT':A.no)}</span><div class="sub">${esc(A.heading||'')} ${A.lc!=='verified'?'· UNVERIFIED':''}</div></div>
+  return `<div class="dgnode"><div class="dgbox" style="border-left-color:var(--mechanic)"><span class="ttl mono">${esc(artLabel(A.no))}</span><div class="sub">${esc(A.heading||'')} ${A.lc!=='verified'?'· UNVERIFIED':''}</div></div>
     <div class="dgchildren">${A.reqs.map(r=>`<div class="dgnode"><div class="dgbox" style="border-left-color:var(--${r.status==='legal_gap'?'gap':r.status==='proposed'?'proposed':'match'})"><span class="ttl">${esc(r.dp)}</span> ${statusBadge(r.status)}<div class="sub">${esc(r.type||'')}</div></div></div>`).join('')}</div></div>`;
 }
 
@@ -301,7 +311,7 @@ function viewInfo(){
       <table><thead><tr><th>Datenpunkt</th><th>Artikel</th><th>Typ</th><th>Bedingung</th><th>Erfasst durch (Formularfeld)</th></tr></thead><tbody>
       ${rows.map(({req,lb,cap})=>`<tr>
         <td><b>${esc(req.data_point)}</b><div class="small muted">${esc(req.label||'')}</div></td>
-        <td class="mono small">Art. ${esc(lb.article_no==='UNKNOWN'?'UNBEKANNT':lb.article_no)}${lb.citation_detail?' '+esc(lb.citation_detail):''}${unver(lb.last_checked)}</td>
+        <td class="mono small">${esc(artLabel(lb.article_no))}${lb.citation_detail?' '+esc(lb.citation_detail):''}${unver(lb.last_checked)}</td>
         <td class="small">${esc(req.data_type||'')}</td>
         <td class="small">${esc(req.condition||'—')}</td>
         <td>${cap.length?cap.map(c=>`“${esc(c.label)}” <span class="badge b-${c.st==='confirmed'?'confirmed':'proposedm'}">${c.st}</span>`).join('<br>'):'<span class="badge b-legal_gap">Legal Gap — kein Feld</span>'}</td>
