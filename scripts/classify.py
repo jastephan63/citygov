@@ -21,9 +21,13 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import INVENTORY_DIR, ROOT
 
+# strong helper signals — these win even over form-ish words (e.g. "Vollzugshilfe
+# Baubewilligung" contains 'bewilligung' but is guidance, not a form).
 HELPER  = re.compile(r"merkblatt|wegleitung|leitfaden|anleitung|richtlinie|erl[aä]uter|"
                      r"checkliste|factsheet|infoblatt|\binfo\b|broschure|broschüre|flyer|"
-                     r"hinweis|tipps|vorschriften", re.I)
+                     r"hinweis|tipps|vorschriften|vollzugshilfe|schulungsunterlagen|"
+                     r"ablaufschema|bewilligungskriterien|bewilligungsablauf|"
+                     r"beilagen|reglement|musterarbeitsvertrag|mustervertrag", re.I)
 FORM    = re.compile(r"formular|gesuch|antrag|anmeld|\bmeldung\b|meldeform|bewilligung|"
                      r"vollmacht|erkl[aä]rung|deklaration|bestellformular|fragebogen|"
                      r"bewerbung|nachweis|vertrag", re.I)
@@ -34,6 +38,10 @@ def classify(name):
     base = os.path.splitext(name)[0]
     ext = os.path.splitext(name)[1].lower()
     is_sheet = ext in (".xlsx", ".xlsm", ".xls", ".csv")
+    # strong helper signal wins first (conv 7): guidance is not a form even if its
+    # title contains 'Gesuch'/'Bewilligung' (e.g. 'Vollzugshilfe ...bewilligung').
+    if HELPER.search(base):
+        return "helper", "filename indicates guidance (Wegleitung/Merkblatt/Vollzugshilfe)"
     # Abrechnungsformular*.xlsx etc. are genuine forms even though they're sheets.
     if FORM.search(base) and not (is_sheet and CALC.search(base) and "formular" not in base.lower()):
         return "formular", "filename indicates a citizen-fillable form"

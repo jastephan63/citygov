@@ -288,7 +288,7 @@ function reqItem(r){
   return `<div class="item ${r.status}">
     <div class="t">${esc(r.data_point)} <span class="badge b-${r.status}">${({match:'Match',proposed:'Vorschlag',legal_gap:'Legal Gap'}[r.status])}</span>${r.is_composite?' <span class="badge b-identity_part">zusammengesetzt</span>':''}</div>
     <div class="d">${esc(r.label||'')}${r.condition?' · Bedingung: <i>'+esc(r.condition)+'</i>':''} · Typ: ${esc(r.data_type||'?')}</div>
-    <div class="cite">${r.legal_basis.map(citeStr).join('<br>')||'<span class="muted">keine Grundlage erfasst</span>'}</div>
+    <div class="cite">${r.legal_basis.map(citeStr).join('<br>')||'<span class="badge b-unver">Rechtsgrundlage zu ermitteln</span>'}</div>
     <div class="d">${r.status==='legal_gap'?'<span style="color:var(--gap)">✗ von keinem Formularfeld erfasst</span>'
         :'erfasst durch: '+cap.map(c=>`“${esc(c.label)}” <span class="badge b-${c.match_status==='confirmed'?'confirmed':'proposedm'}">${c.match_status}</span>`).join(', ')}</div>
   </div>`;
