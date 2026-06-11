@@ -185,10 +185,15 @@ def build(conn):
                     "sr_number": l["sr_number"], "article_no": a["article_no"],
                     "heading": a["heading"], "last_checked": a["last_checked"]})
     for c in citation_todo:
+        sourced = str(c["last_checked"]).startswith("Gesetze")
         derived_findings.append({
-            "type": "citation_todo", "severity": "info", "service_id": None,
-            "description": f"Zitat unverifiziert: {c['law']} Art. {c['article_no']} "
-                           f"({c['jurisdiction']}). Gegen Fedlex/kant. Register pruefen."})
+            "type": "citation_todo",
+            "severity": "info" if sourced else "warning",
+            "service_id": None,
+            "description": (
+                f"{'Quelle: '+c['last_checked']+' — Live-Abgleich offen' if sourced else 'UNVERIFIED — keine Quelle'}: "
+                f"{c['law']} Art. {c['article_no']} ({c['jurisdiction']})."
+                f"{'' if sourced else ' Gegen Fedlex/kant. Register pruefen, nicht erfinden.'}")})
 
     data.update({
         "services": services, "laws": laws, "requirements": requirements,
