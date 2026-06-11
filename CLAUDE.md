@@ -34,10 +34,18 @@ matches / total requirements.
 5. **Auto-match proposes, never confirms.** Everything `propose_mapping.py` emits
    is `match_status='proposed', mapped_by='auto'`. A human flips real ones to
    `confirmed`. The dashboard shows the difference.
-6. **Citations are `UNVERIFIED` by default**; unknown article = `article_no='UNKNOWN'`.
-   Never invent SR/article numbers from memory. Real citations enter only when
-   explicitly given. The dashboard badges every unverified citation; the verify
-   list is `logs/citation_todo.txt`.
+6. **Never type a citation from memory.** Real Art./§/Abs. come from the actual
+   law text. Cantonal laws are in `../Gesetze/` (official SHR PDFs) — read them
+   offline with `scripts/extract_law.py` (macOS PDFKit via JXA; no deps, no
+   network) and record the article WITH its provenance. Three verification levels
+   live in `last_checked`:
+     * `verified`                      — cross-checked live against Fedlex/register
+     * `Gesetze-PDF <SHR> (Stand …)`   — read from the official cantonal PDF (amber "Quelle" badge)
+     * `UNVERIFIED`                    — no source yet; unknown article = `article_no='UNKNOWN'`
+   Federal (Fedlex) and communal texts are NOT in `../Gesetze/`; record only what
+   an authoritative source states (e.g. a federal article *cross-referenced by* a
+   cantonal law), leave the SR number `UNVERIFIED` until a real source is given —
+   do not guess it. `logs/citation_todo.txt` is the verify list. `§` uses §, not Art.
 7. **Classify before modelling** (`classify.py`): `formular` (enters pipeline) vs
    `calculation_tool` (Excel formula — document `formula_note`, do NOT model as a
    form) vs `helper` (Wegleitung/Merkblatt — catalogue only).
@@ -74,9 +82,13 @@ python3 scripts/extract_form.py forms/X.pdf     # -> proposals/<slug>.extracted.
 #    (pip install pypdf openpyxl  for real PDF/Excel extraction)
 
 # 3. model the LAW side by hand in the proposal: read the form CONTENT (conv 1),
-#    decide the real service (split if needed, conv 2), add laws/articles
-#    (UNVERIFIED, conv 6), requirements (reuse data_point_key, conv 8),
-#    service_requirements.
+#    decide the real service (split if needed, conv 2). Find the governing law in
+#    ../Gesetze/ and read the REAL article/§:
+python3 scripts/extract_law.py ../Gesetze/120.100-3-1.de-1.pdf --grep Meldepflicht
+python3 scripts/extract_law.py ../Gesetze/120.100-3-1.de-1.pdf --index
+#    Add laws/articles with real Art./§ + provenance last_checked (conv 6),
+#    requirements (reuse data_point_key, conv 8), service_requirements.
+#    (mdfind -onlyin ../Gesetze "<Begriff>" helps locate the right SHR PDF.)
 
 # 4. auto-propose mappings (conv 5)
 python3 scripts/propose_mapping.py proposals/<slug>.extracted.json
