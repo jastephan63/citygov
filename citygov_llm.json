@@ -12,7 +12,7 @@
    },
    "field_classification": "mapped=captures a requirement; identity_part=sub-field of a person-identity requirement; reason_facet=one option of a multi-choice requirement; form_mechanic=plumbing (signature/date), no legal basis needed; overcollection=collected with no legal basis (data-protection risk)."
   },
-  "generated_at": "2026-06-12T14:22:29"
+  "generated_at": "2026-06-12T14:28:18"
  },
  "services": [
   {
@@ -3571,7 +3571,7 @@
        ]
       },
       {
-       "label": "Nr",
+       "label": "Geb.-Nr.: Parz.-Nr",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -3609,7 +3609,7 @@
        ]
       },
       {
-       "label": "Nr",
+       "label": "Geb.-Nr.: Parz.-Nr",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -3666,7 +3666,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Sachbearbeiter/-in, Tel",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -3685,7 +3685,7 @@
        ]
       },
       {
-       "label": "0",
+       "label": "Beilagen",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -3704,7 +3704,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "separate Berechnungen technische Datenblätter",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -3742,7 +3742,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Sachbearbeiter/-in, Tel",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -3761,7 +3761,7 @@
        ]
       },
       {
-       "label": "0",
+       "label": "Beilagen",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -3780,7 +3780,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "separate Berechnungen technische Datenblätter",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -3837,7 +3837,7 @@
        ]
       },
       {
-       "label": "0",
+       "label": "Beilagen",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -3856,7 +3856,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Sachbearbeiter/-in, Tel",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -3875,7 +3875,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "separate Berechnungen technische Datenblätter",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -3913,7 +3913,7 @@
        ]
       },
       {
-       "label": "0",
+       "label": "Beilagen",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -3951,7 +3951,7 @@
        ]
       },
       {
-       "label": "001",
+       "label": "Leistung pro Modul",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -3970,7 +3970,7 @@
        ]
       },
       {
-       "label": "002",
+       "label": "W Anzahl Module",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -3989,7 +3989,7 @@
        ]
       },
       {
-       "label": "003",
+       "label": "Gesamtleistung",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -4046,7 +4046,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Sachbearbeiter/-in, Tel",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -4065,7 +4065,7 @@
        ]
       },
       {
-       "label": "001",
+       "label": "Leistung pro Modul",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -4084,7 +4084,7 @@
        ]
       },
       {
-       "label": "004",
+       "label": "Summe Modulflächen",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -4103,7 +4103,7 @@
        ]
       },
       {
-       "label": "006",
+       "label": "Summe Modulflächen",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -4122,7 +4122,7 @@
        ]
       },
       {
-       "label": "010",
+       "label": "Summe Leistung",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -4141,7 +4141,7 @@
        ]
       },
       {
-       "label": "007",
+       "label": "/kW) Gesamtleistung: (Annahme 16 m",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -4160,7 +4160,7 @@
        ]
       },
       {
-       "label": "005",
+       "label": "/kW) Gesamtleistung: (Annahme 8 m",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -4179,7 +4179,7 @@
        ]
       },
       {
-       "label": "002",
+       "label": "W Anzahl Module",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -4198,7 +4198,7 @@
        ]
       },
       {
-       "label": "003",
+       "label": "Gesamtleistung",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -4236,7 +4236,7 @@
        ]
       },
       {
-       "label": "0",
+       "label": "Beilagen",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -4255,7 +4255,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Sachbearbeiter/-in, Tel",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -4274,7 +4274,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "separate Berechnungen technische Datenblätter",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -4369,7 +4369,7 @@
        ]
       },
       {
-       "label": "0",
+       "label": "Beilagen",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -4426,7 +4426,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "separate Berechnungen technische Datenblätter",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -4445,7 +4445,7 @@
        ]
       },
       {
-       "label": "3",
+       "label": "separate Berechnungen",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -4483,7 +4483,7 @@
        ]
       },
       {
-       "label": "0",
+       "label": "Beilagen",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -4502,7 +4502,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Sachbearbeiter/-in, Tel",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -4521,7 +4521,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "separate Berechnungen technische Datenblätter",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -4635,7 +4635,7 @@
        ]
       },
       {
-       "label": "0",
+       "label": "Beilagen",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -5627,7 +5627,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "1. Elektrisch angetriebene Wärmepumpe",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -5646,7 +5646,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "2. Holzfeuerung als Hauptwärmeerzeugung",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -5665,7 +5665,7 @@
        ]
       },
       {
-       "label": "3",
+       "label": "3. Fernwärmeanschluss mit Abwärme oder erneuerbarer Energie",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -5741,7 +5741,7 @@
        ]
       },
       {
-       "label": "9",
+       "label": "9. Thermische Sonnenkollektoren für die Wassererwärmung",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -5760,7 +5760,7 @@
        ]
       },
       {
-       "label": "10",
+       "label": "10. Warmwasserwärmepumpe mit Photovoltaikanlage",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -5836,7 +5836,7 @@
        ]
       },
       {
-       "label": "11",
+       "label": "11. Kontrollierte Wohnungslüftung (KWL)",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -5855,7 +5855,7 @@
        ]
       },
       {
-       "label": "12",
+       "label": "12. Mit Erdgas angetriebene Wärmepumpe",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -5874,7 +5874,7 @@
        ]
       },
       {
-       "label": "13",
+       "label": "13. Wärmekraftkopplung",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -7868,13 +7868,13 @@
   {
    "id": 19,
    "slug": "kantonsforstamt-verfahren-rodungs-und-baugesuch-",
-   "name": "Verfahren Rodungs und Baugesuch_20251218.docx 1/2",
+   "name": "Verfahrensablauf kantonale Bau- und Rodungsbewilligung",
    "department": "Baudepartement",
    "dienststelle": "Kantonsforstamt",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Kantonsforstamt/Verfahren Rodungs und Baugesuch_20251218.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Verfahren Rodungs und Baugesuch_20251218.docx 1/2",
+     "title": "Verfahrensablauf kantonale Bau- und Rodungsbewilligung",
      "source_file": "../Verwaltung/Baudepartement/Kantonsforstamt/Verfahren Rodungs und Baugesuch_20251218.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -9075,13 +9075,13 @@
   {
    "id": 22,
    "slug": "strassenverkehrs-und-schifffahrtsamt-gesuchsform",
-   "name": "Gesuchsformular rad- oder motorsportliche Veranstaltung_V1.docx Seite 1 / 2",
+   "name": "Gesuch um Erteilung einer Bewilligung für rad- oder motorsportliche",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/Gesuchsformular rad- oder motorsportliche Veranstaltung_V1-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Gesuchsformular rad- oder motorsportliche Veranstaltung_V1.docx Seite 1 / 2",
+     "title": "Gesuch um Erteilung einer Bewilligung für rad- oder motorsportliche",
      "source_file": "../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/Gesuchsformular rad- oder motorsportliche Veranstaltung_V1-p.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -9882,13 +9882,13 @@
   {
    "id": 23,
    "slug": "strassenverkehrs-und-schifffahrtsamt-kontrollsch",
-   "name": "Formular: kontrollschilderabtretung 19.docx Version: 2022.11.25",
+   "name": "Kontrollschilder-Abtretung",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/kontrollschilderabtretung-25-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Formular: kontrollschilderabtretung 19.docx Version: 2022.11.25",
+     "title": "Kontrollschilder-Abtretung",
      "source_file": "../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/kontrollschilderabtretung-25-p.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -12444,13 +12444,13 @@
   {
    "id": 25,
    "slug": "strassenverkehrs-und-schifffahrtsamt-anmeldung-f",
-   "name": "Formular: Anmeldung zur Fahrzeugprüfung ohne Kontrollschilder 19.docx Version: 2022.11.02",
+   "name": "Anmeldung zur Fahrzeugprüfung ohne Kontrollschilder",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/anmeldung-fahrzeugpruefung-ohne-kontrollschilder-25-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Formular: Anmeldung zur Fahrzeugprüfung ohne Kontrollschilder 19.docx Version: 2022.11.02",
+     "title": "Anmeldung zur Fahrzeugprüfung ohne Kontrollschilder",
      "source_file": "../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/anmeldung-fahrzeugpruefung-ohne-kontrollschilder-25-p.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -12566,13 +12566,13 @@
   {
    "id": 26,
    "slug": "strassenverkehrs-und-schifffahrtsamt-augenaerztl",
-   "name": "☐ die zweite medizinische Gruppe (D, D1, C, C1, Bewilligung zum berufsmässigen",
+   "name": "Augenärztliches Zeugnis (Für das Strassenverkehrsamt bestimmt)",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/augenaerztliches-zeugnis-25-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "☐ die zweite medizinische Gruppe (D, D1, C, C1, Bewilligung zum berufsmässigen",
+     "title": "Augenärztliches Zeugnis (Für das Strassenverkehrsamt bestimmt)",
      "source_file": "../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/augenaerztliches-zeugnis-25-p.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -13004,7 +13004,7 @@
        "legal_basis": []
       },
       {
-       "label": "0",
+       "label": "( Brilleneintrag streichen –",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -13028,7 +13028,7 @@
        "legal_basis": []
       },
       {
-       "label": "0",
+       "label": "( Brilleneintrag streichen –",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -13052,7 +13052,7 @@
        "legal_basis": []
       },
       {
-       "label": "Ch",
+       "label": "strassenverkehrsamt.sh.ch finden Sie auf unserer Homepage",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -13076,7 +13076,7 @@
        "legal_basis": []
       },
       {
-       "label": "Ch",
+       "label": "strassenverkehrsamt.sh.ch finden Sie auf unserer Homepage",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -13092,7 +13092,7 @@
        "legal_basis": []
       },
       {
-       "label": "0",
+       "label": "( Brilleneintrag streichen –",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -13108,7 +13108,7 @@
        "legal_basis": []
       },
       {
-       "label": "0",
+       "label": "( Brilleneintrag streichen –",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -13124,7 +13124,7 @@
        "legal_basis": []
       },
       {
-       "label": "0",
+       "label": "( Brilleneintrag streichen –",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -13140,7 +13140,7 @@
        "legal_basis": []
       },
       {
-       "label": "0",
+       "label": "( Brilleneintrag streichen –",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -13156,7 +13156,7 @@
        "legal_basis": []
       },
       {
-       "label": "Ch",
+       "label": "strassenverkehrsamt.sh.ch finden Sie auf unserer Homepage",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -13180,7 +13180,7 @@
        "legal_basis": []
       },
       {
-       "label": "Ch",
+       "label": "strassenverkehrsamt.sh.ch finden Sie auf unserer Homepage",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -13210,13 +13210,13 @@
   {
    "id": 28,
    "slug": "strassenverkehrs-und-schifffahrtsamt-bestellung-",
-   "name": "bestellung-kontrollschilder.doc Seite 1 von 1 Version: 2022.11.14",
+   "name": "Neuanfertigung von Kontrollschildern in reflektierender Ausführung",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/bestellung-kontrollschilder-25-2-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "bestellung-kontrollschilder.doc Seite 1 von 1 Version: 2022.11.14",
+     "title": "Neuanfertigung von Kontrollschildern in reflektierender Ausführung",
      "source_file": "../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/bestellung-kontrollschilder-25-2-p.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -13404,13 +13404,13 @@
   {
    "id": 29,
    "slug": "strassenverkehrs-und-schifffahrtsamt-bewilligung",
-   "name": "bewilligung-gefahrenlichter.doc Seite 1 von 1 Version: 2022.11.02",
+   "name": "Gesuch um Bewilligung von gelben Gefahrenlichtern",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/bewilligung-gefahrenlichter-25-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "bewilligung-gefahrenlichter.doc Seite 1 von 1 Version: 2022.11.02",
+     "title": "Gesuch um Bewilligung von gelben Gefahrenlichtern",
      "source_file": "../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/bewilligung-gefahrenlichter-25-p.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -14465,13 +14465,13 @@
   {
    "id": 31,
    "slug": "strassenverkehrs-und-schifffahrtsamt-fz-anmeldun",
-   "name": "Formular: FZ-Anmeldung Standortkanton neu.docx Version: 2022.11.02",
+   "name": "durch einen Halter mit ausserkantonalem Wohnsitz.",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/fz-anmeldung-standortkanton-25-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Formular: FZ-Anmeldung Standortkanton neu.docx Version: 2022.11.02",
+     "title": "durch einen Halter mit ausserkantonalem Wohnsitz.",
      "source_file": "../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/fz-anmeldung-standortkanton-25-p.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -14831,7 +14831,7 @@
        ]
       },
       {
-       "label": "B",
+       "label": "A1 B1 B C über 35 kW C1",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -15021,7 +15021,7 @@
        ]
       },
       {
-       "label": "DE",
+       "label": "BPT121 BPT122 Trolley/110 G M",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -15059,7 +15059,7 @@
        ]
       },
       {
-       "label": "F",
+       "label": "BPT121 BPT122 Trolley/110 G M",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -15078,7 +15078,7 @@
        ]
       },
       {
-       "label": "G",
+       "label": "BPT121 BPT122 Trolley/110 G M",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -15097,7 +15097,7 @@
        ]
       },
       {
-       "label": "M",
+       "label": "BPT121 BPT122 Trolley/110",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -15748,7 +15748,7 @@
        ]
       },
       {
-       "label": "-1",
+       "label": "Stehen Sie unter umfassender Beistandschaft?",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -15767,7 +15767,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Stehen Sie unter umfassender Beistandschaft?",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -15786,7 +15786,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "W Krankheiten mit / Schwächezustände / Ohnmachtsanfälle",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -15824,7 +15824,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Stehen Sie unter umfassender Beistandschaft?",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -15843,7 +15843,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "W Krankheiten mit / Schwächezustände / Ohnmachtsanfälle",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -15862,7 +15862,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Stehen Sie unter umfassender Beistandschaft?",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -15881,7 +15881,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Stehen Sie unter umfassender Beistandschaft?",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -15900,7 +15900,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "W Krankheiten mit / Schwächezustände / Ohnmachtsanfälle",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -15919,7 +15919,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "W Krankheiten mit / Schwächezustände / Ohnmachtsanfälle",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -15938,7 +15938,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Stehen Sie unter umfassender Beistandschaft?",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -15957,7 +15957,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "W Krankheiten mit / Schwächezustände / Ohnmachtsanfälle",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -15995,7 +15995,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Stehen Sie unter umfassender Beistandschaft?",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -16014,7 +16014,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "W Krankheiten mit / Schwächezustände / Ohnmachtsanfälle",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -16052,7 +16052,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Stehen Sie unter umfassender Beistandschaft?",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -16071,7 +16071,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "W Krankheiten mit / Schwächezustände / Ohnmachtsanfälle",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -16109,7 +16109,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Stehen Sie unter umfassender Beistandschaft?",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -16128,7 +16128,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "W Krankheiten mit / Schwächezustände / Ohnmachtsanfälle",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -16166,7 +16166,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Stehen Sie unter umfassender Beistandschaft?",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -16185,7 +16185,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "W Krankheiten mit / Schwächezustände / Ohnmachtsanfälle",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -16223,7 +16223,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Stehen Sie unter umfassender Beistandschaft?",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -16242,7 +16242,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "W Krankheiten mit / Schwächezustände / Ohnmachtsanfälle",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -16280,7 +16280,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Stehen Sie unter umfassender Beistandschaft?",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -16299,7 +16299,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "W Krankheiten mit / Schwächezustände / Ohnmachtsanfälle",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -16337,7 +16337,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Stehen Sie unter umfassender Beistandschaft?",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -16356,7 +16356,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "W Krankheiten mit / Schwächezustände / Ohnmachtsanfälle",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -16394,7 +16394,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Stehen Sie unter umfassender Beistandschaft?",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -16413,7 +16413,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "W Krankheiten mit / Schwächezustände / Ohnmachtsanfälle",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -16451,7 +16451,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Stehen Sie unter umfassender Beistandschaft?",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -16470,7 +16470,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "W Krankheiten mit / Schwächezustände / Ohnmachtsanfälle",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -16508,7 +16508,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Stehen Sie unter umfassender Beistandschaft?",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -16527,7 +16527,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "W Krankheiten mit / Schwächezustände / Ohnmachtsanfälle",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -16565,7 +16565,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Stehen Sie unter umfassender Beistandschaft?",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -16584,7 +16584,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "W Krankheiten mit / Schwächezustände / Ohnmachtsanfälle",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -16622,7 +16622,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Stehen Sie unter umfassender Beistandschaft?",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -16641,7 +16641,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "W Krankheiten mit / Schwächezustände / Ohnmachtsanfälle",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -16679,7 +16679,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Stehen Sie unter umfassender Beistandschaft?",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -16698,7 +16698,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "W Krankheiten mit / Schwächezustände / Ohnmachtsanfälle",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -16736,7 +16736,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Stehen Sie unter umfassender Beistandschaft?",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -16755,7 +16755,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "W Krankheiten mit / Schwächezustände / Ohnmachtsanfälle",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -16793,7 +16793,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Stehen Sie unter umfassender Beistandschaft?",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -16812,7 +16812,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "W Krankheiten mit / Schwächezustände / Ohnmachtsanfälle",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -16850,7 +16850,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Stehen Sie unter umfassender Beistandschaft?",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -16869,7 +16869,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "W Krankheiten mit / Schwächezustände / Ohnmachtsanfälle",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -16907,7 +16907,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Stehen Sie unter umfassender Beistandschaft?",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -16926,7 +16926,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "W Krankheiten mit / Schwächezustände / Ohnmachtsanfälle",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -16964,7 +16964,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Stehen Sie unter umfassender Beistandschaft?",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -16983,7 +16983,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "W Krankheiten mit / Schwächezustände / Ohnmachtsanfälle",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -17021,7 +17021,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Stehen Sie unter umfassender Beistandschaft?",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -17040,7 +17040,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "W Krankheiten mit / Schwächezustände / Ohnmachtsanfälle",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -17734,13 +17734,13 @@
   {
    "id": 34,
    "slug": "strassenverkehrs-und-schifffahrtsamt-gesuch-ersa",
-   "name": "Formular: gesuch-ersatzfahrzeugausweis.docx Version: 2022.11.02",
+   "name": "Gesuch um Erteilung eines Ersatzfahrzeugausweises",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/gesuch-ersatzfahrzeugausweis-25-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Formular: gesuch-ersatzfahrzeugausweis.docx Version: 2022.11.02",
+     "title": "Gesuch um Erteilung eines Ersatzfahrzeugausweises",
      "source_file": "../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/gesuch-ersatzfahrzeugausweis-25-p.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -18058,13 +18058,13 @@
   {
    "id": 35,
    "slug": "strassenverkehrs-und-schifffahrtsamt-gesuch-erte",
-   "name": "4907369_Gesuch_LFA_SH:-",
+   "name": "Gesuch um Erteilung eines Schiffsführerausweises PIN (Zuteilung vom StVA)",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/gesuch-erteilung-schiffsfuehrerausweis-26-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "4907369_Gesuch_LFA_SH:-",
+     "title": "Gesuch um Erteilung eines Schiffsführerausweises PIN (Zuteilung vom StVA)",
      "source_file": "../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/gesuch-erteilung-schiffsfuehrerausweis-26-p.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -19780,13 +19780,13 @@
   {
    "id": 36,
    "slug": "strassenverkehrs-und-schifffahrtsamt-gesuch-fasn",
-   "name": "gesuch-fasnachtswagen.doc Seite 1 von 1 Version: 2024.10.29",
+   "name": "Gesuch um Erteilung einer Ausnahmebewilligung für Fasnachtswagen",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/gesuch-fasnachtswagen-25-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "gesuch-fasnachtswagen.doc Seite 1 von 1 Version: 2024.10.29",
+     "title": "Gesuch um Erteilung einer Ausnahmebewilligung für Fasnachtswagen",
      "source_file": "../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/gesuch-fasnachtswagen-25-p.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -20278,13 +20278,13 @@
   {
    "id": 37,
    "slug": "strassenverkehrs-und-schifffahrtsamt-gesuch-gewe",
-   "name": "gesuch-gewerbliche-fahrten.doc Seite 1 von 1 Version: 2022.11.01",
+   "name": "Gesuch um Erteilung einer Ausnahmebewilligung gemäss Art. 90 VRV",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/gesuch-gewerbliche-fahrten-25-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "gesuch-gewerbliche-fahrten.doc Seite 1 von 1 Version: 2022.11.01",
+     "title": "Gesuch um Erteilung einer Ausnahmebewilligung gemäss Art. 90 VRV",
      "source_file": "../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/gesuch-gewerbliche-fahrten-25-p.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -20743,13 +20743,13 @@
   {
    "id": 38,
    "slug": "strassenverkehrs-und-schifffahrtsamt-gesuch-haen",
-   "name": "2025-10-02 - Gesuch Händlerschild Formular.docx Seite 1 / 2",
+   "name": "Gesuch um Erteilung eines Kollektiv-Fahrzeugausweises",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/gesuch-haendlerschild-formular-25-2-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "2025-10-02 - Gesuch Händlerschild Formular.docx Seite 1 / 2",
+     "title": "Gesuch um Erteilung eines Kollektiv-Fahrzeugausweises",
      "source_file": "../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/gesuch-haendlerschild-formular-25-2-p.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -22348,13 +22348,13 @@
   {
    "id": 39,
    "slug": "strassenverkehrs-und-schifffahrtsamt-gesuch-schi",
-   "name": "gesuch-schiffsausweis-22.docx Seite 1 von 2 Version: 2022.11.02",
+   "name": "Gesuch um Erteilung eines Schiffsausweises Kennze ichen SH .",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/gesuch-schiffsausweis-25-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "gesuch-schiffsausweis-22.docx Seite 1 von 2 Version: 2022.11.02",
+     "title": "Gesuch um Erteilung eines Schiffsausweises Kennze ichen SH .",
      "source_file": "../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/gesuch-schiffsausweis-25-p.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -22702,13 +22702,13 @@
   {
    "id": 40,
    "slug": "strassenverkehrs-und-schifffahrtsamt-gesuch-tage",
-   "name": "Formular: gesuch-tagesausweis-19-2.docx Version: 2022.11.02",
+   "name": "Gesuch um Erteilung eines Tagesausweises",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/gesuch-tagesausweis-25-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Formular: gesuch-tagesausweis-19-2.docx Version: 2022.11.02",
+     "title": "Gesuch um Erteilung eines Tagesausweises",
      "source_file": "../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/gesuch-tagesausweis-25-p.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -24033,13 +24033,13 @@
   {
    "id": 43,
    "slug": "strassenverkehrs-und-schifffahrtsamt-nachpr-fung",
-   "name": "4. Das Bewilligungsgesuch muss vorgängig beim Strassenverkehrsamt eingereicht werden",
+   "name": "Gesuch um Nachprüfung im Ausland",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/nachprüfung-ausland-25-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "4. Das Bewilligungsgesuch muss vorgängig beim Strassenverkehrsamt eingereicht werden",
+     "title": "Gesuch um Nachprüfung im Ausland",
      "source_file": "../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/nachprüfung-ausland-25-p.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -24647,7 +24647,7 @@
        "legal_basis": []
       },
       {
-       "label": "35",
+       "label": "Feld 31 Anhänger mit Betriebsbremse: . kg",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -26066,13 +26066,13 @@
   {
    "id": 47,
    "slug": "strassenverkehrs-und-schifffahrtsamt-werkinteren",
-   "name": "www.sh.ch E-Mail: sonderbewilligungen@sh.ch",
+   "name": "Dem Gesuch ist ein Situationsplan, auf welchem das eigene Betriebsareal und die",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/werkinterener-verkehr-25-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "www.sh.ch E-Mail: sonderbewilligungen@sh.ch",
+     "title": "Dem Gesuch ist ein Situationsplan, auf welchem das eigene Betriebsareal und die",
      "source_file": "../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/werkinterener-verkehr-25-p.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -31866,13 +31866,13 @@
   {
    "id": 57,
    "slug": "allgemein-antragsformular-nszg-revier-und-bewill",
-   "name": "Kanton Schaffhausen",
+   "name": "Antrag auf Anerkennung als N SZG - Revier",
    "department": "Department des Innern",
    "dienststelle": "Allgemein",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Allgemein/Antragsformular NSZG Revier und Bewilligung.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "Antrag auf Anerkennung als N SZG - Revier",
      "source_file": "../Verwaltung/Department des Innern/Allgemein/Antragsformular NSZG Revier und Bewilligung.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -32097,13 +32097,13 @@
   {
    "id": 59,
    "slug": "bewilligungen-antragsformular-bab-inkl-selbstdek",
-   "name": "Kanton Schaffhausen",
+   "name": "Antragsformular für eine Berufsausübungsbewilligu n g",
    "department": "Department des Innern",
    "dienststelle": "Bewilligungen",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Bewilligungen/Antragsformular BAB inkl. Selbstdeklaration Version 2025.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "Antragsformular für eine Berufsausübungsbewilligu n g",
      "source_file": "../Verwaltung/Department des Innern/Bewilligungen/Antragsformular BAB inkl. Selbstdeklaration Version 2025.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -33821,7 +33821,7 @@
        "legal_basis": []
       },
       {
-       "label": "Qm",
+       "label": "Fläche Anzahl Räume",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -52368,7 +52368,7 @@
      "title_content_mismatch": false,
      "fields": [
       {
-       "label": "Ja",
+       "label": "gen zu können?",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -52406,7 +52406,7 @@
        ]
       },
       {
-       "label": "Ja",
+       "label": "gen zu können?",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -52444,7 +52444,7 @@
        ]
       },
       {
-       "label": "Ja",
+       "label": "gen zu können?",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -52482,7 +52482,7 @@
        ]
       },
       {
-       "label": "Ja",
+       "label": "gen zu können?",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -52520,7 +52520,7 @@
        ]
       },
       {
-       "label": "Ja",
+       "label": "gen zu können?",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -53327,13 +53327,13 @@
   {
    "id": 94,
    "slug": "jagd-und-fischerei-anmeldung-j-gerpr-fung",
-   "name": "Kanton Schaffhausen",
+   "name": "Telefon: Privat: .................................... Geschäft: ..............................",
    "department": "Department des Innern",
    "dienststelle": "Jagd und Fischerei",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Jagd und Fischerei/Anmeldung Jägerprüfung.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "Telefon: Privat: .................................... Geschäft: ..............................",
      "source_file": "../Verwaltung/Department des Innern/Jagd und Fischerei/Anmeldung Jägerprüfung.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -53589,13 +53589,13 @@
   {
    "id": 95,
    "slug": "jagd-und-fischerei-antragsformular-nszg-revier-u",
-   "name": "Kanton Schaffhausen",
+   "name": "Antrag auf Anerkennung als N SZG - Revier",
    "department": "Department des Innern",
    "dienststelle": "Jagd und Fischerei",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Jagd und Fischerei/Antragsformular NSZG Revier und Bewilligung.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "Antrag auf Anerkennung als N SZG - Revier",
      "source_file": "../Verwaltung/Department des Innern/Jagd und Fischerei/Antragsformular NSZG Revier und Bewilligung.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -53718,13 +53718,13 @@
   {
    "id": 96,
    "slug": "jagd-und-fischerei-formular-meldung-nachsuchenge",
-   "name": "Kanton Schaffhausen",
+   "name": "Meldung über das verfügbare Nachsuchengespann",
    "department": "Department des Innern",
    "dienststelle": "Jagd und Fischerei",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Jagd und Fischerei/Formular Meldung Nachsuchengespann 07.2017.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "Meldung über das verfügbare Nachsuchengespann",
      "source_file": "../Verwaltung/Department des Innern/Jagd und Fischerei/Formular Meldung Nachsuchengespann 07.2017.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -53923,13 +53923,13 @@
   {
    "id": 97,
    "slug": "jagd-und-fischerei-sh-treffsicherheitsnachweis-j",
-   "name": "JFK-Standard Kanton Schaffhausen",
+   "name": "Treffsicherheitsn achweis",
    "department": "Department des Innern",
    "dienststelle": "Jagd und Fischerei",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Jagd und Fischerei/SH Treffsicherheitsnachweis_JFK-Standard - Juli 2019.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "JFK-Standard Kanton Schaffhausen",
+     "title": "Treffsicherheitsn achweis",
      "source_file": "../Verwaltung/Department des Innern/Jagd und Fischerei/SH Treffsicherheitsnachweis_JFK-Standard - Juli 2019.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -54303,13 +54303,13 @@
   {
    "id": 99,
    "slug": "migrationsamt-und-passbuero-einwilligungserkl-ru",
-   "name": "Kanton Schaffhausen",
+   "name": "Einwilligung zur Ausweisbestellung",
    "department": "Department des Innern",
    "dienststelle": "Migrationsamt und Passbuero",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Migrationsamt und Passbuero/Einwilligungserklärung.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "Einwilligung zur Ausweisbestellung",
      "source_file": "../Verwaltung/Department des Innern/Migrationsamt und Passbuero/Einwilligungserklärung.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -54328,13 +54328,13 @@
   {
    "id": 100,
    "slug": "migrationsamt-und-passbuero-gesuch-um-ausstellun",
-   "name": "Kanton Schaffhausen",
+   "name": "Gesuch um Ausstellung eines Austauschpasses",
    "department": "Department des Innern",
    "dienststelle": "Migrationsamt und Passbuero",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Migrationsamt und Passbuero/Gesuch_um_Ausstellung_eines_Austauschpasses_def.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "Gesuch um Ausstellung eines Austauschpasses",
      "source_file": "../Verwaltung/Department des Innern/Migrationsamt und Passbuero/Gesuch_um_Ausstellung_eines_Austauschpasses_def.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -63912,7 +63912,7 @@
        ]
       },
       {
-       "label": "30",
+       "label": "oder aus einer ausländischen",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -64007,7 +64007,7 @@
        ]
       },
       {
-       "label": "54",
+       "label": "in Prozent?",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -64045,7 +64045,7 @@
        ]
       },
       {
-       "label": "56",
+       "label": "Bitte Arztzeugnis beilegen",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -64767,7 +64767,7 @@
        ]
       },
       {
-       "label": "56",
+       "label": "Bitte Arztzeugnis beilegen",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -64786,7 +64786,7 @@
        ]
       },
       {
-       "label": "54",
+       "label": "in Prozent?",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -64805,7 +64805,7 @@
        ]
       },
       {
-       "label": "30",
+       "label": "oder aus einer ausländischen",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -64919,7 +64919,7 @@
        ]
       },
       {
-       "label": "141",
+       "label": "beziehen Sie gegenwärtig",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -68023,7 +68023,7 @@
        ]
       },
       {
-       "label": "35",
+       "label": "nehmenden pro Woche?",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -68118,7 +68118,7 @@
        ]
       },
       {
-       "label": "51",
+       "label": "Bitte Unterlagen beilegen. ja nein",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -68137,7 +68137,7 @@
        ]
       },
       {
-       "label": "52",
+       "label": "Kinderzulagen pro Monat ja nein",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -68156,7 +68156,7 @@
        ]
       },
       {
-       "label": "53",
+       "label": "Ausbildungszulagen pro Monat",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -68175,7 +68175,7 @@
        ]
       },
       {
-       "label": "49",
+       "label": "Bitte Unterlagen beilegen. nein ja",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -68194,7 +68194,7 @@
        ]
       },
       {
-       "label": "44",
+       "label": "versichert?",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -68612,7 +68612,7 @@
        ]
       },
       {
-       "label": "55",
+       "label": "Tage",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -78455,13 +78455,13 @@
   {
    "id": 117,
    "slug": "sva-schaffhausen-bei08-2024",
-   "name": "21 | 23 Form. bei08-2024 03.25",
+   "name": "Abrechnungs-Nr. 21 | 23 Form. bei08-2024 03.25",
    "department": "Department des Innern",
    "dienststelle": "SVA Schaffhausen",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/bei08-2024.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "21 | 23 Form. bei08-2024 03.25",
+     "title": "Abrechnungs-Nr. 21 | 23 Form. bei08-2024 03.25",
      "source_file": "../Verwaltung/Department des Innern/SVA Schaffhausen/bei08-2024.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -79273,13 +79273,13 @@
   {
    "id": 118,
    "slug": "sva-schaffhausen-bei08-2025",
-   "name": "21 | 23 Form. bei08-2025 03.25",
+   "name": "Abrechnungs-Nr. 21 | 23 Form. bei08-2025 03.25",
    "department": "Department des Innern",
    "dienststelle": "SVA Schaffhausen",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/bei08-2025.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "21 | 23 Form. bei08-2025 03.25",
+     "title": "Abrechnungs-Nr. 21 | 23 Form. bei08-2025 03.25",
      "source_file": "../Verwaltung/Department des Innern/SVA Schaffhausen/bei08-2025.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -82851,7 +82851,7 @@
        "legal_basis": []
       },
       {
-       "label": "9",
+       "label": "Tatsächlich",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82859,7 +82859,7 @@
        "legal_basis": []
       },
       {
-       "label": "10",
+       "label": "Differenz",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -83393,7 +83393,7 @@
        ]
       },
       {
-       "label": "54",
+       "label": "vereinbart?",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -83545,7 +83545,7 @@
        ]
       },
       {
-       "label": "73",
+       "label": "pro Stunde in CHF",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -83583,7 +83583,7 @@
        ]
       },
       {
-       "label": "72",
+       "label": "pro Stunde in CHF",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -83697,7 +83697,7 @@
        ]
       },
       {
-       "label": "76",
+       "label": "erhoben?",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -83944,7 +83944,7 @@
        ]
       },
       {
-       "label": "54",
+       "label": "vereinbart?",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -84267,7 +84267,7 @@
        ]
       },
       {
-       "label": "72",
+       "label": "pro Stunde in CHF",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -84305,7 +84305,7 @@
        ]
       },
       {
-       "label": "73",
+       "label": "pro Stunde in CHF",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -84400,7 +84400,7 @@
        ]
       },
       {
-       "label": "76",
+       "label": "erhoben?",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -109127,13 +109127,13 @@
   {
    "id": 153,
    "slug": "veterinaeramt-2021-formular-hundebissmeldung-opf",
-   "name": "Kanton Schaffhausen",
+   "name": "Formular zur Meldung von Hundebissverletzungen beim Tier",
    "department": "Department des Innern",
    "dienststelle": "Veterinaeramt",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Veterinaeramt/2021-Formular Hundebissmeldung Opfer Tier aktiv.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "Formular zur Meldung von Hundebissverletzungen beim Tier",
      "source_file": "../Verwaltung/Department des Innern/Veterinaeramt/2021-Formular Hundebissmeldung Opfer Tier aktiv.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -109364,7 +109364,7 @@
        ]
       },
       {
-       "label": "Ja",
+       "label": "Anzeige bei der Polizei erstattet",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -109467,7 +109467,7 @@
        ]
       },
       {
-       "label": "Ja",
+       "label": "Anzeige bei der Polizei erstattet",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -109543,7 +109543,7 @@
        ]
       },
       {
-       "label": "Ja",
+       "label": "Anzeige bei der Polizei erstattet",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -109665,7 +109665,7 @@
        ]
       },
       {
-       "label": "Ja",
+       "label": "Anzeige bei der Polizei erstattet",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -109741,7 +109741,7 @@
        ]
       },
       {
-       "label": "Ja",
+       "label": "Anzeige bei der Polizei erstattet",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -110615,7 +110615,7 @@
        ]
       },
       {
-       "label": "Ja",
+       "label": "Anzeige bei der Polizei erstattet",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -110737,7 +110737,7 @@
        ]
       },
       {
-       "label": "Ja",
+       "label": "Anzeige bei der Polizei erstattet",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -111201,7 +111201,7 @@
        ]
       },
       {
-       "label": "Ja",
+       "label": "Anzeige bei der Polizei erstattet",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -111595,13 +111595,13 @@
   {
    "id": 154,
    "slug": "veterinaeramt-2023-formular-annahme-trichinenpro",
-   "name": "Kanton Schaffhausen",
+   "name": "Untersuchungsantrag auf Trichinellen",
    "department": "Department des Innern",
    "dienststelle": "Veterinaeramt",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Veterinaeramt/2023 Formular Annahme Trichinenproben.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "Untersuchungsantrag auf Trichinellen",
      "source_file": "../Verwaltung/Department des Innern/Veterinaeramt/2023 Formular Annahme Trichinenproben.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -111789,13 +111789,13 @@
   {
    "id": 155,
    "slug": "veterinaeramt-21-05-20-tiermeldeformular-kt-sh",
-   "name": "Kanton Schaffhausen",
+   "name": "Ich habe bereits eine Meldung bei STMZ gemacht: Ja Meldenr: __________________ Nein",
    "department": "Department des Innern",
    "dienststelle": "Veterinaeramt",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Veterinaeramt/21_05_20_Tiermeldeformular Kt SH.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "Ich habe bereits eine Meldung bei STMZ gemacht: Ja Meldenr: __________________ Nein",
      "source_file": "../Verwaltung/Department des Innern/Veterinaeramt/21_05_20_Tiermeldeformular Kt SH.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -113181,13 +113181,13 @@
   {
    "id": 157,
    "slug": "veterinaeramt-eu-erkl-rung-welpe-tollwut",
-   "name": "http://eur-lex.europa.eu/legal-content/DE/TXT/PDF/?uri=CELEX:32013R0577&rid=1",
+   "name": "Anforderungen an Format, Layout und Sprache der Erklärungen",
    "department": "Department des Innern",
    "dienststelle": "Veterinaeramt",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Veterinaeramt/EU-Erklärung Welpe  Tollwut.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "http://eur-lex.europa.eu/legal-content/DE/TXT/PDF/?uri=CELEX:32013R0577&rid=1",
+     "title": "Anforderungen an Format, Layout und Sprache der Erklärungen",
      "source_file": "../Verwaltung/Department des Innern/Veterinaeramt/EU-Erklärung Welpe  Tollwut.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -113206,13 +113206,13 @@
   {
    "id": 158,
    "slug": "veterinaeramt-formular-meldung-verhaltensauffa-l",
-   "name": "Kanton Schaffhausen",
+   "name": "Formular zur Meldung eines Hundes, welcher Anzeichen eines übermässigen Aggressionsver-",
    "department": "Department des Innern",
    "dienststelle": "Veterinaeramt",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Veterinaeramt/Formular Meldung verhaltensauffälliger Hund.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "Formular zur Meldung eines Hundes, welcher Anzeichen eines übermässigen Aggressionsver-",
      "source_file": "../Verwaltung/Department des Innern/Veterinaeramt/Formular Meldung verhaltensauffälliger Hund.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -113316,13 +113316,13 @@
   {
    "id": 159,
    "slug": "veterinaeramt-gesuch-listenhund-23-02",
-   "name": "Kanton Schaffhausen",
+   "name": "Gesuch für die Haltung eines Hundes (gemäss § 4 der Kantonalen Hundeverordnung1)",
    "department": "Department des Innern",
    "dienststelle": "Veterinaeramt",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Veterinaeramt/Gesuch Listenhund 23-02.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "Gesuch für die Haltung eines Hundes (gemäss § 4 der Kantonalen Hundeverordnung1)",
      "source_file": "../Verwaltung/Department des Innern/Veterinaeramt/Gesuch Listenhund 23-02.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -114077,7 +114077,7 @@
        ]
       },
       {
-       "label": "12341124",
+       "label": "(Kopie Versicherungsvertragspolice, Deckungssumme mind. 1 Mio. SFr)",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -114156,13 +114156,13 @@
   {
    "id": 160,
    "slug": "veterinaeramt-mb-hunde-bewilligungspflicht-22-03",
-   "name": "Kanton Schaffhausen",
+   "name": "Vorschriften fu ̈ r den Erwerb und das Halten eines Hundes mit",
    "department": "Department des Innern",
    "dienststelle": "Veterinaeramt",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Veterinaeramt/MB Hunde Bewilligungspflicht 22-03-03.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "Vorschriften fu ̈ r den Erwerb und das Halten eines Hundes mit",
      "source_file": "../Verwaltung/Department des Innern/Veterinaeramt/MB Hunde Bewilligungspflicht 22-03-03.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -114620,13 +114620,13 @@
   {
    "id": 162,
    "slug": "veterinaeramt-meldung-von-tierschutzmaengeln",
-   "name": "Kanton Schaffhausen",
+   "name": "Meldung zu Tierschutzmängeln",
    "department": "Department des Innern",
    "dienststelle": "Veterinaeramt",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Veterinaeramt/Meldung_von_Tierschutzmaengeln.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "Meldung zu Tierschutzmängeln",
      "source_file": "../Verwaltung/Department des Innern/Veterinaeramt/Meldung_von_Tierschutzmaengeln.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -115053,13 +115053,13 @@
   {
    "id": 163,
    "slug": "veterinaeramt-nachweis-kynologische-fachkenntnis",
-   "name": "Kanton Schaffhausen",
+   "name": "Formular für d en Nachweis über",
    "department": "Department des Innern",
    "dienststelle": "Veterinaeramt",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Veterinaeramt/Nachweis kynologische Fachkenntnisse zu Gesuch Listenhund 23-02.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "Formular für d en Nachweis über",
      "source_file": "../Verwaltung/Department des Innern/Veterinaeramt/Nachweis kynologische Fachkenntnisse zu Gesuch Listenhund 23-02.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -118019,13 +118019,13 @@
   {
    "id": 171,
    "slug": "bevoelkerungsschutz-und-armee-antrag-aufhebung-d",
-   "name": "Kanton Schaffhausen",
+   "name": "Antrag Aufhebung des Schutzraumes",
    "department": "Finanzdepartement ",
    "dienststelle": "Bevoelkerungsschutz und Armee",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Bevoelkerungsschutz und Armee/Antrag Aufhebung des Schutzraumes Website.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "Antrag Aufhebung des Schutzraumes",
      "source_file": "../Verwaltung/Finanzdepartement /Bevoelkerungsschutz und Armee/Antrag Aufhebung des Schutzraumes Website.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -118330,13 +118330,13 @@
   {
    "id": 172,
    "slug": "bevoelkerungsschutz-und-armee-antrag-duplikat-db",
-   "name": "Kanton Schaffhausen",
+   "name": "An t rag für ein Duplikat-Dienstbüchlein",
    "department": "Finanzdepartement ",
    "dienststelle": "Bevoelkerungsschutz und Armee",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Bevoelkerungsschutz und Armee/Antrag Duplikat DB Kt SH.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "An t rag für ein Duplikat-Dienstbüchlein",
      "source_file": "../Verwaltung/Finanzdepartement /Bevoelkerungsschutz und Armee/Antrag Duplikat DB Kt SH.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -118548,7 +118548,7 @@
        ]
       },
       {
-       "label": "UT",
+       "label": "chutzdiensttauglich s",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -118662,7 +118662,7 @@
        ]
       },
       {
-       "label": "DT",
+       "label": "Diensttauglich Dienstuntauglich",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -118790,13 +118790,13 @@
   {
    "id": 173,
    "slug": "bevoelkerungsschutz-und-armee-antrag-ru-ckerstat",
-   "name": "Kanton Schaffhausen",
+   "name": "Wehrpflichtersatzabgabe: Antrag Rückerstattung",
    "department": "Finanzdepartement ",
    "dienststelle": "Bevoelkerungsschutz und Armee",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Bevoelkerungsschutz und Armee/Antrag Rückerstattung.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "Wehrpflichtersatzabgabe: Antrag Rückerstattung",
      "source_file": "../Verwaltung/Finanzdepartement /Bevoelkerungsschutz und Armee/Antrag Rückerstattung.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -119098,13 +119098,13 @@
   {
    "id": 174,
    "slug": "bevoelkerungsschutz-und-armee-formular-verf-gung",
-   "name": "Kanton Schaffhausen",
+   "name": "Verfügung über die Schutzraumbaupflicht",
    "department": "Finanzdepartement ",
    "dienststelle": "Bevoelkerungsschutz und Armee",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Bevoelkerungsschutz und Armee/Formular Verfügung über die Schutzraumbaupflicht 25 .pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "Verfügung über die Schutzraumbaupflicht",
      "source_file": "../Verwaltung/Finanzdepartement /Bevoelkerungsschutz und Armee/Formular Verfügung über die Schutzraumbaupflicht 25 .pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -123324,7 +123324,7 @@
        "legal_basis": []
       },
       {
-       "label": "DB",
+       "label": "Allegati",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -123888,7 +123888,7 @@
        ]
       },
       {
-       "label": "7",
+       "label": "année quis uit",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -124659,13 +124659,13 @@
   {
    "id": 179,
    "slug": "feuerpolizei-20250331-gesuch-inkl-zusatzblatt-b-",
-   "name": "info.feupo@sh.ch",
+   "name": "Gesuch für Bühnenfeuerwerk (Indoor - Pyrotechnik)",
    "department": "Finanzdepartement ",
    "dienststelle": "Feuerpolizei",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Feuerpolizei/Baulicher Brandschutz/Fuer Planer und Spezialisten/20250331 Gesuch inkl. Zusatzblatt B__hnenfeuerwerk Indoor - Pyrotechnik.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "info.feupo@sh.ch",
+     "title": "Gesuch für Bühnenfeuerwerk (Indoor - Pyrotechnik)",
      "source_file": "../Verwaltung/Finanzdepartement /Feuerpolizei/Baulicher Brandschutz/Fuer Planer und Spezialisten/20250331 Gesuch inkl. Zusatzblatt B__hnenfeuerwerk Indoor - Pyrotechnik.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -128077,13 +128077,13 @@
   {
    "id": 180,
    "slug": "feuerpolizei-20250331-gesuch-inkl-zusatzblatt-of",
-   "name": "info.feupo@sh.ch",
+   "name": "Gesuch für offenes Feuer in Raum / Zelt > 300 Personen",
    "department": "Finanzdepartement ",
    "dienststelle": "Feuerpolizei",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Feuerpolizei/Baulicher Brandschutz/Fuer Planer und Spezialisten/20250331 Gesuch inkl. Zusatzblatt Offenes Feuer Raum mit grosser Personenbelegung.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "info.feupo@sh.ch",
+     "title": "Gesuch für offenes Feuer in Raum / Zelt > 300 Personen",
      "source_file": "../Verwaltung/Finanzdepartement /Feuerpolizei/Baulicher Brandschutz/Fuer Planer und Spezialisten/20250331 Gesuch inkl. Zusatzblatt Offenes Feuer Raum mit grosser Personenbelegung.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -133129,13 +133129,13 @@
   {
    "id": 186,
    "slug": "feuerpolizei-uebereinstimmungserklaerung",
-   "name": "www.feuerpolizei.sh.ch",
+   "name": "Mit der Unterzeichnung dieser Übereinstimmungserklärung bescheinigt der/die QS - Verantwortli-",
    "department": "Finanzdepartement ",
    "dienststelle": "Feuerpolizei",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Feuerpolizei/Baulicher Brandschutz/Fuer Planer und Spezialisten/Uebereinstimmungserklaerung.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "www.feuerpolizei.sh.ch",
+     "title": "Mit der Unterzeichnung dieser Übereinstimmungserklärung bescheinigt der/die QS - Verantwortli-",
      "source_file": "../Verwaltung/Finanzdepartement /Feuerpolizei/Baulicher Brandschutz/Fuer Planer und Spezialisten/Uebereinstimmungserklaerung.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -134610,7 +134610,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Prüfblatt für Atemschutzmasken mit Überdruck",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -134629,7 +134629,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Prüfblatt für Atemschutzmasken mit Überdruck",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -134667,7 +134667,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Prüfblatt für Atemschutzmasken mit Überdruck",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -134724,7 +134724,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Prüfblatt für Atemschutzmasken mit Überdruck",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -134781,7 +134781,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Prüfblatt für Atemschutzmasken mit Überdruck",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -134838,7 +134838,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Prüfblatt für Atemschutzmasken mit Überdruck",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -134895,7 +134895,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Prüfblatt für Atemschutzmasken mit Überdruck",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -134952,7 +134952,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Prüfblatt für Atemschutzmasken mit Überdruck",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -135009,7 +135009,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Prüfblatt für Atemschutzmasken mit Überdruck",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -135066,7 +135066,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Prüfblatt für Atemschutzmasken mit Überdruck",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -135123,7 +135123,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Prüfblatt für Atemschutzmasken mit Überdruck",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -135180,7 +135180,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Prüfblatt für Atemschutzmasken mit Überdruck",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -135237,7 +135237,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Prüfblatt für Atemschutzmasken mit Überdruck",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -135294,7 +135294,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Prüfblatt für Atemschutzmasken mit Überdruck",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -135541,7 +135541,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Prüfblatt für Atemschutzmasken mit Überdruck",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -136384,7 +136384,7 @@
        ]
       },
       {
-       "label": "Ja",
+       "label": "1.4.13 Mili tärdienst/Zivilschutz/Zivildienst",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -136479,7 +136479,7 @@
        ]
       },
       {
-       "label": "Ja",
+       "label": "1.4.13 Mili tärdienst/Zivilschutz/Zivildienst",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -155789,13 +155789,13 @@
   {
    "id": 204,
    "slug": "polizei-bewilligungsgesuch-fu-hrung-eines-kanton",
-   "name": "Seite 1 von 2",
+   "name": "Gesuch u m Bewilligung zur Führung eines",
    "department": "Finanzdepartement ",
    "dienststelle": "Polizei",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Polizei/Bewilligungsgesuch Führung eines kantonsansässigen Sicherheitsunternehmens.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Seite 1 von 2",
+     "title": "Gesuch u m Bewilligung zur Führung eines",
      "source_file": "../Verwaltung/Finanzdepartement /Polizei/Bewilligungsgesuch Führung eines kantonsansässigen Sicherheitsunternehmens.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -156031,13 +156031,13 @@
   {
    "id": 205,
    "slug": "polizei-bewilligungsgesuch-sicherheitsangestellt",
-   "name": "Seite 1 von 2",
+   "name": "Gesuch um Bewilligung zur Ausübung privater Sicherheitsdienste",
    "department": "Finanzdepartement ",
    "dienststelle": "Polizei",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Polizei/Bewilligungsgesuch Sicherheitsangestellte-r ausserkantonaler Unternehmen u Betriebe.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Seite 1 von 2",
+     "title": "Gesuch um Bewilligung zur Ausübung privater Sicherheitsdienste",
      "source_file": "../Verwaltung/Finanzdepartement /Polizei/Bewilligungsgesuch Sicherheitsangestellte-r ausserkantonaler Unternehmen u Betriebe.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -156257,13 +156257,13 @@
   {
    "id": 206,
    "slug": "polizei-einsatzmeldung-im-ffentlichen-raum-sh",
-   "name": "Seite 1 von 2",
+   "name": "Meldeformular für den Einsatz von Sicherheitspersonal im",
    "department": "Finanzdepartement ",
    "dienststelle": "Polizei",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Polizei/Einsatzmeldung im öffentlichen Raum SH.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Seite 1 von 2",
+     "title": "Meldeformular für den Einsatz von Sicherheitspersonal im",
      "source_file": "../Verwaltung/Finanzdepartement /Polizei/Einsatzmeldung im öffentlichen Raum SH.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -156797,13 +156797,13 @@
   {
    "id": 208,
    "slug": "polizei-gesuch-fwp-de",
-   "name": "Bundesamt für Polizei, Zentralstelle Waffen, CH – 3003 Bern / Schweiz",
+   "name": "Diesem Gesuch sind beizulegen:",
    "department": "Finanzdepartement ",
    "dienststelle": "Polizei",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Polizei/GESUCH FWP_DE.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Bundesamt für Polizei, Zentralstelle Waffen, CH – 3003 Bern / Schweiz",
+     "title": "Diesem Gesuch sind beizulegen:",
      "source_file": "../Verwaltung/Finanzdepartement /Polizei/GESUCH FWP_DE.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -157914,13 +157914,13 @@
   {
    "id": 209,
    "slug": "polizei-gesuch-wes-de",
-   "name": "Bundesamt für Polizei, Zentralstelle Waffen, CH – 3003 Bern / Schweiz",
+   "name": "Gesuch um Erteilung eines Waffenerwerbsscheins zum Zwecke des Erwerbs einer oder",
    "department": "Finanzdepartement ",
    "dienststelle": "Polizei",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Polizei/GESUCH WES_DE.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Bundesamt für Polizei, Zentralstelle Waffen, CH – 3003 Bern / Schweiz",
+     "title": "Gesuch um Erteilung eines Waffenerwerbsscheins zum Zwecke des Erwerbs einer oder",
      "source_file": "../Verwaltung/Finanzdepartement /Polizei/GESUCH WES_DE.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -158461,13 +158461,13 @@
   {
    "id": 210,
    "slug": "polizei-gesuch-wtb-de",
-   "name": "Bundesamt für Polizei, Zentralstelle Waffen, CH – 3003 Bern / Schweiz",
+   "name": "Gesuch um Erteilung einer Waffentragbewilligung (Art. 27 WG und 48 WV)",
    "department": "Finanzdepartement ",
    "dienststelle": "Polizei",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Polizei/GESUCH WTB_DE.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Bundesamt für Polizei, Zentralstelle Waffen, CH – 3003 Bern / Schweiz",
+     "title": "Gesuch um Erteilung einer Waffentragbewilligung (Art. 27 WG und 48 WV)",
      "source_file": "../Verwaltung/Finanzdepartement /Polizei/GESUCH WTB_DE.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -159160,13 +159160,13 @@
   {
    "id": 211,
    "slug": "polizei-gesuch-betriebs-und-fu-hrungsbewilligung",
-   "name": "Seite 1 von 4",
+   "name": "Gesuch u m Betriebs - und Führungs bewilligung für ein",
    "department": "Finanzdepartement ",
    "dienststelle": "Polizei",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Polizei/Gesuch Betriebs- und Führungsbewilligung für ausserkantonale Sicherheitsunternehmen.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Seite 1 von 4",
+     "title": "Gesuch u m Betriebs - und Führungs bewilligung für ein",
      "source_file": "../Verwaltung/Finanzdepartement /Polizei/Gesuch Betriebs- und Führungsbewilligung für ausserkantonale Sicherheitsunternehmen.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -159794,13 +159794,13 @@
   {
    "id": 212,
    "slug": "polizei-gesuch-betriebsbewilligung-kantonsans-ss",
-   "name": "Seite 1 von 4",
+   "name": "Gesuch u m Betriebsbewilligung für die Zweigniederlassung eines",
    "department": "Finanzdepartement ",
    "dienststelle": "Polizei",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Polizei/Gesuch Betriebsbewilligung kantonsansässige Zweigniederlassung.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Seite 1 von 4",
+     "title": "Gesuch u m Betriebsbewilligung für die Zweigniederlassung eines",
      "source_file": "../Verwaltung/Finanzdepartement /Polizei/Gesuch Betriebsbewilligung kantonsansässige Zweigniederlassung.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -160502,13 +160502,13 @@
   {
    "id": 214,
    "slug": "polizei-gesuch-waffenhandelsbewilligunge-de",
-   "name": "Eidgenössisches Justiz- und Polizeidepartement EJPD",
+   "name": "Gesuch um Erteilung von kantonalen Bewilligungen oder Ausnahmebewilligungen im Zusam-",
    "department": "Finanzdepartement ",
    "dienststelle": "Polizei",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Polizei/Gesuch Waffenhandelsbewilligunge_de.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Eidgenössisches Justiz- und Polizeidepartement EJPD",
+     "title": "Gesuch um Erteilung von kantonalen Bewilligungen oder Ausnahmebewilligungen im Zusam-",
      "source_file": "../Verwaltung/Finanzdepartement /Polizei/Gesuch Waffenhandelsbewilligunge_de.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -162050,13 +162050,13 @@
   {
    "id": 217,
    "slug": "polizei-verla-ngerungsgesuch-betriebs-und-fu-hru",
-   "name": "Seite 1 von 4",
+   "name": "Gesuch u m Verlängerung der Betriebs - und Führungs bewilligung",
    "department": "Finanzdepartement ",
    "dienststelle": "Polizei",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Polizei/Verlängerungsgesuch Betriebs- und Führungsbewilligung für ausserkantonale Sicherheitsunternehmen.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Seite 1 von 4",
+     "title": "Gesuch u m Verlängerung der Betriebs - und Führungs bewilligung",
      "source_file": "../Verwaltung/Finanzdepartement /Polizei/Verlängerungsgesuch Betriebs- und Führungsbewilligung für ausserkantonale Sicherheitsunternehmen.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -162692,13 +162692,13 @@
   {
    "id": 218,
    "slug": "polizei-verla-ngerungsgesuch-bewilligung-fu-hrun",
-   "name": "Seite 1 von 2",
+   "name": "Gesuch um Bewilligung sverlängerung zur Führung eines",
    "department": "Finanzdepartement ",
    "dienststelle": "Polizei",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Polizei/Verlängerungsgesuch Bewilligung Führung eines kantonsansässigen Sicherheitsunternehmens.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Seite 1 von 2",
+     "title": "Gesuch um Bewilligung sverlängerung zur Führung eines",
      "source_file": "../Verwaltung/Finanzdepartement /Polizei/Verlängerungsgesuch Bewilligung Führung eines kantonsansässigen Sicherheitsunternehmens.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -162918,13 +162918,13 @@
   {
    "id": 219,
    "slug": "polizei-verla-ngerungsgesuch-bewilligung-sicherh",
-   "name": "Seite 1 von 2",
+   "name": "Gesuch um Bewilligungsverlängerung zur Ausübung privater",
    "department": "Finanzdepartement ",
    "dienststelle": "Polizei",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Polizei/Verlängerungsgesuch Bewilligung Sicherheitsangestellte-r ausserkantonaler Unternehmen u Betriebe.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Seite 1 von 2",
+     "title": "Gesuch um Bewilligungsverlängerung zur Ausübung privater",
      "source_file": "../Verwaltung/Finanzdepartement /Polizei/Verlängerungsgesuch Bewilligung Sicherheitsangestellte-r ausserkantonaler Unternehmen u Betriebe.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -163144,13 +163144,13 @@
   {
    "id": 220,
    "slug": "polizei-verl-ngerungsgesuch-betriebsbewilligung-",
-   "name": "Seite 1 von 4",
+   "name": "Gesuch u m Verlängerung der Betriebsbewilligung für die",
    "department": "Finanzdepartement ",
    "dienststelle": "Polizei",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Polizei/Verlängerungsgesuch Betriebsbewilligung kantonsansässige Zweigniederlassung.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Seite 1 von 4",
+     "title": "Gesuch u m Verlängerung der Betriebsbewilligung für die",
      "source_file": "../Verwaltung/Finanzdepartement /Polizei/Verlängerungsgesuch Betriebsbewilligung kantonsansässige Zweigniederlassung.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -164074,13 +164074,13 @@
   {
    "id": 221,
    "slug": "polizei-verl-ngerungsgesuch-bewilligung-sicherhe",
-   "name": "Seite 1 von 2",
+   "name": "Gesuch um Bewilligungsverlängerung zur Ausübung privater",
    "department": "Finanzdepartement ",
    "dienststelle": "Polizei",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Polizei/Verlängerungsgesuch Bewilligung Sicherheitsangestellte-r kantonaler Unternehmen u. Betriebe.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Seite 1 von 2",
+     "title": "Gesuch um Bewilligungsverlängerung zur Ausübung privater",
      "source_file": "../Verwaltung/Finanzdepartement /Polizei/Verlängerungsgesuch Bewilligung Sicherheitsangestellte-r kantonaler Unternehmen u. Betriebe.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -165281,13 +165281,13 @@
   {
    "id": 224,
    "slug": "schulzahnklinik-gesuchsformular-fuer-die-beteili",
-   "name": "Kanton Schaffhausen",
+   "name": "Gesuchsformular für die Beteiligung an die Kosten einer Behandlung",
    "department": "Finanzdepartement ",
    "dienststelle": "Schulzahnklinik",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Schulzahnklinik/Gesuchsformular-fuer-die-Beteiligung-an-die-Kosten-einer-kieferorthopaedishen-Behandlung.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "Gesuchsformular für die Beteiligung an die Kosten einer Behandlung",
      "source_file": "../Verwaltung/Finanzdepartement /Schulzahnklinik/Gesuchsformular-fuer-die-Beteiligung-an-die-Kosten-einer-kieferorthopaedishen-Behandlung.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -165589,13 +165589,13 @@
   {
    "id": 225,
    "slug": "sekretariat-finanzdepartment-318183d",
-   "name": "Eidgenössische Alters-, Hinterlassenen- und Invalidenversicherung (AHV/IV)",
+   "name": "Verrechnung von Nachzahlungen der AHV/IV /E O",
    "department": "Finanzdepartement ",
    "dienststelle": "Sekretariat Finanzdepartment",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Sekretariat Finanzdepartment/318183d.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Eidgenössische Alters-, Hinterlassenen- und Invalidenversicherung (AHV/IV)",
+     "title": "Verrechnung von Nachzahlungen der AHV/IV /E O",
      "source_file": "../Verwaltung/Finanzdepartement /Sekretariat Finanzdepartment/318183d.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -165658,7 +165658,7 @@
        ]
       },
       {
-       "label": "4",
+       "label": "Arbeitgeber",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -165677,7 +165677,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Kollektivtaggeldversicherer gemäss Versicherungsvertragsgesetz (VVG)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -166035,7 +166035,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "Unfallversicherer im überobligatorischen Bereich",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -166054,7 +166054,7 @@
        ]
       },
       {
-       "label": "3",
+       "label": "Haftpfl ichtversicherer",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -166073,7 +166073,7 @@
        ]
       },
       {
-       "label": "4",
+       "label": "Arbeitgeber",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -166092,7 +166092,7 @@
        ]
       },
       {
-       "label": "6",
+       "label": "öffentliche Fürsorgestelle",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -166111,7 +166111,7 @@
        ]
       },
       {
-       "label": "5",
+       "label": "Vorsorgeeinrichtung des Arbeitgebers",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -166149,7 +166149,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Kollektivtaggeldversicherer gemäss Versicherungsvertragsgesetz (VVG)",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -166482,7 +166482,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Kollektivtaggeldversicherer gemäss Versicherungsvertragsgesetz (VVG)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -179342,13 +179342,13 @@
   {
    "id": 242,
    "slug": "steuerverwaltung-antrag-auf-neuberechnung-der-qu",
-   "name": "Kanton Schaffhausen",
+   "name": "Antragsformular für die",
    "department": "Finanzdepartement ",
    "dienststelle": "Steuerverwaltung",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Steuerverwaltung/Antrag auf Neuberechnung der Quellensteuer.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "Antragsformular für die",
      "source_file": "../Verwaltung/Finanzdepartement /Steuerverwaltung/Antrag auf Neuberechnung der Quellensteuer.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -180250,13 +180250,13 @@
   {
    "id": 245,
    "slug": "steuerverwaltung-bestellung-ssl-nummer",
-   "name": "Kanton Schaffhausen",
+   "name": "Anmeldeformular für SSL (Schuldner der steuerbaren Leistung)",
    "department": "Finanzdepartement ",
    "dienststelle": "Steuerverwaltung",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Steuerverwaltung/Bestellung SSL-Nummer.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "Anmeldeformular für SSL (Schuldner der steuerbaren Leistung)",
      "source_file": "../Verwaltung/Finanzdepartement /Steuerverwaltung/Bestellung SSL-Nummer.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -186444,7 +186444,7 @@
        "legal_basis": []
       },
       {
-       "label": "b",
+       "label": "(siehe Ziffer 2a)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -188528,7 +188528,7 @@
        "legal_basis": []
       },
       {
-       "label": "524",
+       "label": "Oekologischer Ausgleich 5.2.4",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -188536,7 +188536,7 @@
        "legal_basis": []
       },
       {
-       "label": "526",
+       "label": "Extensoproduktion 5.2.6",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -188544,7 +188544,7 @@
        "legal_basis": []
       },
       {
-       "label": "528",
+       "label": "und Rebbau - Land - Bio 5.2.8",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -188552,7 +188552,7 @@
        "legal_basis": []
       },
       {
-       "label": "5212",
+       "label": "Regelmässiger Auslauf (RAUS) 5.2.12",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -188560,7 +188560,7 @@
        "legal_basis": []
       },
       {
-       "label": "5210",
+       "label": "Bes. tierfreundliche Stallhaltung (BTS) 5.2.10",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -188568,7 +188568,7 @@
        "legal_basis": []
       },
       {
-       "label": "521",
+       "label": "Flächenbeiträge 5.2.1",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -188576,7 +188576,7 @@
        "legal_basis": []
       },
       {
-       "label": "523",
+       "label": "Beiträge Hügelzone 5.2.3",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -188584,7 +188584,7 @@
        "legal_basis": []
       },
       {
-       "label": "525",
+       "label": "Hangbeiträge 5.2.5",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -188592,7 +188592,7 @@
        "legal_basis": []
       },
       {
-       "label": "527",
+       "label": "Hangbeiträge Reben 5.2.7",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -188600,7 +188600,7 @@
        "legal_basis": []
       },
       {
-       "label": "529",
+       "label": "weitere: 5.2.9",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -191324,7 +191324,7 @@
        "legal_basis": []
       },
       {
-       "label": "m",
+       "label": "Geschlecht",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -191332,7 +191332,7 @@
        "legal_basis": []
       },
       {
-       "label": "w",
+       "label": "männlich □ Geschlecht",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -192272,13 +192272,13 @@
   {
    "id": 257,
    "slug": "steuerverwaltung-steuererkl-rung-grundstueckgewi",
-   "name": "Kanton Schaffhausen",
+   "name": "Steuerjahr Gemeinde",
    "department": "Finanzdepartement ",
    "dienststelle": "Steuerverwaltung",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Steuerverwaltung/Steuererklärung Grundstueckgewinnsteuer beschreibbar.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "Steuerjahr Gemeinde",
      "source_file": "../Verwaltung/Finanzdepartement /Steuerverwaltung/Steuererklärung Grundstueckgewinnsteuer beschreibbar.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -196638,13 +196638,13 @@
   {
    "id": 259,
    "slug": "steuerverwaltung-steuern-2025-antrag-auf-redukti",
-   "name": "Kanton Schaffhausen",
+   "name": "Antrag auf Reduktion Eigenmietwert in Härtefällen",
    "department": "Finanzdepartement ",
    "dienststelle": "Steuerverwaltung",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Steuerverwaltung/Steuern 2025 - Antrag auf Reduktion Eigenmietwert in Härtefällen.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "Antrag auf Reduktion Eigenmietwert in Härtefällen",
      "source_file": "../Verwaltung/Finanzdepartement /Steuerverwaltung/Steuern 2025 - Antrag auf Reduktion Eigenmietwert in Härtefällen.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -198170,7 +198170,7 @@
        "legal_basis": []
       },
       {
-       "label": "PK",
+       "label": "CHF",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -198994,13 +198994,13 @@
   {
    "id": 270,
    "slug": "amt-fuer-justiz-und-gemeinden-ehevertrag",
-   "name": "Kanton Schaffhausen",
+   "name": "Durch einen Ehevertrag geben sich die Eheleute best immte Regeln für die Ehe, vor allem",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Amt fuer Justiz und Gemeinden",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Amt fuer Justiz und Gemeinden/Ehevertrag.PDF. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "Durch einen Ehevertrag geben sich die Eheleute best immte Regeln für die Ehe, vor allem",
      "source_file": "../Verwaltung/Volkswirtschaftsdepartement/Amt fuer Justiz und Gemeinden/Ehevertrag.PDF",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -199039,13 +199039,13 @@
   {
    "id": 271,
    "slug": "amt-fuer-justiz-und-gemeinden-erbvertrag",
-   "name": "Kanton Schaffhausen",
+   "name": "Der Erbvertrag ist eine vermögensrechtliche Vereinb arung zwischen mehreren Personen im",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Amt fuer Justiz und Gemeinden",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Amt fuer Justiz und Gemeinden/Erbvertrag.PDF. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "Der Erbvertrag ist eine vermögensrechtliche Vereinb arung zwischen mehreren Personen im",
      "source_file": "../Verwaltung/Volkswirtschaftsdepartement/Amt fuer Justiz und Gemeinden/Erbvertrag.PDF",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -220100,13 +220100,13 @@
   {
    "id": 276,
    "slug": "amt-fuer-justiz-und-gemeinden-gesuch-strafverbu-",
-   "name": "Kanton Schaffhausen",
+   "name": "Musste schon einmal eine Freiheitsstrafe verbüsst werden? Ja  / Nein ",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Amt fuer Justiz und Gemeinden",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Amt fuer Justiz und Gemeinden/Gesuch Strafverbüssung in Halbgefangenschaft.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "Musste schon einmal eine Freiheitsstrafe verbüsst werden? Ja  / Nein ",
      "source_file": "../Verwaltung/Volkswirtschaftsdepartement/Amt fuer Justiz und Gemeinden/Gesuch Strafverbüssung in Halbgefangenschaft.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -220552,13 +220552,13 @@
   {
    "id": 277,
    "slug": "amt-fuer-justiz-und-gemeinden-gesuch-strafverb-s",
-   "name": "Kanton Schaffhausen",
+   "name": "beantragen, meine Strafe gemäss Art. 79b Abs. 1 Bst. a StGB in der besond eren Vollzugsform",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Amt fuer Justiz und Gemeinden",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Amt fuer Justiz und Gemeinden/Gesuch Strafverbüssung mit E-Monitoring.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "beantragen, meine Strafe gemäss Art. 79b Abs. 1 Bst. a StGB in der besond eren Vollzugsform",
      "source_file": "../Verwaltung/Volkswirtschaftsdepartement/Amt fuer Justiz und Gemeinden/Gesuch Strafverbüssung mit E-Monitoring.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -221339,13 +221339,13 @@
   {
    "id": 283,
    "slug": "amt-fuer-justiz-und-gemeinden-gesuchsformular-ar",
-   "name": "Eidgenössisches Justiz- und Polizeidepartement EJPD",
+   "name": "Gesuch um erleichterte Einbürgerung Art. 21 Abs. 1 BüG",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Amt fuer Justiz und Gemeinden",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Amt fuer Justiz und Gemeinden/Gesuchsformular_Art21Abs1.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Eidgenössisches Justiz- und Polizeidepartement EJPD",
+     "title": "Gesuch um erleichterte Einbürgerung Art. 21 Abs. 1 BüG",
      "source_file": "../Verwaltung/Volkswirtschaftsdepartement/Amt fuer Justiz und Gemeinden/Gesuchsformular_Art21Abs1.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -231631,13 +231631,13 @@
   {
    "id": 294,
    "slug": "arbeitsinspektorat-eichamt-aerztliches-zeugnis-m",
-   "name": "Eidgenössisches Departement für",
+   "name": "Ärztliches Zeugnis",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Arbeitsinspektorat Eichamt",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Arbeitsinspektorat Eichamt/Aerztliches_Zeugnis_MuSchu_DE.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Eidgenössisches Departement für",
+     "title": "Ärztliches Zeugnis",
      "source_file": "../Verwaltung/Volkswirtschaftsdepartement/Arbeitsinspektorat Eichamt/Aerztliches_Zeugnis_MuSchu_DE.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -233919,7 +233919,7 @@
        ]
       },
       {
-       "label": "Du",
+       "label": "dal",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -234034,13 +234034,13 @@
   {
    "id": 301,
    "slug": "handelsregisteramt-anmeldeformular-allgemeine-nd",
-   "name": "Kanton Schaffhausen",
+   "name": "Anmeldung a ll gemeine Änderungen",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Handelsregisteramt",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Handelsregisteramt/Anmeldeformular Allgemeine Änderungen aG usw 181031.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "Anmeldung a ll gemeine Änderungen",
      "source_file": "../Verwaltung/Volkswirtschaftsdepartement/Handelsregisteramt/Anmeldeformular Allgemeine Änderungen aG usw 181031.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -234095,13 +234095,13 @@
   {
    "id": 302,
    "slug": "handelsregisteramt-anmeldeformular-l-schung-einz",
-   "name": "Kanton Schaffhausen",
+   "name": "Anmeldung Löschung Einzelunternehmen",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Handelsregisteramt",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Handelsregisteramt/Anmeldeformular Löschung Einzelunternehmen.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "Anmeldung Löschung Einzelunternehmen",
      "source_file": "../Verwaltung/Volkswirtschaftsdepartement/Handelsregisteramt/Anmeldeformular Löschung Einzelunternehmen.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -234159,13 +234159,13 @@
   {
    "id": 303,
    "slug": "handelsregisteramt-anmeldeformular-neueintragung",
-   "name": "Kanton Schaffhausen",
+   "name": "Anmeldung an das Handelsregisteramt des Kantons Schaffhausen",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Handelsregisteramt",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Handelsregisteramt/Anmeldeformular Neueintragung GmbH 181031.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "Anmeldung an das Handelsregisteramt des Kantons Schaffhausen",
      "source_file": "../Verwaltung/Volkswirtschaftsdepartement/Handelsregisteramt/Anmeldeformular Neueintragung GmbH 181031.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -236796,13 +236796,13 @@
   {
    "id": 304,
    "slug": "handelsregisteramt-anmeldeformular-personalmutat",
-   "name": "Kanton Schaffhausen",
+   "name": "Anmeldung Personalmutationen",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Handelsregisteramt",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Handelsregisteramt/Anmeldeformular_Personalmutationen.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "Anmeldung Personalmutationen",
      "source_file": "../Verwaltung/Volkswirtschaftsdepartement/Handelsregisteramt/Anmeldeformular_Personalmutationen.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -236868,13 +236868,13 @@
   {
    "id": 305,
    "slug": "handelsregisteramt-anmeldung-neueintragung-aktie",
-   "name": "Kanton Schaffhausen",
+   "name": "Anmeldung an das Handelsregisteramt des Kantons Schaffhausen",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Handelsregisteramt",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Handelsregisteramt/Anmeldung Neueintragung Aktiengesellschaft 181031.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "Anmeldung an das Handelsregisteramt des Kantons Schaffhausen",
      "source_file": "../Verwaltung/Volkswirtschaftsdepartement/Handelsregisteramt/Anmeldung Neueintragung Aktiengesellschaft 181031.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -237139,13 +237139,13 @@
   {
    "id": 309,
    "slug": "handelsregisteramt-formular-anmeldung-einzelunte",
-   "name": "Kanton Schaffhausen",
+   "name": "Anmeldung an das Handelsregisteramt des Kantons Schaffhausen",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Handelsregisteramt",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Handelsregisteramt/Formular_Anmeldung_Einzelunternehmen_180227.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "Anmeldung an das Handelsregisteramt des Kantons Schaffhausen",
      "source_file": "../Verwaltung/Volkswirtschaftsdepartement/Handelsregisteramt/Formular_Anmeldung_Einzelunternehmen_180227.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -237434,13 +237434,13 @@
   {
    "id": 311,
    "slug": "handelsregisteramt-negativerkl-rung-zuhanden-der",
-   "name": "Kanton Schaffhausen",
+   "name": "E rklärung der Urkundsparteien zuhanden der Urkundsperson (Notar In )",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Handelsregisteramt",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Handelsregisteramt/Negativerklärung zuhanden der Urkundsperson.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "E rklärung der Urkundsparteien zuhanden der Urkundsperson (Notar In )",
      "source_file": "../Verwaltung/Volkswirtschaftsdepartement/Handelsregisteramt/Negativerklärung zuhanden der Urkundsperson.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -238664,13 +238664,13 @@
   {
    "id": 323,
    "slug": "landwirtschaftsamt-gesuch-bek-mpfung-invasiver-n",
-   "name": "2024-05-22_Gesuch Eingreifgruppen-Einsatz.indd",
+   "name": "Gesuch: Bekämpfung invasiver Neophyten",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Landwirtschaftsamt",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Landwirtschaftsamt/Gesuch Bekämpfung invasiver Neophyten.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "2024-05-22_Gesuch Eingreifgruppen-Einsatz.indd",
+     "title": "Gesuch: Bekämpfung invasiver Neophyten",
      "source_file": "../Verwaltung/Volkswirtschaftsdepartement/Landwirtschaftsamt/Gesuch Bekämpfung invasiver Neophyten.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -239539,7 +239539,7 @@
        ]
       },
       {
-       "label": "Ja",
+       "label": "Gesuch stattgegeben?",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -254298,13 +254298,13 @@
   {
    "id": 341,
    "slug": "sekretariat-volkswirtschaftsdepartement-meldefor",
-   "name": "77_2024-06_Meldeformular_für_LM_SH.indd",
+   "name": "Meldeformular für Lebensmittelbetriebe,",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Sekretariat Volkswirtschaftsdepartement",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Sekretariat Volkswirtschaftsdepartement/Meldeformular bspw. B&B.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "77_2024-06_Meldeformular_für_LM_SH.indd",
+     "title": "Meldeformular für Lebensmittelbetriebe,",
      "source_file": "../Verwaltung/Volkswirtschaftsdepartement/Sekretariat Volkswirtschaftsdepartement/Meldeformular bspw. B&B.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -255436,13 +255436,13 @@
   {
    "id": 342,
    "slug": "wirtschaft-statistik-und-tourismus-meldeformular",
-   "name": "77_2024-06_Meldeformular_für_LM_SH.indd",
+   "name": "Meldeformular für Lebensmittelbetriebe,",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Wirtschaft, Statistik und Tourismus",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Wirtschaft, Statistik und Tourismus/Meldeformular bspw. B&B.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "77_2024-06_Meldeformular_für_LM_SH.indd",
+     "title": "Meldeformular für Lebensmittelbetriebe,",
      "source_file": "../Verwaltung/Volkswirtschaftsdepartement/Wirtschaft, Statistik und Tourismus/Meldeformular bspw. B&B.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
