@@ -29,6 +29,16 @@ def is_bad_label(l):
     return (not l) or len(l.strip()) < 3 or l.strip().isdigit() \
         or re.match(r"^[a-z]{1,2}\d*$|^kontrollk|^toggle|^text\d|^check ?box|^feld|^\W+$", l or "", re.I)
 
+def clean_filename(path):
+    """Filename as a readable title (last-resort): drop versions/codes/dates."""
+    b = os.path.splitext(os.path.basename(path))[0]
+    b = re.sub(r"[_]+", " ", b)
+    b = re.sub(r"\b(version|stand|seite \d+|von \d+|beschreibbar|final|neu|def)\b.*$", "", b, flags=re.I)
+    b = re.sub(r"\bK\d\b|\b\d{5,}\b|\bv?\d{1,2}[._-]\d{2,4}\b|\b\d{1,2}\s*[ap]\b", "", b, flags=re.I)
+    b = re.sub(r"^\d+[ _-]+", "", b)            # leading date/code/number
+    b = re.sub(r"[-\s]+", " ", b).strip(" -.")
+    return b
+
 def font_title(path):
     try:
         from pypdf import PdfReader
@@ -95,6 +105,10 @@ def main():
         # --- title ---
         if is_bad_title(fm["title"]):
             new = font_title(path) if is_pdf else None
+            if not (new and not is_bad_title(new)):     # fall back to the filename
+                fn = clean_filename(path)
+                if not is_bad_title(fn) and FORMW.search(fn) or (fn and realwords(fn) >= 2 and not re.search(r"\d{4}", fn)):
+                    new = fn
             if new and not is_bad_title(new):
                 conn.execute("UPDATE form SET title=? WHERE id=?", [new, fm["id"]])
                 conn.execute("UPDATE service SET name=? WHERE id=(SELECT service_id FROM form WHERE id=?)",

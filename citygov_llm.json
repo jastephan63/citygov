@@ -12,7 +12,7 @@
    },
    "field_classification": "mapped=captures a requirement; identity_part=sub-field of a person-identity requirement; reason_facet=one option of a multi-choice requirement; form_mechanic=plumbing (signature/date), no legal basis needed; overcollection=collected with no legal basis (data-protection risk)."
   },
-  "generated_at": "2026-06-12T14:28:18"
+  "generated_at": "2026-06-12T14:30:42"
  },
  "services": [
   {
@@ -560,13 +560,13 @@
   {
    "id": 3,
    "slug": "allgemein-22-vergabeentscheid-antrag",
-   "name": "[Gemeinde, Abteilung, Departement, …]",
+   "name": "Vergabeentscheid Antrag",
    "department": "Baudepartement",
    "dienststelle": "Allgemein",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Allgemein/22_Vergabeentscheid_Antrag.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "[Gemeinde, Abteilung, Departement, …]",
+     "title": "Vergabeentscheid Antrag",
      "source_file": "../Verwaltung/Baudepartement/Allgemein/22_Vergabeentscheid_Antrag.docx",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -1998,13 +1998,13 @@
   {
    "id": 8,
    "slug": "departementssekretariat-baudepartement-22-vergab",
-   "name": "[Datum und Nummer oder Referenznummer der Ausgabenbewilligung]",
+   "name": "Vergabeentscheid Antrag",
    "department": "Baudepartement",
    "dienststelle": "Departementssekretariat Baudepartement",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Departementssekretariat Baudepartement/22_Vergabeentscheid_Antrag.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "[Datum und Nummer oder Referenznummer der Ausgabenbewilligung]",
+     "title": "Vergabeentscheid Antrag",
      "source_file": "../Verwaltung/Baudepartement/Departementssekretariat Baudepartement/22_Vergabeentscheid_Antrag.docx",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -114239,13 +114239,13 @@
   {
    "id": 161,
    "slug": "veterinaeramt-meldeformular-fuer-befristete-beru",
-   "name": "Kanton Schaffhausen Kantonstierarzt Mühlentalstrasse 188 CH-8200 Schaffhausen www.sh.ch",
+   "name": "Meldeformular fuer befristete Berufsausuebung max. 90 Tage fuer TieraerzteInnen",
    "department": "Department des Innern",
    "dienststelle": "Veterinaeramt",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Veterinaeramt/Meldeformular_fuer_befristete_Berufsausuebung__max._90_Tage__fuer_TieraerzteInnen.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen Kantonstierarzt Mühlentalstrasse 188 CH-8200 Schaffhausen www.sh.ch",
+     "title": "Meldeformular fuer befristete Berufsausuebung max. 90 Tage fuer TieraerzteInnen",
      "source_file": "../Verwaltung/Department des Innern/Veterinaeramt/Meldeformular_fuer_befristete_Berufsausuebung__max._90_Tage__fuer_TieraerzteInnen.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -115924,13 +115924,13 @@
   {
    "id": 165,
    "slug": "dienststelle-familie-und-jugend-2026-abrechnungs",
-   "name": "Erziehungsdepartement des Kantons Schaffhausen",
+   "name": "Abrechnungsformular ausserkantonal",
    "department": "Erziehungsdepartement",
    "dienststelle": "Dienststelle Familie und Jugend",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Erziehungsdepartement/Dienststelle Familie und Jugend/2026_Abrechnungsformular_ausserkantonal.xlsx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Erziehungsdepartement des Kantons Schaffhausen",
+     "title": "Abrechnungsformular ausserkantonal",
      "source_file": "../Verwaltung/Erziehungsdepartement/Dienststelle Familie und Jugend/2026_Abrechnungsformular_ausserkantonal.xlsx",
      "file_type": "excel",
      "title_content_mismatch": false,
@@ -117823,13 +117823,13 @@
   {
    "id": 167,
    "slug": "allgemein-20231220-fragebogen-polizeigesetz",
-   "name": "Kanton Schaffhausen",
+   "name": "Fragebogen Polizeigesetz",
    "department": "Finanzdepartement ",
    "dienststelle": "Allgemein",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Allgemein/20231220 Fragebogen Polizeigesetz.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "Fragebogen Polizeigesetz",
      "source_file": "../Verwaltung/Finanzdepartement /Allgemein/20231220 Fragebogen Polizeigesetz.docx",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -117848,13 +117848,13 @@
   {
    "id": 168,
    "slug": "allgemein-fragebogen-bev-lkerungsschutzgesetz",
-   "name": "Kanton Schaffhausen",
+   "name": "Fragebogen Bevölkerungsschutzgesetz",
    "department": "Finanzdepartement ",
    "dienststelle": "Allgemein",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Allgemein/Fragebogen Bevölkerungsschutzgesetz.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "Fragebogen Bevölkerungsschutzgesetz",
      "source_file": "../Verwaltung/Finanzdepartement /Allgemein/Fragebogen Bevölkerungsschutzgesetz.docx",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -117873,13 +117873,13 @@
   {
    "id": 169,
    "slug": "allgemein-fragebogen-zivilschutzgesetz",
-   "name": "Kanton Schaffhausen",
+   "name": "Fragebogen Zivilschutzgesetz",
    "department": "Finanzdepartement ",
    "dienststelle": "Allgemein",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Allgemein/Fragebogen Zivilschutzgesetz.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "Fragebogen Zivilschutzgesetz",
      "source_file": "../Verwaltung/Finanzdepartement /Allgemein/Fragebogen Zivilschutzgesetz.docx",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -119919,13 +119919,13 @@
   {
    "id": 175,
    "slug": "bevoelkerungsschutz-und-armee-formular-dienstver",
-   "name": "£ Gesuch um Dienstverschiebung £ Wiedererwägungsgesuch",
+   "name": "Formular Dienstverschiebung Studium",
    "department": "Finanzdepartement ",
    "dienststelle": "Bevoelkerungsschutz und Armee",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Bevoelkerungsschutz und Armee/Formular_Dienstverschiebung_Studium.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "£ Gesuch um Dienstverschiebung £ Wiedererwägungsgesuch",
+     "title": "Formular Dienstverschiebung Studium",
      "source_file": "../Verwaltung/Finanzdepartement /Bevoelkerungsschutz und Armee/Formular_Dienstverschiebung_Studium.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -171411,13 +171411,13 @@
   {
    "id": 232,
    "slug": "steuerverwaltung-abkla-rung-internationaler-woch",
-   "name": "Kanton Schaffhausen",
+   "name": "Abklärung internationaler Wochenaufenthalter",
    "department": "Finanzdepartement ",
    "dienststelle": "Steuerverwaltung",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Steuerverwaltung/Abklärung internationaler Wochenaufenthalter.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "Abklärung internationaler Wochenaufenthalter",
      "source_file": "../Verwaltung/Finanzdepartement /Steuerverwaltung/Abklärung internationaler Wochenaufenthalter.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -199084,13 +199084,13 @@
   {
    "id": 272,
    "slug": "amt-fuer-justiz-und-gemeinden-formular-lebenslau",
-   "name": "Formular Lebenslauf.docx",
+   "name": "Formular Lebenslauf",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Amt fuer Justiz und Gemeinden",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Amt fuer Justiz und Gemeinden/Formular Lebenslauf.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Formular Lebenslauf.docx",
+     "title": "Formular Lebenslauf",
      "source_file": "../Verwaltung/Volkswirtschaftsdepartement/Amt fuer Justiz und Gemeinden/Formular Lebenslauf.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -221256,13 +221256,13 @@
   {
    "id": 282,
    "slug": "amt-fuer-justiz-und-gemeinden-gesuch-um-ordentli",
-   "name": "Kanton Schaffhausen",
+   "name": "Gesuch um ordentliche Einbürgerung",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Amt fuer Justiz und Gemeinden",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Amt fuer Justiz und Gemeinden/Gesuch um ordentliche Einbürgerung.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "Gesuch um ordentliche Einbürgerung",
      "source_file": "../Verwaltung/Volkswirtschaftsdepartement/Amt fuer Justiz und Gemeinden/Gesuch um ordentliche Einbürgerung.docx",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -234009,13 +234009,13 @@
   {
    "id": 300,
    "slug": "handelsregisteramt-ag-gesuch-um-gruendung-130320",
-   "name": "(Anzahl) Namenaktien oder Inhaberaktien (Zutreffendes ankreuzen) zu CHF",
+   "name": "AG Gesuch um Gruendung",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Handelsregisteramt",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Handelsregisteramt/AG_Gesuch_um_Gruendung-130320_beschreibbar_K1.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "(Anzahl) Namenaktien oder Inhaberaktien (Zutreffendes ankreuzen) zu CHF",
+     "title": "AG Gesuch um Gruendung",
      "source_file": "../Verwaltung/Volkswirtschaftsdepartement/Handelsregisteramt/AG_Gesuch_um_Gruendung-130320_beschreibbar_K1.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -237237,13 +237237,13 @@
   {
    "id": 310,
    "slug": "handelsregisteramt-gmbh-gesuch-gr-ndung",
-   "name": "Kanton Schaffhausen",
+   "name": "GmbH Gesuch Gründung",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Handelsregisteramt",
    "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Handelsregisteramt/GmbH Gesuch Gründung.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
    "forms": [
     {
-     "title": "Kanton Schaffhausen",
+     "title": "GmbH Gesuch Gründung",
      "source_file": "../Verwaltung/Volkswirtschaftsdepartement/Handelsregisteramt/GmbH Gesuch Gründung.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
