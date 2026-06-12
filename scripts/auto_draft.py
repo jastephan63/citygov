@@ -23,7 +23,7 @@ Everything here is match_status='proposed'/'auto'. Nothing reads as compliant.
 import argparse, json, os, re, shutil, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import ROOT, FORMS_DIR, DB_PATH, connect, log
-from classify import classify
+from classify import classify, HELPER
 from commit_proposal import commit
 from validate_db import validate
 
@@ -66,15 +66,38 @@ def text_fields(text):
 def extract_doc(path):
     """Word .doc/.docx via macOS textutil (built-in), then label heuristics."""
     import subprocess
+    base=os.path.splitext(os.path.basename(path))[0]
     try:
         t = subprocess.run(["textutil", "-convert", "txt", "-stdout", path],
                            capture_output=True, text=True, timeout=60).stdout
     except Exception as e:
         log("auto_draft.log", f"doc-extract fail {path}: {e!r}"); t = ""
-    return text_fields(t), t, (len(t.strip()) < 50)
+    return text_fields(t), t, (len(t.strip()) < 50), doc_title("", t, base), 0
+
+def _realwords(t):
+    return len(re.findall(r"[A-Za-zÄÖÜäöü]{3,}", t or ""))
+
+def doc_title(meta_title, text, fallback):
+    """Human-readable title: PDF /Title if it reads like a name, else the first
+    meaningful text line. Rejects junk (filenames) AND form-number codes like
+    '10000d - 02-2025' (which have no real words)."""
+    t = (meta_title or "").strip()
+    bad = (not t) or len(t) < 4 or _realwords(t) < 2 or re.search(
+        r"\.(pdf|docx?|rtf|xls\w*)$|microsoft word|untitled|^form$|^dokument\d*$|^document\d*$", t, re.I)
+    if bad:
+        t = ""
+        for ln in (text or "").splitlines():
+            ln = ln.strip()
+            if 6 <= len(ln) <= 90 and _realwords(ln) >= 2:
+                t = ln; break
+    t = re.sub(r"\s+", " ", t).strip()
+    return t[:120] or fallback
 
 def extract_pdf(path):
-    fields, text = [], ""
+    """Returns (fields, text, scanned, title, acro_count). Field label prefers the
+    /TU tooltip (human label) over the raw field name (e.g. 'toggle_1', '1')."""
+    fields, text, title, acro_n = [], "", "", 0
+    base = os.path.splitext(os.path.basename(path))[0]
     try:
         from pypdf import PdfReader
         r = PdfReader(path)
@@ -83,21 +106,29 @@ def extract_pdf(path):
         acro = r.get_fields() or {}
         TYPE = {"/Tx":"text","/Btn":"checkbox","/Ch":"select","/Sig":"signature"}
         for i,(name,f) in enumerate(acro.items(),1):
-            st=f.get("/_States_")
-            fields.append({"label":str(name),"field_type":TYPE.get(f.get("/FT"),"text"),
+            st=f.get("/_States_"); tu=f.get("/TU")
+            label=clean_label((str(tu).strip() if tu else "") or str(name))
+            fields.append({"label":label,"field_type":TYPE.get(f.get("/FT"),"text"),
                            "options":[s for s in st if s!="/Off"] if st else None,"order":i,"src":"acro"})
+        acro_n=len(acro)
+        try: title=doc_title((r.metadata or {}).get("/Title"), text, base)
+        except Exception: title=base
     except Exception as e:
         log("auto_draft.log", f"pdf-extract fail {path}: {e!r}")
     if not fields:                       # flat PDF -> parse labels from text
         fields = text_fields(text)
+    if not title: title = base
     scanned = (not fields) and len(text.strip()) < 200
-    return fields, text, scanned
+    return fields, text, scanned, title, acro_n
 
 def extract_xlsx(path):
-    fields=[]; text=""
+    fields=[]; text=""; title=""
+    base=os.path.splitext(os.path.basename(path))[0]
     try:
         import openpyxl
         wb=openpyxl.load_workbook(path, read_only=True, data_only=True)
+        try: title=(wb.properties.title or "").strip()
+        except Exception: title=""
         i=0
         for ws in wb.worksheets:
             for row in ws.iter_rows(values_only=True):
@@ -108,7 +139,7 @@ def extract_xlsx(path):
                     if i>=150: break
     except Exception as e:
         log("auto_draft.log", f"xlsx-extract fail {path}: {e!r}")
-    return fields, text, False
+    return fields, text, False, doc_title(title, text, base), 0
 
 # ---- legal-citation mining (research leads only; not assigned per field) -----
 SR  = re.compile(r"\bSR\s+(\d{3}(?:\.\d+)*)")
@@ -132,10 +163,26 @@ MECH = re.compile(r"unterschrift|signature|\bdatum\b|\bort\b|ort, datum|ort/datu
 def slug(s):
     s=re.sub(r"[^a-z0-9]+","-",(s or "").lower()).strip("-"); return s[:48] or "x"
 
-def draft_form(path, office, dept, fields, scanned, sr, laws, arts):
+def clean_label(label):
+    """Make a technical AcroForm field name readable.
+    'personalien.versichertennummer1' -> 'Versichertennummer 1';
+    'adresse_neu' -> 'Adresse neu'. Leaves already-readable labels untouched."""
+    l = (label or "").strip()
+    if " " in l or len(l) < 2:
+        return l
+    if "." in l:                       # dotted hierarchy -> last segment
+        l = l.split(".")[-1]
+    l = l.replace("_", " ")
+    l = re.sub(r"(?<=[a-zäöü])(?=[A-ZÄÖÜ])", " ", l)   # camelCase boundary
+    l = re.sub(r"(?<=[A-Za-zäöüÄÖÜ])(?=\d)", " ", l)    # trailing number
+    l = re.sub(r"\s+", " ", l).strip()
+    return (l[:1].upper() + l[1:]) if l else label
+
+def draft_form(path, office, dept, fields, scanned, sr, laws, arts, title=None):
     base=os.path.splitext(os.path.basename(path))[0]
+    name=title or base                    # human-readable display title (PDF /Title)
     ext=os.path.splitext(path)[1].lower()
-    sslug=slug(office.split("/")[-1]+"-"+base)
+    sslug=slug(office.split("/")[-1]+"-"+base)   # slug stays filename-based (stable id)
     rel=os.path.relpath(path, ROOT)
 
     form_fields=[]; reqs={}; mappings=[]; svc_reqs=set()
@@ -170,12 +217,12 @@ def draft_form(path, office, dept, fields, scanned, sr, laws, arts):
            ("Gescanntes/Bild-PDF: keine Felder extrahierbar — OCR oder manuelle Erfassung nötig.")
 
     return {
-      "service":{"slug":sslug,"name":base,"dienststelle":office.split("/")[-1],
+      "service":{"slug":sslug,"name":name,"dienststelle":office.split("/")[-1],
                  "department":dept,"description":f"AUTO-ENTWURF aus {rel}. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
-                 "notes":"auto_draft"},
+                 "notes":"auto_draft; Datei: "+os.path.basename(path)},
       "laws":[], "requirements":list(reqs.values()),
       "service_requirements":[{"requirement_ref":r} for r in svc_reqs],
-      "form":{"slug":sslug+"-form","title":base,"actual_purpose":None,
+      "form":{"slug":sslug+"-form","title":name,"actual_purpose":None,
               "title_content_mismatch":False,"source_file":rel,
               "file_type":"excel" if ext.startswith(".xls") else "pdf",
               "publisher_dienststelle":office.split("/")[-1],"last_extracted":"auto"},
@@ -200,34 +247,34 @@ def office_helper_text(office_dir):
     for f in os.listdir(office_dir):
         full=os.path.join(office_dir,f)
         if os.path.isfile(full) and classify(f)[0]=="helper" and f.lower().endswith(".pdf"):
-            _,t,_=extract_pdf(full); txt+=t+"\n"
+            t=extract_pdf(full)[1]; txt+=t+"\n"
             if len(txt)>40000: break
     return txt
 
 def process_office(conn, office_dir):
     rel_office=os.path.relpath(office_dir, VERW); dept=rel_office.split("/")[0]
     helper_txt=office_helper_text(office_dir)
-    n=skipped=0
+    n=0
     for f in sorted(os.listdir(office_dir)):
         full=os.path.join(office_dir,f)
         if not os.path.isfile(full): continue
-        if os.path.splitext(f)[1].lower() not in (".pdf",".xlsx",".xlsm",".xls",".doc",".docx"): continue
-        if classify(f)[0]!="formular": continue
+        ext=os.path.splitext(f)[1].lower()
+        if ext not in (".pdf",".xlsx",".xlsm",".xls",".doc",".docx"): continue
+        if HELPER.search(os.path.splitext(f)[0]): continue   # strong guidance -> never a form
+        if ext in (".xlsx",".xlsm",".xls"): fields,ftext,scanned,title,acro=extract_xlsx(full)
+        elif ext==".pdf":                   fields,ftext,scanned,title,acro=extract_pdf(full)
+        else:                               fields,ftext,scanned,title,acro=extract_doc(full)
+        # a file is a FORM if its name says so OR it is a fillable PDF (>=3 AcroForm
+        # fields) — this recovers coded/hash-named forms (e.g. SVA's bei02, allg01).
+        if not (classify(f)[0]=="formular" or acro>=3):
+            continue
         dest_dir=os.path.join(FORMS_DIR, rel_office); os.makedirs(dest_dir,exist_ok=True)
         dest=os.path.join(dest_dir,f)
         if not os.path.exists(dest):
             try: shutil.copy2(full,dest)
             except Exception: pass
-        if f.lower().endswith((".xlsx",".xlsm",".xls")):
-            fields,ftext,scanned=extract_xlsx(full)
-        elif f.lower().endswith(".pdf"):
-            fields,ftext,scanned=extract_pdf(full)
-        elif f.lower().endswith((".doc",".docx")):
-            fields,ftext,scanned=extract_doc(full)
-        else:
-            fields,ftext,scanned=[],"",False
         sr,laws,arts=mine_citations((ftext or "")+"\n"+helper_txt[:8000])
-        commit(conn, draft_form(full, rel_office, dept, fields, scanned, sr, laws, arts)); n+=1
+        commit(conn, draft_form(full, rel_office, dept, fields, scanned, sr, laws, arts, title)); n+=1
     return n
 
 def main():
