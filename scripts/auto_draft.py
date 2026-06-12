@@ -244,37 +244,42 @@ def _m(fref,req,cls):
 # ---- office processing -------------------------------------------------------
 def office_helper_text(office_dir):
     txt=""
-    for f in os.listdir(office_dir):
-        full=os.path.join(office_dir,f)
-        if os.path.isfile(full) and classify(f)[0]=="helper" and f.lower().endswith(".pdf"):
-            t=extract_pdf(full)[1]; txt+=t+"\n"
-            if len(txt)>40000: break
+    for root,_,files in os.walk(office_dir):
+        if "_files" in root: continue
+        for f in files:
+            full=os.path.join(root,f)
+            if os.path.isfile(full) and classify(f)[0]=="helper" and f.lower().endswith(".pdf"):
+                txt+=extract_pdf(full)[1]+"\n"
+                if len(txt)>40000: return txt
     return txt
 
 def process_office(conn, office_dir):
     rel_office=os.path.relpath(office_dir, VERW); dept=rel_office.split("/")[0]
     helper_txt=office_helper_text(office_dir)
     n=0
-    for f in sorted(os.listdir(office_dir)):
-        full=os.path.join(office_dir,f)
-        if not os.path.isfile(full): continue
-        ext=os.path.splitext(f)[1].lower()
-        if ext not in (".pdf",".xlsx",".xlsm",".xls",".doc",".docx"): continue
-        if HELPER.search(os.path.splitext(f)[0]): continue   # strong guidance -> never a form
-        if ext in (".xlsx",".xlsm",".xls"): fields,ftext,scanned,title,acro=extract_xlsx(full)
-        elif ext==".pdf":                   fields,ftext,scanned,title,acro=extract_pdf(full)
-        else:                               fields,ftext,scanned,title,acro=extract_doc(full)
-        # a file is a FORM if its name says so OR it is a fillable PDF (>=3 AcroForm
-        # fields) — this recovers coded/hash-named forms (e.g. SVA's bei02, allg01).
-        if not (classify(f)[0]=="formular" or acro>=3):
-            continue
-        dest_dir=os.path.join(FORMS_DIR, rel_office); os.makedirs(dest_dir,exist_ok=True)
-        dest=os.path.join(dest_dir,f)
-        if not os.path.exists(dest):
-            try: shutil.copy2(full,dest)
-            except Exception: pass
-        sr,laws,arts=mine_citations((ftext or "")+"\n"+helper_txt[:8000])
-        commit(conn, draft_form(full, rel_office, dept, fields, scanned, sr, laws, arts, title)); n+=1
+    seen=set()
+    for root,_,files in os.walk(office_dir):     # recurse into office subfolders
+        if "_files" in root: continue
+        for f in sorted(files):
+            full=os.path.join(root,f)
+            if not os.path.isfile(full): continue
+            ext=os.path.splitext(f)[1].lower()
+            if ext not in (".pdf",".xlsx",".xlsm",".xls",".doc",".docx"): continue
+            if HELPER.search(os.path.splitext(f)[0]): continue   # strong guidance -> never a form
+            if ext in (".xlsx",".xlsm",".xls"): fields,ftext,scanned,title,acro=extract_xlsx(full)
+            elif ext==".pdf":                   fields,ftext,scanned,title,acro=extract_pdf(full)
+            else:                               fields,ftext,scanned,title,acro=extract_doc(full)
+            # a file is a FORM if its name says so OR it is a fillable PDF (>=3 AcroForm
+            # fields) — recovers coded/hash-named sheets (e.g. SVA's bei02, allg01).
+            if not (classify(f)[0]=="formular" or acro>=3):
+                continue
+            dest=os.path.join(FORMS_DIR, os.path.relpath(full, VERW))
+            os.makedirs(os.path.dirname(dest), exist_ok=True)
+            if not os.path.exists(dest):
+                try: shutil.copy2(full,dest)
+                except Exception: pass
+            sr,laws,arts=mine_citations((ftext or "")+"\n"+helper_txt[:8000])
+            commit(conn, draft_form(full, rel_office, dept, fields, scanned, sr, laws, arts, title)); n+=1
     return n
 
 def main():
