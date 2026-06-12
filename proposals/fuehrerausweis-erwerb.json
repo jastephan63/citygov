@@ -1,0 +1,95 @@
+{
+  "_comment": "VERIFIED example #2 (driver's licence, first acquisition). Law-first model from the VZV (SR 741.51), articles read from the official Fedlex PDF (version 1.4.2024) — verified, not guessed. Demonstrates the original brief's licence lesson: the application form matches category + age, but the legally-required eyesight test (Art. 9) and first-aid course (Art. 10) are NOT on the form (separate certificates) -> legal gaps. Distinct service from the misleadingly-titled 'Ausstellen eines Führerausweises' (which serves reissue/amend).",
+
+  "service": {
+    "slug": "fuehrerausweis-erwerb",
+    "name": "Erwerb Lernfahr-/Führerausweis (Erstausstellung)",
+    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
+    "department": "Baudepartement",
+    "description": "Erstmaliger Erwerb eines Lernfahr- bzw. Führerausweises beim Strassenverkehrsamt. Bundesrechtlich geregelt (VZV).",
+    "notes": "Verifiziertes Beispiel; Zitate aus Fedlex VZV SR 741.51."
+  },
+
+  "laws": [
+    {
+      "slug": "vzv",
+      "title": "Verordnung über die Zulassung von Personen und Fahrzeugen zum Strassenverkehr (Verkehrszulassungsverordnung)",
+      "short_title": "VZV",
+      "jurisdiction_level": "federal",
+      "sr_number": "741.51",
+      "source_note": "Fedlex SR 741.51, https://www.fedlex.admin.ch/eli/cc/1976/2423_2423_2423/de (Fassung 1.4.2024, abgerufen 2026-06-12). Artikel im Volltext geprüft.",
+      "last_checked": "verified",
+      "articles": [
+        {"ref": "vzv_3",  "article_no": "3",  "heading": "Ausweiskategorien", "text_excerpt": "Definiert die Führerausweiskategorien (A, A1, B, B1, C, D, BE, ... M, F, G).", "last_checked": "verified"},
+        {"ref": "vzv_6",  "article_no": "6",  "heading": "Mindestalter", "text_excerpt": "Abs. 1: Mindestalter zum Führen von Motorfahrzeugen je Kategorie.", "last_checked": "verified"},
+        {"ref": "vzv_7",  "article_no": "7",  "heading": "Medizinische Mindestanforderungen", "text_excerpt": "Medizinische Mindestanforderungen an Fahrzeugführer.", "last_checked": "verified"},
+        {"ref": "vzv_9",  "article_no": "9",  "heading": "Sehtest", "text_excerpt": "Abs. 3: Der Sehtest darf im Zeitpunkt der Einreichung des Gesuchs nicht mehr als 24 Monate zurückliegen.", "last_checked": "verified"},
+        {"ref": "vzv_10", "article_no": "10", "heading": "Kurs über lebensrettende Sofortmassnahmen", "text_excerpt": "Abs. 1: Wer sich zur Basistheorieprüfung für den Lernfahrausweis anmeldet, muss die Teilnahme an einem Nothilfekurs nachweisen.", "last_checked": "verified"}
+      ]
+    }
+  ],
+
+  "requirements": [
+    {"ref": "personalien", "data_point_key": "fa-personalien", "data_point": "Personalien", "label": "Identität der gesuchstellenden Person", "data_type": "composite", "is_composite": true, "legal_basis": []},
+    {"ref": "kategorie", "data_point_key": "fa-ausweiskategorie", "data_point": "Ausweiskategorie", "label": "Beantragte Führerausweiskategorie", "data_type": "enum",
+     "legal_basis": [{"article_ref": "vzv_3", "citation_detail": "Ausweiskategorien", "last_checked": "verified"}]},
+    {"ref": "mindestalter", "data_point_key": "fa-mindestalter", "data_point": "Geburtsdatum / Mindestalter", "label": "Erreichen des kategoriespezifischen Mindestalters", "data_type": "date", "condition": "Mindestalter je Kategorie (Art. 6 Abs. 1 VZV)",
+     "legal_basis": [{"article_ref": "vzv_6", "citation_detail": "Abs. 1", "last_checked": "verified"}]},
+    {"ref": "med", "data_point_key": "fa-med-anforderungen", "data_point": "Medizinische Mindestanforderungen", "label": "Erfüllung der medizinischen Mindestanforderungen (ärztlicher Bericht bei höheren Kategorien)", "data_type": "document",
+     "legal_basis": [{"article_ref": "vzv_7", "citation_detail": "", "last_checked": "verified"}]},
+    {"ref": "sehtest", "data_point_key": "fa-sehtest", "data_point": "Sehtest", "label": "Bestandener Sehtest, höchstens 24 Monate alt", "data_type": "document", "condition": "≤ 24 Monate vor Gesuch (Art. 9 Abs. 3 VZV)",
+     "legal_basis": [{"article_ref": "vzv_9", "citation_detail": "Abs. 3", "last_checked": "verified"}]},
+    {"ref": "nothelfer", "data_point_key": "fa-nothelfer", "data_point": "Nothelferkurs", "label": "Nachweis Kurs über lebensrettende Sofortmassnahmen", "data_type": "document",
+     "legal_basis": [{"article_ref": "vzv_10", "citation_detail": "Abs. 1", "last_checked": "verified"}]}
+  ],
+
+  "service_requirements": [
+    {"requirement_ref": "personalien"}, {"requirement_ref": "kategorie"},
+    {"requirement_ref": "mindestalter"}, {"requirement_ref": "med"},
+    {"requirement_ref": "sehtest"}, {"requirement_ref": "nothelfer"}
+  ],
+
+  "form": {
+    "slug": "fuehrerausweis-erwerb-form",
+    "title": "Gesuch um Erteilung eines Lernfahr- bzw. eines Führerausweises",
+    "actual_purpose": "Antrag auf Erteilung eines Lernfahr-/Führerausweises: Personalien, Fotokleber, beantragte Kategorie. Sehtest und Nothelferkurs werden separat nachgewiesen (nicht auf dem Formular).",
+    "title_content_mismatch": false,
+    "source_file": "../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/gesuch Lernfahr-Fuehrerausweis mit Fotokleber-25-p.pdf",
+    "file_type": "pdf", "publisher_dienststelle": "Strassenverkehrs- und Schifffahrtsamt", "last_extracted": "verified-model"
+  },
+
+  "form_fields": [
+    {"ref": "f_name",   "field_key": "name",   "label": "Name",          "section": "Personalien", "field_type": "text", "required": true,  "raw_order": 1},
+    {"ref": "f_vname",  "field_key": "vorname", "label": "Vorname",      "section": "Personalien", "field_type": "text", "required": true,  "raw_order": 2},
+    {"ref": "f_gebdat", "field_key": "geburtsdatum", "label": "Geburtsdatum", "section": "Personalien", "field_type": "date", "required": true, "raw_order": 3},
+    {"ref": "f_adr",    "field_key": "adresse", "label": "Adresse",      "section": "Personalien", "field_type": "text", "required": true,  "raw_order": 4},
+    {"ref": "f_kat_b",  "field_key": "kat_b",  "label": "Kategorie B",   "section": "Ausweiskategorie", "field_type": "checkbox", "required": false, "raw_order": 5, "options": ["B"]},
+    {"ref": "f_kat_a1", "field_key": "kat_a1", "label": "Kategorie A1",  "section": "Ausweiskategorie", "field_type": "checkbox", "required": false, "raw_order": 6, "options": ["A1"]},
+    {"ref": "f_kat_c",  "field_key": "kat_c",  "label": "Kategorie C",   "section": "Ausweiskategorie", "field_type": "checkbox", "required": false, "raw_order": 7, "options": ["C"]},
+    {"ref": "f_foto",   "field_key": "fotokleber", "label": "Fotokleber", "section": "Beilagen", "field_type": "text", "required": true, "raw_order": 8},
+    {"ref": "f_unt",    "field_key": "unterschrift", "label": "Unterschrift", "section": "Bestätigung", "field_type": "signature", "required": true, "raw_order": 9},
+    {"ref": "f_dat",    "field_key": "datum",  "label": "Ort, Datum",    "section": "Bestätigung", "field_type": "date", "required": true, "raw_order": 10}
+  ],
+
+  "field_mappings": [
+    {"form_field_ref": "f_name",  "requirement_ref": "personalien", "classification": "identity_part", "match_status": "confirmed", "mapped_by": "human"},
+    {"form_field_ref": "f_vname", "requirement_ref": "personalien", "classification": "identity_part", "match_status": "confirmed", "mapped_by": "human"},
+    {"form_field_ref": "f_adr",   "requirement_ref": "personalien", "classification": "identity_part", "match_status": "confirmed", "mapped_by": "human"},
+    {"form_field_ref": "f_gebdat","requirement_ref": "mindestalter", "classification": "mapped", "match_status": "confirmed", "mapped_by": "human"},
+    {"form_field_ref": "f_kat_b", "requirement_ref": "kategorie", "classification": "reason_facet", "match_status": "confirmed", "mapped_by": "human"},
+    {"form_field_ref": "f_kat_a1","requirement_ref": "kategorie", "classification": "reason_facet", "match_status": "confirmed", "mapped_by": "human"},
+    {"form_field_ref": "f_kat_c", "requirement_ref": "kategorie", "classification": "reason_facet", "match_status": "confirmed", "mapped_by": "human"},
+    {"form_field_ref": "f_foto",  "requirement_ref": null, "classification": "form_mechanic", "match_status": "confirmed", "mapped_by": "human"},
+    {"form_field_ref": "f_unt",   "requirement_ref": null, "classification": "form_mechanic", "match_status": "confirmed", "mapped_by": "human"},
+    {"form_field_ref": "f_dat",   "requirement_ref": null, "classification": "form_mechanic", "match_status": "confirmed", "mapped_by": "human"}
+  ],
+
+  "documents": [
+    {"source_file": "../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/gesuch Lernfahr-Fuehrerausweis mit Fotokleber-25-p.pdf", "file_name": "gesuch Lernfahr-Fuehrerausweis mit Fotokleber-25-p.pdf", "department": "Baudepartement", "dienststelle": "Strassenverkehrs- und Schifffahrtsamt", "doc_type": "formular", "is_this_form": true, "classification_note": "Antragsformular Lernfahr-/Führerausweis."}
+  ],
+
+  "findings": [
+    {"type": "note", "severity": "info", "fingerprint": "vzv-verified", "description": "Rechtsgrundlagen aus Fedlex VZV (SR 741.51, Fassung 1.4.2024) verifiziert.", "status": "open", "created_at": "VERIFIED"},
+    {"type": "title_mismatch", "severity": "warning", "fingerprint": "fa-titel-mismatch", "description": "Konvention 1: Das separate Formular 'Ausstellen eines Führerausweises' betrifft inhaltlich Umtausch/Ersatz eines bestehenden Ausweises, NICHT die Erstausstellung — als eigener Dienst zu modellieren.", "status": "open", "created_at": "VERIFIED"}
+  ]
+}

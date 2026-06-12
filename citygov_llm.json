@@ -12,7 +12,7 @@
    },
    "field_classification": "mapped=captures a requirement; identity_part=sub-field of a person-identity requirement; reason_facet=one option of a multi-choice requirement; form_mechanic=plumbing (signature/date), no legal basis needed; overcollection=collected with no legal basis (data-protection risk)."
   },
-  "generated_at": "2026-06-12T13:45:05"
+  "generated_at": "2026-06-12T13:56:12"
  },
  "services": [
   {
@@ -236255,6 +236255,161 @@
      "type": "note",
      "severity": "info",
      "description": "Auto-Entwurf: 62 Feld(er); je Feld eine Anforderung, Rechtsgrundlage je Feld ZU ERMITTELN. Recherche-Leads — zitierte Gesetze: Gebrauchsgegenständeverordnung, Tourismusförderungsgesetz. zitierte Artikel: Art. 20; Art. 62; Art. 73."
+    }
+   ]
+  },
+  {
+   "id": 327,
+   "slug": "fuehrerausweis-erwerb",
+   "name": "Erwerb Lernfahr-/Führerausweis (Erstausstellung)",
+   "department": "Baudepartement",
+   "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
+   "description": "Erstmaliger Erwerb eines Lernfahr- bzw. Führerausweises beim Strassenverkehrsamt. Bundesrechtlich geregelt (VZV).",
+   "forms": [
+    {
+     "title": "Gesuch um Erteilung eines Lernfahr- bzw. eines Führerausweises",
+     "source_file": "../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/gesuch Lernfahr-Fuehrerausweis mit Fotokleber-25-p.pdf",
+     "file_type": "pdf",
+     "title_content_mismatch": false,
+     "fields": [
+      {
+       "label": "Name",
+       "section": "Personalien",
+       "field_type": "text",
+       "classification": "identity_part",
+       "match_status": "confirmed",
+       "legal_basis": []
+      },
+      {
+       "label": "Vorname",
+       "section": "Personalien",
+       "field_type": "text",
+       "classification": "identity_part",
+       "match_status": "confirmed",
+       "legal_basis": []
+      },
+      {
+       "label": "Geburtsdatum",
+       "section": "Personalien",
+       "field_type": "date",
+       "classification": "mapped",
+       "match_status": "confirmed",
+       "legal_basis": [
+        {
+         "jurisdiction": "federal",
+         "law_title": "Verordnung über die Zulassung von Personen und Fahrzeugen zum Strassenverkehr (Verkehrszulassungsverordnung)",
+         "law_short": "VZV",
+         "sr_number": "741.51",
+         "cantonal_ref": null,
+         "article_no": "6",
+         "citation_detail": "Abs. 1",
+         "verification": "verified"
+        }
+       ]
+      },
+      {
+       "label": "Adresse",
+       "section": "Personalien",
+       "field_type": "text",
+       "classification": "identity_part",
+       "match_status": "confirmed",
+       "legal_basis": []
+      },
+      {
+       "label": "Kategorie B",
+       "section": "Ausweiskategorie",
+       "field_type": "checkbox",
+       "classification": "reason_facet",
+       "match_status": "confirmed",
+       "legal_basis": [
+        {
+         "jurisdiction": "federal",
+         "law_title": "Verordnung über die Zulassung von Personen und Fahrzeugen zum Strassenverkehr (Verkehrszulassungsverordnung)",
+         "law_short": "VZV",
+         "sr_number": "741.51",
+         "cantonal_ref": null,
+         "article_no": "3",
+         "citation_detail": "Ausweiskategorien",
+         "verification": "verified"
+        }
+       ]
+      },
+      {
+       "label": "Kategorie A1",
+       "section": "Ausweiskategorie",
+       "field_type": "checkbox",
+       "classification": "reason_facet",
+       "match_status": "confirmed",
+       "legal_basis": [
+        {
+         "jurisdiction": "federal",
+         "law_title": "Verordnung über die Zulassung von Personen und Fahrzeugen zum Strassenverkehr (Verkehrszulassungsverordnung)",
+         "law_short": "VZV",
+         "sr_number": "741.51",
+         "cantonal_ref": null,
+         "article_no": "3",
+         "citation_detail": "Ausweiskategorien",
+         "verification": "verified"
+        }
+       ]
+      },
+      {
+       "label": "Kategorie C",
+       "section": "Ausweiskategorie",
+       "field_type": "checkbox",
+       "classification": "reason_facet",
+       "match_status": "confirmed",
+       "legal_basis": [
+        {
+         "jurisdiction": "federal",
+         "law_title": "Verordnung über die Zulassung von Personen und Fahrzeugen zum Strassenverkehr (Verkehrszulassungsverordnung)",
+         "law_short": "VZV",
+         "sr_number": "741.51",
+         "cantonal_ref": null,
+         "article_no": "3",
+         "citation_detail": "Ausweiskategorien",
+         "verification": "verified"
+        }
+       ]
+      },
+      {
+       "label": "Fotokleber",
+       "section": "Beilagen",
+       "field_type": "text",
+       "classification": "form_mechanic",
+       "match_status": "confirmed",
+       "legal_basis": []
+      },
+      {
+       "label": "Unterschrift",
+       "section": "Bestätigung",
+       "field_type": "signature",
+       "classification": "form_mechanic",
+       "match_status": "confirmed",
+       "legal_basis": []
+      },
+      {
+       "label": "Ort, Datum",
+       "section": "Bestätigung",
+       "field_type": "date",
+       "classification": "form_mechanic",
+       "match_status": "confirmed",
+       "legal_basis": []
+      }
+     ]
+    }
+   ],
+   "process_steps": [],
+   "findings": [
+    {
+     "type": "note",
+     "severity": "info",
+     "description": "Rechtsgrundlagen aus Fedlex VZV (SR 741.51, Fassung 1.4.2024) verifiziert."
+    },
+    {
+     "type": "title_mismatch",
+     "severity": "warning",
+     "description": "Konvention 1: Das separate Formular 'Ausstellen eines Führerausweises' betrifft inhaltlich Umtausch/Ersatz eines bestehenden Ausweises, NICHT die Erstausstellung — als eigener Dienst zu modellieren."
     }
    ]
   }
