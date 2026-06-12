@@ -100,6 +100,13 @@ python3 scripts/commit_proposal.py proposals/<slug>.json
 # 6. regenerate the dashboard
 ./build.sh                                      # export_json.py + build_dashboard.py
 open dashboard.html
+
+# Bulk verification (safe): upgrade 'cited_unverified' -> 'sourced' across all
+# offices by confirming each cited article against the real Gesetze PDF
+# (scripts/verify_cited.py — only upgrades when exactly one candidate law actually
+# contains that article number, so it resolves law<->article pairing by proof, not
+# guessing). Run after resolve_cited; re-runnable. Federal (SR) verification via
+# Fedlex is still manual per law (see the Führerausweis/VZV example).
 ```
 The worked example `proposals/anmeldung-wohnsitz.json` is a hand-authored instance
 of the proposal format (steps 2–4 already done) and seeds the databank.
