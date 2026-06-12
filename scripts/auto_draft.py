@@ -77,19 +77,25 @@ def extract_doc(path):
 def _realwords(t):
     return len(re.findall(r"[A-Za-zÄÖÜäöü]{3,}", t or ""))
 
+# authority/org header lines that are NOT a form title
+_AUTH = re.compile(r"eidgen[öo]ssisch|departement\b|bundesamt|staatssekretariat|"
+                   r"\bEJPD\b|\bEDA\b|\bWBF\b|\bSEM\b|\bEFD\b|\bUVEK\b|kanton schaffhausen|"
+                   r"^amt f[üu]r|^abteilung|^sektion|^dienststelle", re.I)
+# words that mark the real form title
+_FORMW = re.compile(r"gesuch|antrag|anmeldung|formular|\bmeldung|bewilligung|erkl[äa]rung|"
+                    r"bescheinigung|vollmacht|nachweis|deklaration|gesuchsformular", re.I)
+
 def doc_title(meta_title, text, fallback):
-    """Human-readable title: PDF /Title if it reads like a name, else the first
-    meaningful text line. Rejects junk (filenames) AND form-number codes like
-    '10000d - 02-2025' (which have no real words)."""
+    """Human-readable title: PDF /Title if it reads like a form name, else the most
+    title-like text line. Skips filenames, form-number codes, and authority headers
+    (e.g. 'Eidgenössisches Justiz- und Polizeidepartement EJPD')."""
     t = (meta_title or "").strip()
-    bad = (not t) or len(t) < 4 or _realwords(t) < 2 or re.search(
+    bad = (not t) or len(t) < 4 or _realwords(t) < 2 or _AUTH.search(t) or re.search(
         r"\.(pdf|docx?|rtf|xls\w*)$|microsoft word|untitled|^form$|^dokument\d*$|^document\d*$", t, re.I)
     if bad:
-        t = ""
-        for ln in (text or "").splitlines():
-            ln = ln.strip()
-            if 6 <= len(ln) <= 90 and _realwords(ln) >= 2:
-                t = ln; break
+        lines = [re.sub(r"\s+", " ", l.strip()) for l in (text or "").splitlines()]
+        lines = [l for l in lines if 6 <= len(l) <= 100 and _realwords(l) >= 2 and not _AUTH.search(l)]
+        t = next((l for l in lines if _FORMW.search(l)), lines[0] if lines else "")
     t = re.sub(r"\s+", " ", t).strip()
     return t[:120] or fallback
 
