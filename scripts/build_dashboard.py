@@ -121,6 +121,34 @@ TEMPLATE = r"""<!DOCTYPE html>
   .seg button{background:var(--panel2);border:none;color:var(--mut);padding:7px 14px;cursor:pointer;font-size:12.5px}
   .seg button.active{background:#10233a;color:#fff}
   .nores{color:var(--mut);padding:20px;text-align:center}
+  /* department-grouped nav */
+  .dept{margin-bottom:4px}
+  .dephd{padding:7px 9px;border-radius:7px;cursor:pointer;color:var(--tx);font-weight:600;
+         font-size:12.5px;display:flex;align-items:center;gap:6px;background:#10192b}
+  .dephd:hover{background:#16223a}
+  .dephd .tg{color:var(--mut2);width:10px;display:inline-block}
+  .dephd .ct{margin-left:auto;font-weight:500;font-size:11px;color:var(--mut2)}
+  .office{margin:2px 0 2px 8px}
+  .offhd{padding:5px 8px;border-radius:6px;cursor:pointer;color:var(--mut);font-size:12px;
+         display:flex;gap:6px}
+  .offhd:hover{color:var(--tx)}
+  .offhd .ct{margin-left:auto;font-size:10.5px;color:var(--mut2)}
+  .dept.collapsed .office,.office.collapsed .svc{display:none}
+  .svc{margin-left:14px}
+  /* progress bar */
+  .pbar{height:8px;border-radius:5px;background:var(--panel2);border:1px solid var(--bd);
+        overflow:hidden;flex:1;min-width:140px;max-width:280px}
+  .pbar > i{display:block;height:100%;background:var(--match)}
+  /* field table */
+  table.ft td{padding:6px 10px}
+  table.ft tr.mech td{color:var(--mut2)}
+  table.ft tr td:first-child{color:var(--mut2);width:30px;text-align:right}
+  .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle}
+  .d-match{background:var(--match)}.d-proposed{background:var(--proposed)}
+  .d-legal_gap{background:var(--gap)}.d-overcollection{background:var(--over)}
+  .d-form_mechanic{background:var(--mechanic)}.d-identity_part{background:var(--identity)}
+  .d-reason_facet{background:var(--reason)}.d-mapped{background:var(--match)}
+  .srcbtn{color:var(--proposed);text-decoration:none;font-size:11.5px}
 </style>
 </head>
 <body>
@@ -132,12 +160,12 @@ TEMPLATE = r"""<!DOCTYPE html>
 </header>
 <div class="layout">
   <aside>
-    <h2>Dienst (Service)</h2>
-    <div id="services"></div>
     <h2>Ansicht</h2>
-    <button class="tab" data-tab="recon">Abgleich · Reconciliation</button>
+    <button class="tab" data-tab="fields">Felder &amp; Rechtsgrundlagen</button>
+    <button class="tab" data-tab="recon">Abgleich (3 Eimer)</button>
     <button class="tab" data-tab="tree">Gesetzes-Baum</button>
-    <button class="tab" data-tab="info">Geforderte Informationen</button>
+    <h2>Dienste nach Departement</h2>
+    <div id="services"></div>
     <h2>Legende</h2>
     <div class="legend" id="legend"></div>
   </aside>
@@ -146,7 +174,9 @@ TEMPLATE = r"""<!DOCTYPE html>
 <script id="data" type="application/json">/*DATA*/</script>
 <script>
 const DATA = JSON.parse(document.getElementById('data').textContent);
-const state = {service:'all', tab:'recon', tree:'list', filter:''};
+const state = {service:'all', tab:'fields', tree:'list', filter:'', open:{}};
+const DEPT_ORDER=['Baudepartement','Department des Innern','Departement des Innern','Erziehungsdepartement','Finanzdepartement','Volkswirtschaftsdepartement'];
+function deptName(s){return (s.department||'(ohne Departement)').trim();}
 
 // ---- indexes + in-browser reconciliation (computed, never stored) ----------
 const reqById={}, lawById={}, svcById={};
@@ -156,6 +186,22 @@ DATA.services.forEach(s=>svcById[s.id]=s);
 const reqsByService={}, formsByService={};
 DATA.service_requirements.forEach(sr=>{(reqsByService[sr.service_id]=reqsByService[sr.service_id]||[]).push(sr.requirement_id);});
 DATA.forms.forEach(f=>{(formsByService[f.service_id]=formsByService[f.service_id]||[]).push(f);});
+// department -> office -> services
+const deptTree={};
+DATA.services.forEach(s=>{const d=deptName(s), o=(s.dienststelle||'(ohne Amt)').trim();
+  (deptTree[d]=deptTree[d]||{})[o]=(deptTree[d][o]||[]); deptTree[d][o].push(s);});
+function deptKeys(){return Object.keys(deptTree).sort((a,b)=>{
+  const ia=DEPT_ORDER.indexOf(a), ib=DEPT_ORDER.indexOf(b);
+  return (ia<0?99:ia)-(ib<0?99:ib) || a.localeCompare(b);});}
+// per-field grounding: how many fields that NEED a basis actually have one
+function grounding(sid){
+  let need=0, have=0;
+  (formsByService[sid]||[]).forEach(fm=>(fm.fields||[]).forEach(fl=>{
+    const m=fl.mapping; if(!m||!['mapped','identity_part','reason_facet'].includes(m.classification))return;
+    need++; const r=m.requirement_id!=null?reqById[m.requirement_id]:null;
+    if(r&&r.legal_basis&&r.legal_basis.length) have++;}));
+  return {need,have};
+}
 const _recCache={};
 function reconcile(sid){
   if(_recCache[sid]) return _recCache[sid];
@@ -203,42 +249,57 @@ function citeStr(lb){
   return `${jur(lb.jurisdiction)} <span class="mono">${esc(art+det)}</span> ${esc(lb.law_short||lb.law_title)}${esc(sr)}${unver(lb.last_checked)}`;
 }
 
-// ---------- sidebar ----------
+// ---------- sidebar (grouped by department) ----------
 function renderSidebar(){
   document.getElementById('stamp').textContent = 'erzeugt '+ (DATA.generated_at||'') ;
   document.getElementById('warn').textContent = '⚠ Zitate „UNVERIFIED“ sind NICHT amtlich geprüft';
-  const sv = document.getElementById('services');
-  sv.innerHTML='';
-  const fb=el(`<input id="svcfilter" placeholder="Dienst suchen…" value="${esc(state.filter)}" `+
+  const sv = document.getElementById('services'); sv.innerHTML='';
+  const fb=el(`<input id="svcfilter" placeholder="Dienst/Amt suchen…" value="${esc(state.filter)}" `+
     `style="width:100%;padding:7px 9px;margin-bottom:8px;background:var(--panel);border:1px solid var(--bd);`+
     `border-radius:7px;color:var(--tx);font-size:12.5px">`);
   sv.appendChild(fb);
-  fb.oninput=()=>{state.filter=fb.value;const f=state.filter.toLowerCase();
-    sv.querySelectorAll('.svc[data-name]').forEach(n=>{n.style.display=n.dataset.name.includes(f)?'':'none';});};
-  sv.appendChild(svcRow({id:'all',name:'Alle Dienste',dienststelle:DATA.services.length+' Dienst(e)'}));
-  const f=state.filter.toLowerCase();
-  DATA.services.forEach(s=>{const r=svcRow(s);
-    r.dataset.name=(s.name+' '+(s.dienststelle||'')+' '+(s.department||'')).toLowerCase();
-    if(f && !r.dataset.name.includes(f)) r.style.display='none';
-    sv.appendChild(r);});
+  fb.oninput=()=>{state.filter=fb.value;renderNav();};
+  const allr=el(`<div class="svc" style="margin-left:0;font-weight:600">▤ Alle Dienste · Übersicht <span class="meta">${DATA.services.length} Dienste, ${deptKeys().length} Departemente</span></div>`);
+  if(state.service==='all') allr.classList.add('active');
+  allr.onclick=()=>{state.service='all';render();};
+  sv.appendChild(allr);
+  const nav=el('<div id="nav"></div>'); sv.appendChild(nav); renderNav();
   document.querySelectorAll('.tab').forEach(b=>{
     b.classList.toggle('active', b.dataset.tab===state.tab);
     b.onclick=()=>{state.tab=b.dataset.tab;render();};
   });
   document.getElementById('legend').innerHTML = [
-    ['b-match','Match'],['b-proposed','Vorschlag (unbestätigt)'],['b-legal_gap','Legal Gap'],
+    ['b-match','Match (bestätigt)'],['b-proposed','Vorschlag'],['b-legal_gap','Legal Gap'],
     ['b-overcollection','Over-collection'],['b-identity_part','identity_part'],
     ['b-reason_facet','reason_facet'],['b-form_mechanic','form_mechanic'],
     ['b-federal','Bund'],['b-cantonal','Kanton'],['b-communal','Gemeinde']
   ].map(([c,l])=>`<span><span class="badge ${c}">&nbsp;</span> ${l}</span>`).join('');
 }
-function svcRow(s){
-  const d=el(`<div class="svc"><span>${esc(s.name)}</span><span class="meta">${esc(s.dienststelle||'')}</span></div>`);
-  if(String(s.id)===String(state.service)) d.classList.add('active');
-  d.onclick=()=>{state.service=String(s.id);render();};
-  return d;
+function renderNav(){
+  const f=state.filter.toLowerCase(); const nav=document.getElementById('nav'); if(!nav)return;
+  let h='';
+  deptKeys().forEach(d=>{
+    const offices=deptTree[d];
+    let svcMatch=0, deptHTML='';
+    Object.keys(offices).sort().forEach(o=>{
+      const svcs=offices[o].filter(s=>!f || (s.name+' '+o+' '+d).toLowerCase().includes(f));
+      if(!svcs.length) return; svcMatch+=svcs.length;
+      const offOpen = f || state.open[d+'›'+o];
+      deptHTML+=`<div class="office ${offOpen?'':'collapsed'}"><div class="offhd" data-o="${esc(d+'›'+o)}">`+
+        `<span class="tg">${offOpen?'▾':'▸'}</span>${esc(o)}<span class="ct">${svcs.length}</span></div>`+
+        svcs.map(s=>`<div class="svc ${String(s.id)===state.service?'active':''}" data-sid="${s.id}">`+
+          `${esc(s.name.slice(0,46))}</div>`).join('')+`</div>`;
+    });
+    if(!svcMatch) return;
+    const open = f || state.open[d];
+    h+=`<div class="dept ${open?'':'collapsed'}"><div class="dephd" data-d="${esc(d)}">`+
+       `<span class="tg">${open?'▾':'▸'}</span>${esc(d)}<span class="ct">${svcMatch}</span></div>${deptHTML}</div>`;
+  });
+  nav.innerHTML=h || '<div class="nores small">keine Treffer</div>';
+  nav.querySelectorAll('.dephd').forEach(e=>e.onclick=()=>{const d=e.dataset.d;state.open[d]=!state.open[d];renderNav();});
+  nav.querySelectorAll('.offhd').forEach(e=>e.onclick=()=>{const k=e.dataset.o;state.open[k]=!state.open[k];renderNav();});
+  nav.querySelectorAll('.svc[data-sid]').forEach(e=>e.onclick=()=>{state.service=e.dataset.sid;render();});
 }
-const curServices = () => state.service==='all' ? DATA.services : DATA.services.filter(s=>String(s.id)===state.service);
 
 // ---------- reconciliation ----------
 function viewRecon(){
@@ -282,6 +343,57 @@ function reconOverview(){
     <td style="color:var(--over)">${sm.overcollection||''}</td>
     <td class="small">${sm.fields_total}</td></tr>`).join('')}
   </tbody></table></div>`;
+}
+// ---------- PRIMARY: fields & legal basis ----------
+function deptOverview(){
+  const f=state.filter.toLowerCase();
+  let h=`<h3 class="view">Übersicht nach Departement</h3>
+  <p class="hint">Auto-Entwürfe — je Formularfeld eine Anforderung; Rechtsgrundlage meist noch zu ermitteln. Dienst anklicken. Balken = Anteil Felder mit eingetragener Rechtsgrundlage.</p>`;
+  deptKeys().forEach(d=>{
+    const offices=deptTree[d]; let body='',dn=0,dh=0,dsvc=0;
+    Object.keys(offices).sort().forEach(o=>offices[o].forEach(s=>{
+      if(f && !(s.name+' '+o+' '+d).toLowerCase().includes(f)) return;
+      const g=grounding(s.id); dn+=g.need; dh+=g.have; dsvc++;
+      const pct=g.need?Math.round(100*g.have/g.need):100;
+      body+=`<tr data-sid="${s.id}" style="cursor:pointer"><td><b>${esc(s.name.slice(0,54))}</b></td>
+        <td class="small muted">${esc(o)}</td><td class="small">${g.need}</td>
+        <td><div class="pbar" style="display:inline-block;max-width:160px;vertical-align:middle"><i style="width:${pct}%"></i></div> <span class="small muted">${g.have}/${g.need}</span></td></tr>`;
+    }));
+    if(!body) return;
+    const dpct=dn?Math.round(100*dh/dn):100;
+    h+=`<div class="card"><div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
+      <b style="font-size:14px">${esc(d)}</b> <span class="small muted">${dsvc} Dienste</span>
+      <div class="pbar"><i style="width:${dpct}%"></i></div><span class="small muted">${dh}/${dn} Felder mit Grundlage</span></div>
+      <table class="ft"><thead><tr><th>Dienst (Formular)</th><th>Amt</th><th>Felder</th><th>Rechtsgrundlagen</th></tr></thead><tbody>${body}</tbody></table></div>`;
+  });
+  return h;
+}
+function viewFields(){
+  const m=document.getElementById('main');
+  if(state.service==='all'){ m.innerHTML=deptOverview();
+    m.querySelectorAll('tr[data-sid]').forEach(tr=>tr.onclick=()=>{state.service=tr.dataset.sid;render();}); return; }
+  const s=svcById[state.service]; const forms=formsByService[s.id]||[];
+  const g=grounding(s.id); const pct=g.need?Math.round(100*g.have/g.need):100;
+  let h=`<h3 class="view">${esc(s.name)}</h3>
+  <p class="hint">${esc(s.department||'')} · ${esc(s.dienststelle||'')} — je Zeile ein Formularfeld und seine Rechtsgrundlage.</p>
+  <div class="card"><div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+    <div class="pbar" style="max-width:340px"><i style="width:${pct}%"></i></div>
+    <span><b>${g.have}/${g.need}</b> Felder mit Rechtsgrundlage</span>
+    ${forms[0]&&forms[0].source_file?`<a class="srcbtn" href="${esc(forms[0].source_file)}" style="margin-left:auto">↗ Quelldatei</a>`:''}</div>
+  <table class="ft"><thead><tr><th>#</th><th>Feld</th><th>Abschnitt</th><th>Rechtsgrundlage</th><th>Klasse</th></tr></thead><tbody>`;
+  let i=0;
+  forms.forEach(fm=>(fm.fields||[]).forEach(fl=>{ i++; const mp=fl.mapping; const cls=mp?mp.classification:'—';
+    const req=mp&&mp.requirement_id!=null?reqById[mp.requirement_id]:null; const basis=req?req.legal_basis:[];
+    const cell = cls==='form_mechanic' ? '<span class="muted small">— keine nötig</span>'
+      : cls==='overcollection' ? '<span class="badge b-over">Over-collection — ohne Grundlage</span>'
+      : basis.length ? basis.map(citeStr).join('<br>')
+      : '<span class="badge b-unver">zu ermitteln</span>';
+    h+=`<tr class="${cls==='form_mechanic'?'mech':''}"><td>${i}</td>
+      <td><b>${esc(fl.label)}</b></td><td class="small muted">${esc(fl.section||'')}</td>
+      <td>${cell}</td><td><span class="dot d-${cls}"></span><span class="small">${esc(cls)}</span></td></tr>`;
+  }));
+  h+=`</tbody></table>${i?'':'<div class="nores">keine Felder extrahiert (gescanntes PDF / reine Erklärung)</div>'}</div>`;
+  m.innerHTML=h;
 }
 function reqItem(r){
   const cap=[...r.captured_by_confirmed,...r.captured_by_proposed];
@@ -390,9 +502,10 @@ function viewInfo(){
 
 function render(){
   renderSidebar();
-  if(state.tab==='recon') viewRecon();
+  if(state.tab==='fields') viewFields();
+  else if(state.tab==='recon') viewRecon();
   else if(state.tab==='tree') viewTree();
-  else viewInfo();
+  else viewFields();
 }
 render();
 </script>
