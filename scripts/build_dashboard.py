@@ -163,7 +163,6 @@ TEMPLATE = r"""<!DOCTYPE html>
     <h2>Ansicht</h2>
     <button class="tab" data-tab="fields">Felder &amp; Rechtsgrundlagen</button>
     <button class="tab" data-tab="recon">Abgleich (3 Eimer)</button>
-    <button class="tab" data-tab="tree">Gesetzes-Baum</button>
     <h2>Dienste nach Departement</h2>
     <div id="services"></div>
     <h2>Legende</h2>
