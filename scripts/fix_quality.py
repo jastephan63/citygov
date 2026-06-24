@@ -27,7 +27,8 @@ def is_bad_title(t):
         or len(t) < 5
 def is_bad_label(l):
     return (not l) or len(l.strip()) < 3 or l.strip().isdigit() \
-        or re.match(r"^[a-z]{1,2}\d*$|^kontrollk|^toggle|^text\d|^check ?box|^feld|^\W+$", l or "", re.I)
+        or re.match(r"^[a-z]{1,2}\d*$|^kontrollk|^optionsfeld|^toggle|^text\s?\d|^check ?box|"
+                    r"^feld\b|^undefined|^druckfeld|^auswahl\s?\d|^\W+$", l or "", re.I)
 
 def clean_filename(path):
     """Filename as a readable title (last-resort): drop versions/codes/dates."""

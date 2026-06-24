@@ -16,6 +16,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import ROOT, DB_PATH, connect, log
 from validate_db import validate
 from fix_quality import is_bad_label, is_bad_title, realwords
+from auto_draft import slug
 
 SWIFT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ocr_pdf.swift")
 BAD = re.compile(r"^(ja|nein|x|☐|□)\b", re.I)
@@ -42,7 +43,9 @@ def field_positions(path):
             if nm is None or not rect: continue
             try: x0, y0, x1, y1 = [float(v) for v in rect]
             except Exception: continue
-            pos[str(nm)] = (pi, min(x0,x1)/W, min(y0,y1)/H, max(x0,x1)/W, max(y0,y1)/H)
+            # key by slug(name) so it matches field_key (slug(label)) even when the
+            # field name has umlauts/spaces (e.g. 'Kontrollkästchen 16').
+            pos[slug(str(nm))] = (pi, min(x0,x1)/W, min(y0,y1)/H, max(x0,x1)/W, max(y0,y1)/H)
     return pos, len(r.pages)
 
 def ocr(path):
@@ -123,7 +126,12 @@ def main():
         forms = src.execute(f"SELECT id, source_file, title FROM form WHERE id IN ({','.join('?'*len(ids))})", ids).fetchall()
     else:
         forms = src.execute("""SELECT f.id, f.source_file, f.title FROM form f WHERE EXISTS
-            (SELECT 1 FROM form_field ff WHERE ff.form_id=f.id AND (ff.label GLOB '[0-9]*' OR length(trim(ff.label))<3))""").fetchall()
+            (SELECT 1 FROM form_field ff WHERE ff.form_id=f.id AND (ff.label GLOB '[0-9]*'
+             OR length(trim(ff.label))<3 OR lower(ff.label) LIKE 'kontrollk%'
+             OR lower(ff.label) LIKE 'optionsfeld%' OR lower(ff.label) LIKE 'toggle%'
+             OR lower(ff.label) LIKE 'text %' OR lower(ff.label) LIKE 'text[0-9]%'
+             OR lower(ff.label) LIKE 'feld %' OR lower(ff.label) LIKE 'auswahl%'
+             OR lower(ff.label) LIKE 'undefined%' OR lower(ff.label) LIKE 'druckfeld%'))""").fetchall()
     src.close()
     staging = DB_PATH + ".staging"
     if os.path.exists(staging): os.remove(staging)
@@ -147,10 +155,11 @@ def main():
                 conn.execute("UPDATE form SET title=? WHERE id=?", [cand, fm["id"]])
                 conn.execute("UPDATE service SET name=? WHERE id=(SELECT service_id FROM form WHERE id=?)", [cand, fm["id"]])
                 nT += 1
-        # weak fields -> OCR label by position
+        # weak fields -> OCR label by position (filter with is_bad_label, in sync)
         for fid, fkey, lbl in conn.execute(
-                "SELECT id, field_key, label FROM form_field WHERE form_id=? AND (label GLOB '[0-9]*' OR length(trim(label))<3)",
-                [fm["id"]]).fetchall():
+                "SELECT id, field_key, label FROM form_field WHERE form_id=?", [fm["id"]]).fetchall():
+            if not is_bad_label(lbl):
+                continue
             name = fkey.rsplit("-", 1)[0]
             if name not in pos: continue
             lab = label_for(pos[name], boxes)
