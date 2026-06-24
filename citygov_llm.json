@@ -12,7 +12,7 @@
    },
    "field_classification": "mapped=captures a requirement; identity_part=sub-field of a person-identity requirement; reason_facet=one option of a multi-choice requirement; form_mechanic=plumbing (signature/date), no legal basis needed; overcollection=collected with no legal basis (data-protection risk)."
   },
-  "generated_at": "2026-06-24T14:49:58"
+  "generated_at": "2026-06-24T14:57:23"
  },
  "services": [
   {
@@ -25480,7 +25480,7 @@
      "title_content_mismatch": false,
      "fields": [
       {
-       "label": "Nr",
+       "label": "Ish.ch",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -56725,7 +56725,7 @@
        "legal_basis": []
       },
       {
-       "label": "23-nein",
+       "label": "Bezieht der/die Arbeitnehmer/in andere Leistungen? · pro Monat",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -62405,7 +62405,7 @@
        ]
       },
       {
-       "label": "26",
+       "label": "Nationalität",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -62519,7 +62519,7 @@
        ]
       },
       {
-       "label": "28",
+       "label": "Strasse",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -62785,7 +62785,7 @@
        ]
       },
       {
-       "label": "108",
+       "label": "e) Zulagen",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -63260,7 +63260,7 @@
        ]
       },
       {
-       "label": "108",
+       "label": "e) Zulagen",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -63336,7 +63336,7 @@
        ]
       },
       {
-       "label": "109",
+       "label": "e) Zulagen",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -63412,7 +63412,7 @@
        ]
       },
       {
-       "label": "1010",
+       "label": "e) Zulagen",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -63488,7 +63488,7 @@
        ]
       },
       {
-       "label": "111",
+       "label": "e) Zulagen",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -63659,7 +63659,7 @@
        ]
       },
       {
-       "label": "154",
+       "label": "AHV-Ausgleichskasse · e) Zulagen",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -66128,7 +66128,7 @@
        ]
       },
       {
-       "label": "101",
+       "label": "Strasse · ja, welche?",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -66223,7 +66223,7 @@
        ]
       },
       {
-       "label": "106",
+       "label": "Strasse · ja, welche?",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -66470,7 +66470,7 @@
        ]
       },
       {
-       "label": "142",
+       "label": "Sie geltend?",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -67040,7 +67040,7 @@
        ]
       },
       {
-       "label": "101",
+       "label": "Strasse · ja, welche?",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -69498,7 +69498,7 @@
        ]
       },
       {
-       "label": "38",
+       "label": "Mit welcher AHV-Ausgleichskasse",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -71956,7 +71956,7 @@
        ]
       },
       {
-       "label": "23",
+       "label": "Arbeitslosenversicherung",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -75185,7 +75185,7 @@
        "legal_basis": []
       },
       {
-       "label": "Ab",
+       "label": "PLZ/Ort",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -75828,7 +75828,7 @@
        "legal_basis": []
       },
       {
-       "label": "Ab",
+       "label": "PLZ/Ort",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -79639,7 +79639,7 @@
        "legal_basis": []
       },
       {
-       "label": "Ab",
+       "label": "PLZ/Ort",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -79671,7 +79671,7 @@
        "legal_basis": []
       },
       {
-       "label": "Ab",
+       "label": "PLZ/Ort",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -79703,7 +79703,7 @@
        "legal_basis": []
       },
       {
-       "label": "Ab",
+       "label": "PLZ/Ort",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -80259,7 +80259,7 @@
        "legal_basis": []
       },
       {
-       "label": "2",
+       "label": "Bemerkungen",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -80323,79 +80323,7 @@
        "legal_basis": []
       },
       {
-       "label": "1-2",
-       "section": null,
-       "field_type": "text",
-       "classification": "mapped",
-       "match_status": "proposed",
-       "legal_basis": []
-      },
-      {
-       "label": "Geburtsdatum (TT.MM.JJJJ) 4 Vorname von",
-       "section": null,
-       "field_type": "text",
-       "classification": "mapped",
-       "match_status": "proposed",
-       "legal_basis": []
-      },
-      {
-       "label": "Geburtsdatum (TT.MM.JJJJ) 4 Vorname von",
-       "section": null,
-       "field_type": "text",
-       "classification": "mapped",
-       "match_status": "proposed",
-       "legal_basis": []
-      },
-      {
-       "label": "Geburtsdatum (TT.MM.JJJJ) 4 Vorname von",
-       "section": null,
-       "field_type": "text",
-       "classification": "mapped",
-       "match_status": "proposed",
-       "legal_basis": []
-      },
-      {
-       "label": "Geburtsdatum (TT.MM.JJJJ) 4 Vorname von",
-       "section": null,
-       "field_type": "text",
-       "classification": "mapped",
-       "match_status": "proposed",
-       "legal_basis": []
-      },
-      {
-       "label": "Geburtsdatum (TT.MM.JJJJ) 4 Vorname von",
-       "section": null,
-       "field_type": "text",
-       "classification": "mapped",
-       "match_status": "proposed",
-       "legal_basis": []
-      },
-      {
-       "label": "Geburtsdatum (TT.MM.JJJJ) 4 Vorname von",
-       "section": null,
-       "field_type": "text",
-       "classification": "mapped",
-       "match_status": "proposed",
-       "legal_basis": []
-      },
-      {
-       "label": "Geburtsdatum (TT.MM.JJJJ) 4 Vorname von",
-       "section": null,
-       "field_type": "text",
-       "classification": "mapped",
-       "match_status": "proposed",
-       "legal_basis": []
-      },
-      {
-       "label": "Geburtsdatum (TT.MM.JJJJ) 4 Vorname von",
-       "section": null,
-       "field_type": "text",
-       "classification": "mapped",
-       "match_status": "proposed",
-       "legal_basis": []
-      },
-      {
-       "label": "1-3",
+       "label": "Bemerkungen",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -80467,7 +80395,7 @@
        "legal_basis": []
       },
       {
-       "label": "1-4",
+       "label": "Bemerkungen",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -80539,7 +80467,7 @@
        "legal_basis": []
       },
       {
-       "label": "1-5",
+       "label": "Bemerkungen",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -80611,7 +80539,79 @@
        "legal_basis": []
       },
       {
-       "label": "1-6",
+       "label": "Bemerkungen",
+       "section": null,
+       "field_type": "text",
+       "classification": "mapped",
+       "match_status": "proposed",
+       "legal_basis": []
+      },
+      {
+       "label": "Geburtsdatum (TT.MM.JJJJ) 4 Vorname von",
+       "section": null,
+       "field_type": "text",
+       "classification": "mapped",
+       "match_status": "proposed",
+       "legal_basis": []
+      },
+      {
+       "label": "Geburtsdatum (TT.MM.JJJJ) 4 Vorname von",
+       "section": null,
+       "field_type": "text",
+       "classification": "mapped",
+       "match_status": "proposed",
+       "legal_basis": []
+      },
+      {
+       "label": "Geburtsdatum (TT.MM.JJJJ) 4 Vorname von",
+       "section": null,
+       "field_type": "text",
+       "classification": "mapped",
+       "match_status": "proposed",
+       "legal_basis": []
+      },
+      {
+       "label": "Geburtsdatum (TT.MM.JJJJ) 4 Vorname von",
+       "section": null,
+       "field_type": "text",
+       "classification": "mapped",
+       "match_status": "proposed",
+       "legal_basis": []
+      },
+      {
+       "label": "Geburtsdatum (TT.MM.JJJJ) 4 Vorname von",
+       "section": null,
+       "field_type": "text",
+       "classification": "mapped",
+       "match_status": "proposed",
+       "legal_basis": []
+      },
+      {
+       "label": "Geburtsdatum (TT.MM.JJJJ) 4 Vorname von",
+       "section": null,
+       "field_type": "text",
+       "classification": "mapped",
+       "match_status": "proposed",
+       "legal_basis": []
+      },
+      {
+       "label": "Geburtsdatum (TT.MM.JJJJ) 4 Vorname von",
+       "section": null,
+       "field_type": "text",
+       "classification": "mapped",
+       "match_status": "proposed",
+       "legal_basis": []
+      },
+      {
+       "label": "Geburtsdatum (TT.MM.JJJJ) 4 Vorname von",
+       "section": null,
+       "field_type": "text",
+       "classification": "mapped",
+       "match_status": "proposed",
+       "legal_basis": []
+      },
+      {
+       "label": "Bemerkungen",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -81077,7 +81077,7 @@
        "legal_basis": []
       },
       {
-       "label": "2",
+       "label": "Bemerkungen",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -81141,79 +81141,7 @@
        "legal_basis": []
       },
       {
-       "label": "1-2",
-       "section": null,
-       "field_type": "text",
-       "classification": "mapped",
-       "match_status": "proposed",
-       "legal_basis": []
-      },
-      {
-       "label": "Geburtsdatum (TT.MM.JJJJ) 4 Vorname von",
-       "section": null,
-       "field_type": "text",
-       "classification": "mapped",
-       "match_status": "proposed",
-       "legal_basis": []
-      },
-      {
-       "label": "Geburtsdatum (TT.MM.JJJJ) 4 Vorname von",
-       "section": null,
-       "field_type": "text",
-       "classification": "mapped",
-       "match_status": "proposed",
-       "legal_basis": []
-      },
-      {
-       "label": "Geburtsdatum (TT.MM.JJJJ) 4 Vorname von",
-       "section": null,
-       "field_type": "text",
-       "classification": "mapped",
-       "match_status": "proposed",
-       "legal_basis": []
-      },
-      {
-       "label": "Geburtsdatum (TT.MM.JJJJ) 4 Vorname von",
-       "section": null,
-       "field_type": "text",
-       "classification": "mapped",
-       "match_status": "proposed",
-       "legal_basis": []
-      },
-      {
-       "label": "Geburtsdatum (TT.MM.JJJJ) 4 Vorname von",
-       "section": null,
-       "field_type": "text",
-       "classification": "mapped",
-       "match_status": "proposed",
-       "legal_basis": []
-      },
-      {
-       "label": "Geburtsdatum (TT.MM.JJJJ) 4 Vorname von",
-       "section": null,
-       "field_type": "text",
-       "classification": "mapped",
-       "match_status": "proposed",
-       "legal_basis": []
-      },
-      {
-       "label": "Geburtsdatum (TT.MM.JJJJ) 4 Vorname von",
-       "section": null,
-       "field_type": "text",
-       "classification": "mapped",
-       "match_status": "proposed",
-       "legal_basis": []
-      },
-      {
-       "label": "Geburtsdatum (TT.MM.JJJJ) 4 Vorname von",
-       "section": null,
-       "field_type": "text",
-       "classification": "mapped",
-       "match_status": "proposed",
-       "legal_basis": []
-      },
-      {
-       "label": "1-3",
+       "label": "Bemerkungen",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -81285,7 +81213,7 @@
        "legal_basis": []
       },
       {
-       "label": "1-4",
+       "label": "Bemerkungen",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -81357,7 +81285,7 @@
        "legal_basis": []
       },
       {
-       "label": "1-5",
+       "label": "Bemerkungen",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -81429,7 +81357,79 @@
        "legal_basis": []
       },
       {
-       "label": "1-6",
+       "label": "Bemerkungen",
+       "section": null,
+       "field_type": "text",
+       "classification": "mapped",
+       "match_status": "proposed",
+       "legal_basis": []
+      },
+      {
+       "label": "Geburtsdatum (TT.MM.JJJJ) 4 Vorname von",
+       "section": null,
+       "field_type": "text",
+       "classification": "mapped",
+       "match_status": "proposed",
+       "legal_basis": []
+      },
+      {
+       "label": "Geburtsdatum (TT.MM.JJJJ) 4 Vorname von",
+       "section": null,
+       "field_type": "text",
+       "classification": "mapped",
+       "match_status": "proposed",
+       "legal_basis": []
+      },
+      {
+       "label": "Geburtsdatum (TT.MM.JJJJ) 4 Vorname von",
+       "section": null,
+       "field_type": "text",
+       "classification": "mapped",
+       "match_status": "proposed",
+       "legal_basis": []
+      },
+      {
+       "label": "Geburtsdatum (TT.MM.JJJJ) 4 Vorname von",
+       "section": null,
+       "field_type": "text",
+       "classification": "mapped",
+       "match_status": "proposed",
+       "legal_basis": []
+      },
+      {
+       "label": "Geburtsdatum (TT.MM.JJJJ) 4 Vorname von",
+       "section": null,
+       "field_type": "text",
+       "classification": "mapped",
+       "match_status": "proposed",
+       "legal_basis": []
+      },
+      {
+       "label": "Geburtsdatum (TT.MM.JJJJ) 4 Vorname von",
+       "section": null,
+       "field_type": "text",
+       "classification": "mapped",
+       "match_status": "proposed",
+       "legal_basis": []
+      },
+      {
+       "label": "Geburtsdatum (TT.MM.JJJJ) 4 Vorname von",
+       "section": null,
+       "field_type": "text",
+       "classification": "mapped",
+       "match_status": "proposed",
+       "legal_basis": []
+      },
+      {
+       "label": "Geburtsdatum (TT.MM.JJJJ) 4 Vorname von",
+       "section": null,
+       "field_type": "text",
+       "classification": "mapped",
+       "match_status": "proposed",
+       "legal_basis": []
+      },
+      {
+       "label": "Bemerkungen",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -81971,7 +81971,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -81979,7 +81979,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -81987,7 +81987,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -81995,7 +81995,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82003,7 +82003,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82019,7 +82019,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82027,7 +82027,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82035,7 +82035,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82043,7 +82043,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82051,7 +82051,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82059,7 +82059,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82067,7 +82067,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82075,7 +82075,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82083,7 +82083,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82091,7 +82091,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82099,7 +82099,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82107,7 +82107,7 @@
        "legal_basis": []
       },
       {
-       "label": "5-1",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82115,7 +82115,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82123,7 +82123,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82131,7 +82131,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82139,7 +82139,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82147,7 +82147,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82155,7 +82155,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82163,7 +82163,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82171,7 +82171,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82179,7 +82179,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82187,7 +82187,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82195,7 +82195,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82203,7 +82203,7 @@
        "legal_basis": []
       },
       {
-       "label": "5-2",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82211,7 +82211,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82219,7 +82219,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82227,7 +82227,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82235,7 +82235,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82243,7 +82243,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82251,7 +82251,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82259,7 +82259,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82267,7 +82267,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82275,7 +82275,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82283,7 +82283,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82291,7 +82291,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82299,7 +82299,7 @@
        "legal_basis": []
       },
       {
-       "label": "5-3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82307,7 +82307,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82315,7 +82315,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82323,7 +82323,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82331,7 +82331,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82339,7 +82339,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82347,7 +82347,7 @@
        "legal_basis": []
       },
       {
-       "label": "3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -82999,7 +82999,7 @@
        "legal_basis": []
       },
       {
-       "label": "1-2",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -83071,7 +83071,7 @@
        "legal_basis": []
       },
       {
-       "label": "1-3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -83143,7 +83143,7 @@
        "legal_basis": []
       },
       {
-       "label": "1-4",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -83215,7 +83215,7 @@
        "legal_basis": []
       },
       {
-       "label": "1-5",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -83287,7 +83287,7 @@
        "legal_basis": []
       },
       {
-       "label": "1-6",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -84483,7 +84483,7 @@
        "legal_basis": []
       },
       {
-       "label": "8-2",
+       "label": "Beitragspflichtige",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -84531,7 +84531,7 @@
        "legal_basis": []
       },
       {
-       "label": "8-3",
+       "label": "Beitragspflichtige",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -84611,7 +84611,7 @@
        "legal_basis": []
       },
       {
-       "label": "1-3",
+       "label": "Mitarbeitende (in alphabetischer Reihenfolge)",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -85120,7 +85120,7 @@
        ]
       },
       {
-       "label": "82",
+       "label": "pro Stunde in CHF",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -85139,7 +85139,7 @@
        ]
       },
       {
-       "label": "75",
+       "label": "pro Stunde in CHF",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -85367,7 +85367,7 @@
        ]
       },
       {
-       "label": "62",
+       "label": "Bescheinigung über Zwischenverdienst für den Monat",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -85557,7 +85557,7 @@
        ]
       },
       {
-       "label": "67",
+       "label": "Bescheinigung über Zwischenverdienst für den Monat",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -85595,7 +85595,7 @@
        ]
       },
       {
-       "label": "68",
+       "label": "Monat und Jahr",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -85633,7 +85633,7 @@
        ]
       },
       {
-       "label": "69",
+       "label": "Arbeitslosenversicherung",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -85709,7 +85709,7 @@
        ]
       },
       {
-       "label": "71",
+       "label": "Bescheinigung über Zwischenverdienst für den Monat",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -85861,7 +85861,7 @@
        ]
       },
       {
-       "label": "75",
+       "label": "pro Stunde in CHF",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -86412,7 +86412,7 @@
        ]
       },
       {
-       "label": "149",
+       "label": "Std. pro Monat",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -86735,7 +86735,7 @@
        ]
       },
       {
-       "label": "23",
+       "label": "nein",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -94306,7 +94306,7 @@
        ]
       },
       {
-       "label": "57",
+       "label": "Unterhaltspflicht gegenüber Kindern",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -94933,7 +94933,7 @@
        ]
       },
       {
-       "label": "24",
+       "label": "Ort",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -94952,7 +94952,7 @@
        ]
       },
       {
-       "label": "30",
+       "label": "Schule",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -135970,7 +135970,7 @@
        ]
       },
       {
-       "label": "0",
+       "label": "FEUERPOLIZEI",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -135989,26 +135989,7 @@
        ]
       },
       {
-       "label": "0",
-       "section": null,
-       "field_type": "text",
-       "classification": "mapped",
-       "match_status": "proposed",
-       "legal_basis": [
-        {
-         "jurisdiction": "cantonal",
-         "law_title": "Im Formular zitiert: Brandschutzgesetz; Brandschutzverordnung; Himmelslaternenverordnung",
-         "law_short": "Brandschutzgesetz; Brandschutzverordnung; Himmelslaternenver",
-         "sr_number": null,
-         "cantonal_ref": null,
-         "article_no": "4",
-         "citation_detail": "Abs. 1",
-         "verification": "cited_unverified"
-        }
-       ]
-      },
-      {
-       "label": "Prüfblatt für Atemschutzmasken mit Überdruck",
+       "label": "FEUERPOLIZEI",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -136046,7 +136027,26 @@
        ]
       },
       {
-       "label": "0",
+       "label": "Prüfblatt für Atemschutzmasken mit Überdruck",
+       "section": null,
+       "field_type": "text",
+       "classification": "mapped",
+       "match_status": "proposed",
+       "legal_basis": [
+        {
+         "jurisdiction": "cantonal",
+         "law_title": "Im Formular zitiert: Brandschutzgesetz; Brandschutzverordnung; Himmelslaternenverordnung",
+         "law_short": "Brandschutzgesetz; Brandschutzverordnung; Himmelslaternenver",
+         "sr_number": null,
+         "cantonal_ref": null,
+         "article_no": "4",
+         "citation_detail": "Abs. 1",
+         "verification": "cited_unverified"
+        }
+       ]
+      },
+      {
+       "label": "FEUERPOLIZEI",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -136103,7 +136103,7 @@
        ]
       },
       {
-       "label": "0",
+       "label": "FEUERPOLIZEI",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -136160,7 +136160,7 @@
        ]
       },
       {
-       "label": "0",
+       "label": "FEUERPOLIZEI",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -136217,7 +136217,7 @@
        ]
       },
       {
-       "label": "0",
+       "label": "FEUERPOLIZEI",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -136274,7 +136274,7 @@
        ]
       },
       {
-       "label": "0",
+       "label": "FEUERPOLIZEI",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -136331,7 +136331,7 @@
        ]
       },
       {
-       "label": "0",
+       "label": "FEUERPOLIZEI",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -136388,7 +136388,7 @@
        ]
       },
       {
-       "label": "0",
+       "label": "FEUERPOLIZEI",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -136445,7 +136445,7 @@
        ]
       },
       {
-       "label": "0",
+       "label": "FEUERPOLIZEI",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -136502,7 +136502,7 @@
        ]
       },
       {
-       "label": "0",
+       "label": "FEUERPOLIZEI",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -136559,7 +136559,7 @@
        ]
       },
       {
-       "label": "0",
+       "label": "FEUERPOLIZEI",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -136616,7 +136616,7 @@
        ]
       },
       {
-       "label": "0",
+       "label": "FEUERPOLIZEI",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -136673,7 +136673,7 @@
        ]
       },
       {
-       "label": "0",
+       "label": "FEUERPOLIZEI",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -136920,7 +136920,7 @@
        ]
       },
       {
-       "label": "0",
+       "label": "FEUERPOLIZEI",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -149997,7 +149997,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Verbindung: · Dauer",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -150016,7 +150016,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "• Funk Kanal · Dauer",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -150035,7 +150035,7 @@
        ]
       },
       {
-       "label": "3",
+       "label": "Dauer",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -150111,7 +150111,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Verbindung: · Dauer",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -150149,7 +150149,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "• Funk Kanal · Dauer",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -150168,7 +150168,7 @@
        ]
       },
       {
-       "label": "3",
+       "label": "Dauer",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -150187,7 +150187,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Verbindung: · Dauer",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -150225,7 +150225,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Verbindung: · Dauer",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -150263,7 +150263,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Verbindung: · Dauer",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -150282,7 +150282,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "• Funk Kanal · Dauer",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -150301,7 +150301,7 @@
        ]
       },
       {
-       "label": "3",
+       "label": "Dauer",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -150377,7 +150377,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Verbindung: · Dauer",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -150415,7 +150415,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "• Funk Kanal · Dauer",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -150434,7 +150434,7 @@
        ]
       },
       {
-       "label": "3",
+       "label": "Dauer",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -150453,7 +150453,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Verbindung: · Dauer",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -150491,7 +150491,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Verbindung: · Dauer",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -150529,7 +150529,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Verbindung: · Dauer",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -150548,7 +150548,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "• Funk Kanal · Dauer",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -150567,7 +150567,7 @@
        ]
       },
       {
-       "label": "3",
+       "label": "Dauer",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -150643,7 +150643,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Verbindung: · Dauer",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -150681,7 +150681,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "• Funk Kanal · Dauer",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -150700,7 +150700,7 @@
        ]
       },
       {
-       "label": "3",
+       "label": "Dauer",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -150719,7 +150719,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Verbindung: · Dauer",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -150757,7 +150757,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Verbindung: · Dauer",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -150814,7 +150814,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Verbindung: · Dauer",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -150833,7 +150833,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "• Funk Kanal · Dauer",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -150890,7 +150890,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Verbindung: · Dauer",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -150928,7 +150928,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Verbindung: · Dauer",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -150947,7 +150947,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "• Funk Kanal · Dauer",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -150966,7 +150966,7 @@
        ]
       },
       {
-       "label": "3",
+       "label": "Dauer",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -151042,7 +151042,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Verbindung: · Dauer",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -151061,7 +151061,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "• Funk Kanal · Dauer",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -151080,7 +151080,7 @@
        ]
       },
       {
-       "label": "3",
+       "label": "Dauer",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -151289,7 +151289,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Verbindung: · Dauer",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -151308,7 +151308,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "• Funk Kanal · Dauer",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -151365,7 +151365,7 @@
        ]
       },
       {
-       "label": "1",
+       "label": "Verbindung: · Dauer",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -151384,7 +151384,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "• Funk Kanal · Dauer",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -151403,7 +151403,7 @@
        ]
       },
       {
-       "label": "3",
+       "label": "Dauer",
        "section": null,
        "field_type": "checkbox",
        "classification": "reason_facet",
@@ -152528,7 +152528,7 @@
        ]
       },
       {
-       "label": "2",
+       "label": "Übungsvorbereitung",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
@@ -187793,7 +187793,7 @@
        "legal_basis": []
       },
       {
-       "label": "a",
+       "label": "Eigenes Land, total Fläche",
        "section": null,
        "field_type": "text",
        "classification": "mapped",
