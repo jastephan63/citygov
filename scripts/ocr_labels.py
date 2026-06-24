@@ -60,24 +60,47 @@ def ocr(path):
         boxes.setdefault(pi, []).append((x, y, w, h, p[5].strip()))
     return boxes
 
+_VALUEONLY = re.compile(r"^[\d.,'\s/%:()-]+$")
+def _ok(lab):
+    return lab and realwords(lab) >= 1 and not _VALUEONLY.match(lab)
+
 def label_for(field, boxes):
     pi, fx0, fy0, fx1, fy1 = field
     cy = (fy0 + fy1) / 2
     bs = boxes.get(pi, [])
-    # 1) text on the same row, to the LEFT, nearest
-    left = [(fx0 - (x + w), txt) for (x, y, w, h, txt) in bs
-            if abs((y + h/2) - cy) < 0.012 and (x + w) <= fx0 + 0.01 and 0 <= (fx0 - (x + w)) < 0.35
-            and txt and not BAD.match(txt)]
-    if left:
-        left.sort(); lab = left[0][1]
-        # glue an immediately-preceding token if short
-        return lab
-    # 2) nearest text ABOVE, x-overlapping
-    above = [((y) - fy1, txt) for (x, y, w, h, txt) in bs
-             if 0 < (y - fy1) < 0.05 and not (x + w < fx0 - 0.02 or x > fx1 + 0.02)
-             and txt and not BAD.match(txt)]
-    if above:
-        above.sort(); return above[0][1]
+    # 1) SAME ROW, to the LEFT — glue the contiguous run of tokens ending at the field
+    row = sorted([(x, w, txt) for (x, y, w, h, txt) in bs
+                  if abs((y + h/2) - cy) < 0.013 and (x + w) <= fx0 + 0.015
+                  and 0 <= (fx0 - (x + w)) < 0.45 and txt and not BAD.match(txt)],
+                 key=lambda r: r[0])
+    if row:
+        run = [row[-1]]
+        for i in range(len(row) - 2, -1, -1):
+            if run[0][0] - (row[i][0] + row[i][1]) < 0.06: run.insert(0, row[i])
+            else: break
+        lab = " ".join(t for _, _, t in run)
+        if _ok(lab): return lab
+    # 2) nearest row ABOVE, x-overlapping — glue that row
+    abv = [(y, x, w, txt) for (x, y, w, h, txt) in bs
+           if 0 < (y - fy1) < 0.05 and not (x + w < fx0 - 0.04 or x > fx1 + 0.04)
+           and txt and not BAD.match(txt)]
+    if abv:
+        abv.sort(key=lambda r: r[0]); ny = abv[0][0]
+        rowa = sorted([(x, txt) for (y, x, w, txt) in abv if abs(y - ny) < 0.012])
+        lab = " ".join(t for _, t in rowa)
+        if _ok(lab): return lab
+    # 3) SAME ROW, to the RIGHT (checkbox option text) — glue the contiguous run
+    rt = sorted([(x, w, txt) for (x, y, w, h, txt) in bs
+                 if abs((y + h/2) - cy) < 0.013 and x >= fx1 - 0.01
+                 and 0 <= (x - fx1) < 0.45 and txt and not BAD.match(txt)],
+                key=lambda r: r[0])
+    if rt:
+        run = [rt[0]]
+        for i in range(1, len(rt)):
+            if rt[i][0] - (run[-1][0] + run[-1][1]) < 0.06: run.append(rt[i])
+            else: break
+        lab = " ".join(t for _, _, t in run)
+        if _ok(lab): return lab
     return None
 
 def main():

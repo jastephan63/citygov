@@ -165,7 +165,10 @@ def mine_citations(text):
 
 # ---- field classification (draft) --------------------------------------------
 MECH = re.compile(r"unterschrift|signature|\bdatum\b|\bort\b|ort, datum|ort/datum|"
-                  r"seite|page|stempel|hier unterschreiben|place here", re.I)
+                  r"seite|page|stempel|hier unterschreiben|place here|"
+                  r"n[äa]chste seite|vorherige seite|zur[üu]cksetzen|formulareingaben|"
+                  r"\bnav\b|ausdrucken|drucken|\bsenden\b|speichern|\bweiter\b|\breset\b|\bprint\b|"
+                  r"absenderzeile", re.I)
 def slug(s):
     s=re.sub(r"[^a-z0-9]+","-",(s or "").lower()).strip("-"); return s[:48] or "x"
 
