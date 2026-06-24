@@ -101,6 +101,19 @@ def label_for(field, boxes):
             else: break
         lab = " ".join(t for _, _, t in run)
         if _ok(lab): return lab
+    # 4) TABLE cell: compose column-header (topmost text overlapping this column)
+    #    + row-header (leftmost text on this row). Gives e.g. "AHV Betrag".
+    fcx = (fx0 + fx1) / 2
+    col = [(y, txt) for (x, y, w, h, txt) in bs
+           if (x <= fcx <= x + w or abs((x + w/2) - fcx) < 0.05) and y > fy1 + 0.005
+           and _ok(txt)]
+    row = sorted([(x, txt) for (x, y, w, h, txt) in bs
+                  if abs((y + h/2) - cy) < 0.02 and (x + w) < fx0 and _ok(txt)])
+    colh = max(col, key=lambda r: r[0])[1] if col else ""        # topmost in column
+    rowh = row[0][1] if row else ""                               # leftmost in row
+    comp = " · ".join(p for p in (rowh, colh) if p).strip(" ·")
+    if _ok(comp) and len(comp) <= 70:
+        return comp
     return None
 
 def main():
