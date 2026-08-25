@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Upgrade 'cited_unverified' citations to 'sourced' by confirming them against the
-official cantonal Gesetze PDFs (safe, offline; conv 6).
+official cantonal Gesetze PDFs (safe, offline; convention 3).
 
 resolve_cited.py records each form's cited laws+articles verbatim as one pseudo-law
 ("Im Formular zitiert: …") with last_checked 'zitiert (unverifiziert)'. This pass

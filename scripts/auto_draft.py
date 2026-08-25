@@ -3,8 +3,9 @@
 FIELD (conv 5/6).
 
 For each Formular it: copies the file into forms/, extracts the REAL fields
-(AcroForm fields; if none, parses field labels from the PDF text; flags scanned
-PDFs for OCR/manual), breaks every substantive field into its own requirement,
+(AcroForm fields; if none, parses field labels from the PDF text; Word .doc/.docx
+via macOS textutil; Excel sheets via openpyxl; scanned PDFs are flagged for
+OCR/manual), breaks every substantive field into its own requirement,
 auto-classifies each field, and records the legal references the document + its
 Merkblätter actually CITE as research leads in a finding.
 
@@ -172,20 +173,25 @@ MECH = re.compile(r"unterschrift|signature|\bdatum\b|\bort\b|ort, datum|ort/datu
 def slug(s):
     s=re.sub(r"[^a-z0-9]+","-",(s or "").lower()).strip("-"); return s[:48] or "x"
 
+def _clean_seg(s):
+    s = (s or "").replace("_", " ")
+    s = re.sub(r"(?<=[a-zäöü])(?=[A-ZÄÖÜ])", " ", s)   # camelCase boundary
+    s = re.sub(r"(?<=[A-Za-zäöüÄÖÜ])(?=\d)", " ", s)    # trailing number
+    s = re.sub(r"\s+", " ", s).strip()
+    return (s[:1].upper() + s[1:]) if s else s
+
 def clean_label(label):
-    """Make a technical AcroForm field name readable.
-    'personalien.versichertennummer1' -> 'Versichertennummer 1';
-    'adresse_neu' -> 'Adresse neu'. Leaves already-readable labels untouched."""
+    """Make a technical AcroForm field name readable, PRESERVING the dotted
+    hierarchy: 'personalien.versichertennummer1' -> 'Personalien › Versichertennummer 1'.
+    Leaves already-readable labels untouched."""
     l = (label or "").strip()
     if " " in l or len(l) < 2:
         return l
-    if "." in l:                       # dotted hierarchy -> last segment
-        l = l.split(".")[-1]
-    l = l.replace("_", " ")
-    l = re.sub(r"(?<=[a-zäöü])(?=[A-ZÄÖÜ])", " ", l)   # camelCase boundary
-    l = re.sub(r"(?<=[A-Za-zäöüÄÖÜ])(?=\d)", " ", l)    # trailing number
-    l = re.sub(r"\s+", " ", l).strip()
-    return (l[:1].upper() + l[1:]) if l else label
+    if "." in l:                       # dotted hierarchy -> full breadcrumb
+        parts = [_clean_seg(p) for p in l.split(".") if p]
+        joined = " › ".join(p for p in parts if p)
+        return joined or label
+    return _clean_seg(l) or label
 
 def draft_form(path, office, dept, fields, scanned, sr, laws, arts, title=None):
     base=os.path.splitext(os.path.basename(path))[0]
@@ -266,7 +272,6 @@ def process_office(conn, office_dir):
     rel_office=os.path.relpath(office_dir, VERW); dept=rel_office.split("/")[0]
     helper_txt=office_helper_text(office_dir)
     n=0
-    seen=set()
     for root,_,files in os.walk(office_dir):     # recurse into office subfolders
         if "_files" in root: continue
         for f in sorted(files):

@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Extract a Formular's ACTUAL fields, independently of any law (convention 3).
+"""Extract a Formular's ACTUAL fields, independently of any law.
 
-Reads one file from forms/ and writes proposals/<slug>.json — a skeleton with the
-form and its extracted fields populated, and the law side (laws / requirements /
-service_requirements / field_mappings) left EMPTY for a human to model. This is
+Reads one file from forms/ and writes proposals/<slug>.extracted.json — a
+skeleton with the form and its extracted fields populated, and the law side
+(laws / requirements / service_requirements / field_mappings) left EMPTY for a
+human to model. This is
 the same shape commit_proposal.py consumes; the worked example is a hand-authored
 instance of it.
 
@@ -15,7 +16,7 @@ Field extraction:
 Offline by default: pypdf / openpyxl are imported lazily. If missing, the script
 still emits a valid skeleton and tells you what to `pip install`. It never fetches
 anything and never decides which service the form serves — that is a human call
-made by reading the content (convention 1).
+made by reading the content (form content beats form title, convention 1).
 
     python3 scripts/extract_form.py forms/some-form.pdf [--slug my-service]
 """
@@ -72,7 +73,6 @@ def extract_xlsx(path):
         return [], ("openpyxl not installed — run `pip install openpyxl`; meanwhile "
                     "fill form_fields by hand. NOTE: many .xlsx files are calculation "
                     "tools, not Formulare (convention 7) — classify before modelling.")
-    import openpyxl
     wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
     ws = wb.active
     fields, order = [], 0

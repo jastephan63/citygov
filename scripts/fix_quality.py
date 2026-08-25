@@ -27,8 +27,10 @@ def is_bad_title(t):
         or len(t) < 5
 def is_bad_label(l):
     return (not l) or len(l.strip()) < 3 or l.strip().isdigit() \
-        or re.match(r"^[a-z]{1,2}\d*$|^kontrollk|^optionsfeld|^toggle|^text\s?\d|^check ?box|"
-                    r"^feld\b|^undefined|^druckfeld|^auswahl\s?\d|^\W+$", l or "", re.I)
+        or re.match(r"^[a-z]{1,2}\d*$|^kontrollk|^optionsfeld|^ankreuzfeld|^markierfeld|"
+                    r"^frage\s*\d|^toggle|^text\s?\d|^check ?box|^feld\b|^undefined|^unbenannt|"
+                    r"^druckfeld|^auswahl\s?\d|^listenfeld|^dropdown|^kombinationsfeld|"
+                    r"^schaltfl|^radiobutton|^\d{1,3}[.)]?$|^\W+$", l or "", re.I)
 
 def clean_filename(path):
     """Filename as a readable title (last-resort): drop versions/codes/dates."""
@@ -79,7 +81,7 @@ def positional_labels(path):
                 if not (nm and rect): continue
                 nm = str(nm)
                 if not (nm.isdigit() or re.match(r"^[a-z]{1,2}\d*$", nm, re.I)): continue
-                fy, fx = float(rect[1]), float(rect[3] if False else rect[0])
+                fy, fx = float(rect[1]), float(rect[0])
                 left = [(fx - wx, wt) for wy, wx, wt in words if abs(fy - wy) <= 4 and 2 < (fx - wx) < 230]
                 above = [(wy - fy, wt) for wy, wx, wt in words if 2 < (wy - fy) < 18 and abs(wx - fx) < 90]
                 src = sorted(left)[:8] or sorted(above)[:8]
@@ -108,7 +110,7 @@ def main():
             new = font_title(path) if is_pdf else None
             if not (new and not is_bad_title(new)):     # fall back to the filename
                 fn = clean_filename(path)
-                if not is_bad_title(fn) and FORMW.search(fn) or (fn and realwords(fn) >= 2 and not re.search(r"\d{4}", fn)):
+                if (not is_bad_title(fn) and FORMW.search(fn)) or (fn and realwords(fn) >= 2 and not re.search(r"\d{4}", fn)):
                     new = fn
             if new and not is_bad_title(new):
                 conn.execute("UPDATE form SET title=? WHERE id=?", [new, fm["id"]])

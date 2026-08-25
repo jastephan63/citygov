@@ -23,7 +23,7 @@ def main():
         txt = extract_text(os.path.join(GESETZE, f))
         lines = [l.strip() for l in txt.splitlines() if l.strip()][:6]
         # header line carries "Kanton Schaffhausen <SHR>"; title follows
-        shr = ""; title = ""
+        shr = ""
         for ln in lines:
             m = ln.replace("Kanton Schaffhausen", "").strip()
             if not shr and m and m[0].isdigit():

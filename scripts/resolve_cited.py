@@ -9,10 +9,11 @@ careful step (resolve to the real SHR/Fedlex article, verify, set verified/Quell
 is the per-office review that upgrades these.
 
 For each auto-draft service it reads the cited laws/SR/articles already mined into
-the draft finding, creates one "Im Formular zitierte Rechtsgrundlagen" law per
-service (jurisdiction guessed from 'Bundes'/SR presence), with the cited articles
-as article rows, and links them as legal_basis to the service's data fields
-(classification mapped/identity_part/reason_facet — not form_mechanic/overcollection).
+the draft finding, creates one "Im Formular zitiert: ..." law record per service
+(jurisdiction guessed from 'Bundes'/SR presence), with the cited articles as
+article rows, and links them as legal bases to the service's requirements — only
+those whose field mapping is classified mapped/identity_part/reason_facet, not
+form_mechanic/overcollection.
 
     python3 scripts/resolve_cited.py
 """
@@ -30,8 +31,10 @@ ART_ONE = re.compile(r"(?:Art\.?\s*|§\s*)?(\d+[a-z]?)((?:\s*(?:Abs\.?|Bst\.?|li
 
 
 def parse_finding(desc):
-    laws = [x.strip() for x in (LAWS_RE.search(desc).group(1).split(",") if LAWS_RE.search(desc) else []) if x.strip()]
-    sr = [x.strip() for x in (SR_RE.search(desc).group(1).split(",") if SR_RE.search(desc) else []) if x.strip()]
+    lm = LAWS_RE.search(desc)
+    laws = [x.strip() for x in lm.group(1).split(",") if x.strip()] if lm else []
+    sm = SR_RE.search(desc)
+    sr = [x.strip() for x in sm.group(1).split(",") if x.strip()] if sm else []
     arts = []
     m = ART_RE.search(desc)
     if m:

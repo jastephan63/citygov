@@ -12,7 +12,8 @@ Checks, in order:
                                        form; non-formular docs must not.
 
 Returns a list of error strings. Empty list == valid.
-Used by commit_proposal.py before swapping, and runnable standalone:
+Every loader runs this on its staging copy before swapping; also runnable
+standalone:
 
     python3 scripts/validate_db.py [path-to.db]
 """
