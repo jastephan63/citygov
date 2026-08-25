@@ -5,14 +5,15 @@ The JSON is inlined into the HTML so the file opens straight from disk via file:
 with no server and no fetch (offline by default). Vanilla JS, no framework.
 
 Views:
-  * left service filter
-  * Abgleich (reconciliation) per service — 3 buckets, honest compliance summary
-  * Gesetzes-Baum — list tree AND visual node-diagram (toggle), both collapsible
+  * sidebar filter over all Formulare, grouped by department and office
+  * Felder & Rechtsgrundlagen — data fields with eCH/eSH badges, DSG flags,
+    law quotes, currency check, DVSH panel
+  * Gesetzes-Baum — law -> article -> data field, as list tree and node diagram
   * Geforderte Informationen — per-law required-data table
+  * eSH-Katalog (Entwurf) — the draft cantonal standard catalogue
 
     python3 scripts/build_dashboard.py
 """
-import json
 import os
 import sys
 
@@ -51,7 +52,8 @@ TEMPLATE = r"""<!DOCTYPE html>
   aside h2{font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:var(--mut2);margin:18px 0 8px}
   aside h2:first-child{margin-top:0}
   .svc{padding:8px 10px;border-radius:7px;cursor:pointer;color:var(--mut);margin-bottom:3px;
-       border:1px solid transparent;font-size:13px}
+       border:1px solid transparent;font-size:13px;line-height:1.35;overflow-wrap:anywhere}
+  .svc .svname{white-space:normal}
   .svc:hover{background:var(--panel);color:var(--tx)}
   .svc.active{background:#1b2a45;color:#fff;border-color:#2c4a73}
   .svc .meta{display:block;font-size:11px;color:var(--mut2)}
@@ -115,6 +117,71 @@ TEMPLATE = r"""<!DOCTYPE html>
   .dgchildren{margin-left:26px;border-left:2px solid var(--bd2);padding-left:18px;margin-top:2px}
   .dgnode.collapsed > .dgchildren{display:none}
   .muted{color:var(--mut)} .small{font-size:11.5px}
+.crumb{color:var(--mut);font-size:12px} .crsep{color:var(--mut);opacity:.55;margin:0 5px;font-size:11px}
+.ft td b{font-weight:600}
+.dfhdr{display:flex;align-items:center;gap:8px;margin-bottom:6px;padding-bottom:8px;border-bottom:1px solid var(--bd2)}
+.dfrow{display:grid;grid-template-columns:1fr auto;gap:14px;padding:12px 2px;border-bottom:1px solid var(--bd)}
+.dfrow:last-child{border-bottom:none}
+.tp{display:inline-block;font-size:11px;padding:2px 8px;border-radius:6px;background:var(--panel2);color:var(--mut);border:1px solid var(--bd);vertical-align:middle}
+.dfname{font-weight:600;font-size:14px;color:var(--tx)}
+.req{font-size:11px;color:#b45309;margin-left:6px} .req .ti{font-size:10px}
+.dfdef{font-size:12.5px;color:var(--mut2);margin-top:5px;line-height:1.45}
+.dfchips{margin-top:6px} .dfchips .chip{display:inline-block;font-size:11.5px;padding:1px 8px;margin:2px 4px 0 0;border-radius:6px;background:var(--panel2);color:var(--tx);border:1px solid var(--bd)}
+.dfprov{font-size:11px;color:var(--mut);margin-top:6px} .dfprov .ti{font-size:11px;opacity:.7}
+.dfrg{min-width:150px;max-width:340px;text-align:right}
+.b-sens{background:#7c2d92;color:#fff;font-size:10.5px;padding:1px 7px;border-radius:6px;margin-left:6px}
+.echb{display:inline-block;margin-left:6px;font-size:10px;padding:1px 7px;border-radius:6px;
+  background:#0c3b57;color:#7dd3fc;border:1px solid #155e79;text-decoration:none;vertical-align:middle}
+.echb:hover{background:#124b6d}
+.echb.so{background:#3b3115;color:#e3c37a;border-color:#5c4a1d}
+.echb.so:hover{background:#4c3f1c}
+.echb.todo{background:#3a2618;color:#f0a878;border-color:#5e3d24;border-style:dashed}
+.echb.todo:hover{background:#4a3120}
+.eshb{display:inline-block;margin-left:6px;font-size:10px;padding:1px 7px;border-radius:6px;
+  background:#2d1b45;color:#c4a6f5;border:1px dashed #4b3573;vertical-align:middle}
+.eshb .ent{opacity:.75;font-size:9px;letter-spacing:.4px;text-transform:uppercase;margin-left:4px}
+.sfe.esh{background:#2d1b45;color:#c4a6f5;border:1px dashed #4b3573}
+.chip.sub{display:inline-flex;align-items:center;gap:5px;padding-right:3px}
+.sfe{font-size:9.5px;font-family:ui-monospace,Menlo,monospace;padding:1px 5px;border-radius:4px;
+  background:#0c3b57;color:#7dd3fc;text-decoration:none;white-space:nowrap}
+.sfe:hover{background:#155e79}
+.sfe.so{background:#3b3115;color:#e3c37a} .sfe.none{background:#2a2f3a;color:#8b98ab}
+.echdraft{display:inline-block;margin-left:5px;font-size:10px;padding:1px 6px;border-radius:6px;
+  background:#3d3410;color:#e8d27a;border:1px solid #5f5218;vertical-align:middle}
+.echdraft.susp{background:#43301a;color:#f0c08a;border-color:#6a4a24}
+.echdraft.rep{background:#5e1b1b;color:#ffb3b3;border-color:#8a2a2a;font-weight:600}
+.echn{display:inline-block;margin-left:6px;font-size:10px;padding:1px 7px;border-radius:6px;
+  background:#2a2f3a;color:#8b98ab;border:1px solid #39414f;vertical-align:middle}
+.fcheck{display:inline-block;font-size:10.5px;font-weight:600;border-radius:6px;padding:1px 8px;margin-left:8px;vertical-align:middle}
+.fcheck.ok{background:#0e2e1c;color:#7fd8a4;border:1px solid #1d5c38}
+.fcheck.warn{background:#3d2c10;color:#f0c060;border:1px solid #6a4d18}
+.fcheck.miss{background:#2a2f3a;color:#8b98ab;border:1px solid #39414f}
+  .fcheck.gone{background:#3b2130;color:#e79ab5;border:1px solid #6a3350}
+.dvsh{border-left:3px solid #0f6e56}
+.flinks{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:11px 16px}
+.flabel{font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--mut2)}
+.flink{display:inline-block;padding:5px 11px;border-radius:7px;border:1px solid var(--bd);
+  background:var(--panel2);color:var(--tx);text-decoration:none;font-size:12px}
+.flink:hover{border-color:var(--bd2);background:#16233a}
+.flink.primary{border-color:#2c4a73;background:#16273f}
+.nodv{color:#b45309;margin-right:4px;font-size:10px}
+.esvc{margin-left:6px;font-size:9.5px;padding:1px 5px;border-radius:4px;background:#1e3a5f;color:#93c5fd;vertical-align:middle}
+.nodvbox{border-left:3px solid #b45309;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.b-nodv{background:#b45309;color:#fff;font-size:10.5px;padding:2px 8px;border-radius:6px;white-space:nowrap}
+.dvhdr{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.b-dvsh{background:#0f6e56;color:#fff;font-size:10.5px;padding:2px 8px;border-radius:6px}
+.dvdesc{font-size:12.5px;color:var(--mut2);line-height:1.5;margin-bottom:10px}
+.dvgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:8px}
+.dvsub{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--mut);margin-bottom:5px}
+.dvl{font-size:12.5px;line-height:1.55;color:var(--tx)}
+.ssr{font-size:11px;color:#0f6e56;text-decoration:none;border-bottom:1px dotted #0f6e56}
+.dvmeta{display:flex;flex-wrap:wrap;gap:14px;padding-top:8px;border-top:1px solid var(--bd);font-size:11.5px;color:var(--mut2)}
+.dvk{color:var(--mut);font-size:10.5px;text-transform:uppercase;letter-spacing:.03em}
+.qd{display:inline-block;text-align:right} .qd summary{cursor:pointer;list-style:none;display:inline}
+.qd summary::after{content:' ⌄';color:var(--mut);font-size:10px}
+.qd[open] summary::after{content:' ⌃'}
+.quote{margin:6px 0 8px;padding:8px 10px;border-left:3px solid var(--bd2);background:var(--panel2);
+  font-size:11.5px;line-height:1.5;color:var(--mut2);text-align:left;font-style:italic;max-width:330px;white-space:normal}
   .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11.5px;color:var(--mut);margin-top:8px}
   .legend span b{font-weight:600}
   .seg{display:inline-flex;border:1px solid var(--bd);border-radius:7px;overflow:hidden;margin-bottom:14px}
@@ -162,8 +229,10 @@ TEMPLATE = r"""<!DOCTYPE html>
   <aside>
     <h2>Ansicht</h2>
     <button class="tab" data-tab="fields">Felder &amp; Rechtsgrundlagen</button>
-    <button class="tab" data-tab="recon">Abgleich (3 Eimer)</button>
-    <h2>Dienste nach Departement</h2>
+    <button class="tab" data-tab="tree">Gesetzes-Baum</button>
+    <button class="tab" data-tab="info">Geforderte Informationen</button>
+    <button class="tab" data-tab="esh">eSH-Katalog (Entwurf)</button>
+    <h2>Formulare &amp; Dienste</h2>
     <div id="services"></div>
     <h2>Legende</h2>
     <div class="legend" id="legend"></div>
@@ -208,7 +277,7 @@ function reconcile(sid){
   const cap={}, over=[], fieldView=[];
   forms.forEach(fm=>(fm.fields||[]).forEach(fl=>{
     const m=fl.mapping, cls=m?m.classification:null;
-    const e={form:fm.title,label:fl.label,section:fl.section,field_type:fl.field_type,
+    const e={form:fm.title,label:fl.label,path:fl.path||fl.label,section:fl.section,field_type:fl.field_type,
              classification:cls,match_status:m?m.match_status:null,mapped_by:m?m.mapped_by:null,
              requirement_id:m?m.requirement_id:null};
     fieldView.push(e);
@@ -229,6 +298,15 @@ function reconcile(sid){
 }
 
 const esc = s => (s==null?'':String(s)).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+// render a full-depth field label 'Section › Group › Leaf' as a breadcrumb:
+// ancestors muted, leaf bold, so a sub-field reads standalone.
+function fmtPath(p){
+  const segs=String(p||'').split('›').map(s=>s.trim()).filter(Boolean);
+  if(!segs.length) return '';
+  const leaf=segs.pop();
+  const pre=segs.map(s=>`<span class="crumb">${esc(s)}</span>`).join('<span class="crsep">›</span>');
+  return (pre?pre+'<span class="crsep">›</span>':'')+`<b>${esc(leaf)}</b>`;
+}
 const el = (h)=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild;};
 const jur = j => `<span class="badge b-${j}">${({federal:'Bund',cantonal:'Kanton',communal:'Gemeinde'}[j]||j)}</span>`;
 function unver(lc){   // three verification levels
@@ -251,10 +329,21 @@ function citeStr(lb){
 
 // ---------- sidebar (grouped by department) ----------
 function renderSidebar(){
-  document.getElementById('stamp').textContent = 'erzeugt '+ (DATA.generated_at||'') ;
+  const nForms=DATA.forms.length;
+  const nEs=DATA.services.filter(x=>!(formsByService[x.id]||[]).length).length;
+  // count the ATOMIC data: a composite's subfields replace it, since each carries its own element
+  let dfN=0,dfE=0;
+  DATA.forms.forEach(f=>(f.data_fields||[]).forEach(d=>{
+    const ss=(d.subfields||[]).filter(s=>s&&typeof s==='object'&&s.name);
+    if(ss.length){ ss.forEach(s=>{dfN++; if(s.ech) dfE++;}); }
+    else { dfN++; if(d.ech) dfE++; }
+  }));
+  const ech = dfN ? ` · ${dfE}/${dfN} Datenfelder mit eCH-Standard (${Math.round(dfE*100/dfN)} %)` : '';
+  document.getElementById('stamp').textContent =
+    `${nForms} Formulare · ${nEs} eServices ohne Formular${ech} — erzeugt ${DATA.generated_at||''}`;
   document.getElementById('warn').textContent = '⚠ Zitate „UNVERIFIED“ sind NICHT amtlich geprüft';
   const sv = document.getElementById('services'); sv.innerHTML='';
-  const fb=el(`<input id="svcfilter" placeholder="Dienst/Amt suchen…" value="${esc(state.filter)}" `+
+  const fb=el(`<input id="svcfilter" placeholder="Formular/Amt suchen…" value="${esc(state.filter)}" `+
     `style="width:100%;padding:7px 9px;margin-bottom:8px;background:var(--panel);border:1px solid var(--bd);`+
     `border-radius:7px;color:var(--tx);font-size:12.5px">`);
   sv.appendChild(fb);
@@ -288,7 +377,8 @@ function renderNav(){
       deptHTML+=`<div class="office ${offOpen?'':'collapsed'}"><div class="offhd" data-o="${esc(d+'›'+o)}">`+
         `<span class="tg">${offOpen?'▾':'▸'}</span>${esc(o)}<span class="ct">${svcs.length}</span></div>`+
         svcs.map(s=>`<div class="svc ${String(s.id)===state.service?'active':''}" data-sid="${s.id}">`+
-          `${esc(s.name.slice(0,46))}</div>`).join('')+`</div>`;
+          `${s.in_dvsh?'':'<span class="nodv" title="nicht im DVSH-Modell">◇</span>'}<span class="svname" title="${esc(s.name)}${s.dienststelle?' — '+esc(s.dienststelle):''}">${esc(s.name)}</span>`+
+          `${(formsByService[s.id]||[]).length?'':'<span class="esvc" title="Online-/eService ohne herunterladbares Formular">eService</span>'}</div>`).join('')+`</div>`;
     });
     if(!svcMatch) return;
     const open = f || state.open[d];
@@ -335,7 +425,7 @@ function reconOverview(){
   <p class="hint">Auto-Entwürfe — Zeile anklicken für den Detail-Abgleich. Mappings sind <b>proposed</b>, Rechtsgrundlagen grösstenteils <b>UNVERIFIED</b> (juristisch zu prüfen). Sortiert nach Prüfbedarf (Gaps + Over-collection).</p>
   <div class="card"><table><thead><tr><th>Dienst</th><th>Amt</th><th>Anf.</th><th>Match</th><th>Vorschlag</th><th>Gap</th><th>Over</th><th>Felder</th></tr></thead><tbody>
   ${rows.map(({s,sm})=>`<tr data-sid="${s.id}" style="cursor:pointer">
-    <td><b>${esc(s.name.slice(0,52))}</b></td><td class="small muted">${esc(s.dienststelle||'')}</td>
+    <td><b title="${esc(s.name)}">${esc(s.name)}</b></td><td class="small muted">${esc(s.dienststelle||'')}</td>
     <td>${sm.requirements_total}</td>
     <td style="color:var(--match)">${sm.matched}</td>
     <td style="color:var(--proposed)">${sm.proposed}</td>
@@ -355,7 +445,7 @@ function deptOverview(){
       if(f && !(s.name+' '+o+' '+d).toLowerCase().includes(f)) return;
       const g=grounding(s.id); dn+=g.need; dh+=g.have; dsvc++;
       const pct=g.need?Math.round(100*g.have/g.need):100;
-      body+=`<tr data-sid="${s.id}" style="cursor:pointer"><td><b>${esc(s.name.slice(0,54))}</b></td>
+      body+=`<tr data-sid="${s.id}" style="cursor:pointer"><td><b title="${esc(s.name)}">${esc(s.name)}</b></td>
         <td class="small muted">${esc(o)}</td><td class="small">${g.need}</td>
         <td><div class="pbar" style="display:inline-block;max-width:160px;vertical-align:middle"><i style="width:${pct}%"></i></div> <span class="small muted">${g.have}/${g.need}</span></td></tr>`;
     }));
@@ -368,19 +458,72 @@ function deptOverview(){
   });
   return h;
 }
-function viewFields(){
-  const m=document.getElementById('main');
-  if(state.service==='all'){ m.innerHTML=deptOverview();
-    m.querySelectorAll('tr[data-sid]').forEach(tr=>tr.onclick=()=>{state.service=tr.dataset.sid;render();}); return; }
-  const s=svcById[state.service]; const forms=formsByService[s.id]||[];
+const DFTYPE={text:'Text',date:'Datum',number:'Zahl',money:'Betrag',boolean:'Ja/Nein',
+  enum:'Auswahl',multiselect:'Mehrfachauswahl',composite:'Zusammengesetzt',
+  attachment:'Beilage',signature:'Unterschrift'};
+function viewDataFields(forms){
+  let h='';
+  forms.forEach(fm=>{
+    const dfs=fm.data_fields||[]; if(!dfs.length) return;
+    h+=`<div class="card"><div class="dfhdr"><b>${esc(fm.title)}</b>
+      <span class="muted small">— ${dfs.length} Datenfelder${fm.fields?` · aus ${fm.fields.length} Formularfeldern verdichtet`:''}${(()=>{const n=dfs.filter(x=>x.ech).length;return n?` · <b>${n}/${dfs.length}</b> eCH-standardisiert`:'';})()}</span>
+      ${(()=>{const ck=fm.check;if(!ck)return'';
+        if(ck.status==='aktuell')return`<span class="fcheck ok" title="online geprüft ${esc(ck.d||'')} (${esc(ck.quelle||'')}) — unsere Kopie ist die aktuelle Fassung">✓ aktuell</span>`;
+        if(ck.status==='veraltet')return`<span class="fcheck warn" style="font-weight:700" title="${esc(ck.note||'')}">⛔ veraltet — neuere Fassung online</span>`;
+        if(ck.status==='veraltet_verdacht')return`<span class="fcheck warn" title="${esc(ck.note||'')}${ck.dvsh_neu?' — neu: '+esc(ck.dvsh_neu):''}">⚠ evtl. veraltet</span>`;
+        if(ck.status==='nicht_auffindbar')return`<span class="fcheck gone" title="${esc(ck.note||'')} (geprüft ${esc(ck.d||'')}) — Formular wird online nicht mehr angeboten; evtl. ausser Gebrauch oder durch eServices ersetzt">✕ nicht mehr online</span>`;
+        if(ck.status==='nicht_gefunden')return`<span class="fcheck miss" title="weder auf sh.ch, im DVSH noch per Websuche auffindbar (geprüft ${esc(ck.d||'')})">? online nicht gefunden</span>`;
+        return'';})()}
+      ${fm.source_file?`<a class="srcbtn" href="${esc(fm.source_file)}" style="margin-left:auto">↗ Quelldatei</a>`:''}</div>`;
+    dfs.forEach(d=>{
+      const subs=(d.subfields||[]).map(s=>typeof s==='string'?s:(s&&s.name)||'').filter(Boolean);
+      const vals=(d.allowed_values||[]);
+      const SENS={gesundheit:'Gesundheit',religion_weltanschauung:'Religion/Weltanschauung',politik:'Politische Ansichten',
+        ethnie_herkunft:'Ethnie/Herkunft',genetik_biometrie:'Genetik/Biometrie',strafen_verfahren:'Strafverfahren/Sanktionen',sozialhilfe:'Soziale Hilfe'};
+      h+=`<div class="dfrow"><div class="dfmain">
+        <div><span class="tp">${esc(DFTYPE[d.data_type]||d.data_type)}</span>
+          <span class="dfname">${esc(d.name)}</span>
+          ${d.required?'<span class="req"><i class="ti ti-asterisk"></i>Pflicht</span>':'<span class="muted small">optional</span>'}
+          ${d.ech?(()=>{const e=d.ech.element, nx=!e&&d.ech.n_elements>0;
+            const st=d.ech.status, draft=st&&st!=='Genehmigt';
+            const tip=esc(d.ech.standard_titel||'')+(e?` — Element ${esc(e)}`
+              :(nx?` — Element noch nicht bestimmt (${d.ech.n_elements} Elemente im Standard)`
+                  :' — Standard ohne XSD: kein zitierbares XML-Element'))
+              +(st?` · Status: ${esc(st)}${d.ech.reifegrad?', Reifegrad '+esc(d.ech.reifegrad):''}`:'');
+            return `<a class="echb${e?'':(nx?' todo':' so')}" href="${esc(d.ech.url)}" target="_blank" rel="noreferrer" title="${tip}">${esc(d.ech.standard)}${e?` · ${esc(e)}`:(nx?' · Element offen':' · nur Standard')}</a>`
+              +(draft?`<span class="echdraft${(st==='Aufgehoben'||st==='Abgelöst')?' rep':(st==='Sistiert'?' susp':'')}" title="${
+                  (st==='Aufgehoben'||st==='Abgelöst')?`Dieser eCH-Standard ist ${esc(st).toUpperCase()} — nicht mehr in Kraft, die Zuordnung muss ersetzt werden`
+                : st==='Sistiert'?'Dieser eCH-Standard ist SISTIERT (ausgesetzt) — nicht in Kraft, Zuordnung vorläufig'
+                : 'Dieser eCH-Standard ist noch nicht genehmigt (in Arbeit) — Zuordnung vorläufig'}">${(st==='Aufgehoben'||st==='Abgelöst')?'⛔':'⚠'} ${esc(st)}</span>`:'');})()
+            :(d.ech_status==='kein_standard'?('<span class="echn" title="kein eCH-Standard deckt dieses Feld ab">kein eCH-Standard</span>'+(d.esh?`<span class="eshb" title="Vorschlag für den kantonalen Standard eSH (E-Schaffhausen) — ENTWURF, nicht offiziell: ${esc(d.esh.titel)}">${esc(d.esh.code)} · ${esc(d.esh.element||'')}<span class="ent">Entwurf</span></span>`:'')):'')}
+          ${d.sensitive?`<span class="badge b-sens" title="besonders schützenswerte Personendaten (Art. 5 lit. c DSG)">⛨ ${esc(SENS[d.sensitive]||d.sensitive)}</span>`:''}
+          ${d.format?`<span class="muted small">· ${esc(d.format)}</span>`:''}</div>
+        ${d.definition?`<div class="dfdef">${esc(d.definition)}</div>`:''}
+        ${subs.length?`<div class="dfchips"><span class="muted small">Teilfelder:</span> ${(d.subfields||[]).slice(0,24).map(s=>{
+            const nmv=typeof s==='string'?s:(s&&s.name)||''; if(!nmv) return '';
+            const e=s&&s.ech;
+            const dr=e&&e.status&&e.status!=='Genehmigt'?((e.status==='Aufgehoben'||e.status==='Abgelöst')?' ⛔':' ⚠'):'';
+            if(e&&e.element) return `<span class="chip sub"><b>${esc(nmv)}</b><a class="sfe" href="${esc(e.url)}" target="_blank" rel="noreferrer" title="${esc(e.standard_titel||'')} — ${esc(e.standard)} ${esc(e.element)}${e.status?' · Status: '+esc(e.status):''}">${esc(e.standard)}·${esc(e.element)}${dr}</a></span>`;
+            if(e) return `<span class="chip sub"><b>${esc(nmv)}</b><a class="sfe so" href="${esc(e.url)}" target="_blank" rel="noreferrer" title="${esc(e.standard_titel||'')} — Standard ohne XSD">${esc(e.standard)}</a></span>`;
+            if(s&&s.ech_status==='kein_standard') return `<span class="chip sub"><b>${esc(nmv)}</b>${s.esh?`<a class="sfe esh" title="eSH-Entwurf: ${esc(s.esh.titel)}">${esc(s.esh.code.replace('eSH-','eSH'))}·${esc(s.esh.element||'')}</a>`:`<span class="sfe none" title="kein eCH-Standard">kein Std.</span>`}</span>`;
+            return `<span class="chip sub"><b>${esc(nmv)}</b></span>`;}).join('')}</div>`
+          :(vals.length?`<div class="dfchips"><span class="muted small">Werte:</span> ${vals.slice(0,24).map(v=>`<span class="chip">${esc(String(v))}</span>`).join('')}</div>`:'')}
+        ${(d.source_widgets||[]).length?`<div class="dfprov"><i class="ti ti-arrow-back-up"></i> erfasst durch: ${d.source_widgets.slice(0,8).map(w=>esc(String(w))).join(' · ')}</div>`:''}
+      </div><div class="dfrg">${(d.legal_basis&&d.legal_basis.length)?d.legal_basis.map(b=>
+          b.quote?`<details class="qd"><summary>${citeStr(b)}</summary><blockquote class="quote">«${esc(b.quote)}»</blockquote></details>`
+                 :citeStr(b)).join('<br>'):(d.no_basis?'<span class="badge b-over">Over-collection — keine gesetzliche Grundlage</span>':'<span class="badge b-unver">Rechtsgrundlage zu ermitteln</span>')}</div></div>`;
+    });
+    h+=`</div>`;
+  });
+  return h;
+}
+function widgetTable(s,forms){
   const g=grounding(s.id); const pct=g.need?Math.round(100*g.have/g.need):100;
-  let h=`<h3 class="view">${esc(s.name)}</h3>
-  <p class="hint">${esc(s.department||'')} · ${esc(s.dienststelle||'')} — je Zeile ein Formularfeld und seine Rechtsgrundlage.</p>
-  <div class="card"><div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+  let h=`<div class="card"><div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
     <div class="pbar" style="max-width:340px"><i style="width:${pct}%"></i></div>
     <span><b>${g.have}/${g.need}</b> Felder mit Rechtsgrundlage</span>
     ${forms[0]&&forms[0].source_file?`<a class="srcbtn" href="${esc(forms[0].source_file)}" style="margin-left:auto">↗ Quelldatei</a>`:''}</div>
-  <table class="ft"><thead><tr><th>#</th><th>Feld</th><th>Abschnitt</th><th>Rechtsgrundlage</th><th>Klasse</th></tr></thead><tbody>`;
+  <table class="ft"><thead><tr><th>#</th><th>Feld</th><th>Rechtsgrundlage</th><th>Klasse</th></tr></thead><tbody>`;
   let i=0;
   forms.forEach(fm=>(fm.fields||[]).forEach(fl=>{ i++; const mp=fl.mapping; const cls=mp?mp.classification:'—';
     const req=mp&&mp.requirement_id!=null?reqById[mp.requirement_id]:null; const basis=req?req.legal_basis:[];
@@ -389,11 +532,62 @@ function viewFields(){
       : basis.length ? basis.map(citeStr).join('<br>')
       : '<span class="badge b-unver">zu ermitteln</span>';
     h+=`<tr class="${cls==='form_mechanic'?'mech':''}"><td>${i}</td>
-      <td><b>${esc(fl.label)}</b></td><td class="small muted">${esc(fl.section||'')}</td>
+      <td>${fmtPath(fl.path||fl.label)}</td>
       <td>${cell}</td><td><span class="dot d-${cls}"></span><span class="small">${esc(cls)}</span></td></tr>`;
   }));
   h+=`</tbody></table>${i?'':'<div class="nores">keine Felder extrahiert (gescanntes PDF / reine Erklärung)</div>'}</div>`;
+  return h;
+}
+function viewFields(){
+  const m=document.getElementById('main');
+  if(state.service==='all'){ m.innerHTML=deptOverview();
+    m.querySelectorAll('tr[data-sid]').forEach(tr=>tr.onclick=()=>{state.service=tr.dataset.sid;render();}); return; }
+  const s=svcById[state.service]; const forms=formsByService[s.id]||[];
+  const withDF=forms.filter(fm=>(fm.data_fields||[]).length);
+  const rest=forms.filter(fm=>!(fm.data_fields||[]).length);
+  let h=`<h3 class="view">${esc(s.name)}</h3>
+  <p class="hint">${esc(s.department||'')} · ${esc(s.dienststelle||'')} — ${withDF.length?'die Datenfelder dieses Formulars: Typ, Definition, zulässige Werte und Herkunft.':'je Zeile ein Formularfeld und seine Rechtsgrundlage.'}</p>`;
+  h+=formLinks(s,forms);
+  if(!s.in_dvsh) h+=`<div class="card nodvbox"><span class="badge b-nodv">◇ Nicht im DVSH-Modell</span>
+    <span class="muted small">Dieser Dienst ist in unserem Formular-Katalog erfasst, aber (noch) nicht in der amtlichen DVSH-Modellierung enthalten. Die Rechtsgrundlagen unten stammen aus unserer eigenen, quellenbelegten Analyse.</span></div>`;
+  if(s.dvsh) h+=dvshPanel(s.dvsh);
+  if(withDF.length) h+=viewDataFields(withDF);
+  if(rest.length) h+=widgetTable(s,rest);
   m.innerHTML=h;
+}
+function formLinks(s,forms){
+  const f=forms.filter(x=>x.source_file);
+  const dv=s.dvsh||{};
+  const online=(dv.abgabe||[]).filter(x=>x&&!/^↗|^PDF-Formular$|^Online-Formular$/.test(x));
+  const ext=(dv.externe_links||[]);
+  if(!f.length && !online.length && !ext.length) return '';
+  const btn=(href,label,cls)=>`<a class="flink ${cls||''}" href="${esc(href)}" target="_blank" rel="noreferrer">${esc(label)}</a>`;
+  let parts=f.map(x=>btn(x.source_file, '📄 '+(x.source_file.split('/').pop()||'Formular'), 'primary'));
+  if(dv.slug) parts.push(btn('https://sh.ch/', '🌐 Amtliche Seite (sh.ch)',''));
+  return `<div class="card flinks"><span class="flabel">Formular</span>${parts.join('')}
+    ${online.length?`<span class="muted small">· Abgabe: ${esc(online.join(' · '))}</span>`:''}</div>`;
+}
+function dvshPanel(d){
+  const kant=(d.recht_kantonal||[]), bund=(d.recht_bund||[]);
+  const law=(t,n,url)=>`<div class="dvl">${esc(t)}${n?` <a class="ssr" href="${url}" target="_blank" rel="noreferrer">${esc(n)}</a>`:''}</div>`;
+  const meta=[['Vollzug',d.dienststelle],['Bearbeitungsdauer',d.bearbeitungsdauer],
+              ['Fristen',d.fristen],['Gebühren',d.gebuehren]]
+    .filter(x=>x[1]&&String(x[1]).trim()&&String(x[1]).trim()!=='leer')
+    .map(x=>`<div class="dvm"><span class="dvk">${x[0]}</span> ${esc(String(x[1]))}</div>`).join('');
+  return `<div class="card dvsh">
+    <div class="dvhdr"><span class="badge b-dvsh">DVSH-Modell</span>
+      <b>${esc(d.title||'')}</b><span class="muted small">· amtliche Modellierung${d.version?' '+esc(d.version):''}</span></div>
+    ${d.kurzbeschreibung?`<div class="dvdesc">${esc(d.kurzbeschreibung)}</div>`:''}
+    <div class="dvgrid">
+      <div><div class="dvsub">Rechtsgrundlagen — kantonal</div>
+        ${kant.length?kant.map(l=>law(l.titel,l.ssr,l.ssr?`https://rechtsbuch.sh.ch/app/de/texts_of_law/${l.ssr}`:'#')).join(''):'<div class="muted small">keine im Modell</div>'}
+      </div>
+      <div><div class="dvsub">Rechtsgrundlagen — Bund</div>
+        ${bund.length?bund.map(l=>law(l.titel,l.sr,l.sr?`https://www.fedlex.admin.ch/eli/cc/${esc(l.sr)}`:'#')).join(''):'<div class="muted small">keine im Modell</div>'}
+      </div>
+    </div>
+    ${meta?`<div class="dvmeta">${meta}</div>`:''}
+  </div>`;
 }
 function reqItem(r){
   const cap=[...r.captured_by_confirmed,...r.captured_by_proposed];
@@ -419,24 +613,29 @@ function needService(label){
   return `<h3 class="view">${label}</h3><div class="nores">Bitte links einen einzelnen Dienst wählen `+
          `(bei ${DATA.services.length} Diensten ist die Gesamtansicht zu gross).</div>`;
 }
-// build law -> article -> requirement structure for current selection
+// build the law -> article -> data-field structure for the current selection
 function treeModel(){
+  // Current model: Gesetz -> Artikel -> DATENFELDER via data_field_legal_basis.
+  // (The legacy requirement links are empty for auto-drafted services.)
   const sids = state.service==='all' ? DATA.services.map(s=>s.id) : [Number(state.service)];
   const laws={};
-  sids.forEach(sid=>serviceReqs(sid).forEach(req=>{
-    req.legal_basis.forEach(lb=>{
-      const L=laws[lb.law_id]||(laws[lb.law_id]={id:lb.law_id,title:lb.law_title,short:lb.law_short,jur:lb.jurisdiction,sr:lb.sr_number,cref:lb.cantonal_ref,arts:{}});
-      const A=L.arts[lb.article_id]||(L.arts[lb.article_id]={id:lb.article_id,no:lb.article_no,heading:lb.article_heading,lc:lb.last_checked,reqs:{}});
-      A.reqs[req.requirement_id]={dp:req.data_point,status:req.status,type:req.data_type};
+  sids.forEach(sid=>(formsByService[sid]||[]).forEach(fm=>(fm.data_fields||[]).forEach(d=>{
+    (d.legal_basis||[]).forEach(lb=>{
+      const lk=(lb.law_short||lb.law_title||'?');
+      const L=laws[lk]||(laws[lk]={id:lk,title:lb.law_title,short:lb.law_short,jur:lb.jurisdiction,sr:lb.sr_number,cref:lb.cantonal_ref,arts:{}});
+      const ak=lb.article_no||'?';
+      const A=L.arts[ak]||(L.arts[ak]={id:ak,no:lb.article_no,heading:lb.article_heading,lc:lb.last_checked,reqs:{}});
+      const st=(lb.last_checked==='verified')?'match':(String(lb.last_checked||'').startsWith('Gesetze')?'sourced':'proposed');
+      A.reqs[d.name]={dp:d.name,status:st,type:d.data_type};
     });
-  }));
+  })));
   return Object.values(laws).map(L=>({...L,arts:Object.values(L.arts).map(A=>({...A,reqs:Object.values(A.reqs)}))}));
 }
 function viewTree(){
   const m=document.getElementById('main');
-  if(state.service==='all'){ m.innerHTML=needService('Gesetzes-Baum · Gesetz → Artikel → Anforderung'); return; }
+  if(state.service==='all'){ m.innerHTML=needService('Gesetzes-Baum · Gesetz → Artikel → Datenfeld'); return; }
   const model=treeModel();
-  let h=`<h3 class="view">Gesetzes-Baum · Gesetz → Artikel → Anforderung</h3>
+  let h=`<h3 class="view">Gesetzes-Baum · Gesetz → Artikel → Datenfeld</h3>
   <p class="hint">Beide Darstellungen sind ein- und ausklappbar. Farbe = Zuständigkeitsebene; Status der Anforderung farbig markiert.</p>
   <div class="seg">
     <button data-t="list" class="${state.tree==='list'?'active':''}">▤ Liste</button>
@@ -450,7 +649,7 @@ function viewTree(){
   m.querySelectorAll('.ttog').forEach(t=>t.onclick=()=>t.closest('.tgrp').classList.toggle('collapsed'));
   m.querySelectorAll('.dgbox').forEach(b=>b.onclick=(e)=>{e.stopPropagation();b.closest('.dgnode').classList.toggle('collapsed')});
 }
-function statusBadge(s){return `<span class="badge b-${s}">${({match:'Match',proposed:'Vorschlag',legal_gap:'Legal Gap'}[s]||s)}</span>`;}
+function statusBadge(s){return `<span class="badge b-${s==='sourced'?'sourced':s}">${({match:'verifiziert',sourced:'Quelle (SHR-PDF)',proposed:'UNVERIFIED',legal_gap:'Legal Gap'}[s]||s)}</span>`;}
 function listLaw(L){
   return `<div class="tgrp"><div class="tline"><span class="ttog">▾</span> ${jur(L.jur)} <b>${esc(L.short||L.title)}</b> <span class="muted small">${esc(L.title)}</span>${L.sr?' <span class="mono small">SR '+esc(L.sr)+'</span>':''}</div>
     <div class="tnode">${L.arts.map(listArt).join('')}</div></div>`;
@@ -475,36 +674,57 @@ function viewInfo(){
   let h=`<h3 class="view">Geforderte Informationen · pro Gesetz</h3>
   <p class="hint">Welche Datenpunkte jedes Gesetz verlangt, mit Artikel-Zitat, Datentyp, Bedingung und erfassendem Formularfeld.</p>`;
   const sids = [Number(state.service)];
-  // gather rows grouped by law
+  // rows from the CURRENT model: each data field with its article citations
   const byLaw={};
-  sids.forEach(sid=>serviceReqs(sid).forEach(req=>{
-    const cap=[...req.captured_by_confirmed.map(c=>({...c,st:'confirmed'})),...req.captured_by_proposed.map(c=>({...c,st:'proposed'}))];
-    req.legal_basis.forEach(lb=>{
-      (byLaw[lb.law_id]=byLaw[lb.law_id]||{lb,rows:[]}).rows.push({req,lb,cap});
+  sids.forEach(sid=>(formsByService[sid]||[]).forEach(fm=>(fm.data_fields||[]).forEach(d=>{
+    (d.legal_basis||[]).forEach(lb=>{
+      const lk=(lb.law_short||lb.law_title||'?');
+      (byLaw[lk]=byLaw[lk]||{lb,rows:[]}).rows.push({
+        req:{data_point:d.name,label:d.definition,data_type:d.data_type,condition:d.required?null:'optional'},
+        lb, cap:[{label:fm.title,st:'formular'}]});
     });
-  }));
+  })));
   const laws=Object.values(byLaw);
   if(!laws.length){m.innerHTML=h+'<div class="nores">Keine Daten für die Auswahl.</div>';return;}
   laws.forEach(({lb,rows})=>{
     h+=`<div class="card"><div style="margin-bottom:10px">${jur(lb.jurisdiction)} <b>${esc(lb.law_title)}</b> ${lb.sr_number?'<span class="mono small">SR '+esc(lb.sr_number)+'</span>':''}${unver(lb.last_checked)}</div>
-      <table><thead><tr><th>Datenpunkt</th><th>Artikel</th><th>Typ</th><th>Bedingung</th><th>Erfasst durch (Formularfeld)</th></tr></thead><tbody>
+      <table><thead><tr><th>Datenpunkt</th><th>Artikel</th><th>Typ</th><th>Pflicht</th><th>Formular</th></tr></thead><tbody>
       ${rows.map(({req,lb,cap})=>`<tr>
         <td><b>${esc(req.data_point)}</b><div class="small muted">${esc(req.label||'')}</div></td>
         <td class="mono small">${esc(artLabel(lb.article_no))}${lb.citation_detail?' '+esc(lb.citation_detail):''}${unver(lb.last_checked)}</td>
         <td class="small">${esc(req.data_type||'')}</td>
         <td class="small">${esc(req.condition||'—')}</td>
-        <td>${cap.length?cap.map(c=>`“${esc(c.label)}” <span class="badge b-${c.st==='confirmed'?'confirmed':'proposedm'}">${c.st}</span>`).join('<br>'):'<span class="badge b-legal_gap">Legal Gap — kein Feld</span>'}</td>
+        <td>${cap.length?cap.map(c=>`“${esc(c.label)}”${c.st==='formular'?'':` <span class="badge b-${c.st==='confirmed'?'confirmed':'proposedm'}">${c.st}</span>`}`).join('<br>'):'—'}</td>
       </tr>`).join('')}
       </tbody></table></div>`;
   });
   m.innerHTML=h;
 }
 
+function viewEsh(){
+  const m=document.getElementById('main');
+  const kat=DATA.esh_katalog||[];
+  let h=`<h3 class="view">eSH-Katalog · E-Schaffhausen-Standard (ENTWURF)</h3>
+  <p class="hint">Vorschlag für einen kantonalen Datenstandard, der alles abdeckt, was die eCH-Familie nicht abdeckt
+  (${kat.reduce((n,k)=>n+(k.n_felder||0),0)} Datenpunkte ohne eCH-Standard). Abgeleitet aus den realen Formularfeldern der Verwaltung —
+  <b>nicht offiziell</b>, zur Weiterentwicklung durch den Kanton.</p>`;
+  if(!kat.length){m.innerHTML=h+'<div class="nores">Noch kein Katalog geladen.</div>';return;}
+  kat.forEach(k=>{
+    let th=[]; try{th=JSON.parse(k.themen||'[]')}catch(e){}
+    h+=`<div class="card"><div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap">
+      <span class="eshb" style="font-size:12px">${esc(k.code)}</span><b style="font-size:14px">${esc(k.titel)}</b>
+      <span class="muted small" style="margin-left:auto">${k.n_felder||0} Datenpunkte · Status: ${esc(k.status||'entwurf')}</span></div>
+      <div class="dfdef" style="margin-top:6px">${esc(k.beschreibung||'')}</div>
+      ${th.length?`<div class="dfchips" style="margin-top:6px">${th.map(t=>`<span class="chip">${esc(t)}</span>`).join('')}</div>`:''}
+    </div>`;
+  });
+  m.innerHTML=h;
+}
 function render(){
   renderSidebar();
-  if(state.tab==='fields') viewFields();
-  else if(state.tab==='recon') viewRecon();
-  else if(state.tab==='tree') viewTree();
+  if(state.tab==='tree') viewTree();
+  else if(state.tab==='info') viewInfo();
+  else if(state.tab==='esh') viewEsh();
   else viewFields();
 }
 render();

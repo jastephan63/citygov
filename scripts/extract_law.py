@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Extract the ACTUAL text of a cantonal law PDF, offline, for citation sourcing.
 
-Citations must never be typed from memory (convention 6). This reads the real
+Citations must never be typed from memory. This reads the real
 published law text from the Kanton's PDF (the official SHR systematic collection
 in ../Gesetze/) using macOS PDFKit via JavaScript-for-Automation — no third-party
 library, no network. Use it to find the real Art./§ that grounds a requirement,

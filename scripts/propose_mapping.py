@@ -20,11 +20,8 @@ Heuristics (deliberately conservative — when unsure, leave for the human):
 """
 import argparse
 import json
-import os
 import re
-import sys
-
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from collections import Counter
 
 MECHANIC = re.compile(r"unterschrift|signature|\bdatum\b|\bort\b|seite|page|stempel|"
                       r"place here|hier unterschreiben", re.I)
@@ -104,7 +101,6 @@ def main():
     with open(out, "w", encoding="utf-8") as fh:
         json.dump(p, fh, ensure_ascii=False, indent=2)
 
-    from collections import Counter
     c = Counter(m["classification"] for m in proposed)
     print(f"wrote {out}")
     print(f"  proposed {len(proposed)} mapping(s): " +

@@ -25,7 +25,7 @@ import shutil
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from common import DB_PATH, SCHEMA_PATH, connect, log
+from common import DB_PATH, connect, log
 from validate_db import validate
 
 

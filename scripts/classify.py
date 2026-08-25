@@ -35,9 +35,8 @@ CALC    = re.compile(r"rechner|berechnung|kalkul|tarif|abrechnungsformular", re.
 
 
 def classify(name):
-    base = os.path.splitext(name)[0]
-    ext = os.path.splitext(name)[1].lower()
-    is_sheet = ext in (".xlsx", ".xlsm", ".xls", ".csv")
+    base, ext = os.path.splitext(name)
+    is_sheet = ext.lower() in (".xlsx", ".xlsm", ".xls", ".csv")
     # strong helper signal wins first (conv 7): guidance is not a form even if its
     # title contains 'Gesuch'/'Bewilligung' (e.g. 'Vollzugshilfe ...bewilligung').
     if HELPER.search(base):
@@ -46,10 +45,8 @@ def classify(name):
     if FORM.search(base) and not (is_sheet and CALC.search(base) and "formular" not in base.lower()):
         return "formular", "filename indicates a citizen-fillable form"
     if is_sheet:
-        if CALC.search(base) or True:   # default: a spreadsheet is a calc tool unless named a form
-            return "calculation_tool", "spreadsheet — likely implements a formula; confirm"
-    if HELPER.search(base):
-        return "helper", "filename indicates guidance (Wegleitung/Merkblatt)"
+        # default: a spreadsheet is a calculation tool unless it is named a form
+        return "calculation_tool", "spreadsheet — likely implements a formula; confirm"
     return "helper", "UNCLEAR — defaulted to helper; REVIEW (do not assume a form)"
 
 

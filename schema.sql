@@ -215,3 +215,32 @@ CREATE INDEX IF NOT EXISTS idx_sr_requirement         ON service_requirement(req
 CREATE INDEX IF NOT EXISTS idx_form_service           ON form(service_id);
 CREATE INDEX IF NOT EXISTS idx_field_form             ON form_field(form_id);
 CREATE INDEX IF NOT EXISTS idx_mapping_requirement    ON field_mapping(requirement_id);
+
+CREATE TABLE IF NOT EXISTS data_field (
+    id             INTEGER PRIMARY KEY,
+    form_id        INTEGER NOT NULL REFERENCES form(id),
+    ord            INTEGER,
+    name           TEXT NOT NULL,
+    definition     TEXT,
+    data_type      TEXT,      -- text|date|number|money|boolean|enum|multiselect|composite|attachment|signature
+    required       INTEGER DEFAULT 1,
+    allowed_values TEXT,      -- JSON array (enum/multiselect)
+    subfields      TEXT,      -- JSON array (composite)
+    format         TEXT,
+    source_widgets TEXT,      -- JSON array of widget labels (provenance)
+    derived_by     TEXT DEFAULT 'agent'
+);
+CREATE INDEX IF NOT EXISTS idx_data_field_form ON data_field(form_id);
+
+-- besonders schützenswerte Personendaten (DSG Art. 5 lit. c); NULL = nicht besonders schützenswert
+-- Werte: gesundheit | religion_weltanschauung | politik | ethnie_herkunft | genetik_biometrie | strafen_verfahren | sozialhilfe
+-- ALTER TABLE data_field ADD COLUMN sensitive TEXT;
+
+-- eCH e-government data standards (public, from ech.ch XSDs) and the mapping of
+-- each data field to its official standardised element.
+CREATE TABLE IF NOT EXISTS ech_standard (
+    code TEXT PRIMARY KEY, title TEXT, url TEXT, n_elements INTEGER DEFAULT 0);
+CREATE TABLE IF NOT EXISTS ech_element (
+    id INTEGER PRIMARY KEY, standard TEXT NOT NULL REFERENCES ech_standard(code),
+    name TEXT NOT NULL, datatype TEXT, context TEXT, UNIQUE(standard, name, context));
+-- data_field.ech_element_id -> ech_element(id); data_field.ech_status: assigned|kein_standard

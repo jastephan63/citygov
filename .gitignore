@@ -22,3 +22,6 @@ forms/**
 # They are generated artifacts, but kept in history so the worked example
 # is openable straight from the repo. They must only ever be regenerated
 # by the scripts (convention 9), never hand-edited.
+
+# local DB safety snapshots (never committed)
+citygov.db.backup-*
