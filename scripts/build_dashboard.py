@@ -72,6 +72,19 @@ TEMPLATE = r"""<!DOCTYPE html>
   .svc:hover{background:var(--field);color:var(--ink)}
   .svc.active{background:#FCFAF2;color:var(--ink);border-color:var(--gold-deep)}
   .svc .meta{display:block;font-size:11px;color:var(--ink-faint)}
+  /* sidebar grouping: Departement > Amt > Formulare, both levels collapsible */
+  .dept{margin-bottom:4px}
+  .dephd{padding:7px 9px;border-radius:8px;cursor:pointer;color:var(--ink);font-weight:700;
+         font-size:12.5px;display:flex;align-items:center;gap:6px;background:var(--field)}
+  .dephd:hover{background:#EEE9DA}
+  .dephd .tg{color:var(--ink-faint);width:10px;display:inline-block}
+  .dephd .ct{margin-left:auto;font-weight:500;font-size:11px;color:var(--ink-faint)}
+  .office{margin:2px 0 2px 8px}
+  .offhd{padding:5px 8px;border-radius:6px;cursor:pointer;color:var(--ink-soft);font-size:12px;
+         font-weight:600;display:flex;gap:6px}
+  .offhd:hover{color:var(--ink)}
+  .offhd .ct{margin-left:auto;font-size:10.5px;color:var(--ink-faint)}
+  .dept.collapsed .office,.office.collapsed .svc{display:none}
   .tab{display:block;width:100%;text-align:left;padding:9px 11px;border-radius:8px;cursor:pointer;
        background:none;border:1.5px solid transparent;color:var(--ink-soft);font:inherit;font-size:13px;
        font-weight:500;margin-bottom:3px}
