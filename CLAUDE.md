@@ -10,7 +10,13 @@ Surfacing gaps and over-collection honestly is the whole point; a fake
 
 ## The catalogue unit is the SERVICE (user decision 2026-09-03)
 The primary unit is one SERVICE as modelled in DVSH; Formulare are its
-children. One `service` row per service (548 incl. 19 DVSH-only additions);
+children — several per service is the normal shape (34 services carry >1).
+480 service rows = 313 DVSH-linked + 167 honest ours-only (domains DVSH has
+not modelled: the whole SVA office, Polizei, KESB, Schulzahnklinik, much of
+the Landwirtschaftsamt — never force-fitted). Formular-era rows were folded
+into their DVSH service by scripts/consolidate_services.py (filename gate) +
+apply_consolidation.py (agent verdicts, gated); form.dvsh_match records
+every move's evidence.
 `dvsh_service` holds the full modeller harvest (330 services, source of
 truth), `shep_service` the published citizen view (196). A Formular keeps its
 own row under its service; only the NEWEST edition of a form is kept.

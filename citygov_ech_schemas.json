@@ -789,7 +789,7 @@
   {
    "form_id": 14,
    "titel": "Energienachweis EN-120-SH: Erneuerbare Wärme beim Wärmeerzeugerersatz",
-   "dienststelle": "Departementssekretariat Baudepartement",
+   "dienststelle": "Feuerpolizei",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 63,
    "ech": {
@@ -1012,7 +1012,7 @@
   {
    "form_id": 16,
    "titel": "Messprotokoll (Holzfeuerungsanlage, Wärmepumpenanlage, Anschluss Wärmenetz, Wärmenetzprojekt) zur Auslösung der Schlusszahlung",
-   "dienststelle": "Departementssekretariat Baudepartement",
+   "dienststelle": "Energiefachstelle",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 74,
    "ech": {
@@ -13784,7 +13784,7 @@
   {
    "form_id": 113,
    "titel": "Arbeitslosenversicherung – Arztzeugnis",
-   "dienststelle": "SVA Schaffhausen",
+   "dienststelle": "Arbeitsamt",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 31,
    "ech": {
@@ -24461,7 +24461,7 @@
   {
    "form_id": 162,
    "titel": "Anforderungen an Format, Layout und Sprache der Erklärungen",
-   "dienststelle": "Veterinaeramt",
+   "dienststelle": "Veterinäramt",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 33,
    "ech": {
@@ -45994,7 +45994,7 @@
   {
    "form_id": 306,
    "titel": "Bewilligung zur Benutzung eines Fahrzeugs durch Drittpersonen",
-   "dienststelle": "Grundbuchamt Notariat",
+   "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 38,
    "ech": {
@@ -55291,7 +55291,7 @@
   {
    "form_id": 377,
    "titel": "Bewilligungsgesuch für die Betreuung, Pflege, Zucht und Haltung von Heimtieren und Nutzhunden",
-   "dienststelle": "Veterinaeramt",
+   "dienststelle": "Departementssekretariat",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 27,
    "ech": {
@@ -55916,7 +55916,7 @@
   {
    "form_id": 384,
    "titel": "Gesuch um Erteilung einer Bewilligung für den Entzug von Wärme mittels Erdsonden / Erdkörben / Erdkollektoren",
-   "dienststelle": "Energiefachstelle",
+   "dienststelle": "Tiefbau Schaffhausen",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 50,
    "ech": {
@@ -56167,7 +56167,7 @@
   {
    "form_id": 385,
    "titel": "Vorabklärung für den Entzug von Wärme mittels Erdsonden",
-   "dienststelle": "Energiefachstelle",
+   "dienststelle": "Tiefbau Schaffhausen",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 80,
    "ech": {
@@ -56252,7 +56252,7 @@
   {
    "form_id": 386,
    "titel": "Vorabklärung für den Entzug von Wärme mittels Erdkörben oder Erdkollektoren",
-   "dienststelle": "Energiefachstelle",
+   "dienststelle": "Tiefbau Schaffhausen",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 64,
    "ech": {
@@ -58433,7 +58433,7 @@
   {
    "form_id": 410,
    "titel": "Gesuch für die Einfuhr oder Wiedereinfuhr von Hunden, Katzen oder Frettchen aus einem Tollwut-Risikoland",
-   "dienststelle": "Veterinaeramt",
+   "dienststelle": "Veterinäramt",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 50,
    "ech": {
@@ -59538,7 +59538,7 @@
   {
    "form_id": 426,
    "titel": "Bienenstände / Bienenvölker (Form. 730.008 d)",
-   "dienststelle": "Departementssekretariat",
+   "dienststelle": "Veterinaeramt",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 78,
    "ech": {
@@ -59740,7 +59740,7 @@
   {
    "form_id": 429,
    "titel": "Zusatzformular Gehege",
-   "dienststelle": "Departementssekretariat",
+   "dienststelle": "Veterinaeramt",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 6,
    "ech": {
@@ -59941,7 +59941,7 @@
   {
    "form_id": 431,
    "titel": "Zusatzformular Tierbestand",
-   "dienststelle": "Departementssekretariat",
+   "dienststelle": "Veterinaeramt",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 12,
    "ech": {
@@ -60035,7 +60035,7 @@
   {
    "form_id": 433,
    "titel": "Zusatzformular „Tierhaltung“ in Betrieben zur Betreuung, Pflege, Zucht und Haltung von Heimtieren und Nutzhunden",
-   "dienststelle": "Veterinaeramt",
+   "dienststelle": "Departementssekretariat",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 42,
    "ech": {
@@ -60105,7 +60105,7 @@
   {
    "form_id": 434,
    "titel": "Zusatzformular „Umfang des Betriebs, bzw. der Zucht von Heimtieren und Nutzhunden“",
-   "dienststelle": "Veterinaeramt",
+   "dienststelle": "Departementssekretariat",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 42,
    "ech": {
@@ -64092,6 +64092,7002 @@
     },
     {
      "feld": "Beilagen",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 468,
+   "titel": "Antrag für den Eintrag der Ziffer 178 im Fahrzeugausweis «Halterwechsel verboten»",
+   "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Name und Vorname oder Firmenname",
+     "format": ""
+    },
+    {
+     "feld": "Strasse und Nr.",
+     "format": ""
+    },
+    {
+     "feld": "PLZ",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": ""
+    },
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Funktion",
+     "format": ""
+    },
+    {
+     "feld": "Telefonnummer Antragsteller",
+     "format": ""
+    },
+    {
+     "feld": "Datum des Antrags",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Unterschrift des Antragstellers",
+     "format": ""
+    },
+    {
+     "feld": "Name und Vorname oder Firmenname des Halters",
+     "format": ""
+    },
+    {
+     "feld": "Datum der Halterunterschrift",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Unterschrift des Halters",
+     "format": ""
+    },
+    {
+     "feld": "Stammnummer",
+     "format": ""
+    },
+    {
+     "feld": "Marke und Typ",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 469,
+   "titel": "Mofa-Kontrollbericht",
+   "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Geburtsdatum",
+     "format": ""
+    },
+    {
+     "feld": "Strasse und Nr.",
+     "format": ""
+    },
+    {
+     "feld": "PLZ",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": ""
+    },
+    {
+     "feld": "Kontrollschild (SH)",
+     "format": ""
+    },
+    {
+     "feld": "Marke und Typ",
+     "format": ""
+    },
+    {
+     "feld": "Typenschein-Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Stamm-Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Fahrgestell-Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Prüfergebnisse der Kontrollpunkte",
+     "format": ""
+    },
+    {
+     "feld": "Datum der Kontrolle",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Stempel und Unterschrift des autorisierten Händlers",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 470,
+   "titel": "Nachsuchenbericht",
+   "dienststelle": "Jagd und Fischerei",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Nachsuchenbericht Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Strasse",
+     "format": ""
+    },
+    {
+     "feld": "PLZ",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": ""
+    },
+    {
+     "feld": "Telefon",
+     "format": ""
+    },
+    {
+     "feld": "Rasse des Hundes",
+     "format": ""
+    },
+    {
+     "feld": "SHSB Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Name des Hundes",
+     "format": ""
+    },
+    {
+     "feld": "Aufgebot durch",
+     "format": ""
+    },
+    {
+     "feld": "Ort / Revier / Umschreibung",
+     "format": ""
+    },
+    {
+     "feld": "Wildart (Geschlecht, ca. Alter/Gewicht)",
+     "format": ""
+    },
+    {
+     "feld": "Datum und Zeit der Verletzung",
+     "format": "TT.MM.JJJJ HH:MM"
+    },
+    {
+     "feld": "Datum",
+     "format": "TT.MM.JJJJ / HH:MM"
+    },
+    {
+     "feld": "Von",
+     "format": "TT.MM.JJJJ / HH:MM"
+    },
+    {
+     "feld": "Bis",
+     "format": "TT.MM.JJJJ / HH:MM"
+    },
+    {
+     "feld": "Wetter vor und während der Nachsuche",
+     "format": ""
+    },
+    {
+     "feld": "Ursache der Nachsuche",
+     "format": ""
+    },
+    {
+     "feld": "Vorherige Nachsuche mit anderem Hund",
+     "format": ""
+    },
+    {
+     "feld": "Pirschzeichen am Anschuss",
+     "format": ""
+    },
+    {
+     "feld": "Art der Pirschzeichen",
+     "format": ""
+    },
+    {
+     "feld": "Länge der Riemenarbeit",
+     "format": "Meter"
+    },
+    {
+     "feld": "Länge der Hetze",
+     "format": "Meter"
+    },
+    {
+     "feld": "Fangschuss",
+     "format": ""
+    },
+    {
+     "feld": "Ergebnis der Nachsuche (Erfolg)",
+     "format": ""
+    },
+    {
+     "feld": "Begründung bei Misserfolg",
+     "format": ""
+    },
+    {
+     "feld": "Fehlschuss eindeutig festgestellt",
+     "format": ""
+    },
+    {
+     "feld": "Verwendetes Kaliber",
+     "format": ""
+    },
+    {
+     "feld": "Einzelheiten der Nachsuche",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Datum",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Unterschrift Hundeführer/in",
+     "format": ""
+    },
+    {
+     "feld": "Name und Unterschrift Zeuge",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 471,
+   "titel": "Abrechnung Sonderschulung",
+   "dienststelle": "Aufsicht Sonderschulung und Therapien",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Ort",
+     "format": ""
+    },
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Strasse",
+     "format": ""
+    },
+    {
+     "feld": "PLZ",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": ""
+    },
+    {
+     "feld": "Tel.Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Auszahlungsadresse (IBAN)",
+     "format": "IBAN"
+    },
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Strasse",
+     "format": ""
+    },
+    {
+     "feld": "PLZ",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": ""
+    },
+    {
+     "feld": "Name der Schule",
+     "format": ""
+    },
+    {
+     "feld": "Datum der Leistung",
+     "format": ""
+    },
+    {
+     "feld": "Art der Leistung",
+     "format": ""
+    },
+    {
+     "feld": "Anzahl",
+     "format": ""
+    },
+    {
+     "feld": "CHF",
+     "format": ""
+    },
+    {
+     "feld": "Total",
+     "format": "CHF"
+    },
+    {
+     "feld": "Belege der Fahrkosten",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 472,
+   "titel": "Bestätigung über Arzneimitteleinsatz und Tiergesundheit bei Halterwechsel",
+   "dienststelle": "Veterinaeramt",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "UELN bzw. Identifikationsnummer des Equiden",
+     "format": ""
+    },
+    {
+     "feld": "Bestätigung: weder krank noch verletzt/verunfallt in den letzten 10 Tagen",
+     "format": ""
+    },
+    {
+     "feld": "Bestätigung: alle Absetzfristen abgelaufen",
+     "format": ""
+    },
+    {
+     "feld": "Equide war krank, verletzt oder verunfallt",
+     "format": ""
+    },
+    {
+     "feld": "Art der Krankheit / der Verletzung",
+     "format": ""
+    },
+    {
+     "feld": "Behandlung mit Arzneimitteln, Absetzfristen nicht abgelaufen",
+     "format": ""
+    },
+    {
+     "feld": "Futtermittel mit rückstandsbildenden Wirkstoffen erhalten",
+     "format": ""
+    },
+    {
+     "feld": "Datum der Behandlung / Verfütterung",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Medikamente / Futtermittel",
+     "format": ""
+    },
+    {
+     "feld": "Kopie des Behandlungsjournals",
+     "format": ""
+    },
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Adresse",
+     "format": ""
+    },
+    {
+     "feld": "TVD-Nr. der Tierhaltung",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Datum",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Unterschrift",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 473,
+   "titel": "Verlangen um Schwangerschaftsabbruch bei Notlage",
+   "dienststelle": "Kantonsaerztlicher Dienst",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Geburtsdatum",
+     "format": ""
+    },
+    {
+     "feld": "Kanton",
+     "format": ""
+    },
+    {
+     "feld": "Beginn der letzten Periode/Menstruation",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Bestätigung der ärztlichen Aufklärung",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": ""
+    },
+    {
+     "feld": "Datum",
+     "format": ""
+    },
+    {
+     "feld": "Stempel und Unterschrift",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Datum",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Unterschrift der Frau",
+     "format": ""
+    },
+    {
+     "feld": "Stempel und Unterschrift der Gynäkologin/des Gynäkologen",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 474,
+   "titel": "Meldung der Aufnahme oder Beendigung der Erwerbstätigkeit (Ausweise B / S / F)",
+   "dienststelle": "Migrationsamt und Passbuero",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Art der Meldung",
+     "format": ""
+    },
+    {
+     "feld": "Art der Erwerbstätigkeit",
+     "format": ""
+    },
+    {
+     "feld": "Datum der Aufnahme/Beendigung",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "ZEMIS Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Name(n)",
+     "format": ""
+    },
+    {
+     "feld": "Vorname(n)",
+     "format": ""
+    },
+    {
+     "feld": "Geburtsdatum",
+     "format": ""
+    },
+    {
+     "feld": "Staatsangehörigkeit",
+     "format": ""
+    },
+    {
+     "feld": "Telefonnummer",
+     "format": ""
+    },
+    {
+     "feld": "E-Mail",
+     "format": ""
+    },
+    {
+     "feld": "Strasse / Nr.",
+     "format": ""
+    },
+    {
+     "feld": "PLZ",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": ""
+    },
+    {
+     "feld": "Geschlecht",
+     "format": ""
+    },
+    {
+     "feld": "Name / Firmenname",
+     "format": "UID: CHE-XXX.XXX.XXX"
+    },
+    {
+     "feld": "Strasse / Nr.",
+     "format": "UID: CHE-XXX.XXX.XXX"
+    },
+    {
+     "feld": "PLZ",
+     "format": "UID: CHE-XXX.XXX.XXX"
+    },
+    {
+     "feld": "Ort",
+     "format": "UID: CHE-XXX.XXX.XXX"
+    },
+    {
+     "feld": "Unternehmensidentifikationsnummer (UID)",
+     "format": "UID: CHE-XXX.XXX.XXX"
+    },
+    {
+     "feld": "Name Kontaktperson",
+     "format": "UID: CHE-XXX.XXX.XXX"
+    },
+    {
+     "feld": "Telefonnummer",
+     "format": "UID: CHE-XXX.XXX.XXX"
+    },
+    {
+     "feld": "E-Mail",
+     "format": "UID: CHE-XXX.XXX.XXX"
+    },
+    {
+     "feld": "Organisation",
+     "format": ""
+    },
+    {
+     "feld": "Kontaktperson",
+     "format": ""
+    },
+    {
+     "feld": "Telefonnummer",
+     "format": ""
+    },
+    {
+     "feld": "E-Mail",
+     "format": ""
+    },
+    {
+     "feld": "Ausgeübte Tätigkeit",
+     "format": ""
+    },
+    {
+     "feld": "Branche",
+     "format": ""
+    },
+    {
+     "feld": "NAV / GAV",
+     "format": ""
+    },
+    {
+     "feld": "Arbeitsort(e) / Kanton(e)",
+     "format": ""
+    },
+    {
+     "feld": "Besondere Art der Tätigkeit",
+     "format": ""
+    },
+    {
+     "feld": "Beschäftigungsgrad",
+     "format": "%"
+    },
+    {
+     "feld": "Stunden",
+     "format": ""
+    },
+    {
+     "feld": "Minuten",
+     "format": ""
+    },
+    {
+     "feld": "Bruttolohn",
+     "format": "CHF"
+    },
+    {
+     "feld": "Lohnbasis",
+     "format": ""
+    },
+    {
+     "feld": "Bemerkungen",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 475,
+   "titel": "Selbständige Pflegefachpersonen, jährliche Datenerhebung",
+   "dienststelle": "Gesundheitsamt",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Erhebungsjahr",
+     "format": "JJJJ"
+    },
+    {
+     "feld": "Familienname",
+     "format": ""
+    },
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Strasse",
+     "format": ""
+    },
+    {
+     "feld": "PLZ",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": ""
+    },
+    {
+     "feld": "E-Mail",
+     "format": ""
+    },
+    {
+     "feld": "Telefon",
+     "format": ""
+    },
+    {
+     "feld": "ZSR-Nummer",
+     "format": ""
+    },
+    {
+     "feld": "Tätigkeitsstatus im Kanton SH",
+     "format": ""
+    },
+    {
+     "feld": "Externe Tätigkeit",
+     "format": ""
+    },
+    {
+     "feld": "Patientenbeteiligung",
+     "format": ""
+    },
+    {
+     "feld": "Anzahl Klienten total (Haushilfe+Pflege)",
+     "format": ""
+    },
+    {
+     "feld": "Davon Klienten nur mit KLV-Pflegeleistung",
+     "format": ""
+    },
+    {
+     "feld": "Davon Klienten nur Hauswirtschaft",
+     "format": ""
+    },
+    {
+     "feld": "Anzahl SH",
+     "format": ""
+    },
+    {
+     "feld": "Anzahl extern",
+     "format": ""
+    },
+    {
+     "feld": "Anzahl total",
+     "format": ""
+    },
+    {
+     "feld": "Bedarfsabklärung (Art. 7 II a KLV)",
+     "format": ""
+    },
+    {
+     "feld": "Behandlungspflege (Art. 7 II b KLV)",
+     "format": ""
+    },
+    {
+     "feld": "Grundpflege Mitarbeitende Spitex (Art. 7 II c KLV)",
+     "format": ""
+    },
+    {
+     "feld": "Grundpflege pflegende Angehörige",
+     "format": ""
+    },
+    {
+     "feld": "Hauswirtschaft/Sozialbetreuung/Sonst. Leistungen",
+     "format": ""
+    },
+    {
+     "feld": "Verrechenbare Stunden total",
+     "format": ""
+    },
+    {
+     "feld": "Verrechnete Stunden SH",
+     "format": ""
+    },
+    {
+     "feld": "Verrech. Std. andere Kantone",
+     "format": ""
+    },
+    {
+     "feld": "Verrech. Std. total",
+     "format": ""
+    },
+    {
+     "feld": "Krankenversicherer Kostenbeteiligung",
+     "format": "CHF"
+    },
+    {
+     "feld": "Klientenanteil - für KLV-Pflegeleistung",
+     "format": "CHF"
+    },
+    {
+     "feld": "Gemeinde-Pflegeanteil",
+     "format": "CHF"
+    },
+    {
+     "feld": "Klientenanteil - hauswirtsch. Leistung",
+     "format": "CHF"
+    },
+    {
+     "feld": "Sonstige Erträge",
+     "format": "CHF"
+    },
+    {
+     "feld": "Erträge total",
+     "format": "CHF"
+    },
+    {
+     "feld": "Fr. für SH",
+     "format": "CHF"
+    },
+    {
+     "feld": "Fr. extern",
+     "format": "CHF"
+    },
+    {
+     "feld": "Fr. total",
+     "format": "CHF"
+    },
+    {
+     "feld": "Personalaufwand",
+     "format": "CHF"
+    },
+    {
+     "feld": "Sonst. Aufwand (EDV, Kfz., Miete, ...)",
+     "format": "CHF"
+    },
+    {
+     "feld": "Aufwand total",
+     "format": "CHF"
+    },
+    {
+     "feld": "Bemerkung",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 476,
+   "titel": "Meldung über wetterbedingten Arbeitsausfall",
+   "dienststelle": "Kantonale Amtsstelle KAST",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Abrechnungsperiode",
+     "format": "MM.JJJJ"
+    },
+    {
+     "feld": "BUR-Nummer",
+     "format": ""
+    },
+    {
+     "feld": "UID-Nummer",
+     "format": ""
+    },
+    {
+     "feld": "Gesamtbetrieb oder Name der Betriebsabteilung",
+     "format": ""
+    },
+    {
+     "feld": "Branche",
+     "format": ""
+    },
+    {
+     "feld": "Strasse",
+     "format": ""
+    },
+    {
+     "feld": "Nummer",
+     "format": ""
+    },
+    {
+     "feld": "PLZ",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": ""
+    },
+    {
+     "feld": "Art der Ansprechperson",
+     "format": ""
+    },
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Telefon",
+     "format": ""
+    },
+    {
+     "feld": "E-Mail",
+     "format": ""
+    },
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Abk. Kanton",
+     "format": ""
+    },
+    {
+     "feld": "Bezeichnung",
+     "format": ""
+    },
+    {
+     "feld": "Höhe ü. M.",
+     "format": ""
+    },
+    {
+     "feld": "PLZ",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": ""
+    },
+    {
+     "feld": "Abk. Kanton",
+     "format": ""
+    },
+    {
+     "feld": "Kalendertag (1-31)",
+     "format": "D | H | AM | PM je Kalendertag"
+    },
+    {
+     "feld": "Ausfallcode",
+     "format": "D | H | AM | PM je Kalendertag"
+    },
+    {
+     "feld": "Nicht ausführbare Arbeiten",
+     "format": ""
+    },
+    {
+     "feld": "Grund des Arbeitsausfalls",
+     "format": ""
+    },
+    {
+     "feld": "Geplanter Arbeitsbeginn des Auftrags",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Gesamtaufwand in Personentagen",
+     "format": ""
+    },
+    {
+     "feld": "Bereits verrichtete Personentage",
+     "format": ""
+    },
+    {
+     "feld": "Summe der Ausfalltage",
+     "format": ""
+    },
+    {
+     "feld": "Anzahl betroffene Mitarbeitende",
+     "format": ""
+    },
+    {
+     "feld": "Ausgefallene Personentage im aktuellen Monat",
+     "format": ""
+    },
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Abrechnungsnummer",
+     "format": ""
+    },
+    {
+     "feld": "AHV-Ausgleichskasse",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Datum",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Unterschrift",
+     "format": ""
+    },
+    {
+     "feld": "Beilagen",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 477,
+   "titel": "Beitragsgesuch mit Kostenschätzung für den ökologischen Bachunterhalt",
+   "dienststelle": "Abteilung Gewaesser und Materialabbau",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Gemeinde",
+     "format": ""
+    },
+    {
+     "feld": "Datum",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Unterhaltsjahr",
+     "format": "JJJJ"
+    },
+    {
+     "feld": "Bachname",
+     "format": ""
+    },
+    {
+     "feld": "Gesamte Bachlänge auf Gemeindegebiet (lfm)",
+     "format": ""
+    },
+    {
+     "feld": "Unterhaltslänge Mahd/Bestockung (lfm)",
+     "format": ""
+    },
+    {
+     "feld": "Zuschlag Bestockung dicht (lfm)",
+     "format": ""
+    },
+    {
+     "feld": "Zuschlag Bestockung aufgelockert (lfm)",
+     "format": ""
+    },
+    {
+     "feld": "Zuschlag Bestockung locker (lfm)",
+     "format": ""
+    },
+    {
+     "feld": "Zuschlag Gefälle ≥ 10 % (lfm)",
+     "format": ""
+    },
+    {
+     "feld": "Kosten (CHF)",
+     "format": ""
+    },
+    {
+     "feld": "Beitragssatz (%)",
+     "format": ""
+    },
+    {
+     "feld": "Kantonsbeitrag (CHF)",
+     "format": ""
+    },
+    {
+     "feld": "Total",
+     "format": "CHF"
+    },
+    {
+     "feld": "Unterschrift",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 478,
+   "titel": "Bestellung von Geodaten des Kantons Schaffhausen",
+   "dienststelle": "Abteilung Gewaesser und Materialabbau",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Firma / Name",
+     "format": ""
+    },
+    {
+     "feld": "zuständige Person",
+     "format": ""
+    },
+    {
+     "feld": "Strasse",
+     "format": ""
+    },
+    {
+     "feld": "Postfach",
+     "format": ""
+    },
+    {
+     "feld": "PLZ / Ort",
+     "format": ""
+    },
+    {
+     "feld": "Telefon",
+     "format": ""
+    },
+    {
+     "feld": "Fax",
+     "format": ""
+    },
+    {
+     "feld": "E-Mail",
+     "format": ""
+    },
+    {
+     "feld": "Firma / Name",
+     "format": ""
+    },
+    {
+     "feld": "zuständige Person",
+     "format": ""
+    },
+    {
+     "feld": "Strasse",
+     "format": ""
+    },
+    {
+     "feld": "Postfach",
+     "format": ""
+    },
+    {
+     "feld": "PLZ / Ort",
+     "format": ""
+    },
+    {
+     "feld": "Telefon",
+     "format": ""
+    },
+    {
+     "feld": "Fax",
+     "format": ""
+    },
+    {
+     "feld": "E-Mail",
+     "format": ""
+    },
+    {
+     "feld": "Versand",
+     "format": ""
+    },
+    {
+     "feld": "Weitergabe an Subunternehmer",
+     "format": ""
+    },
+    {
+     "feld": "Gemeinde/n",
+     "format": ""
+    },
+    {
+     "feld": "Perimeter",
+     "format": ""
+    },
+    {
+     "feld": "Datennutzung",
+     "format": ""
+    },
+    {
+     "feld": "Zuständige Person der Auftraggeberin",
+     "format": ""
+    },
+    {
+     "feld": "Verwendungszweck",
+     "format": ""
+    },
+    {
+     "feld": "Thema",
+     "format": ""
+    },
+    {
+     "feld": "gewünschtes Datenformat",
+     "format": ""
+    },
+    {
+     "feld": "Bemerkungen",
+     "format": ""
+    },
+    {
+     "feld": "Datum",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Unterschrift",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 479,
+   "titel": "Meldekarte: Meldung eichpflichtiger Messmittel durch den Verwender",
+   "dienststelle": "Arbeitsamt",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Name des Eichamts",
+     "format": ""
+    },
+    {
+     "feld": "Adresse",
+     "format": ""
+    },
+    {
+     "feld": "Firma/Name",
+     "format": ""
+    },
+    {
+     "feld": "Adresse",
+     "format": ""
+    },
+    {
+     "feld": "Bezeichnung",
+     "format": ""
+    },
+    {
+     "feld": "Typ/Modell",
+     "format": ""
+    },
+    {
+     "feld": "Hersteller",
+     "format": ""
+    },
+    {
+     "feld": "Seriennummer",
+     "format": ""
+    },
+    {
+     "feld": "Messbereich",
+     "format": ""
+    },
+    {
+     "feld": "Datum der Inbetriebnahme",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Datum",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Unterschrift",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 480,
+   "titel": "Impf-Angebote für Schülerinnen und Schüler der 6. Klasse (Einwilligung der Eltern)",
+   "dienststelle": "Schulärztlicher Dienst",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Familienname",
+     "format": "Geburtsdatum: TT.MM.JJJJ"
+    },
+    {
+     "feld": "Vorname",
+     "format": "Geburtsdatum: TT.MM.JJJJ"
+    },
+    {
+     "feld": "Geburtsdatum",
+     "format": "Geburtsdatum: TT.MM.JJJJ"
+    },
+    {
+     "feld": "Schulhaus",
+     "format": ""
+    },
+    {
+     "feld": "Klasse",
+     "format": ""
+    },
+    {
+     "feld": "Lehrperson",
+     "format": ""
+    },
+    {
+     "feld": "Kinderarzt/Kinderärztin",
+     "format": ""
+    },
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "E-Mail",
+     "format": ""
+    },
+    {
+     "feld": "Telefonnummer",
+     "format": ""
+    },
+    {
+     "feld": "Keine Impfung gewünscht",
+     "format": ""
+    },
+    {
+     "feld": "Einwilligung Hepatitis-B-Impfung",
+     "format": ""
+    },
+    {
+     "feld": "Einwilligung HPV-Impfung",
+     "format": ""
+    },
+    {
+     "feld": "Einwilligung Nachholimpfungen",
+     "format": ""
+    },
+    {
+     "feld": "Bemerkungen",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Datum",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Unterschrift Erziehungsberechtigte/r",
+     "format": ""
+    },
+    {
+     "feld": "Unterschrift Schüler/in",
+     "format": ""
+    },
+    {
+     "feld": "Impfausweis",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 481,
+   "titel": "Impf-Angebote für Schülerinnen und Schüler der Oberstufe (Einwilligung der Eltern)",
+   "dienststelle": "Schulärztlicher Dienst",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Familienname",
+     "format": "Geburtsdatum: TT.MM.JJJJ"
+    },
+    {
+     "feld": "Vorname",
+     "format": "Geburtsdatum: TT.MM.JJJJ"
+    },
+    {
+     "feld": "Geburtsdatum",
+     "format": "Geburtsdatum: TT.MM.JJJJ"
+    },
+    {
+     "feld": "Schulhaus",
+     "format": ""
+    },
+    {
+     "feld": "Klasse",
+     "format": ""
+    },
+    {
+     "feld": "Lehrperson",
+     "format": ""
+    },
+    {
+     "feld": "Kinderarzt/Kinderärztin",
+     "format": ""
+    },
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "E-Mail",
+     "format": ""
+    },
+    {
+     "feld": "Telefonnummer",
+     "format": ""
+    },
+    {
+     "feld": "Keine Impfung gewünscht",
+     "format": ""
+    },
+    {
+     "feld": "Einwilligung Hepatitis-B-Impfung",
+     "format": ""
+    },
+    {
+     "feld": "Einwilligung HPV-Impfung",
+     "format": ""
+    },
+    {
+     "feld": "Einwilligung Nachholimpfungen",
+     "format": ""
+    },
+    {
+     "feld": "Bemerkungen",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Datum",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Unterschrift Erziehungsberechtigte/r",
+     "format": ""
+    },
+    {
+     "feld": "Unterschrift Schüler/in",
+     "format": ""
+    },
+    {
+     "feld": "Impfausweis",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 482,
+   "titel": "Lohn-Forderungseingabe im Konkurs",
+   "dienststelle": "Betreibungs- und Konkursamt",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Konkursit/-in",
+     "format": ""
+    },
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "vollständige Adresse",
+     "format": ""
+    },
+    {
+     "feld": "Geburtsdatum",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "AHV-Nummer",
+     "format": "756.XXXX.XXXX.XX"
+    },
+    {
+     "feld": "IBAN",
+     "format": "CHXX XXXX XXXX XXXX XXXX X (keine QR-IBAN)"
+    },
+    {
+     "feld": "Telefonnummer",
+     "format": ""
+    },
+    {
+     "feld": "E-Mail",
+     "format": ""
+    },
+    {
+     "feld": "Datum Eintritt",
+     "format": ""
+    },
+    {
+     "feld": "Monatslohn brutto (CHF)",
+     "format": ""
+    },
+    {
+     "feld": "Stundenlohn brutto (CHF)",
+     "format": ""
+    },
+    {
+     "feld": "13. Monatslohn brutto (CHF)",
+     "format": ""
+    },
+    {
+     "feld": "Ferienanspruch/Jahr (Tage)",
+     "format": ""
+    },
+    {
+     "feld": "Arbeitszeit/Woche (Stunden)",
+     "format": ""
+    },
+    {
+     "feld": "Kündigungsfrist (Monate)",
+     "format": ""
+    },
+    {
+     "feld": "Antritt",
+     "format": ""
+    },
+    {
+     "feld": "Monatslohn brutto (CHF)",
+     "format": ""
+    },
+    {
+     "feld": "13. Monatslohn brutto (CHF)",
+     "format": ""
+    },
+    {
+     "feld": "vom",
+     "format": ""
+    },
+    {
+     "feld": "bis",
+     "format": ""
+    },
+    {
+     "feld": "Betrag (CHF)",
+     "format": ""
+    },
+    {
+     "feld": "vom",
+     "format": ""
+    },
+    {
+     "feld": "bis",
+     "format": ""
+    },
+    {
+     "feld": "Betrag (CHF)",
+     "format": ""
+    },
+    {
+     "feld": "Kinder-/Ausbildungszulagen",
+     "format": "CHF"
+    },
+    {
+     "feld": "Tage",
+     "format": ""
+    },
+    {
+     "feld": "Ansatz pro Tag (CHF)",
+     "format": ""
+    },
+    {
+     "feld": "Betrag (CHF)",
+     "format": ""
+    },
+    {
+     "feld": "Stunden",
+     "format": ""
+    },
+    {
+     "feld": "Ansatz pro Stunde (CHF)",
+     "format": ""
+    },
+    {
+     "feld": "Betrag (CHF)",
+     "format": ""
+    },
+    {
+     "feld": "Stunden",
+     "format": ""
+    },
+    {
+     "feld": "Ansatz pro Stunde (CHF)",
+     "format": ""
+    },
+    {
+     "feld": "Betrag (CHF)",
+     "format": ""
+    },
+    {
+     "feld": "vom",
+     "format": ""
+    },
+    {
+     "feld": "bis",
+     "format": ""
+    },
+    {
+     "feld": "Betrag (CHF)",
+     "format": ""
+    },
+    {
+     "feld": "Sonstige Spesen",
+     "format": "CHF"
+    },
+    {
+     "feld": "Weitere Zulagen",
+     "format": "CHF"
+    },
+    {
+     "feld": "Bruttoforderung",
+     "format": "CHF"
+    },
+    {
+     "feld": "Betrag (CHF)",
+     "format": ""
+    },
+    {
+     "feld": "brutto oder netto",
+     "format": ""
+    },
+    {
+     "feld": "Angemeldete Forderung total",
+     "format": "CHF"
+    },
+    {
+     "feld": "Ort",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Datum",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Unterschrift",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 483,
+   "titel": "Gesuch um Eröffnung des Konkurses",
+   "dienststelle": "Betreibungs- und Konkursamt",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Adresse",
+     "format": ""
+    },
+    {
+     "feld": "Vertreter/-in",
+     "format": ""
+    },
+    {
+     "feld": "Grundlage des Begehrens",
+     "format": ""
+    },
+    {
+     "feld": "Nr. des Zahlungsbefehls",
+     "format": ""
+    },
+    {
+     "feld": "Betreibungsamt",
+     "format": ""
+    },
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Adresse",
+     "format": ""
+    },
+    {
+     "feld": "Forderungsbetrag",
+     "format": "CHF"
+    },
+    {
+     "feld": "Zinssatz (%)",
+     "format": ""
+    },
+    {
+     "feld": "seit (Datum)",
+     "format": ""
+    },
+    {
+     "feld": "Zinsbetrag bis heute (CHF)",
+     "format": ""
+    },
+    {
+     "feld": "Betreibungskosten",
+     "format": "CHF"
+    },
+    {
+     "feld": "Protest- und Wechselspesen",
+     "format": "CHF"
+    },
+    {
+     "feld": "Rechtsöffnungskosten",
+     "format": "CHF"
+    },
+    {
+     "feld": "Entschädigung im Rechtsöffnungsverfahren",
+     "format": "CHF"
+    },
+    {
+     "feld": "Zusammen",
+     "format": "CHF"
+    },
+    {
+     "feld": "vom (Datum)",
+     "format": ""
+    },
+    {
+     "feld": "Betrag (CHF)",
+     "format": ""
+    },
+    {
+     "feld": "Total",
+     "format": "CHF"
+    },
+    {
+     "feld": "Ort",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Datum",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Unterschrift",
+     "format": ""
+    },
+    {
+     "feld": "Beilagen",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 484,
+   "titel": "Gesuch um Schulgelderlass bzw. -ermässigung für den Schulbesuch an der Kantonsschule des Kantons Schaffhausen",
+   "dienststelle": "Abteilung Ausbildungsbeiträge",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Gesuchsart",
+     "format": ""
+    },
+    {
+     "feld": "Schuljahre",
+     "format": ""
+    },
+    {
+     "feld": "Höhe der Ermässigung",
+     "format": ""
+    },
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Geburtsdatum",
+     "format": ""
+    },
+    {
+     "feld": "Adresse",
+     "format": ""
+    },
+    {
+     "feld": "Heimatort",
+     "format": ""
+    },
+    {
+     "feld": "Telefon",
+     "format": ""
+    },
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Geburtsdatum",
+     "format": ""
+    },
+    {
+     "feld": "Adresse",
+     "format": ""
+    },
+    {
+     "feld": "Zivilstand",
+     "format": ""
+    },
+    {
+     "feld": "Telefon",
+     "format": ""
+    },
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Geburtsdatum",
+     "format": ""
+    },
+    {
+     "feld": "Adresse",
+     "format": ""
+    },
+    {
+     "feld": "Zivilstand",
+     "format": ""
+    },
+    {
+     "feld": "Telefon",
+     "format": ""
+    },
+    {
+     "feld": "Einkommen (netto, inkl. 13. Monatslohn, Gratifikation, Nebenerwerb, Spesen) CHF",
+     "format": ""
+    },
+    {
+     "feld": "Ehegattenunterhalt CHF",
+     "format": ""
+    },
+    {
+     "feld": "Vermögen CHF",
+     "format": ""
+    },
+    {
+     "feld": "Einkommen (netto, inkl. 13. Monatslohn, Gratifikation, Nebenerwerb, Spesen) CHF",
+     "format": ""
+    },
+    {
+     "feld": "Ehegattenunterhalt CHF",
+     "format": ""
+    },
+    {
+     "feld": "Vermögen CHF",
+     "format": ""
+    },
+    {
+     "feld": "Einkommen (netto, inkl. 13. Monatslohn, Gratifikation, Nebenerwerb, Spesen) CHF",
+     "format": ""
+    },
+    {
+     "feld": "Kindesunterhalt CHF",
+     "format": ""
+    },
+    {
+     "feld": "Vermögen CHF",
+     "format": ""
+    },
+    {
+     "feld": "Begründung",
+     "format": ""
+    },
+    {
+     "feld": "Zeugnisse des Schülers/der Schülerin",
+     "format": ""
+    },
+    {
+     "feld": "Unterlagen zu den finanziellen Verhältnissen",
+     "format": ""
+    },
+    {
+     "feld": "Ort/Datum und Unterschrift Gesuchsteller/in",
+     "format": ""
+    },
+    {
+     "feld": "Ort/Datum und Unterschrift Erziehungsberechtigte/r",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 485,
+   "titel": "Schriftlicher Antrag Kostengutsprache (Sportschulen mit Angeboten für Hochbegabte)",
+   "dienststelle": "Abteilung Ausbildungsbeiträge",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Adresse",
+     "format": ""
+    },
+    {
+     "feld": "PLZ/Ort",
+     "format": ""
+    },
+    {
+     "feld": "Mobile",
+     "format": ""
+    },
+    {
+     "feld": "Email",
+     "format": ""
+    },
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Geb. Datum",
+     "format": ""
+    },
+    {
+     "feld": "AHV-Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Sportart",
+     "format": ""
+    },
+    {
+     "feld": "Verein",
+     "format": ""
+    },
+    {
+     "feld": "Talent Card",
+     "format": ""
+    },
+    {
+     "feld": "Verband",
+     "format": ""
+    },
+    {
+     "feld": "Gründe für den Besuch der gewählten Sportschule",
+     "format": ""
+    },
+    {
+     "feld": "Ort, Datum",
+     "format": ""
+    },
+    {
+     "feld": "Unterschrift antragstellende Person/en",
+     "format": ""
+    },
+    {
+     "feld": "Angaben zur Biografie",
+     "format": ""
+    },
+    {
+     "feld": "Aufnahmebestätigung Sportschule",
+     "format": ""
+    },
+    {
+     "feld": "Swiss Olympic Talents Card",
+     "format": ""
+    },
+    {
+     "feld": "Empfehlungsschreiben Sportverband",
+     "format": ""
+    },
+    {
+     "feld": "Trainingsplan",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 486,
+   "titel": "Beitragsgesuch für periodische Wiederinstandstellung (PWI) von Güterstrassen, Drainagen und Trockensteinmauern",
+   "dienststelle": "Strukturverbesserung",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Gemeinde/Güterkorporation",
+     "format": ""
+    },
+    {
+     "feld": "Ortsbezeichnung",
+     "format": ""
+    },
+    {
+     "feld": "GB-Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Laufmeter",
+     "format": ""
+    },
+    {
+     "feld": "Meter Asphalt",
+     "format": ""
+    },
+    {
+     "feld": "%-landwirtschaftliche Nutzung",
+     "format": ""
+    },
+    {
+     "feld": "Zustand (Ist-Zustand / bisheriger Unterhalt)",
+     "format": ""
+    },
+    {
+     "feld": "PWI-Massnahmen",
+     "format": ""
+    },
+    {
+     "feld": "Ortsbezeichnung",
+     "format": ""
+    },
+    {
+     "feld": "GB-Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Meter",
+     "format": ""
+    },
+    {
+     "feld": "Gefälle (>40 % / 20-40 % / <20 %)",
+     "format": ""
+    },
+    {
+     "feld": "Untergrund (gut / feucht / nass-instabil)",
+     "format": ""
+    },
+    {
+     "feld": "Zustand (Ist-Zustand / bisheriger Unterhalt)",
+     "format": ""
+    },
+    {
+     "feld": "PWI-Massnahmen (z.B. Spülen/Kanalfernsehen, Instandstellung, Entwässerung)",
+     "format": ""
+    },
+    {
+     "feld": "Ortsbezeichnung",
+     "format": ""
+    },
+    {
+     "feld": "GB-Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Laufmeter",
+     "format": ""
+    },
+    {
+     "feld": "Mauertyp (Terrassenmauer bis 1.5 m / 1.5-3 m hoch / übrige Trockensteinmauern)",
+     "format": ""
+    },
+    {
+     "feld": "landwirtschaftliche Nutzung (ja/nein)",
+     "format": ""
+    },
+    {
+     "feld": "Zustand (Ist-Zustand / bisheriger Unterhalt)",
+     "format": ""
+    },
+    {
+     "feld": "PWI-Massnahmen",
+     "format": ""
+    },
+    {
+     "feld": "Massnahme",
+     "format": ""
+    },
+    {
+     "feld": "Kosten CHF",
+     "format": ""
+    },
+    {
+     "feld": "Bauunternehmer",
+     "format": ""
+    },
+    {
+     "feld": "Material und Transport",
+     "format": ""
+    },
+    {
+     "feld": "Eigenleistungen (z.B. Mithilfe Strassenwart)",
+     "format": ""
+    },
+    {
+     "feld": "Administration/Bauleitung",
+     "format": ""
+    },
+    {
+     "feld": "Total",
+     "format": ""
+    },
+    {
+     "feld": "Vergabeverfahren",
+     "format": ""
+    },
+    {
+     "feld": "Ort, Datum",
+     "format": ""
+    },
+    {
+     "feld": "Unterschrift",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 487,
+   "titel": "Vollmacht für die Entgegennahme von Betreibungsregisterauszügen und Geldern",
+   "dienststelle": "Weitere Dienste",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Geburtsdatum",
+     "format": ""
+    },
+    {
+     "feld": "Strasse",
+     "format": ""
+    },
+    {
+     "feld": "PLZ",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": ""
+    },
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Geburtsdatum",
+     "format": ""
+    },
+    {
+     "feld": "Strasse",
+     "format": ""
+    },
+    {
+     "feld": "PLZ",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": ""
+    },
+    {
+     "feld": "Ort, Datum",
+     "format": ""
+    },
+    {
+     "feld": "Unterschrift Vollmachtgeber/in",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 488,
+   "titel": "Vollmacht für Betreibungsverfahren",
+   "dienststelle": "Betreibungs- und Konkursamt",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Geburtsdatum",
+     "format": ""
+    },
+    {
+     "feld": "Strasse",
+     "format": ""
+    },
+    {
+     "feld": "PLZ",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": ""
+    },
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Geburtsdatum",
+     "format": ""
+    },
+    {
+     "feld": "Strasse",
+     "format": ""
+    },
+    {
+     "feld": "PLZ",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": ""
+    },
+    {
+     "feld": "Umfang der Vollmacht",
+     "format": ""
+    },
+    {
+     "feld": "Ort, Datum",
+     "format": ""
+    },
+    {
+     "feld": "Unterschrift Vollmachtgeber/in",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 489,
+   "titel": "Begehren um Aufnahme eines Retentionsverzeichnisses",
+   "dienststelle": "Betreibungs- und Konkursamt",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Betreibung Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Art der Forderung",
+     "format": ""
+    },
+    {
+     "feld": "Name/Firma",
+     "format": ""
+    },
+    {
+     "feld": "Adresse",
+     "format": ""
+    },
+    {
+     "feld": "Name/Firma",
+     "format": ""
+    },
+    {
+     "feld": "Adresse",
+     "format": ""
+    },
+    {
+     "feld": "Name/Firma",
+     "format": ""
+    },
+    {
+     "feld": "Adresse",
+     "format": ""
+    },
+    {
+     "feld": "Datum des Miet-/Pachtvertrags",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Zeitraum von",
+     "format": ""
+    },
+    {
+     "feld": "Zeitraum bis",
+     "format": ""
+    },
+    {
+     "feld": "Betrag Fr.",
+     "format": ""
+    },
+    {
+     "feld": "Zeitraum von",
+     "format": ""
+    },
+    {
+     "feld": "Zeitraum bis",
+     "format": ""
+    },
+    {
+     "feld": "Betrag Fr.",
+     "format": ""
+    },
+    {
+     "feld": "fällig je am",
+     "format": ""
+    },
+    {
+     "feld": "Betrag Fr.",
+     "format": ""
+    },
+    {
+     "feld": "Grund",
+     "format": ""
+    },
+    {
+     "feld": "Betrag Fr.",
+     "format": ""
+    },
+    {
+     "feld": "Beschreibung der gemieteten/gepachteten Geschäftsräume",
+     "format": ""
+    },
+    {
+     "feld": "Grund für die Aufnahme für laufenden Miet-/Pachtzins",
+     "format": ""
+    },
+    {
+     "feld": "Ort und Datum",
+     "format": ""
+    },
+    {
+     "feld": "Unterschrift des Gläubigers oder seines Vertreters",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 490,
+   "titel": "Arrestgesuch",
+   "dienststelle": "Betreibungs- und Konkursamt",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Name/Firma",
+     "format": ""
+    },
+    {
+     "feld": "Adresse",
+     "format": ""
+    },
+    {
+     "feld": "Name/Firma",
+     "format": ""
+    },
+    {
+     "feld": "Adresse",
+     "format": ""
+    },
+    {
+     "feld": "Name/Firma",
+     "format": ""
+    },
+    {
+     "feld": "Adresse",
+     "format": ""
+    },
+    {
+     "feld": "Forderungssumme",
+     "format": ""
+    },
+    {
+     "feld": "Zinssatz in %",
+     "format": ""
+    },
+    {
+     "feld": "Zins seit (Datum)",
+     "format": ""
+    },
+    {
+     "feld": "Forderungsurkunde und Grund der Forderung",
+     "format": ""
+    },
+    {
+     "feld": "Arrestgrund",
+     "format": ""
+    },
+    {
+     "feld": "Arrestgegenstände",
+     "format": ""
+    },
+    {
+     "feld": "Ort, Datum und Unterschrift",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 491,
+   "titel": "Gesuch um Nichtbekanntgabe einer Betreibung an Dritte",
+   "dienststelle": "Betreibungs- und Konkursamt",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Name und Vorname bzw. Firma",
+     "format": ""
+    },
+    {
+     "feld": "Adresse",
+     "format": ""
+    },
+    {
+     "feld": "PLZ Ort",
+     "format": ""
+    },
+    {
+     "feld": "Adresse des Betreibungsamtes",
+     "format": ""
+    },
+    {
+     "feld": "Kontakt für Rückfragen",
+     "format": ""
+    },
+    {
+     "feld": "Name und Vorname bzw. Firma",
+     "format": ""
+    },
+    {
+     "feld": "Adresse",
+     "format": ""
+    },
+    {
+     "feld": "PLZ Ort",
+     "format": ""
+    },
+    {
+     "feld": "Name und Vorname bzw. Firma",
+     "format": ""
+    },
+    {
+     "feld": "Adresse",
+     "format": ""
+    },
+    {
+     "feld": "PLZ Ort",
+     "format": ""
+    },
+    {
+     "feld": "Betreibung Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Zahlungsbefehl zugestellt am",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Bemerkungen",
+     "format": ""
+    },
+    {
+     "feld": "Datum und Unterschrift des Gesuchstellers/der Gesuchstellerin",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 492,
+   "titel": "Schlichtungsgesuch nach Art. 202 ZPO",
+   "dienststelle": "Weitere Dienste",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Name od. Firma",
+     "format": ""
+    },
+    {
+     "feld": "Strasse",
+     "format": ""
+    },
+    {
+     "feld": "PLZ",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": ""
+    },
+    {
+     "feld": "Geburtsdatum",
+     "format": ""
+    },
+    {
+     "feld": "Heimatort",
+     "format": ""
+    },
+    {
+     "feld": "Nationalität",
+     "format": ""
+    },
+    {
+     "feld": "Beruf",
+     "format": ""
+    },
+    {
+     "feld": "Telefon-Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Mobile",
+     "format": ""
+    },
+    {
+     "feld": "E-Mail-Adresse",
+     "format": ""
+    },
+    {
+     "feld": "Name od. Firma",
+     "format": ""
+    },
+    {
+     "feld": "Strasse",
+     "format": ""
+    },
+    {
+     "feld": "PLZ",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": ""
+    },
+    {
+     "feld": "Geburtsdatum",
+     "format": ""
+    },
+    {
+     "feld": "Heimatort",
+     "format": ""
+    },
+    {
+     "feld": "Nationalität",
+     "format": ""
+    },
+    {
+     "feld": "Beruf",
+     "format": ""
+    },
+    {
+     "feld": "Telefon-Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Mobile",
+     "format": ""
+    },
+    {
+     "feld": "E-Mail-Adresse",
+     "format": ""
+    },
+    {
+     "feld": "Betreibungs-Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Übersetzer/-in erforderlich (klagende Partei)",
+     "format": ""
+    },
+    {
+     "feld": "Sprache Übersetzung (klagende Partei)",
+     "format": ""
+    },
+    {
+     "feld": "Übersetzer/-in erforderlich (beklagte Partei)",
+     "format": ""
+    },
+    {
+     "feld": "Sprache Übersetzung (beklagte Partei)",
+     "format": ""
+    },
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Strasse",
+     "format": ""
+    },
+    {
+     "feld": "PLZ",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": ""
+    },
+    {
+     "feld": "Telefon-Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Mobile",
+     "format": ""
+    },
+    {
+     "feld": "E-Mail-Adresse",
+     "format": ""
+    },
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Strasse",
+     "format": ""
+    },
+    {
+     "feld": "PLZ",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": ""
+    },
+    {
+     "feld": "Telefon-Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Mobile",
+     "format": ""
+    },
+    {
+     "feld": "E-Mail-Adresse",
+     "format": ""
+    },
+    {
+     "feld": "Rechtsbegehren",
+     "format": ""
+    },
+    {
+     "feld": "Streitgegenstand",
+     "format": ""
+    },
+    {
+     "feld": "Antrag auf Entscheid",
+     "format": ""
+    },
+    {
+     "feld": "Antrag auf Mediation",
+     "format": ""
+    },
+    {
+     "feld": "Datum/Unterschrift klagende Partei",
+     "format": ""
+    },
+    {
+     "feld": "Datum/Unterschrift beklagte Partei",
+     "format": ""
+    },
+    {
+     "feld": "Datum",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Unterschrift klagende Partei",
+     "format": ""
+    },
+    {
+     "feld": "Beilagen",
+     "format": ""
+    },
+    {
+     "feld": "Beilagedokumente",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 493,
+   "titel": "Schlichtungsgesuch nach Art. 202 ZPO (Arbeitsrecht)",
+   "dienststelle": "Weitere Dienste",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Name od. Firma",
+     "format": ""
+    },
+    {
+     "feld": "Strasse",
+     "format": ""
+    },
+    {
+     "feld": "PLZ",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": ""
+    },
+    {
+     "feld": "Geburtsdatum",
+     "format": ""
+    },
+    {
+     "feld": "Heimatort",
+     "format": ""
+    },
+    {
+     "feld": "Nationalität",
+     "format": ""
+    },
+    {
+     "feld": "Beruf",
+     "format": ""
+    },
+    {
+     "feld": "Telefon-Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Mobile",
+     "format": ""
+    },
+    {
+     "feld": "E-Mail-Adresse",
+     "format": ""
+    },
+    {
+     "feld": "Name od. Firma",
+     "format": ""
+    },
+    {
+     "feld": "Strasse",
+     "format": ""
+    },
+    {
+     "feld": "PLZ",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": ""
+    },
+    {
+     "feld": "Geburtsdatum",
+     "format": ""
+    },
+    {
+     "feld": "Heimatort",
+     "format": ""
+    },
+    {
+     "feld": "Nationalität",
+     "format": ""
+    },
+    {
+     "feld": "Beruf",
+     "format": ""
+    },
+    {
+     "feld": "Telefon-Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Mobile",
+     "format": ""
+    },
+    {
+     "feld": "E-Mail-Adresse",
+     "format": ""
+    },
+    {
+     "feld": "Betreibungs-Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Übersetzer/-in erforderlich (klagende Partei)",
+     "format": ""
+    },
+    {
+     "feld": "Sprache Übersetzung (klagende Partei)",
+     "format": ""
+    },
+    {
+     "feld": "Übersetzer/-in erforderlich (beklagte Partei)",
+     "format": ""
+    },
+    {
+     "feld": "Sprache Übersetzung (beklagte Partei)",
+     "format": ""
+    },
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Strasse",
+     "format": ""
+    },
+    {
+     "feld": "PLZ",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": ""
+    },
+    {
+     "feld": "Telefon-Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Mobile",
+     "format": ""
+    },
+    {
+     "feld": "E-Mail-Adresse",
+     "format": ""
+    },
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Strasse",
+     "format": ""
+    },
+    {
+     "feld": "PLZ",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": ""
+    },
+    {
+     "feld": "Telefon-Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Mobile",
+     "format": ""
+    },
+    {
+     "feld": "E-Mail-Adresse",
+     "format": ""
+    },
+    {
+     "feld": "Arbeitsort / Haupteinsatzort",
+     "format": ""
+    },
+    {
+     "feld": "Schriftlicher Vertrag vom",
+     "format": ""
+    },
+    {
+     "feld": "Eintritt am",
+     "format": ""
+    },
+    {
+     "feld": "Probezeit",
+     "format": ""
+    },
+    {
+     "feld": "Lohn Brutto (pro Monat / Std.)",
+     "format": ""
+    },
+    {
+     "feld": "Spesen/Zulagen/Provision (CHF)",
+     "format": ""
+    },
+    {
+     "feld": "13. Monatslohn/Gratifikation (CHF)",
+     "format": ""
+    },
+    {
+     "feld": "Kündigung erhalten am",
+     "format": ""
+    },
+    {
+     "feld": "Kündigung auf den",
+     "format": ""
+    },
+    {
+     "feld": "Kündigung erfolgte durch",
+     "format": ""
+    },
+    {
+     "feld": "Kündigungsform (schriftlich/mündlich)",
+     "format": ""
+    },
+    {
+     "feld": "Letzter Arbeitstag am",
+     "format": ""
+    },
+    {
+     "feld": "Fristlose Entlassung am",
+     "format": ""
+    },
+    {
+     "feld": "Ohne Begründung",
+     "format": ""
+    },
+    {
+     "feld": "Mit Begründung",
+     "format": ""
+    },
+    {
+     "feld": "Lohn bis Austritt (von/bis)",
+     "format": ""
+    },
+    {
+     "feld": "Lohn für Kündigungszeit (von/bis)",
+     "format": ""
+    },
+    {
+     "feld": "Entschädigung wegen fristloser Entlassung",
+     "format": ""
+    },
+    {
+     "feld": "Entschädigung wegen missbräuchlicher Kündigung",
+     "format": ""
+    },
+    {
+     "feld": "Rückforderung von Lohnabzügen",
+     "format": ""
+    },
+    {
+     "feld": "Unfall-/Krankenlohn (von/bis)",
+     "format": ""
+    },
+    {
+     "feld": "Ferienlohn (für Kalender-/Arbeitstage)",
+     "format": ""
+    },
+    {
+     "feld": "Überstundenlohn (gemäss Aufstellung)",
+     "format": ""
+    },
+    {
+     "feld": "13. Monatslohn (anteilmässig für Monate)",
+     "format": ""
+    },
+    {
+     "feld": "Gratifikation (anteilmässig für Monate)",
+     "format": ""
+    },
+    {
+     "feld": "Provisionen (gemäss Aufstellung)",
+     "format": ""
+    },
+    {
+     "feld": "Spesen (gemäss Aufstellung)",
+     "format": ""
+    },
+    {
+     "feld": "Andere Geldforderungen (genau bezeichnen)",
+     "format": ""
+    },
+    {
+     "feld": "Total der geltend gemachten Forderung",
+     "format": ""
+    },
+    {
+     "feld": "Verzugszins zu 5% seit",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Andere Forderungen",
+     "format": ""
+    },
+    {
+     "feld": "Antrag auf Entscheid",
+     "format": ""
+    },
+    {
+     "feld": "Antrag auf Mediation",
+     "format": ""
+    },
+    {
+     "feld": "Datum/Unterschrift klagende Partei",
+     "format": ""
+    },
+    {
+     "feld": "Datum/Unterschrift beklagte Partei",
+     "format": ""
+    },
+    {
+     "feld": "Datum",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Unterschrift klagende Partei",
+     "format": ""
+    },
+    {
+     "feld": "Beilagen",
+     "format": ""
+    },
+    {
+     "feld": "Beilagedokumente",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 494,
+   "titel": "Personalblatt – Meldung neue(r) Mitarbeiter(in)",
+   "dienststelle": "Sozialamt",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Name/Standort",
+     "format": ""
+    },
+    {
+     "feld": "PLZ",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": ""
+    },
+    {
+     "feld": "Funktion",
+     "format": ""
+    },
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Geburtsdatum",
+     "format": ""
+    },
+    {
+     "feld": "Heimatort",
+     "format": ""
+    },
+    {
+     "feld": "Strasse/Nr.",
+     "format": ""
+    },
+    {
+     "feld": "PLZ/Ort",
+     "format": ""
+    },
+    {
+     "feld": "Telefon",
+     "format": ""
+    },
+    {
+     "feld": "E-Mail",
+     "format": ""
+    },
+    {
+     "feld": "Ausbildung",
+     "format": ""
+    },
+    {
+     "feld": "Stellenantritt",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Beschäftigungsgrad",
+     "format": "Prozent"
+    },
+    {
+     "feld": "Beschäftigungsdauer",
+     "format": ""
+    },
+    {
+     "feld": "Befristet bis",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Referenzauskünfte beim letzten Anstellungsbetrieb eingeholt",
+     "format": ""
+    },
+    {
+     "feld": "Strafregisterauszug des Wohnstaats",
+     "format": ""
+    },
+    {
+     "feld": "Datum",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Unterschrift der Leitung",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 495,
+   "titel": "Personalliste – Übersicht Personalbestand",
+   "dienststelle": "Sozialamt",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Stand der Personalliste",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Einrichtung",
+     "format": ""
+    },
+    {
+     "feld": "Adresse / Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Standort",
+     "format": ""
+    },
+    {
+     "feld": "PLZ / Ort",
+     "format": ""
+    },
+    {
+     "feld": "Name(n)",
+     "format": "Geburtsdatum, Eintritt, Austritt: TT.MM.JJJJ"
+    },
+    {
+     "feld": "Vorname(n)",
+     "format": "Geburtsdatum, Eintritt, Austritt: TT.MM.JJJJ"
+    },
+    {
+     "feld": "Geburtsdatum",
+     "format": "Geburtsdatum, Eintritt, Austritt: TT.MM.JJJJ"
+    },
+    {
+     "feld": "Heimatort / Geburtsort",
+     "format": "Geburtsdatum, Eintritt, Austritt: TT.MM.JJJJ"
+    },
+    {
+     "feld": "Grenzgänger/in (ja/nein)",
+     "format": "Geburtsdatum, Eintritt, Austritt: TT.MM.JJJJ"
+    },
+    {
+     "feld": "Ausbildung",
+     "format": "Geburtsdatum, Eintritt, Austritt: TT.MM.JJJJ"
+    },
+    {
+     "feld": "Funktion",
+     "format": "Geburtsdatum, Eintritt, Austritt: TT.MM.JJJJ"
+    },
+    {
+     "feld": "Stellen %",
+     "format": "Geburtsdatum, Eintritt, Austritt: TT.MM.JJJJ"
+    },
+    {
+     "feld": "Eintritt",
+     "format": "Geburtsdatum, Eintritt, Austritt: TT.MM.JJJJ"
+    },
+    {
+     "feld": "Austritt",
+     "format": "Geburtsdatum, Eintritt, Austritt: TT.MM.JJJJ"
+    }
+   ]
+  },
+  {
+   "form_id": 496,
+   "titel": "Gesuch um Auszug aus dem Strafregister-Informationssystem VOSTRA (Leumundsabklärung Pflegefamilie)",
+   "dienststelle": "Sozialamt",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Nachname",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Adresse",
+     "format": ""
+    },
+    {
+     "feld": "Geburtsdatum",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "AHVN13",
+     "format": "756.XXXX.XXXX.XX"
+    },
+    {
+     "feld": "Heimatort",
+     "format": ""
+    },
+    {
+     "feld": "Datum",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Unterschrift",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 497,
+   "titel": "Gesuch Ausländerbewilligung (Formular A1)",
+   "dienststelle": "Arbeitsamt",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Gesuchsart",
+     "format": ""
+    },
+    {
+     "feld": "Gesuch für",
+     "format": ""
+    },
+    {
+     "feld": "Familienname(n)",
+     "format": "Geburtsdatum: TT.MM.JJJJ"
+    },
+    {
+     "feld": "Vorname(n)",
+     "format": "Geburtsdatum: TT.MM.JJJJ"
+    },
+    {
+     "feld": "Geburtsdatum",
+     "format": "Geburtsdatum: TT.MM.JJJJ"
+    },
+    {
+     "feld": "Geburtsort",
+     "format": "Geburtsdatum: TT.MM.JJJJ"
+    },
+    {
+     "feld": "Geburtsland",
+     "format": "Geburtsdatum: TT.MM.JJJJ"
+    },
+    {
+     "feld": "Adresse (gegenwärtige Aufenthaltsadresse)",
+     "format": "Geburtsdatum: TT.MM.JJJJ"
+    },
+    {
+     "feld": "Staatsangehörigkeit",
+     "format": "Geburtsdatum: TT.MM.JJJJ"
+    },
+    {
+     "feld": "Mutter: Name(n)",
+     "format": ""
+    },
+    {
+     "feld": "Mutter: Vorname(n)",
+     "format": ""
+    },
+    {
+     "feld": "Vater: Name(n)",
+     "format": ""
+    },
+    {
+     "feld": "Vater: Vorname(n)",
+     "format": ""
+    },
+    {
+     "feld": "Geschlecht",
+     "format": ""
+    },
+    {
+     "feld": "Zivilstand",
+     "format": ""
+    },
+    {
+     "feld": "Zivilstand seit",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Strafverfahren hängig",
+     "format": ""
+    },
+    {
+     "feld": "Vorstrafen",
+     "format": ""
+    },
+    {
+     "feld": "Zweck des Aufenthaltes",
+     "format": ""
+    },
+    {
+     "feld": "von",
+     "format": "von/bis: TT.MM.JJJJ"
+    },
+    {
+     "feld": "bis",
+     "format": "von/bis: TT.MM.JJJJ"
+    },
+    {
+     "feld": "Unbeschränkte Dauer",
+     "format": "von/bis: TT.MM.JJJJ"
+    },
+    {
+     "feld": "ZEMIS-Nummer",
+     "format": ""
+    },
+    {
+     "feld": "Schweizer Vertretung für Visumsabholung",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": "Datum: TT.MM.JJJJ"
+    },
+    {
+     "feld": "Datum",
+     "format": "Datum: TT.MM.JJJJ"
+    },
+    {
+     "feld": "Unterschrift der Ausländerin/des Ausländers",
+     "format": ""
+    },
+    {
+     "feld": "BUR-Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Name des Betriebes",
+     "format": ""
+    },
+    {
+     "feld": "Branche",
+     "format": ""
+    },
+    {
+     "feld": "GAV-Bezeichnung",
+     "format": ""
+    },
+    {
+     "feld": "Strasse/Hausnummer",
+     "format": ""
+    },
+    {
+     "feld": "PLZ/Ort",
+     "format": ""
+    },
+    {
+     "feld": "Verantwortliche Person",
+     "format": ""
+    },
+    {
+     "feld": "Telefon",
+     "format": ""
+    },
+    {
+     "feld": "Fax",
+     "format": ""
+    },
+    {
+     "feld": "E-Mail",
+     "format": ""
+    },
+    {
+     "feld": "Beschäftigung als",
+     "format": ""
+    },
+    {
+     "feld": "Selbständig",
+     "format": ""
+    },
+    {
+     "feld": "Ausbildung/bisherige Tätigkeit",
+     "format": ""
+    },
+    {
+     "feld": "Dauer der Ausbildung (Jahre)",
+     "format": ""
+    },
+    {
+     "feld": "Berufserfahrung (Jahre)",
+     "format": ""
+    },
+    {
+     "feld": "Kaderfunktion (ja/nein)",
+     "format": ""
+    },
+    {
+     "feld": "Zeitpunkt des Stellenantritts",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Umfang der Beschäftigung",
+     "format": ""
+    },
+    {
+     "feld": "Art des Arbeitsverhältnisses",
+     "format": ""
+    },
+    {
+     "feld": "Betrag",
+     "format": ""
+    },
+    {
+     "feld": "Pro Stunde / Pro Monat",
+     "format": ""
+    },
+    {
+     "feld": "Wochenstunden",
+     "format": ""
+    },
+    {
+     "feld": "Heutiger Personalbestand",
+     "format": ""
+    },
+    {
+     "feld": "davon Ausländer ohne C-Ausweis",
+     "format": ""
+    },
+    {
+     "feld": "Stelle beim RAV gemeldet",
+     "format": ""
+    },
+    {
+     "feld": "RAV-Stellennummer",
+     "format": ""
+    },
+    {
+     "feld": "Andere Suchbemühungen",
+     "format": ""
+    },
+    {
+     "feld": "Angemessene Unterkunft vorhanden",
+     "format": ""
+    },
+    {
+     "feld": "Frühere Tätigkeiten (ja/nein)",
+     "format": "von/bis: TT.MM.JJJJ"
+    },
+    {
+     "feld": "von",
+     "format": "von/bis: TT.MM.JJJJ"
+    },
+    {
+     "feld": "bis",
+     "format": "von/bis: TT.MM.JJJJ"
+    },
+    {
+     "feld": "Bemerkungen",
+     "format": ""
+    },
+    {
+     "feld": "Ort, Datum und Unterschrift des Arbeitgebers",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 498,
+   "titel": "Fragebogen zur Klärung der örtlichen Zuständigkeit",
+   "dienststelle": "Sozialamt",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Letzte polizeiliche Anmeldung",
+     "format": ""
+    },
+    {
+     "feld": "Wegzug aus dieser Gemeinde seit",
+     "format": ""
+    },
+    {
+     "feld": "Grund des Wohnungs-/Zimmerverlusts",
+     "format": ""
+    },
+    {
+     "feld": "Sozialhilfebezug im Zeitpunkt des Wohnungsverlusts",
+     "format": ""
+    },
+    {
+     "feld": "Unterstützung bei der Wohnungssuche / Kontaktabbruch",
+     "format": ""
+    },
+    {
+     "feld": "Um Unterstützung ersucht beim Unterkunftsverlust",
+     "format": ""
+    },
+    {
+     "feld": "Grund der Ablehnung der Hilfeleistung",
+     "format": ""
+    },
+    {
+     "feld": "Grund für fehlendes Hilfeersuchen",
+     "format": ""
+    },
+    {
+     "feld": "Ortschaft",
+     "format": ""
+    },
+    {
+     "feld": "Adresse (inkl. Namen Wohnungsinhaber bzw. Name der Pension)",
+     "format": ""
+    },
+    {
+     "feld": "Art der Unterkunft",
+     "format": ""
+    },
+    {
+     "feld": "Dauer des Aufenthalts",
+     "format": ""
+    },
+    {
+     "feld": "Finanzierung des Aufenthalts",
+     "format": ""
+    },
+    {
+     "feld": "Art der Unterkunft (Heim/Einrichtung)",
+     "format": ""
+    },
+    {
+     "feld": "Hotel/Pension: Dauergäste und vertragliche Regelung",
+     "format": ""
+    },
+    {
+     "feld": "Eigenes Zimmer",
+     "format": ""
+    },
+    {
+     "feld": "Gästebett",
+     "format": ""
+    },
+    {
+     "feld": "Schriftlicher oder mündlicher Untermietvertrag",
+     "format": ""
+    },
+    {
+     "feld": "Beziehung zur Unterkunft gebenden Person",
+     "format": ""
+    },
+    {
+     "feld": "Dauer des Aufenthalts (befristet/unbefristet)",
+     "format": ""
+    },
+    {
+     "feld": "Finanzierung des Aufenthalts",
+     "format": ""
+    },
+    {
+     "feld": "Briefkastenbeschriftung / Postanschrift",
+     "format": ""
+    },
+    {
+     "feld": "Grund für das Verlassen der letzten Wohngemeinde",
+     "format": ""
+    },
+    {
+     "feld": "Aktuelle Wohnumstände",
+     "format": ""
+    },
+    {
+     "feld": "Aufbewahrungsort persönlicher Effekten und Möbel",
+     "format": ""
+    },
+    {
+     "feld": "Erkennbare Umstände für Verbleibsabsicht",
+     "format": ""
+    },
+    {
+     "feld": "Bisheriger Lebensunterhalt",
+     "format": ""
+    },
+    {
+     "feld": "Aktuelle Einnahmen oder Vermögenswerte",
+     "format": ""
+    },
+    {
+     "feld": "Bank- und Postkonti",
+     "format": ""
+    },
+    {
+     "feld": "Krankenkasse",
+     "format": ""
+    },
+    {
+     "feld": "Datum",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Unterschrift/en",
+     "format": ""
+    },
+    {
+     "feld": "Beilagen",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 499,
+   "titel": "Gesuch für die Einfuhr oder Wiedereinfuhr von Hunden, Katzen oder Frettchen aus einem Tollwut-Risikoland",
+   "dienststelle": "Veterinäramt",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Adresse",
+     "format": ""
+    },
+    {
+     "feld": "PLZ/Ort",
+     "format": ""
+    },
+    {
+     "feld": "Land",
+     "format": ""
+    },
+    {
+     "feld": "E-Mail",
+     "format": ""
+    },
+    {
+     "feld": "Tel./Fax",
+     "format": ""
+    },
+    {
+     "feld": "Nummern früherer Einfuhrbewilligungen",
+     "format": ""
+    },
+    {
+     "feld": "Art der Einfuhr",
+     "format": ""
+    },
+    {
+     "feld": "Grund der definitiven Einfuhr",
+     "format": ""
+    },
+    {
+     "feld": "Datum der Einreise",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Einreiseflughafen",
+     "format": ""
+    },
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Adresse",
+     "format": ""
+    },
+    {
+     "feld": "PLZ/Ort",
+     "format": ""
+    },
+    {
+     "feld": "Land",
+     "format": ""
+    },
+    {
+     "feld": "E-Mail",
+     "format": ""
+    },
+    {
+     "feld": "Tel./Fax",
+     "format": ""
+    },
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Adresse",
+     "format": ""
+    },
+    {
+     "feld": "PLZ/Ort",
+     "format": ""
+    },
+    {
+     "feld": "Land",
+     "format": ""
+    },
+    {
+     "feld": "E-Mail",
+     "format": ""
+    },
+    {
+     "feld": "Tel./Fax",
+     "format": ""
+    },
+    {
+     "feld": "Tierart",
+     "format": ""
+    },
+    {
+     "feld": "Rasse",
+     "format": "Geburtsdatum: TT.MM.JJJJ"
+    },
+    {
+     "feld": "Geburtsland",
+     "format": "Geburtsdatum: TT.MM.JJJJ"
+    },
+    {
+     "feld": "Geburtsdatum",
+     "format": "Geburtsdatum: TT.MM.JJJJ"
+    },
+    {
+     "feld": "Geschlecht des Tieres",
+     "format": ""
+    },
+    {
+     "feld": "Nummer Mikrochip/Tätowierung",
+     "format": "Datum: TT.MM.JJJJ"
+    },
+    {
+     "feld": "Datum Implantation/Tätowierung",
+     "format": "Datum: TT.MM.JJJJ"
+    },
+    {
+     "feld": "Kupierter Hund",
+     "format": ""
+    },
+    {
+     "feld": "Kupierte Körperteile",
+     "format": ""
+    },
+    {
+     "feld": "Datum letzte Impfung",
+     "format": "Daten: TT.MM.JJJJ"
+    },
+    {
+     "feld": "Gültig bis",
+     "format": "Daten: TT.MM.JJJJ"
+    },
+    {
+     "feld": "Datum Blutentnahme",
+     "format": "Daten: TT.MM.JJJJ"
+    },
+    {
+     "feld": "Datum Impfung vor Blutentnahme",
+     "format": "Daten: TT.MM.JJJJ"
+    },
+    {
+     "feld": "Frühere Impfungen",
+     "format": "Daten: TT.MM.JJJJ"
+    },
+    {
+     "feld": "Ort",
+     "format": "Datum: TT.MM.JJJJ"
+    },
+    {
+     "feld": "Datum",
+     "format": "Datum: TT.MM.JJJJ"
+    },
+    {
+     "feld": "Unterschrift",
+     "format": ""
+    },
+    {
+     "feld": "Belege",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 500,
+   "titel": "Einreichung / Bestätigung",
+   "dienststelle": "Steuerverwaltung",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Bestätigungstext",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 501,
+   "titel": "Grundstückgewinnsteuer Rechner",
+   "dienststelle": "Steuerverwaltung",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Steuerjahr",
+     "format": "JJJJ"
+    },
+    {
+     "feld": "Gemeinde",
+     "format": ""
+    },
+    {
+     "feld": "Anzahl Eigentümer",
+     "format": ""
+    },
+    {
+     "feld": "Konfession",
+     "format": ""
+    },
+    {
+     "feld": "Verkaufspreis",
+     "format": ""
+    },
+    {
+     "feld": "Erwerbspreis + Aufwendungen",
+     "format": ""
+    },
+    {
+     "feld": "Grundstückgewinn",
+     "format": ""
+    },
+    {
+     "feld": "Anrechenbare Besitzdauer",
+     "format": ""
+    },
+    {
+     "feld": "Einfache Steuer",
+     "format": ""
+    },
+    {
+     "feld": "Anteil Kantonssteuer",
+     "format": ""
+    },
+    {
+     "feld": "Anteil Gemeindesteuer",
+     "format": ""
+    },
+    {
+     "feld": "Anteil Kirchensteuer",
+     "format": ""
+    },
+    {
+     "feld": "Total Grundstückgewinnsteuer",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 502,
+   "titel": "Meldeformular Tierbestand Nichtkommerzielle Tierhalter",
+   "dienststelle": "Veterinaeramt",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Strasse Hausnummer",
+     "format": ""
+    },
+    {
+     "feld": "PLZ",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": ""
+    },
+    {
+     "feld": "Festnetz Telefon",
+     "format": "Telefon"
+    },
+    {
+     "feld": "Mobiltelefon",
+     "format": "Telefon"
+    },
+    {
+     "feld": "E-Mail",
+     "format": "E-Mail"
+    },
+    {
+     "feld": "Geburtsdatum (tt.mm.jjjj)",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Standort Tierhaltung - Strasse Hausnummer",
+     "format": ""
+    },
+    {
+     "feld": "Standort Tierhaltung - PLZ",
+     "format": ""
+    },
+    {
+     "feld": "Standort Tierhaltung - Ort",
+     "format": ""
+    },
+    {
+     "feld": "Bemerkungen",
+     "format": ""
+    },
+    {
+     "feld": "Wählen Sie die Tierkategorie",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 503,
+   "titel": "Upload Baubewilligung",
+   "dienststelle": "Amt fuer Geoinformation",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Datei-Upload (PDF-Format)",
+     "format": ""
+    },
+    {
+     "feld": "Bauverwaltung",
+     "format": ""
+    },
+    {
+     "feld": "E-Mail",
+     "format": "E-Mail"
+    }
+   ]
+  },
+  {
+   "form_id": 504,
+   "titel": "Planbeglaubigung",
+   "dienststelle": "Amt fuer Geoinformation",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Gemeinde",
+     "format": ""
+    },
+    {
+     "feld": "Grundbuchnummer",
+     "format": ""
+    },
+    {
+     "feld": "Anzahl Kopien",
+     "format": ""
+    },
+    {
+     "feld": "Datei-Upload",
+     "format": ""
+    },
+    {
+     "feld": "inkl. Eigentümerverzeichnis",
+     "format": ""
+    },
+    {
+     "feld": "Abweichende Rechnungsadresse",
+     "format": ""
+    },
+    {
+     "feld": "Firma",
+     "format": ""
+    },
+    {
+     "feld": "Anrede",
+     "format": ""
+    },
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Strasse",
+     "format": ""
+    },
+    {
+     "feld": "Hausnummer",
+     "format": ""
+    },
+    {
+     "feld": "Postleitzahl",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": ""
+    },
+    {
+     "feld": "E-Mail (Adresse für Bestätigungsmail)",
+     "format": "E-Mail"
+    },
+    {
+     "feld": "Telefonnummer",
+     "format": "Telefon"
+    },
+    {
+     "feld": "Mobil",
+     "format": "Telefon"
+    },
+    {
+     "feld": "Bemerkungen",
+     "format": ""
+    },
+    {
+     "feld": "Firma",
+     "format": ""
+    },
+    {
+     "feld": "Anrede",
+     "format": ""
+    },
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Strasse",
+     "format": ""
+    },
+    {
+     "feld": "Hausnummer",
+     "format": ""
+    },
+    {
+     "feld": "Postleitzahl",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": ""
+    },
+    {
+     "feld": "Informationen gelesen",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 505,
+   "titel": "Planbestellung amtliche Vermessung",
+   "dienststelle": "Amt fuer Geoinformation",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Produkt",
+     "format": ""
+    },
+    {
+     "feld": "Gemeinde",
+     "format": ""
+    },
+    {
+     "feld": "Ausschnitt",
+     "format": ""
+    },
+    {
+     "feld": "Adresse",
+     "format": ""
+    },
+    {
+     "feld": "Grundbuchnummer",
+     "format": ""
+    },
+    {
+     "feld": "Anzahl Kopien",
+     "format": ""
+    },
+    {
+     "feld": "Massstab",
+     "format": ""
+    },
+    {
+     "feld": "Abweichende Rechnungsadresse",
+     "format": ""
+    },
+    {
+     "feld": "Firma (Lieferadresse)",
+     "format": ""
+    },
+    {
+     "feld": "Anrede (Lieferadresse)",
+     "format": ""
+    },
+    {
+     "feld": "Name (Lieferadresse)",
+     "format": ""
+    },
+    {
+     "feld": "Vorname (Lieferadresse)",
+     "format": ""
+    },
+    {
+     "feld": "Strasse (Lieferadresse)",
+     "format": ""
+    },
+    {
+     "feld": "Hausnummer (Lieferadresse)",
+     "format": ""
+    },
+    {
+     "feld": "Postleitzahl (Lieferadresse)",
+     "format": ""
+    },
+    {
+     "feld": "Ort (Lieferadresse)",
+     "format": ""
+    },
+    {
+     "feld": "E-Mail (Adresse für Bestätigungsmail)",
+     "format": "E-Mail"
+    },
+    {
+     "feld": "Telefonnummer",
+     "format": "Telefon"
+    },
+    {
+     "feld": "Mobil",
+     "format": "Telefon"
+    },
+    {
+     "feld": "Bemerkungen",
+     "format": ""
+    },
+    {
+     "feld": "Firma (Rechnungsadresse)",
+     "format": ""
+    },
+    {
+     "feld": "Anrede (Rechnungsadresse)",
+     "format": ""
+    },
+    {
+     "feld": "Name (Rechnungsadresse)",
+     "format": ""
+    },
+    {
+     "feld": "Vorname (Rechnungsadresse)",
+     "format": ""
+    },
+    {
+     "feld": "Strasse (Rechnungsadresse)",
+     "format": ""
+    },
+    {
+     "feld": "Hausnummer (Rechnungsadresse)",
+     "format": ""
+    },
+    {
+     "feld": "Postleitzahl (Rechnungsadresse)",
+     "format": ""
+    },
+    {
+     "feld": "Ort (Rechnungsadresse)",
+     "format": ""
+    },
+    {
+     "feld": "Informationen gelesen",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 506,
+   "titel": "Verlust des Ausländerausweises",
+   "dienststelle": "Migrationsamt und Passbuero",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Geburtsdatum",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "ZEMIS-NR.",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 507,
+   "titel": "Namensänderungen und Nationalitätsänderungen",
+   "dienststelle": "Migrationsamt und Passbuero",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Geburtsdatum",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "ZEMIS-NR.",
+     "format": ""
+    },
+    {
+     "feld": "Kopie des gültigen Reisepasses mit dem geänderten Namen/geänderter Nationalität",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 508,
+   "titel": "Verlängerungsgesuch",
+   "dienststelle": "Migrationsamt und Passbuero",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Adresse",
+     "format": ""
+    },
+    {
+     "feld": "Geburtsdatum",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "ZEMIS-Nummer",
+     "format": ""
+    },
+    {
+     "feld": "SH-Nummer",
+     "format": ""
+    },
+    {
+     "feld": "Nummer des Passes und Gültigkeitsdauer",
+     "format": ""
+    },
+    {
+     "feld": "Staatsangehörigkeit",
+     "format": ""
+    },
+    {
+     "feld": "E-Mail-Adresse",
+     "format": "E-Mail"
+    },
+    {
+     "feld": "Telefonnummer",
+     "format": "Telefon"
+    },
+    {
+     "feld": "Zivilstand",
+     "format": ""
+    },
+    {
+     "feld": "Ehegatte oder Partner Schweizer(in)",
+     "format": ""
+    },
+    {
+     "feld": "Gemeinsamer Haushalt (zusammenwohnend)",
+     "format": ""
+    },
+    {
+     "feld": "Getrennter Haushalt seit",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Adresse des Ehegatten oder Partners",
+     "format": ""
+    },
+    {
+     "feld": "Zivilstandsänderung seit",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Jetziger Aufenthaltszweck (Erwerbstätige)",
+     "format": ""
+    },
+    {
+     "feld": "Name und Adresse des Betriebes",
+     "format": ""
+    },
+    {
+     "feld": "Anstellungsdauer",
+     "format": ""
+    },
+    {
+     "feld": "Befristet bis",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Beschäftigungsgrad / Arbeitszeit (Stunden pro Woche)",
+     "format": ""
+    },
+    {
+     "feld": "Aufenthaltszweck (Nichterwerbstätige)",
+     "format": ""
+    },
+    {
+     "feld": "Auf Stellensuche seit",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Nachweis der finanziellen Situation beilegen",
+     "format": ""
+    },
+    {
+     "feld": "Bemerkungen des(r) Gesuchsteller(in)",
+     "format": ""
+    },
+    {
+     "feld": "Ort und Datum",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 509,
+   "titel": "Verlängerungsgesuch",
+   "dienststelle": "Migrationsamt und Passbuero",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Adresse",
+     "format": ""
+    },
+    {
+     "feld": "Geburtsdatum",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "ZEMIS-Nummer",
+     "format": ""
+    },
+    {
+     "feld": "SH-Nummer",
+     "format": ""
+    },
+    {
+     "feld": "Nummer des Passes und Gültigkeitsdauer",
+     "format": ""
+    },
+    {
+     "feld": "Staatsangehörigkeit",
+     "format": ""
+    },
+    {
+     "feld": "E-Mail-Adresse",
+     "format": "E-Mail"
+    },
+    {
+     "feld": "Telefonnummer",
+     "format": "Telefon"
+    },
+    {
+     "feld": "Zivilstand",
+     "format": ""
+    },
+    {
+     "feld": "Ehegatte oder Partner Schweizer(in)",
+     "format": ""
+    },
+    {
+     "feld": "Gemeinsamer Haushalt (zusammenwohnend)",
+     "format": ""
+    },
+    {
+     "feld": "Getrennter Haushalt seit",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Adresse des Ehegatten oder Partners",
+     "format": ""
+    },
+    {
+     "feld": "Zivilstandsänderung seit",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Jetziger Aufenthaltszweck (Erwerbstätige)",
+     "format": ""
+    },
+    {
+     "feld": "Name und Adresse des Betriebes",
+     "format": ""
+    },
+    {
+     "feld": "Anstellungsdauer unbefristet",
+     "format": ""
+    },
+    {
+     "feld": "Anstellungsdauer befristet bis",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Beschäftigungsgrad / Arbeitszeit (Stunden pro Woche)",
+     "format": ""
+    },
+    {
+     "feld": "Aufenthaltszweck (Nichterwerbstätige)",
+     "format": ""
+    },
+    {
+     "feld": "Auf Stellensuche seit",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Nachweis der finanziellen Situation beilegen",
+     "format": ""
+    },
+    {
+     "feld": "Bemerkungen des(r) Gesuchsteller(in)",
+     "format": ""
+    },
+    {
+     "feld": "Ort und Datum",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 510,
+   "titel": "Verlängerungsgesuch Ausländerausweis",
+   "dienststelle": "Migrationsamt und Passbuero",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Adresse",
+     "format": ""
+    },
+    {
+     "feld": "Geburtsdatum",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "ZEMIS-Nummer",
+     "format": ""
+    },
+    {
+     "feld": "SH-Nummer",
+     "format": ""
+    },
+    {
+     "feld": "Nummer des Passes und Gültigkeitsdauer",
+     "format": ""
+    },
+    {
+     "feld": "Staatsangehörigkeit",
+     "format": ""
+    },
+    {
+     "feld": "E-Mail-Adresse",
+     "format": "E-Mail"
+    },
+    {
+     "feld": "Telefonnummer",
+     "format": "Telefon"
+    },
+    {
+     "feld": "Zivilstand",
+     "format": ""
+    },
+    {
+     "feld": "Ehegatte oder Partner Schweizer(in)",
+     "format": ""
+    },
+    {
+     "feld": "Gemeinsamer Haushalt (zusammenwohnend)",
+     "format": ""
+    },
+    {
+     "feld": "Getrennter Haushalt seit",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Adresse des Ehegatten oder Partners",
+     "format": ""
+    },
+    {
+     "feld": "Trennung/Scheidung seit",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Jetziger Aufenthaltszweck (Erwerbstätige)",
+     "format": ""
+    },
+    {
+     "feld": "Name und Adresse des Betriebes",
+     "format": ""
+    },
+    {
+     "feld": "Anstellungsdauer unbefristet",
+     "format": ""
+    },
+    {
+     "feld": "Anstellungsdauer befristet bis",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Beschäftigungsgrad / Arbeitszeit (Stunden pro Woche)",
+     "format": ""
+    },
+    {
+     "feld": "Aufenthaltszweck (Nichterwerbstätige)",
+     "format": ""
+    },
+    {
+     "feld": "Nachweis der finanziellen Situation beilegen",
+     "format": ""
+    },
+    {
+     "feld": "Bemerkungen des(r) Gesuchsteller(in)",
+     "format": ""
+    },
+    {
+     "feld": "Ort und Datum",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 511,
+   "titel": "Formular (Post/Schalter)",
+   "dienststelle": "Migrationsamt und Passbuero",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Adresse",
+     "format": ""
+    },
+    {
+     "feld": "Geburtsdatum",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "ZEMIS-Nummer",
+     "format": ""
+    },
+    {
+     "feld": "SH-Nummer",
+     "format": ""
+    },
+    {
+     "feld": "Nummer des Passes und Gültigkeitsdauer",
+     "format": ""
+    },
+    {
+     "feld": "Staatsangehörigkeit",
+     "format": ""
+    },
+    {
+     "feld": "E-Mail-Adresse",
+     "format": "E-Mail"
+    },
+    {
+     "feld": "Telefonnummer",
+     "format": "Telefon"
+    },
+    {
+     "feld": "Bewilligungsart",
+     "format": ""
+    },
+    {
+     "feld": "Jetzige ausgeübte Tätigkeit",
+     "format": ""
+    },
+    {
+     "feld": "Name und Adresse des Betriebes",
+     "format": ""
+    },
+    {
+     "feld": "Anstellungsdauer - Unbefristet",
+     "format": ""
+    },
+    {
+     "feld": "Anstellungsdauer - Befristet bis",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Beschäftigungsgrad / Arbeitszeit (Stunden pro Woche)",
+     "format": ""
+    },
+    {
+     "feld": "Bemerkungen des(r) Antragssteller(in)",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 512,
+   "titel": "Verlängerungsgesuch Ausländerausweis",
+   "dienststelle": "Migrationsamt und Passbuero",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Adresse",
+     "format": ""
+    },
+    {
+     "feld": "Geburtsdatum",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "ZEMIS-Nummer",
+     "format": ""
+    },
+    {
+     "feld": "SH-Nummer",
+     "format": ""
+    },
+    {
+     "feld": "Nummer des Passes und Gültigkeitsdauer",
+     "format": ""
+    },
+    {
+     "feld": "Staatsangehörigkeit",
+     "format": ""
+    },
+    {
+     "feld": "E-Mail-Adresse",
+     "format": "E-Mail"
+    },
+    {
+     "feld": "Telefonnummer",
+     "format": "Telefon"
+    },
+    {
+     "feld": "Zivilstand",
+     "format": ""
+    },
+    {
+     "feld": "Ehegatte oder Partner Schweizer(in)",
+     "format": ""
+    },
+    {
+     "feld": "Gemeinsamer Haushalt (zusammenwohnend)",
+     "format": ""
+    },
+    {
+     "feld": "Getrennter Haushalt seit",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Adresse des Ehegatten oder Partners",
+     "format": ""
+    },
+    {
+     "feld": "Seit",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Jetziger Aufenthaltszweck (Erwerbstätige)",
+     "format": ""
+    },
+    {
+     "feld": "Name und Adresse des Betriebes",
+     "format": ""
+    },
+    {
+     "feld": "Anstellungsdauer unbefristet",
+     "format": ""
+    },
+    {
+     "feld": "Anstellungsdauer befristet bis",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Beschäftigungsgrad / Arbeitszeit (Stunden pro Woche)",
+     "format": ""
+    },
+    {
+     "feld": "Schüler(in)",
+     "format": ""
+    },
+    {
+     "feld": "Student(in)",
+     "format": ""
+    },
+    {
+     "feld": "Ausbildung ausserhalb der Schweiz",
+     "format": ""
+    },
+    {
+     "feld": "Aufenthalt in medizinischer Behandlung",
+     "format": ""
+    },
+    {
+     "feld": "Privataufenthalt",
+     "format": ""
+    },
+    {
+     "feld": "In der Schweiz anerkannter Flüchtling",
+     "format": ""
+    },
+    {
+     "feld": "Ehegatte/eingetragener Partner eines Schweizerbürgers",
+     "format": ""
+    },
+    {
+     "feld": "Verbleib beim Ehegatten/Partner",
+     "format": ""
+    },
+    {
+     "feld": "Verbleib bei Eltern",
+     "format": ""
+    },
+    {
+     "feld": "Verbleib bei anderen Familienangehörigen",
+     "format": ""
+    },
+    {
+     "feld": "Pflegekind",
+     "format": ""
+    },
+    {
+     "feld": "Pflegekind zur späteren Adoption",
+     "format": ""
+    },
+    {
+     "feld": "Rentner(in)",
+     "format": ""
+    },
+    {
+     "feld": "Auf Stellensuche seit",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Übrige nicht Erwerbstätigkeit",
+     "format": ""
+    },
+    {
+     "feld": "Sozialleistungen",
+     "format": ""
+    },
+    {
+     "feld": "Nachweis der finanziellen Situation beilegen",
+     "format": ""
+    },
+    {
+     "feld": "Bemerkungen des(r) Gesuchsteller(in)",
+     "format": ""
+    },
+    {
+     "feld": "Ort und Datum",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 513,
+   "titel": "Formular (Post/Schalter)",
+   "dienststelle": "Migrationsamt und Passbuero",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Adresse",
+     "format": ""
+    },
+    {
+     "feld": "Geburtsdatum",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "ZEMIS-Nummer",
+     "format": ""
+    },
+    {
+     "feld": "SH-Nummer",
+     "format": ""
+    },
+    {
+     "feld": "Nummer des Passes und Gültigkeitsdauer",
+     "format": ""
+    },
+    {
+     "feld": "Staatsangehörigkeit",
+     "format": ""
+    },
+    {
+     "feld": "E-Mail-Adresse",
+     "format": "E-Mail"
+    },
+    {
+     "feld": "Telefonnummer",
+     "format": "Telefon"
+    },
+    {
+     "feld": "Zivilstand",
+     "format": ""
+    },
+    {
+     "feld": "Jetziger Aufenthaltszweck",
+     "format": ""
+    },
+    {
+     "feld": "Jetzige ausgeübte Tätigkeit",
+     "format": ""
+    },
+    {
+     "feld": "Name und Adresse des Betriebes",
+     "format": ""
+    },
+    {
+     "feld": "Einsatzort",
+     "format": ""
+    },
+    {
+     "feld": "Bemerkungen des(r) Gesuchsteller(in)",
+     "format": ""
+    },
+    {
+     "feld": "Ort und Datum",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 514,
+   "titel": "Bestellung Grundbuchauszug",
+   "dienststelle": "Grundbuchamt Notariat",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Name oder Firma",
+     "format": ""
+    },
+    {
+     "feld": "Vorname / bei Firma Ansprechperson",
+     "format": ""
+    },
+    {
+     "feld": "Strasse",
+     "format": ""
+    },
+    {
+     "feld": "PLZ / Ort",
+     "format": ""
+    },
+    {
+     "feld": "Telefon",
+     "format": "Telefon"
+    },
+    {
+     "feld": "E-Mail",
+     "format": "E-Mail"
+    }
+   ]
+  },
+  {
+   "form_id": 515,
+   "titel": "Gesuch für Aufgrabung im öffentlichen Strassengebiet",
+   "dienststelle": "Abteilung Unterhaltsdienst",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Strasse Hausnummer",
+     "format": ""
+    },
+    {
+     "feld": "PLZ",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": ""
+    },
+    {
+     "feld": "E-Mail",
+     "format": "E-Mail"
+    },
+    {
+     "feld": "Telefon",
+     "format": "Telefon"
+    },
+    {
+     "feld": "Gemeinde",
+     "format": ""
+    },
+    {
+     "feld": "Strasse",
+     "format": ""
+    },
+    {
+     "feld": "Stelle",
+     "format": ""
+    },
+    {
+     "feld": "Zweck der Aufgrabung",
+     "format": ""
+    },
+    {
+     "feld": "Bauherrschaft / Werkeigentümer",
+     "format": ""
+    },
+    {
+     "feld": "Rechnungsadresse - Strasse Hausnummer",
+     "format": ""
+    },
+    {
+     "feld": "Rechnungsadresse - PLZ",
+     "format": ""
+    },
+    {
+     "feld": "Rechnungsadresse - Ort",
+     "format": ""
+    },
+    {
+     "feld": "Bauleitung",
+     "format": ""
+    },
+    {
+     "feld": "Unternehmer",
+     "format": ""
+    },
+    {
+     "feld": "Baubeginn",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Bauende",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Bereit für Belagseinbau / Datum",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Belagsfläche ca. in m²",
+     "format": ""
+    },
+    {
+     "feld": "Länge Fahrbahn in m²",
+     "format": ""
+    },
+    {
+     "feld": "Bankett in m²",
+     "format": ""
+    },
+    {
+     "feld": "Trottoir in m²",
+     "format": ""
+    },
+    {
+     "feld": "Beilagen - Form",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 516,
+   "titel": "Meldung: Verdacht auf Schwarzarbeit",
+   "dienststelle": "Arbeitsamt",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Verdachtsart",
+     "format": ""
+    },
+    {
+     "feld": "Ort der Feststellung",
+     "format": ""
+    },
+    {
+     "feld": "Strasse Hausnummer",
+     "format": ""
+    },
+    {
+     "feld": "Art der Arbeiten",
+     "format": ""
+    },
+    {
+     "feld": "Betrieb/Firma",
+     "format": ""
+    },
+    {
+     "feld": "Adresse Betrieb/Firma",
+     "format": ""
+    },
+    {
+     "feld": "Anzahl Arbeitnehmer",
+     "format": ""
+    },
+    {
+     "feld": "Dauer der Arbeiten",
+     "format": ""
+    },
+    {
+     "feld": "Fahrzeug",
+     "format": ""
+    },
+    {
+     "feld": "Bester Kontrollzeitpunkt",
+     "format": ""
+    },
+    {
+     "feld": "Bemerkungen",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Firma",
+     "format": ""
+    },
+    {
+     "feld": "Telefon",
+     "format": "Telefon"
+    },
+    {
+     "feld": "E-Mail",
+     "format": "E-Mail"
+    },
+    {
+     "feld": "Ich will anonym bleiben",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 517,
+   "titel": "Gesuch für Auslandurlaub",
+   "dienststelle": "Bevoelkerungsschutz und Armee",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Nachname",
+     "format": ""
+    },
+    {
+     "feld": "Geburtsdatum",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Personalausweis-Nummer",
+     "format": ""
+    },
+    {
+     "feld": "Adresse",
+     "format": ""
+    },
+    {
+     "feld": "PLZ / Ort",
+     "format": ""
+    },
+    {
+     "feld": "Telefon",
+     "format": "Telefon"
+    },
+    {
+     "feld": "E-Mail",
+     "format": "E-Mail"
+    },
+    {
+     "feld": "Reiseziel",
+     "format": ""
+    },
+    {
+     "feld": "Reisedatum von",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Reisedatum bis",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Reisezweck",
+     "format": ""
+    },
+    {
+     "feld": "Begleiter",
+     "format": ""
+    },
+    {
+     "feld": "Reiseversicherung abgeschlossen",
+     "format": ""
+    },
+    {
+     "feld": "Notizen / Bemerkungen",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 518,
+   "titel": "Gesuch um Dienstverschiebung / Wiedererwägungsgesuch",
+   "dienststelle": "Bevoelkerungsschutz und Armee",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Name des Gesuchstellers",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Adresse",
+     "format": ""
+    },
+    {
+     "feld": "PLZ / Ort",
+     "format": ""
+    },
+    {
+     "feld": "Telefon",
+     "format": "Telefon"
+    },
+    {
+     "feld": "E-Mail",
+     "format": "E-Mail"
+    },
+    {
+     "feld": "Geburtsdatum",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Personalnummer",
+     "format": ""
+    },
+    {
+     "feld": "Aktuelle Dienststelle",
+     "format": ""
+    },
+    {
+     "feld": "Aktuelle Funktion / Tätigkeit",
+     "format": ""
+    },
+    {
+     "feld": "Gewünschte Dienststelle",
+     "format": ""
+    },
+    {
+     "feld": "Gewünschte Funktion / Tätigkeit",
+     "format": ""
+    },
+    {
+     "feld": "Begründung des Gesuches",
+     "format": ""
+    },
+    {
+     "feld": "Art des Gesuches",
+     "format": ""
+    },
+    {
+     "feld": "Datum der Eingabe",
+     "format": "TT.MM.JJJJ"
+    }
+   ]
+  },
+  {
+   "form_id": 519,
+   "titel": "Dienstverschiebungs-/Urlaubsgesuch",
+   "dienststelle": "Bevoelkerungsschutz und Armee",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Gesuchsart",
+     "format": ""
+    },
+    {
+     "feld": "Versichertennummer",
+     "format": ""
+    },
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Strasse Hausnummer",
+     "format": ""
+    },
+    {
+     "feld": "PLZ",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": ""
+    },
+    {
+     "feld": "Telefon",
+     "format": "Telefon"
+    },
+    {
+     "feld": "E-Mail",
+     "format": "E-Mail"
+    },
+    {
+     "feld": "Dienstbezeichnung",
+     "format": ""
+    },
+    {
+     "feld": "Vorgesehener Dienst - Datum von",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Vorgesehener Dienst - Datum bis",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "1. Priorität - Datum von",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "1. Priorität - Datum bis",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "2. Priorität - Datum von",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "2. Priorität - Datum bis",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Grund der Verschiebung",
+     "format": ""
+    },
+    {
+     "feld": "Detailbegründung",
+     "format": ""
+    },
+    {
+     "feld": "Beilagen",
+     "format": ""
+    },
+    {
+     "feld": "Hiermit bestätige ich, dass die oben aufgeführten Personalien meiner Person entsprechen.",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 520,
+   "titel": "Erhebungsblatt Trink- und Brauchwasser",
+   "dienststelle": "Abteilung Gewaesser und Materialabbau",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Objektadresse",
+     "format": ""
+    },
+    {
+     "feld": "Grundstücknummer",
+     "format": ""
+    },
+    {
+     "feld": "Name Eigentümer",
+     "format": ""
+    },
+    {
+     "feld": "Adresse Eigentümer",
+     "format": ""
+    },
+    {
+     "feld": "Trinkwasserverbrauch (m³/Jahr)",
+     "format": ""
+    },
+    {
+     "feld": "Brauchwasserverbrauch (m³/Jahr)",
+     "format": ""
+    },
+    {
+     "feld": "Eigenversorgung vorhanden",
+     "format": ""
+    },
+    {
+     "feld": "Art der Eigenversorgung",
+     "format": ""
+    },
+    {
+     "feld": "Abwassereinleitung",
+     "format": ""
+    },
+    {
+     "feld": "Bemerkungen",
+     "format": ""
+    },
+    {
+     "feld": "Erhebungsdatum",
+     "format": "TT.MM.JJJJ"
+    }
+   ]
+  },
+  {
+   "form_id": 521,
+   "titel": "Eigentümerverzeichnis / Anstösserliste",
+   "dienststelle": "Grundbuchamt Notariat",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Name oder Firma",
+     "format": ""
+    },
+    {
+     "feld": "Vorname / bei Firma Ansprechperson",
+     "format": ""
+    },
+    {
+     "feld": "Strasse",
+     "format": ""
+    },
+    {
+     "feld": "PLZ / Ort",
+     "format": ""
+    },
+    {
+     "feld": "Telefon",
+     "format": "Telefon"
+    },
+    {
+     "feld": "E-Mail",
+     "format": "E-Mail"
+    }
+   ]
+  },
+  {
+   "form_id": 522,
+   "titel": "Einreichung / Bestätigung",
+   "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Bestätigungstext",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 523,
+   "titel": "Anmeldeformular für die Orientierungsveranstaltung",
+   "dienststelle": "Bevoelkerungsschutz und Armee",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Geburtsdatum (tt.mm.jjjj)",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Strasse Hausnummer",
+     "format": ""
+    },
+    {
+     "feld": "PLZ",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": ""
+    },
+    {
+     "feld": "E-Mail",
+     "format": "E-Mail"
+    },
+    {
+     "feld": "Funktion",
+     "format": ""
+    },
+    {
+     "feld": "Termin",
+     "format": ""
+    },
+    {
+     "feld": "Mobiltelefon",
+     "format": "Telefon"
+    }
+   ]
+  },
+  {
+   "form_id": 524,
+   "titel": "Ratenzahlungsgesuch Wehrpflichtersatzabgabe",
+   "dienststelle": "Bevoelkerungsschutz und Armee",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Geburtsdatum (tt.mm.jjjj)",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Geschlecht",
+     "format": ""
+    },
+    {
+     "feld": "Strasse Hausnummer",
+     "format": ""
+    },
+    {
+     "feld": "PLZ",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": ""
+    },
+    {
+     "feld": "E-Mail",
+     "format": "E-Mail"
+    },
+    {
+     "feld": "Telefon",
+     "format": "Telefon"
+    },
+    {
+     "feld": "Versicherungsnummer",
+     "format": ""
+    },
+    {
+     "feld": "Ersatzjahr",
+     "format": "JJJJ"
+    },
+    {
+     "feld": "Datum der Rechnung",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Betrag laut Rechnung",
+     "format": ""
+    },
+    {
+     "feld": "Zahlungsvorschlag",
+     "format": ""
+    },
+    {
+     "feld": "Fälligkeit der 1. Rate",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Bemerkungen",
+     "format": ""
+    },
+    {
+     "feld": "Hiermit bestätige ich, dass ich über die Verzugszinsen informiert wurde. Des Weiteren nehme ich zur Kenntnis, dass die Entscheidung über die Anzahl der Raten un",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 525,
+   "titel": "Aussonderungsbegehren im Konkurs",
+   "dienststelle": "Betreibungs- und Konkursamt",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Handelt es sich um eine (Konkursit/-in)",
+     "format": ""
+    },
+    {
+     "feld": "Konkurs-Nr. (sofern bekannt)",
+     "format": ""
+    },
+    {
+     "feld": "Handelt es sich um eine (Drittansprecher/-in)",
+     "format": ""
+    },
+    {
+     "feld": "Adresse / Nr.",
+     "format": ""
+    },
+    {
+     "feld": "PLZ",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": ""
+    },
+    {
+     "feld": "Telefon",
+     "format": "Telefon"
+    },
+    {
+     "feld": "E-Mail",
+     "format": "E-Mail"
+    },
+    {
+     "feld": "Drittansprechervertreter",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 526,
+   "titel": "Beschwerdemeldung an die Abteilung Soziale Angebote",
+   "dienststelle": "Sozialamt",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Welches Soziale Angebot betrifft die Beschwerde?",
+     "format": ""
+    },
+    {
+     "feld": "Welches Ereignis, welche Ereignisse betreffen die Beschwerde? (Bitte den Sachverhalt mit Datum und Zeitpunkt möglichst ausführlich und genau beschreiben.)",
+     "format": ""
+    },
+    {
+     "feld": "In welcher Beziehung steht die beschwerdemeldende Person zu der in der Beschwerde genannten Person/Personen?",
+     "format": ""
+    },
+    {
+     "feld": "Wurde die Beschwerde, der Vorfall bereits einer anderen Instanz gemeldet? (z.B. Institution, Fachstelle, etc.)",
+     "format": ""
+    },
+    {
+     "feld": "Ziel der Beschwerde",
+     "format": ""
+    },
+    {
+     "feld": "Ist eine Kontaktaufnahme seitens Sozialamt erwünscht?",
+     "format": ""
+    },
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "E-Mail",
+     "format": "E-Mail"
+    },
+    {
+     "feld": "Telefon",
+     "format": "Telefon"
+    }
+   ]
+  },
+  {
+   "form_id": 527,
+   "titel": "Forderungseingabe im Konkurs",
+   "dienststelle": "Betreibungs- und Konkursamt",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Konkursit/-in: Handelt es sich um eine",
+     "format": ""
+    },
+    {
+     "feld": "Konkurs-Nr. (sofern bekannt)",
+     "format": ""
+    },
+    {
+     "feld": "Gläubiger/-in: Handelt es sich um eine",
+     "format": ""
+    },
+    {
+     "feld": "Adresse / Nr.",
+     "format": ""
+    },
+    {
+     "feld": "PLZ",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": ""
+    },
+    {
+     "feld": "Telefon",
+     "format": "Telefon"
+    },
+    {
+     "feld": "E-Mail",
+     "format": "E-Mail"
+    },
+    {
+     "feld": "IBAN (keine QR-IBAN)",
+     "format": ""
+    },
+    {
+     "feld": "Gläubigervertreter",
+     "format": ""
+    },
+    {
+     "feld": "Forderungsbetrag in CHF",
+     "format": ""
+    },
+    {
+     "feld": "Zinssatz in %",
+     "format": ""
+    },
+    {
+     "feld": "Zeitraum des Zins von",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Zeitraum des Zins bis (Datum Konkurseröffnung)",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Zinsen in CHF (werden automatisch berechnet)",
+     "format": ""
+    },
+    {
+     "feld": "Betreibungskosten in CHF (müssen belegt werden)",
+     "format": ""
+    },
+    {
+     "feld": "Angemeldete Forderung total in CHF",
+     "format": ""
+    },
+    {
+     "feld": "Forderungsgrund",
+     "format": ""
+    },
+    {
+     "feld": "Privilegierter Rang",
+     "format": ""
+    },
+    {
+     "feld": "Pfandrechte",
+     "format": ""
+    },
+    {
+     "feld": "Beweismittel (sind beizulegen)",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 528,
+   "titel": "Vorübergehende Arbeitszeitbewilligung beantragen",
+   "dienststelle": "Arbeitsinspektorat Eichamt",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Bewilligung für",
+     "format": ""
+    },
+    {
+     "feld": "Datum von",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Datum bis",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Betrieb / Firma",
+     "format": ""
+    },
+    {
+     "feld": "Strasse Hausnummer",
+     "format": ""
+    },
+    {
+     "feld": "PLZ",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": ""
+    },
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "E-Mail",
+     "format": "E-Mail"
+    },
+    {
+     "feld": "Telefon / Mobile",
+     "format": "Telefon"
+    },
+    {
+     "feld": "Ist die Zustelladresse gleich der des Gesuchstellers/der Gesuchstellerin?",
+     "format": ""
+    },
+    {
+     "feld": "Ist die Rechnungsadresse gleich der des Gesuchstellers/der Gesuchstellerin?",
+     "format": ""
+    },
+    {
+     "feld": "Ich möchte eine elektronische Zustellung der Bewilligung",
+     "format": ""
+    },
+    {
+     "feld": "E-Mail an die die Daten zugestellt werden sollen",
+     "format": "E-Mail"
+    }
+   ]
+  },
+  {
+   "form_id": 529,
+   "titel": "Rückerstattung Guthaben",
+   "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Kontoangaben für Rückerstattung",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 530,
+   "titel": "Bestellformular Flyer & Broschüren",
+   "dienststelle": "Gesundheitsamt",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "PAPRICA Bewegungstipps 0 - 9 Monate",
+     "format": ""
+    },
+    {
+     "feld": "PAPRICA Bewegungstipps 9 - 18 Monate",
+     "format": ""
+    },
+    {
+     "feld": "PAPRICA Bewegungstipps 18 Monate - 2.5 Jahre",
+     "format": ""
+    },
+    {
+     "feld": "PAPRICA Bewegungstipps 2.5 - 4 Jahre",
+     "format": ""
+    },
+    {
+     "feld": "PAPRICA Bewegungstipps 4 - 6 Jahre",
+     "format": ""
+    },
+    {
+     "feld": "PURZELBAUM Bewegungsspass im Familienalltag",
+     "format": ""
+    },
+    {
+     "feld": "Ernährung im 1. Lebensjahr",
+     "format": ""
+    },
+    {
+     "feld": "Ernährung im 2. und 3. Lebensjahr",
+     "format": ""
+    },
+    {
+     "feld": "Ernährungsspass im Familienalltag",
+     "format": ""
+    },
+    {
+     "feld": "Zuckerflyer",
+     "format": ""
+    },
+    {
+     "feld": "Znüniblatt",
+     "format": ""
+    },
+    {
+     "feld": "Rundum stark im Familienalltag",
+     "format": ""
+    },
+    {
+     "feld": "So wird mein Kind seelisch stark!",
+     "format": ""
+    },
+    {
+     "feld": "So bleibe ich als Mutter oder Vater seelisch stark!",
+     "format": ""
+    },
+    {
+     "feld": "Tipps für eine aktive Schwangerschaft und die Zeit nach der Geburt",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 531,
+   "titel": "Elektronische Eingaben an das Friedensrichteramt Schaffhausen",
+   "dienststelle": "Betreibungs- und Konkursamt",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Von: Ihre E-Mail Adresse (Absender)",
+     "format": "E-Mail"
+    },
+    {
+     "feld": "Betreff",
+     "format": ""
+    },
+    {
+     "feld": "Geschäftsnummer",
+     "format": ""
+    },
+    {
+     "feld": "Firma/Organisation",
+     "format": ""
+    },
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Geburtsdatum - Tag",
+     "format": ""
+    },
+    {
+     "feld": "Geburtsdatum - Monat",
+     "format": ""
+    },
+    {
+     "feld": "Geburtsdatum - Jahr",
+     "format": "JJJJ"
+    },
+    {
+     "feld": "Strasse",
+     "format": ""
+    },
+    {
+     "feld": "Nr.",
+     "format": ""
+    },
+    {
+     "feld": "PLZ",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": ""
+    },
+    {
+     "feld": "Heimatort",
+     "format": ""
+    },
+    {
+     "feld": "Nationalität",
+     "format": ""
+    },
+    {
+     "feld": "Prozessvertreter - Name",
+     "format": ""
+    },
+    {
+     "feld": "Prozessvertreter - Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Prozessvertreter - Strasse",
+     "format": ""
+    },
+    {
+     "feld": "Prozessvertreter - Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Prozessvertreter - PLZ",
+     "format": ""
+    },
+    {
+     "feld": "Prozessvertreter - Ort",
+     "format": ""
+    },
+    {
+     "feld": "Anhang",
+     "format": ""
+    },
+    {
+     "feld": "Mit dem Senden erklären Sie sich mit den PrivaSphere Geschäftsbedingungen einverstanden",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 532,
+   "titel": "Investitionsbeiträge an IFEG-Bauten – Formular 1: Vorankündigung / Anmeldung eines Bauvorhabens",
+   "dienststelle": "Sozialamt",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Name der Trägerschaft / Institution",
+     "format": ""
+    },
+    {
+     "feld": "Rechtsform",
+     "format": ""
+    },
+    {
+     "feld": "Adresse",
+     "format": ""
+    },
+    {
+     "feld": "PLZ / Ort",
+     "format": ""
+    },
+    {
+     "feld": "Name, Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Funktion",
+     "format": ""
+    },
+    {
+     "feld": "Telefon",
+     "format": "Telefon"
+    },
+    {
+     "feld": "E-Mail",
+     "format": "E-Mail"
+    },
+    {
+     "feld": "Projektname",
+     "format": ""
+    },
+    {
+     "feld": "Grundstück GB Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Gebäude VS-Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Art des Bauvorhabens",
+     "format": ""
+    },
+    {
+     "feld": "Projektbeschreibung (Bauvorhaben, Nutzungen, Kapazitätsveränderung etc.)",
+     "format": ""
+    },
+    {
+     "feld": "Bezug zur Angebotsplanung des Kantons Schaffhausens",
+     "format": ""
+    },
+    {
+     "feld": "Projektstand (Vorabklärungen, involvierte Stiftungen und Fachstellen)",
+     "format": ""
+    },
+    {
+     "feld": "Ort, Datum",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 533,
+   "titel": "Investitionsbeiträge an IFEG-Bauten – Projektanmeldung / Festlegung des Verfahrens",
+   "dienststelle": "Sozialamt",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Name der Trägerschaft / Institution",
+     "format": ""
+    },
+    {
+     "feld": "Rechtsform",
+     "format": ""
+    },
+    {
+     "feld": "Adresse",
+     "format": ""
+    },
+    {
+     "feld": "PLZ / Ort",
+     "format": ""
+    },
+    {
+     "feld": "Name, Vorname (Zuständige Kontaktperson)",
+     "format": ""
+    },
+    {
+     "feld": "Funktion",
+     "format": ""
+    },
+    {
+     "feld": "Telefon",
+     "format": "Telefon"
+    },
+    {
+     "feld": "E-Mail",
+     "format": "E-Mail"
+    },
+    {
+     "feld": "Projektname",
+     "format": ""
+    },
+    {
+     "feld": "Grundstück GB Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Gebäude VS-Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Art des Bauvorhabens",
+     "format": ""
+    },
+    {
+     "feld": "Projektbeschreibung (Bauvorhaben, Nutzungen, Kapazitätsveränderung, Bezug zum Richtraumprogramm, Projektkosten und Finanzierung, Aufstellung / Angabe der beitra",
+     "format": ""
+    },
+    {
+     "feld": "Projektstand (Vorabklärungen, involvierte Stiftungen und Fachstellen, geplanter Baubeginn und Bezug etc.)",
+     "format": ""
+    },
+    {
+     "feld": "Konzept- / Projektbeschrieb (ergänzend zum Formular)",
+     "format": ""
+    },
+    {
+     "feld": "Ort, Datum",
+     "format": "TT.MM.JJJJ"
+    }
+   ]
+  },
+  {
+   "form_id": 534,
+   "titel": "Investitionsbeiträge an IFEG-Bauten – Formular 3: Vorprojekt / Vorprüfung",
+   "dienststelle": "Sozialamt",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Name der Trägerschaft / Institution",
+     "format": ""
+    },
+    {
+     "feld": "Rechtsform",
+     "format": ""
+    },
+    {
+     "feld": "Adresse",
+     "format": ""
+    },
+    {
+     "feld": "PLZ / Ort",
+     "format": ""
+    },
+    {
+     "feld": "Name, Vorname (Zuständige Kontaktperson)",
+     "format": ""
+    },
+    {
+     "feld": "Funktion (Zuständige Kontaktperson)",
+     "format": ""
+    },
+    {
+     "feld": "Telefon (Zuständige Kontaktperson)",
+     "format": "Telefon"
+    },
+    {
+     "feld": "E-Mail (Zuständige Kontaktperson)",
+     "format": "E-Mail"
+    },
+    {
+     "feld": "Name, Vorname (Zuständiger Planer)",
+     "format": ""
+    },
+    {
+     "feld": "Funktion (Zuständiger Planer)",
+     "format": ""
+    },
+    {
+     "feld": "Telefon (Zuständiger Planer)",
+     "format": "Telefon"
+    },
+    {
+     "feld": "E-Mail (Zuständiger Planer)",
+     "format": "E-Mail"
+    },
+    {
+     "feld": "Projektname",
+     "format": ""
+    },
+    {
+     "feld": "Grundstück GB Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Gebäude VS-Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Art des Bauvorhabens",
+     "format": ""
+    },
+    {
+     "feld": "Projektbeschreibung / Vorprojekt",
+     "format": ""
+    },
+    {
+     "feld": "Raum- und Nutzungskonzept",
+     "format": ""
+    },
+    {
+     "feld": "Ort, Datum",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 535,
+   "titel": "Investitionsbeiträge an IFEG-Bauten – Formular 4: Definitives Projekt & Antragsgesuch",
+   "dienststelle": "Sozialamt",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Name der Trägerschaft / Institution",
+     "format": ""
+    },
+    {
+     "feld": "Rechtsform",
+     "format": ""
+    },
+    {
+     "feld": "Adresse",
+     "format": ""
+    },
+    {
+     "feld": "PLZ / Ort",
+     "format": ""
+    },
+    {
+     "feld": "Zuständige Kontaktperson – Name, Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Zuständige Kontaktperson – Funktion",
+     "format": ""
+    },
+    {
+     "feld": "Zuständige Kontaktperson – Telefon",
+     "format": "Telefon"
+    },
+    {
+     "feld": "Zuständige Kontaktperson – E-Mail",
+     "format": "E-Mail"
+    },
+    {
+     "feld": "Zuständiger Planer – Name, Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Zuständiger Planer – Funktion",
+     "format": ""
+    },
+    {
+     "feld": "Zuständiger Planer – Telefon",
+     "format": "Telefon"
+    },
+    {
+     "feld": "Zuständiger Planer – E-Mail",
+     "format": "E-Mail"
+    },
+    {
+     "feld": "Projektname",
+     "format": ""
+    },
+    {
+     "feld": "Grundstück GB Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Gebäude VS-Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Art des Bauvorhabens",
+     "format": ""
+    },
+    {
+     "feld": "Voraussichtlicher Baubeginn",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Voraussichtlicher Bauabschluss",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Voraussichtlicher Inbetriebnahme",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Projektbeschreibung inkl. Angaben allfälliger Anpassungen aufgrund der Vorprüfung",
+     "format": ""
+    },
+    {
+     "feld": "Rechtsgültige Baubewilligung",
+     "format": ""
+    },
+    {
+     "feld": "Genehmigte Planunterlagen Bauprojekt",
+     "format": ""
+    },
+    {
+     "feld": "Raumprogramm",
+     "format": ""
+    },
+    {
+     "feld": "Kostenvoranschlag",
+     "format": ""
+    },
+    {
+     "feld": "Baubeschrieb",
+     "format": ""
+    },
+    {
+     "feld": "Terminplan",
+     "format": ""
+    },
+    {
+     "feld": "Projektorganisation",
+     "format": ""
+    },
+    {
+     "feld": "Finanzierungsplan",
+     "format": ""
+    },
+    {
+     "feld": "Aufstellung / Angabe der beitragsberechtigten und nicht beitragsberechtigten Kosten",
+     "format": ""
+    },
+    {
+     "feld": "Zahlungsplan für die kantonalen Beiträge",
+     "format": ""
+    },
+    {
+     "feld": "Ort, Datum",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 536,
+   "titel": "Investitionsbeiträge an IFEG-Bauten – Meldung Baustart",
+   "dienststelle": "Sozialamt",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Name der Trägerschaft / Institution",
+     "format": ""
+    },
+    {
+     "feld": "Rechtsform",
+     "format": ""
+    },
+    {
+     "feld": "Adresse",
+     "format": ""
+    },
+    {
+     "feld": "PLZ / Ort",
+     "format": ""
+    },
+    {
+     "feld": "Name, Vorname (Zuständige Kontaktperson)",
+     "format": ""
+    },
+    {
+     "feld": "Funktion (Zuständige Kontaktperson)",
+     "format": ""
+    },
+    {
+     "feld": "Telefon (Zuständige Kontaktperson)",
+     "format": "Telefon"
+    },
+    {
+     "feld": "E-Mail (Zuständige Kontaktperson)",
+     "format": "E-Mail"
+    },
+    {
+     "feld": "Name, Vorname (Zuständiger Planer)",
+     "format": ""
+    },
+    {
+     "feld": "Funktion (Zuständiger Planer)",
+     "format": ""
+    },
+    {
+     "feld": "Telefon (Zuständiger Planer)",
+     "format": "Telefon"
+    },
+    {
+     "feld": "E-Mail (Zuständiger Planer)",
+     "format": "E-Mail"
+    },
+    {
+     "feld": "Projektname",
+     "format": ""
+    },
+    {
+     "feld": "Grundstück GB Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Gebäude VS-Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Erfolgter Baubeginn",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Voraussichtlicher Bauabschluss",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Voraussichtlicher Bezug",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Hinweise zum Bauvorhaben (Etappierung, besondere Rahmenbedingungen etc.)",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 537,
+   "titel": "Meldung von Projektänderungen",
+   "dienststelle": "Sozialamt",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Name der Trägerschaft / Institution",
+     "format": ""
+    },
+    {
+     "feld": "Rechtsform",
+     "format": ""
+    },
+    {
+     "feld": "Adresse",
+     "format": ""
+    },
+    {
+     "feld": "PLZ / Ort",
+     "format": ""
+    },
+    {
+     "feld": "Name, Vorname (Zuständige Kontaktperson)",
+     "format": ""
+    },
+    {
+     "feld": "Funktion (Zuständige Kontaktperson)",
+     "format": ""
+    },
+    {
+     "feld": "Telefon (Zuständige Kontaktperson)",
+     "format": "Telefon"
+    },
+    {
+     "feld": "E-Mail (Zuständige Kontaktperson)",
+     "format": "E-Mail"
+    },
+    {
+     "feld": "Name, Vorname (Zuständiger Planer)",
+     "format": ""
+    },
+    {
+     "feld": "Funktion (Zuständiger Planer)",
+     "format": ""
+    },
+    {
+     "feld": "Telefon (Zuständiger Planer)",
+     "format": "Telefon"
+    },
+    {
+     "feld": "E-Mail (Zuständiger Planer)",
+     "format": "E-Mail"
+    },
+    {
+     "feld": "Projektname",
+     "format": ""
+    },
+    {
+     "feld": "Grundstück GB Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Gebäude VS-Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Beschreibung der Projektänderung – Beschrieb der Änderungen gegenüber dem bewilligten Projektstand / Beitragsgesuch",
+     "format": ""
+    },
+    {
+     "feld": "Auswirkungen der Projektänderung – Beschrieb der Auswirkungen auf das Raum- / Nutzungskonzept, Baukosten, Termine etc.",
+     "format": ""
+    },
+    {
+     "feld": "Beilage: Beschreibung der Projektanpassungen",
+     "format": ""
+    },
+    {
+     "feld": "Beilage: Aktualisierte Planunterlagen",
+     "format": ""
+    },
+    {
+     "feld": "Beilage: Aktualisiertes Raumprogramm",
+     "format": ""
+    },
+    {
+     "feld": "Beilage: Aktualisierter und detaillierter Kostenvoranschlag",
+     "format": ""
+    },
+    {
+     "feld": "Beilage: Aktualisierter und detaillierter Baubeschrieb",
+     "format": ""
+    },
+    {
+     "feld": "Beilage: Aktualisierter Finanzierungsplan",
+     "format": ""
+    },
+    {
+     "feld": "Beilage: Aktualisierter Zahlungsplan",
+     "format": ""
+    },
+    {
+     "feld": "Beilage: Aktualisierte Aufstellung / Angabe der beitragsberechtigten und nicht beitragsberechtigten Kosten",
+     "format": ""
+    },
+    {
+     "feld": "Ort, Datum",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 538,
+   "titel": "Meldung Abschluss Bauvorhaben",
+   "dienststelle": "Sozialamt",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Name der Trägerschaft / Institution",
+     "format": ""
+    },
+    {
+     "feld": "Rechtsform",
+     "format": ""
+    },
+    {
+     "feld": "Adresse",
+     "format": ""
+    },
+    {
+     "feld": "PLZ / Ort",
+     "format": ""
+    },
+    {
+     "feld": "Name, Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Funktion",
+     "format": ""
+    },
+    {
+     "feld": "Telefon",
+     "format": "Telefon"
+    },
+    {
+     "feld": "E-Mail",
+     "format": "E-Mail"
+    },
+    {
+     "feld": "Projektname",
+     "format": ""
+    },
+    {
+     "feld": "Grundstück GB Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Gebäude VS-Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Datum Bezugsbewilligung / Inbetriebnahme",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Nachweis der Bezugsbewilligung / Inbetriebnahme",
+     "format": ""
+    },
+    {
+     "feld": "Ort, Datum",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 539,
+   "titel": "Investitionsbeiträge an IFEG-Bauten – Bauabrechnung und Schlusszahlung",
+   "dienststelle": "Sozialamt",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Name der Trägerschaft / Institution",
+     "format": ""
+    },
+    {
+     "feld": "Rechtsform",
+     "format": ""
+    },
+    {
+     "feld": "Adresse",
+     "format": ""
+    },
+    {
+     "feld": "PLZ / Ort",
+     "format": ""
+    },
+    {
+     "feld": "Name, Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Funktion",
+     "format": ""
+    },
+    {
+     "feld": "Telefon",
+     "format": "Telefon"
+    },
+    {
+     "feld": "E-Mail",
+     "format": "E-Mail"
+    },
+    {
+     "feld": "Projektname",
+     "format": ""
+    },
+    {
+     "feld": "Grundstück GB Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Gebäude VS-Nr.",
+     "format": ""
+    },
+    {
+     "feld": "Datum Bezugsbewilligung / Inbetriebnahme",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Die Bauabrechnung ist vollständig und korrekt",
+     "format": ""
+    },
+    {
+     "feld": "Sämtliche Kosten sind dem abgeschlossenen Bauvorhaben zugeordnet",
+     "format": ""
+    },
+    {
+     "feld": "Die nicht beitragsberechtigten Kosten wurden separat ausgewiesen",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": ""
+    },
+    {
+     "feld": "Datum",
+     "format": "TT.MM.JJJJ"
+    }
+   ]
+  },
+  {
+   "form_id": 540,
+   "titel": "Beschwerdeformular zur Opferhilfe-Telefonnummer 142",
+   "dienststelle": "Sozialamt",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Von (Ihre E-Mail Adresse)",
+     "format": "E-Mail"
+    },
+    {
+     "feld": "Name",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "E-Mail",
+     "format": "E-Mail"
+    },
+    {
+     "feld": "Strasse",
+     "format": ""
+    },
+    {
+     "feld": "Nr.",
+     "format": ""
+    },
+    {
+     "feld": "PLZ",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": ""
+    },
+    {
+     "feld": "Betreff",
+     "format": ""
+    },
+    {
+     "feld": "Nachricht",
+     "format": ""
+    },
+    {
+     "feld": "Anhänge hochladen",
+     "format": ""
+    },
+    {
+     "feld": "Mit dem Senden erklären Sie sich mit den PrivaSphere Geschäftsbedingungen einverstanden",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 541,
+   "titel": "Einreichung Lohnunterlagen",
+   "dienststelle": "Arbeitsmarktbeobachtung",
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
+   "ohne_standard": [
+    {
+     "feld": "Betriebsart",
+     "format": ""
+    },
+    {
+     "feld": "Firmenname",
+     "format": ""
+    },
+    {
+     "feld": "Strasse",
+     "format": ""
+    },
+    {
+     "feld": "Hausnummer",
+     "format": ""
+    },
+    {
+     "feld": "PLZ",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "format": ""
+    },
+    {
+     "feld": "Land",
+     "format": ""
+    },
+    {
+     "feld": "Telefon",
+     "format": "Telefon"
+    },
+    {
+     "feld": "E-Mail",
+     "format": "E-Mail"
+    },
+    {
+     "feld": "Kontaktperson",
+     "format": ""
+    },
+    {
+     "feld": "Nachname",
+     "format": ""
+    },
+    {
+     "feld": "Vorname",
+     "format": ""
+    },
+    {
+     "feld": "Geburtsdatum",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Staatsangehörigkeit",
+     "format": ""
+    },
+    {
+     "feld": "Erlernter Beruf / Ausbildung",
+     "format": ""
+    },
+    {
+     "feld": "Berufserfahrung in Jahren",
+     "format": ""
+    },
+    {
+     "feld": "Tätigkeit am Arbeitsort",
+     "format": ""
+    },
+    {
+     "feld": "Arbeitszeit in Stunden Pro Woche",
+     "format": ""
+    },
+    {
+     "feld": "Einsatzort in der Schweiz",
+     "format": ""
+    },
+    {
+     "feld": "Startdatum Einsatz",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Enddatum Einsatz",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Einsatzdauer (Anzahl Arbeitstage)",
+     "format": ""
+    },
+    {
+     "feld": "Total Arbeitsstunden während Einsatz",
+     "format": ""
+    },
+    {
+     "feld": "Grundlohn ohne Zulagen (Währung und Betrag/Std)",
+     "format": ""
+    },
+    {
+     "feld": "Anzahl Übernachtungen",
+     "format": ""
+    },
+    {
+     "feld": "Einsatzdauer total in Stunden",
+     "format": ""
+    },
+    {
+     "feld": "davon Nacht-, Samstags-, Sonntagsarbeit in Stunden",
+     "format": ""
+    },
+    {
+     "feld": "Zuschlag für Nacht-, Samstags-, Sonntagsarbeit in Euro pro Stunde",
+     "format": ""
+    },
+    {
+     "feld": "davon bezahlte Fahrzeit in der Schweiz in Stunden",
+     "format": ""
+    },
+    {
+     "feld": "Arbeitsstunden pro Woche im Herkunftsland",
+     "format": ""
+    },
+    {
+     "feld": "Ferien: Wieviele (Anzahl) Urlaubstage werden pro Jahr im Herkunftsland vergütet?",
+     "format": ""
+    },
+    {
+     "feld": "Feiertage: Wieviele (Anzahl) Feiertage werden pro Jahr im Herkunftsland vergütet?",
+     "format": ""
+    },
+    {
+     "feld": "Zulagen, welche ausgerichtet werden",
+     "format": ""
+    },
+    {
+     "feld": "Spesen, welche ausgerichtet werden",
      "format": ""
     }
    ]
