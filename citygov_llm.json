@@ -13,7 +13,7 @@
    "field_classification": "mapped=captures a requirement; identity_part=sub-field of a person-identity requirement; reason_facet=one option of a multi-choice requirement; form_mechanic=plumbing (signature/date), no legal basis needed; overcollection=collected with no legal basis (data-protection risk).",
    "datenhandhabung.scope": "allgemein=applies to every personal-data field; besonders_schuetzenswert=additionally applies to fields with a sensitive category (matching sensitive_category, or all when null); sektoral=applies only to fields whose legal basis cites the same law (match on law)."
   },
-  "generated_at": "2026-09-03T13:22:42"
+  "generated_at": "2026-09-03T14:01:42"
  },
  "datenhandhabung": [
   {
@@ -3343,8 +3343,8 @@
    "quote_verified": true,
    "article_no": "Art. 6",
    "heading": "Akteneinsicht",
-   "law_title": "Gesetz über den Rechtsschutz in",
-   "law_short": "Gesetz über den Rechtsschutz in",
+   "law_title": "Gesetz über den Rechtsschutz in Verwaltungssachen",
+   "law_short": "VRG",
    "sr_number": "172.200",
    "jurisdiction": "cantonal"
   },
