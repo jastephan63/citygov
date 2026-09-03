@@ -286,6 +286,20 @@ TEMPLATE = r"""<!DOCTYPE html>
   .flash{outline:2px solid var(--gold-deep);outline-offset:2px}
   .katrow{cursor:pointer}
   .katforms td{background:var(--field);font-size:11.5px;line-height:1.7}
+  /* Service-Dossier */
+  .svclaws{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 12px;
+    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:9px 14px}
+  .lawchip{font-size:11.5px;padding:2px 9px;border-radius:999px;border:1px solid var(--gold);
+    background:#FCFAF2;color:var(--ink);text-decoration:none;font-weight:600}
+  .lawchip:hover{border-color:var(--gold-deep)}
+  .hsl{font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--gold-deep);
+    font-weight:700;margin-right:6px}
+  .verf summary{cursor:pointer;padding:2px 0}
+  .verf>summary b{font-size:14px}
+  .hstrip{display:flex;flex-wrap:wrap;gap:14px;border-top:1px dashed var(--line);
+    margin-top:7px;padding-top:7px;font-size:12px;align-items:baseline}
+  .hs{display:inline-flex;align-items:baseline;gap:4px;flex-wrap:wrap}
+  .formsec{border-left:3px solid var(--gold);padding-left:12px;margin:0 0 22px}
   /* Verzeichnis + Datenkatalog */
   .regstats{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
   .rstat{font-size:12px;padding:6px 12px;border-radius:10px;background:var(--card);border:1px solid var(--line)}
@@ -692,47 +706,47 @@ function widgetTable(s,forms){
 const CHAN_DE={online_formular:'Online-Formular',pdf:'PDF-Einreichung',schalter:'Schalter',unbekannt:'Kanal unbekannt'};
 const OUTCOME_DE={bewilligung:'Bewilligung',verfuegung:'Verfügung',bestaetigung:'Bestätigung/Ausweis',
   registereintrag:'Registereintrag',auszahlung:'Auszahlung',kein_entscheid:'kein Entscheid (Meldung)',unbekannt:'unbekannt'};
-function hubHead(s, forms){
-  const fm=forms[0]||{};
-  const bl=fm.blockers||[];
-  const amp=bl.length===0?'gruen':(bl.length<=2?'gelb':'rot');
-  const dst=(DATA.dienststellen||[]).find(x=>x.name===(s.dienststelle||fm.publisher_dienststelle));
-  // service-level publication state: modelled in DVSH, published on SHEP
+// SERVICE-level head: publication state, Verfahrens-Ergebnis, contact —
+// nothing form-specific lives here any more
+function serviceHead(s, forms){
   const dv=s.dvsh, sp=s.shep;
-  let pubrow='';
-  if(dv||sp){
-    pubrow=`<div class="hubrow" style="margin-bottom:6px">
+  const fm0=forms[0]||{};
+  const dst=(DATA.dienststellen||[]).find(x=>x.name===(s.dienststelle||fm0.publisher_dienststelle));
+  const out=fm0.outcome;
+  return `<div class="card hubhead">
+    <div class="hubrow" style="margin-bottom:6px">
       ${dv?`<span class="badge b-dvsh" title="Status im DVSH-Modeller${dv.version?' · Version '+esc(String(dv.version)):''}">DVSH: ${esc(dv.status||'modelliert')}${dv.online?' · online':''}</span>`:'<span class="badge b-nodv">◇ nicht im DVSH modelliert</span>'}
       ${sp?`<a class="badge b-dvsh" style="text-decoration:none" href="https://shep.meetfrida.agency/de/services/${esc(sp.slug)}" target="_blank" rel="noreferrer" title="auf dem SHEP-Portal publiziert · Stand ${esc(sp.updated||'')}">SHEP publiziert ↗</a>`:(dv?'<span class="hubmeta">noch nicht auf SHEP publiziert</span>':'')}
       ${dv&&dv.vollzugsbehoerde?`<span class="hubmeta">Vollzug: ${esc(dv.vollzugsbehoerde)}</span>`:''}
       ${dv&&dv.gebuehren?`<span class="hubmeta">Gebühren: ${esc(String(dv.gebuehren).slice(0,60))}</span>`:''}
-    </div>`;
-  }
-  let checked='';
-  if(fm.check&&fm.check.d){
-    const days=Math.round((Date.parse(DATA.generated_at||'')-Date.parse(fm.check.d))/864e5);
-    checked=`<span class="hubmeta" title="Aktualität online geprüft am ${esc(fm.check.d)}${fm.next_check_due?' · Wiedervorlage '+esc(fm.next_check_due):''}">zuletzt geprüft vor ${days} Tagen</span>`;
-  }
-  const out=fm.outcome;
-  return `<div class="card hubhead">
-    ${pubrow}
-    <div class="hubrow">
-      ${bl.length!==undefined&&(fm.data_fields||[]).length?`<span class="ampel a-${amp}" title="Digitalisierungs-Blocker: ${bl.length?esc(bl.join(' · ')):'keine'}">●</span>`:''}
-      <span class="hubchan">${esc(CHAN_DE[fm.submission_channel]||CHAN_DE.unbekannt)}</span>
-      ${fm.signature_requirement==='handschriftlich'?`<span class="hubsig" title="${esc(fm.signature_evidence||'')}">✍ Unterschrift nötig</span>`:''}
-      ${fm.signature_requirement==='sig_widget'?`<span class="hubsig ok">✓ digitale Signatur möglich</span>`:''}
-      ${fm.has_flow?`<span class="hubmeta">geführter Flow vorhanden (flows.html)</span>`:''}
-      ${checked}
       ${dst&&dst.kontakt?`<span class="hubmeta" title="verantwortliche Dienststelle laut DVSH">Kontakt: ${esc(dst.kontakt)}</span>`:''}
     </div>
     ${out&&out.entscheid_art&&out.entscheid_art!=='unbekannt'?`<div class="hubout">Ergebnis des Verfahrens:
       <b>${esc(OUTCOME_DE[out.entscheid_art]||out.entscheid_art)}</b>${out.ergebnis_dokument?` — «${esc(out.ergebnis_dokument)}»`:''}
       <span class="muted small">(aus dem DVSH-Ablauftext abgeleitet)</span></div>`:''}
+  </div>`;
+}
+// FORM-level facts strip: channel, signature, Ampel, Bürgerlast, currency
+function formFacts(fm){
+  const bl=fm.blockers||[];
+  const amp=bl.length===0?'gruen':(bl.length<=2?'gelb':'rot');
+  let checked='';
+  if(fm.check&&fm.check.d){
+    const days=Math.round((Date.parse(DATA.generated_at||'')-Date.parse(fm.check.d))/864e5);
+    checked=`<span class="hubmeta" title="Aktualität online geprüft am ${esc(fm.check.d)}${fm.next_check_due?' · Wiedervorlage '+esc(fm.next_check_due):''}">zuletzt geprüft vor ${days} Tagen</span>`;
+  }
+  return `<div class="hubrow">
+      ${(fm.data_fields||[]).length?`<span class="ampel a-${amp}" title="Digitalisierungs-Blocker: ${bl.length?esc(bl.join(' · ')):'keine'}">●</span>`:''}
+      <span class="hubchan">${esc(CHAN_DE[fm.submission_channel]||CHAN_DE.unbekannt)}</span>
+      ${fm.signature_requirement==='handschriftlich'?`<span class="hubsig" title="${esc(fm.signature_evidence||'')}">✍ Unterschrift nötig</span>`:''}
+      ${fm.signature_requirement==='sig_widget'?`<span class="hubsig ok">✓ digitale Signatur möglich</span>`:''}
+      ${fm.has_flow?`<span class="hubmeta">geführter Flow (flows.html)</span>`:''}
+      ${checked}
+    </div>
     ${fm.burden?`<div class="hubburden">Bürgerlast: <b>${fm.burden.inputs}</b> Pflichtangaben
       ${fm.burden.attachments?` · <b>${fm.burden.attachments}</b> Beilagen`:''} · ~<b>${fm.burden.minutes}</b> Min
-      ${fm.burden.prefillable?` · <b>${fm.burden.prefillable}</b> Angaben aus dem Einwohnerregister vorbefüllbar`:''}
-      <span class="muted small" title="Zeitmodell: 0.4 Min je Pflichtangabe, 5 Min je Beilage">ⓘ</span></div>`:''}
-  </div>`;
+      ${fm.burden.prefillable?` · <b>${fm.burden.prefillable}</b> aus dem Einwohnerregister vorbefüllbar`:''}
+      <span class="muted small" title="Zeitmodell: 0.4 Min je Pflichtangabe, 5 Min je Beilage">ⓘ</span></div>`:''}`;
 }
 function blockerPanel(forms){
   const fm=forms[0]||{}; const bl=fm.blockers||[];
@@ -771,24 +785,98 @@ function similarPanel(forms){
       return `<div class="hstd">≈ <a class="simlink" data-sid="${svc?svc.service_id:''}">${esc(x.titel)}</a>
       <span class="muted small">Jaccard ${x.jaccard}${x.verdict?' · '+esc(x.verdict):' · unbeurteilt'}</span></div>`;}).join('')}</div>`;
 }
+// ---------- the Service-Dossier ----------
+// One narrative per page: SERVICE (identity, legal basis, Verfahren)
+//   -> each FORMULAR -> the DATA it demands (Angaben + Beilagen + Unterschrift)
+//   -> per datum its LEGAL BASIS, and the HANDLING rules glued to the table.
+// Everything that is not this narrative folds into a Details drawer.
+function lawChip(t,n,u,j){
+  return `<a class="lawchip" href="${esc(u)}" target="_blank" rel="noreferrer" title="${esc(t)}">${jur(j)} ${esc(n||t)}</a>`;
+}
+function svcLaws(dv){
+  if(!dv) return [];
+  const out=[];
+  (dv.recht_kantonal||[]).forEach(l=>{const n=l.ssr||l.ssr_nummer;
+    out.push(lawChip(l.titel||'',n,`https://rechtsbuch.sh.ch/app/de/texts_of_law/${n}`,'cantonal'));});
+  (dv.recht_bund||[]).forEach(l=>out.push(lawChip(l.label||l.titel||'',l.sr,l.url||'#','federal')));
+  return out;
+}
+function verfahrenSection(s){
+  const dv=s.dvsh||{}, sp=s.shep||{};
+  // DVSH is the correct version; SHEP fills only what DVSH leaves empty
+  const vor=(dv.voraussetzungen&&dv.voraussetzungen.length?dv.voraussetzungen:(sp.voraussetzungen||[]))
+    .filter(x=>typeof x==='string');
+  const unt=(dv.unterlagen&&dv.unterlagen.length?dv.unterlagen:(sp.unterlagen||[]))
+    .map(u=>typeof u==='string'?{title:u}:u);
+  const abl=(dv.ablauf&&dv.ablauf.length?dv.ablauf:(sp.ablauf||[]))
+    .map(a=>typeof a==='string'?{title:a}:a);
+  if(!vor.length&&!unt.length&&!abl.length&&!dv.kurzbeschreibung) return '';
+  return `<details class="card verf" open><summary><b>Das Verfahren</b>
+      <span class="muted small">— amtliche Modellierung (DVSH${dv.version?' v'+esc(String(dv.version)):''})</span></summary>
+    ${dv.beschreibung?`<div class="dvdesc">${esc(dv.beschreibung)}</div>`:''}
+    <div class="dvgrid">
+      ${vor.length?`<div><div class="dvsub">Voraussetzungen</div>${vor.map(v=>`<div class="dvl">• ${esc(v)}</div>`).join('')}</div>`:''}
+      ${abl.length?`<div><div class="dvsub">Ablauf</div>${abl.map((a,i)=>`<div class="dvl"><b>${a.sort||a.nr||i+1}.</b> ${esc(a.title||a.titel||'')}${(a.description||a.text)?` <span class="muted small">— ${esc(a.description||a.text)}</span>`:''}</div>`).join('')}</div>`:''}
+    </div>
+    ${unt.length?`<div class="dvsub" style="margin-top:8px">Erforderliche Unterlagen laut Modell (${unt.length})</div>
+      ${unt.slice(0,16).map(u=>`<div class="dvl" title="${esc(u.hint||u.detail||'')}">• ${esc(u.title||u.titel||u.name||'')}${(u.hint||u.detail)?' <span class="muted small">ⓘ</span>':''}</div>`).join('')}`:''}
+    ${(dv.bearbeitungsdauer||dv.fristen)?`<div class="dvmeta">${[['Bearbeitungsdauer',dv.bearbeitungsdauer],['Fristen',dv.fristen]]
+        .filter(x=>x[1]&&String(x[1]).trim()&&String(x[1]).trim()!=='leer')
+        .map(x=>`<div class="dvm"><span class="dvk">${x[0]}</span> ${esc(String(x[1]))}</div>`).join('')}</div>`:''}
+  </details>`;
+}
+// the handling strip: how THIS form's data must be treated, glued to its table
+function handlingStrip(s,fm){
+  const terms=fm.retention||[], dec=fm.retention_decisions||[], emp=fm.disclosures||[];
+  const cats=[...new Set((fm.data_fields||[]).filter(d=>d.sensitive).map(d=>d.sensitive))];
+  const nb=(fm.data_fields||[]).filter(d=>d.no_basis).length;
+  let frist;
+  if(terms.length) frist=retLine(terms[0]);
+  else if(dec.length) frist=`Kantonaler Entscheid: ${esc(String(dec[0].duration_value||''))} ${esc(dec[0].duration_unit||'')}`;
+  else frist=`Standard: Registraturperiode 10–20 J., dann Staatsarchiv ${guideChip(["172.301","§ 6","aufbewahrung"])}`;
+  const seen=new Set();
+  const empt=emp.filter(e=>!seen.has(e.empfaenger)&&seen.add(e.empfaenger));
+  return `<div class="hstrip">
+    <span class="hs"><span class="hsl">Aufbewahrung</span>${frist}</span>
+    <span class="hs"><span class="hsl">Weitergabe</span>${empt.length
+      ? empt.slice(0,4).map(e=>`<span class="empchip" title="${esc(artLabel(e.article_no)+' '+(e.short_title||''))}">${esc(e.empfaenger)}${e.mode==='systematisch'?' ↻':''}</span>`).join('')+(empt.length>4?` +${empt.length-4}`:'')
+      : `nur nach den allgemeinen Regeln ${guideChip(["174.100","Art. 8","bekanntgabe"])}`}</span>
+    ${cats.length?`<span class="hs"><span class="hsl">⛨ zusätzlich</span><span class="badge b-sens senslink" title="besonders schützenswerte Daten — Klick: was zusätzlich gilt">${cats.map(x=>esc(HSENS[x]||x)).join(', ')}</span></span>`:''}
+    ${nb?`<span class="hs"><span class="hsl">ohne Grundlage</span><span class="badge b-over">${nb} Feld${nb===1?'':'er'} — nur freiwillig</span></span>`:''}
+  </div>`;
+}
+// one bounded section per Formular: facts, handling, the data table, drawer
+function formSection(s,fm){
+  const hasDF=(fm.data_fields||[]).length;
+  let h=`<div class="formsec">
+    <div class="card" style="padding:9px 16px 7px">${formFacts(fm)}${hasDF?handlingStrip(s,fm):''}</div>`;
+  h+= hasDF? viewDataFields([fm]) : widgetTable(s,[fm]);
+  h+= beilagenPanel([fm]);
+  const extras=blockerPanel([fm])+handlingPanel(s,[fm])+similarPanel([fm]);
+  h+=`<details class="hgen" style="margin:0 0 4px"><summary class="dvsub" style="cursor:pointer">Details zu diesem Formular — Digitalisierungs-Blocker, volles Datenhandhabungs-Profil, Duplikat-Radar</summary>${extras}</details>`;
+  return h+`</div>`;
+}
 function viewFields(){
   const m=document.getElementById('main');
   if(state.service==='all'){
-    m.innerHTML=pageHead('Formular-Seite',
-      'Links ein Formular wählen (oder oben suchen) — dessen Seite bündelt alles: Datenfelder mit Rechtsgrundlagen, Gesetze, Datenhandhabungs-Profil, Beilagen, Bürgerlast und Digitalisierungs-Stand.',
-      'Kuratierte Datenfeld-Schicht der Databank; Verfahrens-Fakten aus dem DVSH-Modell (read-only).',
+    m.innerHTML=pageHead('Service-Seite',
+      'Links einen Service wählen (oder oben suchen). Die Seite erzählt eine Sache: welcher Service, auf welcher Rechtsgrundlage — welche Formulare — welche Daten sie verlangen, mit Rechtsgrundlage und Handhabung je Datum.',
+      'Verfahren & Service-Recht: DVSH-Modell und SHEP-Portal (Sources of Truth, read-only). Daten-, Standard- und Regel-Schicht: eigene kuratierte Analyse, quellenbelegt.',
       'Unten der Dokumentationsstand aller Departemente.')+deptOverview();
     m.querySelectorAll('tr[data-sid]').forEach(tr=>tr.onclick=()=>{state.service=tr.dataset.sid;render();}); return; }
   const s=svcById[state.service]; const forms=formsByService[s.id]||[];
-  const withDF=forms.filter(fm=>(fm.data_fields||[]).length);
-  const rest=forms.filter(fm=>!(fm.data_fields||[]).length);
+  const dv=s.dvsh, sp=s.shep;
+  const laws=svcLaws(dv);
   let h=`<h3 class="view">${esc(s.name)}</h3>
-  <p class="hint">${esc(s.department||'')} · ${esc(s.dienststelle||'')} — rechts neben jedem Datenfeld steht seine
-  Rechtsgrundlage; Aufbewahrung, Weitergabe und ⛨-Regeln stehen im Datenhandhabungs-Profil unten.</p>
-  ${hubHead(s,forms)}
-  <div class="seg">
-    <button data-sub="felder" class="${state.sub!=='gesetze'?'active':''}">▤ Datenfelder &amp; Handhabung</button>
-    <button data-sub="gesetze" class="${state.sub==='gesetze'?'active':''}">⚖ Gesetze zu diesem Formular</button>
+  <p class="hint">${esc(s.department||'')} · ${esc(s.dienststelle||'')}</p>
+  ${serviceHead(s,forms)}`;
+  if(dv&&dv.kurzbeschreibung) h+=`<div class="zweckline" style="margin:2px 2px 10px">${esc(dv.kurzbeschreibung)}</div>`;
+  h+=laws.length?`<div class="svclaws"><span class="hsl">Rechtsgrundlage des Services (DVSH)</span>${laws.join('')}</div>`:'';
+  if(!s.in_dvsh) h+=`<div class="card nodvbox"><span class="badge b-nodv">◇ Nicht im DVSH-Modell</span>
+    <span class="muted small">Dieser Service ist in unserem Katalog erfasst, aber (noch) nicht in der amtlichen DVSH-Modellierung. Die Rechtsgrundlagen unten stammen aus unserer eigenen, quellenbelegten Analyse.</span></div>`;
+  h+=`<div class="seg">
+    <button data-sub="felder" class="${state.sub!=='gesetze'?'active':''}">▤ Verfahren, Formulare &amp; Daten</button>
+    <button data-sub="gesetze" class="${state.sub==='gesetze'?'active':''}">⚖ Gesetze im Detail</button>
   </div>`;
   if(state.sub==='gesetze'){
     h+=`<div id="hub-tree"></div><div id="hub-info"></div>`;
@@ -796,17 +884,10 @@ function viewFields(){
     viewTree(document.getElementById('hub-tree'));
     viewInfo(document.getElementById('hub-info'));
   } else {
-    h+=formLinks(s,forms);
-    if(!s.in_dvsh) h+=`<div class="card nodvbox"><span class="badge b-nodv">◇ Nicht im DVSH-Modell</span>
-      <span class="muted small">Dieser Dienst ist in unserem Formular-Katalog erfasst, aber (noch) nicht in der amtlichen DVSH-Modellierung enthalten. Die Rechtsgrundlagen unten stammen aus unserer eigenen, quellenbelegten Analyse.</span></div>`;
-    if(s.dvsh) h+=dvshPanel(s.dvsh);
-    h+=shepPanel(s.shep);
-    h+=blockerPanel(forms);
-    h+=beilagenPanel(forms);
-    if(withDF.length) h+=viewDataFields(withDF);
-    if(rest.length) h+=widgetTable(s,rest);
-    h+=handlingPanel(s,forms);
-    h+=similarPanel(forms);
+    h+=verfahrenSection(s);
+    h+=`<h4 class="hscope">Formulare dieses Services (${forms.length})</h4>`;
+    if(!forms.length) h+=`<div class="card"><div class="hstd">Kein Formular in der Databank — laut DVSH ein reiner Online-/eService${dv&&dv.endpoint_typ?` (${esc(dv.endpoint_typ)})`:''}.</div></div>`;
+    forms.forEach(fm=>{h+=formSection(s,fm);});
     m.innerHTML=h;
   }
   m.querySelectorAll('.seg button[data-sub]').forEach(b=>b.onclick=()=>{state.sub=b.dataset.sub;render();});
@@ -818,160 +899,14 @@ function viewFields(){
     const t=[...document.querySelectorAll('.gq')].find(x=>x.textContent.includes('schützenswerte'));
     if(t)t.scrollIntoView({behavior:'smooth'});});
 }
-function formLinks(s,forms){
-  const f=forms.filter(x=>x.source_file);
-  const dv=s.dvsh||{};
-  const online=(dv.abgabe||[]).filter(x=>x&&!/^↗|^PDF-Formular$|^Online-Formular$/.test(x));
-  const ext=(dv.externe_links||[]);
-  if(!f.length && !online.length && !ext.length) return '';
-  const btn=(href,label,cls)=>`<a class="flink ${cls||''}" href="${esc(href)}" target="_blank" rel="noreferrer">${esc(label)}</a>`;
-  let parts=f.map(x=>btn(x.source_file, '📄 '+(x.source_file.split('/').pop()||'Formular'), 'primary'));
-  if(dv.slug) parts.push(btn('https://sh.ch/', '🌐 Amtliche Seite (sh.ch)',''));
-  return `<div class="card flinks"><span class="flabel">Formular</span>${parts.join('')}
-    ${online.length?`<span class="muted small">· Abgabe: ${esc(online.join(' · '))}</span>`:''}</div>`;
-}
-function dvshPanel(d){
-  const kant=(d.recht_kantonal||[]), bund=(d.recht_bund||[]);
-  const law=(t,n,url)=>`<div class="dvl">${esc(t)}${n?` <a class="ssr" href="${url}" target="_blank" rel="noreferrer">${esc(n)}</a>`:''}</div>`;
-  const meta=[['Vollzug',d.vollzugsbehoerde||d.dienststelle],['Bearbeitungsdauer',d.bearbeitungsdauer],
-              ['Fristen',d.fristen],['Gebühren',d.gebuehren]]
-    .filter(x=>x[1]&&String(x[1]).trim()&&String(x[1]).trim()!=='leer')
-    .map(x=>`<div class="dvm"><span class="dvk">${x[0]}</span> ${esc(String(x[1]))}</div>`).join('');
-  const vor=(d.voraussetzungen||[]).filter(x=>typeof x==='string');
-  const unt=(d.unterlagen||[]).map(u=>typeof u==='string'?{title:u}:u);
-  const abl=(d.ablauf||[]).map(a=>typeof a==='string'?{title:a}:a);
-  return `<div class="card dvsh">
-    <div class="dvhdr"><span class="badge b-dvsh">DVSH-Modell</span>
-      <b>${esc(d.title||'')}</b><span class="muted small">· amtliche Modellierung${d.version?' v'+esc(String(d.version)):''}${d.dvsh_updated_at?' · Stand '+esc(String(d.dvsh_updated_at).slice(0,10)):''}</span></div>
-    ${d.kurzbeschreibung?`<div class="dvdesc">${esc(d.kurzbeschreibung)}</div>`:''}
-    <div class="dvgrid">
-      ${vor.length?`<div><div class="dvsub">Voraussetzungen</div>${vor.map(v=>`<div class="dvl">• ${esc(v)}</div>`).join('')}</div>`:''}
-      ${unt.length?`<div><div class="dvsub">Erforderliche Unterlagen (${unt.length})</div>${unt.slice(0,14).map(u=>`<div class="dvl" title="${esc(u.hint||'')}">• ${esc(u.title||u.titel||'')}</div>`).join('')}${unt.length>14?`<div class="muted small">… und ${unt.length-14} weitere</div>`:''}</div>`:''}
-    </div>
-    ${abl.length?`<div class="dvsub" style="margin-top:8px">Ablauf</div>${abl.map((a,i)=>`<div class="dvl"><b>${a.sort||i+1}.</b> ${esc(a.title||a.titel||'')}${a.description?` <span class="muted small">— ${esc(a.description)}</span>`:''}</div>`).join('')}`:''}
-    <div class="dvgrid" style="margin-top:8px">
-      <div><div class="dvsub">Rechtsgrundlagen — kantonal</div>
-        ${kant.length?kant.map(l=>law(l.titel,l.ssr||l.ssr_nummer,`https://rechtsbuch.sh.ch/app/de/texts_of_law/${l.ssr||l.ssr_nummer}`)).join(''):'<div class="muted small">keine im Modell</div>'}
-      </div>
-      <div><div class="dvsub">Rechtsgrundlagen — Bund</div>
-        ${bund.length?bund.map(l=>law(l.label||l.titel,l.sr,l.url||(l.sr?`https://www.fedlex.admin.ch/eli/cc/${esc(l.sr)}`:'#'))).join(''):'<div class="muted small">keine im Modell</div>'}
-      </div>
-    </div>
-    ${meta?`<div class="dvmeta">${meta}</div>`:''}
-  </div>`;
-}
-function shepPanel(sp){
-  if(!sp) return '';
-  return `<div class="card dvsh">
-    <div class="dvhdr"><span class="badge b-dvsh">SHEP-Portal</span>
-      <b>publizierte Bürger-Sicht</b><span class="muted small">· Stand ${esc(sp.updated||'?')}</span>
-      <a class="srcbtn" style="margin-left:auto" href="https://shep.meetfrida.agency/de/services/${esc(sp.slug)}" target="_blank" rel="noreferrer">↗ Portal-Seite</a></div>
-    ${sp.teaser?`<div class="dvdesc">${esc(sp.teaser)}</div>`:''}
-    <div class="dvmeta">
-      <div class="dvm"><span class="dvk">Publiziert</span> ${(sp.voraussetzungen||[]).length} Voraussetzungen · ${(sp.unterlagen||[]).length} Unterlagen · ${(sp.ablauf||[]).length} Ablauf-Schritte${sp.formular_url?' · Formular verlinkt':' · KEIN Formular-Link'}</div>
-      ${sp.kontakt_email?`<div class="dvm"><span class="dvk">Kontakt</span> ${esc(sp.kontakt_email)}</div>`:''}
-    </div>
-  </div>`;
-}
 
-// ---------- tree (list + diagram) ----------
-function needService(label){
-  return `<h3 class="view">${label}</h3><div class="nores">Bitte links einen einzelnen Dienst wählen `+
-         `(bei ${DATA.services.length} Diensten ist die Gesamtansicht zu gross).</div>`;
-}
-// build the law -> article -> data-field structure for the current selection
-function treeModel(){
-  // Current model: Gesetz -> Artikel -> DATENFELDER via data_field_legal_basis.
-  // (The legacy requirement links are empty for auto-drafted services.)
-  const sids = state.service==='all' ? DATA.services.map(s=>s.id) : [Number(state.service)];
-  const laws={};
-  sids.forEach(sid=>(formsByService[sid]||[]).forEach(fm=>(fm.data_fields||[]).forEach(d=>{
-    (d.legal_basis||[]).forEach(lb=>{
-      const lk=(lb.law_short||lb.law_title||'?');
-      const L=laws[lk]||(laws[lk]={id:lk,title:lb.law_title,short:lb.law_short,jur:lb.jurisdiction,sr:lb.sr_number,cref:lb.cantonal_ref,arts:{}});
-      const ak=lb.article_no||'?';
-      const A=L.arts[ak]||(L.arts[ak]={id:ak,no:lb.article_no,heading:lb.article_heading,lc:lb.last_checked,reqs:{}});
-      const st=(lb.last_checked==='verified')?'match':(String(lb.last_checked||'').startsWith('Gesetze')?'sourced':'proposed');
-      A.reqs[d.name]={dp:d.name,status:st,type:d.data_type};
-    });
-  })));
-  return Object.values(laws).map(L=>({...L,arts:Object.values(L.arts).map(A=>({...A,reqs:Object.values(A.reqs)}))}));
-}
-function viewTree(into){
-  const m=into||document.getElementById('main');
-  if(state.service==='all'){ m.innerHTML=needService('Gesetzes-Baum · Gesetz → Artikel → Datenfeld'); return; }
-  const model=treeModel();
-  let h=`<h3 class="view">Gesetzes-Baum · Gesetz → Artikel → Datenfeld</h3>
-  <p class="hint">Beide Darstellungen sind ein- und ausklappbar. Farbe = Zuständigkeitsebene; Status der Anforderung farbig markiert.</p>
-  <div class="seg">
-    <button data-t="list" class="${state.tree==='list'?'active':''}">▤ Liste</button>
-    <button data-t="diagram" class="${state.tree==='diagram'?'active':''}">⌗ Diagramm</button>
-  </div>`;
-  if(!model.length){ m.innerHTML=h+'<div class="nores">Keine Gesetze für die Auswahl.</div>'; return; }
-  h+= state.tree==='list' ? `<div class="card tree">${model.map(listLaw).join('')}</div>`
-                          : `<div class="card dg">${model.map(dgLaw).join('')}</div>`;
-  m.innerHTML=h;
-  m.querySelectorAll('.seg button').forEach(b=>b.onclick=()=>{state.tree=b.dataset.t;render();});
-  m.querySelectorAll('.ttog').forEach(t=>t.onclick=()=>t.closest('.tgrp').classList.toggle('collapsed'));
-  m.querySelectorAll('.dgbox').forEach(b=>b.onclick=(e)=>{e.stopPropagation();b.closest('.dgnode').classList.toggle('collapsed')});
-}
-function statusBadge(s){return `<span class="badge b-${s==='sourced'?'sourced':s}">${({match:'verifiziert',sourced:'Quelle (SHR-PDF)',proposed:'UNVERIFIED',legal_gap:'Legal Gap'}[s]||s)}</span>`;}
-function listLaw(L){
-  return `<div class="tgrp"><div class="tline"><span class="ttog">▾</span> ${jur(L.jur)} <b>${esc(L.short||L.title)}</b> <span class="muted small">${esc(L.title)}</span>${L.sr?' <span class="mono small">SR '+esc(L.sr)+'</span>':''}</div>
-    <div class="tnode">${L.arts.map(listArt).join('')}</div></div>`;
-}
-function listArt(A){
-  return `<div class="tgrp"><div class="tline"><span class="ttog">▾</span> <span class="mono">${esc(artLabel(A.no))}</span> ${esc(A.heading||'')}${unver(A.lc)}</div>
-    <div class="tnode">${A.reqs.map(r=>`<div class="tline">• ${esc(r.dp)} ${statusBadge(r.status)} <span class="muted small">${esc(r.type||'')}</span></div>`).join('')}</div></div>`;
-}
-function dgLaw(L){
-  return `<div class="dgnode"><div class="dgbox" style="border-left-color:var(--${L.jur})"><span class="ttl">${esc(L.short||L.title)}</span> ${jur(L.jur)}<div class="sub">${esc(L.title)}${L.sr?' · SR '+esc(L.sr):''}</div></div>
-    <div class="dgchildren">${L.arts.map(dgArt).join('')}</div></div>`;
-}
-function dgArt(A){
-  return `<div class="dgnode"><div class="dgbox" style="border-left-color:var(--mechanic)"><span class="ttl mono">${esc(artLabel(A.no))}</span><div class="sub">${esc(A.heading||'')} ${A.lc!=='verified'?'· UNVERIFIED':''}</div></div>
-    <div class="dgchildren">${A.reqs.map(r=>`<div class="dgnode"><div class="dgbox" style="border-left-color:var(--${r.status==='legal_gap'?'gap':r.status==='proposed'?'proposed':'match'})"><span class="ttl">${esc(r.dp)}</span> ${statusBadge(r.status)}<div class="sub">${esc(r.type||'')}</div></div></div>`).join('')}</div></div>`;
-}
-
-// ---------- required information per law ----------
-function viewInfo(into){
-  const m=into||document.getElementById('main');
-  if(state.service==='all'){ m.innerHTML=needService('Geforderte Informationen · pro Gesetz'); return; }
-  let h=`<h3 class="view">Geforderte Informationen · pro Gesetz</h3>
-  <p class="hint">Welche Datenpunkte jedes Gesetz verlangt, mit Artikel-Zitat, Datentyp, Bedingung und erfassendem Formularfeld.</p>`;
-  const sids = [Number(state.service)];
-  // rows from the CURRENT model: each data field with its article citations
-  const byLaw={};
-  sids.forEach(sid=>(formsByService[sid]||[]).forEach(fm=>(fm.data_fields||[]).forEach(d=>{
-    (d.legal_basis||[]).forEach(lb=>{
-      const lk=(lb.law_short||lb.law_title||'?');
-      (byLaw[lk]=byLaw[lk]||{lb,rows:[]}).rows.push({
-        req:{data_point:d.name,label:d.definition,data_type:d.data_type,condition:d.required?null:'optional'},
-        lb, cap:[{label:fm.title,st:'formular'}]});
-    });
-  })));
-  const laws=Object.values(byLaw);
-  if(!laws.length){m.innerHTML=h+'<div class="nores">Keine Daten für die Auswahl.</div>';return;}
-  laws.forEach(({lb,rows})=>{
-    h+=`<div class="card"><div style="margin-bottom:10px">${jur(lb.jurisdiction)} <b>${esc(lb.law_title)}</b> ${lb.sr_number?'<span class="mono small">SR '+esc(lb.sr_number)+'</span>':''}${unver(lb.last_checked)}</div>
-      <table><thead><tr><th>Datenpunkt</th><th>Artikel</th><th>Typ</th><th>Pflicht</th><th>Formular</th></tr></thead><tbody>
-      ${rows.map(({req,lb,cap})=>`<tr>
-        <td><b>${esc(req.data_point)}</b><div class="small muted">${esc(req.label||'')}</div></td>
-        <td class="mono small">${esc(artLabel(lb.article_no))}${lb.citation_detail?' '+esc(lb.citation_detail):''}${unver(lb.last_checked)}</td>
-        <td class="small">${esc(req.data_type||'')}</td>
-        <td class="small">${esc(req.condition||'—')}</td>
-        <td>${cap.length?cap.map(c=>`“${esc(c.label)}”${c.st==='formular'?'':` <span class="badge b-${c.st==='confirmed'?'confirmed':'proposedm'}">${c.st}</span>`}`).join('<br>'):'—'}</td>
-      </tr>`).join('')}
-      </tbody></table></div>`;
-  });
-  m.innerHTML=h;
-}
-
-// ---------- Datenhandhabung (how data may be stored, treated, communicated) ----------
+// ---------- Datenhandhabung rendering helpers ----------
 const ASPECT={erhebung:'Erhebung',bearbeitung:'Bearbeitung',speicherung:'Speicherung',
   sicherheit:'Datensicherheit',aufbewahrung:'Aufbewahrung',bekanntgabe:'Bekanntgabe',
   betroffenenrechte:'Rechte der Betroffenen',archivierung:'Archivierung',loeschung:'Löschung'};
 const ASPECT_ORDER=Object.keys(ASPECT);
+const HSENS={gesundheit:'Gesundheit',religion_weltanschauung:'Religion/Weltanschauung',
+  politik:'Politische Ansichten',sozialhilfe:'Soziale Hilfe',strafen_verfahren:'Strafverfahren/Sanktionen'};
 function ruleCite(r){
   const sr=r.sr_number?(r.jurisdiction_level==='federal'?' · SR ':' · SHR ')+r.sr_number:'';
   return `${jur(r.jurisdiction_level)} <span class="mono">${esc(artLabel(r.article_no))}</span> ${esc(r.short_title||r.law_title)}${esc(sr)}`;
@@ -986,8 +921,6 @@ function rulesByAspect(list){
   return ASPECT_ORDER.filter(a=>list.some(r=>r.aspect===a))
     .map(a=>list.filter(r=>r.aspect===a).map(ruleItem).join('')).join('');
 }
-const HSENS={gesundheit:'Gesundheit',religion_weltanschauung:'Religion/Weltanschauung',
-  politik:'Politische Ansichten',sozialhilfe:'Soziale Hilfe',strafen_verfahren:'Strafverfahren/Sanktionen'};
 function handlingPanel(s,forms){
   const H=DATA.datenhandhabung||[]; if(!H.length) return '';
   // what is SPECIFIC to this Formular: its laws, its sensitive fields, its gaps
