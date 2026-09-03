@@ -229,6 +229,17 @@ TEMPLATE = r"""<!DOCTYPE html>
   .gprax{margin-top:10px;background:#F3EEF7;border:1px solid #D8CCE8;border-radius:10px;
     padding:10px 14px;font-size:12.5px;line-height:1.5;color:#4A3C60}
   .gprax .gplabel{color:#7A5EA8}
+  /* per-Formular Datenhandhabung profile */
+  .pfstrip{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+  .pfc{font-size:11px;padding:3px 10px;border-radius:999px;font-weight:600;border:1px solid var(--line);background:var(--field);color:var(--ink-soft)}
+  .pfc.sens{background:#F9E9E4;border-color:#E5B8A8;color:#A04A2E}
+  .pfc.law{background:#E7F2EC;border-color:#BFDCCB;color:#2E7D5B}
+  .pfc.frist{background:#F4EEDF;border-color:var(--gold-deep);color:#6B5A22}
+  .pfc.over{background:#FBEFEF;border-color:#E3B6B6;color:#A33B3B}
+  .hstd{font-size:12.5px;line-height:1.55;color:var(--ink-soft);padding:4px 0}
+  .hstd.over{color:#A33B3B;border-top:1px dashed var(--line);margin-top:8px;padding-top:8px}
+  .hstd .gchip{cursor:default}
+  .hcat{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;padding:3px 0}
   .nodv{color:var(--communal);margin-right:4px}
   .esvc{display:inline-block;font-size:10px;background:#E8F1F6;color:#2C6E91;border:1px solid #BFD8E6;
     border-radius:6px;padding:0 6px;margin-left:6px;font-weight:600}
@@ -759,22 +770,70 @@ function rulesByAspect(list){
   return ASPECT_ORDER.filter(a=>list.some(r=>r.aspect===a))
     .map(a=>list.filter(r=>r.aspect===a).map(ruleItem).join('')).join('');
 }
+const HSENS={gesundheit:'Gesundheit',religion_weltanschauung:'Religion/Weltanschauung',
+  politik:'Politische Ansichten',sozialhilfe:'Soziale Hilfe',strafen_verfahren:'Strafverfahren/Sanktionen'};
 function handlingPanel(s,forms){
   const H=DATA.datenhandhabung||[]; if(!H.length) return '';
-  // the laws this service's data actually rests on, and the sensitive kinds it holds
-  const lawIds=new Set(), cats=new Set();
+  // what is SPECIFIC to this Formular: its laws, its sensitive fields, its gaps
+  const lawIds=new Set(), cats=new Set(), catFields={};
+  let nFields=0, nNoBasis=0;
   forms.forEach(fm=>(fm.data_fields||[]).forEach(d=>{
+    nFields++; if(d.no_basis) nNoBasis++;
     (d.legal_basis||[]).forEach(b=>{if(b.law_id!=null)lawIds.add(b.law_id);});
-    if(d.sensitive) cats.add(d.sensitive);
+    if(d.sensitive){cats.add(d.sensitive);(catFields[d.sensitive]=catFields[d.sensitive]||[]).push(d.name);}
   }));
+  if(!nFields) return '';
   const sekt=H.filter(r=>r.scope==='sektoral'&&lawIds.has(r.law_id));
   const sens=cats.size?H.filter(r=>r.scope==='besonders_schuetzenswert'&&(!r.sensitive_category||cats.has(r.sensitive_category))):[];
   const allg=H.filter(r=>r.scope==='allgemein');
-  let h=`<div class="card"><div class="dfhdr"><b>Datenhandhabung</b>
-    <span class="muted small">— was das Recht über Speicherung, Bearbeitung und Bekanntgabe dieser Daten sagt</span></div>`;
-  if(sekt.length) h+=`<div class="hgrp"><div class="dvsub">Sektorale Spezialnormen — aus den Gesetzen dieses Formulars</div>${rulesByAspect(sekt)}</div>`;
-  if(sens.length) h+=`<div class="hgrp"><div class="dvsub">⛨ Besonders schützenswerte Personendaten (${[...cats].map(esc).join(', ')})</div>${rulesByAspect(sens)}</div>`;
-  if(allg.length) h+=`<details class="hgen"><summary class="dvsub" style="cursor:pointer">Allgemeine Regeln KDSG/DSG — gelten für alle Personendaten (${allg.length})</summary>${rulesByAspect(allg)}</details>`;
+  const KEEP={aufbewahrung:1,loeschung:1,archivierung:1};
+  const frist=sekt.filter(r=>KEEP[r.aspect]);
+  const geben=sekt.filter(r=>r.aspect==='bekanntgabe');
+  const rest=sekt.filter(r=>!KEEP[r.aspect]&&r.aspect!=='bekanntgabe');
+  const sektLaws=[...new Set(sekt.map(r=>r.short_title||r.law_title))];
+
+  // profile strip: the one-glance answer to "what is different about THIS form?"
+  let strip='';
+  cats.forEach(c=>{strip+=`<span class="pfc sens">⛨ ${esc(HSENS[c]||c)} (${catFields[c].length} ${catFields[c].length===1?'Feld':'Felder'})</span>`;});
+  if(sektLaws.length) strip+=`<span class="pfc law">Spezialnormen: ${esc(sektLaws.join(' · '))}</span>`;
+  strip+=frist.length?`<span class="pfc frist">Aufbewahrung: Spezialfrist</span>`
+                     :`<span class="pfc std">Aufbewahrung: Standard (Registraturperiode)</span>`;
+  if(nNoBasis) strip+=`<span class="pfc over">${nNoBasis} ${nNoBasis===1?'Feld':'Felder'} ohne Grundlage</span>`;
+
+  let h=`<div class="card"><div class="dfhdr"><b>Datenhandhabung — Profil dieses Formulars</b>
+    <span class="muted small">— was für DIESE Daten speziell gilt; das für alle identische Grundprogramm ist unten eingeklappt</span></div>
+    <div class="pfstrip">${strip}</div>`;
+
+  // retention: the concrete answer, specific rule or the standard regime
+  h+=`<div class="hgrp"><div class="dvsub">Aufbewahrung &amp; Vernichtung</div>`;
+  if(frist.length) h+=rulesByAspect(frist);
+  else h+=`<div class="hstd">Keine Spezialfrist für dieses Formular — es gilt der Standard: aufbewahren, solange die
+    Verwaltung die Akten braucht (in der Regel mindestens zehn Jahre, Registraturperioden 10–20 Jahre), danach dem
+    Staatsarchiv anbieten. ${guideChip(["172.301","§ 6","aufbewahrung"])}${guideChip(["172.301","§ 5","aufbewahrung"])}${guideChip(["172.301","§ 7","archivierung"])}</div>`;
+  h+=`</div>`;
+
+  // disclosure: sectoral secrecy/Amtshilfe, or explicitly the general regime
+  h+=`<div class="hgrp"><div class="dvsub">Weitergabe</div>`;
+  if(geben.length) h+=rulesByAspect(geben);
+  else h+=`<div class="hstd">Keine Spezialnormen — Bekanntgabe nur nach den allgemeinen Regeln (gesetzliche Grundlage,
+    Aufgabenbedarf des Empfängers, Zustimmung, oder selbst veröffentlichte Daten).
+    ${guideChip(["174.100","Art. 8","bekanntgabe"])}${guideChip(["174.100","Art. 10","bekanntgabe"])}</div>`;
+  h+=`</div>`;
+
+  // sensitive fields, named per category, with the stricter rules they trigger
+  if(cats.size){
+    h+=`<div class="hgrp"><div class="dvsub">⛨ Besonders schützenswerte Felder dieses Formulars</div>`;
+    [...cats].forEach(c=>{
+      h+=`<div class="hcat"><span class="badge b-sens">⛨ ${esc(HSENS[c]||c)}</span>
+        <span class="small">${catFields[c].slice(0,10).map(esc).join(' · ')}${catFields[c].length>10?' …':''}</span></div>`;
+    });
+    if(sens.length) h+=rulesByAspect(sens);
+    h+=`</div>`;
+  }
+  if(rest.length) h+=`<div class="hgrp"><div class="dvsub">Weitere Spezialnormen dieses Formulars</div>${rulesByAspect(rest)}</div>`;
+  if(nNoBasis) h+=`<div class="hstd over">⚠ ${nNoBasis} ${nNoBasis===1?'Datenfeld hat':'Datenfelder haben'} keine gesetzliche
+    Grundlage (Over-collection) — ${nNoBasis===1?'es darf':'sie dürfen'} nur freiwillig erhoben werden.</div>`;
+  if(allg.length) h+=`<details class="hgen"><summary class="dvsub" style="cursor:pointer">Allgemeine Regeln KDSG/DSG — identisch für alle Formulare (${allg.length}) · erklärt im Tab «Leitfaden»</summary>${rulesByAspect(allg)}</details>`;
   return h+`</div>`;
 }
 function viewRules(){
@@ -822,7 +881,8 @@ function viewGuide(){
   <p class="hint">Die praktischen Antworten hinter den ${(DATA.datenhandhabung||[]).length} Regeln des
   Datenhandhabung-Tabs, in einfacher Sprache. Jede Aussage ist mit den zugrunde liegenden, am Gesetzes-PDF
   verifizierten Regeln verknüpft (Chips zeigen beim Überfahren das wörtliche Zitat, Klick öffnet den
-  Datenhandhabung-Tab). Massgeblich bleibt der Gesetzestext.</p>`;
+  Datenhandhabung-Tab). Massgeblich bleibt der Gesetzestext. Was für ein einzelnes Formular speziell gilt,
+  zeigt dessen Profil-Panel im Tab «Felder &amp; Rechtsgrundlagen».</p>`;
   GUIDE.forEach(sec=>{
     h+=`<div class="card gsec"><h4 class="gq">${esc(sec.frage)}</h4>
       <div class="gkurz"><span class="gklabel">Kurz gesagt</span>${esc(sec.kurz)}</div>`;
