@@ -136,10 +136,11 @@ def build(conn):
     try:
         df_lb = {}
         for lb in rows(conn, "SELECT dflb.data_field_id did, a.article_no, a.heading, a.text_excerpt, "
-                             "l.title, l.short_title, l.jurisdiction_level, l.sr_number, l.cantonal_ref, "
+                             "l.id lid, l.title, l.short_title, l.jurisdiction_level, l.sr_number, l.cantonal_ref, "
                              "dflb.last_checked, dflb.relation FROM data_field_legal_basis dflb "
                              "JOIN article a ON a.id=dflb.article_id JOIN law l ON l.id=a.law_id"):
             df_lb.setdefault(lb["did"], []).append({
+                "law_id": lb["lid"],
                 "jurisdiction": lb["jurisdiction_level"], "law_short": lb["short_title"],
                 "law_title": lb["title"], "sr_number": lb["sr_number"], "cantonal_ref": lb["cantonal_ref"],
                 "article_no": lb["article_no"], "article_heading": lb["heading"],
@@ -251,6 +252,19 @@ def build(conn):
         esh_katalog = rows(conn, "SELECT code, titel, beschreibung, themen, status, n_felder "
                                  "FROM esh_standard ORDER BY code")
 
+    # data-governance rules (how data may be stored, treated, communicated);
+    # the dashboard groups by scope and matches 'sektoral' rules to a form via law_id
+    handhabung = []
+    try:
+        for r in rows(conn, "SELECT dr.aspect, dr.scope, dr.sensitive_category, dr.summary, "
+                            "dr.quote, dr.quote_verified, a.article_no, a.heading, a.law_id, "
+                            "l.short_title, l.title law_title, l.sr_number, l.jurisdiction_level "
+                            "FROM data_rule dr JOIN article a ON a.id=dr.article_id "
+                            "JOIN law l ON l.id=a.law_id ORDER BY dr.scope, a.law_id, a.id"):
+            handhabung.append(r)
+    except Exception:
+        pass
+
     # citation TODO -> log file (not inlined; can be thousands of rows)
     todo = []
     for l in laws:
@@ -266,7 +280,7 @@ def build(conn):
                              "Mappings 'proposed', juristisch zu prüfen.",
         "services": services, "laws": laws, "requirements": requirements,
         "forms": forms, "service_requirements": svc_req,
-        "esh_katalog": esh_katalog,
+        "esh_katalog": esh_katalog, "datenhandhabung": handhabung,
         "process_steps_by_service": steps_by_service,
         "findings": findings, "citation_todo_count": len(todo),
     }
