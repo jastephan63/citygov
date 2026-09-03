@@ -56,7 +56,7 @@ def main():
             except Exception:
                 pass
     dvsh_txt, dvsh_raw = {}, {}
-    for r in c.execute("SELECT f.id fid, dv.unterlagen, dv.titel, dv.kurzbeschreibung, dv.ablauf "
+    for r in c.execute("SELECT f.id fid, dv.unterlagen, dv.title titel, dv.kurzbeschreibung, dv.ablauf "
                        "FROM form f JOIN dvsh_service dv ON dv.service_id=f.service_id"):
         try:
             u = json.loads(r["unterlagen"] or "[]")
