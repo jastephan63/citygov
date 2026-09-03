@@ -13,6 +13,9 @@ self-describing files an LLM agent can ingest directly:
                        legal basis with provenance.
   citygov_datafields.jsonl — one JSON object per logical Datenfeld: definition,
                        eCH/eSH standard mapping, legal basis, and sensitivity.
+  citygov_datarules.jsonl — one JSON object per data-governance rule: what the
+                       law says about storing, processing and disclosing the
+                       data, each with a PDF-verified verbatim quote.
 
     python3 scripts/export_llm.py
 """
@@ -41,6 +44,10 @@ META = {
             "a person-identity requirement; reason_facet=one option of a multi-choice "
             "requirement; form_mechanic=plumbing (signature/date), no legal basis needed; "
             "overcollection=collected with no legal basis (data-protection risk).",
+        "datenhandhabung.scope": "allgemein=applies to every personal-data field; "
+            "besonders_schuetzenswert=additionally applies to fields with a sensitive "
+            "category (matching sensitive_category, or all when null); sektoral=applies "
+            "only to fields whose legal basis cites the same law (match on law).",
     },
 }
 
@@ -137,7 +144,7 @@ def main():
             "name": d["name"], "definition": d["definition"], "data_type": d["data_type"],
             "required": bool(d["required"]),
             "allowed_values": json.loads(d["allowed_values"]) if d["allowed_values"] else [],
-            "sensitive": bool(d["sensitive"]),
+            "sensitive": bool(d["sensitive"]), "sensitive_category": d["sensitive"],
             "ech": ({"status": d["ech_status"], "standard": std, "element": d["ename"],
                      "datatype": d["edt"], "standard_titel": d["etitle"], "url": d["eurl"],
                      "standard_status": d["estatus"]}
@@ -148,6 +155,20 @@ def main():
                              "titel": eshk.get(d["esh_code"]), "status": "entwurf"}
                             if d["esh_code"] else None),
             "subfields": subs.get(d["id"], [])})
+
+    # data-governance rules: how the data may be stored, treated, communicated
+    datarules = []
+    try:
+        for r in rows("SELECT dr.aspect, dr.scope, dr.sensitive_category, dr.summary, "
+                      "dr.quote, dr.quote_verified, a.article_no, a.heading, "
+                      "l.title law_title, l.short_title law_short, l.sr_number, "
+                      "l.jurisdiction_level jurisdiction "
+                      "FROM data_rule dr JOIN article a ON a.id=dr.article_id "
+                      "JOIN law l ON l.id=a.law_id ORDER BY dr.scope, a.law_id, a.id"):
+            r["quote_verified"] = bool(r["quote_verified"])
+            datarules.append(r)
+    except Exception:
+        pass
     c.close()
 
     fields_by_form = {}
@@ -190,7 +211,7 @@ def main():
                             "source_file": fm["source_file"], **d})
 
     doc = {"meta": {**META, "generated_at": datetime.now().isoformat(timespec="seconds")},
-           "services": out_services}
+           "datenhandhabung": datarules, "services": out_services}
     json.dump(doc, open(os.path.join(ROOT, "citygov_llm.json"), "w", encoding="utf-8"),
               ensure_ascii=False, indent=1)
     with open(os.path.join(ROOT, "citygov_fields.jsonl"), "w", encoding="utf-8") as fh:
@@ -199,10 +220,14 @@ def main():
     with open(os.path.join(ROOT, "citygov_datafields.jsonl"), "w", encoding="utf-8") as fh:
         for r in dfl:
             fh.write(json.dumps(r, ensure_ascii=False) + "\n")
+    with open(os.path.join(ROOT, "citygov_datarules.jsonl"), "w", encoding="utf-8") as fh:
+        for r in datarules:
+            fh.write(json.dumps(r, ensure_ascii=False) + "\n")
     nech = sum(1 for r in dfl if r["ech"].get("standard"))
     print(f"wrote citygov_llm.json ({len(out_services)} services) + "
           f"citygov_fields.jsonl ({len(jsonl)} widget records) + "
-          f"citygov_datafields.jsonl ({len(dfl)} Datenfelder, {nech} mit eCH-Standard)")
+          f"citygov_datafields.jsonl ({len(dfl)} Datenfelder, {nech} mit eCH-Standard) + "
+          f"citygov_datarules.jsonl ({len(datarules)} Regeln)")
 
 
 if __name__ == "__main__":

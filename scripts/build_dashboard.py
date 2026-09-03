@@ -201,6 +201,16 @@ TEMPLATE = r"""<!DOCTYPE html>
   .qd summary{cursor:pointer;color:var(--gold-deep);font-weight:600}
   .quote{font-size:12px;color:var(--ink-soft);background:var(--field);border-left:3px solid var(--gold);
     padding:8px 12px;border-radius:0 8px 8px 0;margin:6px 0 0}
+  /* Datenhandhabung: one rule = aspect chip + duty + verbatim law quote */
+  .hrule{display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-top:1px dashed var(--line)}
+  .hrule:first-child{border-top:none}
+  .hasp{flex:0 0 auto;font-size:10.5px;padding:2px 8px;border-radius:999px;margin-top:1px;
+    background:#F4EEDF;border:1px solid var(--gold);color:#6B5A22;font-weight:600;white-space:nowrap}
+  .hbody{font-size:12.5px;line-height:1.45}
+  .hbody .small{margin-top:2px}
+  .hgrp{margin-top:10px}
+  .hgen{margin-top:10px;border-top:1px solid var(--line);padding-top:8px}
+  .hscope{font-size:13.5px;color:var(--ink-soft);margin:18px 2px 8px;text-transform:uppercase;letter-spacing:.4px}
   .nodv{color:var(--communal);margin-right:4px}
   .esvc{display:inline-block;font-size:10px;background:#E8F1F6;color:#2C6E91;border:1px solid #BFD8E6;
     border-radius:6px;padding:0 6px;margin-left:6px;font-weight:600}
@@ -238,6 +248,7 @@ TEMPLATE = r"""<!DOCTYPE html>
     <button class="tab" data-tab="fields">Felder &amp; Rechtsgrundlagen</button>
     <button class="tab" data-tab="tree">Gesetzes-Baum</button>
     <button class="tab" data-tab="info">Geforderte Informationen</button>
+    <button class="tab" data-tab="rules">Datenhandhabung</button>
     <button class="tab" data-tab="esh">eSH-Katalog (Entwurf)</button>
     <h2>Formulare &amp; Dienste</h2>
     <div id="services"></div>
@@ -560,6 +571,7 @@ function viewFields(){
   if(s.dvsh) h+=dvshPanel(s.dvsh);
   if(withDF.length) h+=viewDataFields(withDF);
   if(rest.length) h+=widgetTable(s,rest);
+  h+=handlingPanel(s,forms);
   m.innerHTML=h;
 }
 function formLinks(s,forms){
@@ -708,6 +720,71 @@ function viewInfo(){
   m.innerHTML=h;
 }
 
+// ---------- Datenhandhabung (how data may be stored, treated, communicated) ----------
+const ASPECT={erhebung:'Erhebung',bearbeitung:'Bearbeitung',speicherung:'Speicherung',
+  sicherheit:'Datensicherheit',aufbewahrung:'Aufbewahrung',bekanntgabe:'Bekanntgabe',
+  betroffenenrechte:'Rechte der Betroffenen',archivierung:'Archivierung',loeschung:'Löschung'};
+const ASPECT_ORDER=Object.keys(ASPECT);
+function ruleCite(r){
+  const sr=r.sr_number?(r.jurisdiction_level==='federal'?' · SR ':' · SHR ')+r.sr_number:'';
+  return `${jur(r.jurisdiction_level)} <span class="mono">${esc(artLabel(r.article_no))}</span> ${esc(r.short_title||r.law_title)}${esc(sr)}`;
+}
+function ruleItem(r){
+  const q=r.quote?`<details class="qd"><summary>${ruleCite(r)}${r.quote_verified?'':' <span class="badge b-unver">Zitat unverifiziert</span>'}</summary><blockquote class="quote">«${esc(r.quote)}»</blockquote></details>`:ruleCite(r);
+  return `<div class="hrule"><span class="hasp">${esc(ASPECT[r.aspect]||r.aspect)}</span>
+    <div class="hbody"><div>${esc(r.summary)}${r.sensitive_category?` <span class="badge b-sens">⛨ ${esc(r.sensitive_category)}</span>`:''}</div>
+    <div class="small">${q}</div></div></div>`;
+}
+function rulesByAspect(list){
+  return ASPECT_ORDER.filter(a=>list.some(r=>r.aspect===a))
+    .map(a=>list.filter(r=>r.aspect===a).map(ruleItem).join('')).join('');
+}
+function handlingPanel(s,forms){
+  const H=DATA.datenhandhabung||[]; if(!H.length) return '';
+  // the laws this service's data actually rests on, and the sensitive kinds it holds
+  const lawIds=new Set(), cats=new Set();
+  forms.forEach(fm=>(fm.data_fields||[]).forEach(d=>{
+    (d.legal_basis||[]).forEach(b=>{if(b.law_id!=null)lawIds.add(b.law_id);});
+    if(d.sensitive) cats.add(d.sensitive);
+  }));
+  const sekt=H.filter(r=>r.scope==='sektoral'&&lawIds.has(r.law_id));
+  const sens=cats.size?H.filter(r=>r.scope==='besonders_schuetzenswert'&&(!r.sensitive_category||cats.has(r.sensitive_category))):[];
+  const allg=H.filter(r=>r.scope==='allgemein');
+  let h=`<div class="card"><div class="dfhdr"><b>Datenhandhabung</b>
+    <span class="muted small">— was das Recht über Speicherung, Bearbeitung und Bekanntgabe dieser Daten sagt</span></div>`;
+  if(sekt.length) h+=`<div class="hgrp"><div class="dvsub">Sektorale Spezialnormen — aus den Gesetzen dieses Formulars</div>${rulesByAspect(sekt)}</div>`;
+  if(sens.length) h+=`<div class="hgrp"><div class="dvsub">⛨ Besonders schützenswerte Personendaten (${[...cats].map(esc).join(', ')})</div>${rulesByAspect(sens)}</div>`;
+  if(allg.length) h+=`<details class="hgen"><summary class="dvsub" style="cursor:pointer">Allgemeine Regeln KDSG/DSG — gelten für alle Personendaten (${allg.length})</summary>${rulesByAspect(allg)}</details>`;
+  return h+`</div>`;
+}
+function viewRules(){
+  const m=document.getElementById('main');
+  const H=DATA.datenhandhabung||[];
+  let h=`<h3 class="view">Datenhandhabung · Speicherung, Bearbeitung, Bekanntgabe</h3>
+  <p class="hint">Aus den amtlichen Gesetzestexten extrahierte Regeln, wie Personendaten behandelt werden müssen —
+  jede Regel mit wörtlichem, gegen das Gesetzes-PDF geprüftem Zitat. «Allgemein» gilt für alle Personendaten,
+  «besonders schützenswert» zusätzlich für ⛨-Felder, «sektoral» nur für Formulare, die sich auf das jeweilige Gesetz stützen.</p>`;
+  if(!H.length){m.innerHTML=h+'<div class="nores">Noch keine Regeln geladen (scripts/load_data_rules.py).</div>';return;}
+  const grp=[['allgemein','Allgemeine Regeln — für alle Personendaten'],
+             ['besonders_schuetzenswert','Besonders schützenswerte Personendaten'],
+             ['sektoral','Sektorale Spezialnormen — je Fachgesetz']];
+  grp.forEach(([scope,label])=>{
+    const list=H.filter(r=>r.scope===scope); if(!list.length) return;
+    // one card per law inside the scope, so the source is always visible
+    const byLaw={};
+    list.forEach(r=>{(byLaw[r.law_id]=byLaw[r.law_id]||[]).push(r);});
+    h+=`<h4 class="hscope">${esc(label)} <span class="muted small">· ${list.length} Regeln</span></h4>`;
+    Object.values(byLaw).forEach(rs=>{
+      const r0=rs[0];
+      h+=`<div class="card"><div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap">
+        <b>${esc(r0.short_title||r0.law_title)}</b>
+        <span class="muted small">${esc(r0.law_title!==r0.short_title?r0.law_title:'')}</span>
+        <span class="muted small" style="margin-left:auto">${jur(r0.jurisdiction_level)} ${r0.sr_number?(r0.jurisdiction_level==='federal'?'SR ':'SHR ')+esc(r0.sr_number):''} · ${rs.length} Regeln</span></div>
+        ${rulesByAspect(rs)}</div>`;
+    });
+  });
+  m.innerHTML=h;
+}
 function viewEsh(){
   const m=document.getElementById('main');
   const kat=DATA.esh_katalog||[];
@@ -731,6 +808,7 @@ function render(){
   renderSidebar();
   if(state.tab==='tree') viewTree();
   else if(state.tab==='info') viewInfo();
+  else if(state.tab==='rules') viewRules();
   else if(state.tab==='esh') viewEsh();
   else viewFields();
 }
