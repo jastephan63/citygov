@@ -845,15 +845,18 @@ function handlingStrip(s,fm){
     ${nb?`<span class="hs"><span class="hsl">ohne Grundlage</span><span class="badge b-over">${nb} Feld${nb===1?'':'er'} — nur freiwillig</span></span>`:''}
   </div>`;
 }
-// one bounded section per Formular: facts, handling, the data table, drawer
-function formSection(s,fm){
+// one bounded section per Formular: facts, handling, the data table, drawer.
+// `single` renders the old full per-Formular view (drawer open, no border)
+function formSection(s,fm,single){
   const hasDF=(fm.data_fields||[]).length;
-  let h=`<div class="formsec">
-    <div class="card" style="padding:9px 16px 7px">${formFacts(fm)}${hasDF?handlingStrip(s,fm):''}</div>`;
+  let h=`<div class="${single?'':'formsec'}">
+    <div class="card" style="padding:9px 16px 7px">
+      ${single?'':`<div style="float:right"><button class="fmopen srcbtn" data-fid="${fm.id}" title="dieses Formular als eigene Seite öffnen (alte Formular-Ansicht)">▣ Einzelansicht</button></div>`}
+      ${formFacts(fm)}${hasDF?handlingStrip(s,fm):''}</div>`;
   h+= hasDF? viewDataFields([fm]) : widgetTable(s,[fm]);
   h+= beilagenPanel([fm]);
   const extras=blockerPanel([fm])+handlingPanel(s,[fm])+similarPanel([fm]);
-  h+=`<details class="hgen" style="margin:0 0 4px"><summary class="dvsub" style="cursor:pointer">Details zu diesem Formular — Digitalisierungs-Blocker, volles Datenhandhabungs-Profil, Duplikat-Radar</summary>${extras}</details>`;
+  h+=`<details class="hgen" style="margin:0 0 4px" ${single?'open':''}><summary class="dvsub" style="cursor:pointer">Details zu diesem Formular — Digitalisierungs-Blocker, volles Datenhandhabungs-Profil, Duplikat-Radar</summary>${extras}</details>`;
   return h+`</div>`;
 }
 function viewFields(){
@@ -866,6 +869,25 @@ function viewFields(){
     m.querySelectorAll('tr[data-sid]').forEach(tr=>tr.onclick=()=>{state.service=tr.dataset.sid;render();}); return; }
   const s=svcById[state.service]; const forms=formsByService[s.id]||[];
   const dv=s.dvsh, sp=s.shep;
+  // the old per-Formular view, one form as its own page
+  if(state.sub&&state.sub.startsWith('form-')){
+    const fid=+state.sub.slice(5);
+    const fm=forms.find(f=>f.id===fid);
+    if(fm){
+      m.innerHTML=`<h3 class="view">${esc(fm.title)}</h3>
+        <p class="hint">Formular-Ansicht · gehört zum Service <a class="simlink" id="backsvc">${esc(s.name)}</a> · ${esc(s.dienststelle||'')}</p>
+        ${formSection(s,fm,true)}`;
+      document.getElementById('backsvc').onclick=()=>{state.sub='felder';render();};
+      m.querySelectorAll('.simlink[data-sid]').forEach(a=>a.onclick=()=>{
+        state.service=a.dataset.sid;state.sub='felder';render();});
+      m.querySelectorAll('.senslink').forEach(b=>b.onclick=()=>{
+        state.tab='guide';render();
+        const t=[...document.querySelectorAll('.gq')].find(x=>x.textContent.includes('schützenswerte'));
+        if(t)t.scrollIntoView({behavior:'smooth'});});
+      return;
+    }
+    state.sub='felder';
+  }
   const laws=svcLaws(dv);
   let h=`<h3 class="view">${esc(s.name)}</h3>
   <p class="hint">${esc(s.department||'')} · ${esc(s.dienststelle||'')}</p>
@@ -891,6 +913,7 @@ function viewFields(){
     m.innerHTML=h;
   }
   m.querySelectorAll('.seg button[data-sub]').forEach(b=>b.onclick=()=>{state.sub=b.dataset.sub;render();});
+  m.querySelectorAll('.fmopen[data-fid]').forEach(b=>b.onclick=()=>{state.sub='form-'+b.dataset.fid;render();});
   m.querySelectorAll('.simlink[data-sid]').forEach(a=>a.onclick=()=>{
     state.service=a.dataset.sid;state.sub='felder';render();});
   // a ⛨ badge jumps to the Leitfaden section on sensitive data

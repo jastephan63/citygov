@@ -14,6 +14,13 @@ children. One `service` row per service (548 incl. 19 DVSH-only additions);
 `dvsh_service` holds the full modeller harvest (330 services, source of
 truth), `shep_service` the published citizen view (196). A Formular keeps its
 own row under its service; only the NEWEST edition of a form is kept.
+474 Formulare total: file-backed ones, 32 from the DVSH asset store
+(sha256-verified), and 42 file-less eFormulare built 1:1 from DVSH
+formDefinitions (derived_by 'dvsh-formdefinition'); 259/330 DVSH services
+carry a Formular, the other 71 are honestly channel-only (email/Telefon/
+externer Link, or no file exists upstream). form.dvsh_match marks tentative
+links. The dashboard's formSection has an Einzelansicht (state.sub='form-<id>')
+restoring the old per-Formular page.
 
 ## The DVSH/SHEP harvest (both sites STRICTLY read-only)
 * DVSH: `../DVSH/dvsh_harvest_<date>.json` — exported in the browser from the
