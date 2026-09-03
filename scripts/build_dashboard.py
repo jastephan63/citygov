@@ -1145,6 +1145,100 @@ function viewGuide(){
     if(t){t.scrollIntoView({behavior:'smooth'});t.classList.add('flash');setTimeout(()=>t.classList.remove('flash'),1600);}
   });
 }
+// ---------- tree (list + diagram) ----------
+function needService(label){
+  return `<h3 class="view">${label}</h3><div class="nores">Bitte links einen einzelnen Dienst wählen `+
+         `(bei ${DATA.services.length} Diensten ist die Gesamtansicht zu gross).</div>`;
+}
+// build the law -> article -> data-field structure for the current selection
+function treeModel(){
+  // Current model: Gesetz -> Artikel -> DATENFELDER via data_field_legal_basis.
+  // (The legacy requirement links are empty for auto-drafted services.)
+  const sids = state.service==='all' ? DATA.services.map(s=>s.id) : [Number(state.service)];
+  const laws={};
+  sids.forEach(sid=>(formsByService[sid]||[]).forEach(fm=>(fm.data_fields||[]).forEach(d=>{
+    (d.legal_basis||[]).forEach(lb=>{
+      const lk=(lb.law_short||lb.law_title||'?');
+      const L=laws[lk]||(laws[lk]={id:lk,title:lb.law_title,short:lb.law_short,jur:lb.jurisdiction,sr:lb.sr_number,cref:lb.cantonal_ref,arts:{}});
+      const ak=lb.article_no||'?';
+      const A=L.arts[ak]||(L.arts[ak]={id:ak,no:lb.article_no,heading:lb.article_heading,lc:lb.last_checked,reqs:{}});
+      const st=(lb.last_checked==='verified')?'match':(String(lb.last_checked||'').startsWith('Gesetze')?'sourced':'proposed');
+      A.reqs[d.name]={dp:d.name,status:st,type:d.data_type};
+    });
+  })));
+  return Object.values(laws).map(L=>({...L,arts:Object.values(L.arts).map(A=>({...A,reqs:Object.values(A.reqs)}))}));
+}
+function viewTree(into){
+  const m=into||document.getElementById('main');
+  if(state.service==='all'){ m.innerHTML=needService('Gesetzes-Baum · Gesetz → Artikel → Datenfeld'); return; }
+  const model=treeModel();
+  let h=`<h3 class="view">Gesetzes-Baum · Gesetz → Artikel → Datenfeld</h3>
+  <p class="hint">Beide Darstellungen sind ein- und ausklappbar. Farbe = Zuständigkeitsebene; Status der Anforderung farbig markiert.</p>
+  <div class="seg">
+    <button data-t="list" class="${state.tree==='list'?'active':''}">▤ Liste</button>
+    <button data-t="diagram" class="${state.tree==='diagram'?'active':''}">⌗ Diagramm</button>
+  </div>`;
+  if(!model.length){ m.innerHTML=h+'<div class="nores">Keine Gesetze für die Auswahl.</div>'; return; }
+  h+= state.tree==='list' ? `<div class="card tree">${model.map(listLaw).join('')}</div>`
+                          : `<div class="card dg">${model.map(dgLaw).join('')}</div>`;
+  m.innerHTML=h;
+  m.querySelectorAll('.seg button').forEach(b=>b.onclick=()=>{state.tree=b.dataset.t;render();});
+  m.querySelectorAll('.ttog').forEach(t=>t.onclick=()=>t.closest('.tgrp').classList.toggle('collapsed'));
+  m.querySelectorAll('.dgbox').forEach(b=>b.onclick=(e)=>{e.stopPropagation();b.closest('.dgnode').classList.toggle('collapsed')});
+}
+function statusBadge(s){return `<span class="badge b-${s==='sourced'?'sourced':s}">${({match:'verifiziert',sourced:'Quelle (SHR-PDF)',proposed:'UNVERIFIED',legal_gap:'Legal Gap'}[s]||s)}</span>`;}
+function listLaw(L){
+  return `<div class="tgrp"><div class="tline"><span class="ttog">▾</span> ${jur(L.jur)} <b>${esc(L.short||L.title)}</b> <span class="muted small">${esc(L.title)}</span>${L.sr?' <span class="mono small">SR '+esc(L.sr)+'</span>':''}</div>
+    <div class="tnode">${L.arts.map(listArt).join('')}</div></div>`;
+}
+function listArt(A){
+  return `<div class="tgrp"><div class="tline"><span class="ttog">▾</span> <span class="mono">${esc(artLabel(A.no))}</span> ${esc(A.heading||'')}${unver(A.lc)}</div>
+    <div class="tnode">${A.reqs.map(r=>`<div class="tline">• ${esc(r.dp)} ${statusBadge(r.status)} <span class="muted small">${esc(r.type||'')}</span></div>`).join('')}</div></div>`;
+}
+function dgLaw(L){
+  return `<div class="dgnode"><div class="dgbox" style="border-left-color:var(--${L.jur})"><span class="ttl">${esc(L.short||L.title)}</span> ${jur(L.jur)}<div class="sub">${esc(L.title)}${L.sr?' · SR '+esc(L.sr):''}</div></div>
+    <div class="dgchildren">${L.arts.map(dgArt).join('')}</div></div>`;
+}
+function dgArt(A){
+  return `<div class="dgnode"><div class="dgbox" style="border-left-color:var(--mechanic)"><span class="ttl mono">${esc(artLabel(A.no))}</span><div class="sub">${esc(A.heading||'')} ${A.lc!=='verified'?'· UNVERIFIED':''}</div></div>
+    <div class="dgchildren">${A.reqs.map(r=>`<div class="dgnode"><div class="dgbox" style="border-left-color:var(--${r.status==='legal_gap'?'gap':r.status==='proposed'?'proposed':'match'})"><span class="ttl">${esc(r.dp)}</span> ${statusBadge(r.status)}<div class="sub">${esc(r.type||'')}</div></div></div>`).join('')}</div></div>`;
+}
+
+// ---------- required information per law ----------
+function viewInfo(into){
+  const m=into||document.getElementById('main');
+  if(state.service==='all'){ m.innerHTML=needService('Geforderte Informationen · pro Gesetz'); return; }
+  let h=`<h3 class="view">Geforderte Informationen · pro Gesetz</h3>
+  <p class="hint">Welche Datenpunkte jedes Gesetz verlangt, mit Artikel-Zitat, Datentyp, Bedingung und erfassendem Formularfeld.</p>`;
+  const sids = [Number(state.service)];
+  // rows from the CURRENT model: each data field with its article citations
+  const byLaw={};
+  sids.forEach(sid=>(formsByService[sid]||[]).forEach(fm=>(fm.data_fields||[]).forEach(d=>{
+    (d.legal_basis||[]).forEach(lb=>{
+      const lk=(lb.law_short||lb.law_title||'?');
+      (byLaw[lk]=byLaw[lk]||{lb,rows:[]}).rows.push({
+        req:{data_point:d.name,label:d.definition,data_type:d.data_type,condition:d.required?null:'optional'},
+        lb, cap:[{label:fm.title,st:'formular'}]});
+    });
+  })));
+  const laws=Object.values(byLaw);
+  if(!laws.length){m.innerHTML=h+'<div class="nores">Keine Daten für die Auswahl.</div>';return;}
+  laws.forEach(({lb,rows})=>{
+    h+=`<div class="card"><div style="margin-bottom:10px">${jur(lb.jurisdiction)} <b>${esc(lb.law_title)}</b> ${lb.sr_number?'<span class="mono small">SR '+esc(lb.sr_number)+'</span>':''}${unver(lb.last_checked)}</div>
+      <table><thead><tr><th>Datenpunkt</th><th>Artikel</th><th>Typ</th><th>Pflicht</th><th>Formular</th></tr></thead><tbody>
+      ${rows.map(({req,lb,cap})=>`<tr>
+        <td><b>${esc(req.data_point)}</b><div class="small muted">${esc(req.label||'')}</div></td>
+        <td class="mono small">${esc(artLabel(lb.article_no))}${lb.citation_detail?' '+esc(lb.citation_detail):''}${unver(lb.last_checked)}</td>
+        <td class="small">${esc(req.data_type||'')}</td>
+        <td class="small">${esc(req.condition||'—')}</td>
+        <td>${cap.length?cap.map(c=>`“${esc(c.label)}”${c.st==='formular'?'':` <span class="badge b-${c.st==='confirmed'?'confirmed':'proposedm'}">${c.st}</span>`}`).join('<br>'):'—'}</td>
+      </tr>`).join('')}
+      </tbody></table></div>`;
+  });
+  m.innerHTML=h;
+}
+
+
 // ---------- Verzeichnis der Bearbeitungstätigkeiten (KDSG Art. 17b) ----------
 function fmtTrigger(t){ return t&&t!=='unbestimmt' ? 'nach '+t.replace(/_/g,' ') : ''; }
 function retLine(t){
