@@ -81,7 +81,8 @@ def _has_esh(conn):
 
 
 def build(conn):
-    services = rows(conn, "SELECT id,slug,name,dienststelle,department,COALESCE(in_dvsh,0) AS in_dvsh FROM service ORDER BY name")
+    services = rows(conn, "SELECT id,slug,name,name_alt,dienststelle,department,"
+                          "COALESCE(in_dvsh,0) AS in_dvsh FROM service ORDER BY name")
     laws = rows(conn, "SELECT id,slug,title,short_title,jurisdiction_level,sr_number,"
                       "cantonal_ref,last_checked FROM law")
     articles = rows(conn, "SELECT id,law_id,article_no,heading,last_checked FROM article")

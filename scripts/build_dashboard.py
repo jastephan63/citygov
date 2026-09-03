@@ -300,6 +300,19 @@ TEMPLATE = r"""<!DOCTYPE html>
     margin-top:7px;padding-top:7px;font-size:12px;align-items:baseline}
   .hs{display:inline-flex;align-items:baseline;gap:4px;flex-wrap:wrap}
   .formsec{border-left:3px solid var(--gold);padding-left:12px;margin:0 0 22px}
+  /* navigation redesign: browse modes, breadcrumb, Formular quick-jump */
+  .navmodes{display:flex;gap:6px;margin:0 0 8px}
+  .navmodes button{flex:1;padding:5px 8px;border-radius:8px;border:1px solid var(--line);
+    background:var(--card);color:var(--ink-soft);font-size:11.5px;cursor:pointer;font-weight:600}
+  .navmodes button.active{border-color:var(--gold-deep);color:var(--ink);background:#FCFAF2}
+  .fnav .meta{display:block;font-size:10px;color:var(--ink-faint)}
+  .bcrumb{display:flex;gap:8px;align-items:center;font-size:12px;color:var(--ink-faint);margin:0 0 4px}
+  .bcrumb a{color:var(--gold-deep);cursor:pointer;font-weight:600}
+  .bcrumb a:hover{text-decoration:underline}
+  .fjump{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 10px}
+  .fjc{font-size:11.5px;padding:3px 10px;border-radius:999px;border:1px solid var(--gold);
+    background:#FCFAF2;cursor:pointer;color:var(--ink)}
+  .fjc:hover{border-color:var(--gold-deep)}
   /* Verzeichnis + Datenkatalog */
   .regstats{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
   .rstat{font-size:12px;padding:6px 12px;border-radius:10px;background:var(--card);border:1px solid var(--line)}
@@ -363,14 +376,17 @@ TEMPLATE = r"""<!DOCTYPE html>
 <script>
 const DATA = JSON.parse(document.getElementById('data').textContent);
 const GUIDE = /*GUIDE*/;
-const state = {service:'all', tab:'home', sub:'felder', tree:'list', filter:'', open:{}};
+const state = {service:'all', tab:'home', sub:'felder', tree:'list', filter:'', open:{}, navmode:'services'};
 // shareable links: state lives in location.hash (#tab/serviceId/sub), read at
 // startup and on back/forward, written by render()
 function readHash(){
+  // ALWAYS reset every part: a missing segment means its default, otherwise a
+  // stale state.sub survives the browser's Back and the old hash gets
+  // re-pushed — the "back button does nothing" loop
   const p=(location.hash||'').replace(/^#/,'').split('/');
-  if(p[0]) state.tab=p[0];
-  if(p[1]) state.service=p[1];
-  if(p[2]) state.sub=p[2];
+  state.tab=p[0]||'home';
+  state.service=p[1]||'all';
+  state.sub=p[2]||'felder';
 }
 let _writingHash=false;
 function writeHash(){
@@ -460,12 +476,19 @@ function renderSidebar(){
     `style="width:100%;padding:7px 9px;margin-bottom:8px;background:var(--panel);border:1px solid var(--bd);`+
     `border-radius:7px;color:var(--tx);font-size:12.5px">`);
   sv.appendChild(fb);
-  fb.oninput=()=>{state.filter=fb.value;renderNav();};
+  fb.oninput=()=>{state.filter=fb.value;(state.navmode==='formulare'?renderFormNav:renderNav)();};
+  // two browse modes: by SERVICE (department tree) or by FORMULAR (flat A–Z)
+  const modes=el(`<div class="navmodes">
+    <button data-nm="services" class="${state.navmode==='services'?'active':''}">nach Service</button>
+    <button data-nm="formulare" class="${state.navmode==='formulare'?'active':''}">nach Formular</button></div>`);
+  sv.appendChild(modes);
+  modes.querySelectorAll('button').forEach(b=>b.onclick=()=>{state.navmode=b.dataset.nm;renderSidebar();});
   const allr=el(`<div class="svc" style="margin-left:0;font-weight:600">▤ Alle Dienste · Übersicht <span class="meta">${DATA.services.length} Dienste, ${deptKeys().length} Departemente</span></div>`);
   if(state.service==='all') allr.classList.add('active');
-  allr.onclick=()=>{state.service='all';render();};
+  allr.onclick=()=>{state.service='all';state.sub='felder';state.tab='fields';render();};
   sv.appendChild(allr);
-  const nav=el('<div id="nav"></div>'); sv.appendChild(nav); renderNav();
+  const nav=el('<div id="nav"></div>'); sv.appendChild(nav);
+  if(state.navmode==='formulare') renderFormNav(); else renderNav();
   document.querySelectorAll('.tab').forEach(b=>{
     b.classList.toggle('active', b.dataset.tab===state.tab);
     b.onclick=()=>{state.tab=b.dataset.tab;render();};
@@ -491,6 +514,22 @@ function renderSidebar(){
   document.getElementById('legend').innerHTML =
     rows.map(([c,l])=>`<span><span class="badge ${c}">&nbsp;</span> ${l}</span>`).join('');
 }
+// flat A–Z Formular navigation: one row per Formular, click = Einzelansicht
+const formNavIdx=DATA.forms.map(f=>{
+  const svc=svcById[f.service_id]||{};
+  return {fid:f.id, sid:f.service_id, t:f.title, o:svc.dienststelle||f.publisher_dienststelle||'',
+          k:(f.title+' '+(svc.name||'')+' '+(svc.name_alt||'')+' '+(svc.dienststelle||'')).toLowerCase()};
+}).sort((a,b)=>a.t.localeCompare(b.t,'de'));
+function renderFormNav(){
+  const f=state.filter.toLowerCase(); const nav=document.getElementById('nav'); if(!nav)return;
+  const hits=formNavIdx.filter(x=>!f||x.k.includes(f)||(f.length>=3&&(fieldIdx[x.sid]||'').includes(f)));
+  nav.innerHTML=`<div class="muted small" style="margin:2px 0 6px">${hits.length} Formulare A–Z — Klick öffnet die Formular-Ansicht</div>`+
+    (hits.map(x=>`<div class="svc fnav ${state.sub==='form-'+x.fid?'active':''}" data-fid="${x.fid}" data-sid="${x.sid}">
+      <span class="svname" title="${esc(x.t)} — ${esc(x.o)}">${esc(x.t)}</span>
+      <span class="meta">${esc(x.o)}</span></div>`).join('')||'<div class="nores small">keine Treffer</div>');
+  nav.querySelectorAll('.fnav').forEach(e=>e.onclick=()=>{
+    state.service=e.dataset.sid;state.tab='fields';state.sub='form-'+e.dataset.fid;render();});
+}
 // search also finds services by their DATA FIELD names ('AHV-Nummer' -> forms asking it)
 const fieldIdx={};
 DATA.forms.forEach(fm=>{
@@ -506,7 +545,7 @@ function renderNav(){
     const offices=deptTree[d];
     let svcMatch=0, deptHTML='';
     Object.keys(offices).sort().forEach(o=>{
-      const svcs=offices[o].filter(s=>!f || (s.name+' '+o+' '+d).toLowerCase().includes(f)
+      const svcs=offices[o].filter(s=>!f || (s.name+' '+(s.name_alt||'')+' '+o+' '+d).toLowerCase().includes(f)
         || (f.length>=3 && (fieldIdx[s.id]||'').includes(f)));
       if(!svcs.length) return; svcMatch+=svcs.length;
       const offOpen = f || state.open[d+'›'+o];
@@ -849,7 +888,7 @@ function handlingStrip(s,fm){
 // `single` renders the old full per-Formular view (drawer open, no border)
 function formSection(s,fm,single){
   const hasDF=(fm.data_fields||[]).length;
-  let h=`<div class="${single?'':'formsec'}">
+  let h=`<div class="${single?'':'formsec'}" ${single?'':`id="fsec-${fm.id}"`}>
     <div class="card" style="padding:9px 16px 7px">
       ${single?'':`<div style="float:right"><button class="fmopen srcbtn" data-fid="${fm.id}" title="dieses Formular als eigene Seite öffnen (alte Formular-Ansicht)">▣ Einzelansicht</button></div>`}
       ${formFacts(fm)}${hasDF?handlingStrip(s,fm):''}</div>`;
@@ -889,8 +928,12 @@ function viewFields(){
     state.sub='felder';
   }
   const laws=svcLaws(dv);
-  let h=`<h3 class="view">${esc(s.name)}</h3>
-  <p class="hint">${esc(s.department||'')} · ${esc(s.dienststelle||'')}</p>
+  let h=`<div class="bcrumb"><a id="bc-home">⌂ Übersicht</a><span>›</span>
+    <a class="bc-flt" data-f="${esc(s.department||'')}">${esc(s.department||'—')}</a><span>›</span>
+    <a class="bc-flt" data-f="${esc(s.dienststelle||'')}">${esc(s.dienststelle||'—')}</a></div>
+  <h3 class="view">${esc(s.name)}</h3>
+  ${forms.length>1?`<div class="fjump"><span class="hsl">Formulare</span>${forms.map(fm=>
+    `<button class="fjc" data-fid="${fm.id}">${esc(fm.title.length>44?fm.title.slice(0,42)+'…':fm.title)}</button>`).join('')}</div>`:''}
   ${serviceHead(s,forms)}`;
   if(dv&&dv.kurzbeschreibung) h+=`<div class="zweckline" style="margin:2px 2px 10px">${esc(dv.kurzbeschreibung)}</div>`;
   h+=laws.length?`<div class="svclaws"><span class="hsl">Rechtsgrundlage des Services (DVSH)</span>${laws.join('')}</div>`:'';
@@ -914,6 +957,13 @@ function viewFields(){
   }
   m.querySelectorAll('.seg button[data-sub]').forEach(b=>b.onclick=()=>{state.sub=b.dataset.sub;render();});
   m.querySelectorAll('.fmopen[data-fid]').forEach(b=>b.onclick=()=>{state.sub='form-'+b.dataset.fid;render();});
+  const bch=document.getElementById('bc-home');
+  if(bch)bch.onclick=()=>{state.service='all';state.sub='felder';render();};
+  m.querySelectorAll('.bc-flt').forEach(a=>a.onclick=()=>{
+    state.service='all';state.sub='felder';state.filter=a.dataset.f;render();});
+  m.querySelectorAll('.fjc[data-fid]').forEach(b=>b.onclick=()=>{
+    const t=document.getElementById('fsec-'+b.dataset.fid);
+    if(t)t.scrollIntoView({behavior:'smooth'});});
   m.querySelectorAll('.simlink[data-sid]').forEach(a=>a.onclick=()=>{
     state.service=a.dataset.sid;state.sub='felder';render();});
   // a ⛨ badge jumps to the Leitfaden section on sensitive data
