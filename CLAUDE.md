@@ -69,8 +69,16 @@ per retention rule — duration gate: the number must appear in the rule's quote
 `form_disclosure` (recipients per form, article-backed) · `form.purpose` /
 `dsfa_status` · `canonical_attribute` (one row per unique datum, derived;
 `register_source` marks Einwohnerregister data) · `format_pattern` +
-`data_field.format_code` · `dienststelle` (ISV data-owner entity) ·
-`data_field.schutzstufe` (empty until the canton decides — no fake defaults).
+`data_field.format_code` · `dienststelle` (ISV data-owner entity, kontakt
+backfilled from DVSH) · `data_field.schutzstufe` (empty until the canton
+decides — no fake defaults).
+Verfahren & lifecycle (schema.sql tail): `beilage` (every demanded document,
+source-traceable gate; `halter`+`fetchable` = document-level Once-Only) ·
+`form_outcome` (what the Verfahren returns; Rechtsmittel columns wait for a
+VRG-gated pass — VRG = law #328, SHR 172.200, fully ingested) ·
+`form_similarity` (Duplikat-Radar, verdict curated by humans) · on `form`:
+submission_channel, signature_requirement (+evidence from the PDF scan),
+acroform, parse_error, file_hash, and computed-at-export burden/blockers.
 Integrations: `dvsh_service` (READ-ONLY harvest of the modeller) · `form_check`
 (online currency verdict per form) · `formflow` (guided TurboTax-style flow per
 form, with `form_hash` staleness tracking) · `document` (file inventory).
@@ -91,6 +99,10 @@ python3 scripts/load_field_legal.py <dir>    # article citations, gate-checked a
 python3 scripts/load_data_rules.py <dir>     # governance rules, quotes PDF-verified
 python3 scripts/init_register.py             # register layer schema + derived seeds
 python3 scripts/load_register.py <dir>       # purposes/recipients/Fristen, gated
+python3 scripts/scan_documents.py            # PDF facts: signature, AcroForm, hash
+python3 scripts/init_verfahren.py            # Verfahren DDL + channel/contact harvest
+python3 scripts/build_similarity.py          # Duplikat-Radar (verdicts curated)
+python3 scripts/load_verfahren.py <dir>      # Beilagen + Entscheide, gated
 python3 scripts/export_ech_schema.py         # eCH exchange schema per Formular
 # currency sweep (is our copy still the current edition?)
 python3 scripts/check_online.py <out>        # sh.ch CMS search + byte-compare
@@ -106,17 +118,25 @@ python3 scripts/fill_pdf.py <form_id> <answers.json>
 ```
 
 ## The two dashboards (both self-contained, open via file://)
-* **dashboard.html** — compliance view. Sidebar of all Formulare (full titles),
-  six tabs: Felder & Rechtsgrundlagen (data fields with eCH/eSH badges, DSG
-  flags, law quotes, currency badge, DVSH panel, per-Formular Datenhandhabung
-  panel) · Gesetzes-Baum · Geforderte Informationen · Datenhandhabung (the full
-  rule corpus by scope and law) · Leitfaden (plain-language guide; content in
-  `scripts/leitfaden.py`, every claim ref-gated against data_rule at build time
-  and adversarially reviewed against the rule quotes) · Verzeichnis (register
-  of processing activities per KDSG Art. 17b: completeness counters, DSFA
-  triage, Dienststellen risk heatmap, one register row per Formular) ·
-  Datenkatalog (canonical attributes, Once-Only potential, requiredness/format
-  divergences, exchange pilot list) · eSH-Katalog (Entwurf).
+* **dashboard.html** — compliance view, redesigned 2026-09 for peer readers:
+  grouped navigation (Einstieg / Nachschlagewerke / Steuerung) with question
+  subtitles, hash-router (#tab/service/sub — links are shareable), contextual
+  legend, and a `pageHead()` on every corpus page stating what the page shows,
+  where the data comes from, and what is verified vs curated vs derived.
+  Tabs: **Überblick & Methode** (landing: methodology box — proof gates,
+  verification levels, Lücke=Lücke — plus KPI tiles and the per-department
+  documentation state, computed on the curated layer) · **Formular-Seite**
+  (the hub: hub head with Ampel/blockers, channel, signature fact, Bürgerlast
+  incl. prefillable count, Verfahrens-Ergebnis, contact; segments «Datenfelder
+  & Handhabung» and «Gesetze» — the former Gesetzes-Baum/Geforderte
+  Informationen tabs live here now; panels for Beilagen (halter + Once-Only),
+  Digitalisierungs-Blocker, Datenhandhabung-Profil, Duplikat-Radar) ·
+  **Datenhandhabung** (rule corpus, sektoral cards carry «gilt für N
+  Formulare» back-links) · **Leitfaden** (chips jump to the concrete rule
+  card) · **Verzeichnis** · **Datenkatalog** (rows expand to the collecting
+  forms) · **eSH-Katalog**. Legacy viewRecon code was removed; the overview
+  bars run on the curated data_field layer and are labelled as documentation
+  state, never as legality. Sidebar search also matches data-field names.
   Note: ~29 MB — serve via `.claude/launch.json` (`citygov-static`) if a
   preview pane balks.
 * **flows.html** — guided-flow view (paper/gold design from ../formflows

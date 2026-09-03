@@ -91,7 +91,8 @@ def build(conn):
     svc_req = rows(conn, "SELECT * FROM service_requirement")
     forms = rows(conn, "SELECT id,service_id,title,actual_purpose,title_content_mismatch,"
                        "mismatch_note,publisher_dienststelle,source_file,file_type,"
-                       "purpose,dsfa_status FROM form")
+                       "purpose,dsfa_status,submission_channel,signature_requirement,"
+                       "signature_evidence,acroform,parse_error FROM form")
     fields = rows(conn, "SELECT id,form_id,label,section,field_type,options,raw_order "
                         "FROM form_field ORDER BY form_id, raw_order")
     mappings = {m["form_field_id"]: m for m in
@@ -249,24 +250,91 @@ def build(conn):
     except Exception:
         pass
 
-    # exchange readiness: share of atomic data points carrying an eCH element
+    # Verfahren layer: enclosures, outcomes, near-duplicates, guided-flow anchor
+    beil_by_form, out_by_form, sim_by_form = {}, {}, {}
+    flow_forms = set()
+    try:
+        for r in rows(conn, "SELECT form_id, bezeichnung, obligatorium, bedingung, halter, "
+                            "fetchable, source FROM beilage ORDER BY obligatorium, bezeichnung"):
+            beil_by_form.setdefault(r.pop("form_id"), []).append(r)
+        for r in rows(conn, "SELECT * FROM form_outcome"):
+            out_by_form[r.pop("form_id")] = r
+        tit = {f["id"]: f["title"] for f in forms}
+        for r in rows(conn, "SELECT form_a, form_b, jaccard_names, verdict FROM form_similarity "
+                            "WHERE jaccard_names>=0.5 AND (verdict IS NULL OR verdict!='ok')"):
+            for me, other in ((r["form_a"], r["form_b"]), (r["form_b"], r["form_a"])):
+                sim_by_form.setdefault(me, []).append(
+                    {"form_id": other, "titel": tit.get(other, "?"),
+                     "jaccard": r["jaccard_names"], "verdict": r["verdict"]})
+        flow_forms = {r["form_id"] for r in rows(conn, "SELECT DISTINCT form_id FROM formflow")}
+    except Exception:
+        pass
+    # which eCH elements the Einwohnerregister already holds (for the burden metric)
+    reg_elems = set()
+    try:
+        reg_elems = {r["id"] for r in rows(
+            conn, "SELECT id FROM ech_element WHERE standard IN "
+                  "('eCH-0044','eCH-0010','eCH-0011','eCH-0007','eCH-0008')")}
+        checks_due = {r["form_id"]: r["next_check_due"] for r in rows(
+            conn, "SELECT form_id, next_check_due FROM form_check")}
+    except Exception:
+        checks_due = {}
+    conn_elem_ids = {}
+    try:
+        for eid, e in ech.items():
+            conn_elem_ids[(e["standard"], e["element"])] = eid
+    except Exception:
+        pass
+
+    # exchange readiness, citizen burden and named digitalization blockers per form
     for fm in forms:
-        pts = ok = 0
+        pts = ok = req = pref = att = 0
         for d in dfs_by_form.get(fm["id"], []):
             subs = [s for s in (d.get("subfields") or []) if isinstance(s, dict)]
-            if subs:
-                pts += len(subs)
-                ok += sum(1 for s in subs if s.get("ech") and s["ech"].get("element"))
-            else:
-                pts += 1
-                ok += 1 if (d.get("ech") and d["ech"].get("element")) else 0
+            if d.get("data_type") == "attachment":
+                att += 1
+            units = subs if subs else [d]
+            pts += len(units)
+            for u in units:
+                e = u.get("ech")
+                if e and e.get("element"):
+                    ok += 1
+                if d.get("required"):
+                    req += 1
+                    eid = None
+                    # prefillable = the unit's element is one the Einwohnerregister holds
+                    if e and e.get("element"):
+                        eid = conn_elem_ids.get((e.get("standard"), e.get("element")))
+                    if eid in reg_elems:
+                        pref += 1
         fm["exchange_pct"] = round(100 * ok / pts) if pts else None
+        # time model: ~0.4 min per required input, 5 min per enclosure (documented here)
+        fm["burden"] = ({"inputs": req, "attachments": att, "prefillable": pref,
+                         "minutes": round(req * 0.4 + att * 5, 1),
+                         "minutes_saved": round(pref * 0.4, 1)} if pts else None)
+        blockers = []
+        if fm.get("signature_requirement") == "handschriftlich":
+            blockers.append("Unterschrift")
+        if fm.get("parse_error") or fm.get("acroform") == 0:
+            blockers.append("Quelle nicht befüllbar")
+        if fm.get("submission_channel") != "online_formular":
+            blockers.append("kein Online-Kanal")
+        if fm["exchange_pct"] is not None and fm["exchange_pct"] < 50:
+            blockers.append("eCH-Abdeckung < 50%")
+        if fm["id"] not in flow_forms:
+            blockers.append("kein geführter Flow")
+        fm["blockers"] = blockers if pts else None
+        fm["has_flow"] = fm["id"] in flow_forms
+        fm["next_check_due"] = checks_due.get(fm["id"])
         fm["fields"] = fields_by_form.get(fm["id"], [])
         fm["data_fields"] = dfs_by_form.get(fm["id"], [])
         fm["check"] = checks.get(fm["id"])
         fm["disclosures"] = disc_by_form.get(fm["id"], [])
         fm["retention"] = ret_by_form.get(fm["id"], [])
         fm["retention_decisions"] = dec_by_form.get(fm["id"], [])
+        fm["beilagen"] = beil_by_form.get(fm["id"], [])
+        fm["outcome"] = out_by_form.get(fm["id"])
+        fm["similar"] = sim_by_form.get(fm["id"], [])
 
     # DVSH modeller data (authoritative for legal bases), keyed by our service id
     dvsh_by_service = {}
