@@ -57,6 +57,12 @@ Core: `service` · `form` · `data_field` (logical fields incl. `ech_*`, `esh_*`
 Standards: `ech_standard` (290 real standards incl. approval `status` — some are
 drafts/repealed!) · `ech_element` (9.7k elements from the official XSDs) ·
 `esh_standard` (25 draft cantonal standards).
+Governance: `data_rule` — how data may be stored, treated and communicated, one
+rule per (article, aspect); every quote is mechanically verified against the
+official law PDF by `scripts/load_data_rules.py`. `law.governance=1` marks the
+8 core laws (KDSG/KDSV/ISV/ArchivV + DSG/DSV/BGA/EMBAG). Scope semantics:
+`allgemein` = every personal-data field, `besonders_schuetzenswert` = fields
+with a `sensitive` category, `sektoral` = fields of forms citing the same law.
 Integrations: `dvsh_service` (READ-ONLY harvest of the modeller) · `form_check`
 (online currency verdict per form) · `formflow` (guided TurboTax-style flow per
 form, with `form_hash` staleness tracking) · `document` (file inventory).
@@ -74,6 +80,7 @@ python3 scripts/init_subfields.py            # promote composite parts to data_s
 python3 scripts/load_ech_map.py / load_subfield_ech.py / load_ech_verdicts.py / load_ech_gaps.py
 python3 scripts/load_esh.py <katalog.json> <assign-dir>
 python3 scripts/load_field_legal.py <dir>    # article citations, gate-checked against law text
+python3 scripts/load_data_rules.py <dir>     # governance rules, quotes PDF-verified
 # currency sweep (is our copy still the current edition?)
 python3 scripts/check_online.py <out>        # sh.ch CMS search + byte-compare
 python3 scripts/load_currency.py <out> <dvsh-out>
@@ -89,10 +96,11 @@ python3 scripts/fill_pdf.py <form_id> <answers.json>
 
 ## The two dashboards (both self-contained, open via file://)
 * **dashboard.html** — compliance view. Sidebar of all Formulare (full titles),
-  four tabs: Felder & Rechtsgrundlagen (data fields with eCH/eSH badges, DSG
-  flags, law quotes, currency badge, DVSH panel) · Gesetzes-Baum · Geforderte
-  Informationen · eSH-Katalog (Entwurf). Note: ~28 MB — serve via
-  `.claude/launch.json` (`citygov-static`) if a preview pane balks.
+  five tabs: Felder & Rechtsgrundlagen (data fields with eCH/eSH badges, DSG
+  flags, law quotes, currency badge, DVSH panel, per-Formular Datenhandhabung
+  panel) · Gesetzes-Baum · Geforderte Informationen · Datenhandhabung (the full
+  rule corpus by scope and law) · eSH-Katalog (Entwurf). Note: ~28 MB — serve
+  via `.claude/launch.json` (`citygov-static`) if a preview pane balks.
 * **flows.html** — guided-flow view (paper/gold design from ../formflows
   prototypes). Per Formular: data field ↔ derived question mapping and an
   «Ausprobieren» player with help drawer, once-only profile prefill keyed by
