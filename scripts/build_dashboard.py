@@ -240,6 +240,52 @@ TEMPLATE = r"""<!DOCTYPE html>
   .hstd.over{color:#A33B3B;border-top:1px dashed var(--line);margin-top:8px;padding-top:8px}
   .hstd .gchip{cursor:default}
   .hcat{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;padding:3px 0}
+  /* redesigned navigation: grouped tabs with question subtitles */
+  .tabsub{display:block;font-size:10px;font-weight:400;color:var(--ink-faint);margin-top:1px;line-height:1.3}
+  .tab.active .tabsub{color:var(--ink-soft)}
+  .legsub{font-size:10px;font-weight:400;text-transform:none;letter-spacing:0}
+  /* consistent page header: what / source / how-to-read */
+  .pagehead{background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:11px 16px;margin-bottom:14px;font-size:12.5px;line-height:1.55}
+  .pagehead>div{margin:3px 0}
+  .phl{display:inline-block;min-width:150px;font-size:10px;text-transform:uppercase;
+    letter-spacing:.5px;color:var(--gold-deep);font-weight:700;vertical-align:top}
+  /* landing page */
+  .methodbox{background:var(--field);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;
+    padding:10px 14px;font-size:12.5px;line-height:1.6}
+  .methodbox>div{margin:4px 0}
+  .hometiles{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+  .hometile{flex:1 1 130px;background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:10px 8px;cursor:pointer;text-align:center}
+  .hometile:hover{border-color:var(--gold-deep)}
+  .htn{display:block;font-size:19px;font-weight:700;color:var(--gold-deep)}
+  .htl{display:block;font-size:11px;color:var(--ink-soft);margin-top:2px}
+  /* form-page hub head */
+  .hubhead{padding:10px 16px}
+  .hubrow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:12px}
+  .ampel{font-size:15px;line-height:1}
+  .a-gruen{color:#2E7D5B}.a-gelb{color:#C98A00}.a-rot{color:#B3372F}
+  .hubchan{font-weight:600;color:var(--ink-soft)}
+  .hubsig{color:#B3372F;font-weight:600}
+  .hubsig.ok{color:#2E7D5B}
+  .hubmeta{color:var(--ink-faint)}
+  .hubout{margin-top:7px;font-size:12.5px}
+  .hubburden{margin-top:5px;font-size:12.5px;color:var(--ink-soft)}
+  /* Beilagen */
+  .beirow{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;padding:4px 0;
+    border-top:1px dashed var(--line);font-size:12.5px}
+  .beirow:first-of-type{border-top:none}
+  .beiob{font-size:10px;padding:1px 7px;border-radius:999px;font-weight:700;border:1px solid var(--line);color:var(--ink-soft)}
+  .beiob.zwingend{background:#F9E9E4;border-color:#E5B8A8;color:#A04A2E}
+  .beiob.bedingt{background:#F4EEDF;border-color:var(--gold);color:#6B5A22}
+  .beih{margin-left:auto;font-size:11px;color:var(--ink-faint)}
+  .beih.f{color:#2E7D5B;font-weight:600}
+  .simlink{color:var(--gold-deep);cursor:pointer;text-decoration:none;font-weight:600}
+  .simlink:hover{text-decoration:underline}
+  .lawforms summary{cursor:pointer;font-size:11.5px;color:var(--gold-deep);font-weight:600;margin-top:6px}
+  .flash{outline:2px solid var(--gold-deep);outline-offset:2px}
+  .katrow{cursor:pointer}
+  .katforms td{background:var(--field);font-size:11.5px;line-height:1.7}
   /* Verzeichnis + Datenkatalog */
   .regstats{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
   .rstat{font-size:12px;padding:6px 12px;border-radius:10px;background:var(--card);border:1px solid var(--line)}
@@ -282,18 +328,19 @@ TEMPLATE = r"""<!DOCTYPE html>
 </header>
 <div class="layout">
   <aside>
-    <h2>Ansicht</h2>
-    <button class="tab" data-tab="fields">Felder &amp; Rechtsgrundlagen</button>
-    <button class="tab" data-tab="tree">Gesetzes-Baum</button>
-    <button class="tab" data-tab="info">Geforderte Informationen</button>
-    <button class="tab" data-tab="rules">Datenhandhabung</button>
-    <button class="tab" data-tab="guide">Leitfaden</button>
-    <button class="tab" data-tab="register">Verzeichnis</button>
-    <button class="tab" data-tab="katalog">Datenkatalog</button>
-    <button class="tab" data-tab="esh">eSH-Katalog (Entwurf)</button>
+    <h2>Einstieg</h2>
+    <button class="tab" data-tab="home">Überblick &amp; Methode<span class="tabsub">Was ist diese Databank, wie arbeitet sie?</span></button>
+    <button class="tab" data-tab="fields">Formular-Seite<span class="tabsub">Ein Formular: Felder, Recht, Handhabung, Reife</span></button>
+    <h2>Nachschlagewerke</h2>
+    <button class="tab" data-tab="rules">Datenhandhabung<span class="tabsub">Die Regeln im Wortlaut, je Gesetz</span></button>
+    <button class="tab" data-tab="guide">Leitfaden<span class="tabsub">Dieselben Regeln in einfacher Sprache</span></button>
+    <button class="tab" data-tab="katalog">Datenkatalog<span class="tabsub">Jedes Datum einmal: Standards &amp; Once-Only</span></button>
+    <button class="tab" data-tab="esh">eSH-Katalog (Entwurf)<span class="tabsub">Kantonaler Standard-Vorschlag für eCH-Lücken</span></button>
+    <h2>Steuerung &amp; Lücken</h2>
+    <button class="tab" data-tab="register">Verzeichnis (Art. 17b KDSG)<span class="tabsub">Bearbeitungsverzeichnis &amp; Risiko-Triage</span></button>
     <h2>Formulare &amp; Dienste</h2>
     <div id="services"></div>
-    <h2>Legende</h2>
+    <h2>Legende <span class="legsub">— Badges dieser Seite</span></h2>
     <div class="legend" id="legend"></div>
   </aside>
   <main id="main"></main>
@@ -302,7 +349,24 @@ TEMPLATE = r"""<!DOCTYPE html>
 <script>
 const DATA = JSON.parse(document.getElementById('data').textContent);
 const GUIDE = /*GUIDE*/;
-const state = {service:'all', tab:'fields', tree:'list', filter:'', open:{}};
+const state = {service:'all', tab:'home', sub:'felder', tree:'list', filter:'', open:{}};
+// shareable links: state lives in location.hash (#tab/serviceId/sub), read at
+// startup and on back/forward, written by render()
+function readHash(){
+  const p=(location.hash||'').replace(/^#/,'').split('/');
+  if(p[0]) state.tab=p[0];
+  if(p[1]) state.service=p[1];
+  if(p[2]) state.sub=p[2];
+}
+let _writingHash=false;
+function writeHash(){
+  const h='#'+state.tab+(state.service!=='all'||state.sub!=='felder'?'/'+state.service:'')+(state.sub!=='felder'?'/'+state.sub:'');
+  if(location.hash!==h){_writingHash=true;location.hash=h;}
+}
+window.addEventListener('hashchange',()=>{
+  if(_writingHash){_writingHash=false;return;}
+  readHash();render();
+});
 const DEPT_ORDER=['Baudepartement','Department des Innern','Departement des Innern','Erziehungsdepartement','Finanzdepartement','Volkswirtschaftsdepartement'];
 function deptName(s){return (s.department||'(ohne Departement)').trim();}
 
@@ -321,40 +385,15 @@ DATA.services.forEach(s=>{const d=deptName(s), o=(s.dienststelle||'(ohne Amt)').
 function deptKeys(){return Object.keys(deptTree).sort((a,b)=>{
   const ia=DEPT_ORDER.indexOf(a), ib=DEPT_ORDER.indexOf(b);
   return (ia<0?99:ia)-(ib<0?99:ib) || a.localeCompare(b);});}
-// per-field grounding: how many fields that NEED a basis actually have one
+// documentation state per service, computed on the CURATED data_field layer
+// (same numbers as every detail page): a field counts as settled when it has a
+// verified basis OR is proven no_basis (over-collection) — both are answers.
 function grounding(sid){
   let need=0, have=0;
-  (formsByService[sid]||[]).forEach(fm=>(fm.fields||[]).forEach(fl=>{
-    const m=fl.mapping; if(!m||!['mapped','identity_part','reason_facet'].includes(m.classification))return;
-    need++; const r=m.requirement_id!=null?reqById[m.requirement_id]:null;
-    if(r&&r.legal_basis&&r.legal_basis.length) have++;}));
+  (formsByService[sid]||[]).forEach(fm=>(fm.data_fields||[]).forEach(d=>{
+    need++;
+    if((d.legal_basis||[]).length || d.no_basis) have++;}));
   return {need,have};
-}
-const _recCache={};
-function reconcile(sid){
-  if(_recCache[sid]) return _recCache[sid];
-  const reqIds=reqsByService[sid]||[], forms=formsByService[sid]||[];
-  const cap={}, over=[], fieldView=[];
-  forms.forEach(fm=>(fm.fields||[]).forEach(fl=>{
-    const m=fl.mapping, cls=m?m.classification:null;
-    const e={form:fm.title,label:fl.label,path:fl.path||fl.label,section:fl.section,field_type:fl.field_type,
-             classification:cls,match_status:m?m.match_status:null,mapped_by:m?m.mapped_by:null,
-             requirement_id:m?m.requirement_id:null};
-    fieldView.push(e);
-    if(!m) return;
-    if(cls==='overcollection') over.push(e);
-    else if(m.requirement_id!=null){const b=cap[m.requirement_id]=cap[m.requirement_id]||{confirmed:[],proposed:[]};
-      (m.match_status==='confirmed'?b.confirmed:b.proposed).push(e);}
-  }));
-  const reqView=[]; let nMatch=0,nProp=0,nGap=0;
-  reqIds.forEach(rid=>{const r=reqById[rid]; if(!r) return; const c=cap[rid]||{confirmed:[],proposed:[]};
-    let st; if(c.confirmed.length){st='match';nMatch++;}else if(c.proposed.length){st='proposed';nProp++;}else{st='legal_gap';nGap++;}
-    reqView.push(Object.assign({},r,{status:st,captured_by_confirmed:c.confirmed,captured_by_proposed:c.proposed}));});
-  const total=reqIds.length;
-  const res={requirements:reqView,fields:fieldView,overcollection_fields:over,
-    summary:{requirements_total:total,matched:nMatch,proposed:nProp,legal_gaps:nGap,
-      overcollection:over.length,compliance_pct:total?Math.round(100*nMatch/total):null,fields_total:fieldView.length}};
-  _recCache[sid]=res; return res;
 }
 
 const esc = s => (s==null?'':String(s)).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
@@ -372,7 +411,7 @@ const jur = j => `<span class="badge b-${j}">${({federal:'Bund',cantonal:'Kanton
 function unver(lc){   // three verification levels
   if(!lc || lc==='UNVERIFIED') return ` <span class="badge b-unver" title="nicht verifiziert, keine Quelle">UNVERIFIED</span>`;
   if(lc==='verified') return ` <span class="badge b-match" title="live gegen Fedlex/Register verifiziert">verifiziert</span>`;
-  if(/^Gesetze/.test(lc)) return ` <span class="badge b-sourced" title="aus offizieller SHR-PDF gelesen (scripts/extract_law.py); Live-Abgleich offen">Quelle ${esc(lc.replace('Gesetze-PDF ',''))}</span>`;
+  if(/^Gesetze/.test(lc)) return ` <span class="badge b-sourced" title="aus dem amtlichen SHR-Gesetzes-PDF gelesen; Live-Abgleich noch offen">Quelle ${esc(lc.replace('Gesetze-PDF ',''))}</span>`;
   if(/^zitiert/.test(lc)) return ` <span class="badge b-sourced" title="im Formular zitiert; noch nicht gegen Gesetze/Fedlex verifiziert">zitiert (unverif.)</span>`;
   return ` <span class="badge b-unver">${esc(lc)}</span>`;
 }
@@ -403,7 +442,7 @@ function renderSidebar(){
     `${nForms} Formulare · ${nEs} eServices ohne Formular${ech} — erzeugt ${DATA.generated_at||''}`;
   document.getElementById('warn').textContent = '⚠ Zitate „UNVERIFIED“ sind NICHT amtlich geprüft';
   const sv = document.getElementById('services'); sv.innerHTML='';
-  const fb=el(`<input id="svcfilter" placeholder="Formular/Amt suchen…" value="${esc(state.filter)}" `+
+  const fb=el(`<input id="svcfilter" placeholder="Formular, Amt oder Datenfeld suchen…" value="${esc(state.filter)}" `+
     `style="width:100%;padding:7px 9px;margin-bottom:8px;background:var(--panel);border:1px solid var(--bd);`+
     `border-radius:7px;color:var(--tx);font-size:12.5px">`);
   sv.appendChild(fb);
@@ -417,13 +456,35 @@ function renderSidebar(){
     b.classList.toggle('active', b.dataset.tab===state.tab);
     b.onclick=()=>{state.tab=b.dataset.tab;render();};
   });
-  document.getElementById('legend').innerHTML = [
-    ['b-match','Match (bestätigt)'],['b-proposed','Vorschlag'],['b-legal_gap','Legal Gap'],
-    ['b-overcollection','Over-collection'],['b-identity_part','identity_part'],
-    ['b-reason_facet','reason_facet'],['b-form_mechanic','form_mechanic'],
-    ['b-federal','Bund'],['b-cantonal','Kanton'],['b-communal','Gemeinde']
-  ].map(([c,l])=>`<span><span class="badge ${c}">&nbsp;</span> ${l}</span>`).join('');
+  // context legend: explain only the badges the CURRENT page actually shows
+  const LEG = {
+    fields: [
+      ['b-match','verifiziert — live gegen Fedlex/Rechtsbuch geprüft'],
+      ['b-sourced','Quelle SHR-PDF — aus dem amtlichen Gesetzes-PDF gelesen'],
+      ['b-unver','UNVERIFIED — noch nicht am Gesetzestext geprüft (Wissenslücke, kein Verstoss)'],
+      ['b-over','Over-collection — geprüft: KEIN Gesetz verlangt dieses Feld'],
+      ['b-sens','⛨ besonders schützenswert (Art. 5 lit. c DSG)'],
+      ['b-dvsh','DVSH — amtliches Dienstleistungsmodell des Kantons (read-only Quelle)'],
+      ['b-federal','Bund'],['b-cantonal','Kanton'],['b-communal','Gemeinde'],
+    ],
+    rules: [['b-sens','⛨ kategorienspezifische Regel'],['b-unver','Zitat unverifiziert'],
+            ['b-federal','Bund'],['b-cantonal','Kanton']],
+    register: [['b-sens','⛨ besonders schützenswerte Felder'],['b-over','ohne gesetzliche Grundlage'],
+               ['b-unver','offen / fehlt']],
+    katalog: [['b-dvsh','Datum liegt im Einwohnerregister'],['b-sens','⛨ in sensitivem Kontext erhoben']],
+  };
+  const rows=(LEG[state.tab]||[['b-federal','Bund'],['b-cantonal','Kanton']]);
+  document.getElementById('legend').innerHTML =
+    rows.map(([c,l])=>`<span><span class="badge ${c}">&nbsp;</span> ${l}</span>`).join('');
 }
+// search also finds services by their DATA FIELD names ('AHV-Nummer' -> forms asking it)
+const fieldIdx={};
+DATA.forms.forEach(fm=>{
+  const t=(fm.data_fields||[]).map(d=>{
+    const ss=(d.subfields||[]).filter(s=>s&&typeof s==='object'&&s.name).map(s=>s.name);
+    return d.name+' '+ss.join(' ');}).join(' ').toLowerCase();
+  fieldIdx[fm.service_id]=(fieldIdx[fm.service_id]||'')+' '+t;
+});
 function renderNav(){
   const f=state.filter.toLowerCase(); const nav=document.getElementById('nav'); if(!nav)return;
   let h='';
@@ -431,7 +492,8 @@ function renderNav(){
     const offices=deptTree[d];
     let svcMatch=0, deptHTML='';
     Object.keys(offices).sort().forEach(o=>{
-      const svcs=offices[o].filter(s=>!f || (s.name+' '+o+' '+d).toLowerCase().includes(f));
+      const svcs=offices[o].filter(s=>!f || (s.name+' '+o+' '+d).toLowerCase().includes(f)
+        || (f.length>=3 && (fieldIdx[s.id]||'').includes(f)));
       if(!svcs.length) return; svcMatch+=svcs.length;
       const offOpen = f || state.open[d+'›'+o];
       deptHTML+=`<div class="office ${offOpen?'':'collapsed'}"><div class="offhd" data-o="${esc(d+'›'+o)}">`+
@@ -448,57 +510,80 @@ function renderNav(){
   nav.innerHTML=h || '<div class="nores small">keine Treffer</div>';
   nav.querySelectorAll('.dephd').forEach(e=>e.onclick=()=>{const d=e.dataset.d;state.open[d]=!state.open[d];renderNav();});
   nav.querySelectorAll('.offhd').forEach(e=>e.onclick=()=>{const k=e.dataset.o;state.open[k]=!state.open[k];renderNav();});
-  nav.querySelectorAll('.svc[data-sid]').forEach(e=>e.onclick=()=>{state.service=e.dataset.sid;render();});
+  // a form click ALWAYS opens the form page — on corpus tabs a mere selection
+  // change would be invisible and read as a broken click
+  nav.querySelectorAll('.svc[data-sid]').forEach(e=>e.onclick=()=>{
+    state.service=e.dataset.sid;state.tab='fields';state.sub='felder';render();});
 }
 
-// ---------- reconciliation ----------
-function viewRecon(){
-  const m=document.getElementById('main');
-  if(state.service==='all'){ m.innerHTML=reconOverview();
-    m.querySelectorAll('tr[data-sid]').forEach(tr=>tr.onclick=()=>{state.service=tr.dataset.sid;render();});
-    return; }
-  const s=svcById[state.service]; const r=reconcile(s.id);
-  const sm=r.summary; const form=(formsByService[s.id]||[])[0];
-  let h=`<h3 class="view">Abgleich · ${esc(s.name)}</h3>
-  <p class="hint">${esc(s.dienststelle||'')} — drei Eimer: <b style="color:var(--match)">Match</b> · <b style="color:var(--gap)">Legal Gap</b> · <b style="color:var(--over)">Over-collection</b>. Vorschläge zählen NICHT als compliant.</p>
-  <div class="card"><div class="summary">
-    <div class="gauge" style="color:${sm.compliance_pct>=80?'var(--match)':sm.compliance_pct>=50?'var(--over)':'var(--gap)'}">${sm.compliance_pct==null?'–':sm.compliance_pct+'%'}</div>
-    <div class="pill"><span class="n">${sm.matched}/${sm.requirements_total}</span><span class="l">Matched</span></div>
-    <div class="pill"><span class="n" style="color:var(--proposed)">${sm.proposed}</span><span class="l">Vorschlag</span></div>
-    <div class="pill"><span class="n" style="color:var(--gap)">${sm.legal_gaps}</span><span class="l">Legal Gap</span></div>
-    <div class="pill"><span class="n" style="color:var(--over)">${sm.overcollection}</span><span class="l">Over-collect.</span></div>
-   </div>`;
-  if(form && form.title_content_mismatch)
-    h+=`<div class="warn" style="display:block;margin:8px 0">⚠ Titel/Inhalt-Mismatch (conv 1): ${esc(form.mismatch_note||'')}</div>`;
-  h+=`<div class="cols" style="margin-top:12px">
-      <div><div class="colhead">⚖︎ Gesetz verlangt (${r.requirements.length})</div>${r.requirements.map(reqItem).join('')||'<div class="nores">—</div>'}</div>
-      <div><div class="colhead">▦ Formular fragt${form?': '+esc(form.title):''} (${r.fields.length})</div>${r.fields.map(fieldItem).join('')||'<div class="nores">keine Felder extrahiert (evtl. flaches PDF)</div>'}</div>
-     </div></div>`;
-  m.innerHTML=h;
-}
-function reconOverview(){
-  let rows=DATA.services.map(s=>({s,sm:reconcile(s.id).summary}))
-    .sort((a,b)=>(b.sm.legal_gaps+b.sm.overcollection)-(a.sm.legal_gaps+a.sm.overcollection));
-  const f=state.filter.toLowerCase();
-  if(f) rows=rows.filter(x=>(x.s.name+' '+(x.s.dienststelle||'')+' '+(x.s.department||'')).toLowerCase().includes(f));
-  return `<h3 class="view">Abgleich · Übersicht aller Dienste (${rows.length})</h3>
-  <p class="hint">Auto-Entwürfe — Zeile anklicken für den Detail-Abgleich. Mappings sind <b>proposed</b>, Rechtsgrundlagen grösstenteils <b>UNVERIFIED</b> (juristisch zu prüfen). Sortiert nach Prüfbedarf (Gaps + Over-collection).</p>
-  <div class="card"><table><thead><tr><th>Dienst</th><th>Amt</th><th>Anf.</th><th>Match</th><th>Vorschlag</th><th>Gap</th><th>Over</th><th>Felder</th></tr></thead><tbody>
-  ${rows.map(({s,sm})=>`<tr data-sid="${s.id}" style="cursor:pointer">
-    <td><b title="${esc(s.name)}">${esc(s.name)}</b></td><td class="small muted">${esc(s.dienststelle||'')}</td>
-    <td>${sm.requirements_total}</td>
-    <td style="color:var(--match)">${sm.matched}</td>
-    <td style="color:var(--proposed)">${sm.proposed}</td>
-    <td style="color:var(--gap)">${sm.legal_gaps||''}</td>
-    <td style="color:var(--over)">${sm.overcollection||''}</td>
-    <td class="small">${sm.fields_total}</td></tr>`).join('')}
-  </tbody></table></div>`;
-}
 // ---------- PRIMARY: fields & legal basis ----------
+// consistent page header: what the page shows, where its data comes from,
+// and how to read it — pitched at a peer who knows the domain, not a novice
+function pageHead(title, was, quelle, lesen){
+  return `<h3 class="view">${title}</h3>
+  <div class="pagehead">
+    <div><span class="phl">Was zeigt diese Seite</span>${was}</div>
+    <div><span class="phl">Datenherkunft</span>${quelle}</div>
+    ${lesen?`<div><span class="phl">Lesehinweis</span>${lesen}</div>`:''}
+  </div>`;
+}
+// ---------- Überblick & Methode (the landing page) ----------
+function viewHome(){
+  const m=document.getElementById('main');
+  const F=DATA.forms, H=DATA.datenhandhabung||[], K=DATA.attribut_katalog||[];
+  let nDf=0,nOver=0,nSens=0,nEch=0,nPts=0;
+  F.forEach(f=>(f.data_fields||[]).forEach(d=>{
+    nDf++; if(d.no_basis)nOver++; if(d.sensitive)nSens++;
+    const ss=(d.subfields||[]).filter(s=>s&&typeof s==='object'&&s.name);
+    (ss.length?ss:[d]).forEach(u=>{nPts++;if(u.ech)nEch++;});
+  }));
+  const tile=(n,l,tab)=>`<button class="hometile" data-go="${tab}"><span class="htn">${n}</span><span class="htl">${l}</span></button>`;
+  m.innerHTML=`<h3 class="view">Compliance-Databank Kanton Schaffhausen</h3>
+  <div class="card">
+    <p style="font-size:13.5px;line-height:1.6;margin:0 0 10px">Diese Databank erfasst pro <b>Formular</b> der kantonalen
+    Verwaltung: die <b>Gesetze</b>, die es verlangen (artikelgenau), die <b>Datenfelder</b>, die es erhebt (bis aufs
+    atomare Teilfeld), den <b>Standard</b> jedes Datums (eCH, ersatzweise der kantonale Entwurf eSH), die
+    <b>Handhabungsregeln</b> (Speichern, Weitergeben, Löschen — mit Wortlaut-Zitat) und den <b>Digitalisierungs-Stand</b>.
+    Konsument ist neben Menschen ein LLM-Agent, der Verwaltungsleistungen abwickeln soll — deshalb muss jede Angabe
+    <b>präzise, belegt und nie stillschweigend falsch</b> sein.</p>
+    <div class="methodbox"><b>Methode — was hier «verifiziert» heisst</b>
+      <div>• <b>Proof-Gates:</b> Agenten erarbeiten Zuordnungen, aber Loader lehnen alles ab, was nicht existiert:
+      ein Gesetzesartikel muss ingestiert sein, ein eCH-Element muss im offiziellen XSD stehen, ein Regel-Zitat muss
+      wörtlich im Gesetzes-PDF vorkommen, eine Frist-Zahl muss im Zitat stehen.</div>
+      <div>• <b>Drei Verifikationsstufen</b> an jeder Zitation: <span class="badge b-match">verifiziert</span> (live
+      gegen Fedlex/Rechtsbuch) · <span class="badge b-sourced">Quelle SHR-PDF</span> (aus dem amtlichen PDF gelesen) ·
+      <span class="badge b-unver">UNVERIFIED</span> (noch ungeprüft — eine Wissenslücke der Databank, kein Befund über
+      die Verwaltung).</div>
+      <div>• <b>Lücke = Lücke:</b> Fehlendes steht als «fehlt», «kein Standard», «zu ermitteln» offen da. Eine
+      geschönte 100%-Anzeige wäre hier ein Defekt.</div>
+      <div>• <b>Quellen:</b> die amtlichen Formulare selbst · Gesetzestexte (Schaffhauser Rechtsbuch SHR, Fedlex) ·
+      das DVSH-Dienstleistungsmodell des Kantons (strikt read-only) · die eCH-Standards von ech.ch.
+      <b>eSH</b> ist unser eigener Entwurf für Daten ohne eCH-Standard — überall als «Entwurf» markiert, nie mit
+      offiziellem eCH verwechselbar.</div>
+    </div>
+  </div>
+  <div class="hometiles">
+    ${tile(F.length,'Formulare','fields')}
+    ${tile(nDf.toLocaleString('de-CH'),'Datenfelder','fields')}
+    ${tile(Math.round(100*nEch/nPts)+'%','atomare Punkte mit eCH','katalog')}
+    ${tile(H.length,'Regeln, Zitat PDF-verifiziert','rules')}
+    ${tile(nOver,'Felder ohne Grundlage','register')}
+    ${tile(nSens,'⛨ sensible Felder','register')}
+    ${tile(K.length.toLocaleString('de-CH'),'einzigartige Daten','katalog')}
+    ${tile((DATA.esh_katalog||[]).length,'eSH-Entwürfe','esh')}
+  </div>
+  ${deptOverview()}`;
+  m.querySelectorAll('.hometile').forEach(b=>b.onclick=()=>{state.tab=b.dataset.go;render();});
+  m.querySelectorAll('tr[data-sid]').forEach(tr=>tr.onclick=()=>{
+    state.service=tr.dataset.sid;state.tab='fields';state.sub='felder';render();});
+}
 function deptOverview(){
   const f=state.filter.toLowerCase();
   let h=`<h3 class="view">Übersicht nach Departement</h3>
-  <p class="hint">Auto-Entwürfe — je Formularfeld eine Anforderung; Rechtsgrundlage meist noch zu ermitteln. Dienst anklicken. Balken = Anteil Felder mit eingetragener Rechtsgrundlage.</p>`;
+  <p class="hint">Dokumentationsstand der Databank, gerechnet auf der kuratierten Datenfeld-Schicht:
+  Der Balken zeigt, für wie viele Datenfelder die Rechtsfrage GEKLÄRT ist — belegte Grundlage oder geprüftes
+  «keine Grundlage» (Over-collection) zählen beide als Antwort. Ein kurzer Balken heisst «noch nicht ermittelt»,
+  nicht «unrechtmässig erhoben». Zeile anklicken öffnet die Formular-Seite.</p>`;
   deptKeys().forEach(d=>{
     const offices=deptTree[d]; let body='',dn=0,dh=0,dsvc=0;
     Object.keys(offices).sort().forEach(o=>offices[o].forEach(s=>{
@@ -513,8 +598,8 @@ function deptOverview(){
     const dpct=dn?Math.round(100*dh/dn):100;
     h+=`<div class="card"><div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
       <b style="font-size:14px">${esc(d)}</b> <span class="small muted">${dsvc} Dienste</span>
-      <div class="pbar"><i style="width:${dpct}%"></i></div><span class="small muted">${dh}/${dn} Felder mit Grundlage</span></div>
-      <table class="ft"><thead><tr><th>Dienst (Formular)</th><th>Amt</th><th>Felder</th><th>Rechtsgrundlagen</th></tr></thead><tbody>${body}</tbody></table></div>`;
+      <div class="pbar"><i style="width:${dpct}%"></i></div><span class="small muted">${dh}/${dn} Datenfelder geklärt</span></div>
+      <table class="ft"><thead><tr><th>Dienst (Formular)</th><th>Amt</th><th>Datenfelder</th><th>Rechtsfrage geklärt</th></tr></thead><tbody>${body}</tbody></table></div>`;
   });
   return h;
 }
@@ -528,7 +613,7 @@ function viewDataFields(forms){
     h+=`<div class="card"><div class="dfhdr"><b>${esc(fm.title)}</b>
       <span class="muted small">— ${dfs.length} Datenfelder${fm.fields?` · aus ${fm.fields.length} Formularfeldern verdichtet`:''}${(()=>{const n=dfs.filter(x=>x.ech).length;return n?` · <b>${n}/${dfs.length}</b> eCH-standardisiert`:'';})()}</span>
       ${(()=>{const ck=fm.check;if(!ck)return'';
-        if(ck.status==='aktuell')return`<span class="fcheck ok" title="online geprüft ${esc(ck.d||'')} (${esc(ck.quelle||'')}) — unsere Kopie ist die aktuelle Fassung">✓ aktuell</span>`;
+        if(ck.status==='aktuell')return`<span class="fcheck ok" title="online geprüft (${esc(ck.quelle||'')}) — unsere Kopie ist die aktuelle Fassung">✓ aktuell${ck.d?' · geprüft '+esc(ck.d):''}</span>`;
         if(ck.status==='veraltet')return`<span class="fcheck warn" style="font-weight:700" title="${esc(ck.note||'')}">⛔ veraltet — neuere Fassung online</span>`;
         if(ck.status==='veraltet_verdacht')return`<span class="fcheck warn" title="${esc(ck.note||'')}${ck.dvsh_neu?' — neu: '+esc(ck.dvsh_neu):''}">⚠ evtl. veraltet</span>`;
         if(ck.status==='nicht_auffindbar')return`<span class="fcheck gone" title="${esc(ck.note||'')} (geprüft ${esc(ck.d||'')}) — Formular wird online nicht mehr angeboten; evtl. ausser Gebrauch oder durch eServices ersetzt">✕ nicht mehr online</span>`;
@@ -556,7 +641,7 @@ function viewDataFields(forms){
                 : st==='Sistiert'?'Dieser eCH-Standard ist SISTIERT (ausgesetzt) — nicht in Kraft, Zuordnung vorläufig'
                 : 'Dieser eCH-Standard ist noch nicht genehmigt (in Arbeit) — Zuordnung vorläufig'}">${(st==='Aufgehoben'||st==='Abgelöst')?'⛔':'⚠'} ${esc(st)}</span>`:'');})()
             :(d.ech_status==='kein_standard'?('<span class="echn" title="kein eCH-Standard deckt dieses Feld ab">kein eCH-Standard</span>'+(d.esh?`<span class="eshb" title="Vorschlag für den kantonalen Standard eSH (E-Schaffhausen) — ENTWURF, nicht offiziell: ${esc(d.esh.titel)}">${esc(d.esh.code)} · ${esc(d.esh.element||'')}<span class="ent">Entwurf</span></span>`:'')):'')}
-          ${d.sensitive?`<span class="badge b-sens" title="besonders schützenswerte Personendaten (Art. 5 lit. c DSG)">⛨ ${esc(SENS[d.sensitive]||d.sensitive)}</span>`:''}
+          ${d.sensitive?`<span class="badge b-sens senslink" title="besonders schützenswerte Personendaten (Art. 5 lit. c DSG) — Klick: was zusätzlich gilt (Leitfaden)">⛨ ${esc(SENS[d.sensitive]||d.sensitive)}</span>`:''}
           ${d.format?`<span class="muted small">· ${esc(d.format)}</span>`:''}</div>
         ${d.definition?`<div class="dfdef">${esc(d.definition)}</div>`:''}
         ${subs.length?`<div class="dfchips"><span class="muted small">Teilfelder:</span> ${(d.subfields||[]).slice(0,24).map(s=>{
@@ -571,7 +656,7 @@ function viewDataFields(forms){
         ${(d.source_widgets||[]).length?`<div class="dfprov"><i class="ti ti-arrow-back-up"></i> erfasst durch: ${d.source_widgets.slice(0,8).map(w=>esc(String(w))).join(' · ')}</div>`:''}
       </div><div class="dfrg">${(d.legal_basis&&d.legal_basis.length)?d.legal_basis.map(b=>
           b.quote?`<details class="qd"><summary>${citeStr(b)}</summary><blockquote class="quote">«${esc(b.quote)}»</blockquote></details>`
-                 :citeStr(b)).join('<br>'):(d.no_basis?'<span class="badge b-over">Over-collection — keine gesetzliche Grundlage</span>':'<span class="badge b-unver">Rechtsgrundlage zu ermitteln</span>')}</div></div>`;
+                 :citeStr(b)).join('<br>'):(d.no_basis?'<span class="badge b-over" title="Geprüft: kein Gesetz verlangt dieses Feld — es darf nur freiwillig erhoben werden (Leitfaden «Erheben»)">Over-collection — keine gesetzliche Grundlage</span>':'<span class="badge b-unver" title="Noch nicht juristisch ermittelt — heisst NICHT, dass keine Grundlage existiert; hier fehlt Recherche, kein Recht">Rechtsgrundlage zu ermitteln</span>')}</div></div>`;
     });
     h+=`</div>`;
   });
@@ -584,37 +669,138 @@ function widgetTable(s,forms){
     <span><b>${g.have}/${g.need}</b> Felder mit Rechtsgrundlage</span>
     ${forms[0]&&forms[0].source_file?`<a class="srcbtn" href="${esc(forms[0].source_file)}" style="margin-left:auto">↗ Quelldatei</a>`:''}</div>
   <table class="ft"><thead><tr><th>#</th><th>Feld</th><th>Rechtsgrundlage</th><th>Klasse</th></tr></thead><tbody>`;
+  // German labels for the auto-draft classifications; raw slug stays as tooltip
+  const CLS_DE={mapped:'zugeordnet',identity_part:'Identitätsangabe',reason_facet:'Begründungsangabe',
+    form_mechanic:'Formular-Mechanik',overcollection:'ohne gesetzliche Grundlage','—':'—'};
   let i=0;
   forms.forEach(fm=>(fm.fields||[]).forEach(fl=>{ i++; const mp=fl.mapping; const cls=mp?mp.classification:'—';
     const req=mp&&mp.requirement_id!=null?reqById[mp.requirement_id]:null; const basis=req?req.legal_basis:[];
     const cell = cls==='form_mechanic' ? '<span class="muted small">— keine nötig</span>'
-      : cls==='overcollection' ? '<span class="badge b-over">Over-collection — ohne Grundlage</span>'
+      : cls==='overcollection' ? '<span class="badge b-over" title="Geprüft: kein Gesetz verlangt dieses Feld — nur freiwillig erhebbar">Over-collection — ohne Grundlage</span>'
       : basis.length ? basis.map(citeStr).join('<br>')
-      : '<span class="badge b-unver">zu ermitteln</span>';
-    h+=`<tr class="${cls==='form_mechanic'?'mech':''}"><td>${i}</td>
+      : '<span class="badge b-unver" title="Noch nicht juristisch ermittelt — heisst NICHT, dass keine Grundlage existiert; die Databank dokumentiert hier eine Wissenslücke">zu ermitteln</span>';
+    h+=`<tr><td>${i}</td>
       <td>${fmtPath(fl.path||fl.label)}</td>
-      <td>${cell}</td><td><span class="dot d-${cls}"></span><span class="small">${esc(cls)}</span></td></tr>`;
+      <td>${cell}</td><td><span class="small" title="${esc(cls)}">${esc(CLS_DE[cls]||cls)}</span></td></tr>`;
   }));
   h+=`</tbody></table>${i?'':'<div class="nores">keine Felder extrahiert (gescanntes PDF / reine Erklärung)</div>'}</div>`;
   return h;
 }
+const CHAN_DE={online_formular:'Online-Formular',pdf:'PDF-Einreichung',schalter:'Schalter',unbekannt:'Kanal unbekannt'};
+const OUTCOME_DE={bewilligung:'Bewilligung',verfuegung:'Verfügung',bestaetigung:'Bestätigung/Ausweis',
+  registereintrag:'Registereintrag',auszahlung:'Auszahlung',kein_entscheid:'kein Entscheid (Meldung)',unbekannt:'unbekannt'};
+function hubHead(s, forms){
+  const fm=forms[0]||{};
+  const bl=fm.blockers||[];
+  const amp=bl.length===0?'gruen':(bl.length<=2?'gelb':'rot');
+  const dst=(DATA.dienststellen||[]).find(x=>x.name===(s.dienststelle||fm.publisher_dienststelle));
+  let checked='';
+  if(fm.check&&fm.check.d){
+    const days=Math.round((Date.parse(DATA.generated_at||'')-Date.parse(fm.check.d))/864e5);
+    checked=`<span class="hubmeta" title="Aktualität online geprüft am ${esc(fm.check.d)}${fm.next_check_due?' · Wiedervorlage '+esc(fm.next_check_due):''}">zuletzt geprüft vor ${days} Tagen</span>`;
+  }
+  const out=fm.outcome;
+  return `<div class="card hubhead">
+    <div class="hubrow">
+      ${bl.length!==undefined&&(fm.data_fields||[]).length?`<span class="ampel a-${amp}" title="Digitalisierungs-Blocker: ${bl.length?esc(bl.join(' · ')):'keine'}">●</span>`:''}
+      <span class="hubchan">${esc(CHAN_DE[fm.submission_channel]||CHAN_DE.unbekannt)}</span>
+      ${fm.signature_requirement==='handschriftlich'?`<span class="hubsig" title="${esc(fm.signature_evidence||'')}">✍ Unterschrift nötig</span>`:''}
+      ${fm.signature_requirement==='sig_widget'?`<span class="hubsig ok">✓ digitale Signatur möglich</span>`:''}
+      ${fm.has_flow?`<span class="hubmeta">geführter Flow vorhanden (flows.html)</span>`:''}
+      ${checked}
+      ${dst&&dst.kontakt?`<span class="hubmeta" title="verantwortliche Dienststelle laut DVSH">Kontakt: ${esc(dst.kontakt)}</span>`:''}
+    </div>
+    ${out&&out.entscheid_art&&out.entscheid_art!=='unbekannt'?`<div class="hubout">Ergebnis des Verfahrens:
+      <b>${esc(OUTCOME_DE[out.entscheid_art]||out.entscheid_art)}</b>${out.ergebnis_dokument?` — «${esc(out.ergebnis_dokument)}»`:''}
+      <span class="muted small">(aus dem DVSH-Ablauftext abgeleitet)</span></div>`:''}
+    ${fm.burden?`<div class="hubburden">Bürgerlast: <b>${fm.burden.inputs}</b> Pflichtangaben
+      ${fm.burden.attachments?` · <b>${fm.burden.attachments}</b> Beilagen`:''} · ~<b>${fm.burden.minutes}</b> Min
+      ${fm.burden.prefillable?` · <b>${fm.burden.prefillable}</b> Angaben aus dem Einwohnerregister vorbefüllbar`:''}
+      <span class="muted small" title="Zeitmodell: 0.4 Min je Pflichtangabe, 5 Min je Beilage">ⓘ</span></div>`:''}
+  </div>`;
+}
+function blockerPanel(forms){
+  const fm=forms[0]||{}; const bl=fm.blockers||[];
+  if(!(fm.data_fields||[]).length) return '';
+  if(!bl.length) return `<div class="card"><div class="dvsub">Digitalisierung</div>
+    <div class="hstd">Keine Blocker erkannt — dieses Formular ist ein Kandidat für die durchgängig digitale Abwicklung.</div></div>`;
+  const detail={'Unterschrift':fm.signature_evidence?`Beleg: ${fm.signature_evidence}`:'',
+    'Quelle nicht befüllbar':fm.parse_error?`PDF nicht maschinell lesbar (${fm.parse_error})`:'flaches PDF ohne AcroForm-Felder',
+    'kein Online-Kanal':'kein Online-Formular im DVSH-Abgabekanal',
+    'eCH-Abdeckung < 50%':`nur ${fm.exchange_pct}% der atomaren Datenpunkte standardisiert`,
+    'kein geführter Flow':'noch kein Flow in flows.html'};
+  return `<div class="card"><div class="dvsub">Digitalisierungs-Blocker (${bl.length})</div>
+    ${bl.map(b=>`<div class="hstd">✕ <b>${esc(b)}</b><span class="muted small"> — ${esc(detail[b]||'')}</span></div>`).join('')}</div>`;
+}
+const HALTER_DE={privat:'nur beim Bürger',einwohnerregister:'Einwohnerregister',handelsregister:'Handelsregister',
+  betreibungsregister:'Betreibungsregister',strafregister:'Strafregister',steuerverwaltung:'Steuerverwaltung',
+  grundbuch:'Grundbuch',kanton_andere:'kantonale Behörde',bund:'Bund',unbekannt:'Halter unbekannt'};
+function beilagenPanel(forms){
+  const bs=forms.flatMap(fm=>fm.beilagen||[]);
+  if(!bs.length) return '';
+  const fetch_=bs.filter(b=>b.fetchable).length;
+  return `<div class="card"><div class="dvsub">Beilagen (${bs.length})${fetch_?` — <b>${fetch_}</b> könnte der Kanton selbst beim Register beschaffen`:''}</div>
+    ${bs.map(b=>`<div class="beirow">
+      <span class="beiob ${b.obligatorium||'unbekannt'}">${esc({zwingend:'Pflicht',bedingt:'bedingt',fakultativ:'freiwillig',unbekannt:'?'}[b.obligatorium||'unbekannt'])}</span>
+      <span>${esc(b.bezeichnung)}${b.bedingung?` <span class="muted small">(${esc(b.bedingung)})</span>`:''}</span>
+      <span class="beih ${b.fetchable?'f':''}" title="${b.fetchable?'staatlich geführt — Once-Only-Kandidat: Abruf statt Papierkopie':''}">${esc(HALTER_DE[b.halter]||b.halter||'')}${b.fetchable?' ↺':''}</span>
+      ${b.source==='dvsh'?'<span class="muted small" title="nur im DVSH-Modell verlangt, nicht im Formular selbst — Abgleich-Fund">nur DVSH</span>':''}
+    </div>`).join('')}</div>`;
+}
+function similarPanel(forms){
+  const sim=forms.flatMap(fm=>fm.similar||[]);
+  if(!sim.length) return '';
+  return `<div class="card"><div class="dvsub">Duplikat-Radar — sehr ähnliche Formulare (Feldmengen-Überlappung ≥ 50%)</div>
+    ${sim.slice(0,6).map(x=>{
+      const svc=DATA.forms.find(f=>f.id===x.form_id);
+      return `<div class="hstd">≈ <a class="simlink" data-sid="${svc?svc.service_id:''}">${esc(x.titel)}</a>
+      <span class="muted small">Jaccard ${x.jaccard}${x.verdict?' · '+esc(x.verdict):' · unbeurteilt'}</span></div>`;}).join('')}</div>`;
+}
 function viewFields(){
   const m=document.getElementById('main');
-  if(state.service==='all'){ m.innerHTML=deptOverview();
+  if(state.service==='all'){
+    m.innerHTML=pageHead('Formular-Seite',
+      'Links ein Formular wählen (oder oben suchen) — dessen Seite bündelt alles: Datenfelder mit Rechtsgrundlagen, Gesetze, Datenhandhabungs-Profil, Beilagen, Bürgerlast und Digitalisierungs-Stand.',
+      'Kuratierte Datenfeld-Schicht der Databank; Verfahrens-Fakten aus dem DVSH-Modell (read-only).',
+      'Unten der Dokumentationsstand aller Departemente.')+deptOverview();
     m.querySelectorAll('tr[data-sid]').forEach(tr=>tr.onclick=()=>{state.service=tr.dataset.sid;render();}); return; }
   const s=svcById[state.service]; const forms=formsByService[s.id]||[];
   const withDF=forms.filter(fm=>(fm.data_fields||[]).length);
   const rest=forms.filter(fm=>!(fm.data_fields||[]).length);
   let h=`<h3 class="view">${esc(s.name)}</h3>
-  <p class="hint">${esc(s.department||'')} · ${esc(s.dienststelle||'')} — ${withDF.length?'die Datenfelder dieses Formulars: Typ, Definition, zulässige Werte und Herkunft.':'je Zeile ein Formularfeld und seine Rechtsgrundlage.'}</p>`;
-  h+=formLinks(s,forms);
-  if(!s.in_dvsh) h+=`<div class="card nodvbox"><span class="badge b-nodv">◇ Nicht im DVSH-Modell</span>
-    <span class="muted small">Dieser Dienst ist in unserem Formular-Katalog erfasst, aber (noch) nicht in der amtlichen DVSH-Modellierung enthalten. Die Rechtsgrundlagen unten stammen aus unserer eigenen, quellenbelegten Analyse.</span></div>`;
-  if(s.dvsh) h+=dvshPanel(s.dvsh);
-  if(withDF.length) h+=viewDataFields(withDF);
-  if(rest.length) h+=widgetTable(s,rest);
-  h+=handlingPanel(s,forms);
-  m.innerHTML=h;
+  <p class="hint">${esc(s.department||'')} · ${esc(s.dienststelle||'')} — rechts neben jedem Datenfeld steht seine
+  Rechtsgrundlage; Aufbewahrung, Weitergabe und ⛨-Regeln stehen im Datenhandhabungs-Profil unten.</p>
+  ${hubHead(s,forms)}
+  <div class="seg">
+    <button data-sub="felder" class="${state.sub!=='gesetze'?'active':''}">▤ Datenfelder &amp; Handhabung</button>
+    <button data-sub="gesetze" class="${state.sub==='gesetze'?'active':''}">⚖ Gesetze zu diesem Formular</button>
+  </div>`;
+  if(state.sub==='gesetze'){
+    h+=`<div id="hub-tree"></div><div id="hub-info"></div>`;
+    m.innerHTML=h;
+    viewTree(document.getElementById('hub-tree'));
+    viewInfo(document.getElementById('hub-info'));
+  } else {
+    h+=formLinks(s,forms);
+    if(!s.in_dvsh) h+=`<div class="card nodvbox"><span class="badge b-nodv">◇ Nicht im DVSH-Modell</span>
+      <span class="muted small">Dieser Dienst ist in unserem Formular-Katalog erfasst, aber (noch) nicht in der amtlichen DVSH-Modellierung enthalten. Die Rechtsgrundlagen unten stammen aus unserer eigenen, quellenbelegten Analyse.</span></div>`;
+    if(s.dvsh) h+=dvshPanel(s.dvsh);
+    h+=blockerPanel(forms);
+    h+=beilagenPanel(forms);
+    if(withDF.length) h+=viewDataFields(withDF);
+    if(rest.length) h+=widgetTable(s,rest);
+    h+=handlingPanel(s,forms);
+    h+=similarPanel(forms);
+    m.innerHTML=h;
+  }
+  m.querySelectorAll('.seg button[data-sub]').forEach(b=>b.onclick=()=>{state.sub=b.dataset.sub;render();});
+  m.querySelectorAll('.simlink[data-sid]').forEach(a=>a.onclick=()=>{
+    state.service=a.dataset.sid;state.sub='felder';render();});
+  // a ⛨ badge jumps to the Leitfaden section on sensitive data
+  m.querySelectorAll('.senslink').forEach(b=>b.onclick=()=>{
+    state.tab='guide';render();
+    const t=[...document.querySelectorAll('.gq')].find(x=>x.textContent.includes('schützenswerte'));
+    if(t)t.scrollIntoView({behavior:'smooth'});});
 }
 function formLinks(s,forms){
   const f=forms.filter(x=>x.source_file);
@@ -650,26 +836,8 @@ function dvshPanel(d){
     ${meta?`<div class="dvmeta">${meta}</div>`:''}
   </div>`;
 }
-function reqItem(r){
-  const cap=[...r.captured_by_confirmed,...r.captured_by_proposed];
-  return `<div class="item ${r.status}">
-    <div class="t">${esc(r.data_point)} <span class="badge b-${r.status}">${({match:'Match',proposed:'Vorschlag',legal_gap:'Legal Gap'}[r.status])}</span>${r.is_composite?' <span class="badge b-identity_part">zusammengesetzt</span>':''}</div>
-    <div class="d">${esc(r.label||'')}${r.condition?' · Bedingung: <i>'+esc(r.condition)+'</i>':''} · Typ: ${esc(r.data_type||'?')}</div>
-    <div class="cite">${r.legal_basis.map(citeStr).join('<br>')||'<span class="badge b-unver">Rechtsgrundlage zu ermitteln</span>'}</div>
-    <div class="d">${r.status==='legal_gap'?'<span style="color:var(--gap)">✗ von keinem Formularfeld erfasst</span>'
-        :'erfasst durch: '+cap.map(c=>`“${esc(c.label)}” <span class="badge b-${c.match_status==='confirmed'?'confirmed':'proposedm'}">${c.match_status}</span>`).join(', ')}</div>
-  </div>`;
-}
-function fieldItem(f){
-  const cl=f.classification||'—';
-  return `<div class="item ${cl==='overcollection'?'overcollection':(f.requirement_id?'match':'')}">
-    <div class="t">${esc(f.label)} <span class="badge b-${cl}">${cl}</span>${f.match_status?` <span class="badge b-${f.match_status==='confirmed'?'confirmed':'proposedm'}">${f.match_status}/${f.mapped_by}</span>`:''}</div>
-    <div class="d">${esc(f.section||'')} · ${esc(f.field_type||'')}${cl==='overcollection'?' · <span style="color:var(--over)">⚠ keine Rechtsgrundlage (DSG-Risiko)</span>':''}${cl==='form_mechanic'?' · <span class="muted">Formular-Mechanik, keine Anforderung</span>':''}</div>
-  </div>`;
-}
 
 // ---------- tree (list + diagram) ----------
-function serviceReqs(sid){ return reconcile(sid).requirements; }
 function needService(label){
   return `<h3 class="view">${label}</h3><div class="nores">Bitte links einen einzelnen Dienst wählen `+
          `(bei ${DATA.services.length} Diensten ist die Gesamtansicht zu gross).</div>`;
@@ -692,8 +860,8 @@ function treeModel(){
   })));
   return Object.values(laws).map(L=>({...L,arts:Object.values(L.arts).map(A=>({...A,reqs:Object.values(A.reqs)}))}));
 }
-function viewTree(){
-  const m=document.getElementById('main');
+function viewTree(into){
+  const m=into||document.getElementById('main');
   if(state.service==='all'){ m.innerHTML=needService('Gesetzes-Baum · Gesetz → Artikel → Datenfeld'); return; }
   const model=treeModel();
   let h=`<h3 class="view">Gesetzes-Baum · Gesetz → Artikel → Datenfeld</h3>
@@ -729,8 +897,8 @@ function dgArt(A){
 }
 
 // ---------- required information per law ----------
-function viewInfo(){
-  const m=document.getElementById('main');
+function viewInfo(into){
+  const m=into||document.getElementById('main');
   if(state.service==='all'){ m.innerHTML=needService('Geforderte Informationen · pro Gesetz'); return; }
   let h=`<h3 class="view">Geforderte Informationen · pro Gesetz</h3>
   <p class="hint">Welche Datenpunkte jedes Gesetz verlangt, mit Artikel-Zitat, Datentyp, Bedingung und erfassendem Formularfeld.</p>`;
@@ -816,7 +984,7 @@ function handlingPanel(s,forms){
   const terms=forms.flatMap(fm=>fm.retention||[]);
   const decisions=forms.flatMap(fm=>fm.retention_decisions||[]);
   const empf=forms.flatMap(fm=>fm.disclosures||[]);
-  let h=`<div class="card"><div class="dfhdr"><b>Datenhandhabung — Profil dieses Formulars</b>
+  let h=`<div class="card" id="dhprofil"><div class="dfhdr"><b>Datenhandhabung — Profil dieses Formulars</b>
     <span class="muted small">— was für DIESE Daten speziell gilt; das für alle identische Grundprogramm ist unten eingeklappt</span></div>
     ${purpose?`<div class="zweckline">Zweck: ${esc(purpose)}</div>`:''}
     <div class="pfstrip">${strip}</div>`;
@@ -866,14 +1034,18 @@ function handlingPanel(s,forms){
 function viewRules(){
   const m=document.getElementById('main');
   const H=DATA.datenhandhabung||[];
-  let h=`<h3 class="view">Datenhandhabung · Speicherung, Bearbeitung, Bekanntgabe</h3>
-  <p class="hint">Aus den amtlichen Gesetzestexten extrahierte Regeln, wie Personendaten behandelt werden müssen —
-  jede Regel mit wörtlichem, gegen das Gesetzes-PDF geprüftem Zitat. «Allgemein» gilt für alle Personendaten,
-  «besonders schützenswert» zusätzlich für ⛨-Felder, «sektoral» nur für Formulare, die sich auf das jeweilige Gesetz stützen.</p>`;
+  let h=pageHead('Datenhandhabung · Speicherung, Bearbeitung, Bekanntgabe',
+    'Der vollständige Regel-Korpus: eine Zeile je (Artikel, Aspekt), gruppiert nach Geltungsbereich und Gesetz.',
+    '8 Governance-Gesetze (KDSG/KDSV/ISV/ArchivV, DSG/DSV/BGA/EMBAG) vollständig gelesen plus die Datenhandhabungs-Artikel von 41 Fachgesetzen; jede Regel trägt ein wörtliches Zitat, das der Loader mechanisch gegen das amtliche Gesetzes-PDF geprüft hat.',
+    '«allgemein» gilt für alle Personendaten · «besonders schützenswert» zusätzlich für ⛨-Felder · «sektoral» nur für Formulare, deren Felder das jeweilige Gesetz zitieren («gilt für N Formulare» aufklappen).');
   if(!H.length){m.innerHTML=h+'<div class="nores">Noch keine Regeln geladen (scripts/load_data_rules.py).</div>';return;}
   const grp=[['allgemein','Allgemeine Regeln — für alle Personendaten'],
              ['besonders_schuetzenswert','Besonders schützenswerte Personendaten'],
              ['sektoral','Sektorale Spezialnormen — je Fachgesetz']];
+  // which forms cite which law — for the 'gilt für N Formulare' back-links
+  const formsByLaw={};
+  DATA.forms.forEach(f=>(f.data_fields||[]).forEach(d=>(d.legal_basis||[]).forEach(b=>{
+    if(b.law_id!=null)(formsByLaw[b.law_id]=formsByLaw[b.law_id]||new Set()).add(f);})));
   grp.forEach(([scope,label])=>{
     const list=H.filter(r=>r.scope===scope); if(!list.length) return;
     // one card per law inside the scope, so the source is always visible
@@ -882,14 +1054,19 @@ function viewRules(){
     h+=`<h4 class="hscope">${esc(label)} <span class="muted small">· ${list.length} Regeln</span></h4>`;
     Object.values(byLaw).forEach(rs=>{
       const r0=rs[0];
-      h+=`<div class="card"><div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap">
+      const fms=scope==='sektoral'?[...(formsByLaw[r0.law_id]||[])]:[];
+      h+=`<div class="card" id="law-${r0.law_id}-${scope}"><div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap">
         <b>${esc(r0.short_title||r0.law_title)}</b>
         <span class="muted small">${esc(r0.law_title!==r0.short_title?r0.law_title:'')}</span>
         <span class="muted small" style="margin-left:auto">${jur(r0.jurisdiction_level)} ${r0.sr_number?(r0.jurisdiction_level==='federal'?'SR ':'SHR ')+esc(r0.sr_number):''} · ${rs.length} Regeln</span></div>
-        ${rulesByAspect(rs)}</div>`;
+        ${rulesByAspect(rs)}
+        ${fms.length?`<details class="lawforms"><summary>gilt für ${fms.length} Formular${fms.length===1?'':'e'} →</summary>
+          ${fms.slice(0,40).map(f=>`<div class="small">• <a class="simlink" data-sid="${f.service_id}">${esc(f.title)}</a></div>`).join('')}</details>`:''}</div>`;
     });
   });
   m.innerHTML=h;
+  m.querySelectorAll('.simlink[data-sid]').forEach(a=>a.onclick=()=>{
+    state.service=a.dataset.sid;state.tab='fields';state.sub='felder';render();});
 }
 // ---------- Leitfaden (plain-language guide over the verified rules) ----------
 function guideChip(ref){
@@ -900,16 +1077,14 @@ function guideChip(ref){
     &&x.aspect===asp&&(!scope||x.scope===scope));
   if(!r) return '';
   const tip=(r.summary||'')+(r.quote?'\n«'+r.quote+'»':'');
-  return `<span class="gchip" title="${esc(tip)}">${esc(r.short_title||r.law_title)} ${esc(artLabel(r.article_no))}</span>`;
+  return `<span class="gchip" data-law="${r.law_id}" data-scope="${esc(r.scope)}" title="${esc(tip)}">${esc(r.short_title||r.law_title)} ${esc(artLabel(r.article_no))}</span>`;
 }
 function viewGuide(){
   const m=document.getElementById('main');
-  let h=`<h3 class="view">Leitfaden · Was heisst das für den Umgang mit Daten?</h3>
-  <p class="hint">Die praktischen Antworten hinter den ${(DATA.datenhandhabung||[]).length} Regeln des
-  Datenhandhabung-Tabs, in einfacher Sprache. Jede Aussage ist mit den zugrunde liegenden, am Gesetzes-PDF
-  verifizierten Regeln verknüpft (Chips zeigen beim Überfahren das wörtliche Zitat, Klick öffnet den
-  Datenhandhabung-Tab). Massgeblich bleibt der Gesetzestext. Was für ein einzelnes Formular speziell gilt,
-  zeigt dessen Profil-Panel im Tab «Felder &amp; Rechtsgrundlagen».</p>`;
+  let h=pageHead('Leitfaden · Was heisst das für den Umgang mit Daten?',
+    `Die praktischen Antworten hinter den ${(DATA.datenhandhabung||[]).length} Regeln des Datenhandhabung-Tabs, in einfacher Sprache — neun Fragen vom Erheben bis zum Vernichten.`,
+    'Kuratierter Text; der Build verweigert sich, sobald eine Aussage eine Regel zitiert, die nicht in der Databank ist. Chips zeigen beim Überfahren das wörtliche, PDF-verifizierte Zitat; Klick springt zur Regel. Violette Kästen sind Einordnung, kein Gesetzeszitat.',
+    'Massgeblich bleibt der Gesetzestext. Formular-spezifisches steht im Datenhandhabungs-Profil der jeweiligen Formular-Seite.');
   GUIDE.forEach(sec=>{
     h+=`<div class="card gsec"><h4 class="gq">${esc(sec.frage)}</h4>
       <div class="gkurz"><span class="gklabel">Kurz gesagt</span>${esc(sec.kurz)}</div>`;
@@ -921,8 +1096,12 @@ function viewGuide(){
     h+=`</div>`;
   });
   m.innerHTML=h;
-  // a chip jumps to the full rule corpus where the verbatim quotes live
-  m.querySelectorAll('.gchip').forEach(c=>c.onclick=()=>{state.tab='rules';render();});
+  // a chip jumps to the cited law's card in the full rule corpus
+  m.querySelectorAll('.gchip').forEach(c=>c.onclick=()=>{
+    state.tab='rules';render();
+    const t=document.getElementById(`law-${c.dataset.law}-${c.dataset.scope}`);
+    if(t){t.scrollIntoView({behavior:'smooth'});t.classList.add('flash');setTimeout(()=>t.classList.remove('flash'),1600);}
+  });
 }
 // ---------- Verzeichnis der Bearbeitungstätigkeiten (KDSG Art. 17b) ----------
 function fmtTrigger(t){ return t&&t!=='unbestimmt' ? 'nach '+t.replace(/_/g,' ') : ''; }
@@ -947,11 +1126,10 @@ function viewRegister(){
   const c={zweck:0,empf:0,frist:0,dsfa:0,voll:0};
   st.forEach(({s})=>{if(s.hasZweck)c.zweck++;if(s.hasEmpf)c.empf++;if(s.hasFrist)c.frist++;
     if(s.dsfaInd)c.dsfa++;if(s.hasZweck&&s.hasEmpf&&s.hasFrist)c.voll++;});
-  let h=`<h3 class="view">Verzeichnis der Bearbeitungstätigkeiten</h3>
-  <p class="hint">Registerauszug nach KDSG Art. 17b je Formular: Verantwortliche Stelle, Zweck, Datenkategorien,
-  Rechtsgrundlagen, Empfänger und Aufbewahrung. Fehlende Pflichtinhalte sind ehrlich als Lücke markiert —
-  Zweck und Empfänger stammen aus Agent-Kuratierung (Empfänger stets mit Artikel-Beleg), Fristen aus dem
-  zitatverifizierten Fristen-Register.</p>
+  let h=pageHead('Verzeichnis der Bearbeitungstätigkeiten',
+    'Registerauszug nach KDSG Art. 17b je Formular (verantwortliche Stelle, Zweck, Datenkategorien, Rechtsgrundlagen, Empfänger, Aufbewahrung) plus DSFA-Triage und Dienststellen-Risikobild.',
+    'Verantwortliche und Kategorien aus der kuratierten Feld-Schicht; Zwecke agent-kuratiert; Empfänger nur mit Artikel-Beleg; Fristen aus dem zitatverifizierten Fristen-Register. Die DSFA-Spalte ist ein BERECHNETER Vorschlag — entschieden wird von Menschen.',
+    'Fehlende Pflichtinhalte stehen als «fehlt» — das ist der Arbeitsvorrat, kein Darstellungsfehler.')+`
   <div class="regstats">
     <span class="rstat">Zweck erfasst <b>${c.zweck}/${st.length}</b></span>
     <span class="rstat">Empfänger belegt <b>${c.empf}/${st.length}</b></span>
@@ -1011,10 +1189,10 @@ function viewKatalog(){
   const kat=DATA.attribut_katalog||[];
   const reg=kat.filter(a=>a.register_source);
   const regInst=reg.reduce((n,a)=>n+a.n_instances,0);
-  let h=`<h3 class="view">Datenkatalog · die ${kat.length} einzigartigen Daten des Kantons</h3>
-  <p class="hint">Jede Zeile ist EIN Datum (ein eCH- oder eSH-Element), egal auf wie vielen Formularen es erhoben wird.
-  «Registerbeziehbar» heisst: das Einwohnerregister führt dieses Datum bereits — der Kanton fragt es trotzdem
-  ${regInst.toLocaleString('de-CH')} Mal ab. Divergenzen zeigen, wo dasselbe Datum uneinheitlich erhoben wird.</p>`;
+  let h=pageHead(`Datenkatalog · die ${kat.length} einzigartigen Daten des Kantons`,
+    'Eine Zeile je Datum (kanonisches Attribut = ein eCH- oder eSH-Element), egal auf wie vielen Formularen es erhoben wird — die Master-Data-Sicht über den ganzen Katalog.',
+    'Vollständig abgeleitet aus den eCH/eSH-Zuordnungen der Feld-Schicht; «Einwohnerregister» markiert Attribute, die das Register nach RHG bereits führt.',
+    `Der Kanton fragt registergeführte Daten trotzdem ${regInst.toLocaleString('de-CH')} Mal ab — das ist das Once-Only-Potenzial. Divergenzen zeigen, wo dasselbe Datum uneinheitlich erhoben wird. Zeile aufklappen listet die erhebenden Formulare.`);
   // exchange pipeline: how close is each form to a real eCH payload?
   const withDf=DATA.forms.filter(f=>(f.data_fields||[]).length);
   const online=new Set();
@@ -1028,8 +1206,8 @@ function viewKatalog(){
     <span class="rstat">registerbeziehbare Attribute <b>${reg.length}</b></span>
   </div>`;
   if(pilot.length){
-    h+=`<div class="card"><div class="dvsub">Exchange-Pilotliste — voll standardisiert und schon online einreichbar</div>
-    ${pilot.map(f=>`<div class="small" style="padding:2px 0">• ${esc(f.title)}</div>`).join('')}</div>`;
+    h+=`<div class="card"><div class="dvsub">Exchange-Pilotliste — voll standardisiert UND schon online einreichbar</div>
+    ${pilot.map(f=>`<div class="small" style="padding:2px 0">• <a class="simlink" data-sid="${f.service_id}">${esc(f.title)}</a></div>`).join('')}</div>`;
   }
   // divergences computed live over all forms: same element, different requiredness/format
   const byEl={};
@@ -1052,23 +1230,35 @@ function viewKatalog(){
   // the catalogue itself, most-collected first
   h+=`<div class="card"><table class="ft"><thead><tr><th>Datum</th><th>Standard-Element</th>
     <th>Formulare</th><th>Erhebungen</th><th>Register</th><th>⛨</th></tr></thead><tbody>`;
+  // which forms collect a given element (for the expandable rows)
+  const collectors={};
+  DATA.forms.forEach(f=>(f.data_fields||[]).forEach(d=>{
+    const push=e=>{if(e&&e.element)(collectors[`${e.standard}·${e.element}`]=collectors[`${e.standard}·${e.element}`]||new Set()).add(f);};
+    push(d.ech);(d.subfields||[]).forEach(s=>{if(s&&typeof s==='object')push(s.ech);});}));
   kat.slice(0,120).forEach(a=>{
     const el=a.ech_standard?`${a.ech_standard}·${a.ech_element}`:(a.esh_key||'');
     let cats=[]; try{cats=JSON.parse(a.sensitive_categories||'[]')}catch(e){}
-    h+=`<tr><td><b>${esc(a.label)}</b></td><td class="mono small">${esc(el)}</td>
+    const fms=[...(collectors[el]||[])];
+    h+=`<tr class="katrow" data-el="${esc(el)}"><td><b>${esc(a.label)}</b></td><td class="mono small">${esc(el)}</td>
       <td>${a.n_forms}</td><td>${a.n_instances}</td>
       <td>${a.register_source?'<span class="badge b-dvsh">Einwohnerregister</span>':'—'}</td>
-      <td>${cats.length?`<span class="badge b-sens">⛨ ${cats.map(x=>esc(HSENS[x]||x)).join(', ')}</span>`:''}</td></tr>`;});
-  h+=`</tbody></table><div class="muted small" style="padding:6px 2px">Die 120 meist-erhobenen von ${kat.length} Attributen; vollständig im LLM-Export.</div></div>`;
+      <td>${cats.length?`<span class="badge b-sens" title="auf mindestens einem Formular in sensitivem Kontext erhoben">⛨ ${cats.map(x=>esc(HSENS[x]||x)).join(', ')}</span>`:''}</td></tr>
+      ${fms.length?`<tr class="katforms" hidden><td colspan="6">${fms.slice(0,30).map(f=>`<a class="simlink small" data-sid="${f.service_id}">• ${esc(f.title)}</a>`).join('<br>')}</td></tr>`:''}`;});
+  h+=`</tbody></table><div class="muted small" style="padding:6px 2px">Die 120 meist-erhobenen von ${kat.length} Attributen; vollständig im LLM-Export. Zeile anklicken = erhebende Formulare.</div></div>`;
   m.innerHTML=h;
+  m.querySelectorAll('.katrow').forEach(tr=>tr.onclick=()=>{
+    const nx=tr.nextElementSibling;
+    if(nx&&nx.classList.contains('katforms')) nx.hidden=!nx.hidden;});
+  m.querySelectorAll('.simlink[data-sid]').forEach(a=>a.onclick=(ev)=>{ev.stopPropagation();
+    state.service=a.dataset.sid;state.tab='fields';state.sub='felder';render();});
 }
 function viewEsh(){
   const m=document.getElementById('main');
   const kat=DATA.esh_katalog||[];
-  let h=`<h3 class="view">eSH-Katalog · E-Schaffhausen-Standard (ENTWURF)</h3>
-  <p class="hint">Vorschlag für einen kantonalen Datenstandard, der alles abdeckt, was die eCH-Familie nicht abdeckt
-  (${kat.reduce((n,k)=>n+(k.n_felder||0),0)} Datenpunkte ohne eCH-Standard). Abgeleitet aus den realen Formularfeldern der Verwaltung —
-  <b>nicht offiziell</b>, zur Weiterentwicklung durch den Kanton.</p>`;
+  let h=pageHead('eSH-Katalog · E-Schaffhausen-Standard (ENTWURF)',
+    `Unser eigener Entwurf eines kantonalen Datenstandards für die ${kat.reduce((n,k)=>n+(k.n_felder||0),0)} Datenpunkte, die kein eCH-Standard abdeckt — 25 Standards, abgeleitet aus den realen Formularfeldern.`,
+    'Eigenleistung dieses Projekts, NICHT offiziell; im ganzen Dashboard violett-gestrichelt und als «Entwurf» markiert, damit er nie mit offiziellem eCH verwechselt wird (Konvention 7: eSH überdeckt nie ein eCH-Element).',
+    'Gedacht als Diskussionsgrundlage für den Kanton — jeder Code zeigt, wie viele reale Datenpunkte er abdecken würde.');
   if(!kat.length){m.innerHTML=h+'<div class="nores">Noch kein Katalog geladen.</div>';return;}
   kat.forEach(k=>{
     let th=[]; try{th=JSON.parse(k.themen||'[]')}catch(e){}
@@ -1083,15 +1273,17 @@ function viewEsh(){
 }
 function render(){
   renderSidebar();
-  if(state.tab==='tree') viewTree();
-  else if(state.tab==='info') viewInfo();
+  if(state.tab==='home') viewHome();
+  else if(state.tab==='tree'||state.tab==='info'){state.tab='fields';state.sub='gesetze';viewFields();}
   else if(state.tab==='rules') viewRules();
   else if(state.tab==='guide') viewGuide();
   else if(state.tab==='register') viewRegister();
   else if(state.tab==='katalog') viewKatalog();
   else if(state.tab==='esh') viewEsh();
   else viewFields();
+  writeHash();
 }
+readHash();
 render();
 </script>
 </body>

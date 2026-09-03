@@ -296,3 +296,43 @@ CREATE TABLE IF NOT EXISTS retention_decision (    -- cantonal Fristentscheid, n
     form_id INTEGER NOT NULL REFERENCES form(id) ON DELETE CASCADE,
     duration_value INTEGER, duration_unit TEXT, trigger_event TEXT, disposition TEXT,
     decided_by TEXT, decided_at TEXT, basis TEXT, note TEXT);
+
+-- ---------------------------------------------------------------------------
+-- Verfahren & lifecycle layer (2026-09): what surrounds a Formular.
+-- Mechanical seeds: scripts/scan_documents.py (PDF facts), init_verfahren.py
+-- (DDL, channel harvest, review dates, contacts), build_similarity.py.
+-- Curated content through the gates of scripts/load_verfahren.py.
+-- New columns on form: submission_channel, signature_requirement/evidence,
+-- acroform, parse_error, file_hash; on form_check: next_check_due.
+
+CREATE TABLE IF NOT EXISTS beilage (               -- one demanded document per row
+    id INTEGER PRIMARY KEY,
+    form_id INTEGER NOT NULL REFERENCES form(id) ON DELETE CASCADE,
+    data_field_id INTEGER REFERENCES data_field(id),
+    bezeichnung TEXT NOT NULL,
+    obligatorium TEXT CHECK(obligatorium IN ('zwingend','bedingt','fakultativ','unbekannt')),
+    bedingung TEXT,
+    halter TEXT CHECK(halter IN ('privat','einwohnerregister','handelsregister',
+        'betreibungsregister','strafregister','steuerverwaltung','grundbuch',
+        'kanton_andere','bund','unbekannt')),
+    fetchable INTEGER NOT NULL DEFAULT 0,          -- canton could fetch it itself (Once-Only)
+    source TEXT NOT NULL CHECK(source IN ('formular','dvsh','beide')),
+    last_checked TEXT,
+    UNIQUE(form_id, bezeichnung));
+
+CREATE TABLE IF NOT EXISTS form_outcome (          -- what the Verfahren returns
+    form_id INTEGER PRIMARY KEY REFERENCES form(id) ON DELETE CASCADE,
+    entscheid_art TEXT CHECK(entscheid_art IN ('bewilligung','verfuegung','bestaetigung',
+        'registereintrag','auszahlung','kein_entscheid','unbekannt')),
+    ergebnis_dokument TEXT,
+    rechtsmittel_art TEXT, rechtsmittel_frist_tage INTEGER, rechtsmittel_instanz TEXT,
+    article_id INTEGER REFERENCES article(id),     -- future: VRG-gated Rechtsmittel pass
+    last_checked TEXT);
+
+CREATE TABLE IF NOT EXISTS form_similarity (       -- Duplikat-Radar, verdict curated
+    form_a INTEGER NOT NULL REFERENCES form(id) ON DELETE CASCADE,
+    form_b INTEGER NOT NULL REFERENCES form(id) ON DELETE CASCADE,
+    jaccard_names REAL NOT NULL, jaccard_ech REAL,
+    verdict TEXT CHECK(verdict IN ('duplicate_ingest','merge_candidate','template_family','ok')),
+    note TEXT,
+    PRIMARY KEY(form_a, form_b));
