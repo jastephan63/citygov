@@ -96,11 +96,14 @@ python3 scripts/fill_pdf.py <form_id> <answers.json>
 
 ## The two dashboards (both self-contained, open via file://)
 * **dashboard.html** — compliance view. Sidebar of all Formulare (full titles),
-  five tabs: Felder & Rechtsgrundlagen (data fields with eCH/eSH badges, DSG
+  six tabs: Felder & Rechtsgrundlagen (data fields with eCH/eSH badges, DSG
   flags, law quotes, currency badge, DVSH panel, per-Formular Datenhandhabung
   panel) · Gesetzes-Baum · Geforderte Informationen · Datenhandhabung (the full
-  rule corpus by scope and law) · eSH-Katalog (Entwurf). Note: ~28 MB — serve
-  via `.claude/launch.json` (`citygov-static`) if a preview pane balks.
+  rule corpus by scope and law) · Leitfaden (plain-language guide; content in
+  `scripts/leitfaden.py`, every claim ref-gated against data_rule at build time
+  and adversarially reviewed against the rule quotes) · eSH-Katalog (Entwurf).
+  Note: ~28 MB — serve via `.claude/launch.json` (`citygov-static`) if a
+  preview pane balks.
 * **flows.html** — guided-flow view (paper/gold design from ../formflows
   prototypes). Per Formular: data field ↔ derived question mapping and an
   «Ausprobieren» player with help drawer, once-only profile prefill keyed by

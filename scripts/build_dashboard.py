@@ -14,11 +14,13 @@ Views:
 
     python3 scripts/build_dashboard.py
 """
+import json
 import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from common import EXPORT_PATH, DASHBOARD_PATH
+from common import DB_PATH, EXPORT_PATH, DASHBOARD_PATH, connect
+from leitfaden import LEITFADEN
 
 TEMPLATE = r"""<!DOCTYPE html>
 <html lang="de">
@@ -211,6 +213,22 @@ TEMPLATE = r"""<!DOCTYPE html>
   .hgrp{margin-top:10px}
   .hgen{margin-top:10px;border-top:1px solid var(--line);padding-top:8px}
   .hscope{font-size:13.5px;color:var(--ink-soft);margin:18px 2px 8px;text-transform:uppercase;letter-spacing:.4px}
+  /* Leitfaden: question -> plain answer -> grounded bullets with rule chips */
+  .gsec{max-width:860px}
+  .gq{font-size:16px;margin:2px 0 10px;color:var(--ink)}
+  .gkurz{background:var(--field);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;
+    padding:10px 14px;font-size:13.5px;line-height:1.55;margin-bottom:6px}
+  .gklabel,.gplabel{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.6px;
+    color:var(--gold-deep);font-weight:700;margin-bottom:3px}
+  .gpt{padding:9px 2px 2px;border-top:1px dashed var(--line);font-size:13px;line-height:1.5}
+  .gpt:first-of-type{border-top:none}
+  .gchips{margin-top:5px}
+  .gchip{display:inline-block;font-size:10.5px;padding:1px 8px;margin:2px 4px 0 0;border-radius:999px;
+    background:#F4EEDF;border:1px solid var(--gold);color:#6B5A22;font-weight:600;cursor:pointer}
+  .gchip:hover{border-color:var(--gold-deep);background:#FCFAF2}
+  .gprax{margin-top:10px;background:#F3EEF7;border:1px solid #D8CCE8;border-radius:10px;
+    padding:10px 14px;font-size:12.5px;line-height:1.5;color:#4A3C60}
+  .gprax .gplabel{color:#7A5EA8}
   .nodv{color:var(--communal);margin-right:4px}
   .esvc{display:inline-block;font-size:10px;background:#E8F1F6;color:#2C6E91;border:1px solid #BFD8E6;
     border-radius:6px;padding:0 6px;margin-left:6px;font-weight:600}
@@ -249,6 +267,7 @@ TEMPLATE = r"""<!DOCTYPE html>
     <button class="tab" data-tab="tree">Gesetzes-Baum</button>
     <button class="tab" data-tab="info">Geforderte Informationen</button>
     <button class="tab" data-tab="rules">Datenhandhabung</button>
+    <button class="tab" data-tab="guide">Leitfaden</button>
     <button class="tab" data-tab="esh">eSH-Katalog (Entwurf)</button>
     <h2>Formulare &amp; Dienste</h2>
     <div id="services"></div>
@@ -260,6 +279,7 @@ TEMPLATE = r"""<!DOCTYPE html>
 <script id="data" type="application/json">/*DATA*/</script>
 <script>
 const DATA = JSON.parse(document.getElementById('data').textContent);
+const GUIDE = /*GUIDE*/;
 const state = {service:'all', tab:'fields', tree:'list', filter:'', open:{}};
 const DEPT_ORDER=['Baudepartement','Department des Innern','Departement des Innern','Erziehungsdepartement','Finanzdepartement','Volkswirtschaftsdepartement'];
 function deptName(s){return (s.department||'(ohne Departement)').trim();}
@@ -785,6 +805,38 @@ function viewRules(){
   });
   m.innerHTML=h;
 }
+// ---------- Leitfaden (plain-language guide over the verified rules) ----------
+function guideChip(ref){
+  // resolve (sr, article, aspect[, scope]) against the verified rule corpus;
+  // build_dashboard.py already refused to build if a ref does not resolve
+  const [sr,art,asp,scope]=ref;
+  const r=(DATA.datenhandhabung||[]).find(x=>x.sr_number===sr&&x.article_no===art
+    &&x.aspect===asp&&(!scope||x.scope===scope));
+  if(!r) return '';
+  const tip=(r.summary||'')+(r.quote?'\n«'+r.quote+'»':'');
+  return `<span class="gchip" title="${esc(tip)}">${esc(r.short_title||r.law_title)} ${esc(artLabel(r.article_no))}</span>`;
+}
+function viewGuide(){
+  const m=document.getElementById('main');
+  let h=`<h3 class="view">Leitfaden · Was heisst das für den Umgang mit Daten?</h3>
+  <p class="hint">Die praktischen Antworten hinter den ${(DATA.datenhandhabung||[]).length} Regeln des
+  Datenhandhabung-Tabs, in einfacher Sprache. Jede Aussage ist mit den zugrunde liegenden, am Gesetzes-PDF
+  verifizierten Regeln verknüpft (Chips zeigen beim Überfahren das wörtliche Zitat, Klick öffnet den
+  Datenhandhabung-Tab). Massgeblich bleibt der Gesetzestext.</p>`;
+  GUIDE.forEach(sec=>{
+    h+=`<div class="card gsec"><h4 class="gq">${esc(sec.frage)}</h4>
+      <div class="gkurz"><span class="gklabel">Kurz gesagt</span>${esc(sec.kurz)}</div>`;
+    (sec.punkte||[]).forEach(p=>{
+      h+=`<div class="gpt"><div>${esc(p.text)}</div>
+        <div class="gchips">${(p.refs||[]).map(guideChip).join('')}</div></div>`;
+    });
+    if(sec.praxis) h+=`<div class="gprax"><span class="gplabel">Einordnung — Interpretation der Databank, kein Gesetzeszitat</span>${esc(sec.praxis)}</div>`;
+    h+=`</div>`;
+  });
+  m.innerHTML=h;
+  // a chip jumps to the full rule corpus where the verbatim quotes live
+  m.querySelectorAll('.gchip').forEach(c=>c.onclick=()=>{state.tab='rules';render();});
+}
 function viewEsh(){
   const m=document.getElementById('main');
   const kat=DATA.esh_katalog||[];
@@ -809,6 +861,7 @@ function render(){
   if(state.tab==='tree') viewTree();
   else if(state.tab==='info') viewInfo();
   else if(state.tab==='rules') viewRules();
+  else if(state.tab==='guide') viewGuide();
   else if(state.tab==='esh') viewEsh();
   else viewFields();
 }
@@ -819,15 +872,43 @@ render();
 """
 
 
+def check_guide(conn):
+    """Refuse to build if the Leitfaden cites a rule that is not in data_rule —
+    the guide must never reference law the databank does not hold."""
+    have = set()
+    for r in conn.execute("SELECT l.sr_number sr, a.article_no art, dr.aspect, dr.scope "
+                          "FROM data_rule dr JOIN article a ON a.id=dr.article_id "
+                          "JOIN law l ON l.id=a.law_id"):
+        have.add((r["sr"], r["art"], r["aspect"], r["scope"]))
+        have.add((r["sr"], r["art"], r["aspect"], None))
+    bad = []
+    for sec in LEITFADEN:
+        for p in sec.get("punkte", []):
+            for ref in p.get("refs", []):
+                scope = ref[3] if len(ref) > 3 else None
+                if (ref[0], ref[1], ref[2], scope) not in have:
+                    bad.append(f"{sec['id']}: {ref[0]} {ref[1]} {ref[2]} {scope or ''}".strip())
+    return bad
+
+
 def main():
     with open(EXPORT_PATH, encoding="utf-8") as fh:
         data = fh.read()
+    conn = connect(DB_PATH)
+    bad = check_guide(conn)
+    conn.close()
+    if bad:
+        print("ABORT — Leitfaden zitiert Regeln, die nicht in der Databank sind:")
+        for b in bad[:12]:
+            print("  ", b)
+        sys.exit(1)
     # inline as JSON text inside a <script type=application/json> (escape </ to be safe)
     safe = data.replace("</", "<\\/")
-    html = TEMPLATE.replace("/*DATA*/", safe)
+    guide = json.dumps(LEITFADEN, ensure_ascii=False).replace("</", "<\\/")
+    html = TEMPLATE.replace("/*DATA*/", safe).replace("/*GUIDE*/", guide)
     with open(DASHBOARD_PATH, "w", encoding="utf-8") as fh:
         fh.write(html)
-    print(f"wrote {DASHBOARD_PATH}  ({len(html)//1024} KB)")
+    print(f"wrote {DASHBOARD_PATH}  ({len(html)//1024} KB, Leitfaden: {len(LEITFADEN)} Abschnitte)")
 
 
 if __name__ == "__main__":
