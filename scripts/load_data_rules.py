@@ -27,7 +27,8 @@ from common import DB_PATH, connect
 from validate_db import validate
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# the law PDFs live in the Gesetze folder NEXT TO the repo, not inside it
+GESETZE = os.path.join(os.path.dirname(os.path.dirname(HERE)), "Gesetze")
 
 ASPECTS = {"erhebung", "bearbeitung", "speicherung", "aufbewahrung", "bekanntgabe",
            "sicherheit", "betroffenenrechte", "archivierung", "loeschung"}
@@ -61,9 +62,9 @@ def law_pdf(sr, level):
     if not sr:
         return None
     if level == "federal":
-        p = os.path.join(ROOT, "Gesetze", "Bund", sr + ".pdf")
+        p = os.path.join(GESETZE, "Bund", sr + ".pdf")
         return p if os.path.exists(p) else None
-    hits = sorted(glob.glob(os.path.join(ROOT, "Gesetze", sr + "-*.pdf")))
+    hits = sorted(glob.glob(os.path.join(GESETZE, sr + "-*.pdf")))
     return hits[0] if hits else None
 
 
