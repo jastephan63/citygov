@@ -330,7 +330,7 @@ TEMPLATE = r"""<!DOCTYPE html>
   <aside>
     <h2>Einstieg</h2>
     <button class="tab" data-tab="home">Überblick &amp; Methode<span class="tabsub">Was ist diese Databank, wie arbeitet sie?</span></button>
-    <button class="tab" data-tab="fields">Formular-Seite<span class="tabsub">Ein Formular: Felder, Recht, Handhabung, Reife</span></button>
+    <button class="tab" data-tab="fields">Service-Seite<span class="tabsub">Ein Service: Verfahren, Formulare, Recht, Handhabung</span></button>
     <h2>Nachschlagewerke</h2>
     <button class="tab" data-tab="rules">Datenhandhabung<span class="tabsub">Die Regeln im Wortlaut, je Gesetz</span></button>
     <button class="tab" data-tab="guide">Leitfaden<span class="tabsub">Dieselben Regeln in einfacher Sprache</span></button>
@@ -556,13 +556,16 @@ function viewHome(){
       die Verwaltung).</div>
       <div>• <b>Lücke = Lücke:</b> Fehlendes steht als «fehlt», «kein Standard», «zu ermitteln» offen da. Eine
       geschönte 100%-Anzeige wäre hier ein Defekt.</div>
-      <div>• <b>Quellen:</b> die amtlichen Formulare selbst · Gesetzestexte (Schaffhauser Rechtsbuch SHR, Fedlex) ·
-      das DVSH-Dienstleistungsmodell des Kantons (strikt read-only) · die eCH-Standards von ech.ch.
+      <div>• <b>Quellen:</b> das DVSH-Dienstleistungsmodell des Kantons (Source of Truth, strikt read-only
+      geharvestet) · das publizierte SHEP-Portal (Bürger-Sicht) · die amtlichen Formulare selbst ·
+      Gesetzestexte (Schaffhauser Rechtsbuch SHR, Fedlex) · die eCH-Standards von ech.ch.
       <b>eSH</b> ist unser eigener Entwurf für Daten ohne eCH-Standard — überall als «Entwurf» markiert, nie mit
       offiziellem eCH verwechselbar.</div>
     </div>
   </div>
   <div class="hometiles">
+    ${tile(DATA.services.filter(s=>s.dvsh).length,'Services im DVSH modelliert','fields')}
+    ${tile(DATA.services.filter(s=>s.shep).length,'auf SHEP publiziert','fields')}
     ${tile(F.length,'Formulare','fields')}
     ${tile(nDf.toLocaleString('de-CH'),'Datenfelder','fields')}
     ${tile(Math.round(100*nEch/nPts)+'%','atomare Punkte mit eCH','katalog')}
@@ -694,6 +697,17 @@ function hubHead(s, forms){
   const bl=fm.blockers||[];
   const amp=bl.length===0?'gruen':(bl.length<=2?'gelb':'rot');
   const dst=(DATA.dienststellen||[]).find(x=>x.name===(s.dienststelle||fm.publisher_dienststelle));
+  // service-level publication state: modelled in DVSH, published on SHEP
+  const dv=s.dvsh, sp=s.shep;
+  let pubrow='';
+  if(dv||sp){
+    pubrow=`<div class="hubrow" style="margin-bottom:6px">
+      ${dv?`<span class="badge b-dvsh" title="Status im DVSH-Modeller${dv.version?' · Version '+esc(String(dv.version)):''}">DVSH: ${esc(dv.status||'modelliert')}${dv.online?' · online':''}</span>`:'<span class="badge b-nodv">◇ nicht im DVSH modelliert</span>'}
+      ${sp?`<a class="badge b-dvsh" style="text-decoration:none" href="https://shep.meetfrida.agency/de/services/${esc(sp.slug)}" target="_blank" rel="noreferrer" title="auf dem SHEP-Portal publiziert · Stand ${esc(sp.updated||'')}">SHEP publiziert ↗</a>`:(dv?'<span class="hubmeta">noch nicht auf SHEP publiziert</span>':'')}
+      ${dv&&dv.vollzugsbehoerde?`<span class="hubmeta">Vollzug: ${esc(dv.vollzugsbehoerde)}</span>`:''}
+      ${dv&&dv.gebuehren?`<span class="hubmeta">Gebühren: ${esc(String(dv.gebuehren).slice(0,60))}</span>`:''}
+    </div>`;
+  }
   let checked='';
   if(fm.check&&fm.check.d){
     const days=Math.round((Date.parse(DATA.generated_at||'')-Date.parse(fm.check.d))/864e5);
@@ -701,6 +715,7 @@ function hubHead(s, forms){
   }
   const out=fm.outcome;
   return `<div class="card hubhead">
+    ${pubrow}
     <div class="hubrow">
       ${bl.length!==undefined&&(fm.data_fields||[]).length?`<span class="ampel a-${amp}" title="Digitalisierungs-Blocker: ${bl.length?esc(bl.join(' · ')):'keine'}">●</span>`:''}
       <span class="hubchan">${esc(CHAN_DE[fm.submission_channel]||CHAN_DE.unbekannt)}</span>
@@ -785,6 +800,7 @@ function viewFields(){
     if(!s.in_dvsh) h+=`<div class="card nodvbox"><span class="badge b-nodv">◇ Nicht im DVSH-Modell</span>
       <span class="muted small">Dieser Dienst ist in unserem Formular-Katalog erfasst, aber (noch) nicht in der amtlichen DVSH-Modellierung enthalten. Die Rechtsgrundlagen unten stammen aus unserer eigenen, quellenbelegten Analyse.</span></div>`;
     if(s.dvsh) h+=dvshPanel(s.dvsh);
+    h+=shepPanel(s.shep);
     h+=blockerPanel(forms);
     h+=beilagenPanel(forms);
     if(withDF.length) h+=viewDataFields(withDF);
@@ -817,23 +833,44 @@ function formLinks(s,forms){
 function dvshPanel(d){
   const kant=(d.recht_kantonal||[]), bund=(d.recht_bund||[]);
   const law=(t,n,url)=>`<div class="dvl">${esc(t)}${n?` <a class="ssr" href="${url}" target="_blank" rel="noreferrer">${esc(n)}</a>`:''}</div>`;
-  const meta=[['Vollzug',d.dienststelle],['Bearbeitungsdauer',d.bearbeitungsdauer],
+  const meta=[['Vollzug',d.vollzugsbehoerde||d.dienststelle],['Bearbeitungsdauer',d.bearbeitungsdauer],
               ['Fristen',d.fristen],['Gebühren',d.gebuehren]]
     .filter(x=>x[1]&&String(x[1]).trim()&&String(x[1]).trim()!=='leer')
     .map(x=>`<div class="dvm"><span class="dvk">${x[0]}</span> ${esc(String(x[1]))}</div>`).join('');
+  const vor=(d.voraussetzungen||[]).filter(x=>typeof x==='string');
+  const unt=(d.unterlagen||[]).map(u=>typeof u==='string'?{title:u}:u);
+  const abl=(d.ablauf||[]).map(a=>typeof a==='string'?{title:a}:a);
   return `<div class="card dvsh">
     <div class="dvhdr"><span class="badge b-dvsh">DVSH-Modell</span>
-      <b>${esc(d.title||'')}</b><span class="muted small">· amtliche Modellierung${d.version?' '+esc(d.version):''}</span></div>
+      <b>${esc(d.title||'')}</b><span class="muted small">· amtliche Modellierung${d.version?' v'+esc(String(d.version)):''}${d.dvsh_updated_at?' · Stand '+esc(String(d.dvsh_updated_at).slice(0,10)):''}</span></div>
     ${d.kurzbeschreibung?`<div class="dvdesc">${esc(d.kurzbeschreibung)}</div>`:''}
     <div class="dvgrid">
+      ${vor.length?`<div><div class="dvsub">Voraussetzungen</div>${vor.map(v=>`<div class="dvl">• ${esc(v)}</div>`).join('')}</div>`:''}
+      ${unt.length?`<div><div class="dvsub">Erforderliche Unterlagen (${unt.length})</div>${unt.slice(0,14).map(u=>`<div class="dvl" title="${esc(u.hint||'')}">• ${esc(u.title||u.titel||'')}</div>`).join('')}${unt.length>14?`<div class="muted small">… und ${unt.length-14} weitere</div>`:''}</div>`:''}
+    </div>
+    ${abl.length?`<div class="dvsub" style="margin-top:8px">Ablauf</div>${abl.map((a,i)=>`<div class="dvl"><b>${a.sort||i+1}.</b> ${esc(a.title||a.titel||'')}${a.description?` <span class="muted small">— ${esc(a.description)}</span>`:''}</div>`).join('')}`:''}
+    <div class="dvgrid" style="margin-top:8px">
       <div><div class="dvsub">Rechtsgrundlagen — kantonal</div>
-        ${kant.length?kant.map(l=>law(l.titel,l.ssr,l.ssr?`https://rechtsbuch.sh.ch/app/de/texts_of_law/${l.ssr}`:'#')).join(''):'<div class="muted small">keine im Modell</div>'}
+        ${kant.length?kant.map(l=>law(l.titel,l.ssr||l.ssr_nummer,`https://rechtsbuch.sh.ch/app/de/texts_of_law/${l.ssr||l.ssr_nummer}`)).join(''):'<div class="muted small">keine im Modell</div>'}
       </div>
       <div><div class="dvsub">Rechtsgrundlagen — Bund</div>
-        ${bund.length?bund.map(l=>law(l.titel,l.sr,l.sr?`https://www.fedlex.admin.ch/eli/cc/${esc(l.sr)}`:'#')).join(''):'<div class="muted small">keine im Modell</div>'}
+        ${bund.length?bund.map(l=>law(l.label||l.titel,l.sr,l.url||(l.sr?`https://www.fedlex.admin.ch/eli/cc/${esc(l.sr)}`:'#'))).join(''):'<div class="muted small">keine im Modell</div>'}
       </div>
     </div>
     ${meta?`<div class="dvmeta">${meta}</div>`:''}
+  </div>`;
+}
+function shepPanel(sp){
+  if(!sp) return '';
+  return `<div class="card dvsh">
+    <div class="dvhdr"><span class="badge b-dvsh">SHEP-Portal</span>
+      <b>publizierte Bürger-Sicht</b><span class="muted small">· Stand ${esc(sp.updated||'?')}</span>
+      <a class="srcbtn" style="margin-left:auto" href="https://shep.meetfrida.agency/de/services/${esc(sp.slug)}" target="_blank" rel="noreferrer">↗ Portal-Seite</a></div>
+    ${sp.teaser?`<div class="dvdesc">${esc(sp.teaser)}</div>`:''}
+    <div class="dvmeta">
+      <div class="dvm"><span class="dvk">Publiziert</span> ${(sp.voraussetzungen||[]).length} Voraussetzungen · ${(sp.unterlagen||[]).length} Unterlagen · ${(sp.ablauf||[]).length} Ablauf-Schritte${sp.formular_url?' · Formular verlinkt':' · KEIN Formular-Link'}</div>
+      ${sp.kontakt_email?`<div class="dvm"><span class="dvk">Kontakt</span> ${esc(sp.kontakt_email)}</div>`:''}
+    </div>
   </div>`;
 }
 
@@ -1165,19 +1202,26 @@ function viewRegister(){
         <td>${e.nb?`<span class="badge b-over">${e.nb}</span>`:'—'}</td></tr>`;});
     h+=`</tbody></table></div>`;
   }
-  // the register itself, one row per Formular
-  h+=`<div class="card"><table class="ft"><thead><tr><th>Formular</th><th>Dienststelle</th>
-    <th>Zweck</th><th>Felder</th><th>Grundlagen</th><th>Empfänger</th><th>Frist</th></tr></thead><tbody>`;
+  // the register itself, one row per SERVICE (its forms aggregated)
+  const bySvc={};
   st.forEach(({f,s})=>{
-    const svc=svcById[f.service_id];
-    h+=`<tr data-sid="${f.service_id}" style="cursor:pointer">
-      <td title="${esc(f.purpose||'')}">${esc(f.title.length>64?f.title.slice(0,62)+'…':f.title)}</td>
-      <td class="small muted">${esc((svc&&svc.dienststelle)||f.publisher_dienststelle||'')}</td>
-      <td>${s.hasZweck?'✓':'<span class="miss">fehlt</span>'}</td>
-      <td class="small">${s.n}${s.sens?` <span class="badge b-sens">⛨${s.sens}</span>`:''}</td>
-      <td class="small">${s.lb}/${s.n}</td>
-      <td>${s.hasEmpf?(f.disclosures||[]).length:'<span class="miss">fehlt</span>'}</td>
-      <td class="small">${s.hasFrist?'<b>spezial</b>':'Standard'}</td></tr>`;});
+    const e=bySvc[f.service_id]=bySvc[f.service_id]||{svc:svcById[f.service_id],forms:0,n:0,sens:0,lb:0,
+      empf:0,zweck:true,frist:false,purpose:null};
+    e.forms++; e.n+=s.n; e.sens+=s.sens; e.lb+=s.lb; e.empf+=(f.disclosures||[]).length;
+    e.zweck=e.zweck&&s.hasZweck; e.frist=e.frist||s.hasFrist; e.purpose=e.purpose||f.purpose;});
+  h+=`<div class="card"><table class="ft"><thead><tr><th>Service</th><th>Dienststelle</th>
+    <th>Formulare</th><th>Zweck</th><th>Felder</th><th>Grundlagen</th><th>Empfänger</th><th>Frist</th></tr></thead><tbody>`;
+  Object.entries(bySvc).forEach(([sid,e])=>{
+    const nm=e.svc?e.svc.name:'?';
+    h+=`<tr data-sid="${sid}" style="cursor:pointer">
+      <td title="${esc(e.purpose||'')}">${esc(nm.length>64?nm.slice(0,62)+'…':nm)}</td>
+      <td class="small muted">${esc((e.svc&&e.svc.dienststelle)||'')}</td>
+      <td class="small">${e.forms}</td>
+      <td>${e.zweck?'✓':'<span class="miss">fehlt</span>'}</td>
+      <td class="small">${e.n}${e.sens?` <span class="badge b-sens">⛨${e.sens}</span>`:''}</td>
+      <td class="small">${e.lb}/${e.n}</td>
+      <td>${e.empf?e.empf:'<span class="miss">fehlt</span>'}</td>
+      <td class="small">${e.frist?'<b>spezial</b>':'Standard'}</td></tr>`;});
   h+=`</tbody></table></div>`;
   m.innerHTML=h;
   m.querySelectorAll('tr[data-sid]').forEach(tr=>tr.onclick=()=>{state.service=tr.dataset.sid;state.tab='fields';render();});

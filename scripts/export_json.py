@@ -336,23 +336,39 @@ def build(conn):
         fm["outcome"] = out_by_form.get(fm["id"])
         fm["similar"] = sim_by_form.get(fm["id"], [])
 
-    # DVSH modeller data (authoritative for legal bases), keyed by our service id
+    # DVSH modeller data (source of truth for the service), keyed by service id
     dvsh_by_service = {}
     try:
         for d in rows(conn, "SELECT * FROM dvsh_service WHERE service_id IS NOT NULL"):
             for k in ("voraussetzungen", "unterlagen", "ablauf", "recht_kantonal",
-                      "recht_bund", "externe_links", "abgabe", "kontakt"):
+                      "recht_bund", "externe_links", "abgabe", "kontakt", "documents",
+                      "sources", "form_definitions", "submission_endpoint",
+                      "completeness", "opening_hours"):
                 try:
                     d[k] = json.loads(d[k]) if d.get(k) else []
                 except Exception:
-                    d[k] = []
+                    d[k] = d.get(k) or []
             dvsh_by_service.setdefault(d["service_id"], []).append(d)
+    except Exception:
+        pass
+    # SHEP: the PUBLISHED citizen view of the same service
+    shep_by_service = {}
+    try:
+        for sp in rows(conn, "SELECT * FROM shep_service WHERE service_id IS NOT NULL"):
+            for k in ("voraussetzungen", "unterlagen", "ablauf", "links", "dokumente"):
+                try:
+                    sp[k] = json.loads(sp[k]) if sp.get(k) else []
+                except Exception:
+                    sp[k] = []
+            shep_by_service[sp["service_id"]] = sp
     except Exception:
         pass
     for s in services:
         got = dvsh_by_service.get(s["id"])
         if got:
             s["dvsh"] = got[0]
+        if s["id"] in shep_by_service:
+            s["shep"] = shep_by_service[s["id"]]
 
     steps_by_service = {}
     for st in steps:

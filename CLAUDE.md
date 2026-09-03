@@ -8,11 +8,22 @@ services — so the data must be **precise, auditable, and never silently wrong*
 Surfacing gaps and over-collection honestly is the whole point; a fake
 "100 % compliant" is a defect.
 
-## The catalogue unit is ONE Formular
-One row = one Formular with its own name (never collapsed into DVSH services;
-user decision). Current shape: ~400 Formulare + ~129 DVSH eService entries
-without a downloadable form. Only the NEWEST edition of a form is kept — dated
-older versions get deleted once the current file is in the collection.
+## The catalogue unit is the SERVICE (user decision 2026-09-03)
+The primary unit is one SERVICE as modelled in DVSH; Formulare are its
+children. One `service` row per service (548 incl. 19 DVSH-only additions);
+`dvsh_service` holds the full modeller harvest (330 services, source of
+truth), `shep_service` the published citizen view (196). A Formular keeps its
+own row under its service; only the NEWEST edition of a form is kept.
+
+## The DVSH/SHEP harvest (both sites STRICTLY read-only)
+* DVSH: `../DVSH/dvsh_harvest_<date>.json` — exported in the browser from the
+  modeller's own tRPC GET queries (react-query client via fiber; never any
+  mutation, never a click in the admin UI). Re-ingest with
+  `scripts/load_dvsh_harvest.py <file>`; it refreshes dvsh_service +
+  dvsh_organisation and creates service rows for new DVSH services.
+* SHEP (shep.meetfrida.agency): public server-rendered pages, plain GETs.
+  `scripts/load_shep.py <pages-dir>` parses the template's h2 sections into
+  shep_service, matched to services via the shared DVSH slug.
 
 ## Non-negotiable conventions (from real prior failures — do not relax)
 1. **Form content beats form title.** Decide what a form is by reading its
