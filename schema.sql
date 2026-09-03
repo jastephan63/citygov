@@ -244,3 +244,55 @@ CREATE TABLE IF NOT EXISTS ech_element (
     id INTEGER PRIMARY KEY, standard TEXT NOT NULL REFERENCES ech_standard(code),
     name TEXT NOT NULL, datatype TEXT, context TEXT, UNIQUE(standard, name, context));
 -- data_field.ech_element_id -> ech_element(id); data_field.ech_status: assigned|kein_standard
+
+-- ---------------------------------------------------------------------------
+-- Data-management layer (2026-09): register of processing activities,
+-- executable retention, canonical attributes, format patterns, Dienststellen.
+-- Created/seeded by scripts/init_register.py; curated content is loaded
+-- through the proof gates of scripts/load_register.py.
+-- New columns on existing tables:
+--   form.purpose        (Zweck der Bearbeitung, agent-curated)
+--   form.dsfa_status / form.dsfa_note   (DSFA decision, human-set)
+--   data_field.schutzstufe              (ISV classification, human-set; empty = gap)
+--   data_field.format_code -> format_pattern(code)
+
+CREATE TABLE IF NOT EXISTS format_pattern (        -- canonical Swiss input patterns
+    code TEXT PRIMARY KEY, regex TEXT NOT NULL, beispiel TEXT NOT NULL, beschreibung TEXT);
+
+CREATE TABLE IF NOT EXISTS canonical_attribute (   -- one row per unique datum (derived)
+    id INTEGER PRIMARY KEY,
+    ech_element_id INTEGER UNIQUE REFERENCES ech_element(id),
+    esh_key TEXT UNIQUE,                           -- 'eSH-xxxx:element' where eCH has none
+    label TEXT NOT NULL, datatype TEXT,
+    sensitive_categories TEXT,                     -- JSON rollup of observed categories
+    register_source TEXT,                          -- 'einwohnerregister' where a register holds it
+    n_instances INTEGER NOT NULL, n_forms INTEGER NOT NULL);
+
+CREATE TABLE IF NOT EXISTS dienststelle (          -- the ISV 'Inhaber der Datensammlung' entity
+    name TEXT PRIMARY KEY, department TEXT, dateninhaber TEXT, kontakt TEXT);
+
+CREATE TABLE IF NOT EXISTS form_disclosure (       -- who receives this form's data, article-backed
+    id INTEGER PRIMARY KEY,
+    form_id INTEGER NOT NULL REFERENCES form(id) ON DELETE CASCADE,
+    empfaenger TEXT NOT NULL,
+    mode TEXT CHECK(mode IN ('systematisch','auf_anfrage')),
+    article_id INTEGER REFERENCES article(id),
+    last_checked TEXT,
+    UNIQUE(form_id, empfaenger));
+
+CREATE TABLE IF NOT EXISTS retention_term (        -- machine-readable Frist per retention rule
+    id INTEGER PRIMARY KEY,
+    data_rule_id INTEGER NOT NULL UNIQUE REFERENCES data_rule(id) ON DELETE CASCADE,
+    duration_value INTEGER,                        -- NULL = the rule states no number
+    duration_unit TEXT CHECK(duration_unit IN ('jahre','monate')),
+    min_or_max TEXT CHECK(min_or_max IN ('min','max','exakt')),
+    trigger_event TEXT,                            -- what starts the clock (snake_case)
+    disposition TEXT CHECK(disposition IN ('vernichten','anonymisieren',
+        'anbieten_staatsarchiv','loeschen_vermerken')),
+    last_checked TEXT);
+
+CREATE TABLE IF NOT EXISTS retention_decision (    -- cantonal Fristentscheid, never a law
+    id INTEGER PRIMARY KEY,
+    form_id INTEGER NOT NULL REFERENCES form(id) ON DELETE CASCADE,
+    duration_value INTEGER, duration_unit TEXT, trigger_event TEXT, disposition TEXT,
+    decided_by TEXT, decided_at TEXT, basis TEXT, note TEXT);

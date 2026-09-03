@@ -240,6 +240,15 @@ TEMPLATE = r"""<!DOCTYPE html>
   .hstd.over{color:#A33B3B;border-top:1px dashed var(--line);margin-top:8px;padding-top:8px}
   .hstd .gchip{cursor:default}
   .hcat{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;padding:3px 0}
+  /* Verzeichnis + Datenkatalog */
+  .regstats{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+  .rstat{font-size:12px;padding:6px 12px;border-radius:10px;background:var(--card);border:1px solid var(--line)}
+  .rstat b{color:var(--gold-deep)}
+  .rstat.warn{border-color:#E5B8A8;background:#F9E9E4}
+  .miss{color:#A33B3B;font-weight:600;font-size:11px}
+  .empchip{display:inline-block;font-size:11px;padding:2px 9px;margin:2px 4px 0 0;border-radius:999px;
+    background:#E7F2EC;border:1px solid #BFDCCB;color:#2E7D5B;font-weight:600}
+  .zweckline{font-size:12.5px;color:var(--ink-soft);margin:-4px 0 10px;font-style:italic}
   .nodv{color:var(--communal);margin-right:4px}
   .esvc{display:inline-block;font-size:10px;background:#E8F1F6;color:#2C6E91;border:1px solid #BFD8E6;
     border-radius:6px;padding:0 6px;margin-left:6px;font-weight:600}
@@ -279,6 +288,8 @@ TEMPLATE = r"""<!DOCTYPE html>
     <button class="tab" data-tab="info">Geforderte Informationen</button>
     <button class="tab" data-tab="rules">Datenhandhabung</button>
     <button class="tab" data-tab="guide">Leitfaden</button>
+    <button class="tab" data-tab="register">Verzeichnis</button>
+    <button class="tab" data-tab="katalog">Datenkatalog</button>
     <button class="tab" data-tab="esh">eSH-Katalog (Entwurf)</button>
     <h2>Formulare &amp; Dienste</h2>
     <div id="services"></div>
@@ -796,24 +807,40 @@ function handlingPanel(s,forms){
   let strip='';
   cats.forEach(c=>{strip+=`<span class="pfc sens">⛨ ${esc(HSENS[c]||c)} (${catFields[c].length} ${catFields[c].length===1?'Feld':'Felder'})</span>`;});
   if(sektLaws.length) strip+=`<span class="pfc law">Spezialnormen: ${esc(sektLaws.join(' · '))}</span>`;
-  strip+=frist.length?`<span class="pfc frist">Aufbewahrung: Spezialfrist</span>`
+  const hasTerm=forms.some(fm=>(fm.retention||[]).length||(fm.retention_decisions||[]).length);
+  strip+=(hasTerm||frist.length)?`<span class="pfc frist">Aufbewahrung: Spezialfrist</span>`
                      :`<span class="pfc std">Aufbewahrung: Standard (Registraturperiode)</span>`;
   if(nNoBasis) strip+=`<span class="pfc over">${nNoBasis} ${nNoBasis===1?'Feld':'Felder'} ohne Grundlage</span>`;
 
+  const purpose=forms.map(fm=>fm.purpose).filter(Boolean)[0];
+  const terms=forms.flatMap(fm=>fm.retention||[]);
+  const decisions=forms.flatMap(fm=>fm.retention_decisions||[]);
+  const empf=forms.flatMap(fm=>fm.disclosures||[]);
   let h=`<div class="card"><div class="dfhdr"><b>Datenhandhabung — Profil dieses Formulars</b>
     <span class="muted small">— was für DIESE Daten speziell gilt; das für alle identische Grundprogramm ist unten eingeklappt</span></div>
+    ${purpose?`<div class="zweckline">Zweck: ${esc(purpose)}</div>`:''}
     <div class="pfstrip">${strip}</div>`;
 
-  // retention: the concrete answer, specific rule or the standard regime
+  // retention: the concrete, computable answer — term, decision, or standard regime
   h+=`<div class="hgrp"><div class="dvsub">Aufbewahrung &amp; Vernichtung</div>`;
-  if(frist.length) h+=rulesByAspect(frist);
+  if(terms.length){
+    h+=terms.map(t=>`<div class="hstd">${retLine(t)}</div>`).join('');
+  } else if(frist.length) h+=rulesByAspect(frist);
   else h+=`<div class="hstd">Keine Spezialfrist für dieses Formular — es gilt der Standard: aufbewahren, solange die
     Verwaltung die Akten braucht (in der Regel mindestens zehn Jahre, Registraturperioden 10–20 Jahre), danach dem
     Staatsarchiv anbieten. ${guideChip(["172.301","§ 6","aufbewahrung"])}${guideChip(["172.301","§ 5","aufbewahrung"])}${guideChip(["172.301","§ 7","archivierung"])}</div>`;
+  decisions.forEach(d=>{h+=`<div class="hstd">Kantonaler Fristentscheid: <b>${esc(String(d.duration_value||''))} ${esc(d.duration_unit||'')}</b>
+    ${esc(fmtTrigger(d.trigger_event))} — ${esc(d.basis||'')} <span class="muted small">(${esc(d.decided_by||'')}, ${esc(d.decided_at||'')})</span></div>`;});
   h+=`</div>`;
 
-  // disclosure: sectoral secrecy/Amtshilfe, or explicitly the general regime
+  // disclosure: named recipients (article-backed), then the sectoral rules
   h+=`<div class="hgrp"><div class="dvsub">Weitergabe</div>`;
+  if(empf.length){
+    const seen=new Set();
+    h+=`<div class="hstd">Empfänger laut Gesetz: ${empf.filter(e=>!seen.has(e.empfaenger)&&seen.add(e.empfaenger))
+      .map(e=>`<span class="empchip" title="${esc((e.mode==='systematisch'?'systematische Lieferung':'auf Anfrage/Amtshilfe')+' — '+artLabel(e.article_no)+' '+(e.short_title||''))}">${esc(e.empfaenger)}${e.mode==='systematisch'?' ↻':''}</span>`).join('')}
+      <span class="muted small">↻ = systematische Lieferpflicht; alle mit Artikel-Beleg</span></div>`;
+  }
   if(geben.length) h+=rulesByAspect(geben);
   else h+=`<div class="hstd">Keine Spezialnormen — Bekanntgabe nur nach den allgemeinen Regeln (gesetzliche Grundlage,
     Aufgabenbedarf des Empfängers, Zustimmung, oder selbst veröffentlichte Daten).
@@ -897,6 +924,144 @@ function viewGuide(){
   // a chip jumps to the full rule corpus where the verbatim quotes live
   m.querySelectorAll('.gchip').forEach(c=>c.onclick=()=>{state.tab='rules';render();});
 }
+// ---------- Verzeichnis der Bearbeitungstätigkeiten (KDSG Art. 17b) ----------
+function fmtTrigger(t){ return t&&t!=='unbestimmt' ? 'nach '+t.replace(/_/g,' ') : ''; }
+function retLine(t){
+  const dur=t.duration_value?`${t.min_or_max==='min'?'mind. ':t.min_or_max==='max'?'max. ':''}${t.duration_value} ${t.duration_unit==='monate'?'Monate':'Jahre'}`:'ohne Zahl';
+  const disp={vernichten:'→ vernichten',anonymisieren:'→ anonymisieren',anbieten_staatsarchiv:'→ Staatsarchiv anbieten',loeschen_vermerken:'→ als gelöscht vermerken'}[t.disposition]||'';
+  return `<b>${esc(dur)}</b> ${esc(fmtTrigger(t.trigger_event))} ${disp} <span class="muted small">(${esc(artLabel(t.article_no))} ${esc(t.short_title||'')})</span>`;
+}
+function formStats(fm){
+  const dfs=fm.data_fields||[];
+  const sens=dfs.filter(d=>d.sensitive).length;
+  const lb=dfs.filter(d=>(d.legal_basis||[]).length).length;
+  const dsfaInd=sens>=3||(dfs.length&&sens/dfs.length>=0.5&&sens>=1);
+  return {n:dfs.length,sens,lb,dsfaInd,
+    hasZweck:!!fm.purpose,hasEmpf:(fm.disclosures||[]).length>0,
+    hasFrist:(fm.retention||[]).length>0||(fm.retention_decisions||[]).length>0};
+}
+function viewRegister(){
+  const m=document.getElementById('main');
+  const fms=DATA.forms.filter(f=>(f.data_fields||[]).length);
+  const st=fms.map(f=>({f,s:formStats(f)}));
+  const c={zweck:0,empf:0,frist:0,dsfa:0,voll:0};
+  st.forEach(({s})=>{if(s.hasZweck)c.zweck++;if(s.hasEmpf)c.empf++;if(s.hasFrist)c.frist++;
+    if(s.dsfaInd)c.dsfa++;if(s.hasZweck&&s.hasEmpf&&s.hasFrist)c.voll++;});
+  let h=`<h3 class="view">Verzeichnis der Bearbeitungstätigkeiten</h3>
+  <p class="hint">Registerauszug nach KDSG Art. 17b je Formular: Verantwortliche Stelle, Zweck, Datenkategorien,
+  Rechtsgrundlagen, Empfänger und Aufbewahrung. Fehlende Pflichtinhalte sind ehrlich als Lücke markiert —
+  Zweck und Empfänger stammen aus Agent-Kuratierung (Empfänger stets mit Artikel-Beleg), Fristen aus dem
+  zitatverifizierten Fristen-Register.</p>
+  <div class="regstats">
+    <span class="rstat">Zweck erfasst <b>${c.zweck}/${st.length}</b></span>
+    <span class="rstat">Empfänger belegt <b>${c.empf}/${st.length}</b></span>
+    <span class="rstat">Spezialfrist/Entscheid <b>${c.frist}/${st.length}</b></span>
+    <span class="rstat">Register vollständig <b>${c.voll}/${st.length}</b></span>
+    <span class="rstat warn">DSFA indiziert <b>${c.dsfa}</b></span>
+  </div>`;
+  // DSFA triage: computed from real sensitive-field density, decided by humans
+  const triage=st.filter(x=>x.s.dsfaInd).sort((a,b)=>b.s.sens-a.s.sens).slice(0,15);
+  if(triage.length){
+    h+=`<div class="card"><div class="dvsub">DSFA-Triage — Formulare mit hoher Dichte besonders schützenswerter Felder (berechnet; Entscheid ist Sache des Kantons)</div>
+    <table class="ft"><thead><tr><th>Formular</th><th>⛨ Felder</th><th>Anteil</th><th>DSFA-Status</th></tr></thead><tbody>`;
+    triage.forEach(({f,s})=>{
+      h+=`<tr data-sid="${f.service_id}" style="cursor:pointer"><td>${esc(f.title)}</td>
+        <td>${s.sens}/${s.n}</td><td>${Math.round(100*s.sens/s.n)}%</td>
+        <td>${f.dsfa_status?esc(f.dsfa_status):'<span class="badge b-unver">offen</span>'}</td></tr>`;});
+    h+=`</tbody></table></div>`;
+  }
+  // Dienststellen risk heatmap: who actually holds the sensitive data
+  const heat={};
+  DATA.forms.forEach(f=>(f.data_fields||[]).forEach(d=>{
+    if(!d.sensitive)return;
+    const svc=svcById[f.service_id]; const dn=(svc&&svc.dienststelle)||f.publisher_dienststelle||'(ohne)';
+    const e=heat[dn]=heat[dn]||{total:0,cats:{},nb:0};
+    e.total++; e.cats[d.sensitive]=(e.cats[d.sensitive]||0)+1; if(d.no_basis)e.nb++;}));
+  const hrows=Object.entries(heat).sort((a,b)=>b[1].total-a[1].total).slice(0,15);
+  if(hrows.length){
+    h+=`<div class="card"><div class="dvsub">Wer hält die heiklen Daten? — sensible Felder je Dienststelle</div>
+    <table class="ft"><thead><tr><th>Dienststelle</th><th>⛨ total</th><th>Kategorien</th><th>davon ohne Grundlage</th></tr></thead><tbody>`;
+    hrows.forEach(([dn,e])=>{
+      h+=`<tr><td>${esc(dn)}</td><td><b>${e.total}</b></td>
+        <td class="small">${Object.entries(e.cats).map(([k,v])=>`${esc(HSENS[k]||k)} ${v}`).join(' · ')}</td>
+        <td>${e.nb?`<span class="badge b-over">${e.nb}</span>`:'—'}</td></tr>`;});
+    h+=`</tbody></table></div>`;
+  }
+  // the register itself, one row per Formular
+  h+=`<div class="card"><table class="ft"><thead><tr><th>Formular</th><th>Dienststelle</th>
+    <th>Zweck</th><th>Felder</th><th>Grundlagen</th><th>Empfänger</th><th>Frist</th></tr></thead><tbody>`;
+  st.forEach(({f,s})=>{
+    const svc=svcById[f.service_id];
+    h+=`<tr data-sid="${f.service_id}" style="cursor:pointer">
+      <td title="${esc(f.purpose||'')}">${esc(f.title.length>64?f.title.slice(0,62)+'…':f.title)}</td>
+      <td class="small muted">${esc((svc&&svc.dienststelle)||f.publisher_dienststelle||'')}</td>
+      <td>${s.hasZweck?'✓':'<span class="miss">fehlt</span>'}</td>
+      <td class="small">${s.n}${s.sens?` <span class="badge b-sens">⛨${s.sens}</span>`:''}</td>
+      <td class="small">${s.lb}/${s.n}</td>
+      <td>${s.hasEmpf?(f.disclosures||[]).length:'<span class="miss">fehlt</span>'}</td>
+      <td class="small">${s.hasFrist?'<b>spezial</b>':'Standard'}</td></tr>`;});
+  h+=`</tbody></table></div>`;
+  m.innerHTML=h;
+  m.querySelectorAll('tr[data-sid]').forEach(tr=>tr.onclick=()=>{state.service=tr.dataset.sid;state.tab='fields';render();});
+}
+
+// ---------- Datenkatalog (canonical attributes, Once-Only, divergences) ----------
+function viewKatalog(){
+  const m=document.getElementById('main');
+  const kat=DATA.attribut_katalog||[];
+  const reg=kat.filter(a=>a.register_source);
+  const regInst=reg.reduce((n,a)=>n+a.n_instances,0);
+  let h=`<h3 class="view">Datenkatalog · die ${kat.length} einzigartigen Daten des Kantons</h3>
+  <p class="hint">Jede Zeile ist EIN Datum (ein eCH- oder eSH-Element), egal auf wie vielen Formularen es erhoben wird.
+  «Registerbeziehbar» heisst: das Einwohnerregister führt dieses Datum bereits — der Kanton fragt es trotzdem
+  ${regInst.toLocaleString('de-CH')} Mal ab. Divergenzen zeigen, wo dasselbe Datum uneinheitlich erhoben wird.</p>`;
+  // exchange pipeline: how close is each form to a real eCH payload?
+  const withDf=DATA.forms.filter(f=>(f.data_fields||[]).length);
+  const online=new Set();
+  DATA.services.forEach(s=>{if(s.dvsh&&(s.dvsh.abgabe||[]).some(x=>/Online-Formular/.test(String(x))))online.add(s.id);});
+  const full=withDf.filter(f=>f.exchange_pct===100), p80=withDf.filter(f=>f.exchange_pct>=80&&f.exchange_pct<100);
+  const pilot=full.filter(f=>online.has(f.service_id));
+  h+=`<div class="regstats">
+    <span class="rstat">voll eCH-gemappt <b>${full.length}</b></span>
+    <span class="rstat">80–99% <b>${p80.length}</b></span>
+    <span class="rstat">voll gemappt ∧ Online-Kanal <b>${pilot.length}</b> → Pilotmenge</span>
+    <span class="rstat">registerbeziehbare Attribute <b>${reg.length}</b></span>
+  </div>`;
+  if(pilot.length){
+    h+=`<div class="card"><div class="dvsub">Exchange-Pilotliste — voll standardisiert und schon online einreichbar</div>
+    ${pilot.map(f=>`<div class="small" style="padding:2px 0">• ${esc(f.title)}</div>`).join('')}</div>`;
+  }
+  // divergences computed live over all forms: same element, different requiredness/format
+  const byEl={};
+  DATA.forms.forEach(f=>(f.data_fields||[]).forEach(d=>{
+    const e=d.ech&&d.ech.element?`${d.ech.standard}·${d.ech.element}`:null;
+    if(!e)return;
+    const x=byEl[e]=byEl[e]||{req:0,opt:0,fmts:new Set()};
+    d.required?x.req++:x.opt++;
+    x.fmts.add((d.data_type||'')+'|'+(d.format||''));}));
+  const reqDiv=Object.entries(byEl).filter(([,x])=>x.req&&x.opt).sort((a,b)=>(b[1].req+b[1].opt)-(a[1].req+a[1].opt));
+  const fmtDiv=Object.entries(byEl).filter(([,x])=>x.fmts.size>2).sort((a,b)=>b[1].fmts.size-a[1].fmts.size);
+  h+=`<div class="card"><div class="dvsub">Pflicht-Divergenz — dasselbe Datum hier Pflicht, dort freiwillig (${reqDiv.length} Elemente; legitim nur bei abweichender Rechtsgrundlage)</div>
+    <table class="ft"><thead><tr><th>eCH-Element</th><th>Pflicht</th><th>optional</th></tr></thead><tbody>
+    ${reqDiv.slice(0,15).map(([e,x])=>`<tr><td class="mono small">${esc(e)}</td><td>${x.req}</td><td>${x.opt}</td></tr>`).join('')}
+    </tbody></table></div>`;
+  h+=`<div class="card"><div class="dvsub">Format-Divergenz — dasselbe Datum in mehr als zwei Format-Varianten (${fmtDiv.length} Elemente)</div>
+    <table class="ft"><thead><tr><th>eCH-Element</th><th>Varianten</th></tr></thead><tbody>
+    ${fmtDiv.slice(0,15).map(([e,x])=>`<tr><td class="mono small">${esc(e)}</td><td>${x.fmts.size}</td></tr>`).join('')}
+    </tbody></table></div>`;
+  // the catalogue itself, most-collected first
+  h+=`<div class="card"><table class="ft"><thead><tr><th>Datum</th><th>Standard-Element</th>
+    <th>Formulare</th><th>Erhebungen</th><th>Register</th><th>⛨</th></tr></thead><tbody>`;
+  kat.slice(0,120).forEach(a=>{
+    const el=a.ech_standard?`${a.ech_standard}·${a.ech_element}`:(a.esh_key||'');
+    let cats=[]; try{cats=JSON.parse(a.sensitive_categories||'[]')}catch(e){}
+    h+=`<tr><td><b>${esc(a.label)}</b></td><td class="mono small">${esc(el)}</td>
+      <td>${a.n_forms}</td><td>${a.n_instances}</td>
+      <td>${a.register_source?'<span class="badge b-dvsh">Einwohnerregister</span>':'—'}</td>
+      <td>${cats.length?`<span class="badge b-sens">⛨ ${cats.map(x=>esc(HSENS[x]||x)).join(', ')}</span>`:''}</td></tr>`;});
+  h+=`</tbody></table><div class="muted small" style="padding:6px 2px">Die 120 meist-erhobenen von ${kat.length} Attributen; vollständig im LLM-Export.</div></div>`;
+  m.innerHTML=h;
+}
 function viewEsh(){
   const m=document.getElementById('main');
   const kat=DATA.esh_katalog||[];
@@ -922,6 +1087,8 @@ function render(){
   else if(state.tab==='info') viewInfo();
   else if(state.tab==='rules') viewRules();
   else if(state.tab==='guide') viewGuide();
+  else if(state.tab==='register') viewRegister();
+  else if(state.tab==='katalog') viewKatalog();
   else if(state.tab==='esh') viewEsh();
   else viewFields();
 }

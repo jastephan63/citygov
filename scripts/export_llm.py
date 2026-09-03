@@ -16,6 +16,9 @@ self-describing files an LLM agent can ingest directly:
   citygov_datarules.jsonl — one JSON object per data-governance rule: what the
                        law says about storing, processing and disclosing the
                        data, each with a PDF-verified verbatim quote.
+  citygov_verzeichnis.json — the register of processing activities (KDSG
+                       Art. 17b) per form; missing mandatory contents say FEHLT.
+  citygov_prefill.json — field -> eCH element map per form for once-only prefill.
 
     python3 scripts/export_llm.py
 """
@@ -156,6 +159,39 @@ def main():
                             if d["esh_code"] else None),
             "subfields": subs.get(d["id"], [])})
 
+    # Verzeichnis layer: purpose/recipients/retention per form + prefill map
+    disc_by_form, ret_by_form = {}, {}
+    prefill = {}
+    try:
+        for r in rows("SELECT fd.form_id, fd.empfaenger, fd.mode, a.article_no, l.short_title "
+                      "FROM form_disclosure fd LEFT JOIN article a ON a.id=fd.article_id "
+                      "LEFT JOIN law l ON l.id=a.law_id"):
+            disc_by_form.setdefault(r.pop("form_id"), []).append(r)
+        lt = {}
+        for r in rows("SELECT a.law_id, rt.duration_value, rt.duration_unit, rt.min_or_max, "
+                      "rt.trigger_event, rt.disposition, a.article_no, l.short_title, l.sr_number "
+                      "FROM retention_term rt JOIN data_rule dr ON dr.id=rt.data_rule_id "
+                      "JOIN article a ON a.id=dr.article_id JOIN law l ON l.id=a.law_id "
+                      "WHERE dr.scope='sektoral'"):
+            lt.setdefault(r.pop("law_id"), []).append(r)
+        for r in rows("SELECT DISTINCT d.form_id, a.law_id FROM data_field_legal_basis lb "
+                      "JOIN data_field d ON d.id=lb.data_field_id "
+                      "JOIN article a ON a.id=lb.article_id"):
+            for t in lt.get(r["law_id"], []):
+                ret_by_form.setdefault(r["form_id"], []).append(t)
+        # prefill map: every eCH-keyed point of every form, for once-only autofill
+        for r in rows("SELECT d.form_id, d.name, e.standard, e.name el FROM data_field d "
+                      "JOIN ech_element e ON e.id=d.ech_element_id"):
+            prefill.setdefault(r["form_id"], []).append(
+                {"feld": r["name"], "standard": r["standard"], "element": r["el"]})
+        for r in rows("SELECT d.form_id, s.name, e.standard, e.name el FROM data_subfield s "
+                      "JOIN data_field d ON d.id=s.data_field_id "
+                      "JOIN ech_element e ON e.id=s.ech_element_id"):
+            prefill.setdefault(r["form_id"], []).append(
+                {"feld": r["name"], "standard": r["standard"], "element": r["el"]})
+    except Exception:
+        pass
+
     # data-governance rules: how the data may be stored, treated, communicated
     datarules = []
     try:
@@ -185,12 +221,29 @@ def main():
         }
         fields_by_form.setdefault(fl["form_id"], []).append(rec)
     forms_by_service = {}
+    verzeichnis = []
     for fm in forms:
+        dfs = dfs_by_form.get(fm["id"], [])
         forms_by_service.setdefault(fm["service_id"], []).append({
             "title": fm["title"], "source_file": fm["source_file"], "file_type": fm["file_type"],
             "title_content_mismatch": bool(fm["title_content_mismatch"]),
-            "data_fields": dfs_by_form.get(fm["id"], []),
+            "zweck": fm.get("purpose"),
+            "empfaenger": disc_by_form.get(fm["id"], []),
+            "aufbewahrung": ret_by_form.get(fm["id"], []) or "Standard: KDSG Art. 4 / ArchivV (Registraturperiode)",
+            "data_fields": dfs,
             "fields": fields_by_form.get(fm["id"], [])})
+        # one register-extract row per form (KDSG Art. 17b structure, gaps explicit)
+        if dfs:
+            verzeichnis.append({
+                "form_id": fm["id"], "formular": fm["title"],
+                "verantwortliche_stelle": fm["publisher_dienststelle"],
+                "zweck": fm.get("purpose") or "FEHLT",
+                "datenkategorien": {"felder": len(dfs),
+                                    "besonders_schuetzenswert": sorted({d["sensitive"] for d in dfs if d.get("sensitive")})},
+                "rechtsgrundlagen": sum(1 for d in dfs if d.get("legal_basis")),
+                "empfaenger": [e["empfaenger"] for e in disc_by_form.get(fm["id"], [])] or "FEHLT",
+                "aufbewahrung": ret_by_form.get(fm["id"], []) or "Standardregime (kein Spezialtermin)",
+                "dsfa_status": fm.get("dsfa_status")})
 
     out_services = []
     jsonl, dfl = [], []
@@ -223,11 +276,23 @@ def main():
     with open(os.path.join(ROOT, "citygov_datarules.jsonl"), "w", encoding="utf-8") as fh:
         for r in datarules:
             fh.write(json.dumps(r, ensure_ascii=False) + "\n")
+    json.dump({"meta": {"hinweis": "Verzeichnis der Bearbeitungstätigkeiten (KDSG Art. 17b) "
+                        "je Formular; 'FEHLT' markiert offene Pflichtinhalte ehrlich."},
+               "verzeichnis": verzeichnis},
+              open(os.path.join(ROOT, "citygov_verzeichnis.json"), "w", encoding="utf-8"),
+              ensure_ascii=False, indent=1)
+    json.dump({"meta": {"hinweis": "Feld->eCH-Element-Map je Formular für Once-Only-Prefill: "
+                        "ein nach eCH-Element gekeytes Profil füllt damit jedes Formular vor."},
+               "formulare": prefill},
+              open(os.path.join(ROOT, "citygov_prefill.json"), "w", encoding="utf-8"),
+              ensure_ascii=False, indent=1)
     nech = sum(1 for r in dfl if r["ech"].get("standard"))
     print(f"wrote citygov_llm.json ({len(out_services)} services) + "
           f"citygov_fields.jsonl ({len(jsonl)} widget records) + "
           f"citygov_datafields.jsonl ({len(dfl)} Datenfelder, {nech} mit eCH-Standard) + "
-          f"citygov_datarules.jsonl ({len(datarules)} Regeln)")
+          f"citygov_datarules.jsonl ({len(datarules)} Regeln) + "
+          f"citygov_verzeichnis.json ({len(verzeichnis)} Formulare) + "
+          f"citygov_prefill.json ({sum(len(v) for v in prefill.values())} Prefill-Punkte)")
 
 
 if __name__ == "__main__":

@@ -63,6 +63,14 @@ official law PDF by `scripts/load_data_rules.py`. `law.governance=1` marks the
 8 core laws (KDSG/KDSV/ISV/ArchivV + DSG/DSV/BGA/EMBAG). Scope semantics:
 `allgemein` = every personal-data field, `besonders_schuetzenswert` = fields
 with a `sensitive` category, `sektoral` = fields of forms citing the same law.
+Data management (see schema.sql tail): `retention_term` (machine-readable Frist
+per retention rule — duration gate: the number must appear in the rule's quote)
+· `retention_decision` (cantonal Fristentscheid, never mixed with law) ·
+`form_disclosure` (recipients per form, article-backed) · `form.purpose` /
+`dsfa_status` · `canonical_attribute` (one row per unique datum, derived;
+`register_source` marks Einwohnerregister data) · `format_pattern` +
+`data_field.format_code` · `dienststelle` (ISV data-owner entity) ·
+`data_field.schutzstufe` (empty until the canton decides — no fake defaults).
 Integrations: `dvsh_service` (READ-ONLY harvest of the modeller) · `form_check`
 (online currency verdict per form) · `formflow` (guided TurboTax-style flow per
 form, with `form_hash` staleness tracking) · `document` (file inventory).
@@ -81,6 +89,9 @@ python3 scripts/load_ech_map.py / load_subfield_ech.py / load_ech_verdicts.py / 
 python3 scripts/load_esh.py <katalog.json> <assign-dir>
 python3 scripts/load_field_legal.py <dir>    # article citations, gate-checked against law text
 python3 scripts/load_data_rules.py <dir>     # governance rules, quotes PDF-verified
+python3 scripts/init_register.py             # register layer schema + derived seeds
+python3 scripts/load_register.py <dir>       # purposes/recipients/Fristen, gated
+python3 scripts/export_ech_schema.py         # eCH exchange schema per Formular
 # currency sweep (is our copy still the current edition?)
 python3 scripts/check_online.py <out>        # sh.ch CMS search + byte-compare
 python3 scripts/load_currency.py <out> <dvsh-out>
@@ -101,8 +112,12 @@ python3 scripts/fill_pdf.py <form_id> <answers.json>
   panel) · Gesetzes-Baum · Geforderte Informationen · Datenhandhabung (the full
   rule corpus by scope and law) · Leitfaden (plain-language guide; content in
   `scripts/leitfaden.py`, every claim ref-gated against data_rule at build time
-  and adversarially reviewed against the rule quotes) · eSH-Katalog (Entwurf).
-  Note: ~28 MB — serve via `.claude/launch.json` (`citygov-static`) if a
+  and adversarially reviewed against the rule quotes) · Verzeichnis (register
+  of processing activities per KDSG Art. 17b: completeness counters, DSFA
+  triage, Dienststellen risk heatmap, one register row per Formular) ·
+  Datenkatalog (canonical attributes, Once-Only potential, requiredness/format
+  divergences, exchange pilot list) · eSH-Katalog (Entwurf).
+  Note: ~29 MB — serve via `.claude/launch.json` (`citygov-static`) if a
   preview pane balks.
 * **flows.html** — guided-flow view (paper/gold design from ../formflows
   prototypes). Per Formular: data field ↔ derived question mapping and an

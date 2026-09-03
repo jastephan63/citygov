@@ -90,7 +90,8 @@ def build(conn):
     rlb = rows(conn, "SELECT * FROM requirement_legal_basis")
     svc_req = rows(conn, "SELECT * FROM service_requirement")
     forms = rows(conn, "SELECT id,service_id,title,actual_purpose,title_content_mismatch,"
-                       "mismatch_note,publisher_dienststelle,source_file,file_type FROM form")
+                       "mismatch_note,publisher_dienststelle,source_file,file_type,"
+                       "purpose,dsfa_status FROM form")
     fields = rows(conn, "SELECT id,form_id,label,section,field_type,options,raw_order "
                         "FROM form_field ORDER BY form_id, raw_order")
     mappings = {m["form_field_id"]: m for m in
@@ -220,10 +221,52 @@ def build(conn):
             checks[r["form_id"]] = r
     except Exception:
         pass
+
+    # Verzeichnis layer: recipients, retention profile, decisions — per form
+    disc_by_form, ret_by_form, dec_by_form = {}, {}, {}
+    try:
+        for r in rows(conn, "SELECT fd.form_id, fd.empfaenger, fd.mode, a.article_no, "
+                            "l.short_title, l.sr_number FROM form_disclosure fd "
+                            "LEFT JOIN article a ON a.id=fd.article_id "
+                            "LEFT JOIN law l ON l.id=a.law_id ORDER BY fd.empfaenger"):
+            disc_by_form.setdefault(r.pop("form_id"), []).append(r)
+        # a form's specific retention terms = terms of retention rules in the laws it cites
+        law_terms = {}
+        for r in rows(conn, "SELECT a.law_id, rt.duration_value, rt.duration_unit, rt.min_or_max, "
+                            "rt.trigger_event, rt.disposition, dr.aspect, dr.summary, "
+                            "a.article_no, l.short_title, l.sr_number "
+                            "FROM retention_term rt JOIN data_rule dr ON dr.id=rt.data_rule_id "
+                            "JOIN article a ON a.id=dr.article_id JOIN law l ON l.id=a.law_id "
+                            "WHERE dr.scope='sektoral'"):
+            law_terms.setdefault(r.pop("law_id"), []).append(r)
+        for r in rows(conn, "SELECT DISTINCT d.form_id, a.law_id FROM data_field_legal_basis lb "
+                            "JOIN data_field d ON d.id=lb.data_field_id "
+                            "JOIN article a ON a.id=lb.article_id"):
+            for t in law_terms.get(r["law_id"], []):
+                ret_by_form.setdefault(r["form_id"], []).append(t)
+        for r in rows(conn, "SELECT * FROM retention_decision"):
+            dec_by_form.setdefault(r.pop("form_id"), []).append(r)
+    except Exception:
+        pass
+
+    # exchange readiness: share of atomic data points carrying an eCH element
     for fm in forms:
+        pts = ok = 0
+        for d in dfs_by_form.get(fm["id"], []):
+            subs = [s for s in (d.get("subfields") or []) if isinstance(s, dict)]
+            if subs:
+                pts += len(subs)
+                ok += sum(1 for s in subs if s.get("ech") and s["ech"].get("element"))
+            else:
+                pts += 1
+                ok += 1 if (d.get("ech") and d["ech"].get("element")) else 0
+        fm["exchange_pct"] = round(100 * ok / pts) if pts else None
         fm["fields"] = fields_by_form.get(fm["id"], [])
         fm["data_fields"] = dfs_by_form.get(fm["id"], [])
         fm["check"] = checks.get(fm["id"])
+        fm["disclosures"] = disc_by_form.get(fm["id"], [])
+        fm["retention"] = ret_by_form.get(fm["id"], [])
+        fm["retention_decisions"] = dec_by_form.get(fm["id"], [])
 
     # DVSH modeller data (authoritative for legal bases), keyed by our service id
     dvsh_by_service = {}
@@ -251,6 +294,19 @@ def build(conn):
     if _has_esh(conn):
         esh_katalog = rows(conn, "SELECT code, titel, beschreibung, themen, status, n_felder "
                                  "FROM esh_standard ORDER BY code")
+
+    # canonical attribute catalogue + the divergence lists for the Datenkatalog tab
+    katalog, dienststellen = [], []
+    try:
+        katalog = rows(conn, "SELECT ca.id, ca.label, ca.datatype, ca.sensitive_categories, "
+                             "ca.register_source, ca.n_instances, ca.n_forms, "
+                             "e.standard ech_standard, e.name ech_element, ca.esh_key "
+                             "FROM canonical_attribute ca "
+                             "LEFT JOIN ech_element e ON e.id=ca.ech_element_id "
+                             "ORDER BY ca.n_forms DESC, ca.n_instances DESC")
+        dienststellen = rows(conn, "SELECT name, department, dateninhaber, kontakt FROM dienststelle")
+    except Exception:
+        pass
 
     # data-governance rules (how data may be stored, treated, communicated);
     # the dashboard groups by scope and matches 'sektoral' rules to a form via law_id
@@ -281,6 +337,7 @@ def build(conn):
         "services": services, "laws": laws, "requirements": requirements,
         "forms": forms, "service_requirements": svc_req,
         "esh_katalog": esh_katalog, "datenhandhabung": handhabung,
+        "attribut_katalog": katalog, "dienststellen": dienststellen,
         "process_steps_by_service": steps_by_service,
         "findings": findings, "citation_todo_count": len(todo),
     }
