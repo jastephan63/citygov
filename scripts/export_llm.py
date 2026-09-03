@@ -205,7 +205,6 @@ def main():
             datarules.append(r)
     except Exception:
         pass
-    c.close()
 
     fields_by_form = {}
     for fl in fields:
@@ -245,12 +244,35 @@ def main():
                 "aufbewahrung": ret_by_form.get(fm["id"], []) or "Standardregime (kein Spezialtermin)",
                 "dsfa_status": fm.get("dsfa_status")})
 
+    # service-level Verfahren facts from the DVSH harvest + SHEP publication state
+    dvsh_svc, shep_svc = {}, {}
+    try:
+        for r in rows("SELECT service_id, status, online, version, kurzbeschreibung, "
+                      "voraussetzungen, unterlagen, ablauf, gebuehren, vollzugsbehoerde, "
+                      "email, recht_kantonal, recht_bund FROM dvsh_service WHERE service_id IS NOT NULL"):
+            sid = r.pop("service_id")
+            for k in ("voraussetzungen", "unterlagen", "ablauf", "recht_kantonal", "recht_bund"):
+                try:
+                    r[k] = json.loads(r[k]) if r[k] else []
+                except Exception:
+                    r[k] = []
+            dvsh_svc[sid] = r
+        for r in rows("SELECT service_id, slug, updated FROM shep_service WHERE service_id IS NOT NULL"):
+            shep_svc[r["service_id"]] = {"portal_url": "https://shep.meetfrida.agency/de/services/" + r["slug"],
+                                         "stand": r["updated"]}
+    except Exception:
+        pass
+    c.close()
+
     out_services = []
     jsonl, dfl = [], []
     for s in services:
         svc = {"id": s["id"], "slug": s["slug"], "name": s["name"],
                "department": s["department"], "dienststelle": s["dienststelle"],
-               "description": s["description"], "forms": forms_by_service.get(s["id"], []),
+               "description": s["description"],
+               "dvsh_verfahren": dvsh_svc.get(s["id"]),
+               "shep_publikation": shep_svc.get(s["id"]),
+               "forms": forms_by_service.get(s["id"], []),
                "process_steps": steps.get(s["id"], []), "findings": findings.get(s["id"], [])}
         out_services.append(svc)
         for fm in svc["forms"]:
