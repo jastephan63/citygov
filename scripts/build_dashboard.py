@@ -775,6 +775,7 @@ function formFacts(fm){
   }
   return `<div class="hubrow">
       ${(fm.data_fields||[]).length?`<span class="ampel a-${amp}" title="Digitalisierungs-Blocker: ${bl.length?esc(bl.join(' · ')):'keine'}">●</span>`:''}
+      ${fm.dvsh_match&&/konsolidiert|zuordnung/.test(fm.dvsh_match)?`<span class="hubmeta" title="${esc(fm.dvsh_match)}">↳ diesem DVSH-Service zugeordnet</span>`:''}
       <span class="hubchan">${esc(CHAN_DE[fm.submission_channel]||CHAN_DE.unbekannt)}</span>
       ${fm.signature_requirement==='handschriftlich'?`<span class="hubsig" title="${esc(fm.signature_evidence||'')}">✍ Unterschrift nötig</span>`:''}
       ${fm.signature_requirement==='sig_widget'?`<span class="hubsig ok">✓ digitale Signatur möglich</span>`:''}

@@ -93,7 +93,7 @@ def build(conn):
     forms = rows(conn, "SELECT id,service_id,title,actual_purpose,title_content_mismatch,"
                        "mismatch_note,publisher_dienststelle,source_file,file_type,"
                        "purpose,dsfa_status,submission_channel,signature_requirement,"
-                       "signature_evidence,acroform,parse_error FROM form")
+                       "signature_evidence,acroform,parse_error,dvsh_match FROM form")
     fields = rows(conn, "SELECT id,form_id,label,section,field_type,options,raw_order "
                         "FROM form_field ORDER BY form_id, raw_order")
     mappings = {m["form_field_id"]: m for m in
