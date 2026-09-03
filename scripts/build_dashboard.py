@@ -357,7 +357,6 @@ TEMPLATE = r"""<!DOCTYPE html>
   <aside>
     <h2>Einstieg</h2>
     <button class="tab" data-tab="home">Überblick &amp; Methode<span class="tabsub">Was ist diese Databank, wie arbeitet sie?</span></button>
-    <button class="tab" data-tab="fields">Service-Seite<span class="tabsub">Ein Service: Verfahren, Formulare, Recht, Handhabung</span></button>
     <h2>Nachschlagewerke</h2>
     <button class="tab" data-tab="rules">Datenhandhabung<span class="tabsub">Die Regeln im Wortlaut, je Gesetz</span></button>
     <button class="tab" data-tab="guide">Leitfaden<span class="tabsub">Dieselben Regeln in einfacher Sprache</span></button>
