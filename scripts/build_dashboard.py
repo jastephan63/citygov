@@ -300,6 +300,11 @@ TEMPLATE = r"""<!DOCTYPE html>
     margin-top:7px;padding-top:7px;font-size:12px;align-items:baseline}
   .hs{display:inline-flex;align-items:baseline;gap:4px;flex-wrap:wrap}
   .formsec{border-left:3px solid var(--gold);padding-left:12px;margin:0 0 22px}
+  /* per-field Handhabung line: standard datatype, retention, stricter ⛨ rules */
+  .dfhb{font-size:11.5px;color:var(--ink-soft);margin:2px 0 1px;display:flex;gap:5px;
+    align-items:baseline;flex-wrap:wrap}
+  .edt{font-family:ui-monospace,Menlo,monospace;font-size:10.5px;background:var(--field);
+    border:1px solid var(--line);border-radius:6px;padding:0 6px}
   /* navigation redesign: browse modes, breadcrumb, Formular quick-jump */
   .navmodes{display:flex;gap:6px;margin:0 0 8px}
   .navmodes button{flex:1;padding:5px 8px;border-radius:8px;border:1px solid var(--line);
@@ -661,6 +666,15 @@ function deptOverview(){
 const DFTYPE={text:'Text',date:'Datum',number:'Zahl',money:'Betrag',boolean:'Ja/Nein',
   enum:'Auswahl',multiselect:'Mehrfachauswahl',composite:'Zusammengesetzt',
   attachment:'Beilage',signature:'Unterschrift'};
+// the stricter rules a sensitive category triggers, as tooltip text
+const _sensRules={};
+(DATA.datenhandhabung||[]).filter(r=>r.scope==='besonders_schuetzenswert').forEach(r=>{
+  (_sensRules[r.sensitive_category||'*']=_sensRules[r.sensitive_category||'*']||[]).push(r);});
+function sensTip(cat){
+  const rs=[...(_sensRules[cat]||[]),...(_sensRules['*']||[])];
+  return rs.slice(0,4).map(r=>`• ${r.summary} (${artLabel(r.article_no)} ${r.short_title||''})`).join('\n')
+    +(rs.length>4?`\n… und ${rs.length-4} weitere (Tab Datenhandhabung)`:'');
+}
 function viewDataFields(forms){
   let h='';
   forms.forEach(fm=>{
@@ -691,19 +705,22 @@ function viewDataFields(forms){
                   :' — Standard ohne XSD: kein zitierbares XML-Element'))
               +(st?` · Status: ${esc(st)}${d.ech.reifegrad?', Reifegrad '+esc(d.ech.reifegrad):''}`:'');
             return `<a class="echb${e?'':(nx?' todo':' so')}" href="${esc(d.ech.url)}" target="_blank" rel="noreferrer" title="${tip}">${esc(d.ech.standard)}${e?` · ${esc(e)}`:(nx?' · Element offen':' · nur Standard')}</a>`
+              +(d.ech.datatype?`<span class="edt" title="Datentyp gemäss dem offiziellen ${esc(d.ech.standard)}-XSD — in diesem Typ ist das Datum zu speichern und auszutauschen">⟨${esc(d.ech.datatype)}⟩</span>`:'')
               +(draft?`<span class="echdraft${(st==='Aufgehoben'||st==='Abgelöst')?' rep':(st==='Sistiert'?' susp':'')}" title="${
                   (st==='Aufgehoben'||st==='Abgelöst')?`Dieser eCH-Standard ist ${esc(st).toUpperCase()} — nicht mehr in Kraft, die Zuordnung muss ersetzt werden`
                 : st==='Sistiert'?'Dieser eCH-Standard ist SISTIERT (ausgesetzt) — nicht in Kraft, Zuordnung vorläufig'
                 : 'Dieser eCH-Standard ist noch nicht genehmigt (in Arbeit) — Zuordnung vorläufig'}">${(st==='Aufgehoben'||st==='Abgelöst')?'⛔':'⚠'} ${esc(st)}</span>`:'');})()
             :(d.ech_status==='kein_standard'?('<span class="echn" title="kein eCH-Standard deckt dieses Feld ab">kein eCH-Standard</span>'+(d.esh?`<span class="eshb" title="Vorschlag für den kantonalen Standard eSH (E-Schaffhausen) — ENTWURF, nicht offiziell: ${esc(d.esh.titel)}">${esc(d.esh.code)} · ${esc(d.esh.element||'')}<span class="ent">Entwurf</span></span>`:'')):'')}
-          ${d.sensitive?`<span class="badge b-sens senslink" title="besonders schützenswerte Personendaten (Art. 5 lit. c DSG) — Klick: was zusätzlich gilt (Leitfaden)">⛨ ${esc(SENS[d.sensitive]||d.sensitive)}</span>`:''}
-          ${d.format?`<span class="muted small">· ${esc(d.format)}</span>`:''}</div>
+          ${d.sensitive?(()=>{const n=(_sensRules[d.sensitive]||[]).length+(_sensRules['*']||[]).length;
+            return `<span class="badge b-sens senslink" title="besonders schützenswert (Art. 5 lit. c DSG) — es gelten zusätzlich:\n${esc(sensTip(d.sensitive))}\nKlick: Leitfaden">⛨ ${esc(SENS[d.sensitive]||d.sensitive)}${n?` · ${n} Zusatzregeln`:''}</span>`;})():''}
+          ${d.format?`<span class="muted small">· ${esc(d.format)}</span>`:''}
+          ${d.schutzstufe?`<span class="badge b-sourced">Schutzstufe ${esc(d.schutzstufe)}</span>`:''}</div>
         ${d.definition?`<div class="dfdef">${esc(d.definition)}</div>`:''}
         ${subs.length?`<div class="dfchips"><span class="muted small">Teilfelder:</span> ${(d.subfields||[]).slice(0,24).map(s=>{
             const nmv=typeof s==='string'?s:(s&&s.name)||''; if(!nmv) return '';
             const e=s&&s.ech;
             const dr=e&&e.status&&e.status!=='Genehmigt'?((e.status==='Aufgehoben'||e.status==='Abgelöst')?' ⛔':' ⚠'):'';
-            if(e&&e.element) return `<span class="chip sub"><b>${esc(nmv)}</b><a class="sfe" href="${esc(e.url)}" target="_blank" rel="noreferrer" title="${esc(e.standard_titel||'')} — ${esc(e.standard)} ${esc(e.element)}${e.status?' · Status: '+esc(e.status):''}">${esc(e.standard)}·${esc(e.element)}${dr}</a></span>`;
+            if(e&&e.element) return `<span class="chip sub"><b>${esc(nmv)}</b><a class="sfe" href="${esc(e.url)}" target="_blank" rel="noreferrer" title="${esc(e.standard_titel||'')} — ${esc(e.standard)} ${esc(e.element)}${e.datatype?' · wird geführt als '+esc(e.datatype):''}${e.status?' · Status: '+esc(e.status):''}">${esc(e.standard)}·${esc(e.element)}${dr}</a></span>`;
             if(e) return `<span class="chip sub"><b>${esc(nmv)}</b><a class="sfe so" href="${esc(e.url)}" target="_blank" rel="noreferrer" title="${esc(e.standard_titel||'')} — Standard ohne XSD">${esc(e.standard)}</a></span>`;
             if(s&&s.ech_status==='kein_standard') return `<span class="chip sub"><b>${esc(nmv)}</b>${s.esh?`<a class="sfe esh" title="eSH-Entwurf: ${esc(s.esh.titel)}">${esc(s.esh.code.replace('eSH-','eSH'))}·${esc(s.esh.element||'')}</a>`:`<span class="sfe none" title="kein eCH-Standard">kein Std.</span>`}</span>`;
             return `<span class="chip sub"><b>${esc(nmv)}</b></span>`;}).join('')}</div>`
@@ -876,6 +893,7 @@ function handlingStrip(s,fm){
   const seen=new Set();
   const empt=emp.filter(e=>!seen.has(e.empfaenger)&&seen.add(e.empfaenger));
   return `<div class="hstrip">
+    <span class="hsl" style="flex-basis:100%;margin:0">So sind die Daten dieses Formulars zu handhaben</span>
     <span class="hs"><span class="hsl">Aufbewahrung</span>${frist}</span>
     <span class="hs"><span class="hsl">Weitergabe</span>${empt.length
       ? empt.slice(0,4).map(e=>`<span class="empchip" title="${esc(artLabel(e.article_no)+' '+(e.short_title||''))}">${esc(e.empfaenger)}${e.mode==='systematisch'?' ↻':''}</span>`).join('')+(empt.length>4?` +${empt.length-4}`:'')
