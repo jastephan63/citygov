@@ -4,13 +4,15 @@
 The JSON is inlined into the HTML so the file opens straight from disk via file://
 with no server and no fetch (offline by default). Vanilla JS, no framework.
 
-Views:
-  * sidebar filter over all Formulare, grouped by department and office
-  * Felder & Rechtsgrundlagen — data fields with eCH/eSH badges, DSG flags,
-    law quotes, currency check, DVSH panel
-  * Gesetzes-Baum — law -> article -> data field, as list tree and node diagram
-  * Geforderte Informationen — per-law required-data table
-  * eSH-Katalog (Entwurf) — the draft cantonal standard catalogue
+Views (2026-09 redesign; state lives in the URL hash, so links are shareable):
+  * sidebar: Formulare by department/office or flat A–Z, search also matches
+    data-field names
+  * Überblick & Methode — landing: methodology box, KPI tiles, documentation state
+  * Formular-Seite — the per-Formular hub (Datenfelder & Handhabung, Gesetze,
+    Beilagen, Blocker, Duplikat-Radar); the old Gesetzes-Baum/Geforderte
+    Informationen tabs live here as segments
+  * Datenhandhabung / Leitfaden / Verzeichnis / Datenkatalog / eSH-Katalog
+Refuses to build when the Leitfaden cites a rule the databank does not hold.
 
     python3 scripts/build_dashboard.py
 """

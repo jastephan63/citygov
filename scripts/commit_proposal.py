@@ -15,7 +15,6 @@ Safety wrapper:
   4. only if valid: atomically swap staging in. Otherwise abort, keep the source
      of truth untouched, and log the failure.
 
-Usage:
     python3 scripts/commit_proposal.py proposals/anmeldung-wohnsitz.json
 """
 import argparse

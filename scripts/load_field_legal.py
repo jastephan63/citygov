@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """Load agent-proposed data-field -> article mappings (scratchpad/dfmap/<form_id>.json)
-into data_field_legal_basis, PROOF-GATED: a citation is accepted only if the cited
-(cref, article_no) exists as a real article that was ingested from the official law
-PDF (last_checked starts 'Gesetze-PDF' or 'verified'). Anything else is rejected as
-unsourced — no invented citation may enter the DB. Idempotent per form.
-Safe wrapper: staging -> validate -> swap.
+into data_field_legal_basis, PROOF-GATED.
+
+A citation is accepted only if the cited (cref, article_no) exists as a real
+article that was ingested from the official law PDF (last_checked starts
+'Gesetze-PDF' or 'verified'). Anything else is rejected as unsourced — no
+invented citation may enter the DB. Idempotent per form.
+Staging -> validate -> swap.
 
     python3 scripts/load_field_legal.py <dir-of-json>
 """

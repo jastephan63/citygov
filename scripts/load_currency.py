@@ -13,6 +13,8 @@ Verdicts (pessimistic signals win):
                      possibly hosted elsewhere; listed for the websearch tail
   lokal_fehlt        we have no local source file to compare
 
+Idempotent. Staging -> validate -> swap.
+
     python3 scripts/load_currency.py <onlinecheck-dir> <dvshcheck-out-dir> [--dry-run]
 """
 import glob, json, os, re, shutil, sys, unicodedata

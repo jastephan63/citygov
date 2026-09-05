@@ -3,8 +3,8 @@
 
 Each JSON (scratchpad/df/<form_id>.json) is the logical data dictionary of one
 form: consolidated data fields (enum with allowed_values, composite with
-subfields, boolean, etc.), NOT raw widgets. Replaces all rows for that form,
-so re-running is safe. Works on a staging copy, then swaps it in atomically.
+subfields, boolean, etc.), NOT raw widgets. Idempotent per form: all rows of
+a form being loaded are replaced. Staging -> validate -> swap.
 
     python3 scripts/load_data_fields.py <dir-of-json>
 """
