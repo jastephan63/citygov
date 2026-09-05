@@ -4,8 +4,9 @@
 The dashboard computes the reconciliation buckets in the browser from this base
 data, so nothing is duplicated here (important now that the databank holds
 hundreds of forms and thousands of fields). Heavy free-text columns
-(source_note, text_excerpt, mapping notes) live in the DB for review but are not
-inlined into the dashboard payload.
+(source_note, mapping notes) live in the DB for review but are not inlined into
+the dashboard payload; the one exception is the capped article excerpt on
+data-field legal bases.
 
 Also writes logs/citation_todo.txt — every not-yet-'verified' citation.
 

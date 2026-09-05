@@ -11,6 +11,8 @@ as such. Gate:
   * only fields/subfields with ech_status='kein_standard' receive an eSH code
     (eSH never shadows an existing eCH assignment)
 
+Idempotent: catalogue and assignments are fully reloaded. Staging -> validate -> swap.
+
     python3 scripts/load_esh.py <katalog.json> <assign-dir> [--dry-run]
 """
 import collections, glob, json, os, re, shutil, sys, unicodedata

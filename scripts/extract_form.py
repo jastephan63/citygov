@@ -4,9 +4,8 @@
 Reads one file from forms/ and writes proposals/<slug>.extracted.json — a
 skeleton with the form and its extracted fields populated, and the law side
 (laws / requirements / service_requirements / field_mappings) left EMPTY for a
-human to model. This is
-the same shape commit_proposal.py consumes; the worked example is a hand-authored
-instance of it.
+human to model. This is the same shape commit_proposal.py consumes; the worked
+example is a hand-authored instance of it.
 
 Field extraction:
   * PDF with an AcroForm  -> interactive fields via pypdf (label, type, options)

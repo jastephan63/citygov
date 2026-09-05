@@ -6,6 +6,8 @@ AUTHORITATIVE. Stored verbatim in `dvsh_service` (never merged into our derived
 tables) and matched to our services by name/Dienststelle so the dashboard can
 show the official model next to our field-level analysis.
 
+Idempotent. Staging -> validate -> swap.
+
     python3 scripts/load_dvsh.py <parsed.json>
 """
 import json, os, re, shutil, sys, unicodedata

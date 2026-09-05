@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Export the databank in LLM-ready form (the durable artifact for later use).
 
-The SQLite citygov.db remains the source of truth; this produces three stable,
+The SQLite citygov.db remains the source of truth; this produces six stable,
 self-describing files an LLM agent can ingest directly:
 
   citygov_llm.json   — nested: service -> form -> field -> legal_basis, with a
