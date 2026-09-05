@@ -107,7 +107,8 @@ Integrations: `dvsh_service` (READ-ONLY harvest of the modeller) · `form_check`
 (online currency verdict per form) · `formflow` (guided TurboTax-style flow per
 form, with `form_hash` staleness tracking) · `document` (file inventory).
 Legacy (auto-draft era, still present): `requirement`, `requirement_legal_basis`,
-`service_requirement`, `form_field`, `field_mapping`.
+`service_requirement`, `form_field`, `field_mapping`. Retired scripts live in
+`scripts/deprecated/` (see its README for what replaced each).
 
 ## Operating loop
 ```
