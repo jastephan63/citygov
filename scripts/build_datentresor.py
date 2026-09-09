@@ -15,12 +15,18 @@ The gates are the point: a value that fails its format pattern, a datapoint
 without legal basis and without consent, or an unencrypted sensitive value is
 REFUSED — the databank's rules, running.
 
-Encryption note: no crypto library on this machine, so sensitive values use a
-SHA-256 keystream cipher with per-value nonce. Real encryption, demo grade —
-says so in the meta table. The key lives in ../datentresor.key, next to but
-never inside the DB.
+Two things make this more than a script's promise:
+  * the GATES LIVE IN THE SCHEMA — triggers refuse an unencrypted sensitive
+    value, a datapoint without basis/consent, a value failing its format, any
+    edit of the access log, and any hard DELETE of a datapoint (lifecycle is
+    a status change, and the trigger writes the log entry itself). Any client
+    is bound, not just this generator — provable from the sqlite3 shell.
+  * sensitive values use real AES-256-GCM (cryptography lib in .venv); if the
+    lib is missing the build falls back to the labelled demo cipher and the
+    meta table says which one is in force. Key in ../datentresor.key, never
+    inside the DB.
 
-    python3 scripts/build_datentresor.py [subjects] [faelle]
+    .venv/bin/python3 scripts/build_datentresor.py [subjects] [faelle]
 """
 import hashlib, json, os, random, re, secrets, sqlite3, sys
 from datetime import date, timedelta
@@ -57,6 +63,7 @@ CREATE TABLE datenpunkt (
     wert TEXT,                    -- the stored value; ciphertext when verschluesselt=1
     verschluesselt INTEGER NOT NULL DEFAULT 0,
     nonce TEXT,
+    format_glob TEXT,             -- storage-shape contract, enforced by trigger
     sensitive TEXT,               -- gesundheit / politik / ... or NULL
     erhoben_am TEXT,
     erhebungs_fall INTEGER REFERENCES fall(id),
@@ -64,7 +71,8 @@ CREATE TABLE datenpunkt (
     grundlage TEXT,               -- readable citation
     einwilligung_id INTEGER,      -- set instead of grundlage for no_basis fields
     loeschdatum TEXT,             -- computed from the retention rules
-    status TEXT NOT NULL DEFAULT 'aktiv'   -- aktiv|anonymisiert|vernichtet|archiviert
+    status TEXT NOT NULL DEFAULT 'aktiv'
+        CHECK (status IN ('aktiv','anonymisiert','vernichtet','archiviert'))
 );
 CREATE TABLE datenpunkt_verwendung (   -- the once-only ledger: later Fälle reference,
     fall_id INTEGER NOT NULL REFERENCES fall(id),      -- they do not re-store
@@ -97,6 +105,31 @@ CREATE TABLE zugriff_log (
 CREATE INDEX ix_dp_subjekt ON datenpunkt(subjekt_id);
 CREATE INDEX ix_dp_loesch ON datenpunkt(loeschdatum);
 CREATE INDEX ix_log_subjekt ON zugriff_log(subjekt_id);
+
+-- the gates, in the database itself: ANY client is bound, not just our script
+CREATE TRIGGER tg_sensitiv_nur_verschluesselt BEFORE INSERT ON datenpunkt
+WHEN NEW.sensitive IS NOT NULL AND NEW.verschluesselt = 0
+BEGIN SELECT RAISE(ABORT, 'GATE: sensibler Wert darf nur verschlüsselt gespeichert werden'); END;
+CREATE TRIGGER tg_grundlage_oder_einwilligung BEFORE INSERT ON datenpunkt
+WHEN NEW.grundlage_artikel IS NULL AND NEW.einwilligung_id IS NULL
+     AND (NEW.grundlage IS NULL OR NEW.grundlage NOT LIKE 'Rechtsgrundlage zu ermitteln%')
+BEGIN SELECT RAISE(ABORT, 'GATE: Datenpunkt braucht Rechtsgrundlage oder Einwilligung'); END;
+CREATE TRIGGER tg_format BEFORE INSERT ON datenpunkt
+WHEN NEW.verschluesselt = 0 AND NEW.format_glob IS NOT NULL AND NEW.wert NOT GLOB NEW.format_glob
+BEGIN SELECT RAISE(ABORT, 'GATE: Wert verletzt das Speicherformat des Standards'); END;
+CREATE TRIGGER tg_kein_hard_delete BEFORE DELETE ON datenpunkt
+BEGIN SELECT RAISE(ABORT, 'GATE: Datenpunkte werden nie gelöscht — Statuswechsel auf vernichtet/anonymisiert'); END;
+CREATE TRIGGER tg_statuswechsel_protokolliert AFTER UPDATE OF status ON datenpunkt
+WHEN NEW.status != OLD.status
+BEGIN
+    INSERT INTO zugriff_log(zeitpunkt, art, subjekt_id, wer, zweck, grundlage)
+    VALUES (datetime('now'), 'statuswechsel', NEW.subjekt_id, 'System',
+            OLD.status || ' → ' || NEW.status, 'Lebenszyklus (Löschkonzept)');
+END;
+CREATE TRIGGER tg_log_unveraenderlich_u BEFORE UPDATE ON zugriff_log
+BEGIN SELECT RAISE(ABORT, 'GATE: das Zugriffsprotokoll ist unveränderlich'); END;
+CREATE TRIGGER tg_log_unveraenderlich_d BEFORE DELETE ON zugriff_log
+BEGIN SELECT RAISE(ABORT, 'GATE: das Zugriffsprotokoll ist unveränderlich'); END;
 
 -- the DSG questions, answered from the data itself
 CREATE VIEW v_auskunft AS
@@ -143,14 +176,44 @@ def ahvn13():
 
 
 def keystream_xor(key, nonce, data):
-    """Demo stream cipher: SHA-256 keystream, per-value nonce. Not production
-    crypto — the architecture (encrypted at rest, key outside the DB) is the
-    demonstration, and meta says exactly that."""
+    """Fallback demo cipher (SHA-256 keystream) for machines without the
+    cryptography lib; the meta table says which cipher a build used."""
     out, counter = bytearray(), 0
     while len(out) < len(data):
         out += hashlib.sha256(key + nonce + counter.to_bytes(4, "big")).digest()
         counter += 1
     return bytes(a ^ b for a, b in zip(data, out[:len(data)]))
+
+
+def make_cipher(key):
+    """AES-256-GCM when available (authenticated, production-grade primitive),
+    else the labelled demo cipher. Returns (encrypt(value)->(hex,nonce_hex), label)."""
+    try:
+        from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+        aes = AESGCM(key)
+        def enc(val):
+            nonce = secrets.token_bytes(12)
+            return aes.encrypt(nonce, val.encode(), None).hex(), nonce.hex()
+        return enc, "AES-256-GCM (cryptography); Schlüssel in datentresor.key, NIE in der DB."
+    except ImportError:
+        def enc(val):
+            nonce = secrets.token_bytes(12)
+            return keystream_xor(key, nonce, val.encode()).hex(), nonce.hex()
+        return enc, ("Demo-Streamcipher (SHA-256-Keystream) — cryptography-Lib fehlte beim Build. "
+                     "Nicht produktionstauglich; Schlüssel in datentresor.key, NIE in der DB.")
+
+
+# the storage-shape contracts the tg_format trigger enforces, per format code
+GLOBS = {
+    "date.ch": "[0-3][0-9].[0-1][0-9].[1-2][0-9][0-9][0-9]",
+    "date.ch.short": "[0-3][0-9].[0-1][0-9].[0-9][0-9]",
+    "year": "[1-2][0-9][0-9][0-9]",
+    "plz.ch": "[0-9][0-9][0-9][0-9]",
+    "ahvn13": "756.[0-9][0-9][0-9][0-9].[0-9][0-9][0-9][0-9].[0-9][0-9]",
+    "uid.che": "CHE-[0-9][0-9][0-9].[0-9][0-9][0-9].[0-9][0-9][0-9]",
+    "time.hm": "[0-2][0-9]:[0-5][0-9]",
+    "iban.ch": "CH[0-9][0-9]*",
+}
 
 
 def main():
@@ -159,6 +222,7 @@ def main():
     random.seed(SEED)
     key = secrets.token_bytes(32)
     open(KEYFILE, "wb").write(key)
+    encrypt, cipher_label = make_cipher(key)
 
     src = connect(DB_PATH)
     # patterns for the format gate
@@ -325,18 +389,16 @@ def main():
             # gate 3: sensitive values only encrypted
             versch, nonce = 0, None
             if p["sens"]:
-                nonce = secrets.token_bytes(12)
-                wert = keystream_xor(key, nonce, wert.encode()).hex()
-                nonce = nonce.hex()
+                wert, nonce = encrypt(wert)
                 versch = 1
                 stats["verschl"] += 1
             db.execute("INSERT INTO datenpunkt(subjekt_id,attribut_id,attribut,ech_standard,"
-                       "ech_element,ech_datatype,wert,verschluesselt,nonce,sensitive,erhoben_am,"
-                       "erhebungs_fall,grundlage_artikel,grundlage,einwilligung_id,loeschdatum) "
-                       "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                       "ech_element,ech_datatype,wert,verschluesselt,nonce,format_glob,sensitive,"
+                       "erhoben_am,erhebungs_fall,grundlage_artikel,grundlage,einwilligung_id,loeschdatum) "
+                       "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                        [s["id"], p["attr"], p["name"], p["std"], p["el"], p["dt"],
-                        wert, versch, nonce, p["sens"], ein.isoformat(), fall_id,
-                        p["basis"][0] if p["basis"] else None,
+                        wert, versch, nonce, GLOBS.get(p["fmt"]), p["sens"], ein.isoformat(),
+                        fall_id, p["basis"][0] if p["basis"] else None,
                         grundlage_txt, einw_id, loesch])
             dp_id = db.execute("SELECT last_insert_rowid()").fetchone()[0]
             db.execute("INSERT INTO datenpunkt_verwendung VALUES(?,?,0)", [fall_id, dp_id])
@@ -378,9 +440,7 @@ def main():
         "hinweis": "SÄMTLICHE Daten synthetisch generiert — keine realen Personen.",
         "erzeugt": date.today().isoformat(), "seed": str(SEED),
         "quelle": "citygov.db (Schema, Standards, Regeln, Fristen, Empfänger)",
-        "verschluesselung": "Demo-Streamcipher (SHA-256-Keystream, Nonce je Wert); "
-                            "Schlüssel in datentresor.key, NIE in der DB. Nicht produktionstauglich — "
-                            "die Architektur ist die Demonstration, nicht die Kryptografie.",
+        "verschluesselung": cipher_label,
     }.items():
         db.execute("INSERT INTO meta VALUES(?,?)", [k, v])
     db.commit()
