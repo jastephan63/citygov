@@ -4,7 +4,7 @@
 #
 #   ./build.sh
 #
-# To (re)load data, run the ingestion steps first — see CLAUDE.md:
+# To (re)load data, run the ingestion steps first (full pipeline: see README + scripts/):
 #   python3 scripts/init_db.py            # once (or --force to reset)
 #   python3 scripts/commit_proposal.py proposals/<service>.json
 #   ./build.sh
