@@ -60,10 +60,12 @@ server works too.
 option. `datentresor.db` opens with any SQLite client, for example
 `sqlite3 datentresor.db` or DB Browser for SQLite.
 
-One limitation: the «Quelldatei» links on Formular pages point to files on
-the original working machine and will not open elsewhere. Everything else —
-all data, laws, rules, standards — is inside the HTML file and works
-offline.
+The original Formular files (PDF/Word/Excel) are included in the
+`formulare/` folder, so the «Quelldatei» links on Formular pages work when
+you have the whole repository (options 1, 3 and 4). Only the single-file
+download (option 2) lacks them — everything else in the dashboard works
+there too, since all data, laws, rules and standards are inside the HTML
+file itself.
 
 ## What the data covers
 
