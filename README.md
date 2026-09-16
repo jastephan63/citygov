@@ -23,22 +23,47 @@ dashboard says so instead of hiding it.
 
 ## Opening the dashboard on your computer
 
-The dashboards are single HTML files with all data built in. No server, no
-install, no internet needed.
+The dashboard is a single HTML file with all data built in. Nothing to
+install, no server required, works offline. One thing does **not** work:
+clicking the file on github.com — GitHub cannot preview a file this large.
+Get it onto your computer first, using any of these ways:
 
-1. Click the green **Code** button above and choose **Download ZIP**, then
-   unzip it. (Or `git clone https://github.com/jastephan63/citygov.git`.)
-2. Double-click `dashboard.html`. It opens in any modern browser. The file
-   is about 32 MB, so the first load takes a few seconds. `flows.html`
-   opens the same way.
-3. If your browser struggles with the file size, run
-   `python3 -m http.server 8917` in the folder and open
-   `http://localhost:8917/dashboard.html`.
+**Option 1 — Download the ZIP (simplest, no tools needed).**
+Click the green **Code** button at the top of this page, choose
+**Download ZIP**, unzip it, and double-click `dashboard.html`. It opens in
+any modern browser (Chrome, Edge, Firefox, Safari). The file is about
+32 MB, so the first load takes a few seconds.
 
-Note: GitHub cannot preview files this large, so download first. The
-«Quelldatei» links on Formular pages point to files on the original working
-machine and will not open elsewhere; everything else works offline.
-`datentresor.db` opens with any SQLite client.
+**Option 2 — Download just the one file.**
+You don't need the whole repository to view the dashboard. Download the
+single file from
+`https://github.com/jastephan63/citygov/raw/main/dashboard.html`
+(the browser will save it rather than show it), then double-click it.
+
+**Option 3 — Clone with git (best if you want updates).**
+```bash
+git clone https://github.com/jastephan63/citygov.git
+```
+Then open `dashboard.html` from the cloned folder. Later, `git pull` brings
+you the newest version.
+
+**Option 4 — Serve it locally (if your browser is slow with the file).**
+Some browsers handle a 32 MB page better over http than from a
+double-clicked file. In the folder, run:
+```bash
+python3 -m http.server 8917
+```
+and open `http://localhost:8917/dashboard.html`. Any other static file
+server works too.
+
+`flows.html` (the guided questionnaires) opens the same way in every
+option. `datentresor.db` opens with any SQLite client, for example
+`sqlite3 datentresor.db` or DB Browser for SQLite.
+
+One limitation: the «Quelldatei» links on Formular pages point to files on
+the original working machine and will not open elsewhere. Everything else —
+all data, laws, rules, standards — is inside the HTML file and works
+offline.
 
 ## What the data covers
 
