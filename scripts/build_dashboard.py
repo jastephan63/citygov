@@ -1765,7 +1765,7 @@ function viewSearch(){
     'Ein Suchfeld über Services, Formulare, Datenfelder, Gesetze und Artikel, Datenhandhabungs-Regeln, Empfänger, Beilagen, eCH-Standards und Dienststellen.',
     'Durchsucht wird der Export der Databank, wie er in dieser Seite steckt — nichts Externes. Alle Wörter müssen vorkommen (Reihenfolge egal, Gross/Klein egal).',
     'Ein Treffer springt an die Stelle, an der das Objekt in der Databank lebt: Service-Seite, Einzelansicht, Regel-Karte, Katalog oder Handlungsbedarf.');
-  if(!toks.length){m.innerHTML=h+'<div class="nores">Mindestens ein Wort mit zwei Zeichen eingeben — z. B. «AHV-Nummer», «Art. 17b», «Steuerverwaltung», «Aufbewahrung 10 Jahre».</div>';return;}
+  if(!toks.length){m.innerHTML=h+'<div class="nores">Mindestens ein Wort mit zwei Zeichen eingeben — z. B. «AHV-Nummer», «Art. 17b», «Steuerverwaltung», «Strafregisterauszug», «eCH-0044».</div>';return;}
   // rank: whole-word matches (so «17b» prefers Art. 17b over Art. 317bis), then label matches
   const wb=(s,t)=>{const i=s.indexOf(t);return i>=0&&(i===0||!/[a-z0-9äöü]/.test(s[i-1]));};
   const hits=searchIndex().filter(e=>toks.every(t=>e.key.includes(t)))
@@ -1774,6 +1774,7 @@ function viewSearch(){
   const order=['Service','Formular','Datenfeld','Gesetz','Artikel','Regel','Empfänger','Beilage','eCH-Standard','Dienststelle'];
   const byT={}; hits.forEach(x=>(byT[x.e.t]=byT[x.e.t]||[]).push(x.e));
   h+=`<div class="regstats">${order.filter(t=>byT[t]).map(t=>`<span class="rstat">${esc(t)} <b>${byT[t].length}</b></span>`).join('')}${hits.length?'':'<span class="rstat">keine Treffer</span>'}</div>`;
+  if(!hits.length&&toks.length>1) h+=`<div class="nores">Alle Wörter müssen im selben Eintrag vorkommen. Mit einem einzelnen Begriff suchen (${toks.map(t=>`<a class="simlink" data-q="${esc(t)}">${esc(t)}</a>`).join(' · ')}) oder die Schreibweise des Gesetzestexts verwenden — Fristen stehen dort meist als Zahlwort («zehn Jahre»), nicht als Ziffer.</div>`;
   let gi=0; const linkStore=[];
   order.forEach(t=>{const L=byT[t]; if(!L) return; const id='sg'+(gi++);
     h+=`<div class="card sres"><div class="dvsub">${esc(t)} · ${L.length}</div>`;
@@ -1785,6 +1786,7 @@ function viewSearch(){
     if(L.length>10) h+=`<a class="simlink small" data-showmore="${id}">alle ${L.length} anzeigen</a>`;
     h+=`</div>`;});
   m.innerHTML=h;
+  m.querySelectorAll('.simlink[data-q]').forEach(a=>a.onclick=()=>{state.sub=encodeURIComponent(a.dataset.q);render();});
   m.querySelectorAll('.slink').forEach(a=>a.onclick=()=>goTo(linkStore[+a.dataset.li].go));
   m.querySelectorAll('.simlink[data-k]').forEach(a=>a.onclick=()=>goTo(linkStore[+a.dataset.li].links[+a.dataset.k]));
   m.querySelectorAll('[data-showmore]').forEach(a=>a.onclick=()=>{m.querySelectorAll(`[data-more="${a.dataset.showmore}"]`).forEach(r=>r.style.display='');a.remove();});
