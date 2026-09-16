@@ -25,6 +25,41 @@ auditable, and never silently wrong. Gaps are shown as gaps — a fake
 | `schema.sql` | The documented database schema, layer by layer. |
 | `scripts/` | Every loader, harvester, generator and exporter. `scripts/deprecated/` holds retired tooling with a README saying what replaced each piece. |
 
+## Opening the dashboards on your own computer
+
+Both dashboards are single, self-contained HTML files with all data inlined —
+no server, no install, no internet needed once you have them. GitHub cannot
+preview files this large, so don't click them on github.com; get them onto
+your machine first:
+
+1. **Download the repository.** Either click the green **Code** button above
+   and choose **Download ZIP** (then unzip it), or clone it:
+
+   ```bash
+   git clone https://github.com/jastephan63/citygov.git
+   ```
+
+2. **Double-click `dashboard.html`.** It opens in any modern browser
+   (Chrome, Edge, Firefox, Safari). The file is ~32 MB, so give it a few
+   seconds on first load. `flows.html` — the guided-questionnaire dashboard —
+   opens the same way.
+
+3. **If your browser is sluggish with a file this big**, serve the folder
+   locally instead and open the printed address:
+
+   ```bash
+   cd citygov
+   python3 -m http.server 8917
+   ```
+
+   Then visit `http://localhost:8917/dashboard.html`.
+
+One caveat: the «Quelldatei»-links on Formular pages point into the local
+file collection of the original working machine, which is not part of this
+repository — everything else (all data, laws, rules, standards) is inlined
+and works offline. `datentresor.db` is a normal SQLite file; open it with any
+SQLite client (e.g. `sqlite3 datentresor.db` or DB Browser for SQLite).
+
 ## The data model, layer by layer
 
 - **Services and Formulare.** The unit is the *service* as modelled in the
