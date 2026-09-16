@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Mit XMLSpy v2012 sp1 (http://www.altova.com) von Martin Stingelin (Stingelin Informatik GmbH) bearbeitet -->
+<!-- edited with XMLSpy v2012 rel. 2 sp1 (http://www.altova.com) by Martin Stingelin (Stingelin Informatik GmbH) -->
+<xs:schema xmlns:eCH-0132="http://www.ech.ch/xmlns/eCH-0132/3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:eCH-0129="http://www.ech.ch/xmlns/eCH-0129/6" xmlns:eCH-0007="http://www.ech.ch/xmlns/eCH-0007/6" xmlns:eCH-0058="http://www.ech.ch/xmlns/eCH-0058/5" xmlns:eCH-0044="http://www.ech.ch/xmlns/eCH-0044/4" xmlns:eCH-0097="http://www.ech.ch/xmlns/eCH-0097/2" xmlns:eCH-0010="http://www.ech.ch/xmlns/eCH-0010/6" targetNamespace="http://www.ech.ch/xmlns/eCH-0132/3" elementFormDefault="qualified" attributeFormDefault="unqualified" version="3.0">
+	<xs:annotation>
+		<xs:documentation>Ausgabedatum: 18.06.2021</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0129/6" schemaLocation="http://www.ech.ch/xmlns/eCH-0129/6/eCH-0129-6-0.xsd"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0058/5" schemaLocation="http://www.ech.ch/xmlns/eCH-0058/5/eCH-0058-5-0.xsd"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0007/6" schemaLocation="http://www.ech.ch/xmlns/eCH-0007/6/eCH-0007-6-0.xsd"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0010/6" schemaLocation="http://www.ech.ch/xmlns/eCH-0010/6/eCH-0010-6-0.xsd"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0044/4" schemaLocation="http://www.ech.ch/xmlns/eCH-0044/4/eCH-0044-4-1.xsd"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0097/2" schemaLocation="http://www.ech.ch/xmlns/eCH-0097/2/eCH-0097-2-0.xsd"/>
+	<xs:simpleType name="eventType">
+		<xs:restriction base="xs:token"/>
+	</xs:simpleType>
+	<xs:simpleType name="remarkType">
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="baseDeliveryType">
+		<xs:sequence>
+			<xs:element name="insuranceObjectInfo" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="insuranceObject" type="eCH-0129:insuranceObjectOnlyType"/>
+						<xs:element name="insuranceValue" type="eCH-0129:insuranceValueType" minOccurs="0"/>
+						<xs:element name="custodian" type="eCH-0132:custodianType" minOccurs="0"/>
+						<xs:element name="policyholder" type="eCH-0132:policyholderType" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="buildingInfo" type="eCH-0132:buidlingInformationType" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="buidlingInformationType">
+		<xs:sequence>
+			<xs:element name="building" type="eCH-0129:buildingOnlyType"/>
+			<xs:element name="realestate" type="eCH-0129:realestateType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="buildingEntranceInformation" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="dwelling" type="eCH-0129:dwellingType" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="buildingEntrance" type="eCH-0129:buildingEntranceOnlyType"/>
+						<xs:element name="localisationInformation">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="locality" type="eCH-0129:localityType"/>
+									<xs:element name="street" type="eCH-0129:streetType"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="buidlingIdentificationInformationType">
+		<xs:sequence>
+			<xs:element name="buildingIdentification" type="eCH-0129:buildingIdentificationType"/>
+			<xs:element name="realestateIdentification" type="eCH-0129:realestateIdentificationType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="custodianType">
+		<xs:sequence>
+			<xs:choice minOccurs="0">
+				<xs:element name="personIdentificationType" type="eCH-0044:personIdentificationType"/>
+				<xs:element name="organisationIdentification" type="eCH-0097:organisationIdentificationType"/>
+			</xs:choice>
+			<xs:element name="mailAddress" type="eCH-0010:mailAddressType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="policyholderType">
+		<xs:sequence>
+			<xs:choice minOccurs="0">
+				<xs:element name="personIdentificationType" type="eCH-0044:personIdentificationType"/>
+				<xs:element name="organisationIdentification" type="eCH-0097:organisationIdentificationType"/>
+			</xs:choice>
+			<xs:element name="mailAddress" type="eCH-0010:mailAddressType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="newInsuranceobject">
+		<xs:sequence>
+			<xs:element name="event">
+				<xs:simpleType>
+					<xs:restriction base="eCH-0132:eventType">
+						<xs:enumeration value="1"/>
+						<xs:enumeration value="2"/>
+						<xs:enumeration value="26"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="insuranceObject" type="eCH-0129:insuranceObjectOnlyType"/>
+			<xs:element name="custodian" type="eCH-0132:custodianType" minOccurs="0"/>
+			<xs:element name="policyholder" type="eCH-0132:policyholderType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:choice>
+				<xs:element name="buildingInformation" type="eCH-0132:buidlingInformationType" maxOccurs="unbounded"/>
+				<xs:element name="buildingIdentificationInformation" type="eCH-0132:buidlingIdentificationInformationType" maxOccurs="unbounded"/>
+			</xs:choice>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="newInsuranceValue">
+		<xs:sequence>
+			<xs:element name="event">
+				<xs:simpleType>
+					<xs:restriction base="eCH-0132:eventType">
+						<xs:enumeration value="3"/>
+						<xs:enumeration value="4"/>
+						<xs:enumeration value="5"/>
+						<xs:enumeration value="6"/>
+						<xs:enumeration value="7"/>
+						<xs:enumeration value="8"/>
+						<xs:enumeration value="9"/>
+						<xs:enumeration value="10"/>
+						<xs:enumeration value="11"/>
+						<xs:enumeration value="12"/>
+						<xs:enumeration value="13"/>
+						<xs:enumeration value="14"/>
+						<xs:enumeration value="15"/>
+						<xs:enumeration value="16"/>
+						<xs:enumeration value="17"/>
+						<xs:enumeration value="18"/>
+						<xs:enumeration value="22"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="insuranceObject" type="eCH-0129:insuranceObjectOnlyType"/>
+			<xs:element name="insuranceValue" type="eCH-0129:insuranceValueType"/>
+			<xs:element name="custodian" type="eCH-0132:custodianType" minOccurs="0"/>
+			<xs:element name="policyholder" type="eCH-0132:policyholderType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="buildingInformation" type="eCH-0132:buidlingInformationType" maxOccurs="unbounded"/>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="cancellation">
+		<xs:sequence>
+			<xs:element name="event">
+				<xs:simpleType>
+					<xs:restriction base="eCH-0132:eventType">
+						<xs:enumeration value="19"/>
+						<xs:enumeration value="20"/>
+						<xs:enumeration value="21"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="insuranceObject" type="eCH-0129:insuranceObjectOnlyType"/>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="changeCustodian">
+		<xs:sequence>
+			<xs:element name="event">
+				<xs:simpleType>
+					<xs:restriction base="eCH-0132:eventType">
+						<xs:enumeration value="23"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="insuranceObject" type="eCH-0129:insuranceObjectOnlyType"/>
+			<xs:element name="custodian" type="eCH-0132:custodianType" minOccurs="0"/>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="changePolicyholder">
+		<xs:sequence>
+			<xs:element name="event">
+				<xs:simpleType>
+					<xs:restriction base="eCH-0132:eventType">
+						<xs:enumeration value="24"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="insuranceObject" type="eCH-0129:insuranceObjectOnlyType"/>
+			<xs:element name="policyholder" type="eCH-0132:policyholderType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="changeInsuranceNumber">
+		<xs:sequence>
+			<xs:element name="event">
+				<xs:simpleType>
+					<xs:restriction base="eCH-0132:eventType">
+						<xs:enumeration value="25"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="insuranceNumberOld" type="eCH-0129:buildingInsuranceNumberType"/>
+			<xs:element name="insuranceNumberNew" type="eCH-0129:buildingInsuranceNumberType"/>
+			<xs:element name="remark" type="eCH-0132:remarkType" minOccurs="0"/>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="delivery">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="deliveryHeader" type="eCH-0058:headerType"/>
+				<xs:choice>
+					<xs:element name="baseDelivery" type="eCH-0132:baseDeliveryType"/>
+					<xs:element name="newInsuranceobject" type="eCH-0132:newInsuranceobject"/>
+					<xs:element name="newInsuranceValue" type="eCH-0132:newInsuranceValue"/>
+					<xs:element name="cancellation" type="eCH-0132:cancellation"/>
+					<xs:element name="changeCustodian" type="eCH-0132:changeCustodian"/>
+					<xs:element name="changePolicyholder" type="eCH-0132:changePolicyholder"/>
+					<xs:element name="changeInsuranceNumber" type="eCH-0132:changeInsuranceNumber"/>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

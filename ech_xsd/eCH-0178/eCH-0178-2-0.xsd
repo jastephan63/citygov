@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2012 rel. 2 sp1 (http://www.altova.com) by Martin Stingelin (Stingelin Informatik GmbH) -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:eCH-0178="http://www.ech.ch/xmlns/eCH-0178/2" xmlns:gbdbs="http://schemas.geo.admin.ch/BJ/TGBV/GBBasisTypen/2.1" targetNamespace="http://www.ech.ch/xmlns/eCH-0178/2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.0">
+	<xsd:annotation>
+		<xsd:documentation xml:lang="de">Ausgabedatum:09.09.2022</xsd:documentation>
+	</xsd:annotation>
+	<xsd:import namespace="http://schemas.geo.admin.ch/BJ/TGBV/GBBasisTypen/2.1" schemaLocation="http://schemas.geo.admin.ch/BJ/TGBV/GBBasisTypen/2.1/GBBasisTypen.xsd"/>
+	<xsd:simpleType name="remarksType">
+		<xsd:restriction base="xsd:string"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="valueCHFType">
+		<xsd:restriction base="xsd:decimal">
+			<xsd:maxInclusive value="1000000000000.00"/>
+			<xsd:minInclusive value="0.00"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="originalDocumentNumberType">
+		<xsd:restriction base="xsd:token"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="applicantType">
+		<xsd:restriction base="xsd:token"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="formerlySalespersonType">
+		<xsd:restriction base="xsd:token"/>
+	</xsd:simpleType>
+	<xsd:complexType name="legalGroundExhibitType">
+		<xsd:complexContent>
+			<xsd:extension base="gbdbs:DokumentType">
+				<xsd:sequence>
+					<xsd:element name="originalDocumentNumber" type="eCH-0178:originalDocumentNumberType" minOccurs="0"/>
+					<xsd:element name="dateDocumentedLegalAct" type="eCH-0178:dateDocumentedLegalActType" minOccurs="0"/>
+					<xsd:element name="legalGroundExhibitData" type="eCH-0178:legalGroundExhibitDataType" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:simpleType name="legalGroundKindType">
+		<xsd:restriction base="xsd:token">
+			<xsd:enumeration value="01"/>
+			<xsd:enumeration value="02"/>
+			<xsd:enumeration value="03"/>
+			<xsd:enumeration value="04"/>
+			<xsd:enumeration value="05"/>
+			<xsd:enumeration value="06"/>
+			<xsd:enumeration value="07"/>
+			<xsd:enumeration value="99"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="cantonalCodeType">
+		<xsd:restriction base="xsd:token"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="dateBeginnBenefitHarmType">
+		<xsd:restriction base="xsd:date"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="dateOfAccessionByOperationOfLawType">
+		<xsd:restriction base="xsd:date"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="dateDocumentedLegalActType">
+		<xsd:restriction base="xsd:date"/>
+	</xsd:simpleType>
+	<xsd:complexType name="legalGroundExhibitDataType">
+		<xsd:sequence>
+			<xsd:element name="legalGroundKind">
+				<xsd:simpleType>
+					<xsd:restriction base="eCH-0178:legalGroundKindType"/>
+				</xsd:simpleType>
+			</xsd:element>
+			<xsd:element name="cantonalCode" type="eCH-0178:cantonalCodeType" minOccurs="0"/>
+			<xsd:element name="cantonalCodeText" type="eCH-0178:remarksType" minOccurs="0"/>
+			<xsd:element name="remarks" type="eCH-0178:remarksType" minOccurs="0"/>
+			<xsd:element name="dateBeginnBenefitHarm" type="eCH-0178:dateBeginnBenefitHarmType" minOccurs="0"/>
+			<xsd:element name="dateOfAccessionByOperationOfLaw" type="eCH-0178:dateOfAccessionByOperationOfLawType" minOccurs="0"/>
+			<xsd:element name="confidentialData" type="eCH-0178:confidentialDataType" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="id" type="xsd:ID"/>
+	</xsd:complexType>
+	<xsd:simpleType name="safeGuardingFromType">
+		<xsd:restriction base="xsd:date"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="fringeBenefitType">
+		<xsd:restriction base="xsd:token">
+			<xsd:minLength value="1"/>
+			<xsd:maxLength value="500"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="safeGuardingGnumberType">
+		<xsd:restriction base="xsd:token"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="safeGuardingValutaType">
+		<xsd:restriction base="xsd:date"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="businessAssetsType">
+		<xsd:restriction base="xsd:boolean"/>
+	</xsd:simpleType>
+	<xsd:simpleType name="taxPaymentDateDeferralType">
+		<xsd:restriction base="xsd:boolean"/>
+	</xsd:simpleType>
+	<xsd:complexType name="additionalPaymentItemType">
+		<xsd:sequence>
+			<xsd:element name="freetext" type="eCH-0178:remarksType"/>
+			<xsd:element name="valueCHF" type="eCH-0178:valueCHFType"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="confidentialDataType">
+		<xsd:sequence>
+			<xsd:element name="purchasePrice" type="eCH-0178:valueCHFType" minOccurs="0"/>
+			<xsd:element name="debtAdoption" type="eCH-0178:valueCHFType" minOccurs="0"/>
+			<xsd:element name="specialPriceForAllowance" type="eCH-0178:valueCHFType" minOccurs="0"/>
+			<xsd:element name="containedAllowance" type="eCH-0178:valueCHFType" minOccurs="0"/>
+			<xsd:element name="remarks" type="eCH-0178:remarksType" minOccurs="0"/>
+			<xsd:element name="formerlyPurchasePrice" type="eCH-0178:valueCHFType" minOccurs="0"/>
+			<xsd:element name="formerlySalesperson" type="eCH-0178:formerlySalespersonType" minOccurs="0"/>
+			<xsd:element name="complexAcquisitionQuotient" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="formerlyDateDocumentedLegalAct" type="eCH-0178:dateDocumentedLegalActType" minOccurs="0"/>
+			<xsd:element name="realServitudeDeptRedemption" type="eCH-0178:valueCHFType" minOccurs="0"/>
+			<xsd:element name="cashPayment" type="eCH-0178:valueCHFType" minOccurs="0"/>
+			<xsd:element name="bankTransfer" type="eCH-0178:valueCHFType" minOccurs="0"/>
+			<xsd:element name="nonOfficialPayment" type="eCH-0178:valueCHFType" minOccurs="0"/>
+			<xsd:element name="safeGuardingYesNo" type="xsd:boolean" minOccurs="0"/>
+			<xsd:element name="safeGuardingGnumber" type="eCH-0178:safeGuardingGnumberType" minOccurs="0"/>
+			<xsd:element name="safeGuardingFrom" type="eCH-0178:safeGuardingFromType" minOccurs="0"/>
+			<xsd:element name="safeGuardingAmount" type="eCH-0178:valueCHFType" minOccurs="0"/>
+			<xsd:element name="safeGuardingValuta" type="eCH-0178:safeGuardingValutaType" minOccurs="0"/>
+			<xsd:element name="safeGuardingRemark" type="eCH-0178:remarksType" minOccurs="0"/>
+			<xsd:element name="fringeBenefit" type="eCH-0178:fringeBenefitType" minOccurs="0"/>
+			<xsd:element name="businessAssets" type="eCH-0178:businessAssetsType" minOccurs="0"/>
+			<xsd:element name="taxPaymentDateDeferral" type="eCH-0178:taxPaymentDateDeferralType" minOccurs="0"/>
+			<xsd:element name="chargeTaxPaymentVendor" type="eCH-0178:valueCHFType" minOccurs="0"/>
+			<xsd:element name="chargeTaxPaymentBuyer" type="eCH-0178:valueCHFType" minOccurs="0"/>
+			<xsd:element name="additionalPaymentItem" type="eCH-0178:additionalPaymentItemType" minOccurs="0"/>
+		</xsd:sequence>
+		<xsd:attribute name="id" type="xsd:ID"/>
+	</xsd:complexType>
+	<xsd:complexType name="formerlyBuyingType">
+		<xsd:sequence/>
+		<xsd:attribute name="id" type="xsd:ID"/>
+	</xsd:complexType>
+	<xsd:element name="root">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="legalGroundExhibit" type="eCH-0178:legalGroundExhibitType"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

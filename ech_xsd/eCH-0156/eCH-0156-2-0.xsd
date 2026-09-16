@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2012 rel. 2 sp1 (http://www.altova.com) by Martin Stingelin (Stingelin Informatik GmbH) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:eCH-0156="http://www.ech.ch/xmlns/eCH-0156/2" xmlns:eCH-0010="http://www.ech.ch/xmlns/eCH-0010/5" xmlns:eCH-0011="http://www.ech.ch/xmlns/eCH-0011/8" xmlns:eCH-0044="http://www.ech.ch/xmlns/eCH-0044/4" targetNamespace="http://www.ech.ch/xmlns/eCH-0156/2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xs:annotation>
+		<xs:documentation>Ausgabedatum: 04.09.2015</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0010/5" schemaLocation="http://www.ech.ch/xmlns/eCH-0010/5/eCH-0010-5-1.xsd"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0011/8" schemaLocation="http://www.ech.ch/xmlns/eCH-0011/8/eCH-0011-8-1.xsd"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0044/4" schemaLocation="http://www.ech.ch/xmlns/eCH-0044/4/eCH-0044-4-1.xsd"/>
+	<xs:simpleType name="unknownType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="nameOfParentAtBirthType">
+		<xs:choice>
+			<xs:sequence>
+				<xs:element name="firstName" type="eCH-0044:officialFirstNameType"/>
+				<xs:element name="officialName" type="eCH-0044:baseNameType"/>
+			</xs:sequence>
+			<xs:element name="firstNameOnly" type="eCH-0044:officialFirstNameType"/>
+			<xs:element name="officialNameOnly" type="eCH-0044:baseNameType"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="guardianType">
+		<xs:choice>
+			<xs:sequence>
+				<xs:element name="firstName" type="eCH-0044:officialFirstNameType"/>
+				<xs:element name="officialName" type="eCH-0044:baseNameType"/>
+			</xs:sequence>
+			<xs:element name="officialNameOnly" type="eCH-0044:baseNameType"/>
+			<xs:element name="nameUnknown" type="eCH-0156:unknownType"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:element name="person">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="personIdentification" type="eCH-0044:personIdentificationType"/>
+				<xs:element name="alliancePartnershipName" type="eCH-0044:baseNameType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Allianzname (max. 100 Zeichen)
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="otherName" type="eCH-0044:baseNameType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Weitere Namen (max. 100 Zeichen)
+						</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="placeOfBirth" type="eCH-0011:generalPlaceType"/>
+				<xs:element name="placeOfOrigin" type="eCH-0011:placeOfOriginType" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>Heimatort(e)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="dwellingAddress" type="eCH-0010:mailAddressType"/>
+				<xs:element name="contactAddress" type="eCH-0010:mailAddressType" minOccurs="0"/>
+				<xs:element name="mother" type="eCH-0156:nameOfParentAtBirthType" minOccurs="0"/>
+				<xs:element name="father" type="eCH-0156:nameOfParentAtBirthType" minOccurs="0"/>
+				<xs:element name="guardian" type="eCH-0156:guardianType" minOccurs="0"/>
+				<xs:element name="height" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Koerpergroesse in cm</xs:documentation>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:positiveInteger">
+							<xs:maxInclusive value="250"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

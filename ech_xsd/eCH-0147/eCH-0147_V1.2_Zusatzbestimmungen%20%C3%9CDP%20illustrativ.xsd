@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- last edited on 24.08.2011 -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="applicationCustom">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="transportHistory" type="transportHistoryType"/>
+                <xs:element name="exRecipients" type="exRecipientsType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="transportHistoryType">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="transportHistoryEntry"
+                type="transportHistoryEntryType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="exRecipientsType">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="exRecipientsEntry" type="exRecipientsEntryType"
+            />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="transportHistoryEntryType">
+        <xs:annotation>
+            <xs:documentation>Bildet die Histories des Objekts im ÜDP ab. </xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="thDepName" type="xs:token">
+                <xs:annotation>
+                    <xs:documentation xml:lang="DE">Name des betroffenen Departements.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="thOriginNumber" type="xs:token">
+                <xs:annotation>
+                    <xs:documentation xml:lang="DE">Original-Schlüssel für ein Objekt</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="thForeingKey" type="xs:token" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation xml:lang="DE">Fremd-Schlüssel für ein Objekt. Technische IDs in Fremdsystemen.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="thSystemKey" type="xs:token" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation xml:lang="DE">Schlüssel des Systems, in dem das Objekt liegt.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="thReadOnly" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation xml:lang="DE">Definiert, ob ein Objekt readonly ist oder nicht. Ist ein Objekt readonly, dann wird dieses im Falle einer Rückübermittlung der Antwort nicht synchronisiert</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="thExportAt" type="xs:dateTime">
+                <xs:annotation>
+                    <xs:documentation xml:lang="DE">Datum des Exports</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="exRecipientsEntryType">
+        <xs:annotation>
+            <xs:documentation>Adressaten des Objekts für die ÜDP-Kommunikation</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="rtDepName" type="xs:token">
+                <xs:annotation>
+                    <xs:documentation xml:lang="DE">Name des betroffenen Departements.</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="rtReadOnly" type="exRecipientsEnumType">
+                <xs:annotation>
+                    <xs:documentation>Read-Only: Ja oder Nein</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="exRecipientsEnumType">
+        <xs:annotation>
+            <xs:documentation xml:lang="DE">Änderbar Ja-Nein</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:token">
+            <xs:enumeration value="READ"/>
+            <xs:enumeration value="EDIT"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

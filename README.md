@@ -17,7 +17,10 @@ dashboard says so instead of hiding it.
 | `dashboard.html` | The dashboard: per service its Verfahren, Formulare, data fields, legal bases, standards, handling rules and digitalisation status. |
 | `flows.html` | Guided questionnaires: one step-by-step walkthrough per Formular. |
 | `datentresor.db` | Example storage database with synthetic data (see below). |
+| `dossiers/` | One printable Datenschutz-Dossier per service (HTML and PDF), generated from the same data. `dossiers/index.html` lists them. |
 | `citygov_llm.json` and the other `citygov_*` files | Machine-readable exports of the whole databank. |
+| `ech_xsd/` | The official eCH XML schemas the element catalogue and code lists were read from. |
+| `formulare/` | The original Formular files, so the «Quelldatei» links work offline. |
 | `schema.sql` | The documented database schema. |
 | `scripts/` | All loaders, harvesters and exporters. Retired tools sit in `scripts/deprecated/`. |
 
@@ -78,16 +81,43 @@ file itself.
   plus eSH, a draft cantonal standard for everything eCH does not cover.
   eSH is always marked as a draft.
 - **Legal bases.** Article-level citations per field, read from the official
-  law texts (Schaffhauser Rechtsbuch, Fedlex), never from memory.
+  law texts (Schaffhauser Rechtsbuch, Fedlex), never from memory. A field
+  without an explicit article is not automatically over-collection: the
+  databank distinguishes "needed for the task" (KDSG Art. 4 Abs. 1 lit. b)
+  from "neither a norm nor the task demands it".
+- **Whose datum it is.** Each field records whether it describes a natural
+  person, an organisation, a thing or an authority. Only a natural person's
+  datum can be prefilled from the Einwohnerregister (once-only); a
+  company's address cannot, even though it uses the same eCH element.
+- **Legal remedies.** Per Verfahren: which Einsprache/Rekurs/Beschwerde a
+  person has against the decision, with Frist and Instanz, quoted from the
+  law PDF. Sectoral provisions where the cited law has its own; otherwise
+  the general rule of the VRG, and the dashboard says which one it shows.
+- **Code lists.** The official value lists from the eCH schemas (sex,
+  marital status, residence permits, ...) and, per field, whether the form
+  uses those codes or its own plain-text values.
 - **Handling rules.** 247 rules on storing, processing and disclosing
   personal data, from 8 data-protection laws and 41 sectoral laws. Every
   rule carries a quote checked word-for-word against the official law PDF.
   Retention periods are machine-readable, so deletion dates can be computed.
 - **The register.** Per Formular: purpose, recipients, retention and DSFA
-  status — the processing register the KDSG requires.
+  status, structured like KDSG Art. 17b Abs. 2. (The duty to keep such a
+  register applies under Art. 17b only to Polizei, Staatsanwaltschaft and
+  Justizvollzug; for every other office the register here is a management
+  tool, and the dashboard says so.)
 - **Digitalisation.** Per Formular: submission channel, signature
   requirement, required enclosures, citizen effort, and what blocks a fully
   digital process.
+
+The dashboard also has: a **Handlungsbedarf** board (every open point —
+missing legal basis, purpose, recipients, DSFA decision, eCH mapping,
+outdated form, undecided duplicate, unresolved remedy — grouped by the
+Dienststelle that can close it, with the office's contact and a CSV
+export), a **Datenfluss** map (which Dienststelle passes data to which
+recipient, from the article-backed disclosures), a **Bürgersicht** (what the
+Datentresor holds about one synthetic person, seen from their side), and a
+search box over everything: laws, articles, fields, rules, recipients,
+enclosures, standards, offices.
 
 ## How the data is verified
 
@@ -102,9 +132,11 @@ facts and were read strictly without changing anything.
 ## The Datentresor
 
 `datentresor.db` shows how the collected data could actually be stored:
-1,200 synthetic residents, 10,000 cases, 142,000 stored values. The rules
-are enforced by the database itself: a person's datum is stored once and
-reused (once-only), sensitive values are AES-256-GCM encrypted with the key
+1,200 synthetic residents, 10,000 cases, about 167,000 stored values of
+which 20,000 were reused instead of asked again. The rules are enforced by
+the database itself: a person's own datum is stored once and reused
+(once-only; a company's or an authority's address is stored per case, not
+as the person's), sensitive values are AES-256-GCM encrypted with the key
 kept outside the database, and triggers block unencrypted sensitive values,
 entries without a legal basis or consent, wrong formats, hard deletes and
 any change to the access log. Views answer the standard data-protection
@@ -119,12 +151,22 @@ this repository. Rebuild with `scripts/build_datentresor.py`.
 ./build.sh    # regenerates data_export.json and dashboard.html from citygov.db
 ```
 
+Other generated outputs: `scripts/build_flows.py` (flows.html),
+`scripts/export_llm.py` (the `citygov_*` exports),
+`scripts/export_dossiers.py --pdf` (the dossiers; PDF needs a local
+Chrome), `scripts/build_datentresor.py` (datentresor.db),
+`scripts/sweep_ech_xsd.py` (re-reads the eCH schemas from ech.ch).
+
 All loaders write to a staging copy, validate, and only then replace the
 database — a failed load changes nothing.
 
 ## Known gaps
 
-Some legal bases are still marked "zu ermitteln". Schutzstufen and DSFA
-decisions are the canton's to make and are empty until then. eSH is a
-draft. The newest Formulare still lack their standards mapping. The
-dashboard shows each gap where it occurs.
+The 74 newest Formulare (taken from the DVSH model) have their standards
+mapping but not yet their article-level legal bases — about 1,100 fields
+are marked "zu ermitteln". Schutzstufen and DSFA decisions are the
+canton's to make and are empty until then. Legal remedies are stated per
+Verfahren, but for 19 register-type procedures under federal law none
+could be assigned with proof. eSH is a draft. The Handlungsbedarf board
+lists every gap by Dienststelle; the dashboard shows each one where it
+occurs.

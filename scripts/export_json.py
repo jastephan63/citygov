@@ -155,12 +155,18 @@ def build(conn):
             for s in rows(conn, "SELECT code, title, url, n_elements, status, reifegrad "
                                 "FROM ech_standard"):
                 ech_std[s["code"]] = s
+            xsd_ver = {}
+            try:
+                xsd_ver = {r["code"]: r["xsd_version"] for r in rows(conn, "SELECT code, xsd_version FROM ech_standard")}
+            except Exception:
+                pass
             for e in rows(conn, "SELECT e.id, e.standard, e.name, e.datatype, s.title, s.url, "
                                 "s.status, s.reifegrad "
                                 "FROM ech_element e JOIN ech_standard s ON s.code=e.standard"):
                 ech[e["id"]] = {"standard": e["standard"], "element": e["name"],
                                 "datatype": e["datatype"], "standard_titel": e["title"], "url": e["url"],
-                                "status": e["status"], "reifegrad": e["reifegrad"]}
+                                "status": e["status"], "reifegrad": e["reifegrad"],
+                                "xsd_version": xsd_ver.get(e["standard"])}
         except Exception:
             pass
         # subfields with their OWN eCH element (Name/Vorname/Geburtsdatum each exact)
@@ -261,6 +267,44 @@ def build(conn):
             beil_by_form.setdefault(r.pop("form_id"), []).append(r)
         for r in rows(conn, "SELECT * FROM form_outcome"):
             out_by_form[r.pop("form_id")] = r
+        # the remedy behind each outcome, with the verified quote and its source
+        try:
+            for r in rows(conn, "SELECT o.form_id, rr.scope, rr.rechtsmittel_art, rr.frist_tage, rr.instanz, "
+                                "rr.gilt_fuer, rr.quote, rr.frist_quote, rr.hinweis, rr.last_checked, "
+                                "a.article_no, af.article_no frist_article_no, l.short_title, l.title law_title, "
+                                "l.sr_number, l.cantonal_ref, l.jurisdiction_level FROM form_outcome o "
+                                "JOIN rechtsmittel_regel rr ON rr.id=o.rechtsmittel_regel_id "
+                                "JOIN article a ON a.id=rr.article_id LEFT JOIN article af ON af.id=rr.frist_article_id "
+                                "JOIN law l ON l.id=rr.law_id"):
+                fid = r.pop("form_id")
+                if fid in out_by_form:
+                    out_by_form[fid]["rechtsmittel"] = r
+            # every verified remedy provision in the laws a form's fields cite -
+            # shown as candidates so a reader sees the Spezialnormen, not only
+            # the one the databank applied
+            cand_by_law = {}
+            for r in rows(conn, "SELECT rr.id, rr.law_id, rr.rechtsmittel_art, rr.frist_tage, rr.instanz, rr.gilt_fuer, "
+                                "rr.hinweis, rr.quote, a.article_no, l.short_title, l.title law_title "
+                                "FROM rechtsmittel_regel rr JOIN article a ON a.id=rr.article_id JOIN law l ON l.id=rr.law_id "
+                                "WHERE rr.scope='sektoral' AND rr.gestrichen=0 ORDER BY rr.law_id, a.id"):
+                cand_by_law.setdefault(r["law_id"], []).append(r)
+            laws_of_form = {}
+            for r in rows(conn, "SELECT DISTINCT d.form_id, a.law_id FROM data_field_legal_basis lb "
+                                "JOIN data_field d ON d.id=lb.data_field_id JOIN article a ON a.id=lb.article_id"):
+                laws_of_form.setdefault(r["form_id"], []).append(r["law_id"])
+            for fid, o in out_by_form.items():
+                cands = [c for lid in laws_of_form.get(fid, []) for c in cand_by_law.get(lid, [])]
+                if cands:
+                    o["rechtsmittel_kandidaten"] = cands
+            # the panel's reasoning where a judgment was needed
+            try:
+                for r in rows(conn, "SELECT form_id, quelle, begruendung FROM rechtsmittel_verdikt"):
+                    if r["form_id"] in out_by_form:
+                        out_by_form[r["form_id"]]["rechtsmittel_verdikt"] = f"{r['quelle']}: {r['begruendung']}"
+            except Exception:
+                pass
+        except Exception:
+            pass
         tit = {f["id"]: f["title"] for f in forms}
         for r in rows(conn, "SELECT form_a, form_b, jaccard_names, verdict FROM form_similarity "
                             "WHERE jaccard_names>=0.5 AND (verdict IS NULL OR verdict!='ok')"):
@@ -411,6 +455,24 @@ def build(conn):
     except Exception:
         pass
 
+    # official code lists (enumerations from the swept XSDs) for the datatypes
+    # of elements that fields actually map to - the dashboard compares a form's
+    # value list against them
+    codelists = {}
+    try:
+        used = set()
+        for r in rows(conn, "SELECT DISTINCT e.standard, e.datatype FROM ech_element e "
+                            "WHERE e.id IN (SELECT ech_element_id FROM data_field WHERE ech_element_id IS NOT NULL "
+                            "UNION SELECT ech_element_id FROM data_subfield WHERE ech_element_id IS NOT NULL)"):
+            if r["datatype"]:
+                used.add((r["standard"], r["datatype"]))
+        for r in rows(conn, "SELECT standard, type_name, value, doc FROM ech_codelist ORDER BY standard, type_name, id"):
+            if (r["standard"], r["type_name"]) in used:
+                codelists.setdefault(f"{r['standard']}|{r['type_name']}", []).append(
+                    {"value": r["value"], "doc": r["doc"]})
+    except Exception:
+        pass
+
     # Bürgersicht: what the Datentresor holds about three synthetic people, seen
     # from THEIR side (Auskunft, Bekanntgaben, Einwilligungen, Löschdaten). Only
     # the persons with the most offices involved are exported, so the dashboard
@@ -495,7 +557,7 @@ def build(conn):
         "forms": forms, "service_requirements": svc_req,
         "esh_katalog": esh_katalog, "datenhandhabung": handhabung,
         "attribut_katalog": katalog, "dienststellen": dienststellen,
-        "buergersicht": buergersicht,
+        "buergersicht": buergersicht, "ech_codelists": codelists,
         "process_steps_by_service": steps_by_service,
         "findings": findings, "citation_todo_count": len(todo),
     }

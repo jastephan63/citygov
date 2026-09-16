@@ -60116,6 +60116,7771 @@
     "einwohnerregister": false
    }
   ],
+  "468": [
+   {
+    "feld": "Antragsteller / Löschberechtigter",
+    "standard": "eCH-0010",
+    "element": "mailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Rechtsgültig unterzeichnende Person (bei Firmen)",
+    "standard": "eCH-0044",
+    "element": "personIdentification",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefonnummer Antragsteller",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Datum des Antrags",
+    "standard": "eCH-0058",
+    "element": "messageDate",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Fahrzeughalter",
+    "standard": "eCH-0010",
+    "element": "mailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name und Vorname oder Firmenname",
+    "standard": "eCH-0010",
+    "element": "lastName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse und Nr.",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Funktion",
+    "standard": "eCH-0021",
+    "element": "jobTitle",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name und Vorname oder Firmenname des Halters",
+    "standard": "eCH-0010",
+    "element": "lastName",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "469": [
+   {
+    "feld": "Fahrzeughalter",
+    "standard": "eCH-0010",
+    "element": "mailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Datum der Kontrolle",
+    "standard": "eCH-0058",
+    "element": "eventDate",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0010",
+    "element": "lastName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0010",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsdatum",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse und Nr.",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "470": [
+   {
+    "feld": "Nachsuchenbericht Nr.",
+    "standard": "eCH-0058",
+    "element": "declarationLocalReference",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Hundeführer/Hundeführerin",
+    "standard": "eCH-0010",
+    "element": "personMailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Hund",
+    "standard": "eCH-0185",
+    "element": "dogData",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Datum und Zeit der Verletzung",
+    "standard": "eCH-0058",
+    "element": "eventDate",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name des Hundes",
+    "standard": "eCH-0185",
+    "element": "name",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "471": [
+   {
+    "feld": "Rechnungssteller",
+    "standard": "eCH-0010",
+    "element": "personMailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Auszahlungsadresse (IBAN)",
+    "standard": "eCH-0278",
+    "element": "refundAccountIBAN",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Schüler/-in",
+    "standard": "eCH-0010",
+    "element": "personMailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name der Schule",
+    "standard": "eCH-0260",
+    "element": "schoolName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Belege der Fahrkosten",
+    "standard": "eCH-0058",
+    "element": "attachment",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Tel.Nr.",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "472": [
+   {
+    "feld": "UELN bzw. Identifikationsnummer des Equiden",
+    "standard": "eCH-0262",
+    "element": "individualAnimal",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Datum der Behandlung / Verfütterung",
+    "standard": "eCH-0262",
+    "element": "dateOfUtilisation",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Medikamente / Futtermittel",
+    "standard": "eCH-0262",
+    "element": "product",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Kopie des Behandlungsjournals",
+    "standard": "eCH-0058",
+    "element": "attachment",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Tierhalter",
+    "standard": "eCH-0010",
+    "element": "mailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "TVD-Nr. der Tierhaltung",
+    "standard": "eCH-0108",
+    "element": "localId",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0261",
+    "element": "lastName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse",
+    "standard": "eCH-0261",
+    "element": "addressForCorrespondence",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "473": [
+   {
+    "feld": "Angaben zur Frau",
+    "standard": "eCH-0044",
+    "element": "personIdentification",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsdatum",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Kanton",
+    "standard": "eCH-0007",
+    "element": "cantonAbbreviation",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "474": [
+   {
+    "feld": "Art der Erwerbstätigkeit",
+    "standard": "eCH-0021",
+    "element": "kindOfEmployment",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Datum der Aufnahme/Beendigung",
+    "standard": "eCH-0021",
+    "element": "occupationValidFrom",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Erwerbstätige Person",
+    "standard": "eCH-0044",
+    "element": "personIdentification",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geschlecht",
+    "standard": "eCH-0044",
+    "element": "sex",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Arbeitgeber",
+    "standard": "eCH-0021",
+    "element": "employer",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Bevollmächtigte Drittperson",
+    "standard": "eCH-0010",
+    "element": "organisation",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ausgeübte Tätigkeit",
+    "standard": "eCH-0021",
+    "element": "jobTitle",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Branche",
+    "standard": "eCH-0115",
+    "element": "nogaCodeFull",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Arbeitsort(e) / Kanton(e)",
+    "standard": "eCH-0021",
+    "element": "placeOfWork",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Beschäftigungsgrad",
+    "standard": "eCH-0278",
+    "element": "employmentPercentage",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Wöchentliche Arbeitszeit",
+    "standard": "eCH-0260",
+    "element": "hoursPerWeek",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Bruttolohn",
+    "standard": "eCH-0278",
+    "element": "employedRevenue",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Lohnbasis",
+    "standard": "eCH-0260",
+    "element": "perMonthWeekHour1stYear",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "ZEMIS Nr.",
+    "standard": "eCH-0044",
+    "element": "otherPersonId",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name(n)",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname(n)",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsdatum",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Staatsangehörigkeit",
+    "standard": "eCH-0011",
+    "element": "nationalityData",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefonnummer",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse / Nr.",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name / Firmenname",
+    "standard": "eCH-0021",
+    "element": "employer",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse / Nr.",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Unternehmensidentifikationsnummer (UID)",
+    "standard": "eCH-0021",
+    "element": "UID",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name Kontaktperson",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefonnummer",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Organisation",
+    "standard": "eCH-0098",
+    "element": "organisationName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Kontaktperson",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefonnummer",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Stunden",
+    "standard": "eCH-0260",
+    "element": "hoursPerWeek",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Minuten",
+    "standard": "eCH-0260",
+    "element": "hoursPerWeek",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "475": [
+   {
+    "feld": "Familienname",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Aktuelle Adresse und Kontaktangaben",
+    "standard": "eCH-0010",
+    "element": "personMailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Erträge",
+    "standard": "eCH-0276",
+    "element": "deliveriesAndServicesRevenue",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Aufwand",
+    "standard": "eCH-0276",
+    "element": "expenses",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Krankenversicherer Kostenbeteiligung",
+    "standard": "eCH-0276",
+    "element": "serviceRevenue",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Klientenanteil - für KLV-Pflegeleistung",
+    "standard": "eCH-0276",
+    "element": "serviceRevenue",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Gemeinde-Pflegeanteil",
+    "standard": "eCH-0276",
+    "element": "publicSectorContributions",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Klientenanteil - hauswirtsch. Leistung",
+    "standard": "eCH-0276",
+    "element": "serviceRevenue",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Sonstige Erträge",
+    "standard": "eCH-0276",
+    "element": "otherOperatingRevenue",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Erträge total",
+    "standard": "eCH-0276",
+    "element": "totalDeliveriesAndServicesRevenue",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Fr. für SH",
+    "standard": "eCH-0276",
+    "element": "turnoverFactorsAmount",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Fr. extern",
+    "standard": "eCH-0276",
+    "element": "turnoverFactorsAmount",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Fr. total",
+    "standard": "eCH-0276",
+    "element": "totalDeliveriesAndServicesRevenue",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Personalaufwand",
+    "standard": "eCH-0276",
+    "element": "totalEmployeeExpenses",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Sonst. Aufwand (EDV, Kfz., Miete, ...)",
+    "standard": "eCH-0276",
+    "element": "TotalOtherOperatingExpenses",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "476": [
+   {
+    "feld": "Betrieb",
+    "standard": "eCH-0098",
+    "element": "organisation",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Verantwortliche Ansprechperson",
+    "standard": "eCH-0046",
+    "element": "contact",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Kantonale Amtsstelle",
+    "standard": "eCH-0010",
+    "element": "organisationMailAdress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Arbeitsstelle / Baustelle",
+    "standard": "eCH-0129",
+    "element": "constructionLocalisation",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Arbeitslosenkasse",
+    "standard": "eCH-0098",
+    "element": "organisationName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "AHV-Ausgleichskasse",
+    "standard": "eCH-0098",
+    "element": "organisationName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Beilagen",
+    "standard": "eCH-0058",
+    "element": "attachment",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "BUR-Nummer",
+    "standard": "eCH-0098",
+    "element": "organisationId",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "UID-Nummer",
+    "standard": "eCH-0098",
+    "element": "uid",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Gesamtbetrieb oder Name der Betriebsabteilung",
+    "standard": "eCH-0098",
+    "element": "organisationName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Branche",
+    "standard": "eCH-0098",
+    "element": "nogaCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Nummer",
+    "standard": "eCH-0010",
+    "element": "houseNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0010",
+    "element": "organisationName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Abk. Kanton",
+    "standard": "eCH-0007",
+    "element": "cantonAbbreviation",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Bezeichnung",
+    "standard": "eCH-0129",
+    "element": "description",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Abk. Kanton",
+    "standard": "eCH-0007",
+    "element": "cantonAbbreviation",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0098",
+    "element": "organisationName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Abrechnungsnummer",
+    "standard": "eCH-0098",
+    "element": "organisationId",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "477": [
+   {
+    "feld": "Gemeinde",
+    "standard": "eCH-0007",
+    "element": "municipalityName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Datum",
+    "standard": "eCH-0058",
+    "element": "messageDate",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "478": [
+   {
+    "feld": "Besteller",
+    "standard": "eCH-0010",
+    "element": "mailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Rechnungsadresse",
+    "standard": "eCH-0010",
+    "element": "mailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Gemeinde/n",
+    "standard": "eCH-0007",
+    "element": "municipalityName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Zuständige Person der Auftraggeberin",
+    "standard": "eCH-0044",
+    "element": "personIdentification",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Datum",
+    "standard": "eCH-0058",
+    "element": "messageDate",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Firma / Name",
+    "standard": "eCH-0010",
+    "element": "organisationName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "zuständige Person",
+    "standard": "eCH-0010",
+    "element": "lastName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Postfach",
+    "standard": "eCH-0010",
+    "element": "postOfficeBoxNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ / Ort",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Fax",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Firma / Name",
+    "standard": "eCH-0010",
+    "element": "organisationName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "zuständige Person",
+    "standard": "eCH-0010",
+    "element": "lastName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Postfach",
+    "standard": "eCH-0010",
+    "element": "postOfficeBoxNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ / Ort",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Fax",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "gewünschtes Datenformat",
+    "standard": "eCH-0039",
+    "element": "mimeType",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "479": [
+   {
+    "feld": "Zuständiges Eichamt",
+    "standard": "eCH-0010",
+    "element": "organisationMailAdress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Aufstellungsort",
+    "standard": "eCH-0010",
+    "element": "mailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Datum",
+    "standard": "eCH-0058",
+    "element": "messageDate",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name des Eichamts",
+    "standard": "eCH-0010",
+    "element": "organisationName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Firma/Name",
+    "standard": "eCH-0010",
+    "element": "organisationName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "480": [
+   {
+    "feld": "Kind",
+    "standard": "eCH-0044",
+    "element": "personIdentification",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Erziehungsberechtigte Person",
+    "standard": "eCH-0046",
+    "element": "contact",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Familienname",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsdatum",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Schulhaus",
+    "standard": "eCH-0260",
+    "element": "schoolName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Klasse",
+    "standard": "eCH-0260",
+    "element": "className",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Lehrperson",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefonnummer",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "481": [
+   {
+    "feld": "Kind",
+    "standard": "eCH-0044",
+    "element": "personIdentification",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Erziehungsberechtigte Person",
+    "standard": "eCH-0046",
+    "element": "contact",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Familienname",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsdatum",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Schulhaus",
+    "standard": "eCH-0260",
+    "element": "schoolName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Klasse",
+    "standard": "eCH-0260",
+    "element": "className",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Lehrperson",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefonnummer",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "482": [
+   {
+    "feld": "Konkursit/-in",
+    "standard": "eCH-0098",
+    "element": "organisationName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Gläubiger/-in / Arbeitnehmer/-in",
+    "standard": "eCH-0010",
+    "element": "personMailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsdatum",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "AHV-Nummer",
+    "standard": "eCH-0044",
+    "element": "vn",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "IBAN",
+    "standard": "eCH-0119",
+    "element": "ibanNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefonnummer",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Anstellung in der konkursiten Firma",
+    "standard": "eCH-0278",
+    "element": "dependentEmployment",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Neue Anstellung nach Konkurseröffnung",
+    "standard": "eCH-0278",
+    "element": "dependentEmployment",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "vollständige Adresse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Datum Eintritt",
+    "standard": "eCH-0278",
+    "element": "employmentStartDate",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Monatslohn brutto (CHF)",
+    "standard": "eCH-0278",
+    "element": "employedRevenue",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "13. Monatslohn brutto (CHF)",
+    "standard": "eCH-0278",
+    "element": "employedRevenue",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Arbeitszeit/Woche (Stunden)",
+    "standard": "eCH-0260",
+    "element": "hoursPerWeek",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Antritt",
+    "standard": "eCH-0278",
+    "element": "employmentStartDate",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Monatslohn brutto (CHF)",
+    "standard": "eCH-0278",
+    "element": "employedRevenue",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "13. Monatslohn brutto (CHF)",
+    "standard": "eCH-0278",
+    "element": "employedRevenue",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "483": [
+   {
+    "feld": "Gläubiger/-in",
+    "standard": "eCH-0010",
+    "element": "mailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vertreter/-in",
+    "standard": "eCH-0010",
+    "element": "mailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Schuldner/-in",
+    "standard": "eCH-0010",
+    "element": "mailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Beilagen",
+    "standard": "eCH-0058",
+    "element": "attachment",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Betreibungsamt",
+    "standard": "eCH-0010",
+    "element": "organisationName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Zinssatz (%)",
+    "standard": "eCH-0278",
+    "element": "interestRate",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "484": [
+   {
+    "feld": "Schuljahre",
+    "standard": "eCH-0260",
+    "element": "schoolYear",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Personalien Schüler/Schülerin",
+    "standard": "eCH-0044",
+    "element": "personIdentification",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Personalien Mutter",
+    "standard": "eCH-0044",
+    "element": "personIdentification",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Personalien Vater",
+    "standard": "eCH-0044",
+    "element": "personIdentification",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Finanzielle Verhältnisse Mutter",
+    "standard": "eCH-0278",
+    "element": "domesticAndForeignIncome",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Finanzielle Verhältnisse Vater",
+    "standard": "eCH-0278",
+    "element": "domesticAndForeignIncome",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Finanzielle Verhältnisse Schüler/Schülerin",
+    "standard": "eCH-0278",
+    "element": "domesticAndForeignIncome",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Zeugnisse des Schülers/der Schülerin",
+    "standard": "eCH-0058",
+    "element": "attachment",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Unterlagen zu den finanziellen Verhältnissen",
+    "standard": "eCH-0058",
+    "element": "attachment",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsdatum",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse",
+    "standard": "eCH-0010",
+    "element": "addressInformation",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Heimatort",
+    "standard": "eCH-0011",
+    "element": "originName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsdatum",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse",
+    "standard": "eCH-0010",
+    "element": "addressInformation",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Zivilstand",
+    "standard": "eCH-0011",
+    "element": "maritalStatus",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsdatum",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse",
+    "standard": "eCH-0010",
+    "element": "addressInformation",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Zivilstand",
+    "standard": "eCH-0011",
+    "element": "maritalStatus",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Einkommen (netto, inkl. 13. Monatslohn, Gratifikation, Nebenerwerb, Spesen) CHF",
+    "standard": "eCH-0278",
+    "element": "employedRevenueTotal",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ehegattenunterhalt CHF",
+    "standard": "eCH-0278",
+    "element": "restRevenueAlimony",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vermögen CHF",
+    "standard": "eCH-0278",
+    "element": "netAssets",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Einkommen (netto, inkl. 13. Monatslohn, Gratifikation, Nebenerwerb, Spesen) CHF",
+    "standard": "eCH-0278",
+    "element": "employedRevenueTotal",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ehegattenunterhalt CHF",
+    "standard": "eCH-0278",
+    "element": "restRevenueAlimony",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vermögen CHF",
+    "standard": "eCH-0278",
+    "element": "netAssets",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Einkommen (netto, inkl. 13. Monatslohn, Gratifikation, Nebenerwerb, Spesen) CHF",
+    "standard": "eCH-0278",
+    "element": "ownIncomeAmount",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Kindesunterhalt CHF",
+    "standard": "eCH-0278",
+    "element": "restRevenueAlimonyChildAmount",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vermögen CHF",
+    "standard": "eCH-0278",
+    "element": "netAssets",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "485": [
+   {
+    "feld": "Antragstellende Person/en",
+    "standard": "eCH-0010",
+    "element": "personMailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Athletin/Athlet",
+    "standard": "eCH-0044",
+    "element": "personIdentification",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ort, Datum",
+    "standard": "eCH-0119",
+    "element": "locationAndDate",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Angaben zur Biografie",
+    "standard": "eCH-0058",
+    "element": "attachment",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Aufnahmebestätigung Sportschule",
+    "standard": "eCH-0058",
+    "element": "attachment",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Swiss Olympic Talents Card",
+    "standard": "eCH-0058",
+    "element": "attachment",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Empfehlungsschreiben Sportverband",
+    "standard": "eCH-0058",
+    "element": "attachment",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Trainingsplan",
+    "standard": "eCH-0058",
+    "element": "attachment",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ/Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Mobile",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Email",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geb. Datum",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "AHV-Nr.",
+    "standard": "eCH-0044",
+    "element": "vn",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Verein",
+    "standard": "eCH-0098",
+    "element": "organisationName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Verband",
+    "standard": "eCH-0098",
+    "element": "organisationName",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "486": [
+   {
+    "feld": "Gemeinde/Güterkorporation",
+    "standard": "eCH-0098",
+    "element": "organisationName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ort, Datum",
+    "standard": "eCH-0119",
+    "element": "locationAndDate",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ortsbezeichnung",
+    "standard": "eCH-0129",
+    "element": "placeName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "GB-Nr.",
+    "standard": "eCH-0129",
+    "element": "number",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ortsbezeichnung",
+    "standard": "eCH-0129",
+    "element": "placeName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "GB-Nr.",
+    "standard": "eCH-0129",
+    "element": "number",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ortsbezeichnung",
+    "standard": "eCH-0129",
+    "element": "placeName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "GB-Nr.",
+    "standard": "eCH-0129",
+    "element": "number",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Total",
+    "standard": "eCH-0129",
+    "element": "totalCostsOfProject",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "487": [
+   {
+    "feld": "Vollmachtgeber/in",
+    "standard": "eCH-0044",
+    "element": "personIdentification",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Bevollmächtigte Person",
+    "standard": "eCH-0119",
+    "element": "representativePerson",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ort, Datum",
+    "standard": "eCH-0119",
+    "element": "locationAndDate",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsdatum",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsdatum",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "488": [
+   {
+    "feld": "Vollmachtgeber/in",
+    "standard": "eCH-0044",
+    "element": "personIdentification",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Bevollmächtigte Person",
+    "standard": "eCH-0119",
+    "element": "representativePerson",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ort, Datum",
+    "standard": "eCH-0119",
+    "element": "locationAndDate",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsdatum",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsdatum",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "489": [
+   {
+    "feld": "Schuldner (Mieter/Pächter)",
+    "standard": "eCH-0010",
+    "element": "mailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Gläubiger (Vermieter/Verpächter)",
+    "standard": "eCH-0010",
+    "element": "mailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vertreter",
+    "standard": "eCH-0010",
+    "element": "mailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name/Firma",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse",
+    "standard": "eCH-0010",
+    "element": "addressInformation",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name/Firma",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse",
+    "standard": "eCH-0010",
+    "element": "addressInformation",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name/Firma",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse",
+    "standard": "eCH-0010",
+    "element": "addressInformation",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "490": [
+   {
+    "feld": "Schuldner/in",
+    "standard": "eCH-0010",
+    "element": "mailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Gläubiger/in",
+    "standard": "eCH-0010",
+    "element": "mailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vertreter/in",
+    "standard": "eCH-0010",
+    "element": "mailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name/Firma",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name/Firma",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name/Firma",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse",
+    "standard": "eCH-0010",
+    "element": "addressInformation",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "491": [
+   {
+    "feld": "Schuldner",
+    "standard": "eCH-0010",
+    "element": "mailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse des Betreibungsamtes",
+    "standard": "eCH-0010",
+    "element": "organisationMailAdress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Kontakt für Rückfragen",
+    "standard": "eCH-0046",
+    "element": "contact",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Gläubiger",
+    "standard": "eCH-0010",
+    "element": "mailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vertretung des Gläubigers",
+    "standard": "eCH-0010",
+    "element": "mailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name und Vorname bzw. Firma",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name und Vorname bzw. Firma",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name und Vorname bzw. Firma",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "492": [
+   {
+    "feld": "Klagende Partei",
+    "standard": "eCH-0044",
+    "element": "personIdentification",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Beklagte Partei",
+    "standard": "eCH-0044",
+    "element": "personIdentification",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Sprache Übersetzung (klagende Partei)",
+    "standard": "eCH-0011",
+    "element": "languageOfCorrespondance",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Sprache Übersetzung (beklagte Partei)",
+    "standard": "eCH-0011",
+    "element": "languageOfCorrespondance",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vertreter/-in der klagenden Partei",
+    "standard": "eCH-0119",
+    "element": "representativePerson",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vertreter/-in der beklagten Partei",
+    "standard": "eCH-0119",
+    "element": "representativePerson",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Datum",
+    "standard": "eCH-0058",
+    "element": "messageDate",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Beilagen",
+    "standard": "eCH-0058",
+    "element": "attachment",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Beilagedokumente",
+    "standard": "eCH-0039",
+    "element": "document",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name od. Firma",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsdatum",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Heimatort",
+    "standard": "eCH-0011",
+    "element": "originName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Nationalität",
+    "standard": "eCH-0011",
+    "element": "country",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Beruf",
+    "standard": "eCH-0021",
+    "element": "jobTitle",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon-Nr.",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Mobile",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail-Adresse",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name od. Firma",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsdatum",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Heimatort",
+    "standard": "eCH-0011",
+    "element": "originName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Nationalität",
+    "standard": "eCH-0011",
+    "element": "country",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Beruf",
+    "standard": "eCH-0021",
+    "element": "jobTitle",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon-Nr.",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Mobile",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail-Adresse",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon-Nr.",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Mobile",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail-Adresse",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon-Nr.",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Mobile",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail-Adresse",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "493": [
+   {
+    "feld": "Klagende Partei",
+    "standard": "eCH-0044",
+    "element": "personIdentification",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Beklagte Partei",
+    "standard": "eCH-0044",
+    "element": "personIdentification",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Sprache Übersetzung (klagende Partei)",
+    "standard": "eCH-0011",
+    "element": "languageOfCorrespondance",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Sprache Übersetzung (beklagte Partei)",
+    "standard": "eCH-0011",
+    "element": "languageOfCorrespondance",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vertreter/-in der klagenden Partei",
+    "standard": "eCH-0119",
+    "element": "representativePerson",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vertreter/-in der beklagten Partei",
+    "standard": "eCH-0119",
+    "element": "representativePerson",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Angaben zur Anstellung",
+    "standard": "eCH-0021",
+    "element": "occupationData",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Datum",
+    "standard": "eCH-0058",
+    "element": "messageDate",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Beilagen",
+    "standard": "eCH-0058",
+    "element": "attachment",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Beilagedokumente",
+    "standard": "eCH-0039",
+    "element": "document",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name od. Firma",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsdatum",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Heimatort",
+    "standard": "eCH-0011",
+    "element": "originName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Nationalität",
+    "standard": "eCH-0011",
+    "element": "country",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Beruf",
+    "standard": "eCH-0021",
+    "element": "jobTitle",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon-Nr.",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Mobile",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail-Adresse",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name od. Firma",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsdatum",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Heimatort",
+    "standard": "eCH-0011",
+    "element": "originName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Nationalität",
+    "standard": "eCH-0011",
+    "element": "country",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Beruf",
+    "standard": "eCH-0021",
+    "element": "jobTitle",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon-Nr.",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Mobile",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail-Adresse",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon-Nr.",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Mobile",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail-Adresse",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon-Nr.",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Mobile",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail-Adresse",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Arbeitsort / Haupteinsatzort",
+    "standard": "eCH-0021",
+    "element": "placeOfWork",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Eintritt am",
+    "standard": "eCH-0021",
+    "element": "occupationValidFrom",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Probezeit",
+    "standard": "eCH-0260",
+    "element": "durationTrialPeriod",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Lohn Brutto (pro Monat / Std.)",
+    "standard": "eCH-0278",
+    "element": "employedRevenue",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Kündigung auf den",
+    "standard": "eCH-0021",
+    "element": "occupationValidTill",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Letzter Arbeitstag am",
+    "standard": "eCH-0021",
+    "element": "occupationValidTill",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Fristlose Entlassung am",
+    "standard": "eCH-0021",
+    "element": "occupationValidTill",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "494": [
+   {
+    "feld": "Institution",
+    "standard": "eCH-0098",
+    "element": "organisation",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Funktion",
+    "standard": "eCH-0021",
+    "element": "jobTitle",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Mitarbeiter/-in",
+    "standard": "eCH-0044",
+    "element": "personIdentification",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Stellenantritt",
+    "standard": "eCH-0021",
+    "element": "occupationValidFrom",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Beschäftigungsgrad",
+    "standard": "eCH-0278",
+    "element": "employmentPercentage",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Befristet bis",
+    "standard": "eCH-0021",
+    "element": "occupationValidTill",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strafregisterauszug des Wohnstaats",
+    "standard": "eCH-0039",
+    "element": "document",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Datum",
+    "standard": "eCH-0058",
+    "element": "messageDate",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name/Standort",
+    "standard": "eCH-0098",
+    "element": "organisationName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsdatum",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Heimatort",
+    "standard": "eCH-0011",
+    "element": "originName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse/Nr.",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ/Ort",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ausbildung",
+    "standard": "eCH-0260",
+    "element": "profession",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "495": [
+   {
+    "feld": "Einrichtung",
+    "standard": "eCH-0098",
+    "element": "organisation",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Mitarbeitende (pro Person eine Zeile)",
+    "standard": "eCH-0044",
+    "element": "personIdentification",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Einrichtung",
+    "standard": "eCH-0098",
+    "element": "organisationName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse / Nr.",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Standort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ / Ort",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name(n)",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname(n)",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsdatum",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Heimatort / Geburtsort",
+    "standard": "eCH-0011",
+    "element": "originName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Grenzgänger/in (ja/nein)",
+    "standard": "eCH-0006",
+    "element": "residencePermitBorder",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ausbildung",
+    "standard": "eCH-0260",
+    "element": "profession",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Funktion",
+    "standard": "eCH-0021",
+    "element": "jobTitle",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Stellen %",
+    "standard": "eCH-0278",
+    "element": "employmentPercentage",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Eintritt",
+    "standard": "eCH-0021",
+    "element": "occupationValidFrom",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Austritt",
+    "standard": "eCH-0021",
+    "element": "occupationValidTill",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "496": [
+   {
+    "feld": "Person",
+    "standard": "eCH-0044",
+    "element": "personIdentification",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsdatum",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "AHVN13",
+    "standard": "eCH-0044",
+    "element": "vn",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Heimatort",
+    "standard": "eCH-0011",
+    "element": "placeOfOrigin",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Datum",
+    "standard": "eCH-0058",
+    "element": "messageDate",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Nachname",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse",
+    "standard": "eCH-0010",
+    "element": "addressInformation",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "497": [
+   {
+    "feld": "Gesuch für",
+    "standard": "eCH-0006",
+    "element": "residencePermit",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Personalien der Ausländerin/des Ausländers",
+    "standard": "eCH-0044",
+    "element": "personIdentification",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Eltern",
+    "standard": "eCH-0021",
+    "element": "nameOfParent",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geschlecht",
+    "standard": "eCH-0044",
+    "element": "sex",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Zivilstand",
+    "standard": "eCH-0011",
+    "element": "maritalStatus",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Zivilstand seit",
+    "standard": "eCH-0011",
+    "element": "dateOfMaritalStatus",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Dauer des Aufenthaltes",
+    "standard": "eCH-0011",
+    "element": "residencePermit",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "ZEMIS-Nummer",
+    "standard": "eCH-0044",
+    "element": "otherPersonId",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Arbeitgeberdaten",
+    "standard": "eCH-0098",
+    "element": "organisation",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Beschäftigung als",
+    "standard": "eCH-0021",
+    "element": "jobTitle",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Selbständig",
+    "standard": "eCH-0021",
+    "element": "kindOfEmployment",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Zeitpunkt des Stellenantritts",
+    "standard": "eCH-0021",
+    "element": "occupationValidFrom",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Umfang der Beschäftigung",
+    "standard": "eCH-0278",
+    "element": "employmentPercentage",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Brutto-Lohn",
+    "standard": "eCH-0278",
+    "element": "employedRevenue",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Frühere Tätigkeiten in der Schweiz",
+    "standard": "eCH-0021",
+    "element": "occupationData",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Familienname(n)",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname(n)",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsdatum",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsort",
+    "standard": "eCH-0011",
+    "element": "placeOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsland",
+    "standard": "eCH-0011",
+    "element": "country",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse (gegenwärtige Aufenthaltsadresse)",
+    "standard": "eCH-0010",
+    "element": "addressInformation",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Staatsangehörigkeit",
+    "standard": "eCH-0011",
+    "element": "nationalityData",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Mutter: Name(n)",
+    "standard": "eCH-0021",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Mutter: Vorname(n)",
+    "standard": "eCH-0021",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vater: Name(n)",
+    "standard": "eCH-0021",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vater: Vorname(n)",
+    "standard": "eCH-0021",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "von",
+    "standard": "eCH-0011",
+    "element": "residencePermitValidFrom",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "bis",
+    "standard": "eCH-0011",
+    "element": "residencePermitValidTill",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "BUR-Nr.",
+    "standard": "eCH-0108",
+    "element": "localId",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name des Betriebes",
+    "standard": "eCH-0098",
+    "element": "organisationName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Branche",
+    "standard": "eCH-0098",
+    "element": "nogaCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse/Hausnummer",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ/Ort",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Verantwortliche Person",
+    "standard": "eCH-0010",
+    "element": "lastName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Fax",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ausbildung/bisherige Tätigkeit",
+    "standard": "eCH-0260",
+    "element": "profession",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Betrag",
+    "standard": "eCH-0260",
+    "element": "grossSalary1stYear",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Pro Stunde / Pro Monat",
+    "standard": "eCH-0260",
+    "element": "perMonthWeekHour1stYear",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Wochenstunden",
+    "standard": "eCH-0260",
+    "element": "hoursPerWeek",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Heutiger Personalbestand",
+    "standard": "eCH-0108",
+    "element": "sizeClassFte",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "von",
+    "standard": "eCH-0021",
+    "element": "occupationValidFrom",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "bis",
+    "standard": "eCH-0021",
+    "element": "occupationValidTill",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "498": [
+   {
+    "feld": "Letzte polizeiliche Anmeldung",
+    "standard": "eCH-0011",
+    "element": "dwellingAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Wegzug aus dieser Gemeinde seit",
+    "standard": "eCH-0011",
+    "element": "departureDate",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Art der Unterkunft (Heim/Einrichtung)",
+    "standard": "eCH-0185",
+    "element": "housingSituationType",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Unterkunft in Privathaushalt",
+    "standard": "eCH-0185",
+    "element": "housingSituationMoveInMunicipality",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Bank- und Postkonti",
+    "standard": "eCH-0119",
+    "element": "bankAccount",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Krankenkasse",
+    "standard": "eCH-0021",
+    "element": "insuranceName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Datum",
+    "standard": "eCH-0058",
+    "element": "messageDate",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Beilagen",
+    "standard": "eCH-0058",
+    "element": "attachment",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ortschaft",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse (inkl. Namen Wohnungsinhaber bzw. Name der Pension)",
+    "standard": "eCH-0010",
+    "element": "addressInformation",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Art der Unterkunft",
+    "standard": "eCH-0185",
+    "element": "housingSituationType",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Briefkastenbeschriftung / Postanschrift",
+    "standard": "eCH-0010",
+    "element": "addressInformation",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "499": [
+   {
+    "feld": "Gesuchsteller/-in",
+    "standard": "eCH-0258",
+    "element": "requester",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse im Tollwut-Risikoland",
+    "standard": "eCH-0010",
+    "element": "personMailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Bestimmungsadresse",
+    "standard": "eCH-0010",
+    "element": "personMailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Angaben zum Tier",
+    "standard": "eCH-0185",
+    "element": "dogData",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geschlecht des Tieres",
+    "standard": "eCH-0185",
+    "element": "sex",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Kennzeichnung",
+    "standard": "eCH-0185",
+    "element": "chipNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Belege",
+    "standard": "eCH-0039",
+    "element": "document",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ/Ort",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Land",
+    "standard": "eCH-0010",
+    "element": "country",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail",
+    "standard": "eCH-0258",
+    "element": "email",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Tel./Fax",
+    "standard": "eCH-0258",
+    "element": "phone",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0010",
+    "element": "lastName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0010",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ/Ort",
+    "standard": "eCH-0010",
+    "element": "foreignZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Land",
+    "standard": "eCH-0010",
+    "element": "country",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Tel./Fax",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0010",
+    "element": "lastName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0010",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ/Ort",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Land",
+    "standard": "eCH-0010",
+    "element": "country",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Tel./Fax",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsland",
+    "standard": "eCH-0008",
+    "element": "countryNameShort",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsdatum",
+    "standard": "eCH-0185",
+    "element": "birthDate",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Nummer Mikrochip/Tätowierung",
+    "standard": "eCH-0185",
+    "element": "chipNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "501": [
+   {
+    "feld": "Steuerjahr",
+    "standard": "eCH-0278",
+    "element": "taxYear",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Gemeinde",
+    "standard": "eCH-0007",
+    "element": "municipalityName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Konfession",
+    "standard": "eCH-0011",
+    "element": "religion",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Verkaufspreis",
+    "standard": "eCH-0178",
+    "element": "purchasePrice",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Erwerbspreis + Aufwendungen",
+    "standard": "eCH-0178",
+    "element": "formerlyPurchasePrice",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Grundstückgewinn",
+    "standard": "eCH-0278",
+    "element": "taxableRealEstateProfit",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Anteil Kantonssteuer",
+    "standard": "eCH-0278",
+    "element": "canton",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Anteil Gemeindesteuer",
+    "standard": "eCH-0278",
+    "element": "municipal",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Anteil Kirchensteuer",
+    "standard": "eCH-0278",
+    "element": "church",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "502": [
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse Hausnummer",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Festnetz Telefon",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Mobiltelefon",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsdatum (tt.mm.jjjj)",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Standort Tierhaltung - Strasse Hausnummer",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Standort Tierhaltung - PLZ",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Standort Tierhaltung - Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Wählen Sie die Tierkategorie",
+    "standard": "eCH-0262",
+    "element": "animalGroup",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "503": [
+   {
+    "feld": "Datei-Upload (PDF-Format)",
+    "standard": "eCH-0211",
+    "element": "document",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Bauverwaltung",
+    "standard": "eCH-0211",
+    "element": "decisionAuthority",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "504": [
+   {
+    "feld": "Gemeinde",
+    "standard": "eCH-0007",
+    "element": "municipalityName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Grundbuchnummer",
+    "standard": "eCH-0134",
+    "element": "realEstateNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Anzahl Kopien",
+    "standard": "eCH-0259",
+    "element": "quantity",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Datei-Upload",
+    "standard": "eCH-0039",
+    "element": "document",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Firma",
+    "standard": "eCH-0010",
+    "element": "organisationName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Anrede",
+    "standard": "eCH-0010",
+    "element": "mrMrs",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Hausnummer",
+    "standard": "eCH-0010",
+    "element": "houseNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Postleitzahl",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail (Adresse für Bestätigungsmail)",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefonnummer",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Mobil",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Firma",
+    "standard": "eCH-0010",
+    "element": "organisationName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Anrede",
+    "standard": "eCH-0010",
+    "element": "mrMrs",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Hausnummer",
+    "standard": "eCH-0010",
+    "element": "houseNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Postleitzahl",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "505": [
+   {
+    "feld": "Gemeinde",
+    "standard": "eCH-0007",
+    "element": "municipalityName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse",
+    "standard": "eCH-0010",
+    "element": "addressInformation",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Grundbuchnummer",
+    "standard": "eCH-0134",
+    "element": "realEstateNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Anzahl Kopien",
+    "standard": "eCH-0259",
+    "element": "quantity",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Firma (Lieferadresse)",
+    "standard": "eCH-0010",
+    "element": "organisationName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Anrede (Lieferadresse)",
+    "standard": "eCH-0010",
+    "element": "mrMrs",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name (Lieferadresse)",
+    "standard": "eCH-0010",
+    "element": "lastName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname (Lieferadresse)",
+    "standard": "eCH-0010",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse (Lieferadresse)",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Hausnummer (Lieferadresse)",
+    "standard": "eCH-0010",
+    "element": "houseNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Postleitzahl (Lieferadresse)",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ort (Lieferadresse)",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail (Adresse für Bestätigungsmail)",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefonnummer",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Mobil",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Firma (Rechnungsadresse)",
+    "standard": "eCH-0010",
+    "element": "organisationName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Anrede (Rechnungsadresse)",
+    "standard": "eCH-0010",
+    "element": "mrMrs",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name (Rechnungsadresse)",
+    "standard": "eCH-0010",
+    "element": "lastName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname (Rechnungsadresse)",
+    "standard": "eCH-0010",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse (Rechnungsadresse)",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Hausnummer (Rechnungsadresse)",
+    "standard": "eCH-0010",
+    "element": "houseNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Postleitzahl (Rechnungsadresse)",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ort (Rechnungsadresse)",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "506": [
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsdatum",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "ZEMIS-NR.",
+    "standard": "eCH-0044",
+    "element": "otherPersonId",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "507": [
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsdatum",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "ZEMIS-NR.",
+    "standard": "eCH-0044",
+    "element": "otherPersonId",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Kopie des gültigen Reisepasses mit dem geänderten Namen/geänderter Nationalität",
+    "standard": "eCH-0039",
+    "element": "document",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "508": [
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse",
+    "standard": "eCH-0010",
+    "element": "addressInformation",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsdatum",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "ZEMIS-Nummer",
+    "standard": "eCH-0044",
+    "element": "otherPersonId",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "SH-Nummer",
+    "standard": "eCH-0044",
+    "element": "localPersonId",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Staatsangehörigkeit",
+    "standard": "eCH-0011",
+    "element": "nationalityData",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail-Adresse",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefonnummer",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Zivilstand",
+    "standard": "eCH-0011",
+    "element": "maritalStatus",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Gemeinsamer Haushalt (zusammenwohnend)",
+    "standard": "eCH-0011",
+    "element": "separationData",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Getrennter Haushalt seit",
+    "standard": "eCH-0011",
+    "element": "separationValidFrom",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse des Ehegatten oder Partners",
+    "standard": "eCH-0021",
+    "element": "address",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Zivilstandsänderung seit",
+    "standard": "eCH-0011",
+    "element": "dateOfMaritalStatus",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Jetziger Aufenthaltszweck (Erwerbstätige)",
+    "standard": "eCH-0021",
+    "element": "kindOfEmployment",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name und Adresse des Betriebes",
+    "standard": "eCH-0021",
+    "element": "employer",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Befristet bis",
+    "standard": "eCH-0021",
+    "element": "occupationValidTill",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Beschäftigungsgrad / Arbeitszeit (Stunden pro Woche)",
+    "standard": "eCH-0260",
+    "element": "hoursPerWeek",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Nachweis der finanziellen Situation beilegen",
+    "standard": "eCH-0039",
+    "element": "document",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Bemerkungen des(r) Gesuchsteller(in)",
+    "standard": "eCH-0058",
+    "element": "comment",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "509": [
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse",
+    "standard": "eCH-0010",
+    "element": "addressInformation",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsdatum",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "ZEMIS-Nummer",
+    "standard": "eCH-0044",
+    "element": "otherPersonId",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "SH-Nummer",
+    "standard": "eCH-0044",
+    "element": "localPersonId",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Staatsangehörigkeit",
+    "standard": "eCH-0011",
+    "element": "nationalityData",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail-Adresse",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefonnummer",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Zivilstand",
+    "standard": "eCH-0011",
+    "element": "maritalStatus",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Gemeinsamer Haushalt (zusammenwohnend)",
+    "standard": "eCH-0011",
+    "element": "separationData",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Getrennter Haushalt seit",
+    "standard": "eCH-0011",
+    "element": "separationValidFrom",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse des Ehegatten oder Partners",
+    "standard": "eCH-0021",
+    "element": "address",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Zivilstandsänderung seit",
+    "standard": "eCH-0011",
+    "element": "dateOfMaritalStatus",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Jetziger Aufenthaltszweck (Erwerbstätige)",
+    "standard": "eCH-0021",
+    "element": "kindOfEmployment",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name und Adresse des Betriebes",
+    "standard": "eCH-0021",
+    "element": "employer",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Anstellungsdauer befristet bis",
+    "standard": "eCH-0021",
+    "element": "occupationValidTill",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Beschäftigungsgrad / Arbeitszeit (Stunden pro Woche)",
+    "standard": "eCH-0260",
+    "element": "hoursPerWeek",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Nachweis der finanziellen Situation beilegen",
+    "standard": "eCH-0039",
+    "element": "document",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Bemerkungen des(r) Gesuchsteller(in)",
+    "standard": "eCH-0058",
+    "element": "comment",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "510": [
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse",
+    "standard": "eCH-0010",
+    "element": "addressInformation",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsdatum",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "ZEMIS-Nummer",
+    "standard": "eCH-0044",
+    "element": "otherPersonId",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "SH-Nummer",
+    "standard": "eCH-0044",
+    "element": "localPersonId",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Staatsangehörigkeit",
+    "standard": "eCH-0011",
+    "element": "nationalityData",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail-Adresse",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefonnummer",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Zivilstand",
+    "standard": "eCH-0011",
+    "element": "maritalStatus",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Gemeinsamer Haushalt (zusammenwohnend)",
+    "standard": "eCH-0011",
+    "element": "separationData",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Getrennter Haushalt seit",
+    "standard": "eCH-0011",
+    "element": "separationValidFrom",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse des Ehegatten oder Partners",
+    "standard": "eCH-0021",
+    "element": "address",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Trennung/Scheidung seit",
+    "standard": "eCH-0011",
+    "element": "dateOfMaritalStatus",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Jetziger Aufenthaltszweck (Erwerbstätige)",
+    "standard": "eCH-0021",
+    "element": "kindOfEmployment",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name und Adresse des Betriebes",
+    "standard": "eCH-0021",
+    "element": "employer",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Anstellungsdauer befristet bis",
+    "standard": "eCH-0021",
+    "element": "occupationValidTill",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Beschäftigungsgrad / Arbeitszeit (Stunden pro Woche)",
+    "standard": "eCH-0260",
+    "element": "hoursPerWeek",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Nachweis der finanziellen Situation beilegen",
+    "standard": "eCH-0039",
+    "element": "document",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Bemerkungen des(r) Gesuchsteller(in)",
+    "standard": "eCH-0058",
+    "element": "comment",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "511": [
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse",
+    "standard": "eCH-0010",
+    "element": "addressInformation",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsdatum",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "ZEMIS-Nummer",
+    "standard": "eCH-0044",
+    "element": "otherPersonId",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "SH-Nummer",
+    "standard": "eCH-0044",
+    "element": "localPersonId",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Staatsangehörigkeit",
+    "standard": "eCH-0011",
+    "element": "nationalityData",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail-Adresse",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefonnummer",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Bewilligungsart",
+    "standard": "eCH-0006",
+    "element": "residencePermit",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Jetzige ausgeübte Tätigkeit",
+    "standard": "eCH-0021",
+    "element": "jobTitle",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name und Adresse des Betriebes",
+    "standard": "eCH-0021",
+    "element": "employer",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Anstellungsdauer - Befristet bis",
+    "standard": "eCH-0021",
+    "element": "occupationValidTill",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Beschäftigungsgrad / Arbeitszeit (Stunden pro Woche)",
+    "standard": "eCH-0260",
+    "element": "hoursPerWeek",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Bemerkungen des(r) Antragssteller(in)",
+    "standard": "eCH-0058",
+    "element": "comment",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "512": [
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse",
+    "standard": "eCH-0010",
+    "element": "addressInformation",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsdatum",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "ZEMIS-Nummer",
+    "standard": "eCH-0044",
+    "element": "otherPersonId",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "SH-Nummer",
+    "standard": "eCH-0044",
+    "element": "localPersonId",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Staatsangehörigkeit",
+    "standard": "eCH-0011",
+    "element": "nationalityData",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail-Adresse",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefonnummer",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Zivilstand",
+    "standard": "eCH-0011",
+    "element": "maritalStatus",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Gemeinsamer Haushalt (zusammenwohnend)",
+    "standard": "eCH-0011",
+    "element": "separationData",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Getrennter Haushalt seit",
+    "standard": "eCH-0011",
+    "element": "separationValidFrom",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse des Ehegatten oder Partners",
+    "standard": "eCH-0021",
+    "element": "address",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Seit",
+    "standard": "eCH-0011",
+    "element": "dateOfMaritalStatus",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Jetziger Aufenthaltszweck (Erwerbstätige)",
+    "standard": "eCH-0021",
+    "element": "kindOfEmployment",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name und Adresse des Betriebes",
+    "standard": "eCH-0021",
+    "element": "employer",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Anstellungsdauer befristet bis",
+    "standard": "eCH-0021",
+    "element": "occupationValidTill",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Beschäftigungsgrad / Arbeitszeit (Stunden pro Woche)",
+    "standard": "eCH-0260",
+    "element": "hoursPerWeek",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Schüler(in)",
+    "standard": "eCH-0010",
+    "element": "personMailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Nachweis der finanziellen Situation beilegen",
+    "standard": "eCH-0039",
+    "element": "document",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Bemerkungen des(r) Gesuchsteller(in)",
+    "standard": "eCH-0058",
+    "element": "comment",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "513": [
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse",
+    "standard": "eCH-0010",
+    "element": "addressInformation",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsdatum",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "ZEMIS-Nummer",
+    "standard": "eCH-0044",
+    "element": "otherPersonId",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "SH-Nummer",
+    "standard": "eCH-0044",
+    "element": "localPersonId",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Staatsangehörigkeit",
+    "standard": "eCH-0011",
+    "element": "nationalityData",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail-Adresse",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefonnummer",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Zivilstand",
+    "standard": "eCH-0011",
+    "element": "maritalStatus",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Jetziger Aufenthaltszweck",
+    "standard": "eCH-0021",
+    "element": "kindOfEmployment",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Jetzige ausgeübte Tätigkeit",
+    "standard": "eCH-0021",
+    "element": "jobTitle",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name und Adresse des Betriebes",
+    "standard": "eCH-0021",
+    "element": "employer",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Einsatzort",
+    "standard": "eCH-0021",
+    "element": "placeOfWork",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Bemerkungen des(r) Gesuchsteller(in)",
+    "standard": "eCH-0058",
+    "element": "comment",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "514": [
+   {
+    "feld": "Name oder Firma",
+    "standard": "eCH-0010",
+    "element": "lastName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname / bei Firma Ansprechperson",
+    "standard": "eCH-0010",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ / Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "515": [
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse Hausnummer",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Gemeinde",
+    "standard": "eCH-0007",
+    "element": "municipalityName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Stelle",
+    "standard": "eCH-0211",
+    "element": "locationAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Zweck der Aufgrabung",
+    "standard": "eCH-0211",
+    "element": "description",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Bauherrschaft / Werkeigentümer",
+    "standard": "eCH-0211",
+    "element": "relationshipToPerson",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Rechnungsadresse - Strasse Hausnummer",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Rechnungsadresse - PLZ",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Rechnungsadresse - Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Bauleitung",
+    "standard": "eCH-0211",
+    "element": "relationshipToPerson",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Unternehmer",
+    "standard": "eCH-0211",
+    "element": "relationshipToPerson",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Baubeginn",
+    "standard": "eCH-0216",
+    "element": "projectStartDate",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Bauende",
+    "standard": "eCH-0129",
+    "element": "projectCompletionDate",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "516": [
+   {
+    "feld": "Strasse Hausnummer",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Art der Arbeiten",
+    "standard": "eCH-0108",
+    "element": "activityDescription",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Betrieb/Firma",
+    "standard": "eCH-0108",
+    "element": "name",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse Betrieb/Firma",
+    "standard": "eCH-0108",
+    "element": "mainAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Firma",
+    "standard": "eCH-0010",
+    "element": "organisationName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "517": [
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Nachname",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsdatum",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Personalausweis-Nummer",
+    "standard": "eCH-0044",
+    "element": "otherPersonId",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse",
+    "standard": "eCH-0010",
+    "element": "addressInformation",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ / Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Reiseziel",
+    "standard": "eCH-0008",
+    "element": "countryNameShort",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Notizen / Bemerkungen",
+    "standard": "eCH-0058",
+    "element": "comment",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "518": [
+   {
+    "feld": "Name des Gesuchstellers",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse",
+    "standard": "eCH-0010",
+    "element": "addressInformation",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ / Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsdatum",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Personalnummer",
+    "standard": "eCH-0044",
+    "element": "localPersonId",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Begründung des Gesuches",
+    "standard": "eCH-0258",
+    "element": "justification",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Datum der Eingabe",
+    "standard": "eCH-0058",
+    "element": "messageDate",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "519": [
+   {
+    "feld": "Versichertennummer",
+    "standard": "eCH-0044",
+    "element": "vn",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse Hausnummer",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Detailbegründung",
+    "standard": "eCH-0258",
+    "element": "justification",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Beilagen",
+    "standard": "eCH-0058",
+    "element": "attachment",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "520": [
+   {
+    "feld": "Objektadresse",
+    "standard": "eCH-0211",
+    "element": "locationAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Grundstücknummer",
+    "standard": "eCH-0129",
+    "element": "number",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name Eigentümer",
+    "standard": "eCH-0211",
+    "element": "owner",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse Eigentümer",
+    "standard": "eCH-0211",
+    "element": "ownerAdress",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "521": [
+   {
+    "feld": "Name oder Firma",
+    "standard": "eCH-0010",
+    "element": "lastName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname / bei Firma Ansprechperson",
+    "standard": "eCH-0010",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ / Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "523": [
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsdatum (tt.mm.jjjj)",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse Hausnummer",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Funktion",
+    "standard": "eCH-0021",
+    "element": "jobTitle",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Mobiltelefon",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "524": [
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsdatum (tt.mm.jjjj)",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geschlecht",
+    "standard": "eCH-0044",
+    "element": "sex",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse Hausnummer",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Versicherungsnummer",
+    "standard": "eCH-0044",
+    "element": "vn",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ersatzjahr",
+    "standard": "eCH-0119",
+    "element": "taxPeriod",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Betrag laut Rechnung",
+    "standard": "eCH-0259",
+    "element": "amount",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "525": [
+   {
+    "feld": "Konkurs-Nr. (sofern bekannt)",
+    "standard": "eCH-0039",
+    "element": "caseId",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse / Nr.",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Drittansprechervertreter",
+    "standard": "eCH-0119",
+    "element": "representativePerson",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "526": [
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "527": [
+   {
+    "feld": "Konkurs-Nr. (sofern bekannt)",
+    "standard": "eCH-0039",
+    "element": "caseId",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse / Nr.",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "IBAN (keine QR-IBAN)",
+    "standard": "eCH-0278",
+    "element": "refundAccountIBAN",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Gläubigervertreter",
+    "standard": "eCH-0119",
+    "element": "representativePerson",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "528": [
+   {
+    "feld": "Betrieb / Firma",
+    "standard": "eCH-0108",
+    "element": "name",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse Hausnummer",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon / Mobile",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail an die die Daten zugestellt werden sollen",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "529": [
+   {
+    "feld": "Kontoangaben für Rückerstattung",
+    "standard": "eCH-0276",
+    "element": "bankDetailsForRefund",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "531": [
+   {
+    "feld": "Von: Ihre E-Mail Adresse (Absender)",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Betreff",
+    "standard": "eCH-0058",
+    "element": "subject",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geschäftsnummer",
+    "standard": "eCH-0039",
+    "element": "caseId",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Firma/Organisation",
+    "standard": "eCH-0098",
+    "element": "organisationName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsdatum - Tag",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsdatum - Monat",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsdatum - Jahr",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Nr.",
+    "standard": "eCH-0010",
+    "element": "houseNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Heimatort",
+    "standard": "eCH-0011",
+    "element": "placeOfOrigin",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Nationalität",
+    "standard": "eCH-0011",
+    "element": "nationalityData",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Prozessvertreter - Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Prozessvertreter - Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Prozessvertreter - Strasse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Prozessvertreter - Nr.",
+    "standard": "eCH-0010",
+    "element": "houseNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Prozessvertreter - PLZ",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Prozessvertreter - Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Anhang",
+    "standard": "eCH-0039",
+    "element": "document",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "532": [
+   {
+    "feld": "Name der Trägerschaft / Institution",
+    "standard": "eCH-0098",
+    "element": "organisationName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Rechtsform",
+    "standard": "eCH-0098",
+    "element": "legalForm",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse",
+    "standard": "eCH-0010",
+    "element": "addressInformation",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ / Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name, Vorname",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Funktion",
+    "standard": "eCH-0021",
+    "element": "jobTitle",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Projektname",
+    "standard": "eCH-0129",
+    "element": "description",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Grundstück GB Nr.",
+    "standard": "eCH-0129",
+    "element": "number",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Gebäude VS-Nr.",
+    "standard": "eCH-0129",
+    "element": "insuranceNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Art des Bauvorhabens",
+    "standard": "eCH-0129",
+    "element": "typeOfConstructionProject",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Projektbeschreibung (Bauvorhaben, Nutzungen, Kapazitätsveränderung etc.)",
+    "standard": "eCH-0129",
+    "element": "description",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ort, Datum",
+    "standard": "eCH-0119",
+    "element": "locationAndDate",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "533": [
+   {
+    "feld": "Name der Trägerschaft / Institution",
+    "standard": "eCH-0098",
+    "element": "organisationName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Rechtsform",
+    "standard": "eCH-0098",
+    "element": "legalForm",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse",
+    "standard": "eCH-0010",
+    "element": "addressInformation",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ / Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name, Vorname (Zuständige Kontaktperson)",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Funktion",
+    "standard": "eCH-0021",
+    "element": "jobTitle",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Projektname",
+    "standard": "eCH-0129",
+    "element": "description",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Grundstück GB Nr.",
+    "standard": "eCH-0129",
+    "element": "number",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Gebäude VS-Nr.",
+    "standard": "eCH-0129",
+    "element": "insuranceNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Art des Bauvorhabens",
+    "standard": "eCH-0129",
+    "element": "typeOfConstructionProject",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Projektbeschreibung (Bauvorhaben, Nutzungen, Kapazitätsveränderung, Bezug zum Richtraumprogramm, Projektkosten und Finanzierung, Aufstellung / Angabe der beitra",
+    "standard": "eCH-0129",
+    "element": "description",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ort, Datum",
+    "standard": "eCH-0119",
+    "element": "locationAndDate",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "534": [
+   {
+    "feld": "Name der Trägerschaft / Institution",
+    "standard": "eCH-0098",
+    "element": "organisationName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Rechtsform",
+    "standard": "eCH-0098",
+    "element": "legalForm",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse",
+    "standard": "eCH-0010",
+    "element": "addressInformation",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ / Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name, Vorname (Zuständige Kontaktperson)",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Funktion (Zuständige Kontaktperson)",
+    "standard": "eCH-0039",
+    "element": "position",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon (Zuständige Kontaktperson)",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail (Zuständige Kontaktperson)",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name, Vorname (Zuständiger Planer)",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Funktion (Zuständiger Planer)",
+    "standard": "eCH-0021",
+    "element": "jobTitle",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon (Zuständiger Planer)",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail (Zuständiger Planer)",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Projektname",
+    "standard": "eCH-0129",
+    "element": "description",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Grundstück GB Nr.",
+    "standard": "eCH-0129",
+    "element": "number",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Gebäude VS-Nr.",
+    "standard": "eCH-0129",
+    "element": "insuranceNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Art des Bauvorhabens",
+    "standard": "eCH-0129",
+    "element": "typeOfConstructionProject",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Projektbeschreibung / Vorprojekt",
+    "standard": "eCH-0129",
+    "element": "description",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Raum- und Nutzungskonzept",
+    "standard": "eCH-0211",
+    "element": "intendedPurpose",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ort, Datum",
+    "standard": "eCH-0119",
+    "element": "locationAndDate",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "535": [
+   {
+    "feld": "Name der Trägerschaft / Institution",
+    "standard": "eCH-0098",
+    "element": "organisationName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Rechtsform",
+    "standard": "eCH-0098",
+    "element": "legalForm",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse",
+    "standard": "eCH-0010",
+    "element": "addressInformation",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ / Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Zuständige Kontaktperson – Name, Vorname",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Zuständige Kontaktperson – Funktion",
+    "standard": "eCH-0021",
+    "element": "jobTitle",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Zuständige Kontaktperson – Telefon",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Zuständige Kontaktperson – E-Mail",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Zuständiger Planer – Name, Vorname",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Zuständiger Planer – Funktion",
+    "standard": "eCH-0021",
+    "element": "jobTitle",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Zuständiger Planer – Telefon",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Zuständiger Planer – E-Mail",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Projektname",
+    "standard": "eCH-0129",
+    "element": "description",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Grundstück GB Nr.",
+    "standard": "eCH-0129",
+    "element": "number",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Gebäude VS-Nr.",
+    "standard": "eCH-0129",
+    "element": "insuranceNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Art des Bauvorhabens",
+    "standard": "eCH-0129",
+    "element": "typeOfConstructionProject",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Voraussichtlicher Baubeginn",
+    "standard": "eCH-0129",
+    "element": "projectStartDate",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Voraussichtlicher Bauabschluss",
+    "standard": "eCH-0129",
+    "element": "projectCompletionDate",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Voraussichtlicher Inbetriebnahme",
+    "standard": "eCH-0129",
+    "element": "projectCompletionDate",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Projektbeschreibung inkl. Angaben allfälliger Anpassungen aufgrund der Vorprüfung",
+    "standard": "eCH-0129",
+    "element": "description",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Rechtsgültige Baubewilligung",
+    "standard": "eCH-0039",
+    "element": "document",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Genehmigte Planunterlagen Bauprojekt",
+    "standard": "eCH-0039",
+    "element": "document",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Raumprogramm",
+    "standard": "eCH-0039",
+    "element": "document",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Kostenvoranschlag",
+    "standard": "eCH-0039",
+    "element": "document",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Baubeschrieb",
+    "standard": "eCH-0039",
+    "element": "document",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Terminplan",
+    "standard": "eCH-0039",
+    "element": "document",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Projektorganisation",
+    "standard": "eCH-0039",
+    "element": "document",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Finanzierungsplan",
+    "standard": "eCH-0039",
+    "element": "document",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Aufstellung / Angabe der beitragsberechtigten und nicht beitragsberechtigten Kosten",
+    "standard": "eCH-0039",
+    "element": "document",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Zahlungsplan für die kantonalen Beiträge",
+    "standard": "eCH-0039",
+    "element": "document",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ort, Datum",
+    "standard": "eCH-0119",
+    "element": "locationAndDate",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "536": [
+   {
+    "feld": "Name der Trägerschaft / Institution",
+    "standard": "eCH-0098",
+    "element": "organisationName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Rechtsform",
+    "standard": "eCH-0098",
+    "element": "legalForm",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse",
+    "standard": "eCH-0010",
+    "element": "addressInformation",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ / Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name, Vorname (Zuständige Kontaktperson)",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Funktion (Zuständige Kontaktperson)",
+    "standard": "eCH-0039",
+    "element": "position",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon (Zuständige Kontaktperson)",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail (Zuständige Kontaktperson)",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name, Vorname (Zuständiger Planer)",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Funktion (Zuständiger Planer)",
+    "standard": "eCH-0021",
+    "element": "jobTitle",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon (Zuständiger Planer)",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail (Zuständiger Planer)",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Projektname",
+    "standard": "eCH-0129",
+    "element": "description",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Grundstück GB Nr.",
+    "standard": "eCH-0129",
+    "element": "number",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Gebäude VS-Nr.",
+    "standard": "eCH-0129",
+    "element": "insuranceNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Erfolgter Baubeginn",
+    "standard": "eCH-0129",
+    "element": "projectStartDate",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Voraussichtlicher Bauabschluss",
+    "standard": "eCH-0129",
+    "element": "projectCompletionDate",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Voraussichtlicher Bezug",
+    "standard": "eCH-0129",
+    "element": "projectCompletionDate",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Hinweise zum Bauvorhaben (Etappierung, besondere Rahmenbedingungen etc.)",
+    "standard": "eCH-0129",
+    "element": "projectFreeText",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "537": [
+   {
+    "feld": "Name der Trägerschaft / Institution",
+    "standard": "eCH-0098",
+    "element": "organisationName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Rechtsform",
+    "standard": "eCH-0098",
+    "element": "legalForm",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse",
+    "standard": "eCH-0010",
+    "element": "addressInformation",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ / Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name, Vorname (Zuständige Kontaktperson)",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Funktion (Zuständige Kontaktperson)",
+    "standard": "eCH-0039",
+    "element": "position",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon (Zuständige Kontaktperson)",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail (Zuständige Kontaktperson)",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name, Vorname (Zuständiger Planer)",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Funktion (Zuständiger Planer)",
+    "standard": "eCH-0021",
+    "element": "jobTitle",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon (Zuständiger Planer)",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail (Zuständiger Planer)",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Projektname",
+    "standard": "eCH-0129",
+    "element": "description",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Grundstück GB Nr.",
+    "standard": "eCH-0129",
+    "element": "number",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Gebäude VS-Nr.",
+    "standard": "eCH-0129",
+    "element": "insuranceNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Beschreibung der Projektänderung – Beschrieb der Änderungen gegenüber dem bewilligten Projektstand / Beitragsgesuch",
+    "standard": "eCH-0129",
+    "element": "projectFreeText",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Auswirkungen der Projektänderung – Beschrieb der Auswirkungen auf das Raum- / Nutzungskonzept, Baukosten, Termine etc.",
+    "standard": "eCH-0129",
+    "element": "projectFreeText",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Beilage: Beschreibung der Projektanpassungen",
+    "standard": "eCH-0039",
+    "element": "document",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Beilage: Aktualisierte Planunterlagen",
+    "standard": "eCH-0039",
+    "element": "document",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Beilage: Aktualisiertes Raumprogramm",
+    "standard": "eCH-0039",
+    "element": "document",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Beilage: Aktualisierter und detaillierter Kostenvoranschlag",
+    "standard": "eCH-0039",
+    "element": "document",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Beilage: Aktualisierter und detaillierter Baubeschrieb",
+    "standard": "eCH-0039",
+    "element": "document",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Beilage: Aktualisierter Finanzierungsplan",
+    "standard": "eCH-0039",
+    "element": "document",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Beilage: Aktualisierter Zahlungsplan",
+    "standard": "eCH-0039",
+    "element": "document",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Beilage: Aktualisierte Aufstellung / Angabe der beitragsberechtigten und nicht beitragsberechtigten Kosten",
+    "standard": "eCH-0039",
+    "element": "document",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ort, Datum",
+    "standard": "eCH-0119",
+    "element": "locationAndDate",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "538": [
+   {
+    "feld": "Name der Trägerschaft / Institution",
+    "standard": "eCH-0098",
+    "element": "organisationName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Rechtsform",
+    "standard": "eCH-0098",
+    "element": "legalForm",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse",
+    "standard": "eCH-0010",
+    "element": "addressInformation",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ / Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name, Vorname",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Funktion",
+    "standard": "eCH-0021",
+    "element": "jobTitle",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Projektname",
+    "standard": "eCH-0129",
+    "element": "description",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Grundstück GB Nr.",
+    "standard": "eCH-0129",
+    "element": "number",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Gebäude VS-Nr.",
+    "standard": "eCH-0129",
+    "element": "insuranceNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Datum Bezugsbewilligung / Inbetriebnahme",
+    "standard": "eCH-0129",
+    "element": "projectCompletionDate",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Nachweis der Bezugsbewilligung / Inbetriebnahme",
+    "standard": "eCH-0039",
+    "element": "document",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Ort, Datum",
+    "standard": "eCH-0119",
+    "element": "locationAndDate",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "539": [
+   {
+    "feld": "Name der Trägerschaft / Institution",
+    "standard": "eCH-0098",
+    "element": "organisationName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Rechtsform",
+    "standard": "eCH-0098",
+    "element": "legalForm",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Adresse",
+    "standard": "eCH-0010",
+    "element": "addressInformation",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ / Ort",
+    "standard": "eCH-0010",
+    "element": "town",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name, Vorname",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Funktion",
+    "standard": "eCH-0021",
+    "element": "jobTitle",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Projektname",
+    "standard": "eCH-0129",
+    "element": "description",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Grundstück GB Nr.",
+    "standard": "eCH-0129",
+    "element": "number",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Gebäude VS-Nr.",
+    "standard": "eCH-0129",
+    "element": "insuranceNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Datum Bezugsbewilligung / Inbetriebnahme",
+    "standard": "eCH-0129",
+    "element": "projectCompletionDate",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Datum",
+    "standard": "eCH-0058",
+    "element": "messageDate",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "540": [
+   {
+    "feld": "Von (Ihre E-Mail Adresse)",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Name",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Nr.",
+    "standard": "eCH-0010",
+    "element": "houseNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Betreff",
+    "standard": "eCH-0058",
+    "element": "subject",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Anhänge hochladen",
+    "standard": "eCH-0039",
+    "element": "document",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
+  "541": [
+   {
+    "feld": "Firmenname",
+    "standard": "eCH-0098",
+    "element": "organisationName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Strasse",
+    "standard": "eCH-0010",
+    "element": "street",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Hausnummer",
+    "standard": "eCH-0010",
+    "element": "houseNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "PLZ",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Land",
+    "standard": "eCH-0008",
+    "element": "countryNameShort",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Telefon",
+    "standard": "eCH-0046",
+    "element": "phoneNumber",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "E-Mail",
+    "standard": "eCH-0046",
+    "element": "emailAddress",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Kontaktperson",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Nachname",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Geburtsdatum",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Staatsangehörigkeit",
+    "standard": "eCH-0011",
+    "element": "nationalityData",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Erlernter Beruf / Ausbildung",
+    "standard": "eCH-0260",
+    "element": "profession",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Tätigkeit am Arbeitsort",
+    "standard": "eCH-0021",
+    "element": "jobTitle",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Arbeitszeit in Stunden Pro Woche",
+    "standard": "eCH-0260",
+    "element": "hoursPerWeek",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Einsatzort in der Schweiz",
+    "standard": "eCH-0021",
+    "element": "placeOfWork",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Startdatum Einsatz",
+    "standard": "eCH-0021",
+    "element": "occupationValidFrom",
+    "subjekt": null,
+    "einwohnerregister": false
+   },
+   {
+    "feld": "Enddatum Einsatz",
+    "standard": "eCH-0021",
+    "element": "occupationValidTill",
+    "subjekt": null,
+    "einwohnerregister": false
+   }
+  ],
   "9": [
    {
     "feld": "Name/Vorname",

@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Mit XMLSpy v2016 rel. 2 sp1 (x64) (http://www.altova.com) von Pascal Grob (InnoSolv AG) bearbeitet -->
+<!-- edited with XMLSpy v2012 rel. 2 sp1 (http://www.altova.com) by Martin Stingelin (Stingelin Informatik GmbH) -->
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by BITUSER (Bundesamt für Informatik und Telekommunikation) -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:eCH-0134="http://www.ech.ch/xmlns/eCH-0134/2" xmlns:eCH-0058="http://www.ech.ch/xmlns/eCH-0058/5" xmlns:eCH-0129="http://www.ech.ch/xmlns/eCH-0129/5" xmlns:eCH-0007="http://www.ech.ch/xmlns/eCH-0007/6" xmlns:eCH-0097="http://www.ech.ch/xmlns/eCH-0097/2" xmlns:gbdbs="http://schemas.geo.admin.ch/BJ/TGBV/GBBasisTypen/2.1" xmlns:gbid="http://schemas.geo.admin.ch/BJ/TGBV/GBBasisId/2.1" xmlns:gbdat="http://schemas.geo.admin.ch/BJ/TGBV/GBDBS-Datei/2.1" xmlns:eCH-0178="http://www.ech.ch/xmlns/eCH-0178/2" xmlns:eCH-0044="http://www.ech.ch/xmlns/eCH-0044/4" xmlns:gb="http://schemas.geo.admin.ch/BJ/TGBV/GBDBS/2.1" targetNamespace="http://www.ech.ch/xmlns/eCH-0134/2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.0">
+	<xsd:annotation>
+		<xsd:documentation xml:lang="de">Ausgabedatum: 09.09.2022</xsd:documentation>
+	</xsd:annotation>
+	<xsd:import namespace="http://www.ech.ch/xmlns/eCH-0058/5" schemaLocation="http://www.ech.ch/xmlns/eCH-0058/5/eCH-0058-5-0.xsd"/>
+	<xsd:import namespace="http://www.ech.ch/xmlns/eCH-0129/5" schemaLocation="http://www.ech.ch/xmlns/eCH-0129/5/eCH-0129-5-0.xsd"/>
+	<xsd:import namespace="http://www.ech.ch/xmlns/eCH-0007/6" schemaLocation="http://www.ech.ch/xmlns/eCH-0007/6/eCH-0007-6-0.xsd"/>
+	<xsd:import namespace="http://www.ech.ch/xmlns/eCH-0097/2" schemaLocation="http://www.ech.ch/xmlns/eCH-0097/2/eCH-0097-2-0.xsd"/>
+	<xsd:import namespace="http://www.ech.ch/xmlns/eCH-0178/2" schemaLocation="http://www.ech.ch/xmlns/eCH-0178/2/eCH-0178-2-0.xsd"/>
+	<xsd:import namespace="http://www.ech.ch/xmlns/eCH-0044/4" schemaLocation="http://www.ech.ch/xmlns/eCH-0044/4/eCH-0044-4-0.xsd"/>
+	<xsd:import namespace="http://schemas.geo.admin.ch/BJ/TGBV/GBBasisTypen/2.1" schemaLocation="http://schemas.geo.admin.ch/BJ/TGBV/GBBasisTypen/2.1/GBBasisTypen.xsd"/>
+	<xsd:import namespace="http://schemas.geo.admin.ch/BJ/TGBV/GBBasisId/2.1" schemaLocation="http://schemas.geo.admin.ch/BJ/TGBV/GBBasisId/2.1/GBBasisId.xsd"/>
+	<xsd:import namespace="http://schemas.geo.admin.ch/BJ/TGBV/GBDBS-Datei/2.1" schemaLocation="http://schemas.geo.admin.ch/BJ/TGBV/GBDBS-Datei/2.1/GBDBS-Datei.xsd"/>
+	<xsd:import namespace="http://schemas.geo.admin.ch/BJ/TGBV/GBDBS/2.1" schemaLocation="http://schemas.geo.admin.ch/BJ/TGBV/GBDBS/2.1/GBDBS.xsd"/>
+	<xsd:element name="extensions">
+		<xsd:annotation>
+			<xsd:documentation>any vendor specifics</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="baseMessageType">
+		<xsd:sequence>
+			<xsd:element name="commercialTransactionInfo">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="commercialTransaction" type="gbdbs:AnmeldungType"/>
+						<xsd:element name="legalGroundExhibit" type="eCH-0178:legalGroundExhibitType"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:choice minOccurs="0">
+				<xsd:element name="realEstateId">
+					<xsd:complexType>
+						<xsd:choice>
+							<xsd:sequence>
+								<xsd:element name="municipalityId" type="eCH-0007:municipalityIdType"/>
+								<xsd:element name="realEstateNumber" type="gbid:GrundstueckNummerDef"/>
+							</xsd:sequence>
+							<xsd:element name="EGRID" type="gbid:EGRID"/>
+						</xsd:choice>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="personId">
+					<xsd:complexType>
+						<xsd:choice>
+							<xsd:element name="organisationIdentification" type="eCH-0097:organisationIdentificationType"/>
+							<xsd:sequence>
+								<xsd:element name="personIdGBDBS" type="gbid:PersonId"/>
+								<xsd:element name="personIdentification" type="eCH-0044:personIdentificationLightType" minOccurs="0"/>
+							</xsd:sequence>
+						</xsd:choice>
+					</xsd:complexType>
+				</xsd:element>
+				<xsd:element name="rightId" type="gbid:EREID"/>
+			</xsd:choice>
+			<xsd:element name="buildingInsuranceNumber" type="eCH-0129:buildingInsuranceNumberType" minOccurs="0"/>
+			<xsd:element ref="eCH-0134:extensions" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="newPropertyOrIndependentLastingRight">
+		<xsd:complexContent>
+			<xsd:extension base="eCH-0134:baseMessageType">
+				<xsd:sequence>
+					<xsd:element name="identificationRootRealEstate" type="gbid:GrundstueckNummerDef" minOccurs="0" maxOccurs="unbounded"/>
+					<xsd:choice>
+						<xsd:element name="property" type="gbdbs:LiegenschaftType"/>
+						<xsd:element name="commonIndependentLastingRight" type="gbdbs:GewoehnlichesSDRType"/>
+						<xsd:element name="concession" type="gbdbs:KonzessionType"/>
+						<xsd:element name="mine" type="gbdbs:BergwerkType"/>
+					</xsd:choice>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="modifyPropertyOrIndependentLastingRight">
+		<xsd:complexContent>
+			<xsd:extension base="eCH-0134:baseMessageType">
+				<xsd:sequence>
+					<xsd:element name="identificationRootRealEstate" type="gbid:GrundstueckNummerDef" minOccurs="0"/>
+					<xsd:choice>
+						<xsd:element name="property" type="gbdbs:LiegenschaftType"/>
+						<xsd:element name="commonIndependentLastingRight" type="gbdbs:GewoehnlichesSDRType"/>
+						<xsd:element name="concession" type="gbdbs:KonzessionType"/>
+						<xsd:element name="bergwerk" type="gbdbs:BergwerkType"/>
+					</xsd:choice>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="deletePropertyOrIndependentLastingRight">
+		<xsd:complexContent>
+			<xsd:extension base="eCH-0134:baseMessageType">
+				<xsd:sequence>
+					<xsd:element name="realEstateIdentification" type="gbid:GrundstueckNummerDef"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="newJointOwnershipPart">
+		<xsd:complexContent>
+			<xsd:extension base="eCH-0134:baseMessageType">
+				<xsd:sequence>
+					<xsd:element name="identificationRootRealEstate" type="gbid:GrundstueckNummerDef"/>
+					<xsd:element name="ownershipPart" type="gbdbs:EigentumAnteilType"/>
+					<xsd:choice>
+						<xsd:element name="floorUnit" type="gbdbs:StockwerksEinheitType"/>
+						<xsd:element name="commonJointOwnershipPart" type="gbdbs:GewoehnlichesMiteigentumType"/>
+					</xsd:choice>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="modifyJointOwnershipPart">
+		<xsd:complexContent>
+			<xsd:extension base="eCH-0134:baseMessageType">
+				<xsd:sequence>
+					<xsd:element name="identificationRootRealEstate" type="gbid:GrundstueckNummerDef"/>
+					<xsd:element name="ownershipPart" type="gbdbs:EigentumAnteilType"/>
+					<xsd:choice>
+						<xsd:element name="floorUnit" type="gbdbs:StockwerksEinheitType"/>
+						<xsd:element name="commonJointOwnershipPart" type="gbdbs:GewoehnlichesMiteigentumType"/>
+					</xsd:choice>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="deleteJointOwnershipPart">
+		<xsd:complexContent>
+			<xsd:extension base="eCH-0134:baseMessageType">
+				<xsd:sequence>
+					<xsd:element name="realEstateIdentification" type="gbid:GrundstueckNummerDef"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="newOwnershipPart">
+		<xsd:complexContent>
+			<xsd:extension base="eCH-0134:baseMessageType">
+				<xsd:sequence>
+					<xsd:element name="ownershipPart" type="gbdbs:EigentumAnteilType"/>
+					<xsd:choice>
+						<xsd:element name="person" type="gbdbs:PersonGBType" minOccurs="0"/>
+						<xsd:element name="realEstate" type="gbdbs:GrundstueckType" minOccurs="0"/>
+					</xsd:choice>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="modifyOwnershipPart">
+		<xsd:complexContent>
+			<xsd:extension base="eCH-0134:baseMessageType">
+				<xsd:sequence>
+					<xsd:element name="ownershipPart" type="gbdbs:EigentumAnteilType"/>
+					<xsd:choice>
+						<xsd:element name="person" type="gbdbs:PersonGBType" minOccurs="0"/>
+						<xsd:element name="realEstate" type="gbdbs:GrundstueckType" minOccurs="0"/>
+					</xsd:choice>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="deleteOwnershipPart">
+		<xsd:complexContent>
+			<xsd:extension base="eCH-0134:baseMessageType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="modifyPerson">
+		<xsd:complexContent>
+			<xsd:extension base="eCH-0134:baseMessageType">
+				<xsd:sequence>
+					<xsd:element name="person" type="gbdbs:PersonGBType"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="newServitude">
+		<xsd:complexContent>
+			<xsd:extension base="eCH-0134:baseMessageType">
+				<xsd:sequence>
+					<xsd:element name="servitude" type="gbdbs:DienstbarkeitType"/>
+					<xsd:choice>
+						<xsd:element name="person" type="gbdbs:PersonGBType" minOccurs="0" maxOccurs="unbounded"/>
+						<xsd:element name="realEstate" type="gbdbs:GrundstueckType" minOccurs="0" maxOccurs="unbounded"/>
+					</xsd:choice>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="modifyServitude">
+		<xsd:complexContent>
+			<xsd:extension base="eCH-0134:baseMessageType">
+				<xsd:sequence>
+					<xsd:element name="servitude" type="gbdbs:DienstbarkeitType"/>
+					<xsd:choice>
+						<xsd:element name="person" type="gbdbs:PersonGBType" minOccurs="0" maxOccurs="unbounded"/>
+						<xsd:element name="realEstate" type="gbdbs:GrundstueckType" minOccurs="0" maxOccurs="unbounded"/>
+					</xsd:choice>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="deleteServitude">
+		<xsd:complexContent>
+			<xsd:extension base="eCH-0134:baseMessageType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="newRealServitude">
+		<xsd:complexContent>
+			<xsd:extension base="eCH-0134:baseMessageType">
+				<xsd:sequence>
+					<xsd:element name="realServitude" type="gbdbs:GrundlastType"/>
+					<xsd:element name="person" type="gbdbs:PersonGBType" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="modifyRealServitude">
+		<xsd:complexContent>
+			<xsd:extension base="eCH-0134:baseMessageType">
+				<xsd:sequence>
+					<xsd:element name="realServitude" type="gbdbs:GrundlastType"/>
+					<xsd:element name="person" type="gbdbs:PersonGBType" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="deleteRealServitude">
+		<xsd:complexContent>
+			<xsd:extension base="eCH-0134:baseMessageType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="newPrebooking">
+		<xsd:complexContent>
+			<xsd:extension base="eCH-0134:baseMessageType">
+				<xsd:sequence>
+					<xsd:element name="prebooking" type="gbdbs:VormerkungType"/>
+					<xsd:choice>
+						<xsd:element name="person" type="gbdbs:PersonGBType" minOccurs="0" maxOccurs="unbounded"/>
+						<xsd:element name="realEstate" type="gbdbs:GrundstueckType" minOccurs="0" maxOccurs="unbounded"/>
+					</xsd:choice>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="modifyPrebooking">
+		<xsd:complexContent>
+			<xsd:extension base="eCH-0134:baseMessageType">
+				<xsd:sequence>
+					<xsd:element name="prebooking" type="gbdbs:VormerkungType"/>
+					<xsd:choice>
+						<xsd:element name="person" type="gbdbs:PersonGBType" minOccurs="0" maxOccurs="unbounded"/>
+						<xsd:element name="realEstate" type="gbdbs:GrundstueckType" minOccurs="0" maxOccurs="unbounded"/>
+					</xsd:choice>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="deletePrebooking">
+		<xsd:complexContent>
+			<xsd:extension base="eCH-0134:baseMessageType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="newAnnotation">
+		<xsd:complexContent>
+			<xsd:extension base="eCH-0134:baseMessageType">
+				<xsd:sequence>
+					<xsd:element name="annotation" type="gbdbs:AnmerkungType"/>
+					<xsd:choice>
+						<xsd:element name="person" type="gbdbs:PersonGBType" minOccurs="0" maxOccurs="unbounded"/>
+						<xsd:element name="realEstate" type="gbdbs:GrundstueckType" minOccurs="0" maxOccurs="unbounded"/>
+					</xsd:choice>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="modifyAnnotation">
+		<xsd:complexContent>
+			<xsd:extension base="eCH-0134:baseMessageType">
+				<xsd:sequence>
+					<xsd:element name="annotation" type="gbdbs:AnmerkungType"/>
+					<xsd:choice>
+						<xsd:element name="person" type="gbdbs:PersonGBType" minOccurs="0" maxOccurs="unbounded"/>
+						<xsd:element name="realEstate" type="gbdbs:GrundstueckType" minOccurs="0" maxOccurs="unbounded"/>
+					</xsd:choice>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="deleteAnnotation">
+		<xsd:complexContent>
+			<xsd:extension base="eCH-0134:baseMessageType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="newHypothecaryRight">
+		<xsd:complexContent>
+			<xsd:extension base="eCH-0134:baseMessageType">
+				<xsd:sequence>
+					<xsd:element name="hypothecaryRight" type="gbdbs:GrundpfandrechtType"/>
+					<xsd:element name="person" type="gbdbs:PersonGBType" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="modifyHypothecaryRight">
+		<xsd:complexContent>
+			<xsd:extension base="eCH-0134:baseMessageType">
+				<xsd:sequence>
+					<xsd:element name="hypothecaryRight" type="gbdbs:GrundpfandrechtType"/>
+					<xsd:element name="person" type="gbdbs:PersonGBType" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="deleteHypothecaryRight">
+		<xsd:complexContent>
+			<xsd:extension base="eCH-0134:baseMessageType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="rejection">
+		<xsd:sequence>
+			<xsd:element name="EGBTBID" type="gbid:EGBTBID"/>
+			<xsd:element name="TagebuchNummer" type="gbid:TagebuchNummer"/>
+			<xsd:element name="TagebuchDatumZeit" type="gbdbs:DatumInklZeit"/>
+			<xsd:element name="MutationsNummer" type="gbdbs:MutationsNummerType" minOccurs="0"/>
+			<xsd:element name="code" type="xsd:normalizedString"/>
+			<xsd:element name="text" type="xsd:normalizedString"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="baseDelivery">
+		<xsd:complexContent>
+			<xsd:extension base="gbdat:VollbestandType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="GetParcelsByIdRequestType">
+		<xsd:complexContent>
+			<xsd:extension base="gb:GetParcelsByIdRequestType"/>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="GetParcelsByBFSRequestType">
+		<xsd:complexContent>
+			<xsd:extension base="gb:AbstractRequestType">
+				<xsd:sequence>
+					<xsd:element name="BezugInhalt" type="gb:BezugInhalt"/>
+					<xsd:element name="includeHistory" type="xsd:boolean" minOccurs="0"/>
+					<xsd:element name="municipalityId" type="eCH-0007:municipalityIdType"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:element name="delivery">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="deliveryHeader" type="eCH-0058:headerType"/>
+				<xsd:choice>
+					<xsd:element name="baseDelivery" type="eCH-0134:baseDelivery"/>
+					<xsd:element name="getParcelsByBFSRequest" type="eCH-0134:GetParcelsByBFSRequestType"/>
+					<xsd:element name="getParcelsByIdRequest" type="eCH-0134:GetParcelsByIdRequestType"/>
+					<xsd:element name="newPropertyOrIndependentLastingRight" type="eCH-0134:newPropertyOrIndependentLastingRight"/>
+					<xsd:element name="modifyPropertyOrIndependentLastingRight" type="eCH-0134:modifyPropertyOrIndependentLastingRight"/>
+					<xsd:element name="deletePropertyOrIndependentLastingRight" type="eCH-0134:deletePropertyOrIndependentLastingRight"/>
+					<xsd:element name="newJointOwnershipPart" type="eCH-0134:newJointOwnershipPart"/>
+					<xsd:element name="modifyJointOwnershipPart" type="eCH-0134:modifyJointOwnershipPart"/>
+					<xsd:element name="deleteJointOwnershipPart" type="eCH-0134:deleteJointOwnershipPart"/>
+					<xsd:element name="newOwnershipPart" type="eCH-0134:newOwnershipPart"/>
+					<xsd:element name="modifyOwnershipPart" type="eCH-0134:modifyOwnershipPart"/>
+					<xsd:element name="deleteOwnershipPart" type="eCH-0134:deleteOwnershipPart"/>
+					<xsd:element name="modifyPerson" type="eCH-0134:modifyPerson"/>
+					<xsd:element name="newServitude" type="eCH-0134:newServitude"/>
+					<xsd:element name="modifyServitude" type="eCH-0134:modifyServitude"/>
+					<xsd:element name="deleteServitude" type="eCH-0134:deleteServitude"/>
+					<xsd:element name="newRealServitude" type="eCH-0134:newRealServitude"/>
+					<xsd:element name="modifyRealServitude" type="eCH-0134:modifyRealServitude"/>
+					<xsd:element name="deleteRealServitude" type="eCH-0134:deleteRealServitude"/>
+					<xsd:element name="newPrebooking" type="eCH-0134:newPrebooking"/>
+					<xsd:element name="modifyPrebooking" type="eCH-0134:modifyPrebooking"/>
+					<xsd:element name="deletePrebooking" type="eCH-0134:deletePrebooking"/>
+					<xsd:element name="newAnnotation" type="eCH-0134:newAnnotation"/>
+					<xsd:element name="modifyAnnotation" type="eCH-0134:modifyAnnotation"/>
+					<xsd:element name="deleteAnnotation" type="eCH-0134:deleteAnnotation"/>
+					<xsd:element name="newHypothecaryRight" type="eCH-0134:newHypothecaryRight"/>
+					<xsd:element name="modifyHypothecaryRight" type="eCH-0134:modifyHypothecaryRight"/>
+					<xsd:element name="deleteHypothecaryRight" type="eCH-0134:deleteHypothecaryRight"/>
+					<xsd:element name="rejection" type="eCH-0134:rejection"/>
+				</xsd:choice>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

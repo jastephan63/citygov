@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Michel Gentile, FSO 20.12.22.1  -->
+<xs:schema xmlns:eCH-0206="http://www.ech.ch/xmlns/eCH-0206/2" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:eCH-0129="http://www.ech.ch/xmlns/eCH-0129/5" xmlns:eCH-0058="http://www.ech.ch/xmlns/eCH-0058/5" xmlns:eCH-0007="http://www.ech.ch/xmlns/eCH-0007/6" xmlns:eCH-0010="http://www.ech.ch/xmlns/eCH-0010/6" xmlns:eCH-0044="http://www.ech.ch/xmlns/eCH-0044/4" xmlns:eCH-0097="http://www.ech.ch/xmlns/eCH-0097/2" targetNamespace="http://www.ech.ch/xmlns/eCH-0206/2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.0">
+	<xs:annotation>
+		<xs:documentation>Ausgabedatum: 22.06.2021</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0129/5" schemaLocation="http://www.ech.ch/xmlns/eCH-0129/5/eCH-0129-5-0.xsd"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0058/5" schemaLocation="http://www.ech.ch/xmlns/eCH-0058/5/eCH-0058-5-0.xsd"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0007/6" schemaLocation="http://www.ech.ch/xmlns/eCH-0007/6/eCH-0007-6-0.xsd"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0010/6" schemaLocation="http://www.ech.ch/xmlns/eCH-0010/6/eCH-0010-6-0.xsd"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0044/4" schemaLocation="http://www.ech.ch/xmlns/eCH-0044/4/eCH-0044-4-1.xsd"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0097/2" schemaLocation="http://www.ech.ch/xmlns/eCH-0097/2/eCH-0097-2-0.xsd"/>
+	<xs:element name="maddRequest" type="eCH-0206:maddRequestType"/>
+	<xs:element name="maddResponse" type="eCH-0206:maddResponseType"/>
+	<xs:complexType name="extensionType">
+		<xs:sequence>
+			<xs:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="maddRequestType">
+		<xs:sequence>
+			<xs:element name="requestHeader" type="eCH-0206:requestHeaderType"/>
+			<xs:element name="requestContext">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="building"/>
+						<xs:enumeration value="constructionProject"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="requestQuery" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="EGID" type="eCH-0129:EGIDType" minOccurs="0"/>
+						<xs:element name="EPROID" type="eCH-0129:EPROIDType" minOccurs="0"/>
+						<xs:element name="condition" minOccurs="0" maxOccurs="99">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="attributePath" type="eCH-0206:pathType"/>
+									<xs:element name="operator">
+										<xs:simpleType>
+											<xs:restriction base="xs:token">
+												<xs:enumeration value="equalTo"/>
+												<xs:enumeration value="greaterThan"/>
+												<xs:enumeration value="lessThan"/>
+												<xs:enumeration value="greaterThanOrEqualTo"/>
+												<xs:enumeration value="lessThanOrEqualTo"/>
+												<xs:enumeration value="notEqualTo"/>
+												<xs:enumeration value="in"/>
+												<xs:enumeration value="notIn"/>
+												<xs:enumeration value="isNull"/>
+												<xs:enumeration value="isNotNull"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="attributeValue" minOccurs="0" maxOccurs="65534">
+										<xs:simpleType>
+											<xs:restriction base="xs:token">
+												<xs:maxLength value="1000"/>
+												<xs:minLength value="1"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="extension" type="eCH-0206:extensionType" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="options" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="parameterList" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="parameterItem" type="eCH-0206:keyValuePairType" maxOccurs="100"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="flags" minOccurs="0">
+							<xs:simpleType>
+								<xs:restriction base="xs:NMTOKENS">
+									<xs:maxLength value="2000"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="extension" type="eCH-0206:extensionType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="requestHeaderType">
+		<xs:sequence>
+			<xs:element name="messageId" type="eCH-0058:messageIdType"/>
+			<xs:element name="businessReferenceId" type="eCH-0058:businessReferenceIdType" minOccurs="0"/>
+			<xs:element name="requestingApplication" type="eCH-0058:sendingApplicationType"/>
+			<xs:element name="comment" type="eCH-0058:commentType" minOccurs="0"/>
+			<xs:element name="requestDate" type="eCH-0058:messageDateType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="realestateIdentificationType">
+		<xs:sequence>
+			<xs:element name="EGRID" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="eCH-0129:EGRIDType"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="number" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="12"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="numberSuffix" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="12"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="subDistrict" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="15"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="lot" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="15"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="pathType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(/([A-Za-z0-9_-]{1,50}:[a-zA-Z0-9]{3,100})){1,50}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="keyValuePairType">
+		<xs:sequence>
+			<xs:element name="key">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="100"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="value">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:minLength value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="maddResponseType">
+		<xs:sequence>
+			<xs:element name="status">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="code">
+							<xs:simpleType>
+								<xs:restriction base="xs:positiveInteger">
+									<xs:minInclusive value="100"/>
+									<xs:maxInclusive value="999"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="message">
+							<xs:simpleType>
+								<xs:restriction base="xs:token">
+									<xs:maxLength value="10000"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="responseHeader">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="eCH-0206:responseHeaderType"/>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="originalRequest" type="eCH-0206:maddRequestType" minOccurs="0"/>
+			<xs:element name="maddAuthorization" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="maddId">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:pattern value="anonymous|MADD-2[0-9][0-9][0-9](0[1-9]|1[012])([0-2][0-9]|3[01])-(A[0-9]|B[0-9]{2}|[C-Z][0-9]{3,26})"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="maddDataSet" type="xs:positiveInteger"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:choice minOccurs="0">
+				<xs:element name="buildingList">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="buildingItem" maxOccurs="99999999">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="EGID" type="eCH-0129:EGIDType"/>
+										<xs:element name="building" type="eCH-0206:buildingType"/>
+										<xs:element name="buildingEntranceList">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="buildingEntranceItem" maxOccurs="91">
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="EDID" type="eCH-0129:EDIDType"/>
+																<xs:element name="buildingEntrance" type="eCH-0206:buildingEntranceType" minOccurs="0"/>
+																<xs:element name="dwellingList" minOccurs="0">
+																	<xs:complexType>
+																		<xs:sequence>
+																			<xs:element name="dwellingItem" maxOccurs="900">
+																				<xs:complexType>
+																					<xs:sequence>
+																						<xs:element name="EWID" type="eCH-0129:EWIDType"/>
+																						<xs:element name="dwelling" type="eCH-0206:dwellingType"/>
+																						<xs:element name="realestateIdentificationItem" type="eCH-0206:realestateIdentificationType" minOccurs="0"/>
+																						<xs:element name="extension" type="eCH-0206:extensionType" minOccurs="0"/>
+																					</xs:sequence>
+																				</xs:complexType>
+																			</xs:element>
+																		</xs:sequence>
+																	</xs:complexType>
+																</xs:element>
+																<xs:element name="extension" type="eCH-0206:extensionType" minOccurs="0"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="municipality" type="eCH-0206:swissMunicipalityType"/>
+										<xs:element name="constructionWorkList" type="eCH-0206:constructionWorkListType" minOccurs="0"/>
+										<xs:element name="realestateIdentificationList" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="realestateIdentificationItem" type="eCH-0206:realestateIdentificationType" maxOccurs="99999999"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="extension" type="eCH-0206:extensionType" minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="constructionProjectList">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="constructionProjectItem" maxOccurs="99999999">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="EPROID" type="eCH-0129:EPROIDType"/>
+										<xs:element name="constructionProject" type="eCH-0206:constructionProjectType"/>
+										<xs:element name="constructionWorkList" type="eCH-0206:constructionWorkListType" minOccurs="0"/>
+										<xs:element name="realestateIdentificationList" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="realestateIdentificationItem" type="eCH-0206:realestateIdentificationType" maxOccurs="99999999"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="extension" type="eCH-0206:extensionType" minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="responseMetadata" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="statisticsList" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="statisticsItem" maxOccurs="99">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="objectType">
+													<xs:simpleType>
+														<xs:restriction base="xs:NMTOKEN">
+															<xs:maxLength value="64"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="objectCount" type="xs:nonNegativeInteger"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="lastUpdateDate" type="xs:dateTime"/>
+						<xs:element name="exportDate" type="xs:dateTime"/>
+						<xs:element name="remarkList" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="remarkItem" maxOccurs="9999">
+										<xs:simpleType>
+											<xs:restriction base="xs:token">
+												<xs:maxLength value="9999"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="extension" type="eCH-0206:extensionType" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="extension" type="eCH-0206:extensionType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="responseHeaderType">
+		<xs:sequence>
+			<xs:element name="messageId" type="eCH-0058:messageIdType"/>
+			<xs:element name="requestMessageId" type="eCH-0058:messageIdType"/>
+			<xs:element name="businessReferenceId" type="eCH-0058:businessReferenceIdType" minOccurs="0"/>
+			<xs:element name="respondingApplication" type="eCH-0058:sendingApplicationType"/>
+			<xs:element name="comment" type="eCH-0058:commentType" minOccurs="0"/>
+			<xs:element name="responseDate" type="eCH-0058:messageDateType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="buildingType">
+		<xs:sequence>
+			<xs:element name="officialBuildingNo" type="eCH-0129:officialBuildingNoType" minOccurs="0"/>
+			<xs:element name="nameOfBuilding" type="eCH-0129:nameOfBuildingType" minOccurs="0"/>
+			<xs:element name="coordinates" type="eCH-0206:coordinatesBuildingType" minOccurs="0"/>
+			<xs:element name="localCode1" type="eCH-0129:localCodeType" minOccurs="0"/>
+			<xs:element name="localCode2" type="eCH-0129:localCodeType" minOccurs="0"/>
+			<xs:element name="localCode3" type="eCH-0129:localCodeType" minOccurs="0"/>
+			<xs:element name="localCode4" type="eCH-0129:localCodeType" minOccurs="0"/>
+			<xs:element name="neighbourhood" type="eCH-0129:neighbourhoodType" minOccurs="0"/>
+			<xs:element name="buildingStatus" type="eCH-0129:buildingStatusType" minOccurs="0"/>
+			<xs:element name="buildingCategory" type="eCH-0129:buildingCategoryType" minOccurs="0"/>
+			<xs:element name="buildingClass" type="eCH-0129:buildingClassType" minOccurs="0"/>
+			<xs:element name="dateOfConstruction" type="eCH-0206:buildingDateType" minOccurs="0"/>
+			<xs:element name="yearOfRenovation" type="xs:gYear" minOccurs="0"/>
+			<xs:element name="yearOfDemolition" type="xs:gYear" minOccurs="0"/>
+			<xs:element name="surfaceAreaOfBuilding" type="eCH-0129:surfaceAreaOfBuildingType" minOccurs="0"/>
+			<xs:element name="volume" type="eCH-0206:buildingVolumeType" minOccurs="0"/>
+			<xs:element name="numberOfFloors" type="eCH-0129:numberOfFloorsType" minOccurs="0"/>
+			<xs:element name="numberOfSeparateHabitableRooms" type="eCH-0129:numberOfSeparateHabitableRoomsType" minOccurs="0"/>
+			<xs:element name="civilDefenseShelter" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="energyRelevantSurface" type="eCH-0129:energyRelevantSurfaceType" minOccurs="0"/>
+			<xs:element name="thermotechnicalDeviceForHeating1" type="eCH-0206:heatingType" minOccurs="0"/>
+			<xs:element name="thermotechnicalDeviceForHeating2" type="eCH-0206:heatingType" minOccurs="0"/>
+			<xs:element name="thermotechnicalDeviceForWarmWater1" type="eCH-0206:hotWaterType" minOccurs="0"/>
+			<xs:element name="thermotechnicalDeviceForWarmWater2" type="eCH-0206:hotWaterType" minOccurs="0"/>
+			<xs:element name="extension" type="eCH-0206:extensionType" minOccurs="0"/>
+			<xs:element name="recordModification" type="eCH-0206:recordModificationType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="coordinatesBuildingType">
+		<xs:sequence>
+			<xs:element name="east" type="eCH-0206:coordinatesEastType"/>
+			<xs:element name="north" type="eCH-0206:coordinatesNorthType"/>
+			<xs:element name="originOfCoordinates" type="eCH-0129:originOfCoordinatesType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="ARBIDType">
+		<xs:restriction base="xs:nonNegativeInteger">
+			<xs:minInclusive value="1"/>
+			<xs:maxInclusive value="999999999999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="coordinatesEastType">
+		<xs:restriction base="xs:decimal">
+			<xs:minInclusive value="2480000.000"/>
+			<xs:totalDigits value="10"/>
+			<xs:fractionDigits value="3"/>
+			<xs:maxInclusive value="2840000.999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="coordinatesNorthType">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="10"/>
+			<xs:fractionDigits value="3"/>
+			<xs:minInclusive value="1070000.000"/>
+			<xs:maxInclusive value="1300000.999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="buildingDateType">
+		<xs:sequence>
+			<xs:element name="dateOfConstruction" type="eCH-0206:datePartiallyKnownType" minOccurs="0"/>
+			<xs:element name="periodOfConstruction" type="eCH-0129:periodOfConstructionType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="datePartiallyKnownType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[1-9][0-9]{3}(-(0[1-9]|1[0-2]))?"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="recordModificationType">
+		<xs:sequence>
+			<xs:element name="createDate" type="xs:date"/>
+			<xs:element name="updateDate" type="xs:date"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="buildingEntranceType">
+		<xs:sequence>
+			<xs:element name="EGAID" type="eCH-0129:EGAIDType" minOccurs="0"/>
+			<xs:element name="buildingEntranceNo" type="eCH-0129:buildingEntranceNoType" minOccurs="0"/>
+			<xs:element name="coordinates" type="eCH-0206:coordinatesEntranceType" minOccurs="0"/>
+			<xs:element name="isOfficialAddress" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="recordModification" type="eCH-0206:recordModificationType"/>
+			<xs:element name="street" type="eCH-0206:streetType" minOccurs="0"/>
+			<xs:element name="locality" type="eCH-0206:localityType"/>
+			<xs:element name="extension" type="eCH-0206:extensionType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="coordinatesEntranceType">
+		<xs:sequence>
+			<xs:element name="east" type="eCH-0206:coordinatesEastType"/>
+			<xs:element name="north" type="eCH-0206:coordinatesNorthType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="localityType">
+		<xs:sequence>
+			<xs:element name="swissZipCode" type="eCH-0010:swissZipCodeType"/>
+			<xs:element name="swissZipCodeAddOn" type="eCH-0010:swissZipCodeAddOnType"/>
+			<xs:element name="placeName">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:minLength value="2"/>
+						<xs:maxLength value="40"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="streetType">
+		<xs:sequence>
+			<xs:element name="ESID" type="eCH-0129:ESIDType" minOccurs="0"/>
+			<xs:element name="isOfficialDescription" type="eCH-0129:isOfficialDescriptionType" minOccurs="0"/>
+			<xs:element name="streetNameList" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="streetNameItem" type="eCH-0206:streetNameType" maxOccurs="10"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="streetNameType">
+		<xs:sequence>
+			<xs:element name="language" type="eCH-0129:streetLanguageType"/>
+			<xs:element name="descriptionLong" type="eCH-0129:streetDescriptionLongType"/>
+			<xs:element name="descriptionShort" type="eCH-0129:streetDescriptionShortType" minOccurs="0"/>
+			<xs:element name="descriptionIndex" type="eCH-0129:streetIndexNameType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="dwellingType">
+		<xs:sequence>
+			<xs:element name="administrativeDwellingNo" type="eCH-0129:administrativeDwellingNoType" minOccurs="0"/>
+			<xs:element name="physicalDwellingNo" type="eCH-0129:physicalDwellingNoType" minOccurs="0"/>
+			<xs:element name="yearOfConstruction" type="xs:gYear" minOccurs="0"/>
+			<xs:element name="yearOfDemolition" type="xs:gYear" minOccurs="0"/>
+			<xs:element name="noOfHabitableRooms" type="eCH-0129:noOfHabitableRoomsType" minOccurs="0"/>
+			<xs:element name="floor" type="eCH-0129:floorType" minOccurs="0"/>
+			<xs:element name="multipleFloor" type="eCH-0129:multipleFloorType" minOccurs="0"/>
+			<xs:element name="locationOfDwellingOnFloor" type="eCH-0129:locationOfDwellingOnFloorType" minOccurs="0"/>
+			<xs:element name="usageLimitation" type="eCH-0129:usageLimitationType" minOccurs="0"/>
+			<xs:element name="kitchen" type="eCH-0129:kitchenType" minOccurs="0"/>
+			<xs:element name="surfaceAreaOfDwelling" type="eCH-0129:surfaceAreaOfDwellingType" minOccurs="0"/>
+			<xs:element name="dwellingStatus" type="eCH-0129:dwellingStatusType" minOccurs="0"/>
+			<xs:element name="dwellingUsage" type="eCH-0129:dwellingUsageType" minOccurs="0"/>
+			<xs:element name="extension" type="eCH-0206:extensionType" minOccurs="0"/>
+			<xs:element name="recordModification" type="eCH-0206:recordModificationType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="swissMunicipalityType">
+		<xs:sequence>
+			<xs:element name="municipalityId" type="eCH-0007:municipalityIdType"/>
+			<xs:element name="municipalityName" type="eCH-0007:municipalityNameType"/>
+			<xs:element name="cantonAbbreviation" type="eCH-0007:cantonAbbreviationType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="constructionProjectType">
+		<xs:sequence>
+			<xs:element name="officialConstructionProjectFileNo" type="eCH-0129:officialConstructionProjectFileNoType" minOccurs="0"/>
+			<xs:element name="extensionOfOfficialConstructionProjectFileNo" type="eCH-0129:extensionOfOfficialConstructionProjectFileNoType" minOccurs="0"/>
+			<xs:element name="constructionProjectDescription" type="eCH-0129:constructionProjectDescriptionType" minOccurs="0"/>
+			<xs:element name="constructionLocalisation" type="eCH-0206:constructionLocalisationType" minOccurs="0"/>
+			<xs:element name="typeOfPermit" type="eCH-0129:typeOfPermitType" minOccurs="0"/>
+			<xs:element name="typeOfClient" type="eCH-0129:typeOfClientType" minOccurs="0"/>
+			<xs:element name="typeOfConstructionProject" type="eCH-0206:typeOfConstructionProjectType" minOccurs="0"/>
+			<xs:element name="typeOfConstruction" type="eCH-0129:typeOfConstructionType" minOccurs="0"/>
+			<xs:element name="totalCostsOfProject" type="eCH-0129:totalCostsOfProjectType" minOccurs="0"/>
+			<xs:element name="projectAnnouncementDate" type="eCH-0129:projectAnnouncementDateType" minOccurs="0"/>
+			<xs:element name="buildingPermitIssueDate" type="eCH-0129:buildingPermitIssueDateType" minOccurs="0"/>
+			<xs:element name="projectStartDate" type="eCH-0129:projectStartDateType" minOccurs="0"/>
+			<xs:element name="projectCompletionDate" type="eCH-0129:projectCompletionDateType" minOccurs="0"/>
+			<xs:element name="projectSuspensionDate" type="eCH-0129:projectSuspensionDateType" minOccurs="0"/>
+			<xs:element name="constructionAuthorisationDeniedDate" type="eCH-0129:constructionAuthorisationDeniedDateType" minOccurs="0"/>
+			<xs:element name="nonRealisationDate" type="eCH-0129:nonRealisationDateType" minOccurs="0"/>
+			<xs:element name="withdrawalDate" type="eCH-0129:withdrawalDateType" minOccurs="0"/>
+			<xs:element name="durationOfConstructionPhase" type="eCH-0129:durationOfConstructionPhaseType" minOccurs="0"/>
+			<xs:element name="projectStatus" type="eCH-0129:projectStatusType" minOccurs="0"/>
+			<xs:element name="numberOfConcernedBuildings" type="eCH-0129:numberOfConcernedBuildingsType" minOccurs="0"/>
+			<xs:element name="numberOfConcernedDwellings" type="eCH-0129:numberOfConcernedDwellingsType" minOccurs="0"/>
+			<xs:element name="extension" type="eCH-0206:extensionType" minOccurs="0"/>
+			<xs:element name="recordModification" type="eCH-0206:recordModificationType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="constructionLocalisationType">
+		<xs:choice>
+			<xs:element name="municipality" type="eCH-0206:swissMunicipalityType"/>
+			<xs:element name="other" type="xs:anyType"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="constructionWorkListType">
+		<xs:sequence>
+			<xs:element name="constructionWorkItem" maxOccurs="99999999">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="EPROID" type="eCH-0129:EPROIDType"/>
+						<xs:element name="ARBID" type="eCH-0206:ARBIDType"/>
+						<xs:element name="EGID" type="eCH-0129:EGIDType" minOccurs="0"/>
+						<xs:element name="kindOfConstructionWork" type="eCH-0206:kindOfConstructionWorkType" minOccurs="0"/>
+						<xs:element name="extension" type="eCH-0206:extensionType" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="kindOfConstructionWorkType">
+		<xs:sequence>
+			<xs:element name="kindOfWork" type="eCH-0129:kindOfWorkType" minOccurs="0"/>
+			<xs:element name="energeticRestauration" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="renovationHeatingSystem" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="innerConversionRenovation" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="conversion" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="extensionHeighteningHeated" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="extensionHeighteningNotHeated" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="thermicSolarFacility" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="photovoltaicSolarFacility" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="otherWorks" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="extension" type="eCH-0206:extensionType" minOccurs="0"/>
+			<xs:element name="recordModification" type="eCH-0206:recordModificationType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="buildingVolumeType">
+		<xs:sequence>
+			<xs:element name="volume" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:nonNegativeInteger">
+						<xs:maxInclusive value="9999999"/>
+						<xs:minInclusive value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="informationSource" type="eCH-0129:buildingVolumeInformationSourceType" minOccurs="0"/>
+			<xs:element name="norm" type="eCH-0129:buildingVolumeNormType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="typeOfConstructionProjectType">
+		<xs:restriction base="xs:nonNegativeInteger">
+			<xs:enumeration value="6010"/>
+			<xs:enumeration value="6011"/>
+			<xs:enumeration value="6012"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="heatingType">
+		<xs:sequence>
+			<xs:element name="heatGeneratorHeating" type="eCH-0129:heatGeneratorHeatingType" minOccurs="0"/>
+			<xs:element name="energySourceHeating" type="eCH-0129:energySourceType" minOccurs="0"/>
+			<xs:element name="informationSourceHeating" type="eCH-0129:informationSourceType" minOccurs="0"/>
+			<xs:element name="revisionDate" type="xs:date" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="hotWaterType">
+		<xs:sequence>
+			<xs:element name="heatGeneratorHotWater" type="eCH-0129:heatGeneratorHotWaterType" minOccurs="0"/>
+			<xs:element name="energySourceHeating" type="eCH-0129:energySourceType" minOccurs="0"/>
+			<xs:element name="informationSourceHeating" type="eCH-0129:informationSourceType" minOccurs="0"/>
+			<xs:element name="revisionDate" type="xs:date" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

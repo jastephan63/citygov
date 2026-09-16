@@ -1,0 +1,864 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Mit XMLSpy (http://www.altova.com) bearbeitet -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:eCH-0007="http://www.ech.ch/xmlns/eCH-0007/6" xmlns:eCH-0044="http://www.ech.ch/xmlns/eCH-0044/4" xmlns:eCH-0046="http://www.ech.ch/xmlns/eCH-0046/5" xmlns:eCH-0097="http://www.ech.ch/xmlns/eCH-0097/5" xmlns:eCH-0229="http://www.ech.ch/xmlns/eCH-0229/1" targetNamespace="http://www.ech.ch/xmlns/eCH-0229/1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0">
+	<xs:annotation>
+		<xs:documentation xml:lang="de">SSK Steuererklärung juristische Personen, Ausgabedatum 03.04.2019</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0007/6"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0044/4"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0046/5"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0097/5"/>
+	<!-- definition of simple types -->
+	<xs:simpleType name="administrativeBodyRoleType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="president"/>
+			<xs:enumeration value="executive"/>
+			<xs:enumeration value="responsibleForAccounting"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="originIdentificationType">
+		<xs:union memberTypes="eCH-0007:cantonFlAbbreviationType eCH-0229:federalAbbreviationType eCH-0229:foreignCountryAbbreviationType"/>
+	</xs:simpleType>
+	<xs:simpleType name="disclosedReserveDescriptionType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="statutoryCapitalReserves">
+				<xs:annotation>
+					<xs:documentation>K/G/aP Ziff 13.1 Gesetzliche Kapitalreserve</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="statutoryProfitReserves">
+				<xs:annotation>
+					<xs:documentation>K/G/aP Ziff 13.1 Gesetzliche Gewinnreserve</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="voluntaryProfitReserves">
+				<xs:annotation>
+					<xs:documentation>K/G/aP Ziff 13.1 Freiwillige Gewinnreserve</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="ownShares">
+				<xs:annotation>
+					<xs:documentation>K/G/aP Ziff 13.4 Eigene Kapitalanteile (Betrag |x|>=0 .. Abzug erst beim Bilden des Totals für Ziff. 17) </xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="other">
+				<xs:annotation>
+					<xs:documentation>K/G/aP Ziff 13.5 freie Beschreibung  für offene Reserve</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="profitOrLossBroughtForward">
+				<xs:annotation>
+					<xs:documentation>K/G/aP Ziff 13.6 Gewinnvortrag</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="federalAbbreviationType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="CH"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="foreignCountryAbbreviationType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="FC"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="nameOfTaxedHiddenReserveType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="provisionsOrSpecialFundsOrReserves">
+				<xs:annotation>
+					<xs:documentation>V/S Ziff 12.1 Rückstellungen, Spezialfonds, Reserven</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="depreciation">
+				<xs:annotation>
+					<xs:documentation>V/S Ziff 12.2 Abschreibungen</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="other">
+				<xs:annotation>
+					<xs:documentation>V/S Ziff 12.3 resp. K/G/aP Ziff. 14.1 bis 14.5 freie Beschreibung  für stille Reserve</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="percentageType">
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="profitAppropriationDescriptionType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="distributionOfDividends">
+				<xs:annotation>
+					<xs:documentation>K/G/aP Ziff 11.4 Dividende, Gewinnanteile oder Anteilscheinzinsen (brutto)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="distributionOfRoyalties">
+				<xs:annotation>
+					<xs:documentation>K/G/aP Ziff 11.5 Tantièmen</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="depositInStatutoryProfitReserves">
+				<xs:annotation>
+					<xs:documentation>K/G/aP Ziff 11.6 Zuweisung an die gesetzliche Gewinnreserve</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="depositInVoluntaryProfitReserves">
+				<xs:annotation>
+					<xs:documentation>K/G/aP Ziff 11.7 Zuweisung an die freiwillige Gewinnreserve</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="contributionsToPensionFundsForBenefitOfOwnStaff">
+				<xs:annotation>
+					<xs:documentation>K/G/aP Ziff 11.8 Zuwendungen an Vorsorgeeinrichtungen zugunsten des eigenen Personals (Ziffer 4.1.2)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="grantsToTaxExemptedLegalEntitiesDomiciledInSwitzerland">
+				<xs:annotation>
+					<xs:documentation>K/G/aP Ziff 11.9 Zuwendungen an juristische Personen mit Sitz in der Schweiz, die aufgrund öffentlicher oder gemeinnütziger Zweckverfolgung steuerbefreit sind (Ziffer 4.1.3)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="other">
+				<xs:annotation>
+					<xs:documentation>K/G/aP Ziff 11.10 und 11.11 freie Beschreibung  für Gewinnverwendung</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="string400">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="400"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="sourceType">
+		<xs:restriction base="xs:int">
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>
+						Software
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>
+						2D-Barcode-Scanning
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>
+						OCR-Scanning
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="token100">
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="token400">
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="400"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="taxableResultDecreaseReasonType">
+		<xs:annotation>
+			<xs:documentation>resaon for decreasing tax adjustment (Ziff. 4.1.1 - 4.1.4, 4.2.1 - 4.2.3 for capital companies, 4.1 - 4.6 for trusts and clubs</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="reversalOfTaxedUndisclosedReserves">
+				<xs:annotation>
+					<xs:documentation>K/G/aP Ziff 4.1.1 Auflösung versteuerter stiller Reserven (Nachholung aufgerechneter Abschreibungen und Wertberichtigungen)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="contributionsToPensionFundsForBenefitOfOwnStaff">
+				<xs:annotation>
+					<xs:documentation>K/G/aP Ziff 4.1.2 Zuwendungen an Vorsorgeeinrichtungen zugunsten des eigenen Personals</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="grantsToTaxExemptedLegalEntitiesDomiciledInSwitzerland">
+				<xs:annotation>
+					<xs:documentation>K/G/aP Ziff 4.1.3 Zuwendungen an juristische Personen mit Sitz in der Schweiz, die aufgrund öffentlicher oder gemeinnütziger Zweckverfolgung steuerbefreit sind (siehe Wegleitung) bis zu 20% des Reingewinns</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="otherReason">
+				<xs:annotation>
+					<xs:documentation>K/G/aP Ziff 4.1.4 resp. V/S Ziff 4.5/4.6 Andere</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="releaseOfTaxedHiddenReserves">
+				<xs:annotation>
+					<xs:documentation>K/G/aP Ziff 4.2.1  Auflösung versteuerter stiller Reserven (Kapitalgewinne, Aufwertungen/Auflösung von Rückstellungen)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="capitalContributions">
+				<xs:annotation>
+					<xs:documentation>K/G/aP Ziff 4.2.2 Kapitaleinlagen</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="gainsFromSaleOrRevaluationOfProperties">
+				<xs:annotation>
+					<xs:documentation>K/G/aP Ziff 4.2.3 Gewinne aus Verkauf oder Aufwertung von Liegenschaften</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="releaseOfTaxedProvisionsOrDepositsInSpecialFundsReservesOrDepreciationCreditedToIncomeStatement">
+				<xs:annotation>
+					<xs:documentation>V/S Ziff 4.1 Der Erfolgsrechnung gutgeschriebene Auflösung von besteuerten Rückstellungen, Einlagen in Spezialfonds, Reserven etc. und Abschreibungen</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="additionsToAssetsFromDonationsGiftsAndBequests">
+				<xs:annotation>
+					<xs:documentation>V/S Ziff 4.2 Vermögenszugänge aus Spenden, Schenkungen und Vermächtnissen</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="surplusOfMembershipFees">
+				<xs:annotation>
+					<xs:documentation>V/S Ziff 4.3 Überschuss der Mitgliederbeiträge (Betrag von Ziffer 9.3)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="contributionsToTheFoundationsAssets">
+				<xs:annotation>
+					<xs:documentation>V/S Ziff 4.4 Einlagen in das Stiftungsvermögen</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="taxableResultIncreaseReasonType">
+		<xs:annotation>
+			<xs:documentation>reason for increasing tax adjustment (Ziff. 2.1.1 - 2.1.9, 2.2.1 - 2.2.4 for capital companies, 2.1 - 2.4 for trusts and clubs</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="unjustifiedBusinessDepreciationAndCostsForAcquisitionProductionOrIncreaseInValueOfAssets">
+				<xs:annotation>
+					<xs:documentation>K/G/aP Ziff 2.1.1 Geschäftsmässig nicht begründete Abschreibungen und Kosten für die Anschaffung, Herstellung oder Wertvermehrung von Vermögensgegenständen</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="provisionsNotSubstantiatedByBusiness">
+				<xs:annotation>
+					<xs:documentation>K/G/aP Ziff 2.1.2 Geschäftsmässig nicht begründete Rückstellungen</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="unallowableDepreciationOfRevaluedAssets">
+				<xs:annotation>
+					<xs:documentation>K/G/aP Ziff 2.1.3 Nicht zulässige Abschreibungen auf aufgewerteten Aktiven (Ziffer 21)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="contributionsToReserves">
+				<xs:annotation>
+					<xs:documentation>K/G/aP Ziff 2.1.4 Einlagen in die Reserven</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="concealedProfitDistributionsAndUnjustifiedPaymentsToThirdParties">
+				<xs:annotation>
+					<xs:documentation>K/G/aP Ziff 2.1.5 Verdeckte Gewinnausschüttungen und geschäftsmässig nicht begründete Zuwendungen an Dritte</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="depreciationAndValueAdjustmentOfInvestmentsNoLongerJustifiedInBusinessTerms">
+				<xs:annotation>
+					<xs:documentation>K/G/aP Ziff 2.1.6 Geschäftsmässig nicht mehr begründete Abschreibungen und Wertberichtigungen auf den Gestehungskosten von Beteiligungen von mindestens 10%</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="excessiveGrants">
+				<xs:annotation>
+					<xs:documentation>K/G/aP Ziff 2.1.7 Übersetzte Zuwendungen</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="interestOnHiddenEquity">
+				<xs:annotation>
+					<xs:documentation>K/G/aP Ziff 2.1.8 Zinsen auf verdecktem Eigenkapital</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="paymentsOfBribesToPublicOfficials">
+				<xs:annotation>
+					<xs:documentation>K/G/aP Ziff 2.1.9 Zahlungen von Bestechungsgeldern an schweizerische oder fremde Amtsträger</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="eliminationOfBusinessJustificationOfProvisions">
+				<xs:annotation>
+					<xs:documentation>K/G/aP Ziff 2.2.1 Wegfall der geschäftsmässigen Begründetheit von Rückstellungen</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="bookprofitsFromHigherValuationOfRealEstate">
+				<xs:annotation>
+					<xs:documentation>K/G/aP Ziff 2.2.2 a) Buchgewinne aus der Höherbewertung (Art. 670 OR) von Grundstücken</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="bookprofitsFromHigherValuationOfInvestments">
+				<xs:annotation>
+					<xs:documentation>K/G/aP Ziff 2.2.2 b) Buchgewinne aus der Höherbewertung (Art. 670 OR) von Beteiligungen</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="anticipatedProfits">
+				<xs:annotation>
+					<xs:documentation>K/G/aP Ziff 2.2.3  Unterpreisliche Leistungen an die Gesellschafter, Genossenschafter oder diesen nahestehenden Personen (Gewinnvorwegnahmen)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="liquidationGains">
+				<xs:annotation>
+					<xs:documentation>K/G/aP Ziff 2.2.4 Liquidationsgewinne</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="nonDeductibleProvisionsOrDepositsInSpecialFundsOrReserves">
+				<xs:annotation>
+					<xs:documentation>V/S Ziff 2.1 Steuerlich nicht abzugsfähige Rückstellungen, Einlagen in Spezialfonds, Reserven etc.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="nonDeductibleDepreciation">
+				<xs:annotation>
+					<xs:documentation>V/S Ziff 2.2 Steuerlich nicht abzugsfähige Abschreibungen</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="taxableIncomeNotCreditedToIncomeStatement">
+				<xs:annotation>
+					<xs:documentation>V/S Ziff 2.3 Der Erfolgsrechnung nicht gutgeschriebene, steuerbare Erträge</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="otherReason">
+				<xs:annotation>
+					<xs:documentation>V/S Ziff 2.4 andere (eine Beschreibung ist zwingend anzugeben)</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- definition of complex types -->
+	<xs:complexType name="attachmentFileType">
+		<xs:sequence>
+			<xs:element name="cantonExtension" type="eCH-0229:cantonExtensionType" minOccurs="0"/>
+			<xs:element name="pathFileName" type="eCH-0229:token400"/>
+			<xs:element name="internalSortOrder" type="xs:positiveInteger"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="documentIdentificationType">
+		<xs:sequence>
+			<xs:element name="cantonExtension" type="eCH-0229:cantonExtensionType" minOccurs="0"/>
+			<xs:element name="documentOrigin" type="eCH-0229:originIdentificationType"/>
+			<xs:element name="documentType" type="eCH-0229:token100"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="attachmentType">
+		<xs:sequence>
+			<xs:element name="file" type="eCH-0229:attachmentFileType" maxOccurs="1000"/>
+			<xs:element name="documentIdentification" type="eCH-0229:documentIdentificationType" minOccurs="0"/>
+			<xs:element name="cantonExtension" type="eCH-0229:cantonExtensionType" minOccurs="0"/>
+			<xs:element name="title" type="eCH-0229:token400"/>
+			<xs:element name="documentFormat" type="eCH-0229:token100"/>
+			<xs:element name="attachedToNumber" type="eCH-0229:token100" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="cantonExtensionType">
+		<xs:sequence>
+			<xs:any namespace="##other" processContents="strict"/>
+			<xs:element name="canton" type="eCH-0007:cantonFlAbbreviationType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="representativeType">
+		<xs:sequence>
+			<xs:element name="organisationIdentification" type="eCH-0097:organisationIdentificationType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Name der Organisation, UID etc.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="personIdentification" type="eCH-0044:personIdentificationLightType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Vor- und Nachname, evtl. ID der Ansprechsperson</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="contactInformation" type="eCH-0046:contactType" minOccurs="0"/>
+			<xs:element name="cantonExtension" type="eCH-0229:cantonExtensionType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="taxableResultDecreaseType">
+		<xs:sequence>
+			<xs:element name="taxableResultDecreaseReason" type="eCH-0229:taxableResultDecreaseReasonType"/>
+			<xs:element name="description" type="eCH-0229:string400" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>description is mandatory if taxableResultDecreaseReason is 'otherReason' .. i.e. for Ziff. 4.1.4 capital companies resp. 4.5 and 4.6 for trusts and clubs</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="amount" type="eCH-0229:taxAmountType">
+				<xs:annotation>
+					<xs:documentation>amount for cantonal and federal tax </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cantonExtension" type="eCH-0229:cantonExtensionType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="taxableResultIncreaseType">
+		<xs:sequence>
+			<xs:element name="taxableResultIncreaseReason" type="eCH-0229:taxableResultIncreaseReasonType"/>
+			<xs:element name="description" type="eCH-0229:string400" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>description is mandatory if taxableResultIncreaseReason is one of 'provisionsNotSubstantiatedByBusiness', 'concealedProfitDistributionsAndUnjustifiedPaymentsToThirdParties', 'anticipatedProfits' or 'otherReason' .. i.e. for Ziff. 2.1.2, 2.1.5, 2.2.3 capital companies resp. 2.4 for trusts and clubs</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="amount" type="eCH-0229:taxAmountType">
+				<xs:annotation>
+					<xs:documentation>amount for cantonal and federal tax </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cantonExtension" type="eCH-0229:cantonExtensionType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="taxAmountType">
+		<xs:sequence>
+			<xs:element name="cantonalTax" type="xs:long" minOccurs="0"/>
+			<xs:element name="federalTax" type="xs:long" minOccurs="0"/>
+			<xs:element name="cantonExtension" type="eCH-0229:cantonExtensionType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="memberOfAdministrativeBodyType">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">details for a member of the administrative body</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="eCH-0229:representativeType">
+				<xs:sequence>
+					<xs:element name="role" type="eCH-0229:administrativeBodyRoleType">
+						<xs:annotation>
+							<xs:documentation>either one of president, executive, responsibleForAccounting</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="contactAndAdministrationType">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">information on legal entity, address, representive person, directors etc.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="representative" type="eCH-0229:representativeType" minOccurs="0"/>
+			<xs:element name="organisation" type="eCH-0097:organisationIdentificationType"/>
+			<!-- Unterscheidung Verein/Kapitalgesellschaft kann in organisation:legalForm abgebildet werden, siehe eCH-0097 v4.0 Kapitel 3.7 -> Überprüfung möglich, welche optionalen Felder in der Deklaration für diese Rechtsform zwingend vorhanden sein müssen -->
+			<xs:element name="headOffice" type="eCH-0046:addressType"/>
+			<xs:element name="secondaryTaxDomicile" type="eCH-0046:addressType" minOccurs="0" maxOccurs="1000"/>
+			<xs:element name="purpose" type="eCH-0229:string400"/>
+			<xs:element name="foundationDate" type="xs:date" minOccurs="0"/>
+			<xs:element name="incorporationDate" type="xs:date" minOccurs="0"/>
+			<xs:element name="administrativeBody" type="eCH-0229:memberOfAdministrativeBodyType" minOccurs="0" maxOccurs="3"/>
+			<xs:element name="auditor" type="eCH-0229:representativeType" minOccurs="0"/>
+			<xs:element name="contactForInquiries" type="eCH-0229:representativeType" minOccurs="0"/>
+			<xs:element name="requestForPrivilegedTaxation" type="xs:boolean" fixed="true" minOccurs="0"/>
+			<xs:element name="separateTaxationOfCapitalAndRevaluationGainsOnParticipations" type="xs:boolean" fixed="true" minOccurs="0"/>
+			<xs:element name="changeOfInvestmentCostsOfQualifyingParticipations" type="xs:boolean" fixed="true" minOccurs="0"/>
+			<xs:element name="remarks" type="eCH-0229:string400" minOccurs="0"/>
+			<xs:element name="cantonExtension" type="eCH-0229:cantonExtensionType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="disclosedReservesType">
+		<xs:annotation>
+			<xs:documentation>Eintrag für offene Reserve (Ziff. 13 K/G/aP)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="disclosedReserveDescription" type="eCH-0229:disclosedReserveDescriptionType"/>
+			<xs:element name="description" type="eCH-0229:string400" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>description is mandatory if disclosedReserveDescription is 'other' .. i.e. for Ziff. 13.5</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="amount" type="eCH-0229:taxAmountType"/>
+			<xs:element name="cantonExtension" type="eCH-0229:cantonExtensionType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="settlementOfExpensesAndMembershipFeesType">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">settlement of expenses and membership fees, clubs only (Ziff. 9)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="statutoryMembershipFees" type="xs:long">
+				<xs:annotation>
+					<xs:documentation>Ziff 9.1</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="expensesNotRequiredToGenerateTaxableIncome" type="xs:long">
+				<xs:annotation>
+					<xs:documentation>Ziff 9.2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="surplusOfMembershipFees" type="xs:long">
+				<xs:annotation>
+					<xs:documentation xml:lang="en">Ziff 9.3: Ziff. 9.1 minus Ziff 9.2. If result is positive, carry it over to Ziff 4.3 (clubs only)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cantonExtension" type="eCH-0229:cantonExtensionType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="taxAdjustmentsIncreasingTaxableResultType">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">tax adjustments increasing the taxable result (Ziff. 2)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="taxableResultIncrease" type="eCH-0229:taxableResultIncreaseType" maxOccurs="10000">
+				<xs:annotation>
+					<xs:documentation>tax adjustments increasing the taxable result (Ziff. 2)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="totalTaxableResultIncrease" type="eCH-0229:taxAmountType">
+				<xs:annotation>
+					<xs:documentation>sum of tax adjustments increasing the taxable result (Ziff. 2 for capital companies resp. Ziff 2.5 for trusts and clubs)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cantonExtension" type="eCH-0229:cantonExtensionType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="taxAdjustmentsDecreasingTaxableResultType">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">tax adjustments decreasing the taxable result (Ziff. 4)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="taxableResultDecrease" type="eCH-0229:taxableResultDecreaseType" maxOccurs="10000">
+				<xs:annotation>
+					<xs:documentation>tax adjustments decreasing the taxable result (Ziff. 4)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="totalTaxableResultDecrease" type="eCH-0229:taxAmountType">
+				<xs:annotation>
+					<xs:documentation>sum of tax adjustments decreasing the taxable result (Ziff. 4.3 for capital companies resp. Ziff 4.7 for trusts and clubs)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cantonExtension" type="eCH-0229:cantonExtensionType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="taxLossCarriedForwardType">
+		<xs:sequence>
+			<xs:element name="yearOfTaxLossCarriedForward" type="xs:gYear"/>
+			<xs:element name="amountOfTaxLossCarriedForward" type="eCH-0229:taxAmountType"/>
+			<xs:element name="cantonExtension" type="eCH-0229:cantonExtensionType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="taxLossCarriedForwardListType">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Aufstellung der Vorjahresverluste</xs:documentation>
+			<xs:documentation xml:lang="en">list of tax losses carried forward</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="taxLossCarriedForward" type="eCH-0229:taxLossCarriedForwardType" maxOccurs="7">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Verluste (-) und Gewinne aus den sieben der Steuerperiode vorausgegangenen Geschäftsjahren</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="totalTaxLossCarriedForward" type="eCH-0229:taxAmountType">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Ziff. 6 Total der verrechenbaren Vorjahresverluste</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cantonExtension" type="eCH-0229:cantonExtensionType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="netProfitType">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">net profit (paragraph A on forms)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="taxableIncome" type="eCH-0229:taxAmountType">
+				<xs:annotation>
+					<xs:documentation>Ziff. 1 Reingewinn bzw. Verlust (-) gemäss Saldo ER des Geschäftsjahres</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="taxAdjustmentsIncreasingTaxableResult" type="eCH-0229:taxAdjustmentsIncreasingTaxableResultType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Ziff. 2 Aufrechnungen</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="sumOftaxableIncomeAndTotalTaxAdjustmentsIncreasingTaxableResult" type="eCH-0229:taxAmountType">
+				<xs:annotation>
+					<xs:documentation>Ziff. 3 Total der Ziffern 1 bis 2.2.4 (K/G/aP) resp. 1 und 2.5 (V/S)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="taxAdjustmentDecreasingTaxableResult" type="eCH-0229:taxAdjustmentsDecreasingTaxableResultType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Ziff. 4 Abzüge</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="netProfitOrLossActualYear" type="eCH-0229:taxAmountType">
+				<xs:annotation>
+					<xs:documentation>Ziff. 5 Reingewinn bzw. Verlust (-) im Geschäftsjahr</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="taxLossCarriedForwardList" type="eCH-0229:taxLossCarriedForwardListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Ziff. 6 Vorjahresverluste</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="netProfitOrLossIncludingTaxLossesCarriedForward" type="eCH-0229:taxAmountType">
+				<xs:annotation>
+					<xs:documentation>Ziff. 7 Reingewinn bzw. Verlust (-) nach Verlustanrechung Gesamt</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="taxableNetProfitOrLoss" type="eCH-0229:taxAmountType">
+				<xs:annotation>
+					<xs:documentation>Ziff. 8 Steuerbarer Reingewinn bzw. Verlust (-) in der Schweiz bzw. im Kanton</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="foreignOrNonCantonalShareOfTaxableNetProfitOrLoss" type="eCH-0229:taxAmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Ziff. 9 (K/G/aP) Ausländischer resp. ausserkantonaler Anteil</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="settlementOfExpensesAndMembershipFees" type="eCH-0229:settlementOfExpensesAndMembershipFeesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Ziff. 9 (V/S) Verrechnung von Aufwendungen und Mitgliederbeiträgen</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="participationExemptionInPercent" type="eCH-0229:percentageType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Ziff. 10 (K/G/aP) Beteiligungsabzug in Prozent</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cantonExtension" type="eCH-0229:cantonExtensionType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="profitAppropriationDetailType">
+		<xs:annotation>
+			<xs:documentation>Detail der Gewinnverwendung</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="profitAppropriationDescription" type="eCH-0229:profitAppropriationDescriptionType"/>
+			<xs:element name="percentageOfPaidInCapital" type="eCH-0229:percentageType" minOccurs="0"/>
+			<xs:element name="description" type="eCH-0229:string400" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>description is mandatory if profitAppropriationDescription is 'other' .. i.e. for Ziff. 11.10 and 11.11</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="amount" type="xs:long"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="profitAppropriationType">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">profit appropriation (paragraph B on form for capital companies)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="undistributedProfitOrLossCarriedForward" type="xs:long">
+				<xs:annotation>
+					<xs:documentation>Gewinnvortrag aus dem Vorjahr (Ziff. 11.1)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="taxableIncome" type="xs:long">
+				<xs:annotation>
+					<xs:documentation>Reingewinn bzw. Verlust (-) gemäss Saldo ER des Geschäftsjahres (Ziff. 1. resp. Ziff. 11.2)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="totalProfitToBeDistributed" type="xs:long">
+				<xs:annotation>
+					<xs:documentation>Total zu verteilender Gewinn (Ziff 11.3)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="profitAppropriationDetails" type="eCH-0229:profitAppropriationDetailType" minOccurs="0" maxOccurs="10000">
+				<xs:annotation>
+					<xs:documentation>Ziff. 11.4 bis 11.11 Bezeichnung und Betrag der Gewinnverwendung</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="totalProfitAppropriation" type="xs:long">
+				<xs:annotation>
+					<xs:documentation>Total Gewinnverwendung (Ziff 11.12)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="profitOrLossBroughtForward" type="xs:long">
+				<xs:annotation>
+					<xs:documentation>Vortrag auf neue Rechnung (Ziff 11.13)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cantonExtension" type="eCH-0229:cantonExtensionType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="equityType">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Eigenkapital (Abschnitt C für K/G/aP, Abschnitt B für V/S). Stichtag der Schlussbilanz nach Gewinnverwendung für K/G/aP ist identisch mit dem Ende des Geschäftsjahres</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="paidInCapitalOrNetAsset" type="eCH-0229:taxAmountType">
+				<xs:annotation>
+					<xs:documentation>Einbezahltes Grund-/Gesellschaftskapital (K/G/aP Ziff. 12) resp. Eigenkapital (V/S, Ziff 10)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="disclosedReserves" type="eCH-0229:disclosedReservesType" minOccurs="0" maxOccurs="10000">
+				<xs:annotation>
+					<xs:documentation>Offene Reserven (K/G/aP, Ziff 13)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="valuationDifferenceRealEstate" type="eCH-0229:valuationDifferenceRealEstateType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Bewertungsdifferenzen Liegenschaften (V/S, Ziff 11)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="taxedHiddenReservesList" type="eCH-0229:taxedHiddenReservesListType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>als Gewinn versteuerte stille Reserven (K/G/aP, Ziff 14 resp. V/S Ziff. 12/16)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="correctionForOwnShares" type="eCH-0229:taxAmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Korrektur eigene Kapitalanteile (K/G/aP, Ziff 15)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="hiddenEquity" type="eCH-0229:taxAmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Verdecktes EK (K/G/aP, Ziff 16)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="equityBeforeDeductionOfLosses" type="eCH-0229:taxAmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>EK vor Verlustanrechnung (K/G/aP, Ziff 17, Total Ziff. 12 bis 16)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="lossBroughtForward" type="eCH-0229:taxAmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Verlustvortrag (K/G/aP, Ziff 18)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="totalEquity" type="eCH-0229:taxAmountType">
+				<xs:annotation>
+					<xs:documentation>Total EK (K/G/aP, Ziff. 19) resp. Gesamtes EK (V/S Ziff. 13)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="totalTaxableEquity" type="xs:long">
+				<xs:annotation>
+					<xs:documentation>steuerbares EK Gesamt, für Kapitalgesellschaften mindestens einbezahltes Kapital</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="totalTaxableEquityCanton" type="xs:long">
+				<xs:annotation>
+					<xs:documentation>steuerbares EK im Kanton</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cantonExtension" type="eCH-0229:cantonExtensionType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="depreciationOnAssetsAppreciatedInPreviousYearsType">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Abschreibung auf in früheren Geschäftsjahren aufgewerteten Aktiven (Eintrag in Ziff. 21 K/G/aP) </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="yearOfAppreciation" type="xs:gYear"/>
+			<xs:element name="nameOfAsset" type="eCH-0229:string400"/>
+			<xs:element name="appreciationAmount" type="xs:long" minOccurs="0"/>
+			<xs:element name="depreciationAmount" type="xs:long" minOccurs="0"/>
+			<xs:element name="cantonExtension" type="eCH-0229:cantonExtensionType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="depreciationOnAssetsAppreciatedInPreviousYearsListType">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Abschreibungen auf in früheren Geschäftsjahren aufgewerteten Aktiven (Ziff. 21 K/G/aP)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="depreciationOnAssetsAppreciatedInPreviousYears" type="eCH-0229:depreciationOnAssetsAppreciatedInPreviousYearsType" maxOccurs="10000"/>
+			<xs:element name="cantonExtension" type="eCH-0229:cantonExtensionType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="valuationDifferenceRealEstateType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="netWorthTax" type="xs:long">
+				<xs:annotation>
+					<xs:documentation>Vermögenssteuerwert (V/S, Ziff. 11.1) </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="carryingAmount" type="xs:long">
+				<xs:annotation>
+					<xs:documentation>Buchwert (V/S, Ziff. 11.2)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="valuationDifference" type="xs:long">
+				<xs:annotation>
+					<xs:documentation>Bewertungsdifferenz (V/S, Ziff. 11.3)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cantonExtension" type="eCH-0229:cantonExtensionType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="taxedHiddenReserveType">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">taxed hidden reserve entry (Ziff. 14 K/G/aP resp. Ziff 12.1-12.3 and 16.1-16.5 V/S)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="nameOfTaxedHiddenReserve" type="eCH-0229:nameOfTaxedHiddenReserveType"/>
+			<xs:element name="description" type="eCH-0229:string400" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>description is mandatory if nameOfTaxedHiddenReserve is 'other' .. i.e. for Ziff. 14 K/G/aP resp. Ziff 12/16 for trusts and clubs</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="valueAtStartOfPeriod" type="eCH-0229:taxAmountType" minOccurs="0"/>
+			<xs:element name="changeOfValue" type="xs:long" minOccurs="0"/>
+			<xs:element name="valueAtEndOfPeriod" type="eCH-0229:taxAmountType"/>
+			<xs:element name="cantonExtension" type="eCH-0229:cantonExtensionType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="taxedHiddenReservesListType">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">list of taxed hidden reserves (paragraph D on form for clubs and trusts, paragraph C on form for capital companies)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="taxedHiddenReserve" type="eCH-0229:taxedHiddenReserveType" maxOccurs="10000"/>
+			<xs:element name="totalTaxedHiddenReserves" type="eCH-0229:taxAmountType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Total Ziff. 12.1 bis 12.3 V/S</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cantonExtension" type="eCH-0229:cantonExtensionType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- header definition -->
+	<xs:complexType name="headerType">
+		<xs:sequence>
+			<xs:element name="attachment" type="eCH-0229:attachmentType" minOccurs="0" maxOccurs="1000"/>
+			<xs:element name="cantonExtension" type="eCH-0229:cantonExtensionType" minOccurs="0"/>
+			<xs:element name="transactionNumber" type="eCH-0229:token100" minOccurs="0"/>
+			<xs:element name="transactionDate" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="taxPeriod" type="xs:gYear"/>
+			<xs:element name="periodFrom" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">ohne Angabe entspricht dies dem 1. Januar des Steuerjahres gemäss taxPeriod, andernfalls muss das Datum gemäss "Dauer des Geschäftsjahres (Beginn) auf Seite 1 des Formulars angegeben werden</xs:documentation>
+					<xs:documentation xml:lang="fr">s'il n'est pas indiqué, cela correspond au 1er janvier de l'exercice fiscal selon taxPeriod, sinon la date doit être indiquée selon la "Durée de l'exercice commercial (début)" à la page 1 du formulaire</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="periodTo" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">ohne Angabe entspricht dies dem 31. Dezember des Steuerjahres gemäss taxPeriod, andernfalls muss das Datum gemäss "Dauer des Geschäftsjahres (Ende) auf Seite 1 des Formulars angegeben werden</xs:documentation>
+					<xs:documentation xml:lang="fr">s'il n'est pas indiqué, cela correspond au 31 décembre de l'exercice fiscal selon taxPeriod, sinon la date doit être indiquée selon la "Durée de l'exercice commercial (fin)" à la page 1 du formulaire</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="canton" type="eCH-0007:cantonAbbreviationType" minOccurs="0"/>
+			<xs:element name="source" type="eCH-0229:sourceType"/>
+			<xs:element name="sourceDescription" type="eCH-0229:string400" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- content definition -->
+	<xs:complexType name="contentType">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">complex type for content of tax declaration for legal entity</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="contactAndAdministration" type="eCH-0229:contactAndAdministrationType"/>
+			<xs:element name="netProfit" type="eCH-0229:netProfitType"/>
+			<xs:element name="profitAppropriation" type="eCH-0229:profitAppropriationType" minOccurs="0"/>
+			<xs:element name="equity" type="eCH-0229:equityType"/>
+			<xs:element name="depreciationOnAssetsAppreciatedInPreviousYearsList" type="eCH-0229:depreciationOnAssetsAppreciatedInPreviousYearsListType" minOccurs="0"/>
+			<xs:element name="cantonExtension" type="eCH-0229:cantonExtensionType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- element definition -->
+	<xs:element name="taxDeclarationLegalEntity">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">root element for the tax declaration of a legal entity</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="header" type="eCH-0229:headerType"/>
+				<xs:element name="content" type="eCH-0229:contentType"/>
+				<xs:element name="cantonExtension" type="eCH-0229:cantonExtensionType" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="minorVersion" type="xs:integer" use="required"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

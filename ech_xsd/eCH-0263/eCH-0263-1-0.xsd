@@ -1,0 +1,1384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:eCH-0263="http://www.ech.ch/xmlns/eCH-0263/1" xmlns:eCH-0010="http://www.ech.ch/xmlns/eCH-0010/8" xmlns:eCH-0108="http://www.ech.ch/xmlns/eCH-0108/7" xmlns:eCH-0261="http://www.ech.ch/xmlns/eCH-0261/1" targetNamespace="http://www.ech.ch/xmlns/eCH-0263/1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xs:annotation>
+		<xs:documentation xml:lang="de">Agrardaten - Betriebsmittel</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0010/8" schemaLocation="http://www.ech.ch/xmlns/eCH-0010/8/eCH-0010-8-0.xsd"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0108/7" schemaLocation="http://www.ech.ch/xmlns/eCH-0108/7/eCH-0108-7-0.xsd"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0261/1" schemaLocation="http://www.ech.ch/xmlns/eCH-0261/1/eCH-0261-1-0.xsd"/>
+	<!--Hauptdatentypen-->
+	<xs:complexType name="plantProtectionProductType">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Pflanzenschutzmittel</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id" type="eCH-0261:identifierType">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Identifikator</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="alternateId" type="eCH-0261:identifierType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Zusätzliche Identifikatoren (z.B. W-Nummer)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="descriptor" type="eCH-0261:descriptorType">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Beschreibung</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="usageCategory">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Zulassung für Privatanwender</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="PROFESSIONAL">
+							<xs:annotation>
+								<xs:documentation xml:lang="de">Beruflich</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="NON_PROFESSIONAL">
+							<xs:annotation>
+								<xs:documentation xml:lang="de">Nichtberuflich</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="BOTH">
+							<xs:annotation>
+								<xs:documentation xml:lang="de">Beides</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="plantProtectionProductCategory" type="eCH-0263:plantProtectionProductCategoryType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Pflanzenschutzmittel-Produktkategorie</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="indication" type="eCH-0263:indicationType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Indikation</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="permissionHolder" type="eCH-0108:uidType">
+					<xs:annotation>
+						<xs:documentation xml:lang="de">Bewilligungsinhaber (UID)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="permissionHolderAddress" type="eCH-0010:organisationMailAddressType">
+					<xs:annotation>
+						<xs:documentation xml:lang="de">Bewilligungsinhaber (wenn UID unbekannt)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="ingredient" type="eCH-0263:ingredientType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Inhaltsstoff</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="transactionUnit">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Einheit, welche bei Transaktionen dieses Pflanzenschutzmittels verwendet wird. </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="eCH-0261:unitType">
+						<xs:enumeration value="kg"/>
+						<xs:enumeration value="m3"/>
+						<xs:enumeration value="pc"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="approvalDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Datum der Zulassung</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="hazardLabel" type="eCH-0263:hazardLabelType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Gefahrenkennzeichnung</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="validity" type="eCH-0261:validityType">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Angaben zur Gültigkeitsdauer</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="version" type="xs:int">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Version</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="manureRecyclingProductType">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Hof- und Recyclingdünger</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id" type="eCH-0261:identifierType">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Identifikator</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="alternateId" type="eCH-0261:identifierType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Zusätzliche Identifikatoren</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="descriptor" type="eCH-0261:descriptorType">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Beschreibung</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="typeOfProduct">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Angabe, ob es sich um ein Standardprodukt, ein betriebsspezifisches Produkt oder ein Metaprodukt handelt.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="STANDARD">
+							<xs:annotation>
+								<xs:documentation xml:lang="de">Standardprodukt</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="FACILITY_SPECIFIC">
+							<xs:annotation>
+								<xs:documentation xml:lang="de">Betriebsspezifisches Produkt </xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="META_PRODUCT">
+							<xs:annotation>
+								<xs:documentation xml:lang="de">Metaprodukt</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="referenceToProduct" type="eCH-0261:identifierType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Standardprodukt, von welchem ein betriebsspezifisches Produkt abgeleitet ist.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="manureRecyclingProductCategory">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Hof- und Recyclingdünger-Produktkategorie</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="FARM_MANURE">
+							<xs:annotation>
+								<xs:documentation xml:lang="de">Hofdünger</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="RECYCLING">
+							<xs:annotation>
+								<xs:documentation xml:lang="de">Recyclingdünger</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="typeOfManureRecyclingProduct" type="eCH-0263:typeOfManureRecyclingProductType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Produkttyp</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="transactionUnit">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Einheit, welche bei Transaktionen dieses Hofdüngers verwendet wird. </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="eCH-0261:unitType">
+						<xs:enumeration value="kg"/>
+						<xs:enumeration value="m3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="density" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Dichte (Raumgewicht) in kg/m3. Die Dichte muss zwingend angegeben werden, falls «Kubikmeter» als Transaktionseinheit (transactionUnit) angegeben wird.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="matterState">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Aggregatszustand</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="SOLID">
+							<xs:annotation>
+								<xs:documentation xml:lang="de">Fest</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="LIQUID">
+							<xs:annotation>
+								<xs:documentation xml:lang="de">Flüssig</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="manufacturer" type="eCH-0108:localIdType">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">BUR-Nummer des Herstellers</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="manureDerivation" type="eCH-0263:manureDerivationType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Ursprung des verwendeten Materials</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="ingredient" type="eCH-0263:ingredientType" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation xml:lang="de">Inhaltsstoff</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="metaIngredient" type="eCH-0263:metaIngredientType" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation xml:lang="de">Meta-Inhaltsstoff</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="laboratoryAnalysisDate" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Analysedatatum für betriebsspezifische Produkte</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="verificationDocumentId" type="eCH-0261:identifierType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">ID/Referenz auf ein Nachweisdokument. Dies wird für die betriebsspezifischen Mengen der Inhaltsstoffe des Produkts benötigt (z.B. Laboranalyse).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="validity" type="eCH-0261:validityType">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Angaben zur Gültigkeitsdauer</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="version" type="xs:int">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Version</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="fertiliserProductType">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Dünger</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id" type="eCH-0261:identifierType">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Identifikator</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="alternateId" type="eCH-0261:identifierType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Zusätzliche Identifikatoren (z.B. CPID)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="descriptor" type="eCH-0261:descriptorType">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Beschreibung</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="fertiliserProductCategory" type="eCH-0263:fertiliserProductCategoryType">
+					<xs:annotation>
+						<xs:documentation xml:lang="de">Dünger-Produktkategorie welche der Product Function Category entspricht, gemäss DüV</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="fertiliserProductCategoryPre2024" type="eCH-0263:fertiliserProductCategoryPre2024Type">
+					<xs:annotation>
+						<xs:documentation xml:lang="de">Dünger-Produktkategorie, gemäss der DüV bis 2023</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="typeOfFertiliserProductPre2024" type="eCH-0263:typeOfFertiliserProductPre2024Type">
+					<xs:annotation>
+						<xs:documentation xml:lang="de">Dünger-Produkttyp, gemäss der DüV bis 2023</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:choice>
+				<xs:element name="manufacturerUID" type="eCH-0108:uidType">
+					<xs:annotation>
+						<xs:documentation xml:lang="de">Hersteller (Unternehmen mit UID)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="manufacturerPerson" type="eCH-0261:personIdentifierType">
+					<xs:annotation>
+						<xs:documentation xml:lang="de">Hersteller (natürliche Person)</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="transactionUnit">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Einheit, welche bei Transaktionen dieses Düngers verwendet wird.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="eCH-0261:unitType">
+						<xs:enumeration value="kg"/>
+						<xs:enumeration value="m3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="density" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Dichte (Raumgewicht) in kg/m3. Die Dichte muss zwingend angegeben werden, falls «Kubikmeter» als Transaktionseinheit (transac-tionUnit) angegeben wird.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ingredient" type="eCH-0263:ingredientType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Inhaltsstoff</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="saleFromInclusive" type="xs:date">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Datum, ab welchem der Verkauf zugelassen ist.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="saleToInclusive" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Datum, bis zu welchem der Verkauf zugelassen ist.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="version" type="xs:int">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Version</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="feedstuffType">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Futtermittel</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id" type="eCH-0261:identifierType">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Identifikator</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="alternateId" type="eCH-0261:identifierType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Zusätzliche Identifikatoren</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="descriptor" type="eCH-0261:descriptorType">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Beschreibung</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="typeOfProduct">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Angabe, ob es sich um ein Standardpro-dukt, ein betriebsspezifisches Produkt oder ein Metaprodukt handelt.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="STANDARD">
+							<xs:annotation>
+								<xs:documentation xml:lang="de">Standardprodukt</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="FACILITY_SPECIFIC">
+							<xs:annotation>
+								<xs:documentation xml:lang="de">Betriebsspezifisches Produkt </xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="META_PRODUCT">
+							<xs:annotation>
+								<xs:documentation xml:lang="de">Metaprodukt</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="referenceToProduct" type="eCH-0261:identifierType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Standardprodukt, von welchem ein betriebsspezifisches Produkt abgeleitet ist.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="lotNumber" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Chargen-Nr.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="feedstuffProductCategory">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Futtermittel Produktkategorie</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="FODDER">
+							<xs:annotation>
+								<xs:documentation xml:lang="de">Grundfutter</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="CONCENTRATED_FODDER">
+							<xs:annotation>
+								<xs:documentation xml:lang="de">Kraftfutter</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="typeOfFeedstuffProduct" type="eCH-0263:typeOfFeedstuffProductType">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Produkttyp</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="manufacturer" type="eCH-0108:uidType">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Hersteller (UID)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="origin" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Herkunft</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="CH">
+							<xs:annotation>
+								<xs:documentation xml:lang="de">Schweiz</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="FOREIGN">
+							<xs:annotation>
+								<xs:documentation xml:lang="de">Ausland</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="label" type="eCH-0263:labelType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Label</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="intendedForAnimal" type="eCH-0261:identifierType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Erlaubte Tierkategorien
+Referenziert einen Code einer Spezies, welcher durch «zoologicalAnimal» aus eCH-0266 definiert wird.
+</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="organicRegulationConformity">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Angabe, ob ein Futtermittel die Bio-Richtlinien des Bundes erfüllt.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="CH_ORGANIC">
+							<xs:annotation>
+								<xs:documentation xml:lang="de">Schweiz</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="UNDEFINED">
+							<xs:annotation>
+								<xs:documentation xml:lang="de">Ausland</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="laboratoryAnalysisDate" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Analysedatum für betriebsspezifische Produkte</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="transactionUnit">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Einheit, welche bei Transaktionen dieses Futtermittels verwendet wird.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="eCH-0261:unitType">
+						<xs:enumeration value="kg"/>
+						<xs:enumeration value="m3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="density" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Dichte (Raumgewicht) in kg/m3.  Die Dichte muss zwingend angegeben werden, falls «Kubikmeter» als Transaktionseinheit (transactionUnit) angegeben wird.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="nutrient" type="eCH-0263:ingredientType" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation xml:lang="de">Nährstoffe</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="metaNutrient" type="eCH-0263:metaIngredientType" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation xml:lang="de">Meta-Nährstoffe</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="saleFromInclusive" type="xs:date">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Datum, ab welchem der Verkauf zugelassen ist.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="saleToInclusive" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Datum, bis zu welchem der Verkauf zugelassen ist.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="version" type="xs:int">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Version</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="dressedSeedType">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Gebeiztes Saatgut</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id" type="eCH-0261:identifierType">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Identifikator</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="alternateId" type="eCH-0261:identifierType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Zusätzliche Identifikatoren</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="descriptor" type="eCH-0261:descriptorType">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Beschreibung</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="retailName" type="eCH-0261:descriptorType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Handelsbezeichnung</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="admissonType" type="eCH-0263:admissionTypeType">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Zulassungsart</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="seedTreatment" type="eCH-0263:seedTreatmentType" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation xml:lang="de">Saatbehandlung</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ingredient" type="eCH-0263:ingredientType" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation xml:lang="de">Inhaltsstoffe</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="transactionUnit">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Einheit, welche bei Transaktionen dieses Produkts verwendet wird.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="eCH-0261:unitType">
+						<xs:enumeration value="kg"/>
+						<xs:enumeration value="pc"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="botanicalPlant" type="eCH-0261:identifierType">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Kultur</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="variety" type="eCH-0261:identifierType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Sorte</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="validity" type="eCH-0261:validityType">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Angaben zur Gültigkeitsdauer</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="version" type="xs:int">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Version</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="seedTreatmentType">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Saatbehandlung</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="usedPlantProtectionProduct" type="eCH-0261:identifierType">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Referenz auf das verwendete Pflanzenschutzmittel.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="quantity">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Menge mit zugehörender Einheit des verwendeten Pflanzenschutzmittels.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:restriction base="eCH-0263:measurementType">
+							<xs:sequence>
+								<xs:element name="value">
+									<xs:simpleType>
+										<xs:restriction base="xs:decimal"/>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="unit">
+									<xs:simpleType>
+										<xs:restriction base="eCH-0261:unitType">
+											<xs:enumeration value="%"/>
+											<xs:enumeration value="kg/pc"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+							</xs:sequence>
+						</xs:restriction>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ingredientType">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Inhaltsstoff (Zusammensetzungen) </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id" type="eCH-0261:identifierType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Identifikator</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="descriptor" type="eCH-0261:descriptorType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Beschreibung</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="substance" type="eCH-0263:substanceType">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Substanz / Wirkstoff / Nährstoff </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice minOccurs="0">
+				<xs:element name="concentration">
+					<xs:annotation>
+						<xs:documentation xml:lang="de">Konzentration in kg/m3, falls «m3» als Transaktionseinheit (transactionUnit) des übergeordneten Produkts angegeben wird. </xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:restriction base="eCH-0263:measurementType">
+								<xs:sequence>
+									<xs:element name="value">
+										<xs:simpleType>
+											<xs:restriction base="xs:decimal"/>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="unit">
+										<xs:simpleType>
+											<xs:restriction base="eCH-0261:unitType">
+												<xs:enumeration value="kg/m3"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+								</xs:sequence>
+							</xs:restriction>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="density">
+					<xs:annotation>
+						<xs:documentation xml:lang="de">Dichte in kg/m3, falls «kg» als Transaktionseinheit (transactionUnit) des überge-ordneten Produkts angegeben wird. </xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:restriction base="eCH-0263:measurementType">
+								<xs:sequence>
+									<xs:element name="value">
+										<xs:simpleType>
+											<xs:restriction base="xs:decimal"/>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="unit">
+										<xs:simpleType>
+											<xs:restriction base="eCH-0261:unitType">
+												<xs:enumeration value="kg/m3"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+								</xs:sequence>
+							</xs:restriction>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="quantity" maxOccurs="2">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Menge mit zugehörender Einheit der verwendeten Substanz. </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:restriction base="eCH-0263:measurementType">
+							<xs:sequence>
+								<xs:element name="value">
+									<xs:simpleType>
+										<xs:restriction base="xs:decimal"/>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="unit">
+									<xs:simpleType>
+										<xs:restriction base="eCH-0261:unitType">
+											<xs:enumeration value="%"/>
+											<xs:enumeration value="kg/m3"/>
+											<xs:enumeration value="kg/pc"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+							</xs:sequence>
+						</xs:restriction>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="metaIngredientType">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Inhaltsstoff (Zusammensetzungen) </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id" type="eCH-0261:identifierType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Identifikator</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="descriptor" type="eCH-0261:descriptorType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Beschreibung</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="substance" type="eCH-0263:substanceType">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Substanz / Wirkstoff / Nährstoff </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="facilitySpecific" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Angabe, ob dieser Inhaltsstoff betriebsspezifisch ist. Nur für Produkte der Familie HofRec.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice minOccurs="0">
+				<xs:element name="concentration">
+					<xs:annotation>
+						<xs:documentation xml:lang="de">Konzentration in kg/m3, falls «m3» als Transaktionseinheit (transactionUnit) des übergeordneten Produkts angegeben wird. </xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:restriction base="eCH-0263:measurementType">
+								<xs:sequence>
+									<xs:element name="value">
+										<xs:simpleType>
+											<xs:restriction base="xs:decimal"/>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="unit">
+										<xs:simpleType>
+											<xs:restriction base="eCH-0261:unitType">
+												<xs:enumeration value="kg/m3"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+								</xs:sequence>
+							</xs:restriction>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="density">
+					<xs:annotation>
+						<xs:documentation xml:lang="de">Dichte in kg/m3, falls «kg» als Transaktionseinheit (transactionUnit) des überge-ordneten Produkts angegeben wird. </xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:restriction base="eCH-0263:measurementType">
+								<xs:sequence>
+									<xs:element name="value">
+										<xs:simpleType>
+											<xs:restriction base="xs:decimal"/>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="unit">
+										<xs:simpleType>
+											<xs:restriction base="eCH-0261:unitType">
+												<xs:enumeration value="kg/m3"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+								</xs:sequence>
+							</xs:restriction>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="required" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Angabe, ob dieser Inhaltsstoff gemäss einer bestehenden Verordnung zwingend angegeben werden muss. Das Element ist bei einem Standardprodukt/Metaprodukt von Interesse.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="minQuantity" maxOccurs="2">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Minimalmenge</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:restriction base="eCH-0263:measurementType">
+							<xs:sequence>
+								<xs:element name="value">
+									<xs:simpleType>
+										<xs:restriction base="xs:decimal"/>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="unit">
+									<xs:simpleType>
+										<xs:restriction base="eCH-0261:unitType">
+											<xs:enumeration value="%"/>
+											<xs:enumeration value="kg/m3"/>
+											<xs:enumeration value="kg/pc"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+							</xs:sequence>
+						</xs:restriction>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="maxQuantity" maxOccurs="2">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Minimalmenge</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:restriction base="eCH-0263:measurementType">
+							<xs:sequence>
+								<xs:element name="value">
+									<xs:simpleType>
+										<xs:restriction base="xs:decimal"/>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="unit">
+									<xs:simpleType>
+										<xs:restriction base="eCH-0261:unitType">
+											<xs:enumeration value="%"/>
+											<xs:enumeration value="kg/m3"/>
+											<xs:enumeration value="kg/pc"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+							</xs:sequence>
+						</xs:restriction>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="defaultQuantity" maxOccurs="2">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Minimalmenge</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:restriction base="eCH-0263:measurementType">
+							<xs:sequence>
+								<xs:element name="value">
+									<xs:simpleType>
+										<xs:restriction base="xs:decimal"/>
+									</xs:simpleType>
+								</xs:element>
+								<xs:element name="unit">
+									<xs:simpleType>
+										<xs:restriction base="eCH-0261:unitType">
+											<xs:enumeration value="%"/>
+											<xs:enumeration value="kg/m3"/>
+											<xs:enumeration value="kg/pc"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:element>
+							</xs:sequence>
+						</xs:restriction>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="substanceType">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Substanz / Wirkstoff / Nährstoff </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id" type="eCH-0261:identifierType">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Identifikator</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="alternateId" type="eCH-0261:identifierType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Zusätzliche Identifikatoren</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="descriptor" type="eCH-0261:descriptorType">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Beschreibung</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="molecularFormula" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Abkürzung der Bezeichnung z.B. chemisches Symbol (z.B. N)</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="activeSubstanceCategory" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Wirkstoffgruppe</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="NA">
+							<xs:annotation>
+								<xs:documentation xml:lang="de">Nicht zutreffend</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="CHEMICAL">
+							<xs:annotation>
+								<xs:documentation xml:lang="de">Chemische Stoffe</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="MICRO_ORGANISM">
+							<xs:annotation>
+								<xs:documentation xml:lang="de">Mikroorganismen</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="MACRO_ORGANISM">
+							<xs:annotation>
+								<xs:documentation xml:lang="de">Makroorganismen</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="RAW_MATERIAL">
+							<xs:annotation>
+								<xs:documentation xml:lang="de">Grundstoffe</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+						<xs:enumeration value="SUBST_CANDIDATE">
+							<xs:annotation>
+								<xs:documentation xml:lang="de">Substitutionskanditaten</xs:documentation>
+							</xs:annotation>
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="allowedFor" type="eCH-0263:productFamilyType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Zulässig für Produktfamilien, Einträge aus Liste</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="crossResistancePattern" type="eCH-0263:crossResistancePatternType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Resistenzgruppe, Eine Gruppe mit vergleichbarer Wirkung. Nur für PSM relevant. Dies verweist auf einen Eintrag externer Quelle.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="allowedUnits" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Erlaubte Einheiten</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="eCH-0261:unitType">
+						<xs:enumeration value="%"/>
+						<xs:enumeration value="kg/m3"/>
+						<xs:enumeration value="kg/pc"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="indicationType">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Indikation</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id" type="eCH-0261:identifierType">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Identifikator</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="waitingPeriodDays" type="xs:positiveInteger" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Wartefrist in Tagen</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dosageFrom">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Angabe der minimalen Dosierung </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:decimal">
+						<xs:fractionDigits value="4"/>
+						<xs:minInclusive value="0"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="dosageTo">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Angabe der maximalen Dosierung</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:decimal">
+						<xs:fractionDigits value="4"/>
+						<xs:minInclusive value="0"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="admissonType" type="eCH-0263:admissionTypeType">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Zulassungsart</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="emergencyAdmissionStartInclusive" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Beginn Notfallzulassung</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="emergencyAdmissionEndInclusive" type="xs:date" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Ende Notfallzulassung</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="unit" type="eCH-0261:unitType">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Einheit</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="botanicalPlant" type="eCH-0261:identifierType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Kultur</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="pathogen" type="eCH-0261:identifierType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Schaderreger</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="pathogenType">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Schaderreger</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id" type="eCH-0261:identifierType">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Identifikator</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="alternateId" minOccurs="0" maxOccurs="unbounded" type="eCH-0261:identifierType">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Alternativer Identifikator, z.B. EPPO-Code oder InfoFito-Code</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="descriptor" type="eCH-0261:descriptorType">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Beschreibung</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="manureDerivationType">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Ursprung des verwendeten Materials für Hofdünger</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="animalSource" type="eCH-0261:identifierType">
+					<xs:annotation>
+						<xs:documentation xml:lang="de">Angabe eines Tiers (Code einer Spezies, welcher durch «zoologicalSpecies» aus eCH-0266 definiert wird), falls der Mist tierischer Herkunft ist.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="otherSource" type="eCH-0261:identifierType">
+					<xs:annotation>
+						<xs:documentation xml:lang="de">ID mit dem Text mit «NON_ANIMAL», falls das Material nicht tierischen Ursprungs ist.</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="nprCode" type="eCH-0263:nprCodeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">NPr-Code</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="housing" type="eCH-0263:stableSystemType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Stallsystem</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="utlisation" type="eCH-0261:identifierType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Verwendungszweck (Code einer Nutzungsausrichtung, welche durch «utilisation» aus eCH-0266 definiert ist).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="percentageAllocation">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Anteil in Prozent</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:decimal">
+						<xs:fractionDigits value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="plantProtectionProductCategoryType">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Produktekategorie Pflanzenschutzmittel</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="item" type="eCH-0261:enumeratedItemType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="hazardLabelType">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Gefahrenkennzeichnung</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="item" type="eCH-0261:enumeratedItemType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="typeOfManureRecyclingProductType">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Produkttyp Hofdünger</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="item" type="eCH-0261:enumeratedItemType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="fertiliserProductCategoryType">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Produktkategorie Dünger</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="item" type="eCH-0261:enumeratedItemType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="fertiliserProductCategoryPre2024Type">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Produktkategorie Dünger gemäss DüV vor 2024</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="item" type="eCH-0261:enumeratedItemType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="typeOfFertiliserProductPre2024Type">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Produkttyp Dünger gemäss DüV vor 2024</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="item" type="eCH-0261:enumeratedItemType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="typeOfFeedstuffProductType">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Produkttyp Futtermittel</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="item" type="eCH-0261:enumeratedItemType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="crossResistancePatternType">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Restistenzgruppe</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="item" type="eCH-0261:enumeratedItemType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="labelType">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Label</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="item" type="eCH-0261:enumeratedItemType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="admissionTypeType">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Zulassungsart</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="PARALLEL_IMPORT">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Parallelimport</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="CHE_ONLY">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Nur in der Schweiz bewilligt</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="EMERGENCY_ADMISSION">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Notfallzulassung</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DRESSED_SEED">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Gebeiztes Saatgut</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="nprCodeType">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Stallsystem</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="nPrKanImpx">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Kaninchen Import-Export-Bilanz</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="nPrJungImpx">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Junghennen Import-Export-Bilanz</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="nPrLegLin">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Legehennen, lineare Korrektur</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="nPrPoulImpx">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Mastpoulet, Import-Export-Bilanz</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="nPrSchMImpx">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Mastschweine, Import-Export-Bilanz</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="nPrSchMLin">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Mastschweine, Lineare Korrektur</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="nPrSchZImpx">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Zuchtschweine, Import-Export-Bilanz</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="nPrSchZLin">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Zuchtschweine, Lineare Korrektur</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="nPrTrutImpx">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Truten, Import-Export-Bilanz</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="productFamilyType">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Produktfamilie</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="FARM_MANURE_RECYCLING">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Hof- und Recyclingdünger</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PLANT_PROTECTION_PRODUCT">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Pflanzenschutzmittel</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FERTILISER">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Dünger</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="DRESSED_SEED">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Gebeiztes Saatgut</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="FEEDSTUFF">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Futtermittel</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="stableSystemType">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Stallsystem</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="item" type="eCH-0261:enumeratedItemType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--MeasurementType redefinition from eCH-0261-->
+	<xs:complexType name="measurementType">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Messung mit Wert und Einheit</xs:documentation>
+			<xs:documentation xml:lang="fr">Mesure avec valeur et unité</xs:documentation>
+			<xs:documentation xml:lang="en">Measurement with value and unit</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="value" type="xs:decimal">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Menge, Wert</xs:documentation>
+					<xs:documentation xml:lang="fr">Quantité, valeur</xs:documentation>
+					<xs:documentation xml:lang="en">Quantity, value</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="unit" type="eCH-0261:unitType">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Zugehörige Einheit</xs:documentation>
+					<xs:documentation xml:lang="fr">Unité associée</xs:documentation>
+					<xs:documentation xml:lang="en">Associated unit</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="unitName" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Genauere Bezeichnung der Einheit, wenn im Feld «unit» die Einheit «pc» (Stück) angegeben wurde.</xs:documentation>
+					<xs:documentation xml:lang="fr">Désignation plus précise de l'unité, si l'unité "pc" (pièce) a été indiquée dans le champ "unit".</xs:documentation>
+					<xs:documentation xml:lang="en">More precise designation of the unit if the unit "pc" (piece) was specified in the "unit" field.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--Root-Element-->
+	<xs:element name="root">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="productPSM" type="eCH-0263:plantProtectionProductType"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

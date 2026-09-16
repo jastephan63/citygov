@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:eCH-0234="http://www.ech.ch/xmlns/eCH-0234/2"
+            xmlns:eCH-0234types="http://www.ech.ch/xmlns/eCH-0234/types/2"
+            xmlns:eCH-0235="http://www.ech.ch/xmlns/eCH-0235/3"
+            xmlns:xs="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://www.ech.ch/xmlns/eCH-0235/3"
+            elementFormDefault="qualified">
+    <xs:import namespace="http://www.ech.ch/xmlns/eCH-0234/2" schemaLocation="eCH-0234-2-1.xsd"/>
+    <xs:import namespace="http://www.ech.ch/xmlns/eCH-0234/types/2" schemaLocation="eCH-0234-2-1_types.xsd"/>
+
+    <!-- =====================================================
+         transportHeaderType
+     =====================================================-->
+   <!-- Katalog von Attributen für Transport und Prozesslogik -->
+   <xs:element name="header" type="eCH-0235:transportHeaderType">
+	</xs:element>
+   <xs:complexType name="transportHeaderType">
+      <xs:all>
+         <xs:element name="containerId" type="eCH-0234types:uuidType">
+			</xs:element>
+         <xs:element name="messageModus" type="eCH-0234types:nameType">
+			</xs:element>
+         <xs:element name="sensitiveData" type="xs:boolean">
+			</xs:element>
+         <xs:element name="receiver" type="eCH-0234types:glnType">
+			</xs:element>
+         <xs:element name="sender" type="eCH-0234types:glnType">
+			</xs:element>
+         <xs:element name="messageType" type="eCH-0234types:nameType">
+			</xs:element>
+         <xs:element name="shipVersion" type="eCH-0234types:versionType" minOccurs="0">
+			</xs:element>
+         <xs:element name="baseConversationId" type="eCH-0234types:uuidType">
+			</xs:element>
+         <xs:element name="timestamp" type="xs:dateTime">
+			</xs:element>
+      </xs:all>
+   </xs:complexType>
+   <!-- =====================================================
+    Base processInformationType
+    =====================================================-->
+   <xs:complexType name="baseProcessInformationType">
+      <xs:all>
+         <xs:element ref="eCH-0235:conversationId"/>
+         <xs:element ref="eCH-0235:messageId"/>
+         <xs:element ref="eCH-0235:messageSequence"/>
+         <xs:element ref="eCH-0235:messageReference"/>
+         <xs:element ref="eCH-0235:referenceSequence"/>
+         <xs:element ref="eCH-0235:subProcessId"/>
+         <xs:element ref="eCH-0235:subProcessStart" minOccurs="0"/>
+         <xs:element ref="eCH-0235:subProcessEnd" minOccurs="0"/>
+         <xs:element ref="eCH-0235:messageAuthor"/>
+         <xs:element ref="eCH-0235:processInformationReceiver"/>
+      </xs:all>
+   </xs:complexType>
+   <!-- =====================================================
+        Basis payLoadType
+    =====================================================-->
+   <xs:complexType name="basePayloadType">
+      <xs:all>
+         <xs:element name="payloadAuthor" type="eCH-0235:authorType" minOccurs="0">
+			</xs:element>
+         <xs:element ref="eCH-0234:repetitionReason" minOccurs="0"/>
+      </xs:all>
+   </xs:complexType>
+   <!-- ======================================================================================
+        command Message
+    ====================================================================================== -->
+   <xs:element name="commandMessage" type="eCH-0235:commandMessageType">
+	</xs:element>
+   <xs:complexType name="commandMessageType">
+      <xs:all>
+         <xs:element name="commandProcessInformation"
+                      type="eCH-0235:commandMessageProcessInformationType">
+			</xs:element>
+         <xs:element name="commandPayload" type="eCH-0235:commandMessagePayloadType">
+			</xs:element>
+      </xs:all>
+   </xs:complexType>
+   <!-- =====================================================
+        command payLoadType
+    =====================================================-->
+   <xs:complexType name="commandMessagePayloadType">
+      <xs:all>
+         <xs:element name="reason" type="eCH-0234types:nameType">
+			</xs:element>
+      </xs:all>
+   </xs:complexType>
+   <!-- =====================================================
+        command processInformationType
+    =====================================================-->
+   <xs:complexType name="commandMessageProcessInformationType">
+      <xs:all>
+         <xs:element ref="eCH-0235:command">
+			</xs:element>
+         <xs:element ref="eCH-0235:messageReference">
+			</xs:element>
+         <xs:element ref="eCH-0235:referenceSequence">
+			</xs:element>
+      </xs:all>
+   </xs:complexType>
+   <!-- ======================================================================================
+        Anfragen
+    ====================================================================================== -->
+   <xs:complexType name="demandFreeTextListType">
+      <xs:sequence>
+         <xs:element name="entry"
+                      type="eCH-0235:demandFreeTextType"
+                      maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="demandFreeTextType">
+      <xs:all>
+         <xs:element name="requiredData" type="eCH-0234types:nameType">
+			</xs:element>
+         <xs:element name="requiredText" type="eCH-0234types:freeTextType" minOccurs="0">
+			</xs:element>
+      </xs:all>
+   </xs:complexType>
+   <xs:complexType name="requiredDataListType">
+      <xs:sequence>
+         <xs:element name="entry" type="eCH-0235:requiredDataType" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="requiredDataType">
+      <xs:all>
+         <xs:element name="requiredData" type="eCH-0234types:nameType">
+			</xs:element>
+         <xs:element name="requiredDataText" type="eCH-0234types:nameType" minOccurs="0">
+			</xs:element>
+         <xs:element name="justifyDemand" type="eCH-0234types:nameType">
+			</xs:element>
+      </xs:all>
+   </xs:complexType>
+
+   <xs:complexType name="demandReferenceListType">
+      <xs:sequence>
+         <xs:element name="entry"
+                      type="eCH-0235:demandReferenceType"
+                      maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+
+   <xs:complexType name="demandReferenceType">
+      <xs:all>
+         <xs:element name="reference" type="eCH-0234types:nameType">
+			</xs:element>
+         <xs:element name="requiredData" type="eCH-0234types:nameType">
+			</xs:element>
+         <xs:element name="requiredText" type="eCH-0234types:freeTextType" minOccurs="0">
+			</xs:element>
+         <xs:element name="justifyDemand" type="eCH-0234types:nameType" minOccurs="0">
+			</xs:element>
+      </xs:all>
+   </xs:complexType>
+
+   <xs:complexType name="extendedDemandFreeTextListType">
+      <xs:sequence>
+         <xs:element name="entry"
+                      type="eCH-0235:extendedDemandFreeTextType"
+                      maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+
+   <xs:complexType name="extendedDemandFreeTextType">
+      <xs:all>
+         <xs:element name="requiredData" type="eCH-0234types:nameType">
+			</xs:element>
+         <xs:element name="requiredText" type="eCH-0234types:freeTextType" minOccurs="0">
+			</xs:element>
+         <xs:element name="specificDate" type="xs:date" minOccurs="0">
+			</xs:element>
+      </xs:all>
+   </xs:complexType>
+   <!-- =====================================================
+        Request Anfrage
+    =====================================================-->
+   <xs:element name="requiredData" type="eCH-0234types:nameListType">
+	</xs:element>
+   <xs:element name="requiredDataList" type="eCH-0235:requiredDataListType">
+	</xs:element>
+   <xs:element name="requiredDetailedMedicalData" type="eCH-0235:demandFreeTextListType">
+	</xs:element>
+   <xs:element name="requiredDetailedMedicalDataWithDate" type="eCH-0235:demandFreeTextListType">
+	</xs:element>
+   <xs:element name="question" type="eCH-0235:demandFreeTextListType">
+	</xs:element>
+   <xs:element name="requiredDataLevel2List" type="eCH-0235:requiredDataLevel2ListType">
+	</xs:element>
+   <xs:complexType name="requiredDataLevel2ListType">
+      <xs:sequence>
+         <xs:element name="entry"
+                      type="eCH-0235:requiredDataLevel2Type"
+                      maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="requiredDataLevel2Type">
+      <xs:sequence>
+         <xs:element name="requiredData" type="eCH-0234types:nameType">
+			</xs:element>
+         <xs:element name="startDate" type="xs:date" minOccurs="0">
+			</xs:element>
+         <xs:element name="endDate" type="xs:date" minOccurs="0">
+			</xs:element>
+         <xs:element name="justifyDemand" type="eCH-0234types:nameType">
+			</xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <!-- ======================================================================================
+        Antworten
+    ====================================================================================== -->
+   <xs:complexType name="documentationListType">
+      <xs:sequence>
+         <xs:element name="entry"
+                      type="eCH-0235:documentationType"
+                      maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="requestedData" type="eCH-0234types:nameType">
+	</xs:element>
+   <xs:element name="requestedFreeTextData" type="eCH-0234types:freeTextType">
+	</xs:element>
+   <xs:element name="freeText" type="eCH-0234types:freeTextType">
+	</xs:element>
+   <xs:complexType name="documentationType">
+      <xs:all>
+         <xs:element ref="eCH-0235:requestedData"/>
+         <xs:element ref="eCH-0235:requestedFreeTextData" minOccurs="0"/>
+         <xs:element ref="eCH-0235:attachmentInformation" minOccurs="0"/>
+         <xs:element ref="eCH-0235:freeText" minOccurs="0"/>
+      </xs:all>
+   </xs:complexType>
+   <xs:element name="requiredDataListResponse" type="eCH-0235:documentationWithAttachmentIfAvailableListType">
+	</xs:element>
+   <xs:element name="requiredDataSimpleListResponse" type="eCH-0235:documentationSimpleListType">
+	</xs:element>
+   <xs:complexType name="documentationWithAttachmentIfAvailableListType">
+      <xs:sequence>
+         <xs:element name="entry"
+                      type="eCH-0235:documentationWithAttachmentIfAvailableType"
+                      maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="documentationWithAttachmentIfAvailableType">
+      <xs:all>
+         <xs:element ref="eCH-0235:requestedData"/>
+         <xs:element ref="eCH-0235:requestedFreeTextData" minOccurs="0"/>
+         <xs:element ref="eCH-0235:attachmentInformationIfAvailable"/>
+         <xs:element ref="eCH-0235:freeText" minOccurs="0"/>
+      </xs:all>
+   </xs:complexType>
+   <xs:complexType name="documentationReferenceListType">
+      <xs:sequence>
+         <xs:element name="entry"
+                      type="eCH-0235:documentationReferenceType"
+                      maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="documentationReferenceType">
+      <xs:all>
+         <xs:element name="reference" type="eCH-0234types:nameType">
+			</xs:element>
+         <xs:element name="requestedData" type="eCH-0234types:nameType">
+			</xs:element>
+         <xs:element name="requestedFreeTextData" type="eCH-0234types:nameType" minOccurs="0">
+			</xs:element>
+         <xs:element name="attachmentInformation" type="eCH-0234types:attachmentType">
+			</xs:element>
+         <xs:element name="freeText" type="eCH-0234types:freeTextType" minOccurs="0">
+			</xs:element>
+      </xs:all>
+   </xs:complexType>
+   <xs:complexType name="documentationSimpleListType">
+      <xs:sequence>
+         <xs:element name="entry"
+                      type="eCH-0235:documentationSimpleType"
+                      maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="documentationSimpleType">
+      <xs:all>
+         <xs:element name="requestedData" type="eCH-0234types:nameType">
+			</xs:element>
+         <xs:element name="attachmentInformation" type="eCH-0234types:attachmentType" minOccurs="0">
+			</xs:element>
+      </xs:all>
+   </xs:complexType>
+   <xs:complexType name="answerListType">
+      <xs:sequence>
+         <xs:element name="entry" type="eCH-0235:answerType" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="answerType">
+      <xs:all>
+         <xs:element name="askedQuestion" type="eCH-0234types:nameType">
+			</xs:element>
+         <xs:element name="answer" type="eCH-0234types:booleanType" minOccurs="0">
+			</xs:element>
+         <xs:element name="askedQuestionText" type="eCH-0234types:freeTextType" minOccurs="0">
+			</xs:element>
+         <xs:element name="freeText" type="eCH-0234types:freeTextType" minOccurs="0">
+			</xs:element>
+      </xs:all>
+   </xs:complexType>
+   <!-- =====================================================
+		Answer Antwort
+	=====================================================-->
+   <xs:element name="requestedDetailMedicalFile" type="eCH-0235:documentationListType">
+	</xs:element>
+   <xs:element name="questionAnswer" type="eCH-0235:answerListType">
+	</xs:element>
+   <xs:element name="notAvailableValue" type="eCH-0234types:nameListType">
+	</xs:element>
+   <!-- =====================================================
+    	Decision
+	=====================================================-->
+   <xs:element name="decisionDetail" type="eCH-0234types:nameType">
+	</xs:element>
+   <xs:element name="deniedReason" type="eCH-0234types:nameType">
+	</xs:element>
+   <xs:complexType name="decisionDetailInvoiceListType">
+      <xs:sequence>
+         <xs:element name="entry"
+                      type="eCH-0235:decisionDetailInvoiceType"
+                      maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="decisionDetailInvoiceType">
+      <xs:all>
+         <xs:element ref="eCH-0235:decisionDetail">
+			</xs:element>
+         <xs:element name="serviceRecordId" type="xs:int" minOccurs="0">
+			</xs:element>
+         <xs:element name="reason" type="eCH-0234types:freeTextType" minOccurs="0">
+			</xs:element>
+      </xs:all>
+   </xs:complexType>
+
+   <xs:complexType name="decisionValidityType">
+      <xs:choice>
+         <xs:element name="decisionValidityDate" type="xs:date">
+			</xs:element>
+         <xs:element name="decisionValidityCase" type="eCH-0234types:booleanType" fixed="TRUE">
+			</xs:element>
+      </xs:choice>
+   </xs:complexType>
+   <xs:element name="decisionDetailInvoice" type="eCH-0235:decisionDetailInvoiceListType">
+	</xs:element>
+   <xs:element name="decisionInvoice" type="eCH-0234types:nameType">
+	</xs:element>
+   <xs:element name="decisionDetailsVvgUpgrade" type="eCH-0234types:referenceDataWithParameterType">
+	</xs:element>
+   <xs:element name="decision" type="eCH-0234types:decisionType">
+	</xs:element>
+   <xs:element name="decisionDetailWithParameter" type="eCH-0234types:referenceDataWithParameterType">
+	</xs:element>
+   <xs:element name="decisionValidity" type="eCH-0235:decisionValidityType">
+	</xs:element>
+   <xs:element name="restrictionReason" type="eCH-0234types:nameType">
+	</xs:element>
+   <xs:element name="decisionValidityDate" type="xs:date">
+	</xs:element>
+   <!-- =====================================================
+		Decision Service
+	=====================================================-->
+   <xs:element name="serviceDecisionList" type="eCH-0235:serviceDecisionListType">
+	</xs:element>
+   <xs:complexType name="serviceDecisionListType">
+      <xs:sequence>
+         <xs:element name="entry"
+                      type="eCH-0235:serviceDecisionType"
+                      maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="serviceDecisionType">
+      <xs:all>
+         <xs:element name="serviceCatalog" type="eCH-0234types:nameType" minOccurs="0">
+			</xs:element>
+         <xs:element name="service" type="eCH-0234types:nameType" minOccurs="0">
+			</xs:element>
+         <xs:element ref="eCH-0235:decisionDetail">
+			</xs:element>
+         <xs:element name="count" type="xs:int">
+			</xs:element>
+         <xs:element name="unit" type="eCH-0234types:nameType">
+			</xs:element>
+         <xs:element name="duration" type="xs:int">
+			</xs:element>
+         <xs:element ref="eCH-0235:deniedReason" minOccurs="0"/>
+         <xs:element name="restrictionReason" type="eCH-0234types:nameType" minOccurs="0">
+			</xs:element>
+      </xs:all>
+   </xs:complexType>
+   <!-- =====================================================
+	Decision Group
+	=====================================================-->
+   <xs:element name="groupDecisionList" type="eCH-0235:groupDecisionListType">
+	</xs:element>
+   <xs:complexType name="groupDecisionListType">
+      <xs:sequence>
+         <xs:element name="entry"
+                      type="eCH-0235:groupDecisionType"
+                      maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="groupDecisionType">
+      <xs:all>
+         <xs:element ref="eCH-0235:decisionDetail">
+			</xs:element>
+         <xs:element name="group" type="eCH-0234types:nameType">
+			</xs:element>
+         <xs:element name="total" type="xs:int">
+			</xs:element>
+         <xs:element ref="eCH-0235:deniedReason" minOccurs="0">
+			</xs:element>
+         <xs:element name="restrictionReason" type="eCH-0234types:nameType" minOccurs="0">
+			</xs:element>
+      </xs:all>
+   </xs:complexType>
+   <!-- =====================================================
+        Documentation
+    =====================================================-->
+   <xs:element name="attachmentInformation" type="eCH-0234types:attachmentType">
+	</xs:element>
+   <xs:element name="attachmentInformationIfAvailable" type="eCH-0235:attachmentInformationWithAvailability">
+	</xs:element>
+   <xs:complexType name="attachmentInformationWithAvailability">
+      <xs:sequence>
+         <xs:choice>
+            <xs:element ref="eCH-0235:attachmentInformation"/>
+            <xs:element name="attachmentAvailable" type="eCH-0234types:nameType">
+				</xs:element>
+         </xs:choice>
+      </xs:sequence>
+   </xs:complexType>
+   <!-- ======================================================================================
+        Author Type
+    ====================================================================================== -->
+   <xs:complexType name="authorType">
+      <xs:all>
+         <xs:element name="actorId" type="eCH-0234types:uuidType">
+			</xs:element>
+         <xs:element name="gln" type="eCH-0234types:glnType" minOccurs="0">
+			</xs:element>
+         <xs:element name="date" type="xs:dateTime" minOccurs="0">
+			</xs:element>
+      </xs:all>
+   </xs:complexType>
+   <xs:element name="messageAuthor" type="eCH-0235:authorType">
+	</xs:element>
+   <!-- =====================================================
+        processInformationType
+    =====================================================-->
+   <xs:element name="conversationId" type="eCH-0234types:conversationIdType">
+	</xs:element>
+   <xs:element name="messageId" type="eCH-0234types:messageIdType">
+	</xs:element>
+   <xs:element name="messageSequence" type="eCH-0234types:nameType">
+	</xs:element>
+   <xs:element name="processInformationReceiver" type="eCH-0234types:nameType">
+	</xs:element>
+   <xs:element name="assureCosts" type="eCH-0234types:nameType">
+	</xs:element>
+   <xs:element name="restricted" type="eCH-0234types:booleanType">
+	</xs:element>
+   <xs:element name="validUntil" type="xs:date">
+	</xs:element>
+   <xs:element name="messageReference" type="eCH-0234types:messageIdType">
+	</xs:element>
+   <xs:element name="referenceSequence" type="eCH-0234types:nameType">
+	</xs:element>
+   <xs:element name="subProcessId" type="eCH-0234types:uuidType">
+	</xs:element>
+   <xs:element name="subProcessStart" type="xs:date">
+	</xs:element>
+   <xs:element name="subProcessEnd" type="xs:date">
+	</xs:element>
+   <xs:element name="command" type="eCH-0234types:nameType">
+	</xs:element>
+   <xs:element name="response" type="eCH-0234types:freeTextType">
+	</xs:element>
+   <xs:element name="reason" type="eCH-0234types:freeTextType">
+	</xs:element>
+   <xs:element name="refusalReason" type="eCH-0234types:nameType">
+	</xs:element>
+   <xs:element name="additionalMessages" type="eCH-0234types:nameListType">
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:eCH-0011="http://www.ech.ch/xmlns/eCH-0011/8" xmlns:eCH-0021="http://www.ech.ch/xmlns/eCH-0021/7" xmlns:eCH-0044="http://www.ech.ch/xmlns/eCH-0044/4" xmlns:eCH-0058="http://www.ech.ch/xmlns/eCH-0058/5" xmlns:eCH-0084="http://www.ech.ch/xmlns/eCH-0084/2" xmlns:eCH-0086="http://www.ech.ch/xmlns/eCH-0086/2" targetNamespace="http://www.ech.ch/xmlns/eCH-0086/2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.0">
+	<xs:annotation>
+		<xs:documentation xml:lang="en">UPI Compare, last modification timestamp 2021-07-12</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0011/8" schemaLocation="http://www.ech.ch/xmlns/eCH-0011/8/eCH-0011-8-1.xsd"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0044/4" schemaLocation="http://www.ech.ch/xmlns/eCH-0044/4/eCH-0044-4-1.xsd"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0058/5" schemaLocation="http://www.ech.ch/xmlns/eCH-0058/5/eCH-0058-5-0.xsd"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0084/2" schemaLocation="http://www.ech.ch/xmlns/eCH-0084/2/eCH-0084-2-0.xsd"/>
+	<xs:simpleType name="subrequestIdType">
+		<xs:restriction base="xs:unsignedInt">
+			<xs:maxInclusive value="100000000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="noticeType">
+		<xs:sequence>
+			<xs:element name="code" type="eCH-0084:codeType"/>
+			<xs:sequence minOccurs="0">
+				<xs:element name="descriptionLanguage" type="eCH-0011:languageType"/>
+				<xs:element name="codeDescription" type="eCH-0084:codeDescriptionType"/>
+			</xs:sequence>
+			<xs:element name="comment" type="eCH-0084:commentType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="request">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="header" type="eCH-0058:headerType"/>
+				<xs:element name="content">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="responseLanguage" type="eCH-0011:languageType"/>
+							<xs:element name="sourceIdToCompareWith" type="eCH-0058:participantIdType" minOccurs="0"/>
+							<xs:element name="comparedMissingElement" minOccurs="0" maxOccurs="5">
+								<xs:simpleType>
+									<xs:restriction base="xs:token">
+										<xs:enumeration value="DATE_OF_DEATH"/>
+										<xs:enumeration value="ORIGINAL_NAME"/>
+										<xs:enumeration value="MOTHER"/>
+										<xs:enumeration value="FATHER"/>
+										<xs:enumeration value="PARENT"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:element>
+							<xs:element name="dataToCompare" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="dataToCompareId" type="eCH-0086:subrequestIdType"/>
+										<xs:element name="vn" type="eCH-0044:vnType"/>
+										<xs:choice minOccurs="0">
+											<xs:element name="localPersonId" type="eCH-0044:namedPersonIdType"/>
+											<xs:element name="euPersonId" type="eCH-0044:namedPersonIdType"/>
+										</xs:choice>
+										<xs:element name="typeOfRecord" type="eCH-0084:typeOfRecordType" minOccurs="0"/>
+										<xs:element name="shownDocument" type="eCH-0084:shownDocumentType" minOccurs="0"/>
+										<xs:element name="personToUpi" type="eCH-0084:personToUPIType" minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+					<xs:key name="getInfoPersonRequestKey">
+						<xs:selector xpath="eCH-0086:dataToCompare"/>
+						<xs:field xpath="eCH-0086:dataToCompareId"/>
+					</xs:key>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="minorVersion" type="xs:integer" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="response">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="header" type="eCH-0058:headerType"/>
+				<xs:choice>
+					<xs:element name="positiveResponse">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="sourceIdToCompareWith" type="eCH-0058:participantIdType" minOccurs="0"/>
+								<xs:element name="comparedData" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="dataToCompareId" type="eCH-0086:subrequestIdType"/>
+											<xs:element name="timestamp" type="xs:dateTime"/>
+											<xs:element name="notice" type="eCH-0086:noticeType" minOccurs="0" maxOccurs="unbounded"/>
+											<xs:element name="echoVn" type="eCH-0044:vnType"/>
+											<xs:choice>
+												<xs:element name="identicalData">
+													<xs:simpleType>
+														<xs:restriction base="xs:boolean">
+															<xs:pattern value="true"/>
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:element>
+												<xs:element name="differentData">
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="activeVn" type="eCH-0044:vnType"/>
+															<xs:choice minOccurs="0">
+																<xs:element name="localPersonId" type="eCH-0044:namedPersonIdType"/>
+																<xs:element name="euPersonId" type="eCH-0044:namedPersonIdType"/>
+															</xs:choice>
+															<xs:element name="typeOfRecord" type="eCH-0084:typeOfRecordType" minOccurs="0"/>
+															<xs:element name="shownDocument" type="eCH-0084:shownDocumentType" minOccurs="0"/>
+															<xs:element name="personFromUPI" type="eCH-0084:personFromUPIType" minOccurs="0"/>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+												<xs:element name="negativReportOnCompareData" type="eCH-0084:negativeReportType"/>
+											</xs:choice>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+						<xs:key name="getInfoPersonResponseKey">
+							<xs:selector xpath="eCH-0086:comparedData"/>
+							<xs:field xpath="eCH-0086:dataToCompareId"/>
+						</xs:key>
+					</xs:element>
+					<xs:element name="negativeReport" type="eCH-0084:negativeReportType"/>
+				</xs:choice>
+			</xs:sequence>
+			<xs:attribute name="minorVersion" type="xs:integer" use="required"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

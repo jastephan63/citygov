@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Mit XMLSpy v2010 rel. 3 sp1 (http://www.altova.com) von Martin Stingelin (Stingelin Informatik GmbH) bearbeitet -->
+<!-- edited with XMLSpy v2012 rel. 2 sp1 (http://www.altova.com) by Martin Stingelin (Stingelin Informatik GmbH) -->
+<xs:schema xmlns:eCH-0131="http://www.ech.ch/xmlns/eCH-0131/3" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:eCH-0129="http://www.ech.ch/xmlns/eCH-0129/6" xmlns:eCH-0007="http://www.ech.ch/xmlns/eCH-0007/6" xmlns:eCH-0058="http://www.ech.ch/xmlns/eCH-0058/5" targetNamespace="http://www.ech.ch/xmlns/eCH-0131/3" elementFormDefault="qualified" attributeFormDefault="unqualified" version="3.0">
+	<xs:annotation>
+		<xs:documentation>Ausgabedatum: 18.06.2021</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0129/6" schemaLocation="http://www.ech.ch/xmlns/eCH-0129/6/eCH-0129-6-0.xsd"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0007/6" schemaLocation="http://www.ech.ch/xmlns/eCH-0007/6/eCH-0007-6-0.xsd"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0058/5" schemaLocation="http://www.ech.ch/xmlns/eCH-0058/5/eCH-0058-5-0.xsd"/>
+	<xs:complexType name="buildingAVType">
+		<xs:sequence>
+			<xs:element name="buildingIdentification" type="eCH-0129:buildingIdentificationType" minOccurs="0"/>
+			<xs:element name="EGID" type="eCH-0129:EGIDType" minOccurs="0"/>
+			<xs:element name="officialBuildingNo" type="eCH-0129:officialBuildingNoType" minOccurs="0"/>
+			<xs:element name="name" type="eCH-0129:nameOfBuildingType" minOccurs="0"/>
+			<xs:element name="surfaceAreaOfBuilding" type="eCH-0129:surfaceAreaOfBuildingType" minOccurs="0"/>
+			<xs:element name="subSurfaceAreaOfBuilding" type="eCH-0129:surfaceAreaOfBuildingType" minOccurs="0"/>
+			<xs:element name="surfaceAreaOfBuildingSingleObject" type="eCH-0129:surfaceAreaOfBuildingSingleObjectType" minOccurs="0"/>
+			<xs:element name="buildingCategory" type="eCH-0129:buildingCategoryType" minOccurs="0"/>
+			<xs:element name="status" type="eCH-0129:buildingStatusType" minOccurs="0"/>
+			<xs:element name="coordinates" type="eCH-0129:coordinatesType" minOccurs="0"/>
+			<xs:element name="otherID" type="eCH-0129:namedIdType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="namedMetaData" type="eCH-0129:namedMetaDataType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="buildeingAV" type="eCH-0131:buildingAVType"/>
+	<xs:simpleType name="areaCorrectionTypeType">
+		<xs:restriction base="xs:nonNegativeInteger">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="areaCorrectionValueType">
+		<xs:restriction base="xs:decimal">
+			<xs:minInclusive value="-100000000.0"/>
+			<xs:maxInclusive value="100000000.0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="areaCorrectionType">
+		<xs:sequence>
+			<xs:element name="areaCorrectionType" type="eCH-0131:areaCorrectionTypeType"/>
+			<xs:element name="areaCorrectionValue" type="eCH-0131:areaCorrectionValueType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="areaCorrection" type="eCH-0131:areaCorrectionType"/>
+	<xs:simpleType name="surveyorRemarkType">
+		<xs:restriction base="xs:token"/>
+	</xs:simpleType>
+	<xs:simpleType name="completionDateType">
+		<xs:restriction base="xs:date"/>
+	</xs:simpleType>
+	<xs:simpleType name="isProjectMutationType">
+		<xs:restriction base="xs:nonNegativeInteger">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="mutationNumberType">
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="12"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="identNDType">
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="12"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="mutationRemarkType">
+		<xs:restriction base="xs:token"/>
+	</xs:simpleType>
+	<xs:complexType name="globalMutationIdentificationType">
+		<xs:sequence>
+			<xs:element name="mutationNumber" type="eCH-0131:mutationNumberType"/>
+			<xs:element name="identDN" type="eCH-0129:identDNType"/>
+			<xs:element name="completionDate" type="eCH-0131:completionDateType" minOccurs="0"/>
+			<xs:element name="isProjectMutation" type="eCH-0131:isProjectMutationType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="mutationIdentificationType">
+		<xs:sequence>
+			<xs:element name="mutationNumber" type="eCH-0131:mutationNumberType"/>
+			<xs:element name="identDN" type="eCH-0129:identDNType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="cadastralSurveyingMutationType">
+		<xs:sequence>
+			<xs:element name="mutationIdentification" type="eCH-0131:mutationIdentificationType"/>
+			<xs:element name="surveyorRemark" type="eCH-0131:surveyorRemarkType" minOccurs="0"/>
+			<xs:element name="municipalityId" type="eCH-0007:municipalityIdType"/>
+			<xs:element name="completionDate" type="eCH-0131:completionDateType" minOccurs="0"/>
+			<xs:element name="isProjectMutation" type="eCH-0131:isProjectMutationType" minOccurs="0"/>
+			<xs:element name="mutationRemark" type="eCH-0131:mutationRemarkType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="cadastralSurveyingMutation" type="eCH-0131:cadastralSurveyingMutationType"/>
+	<xs:complexType name="accessType">
+		<xs:sequence>
+			<xs:element name="oldRealestate" type="eCH-0129:realestateIdentificationType"/>
+			<xs:element name="squareMeasure" type="eCH-0129:squareMeasureType"/>
+			<xs:element name="identDN" type="eCH-0129:identDNType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="access" type="eCH-0131:accessType"/>
+	<xs:complexType name="perishingRealestateTyp">
+		<xs:sequence>
+			<xs:element name="perishingRealestate" type="eCH-0129:realestateIdentificationType"/>
+			<xs:element name="areaCorrection" type="eCH-0131:areaCorrectionType" minOccurs="0"/>
+			<xs:element name="identDN" type="eCH-0129:identDNType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="perishingRealestate" type="eCH-0131:perishingRealestateTyp"/>
+	<xs:complexType name="realestateInfoBaseType">
+		<xs:sequence>
+			<xs:element name="realestate" type="eCH-0129:realestateType"/>
+			<xs:element name="coveringAreaOfSDR" type="eCH-0129:coveringAreaOfSDRType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="area" type="eCH-0129:areaType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="areaCorrection" type="eCH-0131:areaCorrectionType" minOccurs="0" maxOccurs="3"/>
+			<xs:element name="placeName" type="eCH-0129:placeNameType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="cadastralSurveyorRemark" type="eCH-0129:cadastralSurveyorRemarkType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="cadastralMap" type="eCH-0129:cadastralMapType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="cadastralSurveyingMutation" type="eCH-0131:cadastralSurveyingMutationType" minOccurs="0"/>
+			<xs:element name="buildingInfo" type="eCH-0131:buildingInfoType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="municipality" type="eCH-0007:swissMunicipalityType"/>
+			<xs:element name="access" type="eCH-0131:accessType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="realestateInfoBaseDeliveryType">
+		<xs:complexContent>
+			<xs:restriction base="eCH-0131:realestateInfoBaseType">
+				<xs:sequence>
+					<xs:element name="realestate" type="eCH-0129:realestateType"/>
+					<xs:element name="coveringAreaOfSDR" type="eCH-0129:coveringAreaOfSDRType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="area" type="eCH-0129:areaType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="areaCorrection" type="eCH-0131:areaCorrectionType" minOccurs="0" maxOccurs="3"/>
+					<xs:element name="placeName" type="eCH-0129:placeNameType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="cadastralSurveyorRemark" type="eCH-0129:cadastralSurveyorRemarkType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="cadastralMap" type="eCH-0129:cadastralMapType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="buildingInfo" type="eCH-0131:buildingInfoType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="municipality" type="eCH-0007:swissMunicipalityType"/>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="realestateInfoMutType">
+		<xs:complexContent>
+			<xs:extension base="eCH-0131:realestateInfoBaseType"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="realestateInfoSDRType">
+		<xs:complexContent>
+			<xs:restriction base="eCH-0131:realestateInfoBaseType">
+				<xs:sequence>
+					<xs:element name="realestate" type="eCH-0129:realestateType"/>
+					<xs:element name="coveringAreaOfSDR" type="eCH-0129:coveringAreaOfSDRType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="area" type="eCH-0129:areaType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="areaCorrection" type="eCH-0131:areaCorrectionType" minOccurs="0" maxOccurs="3"/>
+					<xs:element name="placeName" type="eCH-0129:placeNameType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="cadastralSurveyorRemark" type="eCH-0129:cadastralSurveyorRemarkType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="cadastralMap" type="eCH-0129:cadastralMapType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="cadastralSurveyingMutation" type="eCH-0131:cadastralSurveyingMutationType" minOccurs="0"/>
+					<xs:element name="municipality" type="eCH-0007:swissMunicipalityType"/>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="realestateInfoWithoutAreaType">
+		<xs:complexContent>
+			<xs:restriction base="eCH-0131:realestateInfoBaseType">
+				<xs:sequence>
+					<xs:element name="realestate" type="eCH-0129:realestateType"/>
+					<xs:element name="coveringAreaOfSDR" type="eCH-0129:coveringAreaOfSDRType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="area" type="eCH-0129:areaType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="placeName" type="eCH-0129:placeNameType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="cadastralSurveyorRemark" type="eCH-0129:cadastralSurveyorRemarkType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="cadastralMap" type="eCH-0129:cadastralMapType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="cadastralSurveyingMutation" type="eCH-0131:cadastralSurveyingMutationType" minOccurs="0"/>
+					<xs:element name="buildingInfo" type="eCH-0131:buildingInfoType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="municipality" type="eCH-0007:swissMunicipalityType"/>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="realestateInfoType">
+		<xs:complexContent>
+			<xs:restriction base="eCH-0131:realestateInfoBaseType">
+				<xs:sequence>
+					<xs:element name="realestate" type="eCH-0129:realestateType"/>
+					<xs:element name="coveringAreaOfSDR" type="eCH-0129:coveringAreaOfSDRType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="area" type="eCH-0129:areaType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="areaCorrection" type="eCH-0131:areaCorrectionType" minOccurs="0" maxOccurs="3"/>
+					<xs:element name="placeName" type="eCH-0129:placeNameType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="cadastralSurveyorRemark" type="eCH-0129:cadastralSurveyorRemarkType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="cadastralMap" type="eCH-0129:cadastralMapType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="cadastralSurveyingMutation" type="eCH-0131:cadastralSurveyingMutationType" minOccurs="0"/>
+					<xs:element name="buildingInfo" type="eCH-0131:buildingInfoType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="municipality" type="eCH-0007:swissMunicipalityType"/>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="buildingInfoType">
+		<xs:sequence>
+			<xs:element name="building" type="eCH-0131:buildingAVType"/>
+			<xs:element name="buildingEntranceInfo" type="eCH-0131:buildingEntranceInfoType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="municipality" type="eCH-0007:swissMunicipalityType"/>
+			<xs:element name="partialAreaOfBuilding" type="eCH-0129:partialAreaOfBuildingType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="insuranceObject" type="eCH-0129:insuranceObjectType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="buildingEntranceInfoType">
+		<xs:sequence>
+			<xs:element name="buildingEntrance" type="eCH-0129:buildingEntranceOnlyType"/>
+			<xs:element name="locality" type="eCH-0129:localityType"/>
+			<xs:element name="street" type="eCH-0129:streetType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="inventoryChangeRealestateAreaUnchangedType">
+		<xs:sequence>
+			<xs:element name="globalMutationIdentification" type="eCH-0131:globalMutationIdentificationType" minOccurs="0"/>
+			<xs:element name="realestateInfo" type="eCH-0131:realestateInfoWithoutAreaType" maxOccurs="unbounded"/>
+			<xs:element name="namedMetaData" type="eCH-0129:namedMetaDataType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="inventoryChangeRealestateAreaChangedType">
+		<xs:sequence>
+			<xs:element name="globalMutationIdentification" type="eCH-0131:globalMutationIdentificationType" minOccurs="0"/>
+			<xs:element name="realestateInfo" type="eCH-0131:realestateInfoType" maxOccurs="unbounded"/>
+			<xs:element name="namedMetaData" type="eCH-0129:namedMetaDataType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="changeOfBoundaryType">
+		<xs:sequence>
+			<xs:element name="realestateInfo" type="eCH-0131:realestateInfoMutType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="perishingRealestate" type="eCH-0131:perishingRealestateTyp" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="namedMetaData" type="eCH-0129:namedMetaDataType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="correctionType">
+		<xs:sequence>
+			<xs:element name="realestateInfo" type="eCH-0131:realestateInfoMutType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="perishingRealestate" type="eCH-0131:perishingRealestateTyp" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="namedMetaData" type="eCH-0129:namedMetaDataType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="newRealestateType">
+		<xs:sequence>
+			<xs:element name="globalMutationIdentification" type="eCH-0131:globalMutationIdentificationType" minOccurs="0"/>
+			<xs:element name="realestateInfo" type="eCH-0131:realestateInfoType" maxOccurs="unbounded"/>
+			<xs:element name="perishingRealestate" type="eCH-0131:perishingRealestateTyp" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="namedMetaData" type="eCH-0129:namedMetaDataType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="annullationType">
+		<xs:sequence>
+			<xs:element name="cadastralSurveyingMutation" type="eCH-0131:cadastralSurveyingMutationType"/>
+			<xs:element name="namedMetaData" type="eCH-0129:namedMetaDataType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="baseDeliveryType">
+		<xs:sequence>
+			<xs:element name="realestateInfo" type="eCH-0131:realestateInfoBaseDeliveryType" maxOccurs="unbounded"/>
+			<xs:element name="namedMetaData" type="eCH-0129:namedMetaDataType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="realestateDescriptionType">
+		<xs:sequence>
+			<xs:element name="globalMutationIdentification" type="eCH-0131:globalMutationIdentificationType" minOccurs="0"/>
+			<xs:element name="realestateInfo" type="eCH-0131:realestateInfoBaseDeliveryType" maxOccurs="unbounded"/>
+			<xs:element name="namedMetaData" type="eCH-0129:namedMetaDataType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="vectorDataOnlyType">
+		<xs:sequence>
+			<xs:element name="dateOfPreparation" type="xs:date"/>
+			<xs:element name="namedMetaData" type="eCH-0129:namedMetaDataType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="delivery">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="deliveryHeader" type="eCH-0058:headerType"/>
+				<xs:choice>
+					<xs:element name="inventoryChangeRealestateAreaUnchanged" type="eCH-0131:inventoryChangeRealestateAreaUnchangedType"/>
+					<xs:element name="inventoryChangeRealestateAreaChanged" type="eCH-0131:inventoryChangeRealestateAreaChangedType"/>
+					<xs:element name="changeOfBoundary" type="eCH-0131:changeOfBoundaryType"/>
+					<xs:element name="correction" type="eCH-0131:correctionType"/>
+					<xs:element name="newRealestate" type="eCH-0131:newRealestateType"/>
+					<xs:element name="annullation" type="eCH-0131:annullationType"/>
+					<xs:element name="baseDelivery" type="eCH-0131:baseDeliveryType"/>
+					<xs:element name="realestateDescription" type="eCH-0131:realestateDescriptionType"/>
+					<xs:element name="vectorDataOnly" type="eCH-0131:vectorDataOnlyType"/>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

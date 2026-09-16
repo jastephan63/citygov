@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+  xmlns:eCH-0011="http://www.ech.ch/xmlns/eCH-0011/8"
+  xmlns:eCH-0044="http://www.ech.ch/xmlns/eCH-0044/4"
+  xmlns:eCH-0058="http://www.ech.ch/xmlns/eCH-0058/5"
+  xmlns:eCH-0084="http://www.ech.ch/xmlns/eCH-0084/2"
+  xmlns:eCH-0085="http://www.ech.ch/xmlns/eCH-0085/2"
+  targetNamespace="http://www.ech.ch/xmlns/eCH-0085/2"
+  elementFormDefault="qualified"
+  attributeFormDefault="unqualified"
+  version="2.0">
+	<xs:annotation>
+		<xs:documentation xml:lang="en">UPI Query, last modification timestamp 2021-07-12</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0011/8" schemaLocation="http://www.ech.ch/xmlns/eCH-0011/8/eCH-0011-8-1.xsd"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0044/4" schemaLocation="http://www.ech.ch/xmlns/eCH-0044/4/eCH-0044-4-1.xsd"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0058/5" schemaLocation="http://www.ech.ch/xmlns/eCH-0058/5/eCH-0058-5-0.xsd"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0084/2" schemaLocation="http://www.ech.ch/xmlns/eCH-0084/2/eCH-0084-2-0.xsd"/>
+	<xs:simpleType name="algorithmType">
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="desiredResponseTypeType">
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="subrequestIdType">
+		<xs:restriction base="xs:unsignedInt">
+			<xs:maxInclusive value="100000000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="noticeType">
+		<xs:sequence>
+			<xs:element name="code" type="eCH-0084:codeType"/>
+			<xs:sequence minOccurs="0">
+				<xs:element name="descriptionLanguage" type="eCH-0011:languageType"/>
+				<xs:element name="codeDescription" type="eCH-0084:codeDescriptionType"/>
+			</xs:sequence>
+			<xs:element name="comment" type="eCH-0084:commentType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="request">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="header" type="eCH-0058:headerType"/>
+				<xs:element name="content">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="responseLanguage" type="eCH-0011:languageType"/>
+							<xs:choice>
+								<xs:element name="getInfoPersonRequest" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="getInfoPersonRequestId" type="eCH-0085:subrequestIdType"/>
+											<xs:element name="desiredResponseType" type="eCH-0085:desiredResponseTypeType"/>
+											<xs:element name="pid" type="eCH-0084:personIdentificationChoiceType"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="searchPersonRequest" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="searchPersonRequestId" type="eCH-0085:subrequestIdType"/>
+											<xs:element name="algorithm" type="eCH-0085:algorithmType" minOccurs="0"/>
+											<xs:element name="searchedPerson" type="eCH-0084:personToUPIType"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="getCancelledAndInactiveVnRequest">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="timeInterval">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="since" type="xs:date"/>
+														<xs:element name="until" type="xs:date"/>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:choice>
+						</xs:sequence>
+					</xs:complexType>
+					<xs:key name="getInfoPersonRequestKey">
+						<xs:selector xpath="eCH-0085:getInfoPersonRequest"/>
+						<xs:field xpath="eCH-0085:getInfoPersonRequestId"/>
+					</xs:key>
+					<xs:key name="searchPersonRequestKey">
+						<xs:selector xpath="eCH-0085:searchPersonRequest"/>
+						<xs:field xpath="eCH-0085:searchPersonRequestId"/>
+					</xs:key>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="minorVersion" type="xs:integer" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="response">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="header" type="eCH-0058:headerType"/>
+				<xs:choice>
+					<xs:element name="positiveResponse">
+						<xs:complexType>
+							<xs:choice>
+								<xs:element name="getInfoPersonResponse" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="getInfoPersonRequestId" type="eCH-0085:subrequestIdType"/>
+											<xs:element name="timestamp" type="xs:dateTime"/>
+											<xs:element name="echoPid" type="eCH-0084:personIdentificationChoiceType"/>
+											<xs:choice>
+												<xs:sequence>
+													<xs:element name="notice" type="eCH-0085:noticeType" minOccurs="0" maxOccurs="unbounded"/>
+													<xs:element name="activeVn" type="eCH-0044:vnType"/>
+													<xs:element name="personFromUPI" type="eCH-0084:personFromUPIType" minOccurs="0"/>
+													<xs:choice minOccurs="0">
+														<xs:element name="sedexIdSource" type="eCH-0058:participantIdType" maxOccurs="unbounded"/>
+														<xs:element name="sedexIdSourceDefined" type="xs:boolean"/>
+													</xs:choice>
+												</xs:sequence>
+												<xs:element name="negativReportOnGetInfoPerson" type="eCH-0084:negativeReportType"/>
+											</xs:choice>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="searchPersonResponse" maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="searchPersonRequestId" type="eCH-0085:subrequestIdType"/>
+											<xs:element name="timestamp" type="xs:dateTime"/>
+											<xs:choice>
+												<xs:sequence>
+													<xs:element name="notice" type="eCH-0085:noticeType" minOccurs="0" maxOccurs="unbounded"/>
+													<xs:element name="echoAlgorithm" type="eCH-0085:algorithmType" minOccurs="0"/>
+													<xs:choice>
+														<xs:element name="found">
+															<xs:complexType>
+																<xs:sequence>
+																	<xs:element name="vn" type="eCH-0044:vnType"/>
+																	<xs:element name="personFromUPI" type="eCH-0084:personFromUPIType"/>
+																</xs:sequence>
+															</xs:complexType>
+														</xs:element>
+														<xs:element name="maybeFound">
+															<xs:complexType>
+																<xs:sequence>
+																	<xs:element name="candidate" maxOccurs="unbounded">
+																		<xs:complexType>
+																			<xs:sequence>
+																				<xs:element name="vn" type="eCH-0044:vnType"/>
+																				<xs:element name="personFromUPI" type="eCH-0084:personFromUPIType"/>
+																				<xs:element name="historicalValuesPersonFromUPI" type="eCH-0084:personFromUPIType" minOccurs="0" maxOccurs="unbounded"/>
+																			</xs:sequence>
+																		</xs:complexType>
+																	</xs:element>
+																</xs:sequence>
+															</xs:complexType>
+														</xs:element>
+														<xs:element name="notFound">
+															<xs:simpleType>
+																<xs:restriction base="xs:boolean">
+																	<xs:pattern value="true"/>
+																</xs:restriction>
+															</xs:simpleType>
+														</xs:element>
+													</xs:choice>
+												</xs:sequence>
+												<xs:element name="negativReportOnSearchPerson" type="eCH-0084:negativeReportType"/>
+											</xs:choice>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="getCancelledAndInactiveVnResponse">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="timestamp" type="xs:dateTime"/>
+											<xs:element name="echoTimeInterval">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="since" type="xs:date"/>
+														<xs:element name="until" type="xs:date"/>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="warningLastUpdateTime" type="xs:dateTime" minOccurs="0"/>
+											<xs:element name="cancellationOfVn" minOccurs="0" maxOccurs="unbounded">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="cancellationTimestamp" type="xs:dateTime"/>
+														<xs:element name="cancelledVn" type="eCH-0044:vnType"/>
+														<xs:sequence minOccurs="0">
+															<xs:element name="activeVnCandidate" type="eCH-0044:vnType" minOccurs="2" maxOccurs="2"/>
+														</xs:sequence>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="inactivationOfVn" minOccurs="0" maxOccurs="unbounded">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="inactivationTimestamp" type="xs:dateTime"/>
+														<xs:element name="inactiveVn" type="eCH-0044:vnType"/>
+														<xs:element name="activeVn" type="eCH-0044:vnType"/>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:choice>
+						</xs:complexType>
+						<xs:key name="getInfoPersonResponseKey">
+							<xs:selector xpath="eCH-0085:getInfoPersonResponse"/>
+							<xs:field xpath="eCH-0085:getInfoPersonRequestId"/>
+						</xs:key>
+						<xs:key name="searchPersonResponseKey">
+							<xs:selector xpath="eCH-0085:searchPersonResponse"/>
+							<xs:field xpath="eCH-0085:searchPersonRequestId"/>
+						</xs:key>
+					</xs:element>
+					<xs:element name="negativeReport" type="eCH-0084:negativeReportType"/>
+				</xs:choice>
+			</xs:sequence>
+			<xs:attribute name="minorVersion" type="xs:integer" use="required"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

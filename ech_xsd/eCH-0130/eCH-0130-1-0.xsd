@@ -1,0 +1,918 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Mit XMLSpy v2012 sp1 (http://www.altova.com) von Martin Stingelin (Stingelin Informatik GmbH) bearbeitet -->
+<!-- edited with XMLSpy v2012 rel. 2 sp1 (http://www.altova.com) by Martin Stingelin (Stingelin Informatik GmbH) -->
+<xs:schema xmlns:eCH-0130="http://www.ech.ch/xmlns/eCH-0130/1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:eCH-0129="http://www.ech.ch/xmlns/eCH-0129/2" xmlns:eCH-0007="http://www.ech.ch/xmlns/eCH-0007/5" xmlns:eCH-0058="http://www.ech.ch/xmlns/eCH-0058/4" targetNamespace="http://www.ech.ch/xmlns/eCH-0130/1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xs:annotation>
+		<xs:documentation>Ausgabedatum: 01.02.2013</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0129/2" schemaLocation="http://www.ech.ch/xmlns/eCH-0129/2/eCH-0129-2-0.xsd"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0058/4" schemaLocation="http://www.ech.ch/xmlns/eCH-0058/4/eCH-0058-4-0.xsd"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0007/5" schemaLocation="http://www.ech.ch/xmlns/eCH-0007/5/eCH-0007-5-0.xsd"/>
+	<xs:complexType name="buildingIdentificationType">
+		<xs:sequence>
+			<xs:element name="federalBuildingID" type="eCH-0129:federalBuildingIDType"/>
+			<xs:element name="localID" type="eCH-0129:namedIdType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="buildingOnlyType">
+		<xs:sequence>
+			<xs:element name="buildingIdentification" type="eCH-0129:buildingIdentificationType"/>
+			<xs:element name="localID" type="eCH-0129:namedIdType" maxOccurs="unbounded"/>
+			<xs:element name="federalBuildingID" type="eCH-0129:federalBuildingIDType" minOccurs="0"/>
+			<xs:element name="officialBuildingNo" type="eCH-0129:officialBuildingNoType" minOccurs="0"/>
+			<xs:element name="dateOfConstruction" type="eCH-0129:buildingDateType" minOccurs="0"/>
+			<xs:element name="dateOfRenovation" type="eCH-0129:buildingDateType" minOccurs="0"/>
+			<xs:element name="dateOfDemolition" type="eCH-0129:datePartiallyKnownType" minOccurs="0"/>
+			<xs:element name="numberOfFloors" type="eCH-0129:numberOfFloorsType" minOccurs="0"/>
+			<xs:element name="numberOfSeparateHabitableRooms" type="eCH-0129:numberOfSeparateHabitableRoomsType" minOccurs="0"/>
+			<xs:element name="heating" type="eCH-0129:heatingType" minOccurs="0"/>
+			<xs:element name="hotWater" type="eCH-0129:hotWaterType" minOccurs="0"/>
+			<xs:element name="nameOfBuilding" type="eCH-0129:nameOfBuildingType" minOccurs="0"/>
+			<xs:element name="surfaceAreaOfBuilding" type="eCH-0129:surfaceAreaOfBuildingType" minOccurs="0"/>
+			<xs:element name="subSurfaceAreaOfBuilding" type="eCH-0129:surfaceAreaOfBuildingType" minOccurs="0"/>
+			<xs:element name="buildingCategory" type="eCH-0129:buildingCategoryType" minOccurs="0"/>
+			<xs:element name="buildingClass" type="eCH-0129:buildingClassType" minOccurs="0"/>
+			<xs:element name="buildingStatus" type="eCH-0129:buildingStatusType"/>
+			<xs:element name="coordinates" type="eCH-0129:coordinatesType" minOccurs="0"/>
+			<xs:element name="realEstateDeputy" type="eCH-0129:personIdentificationType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="buildingFullType">
+		<xs:sequence>
+			<xs:element name="building" type="eCH-0130:buildingOnlyType"/>
+			<xs:element name="buildingEntranceInfo" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="buildingEntrance" type="eCH-0130:buildingEntranceOnlyType"/>
+						<xs:element name="dwelling" type="eCH-0129:dwellingType" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="localisationSectionInfo">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="localisationSection" type="eCH-0129:localisationSectionType"/>
+									<xs:element name="locality" type="eCH-0129:localityType"/>
+									<xs:element name="localisationInfo">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="localisation" type="eCH-0129:localisationType"/>
+												<xs:element name="municipality" type="eCH-0007:swissMunicipalityType"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="insuranceObject" type="eCH-0129:insuranceObjectType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="realestateInfo" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="realestate" type="eCH-0129:realestateType"/>
+						<xs:element name="municipality" type="eCH-0007:swissMunicipalityType" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="buildingEntranceIdentificationType">
+		<xs:sequence>
+			<xs:element name="federalBuildingID" type="eCH-0129:federalBuildingIDType"/>
+			<xs:element name="federalEntranceID" type="eCH-0129:federalEntranceIDType"/>
+			<xs:element name="localID" type="eCH-0129:namedIdType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="buildingEntranceOnlyType">
+		<xs:sequence>
+			<xs:element name="federalEntranceID" type="eCH-0129:federalEntranceIDType" minOccurs="0"/>
+			<xs:element name="localID" type="eCH-0129:namedIdType"/>
+			<xs:element name="buildingEntranceNo" type="eCH-0129:buildingEntranceNoType" minOccurs="0"/>
+			<xs:element name="entranceStatus" type="eCH-0129:entranceStatusType"/>
+			<xs:element name="coordinates" type="eCH-0129:coordinatesType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="constructionProjectIdentificationType">
+		<xs:sequence>
+			<xs:element name="federalConstructionProjectID" type="eCH-0129:federalConstructionProjectIDType"/>
+			<xs:element name="localID" type="eCH-0129:namedIdType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="dwellingIdentificationType">
+		<xs:sequence>
+			<xs:element name="federalBuildingID" type="eCH-0129:federalBuildingIDType"/>
+			<xs:element name="federalEntranceID" type="eCH-0129:federalEntranceIDType"/>
+			<xs:element name="federalDwellingID" type="eCH-0129:federalDwellingIDType"/>
+			<xs:element name="localID" type="eCH-0129:namedIdType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="registerConstructionProject">
+		<xs:sequence>
+			<xs:element name="announcementType">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="130.1.1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="constructionProjectInfo">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="constructionProjekt" type="eCH-0129:constructionProjectType"/>
+						<xs:element name="realestateInfo" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="realestate" type="eCH-0129:realestateType"/>
+									<xs:element name="municipality" type="eCH-0007:swissMunicipalityType" minOccurs="0"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="buildingInfo" type="eCH-0130:buildingFullType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="registerConstructionProjectReceipt">
+		<xs:sequence>
+			<xs:element name="announcementType">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="130.1.2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="constructionProjectIdentification" type="eCH-0130:constructionProjectIdentificationType"/>
+			<xs:element name="buildingIdentification" type="eCH-0130:buildingIdentificationType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="dwellingIdentification" type="eCH-0130:dwellingIdentificationType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="buildingEntranceIdentification" type="eCH-0130:buildingEntranceIdentificationType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="modifyConstructionProject">
+		<xs:sequence>
+			<xs:element name="announcementType">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="130.2.1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="constructionProjectInfo">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="constructionProjekt" type="eCH-0129:constructionProjectType"/>
+						<xs:element name="realestateInfo" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="realestate" type="eCH-0129:realestateType"/>
+									<xs:element name="municipality" type="eCH-0007:swissMunicipalityType" minOccurs="0"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="buildingInfo" type="eCH-0130:buildingFullType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="modifyConstructionProjectReceipt">
+		<xs:sequence>
+			<xs:element name="announcementType">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="130.2.2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="constructionProjectIdentification" type="eCH-0130:constructionProjectIdentificationType"/>
+			<xs:element name="buildingIdentification" type="eCH-0130:buildingIdentificationType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="dwellingIdentification" type="eCH-0130:dwellingIdentificationType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="buildingEntranceIdentification" type="eCH-0130:buildingEntranceIdentificationType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="constructionProjectApproval">
+		<xs:sequence>
+			<xs:element name="announcementType">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="130.3.1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="constructionProjectInfo">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="constructionProjekt" type="eCH-0129:constructionProjectType"/>
+						<xs:element name="realestateInfo" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="realestate" type="eCH-0129:realestateType"/>
+									<xs:element name="municipality" type="eCH-0007:swissMunicipalityType" minOccurs="0"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="buildingInfo" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="building" type="eCH-0130:buildingOnlyType"/>
+						<xs:element name="buildingEntranceInfo" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="buildingEntrance" type="eCH-0130:buildingEntranceOnlyType"/>
+									<xs:element name="dwelling" type="eCH-0129:dwellingType" minOccurs="0" maxOccurs="unbounded"/>
+									<xs:element name="localisationSectionInfo">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="localisationSection" type="eCH-0129:localisationSectionType"/>
+												<xs:element name="locality" type="eCH-0129:localityType"/>
+												<xs:element name="localisationInfo">
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="localisation" type="eCH-0129:localisationType"/>
+															<xs:element name="municipality" type="eCH-0007:swissMunicipalityType"/>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="insuranceObject" type="eCH-0129:insuranceObjectType" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="realestateInfo" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="realestate" type="eCH-0129:realestateType"/>
+									<xs:element name="municipality" type="eCH-0007:swissMunicipalityType" minOccurs="0"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="cancelConstructionProject">
+		<xs:sequence>
+			<xs:element name="announcementType">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="130.4.1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="constructionProjectInfo">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="constructionProjekt" type="eCH-0129:constructionProjectType"/>
+						<xs:element name="realestateInfo" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="realestate" type="eCH-0129:realestateType"/>
+									<xs:element name="municipality" type="eCH-0007:swissMunicipalityType" minOccurs="0"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="buildingBeforehand" type="eCH-0130:buildingFullType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="startConstructionProject">
+		<xs:sequence>
+			<xs:element name="announcementType">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="130.5.1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="constructionProjekt" type="eCH-0129:constructionProjectType"/>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="startConstructionBuilding">
+		<xs:sequence>
+			<xs:element name="announcementType">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="130.5.2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="constructionProjectIdentification" type="eCH-0130:constructionProjectIdentificationType"/>
+			<xs:element name="buildingInfo" type="eCH-0130:buildingFullType" maxOccurs="unbounded"/>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="completeBuilding">
+		<xs:sequence>
+			<xs:element name="announcementType">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="130.6.1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="constructionProjectIdentification" type="eCH-0130:constructionProjectIdentificationType"/>
+			<xs:element name="buildingInfo" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="building" type="eCH-0130:buildingOnlyType"/>
+						<xs:element name="buildingEntranceInfo" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="buildingEntrance" type="eCH-0130:buildingEntranceOnlyType"/>
+									<xs:element name="dwelling" type="eCH-0129:dwellingType" minOccurs="0" maxOccurs="unbounded"/>
+									<xs:element name="localisationSectionInfo">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="localisationSection" type="eCH-0129:localisationSectionType"/>
+												<xs:element name="locality" type="eCH-0129:localityType"/>
+												<xs:element name="localisationInfo">
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="localisation" type="eCH-0129:localisationType"/>
+															<xs:element name="municipality" type="eCH-0007:swissMunicipalityType"/>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="insuranceObject" type="eCH-0129:insuranceObjectType" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="realestateInfo" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="realestate" type="eCH-0129:realestateType"/>
+									<xs:element name="municipality" type="eCH-0007:swissMunicipalityType" minOccurs="0"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="completeConstructionProject">
+		<xs:sequence>
+			<xs:element name="announcementType">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="130.8.1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="constructionProjectInfo">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="constructionProjekt" type="eCH-0129:constructionProjectType"/>
+						<xs:element name="realestateInfo" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="realestate" type="eCH-0129:realestateType"/>
+									<xs:element name="municipality" type="eCH-0007:swissMunicipalityType" minOccurs="0"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="deleteConstructionProject">
+		<xs:sequence>
+			<xs:element name="announcementType">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="130.8.1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="constructionProjectIdentification" type="eCH-0130:constructionProjectIdentificationType"/>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="postponeConstructionProject">
+		<xs:sequence>
+			<xs:element name="announcementType">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="130.8.1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="constructionProjectIdentification" type="eCH-0130:constructionProjectIdentificationType"/>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="demolishBuilding">
+		<xs:sequence>
+			<xs:element name="announcementType">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="130.7.1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="buildingInfo" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="building" type="eCH-0130:buildingOnlyType"/>
+						<xs:element name="buildingEntranceInfo" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="buildingEntrance" type="eCH-0130:buildingEntranceOnlyType"/>
+									<xs:element name="localisationSectionInfo">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="localisationSection" type="eCH-0129:localisationSectionType"/>
+												<xs:element name="locality" type="eCH-0129:localityType"/>
+												<xs:element name="localisationInfo">
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="localisation" type="eCH-0129:localisationType"/>
+															<xs:element name="municipality" type="eCH-0007:swissMunicipalityType"/>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="insuranceObject" type="eCH-0129:insuranceObjectType" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="realestateInfo" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="realestate" type="eCH-0129:realestateType"/>
+									<xs:element name="municipality" type="eCH-0007:swissMunicipalityType" minOccurs="0"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="cancelBuilding">
+		<xs:sequence>
+			<xs:element name="announcementType">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="130.7.2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="constructionProjectIdentification" type="eCH-0130:constructionProjectIdentificationType"/>
+			<xs:element name="buildingIdentification" type="eCH-0130:buildingIdentificationType" maxOccurs="unbounded"/>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="addLocalisation">
+		<xs:sequence>
+			<xs:element name="announcementType">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="130.9.1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="localisation" type="eCH-0129:localisationType"/>
+			<xs:element name="municipality" type="eCH-0007:swissMunicipalityType"/>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="addLocalisationReceipt">
+		<xs:sequence>
+			<xs:element name="announcementType">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="130.9.2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="localisation" type="eCH-0129:localisationType"/>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="modifyLocalisation">
+		<xs:sequence>
+			<xs:element name="announcementType">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="130.9.3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="localisationInfo">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="localisation" type="eCH-0129:localisationType"/>
+						<xs:element name="municipality" type="eCH-0007:swissMunicipalityType"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="localisationSectionInfo" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="localisationSection" type="eCH-0129:localisationSectionType"/>
+						<xs:element name="locality" type="eCH-0129:localityType"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="addLocalisationSection">
+		<xs:sequence>
+			<xs:element name="announcementType">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="130.10.1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="localisationSection" type="eCH-0129:localisationSectionType" maxOccurs="unbounded"/>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="deleteLocalisationSection">
+		<xs:sequence>
+			<xs:element name="announcementType">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="130.10.2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="localisationSection" type="eCH-0129:localisationSectionType"/>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="modifyBuildingAddress">
+		<xs:sequence>
+			<xs:element name="announcementType">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="130.11.1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="buildingInfo" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="buildingIdentification" type="eCH-0129:buildingIdentificationType"/>
+						<xs:element name="buildingEntranceInfo" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="buildingEntrance" type="eCH-0130:buildingEntranceOnlyType"/>
+									<xs:element name="localisationSectionInfo">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="localisationSection" type="eCH-0129:localisationSectionType"/>
+												<xs:element name="locality" type="eCH-0129:localityType"/>
+												<xs:element name="localisationInfo">
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="localisation" type="eCH-0129:localisationType"/>
+															<xs:element name="municipality" type="eCH-0007:swissMunicipalityType"/>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="insuranceObject" type="eCH-0129:insuranceObjectType" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="realestateInfo" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="realestate" type="eCH-0129:realestateType"/>
+									<xs:element name="municipality" type="eCH-0007:swissMunicipalityType"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="addBuilding">
+		<xs:sequence>
+			<xs:element name="announcementType">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="130.12.1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="buildingInfo">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="building" type="eCH-0130:buildingOnlyType"/>
+						<xs:element name="buildingEntranceInfo" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="buildingEntrance" type="eCH-0130:buildingEntranceOnlyType"/>
+									<xs:element name="dwellingInfo" minOccurs="0" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="dwelling" type="eCH-0129:dwellingType"/>
+												<xs:element name="realestate" type="eCH-0129:realestateType" minOccurs="0"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="localisationSectionInfo">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="localisationSection" type="eCH-0129:localisationSectionType"/>
+												<xs:element name="locality" type="eCH-0129:localityType"/>
+												<xs:element name="localisationInfo">
+													<xs:complexType>
+														<xs:sequence>
+															<xs:element name="localisation" type="eCH-0129:localisationType"/>
+															<xs:element name="municipality" type="eCH-0007:swissMunicipalityType"/>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="realestateInfo" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="realestate" type="eCH-0129:realestateType"/>
+									<xs:element name="municipality" type="eCH-0007:swissMunicipalityType" minOccurs="0"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="insuranceObject" type="eCH-0129:insuranceObjectType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="buildingReceipt">
+		<xs:sequence>
+			<xs:element name="announcementType">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="130.12.2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="buildingIdentification" type="eCH-0130:buildingIdentificationType"/>
+			<xs:element name="dwellingIdentification" type="eCH-0130:dwellingIdentificationType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="buildingEntranceIdentification" type="eCH-0130:buildingEntranceIdentificationType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="modifyBuilding">
+		<xs:sequence>
+			<xs:element name="announcementType">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="130.12.3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="building" type="eCH-0130:buildingOnlyType"/>
+			<xs:element name="realestateInfo" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="realestate" type="eCH-0129:realestateType"/>
+						<xs:element name="municipality" type="eCH-0007:swissMunicipalityType" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="insuranceObject" type="eCH-0129:insuranceObjectType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="deleteBuilding">
+		<xs:sequence>
+			<xs:element name="announcementType">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="130.12.4"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="buildingIdentification" type="eCH-0130:buildingIdentificationType"/>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="addDwelling">
+		<xs:sequence>
+			<xs:element name="announcementType">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="130.12.5"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="dwellingInfo">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="dwelling" type="eCH-0129:dwellingType"/>
+						<xs:element name="buildingEntranceIdentification" type="eCH-0130:buildingEntranceIdentificationType"/>
+						<xs:element name="realestate" type="eCH-0129:realestateType" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="dwellingReceipt">
+		<xs:sequence>
+			<xs:element name="announcementType">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="130.12.6"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="dwellingIdentification" type="eCH-0130:dwellingIdentificationType" maxOccurs="unbounded"/>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="modifyDwelling">
+		<xs:sequence>
+			<xs:element name="announcementType">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="130.12.7"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="dwellingInfo">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="dwelling" type="eCH-0129:dwellingType"/>
+						<xs:element name="buildingEntranceIdentification" type="eCH-0130:buildingEntranceIdentificationType"/>
+						<xs:element name="realestate" type="eCH-0129:realestateType" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="deleteDwelling">
+		<xs:sequence>
+			<xs:element name="announcementType">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="130.12.4"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="dwellingIdentification" type="eCH-0130:dwellingIdentificationType"/>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="addBuildingEntrance">
+		<xs:sequence>
+			<xs:element name="announcementType">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="130.12.9"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="buildingEntranceInfo">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="buildingEntrance" type="eCH-0130:buildingEntranceOnlyType"/>
+						<xs:element name="localisationSectionInfo">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="localisationSection" type="eCH-0129:localisationSectionType"/>
+									<xs:element name="locality" type="eCH-0129:localityType"/>
+									<xs:element name="localisationInfo">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="localisation" type="eCH-0129:localisationType"/>
+												<xs:element name="municipality" type="eCH-0007:swissMunicipalityType"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="buildingIdentification" type="eCH-0130:buildingIdentificationType"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="buildingEntranceReceipt">
+		<xs:sequence>
+			<xs:element name="announcementType">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="130.12.10"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="buildingEntranceIdentification" type="eCH-0130:buildingEntranceIdentificationType"/>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="modifyBuildingEntrance">
+		<xs:sequence>
+			<xs:element name="announcementType">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="130.12.11"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="buildingEntranceInfo">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="buildingEntrance" type="eCH-0130:buildingEntranceOnlyType"/>
+						<xs:element name="buildingIdentification" type="eCH-0130:buildingIdentificationType"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="deleteBuildingEntrance">
+		<xs:sequence>
+			<xs:element name="announcementType">
+				<xs:simpleType>
+					<xs:restriction base="xs:token">
+						<xs:enumeration value="130.12.12"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="buildingEntranceIdentification" type="eCH-0130:buildingEntranceIdentificationType"/>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="delivery">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="deliveryHeader" type="eCH-0058:headerType"/>
+				<xs:choice>
+					<xs:element name="registerConstructionProject" type="eCH-0130:registerConstructionProject"/>
+					<xs:element name="registerConstructionProjectReceipt" type="eCH-0130:registerConstructionProjectReceipt"/>
+					<xs:element name="modifyConstructionProject" type="eCH-0130:modifyConstructionProject"/>
+					<xs:element name="modifyConstructionProjectReceipt" type="eCH-0130:modifyConstructionProjectReceipt"/>
+					<xs:element name="constructionProjectApproval" type="eCH-0130:constructionProjectApproval"/>
+					<xs:element name="cancelConstructionProject" type="eCH-0130:cancelConstructionProject"/>
+					<xs:element name="startConstructionProject" type="eCH-0130:startConstructionProject"/>
+					<xs:element name="startConstructionBuilding" type="eCH-0130:startConstructionBuilding"/>
+					<xs:element name="completeBuilding" type="eCH-0130:completeBuilding"/>
+					<xs:element name="completeConstructionProject" type="eCH-0130:completeConstructionProject"/>
+					<xs:element name="demolishBuilding" type="eCH-0130:demolishBuilding"/>
+					<xs:element name="addLocalisation" type="eCH-0130:addLocalisation"/>
+					<xs:element name="addLocalisationReceipt" type="eCH-0130:addLocalisationReceipt"/>
+					<xs:element name="modifyLocalisation" type="eCH-0130:modifyLocalisation"/>
+					<xs:element name="addLocalisationSection" type="eCH-0130:addLocalisationSection"/>
+					<xs:element name="deleteLocalisationSection" type="eCH-0130:deleteLocalisationSection"/>
+					<xs:element name="modifyBuildingAddress" type="eCH-0130:modifyBuildingAddress"/>
+					<xs:element name="addBuilding" type="eCH-0130:addBuilding"/>
+					<xs:element name="buildingReceipt" type="eCH-0130:buildingReceipt"/>
+					<xs:element name="modifyBuilding" type="eCH-0130:modifyBuilding"/>
+					<xs:element name="deleteBuilding" type="eCH-0130:deleteBuilding"/>
+					<xs:element name="addDwelling" type="eCH-0130:addDwelling"/>
+					<xs:element name="dwellingReceipt" type="eCH-0130:dwellingReceipt"/>
+					<xs:element name="modifyDwelling" type="eCH-0130:modifyDwelling"/>
+					<xs:element name="deleteDwelling" type="eCH-0130:deleteDwelling"/>
+					<xs:element name="addBuildingEntrance" type="eCH-0130:addBuildingEntrance"/>
+					<xs:element name="buildingEntranceReceipt" type="eCH-0130:buildingEntranceReceipt"/>
+					<xs:element name="modifyBuildingEntrance" type="eCH-0130:modifyBuildingEntrance"/>
+					<xs:element name="deleteBuildingEntrance" type="eCH-0130:deleteBuildingEntrance"/>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

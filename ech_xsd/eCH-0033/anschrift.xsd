@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2005 rel. 3 U (http://www.altova.com) by Erik Wilde (swiss federal institute of technology) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:address="http://www.example.ch/xmlns/address/v1" targetNamespace="http://www.example.ch/xmlns/address/v1" elementFormDefault="qualified">
+	<xs:element name="address" type="address:addressType">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Eine Anschrift beschreibt den Namen einer Person und die Auffindbarkeit der Person durch  zusätzliche Information.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="nameType">
+		<xs:sequence>
+			<xs:element name="forename" minOccurs="0" maxOccurs="unbounded">				<xs:annotation>
+					<xs:documentation xml:lang="de">Eine Person kann keinen oder beliebig viele Vornamen haben. "Middle Names" werden ebenfalls als Vornamen erfasst.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="surname">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Eine Person hat genau einen Nachnamen.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="placeType">
+		<xs:sequence>
+			<xs:element name="city">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Der Name des Ortes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="zip">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Die PLZ des Ortes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="locationType">
+		<xs:sequence>
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Eine Adresse kann ein Postfach haben oder eine physische Adresse oder beides.</xs:documentation>
+			</xs:annotation>
+			<xs:element name="poBox" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Eine Anschrift kann durch ein Postfach ergänzt werden, das der Anschrift zugeordnet ist.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice minOccurs="0">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Eine physische Adresse ist entweder eine Adressbeschreibung mit Strassennamen und Hausnummer, oder eine andersartige Adresse.</xs:documentation>
+				</xs:annotation>
+				<xs:sequence>
+					<xs:element name="street">
+						<xs:annotation>
+							<xs:documentation xml:lang="de">Der Name der Strasse ohne die Hausnummer</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="number" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation xml:lang="de">Die Hausnummer der Adresse in der Strasse.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element name="locLine" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation xml:lang="de">Andersartige Adressen and Strasse/Hausnummer können durch eine Sequenz von Adress-Zeilen beschrieben werden.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="addressType">
+		<xs:sequence>
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Eine Anschrift besteht aus drei aufeinanderfolgenden Komponenten.</xs:documentation>
+			</xs:annotation>
+			<xs:element name="name" type="address:nameType">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Der Name einer Person wird in einem separaten Element zusammengefasst und weiter strukturiert.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="location" type="address:locationType">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Eine Adresse innerhalb einer Anschrift identifiziert die genauere Ortsinformation innerhalb des durch Stadt und PLZ definierten Ortes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="place" type="address:placeType">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Die Ortsinformation in einer Anschrift identifiziert den Ort mit seinem Namen und seiner PLZ.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -327,6 +327,14 @@ TEMPLATE = r"""<!DOCTYPE html>
   .stype{font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-soft);min-width:84px}
   .slink:hover{text-decoration:underline}
   mark.hl{background:#FFF1B8;color:inherit;padding:0 1px;border-radius:2px}
+  /* Rechtsmittel line under the Verfahrens-Ergebnis */
+  .hubout.rm{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:baseline}
+  .rmlbl{font-weight:600}
+  .hubout.rm details.qd summary{font-size:12px}
+  .rmcand{margin:2px 0 8px 14px}
+  .rmcand summary{font-size:12px;color:var(--ink-soft);cursor:pointer}
+  .rmc{margin:6px 0 0 8px}
+  .rmc blockquote.quote{margin:2px 0 0}
   /* Datenfluss diagram + Bürgersicht */
   .synth{background:#FBEAEA;border:1px solid #E8B4B4;color:#7A1F1F;border-radius:8px;padding:8px 12px;
     font-weight:600;font-size:13px;margin:0 0 10px}
@@ -771,7 +779,10 @@ function viewDataFields(forms){
                   :' — Standard ohne XSD: kein zitierbares XML-Element'))
               +(st?` · Status: ${esc(st)}${d.ech.reifegrad?', Reifegrad '+esc(d.ech.reifegrad):''}`:'');
             return `<a class="echb${e?'':(nx?' todo':' so')}" href="${esc(d.ech.url)}" target="_blank" rel="noreferrer" title="${tip}">${esc(d.ech.standard)}${e?` · ${esc(e)}`:(nx?' · Element offen':' · nur Standard')}</a>`
-              +(d.ech.datatype?`<span class="edt" title="Datentyp gemäss dem offiziellen ${esc(d.ech.standard)}-XSD — in diesem Typ ist das Datum zu speichern und auszutauschen">⟨${esc(d.ech.datatype)}⟩</span>`:'')
+              +(d.ech.datatype?(()=>{const cl=(DATA.ech_codelists||{})[d.ech.standard+'|'+d.ech.datatype];
+                  const ver=d.ech.xsd_version?` (XSD ${esc(d.ech.xsd_version)})`:'';
+                  const codes=cl?`\nOffizielle Codeliste (${cl.length} Werte): `+cl.slice(0,12).map(c=>c.value+(c.doc?' = '+c.doc:'')).join(' · ')+(cl.length>12?' …':''):'';
+                  return `<span class="edt${cl?' cl':''}" title="Datentyp gemäss dem offiziellen ${esc(d.ech.standard)}-XSD${ver} — in diesem Typ ist das Datum zu speichern und auszutauschen${esc(codes)}">⟨${esc(d.ech.datatype)}⟩${cl?'<i class="ti ti-list-numbers" style="font-size:10px;margin-left:2px"></i>':''}</span>`;})():'')
               +(d.register?`<span class="regc" title="Once-Only: dieses Datum (eCH-Element ${esc(e||'')}) führt das Einwohnerregister für Einwohnerinnen und Einwohner bereits — statt neu zu erheben: eigene Daten vorbefüllen, Daten Dritter abgleichen (Verhältnismässigkeit, Art. 4 Abs. 2 KDSG). Gilt nur für Daten natürlicher Personen; Betriebs-, Behörden- und Objektadressen tragen die Marke nicht.">↺ vorbefüllbar · Einwohnerregister</span>`:'')
               +(draft?`<span class="echdraft${(st==='Aufgehoben'||st==='Abgelöst')?' rep':(st==='Sistiert'?' susp':'')}" title="${
                   (st==='Aufgehoben'||st==='Abgelöst')?`Dieser eCH-Standard ist ${esc(st).toUpperCase()} — nicht mehr in Kraft, die Zuordnung muss ersetzt werden`
@@ -841,12 +852,40 @@ function serviceHead(s, forms){
       ${sp?`<a class="badge b-dvsh" style="text-decoration:none" href="https://shep.meetfrida.agency/de/services/${esc(sp.slug)}" target="_blank" rel="noreferrer" title="auf dem SHEP-Portal publiziert · Stand ${esc(sp.updated||'')}">SHEP publiziert ↗</a>`:(dv?'<span class="hubmeta">noch nicht auf SHEP publiziert</span>':'')}
       ${dv&&dv.vollzugsbehoerde?`<span class="hubmeta">Vollzug: ${esc(dv.vollzugsbehoerde)}</span>`:''}
       ${dv&&dv.gebuehren?`<span class="hubmeta">Gebühren: ${esc(String(dv.gebuehren).slice(0,60))}</span>`:''}
-      ${dst&&dst.kontakt?`<span class="hubmeta" title="verantwortliche Dienststelle laut DVSH">Kontakt: ${esc(dst.kontakt)}</span>`:''}
+      ${dst&&dst.kontakt?`<span class="hubmeta" title="verantwortliche Dienststelle laut DVSH">Kontakt: ${esc(((dstInfo[dst.name]||{}).kontakt||[dst.kontakt]).join(' · '))}</span>`:''}
+      <a class="srcbtn" style="margin-left:auto" href="dossiers/${esc((s.slug||s.name).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,80))}.html" target="_blank" rel="noreferrer" title="Ein- bis zweiseitiges Datenschutz-Dossier dieses Services zum Drucken oder als PDF — Daten, Grundlagen, Empfänger, Fristen, Rechtsmittel, offene Punkte (dossiers/-Ordner, aus derselben Databank erzeugt)">⎙ Dossier (Druck/PDF)</a>
     </div>
     ${out&&out.entscheid_art&&out.entscheid_art!=='unbekannt'?`<div class="hubout">Ergebnis des Verfahrens:
       <b>${esc(OUTCOME_DE[out.entscheid_art]||out.entscheid_art)}</b>${out.ergebnis_dokument?` — «${esc(out.ergebnis_dokument)}»`:''}
       <span class="muted small">(aus dem DVSH-Ablauftext abgeleitet)</span></div>`:''}
+    ${out?rechtsmittelLine(out):''}
   </div>`;
+}
+// Rechtsmittel: what a person can do against the decision - sektoral (the cited
+// law says it itself) or the VRG's general rule, always labelled which
+const RM_DE={einsprache:'Einsprache',rekurs:'Rekurs',beschwerde:'Beschwerde',verwaltungsgerichtsbeschwerde:'Verwaltungsgerichtsbeschwerde',verweis:'Rechtsmittel nach Verweis'};
+function rechtsmittelLine(out){
+  const r=out.rechtsmittel;
+  if(!r){
+    if(out.entscheid_art==='registereintrag') return `<div class="hubout rm"><span class="rmlbl">Rechtsmittel:</span> <span class="badge b-unver" title="Registerverfahren richten sich nach Bundesrecht (eigene Rechtsmittelordnung); die allgemeine VRG-Regel wird hier bewusst nicht unterstellt">noch nicht bestimmt — Registerverfahren nach Bundesrecht</span></div>`;
+    if(out.entscheid_art==='kein_entscheid') return `<div class="hubout rm"><span class="rmlbl">Rechtsmittel:</span> <span class="muted small">keines — das Verfahren endet ohne anfechtbare Verfügung (Meldung)</span></div>`;
+    return '';
+  }
+  const nr=r.sr_number?(r.jurisdiction_level==='federal'?'SR ':'SHR ')+r.sr_number:(r.cantonal_ref||'');
+  const law=(r.short_title||r.law_title||'')+(nr?' ('+nr+')':'');
+  const frist=r.frist_tage?`innert <b>${r.frist_tage} Tagen</b>${r.frist_article_no?' ('+esc(artLabel(r.frist_article_no))+')':''}`:'<span class="muted">Frist im Gesetz nicht beziffert</span>';
+  const tip=esc((r.quote||'')+(r.frist_quote?'\n\n'+r.frist_quote:'')+(r.hinweis?'\n\n'+r.hinweis:''));
+  const what=r.rechtsmittel_art==='verweis'?`Rechtsmittel nach ${esc(r.instanz||'dem verwiesenen Erlass')}`
+    :`<b>${esc(RM_DE[r.rechtsmittel_art]||r.rechtsmittel_art)}</b>${r.instanz?' an '+esc(r.instanz):''} ${frist}`;
+  const src=r.scope==='allgemein'
+    ?`<span class="badge b-unver" title="VRG Art. 1: die allgemeinen Verfahrensregeln gelten nur, soweit nicht abweichende Vorschriften in andern Gesetzen, Dekreten oder Verordnungen bestehen. Für dieses Formular ist im zitierten Fachgesetz keine eigene Rechtsmittelnorm hinterlegt — die allgemeine Regel ist die beste belegte Aussage, nicht die letzte.">allgemeine Regel des VRG — Spezialgesetz vorbehalten</span>`
+    :`<span class="badge b-sourced" title="Rechtsmittelnorm aus dem Fachgesetz, das die Datenfelder dieses Formulars zitieren${r.gilt_fuer?' — gilt für: '+esc(r.gilt_fuer):''}">sektoral: ${esc(r.short_title||r.law_title||'')}</span>`;
+  const cands=(out.rechtsmittel_kandidaten||[]).filter(k=>!(r.scope==='sektoral'&&k.id===out.rechtsmittel_regel_id));
+  const candList=cands.length?`<details class="qd rmcand"><summary>${cands.length} weitere Rechtsmittelnorm${cands.length===1?'':'en'} in den zitierten Gesetzen${r.scope==='allgemein'?' — zu prüfen, ob eine davon vorgeht':''}</summary>
+      ${cands.map(k=>`<div class="small rmc"><b>${esc(RM_DE[k.rechtsmittel_art]||k.rechtsmittel_art)}</b>${k.instanz?' an '+esc(k.instanz):''}${k.frist_tage?' · '+k.frist_tage+' Tage':''} — ${esc(artLabel(k.article_no))} ${esc(k.short_title||k.law_title||'')}${k.gilt_fuer?' · gilt für: '+esc(k.gilt_fuer):''}${k.hinweis?' <span class="muted">('+esc(k.hinweis)+')</span>':''}<blockquote class="quote">«${esc(k.quote||'')}»</blockquote></div>`).join('')}</details>`:'';
+  return `<div class="hubout rm"><span class="rmlbl">Rechtsmittel:</span> ${what}
+    <details class="qd" style="display:inline-block;margin-left:6px"><summary title="${tip}">${esc(artLabel(r.article_no))} ${esc(law)} · Zitat</summary><blockquote class="quote">«${esc(r.quote||'')}»${r.frist_quote?`<br>«${esc(r.frist_quote)}»`:''}</blockquote></details>
+    ${src}${out.rechtsmittel_verdikt?`<span class="badge b-match" title="${esc(out.rechtsmittel_verdikt)}">Zuordnung geprüft</span>`:''}</div>${candList}`;
 }
 // FORM-level facts strip: channel, signature, Ampel, Bürgerlast, currency
 function formFacts(fm){
@@ -1456,6 +1495,23 @@ function viewKatalog(){
     <table class="ft"><thead><tr><th>eCH-Element</th><th>Varianten</th></tr></thead><tbody>
     ${fmtDiv.slice(0,15).map(([e,x])=>`<tr><td class="mono small">${esc(e)}</td><td>${x.fmts.size}</td></tr>`).join('')}
     </tbody></table></div>`;
+  // code-list check: the swept XSDs define enumerations (sex 1/2/3, maritalStatus 1..9 ...);
+  // a form that offers its own value list must be mapped onto those codes at exchange time
+  const CL=DATA.ech_codelists||{}; const clRows=[]; const clSeen={};
+  DATA.forms.forEach(f=>(f.data_fields||[]).forEach(d=>{
+    if(!(d.ech&&d.ech.element&&d.ech.datatype)) return;
+    const cl=CL[d.ech.standard+'|'+d.ech.datatype]; if(!cl) return;
+    const vals=(d.allowed_values||[]).map(String); if(!vals.length) return;
+    const codes=new Set(cl.map(c=>c.value)), docs=new Set(cl.map(c=>(c.doc||'').toLowerCase()).filter(Boolean));
+    const asCode=vals.filter(v=>codes.has(v)).length, asDoc=vals.filter(v=>docs.has(v.toLowerCase())).length;
+    const key=d.ech.standard+'·'+d.ech.element; const x=clSeen[key]=clSeen[key]||{el:key,dt:d.ech.datatype,n:0,codeOk:0,text:0,forms:new Set(),sample:vals.slice(0,4),cl};
+    x.n++; x.forms.add(f); if(asCode===vals.length) x.codeOk++; else x.text++;}));
+  const clList=Object.values(clSeen).sort((a,b)=>b.n-a.n);
+  h+=`<div class="card"><div class="dvsub">Codelisten-Abgleich — Wertelisten der Formulare gegen die offiziellen Codes aus den eCH-XSDs (${clList.length} Elemente mit Codeliste; XSD-Sweep ${(()=>{const v=DATA.forms.flatMap(f=>(f.data_fields||[]).map(d=>d.ech&&d.ech.xsd_version)).find(Boolean);return v?'versioniert':'';})()})</div>
+    <div class="small muted" style="margin-bottom:6px">«Klartext» heisst: das Formular lässt z. B. «ledig / verheiratet» ankreuzen, der Standard tauscht den Code (1, 2, …) aus — beim Export ist die Wertliste auf die Codes abzubilden; das ist keine Rechtsfrage, aber eine Exchange-Voraussetzung.</div>
+    <table class="ft"><thead><tr><th>eCH-Element</th><th>Typ</th><th>offizielle Codes</th><th>Felder</th><th>Codes verwendet</th><th>Klartext</th><th>Beispielwerte</th></tr></thead><tbody>
+    ${clList.slice(0,20).map(x=>`<tr><td class="mono small">${esc(x.el)}</td><td class="mono small">${esc(x.dt)}</td><td class="small" title="${esc(x.cl.slice(0,20).map(c=>c.value+(c.doc?' = '+c.doc:'')).join('\n'))}">${x.cl.length}</td><td>${x.n}</td><td>${x.codeOk}</td><td>${x.text?`<span class="badge b-unver">${x.text}</span>`:'—'}</td><td class="small muted">${esc(x.sample.join(' · '))}</td></tr>`).join('')}
+    </tbody></table>${clList.length?'':'<div class="small muted">Keine Felder mit Werteliste auf einem Element mit Codeliste.</div>'}</div>`;
   // the catalogue itself, most-collected first
   h+=`<div class="card"><table class="ft"><thead><tr><th>Datum</th><th>Standard-Element</th>
     <th>Formulare</th><th>Erhebungen</th><th>Register</th><th>⛨</th></tr></thead><tbody>`;
@@ -1528,6 +1584,8 @@ const TODO_CATS=[
    'Ein anderes Formular verlangt einen sehr ähnlichen Feldsatz. Ob die beiden zusammengelegt werden sollen, ist nicht beurteilt.'],
   ['felder','Datenfeld-Schicht fehlt','b-unver','recherche',
    'Für dieses Formular sind noch keine Datenfelder modelliert — alle anderen Prüfungen sind blind.'],
+  ['rechtsmittel','Rechtsmittel nicht bestimmt','b-unver','recherche',
+   'Das Verfahren endet mit einem anfechtbaren Entscheid, aber weder eine Spezialnorm noch die allgemeine VRG-Regel konnte belegt zugeordnet werden (z. B. Registerverfahren nach Bundesrecht).'],
 ];
 const TODO_ART={recherche:'Recherche (Databank)',entscheid:'Entscheid (Kanton)',bereinigung:'Bereinigung (Fachstelle)'};
 const TODO_BY=Object.fromEntries(TODO_CATS.map(c=>[c[0],c]));
@@ -1550,6 +1608,8 @@ function todoItems(f){
   if(alt.length) it.push({cat:'echalt',n:alt.length,detail:alt.join(' · ')});
   if(f.check&&CHECK_DE[f.check.status]) it.push({cat:'veraltet',n:1,detail:CHECK_DE[f.check.status]+(f.check.note?' — '+f.check.note:'')});
   const du=(f.similar||[]).filter(s=>!s.verdict); if(du.length) it.push({cat:'dup',n:du.length,detail:du.map(s=>`${s.titel} (${Math.round(s.jaccard*100)}% gleiche Felder)`).join(' · ')});
+  const o=f.outcome; if(o&&o.entscheid_art&&!['kein_entscheid','unbekannt'].includes(o.entscheid_art)&&!o.rechtsmittel_quelle)
+    it.push({cat:'rechtsmittel',n:1,detail:(OUTCOME_DE[o.entscheid_art]||o.entscheid_art)+(o.rechtsmittel_verdikt?' — '+o.rechtsmittel_verdikt:'')});
   return it;
 }
 function dstOf(f){const s=svcById[f.service_id];return (s&&s.dienststelle)||f.publisher_dienststelle||'(ohne Dienststelle)';}

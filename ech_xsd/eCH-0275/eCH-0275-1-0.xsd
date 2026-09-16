@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:eCH-0275="http://www.ech.ch/xmlns/eCH-0275-1-0/1" xmlns:eCH-0010="http://www.ech.ch/xmlns/eCH-0010-f/8" xmlns:eCH-0044="http://www.ech.ch/xmlns/eCH-0044-f/4" targetNamespace="http://www.ech.ch/xmlns/eCH-0275-1-0/1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xs:annotation>
+		<xs:documentation>Ausgabedatum:X.X.202X</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0010-f/8" schemaLocation="http://www.ech.ch/xmlns/eCH-0010-f/8/eCH-0010-8-0f.xsd"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0044-f/4" schemaLocation="http://www.ech.ch/xmlns/eCH-0044-f/4/eCH-0044-4-1f.xsd"/>
+	<xs:element name="taxCertificateMedicalCosts" type="eCH-0275:taxCertificateMedicalCostsType"/>
+	<xs:complexType name="taxCertificateMedicalCostsType">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Typendefinition für die Steuerbescheinigung der Krankenkassen</xs:documentation>
+			<xs:documentation xml:lang="fr">Définition du type d'attestation fiscale des caisses-maladie</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="nameHealthInsurance" type="xs:token" minOccurs="1" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Name der Krankenversicherung</xs:documentation>
+					<xs:documentation xml:lang="fr">Nom de l'assurance maladie</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="contact" type="eCH-0275:contactType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Angaben der Kontaktperson oder der zuständigen Abteilung</xs:documentation>
+					<xs:documentation xml:lang="fr">Données de la personne de contact ou du département compétent</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="client" type="eCH-0275:clientType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Angaben zur versicherten Person</xs:documentation>
+					<xs:documentation xml:lang="fr">Données de la personne assurée</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="deductionMedicalCosts" type="eCH-0275:deductionMedicalCostsType">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Selbstgetragene Unfall- und Krankheitskosten </xs:documentation>
+					<xs:documentation xml:lang="fr">Frais d’accident et de maladie à la charge de l’assuré</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="uninsuredBenefits" type="eCH-0275:moneyType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Nichtpflichtige und nichtversicherte Leistungen</xs:documentation>
+					<xs:documentation xml:lang="fr">Prestations non obligatoires et non assurées</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="totalPrimeCosts" type="eCH-0275:moneyType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Total Selbstkosten</xs:documentation>
+					<xs:documentation xml:lang="fr">Total des coûts de revient</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="basicInsurancePremium" type="eCH-0275:moneyType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Versicherungsprämien Grundversicherung (KVG)</xs:documentation>
+					<xs:documentation xml:lang="fr">Primes d'assurance de base (LAMal)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="supplementaryInsurancePremium" type="eCH-0275:moneyType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Versicherungsprämien Zusatzversicherung (VVG)</xs:documentation>
+					<xs:documentation xml:lang="fr">Primes assurance complémentaire (LCA)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="totalReimbursedByInsurance" type="eCH-0275:moneyType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Total von Krankenkasse vergütete Leistungen</xs:documentation>
+					<xs:documentation xml:lang="fr">Total des prestations remboursées par la caisse maladie</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="medicalCostsInDetail" type="eCH-0275:medicalCostsInDetailType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Krankheitskosten im Detail</xs:documentation>
+					<xs:documentation xml:lang="fr">Frais de maladie en détail</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Id" type="eCH-0275:IdType" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Eindeutige Id</xs:documentation>
+				<xs:documentation xml:lang="fr">Identifiant unique</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="creationDate" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Das Erstelldatum, wann der Steuerbeleg erstellt wurde</xs:documentation>
+				<xs:documentation xml:lang="fr">La date de création d'attestation fiscal</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="taxPeriod" type="xs:gYear" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Abrechnungsperiode, welche die Steuerbescheinigung betrifft</xs:documentation>
+				<xs:documentation xml:lang="fr">Période de décompte concernant l’attestation fiscale</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:simpleType name="moneyType">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="14"/>
+			<xs:fractionDigits value="2"/>
+			<xs:minInclusive value="-999999999999.99"/>
+			<xs:maxInclusive value="999999999999.99"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="IdType">
+		<xs:restriction base="xs:token"/>
+	</xs:simpleType>
+	<xs:simpleType name="emailAddressType">
+		<xs:restriction base="xs:token">
+			<xs:maxLength value="100"/>
+			<xs:pattern value="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="deductionMedicalCostsType">
+		<xs:choice>
+			<xs:element name="deductionMedicalCostsSum" type="eCH-0275:moneyType">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Summe der selbstgetragenen Unfall- und Krankheitskosten: Jahresfranchise, Selbstbehalt und Spitalkostenbeitrag</xs:documentation>
+					<xs:documentation xml:lang="fr">Somme des frais d’accident et de maladie à la charge de l’assuré: franchise annuelle, quote-part et contribution aux frais d’hospitalisation</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="deductionMedicalCostsDetails" type="eCH-0275:deductionMedicalCostsDetailsType">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Selbstgetragene Unfall- und Krankheitskosten aufge-schlüsselt nach Jahresfranchise, Selbstbehalt und Spi-talkostenbeitrag</xs:documentation>
+					<xs:documentation xml:lang="fr">Frais d’accident et de maladie à la charge de l’assuré venti-lés selon franchise annuelle, quote-part et contribution aux frais d’hospitalisation</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="deductionMedicalCostsDetailsType">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Typendefinition für Details zu selbstgetragene Unfall- und Krankenkosten</xs:documentation>
+			<xs:documentation xml:lang="fr">Définition du type les frais d’accident et de maladie à la charge de l’assuréé</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="annualFranchise" type="eCH-0275:moneyType" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Jahresfranchise: Anteil an der Franchise, der effektiv von der versi-cherten Person bezahlt wurde. </xs:documentation>
+				<xs:documentation xml:lang="fr">Franchise annuelle: part de la franchise effectivement payée par la personne assurée </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="deductible" type="eCH-0275:moneyType" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Selbstbehalt, den die versicherte Person während der Abrechnungs-periode effektiv bezahlt hat. </xs:documentation>
+				<xs:documentation xml:lang="fr">Quote-part payée par la personne assurée durant la période de décompte </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="contributionToHospitalCosts" type="eCH-0275:moneyType" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Spitalkostenbeitrag</xs:documentation>
+				<xs:documentation xml:lang="fr">Contribution aux frais d'hospitalisation</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="medicalCostsInDetailType">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Typendefnition für Krankenkosten im Detail</xs:documentation>
+			<xs:documentation xml:lang="fr">Définition du type de frais médicaux en détail</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="invoiceDate" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Abrechnungsdatum</xs:documentation>
+				<xs:documentation xml:lang="fr">Date de facturation</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="groupName" type="xs:token" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Name oder bei ausländischen Leistungserbringern Land des Unterneh-mens, das die Leistung erbracht hat</xs:documentation>
+				<xs:documentation xml:lang="fr">Nom ou - en cas de fournisseur de prestations étranger - pays de l’entreprise qui a fourni la prestation</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="invoiceAmount" type="eCH-0275:moneyType" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Gesamtbetrag der Rechnung </xs:documentation>
+				<xs:documentation xml:lang="fr">Montant de la facture</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="shareOfInsuredPerson" type="eCH-0275:moneyType" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Anteil des Rechnungsbetrags, den die versicherte Person übernimmt</xs:documentation>
+				<xs:documentation xml:lang="fr">Part du montant de la facture pris en charge par la personne assu-rée</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="contactType">
+		<xs:attribute name="emailAddressContact">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">E-Mail-Adresse der Kontaktperson oder zuständige Abteilung der Krankenversicherung</xs:documentation>
+				<xs:documentation xml:lang="fr">Adresse e-mail de la personne de contact ou du département compétent de l’assurance-maladie</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:token">
+					<xs:maxLength value="100"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="phoneNumberContact">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Telefonnummer der Kontaktperson oder zuständige Abteilung der Krankenversicherung</xs:documentation>
+				<xs:documentation xml:lang="fr">Numéro de téléphone de la personne de contact ou du département compétent de l’assurance-maladie</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:token">
+					<xs:maxLength value="20"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="firstNameContact" type="eCH-0044:baseNameType">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Vorname der Kontaktperson der Krankenversicherung </xs:documentation>
+				<xs:documentation xml:lang="fr">Prénom de la personne de contact de l'assurance maladie</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="officialNameContact" type="eCH-0044:baseNameType">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Nachname der Kontaktperson der Krankenversicherung</xs:documentation>
+				<xs:documentation xml:lang="fr">Nom de famille de la personne de contact de l'assurance maladie</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="clientType">
+		<xs:attribute name="ahvn13" type="eCH-0044:vnType" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">13-stellige AHV-Nummer (Sozialversicherungsnr.) der versicherten Person </xs:documentation>
+				<xs:documentation xml:lang="fr">Numéro AVS à 13 chiffres (n° d’assurances sociales) de la per-sonne assurée</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="officialName" type="eCH-0044:baseNameType" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Nachname der versicherten Person</xs:documentation>
+				<xs:documentation xml:lang="fr">Nom de famille de la personne assurée</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="firstName" type="eCH-0044:baseNameType" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Vorname der versicherten Person</xs:documentation>
+				<xs:documentation xml:lang="fr">Prénom de la personne assurée</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="dateOfBirth" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Geburtssdatum der versicherten Person</xs:documentation>
+				<xs:documentation xml:lang="fr">Date de naissance de la personne assurée</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>

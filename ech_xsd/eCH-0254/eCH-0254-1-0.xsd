@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Mit XMLSpy v2012 sp1 (http://www.altova.com) von Martin Stingelin (Stingelin Informatik GmbH) bearbeitet -->
+<!-- edited with XMLSpy v2012 rel. 2 sp1 (http://www.altova.com) by Martin Stingelin (Stingelin Informatik GmbH) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:eCH-0129="http://www.ech.ch/xmlns/eCH-0129/6" xmlns:eCH-0058="http://www.ech.ch/xmlns/eCH-0058/5" xmlns:eCH-0097="http://www.ech.ch/xmlns/eCH-0097/2" xmlns:eCH-0010="http://www.ech.ch/xmlns/eCH-0010/6" xmlns:eCH-0147T0="http://www.ech.ch/xmlns/eCH-0147/T0/1" xmlns:eCH-0147T2="http://www.ech.ch/xmlns/eCH-0147/T2/1" xmlns:eCH-0044="http://www.ech.ch/xmlns/eCH-0044/4" xmlns:eCH-0007="http://www.ech.ch/xmlns/eCH-0007/6" xmlns:eCH-0254="http://www.ech.ch/xmlns/eCH-0254/1" targetNamespace="http://www.ech.ch/xmlns/eCH-0254/1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xs:annotation>
+		<xs:documentation>Ausgabedatum: 09.09.2022</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0129/6" schemaLocation="http://www.ech.ch/xmlns/eCH-0129/6/eCH-0129-6-0.xsd"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0058/5" schemaLocation="http://www.ech.ch/xmlns/eCH-0058/5/eCH-0058-5-0.xsd"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0010/6" schemaLocation="http://www.ech.ch/xmlns/eCH-0010/6/eCH-0010-6-0.xsd"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0097/2" schemaLocation="http://www.ech.ch/xmlns/eCH-0097/2/eCH-0097-2-0.xsd"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0147/T0/1" schemaLocation="http://www.ech.ch/xmlns/eCH-0147/1/eCH-0147T0.xsd"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0044/4" schemaLocation="http://www.ech.ch/xmlns/eCH-0044/4/eCH-0044-4-1.xsd"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0007/6" schemaLocation="http://www.ech.ch/xmlns/eCH-0007/6/eCH-0007-6-0.xsd"/>
+	<xs:simpleType name="actorType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Subject specialist"/>
+			<xs:enumeration value="Responsible body"/>
+			<xs:enumeration value="Interested third party"/>
+			<xs:enumeration value="Responsible department"/>
+			<xs:enumeration value="Cadastral administrators organisation"/>
+			<xs:enumeration value="Cadastre responsible body"/>
+			<xs:enumeration value="Approving authority"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="involvedPartyType">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="individualIdentification" type="eCH-0044:personIdentificationLightType"/>
+				<xs:element name="organisationIdentification" type="eCH-0097:organisationIdentificationType"/>
+			</xs:choice>
+			<xs:element name="actor" type="eCH-0254:actorType" minOccurs="1"/>
+			<xs:element name="address" type="eCH-0010:addressInformationType" minOccurs="0"/>
+			<xs:element name="email" type="eCH-0129:emailType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="dossierNameType">
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="1000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="numberType">
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="mutNumberType">
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="200"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="generalInformationType">
+		<xs:sequence>
+			<xs:element name="dossierName" type="eCH-0254:dossierNameType"/>
+			<xs:element name="mutNumber" minOccurs="0">
+				<xs:simpleType>
+					<xs:restriction base="eCH-0254:mutNumberType">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="200"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="openingComment" type="eCH-0254:commentType" minOccurs="0"/>
+			<xs:element name="municipality" type="eCH-0007:swissMunicipalityType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="PLRTopicType">
+		<xs:restriction base="xs:token"/>
+	</xs:simpleType>
+	<xs:simpleType name="processTypeType">
+		<xs:restriction base="xs:token">
+			<xs:length value="200"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="identificationType">
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="commentType">
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="1000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="nextProzessStepType">
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="100"/>
+			<xs:enumeration value="Draft"/>
+			<xs:enumeration value="Preliminary examination"/>
+			<xs:enumeration value="Publicly disclosure"/>
+			<xs:enumeration value="Determination"/>
+			<xs:enumeration value="Approval"/>
+			<xs:enumeration value="Appeal"/>
+			<xs:enumeration value="Enactment"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="statusType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Draft"/>
+			<xs:enumeration value="Preliminary review started"/>
+			<xs:enumeration value="Preliminary review completed"/>
+			<xs:enumeration value="publicly disclosed"/>
+			<xs:enumeration value="determined"/>
+			<xs:enumeration value="issued"/>
+			<xs:enumeration value="approved"/>
+			<xs:enumeration value="Appeal pending"/>
+			<xs:enumeration value="Appeal rejected"/>
+			<xs:enumeration value="Appeal approved"/>
+			<xs:enumeration value="suspended"/>
+			<xs:enumeration value="cancelled"/>
+			<xs:enumeration value="PLR update completed"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="authorityType">
+		<xs:sequence>
+			<xs:element name="authorityIdentification" type="eCH-0097:organisationIdentificationType"/>
+			<xs:element name="address" type="eCH-0010:addressInformationType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="publicAppealRepetitionYesNoType">
+		<xs:restriction base="xs:boolean"/>
+	</xs:simpleType>
+	<xs:simpleType name="internetAddressType">
+		<xs:restriction base="xs:token">
+			<xs:maxLength value="100"/>
+			<xs:whiteSpace value="collapse"/>
+			<xs:pattern value="http://.*"/>
+			<xs:pattern value="https://.*"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="processInformationType">
+		<xs:sequence>
+			<xs:element name="PLRTopic" type="eCH-0254:PLRTopicType" maxOccurs="unbounded"/>
+			<xs:element name="processIdentification" type="eCH-0254:identificationType"/>
+			<xs:element name="processType" type="eCH-0254:processTypeType"/>
+			<xs:element name="nextProcessStep" type="eCH-0254:nextProzessStepType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="status" type="eCH-0254:statusType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="publicAppealType">
+		<xs:sequence>
+			<xs:element name="authority" type="eCH-0254:authorityType"/>
+			<xs:element name="dateFrom" type="xs:date"/>
+			<xs:element name="dateTill" type="xs:date" minOccurs="0"/>
+			<xs:element name="number" type="eCH-0254:numberType" minOccurs="0"/>
+			<xs:element name="document" type="eCH-0147T0:documentType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="textAtWeb" type="eCH-0254:internetAddressType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="publicAppealRepetitionYesNo" type="eCH-0254:publicAppealRepetitionYesNoType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="preliminaryExaminationType">
+		<xs:sequence>
+			<xs:element name="authority" type="eCH-0254:authorityType"/>
+			<xs:element name="date" type="xs:date"/>
+			<xs:element name="number" type="eCH-0254:numberType" minOccurs="0"/>
+			<xs:element name="document" type="eCH-0147T0:documentType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="textAtWeb" type="eCH-0254:internetAddressType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="revisionForDeterminationComment" type="eCH-0254:commentType" minOccurs="0"/>
+			<xs:element name="comment" type="eCH-0254:commentType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="forceType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="legislative"/>
+			<xs:enumeration value="executive"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="determinationWithChangeYesNoType">
+		<xs:restriction base="xs:boolean"/>
+	</xs:simpleType>
+	<xs:complexType name="determinationType">
+		<xs:sequence>
+			<xs:element name="authority" type="eCH-0254:authorityType"/>
+			<xs:element name="determinationForce" type="eCH-0254:forceType" minOccurs="0"/>
+			<xs:element name="date" type="xs:date"/>
+			<xs:element name="number" type="eCH-0254:numberType" minOccurs="1"/>
+			<xs:element name="document" type="eCH-0147T0:documentType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="textAtWeb" type="eCH-0254:internetAddressType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="determinationWithChangeYesNo" type="eCH-0254:determinationWithChangeYesNoType" minOccurs="0"/>
+			<xs:element name="comment" type="eCH-0254:commentType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="approvalType">
+		<xs:sequence>
+			<xs:element name="authority" type="eCH-0254:authorityType"/>
+			<xs:element name="date" type="xs:date"/>
+			<xs:element name="number" type="eCH-0254:numberType" minOccurs="1"/>
+			<xs:element name="document" type="eCH-0147T0:documentType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="textAtWeb" type="eCH-0254:internetAddressType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="partialApproval" type="xs:boolean"/>
+			<xs:element name="conditionalApproval" type="xs:boolean"/>
+			<xs:element name="comment" type="eCH-0254:commentType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="enactmentType">
+		<xs:sequence>
+			<xs:element name="authority" type="eCH-0254:authorityType"/>
+			<xs:element name="enactementForce" type="eCH-0254:forceType"/>
+			<xs:element name="date" type="xs:date"/>
+			<xs:element name="number" type="eCH-0254:numberType" minOccurs="1"/>
+			<xs:element name="document" type="eCH-0147T0:documentType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="textAtWeb" type="eCH-0254:internetAddressType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="partialEnactment" type="xs:boolean"/>
+			<xs:element name="comment" type="eCH-0254:commentType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="statusMessageType">
+		<xs:sequence>
+			<xs:element name="generalInformation" type="eCH-0254:generalInformationType"/>
+			<xs:element name="processInformation" type="eCH-0254:processInformationType"/>
+			<xs:element name="involvedParty" type="eCH-0254:involvedPartyType" minOccurs="1" maxOccurs="unbounded"/>
+			<xs:element name="document" type="eCH-0147T0:documentType" minOccurs="1" maxOccurs="unbounded"/>
+			<xs:element name="publicAppeal" type="eCH-0254:publicAppealType" minOccurs="0"/>
+			<xs:element name="preliminaryExamination" type="eCH-0254:preliminaryExaminationType" minOccurs="0"/>
+			<xs:element name="determination" type="eCH-0254:determinationType" minOccurs="0"/>
+			<xs:element name="approval" type="eCH-0254:approvalType" minOccurs="0"/>
+			<xs:element name="enactment" type="eCH-0254:enactmentType" minOccurs="0"/>
+			<xs:element name="extension" type="xs:anyType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="delivery">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="deliveryHeader" type="eCH-0058:headerType"/>
+				<xs:element name="statusMessage" type="eCH-0254:statusMessageType"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

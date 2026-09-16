@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:eCH-0008="http://www.ech.ch/xmlns/eCH-0008/3" xmlns:eCH-0010="http://www.ech.ch/xmlns/eCH-0010/7" xmlns:eCH-0044="http://www.ech.ch/xmlns/eCH-0044/4" xmlns:eCH-0248="http://www.ech.ch/xmlns/eCH-0248/1" targetNamespace="http://www.ech.ch/xmlns/eCH-0248/1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0">
+	<xs:annotation>
+		<xs:documentation xml:lang="de">Beruflichen Vorsorge (2. Säule) und gebundenen Selbstvorsorge (Säule 3a)</xs:documentation>
+		<xs:documentation xml:lang="fr"/>
+	</xs:annotation>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0008/3" schemaLocation="http://www.ech.ch/xmlns/eCH-0008/3/eCH-0008-3-0.xsd"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0010/7" schemaLocation="http://www.ech.ch/xmlns/eCH-0010/7/eCH-0010-7-0.xsd"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0044/4" schemaLocation="http://www.ech.ch/xmlns/eCH-0044/4/eCH-0044-4-1.xsd"/>
+	<xs:element name="pillar2And3a" type="eCH-0248:pillar2And3aType">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Die beruflichen Vorsorge (2. Säule) und gebundenen Selbstvorsorge (Säule 3a).</xs:documentation>
+			<xs:documentation xml:lang="fr">Attestation concernant les cotisations de prévoyance aux 2e et 3e piliers</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:simpleType name="pillar2CategoryType">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Beiträge zur beruflichen Vorsorge (2. Säule) wurden entrichtet von/als ...</xs:documentation>
+			<xs:documentation xml:lang="fr">Les cotisations à la prévoyance professionnelle (2e pilier) ont été versées en tant que/par ...</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="a">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Als Selbstständigerwerbende/r</xs:documentation>
+					<xs:documentation xml:lang="fr">En qualité d'indépendant</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="b">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Als Arbeitnehmer/in</xs:documentation>
+					<xs:documentation xml:lang="fr">En qualité de salarié</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="c">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Vom Arbeitnehmer/Von der Arbeitnehmerin entrichtete Arbeitgeberbeiträge</xs:documentation>
+					<xs:documentation xml:lang="fr">Cotisations de l'employeur payées par le salarié</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="clientType">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Angaben zur versicherten Person</xs:documentation>
+			<xs:documentation xml:lang="fr">Informations concernant la personne assurée</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="ahvn13" type="eCH-0044:vnType" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">AHVN13 der versicherten Person</xs:documentation>
+				<xs:documentation xml:lang="fr">NAVS13 de la personne assurée</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="birthday" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Geburtsdatum der versicherten Person</xs:documentation>
+				<xs:documentation xml:lang="fr">Date de naissance de la personne assurée</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="salutation" type="eCH-0010:mrMrsType" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Anrede der versicherten Person</xs:documentation>
+				<xs:documentation xml:lang="fr">Civilité de la personne assurée</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="firstName" type="eCH-0044:baseNameType" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Vorname der versicherten Person</xs:documentation>
+				<xs:documentation xml:lang="fr">Prénom de la personne assurée</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="lastName" type="eCH-0044:baseNameType" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Nachname der versicherten Person</xs:documentation>
+				<xs:documentation xml:lang="fr">Nom de la personne assurée</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="street" type="eCH-0010:streetType" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Strasse und Hausnummer aus der Adresse der versicherten Person</xs:documentation>
+				<xs:documentation xml:lang="fr">Rue et numéro tirés de l’adresse de la personne assurée</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="zip" type="eCH-0010:swissZipCodeType" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Postleitzahl aus der Adresse der versicherten Person</xs:documentation>
+				<xs:documentation xml:lang="fr">Code postal tiré de l’adresse de la personne assurée</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="city" type="eCH-0010:localityType" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Ort aus der Adresse der versicherten Person</xs:documentation>
+				<xs:documentation xml:lang="fr">Localité tirée de l’adresse de la personne assurée</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="listOfPillarType">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Typdefinition zum Verzeichnis der beruflichen Vorsorge (2. Säule) und gebundenen Selbstvorsorge (Säule 3a).</xs:documentation>
+			<xs:documentation xml:lang="fr">Définition du type de la liste de la prévoyance professionnelle (2e pilier) et de la pré-voyance individuelle liée (pilier 3a).</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="pillar2" type="eCH-0248:pillar2Type" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Die Beiträge an Einrichtungen der beruflichen Vorsorge (2. Säule).</xs:documentation>
+					<xs:documentation xml:lang="fr">Cotisations à des institutions de prévoyance professionnelle (2e pi-lier)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="pillar3a" type="eCH-0248:pillar3aType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Die Beiträge für anerkannte Formen der gebundenen Selbstvorsorge (Säule 3a).</xs:documentation>
+					<xs:documentation xml:lang="fr">Cotisations pour les formes reconnues de prévoyance individuelle liée (pilier 3a)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="totalAmount3a" type="xs:decimal" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Das Total der geleisteten Beträge der gebundenen Selbstvorsorge (Säule 3a) zur natürlichen Person, gerundet nach DIN 1333.</xs:documentation>
+				<xs:documentation xml:lang="fr">Total des montants versés au pilier 3a concernant la personne phy-sique, arrondi selon DIN 1333</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:simpleType name="IdType">
+		<xs:restriction base="xs:token">
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="pillar2And3aType">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Typdefinition zur beruflichen Vorsorge (2. Säule) und gebundenen Selbstvorsorge (Säule 3a).</xs:documentation>
+			<xs:documentation xml:lang="fr">Définition du type de l'attestation concernant les cotisations de prévoyance aux 2e et 3e piliers </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="client" type="eCH-0248:clientType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Angaben zur versicherten Person</xs:documentation>
+					<xs:documentation xml:lang="fr">Informations concernant la personne assurée</xs:documentation>					
+					
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="listOfPillar" type="eCH-0248:listOfPillarType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation xml:lang="de">Das Verzeichnis der beruflichen Vorsorge (2. Säule) und gebundenen Selbstvorsorge (Säule 3a)</xs:documentation>
+					<xs:documentation xml:lang="fr">Liste de la prévoyance professionnelle (2e pilier) et de la pré-voyance individuelle liée (pilier 3a)</xs:documentation>	
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="eCH-0248:IdType" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Eindeutige Id der Bescheinigung</xs:documentation>
+				<xs:documentation xml:lang="fr">L’ID unique de l’attestation. </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="creationDate" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Datum und Uhrzeit der Erstellung der Bescheinigung </xs:documentation>
+				<xs:documentation xml:lang="fr">Date et heure de la création de l’attestation </xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="taxPeriod" type="xs:gYear" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Das Jahr der zugehörigen Steuerperiode</xs:documentation>
+				<xs:documentation xml:lang="fr">Année de la période fiscale correspondante</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="pillar2Type">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Typdefinition zu Beträgen an Einrichtungen der beruflichen Vorsorge (2. Säule)</xs:documentation>
+			<xs:documentation xml:lang="fr">Cotisations à des institutions de prévoyance professionnelle (2e pilier)</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="referenceDate" type="xs:date" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Das Datum der Zahlung der Beiträge an die berufliche Vorsorge (2. Säule).</xs:documentation>
+				<xs:documentation xml:lang="fr">Date du paiement des cotisations à la prévoyance professionnelle (2e pilier)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="pillar2Category" type="eCH-0248:pillar2CategoryType" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Beiträge zur beruflichen Vorsorge (2. Säule) wurden entrichtet als Selbstständigerwerbende/r, als Arbeitnehmer/in oder vom Arbeitnehmer/von der Arbeitnehmerin entrichtete Arbeitgeberbeiträge</xs:documentation>
+				<xs:documentation xml:lang="fr"> Les cotisations à la prévoyance professionnelle (2e pilier) ont été versées en tant que travailleur indépendant,en tant que travailleur, par l’employeur</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="startOfPensionRelationship" type="xs:date" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Beginn des Vorsorgeverhältnisses der beruflichen Vorsorge (2. Säule)</xs:documentation>
+				<xs:documentation xml:lang="fr">Début du rapport de prévoyance de la prévoyance professionnelle (2e pilier)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="dueDateOfRetirementBenefits" type="xs:date" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Fälligkeit der Altersleistungen der beruflichen Vorsorge (2. Säule)</xs:documentation>
+				<xs:documentation xml:lang="fr">Échéance des prestations de vieillesse de la prévoyance professionnelle (2e pilier)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="voluntaryBuyIns" type="xs:decimal" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Freiwillige Einkaufsbeiträge zur beruflichen Vorsorge (2. Säule)</xs:documentation>
+				<xs:documentation xml:lang="fr">Cotisations facultatives de rachat pour la prévoyance profession-nelle (2e pilier)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ordinaryAndMandatoryContributions" type="xs:decimal" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Die ordentlichen und obligatorischen Erhöhungsbeiträge zur beruflichen Vorsorge (2. Säule)</xs:documentation>
+				<xs:documentation xml:lang="fr">Cotisations d’augmentation ordinaires et obligatoires pour la pré-voyance professionnelle (2e pilier)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="pillar3aType">
+		<xs:annotation>
+			<xs:documentation xml:lang="de">Typdefinition zur gebundenen Selbstvorsorge (Säule 3a) </xs:documentation>
+			<xs:documentation xml:lang="fr">Définition du type de cotisations pour les formes reconnues de la prévoyance individuelle liée (pilier 3a) </xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="policyNumber" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Policenummer bei Vorsorgepolicen bei Versicherungseinrichtungen </xs:documentation>
+				<xs:documentation xml:lang="fr">Numéro de police pour les polices de prévoyance s’agissant d’institutions d’assurance </xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:token">
+				<xs:maxLength value="100"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	
+		<xs:attribute name="contractNumber" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Vertragsnummer bei Vorsorgevereinbarungen bei Bankenstiftungen</xs:documentation>
+				<xs:documentation xml:lang="fr">Numéro de contrat pour les conventions de prévoyance s’agissant de fondations bancaires</xs:documentation>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:token">
+				<xs:maxLength value="60"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="yearOfConclusion" type="xs:gYear" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Abschlussjahr der Versicherung</xs:documentation>
+				<xs:documentation xml:lang="fr">Année de conclusion de l’assurance</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="expirationYear" type="xs:gYear" use="optional">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Ablaufjahr der Versicherung</xs:documentation>
+				<xs:documentation xml:lang="fr">Année d’échéance de l’assurance</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="amount" type="xs:decimal" use="required">
+			<xs:annotation>
+				<xs:documentation xml:lang="de">Der einbezahlte Betrag zur gebundenen Selbstvorsorge (Säule 3a)</xs:documentation>
+				<xs:documentation xml:lang="fr">Montant versé à la prévoyance individuelle liée (pilier 3a)</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>

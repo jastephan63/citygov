@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Mit XMLSpy v2010 rel. 3 sp1 (http://www.altova.com) von Martin Stingelin (Stingelin Informatik GmbH) bearbeitet -->
+<!-- edited with XMLSpy v2012 rel. 2 sp1 (http://www.altova.com) by Martin Stingelin (Stingelin Informatik GmbH) -->
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by BITUSER (Bundesamt fuer Informatik und Telekommunikation) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:eCH-0011="http://www.ech.ch/xmlns/eCH-0011/9"
+	xmlns:eCH-0258UC1="http://www.ech.ch/xmlns/eCH-0258UC1/1"
+	xmlns:ns1="http://www.ech.ch/xmlns/eCH-0258/1"
+	targetNamespace="http://www.ech.ch/xmlns/eCH-0258UC1/1" elementFormDefault="qualified"
+	attributeFormDefault="unqualified" version="3.0">
+	<xs:annotation>
+		<xs:documentation>Ausgabedatum:29.07.2024</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0011/9"
+		schemaLocation="http://www.ech.ch/xmlns/eCH-0011/9/eCH-0011-9-0.xsd"/>
+	<xs:element name="extension">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="businessCaseIdentifierType">
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="deadlineType">
+		<xs:restriction base="xs:date"/>
+	</xs:simpleType>
+	<xs:simpleType name="taxPeriodType">
+		<xs:restriction base="xs:nonNegativeInteger">
+			<xs:maxInclusive value="2050"/>
+			<xs:minInclusive value="2000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="justificationType">
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="500"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="requestDeadlineExtensionType">
+		<xs:sequence>
+			<xs:element name="businessCaseIdentifier" type="eCH-0258UC1:businessCaseIdentifierType"/>
+			<xs:element name="requestedDeadline" type="eCH-0258UC1:deadlineType"/>
+			<xs:element name="taxPeriod" type="eCH-0258UC1:taxPeriodType" minOccurs="0"/>
+			<xs:element name="justification" type="eCH-0258UC1:justificationType" minOccurs="0"/>
+			<xs:element ref="eCH-0258UC1:extension" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="responseType">
+		<xs:sequence>
+			<xs:element name="language" type="eCH-0011:languageType"/>
+			<xs:element name="commentText" type="eCH-0258UC1:responseTextType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="responseTextType">
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="2000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="responseKeyType">
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="responseDeadlineExtensionType">
+		<xs:sequence>
+			<xs:element name="originalDeadline" type="eCH-0258UC1:deadlineType"/>
+			<xs:element name="newDeadline" type="eCH-0258UC1:deadlineType" minOccurs="0"/>
+			<xs:element name="response" type="eCH-0258UC1:responseType" minOccurs="0"
+				maxOccurs="unbounded"/>
+			<xs:element name="responseKey" type="eCH-0258UC1:responseKeyType" minOccurs="0"/>
+			<xs:element ref="eCH-0258UC1:extension" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

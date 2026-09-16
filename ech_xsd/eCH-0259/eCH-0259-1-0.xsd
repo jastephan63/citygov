@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:eCH-0259="http://www.ech.ch/xmlns/eCH-0259/1"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:eCH-0097="http://www.ech.ch/xmlns/eCH-0097/2"
+	xmlns:eCH-0010="http://www.ech.ch/xmlns/eCH-0010/6"
+	targetNamespace="http://www.ech.ch/xmlns/eCH-0259/1" elementFormDefault="qualified"
+	attributeFormDefault="unqualified" version="1.0">
+	<xs:annotation>
+		<xs:documentation xml:lang="de">Ausgabedatum:23.08.2022</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0097/2"
+		schemaLocation="http://www.ech.ch/xmlns/eCH-0097/2/eCH-0097-2-0.xsd"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0010/6"
+		schemaLocation="http://www.ech.ch/xmlns/eCH-0010/6/eCH-0010-6-0.xsd"/>
+	<xs:attribute name="minorVersion" type="xs:integer">
+		<xs:annotation>
+			<xs:documentation>This attribute is used for indicating the minor version of an XML Schema instance in a standardized way. It SHOULD only appear on the document element of XML Schema instances.</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:simpleType name="positionIdentificationType">
+		<xs:restriction base="xs:nonNegativeInteger">
+			<xs:minInclusive value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="languageType">
+		<xs:restriction base="xs:token">
+			<xs:maxLength value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="feeDescriptionType">
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="500"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="feeDescriptionInfoType">
+		<xs:sequence>
+			<xs:element name="langauge" type="eCH-0259:languageType"/>
+			<xs:element name="feeDescription" type="eCH-0259:feeDescriptionType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="freeTextType">
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="500"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="freeTextInfoType">
+		<xs:sequence>
+			<xs:element name="langauge" type="eCH-0259:languageType"/>
+			<xs:element name="freeText" type="eCH-0259:freeTextType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="unitType">
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="quantityType">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="14"/>
+			<xs:fractionDigits value="5"/>
+			<xs:minInclusive value="0.000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="amountDetailType">
+		<xs:sequence>
+			<xs:element name="quantity" type="eCH-0259:quantityType" minOccurs="1"/>
+			<xs:element name="unitPrice" type="eCH-0259:unitPriceType" minOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="unitPriceType">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="14"/>
+			<xs:fractionDigits value="5"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="amountType">
+		<xs:restriction base="xs:decimal">
+			<xs:totalDigits value="14"/>
+			<xs:fractionDigits value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="vatRateType">
+		<xs:restriction base="xs:decimal">
+			<xs:minInclusive value="0.000"/>
+			<xs:maxInclusive value="99.000"/>
+			<xs:totalDigits value="5"/>
+			<xs:fractionDigits value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="vatCodeType">
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NoVatType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="vatInfoType">
+		<xs:choice>
+			<xs:element name="noVat" type="eCH-0259:NoVatType"/>
+			<xs:choice>
+				<xs:element name="vatRate" type="eCH-0259:vatRateType"/>
+				<xs:element name="vatCode" type="eCH-0259:vatCodeType"/>
+				<xs:element name="vatRateAndCode">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="vatRate" type="eCH-0259:vatRateType" minOccurs="1"/>
+							<xs:element name="vatCode" type="eCH-0259:vatCodeType" minOccurs="1"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:choice>
+	</xs:complexType>
+	<xs:simpleType name="feeChargingAuthorityNameType">
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="phoneNumberType">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="20"/>
+			<xs:whiteSpace value="collapse"/>
+			<xs:pattern value="\d{10,20}"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="emailAddressType">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="100"/>
+			<xs:whiteSpace value="collapse"/>
+			<xs:pattern
+				value="[A-Za-zäöüÄÖÜàáâãåæçèéêëìíîïðñòóôõøùúûýþÿ0-9!#-'\*\+\-/=\?\^_`\{-~]+(\.[A-Za-zäöüÄÖÜàáâãåæçèéêëìíîïðñòóôõøùúûýþÿ0-9!#-'\*\+\-/=\?\^_`\{-~]+)*@[A-Za-zäöüÄÖÜàáâãåæçèéêëìíîïðñòóôõøùúûýþÿ0-9!#-'\*\+\-/=\?\^_`\{-~]+(\.[A-Za-zäöüÄÖÜàáâãåæçèéêëìíîïðñòóôõøùúûýþÿ0-9!#-'\*\+\-/=\?\^_`\{-~]+)*"
+			/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="feeChargingAuthorityInfoType">
+		<xs:sequence>
+			<xs:element name="uid" type="eCH-0097:uidStructureType" minOccurs="0"/>
+			<xs:element name="feeChargingAuthorityName" type="eCH-0259:feeChargingAuthorityNameType"/>
+			<xs:element name="address" type="eCH-0010:addressInformationType" minOccurs="0"/>
+			<xs:element name="phoneNumber" type="eCH-0259:phoneNumberType" minOccurs="0"/>
+			<xs:element name="emailAddress" type="eCH-0259:emailAddressType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="legalBasisType">
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="1000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="calculationBaseType">
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="1000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="feeTypeType">
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="namedElementType">
+		<xs:sequence>
+			<xs:element name="elementName" type="eCH-0259:freeTextType"/>
+			<xs:choice>
+				<xs:element name="decimal">
+					<xs:simpleType>
+						<xs:restriction base="xs:decimal">
+							<xs:totalDigits value="14"/>
+							<xs:fractionDigits value="5"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="text" type="eCH-0259:freeTextInfoType"/>
+				<xs:element name="date" type="xs:date"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="extensionType">
+		<xs:sequence>
+			<xs:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="feeType">
+		<xs:sequence>
+			<xs:element name="positionIdentification" type="eCH-0259:positionIdentificationType"
+				minOccurs="0"/>
+			<xs:element name="feeDescription" type="eCH-0259:feeDescriptionInfoType"/>
+			<xs:element name="unit" type="eCH-0259:unitType" minOccurs="0"/>
+			<xs:element name="amountDetail" type="eCH-0259:amountDetailType" minOccurs="0"/>
+			<xs:element name="amount" type="eCH-0259:amountType"/>
+			<xs:element name="vatInfo" type="eCH-0259:vatInfoType" minOccurs="1"/>
+			<xs:element name="feeChargingAuthorityInfo" type="eCH-0259:feeChargingAuthorityInfoType"/>
+			<xs:element name="legalBasis" type="eCH-0259:legalBasisType" minOccurs="0"/>
+			<xs:element name="calculationBase" type="eCH-0259:calculationBaseType" minOccurs="0"/>
+			<xs:element name="feeType" type="eCH-0259:feeTypeType" minOccurs="0"/>
+			<xs:element name="namedElement" type="eCH-0259:namedElementType" minOccurs="0"
+				maxOccurs="unbounded"/>
+			<xs:element name="extension" type="eCH-0259:extensionType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

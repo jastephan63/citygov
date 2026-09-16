@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:eCH-0007="http://www.ech.ch/xmlns/eCH-0007/5" xmlns:eCH-0008="http://www.ech.ch/xmlns/eCH-0008/3" xmlns:eCH-0011="http://www.ech.ch/xmlns/eCH-0011/8" xmlns:eCH-0021="http://www.ech.ch/xmlns/eCH-0021/7" xmlns:eCH-0044="http://www.ech.ch/xmlns/eCH-0044/4" xmlns:eCH-0058="http://www.ech.ch/xmlns/eCH-0058/5" xmlns:eCH-0084="http://www.ech.ch/xmlns/eCH-0084/2" targetNamespace="http://www.ech.ch/xmlns/eCH-0084/2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.0">
+	<xs:annotation>
+		<xs:documentation xml:lang="en">UPI Announcement and commons, last modification timestamp 2022-01-14</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0007/5" schemaLocation="http://www.ech.ch/xmlns/eCH-0007/5/eCH-0007-5-0.xsd"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0008/3" schemaLocation="http://www.ech.ch/xmlns/eCH-0008/3/eCH-0008-3-0.xsd"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0011/8" schemaLocation="http://www.ech.ch/xmlns/eCH-0011/8/eCH-0011-8-1.xsd"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0021/7" schemaLocation="http://www.ech.ch/xmlns/eCH-0021/7/eCH-0021-7-0.xsd"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0044/4" schemaLocation="http://www.ech.ch/xmlns/eCH-0044/4/eCH-0044-4-1.xsd"/>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0058/5" schemaLocation="http://www.ech.ch/xmlns/eCH-0058/5/eCH-0058-5-0.xsd"/>
+	<xs:simpleType name="announcementTypeType">
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="50"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="codeDescriptionType">
+		<xs:restriction base="xs:token">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="300"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="codeType">
+		<xs:restriction base="xs:unsignedShort">
+			<xs:maxInclusive value="10000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="commentType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="5000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="reasonType">
+		<xs:restriction base="xs:unsignedShort">
+			<xs:maxInclusive value="10000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="shownDocumentType">
+		<xs:restriction base="xs:unsignedShort">
+			<xs:enumeration value="211"/>
+			<xs:enumeration value="214"/>
+			<xs:enumeration value="217"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="typeOfRecordType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="MAIN"/>
+			<xs:enumeration value="SECONDARY"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="negativeReportType">
+		<xs:sequence>
+			<xs:element name="code" type="eCH-0084:codeType"/>
+			<xs:sequence minOccurs="0">
+				<xs:element name="descriptionLanguage" type="eCH-0011:languageType"/>
+				<xs:element name="codeDescription" type="eCH-0084:codeDescriptionType"/>
+			</xs:sequence>
+			<xs:element name="comment" type="eCH-0084:commentType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="personIdentificationChoiceType">
+		<xs:choice>
+			<xs:element name="vn" type="eCH-0044:vnType"/>
+			<xs:element name="localPersonId" type="eCH-0044:namedPersonIdType"/>
+			<xs:element name="euPersonId" type="eCH-0044:namedPersonIdType"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="personIdentificationSequenceType">
+		<xs:sequence>
+			<xs:element name="vn" type="eCH-0044:vnType" minOccurs="0"/>
+			<xs:choice minOccurs="0">
+				<xs:element name="localPersonId" type="eCH-0044:namedPersonIdType"/>
+				<xs:element name="euPersonId" type="eCH-0044:namedPersonIdType"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="personFromUPIType">
+		<xs:sequence>
+			<xs:element name="recordTimestamp" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="firstName" type="eCH-0044:baseNameType" minOccurs="0"/>
+			<xs:element name="officialName" type="eCH-0044:baseNameType"/>
+			<xs:element name="originalName" type="eCH-0044:baseNameType" minOccurs="0"/>
+			<xs:element name="nameOnForeignPassport" type="eCH-0011:foreignerNameType" minOccurs="0"/>
+			<xs:element name="sex" type="eCH-0044:sexType"/>
+			<xs:element name="dateOfBirth" type="eCH-0044:datePartiallyKnownType"/>
+			<xs:element name="placeOfBirth" type="eCH-0011:generalPlaceType" minOccurs="0"/>
+			<xs:choice minOccurs="0" maxOccurs="2">
+				<xs:element name="nameOfMother" type="eCH-0021:nameOfParentType"/>
+				<xs:element name="nameOfFather" type="eCH-0021:nameOfParentType"/>
+				<xs:element name="nameOfParent" type="eCH-0021:nameOfParentType"/>
+			</xs:choice>
+			<xs:element name="nationalityData">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="nationalityStatus" type="eCH-0011:nationalityStatusType"/>
+						<xs:element name="countryInfo" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="country" type="eCH-0008:countryType"/>
+									<xs:element name="nationalityValidFrom" type="xs:date" minOccurs="0"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="undoSwissValidFrom" type="xs:date" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:sequence minOccurs="0">
+				<xs:element name="deathPeriod" type="eCH-0011:deathPeriodType"/>
+				<xs:element name="isMissing" type="xs:boolean" minOccurs="0"/>
+			</xs:sequence>
+			<xs:element name="maritalData"  type="eCH-0011:maritalDataType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="personToUPIType">
+		<xs:sequence>
+			<xs:element name="firstName" type="eCH-0044:baseNameType" minOccurs="0"/>
+			<xs:element name="officialName" type="eCH-0044:baseNameType"/>
+			<xs:element name="originalName" type="eCH-0044:baseNameType" minOccurs="0"/>
+			<xs:element name="sex" type="eCH-0044:sexType" minOccurs="0"/>
+			<xs:element name="dateOfBirth" type="eCH-0044:datePartiallyKnownType"/>
+			<xs:element name="placeOfBirth" minOccurs="0">
+				<xs:complexType>
+					<xs:choice>
+						<xs:element name="unknown" type="eCH-0011:unknownType"/>
+						<xs:element name="swissTown">
+							<xs:complexType>
+								<xs:choice>
+									<xs:element name="historyMunicipalityId" type="eCH-0007:historyMunicipalityId"/>
+									<xs:element name="municipalityName" type="eCH-0007:municipalityNameType"/>
+								</xs:choice>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="foreignCountry">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="countryId" type="eCH-0008:countryIdType"/>
+									<xs:element name="town" minOccurs="0">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:whiteSpace value="collapse"/>
+												<xs:maxLength value="100"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:choice>
+				</xs:complexType>
+			</xs:element>
+			<xs:choice minOccurs="0" maxOccurs="2">
+				<xs:element name="nameOfMother" type="eCH-0021:nameOfParentType"/>
+				<xs:element name="nameOfFather" type="eCH-0021:nameOfParentType"/>
+				<xs:element name="nameOfParent" type="eCH-0021:nameOfParentType"/>
+			</xs:choice>
+			<xs:element name="nationalityData" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="nationalityStatus" type="eCH-0011:nationalityStatusType"/>
+						<xs:element name="countryInfo" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="countryId" type="eCH-0008:countryIdType"/>
+									<xs:element name="nationalityValidFrom" type="xs:date" minOccurs="0"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="undoSwissValidFrom" type="xs:date" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:sequence minOccurs="0">
+				<xs:element name="deathPeriod" type="eCH-0011:deathPeriodType"/>
+				<xs:element name="isMissing" type="xs:boolean" minOccurs="0"/>
+			</xs:sequence>
+			<xs:element name="maritalData"  type="eCH-0011:maritalDataType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="request">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="header" type="eCH-0058:headerType"/>
+				<xs:element name="content">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="responseLanguage" type="eCH-0011:languageType"/>
+							<xs:element name="announcementType" type="eCH-0084:announcementTypeType"/>
+							<xs:element name="reason" type="eCH-0084:reasonType" minOccurs="0"/>
+							<xs:element name="pids" type="eCH-0084:personIdentificationSequenceType" minOccurs="0" maxOccurs="2"/>
+							<xs:sequence minOccurs="0">
+								<xs:element name="typeOfRecord" type="eCH-0084:typeOfRecordType" minOccurs="0"/>
+								<xs:element name="shownDocument" type="eCH-0084:shownDocumentType" minOccurs="0"/>
+								<xs:element name="personToUPI" type="eCH-0084:personToUPIType"/>
+								<xs:element name="isTwin" type="xs:boolean" minOccurs="0"/>
+							</xs:sequence>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="minorVersion" type="xs:integer" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="response">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="header" type="eCH-0058:headerType"/>
+				<xs:choice>
+					<xs:element name="positiveResponse">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="vn" type="eCH-0044:vnType"/>
+								<xs:element name="personFromUPI" type="eCH-0084:personFromUPIType" minOccurs="0"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="manualProcessing">
+						<xs:simpleType>
+							<xs:restriction base="xs:boolean">
+								<xs:pattern value="true"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="negativeReport" type="eCH-0084:negativeReportType"/>
+				</xs:choice>
+			</xs:sequence>
+			<xs:attribute name="minorVersion" type="xs:integer" use="required"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

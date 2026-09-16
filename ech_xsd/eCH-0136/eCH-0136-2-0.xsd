@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2012 rel. 2 sp1 (http://www.altova.com) by Martin Stingelin (Stingelin Informatik GmbH) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:eCH-0135="http://www.ech.ch/xmlns/eCH-0135/2" xmlns:eCH-0136="http://www.ech.ch/xmlns/eCH-0136/2" targetNamespace="http://www.ech.ch/xmlns/eCH-0136/2" elementFormDefault="qualified" attributeFormDefault="unqualified" version="2.0">
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0135/2" schemaLocation="http://www.ech.ch/xmlns/eCH-0135/2/eCH-0135-2-0.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Ausgabedatum: 10.03.2023</xs:documentation>
+	</xs:annotation>
+	<xs:element name="officeNomenclature">
+		<xs:annotation>
+			<xs:documentation>Zivilstandsaemter, Aufsichtsbehoerden und Sonderzivilstandsaemter pro Gemeinde in Infostar</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="placeOfOriginOffices">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="placeOfOriginOffice" type="eCH-0136:placeOfOriginOfficeType" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="officeType">
+		<xs:sequence>
+			<xs:element name="officeId" type="eCH-0136:officeIdType"/>
+			<xs:element name="officeCode" type="eCH-0136:officeCodeType"/>
+			<xs:element name="districtName" type="xs:string" minOccurs="0"/>
+			<xs:element name="officeName" type="xs:string"/>
+			<xs:element name="officeStreet" type="xs:string"/>
+			<xs:element name="officeStreetNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="officePostalBox" type="xs:string" minOccurs="0"/>
+			<xs:element name="officePLZ" type="xs:integer"/>
+			<xs:element name="officeCity" type="xs:string"/>
+			<xs:element name="officePhone" type="xs:string"/>
+			<xs:element name="officeFax" type="xs:string"/>
+			<xs:element name="officeEmail" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="officeIdType">
+		<xs:restriction base="xs:nonNegativeInteger"/>
+	</xs:simpleType>
+	<xs:complexType name="placeOfOriginOfficeType">
+		<xs:sequence>
+			<xs:element name="placeOfOrigin" type="eCH-0135:placeOfOriginType"/>
+			<xs:element name="officeType" type="eCH-0136:officeType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="officeCodeType">
+		<xs:restriction base="xs:integer">
+			<xs:enumeration value="1"/>
+			<xs:enumeration value="2"/>
+			<xs:enumeration value="6"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

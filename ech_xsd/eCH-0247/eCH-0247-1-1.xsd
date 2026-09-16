@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Mit XMLSpy v2010 rel. 3 sp1 (http://www.altova.com) von Martin Stingelin (Stingelin Informatik
+GmbH) bearbeitet -->
+<!-- edited with XMLSpy v2012 rel. 2 sp1 (http://www.altova.com) by Martin Stingelin (Stingelin
+Informatik GmbH) -->
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by BITUSER (Bundesamt für Informatik
+und Telekommunikation) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:eCH-0247="http://www.ech.ch/xmlns/eCH-0247/1"
+	xmlns:eCH-0058="http://www.ech.ch/xmlns/eCH-0058/5"
+	xmlns:eCH-0155="http://www.ech.ch/xmlns/eCH-0155/5"
+	targetNamespace="http://www.ech.ch/xmlns/eCH-0247/1" elementFormDefault="qualified"
+	attributeFormDefault="unqualified" version="1.1">
+	<xs:annotation>
+		<xs:documentation>Ausgabedatum: 02.06.2025</xs:documentation>
+		<xs:documentation>Version des Standards: 1.1.0</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0058/5"
+		schemaLocation="http://www.ech.ch/xmlns/eCH-0058/5/eCH-0058-5-0.xsd" />
+	<xs:import namespace="http://www.ech.ch/xmlns/eCH-0155/5"
+		schemaLocation="http://www.ech.ch/xmlns/eCH-0155/5/eCH-0155-5-2.xsd" />
+	<xs:attribute name="minorVersion" type="xs:integer">
+		<xs:annotation>
+			<xs:documentation>This attribute is used for indicating the minor version of an XML
+				Schema instance in a standardized way. It SHOULD only appear on the document element
+				of XML Schema instances.</xs:documentation>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:complexType name="initialDeliveryType">
+		<xs:sequence>
+			<xs:element name="masterDoi" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="masterDomainOfInfluence"
+							type="eCH-0155:domainOfInfluenceType" />
+						<xs:element name="masterCC" type="eCH-0155:countingCircleType"
+							maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="contest" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="dateOfVoting" type="eCH-0155:dateOfVotingType"
+							minOccurs="0" />
+						<xs:element name="voteIdentification" type="eCH-0155:voteIdentificationType"
+							minOccurs="0" maxOccurs="unbounded" />
+						<xs:element name="electionIdentification"
+							type="eCH-0155:electionIdentificationType" minOccurs="0"
+							maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="extension" type="eCH-0155:extensionType" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="mappingDeliveryType">
+		<xs:sequence>
+			<xs:element name="doiCC" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="masterDoi">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="masterDomainOfInfluence"
+										type="eCH-0155:domainOfInfluenceType" />
+									<xs:element name="masterCC" type="eCH-0155:countingCircleType"
+										maxOccurs="unbounded" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="otherDoi" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="doiMapping">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element
+													name="masterDomainOfInfluenceIdentification"
+													type="eCH-0155:domainOfInfluenceIdentificationType" />
+												<xs:element name="domainOfInfluence"
+													type="eCH-0155:domainOfInfluenceType" />
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="ccMapping" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="masterCountingCircleId"
+													type="eCH-0155:countingCircleIdType" />
+												<xs:element name="countingCircle"
+													type="eCH-0155:countingCircleType" />
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="nonMappedOtherDoi" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="domainOfInfluence" type="eCH-0155:domainOfInfluenceType" />
+						<xs:element name="countingCircle" type="eCH-0155:countingCircleType"
+							maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="contest" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="dateOfVoting" type="eCH-0155:dateOfVotingType"
+							minOccurs="0" />
+						<xs:element name="voteIdentification" type="eCH-0155:voteIdentificationType"
+							minOccurs="0" maxOccurs="unbounded" />
+						<xs:element name="electionIdentification"
+							type="eCH-0155:electionIdentificationType" minOccurs="0"
+							maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="extension" type="eCH-0155:extensionType" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="consolidatedDeliveryType">
+		<xs:sequence>
+			<xs:element name="doiCC" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="masterDoi">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="masterDomainOfInfluence"
+										type="eCH-0155:domainOfInfluenceType" />
+									<xs:element name="masterCC" type="eCH-0155:countingCircleType"
+										maxOccurs="unbounded" />
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="otherDoi" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="doiMapping">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element
+													name="masterDomainOfInfluenceIdentification"
+													type="eCH-0155:domainOfInfluenceIdentificationType" />
+												<xs:element name="domainOfInfluence"
+													type="eCH-0155:domainOfInfluenceType" />
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="ccMapping" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="masterCountingCircleId"
+													type="eCH-0155:countingCircleIdType" />
+												<xs:element name="countingCircle"
+													type="eCH-0155:countingCircleType" />
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="contest" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="dateOfVoting" type="eCH-0155:dateOfVotingType"
+							minOccurs="0" />
+						<xs:element name="voteIdentification" type="eCH-0155:voteIdentificationType"
+							minOccurs="0" maxOccurs="unbounded" />
+						<xs:element name="electionIdentification"
+							type="eCH-0155:electionIdentificationType" minOccurs="0"
+							maxOccurs="unbounded" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="extension" type="eCH-0155:extensionType" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="qualityAssuranceDeliveryType">
+		<xs:sequence>
+			<xs:element name="doiCC" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="masterDoi">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="masterDomainOfInfluence">
+										<xs:complexType>
+											<xs:complexContent>
+												<xs:extension base="eCH-0155:domainOfInfluenceType">
+													<xs:sequence>
+														<xs:element
+															name="parentDomainOfInfluenceIdentification"
+															type="eCH-0155:domainOfInfluenceIdentificationType"
+															minOccurs="0" maxOccurs="unbounded" />
+													</xs:sequence>
+												</xs:extension>
+											</xs:complexContent>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="masterCC" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:complexContent>
+												<xs:extension base="eCH-0155:countingCircleType">
+													<xs:sequence>
+														<xs:element name="parentCountingCircleId"
+															type="eCH-0155:countingCircleIdType"
+															minOccurs="0" maxOccurs="unbounded" />
+													</xs:sequence>
+												</xs:extension>
+											</xs:complexContent>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="otherDoi">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="doiMapping">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element
+													name="masterDomainOfInfluenceIdentification"
+													type="eCH-0155:domainOfInfluenceIdentificationType" />
+												<xs:element name="domainOfInfluence">
+													<xs:complexType>
+														<xs:complexContent>
+															<xs:extension
+																base="eCH-0155:domainOfInfluenceType">
+																<xs:sequence>
+																	<xs:element
+																		name="parentDomainOfInfluenceIdentification"
+																		type="eCH-0155:domainOfInfluenceIdentificationType"
+																		minOccurs="0"
+																		maxOccurs="unbounded" />
+																</xs:sequence>
+															</xs:extension>
+														</xs:complexContent>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="ccMapping" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="masterCountingCircleId"
+													type="eCH-0155:countingCircleIdType" />
+												<xs:element name="countingCircle">
+													<xs:complexType>
+														<xs:complexContent>
+															<xs:extension
+																base="eCH-0155:countingCircleType">
+																<xs:sequence>
+																	<xs:element
+																		name="parentCountingCircleId"
+																		type="eCH-0155:countingCircleIdType"
+																		minOccurs="0"
+																		maxOccurs="unbounded" />
+																</xs:sequence>
+															</xs:extension>
+														</xs:complexContent>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="nonMappedOtherDoi" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="domainOfInfluence">
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="eCH-0155:domainOfInfluenceType">
+										<xs:sequence>
+											<xs:element name="parentDomainOfInfluenceIdentification"
+												type="eCH-0155:domainOfInfluenceIdentificationType"
+												minOccurs="0" maxOccurs="unbounded" />
+										</xs:sequence>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="countingCircle" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="eCH-0155:countingCircleType">
+										<xs:sequence>
+											<xs:element name="parentCountingCircleId"
+												type="eCH-0155:countingCircleIdType" minOccurs="0"
+												maxOccurs="unbounded" />
+										</xs:sequence>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="extension" type="eCH-0155:extensionType" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="delivery">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="deliveryHeader" type="eCH-0058:headerType" />
+				<xs:choice>
+					<xs:element name="initialDelivery" type="eCH-0247:initialDeliveryType" />
+					<xs:element name="mappingDelivery" type="eCH-0247:mappingDeliveryType" />
+					<xs:element name="consolidatedDelivery" type="eCH-0247:consolidatedDeliveryType" />
+				</xs:choice>
+			</xs:sequence>
+			<xs:attribute ref="eCH-0247:minorVersion" />
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
