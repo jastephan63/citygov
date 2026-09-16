@@ -147,32 +147,39 @@ def main():
     d = os.path.join(root, "rmverdicts")
     if os.path.isdir(d):
         asked = ids_asked(d)
+        # a struck provision is not a remedy and can never be the better answer
         cands = {}
         for r in c.execute("SELECT DISTINCT df.form_id, rr.id FROM data_field_legal_basis lb "
                            "JOIN data_field df ON df.id=lb.data_field_id JOIN article a ON a.id=lb.article_id "
-                           "JOIN rechtsmittel_regel rr ON rr.law_id=a.law_id AND rr.scope='sektoral'"):
+                           "JOIN rechtsmittel_regel rr ON rr.law_id=a.law_id AND rr.scope='sektoral' "
+                           "AND rr.gestrichen=0"):
             cands.setdefault(r["form_id"], set()).add(r["id"])
-        votes = {}   # form_id -> list of (refuted, besser, grund)
-        for _, x in load_all(d, "out_"):
+        # one vote per LENS: the lens is the output file, so two records from the
+        # same file are one opinion, not a quorum
+        votes = {}   # form_id -> list of (lens, refuted, besser, grund)
+        for fn, x in load_all(d, "out_"):
+            lens = fn.rsplit("_", 1)[-1].rsplit(".", 1)[0]
             for u in (x.get("urteile") if isinstance(x, dict) else x) or []:
                 fid = u.get("form_id")
                 if fid not in asked:
                     continue
-                votes.setdefault(fid, []).append((bool(u.get("refuted")), u.get("besser"), u.get("grund")))
+                votes.setdefault(fid, []).append((lens, bool(u.get("refuted")), u.get("besser"), u.get("grund")))
         n = over = offen = rej = 0
         for fid, vs in votes.items():
             n += 1
-            ref = [v for v in vs if v[0]]
-            if len(ref) < 2:
-                c.execute("INSERT OR REPLACE INTO panel_review VALUES('rmverdict',?,?,?)", [fid, "bestaetigt", f"{len(vs)-len(ref)}/{len(vs)} Linsen"])
+            ref = [v for v in vs if v[1]]
+            nlens = len({v[0] for v in vs})
+            if len({v[0] for v in ref}) < 2:
+                c.execute("INSERT OR REPLACE INTO panel_review VALUES('rmverdict',?,?,?)",
+                          [fid, "bestaetigt", f"{nlens - len({v[0] for v in ref})}/{nlens} Linsen halten das Verdikt"])
                 continue
-            # do two refuters agree on the same better verdict?
+            # do two DIFFERENT lenses agree on the same better verdict?
             agree = {}
-            for _, b, g in ref:
+            for lens, _, b, g in ref:
                 if b and b.get("quelle") in ("sektoral", "allgemein", "offen"):
                     key = (b["quelle"], b.get("regel_id") if b["quelle"] == "sektoral" else None)
-                    agree.setdefault(key, []).append(g or "")
-            pick = next(((k, g) for k, g in agree.items() if len(g) >= 2), None)
+                    agree.setdefault(key, {})[lens] = g or ""
+            pick = next(((k, list(g.values())) for k, g in agree.items() if len(g) >= 2), None)
             if pick and (pick[0][0] != "sektoral" or pick[0][1] in cands.get(fid, set())):
                 q, rid = pick[0]
                 c.execute("INSERT OR REPLACE INTO rechtsmittel_verdikt(form_id, regel_id, quelle, begruendung, last_checked) VALUES(?,?,?,?,?)",
@@ -180,9 +187,15 @@ def main():
                 c.execute("INSERT OR REPLACE INTO panel_review VALUES('rmverdict',?,?,?)", [fid, "geaendert", " / ".join(pick[1])[:400]])
                 over += 1
             else:
+                # name the real reason: the reviewers may agree that the verdict
+                # is wrong yet not on what is right, or their answer may point at
+                # a provision that is not among this form's candidates
+                why_open = ("Zweitprüfung: mehrere Linsen widersprechen dem Verdikt, ohne sich auf eine andere Norm zu einigen"
+                            if not pick else
+                            "Zweitprüfung: die vorgeschlagene Norm gehört nicht zu den Gesetzen dieses Formulars oder wurde gestrichen")
                 c.execute("INSERT OR REPLACE INTO rechtsmittel_verdikt(form_id, regel_id, quelle, begruendung, last_checked) VALUES(?,?,?,?,?)",
-                          [fid, None, "offen", "Zweitprüfung uneinig: " + " / ".join(g or "" for _, _, g in ref)[:360], "Panel-Zweitprüfung"])
-                c.execute("INSERT OR REPLACE INTO panel_review VALUES('rmverdict',?,?,?)", [fid, "offen", "Zweitprüfung uneinig"])
+                          [fid, None, "offen", (why_open + " — " + " / ".join(g or "" for _, _, _, g in ref))[:400], "Panel-Zweitprüfung"])
+                c.execute("INSERT OR REPLACE INTO panel_review VALUES('rmverdict',?,?,?)", [fid, "offen", why_open])
                 offen += 1
         stats["rmverdicts"] = f"{n} Formulare geprüft, {over} umgehängt, {offen} auf offen gesetzt"
 

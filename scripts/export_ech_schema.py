@@ -55,9 +55,22 @@ def main():
                     "abdeckung_pct": pct, "ech": tree, "ohne_standard": unmapped})
     c.close()
 
+    # the sweep pins a version per standard; publish it, so a consumer knows
+    # which schema edition the mapping was made against
+    versions = {}
+    try:
+        c2 = connect(DB_PATH)
+        versions = {r["code"]: r["xsd_version"] for r in
+                    c2.execute("SELECT code, xsd_version FROM ech_standard WHERE xsd_version IS NOT NULL")}
+        c2.close()
+    except Exception:
+        pass
     doc = {"meta": {"hinweis": "eCH-Austauschschemata je Formular, verschachtelt nach den "
                     "complexTypes der offiziellen XSDs. 'ohne_standard' sind echte Lücken. "
-                    "XSD-Versionen sind noch nicht gepinnt (braucht einen erneuten XSD-Sweep).",
+                    "'xsd_versionen' nennt die Schema-Fassung, gegen die zugeordnet wurde "
+                    "(scripts/sweep_ech_xsd.py); ein Standard ohne Eintrag publiziert keine "
+                    "eigene XSD.",
+                    "xsd_versionen": versions,
                     "quelle": "citygov.db"}, "formulare": out}
     path = os.path.join(ROOT, "citygov_ech_schemas.json")
     json.dump(doc, open(path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)

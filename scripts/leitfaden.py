@@ -321,17 +321,21 @@ LEITFADEN = [
   "frage": "Besonders schützenswerte Daten (⛨) — was gilt zusätzlich?",
   "kurz": "Gesundheit, Religion, politische Ansichten, Sozialhilfe, Straf- und "
           "Disziplinardaten: hier braucht die Bearbeitung ein formelles Gesetz "
-          "(vom Parlament beschlossen, nicht bloss eine Verordnung) oder eine enge "
-          "Ausnahme, Einwilligungen müssen ausdrücklich sein, und im kantonalen "
-          "Archiv gilt eine Sperrfrist von 100 Jahren.",
+          "(vom Parlament beschlossen, nicht bloss eine Verordnung), die Unentbehrlichkeit "
+          "für eine gesetzlich umschriebene Aufgabe oder die Zustimmung der Person; "
+          "im kantonalen Archiv gilt eine Sperrfrist von 100 Jahren.",
   "punkte": [
    {"text": "Bearbeitung und Profiling nur, wenn ein formelles Gesetz es ausdrücklich "
-            "vorsieht, die Aufgabe es zwingend erfordert (unentbehrlich) oder die "
-            "Person ausdrücklich einwilligt — das gilt im Kanton wie beim Bund.",
+            "vorsieht oder die Daten für eine in einem formellen Gesetz klar "
+            "umschriebene Aufgabe unentbehrlich sind — oder die Person zustimmt. "
+            "Im Kanton genügt nach KDSG Art. 5 Abs. 1 lit. b auch eine Zustimmung, "
+            "die nach den Umständen unzweifelhaft vorausgesetzt werden darf; beim "
+            "Bund ist für besonders schützenswerte Daten die ausdrückliche "
+            "Einwilligung verlangt.",
     "refs": [("174.100", "Art. 5", "bearbeitung", "besonders_schuetzenswert"),
              ("235.1", "Art. 34", "bearbeitung", "besonders_schuetzenswert")]},
-   {"text": "Wo eine Einwilligung nötig ist, muss sie für besonders schützenswerte "
-            "Daten ausdrücklich erfolgen — Stillschweigen genügt nicht.",
+   {"text": "Wo Bundesrecht gilt, muss die Einwilligung für besonders schützenswerte "
+            "Daten ausdrücklich erfolgen — Stillschweigen genügt dort nicht.",
     "refs": [("235.1", "Art. 6", "bearbeitung", "besonders_schuetzenswert")]},
    {"text": "Bundesorgane dürfen solche Daten Privaten für nicht personenbezogene "
             "Zwecke nur so bekanntgeben, dass die Personen nicht bestimmbar sind. "

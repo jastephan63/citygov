@@ -232,7 +232,11 @@ CREATE TABLE IF NOT EXISTS data_field (
 );
 CREATE INDEX IF NOT EXISTS idx_data_field_form ON data_field(form_id);
 
--- besonders schützenswerte Personendaten (DSG Art. 5 lit. c); NULL = nicht besonders schützenswert
+-- besonders schützenswerte Personendaten: für die kantonalen Organe gilt KDSG
+-- Art. 2 Abs. 1 lit. d (Religion/Weltanschauung/Politik/Gewerkschaft, Gesundheit/
+-- Intimsphäre/ethnische Herkunft, soziale Hilfe, Verfolgungen und Sanktionen,
+-- genetische und biometrische Daten); DSG Art. 5 lit. c gilt für Bundesorgane.
+-- NULL = nicht besonders schützenswert
 -- Werte: gesundheit | religion_weltanschauung | politik | ethnie_herkunft | genetik_biometrie | strafen_verfahren | sozialhilfe
 -- ALTER TABLE data_field ADD COLUMN sensitive TEXT;
 

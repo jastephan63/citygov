@@ -178,6 +178,18 @@ def main():
             aid, new = find_or_add_article(c, l["id"], r.get("article_no") or "UNKNOWN",
                                            r.get("heading"), q, nr)
             added_arts += new
+            # the second review may have CORRECTED this provision's art (e.g.
+            # rekurs -> beschwerde). Re-inserting the panel's original art would
+            # add a second row for the same article and resurrect the mistake,
+            # so a reviewed provision keeps the reviewed art.
+            rev = c.execute(
+                "SELECT rr.rechtsmittel_art FROM rechtsmittel_regel rr "
+                "JOIN panel_review p ON p.kind='rmrule' AND p.item_id=rr.id "
+                "WHERE rr.law_id=? AND rr.article_id=? AND p.urteil IN ('korrigiert','streichen')",
+                [l["id"], aid]).fetchone() if c.execute(
+                "SELECT 1 FROM sqlite_master WHERE name='panel_review'").fetchone() else None
+            if rev:
+                art = rev["rechtsmittel_art"]
             c.execute("INSERT INTO rechtsmittel_regel(law_id, article_id, scope, rechtsmittel_art, "
                       "frist_tage, instanz, gilt_fuer, quote, quote_verified, hinweis, last_checked) "
                       "VALUES(?,?,?,?,?,?,?,?,1,?,?) ON CONFLICT(law_id, article_id, rechtsmittel_art) DO UPDATE SET "
@@ -216,8 +228,12 @@ def main():
     # mechanical part only: a law with exactly ONE usable remedy of its own is
     # unambiguous; a verweis to the VRG resolves to the general rule; anything
     # else falls back to the general rule and keeps its candidates visible.
+    # a verdict that names a provision the review STRUCK is void — the struck
+    # provision is not a person's remedy, so the form falls back to 'offen'
     verdicts = {r["form_id"]: r for r in c.execute(
-        "SELECT form_id, regel_id, quelle FROM rechtsmittel_verdikt")} if c.execute(
+        "SELECT v.form_id, v.regel_id, CASE WHEN v.quelle='sektoral' AND "
+        "COALESCE((SELECT rr.gestrichen FROM rechtsmittel_regel rr WHERE rr.id=v.regel_id),0)=1 "
+        "THEN 'offen' ELSE v.quelle END quelle FROM rechtsmittel_verdikt v")} if c.execute(
         "SELECT 1 FROM sqlite_master WHERE name='rechtsmittel_verdikt'").fetchone() else {}
     rule_by_id = {r["id"]: r for r in rules}
     applied = {"sektoral": 0, "allgemein": 0, "offen": 0, "keins": 0, "verdikt": 0}
@@ -230,7 +246,8 @@ def main():
         elif v and v["quelle"] == "allgemein" and kind in APPLICABLE:
             quelle = "allgemein"; applied["verdikt"] += 1
         elif v and v["quelle"] == "offen":
-            quelle = None
+            quelle = "offen"            # assessed and undecidable — not the same as unassessed
+            applied["verdikt"] += 1
         elif kind in APPLICABLE or kind == "registereintrag":
             for law_id, _ in sorted(cited.get(fid, {}).items(), key=lambda x: -x[1]):
                 cand = by_law.get(law_id)
@@ -253,18 +270,20 @@ def main():
         if quelle == "allgemein":
             g = c.execute("SELECT * FROM rechtsmittel_regel WHERE id=?", [general_id]).fetchone()
             c.execute("UPDATE form_outcome SET rechtsmittel_art=?, rechtsmittel_frist_tage=?, rechtsmittel_instanz=?, "
-                      "article_id=?, rechtsmittel_regel_id=?, rechtsmittel_quelle='allgemein', last_checked=? WHERE form_id=?",
-                      [g["rechtsmittel_art"], g["frist_tage"], g["instanz"], g["article_id"], g["id"], g["last_checked"], fid])
+                      "article_id=?, rechtsmittel_regel_id=?, rechtsmittel_quelle='allgemein' WHERE form_id=?",
+                      [g["rechtsmittel_art"], g["frist_tage"], g["instanz"], g["article_id"], g["id"], fid])
             applied["allgemein"] += 1
         elif pick:
             c.execute("UPDATE form_outcome SET rechtsmittel_art=?, rechtsmittel_frist_tage=?, rechtsmittel_instanz=?, "
-                      "article_id=?, rechtsmittel_regel_id=?, rechtsmittel_quelle='sektoral', last_checked=? WHERE form_id=?",
-                      [pick["rechtsmittel_art"], pick["frist_tage"], pick["instanz"], pick["article_id"], pick["id"], pick["last_checked"], fid])
+                      "article_id=?, rechtsmittel_regel_id=?, rechtsmittel_quelle='sektoral' WHERE form_id=?",
+                      [pick["rechtsmittel_art"], pick["frist_tage"], pick["instanz"], pick["article_id"], pick["id"], fid])
             applied["sektoral"] += 1
         else:
+            # 'offen' = the panel looked and could not decide; NULL = never looked
             c.execute("UPDATE form_outcome SET rechtsmittel_art=NULL, rechtsmittel_frist_tage=NULL, rechtsmittel_instanz=NULL, "
-                      "article_id=NULL, rechtsmittel_regel_id=NULL, rechtsmittel_quelle=NULL WHERE form_id=?", [fid])
-            applied["offen" if kind == "registereintrag" else "keins"] += 1
+                      "article_id=NULL, rechtsmittel_regel_id=NULL, rechtsmittel_quelle=? WHERE form_id=?",
+                      ["offen" if quelle == "offen" else None, fid])
+            applied["offen" if quelle == "offen" or kind == "registereintrag" else "keins"] += 1
     c.commit()
     errs = validate(c)
     c.close()

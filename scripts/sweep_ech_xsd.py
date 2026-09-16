@@ -98,12 +98,16 @@ def parse_xsd(path):
 
 
 def main_xsd(code, files):
-    """The schema file of the standard itself: eCH-0044-4-1.xsd, not the
-    French twin (-4-1f) and not an imported foreign standard."""
-    own = [f for f in files if os.path.basename(f).lower().startswith(code.lower() + "-")]
+    """The schema file of the standard ITSELF: eCH-0044-4-1.xsd, not the French
+    twin (-4-1f) and not an imported foreign standard (ili2.xsd and friends).
+
+    Returns None when the standard publishes no own schema — pinning a foreign
+    file as this standard's proof, and storing its enumerations as this
+    standard's official code list, would be worse than recording nothing."""
+    own = [f for f in files if os.path.basename(f).lower().startswith(code.lower())]
     own = [f for f in own if not re.search(r"-\d+-\d+f\.xsd$", f, re.I)] or own
     own.sort(key=lambda f: [int(x) for x in re.findall(r"\d+", os.path.basename(f))], reverse=True)
-    return own[0] if own else (files[0] if files else None)
+    return own[0] if own else None
 
 
 def main():
@@ -146,7 +150,11 @@ def main():
         mx = main_xsd(code, files)
         if not mx:
             failed += 1
-            report.append(f"{code}: keine XSD auf der Seite")
+            report.append(f"{code}: keine eigene XSD auf der Seite"
+                          + (f" (nur fremde: {', '.join(os.path.basename(f) for f in files[:3])})" if files else ""))
+            # never keep a version or code list that came from a foreign schema
+            c.execute("UPDATE ech_standard SET xsd_version=NULL, xsd_file=NULL WHERE code=?", [code])
+            c.execute("DELETE FROM ech_codelist WHERE standard=?", [code])
             continue
         version, names, codes = parse_xsd(mx)
         # a standard may split its schema over several files (eCH-0147 T0/T1/T2,

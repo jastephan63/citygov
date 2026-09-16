@@ -287,8 +287,10 @@ def main():
                 aid = attr_by_esh.get(f"{u['esh_code']}:{u['esh_element']}")
             # once-only only makes sense for the person's OWN attributes: the
             # street of a Betrieb, a vehicle's Standort or an authority's address
-            # is stored per Fall, never reused as the person's datum
-            if d["subjekt"] in ("organisation", "sache", "behoerde", "gemischt"):
+            # is stored per Fall, never reused as the person's datum. Whitelist,
+            # not blacklist - a field the panel has not judged (subjekt NULL) is
+            # not silently treated as the person's own datum
+            if d["subjekt"] != "natuerliche_person":
                 aid = None
             forms[d["form_id"]]["punkte"].append({
                 "name": u["name"], "attr": aid,

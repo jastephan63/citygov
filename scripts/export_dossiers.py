@@ -138,10 +138,21 @@ def todo(f):
         it.append(f"DSFA-Entscheid offen ({sens} ⛨-Felder, KDSG Art. 14b)")
     n = sum(1 for d in dfs if not d.get("ech_status") or d.get("ech_status") == "standard_only")
     if n: it.append(f"eCH-Zuordnung offen: {n}")
+    # a standard that is no longer in force — same check the dashboard makes
+    bad = {"Aufgehoben", "Abgelöst", "Sistiert"}
+    alt = sum(1 for d in dfs
+              if ((d.get("ech") or {}).get("status") in bad)
+              or any(isinstance(s, dict) and (s.get("ech") or {}).get("status") in bad
+                     for s in (d.get("subfields") or [])))
+    if alt: it.append(f"eCH-Standard nicht in Kraft: {alt}")
     ck = (f.get("check") or {}).get("status")
     if ck in CHECK: it.append(f"Formular-Fassung prüfen: {CHECK[ck]}")
-    n = sum(1 for s in (f.get("similar") or []) if not s.get("verdict"))
+    n = sum(1 for s in (f.get("similar") or []) if not s.get("verdict") and f["id"] < s.get("form_id", 0))
     if n: it.append(f"Duplikat-Verdacht unentschieden: {n}")
+    o = f.get("outcome") or {}
+    if o.get("entscheid_art") not in (None, "kein_entscheid", "unbekannt") \
+            and o.get("rechtsmittel_quelle") in (None, "offen"):
+        it.append("Rechtsmittel nicht bestimmt")
     return it
 
 
@@ -206,7 +217,11 @@ def dossier(s, forms, dst, kat):
             jl = "Kanton" if key == "recht_kantonal" else jur_of_ref(x, label, local)
             nr = x.get("ssr_nummer") or x.get("sr_nummer") or ""
             laws.append(f'<span class="b">{jl} · {esc(label)}{(" · " + esc(nr)) if nr else ""}</span>')
-    out = (forms[0].get("outcome") if forms else None) or {}
+    # the Entscheid is modelled on ONE of a service's Formulare; picking the
+    # first blindly hid the proven Rechtsmittel of the others
+    out = next((f["outcome"] for f in forms
+                if f.get("outcome") and (f["outcome"].get("rechtsmittel") or f["outcome"].get("entscheid_art"))),
+               (forms[0].get("outcome") if forms else None)) or {}
     rm = out.get("rechtsmittel")
     rm_html = ""
     if rm:
@@ -219,8 +234,16 @@ def dossier(s, forms, dst, kat):
         rm_html = (f'<div><b>Rechtsmittel:</b> {what} — {esc(rm.get("article_no"))} {esc(rm.get("short_title") or rm.get("law_title") or "")}'
                    f'{(" (" + esc(nr) + ")") if nr else ""} {src}</div>'
                    f'<div class="small muted">«{esc((rm.get("quote") or "")[:300])}»</div>')
-    elif out.get("entscheid_art") == "registereintrag":
-        rm_html = '<div><b>Rechtsmittel:</b> <span class="b warn">noch nicht bestimmt — Registerverfahren nach Bundesrecht</span></div>'
+    elif out.get("rechtsmittel_status"):
+        lv = " und ".join({"federal": "Bundesrecht", "cantonal": "kantonales Recht",
+                           "communal": "kommunales Recht"}.get(x, x) for x in (out.get("gesetzesebenen") or [])) \
+             or "die zitierten Erlasse"
+        beurteilt = out["rechtsmittel_status"] == "beurteilt_offen"
+        rm_html = (f'<div><b>Rechtsmittel:</b> <span class="b warn">'
+                   f'{"geprüft, nicht bestimmbar" if beurteilt else "noch nicht untersucht"}</span> '
+                   f'<span class="small muted">Der Entscheid stützt sich auf {esc(lv)}'
+                   f'{"; Registerverfahren haben oft eine eigene Rechtsmittelordnung" if out.get("entscheid_art") == "registereintrag" else ""}.</span></div>'
+                   + (f'<div class="small muted">{esc(out["rechtsmittel_verdikt"])}</div>' if out.get("rechtsmittel_verdikt") else ""))
     h = [f"<!DOCTYPE html><html lang='de'><head><meta charset='utf-8'><title>Datenschutz-Dossier · {esc(s['name'])}</title><style>{CSS}</style></head><body>",
          "<button class='print' onclick='window.print()'>⎙ Drucken / als PDF sichern</button>",
          f"<div class='sub'>Kanton Schaffhausen · Compliance-Databank · Datenschutz-Dossier · Stand {date.today().isoformat()}</div>",

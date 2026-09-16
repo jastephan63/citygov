@@ -30,18 +30,27 @@ def main():
         os.remove(st)
     shutil.copy2(DB_PATH, st)
     c = connect(st)
-    known = {}
+    # provenance: a copied verdict is weaker evidence than a judged one - it is
+    # marked so the verification pass (and any reader) can tell them apart
+    for tbl in ("data_field", "data_subfield"):
+        if "ech_herkunft" not in {r[1] for r in c.execute(f"PRAGMA table_info({tbl})")}:
+            c.execute(f"ALTER TABLE {tbl} ADD COLUMN ech_herkunft TEXT")
+    known, seen_n = {}, {}
     for r in c.execute("SELECT name, ech_status, ech_element_id, ech_standard_code, esh_code, esh_element "
                        "FROM data_field WHERE ech_status IS NOT NULL"):
-        known.setdefault(norm(r["name"]), set()).add(
+        k = norm(r["name"])
+        known.setdefault(k, set()).add(
             (r["ech_status"], r["ech_element_id"], r["ech_standard_code"], r["esh_code"], r["esh_element"]))
+        seen_n[k] = seen_n.get(k, 0) + 1
     nf = 0
     for r in c.execute("SELECT id, name FROM data_field WHERE ech_status IS NULL").fetchall():
         v = known.get(norm(r["name"]))
         if v and len(v) == 1:
             status, eid, std, esh, eshel = next(iter(v))
             c.execute("UPDATE data_field SET ech_status=?, ech_element_id=?, ech_standard_code=?, "
-                      "esh_code=?, esh_element=? WHERE id=?", [status, eid, std, esh, eshel, r["id"]])
+                      "esh_code=?, esh_element=?, ech_herkunft=? WHERE id=?",
+                      [status, eid, std, esh, eshel,
+                       f"propagiert (Name {seen_n.get(norm(r['name']), 0)}x geprüft)", r["id"]])
             nf += 1
     ks = {}
     for r in c.execute("SELECT d.name p, s.name n, s.ech_status, s.ech_element_id, s.ech_standard_code, "
@@ -56,7 +65,8 @@ def main():
         if v and len(v) == 1:
             status, eid, std, esh, eshel = next(iter(v))
             c.execute("UPDATE data_subfield SET ech_status=?, ech_element_id=?, ech_standard_code=?, "
-                      "esh_code=?, esh_element=? WHERE id=?", [status, eid, std, esh, eshel, r["id"]])
+                      "esh_code=?, esh_element=?, ech_herkunft='propagiert' WHERE id=?",
+                      [status, eid, std, esh, eshel, r["id"]])
             ns += 1
     c.commit()
     errs = validate(c)

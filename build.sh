@@ -10,6 +10,9 @@
 #   ./build.sh
 set -euo pipefail
 cd "$(dirname "$0")"
+# the canonical attribute catalogue is DERIVED from the field layer — rebuild it
+# first, or the Datenkatalog shows yesterday's attributes next to today's fields
+python3 scripts/init_register.py
 python3 scripts/export_json.py
 python3 scripts/build_dashboard.py
 echo "done — open dashboard.html in a browser"

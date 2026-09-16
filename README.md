@@ -97,7 +97,7 @@ file itself.
   marital status, residence permits, ...) and, per field, whether the form
   uses those codes or its own plain-text values.
 - **Handling rules.** 247 rules on storing, processing and disclosing
-  personal data, from 8 data-protection laws and 41 sectoral laws. Every
+  personal data, from 8 data-protection laws and 36 sectoral laws. Every
   rule carries a quote checked word-for-word against the official law PDF.
   Retention periods are machine-readable, so deletion dates can be computed.
 - **The register.** Per Formular: purpose, recipients, retention and DSFA
@@ -132,8 +132,8 @@ facts and were read strictly without changing anything.
 ## The Datentresor
 
 `datentresor.db` shows how the collected data could actually be stored:
-1,200 synthetic residents, 10,000 cases, about 167,000 stored values of
-which 20,000 were reused instead of asked again. The rules are enforced by
+1,200 synthetic residents, 10,000 cases, about 186,000 stored values, with
+15,000 more reused from an earlier case instead of asked again. The rules are enforced by
 the database itself: a person's own datum is stored once and reused
 (once-only; a company's or an authority's address is stored per case, not
 as the person's), sensitive values are AES-256-GCM encrypted with the key
@@ -163,10 +163,12 @@ database — a failed load changes nothing.
 ## Known gaps
 
 The 74 newest Formulare (taken from the DVSH model) have their standards
-mapping but not yet their article-level legal bases — about 1,100 fields
-are marked "zu ermitteln". Schutzstufen and DSFA decisions are the
-canton's to make and are empty until then. Legal remedies are stated per
-Verfahren, but for 19 register-type procedures under federal law none
-could be assigned with proof. eSH is a draft. The Handlungsbedarf board
-lists every gap by Dienststelle; the dashboard shows each one where it
-occurs.
+mapping but not yet their article-level legal bases — 1,110 fields are
+marked "zu ermitteln". Schutzstufen and DSFA decisions are the canton's to
+make and are empty until then. Legal remedies are stated per Verfahren, but
+24 procedures have none: 18 were assessed and could not be decided from the
+cited law (mostly commercial-register and notarial acts under federal law),
+6 have not been looked at yet — the dashboard says which is which. eSH is a
+draft, and it shrinks as eCH assignments take fields over. The
+Handlungsbedarf board lists every gap by Dienststelle; the dashboard shows
+each one where it occurs.

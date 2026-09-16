@@ -292,10 +292,25 @@ def build(conn):
             for r in rows(conn, "SELECT DISTINCT d.form_id, a.law_id FROM data_field_legal_basis lb "
                                 "JOIN data_field d ON d.id=lb.data_field_id JOIN article a ON a.id=lb.article_id"):
                 laws_of_form.setdefault(r["form_id"], []).append(r["law_id"])
+            lvl_of_law = {l["id"]: l["jurisdiction_level"] for l in laws}
+            reviewed = set()
+            try:
+                reviewed = {r["form_id"] for r in rows(conn, "SELECT form_id FROM rechtsmittel_verdikt")}
+            except Exception:
+                pass
             for fid, o in out_by_form.items():
                 cands = [c for lid in laws_of_form.get(fid, []) for c in cand_by_law.get(lid, [])]
                 if cands:
                     o["rechtsmittel_kandidaten"] = cands
+                # why a form has no remedy: assessed and left open, or not yet
+                # assessed at all - the surfaces must not claim the same reason
+                # for both, nor call a cantonal procedure federal
+                if not o.get("rechtsmittel") and o.get("entscheid_art") not in (None, "kein_entscheid", "unbekannt"):
+                    o["rechtsmittel_status"] = ("beurteilt_offen"
+                                                if o.get("rechtsmittel_quelle") == "offen" or fid in reviewed
+                                                else "nicht_beurteilt")
+                    o["gesetzesebenen"] = sorted({lvl_of_law.get(lid) for lid in laws_of_form.get(fid, [])
+                                                  if lvl_of_law.get(lid)})
             # the panel's reasoning where a judgment was needed
             try:
                 for r in rows(conn, "SELECT form_id, quelle, begruendung FROM rechtsmittel_verdikt"):
@@ -394,10 +409,24 @@ def build(conn):
                       "recht_bund", "externe_links", "abgabe", "kontakt", "documents",
                       "sources", "form_definitions", "submission_endpoint",
                       "completeness", "opening_hours"):
-                try:
-                    d[k] = json.loads(d[k]) if d.get(k) else []
-                except Exception:
-                    d[k] = d.get(k) or []
+                # some modeller columns are double-encoded (a JSON string whose
+                # content is itself JSON); one decode then yields text where the
+                # consumers expect a list, so decode until it stops being a
+                # string. Whatever is left that is not a list/dict is wrapped,
+                # so no consumer ever receives bare text where a list belongs
+                v = d.get(k)
+                for _ in range(3):
+                    if not isinstance(v, str) or not v.strip():
+                        break
+                    try:
+                        v = json.loads(v)
+                    except Exception:
+                        break
+                if v is None or v == "":
+                    v = []
+                elif isinstance(v, str):
+                    v = [v]
+                d[k] = v
             dvsh_by_service.setdefault(d["service_id"], []).append(d)
     except Exception:
         pass
@@ -426,14 +455,19 @@ def build(conn):
 
     esh_katalog = []
     if _has_esh(conn):
-        esh_katalog = rows(conn, "SELECT code, titel, beschreibung, themen, status, n_felder "
+        # n_felder is a snapshot from the eSH draft's creation; the live count
+        # is what the field layer says TODAY, and the two drift apart with every
+        # eCH assignment that replaces a draft code
+        esh_katalog = rows(conn, "SELECT code, titel, beschreibung, themen, status, n_felder, "
+                                 "(SELECT COUNT(*) FROM data_field d WHERE d.esh_code=esh_standard.code) "
+                                 "+(SELECT COUNT(*) FROM data_subfield s WHERE s.esh_code=esh_standard.code) n_live "
                                  "FROM esh_standard ORDER BY code")
 
     # canonical attribute catalogue + the divergence lists for the Datenkatalog tab
     katalog, dienststellen = [], []
     try:
         katalog = rows(conn, "SELECT ca.id, ca.label, ca.datatype, ca.sensitive_categories, "
-                             "ca.register_source, ca.n_instances, ca.n_forms, "
+                             "ca.register_source, ca.n_instances, ca.n_forms, ca.n_register, "
                              "e.standard ech_standard, e.name ech_element, ca.esh_key "
                              "FROM canonical_attribute ca "
                              "LEFT JOIN ech_element e ON e.id=ca.ech_element_id "

@@ -662,14 +662,27 @@ def main():
             em = {}
             for d in fl["datenfelder"]:
                 # the player prefills from the CITIZEN's profile - a Betrieb's
-                # street or an authority's address must not be filled from it
-                if d.get("subjekt") in ("organisation", "sache", "behoerde", "gemischt"):
+                # street or an authority's address must not be filled from it.
+                # Whitelist: a field the panel has not judged (subjekt NULL)
+                # stays out until it has been
+                if d.get("subjekt") != "natuerliche_person":
                     continue
                 if d.get("ech") and d["ech"].get("element"):
                     em[d["name"]] = d["ech"]["standard"] + "\u00b7" + d["ech"]["element"]
                 for sf in (d.get("teilfelder") or []):
                     if sf.get("ech") and sf["ech"].get("element"):
                         em[d["name"] + "\u203a" + sf["name"]] = sf["ech"]["standard"] + "\u00b7" + sf["ech"]["element"]
+            # an element that identifies MORE than one question in the same form
+            # cannot prefill either of them - the profile holds one value, and
+            # writing it into both would fill a wrong answer (e.g. two different
+            # dates both mapped to eCH-0044 dateOfBirth)
+            seen = {}
+            for k, v in em.items():
+                seen.setdefault(v, []).append(k)
+            for v, keys in seen.items():
+                if len(keys) > 1:
+                    for k in keys:
+                        em.pop(k, None)
             fl["ech_map"] = em
             # DVSH: real process steps + contact for the done screen
             dv = c.execute("SELECT ablauf, kontakt FROM dvsh_service WHERE service_id=? LIMIT 1",

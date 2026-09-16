@@ -45,7 +45,8 @@ CREATE TABLE IF NOT EXISTS canonical_attribute (
     sensitive_categories TEXT,
     register_source TEXT,
     n_instances    INTEGER NOT NULL,
-    n_forms        INTEGER NOT NULL
+    n_forms        INTEGER NOT NULL,
+    n_register     INTEGER NOT NULL DEFAULT 0   -- instances judged a natural person's datum
 );
 CREATE TABLE IF NOT EXISTS dienststelle (
     name        TEXT PRIMARY KEY,
@@ -128,7 +129,8 @@ def main():
     c.executescript(DDL)
     for tbl, col, typ in [("form", "purpose", "TEXT"), ("form", "dsfa_status", "TEXT"),
                           ("form", "dsfa_note", "TEXT"), ("data_field", "schutzstufe", "TEXT"),
-                          ("data_field", "format_code", "TEXT")]:
+                          ("data_field", "format_code", "TEXT"),
+                          ("canonical_attribute", "n_register", "INTEGER NOT NULL DEFAULT 0")]:
         try:
             c.execute(f"ALTER TABLE {tbl} ADD COLUMN {col} {typ}")
         except Exception:
@@ -155,38 +157,51 @@ def main():
     # canonical attribute catalogue: one row per unique datum, fully derived
     c.execute("DELETE FROM canonical_attribute")
     attrs = {}
-    def collect(key, name, sens, form_id):
-        a = attrs.setdefault(key, {"names": Counter(), "sens": set(), "forms": set(), "n": 0})
+    def collect(key, name, sens, form_id, subjekt=None):
+        a = attrs.setdefault(key, {"names": Counter(), "sens": set(), "forms": set(), "n": 0, "reg": 0})
         a["names"][name] += 1; a["forms"].add(form_id); a["n"] += 1
+        # only a natural person's datum can come out of the Einwohnerregister;
+        # the same eCH element also carries business and object addresses
+        if subjekt == "natuerliche_person":
+            a["reg"] += 1
         if sens: a["sens"].add(sens)
-    for r in c.execute("SELECT d.ech_element_id k, d.name, d.sensitive, d.form_id "
-                       "FROM data_field d WHERE d.ech_element_id IS NOT NULL"):
-        collect(("ech", r["k"]), r["name"], r["sensitive"], r["form_id"])
-    for r in c.execute("SELECT s.ech_element_id k, s.name, d.sensitive, d.form_id "
+    # the unit is the ATOMIC datum: a composite whose parts carry their own
+    # elements is represented by those parts, never counted beside them
+    for r in c.execute("SELECT d.ech_element_id k, d.name, d.sensitive, d.form_id, d.subjekt "
+                       "FROM data_field d WHERE d.ech_element_id IS NOT NULL "
+                       "AND NOT EXISTS (SELECT 1 FROM data_subfield s WHERE s.data_field_id=d.id)"):
+        collect(("ech", r["k"]), r["name"], r["sensitive"], r["form_id"], r["subjekt"])
+    for r in c.execute("SELECT s.ech_element_id k, s.name, d.sensitive, d.form_id, d.subjekt "
                        "FROM data_subfield s JOIN data_field d ON d.id=s.data_field_id "
                        "WHERE s.ech_element_id IS NOT NULL"):
-        collect(("ech", r["k"]), r["name"], r["sensitive"], r["form_id"])
-    for r in c.execute("SELECT d.esh_code, d.esh_element, d.name, d.sensitive, d.form_id "
-                       "FROM data_field d WHERE d.esh_code IS NOT NULL AND d.esh_element IS NOT NULL"):
-        collect(("esh", f"{r['esh_code']}:{r['esh_element']}"), r["name"], r["sensitive"], r["form_id"])
-    for r in c.execute("SELECT s.esh_code, s.esh_element, s.name, d.sensitive, d.form_id "
+        collect(("ech", r["k"]), r["name"], r["sensitive"], r["form_id"], r["subjekt"])
+    for r in c.execute("SELECT d.esh_code, d.esh_element, d.name, d.sensitive, d.form_id, d.subjekt "
+                       "FROM data_field d WHERE d.esh_code IS NOT NULL AND d.esh_element IS NOT NULL "
+                       "AND NOT EXISTS (SELECT 1 FROM data_subfield s WHERE s.data_field_id=d.id)"):
+        collect(("esh", f"{r['esh_code']}:{r['esh_element']}"), r["name"], r["sensitive"], r["form_id"], r["subjekt"])
+    for r in c.execute("SELECT s.esh_code, s.esh_element, s.name, d.sensitive, d.form_id, d.subjekt "
                        "FROM data_subfield s JOIN data_field d ON d.id=s.data_field_id "
                        "WHERE s.esh_code IS NOT NULL AND s.esh_element IS NOT NULL"):
-        collect(("esh", f"{r['esh_code']}:{r['esh_element']}"), r["name"], r["sensitive"], r["form_id"])
+        collect(("esh", f"{r['esh_code']}:{r['esh_element']}"), r["name"], r["sensitive"], r["form_id"], r["subjekt"])
     edata = {r["id"]: r for r in c.execute("SELECT id, standard, datatype FROM ech_element")}
     for (kind, key), a in attrs.items():
         label = a["names"].most_common(1)[0][0]
         sens = json.dumps(sorted(a["sens"]), ensure_ascii=False) if a["sens"] else None
         if kind == "ech":
             e = edata.get(key)
-            reg = "einwohnerregister" if e and e["standard"] in REGISTER_STDS else None
+            # the register holds it only where it is a person's datum AND the
+            # element belongs to a register standard - both, never one alone
+            reg = ("einwohnerregister"
+                   if e and e["standard"] in REGISTER_STDS and a["reg"] else None)
             c.execute("INSERT INTO canonical_attribute(ech_element_id,label,datatype,"
-                      "sensitive_categories,register_source,n_instances,n_forms) VALUES(?,?,?,?,?,?,?)",
-                      [key, label, e["datatype"] if e else None, sens, reg, a["n"], len(a["forms"])])
+                      "sensitive_categories,register_source,n_instances,n_forms,n_register) "
+                      "VALUES(?,?,?,?,?,?,?,?)",
+                      [key, label, e["datatype"] if e else None, sens, reg, a["n"],
+                       len(a["forms"]), a["reg"]])
         else:
             c.execute("INSERT INTO canonical_attribute(esh_key,label,sensitive_categories,"
-                      "n_instances,n_forms) VALUES(?,?,?,?,?)",
-                      [key, label, sens, a["n"], len(a["forms"])])
+                      "n_instances,n_forms,n_register) VALUES(?,?,?,?,?,?)",
+                      [key, label, sens, a["n"], len(a["forms"]), a["reg"]])
 
     # Dienststellen as an entity (owner/contact stay empty until the canton fills them)
     dep = {}

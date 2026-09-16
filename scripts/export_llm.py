@@ -47,7 +47,16 @@ META = {
         "field_classification": "mapped=captures a requirement; identity_part=sub-field of "
             "a person-identity requirement; reason_facet=one option of a multi-choice "
             "requirement; form_mechanic=plumbing (signature/date), no legal basis needed; "
-            "overcollection=collected with no legal basis (data-protection risk).",
+            "overcollection=legacy label of the auto-draft era; use basis_typ instead.",
+        "basis_typ": "artikel=an article names the datum; aufgabe=no explicit article, but "
+            "the datum is needed to perform the statutory task (KDSG Art. 4 Abs. 1 lit. b) — "
+            "NOT over-collection; ohne=neither a norm nor the task requires it = real "
+            "over-collection ('over_collection' is true only here); offen=assessed, "
+            "undecidable from the form; null=not researched yet ('zu ermitteln').",
+        "subjekt": "whose datum the field is: natuerliche_person | organisation | sache | "
+            "behoerde | gemischt | null (not judged). Only natuerliche_person may be "
+            "prefilled from the Einwohnerregister — the same eCH element also carries "
+            "business and object addresses, which the register does not hold.",
         "datenhandhabung.scope": "allgemein=applies to every personal-data field; "
             "besonders_schuetzenswert=additionally applies to fields with a sensitive "
             "category (matching sensitive_category, or all when null); sektoral=applies "
@@ -156,6 +165,7 @@ def main():
             "legal_basis": dflb.get(d["id"], []),
             "over_collection": d["basis_typ"] == "ohne",
             "basis_typ": d["basis_typ"], "basis_begruendung": d["basis_begruendung"],
+            "subjekt": d["subjekt"],
             "esh_entwurf": ({"code": d["esh_code"], "element": d["esh_element"],
                              "titel": eshk.get(d["esh_code"]), "status": "entwurf"}
                             if d["esh_code"] else None),
@@ -187,8 +197,11 @@ def main():
         # person as subject) - a Betrieb's street is eCH-0010 too, but not in
         # the residents register
         reg_std = {"eCH-0044", "eCH-0010", "eCH-0011", "eCH-0007", "eCH-0008"}
+        # only ATOMIC units, like every other surface: a composite whose parts
+        # carry their own elements must not be counted next to its own parts
         for r in rows("SELECT d.form_id, d.name, e.standard, e.name el, d.subjekt FROM data_field d "
-                      "JOIN ech_element e ON e.id=d.ech_element_id"):
+                      "JOIN ech_element e ON e.id=d.ech_element_id "
+                      "WHERE NOT EXISTS (SELECT 1 FROM data_subfield s WHERE s.data_field_id=d.id)"):
             prefill.setdefault(r["form_id"], []).append(
                 {"feld": r["name"], "standard": r["standard"], "element": r["el"],
                  "subjekt": r["subjekt"],

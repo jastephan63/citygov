@@ -45,9 +45,11 @@ def main():
     c.executescript(DDL)
     have = {r["form_id"] for r in c.execute("SELECT form_id FROM form_outcome")}
     cands = {}
+    # a provision the second review struck is not a remedy and may not be named
     for r in c.execute("SELECT DISTINCT d.form_id, rr.id FROM data_field_legal_basis lb "
                        "JOIN data_field d ON d.id=lb.data_field_id JOIN article a ON a.id=lb.article_id "
-                       "JOIN rechtsmittel_regel rr ON rr.law_id=a.law_id AND rr.scope='sektoral'"):
+                       "JOIN rechtsmittel_regel rr ON rr.law_id=a.law_id AND rr.scope='sektoral' "
+                       "AND COALESCE(rr.gestrichen,0)=0"):
         cands.setdefault(r["form_id"], set()).add(r["id"])
     n = rejected = 0
     counts = {}

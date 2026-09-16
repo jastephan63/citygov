@@ -66,6 +66,18 @@ def validate(conn):
             errors.append(f"document '{row['source_file']}' is '{row['doc_type']}' "
                           f"but points at a form")
 
+    # convention 7: the cantonal draft eSH never shadows a real eCH standard —
+    # a draft code may only sit on a field that eCH does not cover
+    for tbl in ("data_field", "data_subfield"):
+        try:
+            n = conn.execute(f"SELECT COUNT(*) FROM {tbl} WHERE esh_code IS NOT NULL "
+                             f"AND ech_status IS NOT NULL AND ech_status!='kein_standard'").fetchone()[0]
+        except Exception:
+            n = 0
+        if n:
+            errors.append(f"{n} rows in {tbl} carry an eSH draft code although eCH covers them "
+                          f"(convention 7: eSH never shadows eCH)")
+
     return errors
 
 

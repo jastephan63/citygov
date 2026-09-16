@@ -2,13 +2,22 @@
 """Apply the adversarial verification verdicts for the NEWEST Formulare only
 (fields AND subfields), proof-gated.
 
-load_ech_verdicts.py keys verdicts by field name and applies them to every
-field with that name - right for the original corpus, wrong here: the fresh
-assignments on forms 468+ include names that older, already verified forms
-share, and a second opinion on a new form must not silently re-judge those.
-So this loader touches only fields/subfields of forms with id >= FROM_FORM,
-and handles the subfield verdicts (keyed by the exact (parent, subfield)
-pair) that the original loader does not know.
+Like the assignment itself, a verdict is keyed by the NORMALISED field name
+(and, for subfields, by the (parent, subfield) pair) — the panel judged one
+representative per name, so the verdict applies to every field of that name.
+What this loader adds over load_ech_verdicts.py is the SCOPE: it touches only
+forms with id >= FROM_FORM, because the fresh assignments share names with
+older, already verified forms and a second opinion on a new form must not
+silently re-judge those. It also handles subfield verdicts, which the original
+loader does not know.
+
+Known limit, stated rather than hidden: two fields that share a name but mean
+different things WITHIN the new forms get the same verdict. That is inherent
+to name-keyed assignment (same as the original corpus); to judge per field the
+panel input would have to carry data_field ids. Rows whose verdict was only
+copied from a same-named field are marked `ech_herkunft='propagiert'` by
+propagate_ech_names.py, and this loader upgrades them to 'zweitgeprüft' when a
+verdict actually covered them.
 
   korrekt        -> leave as is
   besser         -> re-point to (standard, element); gate: the pair must exist
@@ -87,10 +96,16 @@ def main():
                 fld[norm(u.get("feld"))] = val
 
     def apply(table, rid, val):
+        # a reviewed row is no longer 'propagiert' - it was looked at
+        c.execute(f"UPDATE {table} SET ech_herkunft='zweitgeprüft' WHERE id=? AND ech_herkunft IS NOT NULL", [rid])
+        # convention 7: eSH never shadows eCH — clear the draft code whenever a
+        # real standard is assigned, keep it only for 'kein_standard'
         if val[0] == "element":
-            c.execute(f"UPDATE {table} SET ech_element_id=?, ech_standard_code=NULL, ech_status='assigned' WHERE id=?", [val[1], rid])
+            c.execute(f"UPDATE {table} SET ech_element_id=?, ech_standard_code=NULL, ech_status='assigned', "
+                      f"esh_code=NULL, esh_element=NULL WHERE id=?", [val[1], rid])
         elif val[0] == "standard":
-            c.execute(f"UPDATE {table} SET ech_element_id=NULL, ech_standard_code=?, ech_status='standard_only' WHERE id=?", [val[1], rid])
+            c.execute(f"UPDATE {table} SET ech_element_id=NULL, ech_standard_code=?, ech_status='standard_only', "
+                      f"esh_code=NULL, esh_element=NULL WHERE id=?", [val[1], rid])
         else:
             c.execute(f"UPDATE {table} SET ech_element_id=NULL, ech_standard_code=NULL, ech_status='kein_standard' WHERE id=?", [rid])
 
