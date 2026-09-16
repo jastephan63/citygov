@@ -1,0 +1,49 @@
+<!DOCTYPE html><html lang='de'><head><meta charset='utf-8'><title>Datenschutz-Dossier · Erklärungen zum Formular Erfassung der Arbeitszeit</title><style>
+@page{size:A4;margin:14mm 14mm 16mm}
+*{box-sizing:border-box}
+:root{color-scheme:light only}
+body{font:10.5pt/1.35 -apple-system,"Helvetica Neue",Arial,sans-serif;color:#1F2A37;background:#fff;margin:0;padding:18px 22px;max-width:900px}
+h1{font-size:16pt;margin:0 0 2px}h2{font-size:11.5pt;margin:14px 0 4px;border-bottom:1px solid #D8D2C4;padding-bottom:2px}
+h3{font-size:10.5pt;margin:10px 0 3px}
+.sub{color:#6B6455;font-size:9.5pt}.muted{color:#6B6455}.small{font-size:9pt}
+a{color:#8F6400}a:hover{text-decoration:none}
+table{border-collapse:collapse;width:100%;font-size:9pt}th,td{text-align:left;vertical-align:top;padding:2px 5px;border-bottom:1px solid #EAE5DA}
+th{font-weight:600;color:#6B6455;font-size:8.5pt;text-transform:uppercase;letter-spacing:.03em}
+.b{display:inline-block;border:1px solid #D8D2C4;border-radius:4px;padding:0 4px;font-size:8.5pt;white-space:nowrap}
+.b.ok{color:#1F5A3A;background:#E3F2E8;border-color:#B9DEC6}.b.warn{color:#8F6400;background:#FBF3DC;border-color:#EBD9A8}
+.b.bad{color:#7A1F1F;background:#FBEAEA;border-color:#E8B4B4}.b.sens{color:#5A1F6B;background:#F1E6F5;border-color:#D7BFE0}
+.b.info{color:#1F3A6B;background:#E6ECF5;border-color:#BFCDE0}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:8.5pt}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px}
+.box{border:1px solid #D8D2C4;border-radius:6px;padding:6px 9px;margin:6px 0}
+.print{position:fixed;right:14px;top:10px;border:1px solid #D8D2C4;background:#fff;border-radius:6px;padding:5px 10px;font:inherit;cursor:pointer}
+.foot{margin-top:14px;font-size:8.5pt;color:#6B6455;border-top:1px solid #D8D2C4;padding-top:4px}
+@media print{.print{display:none}body{padding:0}.form{break-inside:avoid-page}}
+</style></head><body>
+<button class='print' onclick='window.print()'>⎙ Drucken / als PDF sichern</button>
+<div class='sub'>Kanton Schaffhausen · Compliance-Databank · Datenschutz-Dossier · Stand 2026-09-16</div>
+<h1>Erklärungen zum Formular Erfassung der Arbeitszeit</h1>
+<div class='sub'>Arbeitsamt · Volkswirtschaftsdepartement · Kontakt: Arbeitsamt · Mühlentalstrasse 105, 8200 Schaffhausen · +41 52 632 72 62 · arbeitsamt@sh.ch</div>
+<div class='grid'>
+<div><b>DVSH:</b> nicht modelliert</div>
+<div><b>Ergebnis des Verfahrens:</b> —</div>
+</div>
+<div class='form'><h2>Formular: Erklärungen zum Formular Erfassung der Arbeitszeit</h2>
+<div class='small'>Kanal unbekannt · Unterschrift: unbekannt · Bürgerlast: 21 Angaben · ~8.4 Min · 4 aus dem Einwohnerregister vorbefüllbar · Zweck: Kontrolle der geleisteten Arbeits-, Präsenz- und Ruhezeiten in der 24-Stunden-Betreuung zur Durchsetzung der arbeitsrechtlichen Schutzbestimmungen.</div>
+<h3>Verlangte Daten</h3><table><thead><tr><th>Datenfeld</th><th>Pflicht</th><th>Standard / Datentyp</th><th>Rechtsgrundlage</th></tr></thead><tbody>
+<tr><td><b>Personalien Arbeitnehmer/-in</b> <span class="b ok">↺ Einwohnerregister</span><div class="small muted">Teilfelder: Name · Vorname · Adresse · PLZ Ort</div></td><td>Pflicht</td><td><span class="mono">eCH-0044 personIdentification</span> <span class="mono muted">⟨personIdentificationType⟩</span></td><td><span class="b ok">Art. 20 AVIG · 837.0</span></td></tr>
+<tr><td><b>Vereinbarte wöchentliche Arbeitszeit in Stunden</b></td><td>Pflicht</td><td><span class="mono">eCH-0260 hoursPerWeek</span></td><td><span class="b ok">Art. 23 AVIG · 837.0</span></td></tr>
+<tr><td><b>Massgeblicher Stundenlohn</b></td><td>Pflicht</td><td><span class="muted">kein eCH-Standard</span> <span class="b info">eSH-0008 Entwurf</span></td><td><span class="b ok">Art. 23 AVIG · 837.0</span></td></tr>
+<tr><td><b>Häufigkeit der Präsenzzeiteinsätze</b></td><td><span class=muted>optional</span></td><td><span class="muted">kein eCH-Standard</span> <span class="b info">eSH-0008 Entwurf</span></td><td><span class="b ok">Art. 4 AVIV · 837.02</span></td></tr>
+<tr><td><b>Kost und Logis pro Tag</b></td><td><span class=muted>optional</span></td><td><span class="muted">kein eCH-Standard</span> <span class="b info">eSH-0008 Entwurf</span></td><td><span class="b ok">Art. 23 AVIG · 837.0</span></td></tr>
+<tr><td><b>Datum (Zeiterfassung)</b></td><td>Pflicht</td><td><span class="muted">kein eCH-Standard</span> <span class="b info">eSH-0008 Entwurf</span></td><td><span class="b ok">Art. 4 AVIV · 837.02</span></td></tr>
+<tr><td><b>Sonn- oder Feiertag</b></td><td><span class=muted>optional</span></td><td><span class="muted">kein eCH-Standard</span> <span class="b info">eSH-0008 Entwurf</span></td><td><span class="b ok">Art. 4 AVIV · 837.02</span></td></tr>
+<tr><td><b>Täglicher Betreuungs- und Arbeitszeitraum</b><div class="small muted">Teilfelder: Von · Bis</div></td><td>Pflicht</td><td><span class="muted">kein eCH-Standard</span> <span class="b info">eSH-0008 Entwurf</span></td><td><span class="b ok">Art. 4 AVIV · 837.02</span></td></tr>
+<tr><td><b>Nachtzeitraum</b><div class="small muted">Teilfelder: Von · Bis</div></td><td><span class=muted>optional</span></td><td><span class="muted">kein eCH-Standard</span> <span class="b info">eSH-0008 Entwurf</span></td><td><span class="b ok">Art. 23 AVIG · 837.0</span></td></tr>
+<tr><td><b>Pausen pro Tag (unbezahlt)</b></td><td><span class=muted>optional</span></td><td><span class="muted">kein eCH-Standard</span> <span class="b info">eSH-0008 Entwurf</span></td><td><span class="b ok">Art. 4 AVIV · 837.02</span></td></tr>
+<tr><td><b>Aktive Arbeitseinsätze</b><div class="small muted">Teilfelder: Einsatz I Von · Einsatz I Bis · Einsatz II Von · Einsatz II Bis · Einsatz III Von · Einsatz III Bis · Einsatz IV Von · Einsatz IV Bis · Einsatz V Von · Einsatz </div></td><td>Pflicht</td><td><span class="muted">kein eCH-Standard</span> <span class="b info">eSH-0008 Entwurf</span></td><td><span class="b ok">Art. 4 AVIV · 837.02</span></td></tr>
+</tbody></table>
+<h3>Empfänger (belegte Bekanntgaben)</h3><div class='small'>Arbeitslosenkasse <span class='muted'>(auf_anfrage, AVIG Art. 56)</span> · Ausgleichsstelle der Arbeitslosenversicherung <span class='muted'>(systematisch, AVIV Art. 103)</span> · Suva <span class='muted'>(systematisch, AVIG Art. 98)</span></div>
+<h3>Aufbewahrung / Löschung</h3><div class='small'><div>• Daten aus Geschäftsbüchern und Buchungsbelegen sind zehn Jahre, Daten über Versicherungsfälle nach der letzten Bearbeitung fünf Jahre aufzubewahren. <span class='muted'>(AVIV Art. 125)</span></div> <div>• Die betroffene Person kann verlangen, dass nicht mehr benötigte Daten vernichtet werden und dass die Vernichtung auch den Stellen mitgeteilt wird, an welche die Daten weitergegeben wurden. <span class='muted'>(AVIV Art. 126)</span></div></div>
+<h3>Handlungsbedarf</h3><div class='small'><span class='b ok'>keine offenen Punkte</span></div></div>
+<div class='foot'>Quelle: citygov.db (Feld-Schicht kuratiert; Rechtsgrundlagen gegen die amtlichen Gesetzestexte geprüft; eCH aus den offiziellen XSDs; Empfänger und Fristen nur mit Artikel-Beleg). «zu ermitteln» und «offen» sind Wissenslücken der Databank, keine festgestellten Verstösse. Schutzstufen (ISV) sind für alle Felder noch nicht festgelegt — kantonaler Entscheid ausstehend.</div></body></html>

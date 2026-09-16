@@ -497,7 +497,8 @@ function fmtPath(p){
   return (pre?pre+'<span class="crsep">›</span>':'')+`<b>${esc(leaf)}</b>`;
 }
 const el = (h)=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild;};
-const jur = j => `<span class="badge b-${j}">${({federal:'Bund',cantonal:'Kanton',communal:'Gemeinde'}[j]||j)}</span>`;
+const JUR_DE={federal:'Bund',cantonal:'Kanton',communal:'Gemeinde',interkantonal:'interkantonal'};
+const jur = j => `<span class="badge b-${j==='interkantonal'?'dvsh':j}">${JUR_DE[j]||j}</span>`;
 function unver(lc){   // three verification levels
   if(!lc || lc==='UNVERIFIED') return ` <span class="badge b-unver" title="nicht verifiziert, keine Quelle">UNVERIFIED</span>`;
   if(lc==='verified') return ` <span class="badge b-match" title="live gegen Fedlex/Register verifiziert">verifiziert</span>`;
@@ -953,14 +954,47 @@ function similarPanel(forms){
 //   -> per datum its LEGAL BASIS, and the HANDLING rules glued to the table.
 // Everything that is not this narrative folds into a Details drawer.
 function lawChip(t,n,u,j){
-  return `<a class="lawchip" href="${esc(u)}" target="_blank" rel="noreferrer" title="${esc(t)}">${jur(j)} ${esc(n||t)}</a>`;
+  const badge=j?jur(j):'<span class="badge b-unver" title="Ebene nicht belegbar: der DVSH-Eintrag ist freier Text ohne SR/SHR-Nummer, ohne Quelle und ohne selbsterklärenden Titel — «Verordnung über …» gibt es auf Bundes- und auf Kantonsebene">Ebene offen</span>';
+  return `<a class="lawchip" href="${esc(u)}" target="_blank" rel="noreferrer" title="${esc(t)}">${badge} ${esc(n||t)}</a>`;
+}
+// The DVSH's second list is free text ("Art. 3 GesG", a rechtsbuch link ...) and
+// often holds CANTONAL law despite its name - the level is read from evidence
+// (URL host, SR/SHR marker, a short title the databank knows), never assumed
+const LAWJUR=(()=>{const m={};(DATA.laws||[]).forEach(l=>{
+  const add=s=>{s=(s||'').trim(); if(s.length>=2&&s.length<=24&&!/;/.test(s)) m[s.toLowerCase()]=l.jurisdiction_level;};
+  add(l.short_title); const ab=(l.title||'').match(/\(([^)]{2,24})\)/); if(ab) add(ab[1]);});return m;})();
+// every candidate short title in a free-text reference: each parenthesised
+// abbreviation plus the trailing token ("Art. 3 GesG" -> GesG)
+const abbrsOf=label=>{const out=[...String(label||'').matchAll(/\(([^)]{2,24})\)/g)].map(m=>m[1]);
+  const t=String(label||'').trim().split(/\s+/).pop(); if(t) out.push(t); return out;};
+const abbrOf=label=>abbrsOf(label)[0]||'';
+// evidence only, in order: cantonal source, federal source, a title that names
+// its own level ("Bundesgesetz …", "Kantonale Verordnung …", "Interkantonale
+// Vereinbarung …"), a short title the databank already knows. Never a guess —
+// "Verordnung über …" alone stays open, it exists on both levels
+function jurOfRef(l){
+  const url=l.url||'', label=l.label||l.titel||'';
+  if(/rechtsbuch\.sh\.ch/.test(url)||/\bSHR\b/.test(label)||/^kantonale?s?\b/i.test(label)) return 'cantonal';
+  if(/(^|\.)admin\.ch/.test(url)||/\bSR\s?\d/.test(label)
+     ||/^(bundesgesetz|bundesverfassung|bundesbeschluss|bundesratsbeschluss)\b/i.test(label)) return 'federal';
+  if(/^(interkantonale?s?|konkordat)\b/i.test(label)) return 'interkantonal';
+  for(const a of abbrsOf(label)){const j=LAWJUR[a.toLowerCase()]; if(j) return j;}
+  return null;
 }
 function svcLaws(dv){
   if(!dv) return [];
   const out=[];
   (dv.recht_kantonal||[]).forEach(l=>{const n=l.ssr||l.ssr_nummer;
     out.push(lawChip(l.titel||'',n,`https://rechtsbuch.sh.ch/app/de/texts_of_law/${n}`,'cantonal'));});
-  (dv.recht_bund||[]).forEach(l=>out.push(lawChip(l.label||l.titel||'',l.sr,l.url||'#','federal')));
+  // the second list mixes titled laws with bare article references ("Art. 3
+  // GesG"); an article inherits the level of the titled entry in the SAME list
+  // that carries the same abbreviation — that entry's URL is the evidence
+  const refs=dv.recht_bund||[], local={};
+  refs.forEach(l=>{const j=jurOfRef(l); if(!j) return;
+    abbrsOf(l.label||l.titel||'').forEach(a=>{local[a.toLowerCase()]=j;});});
+  refs.forEach(l=>{const lb=l.label||l.titel||'';
+    const inh=abbrsOf(lb).map(a=>local[a.toLowerCase()]).find(Boolean)||null;
+    out.push(lawChip(lb,l.sr,l.url||'#',jurOfRef(l)||inh));});
   return out;
 }
 function verfahrenSection(s){

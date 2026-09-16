@@ -47,6 +47,7 @@ body{font:10.5pt/1.35 -apple-system,"Helvetica Neue",Arial,sans-serif;color:#1F2
 h1{font-size:16pt;margin:0 0 2px}h2{font-size:11.5pt;margin:14px 0 4px;border-bottom:1px solid #D8D2C4;padding-bottom:2px}
 h3{font-size:10.5pt;margin:10px 0 3px}
 .sub{color:#6B6455;font-size:9.5pt}.muted{color:#6B6455}.small{font-size:9pt}
+a{color:#8F6400}a:hover{text-decoration:none}
 table{border-collapse:collapse;width:100%;font-size:9pt}th,td{text-align:left;vertical-align:top;padding:2px 5px;border-bottom:1px solid #EAE5DA}
 th{font-weight:600;color:#6B6455;font-size:8.5pt;text-transform:uppercase;letter-spacing:.03em}
 .b{display:inline-block;border:1px solid #D8D2C4;border-radius:4px;padding:0 4px;font-size:8.5pt;white-space:nowrap}
@@ -60,6 +61,48 @@ th{font-weight:600;color:#6B6455;font-size:8.5pt;text-transform:uppercase;letter
 .foot{margin-top:14px;font-size:8.5pt;color:#6B6455;border-top:1px solid #D8D2C4;padding-top:4px}
 @media print{.print{display:none}body{padding:0}.form{break-inside:avoid-page}}
 """
+
+
+# short title -> jurisdiction, filled from the law table in main(); used to read
+# the level of a DVSH legal reference instead of trusting the list it sits in
+LAWJUR = {}
+
+
+JL = {"federal": "Bund", "cantonal": "Kanton", "communal": "Gemeinde"}
+
+
+def abbrs_of(label):
+    """Every candidate short title in a free-text reference: each parenthesised
+    abbreviation plus the trailing token ("Art. 3 GesG" -> GesG)."""
+    out = [m.group(1) for m in re.finditer(r"\(([^)]{2,24})\)", label or "")]
+    parts = (label or "").strip().split()
+    if parts:
+        out.append(parts[-1])
+    return out
+
+
+def jur_of_ref(x, label, local=None):
+    """Bund / Kanton / Ebene offen for one free-text DVSH legal reference.
+
+    The modeller's «recht_bund» list is free text ("Art. 3 GesG", a rechtsbuch
+    link, a title) and regularly holds CANTONAL law, so the level is read from
+    evidence only: the URL host, an SR/SHR marker, a short title the databank
+    knows, or the titled entry in the SAME list that shares the abbreviation.
+    Nothing is assumed.
+    """
+    url = x.get("url") or ""
+    if "rechtsbuch.sh.ch" in url or re.search(r"\bSHR\b", label) or re.match(r"(?i)kantonale?s?\b", label):
+        return "Kanton"
+    if (re.search(r"(^|\.)admin\.ch", url) or re.search(r"\bSR\s?\d", label)
+            or re.match(r"(?i)(bundesgesetz|bundesverfassung|bundesbeschluss|bundesratsbeschluss)\b", label)):
+        return "Bund"
+    if re.match(r"(?i)(interkantonale?s?|konkordat)\b", label):
+        return "interkantonal"
+    for a in abbrs_of(label):
+        j = JL.get(LAWJUR.get(a.lower())) or (local or {}).get(a.lower())
+        if j:
+            return j
+    return "Ebene offen"
 
 
 def basis_label(d):
@@ -137,14 +180,32 @@ def dossier(s, forms, dst, kat):
         except Exception:
             kontakt = [dst["kontakt"]]
     laws = []
-    for key, jl in (("recht_kantonal", "Kanton"), ("recht_bund", "Bund")):
+    for key in ("recht_kantonal", "recht_bund"):
         v = dv.get(key)
         if isinstance(v, str):
             try: v = json.loads(v)
             except Exception: v = []
-        for x in v or []:
-            if isinstance(x, dict) and (x.get("titel") or "").strip():
-                laws.append(f'<span class="b">{jl} · {esc(x.get("titel") or "")}{(" · " + esc(x.get("ssr_nummer") or x.get("sr_nummer") or "")) if (x.get("ssr_nummer") or x.get("sr_nummer")) else ""}</span>')
+        items = [x for x in (v or []) if isinstance(x, dict)]
+        # abbreviation -> level, from the entries of THIS list whose level is
+        # established; a bare "Art. 3 GesG" then inherits it
+        local = {}
+        if key == "recht_bund":
+            for x in items:
+                lb = (x.get("titel") or x.get("label") or "").strip()
+                j = jur_of_ref(x, lb)
+                if j == "Ebene offen":
+                    continue
+                for a in abbrs_of(lb):
+                    local[a.lower()] = j
+        for x in items:
+            label = (x.get("titel") or x.get("label") or "").strip()
+            if not label:
+                continue
+            # the DVSH's second list is free text and often cantonal law; the
+            # level is read from evidence, never from the list's name
+            jl = "Kanton" if key == "recht_kantonal" else jur_of_ref(x, label, local)
+            nr = x.get("ssr_nummer") or x.get("sr_nummer") or ""
+            laws.append(f'<span class="b">{jl} · {esc(label)}{(" · " + esc(nr)) if nr else ""}</span>')
     out = (forms[0].get("outcome") if forms else None) or {}
     rm = out.get("rechtsmittel")
     rm_html = ""
@@ -229,6 +290,10 @@ def main():
     if "--only" in sys.argv:
         only = int(sys.argv[sys.argv.index("--only") + 1])
     D = json.load(open(os.path.join(ROOT, "data_export.json"), encoding="utf-8"))
+    for l in D.get("laws", []):
+        s = (l.get("short_title") or "").strip()
+        if 2 <= len(s) <= 24 and ";" not in s:
+            LAWJUR[s.lower()] = l.get("jurisdiction_level")
     dst = {d["name"]: d for d in D.get("dienststellen", [])}
     by_svc = {}
     for f in D["forms"]:

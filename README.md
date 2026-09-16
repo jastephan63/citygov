@@ -17,7 +17,7 @@ dashboard says so instead of hiding it.
 | `dashboard.html` | The dashboard: per service its Verfahren, Formulare, data fields, legal bases, standards, handling rules and digitalisation status. |
 | `flows.html` | Guided questionnaires: one step-by-step walkthrough per Formular. |
 | `datentresor.db` | Example storage database with synthetic data (see below). |
-| `dossiers/` | One printable Datenschutz-Dossier per service (HTML and PDF), generated from the same data. `dossiers/index.html` lists them. |
+| `dossiers/` | One printable Datenschutz-Dossier per service (480 HTML pages, ~1–2 A4 pages each), generated from the same data. Open `dossiers/index.html`, or reach a service's dossier from its page in the dashboard. The page has a print button; `scripts/export_dossiers.py --pdf` writes PDFs locally instead. |
 | `citygov_llm.json` and the other `citygov_*` files | Machine-readable exports of the whole databank. |
 | `ech_xsd/` | The official eCH XML schemas the element catalogue and code lists were read from. |
 | `formulare/` | The original Formular files, so the «Quelldatei» links work offline. |
@@ -153,8 +153,8 @@ this repository. Rebuild with `scripts/build_datentresor.py`.
 
 Other generated outputs: `scripts/build_flows.py` (flows.html),
 `scripts/export_llm.py` (the `citygov_*` exports),
-`scripts/export_dossiers.py --pdf` (the dossiers; PDF needs a local
-Chrome), `scripts/build_datentresor.py` (datentresor.db),
+`scripts/export_dossiers.py` (the dossiers; add `--pdf` for PDFs, which
+needs a local Chrome), `scripts/build_datentresor.py` (datentresor.db),
 `scripts/sweep_ech_xsd.py` (re-reads the eCH schemas from ech.ch).
 
 All loaders write to a staging copy, validate, and only then replace the

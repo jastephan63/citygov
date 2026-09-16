@@ -1,0 +1,72 @@
+<!DOCTYPE html><html lang='de'><head><meta charset='utf-8'><title>Datenschutz-Dossier · Unterstützung für Gemeinden bei der Umstellung auf die Rechnungslegung nach HRM2</title><style>
+@page{size:A4;margin:14mm 14mm 16mm}
+*{box-sizing:border-box}
+:root{color-scheme:light only}
+body{font:10.5pt/1.35 -apple-system,"Helvetica Neue",Arial,sans-serif;color:#1F2A37;background:#fff;margin:0;padding:18px 22px;max-width:900px}
+h1{font-size:16pt;margin:0 0 2px}h2{font-size:11.5pt;margin:14px 0 4px;border-bottom:1px solid #D8D2C4;padding-bottom:2px}
+h3{font-size:10.5pt;margin:10px 0 3px}
+.sub{color:#6B6455;font-size:9.5pt}.muted{color:#6B6455}.small{font-size:9pt}
+a{color:#8F6400}a:hover{text-decoration:none}
+table{border-collapse:collapse;width:100%;font-size:9pt}th,td{text-align:left;vertical-align:top;padding:2px 5px;border-bottom:1px solid #EAE5DA}
+th{font-weight:600;color:#6B6455;font-size:8.5pt;text-transform:uppercase;letter-spacing:.03em}
+.b{display:inline-block;border:1px solid #D8D2C4;border-radius:4px;padding:0 4px;font-size:8.5pt;white-space:nowrap}
+.b.ok{color:#1F5A3A;background:#E3F2E8;border-color:#B9DEC6}.b.warn{color:#8F6400;background:#FBF3DC;border-color:#EBD9A8}
+.b.bad{color:#7A1F1F;background:#FBEAEA;border-color:#E8B4B4}.b.sens{color:#5A1F6B;background:#F1E6F5;border-color:#D7BFE0}
+.b.info{color:#1F3A6B;background:#E6ECF5;border-color:#BFCDE0}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:8.5pt}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px}
+.box{border:1px solid #D8D2C4;border-radius:6px;padding:6px 9px;margin:6px 0}
+.print{position:fixed;right:14px;top:10px;border:1px solid #D8D2C4;background:#fff;border-radius:6px;padding:5px 10px;font:inherit;cursor:pointer}
+.foot{margin-top:14px;font-size:8.5pt;color:#6B6455;border-top:1px solid #D8D2C4;padding-top:4px}
+@media print{.print{display:none}body{padding:0}.form{break-inside:avoid-page}}
+</style></head><body>
+<button class='print' onclick='window.print()'>⎙ Drucken / als PDF sichern</button>
+<div class='sub'>Kanton Schaffhausen · Compliance-Databank · Datenschutz-Dossier · Stand 2026-09-16</div>
+<h1>Unterstützung für Gemeinden bei der Umstellung auf die Rechnungslegung nach HRM2</h1>
+<div class='sub'>Amt fuer Justiz und Gemeinden · Volkswirtschaftsdepartement · Kontakt: Amt für Justiz und Gemeinden · Mühlentalstrasse 105, 8200 Schaffhausen · +41 52 632 75 23 · justiz.gemeinden@sh.ch</div>
+<div class='grid'>
+<div><b>DVSH:</b> uebergeben · Vollzug: Amt für Justiz und Gemeinden</div>
+<div><b>Ergebnis des Verfahrens:</b> —</div>
+</div>
+<div class='small'>Das Amt für Justiz und Gemeinden unterstützt Gemeinden, Anstalten und Zweckverbände beim Umstellungsprozess auf das Harmonisierte Rechnungslegungsmodell HRM2 mit Unterlagen, Handbüchern und Kursen.</div>
+<h2>Rechtsgrundlagen des Services (DVSH)</h2><div><span class="b">Kanton · Finanzhaushaltsgesetz (FHG)</span> <span class="b">Kanton · Finanzhaushaltsverordnung (FHV)</span> <span class="b">Kanton · Gemeindegesetz (GG)</span> <span class="b">Bund · Harmonisiertes Rechnungslegungsmodell für die Kantone und Gemeinden der Schweiz (HRM2)</span> <span class="b">Ebene offen · Fachempfehlungen der Konferenz der Kantonalen Aufsichtsstellen über die Gemeindefinanzen (KKAG)</span></div>
+<div class='form'><h2>Formular: Bericht und Antrag Rechnungsprüfungskommission</h2>
+<div class='small'>Kanal unbekannt · Unterschrift: unbekannt · Bürgerlast: 15 Angaben · ~6.0 Min · 0 aus dem Einwohnerregister vorbefüllbar · Zweck: Aufsichtsrechtliche Kontrolle von Budget und Steuerfuss des Zweckverbands anhand des Berichts und der Anträge der Rechnungsprüfungskommission.</div>
+<h3>Verlangte Daten</h3><table><thead><tr><th>Datenfeld</th><th>Pflicht</th><th>Standard / Datentyp</th><th>Rechtsgrundlage</th></tr></thead><tbody>
+<tr><td><b>Zweckverband / Gemeinde</b><div class="small muted">Teilfelder: Gemeinde · Zweckverband · Ortschaft (PLZ Ort)</div></td><td>Pflicht</td><td><span class="mono">eCH-0007 municipalityName</span> <span class="mono muted">⟨municipalityNameType⟩</span></td><td><span class="b ok">Art. 79 GG · 120.100</span></td></tr>
+<tr><td><b>Budgetjahr</b></td><td>Pflicht</td><td><span class="muted">kein eCH-Standard</span> <span class="b info">eSH-0020 Entwurf</span></td><td><span class="b ok">Art. 71 GG · 120.100</span></td></tr>
+<tr><td><b>Kontakt</b><div class="small muted">Teilfelder: Adresse · PLZ Ort · Telefon · E-Mail</div></td><td>Pflicht</td><td><span class="mono">eCH-0046 contact</span> <span class="mono muted">⟨contactType⟩</span></td><td><span class="b warn" title="KDSG Art. 4 Abs. 1 lit. b">aufgabennotwendig — keine explizite Norm</span></td></tr>
+<tr><td><b>Finanzreferent/in</b></td><td><span class=muted>optional</span></td><td><span class="mono">eCH-0011 nameData</span> <span class="mono muted">⟨nameDataType⟩</span></td><td><span class="b warn" title="KDSG Art. 4 Abs. 1 lit. b">aufgabennotwendig — keine explizite Norm</span></td></tr>
+<tr><td><b>Zentralverwalter/in</b><div class="small muted">Teilfelder: Vorname Nachname · Telefon · E-Mail</div></td><td><span class=muted>optional</span></td><td><span class="mono">eCH-0046 contact</span> <span class="mono muted">⟨contactType⟩</span></td><td><span class="b warn" title="KDSG Art. 4 Abs. 1 lit. b">aufgabennotwendig — keine explizite Norm</span></td></tr>
+<tr><td><b>Präsident/in</b></td><td><span class=muted>optional</span></td><td><span class="mono">eCH-0044 officialName</span> <span class="mono muted">⟨baseNameType⟩</span></td><td><span class="b ok">Art. 69 GG · 120.100</span></td></tr>
+<tr><td><b>Rechnungsführer/in</b></td><td><span class=muted>optional</span></td><td><span class="mono">eCH-0044 personIdentification</span> <span class="mono muted">⟨personIdentificationType⟩</span></td><td><span class="b ok">Art. 69 GG · 120.100</span></td></tr>
+<tr><td><b>Steuerfuss</b></td><td>Pflicht</td><td><span class="muted">kein eCH-Standard</span> <span class="b info">eSH-0020 Entwurf</span></td><td><span class="b ok">Art. 81 GG · 120.100</span></td></tr>
+<tr><td><b>Erfolgsrechnung Budget</b><div class="small muted">Teilfelder: Gesamtaufwand · Gesamtertrag · Ertragsüberschuss / Aufwandüberschuss</div></td><td>Pflicht</td><td><span class="mono">eCH-0276 incomeStatement</span> <span class="mono muted">⟨incomeStatementType⟩</span></td><td><span class="b ok">Art. 71 GG · 120.100</span></td></tr>
+<tr><td><b>Investitionsrechnung Verwaltungsvermögen</b><div class="small muted">Teilfelder: Ausgaben Verwaltungsvermögen · Einnahmen Verwaltungsvermögen · Nettoinvestitionen Verwaltungsvermögen</div></td><td>Pflicht</td><td><span class="mono">eCH-0163</span> <span class="muted">Element offen</span></td><td><span class="b ok">Art. 71 GG · 120.100</span></td></tr>
+<tr><td><b>Investitionen Finanzvermögen</b><div class="small muted">Teilfelder: Ausgaben Finanzvermögen · Einnahmen Finanzvermögen · Nettoinvestitionen Finanzvermögen</div></td><td><span class=muted>optional</span></td><td><span class="mono">eCH-0163</span> <span class="muted">Element offen</span></td><td><span class="b ok">Art. 71 GG · 120.100</span></td></tr>
+<tr><td><b>Einfacher Gemeindesteuerertrag (100 %)</b></td><td><span class=muted>optional</span></td><td><span class="mono">eCH-0163</span> <span class="muted">Element offen</span></td><td><span class="b ok">Art. 81 GG · 120.100</span></td></tr>
+<tr><td><b>Kostenverteiler Verbandsgemeinden</b><div class="small muted">Teilfelder: Gemeinde A · Gemeinde B · Total</div></td><td><span class=muted>optional</span></td><td><span class="muted">kein eCH-Standard</span> <span class="b info">eSH-0020 Entwurf</span></td><td><span class="b ok">Art. 79 GG · 120.100</span></td></tr>
+<tr><td><b>Spezialfinanzierungen</b><div class="small muted">Teilfelder: Wasserversorgung · Abwasserbeseitigung · Abfallbeseitigung</div></td><td><span class=muted>optional</span></td><td><span class="muted">kein eCH-Standard</span> <span class="b info">eSH-0020 Entwurf</span></td><td><span class="b ok">Art. 76 GG · 120.100</span></td></tr>
+<tr><td><b>Beschlossene Änderungen der Gemeindeversammlung</b><div class="small muted">Teilfelder: Betroffene Rechnung · Konto · Umschreibung Änderung</div></td><td><span class=muted>optional</span></td><td><span class="mono">eCH-0293</span> <span class="muted">Element offen</span></td><td><span class="b ok">Art. 26 GG · 120.100</span></td></tr>
+</tbody></table>
+<h3>Empfänger</h3><div class='small muted'>keine belegte Bekanntgabe erfasst — offen</div>
+<h3>Aufbewahrung / Löschung</h3><div class='small muted'>keine sektorale Frist — es gelten die allgemeinen Regeln (KDSG Art. 4: nicht länger als zur Zweckerreichung erforderlich; Art. 17: Vernichtung und Archivierung)</div>
+<h3>Handlungsbedarf</h3><div class='small'><span class='b warn'>Empfänger nicht dokumentiert</span> · <span class='b warn'>eCH-Zuordnung offen: 4</span></div></div>
+<div class='form'><h2>Formular: Bericht und Antrag Rechnungsprüfungsorgan</h2>
+<div class='small'>Kanal unbekannt · Unterschrift: unbekannt · Bürgerlast: 18 Angaben · ~7.2 Min · 0 aus dem Einwohnerregister vorbefüllbar · Zweck: Aufsichtsrechtliche Kontrolle der Jahresrechnung der Körperschaft anhand von Bericht, Anträgen und Beschlüssen des Rechnungsprüfungsorgans.</div>
+<h3>Verlangte Daten</h3><table><thead><tr><th>Datenfeld</th><th>Pflicht</th><th>Standard / Datentyp</th><th>Rechtsgrundlage</th></tr></thead><tbody>
+<tr><td><b>Körperschaft</b><div class="small muted">Teilfelder: Gemeinde/Zweckverband · PLZ Ort</div></td><td>Pflicht</td><td><span class="mono">eCH-0098 organisationName</span> <span class="mono muted">⟨unitNameType⟩</span></td><td><span class="b ok">Art. 73 GG · 120.100</span></td></tr>
+<tr><td><b>Rechnungsjahr</b></td><td>Pflicht</td><td><span class="muted">kein eCH-Standard</span> <span class="b info">eSH-0020 Entwurf</span></td><td><span class="b ok">Art. 73 GG · 120.100</span></td></tr>
+<tr><td><b>Gemeindepräsident</b><div class="small muted">Teilfelder: Vorname · Nachname</div></td><td>Pflicht</td><td><span class="mono">eCH-0044 personIdentification</span> <span class="mono muted">⟨personIdentificationType⟩</span></td><td><span class="b ok">Art. 73 GG · 120.100</span></td></tr>
+<tr><td><b>Gemeindeschreiber</b><div class="small muted">Teilfelder: Vorname · Nachname</div></td><td>Pflicht</td><td><span class="mono">eCH-0044 personIdentification</span> <span class="mono muted">⟨personIdentificationType⟩</span></td><td><span class="b ok">Art. 73 GG · 120.100</span></td></tr>
+<tr><td><b>Finanzreferent</b><div class="small muted">Teilfelder: Vorname · Nachname</div></td><td><span class=muted>optional</span></td><td><span class="mono">eCH-0011 nameData</span> <span class="mono muted">⟨nameDataType⟩</span></td><td><span class="b ok">Art. 73 GG · 120.100</span></td></tr>
+<tr><td><b>Finanzverwalter</b><div class="small muted">Teilfelder: Vorname · Nachname</div></td><td><span class=muted>optional</span></td><td><span class="mono">eCH-0011 nameData</span> <span class="mono muted">⟨nameDataType⟩</span></td><td><span class="b ok">Art. 73 GG · 120.100</span></td></tr>
+<tr><td><b>Kontaktangaben</b><div class="small muted">Teilfelder: Adresse · PLZ Ort · Telefon · E-Mail</div></td><td>Pflicht</td><td><span class="mono">eCH-0046 contact</span> <span class="mono muted">⟨contactType⟩</span></td><td><span class="b warn" title="KDSG Art. 4 Abs. 1 lit. b">aufgabennotwendig — keine explizite Norm</span></td></tr>
+<tr><td><b>Präsident_Rechnungsprüfungsorgan</b><div class="small muted">Teilfelder: Vorname · Nachname · Gemeinde</div></td><td>Pflicht</td><td><span class="mono">eCH-0044 personIdentification</span> <span class="mono muted">⟨personIdentificationType⟩</span></td><td><span class="b ok">Art. 69 GG · 120.100</span></td></tr>
+<tr><td><b>Rechnungsführer</b><div class="small muted">Teilfelder: Vorname · Nachname · Gemeinde</div></td><td>Pflicht</td><td><span class="mono">eCH-0044 personIdentification</span> <span class="mono muted">⟨personIdentificationType⟩</span></td><td><span class="b ok">Art. 69 GG · 120.100</span></td></tr>
+<tr><td><b>Bericht_Anträge_Beschlüsse</b></td><td>Pflicht</td><td><span class="mono">eCH-0295</span> <span class="muted">Element offen</span></td><td><span class="b ok">Art. 69 GG · 120.100</span></td></tr>
+</tbody></table>
+<h3>Empfänger</h3><div class='small muted'>keine belegte Bekanntgabe erfasst — offen</div>
+<h3>Aufbewahrung / Löschung</h3><div class='small muted'>keine sektorale Frist — es gelten die allgemeinen Regeln (KDSG Art. 4: nicht länger als zur Zweckerreichung erforderlich; Art. 17: Vernichtung und Archivierung)</div>
+<h3>Handlungsbedarf</h3><div class='small'><span class='b warn'>Empfänger nicht dokumentiert</span> · <span class='b warn'>eCH-Zuordnung offen: 1</span></div></div>
+<div class='foot'>Quelle: citygov.db (Feld-Schicht kuratiert; Rechtsgrundlagen gegen die amtlichen Gesetzestexte geprüft; eCH aus den offiziellen XSDs; Empfänger und Fristen nur mit Artikel-Beleg). «zu ermitteln» und «offen» sind Wissenslücken der Databank, keine festgestellten Verstösse. Schutzstufen (ISV) sind für alle Felder noch nicht festgelegt — kantonaler Entscheid ausstehend.</div></body></html>
