@@ -551,7 +551,7 @@ function renderSidebar(){
     if(ss.length){ ss.forEach(s=>{dfN++; if(s.ech&&s.ech.element) dfE++;}); }
     else { dfN++; if(d.ech&&d.ech.element) dfE++; }
   }));
-  const ech = dfN ? ` · ${dfE}/${dfN} Datenfelder mit eCH-Standard (${Math.round(dfE*100/dfN)} %)` : '';
+  const ech = dfN ? ` · ${dfE}/${dfN} atomare Datenpunkte mit eCH-Element (${Math.round(dfE*100/dfN)} %)` : '';
   document.getElementById('stamp').textContent =
     `${nForms} Formulare · ${nEs} eServices ohne Formular${ech} — erzeugt ${DATA.generated_at||''}`;
   document.getElementById('warn').textContent = '⚠ Zitate „UNVERIFIED“ sind NICHT amtlich geprüft';
@@ -1615,17 +1615,21 @@ function viewKatalog(){
     // eSH rows are keyed 'eSH-00xx:element' in the catalogue — index them too,
     // otherwise every eSH row claims collecting forms it can never show
     const pushE=e=>{if(e&&e.code&&e.element)(collectors[`${e.code}:${e.element}`]=collectors[`${e.code}:${e.element}`]||new Set()).add(f);};
-    push(d.ech); pushE(d.esh);
-    (d.subfields||[]).forEach(s=>{if(s&&typeof s==='object'){push(s.ech); pushE(s.esh);}});}));
+    // same atomic rule as the catalogue: a composite is represented by its
+    // parts, so its own element is not counted beside them
+    const ss=(d.subfields||[]).filter(s=>s&&typeof s==='object');
+    if(ss.length){ ss.forEach(s=>{push(s.ech); pushE(s.esh);}); }
+    else { push(d.ech); pushE(d.esh); }}));
   kat.slice(0,120).forEach(a=>{
     const el=a.ech_standard?`${a.ech_standard}·${a.ech_element}`:(a.esh_key||'');
     let cats=[]; try{cats=JSON.parse(a.sensitive_categories||'[]')}catch(e){}
     const fms=[...(collectors[el]||[])];
     h+=`<tr class="katrow" data-el="${esc(el)}"><td><b>${esc(a.label)}</b></td><td class="mono small">${esc(el)}</td>
-      <td>${a.n_forms}</td><td>${a.n_instances}</td>
+      <td${fms.length!==a.n_forms?` title="Katalogwert ${a.n_forms} — gezählt wird die Liste, die diese Zeile aufklappt"`:''}>${fms.length||a.n_forms}</td><td>${a.n_instances}</td>
       <td>${a.register_source?'<span class="badge b-dvsh">Einwohnerregister</span>':'—'}</td>
       <td>${cats.length?`<span class="badge b-sens" title="auf mindestens einem Formular in sensitivem Kontext erhoben">⛨ ${cats.map(x=>esc(HSENS[x]||x)).join(', ')}</span>`:''}</td></tr>
-      ${fms.length?`<tr class="katforms" hidden><td colspan="6">${fms.slice(0,30).map(f=>`<a class="simlink small" data-sid="${f.service_id}">• ${esc(f.title)}</a>`).join('<br>')}</td></tr>`:''}`;});
+      ${fms.length?`<tr class="katforms" hidden><td colspan="6">${fms.slice(0,30).map(f=>`<a class="simlink small" data-sid="${f.service_id}">• ${esc(f.title)}</a>`).join('<br>')}
+        ${fms.length>30?`<div class="muted small">— 30 von ${fms.length} Formularen angezeigt; die vollständige Liste steht im LLM-Export</div>`:''}</td></tr>`:''}`;});
   h+=`</tbody></table><div class="muted small" style="padding:6px 2px">Die 120 meist-erhobenen von ${kat.length} Attributen; vollständig im LLM-Export. Zeile anklicken = erhebende Formulare.</div></div>`;
   m.innerHTML=h;
   m.querySelectorAll('.katrow').forEach(tr=>tr.onclick=()=>{
