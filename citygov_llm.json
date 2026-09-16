@@ -13,7 +13,7 @@
    "field_classification": "mapped=captures a requirement; identity_part=sub-field of a person-identity requirement; reason_facet=one option of a multi-choice requirement; form_mechanic=plumbing (signature/date), no legal basis needed; overcollection=collected with no legal basis (data-protection risk).",
    "datenhandhabung.scope": "allgemein=applies to every personal-data field; besonders_schuetzenswert=additionally applies to fields with a sensitive category (matching sensitive_category, or all when null); sektoral=applies only to fields whose legal basis cites the same law (match on law)."
   },
-  "generated_at": "2026-09-16T16:15:29"
+  "generated_at": "2026-09-16T16:49:06"
  },
  "datenhandhabung": [
   {
@@ -71759,9 +71759,9 @@
         "status": "kein_standard"
        },
        "legal_basis": [],
-       "over_collection": true,
-       "basis_typ": "ohne",
-       "basis_begruendung": "Die Einhaltung von Art. 25 EpV betrifft die Hygiene chirurgischer Eingriffe, nicht die Voraussetzungen zur Führung einer Privatapotheke.",
+       "over_collection": false,
+       "basis_typ": "offen",
+       "basis_begruendung": "Zweitprüfung: Für die Privatapotheken-Bewilligung selbst ist Art. 25 EpV nicht erforderlich, doch der Vollzug der EpV-Aufbereitungsvorschriften ist gesetzliche Aufgabe desselben Gesundheitsamts und das Feld steht im Cluster zur Wiederaufber",
        "esh_entwurf": {
         "code": "eSH-0013",
         "element": "specialSurgeryRequirementsMet",
@@ -78914,9 +78914,9 @@
         "status": "kein_standard"
        },
        "legal_basis": [],
-       "over_collection": false,
-       "basis_typ": "offen",
-       "basis_begruendung": "Unklar, ob Tarifverträge mit Krankenversicherern oder die Haftpflichtdeckung gemeint sind; nur Letztere wäre eine Bewilligungsvoraussetzung.",
+       "over_collection": true,
+       "basis_typ": "ohne",
+       "basis_begruendung": "Zweitprüfung: Da das Formular ein eigenes Feld 'Haftpflichtversicherung' enthält, können hier nur Tarif- bzw. Administrativverträge mit Krankenversicherern gemeint sein, die keine Voraussetzung der kantonalen Betriebsbewilligung sind (die O",
        "esh_entwurf": {
         "code": "eSH-0013",
         "element": "insurerContracts",
@@ -156318,9 +156318,9 @@
         "standard_status": "Genehmigt"
        },
        "legal_basis": [],
-       "over_collection": false,
-       "basis_typ": "offen",
-       "basis_begruendung": "Fuer eine blosse Korrektur bereits deklarierter Lohnsummen nicht ersichtlich notwendig; bei Nachtraegen neu gemeldeter Mitarbeitender koennte die UVG-Kontrolle greifen.",
+       "over_collection": true,
+       "basis_typ": "ohne",
+       "basis_begruendung": "Zweitprüfung: Die UVG-Versicherungspflicht besteht für jeden Arbeitnehmenden ab dem ersten Franken und hängt nicht von der Lohnsumme ab; der Versicherer des Betriebs ist der Kasse unter der Abrechnungsnummer bereits aus Anmeldung und Jahres",
        "esh_entwurf": null,
        "subfields": []
       },
@@ -287101,9 +287101,9 @@
         "status": "kein_standard"
        },
        "legal_basis": [],
-       "over_collection": false,
-       "basis_typ": "offen",
-       "basis_begruendung": "Nebenbeschäftigungen können für Unvereinbarkeiten im Polizeidienst relevant sein, die Erhebung politischer und vereinsbezogener Tätigkeiten geht jedoch über das Notwendige hinaus.",
+       "over_collection": true,
+       "basis_typ": "ohne",
+       "basis_begruendung": "Zweitprüfung: Die ausdrückliche Erhebung politischer Tätigkeiten betrifft eine besonders schützenswerte Datenkategorie, deren Erforderlichkeit für die Eignungsbeurteilung nicht ersichtlich ist; Unvereinbarkeiten von Nebenbeschäftigungen wer",
        "esh_entwurf": {
         "code": "eSH-0018",
         "element": "secondaryActivities",
@@ -302206,8 +302206,8 @@
        },
        "legal_basis": [],
        "over_collection": false,
-       "basis_typ": "offen",
-       "basis_begruendung": "Aggregierte Personalzahlen können der Aufsicht dienen, die Aufschlüsselung nach SH/CH/EU wirkt jedoch eher statistisch; die Notwendigkeit ist nicht erkennbar.",
+       "basis_typ": "aufgabe",
+       "basis_begruendung": "Zweitprüfung: Der Personalbestand ist erforderlich, weil die Unterstellung unter den allgemeinverbindlich erklärten GAV für private Sicherheitsdienstleistungen von der Betriebsgrösse abhängt und der Anteil an SH- bzw. EU-Personal den Umfang",
        "esh_entwurf": null,
        "subfields": [
         {
@@ -353079,8 +353079,8 @@
        },
        "legal_basis": [],
        "over_collection": false,
-       "basis_typ": "offen",
-       "basis_begruendung": "Besonders schützenswertes Datum, nur nötig falls ein Kirchensteueranteil auf dem Grundstückgewinn erhoben wird; sonst überschüssig.",
+       "basis_typ": "aufgabe",
+       "basis_begruendung": "Zweitprüfung: Nach § 7 Abs. 1 des Schaffhauser Kirchensteuerdekrets wird die Kirchensteuer auch auf der Grundstückgewinnsteuer erhoben, weshalb die Steuerverwaltung die Konfession der veräussernden Person – die ihr bei auswärtigem Wohnsitz ",
        "esh_entwurf": null,
        "subfields": []
       },
@@ -436225,9 +436225,9 @@
         "standard_status": "Genehmigt"
        },
        "legal_basis": [],
-       "over_collection": true,
-       "basis_typ": "ohne",
-       "basis_begruendung": "Der Zivilstand hat keinen Einfluss auf die fachliche und gewässerschutzrechtliche Prüfung des Waschplatzes.",
+       "over_collection": false,
+       "basis_typ": "offen",
+       "basis_begruendung": "Zweitprüfung: Das Formular prüft mit Ausbildung und Partnerangaben auch persönliche Beitragsvoraussetzungen; ob die Ausbildungsanforderung wie nach SVV durch den Ehegatten oder eingetragenen Partner erfüllt werden kann und der Zivilstand da",
        "esh_entwurf": null,
        "subfields": []
       },
@@ -454641,9 +454641,9 @@
         "standard_status": "Genehmigt"
        },
        "legal_basis": [],
-       "over_collection": true,
-       "basis_typ": "ohne",
-       "basis_begruendung": "Der Zivilstand hat keinen Einfluss auf die Beitragsberechtigung für die Rebpflanzung.",
+       "over_collection": false,
+       "basis_typ": "offen",
+       "basis_begruendung": "Zweitprüfung: Der Zweck nennt ausdrücklich persönliche Voraussetzungen und das Formular fragt Ausbildung und Partnernamen ab; ob der Zivilstand über eine SVV-analoge Ehegattenregel zur Ausbildungsanforderung entscheidrelevant ist, lässt sic",
        "esh_entwurf": null,
        "subfields": []
       },
@@ -457959,8 +457959,8 @@
        },
        "legal_basis": [],
        "over_collection": false,
-       "basis_typ": "aufgabe",
-       "basis_begruendung": "Die PID-Nummer identifiziert den neuen Bewirtschafter eindeutig im kantonalen Register.",
+       "basis_typ": "offen",
+       "basis_begruendung": "Zweitprüfung: Der neue Bewirtschafter ist durch die Personalien bereits identifiziert und die Direktzahlungssysteme laufen über die AHV-Nummer; wozu zusätzlich die Steuerregister-Nummer als Verknüpfung zum Steuerregister nötig sein soll, ge",
        "esh_entwurf": null,
        "subfields": []
       },
@@ -573899,8 +573899,8 @@
        },
        "legal_basis": [],
        "over_collection": false,
-       "basis_typ": "offen",
-       "basis_begruendung": "Freitextfeld für 'ergänzende Angaben und Bestätigungen'; ob darin zahlungsrelevante Bestätigungen erwartet werden, ist aus der Felddefinition nicht ersichtlich.",
+       "basis_typ": "aufgabe",
+       "basis_begruendung": "Zweitprüfung: Freiwilliges Freitextfeld für ergänzende Angaben: nach der einheitlich angewandten Regel der Databank keine gezielte Erhebung, sondern 'aufgabe' wie alle übrigen optionalen Bemerkungsfelder; die Abweichung des ersten Panels ('",
        "esh_entwurf": {
         "code": "eSH-0001",
         "element": "remarks",
@@ -588855,9 +588855,9 @@
         "standard_status": "Genehmigt"
        },
        "legal_basis": [],
-       "over_collection": false,
-       "basis_typ": "offen",
-       "basis_begruendung": "Unklar, ob der Aufenthaltsstatus neben Fachausweis und persönlichen Voraussetzungen eine Bewilligungsvoraussetzung ist.",
+       "over_collection": true,
+       "basis_typ": "ohne",
+       "basis_begruendung": "Zweitprüfung: Weder RiskG/RiskV (Fachausweis, Haftpflichtversicherung) noch die kantonale Zuständigkeit (bereits aus Wohnadresse ersichtlich) setzen den ausländerrechtlichen Status voraus; die Prüfung der Arbeitsberechtigung ist Sache der M",
        "esh_entwurf": null,
        "subfields": []
       },

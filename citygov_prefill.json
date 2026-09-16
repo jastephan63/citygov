@@ -1123,8 +1123,8 @@
     "feld": "Personalien Vollmachtnehmer/in",
     "standard": "eCH-0044",
     "element": "personIdentification",
-    "subjekt": "natuerliche_person",
-    "einwohnerregister": true
+    "subjekt": "gemischt",
+    "einwohnerregister": false
    },
    {
     "feld": "Personalien Vollmachtgeber/in",
@@ -1137,49 +1137,49 @@
     "feld": "Name",
     "standard": "eCH-0044",
     "element": "officialName",
-    "subjekt": "natuerliche_person",
-    "einwohnerregister": true
+    "subjekt": "gemischt",
+    "einwohnerregister": false
    },
    {
     "feld": "Vorname",
     "standard": "eCH-0044",
     "element": "firstName",
-    "subjekt": "natuerliche_person",
-    "einwohnerregister": true
+    "subjekt": "gemischt",
+    "einwohnerregister": false
    },
    {
     "feld": "Adresse",
     "standard": "eCH-0010",
     "element": "street",
-    "subjekt": "natuerliche_person",
-    "einwohnerregister": true
+    "subjekt": "gemischt",
+    "einwohnerregister": false
    },
    {
     "feld": "PLZ, Ort",
     "standard": "eCH-0010",
     "element": "swissZipCode",
-    "subjekt": "natuerliche_person",
-    "einwohnerregister": true
+    "subjekt": "gemischt",
+    "einwohnerregister": false
    },
    {
     "feld": "Geburtsdatum",
     "standard": "eCH-0044",
     "element": "dateOfBirth",
-    "subjekt": "natuerliche_person",
-    "einwohnerregister": true
+    "subjekt": "gemischt",
+    "einwohnerregister": false
    },
    {
     "feld": "Telefon",
     "standard": "eCH-0046",
     "element": "phoneNumber",
-    "subjekt": "natuerliche_person",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "E-Mail",
     "standard": "eCH-0046",
     "element": "emailAddress",
-    "subjekt": "natuerliche_person",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
@@ -2474,8 +2474,8 @@
     "feld": "Land der Erwerbstätigkeit",
     "standard": "eCH-0008",
     "element": "countryId",
-    "subjekt": "sache",
-    "einwohnerregister": false
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true
    },
    {
     "feld": "Berufsverband Angaben",
@@ -3453,7 +3453,7 @@
     "feld": "Wo Beiträge bezahlt GesuchstellerIn",
     "standard": "eCH-0021",
     "element": "occupationData",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
@@ -3488,7 +3488,7 @@
     "feld": "Wo Beiträge bezahlt EhepartnerIn",
     "standard": "eCH-0021",
     "element": "occupationData",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
@@ -3691,21 +3691,21 @@
     "feld": "Arbeitgeber",
     "standard": "eCH-0021",
     "element": "employer",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Ausgleichskasse",
     "standard": "eCH-0010",
     "element": "organisationName",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Gesamtbruttolohn im Jahr der Erwerbsaufgabe in CHF",
     "standard": "eCH-0278",
     "element": "employedRevenueTotal",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
@@ -3726,21 +3726,21 @@
     "feld": "Arbeitgeber",
     "standard": "eCH-0021",
     "element": "employer",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Ausgleichskasse",
     "standard": "eCH-0010",
     "element": "organisationName",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Gesamtbruttolohn im Jahr der Erwerbsaufgabe in CHF",
     "standard": "eCH-0278",
     "element": "employedRevenueTotal",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
@@ -5873,15 +5873,15 @@
     "feld": "EL-Bezug anderer Kanton Details",
     "standard": "eCH-0007",
     "element": "municipalityName",
-    "subjekt": "behoerde",
-    "einwohnerregister": false
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true
    },
    {
     "feld": "Sozialhilfe Details",
     "standard": "eCH-0007",
     "element": "municipalityName",
-    "subjekt": "behoerde",
-    "einwohnerregister": false
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true
    },
    {
     "feld": "Erwerbsersatz für Alleinerziehende (EEL) bezogen",
@@ -6349,28 +6349,28 @@
     "feld": "Gemeinde",
     "standard": "eCH-0007",
     "element": "municipalityName",
-    "subjekt": "behoerde",
-    "einwohnerregister": false
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true
    },
    {
     "feld": "Bis wann",
     "standard": "eCH-0278",
     "element": "to",
-    "subjekt": "behoerde",
+    "subjekt": "natuerliche_person",
     "einwohnerregister": false
    },
    {
     "feld": "Gemeinde",
     "standard": "eCH-0007",
     "element": "municipalityName",
-    "subjekt": "behoerde",
-    "einwohnerregister": false
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true
    },
    {
     "feld": "Zeitraum",
     "standard": "eCH-0278",
     "element": "from",
-    "subjekt": "behoerde",
+    "subjekt": "natuerliche_person",
     "einwohnerregister": false
    },
    {
@@ -7589,42 +7589,42 @@
     "feld": "Behandlungsort",
     "standard": "eCH-0010",
     "element": "town",
-    "subjekt": "sache",
-    "einwohnerregister": false
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true
    },
    {
     "feld": "Strecke von",
     "standard": "eCH-0010",
     "element": "town",
-    "subjekt": "sache",
-    "einwohnerregister": false
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true
    },
    {
     "feld": "Strecke bis",
     "standard": "eCH-0010",
     "element": "town",
-    "subjekt": "sache",
-    "einwohnerregister": false
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true
    },
    {
     "feld": "ÖV (CHF)",
     "standard": "eCH-0119",
     "element": "ticketCostPublicTransport",
-    "subjekt": "sache",
+    "subjekt": "natuerliche_person",
     "einwohnerregister": false
    },
    {
     "feld": "Privatauto km",
     "standard": "eCH-0119",
     "element": "distance",
-    "subjekt": "sache",
+    "subjekt": "natuerliche_person",
     "einwohnerregister": false
    },
    {
     "feld": "Privatauto CHF",
     "standard": "eCH-0119",
     "element": "amountMotorvehicle",
-    "subjekt": "sache",
+    "subjekt": "natuerliche_person",
     "einwohnerregister": false
    }
   ],
@@ -8183,7 +8183,7 @@
     "feld": "Angaben ArbeitgeberIn",
     "standard": "eCH-0021",
     "element": "occupationData",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
@@ -8239,14 +8239,14 @@
     "feld": "Erwerbsangaben des anderen Elternteils",
     "standard": "eCH-0021",
     "element": "jobData",
-    "subjekt": "gemischt",
+    "subjekt": "natuerliche_person",
     "einwohnerregister": false
    },
    {
     "feld": "Weitere Arbeitgeber des Gesuchstellers",
     "standard": "eCH-0021",
     "element": "occupationData",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
@@ -8309,63 +8309,63 @@
     "feld": "Abrechnungs-Nr.",
     "standard": "eCH-0098",
     "element": "otherId",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Name, Vorname bzw. genaue Firmenbezeichnung",
     "standard": "eCH-0021",
     "element": "employer",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Adresse",
     "standard": "eCH-0021",
     "element": "placeOfEmployer",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "PLZ, Ort",
     "standard": "eCH-0010",
     "element": "swissZipCode",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Seit wann arbeitet diese/r Arbeitnehmer/in bei Ihnen?",
     "standard": "eCH-0021",
     "element": "occupationValidFrom",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "bis (falls befristet)",
     "standard": "eCH-0021",
     "element": "occupationValidTill",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Jahresbruttolohn CHF",
     "standard": "eCH-0278",
     "element": "employedRevenue",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "oder Monatsbruttolohn",
     "standard": "eCH-0278",
     "element": "employedRevenue",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Kontaktperson und Telefon für Rückfragen",
     "standard": "eCH-0046",
     "element": "phoneNumber",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
@@ -8582,91 +8582,91 @@
     "feld": "angestellt seit",
     "standard": "eCH-0021",
     "element": "occupationValidFrom",
-    "subjekt": "gemischt",
+    "subjekt": "natuerliche_person",
     "einwohnerregister": false
    },
    {
     "feld": "Kanton (angestellt)",
     "standard": "eCH-0007",
     "element": "cantonAbbreviation",
-    "subjekt": "gemischt",
-    "einwohnerregister": false
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true
    },
    {
     "feld": "selbständig seit",
     "standard": "eCH-0021",
     "element": "occupationValidFrom",
-    "subjekt": "gemischt",
+    "subjekt": "natuerliche_person",
     "einwohnerregister": false
    },
    {
     "feld": "Kanton (selbständig)",
     "standard": "eCH-0007",
     "element": "cantonAbbreviation",
-    "subjekt": "gemischt",
-    "einwohnerregister": false
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true
    },
    {
     "feld": "Jahresbruttolohn CHF",
     "standard": "eCH-0278",
     "element": "employedRevenue",
-    "subjekt": "gemischt",
+    "subjekt": "natuerliche_person",
     "einwohnerregister": false
    },
    {
     "feld": "oder Monatsbruttolohn",
     "standard": "eCH-0278",
     "element": "employedRevenue",
-    "subjekt": "gemischt",
+    "subjekt": "natuerliche_person",
     "einwohnerregister": false
    },
    {
     "feld": "Firma, Name",
     "standard": "eCH-0021",
     "element": "employer",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Beschäftigt seit",
     "standard": "eCH-0021",
     "element": "occupationValidFrom",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "bis (falls befristet)",
     "standard": "eCH-0021",
     "element": "occupationValidTill",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Strasse",
     "standard": "eCH-0010",
     "element": "street",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "PLZ, Ort",
     "standard": "eCH-0010",
     "element": "swissZipCode",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Jahresbruttolohn CHF",
     "standard": "eCH-0278",
     "element": "employedRevenue",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "oder Monatsbruttolohn CHF",
     "standard": "eCH-0278",
     "element": "employedRevenue",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    }
   ],
@@ -8710,7 +8710,7 @@
     "feld": "Zusätzliche unselbständige Erwerbstätigkeit",
     "standard": "eCH-0021",
     "element": "occupationData",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
@@ -8780,7 +8780,7 @@
     "feld": "Erwerbsangaben des anderen Elternteils",
     "standard": "eCH-0021",
     "element": "jobData",
-    "subjekt": "gemischt",
+    "subjekt": "natuerliche_person",
     "einwohnerregister": false
    },
    {
@@ -8850,49 +8850,49 @@
     "feld": "Firma, Name",
     "standard": "eCH-0021",
     "element": "employer",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Strasse",
     "standard": "eCH-0010",
     "element": "street",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "PLZ, Ort",
     "standard": "eCH-0010",
     "element": "swissZipCode",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Beschäftigt seit",
     "standard": "eCH-0021",
     "element": "occupationValidFrom",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "bis (falls befristet)",
     "standard": "eCH-0021",
     "element": "occupationValidTill",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Jahresbruttolohn CHF",
     "standard": "eCH-0278",
     "element": "employedRevenue",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "oder Monatsbruttolohn CHF",
     "standard": "eCH-0278",
     "element": "employedRevenue",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
@@ -9102,29 +9102,29 @@
     "feld": "seit (angestellt)",
     "standard": "eCH-0021",
     "element": "occupationValidFrom",
-    "subjekt": "gemischt",
+    "subjekt": "natuerliche_person",
     "einwohnerregister": false
    },
    {
     "feld": "Kanton (angestellt)",
     "standard": "eCH-0007",
     "element": "cantonAbbreviation",
-    "subjekt": "gemischt",
-    "einwohnerregister": false
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true
    },
    {
     "feld": "seit (selbständig)",
     "standard": "eCH-0021",
     "element": "occupationValidFrom",
-    "subjekt": "gemischt",
+    "subjekt": "natuerliche_person",
     "einwohnerregister": false
    },
    {
     "feld": "Kanton (selbständig)",
     "standard": "eCH-0007",
     "element": "cantonAbbreviation",
-    "subjekt": "gemischt",
-    "einwohnerregister": false
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true
    }
   ],
   "14": [
@@ -10314,7 +10314,7 @@
     "feld": "Erwerbsangaben des anderen Elternteils",
     "standard": "eCH-0021",
     "element": "jobData",
-    "subjekt": "gemischt",
+    "subjekt": "natuerliche_person",
     "einwohnerregister": false
    },
    {
@@ -10804,29 +10804,29 @@
     "feld": "seit (angestellt)",
     "standard": "eCH-0021",
     "element": "occupationValidFrom",
-    "subjekt": "gemischt",
+    "subjekt": "natuerliche_person",
     "einwohnerregister": false
    },
    {
     "feld": "Kanton (angestellt)",
     "standard": "eCH-0007",
     "element": "cantonAbbreviation",
-    "subjekt": "gemischt",
-    "einwohnerregister": false
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true
    },
    {
     "feld": "seit (selbständig)",
     "standard": "eCH-0021",
     "element": "occupationValidFrom",
-    "subjekt": "gemischt",
+    "subjekt": "natuerliche_person",
     "einwohnerregister": false
    },
    {
     "feld": "Kanton (selbständig)",
     "standard": "eCH-0007",
     "element": "cantonAbbreviation",
-    "subjekt": "gemischt",
-    "einwohnerregister": false
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true
    }
   ],
   "143": [
@@ -10932,7 +10932,7 @@
     "feld": "Angaben zur Erwerbstätigkeit des anderen Elternteils",
     "standard": "eCH-0021",
     "element": "occupationData",
-    "subjekt": "gemischt",
+    "subjekt": "natuerliche_person",
     "einwohnerregister": false
    },
    {
@@ -11240,29 +11240,29 @@
     "feld": "Seit (angestellt)",
     "standard": "eCH-0021",
     "element": "occupationValidFrom",
-    "subjekt": "gemischt",
+    "subjekt": "natuerliche_person",
     "einwohnerregister": false
    },
    {
     "feld": "Kanton (angestellt)",
     "standard": "eCH-0007",
     "element": "cantonAbbreviation",
-    "subjekt": "gemischt",
-    "einwohnerregister": false
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true
    },
    {
     "feld": "Seit (selbständig)",
     "standard": "eCH-0021",
     "element": "occupationValidFrom",
-    "subjekt": "gemischt",
+    "subjekt": "natuerliche_person",
     "einwohnerregister": false
    },
    {
     "feld": "Kanton (selbständig)",
     "standard": "eCH-0007",
     "element": "cantonAbbreviation",
-    "subjekt": "gemischt",
-    "einwohnerregister": false
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true
    },
    {
     "feld": "Name/Firma",
@@ -14270,14 +14270,14 @@
     "feld": "Fachgebiet",
     "standard": "eCH-0260",
     "element": "field",
-    "subjekt": "behoerde",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Ausstellungsbehörde",
     "standard": "eCH-0010",
     "element": "organisationName",
-    "subjekt": "behoerde",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    }
   ],
@@ -14516,7 +14516,7 @@
     "feld": "Räumlichkeiten (Ort der Tätigkeit)",
     "standard": "eCH-0021",
     "element": "placeOfWork",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
@@ -14600,42 +14600,42 @@
     "feld": "Strasse, Nr.",
     "standard": "eCH-0010",
     "element": "street",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "PLZ, Ort",
     "standard": "eCH-0010",
     "element": "swissZipCode",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Tel. G.",
     "standard": "eCH-0046",
     "element": "phoneNumber",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Fax. G.",
     "standard": "eCH-0046",
     "element": "phoneNumber",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Natel",
     "standard": "eCH-0046",
     "element": "phoneNumber",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "E-Mail",
     "standard": "eCH-0046",
     "element": "emailAddress",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
@@ -17576,7 +17576,7 @@
     "feld": "Besuchte Schulen",
     "standard": "eCH-0260",
     "element": "school",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
@@ -17695,21 +17695,21 @@
     "feld": "Besuchte Schulen",
     "standard": "eCH-0260",
     "element": "schoolName",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Ort",
     "standard": "eCH-0010",
     "element": "town",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "von / bis",
     "standard": "eCH-0260",
     "element": "startDate",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
@@ -23127,14 +23127,14 @@
     "feld": "Leistung bei Invalidität - Details",
     "standard": "eCH-0278",
     "element": "incapacityPension",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Leistung bei Arbeitslosigkeit - Details",
     "standard": "eCH-0278",
     "element": "unemploymentInsurance",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
@@ -23372,175 +23372,175 @@
     "feld": "Land",
     "standard": "eCH-0008",
     "element": "country",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Institution",
     "standard": "eCH-0278",
     "element": "institution",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Beginn",
     "standard": "eCH-0278",
     "element": "startDate",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Ende",
     "standard": "eCH-0278",
     "element": "endDate",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Land",
     "standard": "eCH-0008",
     "element": "country",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Institution",
     "standard": "eCH-0278",
     "element": "institution",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Beginn",
     "standard": "eCH-0278",
     "element": "startDate",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Ende",
     "standard": "eCH-0278",
     "element": "endDate",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Land",
     "standard": "eCH-0008",
     "element": "country",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Institution",
     "standard": "eCH-0278",
     "element": "institution",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Beginn",
     "standard": "eCH-0278",
     "element": "startDate",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Ende",
     "standard": "eCH-0278",
     "element": "endDate",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Land",
     "standard": "eCH-0008",
     "element": "country",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Institution",
     "standard": "eCH-0278",
     "element": "institution",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Beginn",
     "standard": "eCH-0278",
     "element": "startDate",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Ende",
     "standard": "eCH-0278",
     "element": "endDate",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Land",
     "standard": "eCH-0008",
     "element": "country",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Institution",
     "standard": "eCH-0278",
     "element": "institution",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Beginn",
     "standard": "eCH-0278",
     "element": "startDate",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Ende",
     "standard": "eCH-0278",
     "element": "endDate",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Leistung (präzisieren)",
     "standard": "eCH-0119",
     "element": "benefitNote",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Land",
     "standard": "eCH-0008",
     "element": "country",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Institution",
     "standard": "eCH-0278",
     "element": "institution",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Beginn",
     "standard": "eCH-0278",
     "element": "startDate",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Ende",
     "standard": "eCH-0278",
     "element": "endDate",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    }
   ],
@@ -33500,7 +33500,7 @@
     "feld": "Finanzreferent/in",
     "standard": "eCH-0011",
     "element": "nameData",
-    "subjekt": "behoerde",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
@@ -34061,8 +34061,8 @@
     "feld": "Wo",
     "standard": "eCH-0010",
     "element": "town",
-    "subjekt": "sache",
-    "einwohnerregister": false
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true
    },
    {
     "feld": "Name und Vorname",
@@ -35055,29 +35055,29 @@
     "feld": "Genaue Adresse des Fahrzeughalters",
     "standard": "eCH-0010",
     "element": "personMailAddress",
-    "subjekt": "natuerliche_person",
-    "einwohnerregister": true
+    "subjekt": "gemischt",
+    "einwohnerregister": false
    },
    {
     "feld": "Name",
     "standard": "eCH-0010",
     "element": "lastName",
-    "subjekt": "natuerliche_person",
-    "einwohnerregister": true
+    "subjekt": "gemischt",
+    "einwohnerregister": false
    },
    {
     "feld": "Strasse",
     "standard": "eCH-0010",
     "element": "street",
-    "subjekt": "natuerliche_person",
-    "einwohnerregister": true
+    "subjekt": "gemischt",
+    "einwohnerregister": false
    },
    {
     "feld": "Wohnort",
     "standard": "eCH-0010",
     "element": "town",
-    "subjekt": "natuerliche_person",
-    "einwohnerregister": true
+    "subjekt": "gemischt",
+    "einwohnerregister": false
    }
   ],
   "301": [
@@ -38217,7 +38217,7 @@
     "feld": "Ursprungsort",
     "standard": "eCH-0010",
     "element": "organisationMailAdress",
-    "subjekt": "sache",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
@@ -38301,28 +38301,28 @@
     "feld": "Name Vorname",
     "standard": "eCH-0010",
     "element": "lastName",
-    "subjekt": "sache",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Strasse / Nummer",
     "standard": "eCH-0010",
     "element": "street",
-    "subjekt": "sache",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "PLZ",
     "standard": "eCH-0010",
     "element": "swissZipCode",
-    "subjekt": "sache",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Ort",
     "standard": "eCH-0010",
     "element": "town",
-    "subjekt": "sache",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
@@ -40017,7 +40017,7 @@
     "feld": "Zahlungsverbindung",
     "standard": "eCH-0278",
     "element": "bankAccountInformation",
-    "subjekt": "organisation",
+    "subjekt": "natuerliche_person",
     "einwohnerregister": false
    },
    {
@@ -40171,22 +40171,22 @@
     "feld": "Konto-Nr. / IBAN",
     "standard": "eCH-0278",
     "element": "refundAccountIBAN",
-    "subjekt": "organisation",
+    "subjekt": "natuerliche_person",
     "einwohnerregister": false
    },
    {
     "feld": "Bank",
     "standard": "eCH-0278",
     "element": "refundAccountBankName",
-    "subjekt": "organisation",
+    "subjekt": "natuerliche_person",
     "einwohnerregister": false
    },
    {
     "feld": "in (Ort)",
     "standard": "eCH-0010",
     "element": "town",
-    "subjekt": "organisation",
-    "einwohnerregister": false
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true
    }
   ],
   "344": [
@@ -43509,8 +43509,8 @@
     "feld": "Name der fachlichen Leitung",
     "standard": "eCH-0044",
     "element": "officialName",
-    "subjekt": "gemischt",
-    "einwohnerregister": false
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true
    },
    {
     "feld": "Name der Praxis / Institution",
@@ -47811,8 +47811,8 @@
     "feld": "Name Heimarzt/Heimärztin",
     "standard": "eCH-0044",
     "element": "officialName",
-    "subjekt": "gemischt",
-    "einwohnerregister": false
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true
    },
    {
     "feld": "Praxisadresse",
@@ -48717,7 +48717,7 @@
     "feld": "domiziladresse",
     "standard": "eCH-0098",
     "element": "mainAddress",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
@@ -48738,14 +48738,14 @@
     "feld": "strasse_nr",
     "standard": "eCH-0010",
     "element": "street",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "plz_ort",
     "standard": "eCH-0010",
     "element": "swissZipCode",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
@@ -48782,7 +48782,7 @@
     "feld": "domiziladresse",
     "standard": "eCH-0098",
     "element": "mainAddress",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
@@ -48803,14 +48803,14 @@
     "feld": "strasse_nr",
     "standard": "eCH-0010",
     "element": "street",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "plz_ort",
     "standard": "eCH-0010",
     "element": "swissZipCode",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
@@ -51593,7 +51593,7 @@
     "feld": "Transporteur/in: Name, Adresse und Bewilligungsnummer",
     "standard": "eCH-0010",
     "element": "organisationName",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
@@ -51905,7 +51905,7 @@
     "feld": "Name, Adresse und Bewilligungsnummer des gewerbsmässigen Transporteurs",
     "standard": "eCH-0010",
     "element": "organisationName",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
@@ -52847,35 +52847,35 @@
     "feld": "Kindergarten / Schulhaus",
     "standard": "eCH-0260",
     "element": "schoolName",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Aktuelles Schuljahr",
     "standard": "eCH-0260",
     "element": "schoolYear",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Aktuelle Klasse / Schulstufe",
     "standard": "eCH-0260",
     "element": "className",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Name / Vorname der Lehrperson",
     "standard": "eCH-0044",
     "element": "officialName",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
     "feld": "Telefon Kindergarten / Schule",
     "standard": "eCH-0046",
     "element": "phoneNumber",
-    "subjekt": "organisation",
+    "subjekt": "gemischt",
     "einwohnerregister": false
    },
    {
@@ -55403,7 +55403,7 @@
     "feld": "AHV-Ausgleichskasse",
     "standard": "eCH-0010",
     "element": "organisationMailAdress",
-    "subjekt": "behoerde",
+    "subjekt": "organisation",
     "einwohnerregister": false
    },
    {
@@ -55508,14 +55508,14 @@
     "feld": "Name der Ausgleichskasse",
     "standard": "eCH-0010",
     "element": "organisationName",
-    "subjekt": "behoerde",
+    "subjekt": "organisation",
     "einwohnerregister": false
    },
    {
     "feld": "Abrechnungsnummer",
     "standard": "eCH-0098",
     "element": "organisationId",
-    "subjekt": "behoerde",
+    "subjekt": "organisation",
     "einwohnerregister": false
    },
    {
