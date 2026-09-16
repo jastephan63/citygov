@@ -301,14 +301,18 @@ def build(conn):
                 e = u.get("ech")
                 if e and e.get("element"):
                     ok += 1
+                    # the Einwohnerregister already holds this datum -> once-only
+                    # candidate; marked on the unit so the field row can show it.
+                    # Only for a natural person's datum: the register knows no
+                    # business address, vehicle location or authority (subjekt
+                    # is the panel verdict per field; unset = never marked)
+                    eid = conn_elem_ids.get((e.get("standard"), e.get("element")))
+                    if eid in reg_elems and d.get("subjekt") == "natuerliche_person":
+                        u["register"] = "einwohnerregister"
+                        if d.get("required"):
+                            pref += 1
                 if d.get("required"):
                     req += 1
-                    eid = None
-                    # prefillable = the unit's element is one the Einwohnerregister holds
-                    if e and e.get("element"):
-                        eid = conn_elem_ids.get((e.get("standard"), e.get("element")))
-                    if eid in reg_elems:
-                        pref += 1
         fm["exchange_pct"] = round(100 * ok / pts) if pts else None
         # time model: ~0.4 min per required input, 5 min per enclosure (documented here)
         fm["burden"] = ({"inputs": req, "attachments": att, "prefillable": pref,
@@ -323,8 +327,8 @@ def build(conn):
             blockers.append("kein Online-Kanal")
         if fm["exchange_pct"] is not None and fm["exchange_pct"] < 50:
             blockers.append("eCH-Abdeckung < 50%")
-        if fm["id"] not in flow_forms:
-            blockers.append("kein geführter Flow")
+        # a missing guided flow is our own backlog, not a property of the form —
+        # it stays visible as has_flow but no longer counts as a blocker
         fm["blockers"] = blockers if pts else None
         fm["has_flow"] = fm["id"] in flow_forms
         fm["next_check_due"] = checks_due.get(fm["id"])
@@ -407,6 +411,73 @@ def build(conn):
     except Exception:
         pass
 
+    # Bürgersicht: what the Datentresor holds about three synthetic people, seen
+    # from THEIR side (Auskunft, Bekanntgaben, Einwilligungen, Löschdaten). Only
+    # the persons with the most offices involved are exported, so the dashboard
+    # stays small; every value is synthetic by construction of datentresor.db
+    buergersicht = {"personen": [], "hinweis": None}
+    dt_path = os.path.join(os.path.dirname(DB_PATH), "datentresor.db")
+    if os.path.exists(dt_path):
+        try:
+            import sqlite3
+            dt = sqlite3.connect(dt_path)
+            dt.row_factory = sqlite3.Row
+            meta = {r["k"]: r["v"] for r in dt.execute("SELECT k, v FROM meta")}
+            buergersicht["hinweis"] = meta.get("hinweis")
+            buergersicht["verschluesselung"] = meta.get("verschluesselung")
+            for p in dt.execute(
+                    "SELECT s.id, s.ahvn13, s.name, s.vorname, s.geburtsdatum, s.plz, s.ort, "
+                    "COUNT(DISTINCT f.id) faelle, COUNT(DISTINCT f.dienststelle) dst "
+                    "FROM subjekt s JOIN fall f ON f.subjekt_id=s.id "
+                    "GROUP BY s.id ORDER BY dst DESC, faelle DESC LIMIT 3"):
+                person = {k: p[k] for k in ("ahvn13", "name", "vorname", "geburtsdatum", "plz", "ort")}
+                person["faelle"] = []
+                for f in dt.execute("SELECT id, service_id, form_id, formular, dienststelle, "
+                                    "eingereicht, abgeschlossen, entscheid FROM fall "
+                                    "WHERE subjekt_id=? ORDER BY eingereicht", [p["id"]]):
+                    fall = dict(f)
+                    # newly collected in this Fall (encrypted values never leave the vault)
+                    fall["neu"] = [dict(r) for r in dt.execute(
+                        "SELECT attribut, ech_standard, ech_element, ech_datatype, "
+                        "CASE WHEN verschluesselt THEN NULL ELSE wert END wert, verschluesselt, "
+                        "sensitive, grundlage, einwilligung_id IS NOT NULL einwilligung, "
+                        "loeschdatum, status FROM datenpunkt WHERE erhebungs_fall=? ORDER BY id", [f["id"]])]
+                    # referenced from an earlier Fall instead of asked again (once-only)
+                    fall["wiederverwendet"] = [dict(r) for r in dt.execute(
+                        "SELECT d.attribut, d.erhoben_am, f2.formular herkunft, f2.dienststelle herkunft_dst "
+                        "FROM datenpunkt_verwendung v JOIN datenpunkt d ON d.id=v.datenpunkt_id "
+                        "JOIN fall f2 ON f2.id=d.erhebungs_fall "
+                        "WHERE v.fall_id=? AND v.wiederverwendet=1 ORDER BY d.attribut", [f["id"]])]
+                    fall["belege"] = [dict(r) for r in dt.execute(
+                        "SELECT bezeichnung, art, halter, geprueft_am, geprueft_von, loeschdatum "
+                        "FROM beleg WHERE fall_id=? ORDER BY id", [f["id"]])]
+                    fall["bekanntgaben"] = [dict(r) for r in dt.execute(
+                        "SELECT zeitpunkt, wer, zweck, grundlage FROM zugriff_log "
+                        "WHERE fall_id=? AND art='bekanntgabe' ORDER BY zeitpunkt", [f["id"]])]
+                    fall["lesezugriffe"] = dt.execute(
+                        "SELECT COUNT(*) FROM zugriff_log WHERE fall_id=? AND art='lesen'", [f["id"]]).fetchone()[0]
+                    person["faelle"].append(fall)
+                person["einwilligungen"] = [dict(r) for r in dt.execute(
+                    "SELECT e.gegenstand, e.erteilt_am, e.widerrufen_am, f.formular "
+                    "FROM einwilligung e LEFT JOIN fall f ON f.id=e.fall_id "
+                    "WHERE e.subjekt_id=? ORDER BY e.erteilt_am", [p["id"]])]
+                # deletion calendar: how many datapoints fall due per year
+                person["loeschkalender"] = [dict(r) for r in dt.execute(
+                    "SELECT substr(loeschdatum,1,4) jahr, COUNT(*) n FROM datenpunkt "
+                    "WHERE subjekt_id=? AND status='aktiv' GROUP BY 1 ORDER BY 1", [p["id"]])]
+                person["statistik"] = dict(dt.execute(
+                    "SELECT COUNT(*) datenpunkte, SUM(verschluesselt) verschluesselt, "
+                    "SUM(einwilligung_id IS NOT NULL) mit_einwilligung, "
+                    "SUM(grundlage_artikel IS NOT NULL) mit_artikel FROM datenpunkt WHERE subjekt_id=?",
+                    [p["id"]]).fetchone())
+                person["statistik"]["wiederverwendet"] = dt.execute(
+                    "SELECT COUNT(*) FROM datenpunkt_verwendung v JOIN fall f ON f.id=v.fall_id "
+                    "WHERE f.subjekt_id=? AND v.wiederverwendet=1", [p["id"]]).fetchone()[0]
+                buergersicht["personen"].append(person)
+            dt.close()
+        except Exception as e:
+            buergersicht["fehler"] = str(e)
+
     # citation TODO -> log file (not inlined; can be thousands of rows)
     todo = []
     for l in laws:
@@ -424,6 +495,7 @@ def build(conn):
         "forms": forms, "service_requirements": svc_req,
         "esh_katalog": esh_katalog, "datenhandhabung": handhabung,
         "attribut_katalog": katalog, "dienststellen": dienststellen,
+        "buergersicht": buergersicht,
         "process_steps_by_service": steps_by_service,
         "findings": findings, "citation_todo_count": len(todo),
     }

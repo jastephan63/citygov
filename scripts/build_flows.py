@@ -617,7 +617,7 @@ def datenfelder(c, fid):
             "ech_status": r["ech_status"]})
     out = []
     for d in c.execute("""SELECT d.id, d.name, d.definition, d.data_type, d.required, d.sensitive,
-                          d.no_basis, d.ech_status, COALESCE(e.standard, d.ech_standard_code) std, e.name el,
+                          d.no_basis, d.basis_typ, d.subjekt, d.ech_status, COALESCE(e.standard, d.ech_standard_code) std, e.name el,
                           st.status sstat, st.url surl, st.title stitle
                           FROM data_field d
                           LEFT JOIN ech_element e ON e.id=d.ech_element_id
@@ -625,7 +625,8 @@ def datenfelder(c, fid):
                           WHERE d.form_id=? ORDER BY d.ord""", [fid]):
         out.append({"name": d["name"], "definition": d["definition"], "typ": d["data_type"],
                     "pflicht": bool(d["required"]), "sensibel": d["sensitive"],
-                    "freiwillig": bool(d["no_basis"]),
+                    "freiwillig": d["basis_typ"] == "ohne",   # task-necessary fields stay required
+                    "subjekt": d["subjekt"],
                     "ech_status": d["ech_status"],
                     "ech": ({"standard": d["std"], "element": d["el"], "status": d["sstat"],
                              "url": d["surl"], "titel": d["stitle"]} if d["std"] else None),
@@ -660,6 +661,10 @@ def main():
             # are "Feld›Teilfeld".
             em = {}
             for d in fl["datenfelder"]:
+                # the player prefills from the CITIZEN's profile - a Betrieb's
+                # street or an authority's address must not be filled from it
+                if d.get("subjekt") in ("organisation", "sache", "behoerde", "gemischt"):
+                    continue
                 if d.get("ech") and d["ech"].get("element"):
                     em[d["name"]] = d["ech"]["standard"] + "\u00b7" + d["ech"]["element"]
                 for sf in (d.get("teilfelder") or []):

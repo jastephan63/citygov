@@ -77,8 +77,8 @@ CREATE TABLE datenpunkt (
 CREATE TABLE datenpunkt_verwendung (   -- the once-only ledger: later Fälle reference,
     fall_id INTEGER NOT NULL REFERENCES fall(id),      -- they do not re-store
     datenpunkt_id INTEGER NOT NULL REFERENCES datenpunkt(id),
-    erneut_erhoben INTEGER NOT NULL DEFAULT 0,
-    PRIMARY KEY (fall_id, datenpunkt_id)
+    wiederverwendet INTEGER NOT NULL DEFAULT 0,        -- 0 = erhoben in diesem Fall,
+    PRIMARY KEY (fall_id, datenpunkt_id)               -- 1 = aus früherem Fall referenziert
 );
 CREATE TABLE einwilligung (
     id INTEGER PRIMARY KEY,
@@ -112,7 +112,8 @@ WHEN NEW.sensitive IS NOT NULL AND NEW.verschluesselt = 0
 BEGIN SELECT RAISE(ABORT, 'GATE: sensibler Wert darf nur verschlüsselt gespeichert werden'); END;
 CREATE TRIGGER tg_grundlage_oder_einwilligung BEFORE INSERT ON datenpunkt
 WHEN NEW.grundlage_artikel IS NULL AND NEW.einwilligung_id IS NULL
-     AND (NEW.grundlage IS NULL OR NEW.grundlage NOT LIKE 'Rechtsgrundlage zu ermitteln%')
+     AND (NEW.grundlage IS NULL OR (NEW.grundlage NOT LIKE 'Rechtsgrundlage zu ermitteln%'
+          AND NEW.grundlage NOT LIKE 'Aufgabenerfüllung%' AND NEW.grundlage NOT LIKE 'Aufgabenbedarf%'))
 BEGIN SELECT RAISE(ABORT, 'GATE: Datenpunkt braucht Rechtsgrundlage oder Einwilligung'); END;
 CREATE TRIGGER tg_format BEFORE INSERT ON datenpunkt
 WHEN NEW.verschluesselt = 0 AND NEW.format_glob IS NOT NULL AND NEW.wert NOT GLOB NEW.format_glob
@@ -144,7 +145,7 @@ CREATE VIEW v_loeschliste AS
 CREATE VIEW v_verzeichnis AS
     SELECT f.formular, f.dienststelle, COUNT(DISTINCT v.datenpunkt_id) datenpunkte,
            COUNT(DISTINCT f.subjekt_id) betroffene,
-           SUM(v.erneut_erhoben=0) wiederverwendet
+           SUM(v.wiederverwendet=1) wiederverwendet
     FROM fall f JOIN datenpunkt_verwendung v ON v.fall_id=f.id
     GROUP BY f.form_id;
 """
@@ -239,10 +240,20 @@ def main():
     # first legal-basis article per data_field, with a readable citation
     basis = {}
     for r in src.execute("SELECT lb.data_field_id did, lb.article_id, a.article_no, "
-                         "l.short_title, l.title FROM data_field_legal_basis lb "
+                         "l.short_title, l.title, l.sr_number, l.cantonal_ref, l.jurisdiction_level "
+                         "FROM data_field_legal_basis lb "
                          "JOIN article a ON a.id=lb.article_id JOIN law l ON l.id=a.law_id"):
-        basis.setdefault(r["did"], (r["article_id"],
-                         f"{r['article_no']} {r['short_title'] or r['title']}"))
+        # some legacy short titles are truncated dumps ("... Vom 10. Juni 2013 (");
+        # a citation must read cleanly, so fall back to the full title + number
+        st = r["short_title"] or ""
+        if len(st) > 30 or ";" in st or st.endswith("(") or " Vom " in st:
+            st = r["title"]
+        nr = r["sr_number"] or r["cantonal_ref"]
+        if nr and not str(nr).startswith("SHR") and r["jurisdiction_level"] != "federal":
+            nr = f"SHR {nr}"
+        elif nr and r["jurisdiction_level"] == "federal":
+            nr = f"SR {nr}"
+        basis.setdefault(r["did"], (r["article_id"], f"{r['article_no']} {st}" + (f" ({nr})" if nr else "")))
     # retention days per form: its laws' sektoral terms, else the 10-year standard
     ret_days = {}
     lt = {}
@@ -274,6 +285,11 @@ def main():
             aid = attr_by_ech.get(eid)
             if not aid and u.get("esh_code") and u.get("esh_element"):
                 aid = attr_by_esh.get(f"{u['esh_code']}:{u['esh_element']}")
+            # once-only only makes sense for the person's OWN attributes: the
+            # street of a Betrieb, a vehicle's Standort or an authority's address
+            # is stored per Fall, never reused as the person's datum
+            if d["subjekt"] in ("organisation", "sache", "behoerde", "gemischt"):
+                aid = None
             forms[d["form_id"]]["punkte"].append({
                 "name": u["name"], "attr": aid,
                 "std": e["standard"] if e else None, "el": e["name"] if e else None,
@@ -281,7 +297,8 @@ def main():
                 "typ": d["data_type"], "fmt": d["format_code"],
                 "vals": json.loads(d["allowed_values"] or "[]"),
                 "req": bool(d["required"]), "sens": d["sensitive"],
-                "no_basis": bool(d["no_basis"]), "basis": basis.get(d["id"])})
+                "no_basis": bool(d["no_basis"]), "basis_typ": d["basis_typ"],
+                "basis": basis.get(d["id"])})
     beil = {}
     for b in src.execute("SELECT form_id, bezeichnung, halter, fetchable FROM beilage"):
         beil.setdefault(b["form_id"], []).append(dict(b))
@@ -366,9 +383,9 @@ def main():
                 continue
             # once-only: an attribute this person already has is referenced, not re-stored
             if p["attr"] and (s["id"], p["attr"]) in dp_of:
-                db.execute("INSERT OR IGNORE INTO datenpunkt_verwendung VALUES(?,?,1)",
-                           [fall_id, dp_of[(s["id"], p["attr"])]])
-                stats["reuse"] += 1
+                cur = db.execute("INSERT OR IGNORE INTO datenpunkt_verwendung VALUES(?,?,1)",
+                                 [fall_id, dp_of[(s["id"], p["attr"])]])
+                stats["reuse"] += cur.rowcount     # the same attribute twice in one form counts once
                 continue
             wert = gen(p, s)
             # gate 1: the format pattern must accept the value
@@ -379,7 +396,11 @@ def main():
             # a merely undocumented basis is a research gap, not consent territory
             # (conflating the two was convention 8's original trap)
             einw_id, grundlage_txt = None, p["basis"][1] if p["basis"] else None
-            if p["no_basis"]:
+            if p["basis_typ"] == "aufgabe":
+                grundlage_txt = "Aufgabenerfüllung (KDSG Art. 4 Abs. 1 lit. b) — keine explizite Norm"
+            elif p["basis_typ"] == "offen":
+                grundlage_txt = "Aufgabenbedarf noch nicht beurteilt (kein Befund)"
+            elif p["no_basis"]:
                 db.execute("INSERT INTO einwilligung(subjekt_id,fall_id,gegenstand,erteilt_am) "
                            "VALUES(?,?,?,?)", [s["id"], fall_id, p["name"], ein.isoformat()])
                 einw_id = db.execute("SELECT last_insert_rowid()").fetchone()[0]

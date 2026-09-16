@@ -43,9 +43,11 @@ LEITFADEN = [
             "Bearbeitung auf das Nötige beschränken — jedes Feld braucht einen Grund.",
     "refs": [("235.1", "Art. 7", "bearbeitung"), ("235.1", "Art. 6", "bearbeitung", "allgemein")]},
   ],
-  "praxis": "Genau dafür markiert diese Databank Felder ohne gesetzliche Grundlage als "
-            "Over-collection: ein Formularfeld, das keine Rechtsgrundlage hat, dürfte "
-            "so nicht erhoben werden.",
+  "praxis": "Ein Feld ohne ausdrückliche Norm ist nicht automatisch unzulässig: Was die "
+            "Behörde zwingend braucht, um die Aufgabe zu erfüllen (Betrag, Kontakt, "
+            "Kennzeichen), ist nach KDSG Art. 4 Abs. 1 lit. b gedeckt — die Databank "
+            "nennt das «aufgabennotwendig». Over-collection ist nur, was weder eine Norm "
+            "noch die Aufgabe verlangt; solche Felder dürfen nur freiwillig erhoben werden.",
  },
  {
   "id": "speichern",

@@ -255,6 +255,16 @@ CREATE TABLE IF NOT EXISTS ech_element (
 --   form.dsfa_status / form.dsfa_note   (DSFA decision, human-set)
 --   data_field.schutzstufe              (ISV classification, human-set; empty = gap)
 --   data_field.format_code -> format_pattern(code)
+--   data_field.basis_typ                (artikel | aufgabe | ohne | offen | NULL: what the
+--                                        "no explicit norm" case really is - 'aufgabe' =
+--                                        needed for the task, KDSG Art. 4 Abs. 1 lit. b;
+--                                        'ohne' = true over-collection; panel verdict, gated
+--                                        by scripts/load_basis_typ.py) + basis_begruendung
+--   data_field.subjekt                  (natuerliche_person | organisation | sache |
+--                                        behoerde | gemischt | NULL: whose datum the field
+--                                        is; the once-only mark, the prefill map and the
+--                                        Datentresor ledger apply only to natural persons;
+--                                        scripts/load_subjekt.py)
 
 CREATE TABLE IF NOT EXISTS format_pattern (        -- canonical Swiss input patterns
     code TEXT PRIMARY KEY, regex TEXT NOT NULL, beispiel TEXT NOT NULL, beschreibung TEXT);

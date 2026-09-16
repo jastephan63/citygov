@@ -16,8 +16,9 @@ self-describing files an LLM agent can ingest directly:
   citygov_datarules.jsonl — one JSON object per data-governance rule: what the
                        law says about storing, processing and disclosing the
                        data, each with a PDF-verified verbatim quote.
-  citygov_verzeichnis.json — the register of processing activities (KDSG
-                       Art. 17b) per form; missing mandatory contents say FEHLT.
+  citygov_verzeichnis.json — the register of processing activities per form,
+                       structured like KDSG Art. 17b Abs. 2 (the duty itself binds
+                       only Polizei/StA/Justizvollzug); missing contents say FEHLT.
   citygov_prefill.json — field -> eCH element map per form for once-only prefill.
 
     python3 scripts/export_llm.py
@@ -153,7 +154,8 @@ def main():
                      "standard_status": d["estatus"]}
                     if std else {"status": d["ech_status"] or "offen"}),
             "legal_basis": dflb.get(d["id"], []),
-            "over_collection": bool(d["no_basis"]),
+            "over_collection": d["basis_typ"] == "ohne",
+            "basis_typ": d["basis_typ"], "basis_begruendung": d["basis_begruendung"],
             "esh_entwurf": ({"code": d["esh_code"], "element": d["esh_element"],
                              "titel": eshk.get(d["esh_code"]), "status": "entwurf"}
                             if d["esh_code"] else None),
@@ -179,16 +181,25 @@ def main():
                       "JOIN article a ON a.id=lb.article_id"):
             for t in lt.get(r["law_id"], []):
                 ret_by_form.setdefault(r["form_id"], []).append(t)
-        # prefill map: every eCH-keyed point of every form, for once-only autofill
-        for r in rows("SELECT d.form_id, d.name, e.standard, e.name el FROM data_field d "
+        # prefill map: every eCH-keyed point of every form, for once-only autofill.
+        # 'subjekt' says whose datum it is; 'einwohnerregister' is true only where
+        # the register actually holds it (person/address standards AND a natural
+        # person as subject) - a Betrieb's street is eCH-0010 too, but not in
+        # the residents register
+        reg_std = {"eCH-0044", "eCH-0010", "eCH-0011", "eCH-0007", "eCH-0008"}
+        for r in rows("SELECT d.form_id, d.name, e.standard, e.name el, d.subjekt FROM data_field d "
                       "JOIN ech_element e ON e.id=d.ech_element_id"):
             prefill.setdefault(r["form_id"], []).append(
-                {"feld": r["name"], "standard": r["standard"], "element": r["el"]})
-        for r in rows("SELECT d.form_id, s.name, e.standard, e.name el FROM data_subfield s "
+                {"feld": r["name"], "standard": r["standard"], "element": r["el"],
+                 "subjekt": r["subjekt"],
+                 "einwohnerregister": r["standard"] in reg_std and r["subjekt"] == "natuerliche_person"})
+        for r in rows("SELECT d.form_id, s.name, e.standard, e.name el, d.subjekt FROM data_subfield s "
                       "JOIN data_field d ON d.id=s.data_field_id "
                       "JOIN ech_element e ON e.id=s.ech_element_id"):
             prefill.setdefault(r["form_id"], []).append(
-                {"feld": r["name"], "standard": r["standard"], "element": r["el"]})
+                {"feld": r["name"], "standard": r["standard"], "element": r["el"],
+                 "subjekt": r["subjekt"],
+                 "einwohnerregister": r["standard"] in reg_std and r["subjekt"] == "natuerliche_person"})
     except Exception:
         pass
 
@@ -298,8 +309,10 @@ def main():
     with open(os.path.join(ROOT, "citygov_datarules.jsonl"), "w", encoding="utf-8") as fh:
         for r in datarules:
             fh.write(json.dumps(r, ensure_ascii=False) + "\n")
-    json.dump({"meta": {"hinweis": "Verzeichnis der Bearbeitungstätigkeiten (KDSG Art. 17b) "
-                        "je Formular; 'FEHLT' markiert offene Pflichtinhalte ehrlich."},
+    json.dump({"meta": {"hinweis": "Verzeichnis der Bearbeitungstätigkeiten je Formular, Struktur "
+                        "nach KDSG Art. 17b Abs. 2 (die Führungspflicht nach Art. 17b trifft nur "
+                        "Polizei, Staatsanwaltschaft und Justizvollzug; für alle anderen Stellen "
+                        "ist dies ein Steuerungsinstrument); 'FEHLT' markiert offene Inhalte ehrlich."},
                "verzeichnis": verzeichnis},
               open(os.path.join(ROOT, "citygov_verzeichnis.json"), "w", encoding="utf-8"),
               ensure_ascii=False, indent=1)
