@@ -48,13 +48,17 @@ META = {
             "a person-identity requirement; reason_facet=one option of a multi-choice "
             "requirement; form_mechanic=plumbing (signature/date), no legal basis needed; "
             "overcollection=legacy label of the auto-draft era; use basis_typ instead.",
-        "lebenslagen": "services grouped by the official eCH-0049 topic catalogues (V4.00, "
-            "approved; privat = natural persons, unternehmen = businesses) — where the person "
-            "or business who needs a service would look. Assignment: panel with sceptical "
-            "review. Per group: services, answers demanded, and 'wiederholt' = data (by eCH "
-            "element) asked by 2+ services of the same situation — the once-only potential. "
-            "Data without an eCH element cannot be recognised as the same and is counted in "
-            "n_ohne_standard, never guessed.",
+        "lebenslagen": "services grouped by the Themengruppen of the official eCH-0049 topic "
+            "catalogues (V4.00, approved; privat = natural persons, unternehmen = businesses) — "
+            "where the person or business who needs a service would look; many groups are life "
+            "situations, some are topics. Assignment: panel with sceptical review. Per group: "
+            "services (and which have modelled form data), answers demanded, and 'wiederholt' = "
+            "data asked by 2+ services of the group, where 'the same datum' means same eCH "
+            "element, same judged party for person/address data, same named role; documents, "
+            "attachments, remarks and fields flagged as a different datum are never matched. "
+            "n_ueberschneidungen counts overlaps across the OFFER — the services can be "
+            "alternatives nobody uses together, so it is not the burden of one person. Data "
+            "without an eCH element is counted in n_ohne_standard, never guessed.",
         "begriffe": "one datum, one name: per eCH element the proposed term (always one of the "
             "labels the forms already use) and every label classified variante (same thing, "
             "rename), rolle (names whose datum — fine), pruefen (promises more/other data than "
@@ -362,8 +366,10 @@ def main():
     doc = {"meta": {**META, "generated_at": datetime.now().isoformat(timespec="seconds")},
            "datenhandhabung": datarules,
            "lebenslagen": [{k: t.get(k) for k in ("katalog", "bereich", "gruppe", "n_services", "n_dienststellen",
-                                                  "n_angaben", "n_pflicht", "n_wiederholt", "n_mehrfach_angaben",
-                                                  "n_vorbefuellbar", "n_ohne_standard", "wiederholt", "services")}
+                                                  "n_angaben", "n_pflicht", "n_pflicht_teil", "n_wiederholt",
+                                                  "n_ueberschneidungen", "n_vorbefuellbar", "n_vorbefuellbar_offen",
+                                                  "n_ohne_standard", "n_container", "n_zuordnung_offen", "n_partei_offen",
+                                                  "wiederholt", "services", "services_modelliert", "services_ohne_daten")}
                            for t in _THEMENKATALOG if t.get("n_services")],
            "begriffe": _BEGRIFFE,
            "services": out_services}

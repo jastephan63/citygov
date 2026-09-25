@@ -23,8 +23,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import DB_PATH, connect
 from validate_db import validate
 
-ALT = {"variante": ("variante", None), "pruefen_aufteilen": ("pruefen", "aufteilen"),
-       "pruefen_zuordnung": ("pruefen", "zuordnung")}
+ALT = {"variante": ("variante", None), "rolle": ("rolle", None),
+       "pruefen_aufteilen": ("pruefen", "aufteilen"), "pruefen_zuordnung": ("pruefen", "zuordnung")}
 
 
 def norm(s):
@@ -32,6 +32,9 @@ def norm(s):
 
 
 def main():
+    if os.environ.get("BEGRIFFE_CHAIN") != "1":
+        sys.exit("Dieser Schritt baut auf den vorherigen auf und darf nicht allein laufen — "
+                 "bitte scripts/run_begriffe.py verwenden.")
     src = sys.argv[1]
     st = DB_PATH + ".staging"
     if os.path.exists(st):

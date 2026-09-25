@@ -1,0 +1,33 @@
+{
+  "hinweis": "Einzelkorrekturen aus der adversarialen Prüfung vom 2026-09-25, je mit Grund; angewandt durch scripts/load_korrekturen.py als letzter Schritt der Begriffe-Kette. Jede Zeile ist von einer zweiten, unabhängigen Prüfung bestätigt worden.",
+  "begriff_label": [
+    {"element_id": 8346, "alle": true, "klasse": "pruefen", "pruefart": "zuordnung",
+     "grund": "Das Element ist die Institution eines steuerbaren Bankkontos (eCH-0278 bankAccountIncome); die Felder nennen Pensionskassen und Sozialversicherungen."},
+    {"element_id": 8288, "alle": true, "klasse": "pruefen", "pruefart": "zuordnung",
+     "grund": "Das Element ist das Ende einer Alimentenleistung (eCH-0278 alimonyIncome); die Felder meinen Renten-, Taggeld- und Anstellungsperioden."},
+    {"element_id": 6884, "klasse_von": "rolle", "klasse": "pruefen", "pruefart": "zuordnung",
+     "grund": "Das Element ist ein Programmcode; das Feld fragt den ausbezahlten Betrag je Beitragsart."},
+    {"element_id": 643, "label": "Mitarbeit im Betrieb", "klasse": "pruefen", "pruefart": "zuordnung",
+     "grund": "Ja/Nein-Angabe mit Funktion (eCH-0021 jobTitle), kein Datensatz zur Erwerbstätigkeit (occupationData)."},
+    {"element_id": 8327, "label": "Sozialhilfe", "klasse": "pruefen", "pruefart": "zuordnung",
+     "grund": "Wie «Ergänzungsleistungen zur AHV / IV»: eine Art steuerfreier Einkünfte, gehört auf nonTaxableIncomeDetail."},
+    {"element_id": 7784, "alle": true, "klasse": "pruefen", "pruefart": "zuordnung",
+     "grund": "Das Element zählt Anteile (ganze Zahl neben Nominalwert und Prozent); ein Geldbetrag ist ein anderes Datum."},
+    {"element_id": 8340, "alle": true, "klasse": "pruefen", "pruefart": "zuordnung",
+     "grund": "Gemeint ist die Verrechnungssteuer; das Element ist die Quellensteuer."}
+  ],
+  "begriff_vorschlag": [
+    {"element_id": 8346, "vorbehalt": 1, "pruefung": "Die Zuordnung zum Element ist falsch (Bankkonto-Institution); ein Begriff lässt sich erst nach der Korrektur festlegen."},
+    {"element_id": 8288, "vorbehalt": 1, "pruefung": "Die Zuordnung zum Element ist falsch (Ende einer Alimentenleistung); ein Begriff lässt sich erst nach der Korrektur festlegen."},
+    {"element_id": 8340, "vorbehalt": 1, "pruefung": "Die Zuordnung zum Element ist falsch (Quellen- statt Verrechnungssteuer)."},
+    {"element_id": 1487, "term": "Domizilart", "herkunft": "eigen", "vorbehalt": 0,
+     "pruefung": "Eigener sauberer Begriff; nicht an «adressart» anzugleichen (Domizil einer Firma ist keine Adresskategorie einer Person)."}
+  ],
+  "service_thema": [
+    {"service_id": 196, "themen": [81], "grund": "Auch Betriebsfeuerwehren melden Alarmübungen an (Art. 19 Abs. 1 BSG, SHR 550.100) — wie die Reservationen 200/201."},
+    {"service_id": 204, "themen": [81], "grund": "Rapport zur Abrechnung für die Nutzer des Ausbildungszentrums, darunter Betriebsfeuerwehren — wie 200/201."},
+    {"service_id": 197, "themen": [81], "grund": "Prüfblatt für Feuerwehren einschliesslich Betriebsfeuerwehren — gleiche Regel wie 200/201."},
+    {"service_id": 203, "themen": [81], "grund": "Prüfblatt für Feuerwehren einschliesslich Betriebsfeuerwehren — gleiche Regel wie 200/201."},
+    {"service_id": 206, "themen": [81], "grund": "Einsatzprotokoll für Feuerwehren einschliesslich Betriebsfeuerwehren — gleiche Regel wie 200/201."}
+  ]
+}

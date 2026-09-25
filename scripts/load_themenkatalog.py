@@ -114,6 +114,16 @@ def main():
         if not os.path.exists(PDF[kat]):
             os.remove(st); print("ABORT: PDF fehlt", PDF[kat]); sys.exit(1)
         t, t2 = pdf_text(PDF[kat])
+        # stricter than "occurs somewhere": Darstellung 1 prints the Bereiche in
+        # pairs (two columns) — «A B a1 ¦ … ¦ an b1 ¦ … ¦ bm» — so every pair must
+        # appear exactly like that, which pins each Gruppe under its own Bereich
+        m = re.search(r"\(Darstellung 1\) Die (.*?)5\.3 Themenbereiche", t2)
+        d1 = m.group(1) if m else ""
+        for j in range(0, len(bereiche), 2):
+            pair = bereiche[j:j + 2]
+            block = " ".join(b for b, _ in pair) + " " + " ".join(" ¦ ".join(g) for _, g in pair)
+            if block not in d1:
+                missing.append(f"{kat}: Block «{block[:70]}…» nicht in Darstellung 1")
         ordn = 0
         for bereich, gruppen in bereiche:
             if bereich not in t and bereich not in t2:

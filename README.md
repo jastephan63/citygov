@@ -97,25 +97,30 @@ file itself.
   marital status, residence permits, ...) and, per field, whether the form
   uses those codes or its own plain-text values.
 - **Life events (Lebenslagen).** Services grouped the way people look for
-  them, using the official Swiss topic catalogue eCH-0049 (approved; one
-  catalogue for private persons — birth, moving house, a death,
-  unemployment, retirement, animals, building … — and one for businesses).
-  Every group name is checked word for word against the official PDF, kept
-  in `quellen/ech-0049/`. Per life event: which services and offices a
-  person meets, how many answers they give, how many of those are the SAME
-  datum asked again by another service of the same situation, and how many
-  the residents' register already holds. "Same datum" is recognised only via
-  the eCH element; answers without a standard are counted separately.
-- **One datum, one name (Begriffe).** For every datum with an eCH element:
-  the labels under which the forms ask for it, one proposed term (always a
-  label that already exists in the forms, never an invented one), and each
-  label classified as *angleichen* (same thing, different wording — rename),
-  *Rolle* (names whose datum, e.g. "Name Arbeitnehmer" — fine as it is) or
-  one of two checks: *Feld aufteilen* (the field bundles data the standard
-  keeps apart, e.g. "Strasse und Nr") or *eCH-Zuordnung prüfen* (the label
-  means a different datum than the element it is mapped to). Where no clean
-  term exists in any form, the proposal is marked *unter Vorbehalt* instead
-  of inventing one. Shown per Formular next to each field as well.
+  them, using the Themengruppen of the official Swiss topic catalogue
+  eCH-0049 (approved; one catalogue for private persons, one for
+  businesses). Many groups are life situations — birth, moving house, a
+  death, unemployment, retirement, becoming self-employed — others are
+  topics such as taxes or energy. Every group is checked in the official PDF
+  (kept in `quellen/ech-0049/`) under its own Themenbereich. Per group: which
+  services and offices a person meets, how many answers are asked, and where
+  the services overlap on the same datum (same eCH element, same party, same
+  named role; documents, remarks and mis-mapped fields are never matched).
+  The overlap describes the offer, not one person's burden: services can be
+  alternatives nobody goes through together.
+- **One datum, one name (Begriffe).** For every datum with an eCH element
+  that forms ask for under at least two labels: one proposed term (always a
+  label that already exists in the forms, never an invented one) and each
+  label classified as *angleichen* (same thing, different wording — rename
+  in the form), *Rolle* (names whose or which datum, e.g. "Name
+  Arbeitnehmer", "Adresse bisher" — fine as it is), *Feld aufteilen* (the
+  field bundles data the standard keeps apart, e.g. "Strasse und Nr" — split
+  it in the form) or *eCH-Zuordnung korrigieren* (the label means a
+  different datum than the element the databank mapped it to — a databank
+  fix, not the office's). Where no clean term exists, the proposal is marked
+  *unter Vorbehalt* with its reason. Data asked under a single label are not
+  checked yet, and the page says how many. Shown per Formular next to each
+  field as well.
 - **Standard divergences, per Formular.** For every form: which of its data
   are demanded differently than on the other forms — mandatory here but
   optional elsewhere, a different type or format for the same datum, its own

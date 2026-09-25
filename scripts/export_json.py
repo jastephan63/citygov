@@ -659,13 +659,19 @@ def build(conn):
     # ---- Begriffe: one datum, one name --------------------------------------
     # The naming verdicts (load_begriffe.py) land on each unit, so the field
     # row, the form's divergence panel and the Begriffe page read one answer.
-    begriffe = []
+    begriffe, begriffe_stats = [], {}
     try:
         def _bn(x):
             return re.sub(r"\s+", " ", re.sub(r"[:*]+\s*$", "", (x or "").strip())).lower()
         bv = {r["ech_element_id"]: r for r in rows(conn, "SELECT * FROM begriff_vorschlag")}
         bl = {(r["ech_element_id"], r["label_norm"]): r for r in rows(conn, "SELECT * FROM begriff_label")}
+        # the same element name exists in several XML contexts (several ids);
+        # a verdict judged under one of them also answers the others
+        sib = {}
+        for eid0, e0 in ech.items():
+            sib.setdefault((e0["standard"], e0["element"]), []).append(eid0)
         use = {}          # element id -> label_norm -> {"n", "forms"}
+        forms_var = set()
         for fm in forms:
             sd = fm.get("standard_divergenzen")
             items = []
@@ -678,6 +684,11 @@ def build(conn):
                     eid = e.get("id") or conn_elem_ids.get((e["standard"], e["element"]))
                     lab = u.get("name") if subs else d["name"]
                     ln = _bn(lab)
+                    if not ((eid, ln) in bl and eid in bv):
+                        alt = next((x for x in sib.get((e["standard"], e["element"]), [])
+                                    if (x, ln) in bl and x in bv), None)
+                        if alt is not None:
+                            eid = alt
                     uu = use.setdefault(eid, {}).setdefault(ln, {"n": 0, "forms": set()})
                     uu["n"] += 1; uu["forms"].add(fm["id"])
                     v, lr = bv.get(eid), bl.get((eid, ln))
@@ -686,6 +697,8 @@ def build(conn):
                     u["begriff"] = {"klasse": lr["klasse"], "vorschlag": v["term"], "vorbehalt": bool(v.get("vorbehalt")),
                                     "rolle": lr["rolle"], "grund": lr.get("pruefart_grund") or lr["grund"],
                                     "pruefart": lr.get("pruefart")}
+                    if lr["klasse"] == "variante":
+                        forms_var.add(fm["id"])
                     if lr["klasse"] in ("variante", "pruefen"):
                         items.append({"feld": d["name"], "teilfeld": u.get("name") if subs else None,
                                       "standard": e["standard"], "element": e["element"],
@@ -709,6 +722,12 @@ def build(conn):
                              "vorbehalt": bool(v.get("vorbehalt")), "herkunft": v.get("herkunft") or "eigen",
                              "labels": labs})
         begriffe.sort(key=lambda b: -sum(l["n"] for l in b["labels"] if l["klasse"] == "variante"))
+        # untruncated totals — the per-label form lists above are capped at 40
+        n_single = sum(1 for eid0, labs in use.items() if eid0 not in bv and len(labs) == 1)
+        begriffe_stats = {"n_formulare_angleichen": len(forms_var),
+                          "n_felder_angleichen": sum(u2["n"] for eid0, labs in use.items() for ln0, u2 in labs.items()
+                                                     if (bl.get((eid0, ln0)) or {}).get("klasse") == "variante"),
+                          "n_elemente_eine_bezeichnung": n_single}
     except Exception as ex:
         print("  Begriffe übersprungen:", ex)
 
@@ -734,50 +753,106 @@ def build(conn):
         for fm in forms:
             forms_by_svc.setdefault(fm["service_id"], []).append(fm)
         svc_by_id = {sv["id"]: sv for sv in services}
+        # "The same datum" across two services is claimed only when it is
+        # provably the same thing asked of the same party:
+        #  * same eCH element (by standard and element name)
+        #  * not a generic container (a «Dokument», «Beilage» or «Bemerkung»
+        #    element holds unrelated things under one name)
+        #  * not flagged as a different datum by the naming layer (zuordnung)
+        #  * for person/address data: the same judged party (subjekt); an
+        #    unjudged party is never matched, only counted
+        #  * a role named in the label («… des Ehegatten») or in the composite
+        #    around it keeps data of different people apart — conservative:
+        #    when unsure the units are counted apart, never together
+        CONTAINER = {"document", "attachment", "comment"}
+        REG_STD = {"eCH-0044", "eCH-0010", "eCH-0011", "eCH-0007", "eCH-0008", "eCH-0046"}
+        PARTY = re.compile(r"ehe(gatt|partner|frau|mann)|partner|kind|tochter|sohn|vater|mutter|eltern|"
+                           r"arbeitgeb|vertret|bevollm|verstorb|erblass|eigentüm|vermiet|mieter|pächter|"
+                           r"verpächt|käufer|verkäufer|halter|begleit|zeug|gläubig|schuldn|bürge|"
+                           r"teilhaber|gesellschafter|geschäftsführ|kontaktperson|ansprechperson", re.I)
         for t in rows(conn, "SELECT id, katalog, bereich, gruppe, ord FROM themenkatalog ORDER BY katalog, ord"):
             sids = [sid for sid, L in th_by_svc.items() if any(x["id"] == t["id"] for x in L)]
             g = {"id": t["id"], "katalog": t["katalog"], "bereich": t["bereich"], "gruppe": t["gruppe"],
                  "services": sids, "n_services": len(sids)}
             if sids:
                 el_svcs, el_label = {}, {}
-                n_units = n_pflicht = n_reg = n_ohne = n_sens = n_beil = n_fetch = n_online = n_sig = n_forms = 0
-                dsts = set()
+                c = {k: 0 for k in ("units", "pflicht", "pflicht_teil", "reg", "reg_offen", "kein_std",
+                                    "el_offen", "ungeprueft", "zuordnung", "container", "partei_offen",
+                                    "sens", "beil", "fetch", "online", "sig", "forms")}
+                dsts, modelliert, ohne_daten = set(), [], []
                 for sid in sids:
-                    dsts.add((svc_by_id.get(sid) or {}).get("dienststelle"))
-                    for fm in forms_by_svc.get(sid, []):
-                        if not fm.get("data_fields"):
-                            continue
-                        n_forms += 1
-                        n_beil += len(fm.get("beilagen") or [])
-                        n_fetch += sum(1 for b in (fm.get("beilagen") or []) if b.get("fetchable"))
-                        n_online += fm.get("submission_channel") == "online_formular"
-                        n_sig += fm.get("signature_requirement") == "handschriftlich"
+                    sv = svc_by_id.get(sid) or {}
+                    dsts.add(sv.get("dienststelle"))
+                    fms = [fm for fm in forms_by_svc.get(sid, []) if fm.get("data_fields")]
+                    (modelliert if fms else ohne_daten).append(sid)
+                    for fm in fms:
+                        c["forms"] += 1
+                        c["beil"] += len(fm.get("beilagen") or [])
+                        c["fetch"] += sum(1 for b in (fm.get("beilagen") or []) if b.get("fetchable"))
+                        c["online"] += fm.get("submission_channel") == "online_formular"
+                        c["sig"] += fm.get("signature_requirement") == "handschriftlich"
                         for d in fm["data_fields"]:
-                            n_sens += bool(d.get("sensitive"))
+                            c["sens"] += bool(d.get("sensitive"))
                             subs = [x for x in (d.get("subfields") or []) if isinstance(x, dict)]
                             for u in (subs or [d]):
-                                n_units += 1
-                                n_pflicht += bool(d.get("required"))
-                                n_reg += bool(u.get("register"))
+                                c["units"] += 1
+                                if d.get("required"):
+                                    c["pflicht_teil" if subs else "pflicht"] += 1
                                 e = u.get("ech") or {}
-                                if not e.get("element"):
-                                    n_ohne += 1
-                                    continue
-                                k = f"{e['standard']}·{e['element']}"
-                                el_svcs.setdefault(k, set()).add(sid)
                                 b = u.get("begriff") or {}
-                                el_label.setdefault(k, b.get("vorschlag") or (u.get("name") if subs else d["name"]))
+                                if not e.get("element"):
+                                    if e.get("standard"):
+                                        c["el_offen"] += 1
+                                    elif u.get("ech_status") == "kein_standard":
+                                        c["kein_std"] += 1
+                                    else:
+                                        c["ungeprueft"] += 1
+                                    continue
+                                reg_std = e["standard"] in REG_STD
+                                if b.get("pruefart") == "zuordnung":
+                                    c["zuordnung"] += 1
+                                    if reg_std:
+                                        c["reg_offen"] += 1
+                                    continue
+                                c["reg"] += bool(u.get("register"))
+                                if reg_std and not d.get("subjekt"):
+                                    c["reg_offen"] += 1
+                                if e["element"] in CONTAINER:
+                                    c["container"] += 1
+                                    continue
+                                if reg_std and d.get("subjekt") in (None, "gemischt"):
+                                    c["partei_offen"] += 1
+                                    continue
+                                lab = u.get("name") if subs else d["name"]
+                                role_txt = (b.get("rolle") or "").strip() if b.get("klasse") == "rolle" else ""
+                                role = role_txt.lower()
+                                ctx = d["name"] if subs else lab
+                                party = "|".join(sorted({m.group(0).lower() for m in PARTY.finditer(ctx or "")}))
+                                k = (e["standard"], e["element"], d.get("subjekt") if reg_std else "", role, party)
+                                el_svcs.setdefault(k, set()).add(sid)
+                                el_label.setdefault(k, (b.get("vorschlag") or lab)
+                                                    + (f" ({role_txt})" if role_txt else "")
+                                                    + (f" — {party.replace('|', ', ')}" if party and not role else ""))
                 rep = sorted(((k, v) for k, v in el_svcs.items() if len(v) >= 2), key=lambda kv: -len(kv[1]))
                 g.update({
-                    "n_dienststellen": len(dsts - {None}), "n_formulare": n_forms,
-                    "n_angaben": n_units, "n_pflicht": n_pflicht, "n_vorbefuellbar": n_reg,
-                    "n_ohne_standard": n_ohne, "n_sensibel": n_sens,
-                    "n_beilagen": n_beil, "n_beilagen_beziehbar": n_fetch,
-                    "n_online": n_online, "n_unterschrift": n_sig,
+                    "n_dienststellen": len(dsts - {None}), "n_formulare": c["forms"],
+                    "services_modelliert": modelliert, "services_ohne_daten": ohne_daten,
+                    "n_angaben": c["units"], "n_pflicht": c["pflicht"], "n_pflicht_teil": c["pflicht_teil"],
+                    "n_vorbefuellbar": c["reg"], "n_vorbefuellbar_offen": c["reg_offen"],
+                    "n_kein_standard": c["kein_std"], "n_element_offen": c["el_offen"], "n_ungeprueft": c["ungeprueft"],
+                    "n_ohne_standard": c["kein_std"] + c["el_offen"] + c["ungeprueft"],
+                    "n_zuordnung_offen": c["zuordnung"], "n_container": c["container"],
+                    "n_partei_offen": c["partei_offen"],
+                    "n_sensibel": c["sens"], "n_beilagen": c["beil"], "n_beilagen_beziehbar": c["fetch"],
+                    "n_online": c["online"], "n_unterschrift": c["sig"],
                     "n_daten": len(el_svcs),
-                    "wiederholt": [{"element": k, "label": el_label.get(k), "services": sorted(v)} for k, v in rep[:40]],
+                    "wiederholt": [{"element": f"{k[0]}·{k[1]}", "label": el_label.get(k), "services": sorted(v)}
+                                   for k, v in rep[:40]],
                     "n_wiederholt": len(rep),
-                    "n_mehrfach_angaben": sum(len(v) - 1 for _, v in rep),
+                    # requests for a datum another service of the SAME group also asks
+                    # for — an overlap across the offer; the services can be
+                    # alternatives that no single person goes through together
+                    "n_ueberschneidungen": sum(len(v) - 1 for _, v in rep),
                 })
             themenkatalog.append(g)
     except Exception as ex:
@@ -868,7 +943,7 @@ def build(conn):
         "esh_katalog": esh_katalog, "datenhandhabung": handhabung,
         "attribut_katalog": katalog, "dienststellen": dienststellen,
         "buergersicht": buergersicht, "ech_codelists": codelists,
-        "begriffe": begriffe, "themenkatalog": themenkatalog,
+        "begriffe": begriffe, "begriffe_stats": begriffe_stats, "themenkatalog": themenkatalog,
         "process_steps_by_service": steps_by_service,
         "findings": findings, "citation_todo_count": len(todo),
     }

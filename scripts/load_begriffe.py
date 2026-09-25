@@ -60,6 +60,9 @@ def load(pattern):
 
 
 def main():
+    if os.environ.get("BEGRIFFE_CHAIN") != "1":
+        sys.exit("Dieser Schritt ist Teil einer Kette und würde die folgenden Schritte ungültig machen — "
+                 "bitte scripts/run_begriffe.py verwenden.")
     src = sys.argv[1]
     ins, outs, vers = load(f"{src}/in_*.json"), load(f"{src}/out_*.json"), load(f"{src}/verify_*.json")
     asked = {}                                   # element_id -> {label_norm: label}
@@ -91,7 +94,8 @@ def main():
             if norm(vor) not in labels:
                 rej.append(f"element {eid}: Vorschlag «{vor}» ist keine der eigenen Bezeichnungen"); continue
             vor_n = norm(vor)
-            c.execute("INSERT INTO begriff_vorschlag VALUES(?,?,?,?)", [eid, labels[vor_n], (why or "")[:300], vok])
+            c.execute("INSERT INTO begriff_vorschlag(ech_element_id,term,begruendung,zweitgeprueft) VALUES(?,?,?,?)",
+                      [eid, labels[vor_n], (why or "")[:300], vok])
             n_el += 1
             seen = set()
             for b in e.get("bezeichnungen", []):
@@ -112,7 +116,7 @@ def main():
                     kl, grund = "variante", "gleiches Datum, anders geschrieben als der Vorschlag"
                 if kl not in VOCAB:
                     rej.append(f"element {eid}: Klasse «{kl}»"); continue
-                c.execute("INSERT INTO begriff_label VALUES(?,?,?,?,?,?,?)",
+                c.execute("INSERT INTO begriff_label(ech_element_id,label_norm,label,klasse,rolle,grund,zweitgeprueft) VALUES(?,?,?,?,?,?,?)",
                           [eid, ln, labels[ln], kl, (rolle or None) if kl == "rolle" else None,
                            (grund or None), geprueft])
                 counts[kl] += 1; n_lab += 1

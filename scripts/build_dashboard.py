@@ -351,6 +351,8 @@ TEMPLATE = r"""<!DOCTYPE html>
   .begc{font-size:10.5px;color:#8F6400;background:#FBF3DC;border:1px dashed #EBD9A8;border-radius:6px;padding:0 6px;
     white-space:nowrap;cursor:help}
   .begc.pr{color:#7A1F1F;background:#FBEAEA;border-color:#E8B4B4}
+  .b-rolle{color:#1F5A3A;border-color:#B9DEC6;background:#E3F2E8}
+  .b-pruef{color:#7A1F1F;border-color:#E8B4B4;background:#FBEAEA}
   .svthemen{display:flex;flex-wrap:wrap;gap:5px;align-items:baseline;margin-top:6px;font-size:12px}
   .svthemen a{cursor:pointer}
   /* Standard divergence markers */
@@ -456,7 +458,7 @@ TEMPLATE = r"""<!DOCTYPE html>
   <aside>
     <h2>Einstieg</h2>
     <button class="tab" data-tab="home">Überblick &amp; Methode<span class="tabsub">Was ist diese Databank, wie arbeitet sie?</span></button>
-    <button class="tab" data-tab="lebenslagen">Lebenslagen<span class="tabsub">Was eine Situation alles verlangt (eCH-0049)</span></button>
+    <button class="tab" data-tab="lebenslagen">Lebenslagen<span class="tabsub">Die Themengruppen von eCH-0049: was eine Situation verlangt</span></button>
     <h2>Nachschlagewerke</h2>
     <button class="tab" data-tab="rules">Datenhandhabung<span class="tabsub">Die Regeln im Wortlaut, je Gesetz</span></button>
     <button class="tab" data-tab="guide">Leitfaden<span class="tabsub">Dieselben Regeln in einfacher Sprache</span></button>
@@ -642,8 +644,9 @@ function renderSidebar(){
     todo: [['b-unver','Wissenslücke oder ausstehender Entscheid'],['b-over','Bereinigung nötig (Over-collection, veraltete Fassung, aufgehobener Standard)'],
            ['b-sens','⛨ DSFA-Entscheid offen']],
     search: [['b-federal','Bund'],['b-cantonal','Kanton'],['b-communal','Gemeinde']],
-    lebenslagen: [['b-dvsh','Katalog: eCH-0049 (genehmigt), Zuordnung der Services: Panel mit Zweitprüfung']],
-    begriffe: [['begc','angleichen — gleiche Sache, anders geschrieben'],['b-sourced','Rolle — nennt, wessen Datum'],['b-over','prüfen — verspricht mehr oder anderes']],
+    lebenslagen: [],
+    begriffe: [['begc','angleichen — gleiche Sache, anders geschrieben'],['b-rolle','Rolle — nennt, wessen oder welches Datum'],
+               ['b-pruef','Feld aufteilen · eCH-Zuordnung prüfen'],['b-unver','Vorschlag unter Vorbehalt'],['b-sourced','Begriff aus anderen Formularen']],
     datenfluss: [['b-sourced','systematisch — regelmässige Meldung von Gesetzes wegen'],['b-unver','auf Anfrage — Amtshilfe im Einzelfall']],
     buerger: [['b-sens','⛨ besonders schützenswert / verschlüsselt gespeichert'],['b-over','auf Einwilligung gestützt'],['regc','↺ Once-Only wiederverwendet']],
     katalog: [['b-dvsh','Datum liegt im Einwohnerregister'],['b-sens','⛨ in sensitivem Kontext erhoben']],
@@ -765,7 +768,7 @@ function viewHome(){
     ${tile(nAuf,'aufgabennotwendig ohne Norm','register')}
     ${tile(nSens,'⛨ sensible Felder','register')}
     ${tile(DATA.forms.filter(f=>((f.standard_divergenzen||{}).angleichen||[]).some(i=>i.art!=='pflicht_uneinheitlich')).length,'Formulare mit Standard-Divergenz','todo','divergenz')}
-    ${tile((DATA.themenkatalog||[]).filter(t=>t.n_services).length,'Lebenslagen mit Services (eCH-0049)','lebenslagen')}
+    ${tile((DATA.themenkatalog||[]).filter(t=>t.n_services).length,'Themengruppen mit Services (eCH-0049)','lebenslagen')}
     ${tile((DATA.begriffe||[]).reduce((n,b)=>n+b.labels.filter(l=>l.klasse==='variante').length,0),'Bezeichnungen anzugleichen','begriffe','angleichen')}
     ${tile(K.length.toLocaleString('de-CH'),'einzigartige Daten','katalog')}
     ${tile((DATA.esh_katalog||[]).length,'eSH-Entwürfe','esh')}
@@ -996,7 +999,8 @@ function formFacts(fm){
       ${(()=>{const sd=fm.standard_divergenzen; if(!sd) return '';
         return sd.n_angleichen?`<span class="hubdiv" title="Dasselbe Datum wird hier anders verlangt als auf den übrigen Formularen — Details im Abschnitt «Standard-Divergenzen»">⇄ ${sd.n_angleichen} Standard-Divergenz${sd.n_angleichen===1?'':'en'}</span>`
           :`<span class="hubmeta" title="Jedes standardisierte Datum wird gleich verlangt wie anderswo">⇄ keine Standard-Divergenz</span>`;})()}
-      ${(fm.standard_divergenzen||{}).n_bezeichnungen?`<span class="hubdiv" title="Felder, die ein Datum anders benennen als der einheitliche Begriff — Details im Abschnitt «Standard-Divergenzen»">✎ ${fm.standard_divergenzen.n_bezeichnungen} Bezeichnung${fm.standard_divergenzen.n_bezeichnungen===1?'':'en'}</span>`:''}
+      ${(()=>{const bz=(fm.standard_divergenzen||{}).bezeichnungen||[]; const n=bz.filter(i=>i.klasse==='variante'||i.pruefart==='aufteilen').length;
+        return n?`<span class="hubdiv" title="Felder, die ein Datum anders benennen als der einheitliche Begriff oder mehrere Daten bündeln — Details im Abschnitt «Standard-Divergenzen»">✎ ${n} Bezeichnung${n===1?'':'en'}</span>`:'';})()}
       ${checked}
     </div>
     ${fm.burden?`<div class="hubburden">Bürgerlast: <b>${fm.burden.inputs}</b> Pflichtangaben
@@ -1188,14 +1192,16 @@ function divergencePanel(fm){
     h+=`</tbody></table>`;
   });
   const bz=sd.bezeichnungen||[];
-  if(bz.length){
-    h+=`<div class="dvsub" style="margin-top:10px">Bezeichnungen (${bz.length}) — gleiches Datum, anderer Name als der einheitliche Begriff</div>
-      <table class="ft dvt"><thead><tr><th>Datenfeld</th><th>heisst hier</th><th>einheitlich</th><th>Hinweis</th></tr></thead><tbody>
-      ${bz.map(i=>`<tr><td><b>${esc(i.feld)}</b>${i.teilfeld?` › ${esc(i.teilfeld)}`:''}<div class="mono small muted">${esc(i.standard)} ${esc(i.element)}</div></td>
+  const bzBlock=(L,title,hint,col)=>L.length?`<div class="dvsub" style="margin-top:10px">${title} (${L.length})</div>
+      <div class="small muted">${hint}</div>
+      <table class="ft dvt"><thead><tr><th>Datenfeld</th><th>heisst hier</th><th>${col}</th><th>Hinweis</th></tr></thead><tbody>
+      ${L.map(i=>`<tr><td><b>${esc(i.feld)}</b>${i.teilfeld?` › ${esc(i.teilfeld)}`:''}<div class="mono small muted">${esc(i.standard)} ${esc(i.element)}</div></td>
         <td class="small">«${esc(i.hier)}»</td>
-        <td class="small">${i.klasse==='variante'?`<b>«${esc(i.vorschlag)}»</b>`:`<span class="badge b-over">${i.pruefart==='aufteilen'?'Feld aufteilen':i.pruefart==='zuordnung'?'eCH-Zuordnung prüfen':'prüfen'}</span>`}</td>
-        <td class="small muted">${esc(i.grund||'')}</td></tr>`).join('')}</tbody></table>`;
-  }
+        <td class="small">${i.klasse==='variante'?`<b>«${esc(i.vorschlag)}»</b>`:esc(i.pruefart==='aufteilen'?'in einzelne Felder':'Zuordnung korrigieren')}</td>
+        <td class="small muted">${esc(i.grund||'')}</td></tr>`).join('')}</tbody></table>`:'';
+  h+=bzBlock(bz.filter(i=>i.klasse==='variante'),'Bezeichnung angleichen — gleiches Datum, anderer Name','Das Feld meint dasselbe wie der einheitliche Begriff, heisst aber anders → im Formular umbenennen (Fachstelle).','einheitlich');
+  h+=bzBlock(bz.filter(i=>i.klasse==='pruefen'&&i.pruefart==='aufteilen'),'Feld bündelt mehrere Daten — aufteilen','Der Standard trennt, was dieses Feld zusammenfasst (z. B. Strasse und Hausnummer) → im Formular in einzelne Felder aufteilen (Fachstelle).','Handlung');
+  h+=bzBlock(bz.filter(i=>i.klasse==='pruefen'&&i.pruefart!=='aufteilen'),'eCH-Zuordnung korrigieren — die Bezeichnung meint ein anderes Datum','Kein Fehler des Formulars: die Databank hat das Feld einem unpassenden eCH-Element zugeordnet → Zuordnung korrigieren (Databank).','Handlung');
   if(feh.length){
     h+=`<div class="dvsub" style="margin-top:10px">Ohne zitierbaren Standard (${sd.n_fehlend} Datenpunkte)</div>
       <table class="ft dvt"><thead><tr><th>Art</th><th>Punkte</th><th>Felder</th></tr></thead><tbody>`;
@@ -1822,7 +1828,9 @@ const TODO_CATS=[
   ['divergenz_offen','Pflicht im Korpus ungeklärt','b-unver','entscheid',
    'Dasselbe Datum ist über die Formulare hinweg mal Pflicht, mal optional, ohne erkennbare Praxis — hier ist nicht ein Formular die Ausnahme, sondern es fehlt eine kantonale Festlegung.'],
   ['begriff','Bezeichnung angleichen','b-over','bereinigung',
-   'Das Feld benennt ein Datum anders als der einheitliche Begriff (Tab «Begriffe»), oder die Bezeichnung verspricht mehr als das Standard-Element und der Feldschnitt ist zu prüfen.'],
+   'Das Feld benennt ein Datum anders als der einheitliche Begriff (Tab «Begriffe») oder bündelt mehrere Daten, die der Standard trennt — im Formular umbenennen bzw. aufteilen.'],
+  ['zuordnung','eCH-Zuordnung korrigieren','b-unver','recherche',
+   'Die Bezeichnung meint ein anderes Datum als das eCH-Element, dem die Databank das Feld zugeordnet hat — ein Fehler der Databank, nicht des Formulars.'],
   ['rechtsmittel','Rechtsmittel nicht bestimmt','b-unver','recherche',
    'Das Verfahren endet mit einem anfechtbaren Entscheid, aber weder eine Spezialnorm noch die allgemeine VRG-Regel konnte belegt zugeordnet werden (z. B. Registerverfahren nach Bundesrecht).'],
 ];
@@ -1857,8 +1865,11 @@ function todoItems(f){
     if(ang.length) it.push({cat:'divergenz',n:ang.length,
       detail:ang.map(i=>`${i.feld}${i.teilfeld?' › '+i.teilfeld:''} (${DIV_DE[i.art]}: hier ${i.hier}, sonst ${i.andere})`).join(' · ')});
     const bz=sd.bezeichnungen||[];
-    if(bz.length) it.push({cat:'begriff',n:bz.length,
-      detail:bz.map(i=>`«${i.hier}»${i.klasse==='variante'?' → «'+i.vorschlag+'»':' (prüfen)'}`).join(' · ')});
+    const bzF=bz.filter(i=>i.klasse==='variante'||i.pruefart==='aufteilen'), bzZ=bz.filter(i=>i.klasse==='pruefen'&&i.pruefart!=='aufteilen');
+    if(bzF.length) it.push({cat:'begriff',n:bzF.length,
+      detail:bzF.map(i=>`«${i.hier}»${i.klasse==='variante'?' → «'+i.vorschlag+'»':' (aufteilen)'}`).join(' · ')});
+    if(bzZ.length) it.push({cat:'zuordnung',n:bzZ.length,
+      detail:bzZ.map(i=>`«${i.hier}» ≠ ${i.standard} ${i.element}`).join(' · ')});
     if(unk.length) it.push({cat:'divergenz_offen',n:unk.length,
       detail:unk.map(i=>`${i.feld}${i.teilfeld?' › '+i.teilfeld:''} — ${i.andere}`).join(' · ')});
   }
@@ -1977,7 +1988,7 @@ function searchIndex(){
   (DATA.datenhandhabung||[]).forEach(r=>ix.push({t:'Regel',label:r.summary,sub:`${r.short_title||r.law_title} ${artLabel(r.article_no)} · ${ASPECT[r.aspect]||r.aspect} · ${r.scope}`,
     key:lc(r.summary+' '+(r.quote||'')+' '+(r.short_title||'')+' '+r.article_no),go:{tab:'rules',service:'all',sub:'felder',anchor:`law-${r.law_id}-${r.scope}`}}));
   (DATA.themenkatalog||[]).filter(t=>t.n_services).forEach(t=>ix.push({t:'Lebenslage',label:t.gruppe,
-    sub:`${KAT_DE[t.katalog]} · ${t.bereich} · ${t.n_services} Services${t.n_mehrfach_angaben?' · '+t.n_mehrfach_angaben+' Angaben mehrfach':''}`,
+    sub:`Themengruppe eCH-0049 · ${KAT_DE[t.katalog]} · ${t.bereich} · ${t.n_services} Services${t.n_ueberschneidungen?' · '+t.n_ueberschneidungen+' Überschneidungen':''}`,
     key:lc(t.gruppe+' '+t.bereich+' '+KAT_DE[t.katalog]),go:{tab:'lebenslagen',service:'all',sub:'g-'+t.id}}));
   (DATA.begriffe||[]).forEach(b=>ix.push({t:'Begriff',label:b.vorschlag,
     sub:`${b.standard} ${b.element} · ${b.labels.filter(l=>l.klasse==='variante').length} Bezeichnungen anzugleichen`,
@@ -2136,10 +2147,10 @@ function viewLebenslagen(){
   const sub=state.sub&&state.sub!=='felder'?state.sub:'privat';
   if(/^g-\d+$/.test(sub)){ viewLebenslage(+sub.slice(2)); return; }
   const kat=sub==='unternehmen'?'unternehmen':'privat';
-  let h=pageHead('Lebenslagen · Was man in einer Situation alles angeben muss',
-    'Die Services des Kantons, gegliedert nach dem offiziellen Themenkatalog eCH-0049 — so, wie eine Person oder ein Betrieb sie sucht: Geburt, Umzug, Todesfall, Arbeitslosigkeit, Firmengründung … Je Lebenslage: welche Services und Ämter man trifft, wie viele Angaben verlangt werden, wie viele davon <b>mehrfach</b>, und was das Einwohnerregister schon weiss.',
-    'Katalog: eCH-0049 V4.00 (genehmigt), Beilage 1-1 Privatpersonen und 2-1 Unternehmen; jede Bezeichnung ist gegen das amtliche PDF geprüft. Welcher Service in welche Lebenslage gehört, ist ein Panel-Urteil mit Zweitprüfung (ein Service kann in bis zu drei Lebenslagen stehen). «Dasselbe Datum» wird nur über das eCH-Element erkannt; Angaben ohne Standard sind nicht vergleichbar und werden separat gezählt.',
-    '«Mehrfach verlangt» heisst: mehrere Services derselben Lebenslage fragen nach demselben Datum — genau dort würde Once-Only die Last direkt senken. Kachel anklicken für die Einzelheiten.');
+  let h=pageHead('Lebenslagen · die Themengruppen von eCH-0049',
+    'Die Services des Kantons, gegliedert nach dem offiziellen Themenkatalog eCH-0049 — so, wie eine Person oder ein Betrieb sie sucht. Der Standard nennt die Einheiten <b>Themengruppen</b>; viele davon sind Lebenslagen (Geburt, Wohnen und Umziehen, Todesfall, Arbeitslosigkeit, Pensionierung, Berufliche Selbständigkeit), andere Themen (Steuern, Energie). Je Themengruppe: welche Services und Ämter man trifft, wie viele Angaben verlangt werden, wo sich die Services beim selben Datum <b>überschneiden</b>, und was das Einwohnerregister schon weiss.',
+    'Katalog: eCH-0049 V4.00 (genehmigt), Beilage 1-1 Privatpersonen und 2-1 Unternehmen; jede Themengruppe ist im amtlichen PDF unter ihrem Themenbereich geprüft. Welcher Service in welche Themengruppe gehört, ist ein Panel-Urteil mit Zweitprüfung (bis zu drei je Service). «Dasselbe Datum» heisst: gleiches eCH-Element, bei Personen- und Adressdaten dieselbe beurteilte Partei, dieselbe genannte Rolle — Dokumente, Beilagen, Bemerkungen und Felder mit abweichender Zuordnung werden nie gleichgesetzt; im Zweifel wird getrennt gezählt.',
+    '<b>Überschneidungen</b> zählen, wie oft ein Service ein Datum verlangt, das ein anderer Service derselben Themengruppe auch verlangt. Das beschreibt das Angebot, nicht die Last einer einzelnen Person: Services können Alternativen sein, die niemand zusammen durchläuft (z. B. B- und C-Bewilligung). Kachel anklicken für die Einzelheiten.');
   h+=`<div class="todocats">${['privat','unternehmen'].map(k=>`<span class="tcat${k===kat?' on':''}" data-kat="${k}">${KAT_DE[k]} <b>${T.filter(t=>t.katalog===k&&t.n_services).length}</b> Lebenslagen mit Services</span>`).join('')}</div>`;
   const byB={}; T.filter(t=>t.katalog===kat).forEach(t=>{(byB[t.bereich]=byB[t.bereich]||[]).push(t);});
   Object.entries(byB).forEach(([b,L])=>{
@@ -2148,12 +2159,12 @@ function viewLebenslagen(){
     withS.sort((a,b)=>b.n_services-a.n_services).forEach(t=>{
       h+=`<button class="lltile" data-g="${t.id}"><span class="lln">${esc(t.gruppe)}</span>
         <span class="lls"><b>${t.n_services}</b> Service${t.n_services===1?'':'s'} · <b>${t.n_dienststellen||0}</b> ${t.n_dienststellen===1?'Amt':'Ämter'}</span>
-        <span class="lls">${t.n_angaben?`<b>${t.n_angaben}</b> Angaben`:'keine Formular-Daten'}${t.n_mehrfach_angaben?` · <span class="llrep">${t.n_mehrfach_angaben} mehrfach</span>`:''}</span></button>`;});
+        <span class="lls">${t.n_angaben?`<b>${t.n_angaben}</b> Angaben`:'keine Formular-Daten modelliert'}${t.n_ueberschneidungen?` · <span class="llrep">${t.n_ueberschneidungen} Überschneidungen</span>`:''}</span></button>`;});
     h+=`</div>`;
     if(without.length) h+=`<div class="small muted" style="margin:2px 0 10px">ohne kantonalen Service in der Databank: ${without.map(t=>esc(t.gruppe)).join(' · ')}</div>`;
   });
   const none=DATA.services.filter(sv=>!(sv.themen||[]).length);
-  if(none.length) h+=`<details class="card"><summary class="small"><b>${none.length} Services ohne Lebenslage</b> — z. B. rein behördeninterne Verfahren; der Grund steht je Service</summary>
+  if(none.length) h+=`<details class="card"><summary class="small"><b>${none.length} Services ohne Themengruppe</b> — z. B. rein behördeninterne Verfahren; der Grund steht je Service</summary>
     ${none.map(sv=>`<div class="small">• <a class="simlink" data-sid="${sv.id}">${esc(sv.name)}</a> <span class="muted">— ${esc(sv.themen_grund||'')}</span></div>`).join('')}</details>`;
   m.innerHTML=h;
   m.querySelectorAll('.tcat[data-kat]').forEach(c=>c.onclick=()=>{state.sub=c.dataset.kat;render();});
@@ -2168,31 +2179,32 @@ function viewLebenslage(id){
   const pct=(a,b)=>b?Math.round(100*a/b):0;
   let h=`<div class="crumbs"><a class="simlink" id="llback">‹ alle Lebenslagen (${esc(KAT_DE[t.katalog])})</a></div>
     <h3 class="view">${esc(t.gruppe)} <span class="muted small">· ${esc(t.bereich)} · eCH-0049 ${esc(KAT_DE[t.katalog])}</span></h3>`;
-  h+=`<div class="card llsum">${t.n_formulare
-    ?`Wer von <b>${esc(t.gruppe)}</b> betroffen ist, trifft in dieser Databank <b>${t.n_services}</b> Service${t.n_services===1?'':'s'} bei <b>${t.n_dienststellen}</b> Dienststelle${t.n_dienststellen===1?'':'n'}.
-       Zusammen verlangen ihre ${t.n_formulare} Formulare <b>${t.n_angaben}</b> Angaben (${t.n_pflicht} davon Pflicht) und <b>${t.n_beilagen}</b> Beilagen.
-       ${t.n_wiederholt?`<b>${t.n_wiederholt}</b> Daten werden von mehreren dieser Services erfragt — das sind <b>${t.n_mehrfach_angaben}</b> Angaben, die man mehrfach macht.`:'Kein Datum wird von mehr als einem dieser Services erfragt.'}
-       ${t.n_vorbefuellbar?` <b>${t.n_vorbefuellbar}</b> Angaben kennt das Einwohnerregister bereits.`:''}`
-    :`Die ${t.n_services} Services dieser Lebenslage haben in der Databank keine modellierten Formular-Daten (reine Online-/Kanal-Services).`}</div>`;
+  const nMod=(t.services_modelliert||[]).length, nOhne=(t.services_ohne_daten||[]).length;
+  h+=`<div class="card llsum">In der Themengruppe <b>${esc(t.gruppe)}</b> stehen <b>${t.n_services}</b> Service${t.n_services===1?'':'s'} bei <b>${t.n_dienststellen}</b> Dienststelle${t.n_dienststellen===1?'':'n'}.
+    ${nOhne?` Für <b>${nMod}</b> davon sind Formular-Daten modelliert, für ${nOhne} nicht — die Zahlen unten betreffen nur die modellierten.`:''}
+    ${t.n_formulare?` Ihre ${t.n_formulare} Formular${t.n_formulare===1?'':'e'} verlangen <b>${t.n_angaben}</b> Angaben — ${t.n_pflicht} als Pflichtfeld${t.n_pflicht_teil?`, dazu ${t.n_pflicht_teil} Teile von Pflicht-Feldgruppen`:''} — und <b>${t.n_beilagen}</b> Beilagen.
+      ${t.n_wiederholt?` <b>${t.n_wiederholt}</b> Daten verlangen mehrere dieser Services: <b>${t.n_ueberschneidungen}</b> Überschneidungen über das Angebot hinweg — die Services können Alternativen sein, die niemand zusammen durchläuft.`:(nMod>1?' Unter den modellierten Services verlangt keiner ein Datum, das ein anderer auch verlangt.':'')}
+      ${t.n_vorbefuellbar?` <b>${t.n_vorbefuellbar}</b> Angaben kennt das Einwohnerregister bereits.`:''}${t.n_vorbefuellbar_offen?` Für ${t.n_vorbefuellbar_offen} Personen- und Adressangaben ist noch nicht beurteilt, wessen Datum sie sind.`:''}`:''}</div>`;
   if(t.n_formulare) h+=`<div class="regstats">
     <span class="rstat">Angaben <b>${t.n_angaben}</b></span>
-    <span class="rstat">davon mehrfach <b>${t.n_mehrfach_angaben}</b></span>
-    <span class="rstat">vorbefüllbar <b>${t.n_vorbefuellbar}</b></span>
-    <span class="rstat">ohne Standard (nicht vergleichbar) <b>${t.n_ohne_standard}</b></span>
+    <span class="rstat" title="Wie oft ein Service ein Datum verlangt, das ein anderer Service dieser Themengruppe auch verlangt">Überschneidungen <b>${t.n_ueberschneidungen}</b></span>
+    <span class="rstat">vorbefüllbar <b>${t.n_vorbefuellbar}</b>${t.n_vorbefuellbar_offen?` · ${t.n_vorbefuellbar_offen} nicht beurteilt`:''}</span>
+    <span class="rstat" title="Ohne eCH-Element lässt sich nicht erkennen, ob zwei Formulare dasselbe verlangen">ohne eCH-Element <b>${t.n_ohne_standard}</b>${t.n_ohne_standard?` <span class="muted">(kein Standard ${t.n_kein_standard} · Element offen ${t.n_element_offen} · ungeprüft ${t.n_ungeprueft})</span>`:''}</span>
+    ${(t.n_container+t.n_zuordnung_offen+t.n_partei_offen)?`<span class="rstat" title="Mit Element, aber bewusst nicht verglichen">nicht gleichgesetzt <b>${t.n_container+t.n_zuordnung_offen+t.n_partei_offen}</b> <span class="muted">(Dokument/Beilage/Bemerkung ${t.n_container} · andere Zuordnung ${t.n_zuordnung_offen} · Partei offen ${t.n_partei_offen})</span></span>`:''}
     <span class="rstat">Beilagen <b>${t.n_beilagen}</b>${t.n_beilagen_beziehbar?` · ${t.n_beilagen_beziehbar} beim Amt beziehbar`:''}</span>
     <span class="rstat">online einreichbar <b>${t.n_online}/${t.n_formulare}</b></span>
     <span class="rstat">mit Unterschrift <b>${t.n_unterschrift}</b></span>
     ${t.n_sensibel?`<span class="rstat">⛨ sensible Felder <b>${t.n_sensibel}</b></span>`:''}</div>`;
-  h+=`<div class="card"><div class="dvsub">Die Services dieser Lebenslage</div><table class="ft"><thead><tr><th>#</th><th>Service</th><th>Dienststelle</th><th>Formulare</th><th>weitere Lebenslagen</th></tr></thead><tbody>
+  h+=`<div class="card"><div class="dvsub">Die Services dieser Themengruppe</div><table class="ft"><thead><tr><th>#</th><th>Service</th><th>Dienststelle</th><th>Formulare</th><th>weitere Themengruppen</th></tr></thead><tbody>
     ${S.map(sv=>{const fs=DATA.forms.filter(f=>f.service_id===sv.id);
       const other=(sv.themen||[]).filter(x=>x.id!==t.id);
       return `<tr><td>${CIRC(num[sv.id])}</td><td><a class="simlink" data-sid="${sv.id}">${esc(sv.name)}</a></td>
-        <td class="small muted">${esc(sv.dienststelle||'')}</td><td class="small">${fs.length||'—'}</td>
+        <td class="small muted">${esc(sv.dienststelle||'')}</td><td class="small">${fs.filter(f=>(f.data_fields||[]).length).length||`<span class="muted">nicht modelliert</span>`}</td>
         <td class="small">${other.map(x=>`<a class="simlink llgo" data-g="${x.id}">${esc(x.gruppe)}</a>`).join(' · ')||'—'}</td></tr>`;}).join('')}
     </tbody></table></div>`;
   if((t.wiederholt||[]).length){
-    h+=`<div class="card"><div class="dvsub">Mehrfach verlangt — dasselbe Datum von mehreren Services dieser Lebenslage</div>
-      <div class="small muted" style="margin-bottom:6px">Jede Zeile ist ein Datum (erkannt am eCH-Element), die Nummern sind die Services oben, die danach fragen. Hier würde eine einmalige Angabe — oder die Übernahme aus einem Register — mehrere Formulare entlasten.</div>
+    h+=`<div class="card"><div class="dvsub">Überschneidungen — dasselbe Datum von mehreren Services dieser Themengruppe verlangt</div>
+      <div class="small muted" style="margin-bottom:6px">Jede Zeile ist ein Datum: gleiches eCH-Element, bei Personen- und Adressdaten dieselbe Partei, dieselbe genannte Rolle. Die Nummern sind die Services oben. Wo jemand diese Services tatsächlich nacheinander braucht, würde eine einmalige Angabe — oder die Übernahme aus einem Register — mehrere Formulare entlasten; wo sie Alternativen sind, zeigt die Zeile nur, dass die Formulare dasselbe verlangen.</div>
       <table class="ft"><thead><tr><th>Datum</th><th>Standard-Element</th><th>verlangt von</th></tr></thead><tbody>
       ${t.wiederholt.map(w=>`<tr><td><b>${esc(w.label||'')}</b></td><td class="mono small">${esc(w.element)}</td>
         <td>${w.services.map(sid=>`<span class="llnum" title="${esc((svcById[sid]||{}).name||'')}">${CIRC(num[sid]||0)}</span>`).join(' ')} <span class="muted small">(${w.services.length})</span></td></tr>`).join('')}
@@ -2211,17 +2223,18 @@ function viewBegriffe(){
   const f=state.sub&&state.sub!=='felder'?state.sub:'angleichen';
   const cnt=k=>B.reduce((n,b)=>n+b.labels.filter(l=>l.klasse===k).length,0);
   const occ=k=>B.reduce((n,b)=>n+b.labels.filter(l=>l.klasse===k).reduce((x,l)=>x+l.n,0),0);
-  const formsVar=new Set(); B.forEach(b=>b.labels.filter(l=>l.klasse==='variante').forEach(l=>(l.formulare||[]).forEach(x=>formsVar.add(x))));
+  const BS=DATA.begriffe_stats||{};
   let h=pageHead('Begriffe · Ein Datum, ein Name',
-    'Für jedes Datum mit offiziellem eCH-Element: unter welchen Bezeichnungen die Formulare danach fragen, welcher Begriff einheitlich verwendet werden soll — und welche Abweichungen in Ordnung sind, weil sie sagen, <i>wessen</i> Datum gemeint ist.',
+    'Für jedes Datum mit offiziellem eCH-Element, das unter <b>mindestens zwei</b> Bezeichnungen erfragt wird: unter welchen Bezeichnungen die Formulare danach fragen, welcher Begriff einheitlich verwendet werden soll — und welche Abweichungen in Ordnung sind, weil sie sagen, <i>wessen</i> oder <i>welches</i> Datum gemeint ist.',
     'Vorschlag und Einordnung sind ein Panel-Urteil mit Zweitprüfung. Der Vorschlag ist immer eine Bezeichnung, die in den Formularen bereits vorkommt — kein erfundener Begriff. Die Zählungen kommen live aus der Feld-Schicht.',
-    '<b>angleichen</b> = dieselbe Sache, nur anders geschrieben («Nachname», «Familienname») → auf den Vorschlag umbenennen. <b>Rolle — in Ordnung</b> = die Bezeichnung nennt, wessen Datum gemeint ist («Name Arbeitnehmer») → so lassen. <b>Feld aufteilen</b> = das Feld bündelt mehrere Daten, die der Standard trennt («Strasse und Nr», «PLZ und Ort») → im Formular aufteilen. <b>eCH-Zuordnung prüfen</b> = die Bezeichnung meint ein anderes Datum als das Element → die Zuordnung in der Databank korrigieren.');
+    '<b>angleichen</b> = dieselbe Sache, nur anders geschrieben («Nachname», «Familienname») → auf den Vorschlag umbenennen. <b>Rolle — in Ordnung</b> = die Bezeichnung nennt, wessen oder welches Datum gemeint ist — Partei, Art, Ort oder Zeitraum («Name Arbeitnehmer», «Adresse bisher») → so lassen. <b>Feld aufteilen</b> = das Feld bündelt mehrere Daten, die der Standard trennt («Strasse und Nr», «PLZ und Ort») → im Formular aufteilen. <b>eCH-Zuordnung prüfen</b> = die Bezeichnung meint ein anderes Datum als das Element → die Zuordnung in der Databank korrigieren.');
   h+=`<div class="regstats"><span class="rstat">Daten mit Vorschlag <b>${B.length}</b></span>
-    <span class="rstat">Bezeichnungen anzugleichen <b>${cnt('variante')}</b> · ${occ('variante')} Felder in ${formsVar.size} Formularen</span>
+    <span class="rstat">Bezeichnungen anzugleichen <b>${cnt('variante')}</b> · ${BS.n_felder_angleichen??occ('variante')} Felder in ${BS.n_formulare_angleichen??'?'} Formularen</span>
     <span class="rstat">Rollen-Bezeichnungen <b>${cnt('rolle')}</b></span>
     <span class="rstat">Vorschläge unter Vorbehalt <b>${B.filter(b=>b.vorbehalt).length}</b></span>
     <span class="rstat">Feld aufteilen <b>${B.reduce((n,b)=>n+b.labels.filter(l=>l.pruefart==='aufteilen').length,0)}</b></span>
-    <span class="rstat">eCH-Zuordnung prüfen <b>${B.reduce((n,b)=>n+b.labels.filter(l=>l.pruefart==='zuordnung').length,0)}</b></span></div>`;
+    <span class="rstat">eCH-Zuordnung prüfen <b>${B.reduce((n,b)=>n+b.labels.filter(l=>l.pruefart==='zuordnung').length,0)}</b></span>
+    ${BS.n_elemente_eine_bezeichnung?`<span class="rstat" title="Daten, nach denen nur unter einer einzigen Bezeichnung gefragt wird, sind hier nicht geprüft — auch sie können vom einheitlichen Begriff abweichen">nur eine Bezeichnung (nicht geprüft) <b>${BS.n_elemente_eine_bezeichnung}</b></span>`:''}</div>`;
   h+=`<div class="todocats">${[['angleichen','mit Angleichungsbedarf'],['pruefen','mit Prüfbedarf'],['alle','alle Daten']].map(([k,l])=>`<span class="tcat${k===f?' on':''}" data-f="${k}">${l}</span>`).join('')}
     <input id="begq" class="gsearch" style="margin-left:8px;max-width:260px" placeholder="Bezeichnung filtern …" value=""></div><div id="beglist"></div>`;
   m.innerHTML=h;
@@ -2235,7 +2248,7 @@ function viewBegriffe(){
       const vor=b.labels.find(l=>l.klasse==='vorschlag');
       const chip=l=>`<span class="bgl" title="${l.n}× in ${l.n_formulare} Formular${l.n_formulare===1?'':'en'}${l.grund?' — '+esc(l.grund):''}">«${esc(l.label)}» <span class="muted">${l.n}×</span></span>`;
       o+=`<div class="card bgcard"><div class="bghead"><span class="bgvor">«${esc(b.vorschlag)}»</span>
-          ${b.vorbehalt?`<span class="badge b-unver" title="In keinem Formular gibt es einen sauberen Begriff für genau dieses Datum — der Vorschlag ist der beste vorhandene, bis ein klarer Begriff festgelegt wird">Vorschlag unter Vorbehalt</span>`:''}
+          ${b.vorbehalt?`<span class="badge b-unver" title="${esc(b.begruendung||'Vorschlag unter Vorbehalt')}">Vorschlag unter Vorbehalt</span>`:''}
           ${b.herkunft==='korpus'?`<span class="badge b-sourced" title="Die Formulare dieses Datums verwenden keinen sauberen Begriff; der Vorschlag stammt aus anderen Formularen des Kantons (nie erfunden)">Begriff aus anderen Formularen</span>`:''}
           <span class="mono small muted">${esc(b.standard)} ${esc(b.element)}${b.datentyp?` ⟨${esc(b.datentyp)}⟩`:''}</span>
           <span class="small muted" style="margin-left:auto">${vor?`Vorschlag ${vor.n}× verwendet`:''}</span></div>

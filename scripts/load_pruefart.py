@@ -23,6 +23,9 @@ def norm(s):
 
 
 def main():
+    if os.environ.get("BEGRIFFE_CHAIN") != "1":
+        sys.exit("Dieser Schritt baut auf den vorherigen auf und darf nicht allein laufen — "
+                 "bitte scripts/run_begriffe.py verwenden.")
     src = sys.argv[1]
     st = DB_PATH + ".staging"
     if os.path.exists(st):

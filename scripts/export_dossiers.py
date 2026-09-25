@@ -160,8 +160,13 @@ def todo(f):
         it.append(f"Standard-Divergenz angleichen: {nang}")
     if nunk:
         it.append(f"Pflicht im Korpus ungeklärt: {nunk}")
-    if sd.get("n_bezeichnungen"):
-        it.append(f"Bezeichnung angleichen: {sd['n_bezeichnungen']}")
+    bz = sd.get("bezeichnungen") or []
+    nf = sum(1 for i in bz if i["klasse"] == "variante" or i.get("pruefart") == "aufteilen")
+    nz = sum(1 for i in bz if i["klasse"] == "pruefen" and i.get("pruefart") != "aufteilen")
+    if nf:
+        it.append(f"Bezeichnung angleichen/aufteilen: {nf}")
+    if nz:
+        it.append(f"eCH-Zuordnung korrigieren (Databank): {nz}")
     o = f.get("outcome") or {}
     if o.get("entscheid_art") not in (None, "kein_entscheid", "unbekannt") \
             and o.get("rechtsmittel_quelle") in (None, "offen"):
@@ -272,7 +277,7 @@ def dossier(s, forms, dst, kat):
     if dv.get("kurzbeschreibung"):
         h.append(f"<div class='small'>{esc(dv['kurzbeschreibung'][:400])}</div>")
     if s.get("themen"):
-        h.append("<div class='small' style='margin-top:4px'><b>Lebenslage (eCH-0049):</b> " + " · ".join(
+        h.append("<div class='small' style='margin-top:4px'><b>Themengruppe (eCH-0049):</b> " + " · ".join(
             f"{esc(t['gruppe'])} <span class='muted'>({'Privatpersonen' if t['katalog'] == 'privat' else 'Unternehmen'}, {esc(t['bereich'])})</span>"
             for t in s["themen"]) + "</div>")
     if laws:
@@ -337,11 +342,18 @@ def dossier(s, forms, dst, kat):
                              f"<td class='small'>{esc(i.get('basis') or '')}</td></tr>"
                              f"<tr><td colspan='5' class='small muted'>→ {esc(i['aktion'])}</td></tr>")
                 h.append("</tbody></table>")
-            if bz:
-                h.append("<div class='small' style='margin:6px 0'><b>Bezeichnungen</b> — gleiches Datum, anderer Name als der einheitliche Begriff: "
-                         + " · ".join(f"«{esc(i['hier'])}» → " + (f"<b>«{esc(i['vorschlag'])}»</b>" if i["klasse"] == "variante"
-                                                                   else f"<span class='b bad'>{'Feld aufteilen' if i.get('pruefart') == 'aufteilen' else 'eCH-Zuordnung prüfen' if i.get('pruefart') == 'zuordnung' else 'prüfen'}</span> {esc(i.get('grund') or '')}")
-                                      for i in bz) + "</div>")
+            var = [i for i in bz if i["klasse"] == "variante"]
+            auf = [i for i in bz if i["klasse"] == "pruefen" and i.get("pruefart") == "aufteilen"]
+            zuo = [i for i in bz if i["klasse"] == "pruefen" and i.get("pruefart") != "aufteilen"]
+            if var:
+                h.append("<div class='small' style='margin:6px 0'><b>Bezeichnung angleichen</b> — gleiches Datum, anderer Name: "
+                         + " · ".join(f"«{esc(i['hier'])}» → <b>«{esc(i['vorschlag'])}»</b>" for i in var) + "</div>")
+            if auf:
+                h.append("<div class='small' style='margin:6px 0'><b>Feld bündelt mehrere Daten — aufteilen:</b> "
+                         + " · ".join(f"«{esc(i['hier'])}»" for i in auf) + "</div>")
+            if zuo:
+                h.append("<div class='small muted' style='margin:6px 0'><b>eCH-Zuordnung korrigieren</b> (Aufgabe der Databank, nicht des Formulars): "
+                         + " · ".join(f"«{esc(i['hier'])}» ≠ {esc(i['standard'])} {esc(i['element'])}" for i in zuo) + "</div>")
             if feh:
                 h.append("<div class='small'>" + " ".join(
                     f"<div>• <b>{esc(DIV_DE.get(i['art'], i['art']))}</b>"

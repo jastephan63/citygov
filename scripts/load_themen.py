@@ -32,6 +32,9 @@ CREATE TABLE IF NOT EXISTS service_thema_grund (
 
 
 def main():
+    if os.environ.get("BEGRIFFE_CHAIN") != "1":
+        sys.exit("Dieser Schritt ist Teil einer Kette und würde die folgenden Schritte ungültig machen — "
+                 "bitte scripts/run_begriffe.py verwenden.")
     src = sys.argv[1]
     asked = set()
     for jf in glob.glob(f"{src}/in_*.json"):

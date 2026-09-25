@@ -30,6 +30,9 @@ VORBEHALT = {
     "addressCategory": "Die saubere Schreibweise «Adressart» kommt in keinem Formular vor; «adressart» ist der einzige vorhandene Begriff.",
     "purchasePrice": "«Kaufpreis» ohne Einheit kommt in keinem Formular vor; die Einheit gehört nicht in den Begriff.",
 }
+# eCH-0108 addressCategory has its own clean term («Domizilart»); a company's
+# Domizil is no address category of a person — never align it (review 2026-09-25)
+EXCLUDE_IDS = {1487}
 VORBEHALT_ID = {7784: "Das Element zählt Anteile (ganze Zahl neben Nominalwert und Prozent), es ist kein Geldbetrag — Zuordnung prüfen."}
 
 
@@ -38,6 +41,9 @@ def norm(s):
 
 
 def main():
+    if os.environ.get("BEGRIFFE_CHAIN") != "1":
+        sys.exit("Dieser Schritt baut auf den vorherigen auf und darf nicht allein laufen — "
+                 "bitte scripts/run_begriffe.py verwenden.")
     src = sys.argv[1]
     st = DB_PATH + ".staging"
     if os.path.exists(st):
@@ -66,6 +72,8 @@ def main():
             rej += 1; continue
         term = corpus[norm(term)] if group not in OVERRIDE_TERM else term
         for eid in u.get("element_ids") or []:
+            if eid in EXCLUDE_IDS:
+                continue
             if name_of.get(eid) != group:
                 rej += 1; continue
             old = norm(term_of[eid])
@@ -90,7 +98,8 @@ def main():
             cap += 1
     for group, why in VORBEHALT.items():
         c.execute("UPDATE begriff_vorschlag SET vorbehalt=1, pruefung=? WHERE ech_element_id IN "
-                  "(SELECT id FROM ech_element WHERE name=?)", [why, group])
+                  "(SELECT id FROM ech_element WHERE name=?) AND ech_element_id NOT IN (%s)"
+                  % ",".join(map(str, EXCLUDE_IDS)), [why, group])
     for eid, why in VORBEHALT_ID.items():
         c.execute("UPDATE begriff_vorschlag SET vorbehalt=1, pruefung=? WHERE ech_element_id=?", [why, eid])
     c.commit()
