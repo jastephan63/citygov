@@ -163,7 +163,7 @@ def build(conn):
             for e in rows(conn, "SELECT e.id, e.standard, e.name, e.datatype, s.title, s.url, "
                                 "s.status, s.reifegrad "
                                 "FROM ech_element e JOIN ech_standard s ON s.code=e.standard"):
-                ech[e["id"]] = {"standard": e["standard"], "element": e["name"],
+                ech[e["id"]] = {"id": e["id"], "standard": e["standard"], "element": e["name"],
                                 "datatype": e["datatype"], "standard_titel": e["title"], "url": e["url"],
                                 "status": e["status"], "reifegrad": e["reifegrad"],
                                 "xsd_version": xsd_ver.get(e["standard"])}
@@ -656,6 +656,133 @@ def build(conn):
             "n_fehlend": sum(i["n"] for i in items if i.get("sammel")),
         } if (fm.get("data_fields") or []) else None
 
+    # ---- Begriffe: one datum, one name --------------------------------------
+    # The naming verdicts (load_begriffe.py) land on each unit, so the field
+    # row, the form's divergence panel and the Begriffe page read one answer.
+    begriffe = []
+    try:
+        def _bn(x):
+            return re.sub(r"\s+", " ", re.sub(r"[:*]+\s*$", "", (x or "").strip())).lower()
+        bv = {r["ech_element_id"]: r for r in rows(conn, "SELECT * FROM begriff_vorschlag")}
+        bl = {(r["ech_element_id"], r["label_norm"]): r for r in rows(conn, "SELECT * FROM begriff_label")}
+        use = {}          # element id -> label_norm -> {"n", "forms"}
+        for fm in forms:
+            sd = fm.get("standard_divergenzen")
+            items = []
+            for d in fm.get("data_fields") or []:
+                subs = [x for x in (d.get("subfields") or []) if isinstance(x, dict)]
+                for u in (subs or [d]):
+                    e = u.get("ech") or {}
+                    if not e.get("element"):
+                        continue
+                    eid = e.get("id") or conn_elem_ids.get((e["standard"], e["element"]))
+                    lab = u.get("name") if subs else d["name"]
+                    ln = _bn(lab)
+                    uu = use.setdefault(eid, {}).setdefault(ln, {"n": 0, "forms": set()})
+                    uu["n"] += 1; uu["forms"].add(fm["id"])
+                    v, lr = bv.get(eid), bl.get((eid, ln))
+                    if not (v and lr):
+                        continue
+                    u["begriff"] = {"klasse": lr["klasse"], "vorschlag": v["term"], "vorbehalt": bool(v.get("vorbehalt")),
+                                    "rolle": lr["rolle"], "grund": lr.get("pruefart_grund") or lr["grund"],
+                                    "pruefart": lr.get("pruefart")}
+                    if lr["klasse"] in ("variante", "pruefen"):
+                        items.append({"feld": d["name"], "teilfeld": u.get("name") if subs else None,
+                                      "standard": e["standard"], "element": e["element"],
+                                      "klasse": lr["klasse"], "hier": lab, "vorschlag": v["term"],
+                                      "pruefart": lr.get("pruefart"),
+                                      "grund": lr.get("pruefart_grund") or lr["grund"]})
+            if sd is not None:
+                sd["bezeichnungen"] = items
+                sd["n_bezeichnungen"] = len(items)
+        for eid, v in bv.items():
+            e = ech.get(eid) or {}
+            labs = []
+            for r in rows(conn, "SELECT * FROM begriff_label WHERE ech_element_id=? ORDER BY klasse, label", eid):
+                uu = use.get(eid, {}).get(r["label_norm"], {"n": 0, "forms": set()})
+                labs.append({"label": r["label"], "klasse": r["klasse"], "rolle": r["rolle"],
+                             "pruefart": r.get("pruefart"), "grund": r.get("pruefart_grund") or r["grund"],
+                             "n": uu["n"], "formulare": sorted(uu["forms"])[:40], "n_formulare": len(uu["forms"])})
+            begriffe.append({"element_id": eid, "standard": e.get("standard"), "element": e.get("element"),
+                             "datentyp": e.get("datatype"), "standard_titel": e.get("standard_titel"),
+                             "vorschlag": v["term"], "begruendung": v.get("pruefung") or v["begruendung"],
+                             "vorbehalt": bool(v.get("vorbehalt")), "herkunft": v.get("herkunft") or "eigen",
+                             "labels": labs})
+        begriffe.sort(key=lambda b: -sum(l["n"] for l in b["labels"] if l["klasse"] == "variante"))
+    except Exception as ex:
+        print("  Begriffe übersprungen:", ex)
+
+    # ---- Lebenslagen: eCH-0049 Themengruppen, with live statistics -----------
+    # What a person (or business) meets in one situation: which services, which
+    # offices, how many answers, how many of them asked AGAIN by another service
+    # of the same situation, and how many the Einwohnerregister could supply.
+    # Only data with an eCH element can be recognised as "the same datum"
+    # across forms; everything else is counted separately, never guessed.
+    themenkatalog = []
+    try:
+        th_by_svc = {}
+        for r in rows(conn, "SELECT st.service_id, st.rang, t.id, t.katalog, t.bereich, t.gruppe "
+                            "FROM service_thema st JOIN themenkatalog t ON t.id=st.thema_id ORDER BY st.service_id, st.rang"):
+            th_by_svc.setdefault(r["service_id"], []).append(
+                {"id": r["id"], "katalog": r["katalog"], "bereich": r["bereich"], "gruppe": r["gruppe"], "rang": r["rang"]})
+        grund = {r["service_id"]: r["grund"] for r in rows(conn, "SELECT service_id, grund FROM service_thema_grund")}
+        for sv in services:
+            sv["themen"] = th_by_svc.get(sv["id"], [])
+            if sv["id"] in grund and not sv["themen"]:
+                sv["themen_grund"] = grund[sv["id"]]
+        forms_by_svc = {}
+        for fm in forms:
+            forms_by_svc.setdefault(fm["service_id"], []).append(fm)
+        svc_by_id = {sv["id"]: sv for sv in services}
+        for t in rows(conn, "SELECT id, katalog, bereich, gruppe, ord FROM themenkatalog ORDER BY katalog, ord"):
+            sids = [sid for sid, L in th_by_svc.items() if any(x["id"] == t["id"] for x in L)]
+            g = {"id": t["id"], "katalog": t["katalog"], "bereich": t["bereich"], "gruppe": t["gruppe"],
+                 "services": sids, "n_services": len(sids)}
+            if sids:
+                el_svcs, el_label = {}, {}
+                n_units = n_pflicht = n_reg = n_ohne = n_sens = n_beil = n_fetch = n_online = n_sig = n_forms = 0
+                dsts = set()
+                for sid in sids:
+                    dsts.add((svc_by_id.get(sid) or {}).get("dienststelle"))
+                    for fm in forms_by_svc.get(sid, []):
+                        if not fm.get("data_fields"):
+                            continue
+                        n_forms += 1
+                        n_beil += len(fm.get("beilagen") or [])
+                        n_fetch += sum(1 for b in (fm.get("beilagen") or []) if b.get("fetchable"))
+                        n_online += fm.get("submission_channel") == "online_formular"
+                        n_sig += fm.get("signature_requirement") == "handschriftlich"
+                        for d in fm["data_fields"]:
+                            n_sens += bool(d.get("sensitive"))
+                            subs = [x for x in (d.get("subfields") or []) if isinstance(x, dict)]
+                            for u in (subs or [d]):
+                                n_units += 1
+                                n_pflicht += bool(d.get("required"))
+                                n_reg += bool(u.get("register"))
+                                e = u.get("ech") or {}
+                                if not e.get("element"):
+                                    n_ohne += 1
+                                    continue
+                                k = f"{e['standard']}·{e['element']}"
+                                el_svcs.setdefault(k, set()).add(sid)
+                                b = u.get("begriff") or {}
+                                el_label.setdefault(k, b.get("vorschlag") or (u.get("name") if subs else d["name"]))
+                rep = sorted(((k, v) for k, v in el_svcs.items() if len(v) >= 2), key=lambda kv: -len(kv[1]))
+                g.update({
+                    "n_dienststellen": len(dsts - {None}), "n_formulare": n_forms,
+                    "n_angaben": n_units, "n_pflicht": n_pflicht, "n_vorbefuellbar": n_reg,
+                    "n_ohne_standard": n_ohne, "n_sensibel": n_sens,
+                    "n_beilagen": n_beil, "n_beilagen_beziehbar": n_fetch,
+                    "n_online": n_online, "n_unterschrift": n_sig,
+                    "n_daten": len(el_svcs),
+                    "wiederholt": [{"element": k, "label": el_label.get(k), "services": sorted(v)} for k, v in rep[:40]],
+                    "n_wiederholt": len(rep),
+                    "n_mehrfach_angaben": sum(len(v) - 1 for _, v in rep),
+                })
+            themenkatalog.append(g)
+    except Exception as ex:
+        print("  Lebenslagen übersprungen:", ex)
+
     # Bürgersicht: what the Datentresor holds about three synthetic people, seen
     # from THEIR side (Auskunft, Bekanntgaben, Einwilligungen, Löschdaten). Only
     # the persons with the most offices involved are exported, so the dashboard
@@ -741,6 +868,7 @@ def build(conn):
         "esh_katalog": esh_katalog, "datenhandhabung": handhabung,
         "attribut_katalog": katalog, "dienststellen": dienststellen,
         "buergersicht": buergersicht, "ech_codelists": codelists,
+        "begriffe": begriffe, "themenkatalog": themenkatalog,
         "process_steps_by_service": steps_by_service,
         "findings": findings, "citation_todo_count": len(todo),
     }

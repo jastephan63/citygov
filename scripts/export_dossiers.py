@@ -160,6 +160,8 @@ def todo(f):
         it.append(f"Standard-Divergenz angleichen: {nang}")
     if nunk:
         it.append(f"Pflicht im Korpus ungeklärt: {nunk}")
+    if sd.get("n_bezeichnungen"):
+        it.append(f"Bezeichnung angleichen: {sd['n_bezeichnungen']}")
     o = f.get("outcome") or {}
     if o.get("entscheid_art") not in (None, "kein_entscheid", "unbekannt") \
             and o.get("rechtsmittel_quelle") in (None, "offen"):
@@ -269,6 +271,10 @@ def dossier(s, forms, dst, kat):
          "</div>"]
     if dv.get("kurzbeschreibung"):
         h.append(f"<div class='small'>{esc(dv['kurzbeschreibung'][:400])}</div>")
+    if s.get("themen"):
+        h.append("<div class='small' style='margin-top:4px'><b>Lebenslage (eCH-0049):</b> " + " · ".join(
+            f"{esc(t['gruppe'])} <span class='muted'>({'Privatpersonen' if t['katalog'] == 'privat' else 'Unternehmen'}, {esc(t['bereich'])})</span>"
+            for t in s["themen"]) + "</div>")
     if laws:
         h.append("<h2>Rechtsgrundlagen des Services (DVSH)</h2><div>" + " ".join(laws) + "</div>")
     if rm_html:
@@ -311,7 +317,8 @@ def dossier(s, forms, dst, kat):
             h.append("<h3>Aufbewahrung / Löschung</h3><div class='small muted'>keine sektorale Frist — es gelten die allgemeinen Regeln (KDSG Art. 4: nicht länger als zur Zweckerreichung erforderlich; Art. 17: Vernichtung und Archivierung)</div>")
         sd = f.get("standard_divergenzen") or {}
         ang, feh = sd.get("angleichen") or [], sd.get("fehlend") or []
-        if ang or feh:
+        bz = sd.get("bezeichnungen") or []
+        if ang or feh or bz:
             h.append(f"<h3>Standard-Divergenzen ({len(ang)} anzugleichen"
                      + (f" · {sd.get('n_fehlend', 0)} Punkte ohne Standard" if feh else "") + ")</h3>"
                      + "<div class='small muted'>Was dieses Formular davon trennt, Teil eines einheitlichen "
@@ -330,6 +337,11 @@ def dossier(s, forms, dst, kat):
                              f"<td class='small'>{esc(i.get('basis') or '')}</td></tr>"
                              f"<tr><td colspan='5' class='small muted'>→ {esc(i['aktion'])}</td></tr>")
                 h.append("</tbody></table>")
+            if bz:
+                h.append("<div class='small' style='margin:6px 0'><b>Bezeichnungen</b> — gleiches Datum, anderer Name als der einheitliche Begriff: "
+                         + " · ".join(f"«{esc(i['hier'])}» → " + (f"<b>«{esc(i['vorschlag'])}»</b>" if i["klasse"] == "variante"
+                                                                   else f"<span class='b bad'>{'Feld aufteilen' if i.get('pruefart') == 'aufteilen' else 'eCH-Zuordnung prüfen' if i.get('pruefart') == 'zuordnung' else 'prüfen'}</span> {esc(i.get('grund') or '')}")
+                                      for i in bz) + "</div>")
             if feh:
                 h.append("<div class='small'>" + " ".join(
                     f"<div>• <b>{esc(DIV_DE.get(i['art'], i['art']))}</b>"

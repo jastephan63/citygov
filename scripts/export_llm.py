@@ -48,6 +48,17 @@ META = {
             "a person-identity requirement; reason_facet=one option of a multi-choice "
             "requirement; form_mechanic=plumbing (signature/date), no legal basis needed; "
             "overcollection=legacy label of the auto-draft era; use basis_typ instead.",
+        "lebenslagen": "services grouped by the official eCH-0049 topic catalogues (V4.00, "
+            "approved; privat = natural persons, unternehmen = businesses) — where the person "
+            "or business who needs a service would look. Assignment: panel with sceptical "
+            "review. Per group: services, answers demanded, and 'wiederholt' = data (by eCH "
+            "element) asked by 2+ services of the same situation — the once-only potential. "
+            "Data without an eCH element cannot be recognised as the same and is counted in "
+            "n_ohne_standard, never guessed.",
+        "begriffe": "one datum, one name: per eCH element the proposed term (always one of the "
+            "labels the forms already use) and every label classified variante (same thing, "
+            "rename), rolle (names whose datum — fine), pruefen (promises more/other data than "
+            "the element — check the mapping or the field cut).",
         "standard_divergenzen": "per form: 'angleichen' = the same datum is demanded "
             "differently here than on the other forms (pflicht = deviates from a clear "
             "practice elsewhere; pflicht_uneinheitlich = the corpus itself is split, no "
@@ -106,12 +117,24 @@ def _load_divergences():
             if f.get("standard_divergenzen")}
 
 
+def _load_export_extras():
+    # life events and the naming catalogue, read from the same computation
+    try:
+        d = json.load(open(os.path.join(ROOT, "data_export.json"), encoding="utf-8"))
+    except Exception:
+        return {}, [], []
+    th = {s["id"]: s.get("themen") or [] for s in d.get("services", [])}
+    return th, d.get("themenkatalog") or [], d.get("begriffe") or []
+
+
 _DIV = {}
+_THEMEN, _THEMENKATALOG, _BEGRIFFE = {}, [], []
 
 
 def main():
-    global _DIV
+    global _DIV, _THEMEN, _THEMENKATALOG, _BEGRIFFE
     _DIV = _load_divergences()
+    _THEMEN, _THEMENKATALOG, _BEGRIFFE = _load_export_extras()
     c = connect(DB_PATH)
     rows = lambda q: [dict(r) for r in c.execute(q).fetchall()]
     services = rows("SELECT * FROM service")
@@ -319,6 +342,8 @@ def main():
         svc = {"id": s["id"], "slug": s["slug"], "name": s["name"],
                "department": s["department"], "dienststelle": s["dienststelle"],
                "description": s["description"],
+               "lebenslagen_ech0049": [{"katalog": t["katalog"], "bereich": t["bereich"], "gruppe": t["gruppe"]}
+                                       for t in _THEMEN.get(s["id"], [])],
                "dvsh_verfahren": dvsh_svc.get(s["id"]),
                "shep_publikation": shep_svc.get(s["id"]),
                "forms": forms_by_service.get(s["id"], []),
@@ -335,7 +360,13 @@ def main():
                             "source_file": fm["source_file"], **d})
 
     doc = {"meta": {**META, "generated_at": datetime.now().isoformat(timespec="seconds")},
-           "datenhandhabung": datarules, "services": out_services}
+           "datenhandhabung": datarules,
+           "lebenslagen": [{k: t.get(k) for k in ("katalog", "bereich", "gruppe", "n_services", "n_dienststellen",
+                                                  "n_angaben", "n_pflicht", "n_wiederholt", "n_mehrfach_angaben",
+                                                  "n_vorbefuellbar", "n_ohne_standard", "wiederholt", "services")}
+                           for t in _THEMENKATALOG if t.get("n_services")],
+           "begriffe": _BEGRIFFE,
+           "services": out_services}
     json.dump(doc, open(os.path.join(ROOT, "citygov_llm.json"), "w", encoding="utf-8"),
               ensure_ascii=False, indent=1)
     with open(os.path.join(ROOT, "citygov_fields.jsonl"), "w", encoding="utf-8") as fh:
