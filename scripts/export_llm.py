@@ -48,6 +48,14 @@ META = {
             "a person-identity requirement; reason_facet=one option of a multi-choice "
             "requirement; form_mechanic=plumbing (signature/date), no legal basis needed; "
             "overcollection=legacy label of the auto-draft era; use basis_typ instead.",
+        "standard_divergenzen": "per form: 'angleichen' = the same datum is demanded "
+            "differently here than on the other forms (pflicht = deviates from a clear "
+            "practice elsewhere; pflicht_uneinheitlich = the corpus itself is split, no "
+            "single form is the outlier; format = other type/format; codeliste = own value "
+            "list where the standard defines codes) — each with what this form does, what "
+            "the rest does, this field's legal basis and the action. 'fehlend' = data points "
+            "with no citable standard (element_offen / standard_entwurf / kein_standard / "
+            "ungeprueft) — a gap, not a divergence.",
         "basis_typ": "artikel=an article names the datum; aufgabe=no explicit article, but "
             "the datum is needed to perform the statutory task (KDSG Art. 4 Abs. 1 lit. b) — "
             "NOT over-collection; ohne=neither a norm nor the task requires it = real "
@@ -87,7 +95,23 @@ def basis_list(req, rlb, art_by_id, law_by_id):
     return out
 
 
+# the divergence computation lives in export_json (one place, one truth); the
+# LLM export reads its result instead of recomputing it differently
+def _load_divergences():
+    try:
+        d = json.load(open(os.path.join(ROOT, "data_export.json"), encoding="utf-8"))
+    except Exception:
+        return {}
+    return {f["id"]: f.get("standard_divergenzen") for f in d.get("forms", [])
+            if f.get("standard_divergenzen")}
+
+
+_DIV = {}
+
+
 def main():
+    global _DIV
+    _DIV = _load_divergences()
     c = connect(DB_PATH)
     rows = lambda q: [dict(r) for r in c.execute(q).fetchall()]
     services = rows("SELECT * FROM service")
@@ -253,6 +277,7 @@ def main():
             "zweck": fm.get("purpose"),
             "empfaenger": disc_by_form.get(fm["id"], []),
             "aufbewahrung": ret_by_form.get(fm["id"], []) or "Standard: KDSG Art. 4 / ArchivV (Registraturperiode)",
+            "standard_divergenzen": (_DIV.get(fm["id"]) if _DIV else None),
             "data_fields": dfs,
             "fields": fields_by_form.get(fm["id"], [])})
         # one register-extract row per form (KDSG Art. 17b structure, gaps explicit)

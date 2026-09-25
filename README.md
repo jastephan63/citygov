@@ -96,6 +96,16 @@ file itself.
 - **Code lists.** The official value lists from the eCH schemas (sex,
   marital status, residence permits, ...) and, per field, whether the form
   uses those codes or its own plain-text values.
+- **Standard divergences, per Formular.** For every form: which of its data
+  are demanded differently than on the other forms — mandatory here but
+  optional elsewhere, a different type or format for the same datum, its own
+  value list where the standard defines codes — each with what this form
+  does, what the rest of the corpus does, the field's legal basis (a
+  different basis can justify the difference) and the concrete action. Kept
+  apart from data that simply has no citable standard yet, which is a gap,
+  not a divergence. Where the corpus itself is split with no clear practice,
+  the form is not called the outlier: the entry says a cantonal decision is
+  missing.
 - **Handling rules.** 247 rules on storing, processing and disclosing
   personal data, from 8 data-protection laws and 36 sectoral laws. Every
   rule carries a quote checked word-for-word against the official law PDF.

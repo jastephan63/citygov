@@ -21,7 +21,7 @@ th{font-weight:600;color:#6B6455;font-size:8.5pt;text-transform:uppercase;letter
 @media print{.print{display:none}body{padding:0}.form{break-inside:avoid-page}}
 </style></head><body>
 <button class='print' onclick='window.print()'>⎙ Drucken / als PDF sichern</button>
-<div class='sub'>Kanton Schaffhausen · Compliance-Databank · Datenschutz-Dossier · Stand 2026-09-16</div>
+<div class='sub'>Kanton Schaffhausen · Compliance-Databank · Datenschutz-Dossier · Stand 2026-09-25</div>
 <h1>Ermächtigung der Nutzung eines Fahrzeugs durch Drittpersonen</h1>
 <div class='sub'>Strassenverkehrs- und Schifffahrtsamt · Baudepartement · Kontakt: Strassenverkehrs- und Schifffahrtsamt · Ernst Müller Strasse 2, 8200 Schaffhausen · +41 52 632 73 25 · strassenverkehrsamt@sh.ch</div>
 <div class='grid'>
@@ -44,6 +44,8 @@ th{font-weight:600;color:#6B6455;font-size:8.5pt;text-transform:uppercase;letter
 </tbody></table>
 <h3>Empfänger (belegte Bekanntgaben)</h3><div class='small'>Beschwerdeinstanzen <span class='muted'>(auf_anfrage, VZV Art. 11c)</span> · Zulassungsbehörden <span class='muted'>(auf_anfrage, VZV Art. 11c)</span> · begutachtende Stellen <span class='muted'>(auf_anfrage, VZV Art. 11c)</span></div>
 <h3>Aufbewahrung / Löschung</h3><div class='small muted'>keine sektorale Frist — es gelten die allgemeinen Regeln (KDSG Art. 4: nicht länger als zur Zweckerreichung erforderlich; Art. 17: Vernichtung und Archivierung)</div>
+<h3>Standard-Divergenzen (0 anzugleichen · 5 Punkte ohne Standard)</h3><div class='small muted'>Was dieses Formular davon trennt, Teil eines einheitlichen Datenstandards zu sein: oben dasselbe Datum anders verlangt als anderswo, unten Daten ohne zitierbaren Standard.</div>
+<div class='small'><div>• <b>Element im Standard offen</b> (eCH-0281): 4 Datenpunkte — Benutzung bis (Datum) · Benutzung von (Datum) · Kennzeichen des Fahrzeugs · Marke und Modell<div class='muted'>→ Element im Standard bestimmen — der Standard passt, das konkrete XML-Element fehlt noch.</div></div> <div>• <b>Element im Standard offen</b> (eCH-0013): 1 Datenpunkte — Farbe<div class='muted'>→ Element im Standard bestimmen — der Standard passt, das konkrete XML-Element fehlt noch.</div></div></div>
 <h3>Handlungsbedarf</h3><div class='small'><span class='b warn'>eCH-Zuordnung offen: 5</span> · <span class='b warn'>eCH-Standard nicht in Kraft: 1</span></div></div>
 <div class='form'><h2>Formular: Bewilligung zur Benutzung eines Fahrzeugs durch Drittpersonen</h2>
 <div class='small'>PDF-Einreichung · Unterschrift: handschriftlich · Bürgerlast: 8 Angaben · ~3.2 Min · 3 aus dem Einwohnerregister vorbefüllbar · Zweck: Nachweis der Ermächtigung einer Drittperson zur Benutzung des Fahrzeugs gegenüber Kontrollbehörden.</div>
@@ -57,5 +59,11 @@ th{font-weight:600;color:#6B6455;font-size:8.5pt;text-transform:uppercase;letter
 </tbody></table>
 <h3>Empfänger (belegte Bekanntgaben)</h3><div class='small'>Beschwerdeinstanzen <span class='muted'>(auf_anfrage, VZV Art. 11c)</span> · Zulassungsbehörden <span class='muted'>(auf_anfrage, VZV Art. 11c)</span> · begutachtende Stellen <span class='muted'>(auf_anfrage, VZV Art. 11c)</span></div>
 <h3>Aufbewahrung / Löschung</h3><div class='small muted'>keine sektorale Frist — es gelten die allgemeinen Regeln (KDSG Art. 4: nicht länger als zur Zweckerreichung erforderlich; Art. 17: Vernichtung und Archivierung)</div>
-<h3>Handlungsbedarf</h3><div class='small'><span class='b warn'>eCH-Zuordnung offen: 4</span> · <span class='b warn'>eCH-Standard nicht in Kraft: 1</span></div></div>
+<h3>Standard-Divergenzen (2 anzugleichen · 3 Punkte ohne Standard)</h3><div class='small muted'>Was dieses Formular davon trennt, Teil eines einheitlichen Datenstandards zu sein: oben dasselbe Datum anders verlangt als anderswo, unten Daten ohne zitierbaren Standard.</div>
+<table><thead><tr><th>Datenfeld</th><th>Art</th><th>hier</th><th>sonst im Korpus</th><th>Rechtsgrundlage hier</th></tr></thead><tbody>
+<tr><td><b>Benutzungsdauer</b> › vom<div class='mono'>eCH-0010 dateFrom</div></td><td class='small'>Pflicht im Korpus ungeklärt</td><td class='small'><span class='b warn'>Pflicht</span></td><td class='small'>6 Pflicht / 10 optional auf 11 anderen Formularen</td><td class='small'>Art. 78 VZV</td></tr><tr><td colspan='5' class='small muted'>→ Der Korpus ist bei diesem Datum selbst gespalten — hier ist nicht dieses Formular die Ausnahme, sondern es fehlt eine kantonale Festlegung, ob das Datum verlangt wird.</td></tr>
+<tr><td><b>Benutzungsdauer</b> › bis<div class='mono'>eCH-0010 dateTo</div></td><td class='small'>Pflicht ↔ optional</td><td class='small'><span class='b warn'>Pflicht</span></td><td class='small'>1 Pflicht / 3 optional auf 3 anderen Formularen</td><td class='small'>Art. 78 VZV</td></tr><tr><td colspan='5' class='small muted'>→ Angleichen oder begründen: dasselbe Datum ist anderswo optional. Eine abweichende Rechtsgrundlage rechtfertigt die Abweichung — dann gehört sie dokumentiert.</td></tr>
+</tbody></table>
+<div class='small'><div>• <b>Element im Standard offen</b> (eCH-0281): 2 Datenpunkte — Kontrollschild-Nummer · Marke und Modell<div class='muted'>→ Element im Standard bestimmen — der Standard passt, das konkrete XML-Element fehlt noch.</div></div> <div>• <b>Element im Standard offen</b> (eCH-0013): 1 Datenpunkte — Farbe<div class='muted'>→ Element im Standard bestimmen — der Standard passt, das konkrete XML-Element fehlt noch.</div></div></div>
+<h3>Handlungsbedarf</h3><div class='small'><span class='b warn'>eCH-Zuordnung offen: 4</span> · <span class='b warn'>eCH-Standard nicht in Kraft: 1</span> · <span class='b warn'>Standard-Divergenz angleichen: 1</span> · <span class='b warn'>Pflicht im Korpus ungeklärt: 1</span></div></div>
 <div class='foot'>Quelle: citygov.db (Feld-Schicht kuratiert; Rechtsgrundlagen gegen die amtlichen Gesetzestexte geprüft; eCH aus den offiziellen XSDs; Empfänger und Fristen nur mit Artikel-Beleg). «zu ermitteln» und «offen» sind Wissenslücken der Databank, keine festgestellten Verstösse. Schutzstufen (ISV) sind für alle Felder noch nicht festgelegt — kantonaler Entscheid ausstehend.</div></body></html>

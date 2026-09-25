@@ -21,7 +21,7 @@ th{font-weight:600;color:#6B6455;font-size:8.5pt;text-transform:uppercase;letter
 @media print{.print{display:none}body{padding:0}.form{break-inside:avoid-page}}
 </style></head><body>
 <button class='print' onclick='window.print()'>⎙ Drucken / als PDF sichern</button>
-<div class='sub'>Kanton Schaffhausen · Compliance-Databank · Datenschutz-Dossier · Stand 2026-09-16</div>
+<div class='sub'>Kanton Schaffhausen · Compliance-Databank · Datenschutz-Dossier · Stand 2026-09-25</div>
 <h1>Anmeldung zur Pflanzenschutzgeräteprüfung Obst-/Weinbau 2026</h1>
 <div class='sub'>Landwirtschaftsamt · Volkswirtschaftsdepartement · Kontakt: Landwirtschaftsamt · Mühlentalstrasse 105, 8200 Schaffhausen · +41 52 632 66 60 · la-sh@sh.ch</div>
 <div class='grid'>
@@ -39,5 +39,12 @@ th{font-weight:600;color:#6B6455;font-size:8.5pt;text-transform:uppercase;letter
 </tbody></table>
 <h3>Empfänger (belegte Bekanntgaben)</h3><div class='small'>BLW <span class='muted'>(auf_anfrage, LwG Art. 184)</span> · Behörden des Bundes, der Kantone und der Gemeinden <span class='muted'>(auf_anfrage, LwG Art. 184)</span></div>
 <h3>Aufbewahrung / Löschung</h3><div class='small muted'>keine sektorale Frist — es gelten die allgemeinen Regeln (KDSG Art. 4: nicht länger als zur Zweckerreichung erforderlich; Art. 17: Vernichtung und Archivierung)</div>
-<h3>Handlungsbedarf</h3><div class='small'><span class='b ok'>keine offenen Punkte</span></div></div>
+<h3>Standard-Divergenzen (3 anzugleichen · 2 Punkte ohne Standard)</h3><div class='small muted'>Was dieses Formular davon trennt, Teil eines einheitlichen Datenstandards zu sein: oben dasselbe Datum anders verlangt als anderswo, unten Daten ohne zitierbaren Standard.</div>
+<table><thead><tr><th>Datenfeld</th><th>Art</th><th>hier</th><th>sonst im Korpus</th><th>Rechtsgrundlage hier</th></tr></thead><tbody>
+<tr><td><b>Gerätetyp mit Fassvolumen</b><div class='mono'>eCH-0262 utilisationTechnology</div></td><td class='small'>Pflicht im Korpus ungeklärt</td><td class='small'><span class='b warn'>Pflicht</span></td><td class='small'>1 Pflicht / 1 optional auf 1 anderen Formularen</td><td class='small'>Art. 18 DZV</td></tr><tr><td colspan='5' class='small muted'>→ Der Korpus ist bei diesem Datum selbst gespalten — hier ist nicht dieses Formular die Ausnahme, sondern es fehlt eine kantonale Festlegung, ob das Datum verlangt wird.</td></tr>
+<tr><td><b>Gerätetyp mit Fassvolumen</b><div class='mono'>eCH-0262 utilisationTechnology</div></td><td class='small'>Andere Form desselben Datums</td><td class='small'><span class='b warn'>text</span></td><td class='small'>enum auf 2 Feldern</td><td class='small'>Art. 18 DZV</td></tr><tr><td colspan='5' class='small muted'>→ Auf die gebräuchliche Form bringen — beim Austausch gilt ohnehin der XSD-Typ ⟨utilisationTechnologyType⟩.</td></tr>
+<tr><td><b>Bauart des Geräts</b><div class='mono'>eCH-0262 utilisationTechnology</div></td><td class='small'>Pflicht im Korpus ungeklärt</td><td class='small'><span class='b warn'>Pflicht</span></td><td class='small'>1 Pflicht / 1 optional auf 1 anderen Formularen</td><td class='small'>Art. 18 DZV</td></tr><tr><td colspan='5' class='small muted'>→ Der Korpus ist bei diesem Datum selbst gespalten — hier ist nicht dieses Formular die Ausnahme, sondern es fehlt eine kantonale Festlegung, ob das Datum verlangt wird.</td></tr>
+</tbody></table>
+<div class='small'><div>• <b>Kein eCH-Standard</b> (eSH-0022): 2 Datenpunkte — Alter des Geräts · Reihenabstand<div class='muted'>→ Kein eCH-Standard deckt dieses Datum ab — hier braucht es den kantonalen Entwurf eSH (oder einen neuen, wo auch eSH fehlt). Entwurf vorhanden: eSH-0022</div></div></div>
+<h3>Handlungsbedarf</h3><div class='small'><span class='b warn'>Standard-Divergenz angleichen: 1</span> · <span class='b warn'>Pflicht im Korpus ungeklärt: 2</span></div></div>
 <div class='foot'>Quelle: citygov.db (Feld-Schicht kuratiert; Rechtsgrundlagen gegen die amtlichen Gesetzestexte geprüft; eCH aus den offiziellen XSDs; Empfänger und Fristen nur mit Artikel-Beleg). «zu ermitteln» und «offen» sind Wissenslücken der Databank, keine festgestellten Verstösse. Schutzstufen (ISV) sind für alle Felder noch nicht festgelegt — kantonaler Entscheid ausstehend.</div></body></html>

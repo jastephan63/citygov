@@ -328,6 +328,22 @@ TEMPLATE = r"""<!DOCTYPE html>
   .stype{font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-soft);min-width:84px}
   .slink:hover{text-decoration:underline}
   mark.hl{background:#FFF1B8;color:inherit;padding:0 1px;border-radius:2px}
+  /* Standard divergence markers */
+  .divc{font-size:10.5px;color:#8F6400;background:#FBF3DC;border:1px solid #EBD9A8;
+    border-radius:6px;padding:0 6px;white-space:nowrap;cursor:help}
+  .divc.mini{padding:0 3px;margin-left:3px}
+  .chip.sub.dvs{border-color:#EBD9A8;background:#FDFAF1}
+  .hubdiv{font-size:11.5px;color:#8F6400;background:#FBF3DC;border:1px solid #EBD9A8;
+    border-radius:999px;padding:1px 9px}
+  .dvval{display:inline-block;white-space:normal;background:#FBF3DC;border:1px solid #EBD9A8;
+    border-radius:6px;padding:1px 6px;color:#8F6400}
+  table.dvt{table-layout:fixed}
+  table.dvt td{vertical-align:top;overflow-wrap:anywhere}
+  table.dvt th:nth-child(1),table.dvt td:nth-child(1){width:32%}
+  table.dvt th:nth-child(2),table.dvt td:nth-child(2){width:22%}
+  table.dvt th:nth-child(3),table.dvt td:nth-child(3){width:28%}
+  table.dvt th:nth-child(4),table.dvt td:nth-child(4){width:18%}
+  tr.dvact td{border-bottom:1px solid var(--line);color:var(--ink-soft);padding-top:0}
   /* Rechtsmittel line under the Verfahrens-Ergebnis */
   .hubout.rm{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:baseline}
   .rmlbl{font-weight:600}
@@ -681,7 +697,7 @@ function viewHome(){
     const ss=(d.subfields||[]).filter(s=>s&&typeof s==='object'&&s.name);
     (ss.length?ss:[d]).forEach(u=>{nPts++;if(u.ech&&u.ech.element)nEch++;});
   }));
-  const tile=(n,l,tab)=>`<button class="hometile" data-go="${tab}"><span class="htn">${n}</span><span class="htl">${l}</span></button>`;
+  const tile=(n,l,tab,sub)=>`<button class="hometile" data-go="${tab}"${sub?` data-sub="${sub}"`:''}><span class="htn">${n}</span><span class="htl">${l}</span></button>`;
   m.innerHTML=`<h3 class="view">Compliance-Databank Kanton Schaffhausen</h3>
   <div class="card">
     <p style="font-size:13.5px;line-height:1.6;margin:0 0 10px">Diese Databank erfasst pro <b>Formular</b> der kantonalen
@@ -717,11 +733,13 @@ function viewHome(){
     ${tile(nOver,'Over-collection (Felder)','register')}
     ${tile(nAuf,'aufgabennotwendig ohne Norm','register')}
     ${tile(nSens,'⛨ sensible Felder','register')}
+    ${tile(DATA.forms.filter(f=>((f.standard_divergenzen||{}).angleichen||[]).some(i=>i.art!=='pflicht_uneinheitlich')).length,'Formulare mit Standard-Divergenz','todo','divergenz')}
     ${tile(K.length.toLocaleString('de-CH'),'einzigartige Daten','katalog')}
     ${tile((DATA.esh_katalog||[]).length,'eSH-Entwürfe','esh')}
   </div>
   ${deptOverview()}`;
-  m.querySelectorAll('.hometile').forEach(b=>b.onclick=()=>{state.tab=b.dataset.go;render();});
+  m.querySelectorAll('.hometile').forEach(b=>b.onclick=()=>{
+    state.tab=b.dataset.go; state.service='all'; state.sub=b.dataset.sub||'felder'; render();});
   m.querySelectorAll('tr[data-sid]').forEach(tr=>tr.onclick=()=>{
     state.service=tr.dataset.sid;state.tab='fields';state.sub='felder';render();});
 }
@@ -767,6 +785,7 @@ function viewDataFields(forms){
   let h='';
   forms.forEach(fm=>{
     const dfs=fm.data_fields||[]; if(!dfs.length) return;
+    const DIX=divIndex(fm);
     h+=`<div class="card"><div class="dfhdr"><b>${esc(fm.title)}</b>
       <span class="muted small">— ${dfs.length} Datenfelder${fm.fields?` · aus ${fm.fields.length} Formularfeldern verdichtet`:''}${(()=>{
         // 'standardisiert' = a citable XML element; a standard without a chosen
@@ -792,6 +811,7 @@ function viewDataFields(forms){
         <div><span class="tp">${esc(DFTYPE[d.data_type]||d.data_type)}</span>
           <span class="dfname">${esc(d.name)}</span>
           ${d.required?'<span class="req"><i class="ti ti-asterisk"></i>Pflicht</span>':'<span class="muted small">optional</span>'}
+          ${divChip(DIX[d.name+'|'])}
           ${d.ech?(()=>{const e=d.ech.element, nx=!e&&d.ech.n_elements>0;
             const st=d.ech.status, draft=st&&st!=='Genehmigt';
             const tip=esc(d.ech.standard_titel||'')+(e?` — Element ${esc(e)}`
@@ -818,7 +838,8 @@ function viewDataFields(forms){
             const nmv=typeof s==='string'?s:(s&&s.name)||''; if(!nmv) return '';
             const e=s&&s.ech;
             const dr=e&&e.status&&e.status!=='Genehmigt'?((e.status==='Aufgehoben'||e.status==='Abgelöst')?' ⛔':' ⚠'):'';
-            if(e&&e.element) return `<span class="chip sub"><b>${esc(nmv)}</b><a class="sfe" href="${esc(e.url)}" target="_blank" rel="noreferrer" title="${esc(e.standard_titel||'')} — ${esc(e.standard)} ${esc(e.element)}${e.datatype?' · wird geführt als '+esc(e.datatype):''}${e.status?' · Status: '+esc(e.status):''}">${esc(e.standard)}·${esc(e.element)}${dr}</a>${s.register?`<span class="regc" title="Once-Only: dieses Teilfeld führt das Einwohnerregister bereits (${esc(e.standard)} ${esc(e.element)}) — vorbefüllbar statt neu erheben">↺</span>`:''}</span>`;
+            const dvs=DIX[d.name+'|'+nmv];
+            if(e&&e.element) return `<span class="chip sub${dvs?' dvs':''}"${dvs?` title="${esc(dvs.map(i=>(DIV_DE[i.art]||i.art)+': hier '+i.hier+' — '+i.andere).join('\n'))}"`:''}><b>${esc(nmv)}</b>${dvs?'<span class="divc mini">⇄</span>':''}<a class="sfe" href="${esc(e.url)}" target="_blank" rel="noreferrer" title="${esc(e.standard_titel||'')} — ${esc(e.standard)} ${esc(e.element)}${e.datatype?' · wird geführt als '+esc(e.datatype):''}${e.status?' · Status: '+esc(e.status):''}">${esc(e.standard)}·${esc(e.element)}${dr}</a>${s.register?`<span class="regc" title="Once-Only: dieses Teilfeld führt das Einwohnerregister bereits (${esc(e.standard)} ${esc(e.element)}) — vorbefüllbar statt neu erheben">↺</span>`:''}</span>`;
             if(e) return `<span class="chip sub"><b>${esc(nmv)}</b><a class="sfe so" href="${esc(e.url)}" target="_blank" rel="noreferrer" title="${esc(e.standard_titel||'')} — Standard ohne XSD">${esc(e.standard)}</a></span>`;
             if(s&&s.ech_status==='kein_standard') return `<span class="chip sub"><b>${esc(nmv)}</b>${s.esh?`<a class="sfe esh" title="eSH-Entwurf: ${esc(s.esh.titel)}">${esc(s.esh.code.replace('eSH-','eSH'))}·${esc(s.esh.element||'')}</a>`:`<span class="sfe none" title="kein eCH-Standard">kein Std.</span>`}</span>`;
             return `<span class="chip sub"><b>${esc(nmv)}</b></span>`;}).join('')}</div>`
@@ -938,6 +959,9 @@ function formFacts(fm){
       ${fm.signature_requirement==='handschriftlich'?`<span class="hubsig" title="${esc(fm.signature_evidence||'')}">✍ Unterschrift nötig</span>`:''}
       ${fm.signature_requirement==='sig_widget'?`<span class="hubsig ok">✓ digitale Signatur möglich</span>`:''}
       ${fm.has_flow?`<span class="hubmeta">geführter Flow (flows.html)</span>`:''}
+      ${(()=>{const sd=fm.standard_divergenzen; if(!sd) return '';
+        return sd.n_angleichen?`<span class="hubdiv" title="Dasselbe Datum wird hier anders verlangt als auf den übrigen Formularen — Details im Abschnitt «Standard-Divergenzen»">⇄ ${sd.n_angleichen} Standard-Divergenz${sd.n_angleichen===1?'':'en'}</span>`
+          :`<span class="hubmeta" title="Jedes standardisierte Datum wird gleich verlangt wie anderswo">⇄ keine Standard-Divergenz</span>`;})()}
       ${checked}
     </div>
     ${fm.burden?`<div class="hubburden">Bürgerlast: <b>${fm.burden.inputs}</b> Pflichtangaben
@@ -1083,6 +1107,56 @@ function handlingStrip(s,fm){
 }
 // one bounded section per Formular: facts, handling, the data table, drawer.
 // `single` renders the old full per-Formular view (drawer open, no border)
+// ---------- Standard-Divergenzen: what keeps THIS form out of one standard ----
+const DIV_DE={pflicht:'Pflicht ↔ optional',pflicht_uneinheitlich:'Pflicht im Korpus ungeklärt',
+  format:'Andere Form desselben Datums',codeliste:'Eigene Werte statt der offiziellen Codes',
+  element_offen:'Element im Standard offen',standard_entwurf:'Standard nicht in Kraft',
+  kein_standard:'Kein eCH-Standard',ungeprueft:'Noch nicht geprüft'};
+const DIV_CLS={pflicht:'b-over',pflicht_uneinheitlich:'b-unver',format:'b-over',codeliste:'b-over',
+  element_offen:'b-unver',standard_entwurf:'b-unver',kein_standard:'b-unver',ungeprueft:'b-unver'};
+// one key per diverging unit, so the field row can carry the same marker
+function divKey(i){return (i.feld||'')+'|'+(i.teilfeld||'');}
+function divIndex(fm){
+  const ix={}; ((fm.standard_divergenzen||{}).angleichen||[]).forEach(i=>{
+    (ix[divKey(i)]=ix[divKey(i)]||[]).push(i);}); return ix;
+}
+function divChip(list){
+  if(!list||!list.length) return '';
+  const tip=list.map(i=>`${DIV_DE[i.art]||i.art}: hier ${i.hier} — ${i.andere}\n→ ${i.aktion}`).join('\n\n');
+  return `<span class="divc" title="${esc(tip)}">⇄ ${list.length>1?list.length+' Divergenzen':esc(DIV_DE[list[0].art]||list[0].art)}</span>`;
+}
+function divergencePanel(fm){
+  const sd=fm.standard_divergenzen; if(!sd) return '';
+  const ang=sd.angleichen||[], feh=sd.fehlend||[];
+  if(!ang.length&&!feh.length) return `<div class="card"><div class="dvsub">Standard-Divergenzen</div>
+    <div class="hstd">Keine: jedes Datum dieses Formulars trägt ein eCH-Element und wird gleich verlangt wie auf den übrigen Formularen.</div></div>`;
+  const grp={}; ang.forEach(i=>{(grp[i.art]=grp[i.art]||[]).push(i);});
+  let h=`<div class="card"><div class="dvsub">Standard-Divergenzen (${ang.length} anzugleichen${feh.length?` · ${sd.n_fehlend} Punkte ohne Standard`:''})</div>
+    <div class="hstd muted small">Was dieses Formular davon trennt, Teil EINES kohärenten Datenstandards zu sein. Oben: dasselbe Datum wird hier anders verlangt als anderswo — das ist anzugleichen oder zu begründen. Unten: für das Datum gibt es (noch) keinen zitierbaren Standard — das ist eine Lücke, keine Abweichung.</div>`;
+  ['pflicht','format','codeliste','pflicht_uneinheitlich'].forEach(art=>{
+    const L=grp[art]; if(!L) return;
+    h+=`<table class="ft dvt"><thead><tr><th>${esc(DIV_DE[art])} (${L.length})</th><th>auf diesem Formular</th><th>sonst im Korpus</th><th>Rechtsgrundlage hier</th></tr></thead><tbody>`;
+    L.forEach(i=>{h+=`<tr><td><b>${esc(i.feld)}</b>${i.teilfeld?` › ${esc(i.teilfeld)}`:''}
+        <div class="mono small muted">${esc(i.standard)} ${esc(i.element)}</div></td>
+      <td class="small">${art==='codeliste'
+        ?`<span class="dvval">${esc(i.hier)}</span>`
+        :`<span class="badge ${DIV_CLS[art]}">${esc(i.hier)}</span>`}</td>
+      <td class="small">${esc(i.andere)}</td>
+      <td class="small muted">${esc(i.basis||'')}</td></tr>
+      <tr class="dvact"><td colspan="4" class="small">→ ${esc(i.aktion)}</td></tr>`;});
+    h+=`</tbody></table>`;
+  });
+  if(feh.length){
+    h+=`<div class="dvsub" style="margin-top:10px">Ohne zitierbaren Standard (${sd.n_fehlend} Datenpunkte)</div>
+      <table class="ft dvt"><thead><tr><th>Art</th><th>Punkte</th><th>Felder</th></tr></thead><tbody>`;
+    feh.forEach(i=>{h+=`<tr><td><span class="badge ${DIV_CLS[i.art]}">${esc(DIV_DE[i.art]||i.art)}</span>
+        ${i.standard?`<div class="mono small muted">${esc(i.standard)}${i.status?' · '+esc(i.status):''}</div>`:''}</td>
+      <td>${i.n}</td><td class="small">${i.felder.map(esc).join(' · ')}${i.n>i.felder.length?' …':''}</td></tr>
+      <tr class="dvact"><td colspan="3" class="small">→ ${esc(i.aktion)}</td></tr>`;});
+    h+=`</tbody></table>`;
+  }
+  return h+`</div>`;
+}
 function formSection(s,fm,single){
   const hasDF=(fm.data_fields||[]).length;
   let h=`<div class="${single?'':'formsec'}" ${single?'':`id="fsec-${fm.id}"`}>
@@ -1091,6 +1165,7 @@ function formSection(s,fm,single){
       ${formFacts(fm)}${hasDF?handlingStrip(s,fm):''}</div>`;
   h+= hasDF? viewDataFields([fm]) : widgetTable(s,[fm]);
   h+= beilagenPanel([fm]);
+  h+= divergencePanel(fm);
   const extras=blockerPanel([fm])+handlingPanel(s,[fm])+similarPanel([fm]);
   h+=`<details class="hgen" style="margin:0 0 4px" ${single?'open':''}><summary class="dvsub" style="cursor:pointer">Details zu diesem Formular — Digitalisierungs-Blocker, volles Datenhandhabungs-Profil, Duplikat-Radar</summary>${extras}</details>`;
   return h+`</div>`;
@@ -1691,6 +1766,10 @@ const TODO_CATS=[
    'Ein anderes Formular verlangt einen sehr ähnlichen Feldsatz. Ob die beiden zusammengelegt werden sollen, ist nicht beurteilt.'],
   ['keine-felder','Datenfeld-Schicht fehlt','b-unver','recherche',
    'Für dieses Formular sind noch keine Datenfelder modelliert — alle anderen Prüfungen sind blind.'],
+  ['divergenz','Standard-Divergenz angleichen','b-over','bereinigung',
+   'Dasselbe Datum wird auf diesem Formular anders verlangt als auf den übrigen (Pflicht statt optional, andere Form, eigene Werte statt der offiziellen Codes). Entweder das Formular angleichen oder die abweichende Rechtsgrundlage dokumentieren.'],
+  ['divergenz_offen','Pflicht im Korpus ungeklärt','b-unver','entscheid',
+   'Dasselbe Datum ist über die Formulare hinweg mal Pflicht, mal optional, ohne erkennbare Praxis — hier ist nicht ein Formular die Ausnahme, sondern es fehlt eine kantonale Festlegung.'],
   ['rechtsmittel','Rechtsmittel nicht bestimmt','b-unver','recherche',
    'Das Verfahren endet mit einem anfechtbaren Entscheid, aber weder eine Spezialnorm noch die allgemeine VRG-Regel konnte belegt zugeordnet werden (z. B. Registerverfahren nach Bundesrecht).'],
 ];
@@ -1718,6 +1797,15 @@ function todoItems(f){
   // total is the number of open DECISIONS, not twice that
   const du=(f.similar||[]).filter(s=>!s.verdict&&f.id<s.form_id);
   if(du.length) it.push({cat:'dup',n:du.length,detail:du.map(s=>`${s.titel} (${Math.round(s.jaccard*100)}% gleiche Felder)`).join(' · ')});
+  const sd=f.standard_divergenzen;
+  if(sd){
+    const ang=(sd.angleichen||[]).filter(i=>i.art!=='pflicht_uneinheitlich');
+    const unk=(sd.angleichen||[]).filter(i=>i.art==='pflicht_uneinheitlich');
+    if(ang.length) it.push({cat:'divergenz',n:ang.length,
+      detail:ang.map(i=>`${i.feld}${i.teilfeld?' › '+i.teilfeld:''} (${DIV_DE[i.art]}: hier ${i.hier}, sonst ${i.andere})`).join(' · ')});
+    if(unk.length) it.push({cat:'divergenz_offen',n:unk.length,
+      detail:unk.map(i=>`${i.feld}${i.teilfeld?' › '+i.teilfeld:''} — ${i.andere}`).join(' · ')});
+  }
   const o=f.outcome; if(o&&o.entscheid_art&&!['kein_entscheid','unbekannt'].includes(o.entscheid_art)&&(!o.rechtsmittel_quelle||o.rechtsmittel_quelle==='offen'))
     it.push({cat:'rechtsmittel',n:1,detail:(OUTCOME_DE[o.entscheid_art]||o.entscheid_art)+(o.rechtsmittel_verdikt?' — '+o.rechtsmittel_verdikt:'')});
   return it;

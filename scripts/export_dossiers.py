@@ -36,6 +36,10 @@ RM = {"einsprache": "Einsprache", "rekurs": "Rekurs", "beschwerde": "Beschwerde"
 HALTER = {"privat": "nur beim Bürger", "einwohnerregister": "Einwohnerregister", "handelsregister": "Handelsregister",
           "betreibungsregister": "Betreibungsregister", "strafregister": "Strafregister", "steuerverwaltung": "Steuerverwaltung"}
 CHAN = {"online_formular": "Online-Formular", "pdf": "PDF-Einreichung", "schalter": "Schalter", "unbekannt": "Kanal unbekannt"}
+DIV_DE = {"pflicht": "Pflicht ↔ optional", "pflicht_uneinheitlich": "Pflicht im Korpus ungeklärt",
+          "format": "Andere Form desselben Datums", "codeliste": "Eigene Werte statt der offiziellen Codes",
+          "element_offen": "Element im Standard offen", "standard_entwurf": "Standard nicht in Kraft",
+          "kein_standard": "Kein eCH-Standard", "ungeprueft": "Noch nicht geprüft"}
 CHECK = {"veraltet": "neuere Fassung online", "veraltet_verdacht": "evtl. veraltet",
          "nicht_auffindbar": "nicht mehr online", "nicht_gefunden": "online nicht gefunden"}
 
@@ -149,6 +153,13 @@ def todo(f):
     if ck in CHECK: it.append(f"Formular-Fassung prüfen: {CHECK[ck]}")
     n = sum(1 for s in (f.get("similar") or []) if not s.get("verdict") and f["id"] < s.get("form_id", 0))
     if n: it.append(f"Duplikat-Verdacht unentschieden: {n}")
+    sd = f.get("standard_divergenzen") or {}
+    nang = sum(1 for i in (sd.get("angleichen") or []) if i["art"] != "pflicht_uneinheitlich")
+    nunk = sum(1 for i in (sd.get("angleichen") or []) if i["art"] == "pflicht_uneinheitlich")
+    if nang:
+        it.append(f"Standard-Divergenz angleichen: {nang}")
+    if nunk:
+        it.append(f"Pflicht im Korpus ungeklärt: {nunk}")
     o = f.get("outcome") or {}
     if o.get("entscheid_art") not in (None, "kein_entscheid", "unbekannt") \
             and o.get("rechtsmittel_quelle") in (None, "offen"):
@@ -298,6 +309,35 @@ def dossier(s, forms, dst, kat):
                 for r in ret[:4]) + "</div>")
         else:
             h.append("<h3>Aufbewahrung / Löschung</h3><div class='small muted'>keine sektorale Frist — es gelten die allgemeinen Regeln (KDSG Art. 4: nicht länger als zur Zweckerreichung erforderlich; Art. 17: Vernichtung und Archivierung)</div>")
+        sd = f.get("standard_divergenzen") or {}
+        ang, feh = sd.get("angleichen") or [], sd.get("fehlend") or []
+        if ang or feh:
+            h.append(f"<h3>Standard-Divergenzen ({len(ang)} anzugleichen"
+                     + (f" · {sd.get('n_fehlend', 0)} Punkte ohne Standard" if feh else "") + ")</h3>"
+                     + "<div class='small muted'>Was dieses Formular davon trennt, Teil eines einheitlichen "
+                       "Datenstandards zu sein: oben dasselbe Datum anders verlangt als anderswo, unten Daten "
+                       "ohne zitierbaren Standard.</div>")
+            if ang:
+                h.append("<table><thead><tr><th>Datenfeld</th><th>Art</th><th>hier</th>"
+                         "<th>sonst im Korpus</th><th>Rechtsgrundlage hier</th></tr></thead><tbody>")
+                for i in ang:
+                    h.append(f"<tr><td><b>{esc(i['feld'])}</b>"
+                             + (f" › {esc(i['teilfeld'])}" if i.get("teilfeld") else "")
+                             + f"<div class='mono'>{esc(i['standard'])} {esc(i['element'])}</div></td>"
+                             f"<td class='small'>{esc(DIV_DE.get(i['art'], i['art']))}</td>"
+                             f"<td class='small'><span class='b warn'>{esc(i['hier'])}</span></td>"
+                             f"<td class='small'>{esc(i['andere'])}</td>"
+                             f"<td class='small'>{esc(i.get('basis') or '')}</td></tr>"
+                             f"<tr><td colspan='5' class='small muted'>→ {esc(i['aktion'])}</td></tr>")
+                h.append("</tbody></table>")
+            if feh:
+                h.append("<div class='small'>" + " ".join(
+                    f"<div>• <b>{esc(DIV_DE.get(i['art'], i['art']))}</b>"
+                    + (f" ({esc(i['standard'])})" if i.get("standard") else "")
+                    + f": {i['n']} Datenpunkte — {esc(' · '.join(i['felder']))}"
+                    + ("…" if i["n"] > len(i["felder"]) else "")
+                    + f"<div class='muted'>→ {esc(i['aktion'])}</div></div>"
+                    for i in feh) + "</div>")
         td = todo(f)
         h.append("<h3>Handlungsbedarf</h3><div class='small'>" + (" · ".join(f"<span class='b warn'>{esc(t)}</span>" for t in td) if td else "<span class='b ok'>keine offenen Punkte</span>") + "</div></div>")
     if not forms:

@@ -21,7 +21,7 @@ th{font-weight:600;color:#6B6455;font-size:8.5pt;text-transform:uppercase;letter
 @media print{.print{display:none}body{padding:0}.form{break-inside:avoid-page}}
 </style></head><body>
 <button class='print' onclick='window.print()'>⎙ Drucken / als PDF sichern</button>
-<div class='sub'>Kanton Schaffhausen · Compliance-Databank · Datenschutz-Dossier · Stand 2026-09-16</div>
+<div class='sub'>Kanton Schaffhausen · Compliance-Databank · Datenschutz-Dossier · Stand 2026-09-25</div>
 <h1>Löschung der Ziffer 178 «Halterwechsel verboten» im Fahrzeugausweis</h1>
 <div class='sub'>Strassenverkehrs- und Schifffahrtsamt · Baudepartement · Kontakt: Strassenverkehrs- und Schifffahrtsamt · Ernst Müller Strasse 2, 8200 Schaffhausen · +41 52 632 73 25 · strassenverkehrsamt@sh.ch</div>
 <div class='grid'>
@@ -43,5 +43,11 @@ th{font-weight:600;color:#6B6455;font-size:8.5pt;text-transform:uppercase;letter
 <h3>Beilagen</h3><div class='small'>Fahrzeugausweis <span class='muted'>(kanton_andere)</span></div>
 <h3>Empfänger (belegte Bekanntgaben)</h3><div class='small'>Beschwerdeinstanzen <span class='muted'>(auf_anfrage, VZV Art. 11c)</span> · Zulassungsbehörden <span class='muted'>(auf_anfrage, VZV Art. 11c)</span> · begutachtende Stellen <span class='muted'>(auf_anfrage, VZV Art. 11c)</span></div>
 <h3>Aufbewahrung / Löschung</h3><div class='small muted'>keine sektorale Frist — es gelten die allgemeinen Regeln (KDSG Art. 4: nicht länger als zur Zweckerreichung erforderlich; Art. 17: Vernichtung und Archivierung)</div>
-<h3>Handlungsbedarf</h3><div class='small'><span class='b warn'>eCH-Zuordnung offen: 2</span> · <span class='b warn'>Rechtsmittel nicht bestimmt</span></div></div>
+<h3>Standard-Divergenzen (2 anzugleichen · 2 Punkte ohne Standard)</h3><div class='small muted'>Was dieses Formular davon trennt, Teil eines einheitlichen Datenstandards zu sein: oben dasselbe Datum anders verlangt als anderswo, unten Daten ohne zitierbaren Standard.</div>
+<table><thead><tr><th>Datenfeld</th><th>Art</th><th>hier</th><th>sonst im Korpus</th><th>Rechtsgrundlage hier</th></tr></thead><tbody>
+<tr><td><b>Rechtsgueltiger_Antragsteller_bei_Firmen</b><div class='mono'>eCH-0044 personIdentification</div></td><td class='small'>Pflicht ↔ optional</td><td class='small'><span class='b warn'>optional</span></td><td class='small'>17 Pflicht / 6 optional auf 20 anderen Formularen</td><td class='small'>Art. 80 VZV</td></tr><tr><td colspan='5' class='small muted'>→ Angleichen oder begründen: dasselbe Datum ist anderswo Pflicht. Eine abweichende Rechtsgrundlage rechtfertigt die Abweichung — dann gehört sie dokumentiert.</td></tr>
+<tr><td><b>Telefon</b><div class='mono'>eCH-0046 phoneNumber</div></td><td class='small'>Andere Form desselben Datums</td><td class='small'><span class='b warn'>text · Telefonnummer</span></td><td class='small'>text · Telefon auf 38 Feldern</td><td class='small'>aufgabennotwendig (KDSG Art. 4 Abs. 1 lit. b)</td></tr><tr><td colspan='5' class='small muted'>→ Auf die gebräuchliche Form bringen — beim Austausch gilt ohnehin der XSD-Typ ⟨phoneNumberType⟩.</td></tr>
+</tbody></table>
+<div class='small'><div>• <b>Element im Standard offen</b> (eCH-0281): 2 Datenpunkte — Marke_und_Typ · Stammnummer<div class='muted'>→ Element im Standard bestimmen — der Standard passt, das konkrete XML-Element fehlt noch.</div></div></div>
+<h3>Handlungsbedarf</h3><div class='small'><span class='b warn'>eCH-Zuordnung offen: 2</span> · <span class='b warn'>Standard-Divergenz angleichen: 2</span> · <span class='b warn'>Rechtsmittel nicht bestimmt</span></div></div>
 <div class='foot'>Quelle: citygov.db (Feld-Schicht kuratiert; Rechtsgrundlagen gegen die amtlichen Gesetzestexte geprüft; eCH aus den offiziellen XSDs; Empfänger und Fristen nur mit Artikel-Beleg). «zu ermitteln» und «offen» sind Wissenslücken der Databank, keine festgestellten Verstösse. Schutzstufen (ISV) sind für alle Felder noch nicht festgelegt — kantonaler Entscheid ausstehend.</div></body></html>

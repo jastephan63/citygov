@@ -507,6 +507,155 @@ def build(conn):
     except Exception:
         pass
 
+    # ---- Standard-Divergenzen je Formular ------------------------------------
+    # What keeps THIS form out of one coherent data standard. Two very different
+    # things, kept apart: (a) the same datum demanded DIFFERENTLY than on the
+    # other forms (mandatory vs optional, other type/format, own value list
+    # instead of the official codes) - that is a divergence someone has to
+    # settle; (b) no citable standard for the datum at all - that is a missing
+    # standard, not a divergence. Computed once, here, so dashboard, dossier and
+    # LLM export cannot tell different stories.
+    DRAFT_STATUS = {"In Arbeit", "Sistiert", "Aufgehoben", "Abgelöst"}
+
+    def _parts(d):
+        subs = [s for s in (d.get("subfields") or []) if isinstance(s, dict)]
+        return subs, (subs if subs else [d])
+
+    el_stat = {}
+    for fm in forms:
+        for d in fm.get("data_fields") or []:
+            subs, units = _parts(d)
+            for u in units:
+                e = u.get("ech") or {}
+                if not e.get("element"):
+                    continue
+                st = el_stat.setdefault((e["standard"], e["element"]),
+                                        {"req": 0, "opt": 0, "shape": {}, "forms": set()})
+                st["req" if d.get("required") else "opt"] += 1
+                st["forms"].add(fm["id"])
+                if not subs:          # shape belongs to the field, not to a part
+                    sh = ((d.get("data_type") or "?"), (d.get("format") or ""))
+                    st["shape"][sh] = st["shape"].get(sh, 0) + 1
+
+    def _basis_txt(d):
+        if d.get("legal_basis"):
+            b = d["legal_basis"][0]
+            return f"{b.get('article_no','')} {b.get('law_short') or ''}".strip()
+        return {"aufgabe": "aufgabennotwendig (KDSG Art. 4 Abs. 1 lit. b)",
+                "ohne": "Over-collection", "offen": "Aufgabenbedarf offen"}.get(
+                    d.get("basis_typ"), "Rechtsgrundlage zu ermitteln")
+
+    for fm in forms:
+        items, offen = [], {}
+        for d in fm.get("data_fields") or []:
+            subs, units = _parts(d)
+            for u in units:
+                e = u.get("ech") or {}
+                tf = u.get("name") if subs else None
+                if e.get("element"):
+                    key = (e["standard"], e["element"])
+                    st = el_stat.get(key) or {}
+                    # (a1) requiredness: this form against the rest of the corpus
+                    r, o = st.get("req", 0), st.get("opt", 0)
+                    if r and o and (r + o) >= 3:
+                        here = bool(d.get("required"))
+                        others_req, others_opt = r - (1 if here else 0), o - (0 if here else 1)
+                        n_oth = others_req + others_opt
+                        andere = (f"{others_req} Pflicht / {others_opt} optional auf "
+                                  f"{len(st.get('forms', ())) - 1} anderen Formularen")
+                        maj_req = others_req > others_opt
+                        share = max(others_req, others_opt) / n_oth if n_oth else 0
+                        if n_oth >= 2 and share >= 2 / 3 and here != maj_req:
+                            # a clear practice elsewhere, and this form departs from it
+                            items.append({
+                                "art": "pflicht", "feld": d["name"], "teilfeld": tf,
+                                "standard": e["standard"], "element": e["element"],
+                                "hier": "Pflicht" if here else "optional",
+                                "andere": andere, "basis": _basis_txt(d),
+                                "aktion": ("Angleichen oder begründen: dasselbe Datum ist anderswo "
+                                           + ("Pflicht" if maj_req else "optional")
+                                           + ". Eine abweichende Rechtsgrundlage rechtfertigt die "
+                                             "Abweichung — dann gehört sie dokumentiert.")})
+                        elif n_oth >= 2 and share < 2 / 3:
+                            # no practice to deviate from: the corpus itself is split,
+                            # so no single form is the outlier — this needs one decision
+                            items.append({
+                                "art": "pflicht_uneinheitlich", "feld": d["name"], "teilfeld": tf,
+                                "standard": e["standard"], "element": e["element"],
+                                "hier": "Pflicht" if here else "optional",
+                                "andere": andere, "basis": _basis_txt(d),
+                                "aktion": ("Der Korpus ist bei diesem Datum selbst gespalten — hier "
+                                           "ist nicht dieses Formular die Ausnahme, sondern es fehlt "
+                                           "eine kantonale Festlegung, ob das Datum verlangt wird.")})
+                    # (a2) type/format of the same datum
+                    if not subs and st.get("shape"):
+                        mine = ((d.get("data_type") or "?"), (d.get("format") or ""))
+                        top = max(st["shape"].items(), key=lambda kv: kv[1])
+                        tot_sh = sum(st["shape"].values())
+                        if (len(st["shape"]) > 1 and st["shape"].get(mine, 0) < top[1]
+                                and top[1] >= 2 and top[1] / tot_sh >= 2 / 3):
+                            items.append({
+                                "art": "format", "feld": d["name"], "teilfeld": None,
+                                "standard": e["standard"], "element": e["element"],
+                                "hier": (mine[0] + (" · " + mine[1] if mine[1] else "")),
+                                "andere": (top[0][0] + (" · " + top[0][1] if top[0][1] else "")
+                                           + f" auf {top[1]} Feldern"),
+                                "basis": _basis_txt(d),
+                                "aktion": ("Auf die gebräuchliche Form bringen — beim Austausch "
+                                           f"gilt ohnehin der XSD-Typ ⟨{e.get('datatype') or '?'}⟩.")})
+                    # (a3) own value list where the standard defines codes
+                    if not subs and e.get("datatype"):
+                        cl = codelists.get(f"{e['standard']}|{e['datatype']}")
+                        vals = [str(v) for v in (d.get("allowed_values") or [])]
+                        if cl and vals:
+                            codes = {c["value"] for c in cl}
+                            if not all(v in codes for v in vals):
+                                items.append({
+                                    "art": "codeliste", "feld": d["name"], "teilfeld": None,
+                                    "standard": e["standard"], "element": e["element"],
+                                    "hier": " · ".join(vals[:6]) + ("…" if len(vals) > 6 else ""),
+                                    "andere": (f"{len(cl)} offizielle Codes: "
+                                               + ", ".join(c["value"] + (" = " + c["doc"] if c.get("doc") else "")
+                                                           for c in cl[:6])
+                                               + ("…" if len(cl) > 6 else "")),
+                                    "basis": _basis_txt(d),
+                                    "aktion": ("Werte auf die Codeliste des Standards abbilden — "
+                                               "im Formular darf der Klartext stehen, ausgetauscht "
+                                               "wird der Code.")})
+                    if e.get("status") in DRAFT_STATUS:
+                        k = ("standard_entwurf", e["standard"], e.get("status"))
+                        offen.setdefault(k, []).append(tf or d["name"])
+                elif e.get("standard"):
+                    k = ("element_offen", e["standard"], e.get("status"))
+                    offen.setdefault(k, []).append(tf or d["name"])
+                elif u.get("ech_status") == "kein_standard":
+                    k = ("kein_standard", (u.get("esh") or {}).get("code"), None)
+                    offen.setdefault(k, []).append(tf or d["name"])
+                else:
+                    offen.setdefault(("ungeprueft", None, None), []).append(tf or d["name"])
+        AKT = {
+            "element_offen": "Element im Standard bestimmen — der Standard passt, das konkrete "
+                             "XML-Element fehlt noch.",
+            "standard_entwurf": "Nicht in Kraft: der Standard ist ein Entwurf bzw. sistiert — bis "
+                                "eCH ihn verabschiedet, ist keine element-genaue Zuordnung möglich.",
+            "kein_standard": "Kein eCH-Standard deckt dieses Datum ab — hier braucht es den "
+                             "kantonalen Entwurf eSH (oder einen neuen, wo auch eSH fehlt).",
+            "ungeprueft": "Noch nicht gegen den eCH-Katalog geprüft.",
+        }
+        for (art, std, status), felder in sorted(offen.items(), key=lambda kv: -len(kv[1])):
+            items.append({"art": art, "sammel": True, "n": len(felder),
+                          "standard": std, "status": status,
+                          "felder": sorted(set(felder))[:14],
+                          "aktion": AKT[art] + (" Entwurf vorhanden: " + std if art == "kein_standard" and std
+                                                else (" Kein eSH-Entwurf vorhanden." if art == "kein_standard" else ""))})
+        ang = [i for i in items if not i.get("sammel")]
+        fm["standard_divergenzen"] = {
+            "angleichen": ang,
+            "fehlend": [i for i in items if i.get("sammel")],
+            "n_angleichen": len(ang),
+            "n_fehlend": sum(i["n"] for i in items if i.get("sammel")),
+        } if (fm.get("data_fields") or []) else None
+
     # Bürgersicht: what the Datentresor holds about three synthetic people, seen
     # from THEIR side (Auskunft, Bekanntgaben, Einwilligungen, Löschdaten). Only
     # the persons with the most offices involved are exported, so the dashboard
