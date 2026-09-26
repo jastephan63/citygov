@@ -52,7 +52,7 @@ def main():
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="utf-8">
+<meta charset="utf-8"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23e8b100'/%3E%3C/svg%3E">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Compliance-Databank Kanton Schaffhausen</title>
 <meta name="description" content="Maschinenlesbare Compliance-Databank der Verwaltung des Kantons Schaffhausen: Formulare, Datenfelder, Rechtsgrundlagen, Standards, Datenhandhabung.">

@@ -29,7 +29,7 @@
    "datenhandhabung.scope": "allgemein=applies to every personal-data field; besonders_schuetzenswert=additionally applies to fields with a sensitive category (matching sensitive_category, or all when null); sektoral=applies only to fields whose legal basis cites the same law (match on law). The addressee is part of the claim: rules from DSG/DSV/BGA/EMBAG bind Bundesorgane, not the canton (see each rule's law and quote).",
    "process_steps / findings": "legacy service-level rows of the 2026-06 era (kept as text; process_steps mode is a code); the Verfahren facts a reader should rely on are dvsh_verfahren and forms[].verfahren."
   },
-  "generated_at": "2026-09-26T19:39:22",
+  "generated_at": "2026-09-26T19:42:52",
   "datenstand": {
    "build": "2026-09-26",
    "shep_harvest": "2026-09-03",

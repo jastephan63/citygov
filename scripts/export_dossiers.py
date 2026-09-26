@@ -449,7 +449,7 @@ def dossier(s, forms, dst):
     if s.get("dvsh_n"):
         dv_txt += f" · eine von {s['dvsh_n']} DVSH-Modellierungen"
     h = [GENERATED,
-         f"<!DOCTYPE html><html lang='de'><head><meta charset='utf-8'><title>Datenschutz-Dossier · {esc(s['name'])}</title><style>{CSS}</style></head><body>",
+         f"<!DOCTYPE html><html lang='de'><head><meta charset='utf-8'><link rel='icon' href='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%277%27 fill=%27%23e8b100%27/%3E%3C/svg%3E'><title>Datenschutz-Dossier · {esc(s['name'])}</title><style>{CSS}</style></head><body>",
          "<button class='print' onclick='window.print()'>⎙ Drucken / als PDF sichern</button>",
          f"<div class='nav'><a href='index.html'>← Alle Dossiers</a> <a href='../dashboard.html#fields/{s['id']}'>Service im Dashboard</a></div>",
          f"<div class='sub'>Kanton Schaffhausen · Compliance-Databank · Datenschutz-Dossier · Stand {fmt_date(STAND)}</div>",
@@ -630,7 +630,7 @@ def main():
                 "oninput=\"for(const r of document.querySelectorAll('tbody tr'))r.hidden=!r.textContent.toLowerCase().includes(this.value.toLowerCase())\">")
         open(os.path.join(OUT, "index.html"), "w", encoding="utf-8").write(
             GENERATED + "\n"
-            f"<!DOCTYPE html><html lang='de'><head><meta charset='utf-8'><title>Datenschutz-Dossiers</title><style>{CSS}</style></head><body>"
+            f"<!DOCTYPE html><html lang='de'><head><meta charset='utf-8'><link rel='icon' href='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%277%27 fill=%27%23e8b100%27/%3E%3C/svg%3E'><title>Datenschutz-Dossiers</title><style>{CSS}</style></head><body>"
             f"<h1>Datenschutz-Dossiers je Service</h1>"
             f"<div class='sub'><a href='../dashboard.html'>Dashboard</a> · {n} Services · Stand {fmt_date(STAND)} · ein bis wenige A4-Seiten je Service, druckbar</div>"
             "<div class='small' style='margin:6px 0'>Jedes Dossier zeigt für einen Service: Dienststelle und Kontakt, DVSH-Status, "

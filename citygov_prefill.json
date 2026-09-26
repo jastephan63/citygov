@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generated_at": "2026-09-26T19:39:22",
+  "generated_at": "2026-09-26T19:42:52",
   "hinweis": "Datenpunkt→eCH-Element-Map je Formular (Schlüssel = Formular-id) für Once-Only-Prefill: ein nach eCH-Element gekeytes Profil einer natürlichen Person füllt damit die Punkte vor, die einwohnerregister = true und mehrdeutig = false tragen — nur diese, nie alle Punkte.",
   "felder": {
    "feld": "Pfad «Feld›Teilfeld» (ein Teilfeld ist die atomare Einheit; feld_parent = das Feld, sonst null). Ein zusammengesetztes Feld, dessen Teile eigene Elemente tragen, erscheint nicht neben seinen Teilen.",
