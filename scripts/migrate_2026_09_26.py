@@ -38,6 +38,8 @@ nothing and reports 0 everywhere.
      starts; KDSG Art. 5 Abs. 1 lit. b presumed consent); quotes unchanged.
  15. form.source_file in composed Unicode (NFC), as Git stores the files:
      22 decomposed paths would 404 on a Linux web server (GitHub Pages).
+ 16. Four Formular files renamed so their extension matches their content
+     (three had none, one PDF was named .docx); paths and file_type follow.
   5. rechtsmittel_verdikt of form 414 named provision 116, which the second
      review struck: the verdict becomes 'offen' with the reason recorded.
   6. data_subfield.esh_code/esh_element restored for 1,221 parts from
@@ -314,6 +316,20 @@ def main():
         if nfc != sf:
             n += c.execute("UPDATE form SET source_file=? WHERE id=?", [nfc, fid]).rowcount
     rep["15 Dateipfade in NFC"] = n
+
+    # 16. four Formular files whose name hid their type (no extension, or «.docx» on
+    # a PDF): browsers downloaded them as unnamed binaries. The files were renamed in
+    # Git (content checked with `file`); the paths and file types follow here.
+    RENAMED = [("formulare/182__Meldeformular", "formulare/182__Meldeformular.pdf", "pdf"),
+               ("formulare/214__Meldeformular für wetterbedingten Arbeitsausfall",
+                "formulare/214__Meldeformular für wetterbedingten Arbeitsausfall.pdf", "pdf"),
+               ("formulare/339__Interkantonale Vereinbarung für Schulen mit Angeboten für Hochbegabte",
+                "formulare/339__Interkantonale Vereinbarung für Schulen mit Angeboten für Hochbegabte.docx", "word"),
+               ("formulare/292__Meldekarte_Messmittel.docx", "formulare/292__Meldekarte_Messmittel.pdf", "pdf")]
+    n = 0
+    for old, new, ft in RENAMED:
+        n += c.execute("UPDATE form SET source_file=?, file_type=? WHERE source_file=?", [new, ft, old]).rowcount
+    rep["16 Dateinamen mit richtiger Endung"] = n
 
     # 12. technical snake_case keys shown as field names -> the form's own labels ----
     # (quellen/korrekturen/feldnamen_2026-09-26.json, judged from the form text and
