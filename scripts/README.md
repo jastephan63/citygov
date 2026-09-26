@@ -13,7 +13,7 @@ in the official PDF.
 
 ```bash
 ./build.sh            # init_register → export_json → build_dashboard → build_flows →
-                      # export_llm → export_ech_schema → export_dossiers → validate_db
+                      # export_llm → export_ech_schema → export_dossiers → build_index → validate_db
 ./build.sh --tresor   # + datentresor.db (needs .venv with cryptography)
 ./build.sh --pdf      # + dossiers/*.pdf (needs a local Chrome)
 ```
@@ -122,6 +122,7 @@ be broken, so the gate `validate_db.py` checks what it can):
 | `export_llm.py` | `citygov_llm.json` and the `citygov_*.jsonl/json` exports |
 | `export_ech_schema.py` | `citygov_ech_schemas.json` — one eCH-shaped exchange schema per Formular |
 | `export_dossiers.py` | `dossiers/<slug>.html` per service + index (`--pdf` for PDFs) |
+| `build_index.py` | `index.html` — the start page of the website served by GitHub Pages (<https://jastephan63.github.io/citygov/>) |
 | `build_datentresor.py` | `datentresor.db` — the synthetic storage example |
 | `extract_law.py` | Text of a law PDF (offline), the ground truth every citation gate maps against |
 | `ingest_laws.py` / `ingest_fed.py` / `ingest_bigcode.py` / `fetch_rechtsbuch.py` / `build_gesetze_index.py` / `extract_quotes.py` | The law chain (step 1 above) |

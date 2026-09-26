@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Regenerate EVERY derived artefact from the source of truth (citygov.db):
+# Regenerate EVERY derived artefact from the source of truth (citygov.db).
+# GitHub Pages publishes the pushed result at https://jastephan63.github.io/citygov/
 #
 #   init_register.py       rewrites the DERIVED tables inside citygov.db
 #                          (canonical_attribute, data_field.format_code) — the
@@ -12,6 +13,8 @@
 #                          citygov_prefill.json
 #   export_ech_schema.py   citygov_ech_schemas.json
 #   export_dossiers.py     dossiers/*.html + dossiers/index.html
+#   build_index.py         index.html — the landing page (GitHub Pages serves it at
+#                          https://jastephan63.github.io/citygov/)
 #   validate_db.py         final integrity check of the database
 #
 #   ./build.sh             everything above
@@ -36,6 +39,7 @@ $PY scripts/export_llm.py
 $PY scripts/export_ech_schema.py
 if [[ " $* " == *" --tresor "* ]]; then $PY scripts/build_datentresor.py; fi
 if [[ " $* " == *" --pdf "* ]]; then $PY scripts/export_dossiers.py --pdf; else $PY scripts/export_dossiers.py; fi
+$PY scripts/build_index.py
 $PY scripts/validate_db.py
 ls -lh dashboard.html flows.html data_export.json citygov_llm.json | awk '{print "  " $5 "\t" $9}'
 echo "done — open dashboard.html in a browser (or: python3 -m http.server 8917)"
