@@ -255,6 +255,14 @@ def judgment_layer_checks(conn):
     except OSError:
         pass
 
+    # file paths are composed Unicode (NFC) like the tracked files — a decomposed
+    # path works on a Mac and 404s on a Linux web server
+    if "source_file" in _cols(conn, "form"):
+        import unicodedata as _ud
+        n = sum(1 for (sf,) in conn.execute("SELECT source_file FROM form WHERE source_file IS NOT NULL")
+                if sf != _ud.normalize("NFC", sf))
+        if n: errors.append(f"{n} form.source_file values are not in composed Unicode (NFC)")
+
     # the verification level shown for a citation is the ARTICLE's (one source)
     if _has(conn, "data_field_legal_basis"):
         n = count("SELECT COUNT(*) FROM data_field_legal_basis d JOIN article a ON a.id=d.article_id "

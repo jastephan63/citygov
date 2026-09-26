@@ -29,7 +29,7 @@
    "datenhandhabung.scope": "allgemein=applies to every personal-data field; besonders_schuetzenswert=additionally applies to fields with a sensitive category (matching sensitive_category, or all when null); sektoral=applies only to fields whose legal basis cites the same law (match on law). The addressee is part of the claim: rules from DSG/DSV/BGA/EMBAG bind Bundesorgane, not the canton (see each rule's law and quote).",
    "process_steps / findings": "legacy service-level rows of the 2026-06 era (kept as text; process_steps mode is a code); the Verfahren facts a reader should rely on are dvsh_verfahren and forms[].verfahren."
   },
-  "generated_at": "2026-09-26T12:26:58",
+  "generated_at": "2026-09-26T19:39:22",
   "datenstand": {
    "build": "2026-09-26",
    "shep_harvest": "2026-09-03",
@@ -217735,7 +217735,7 @@
     {
      "id": 156,
      "title": "Gesuchsformular Solidaritätsbeitrag",
-     "source_file": "formulare/Gesuchsformular Solidaritätsbeitrag.pdf",
+     "source_file": "formulare/Gesuchsformular Solidaritätsbeitrag.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
      "zweck": "Prüfung der Betroffenheit von fürsorgerischen Zwangsmassnahmen oder Fremdplatzierungen vor 1981 zur Ausrichtung des kantonalen Solidaritätsbeitrags.",
@@ -226723,7 +226723,7 @@
     {
      "id": 163,
      "title": "Formular zur Meldung eines Hundes, welcher Anzeichen eines übermässigen Aggressionsverhaltens zeigt (Verhaltensweisen die Menschen oder Tiere gefährden)",
-     "source_file": "formulare/Formular Meldung verhaltensauffälliger Hund.pdf",
+     "source_file": "formulare/Formular Meldung verhaltensauffälliger Hund.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
      "zweck": "Erfassung gemeldeter Aggressionsvorfälle zur Beurteilung des Gefährdungspotenzials des Hundes und Anordnung von Massnahmen zum Schutz von Mensch und Tier.",
@@ -236854,7 +236854,7 @@
     {
      "id": 179,
      "title": "Wehrpflichtersatzabgabe: Antrag Rückerstattung",
-     "source_file": "formulare/Antrag Rückerstattung.pdf",
+     "source_file": "formulare/Antrag Rückerstattung.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
      "zweck": "Prüfung des Anspruchs auf Rückerstattung bezahlter Wehrpflichtersatzabgaben nach erfüllter Dienstpflicht und Auszahlung auf das angegebene Konto.",
@@ -240248,7 +240248,7 @@
     {
      "id": 183,
      "title": "Gesuch Schiessbewilligung für Ausländer",
-     "source_file": "formulare/Gesuch Schiessbewilligung für ausländische Staatsangehörige.pdf",
+     "source_file": "formulare/Gesuch Schiessbewilligung für ausländische Staatsangehörige.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
      "zweck": "Prüfung der aufenthaltsrechtlichen und vereinsbezogenen Voraussetzungen für die Erteilung einer Schiessbewilligung an ausländische Vereinsschützen.",
@@ -252943,7 +252943,7 @@
     {
      "id": 196,
      "title": "Voranmeldung einer Alarm - oder Einsatzübung",
-     "source_file": "formulare/7.1 Anhang_2-Voranmeldung_Alarmübung.pdf",
+     "source_file": "formulare/7.1 Anhang_2-Voranmeldung_Alarmübung.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
      "zweck": "Koordination der Alarmierung einer angekündigten Alarm- oder Einsatzübung und Sicherstellung der Erreichbarkeit der Übungsleitung.",
@@ -265708,7 +265708,7 @@
     {
      "id": 210,
      "title": "Gesuch um Bewilligung zur Führung eines Sicherheitsunternehmens mit Sitz oder Niederlassung im Kanton Schaffhausen",
-     "source_file": "formulare/Bewilligungsgesuch Führung eines kantonsansässigen Sicherheitsunternehmens.pdf",
+     "source_file": "formulare/Bewilligungsgesuch Führung eines kantonsansässigen Sicherheitsunternehmens.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
      "zweck": "Prüfung der persönlichen und betrieblichen Voraussetzungen für die Bewilligung zur Führung eines Sicherheitsunternehmens im Kanton Schaffhausen.",
@@ -270628,7 +270628,7 @@
     {
      "id": 217,
      "title": "Gesuch um Betriebs- und Führungsbewilligung für ein Sicherheitsunternehmen mit Sitz oder Niederlassung ausserhalb des Kantons Schaffhausen",
-     "source_file": "formulare/Gesuch Betriebs- und Führungsbewilligung für ausserkantonale Sicherheitsunternehmen.pdf",
+     "source_file": "formulare/Gesuch Betriebs- und Führungsbewilligung für ausserkantonale Sicherheitsunternehmen.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
      "zweck": "Prüfung der betrieblichen und persönlichen Voraussetzungen ausserkantonaler Sicherheitsunternehmen für die Betriebs- und Führungsbewilligung im Kanton.",
@@ -275723,7 +275723,7 @@
     {
      "id": 223,
      "title": "Gesuch um Verlängerung der Betriebs- und Führungsbewilligung für ein Sicherheitsunternehmen mit Sitz oder Niederlassung ausserhalb des Kantons Schaffhausen",
-     "source_file": "formulare/Verlängerungsgesuch Betriebs- und Führungsbewilligung für ausserkantonale Sicherheitsunternehmen.pdf",
+     "source_file": "formulare/Verlängerungsgesuch Betriebs- und Führungsbewilligung für ausserkantonale Sicherheitsunternehmen.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
      "zweck": "Prüfung, ob das ausserkantonale Sicherheitsunternehmen die Voraussetzungen der Betriebs- und Führungsbewilligung weiterhin erfüllt.",
@@ -276718,7 +276718,7 @@
     {
      "id": 224,
      "title": "Gesuch um Bewilligungsverlängerung zur Führung eines Sicherheitsunternehmens mit Sitz oder Niederlassung im Kanton Schaffhausen",
-     "source_file": "formulare/Verlängerungsgesuch Bewilligung Führung eines kantonsansässigen Sicherheitsunternehmens.pdf",
+     "source_file": "formulare/Verlängerungsgesuch Bewilligung Führung eines kantonsansässigen Sicherheitsunternehmens.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
      "zweck": "Prüfung, ob die persönlichen und betrieblichen Voraussetzungen zur Führung des Sicherheitsunternehmens für die Bewilligungsverlängerung weiterhin erfüllt sind.",
@@ -277354,7 +277354,7 @@
     {
      "id": 225,
      "title": "Gesuch um Bewilligungsverlängerung zur Ausübung privater Sicherheitsdienste als Angestellte/-r mit Bewilligung vom auswärtigen Niederlassungskanton des Unternehmens oder Betriebes",
-     "source_file": "formulare/Verlängerungsgesuch Bewilligung Sicherheitsangestellte-r ausserkantonaler Unternehmen u Betriebe.pdf",
+     "source_file": "formulare/Verlängerungsgesuch Bewilligung Sicherheitsangestellte-r ausserkantonaler Unternehmen u Betriebe.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
      "zweck": "Prüfung, ob Angestellte ausserkantonaler Unternehmen die Voraussetzungen für private Sicherheitsdienste zur Bewilligungsverlängerung weiterhin erfüllen.",
@@ -290553,7 +290553,7 @@
     {
      "id": 235,
      "title": "Hilfsblatt für die Bestimmung des anwendbaren Sozialversicherungsrechts bei Mehrfachtätigkeit nach VO (EG) Nr. 883/2004 und VO (EG) Nr. 987/2009",
-     "source_file": "formulare/Mehrfachtätigkeit 1.pdf",
+     "source_file": "formulare/Mehrfachtätigkeit 1.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
      "zweck": "Bestimmung des anwendbaren Sozialversicherungsrechts bei Erwerbstätigkeit in mehreren Staaten nach den EU-Koordinationsverordnungen.",
@@ -293705,7 +293705,7 @@
     {
      "id": 238,
      "title": "Abklärung internationaler Wochenaufenthalter",
-     "source_file": "formulare/Abklärung internationaler Wochenaufenthalter.pdf",
+     "source_file": "formulare/Abklärung internationaler Wochenaufenthalter.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
      "zweck": "Abklärung der persönlichen und familiären Verhältnisse zur Bestimmung des steuerlichen Status und der Quellenbesteuerung internationaler Wochenaufenthalter.",
@@ -297261,7 +297261,7 @@
     {
      "id": 249,
      "title": "Antrag auf Rückerstattung der Quellensteuer auf Vorsorgeleistungen",
-     "source_file": "formulare/Antrag auf Rückerstattung der Quellensteuer auf Vorsorgeleistungen.pdf",
+     "source_file": "formulare/Antrag auf Rückerstattung der Quellensteuer auf Vorsorgeleistungen.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
      "zweck": "Prüfung des Anspruchs auf Rückerstattung der Quellensteuer auf Vorsorgeleistungen bei nachgewiesener Besteuerung im ausländischen Wohnsitzstaat.",
@@ -298767,7 +298767,7 @@
     {
      "id": 250,
      "title": "Antrag auf nachträgliche ordentliche Veranlagung (NOV)",
-     "source_file": "formulare/Antrag auf nachträgliche ordentliche Veranlagung (NOV).pdf",
+     "source_file": "formulare/Antrag auf nachträgliche ordentliche Veranlagung (NOV).pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
      "zweck": "Prüfung der Voraussetzungen für eine nachträgliche ordentliche Veranlagung anstelle der abgeltenden Quellenbesteuerung.",
@@ -303153,7 +303153,7 @@
     {
      "id": 255,
      "title": "Ansässigkeitsbescheinigung für Grenzgänger",
-     "source_file": "formulare/GRE1 - Ansässigkeitsbescheinigung für Grenzgänger.pdf",
+     "source_file": "formulare/GRE1 - Ansässigkeitsbescheinigung für Grenzgänger.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
      "zweck": "Bestätigung der Ansässigkeit zur Anwendung der reduzierten Grenzgängerbesteuerung nach dem Doppelbesteuerungsabkommen.",
@@ -303764,7 +303764,7 @@
     {
      "id": 256,
      "title": "Bescheinigung des Arbeitgebers über die Nichtrückkehr an mehr als 60 Arbeitstagen i. S. des Artikels 15a Absatz 2 des Doppelbesteuerungsabkommens Deutschland/Schweiz (Gre-3a)",
-     "source_file": "formulare/GRE3 - Bescheinigung des Arbeitgebers über die Nichtrückkehr an mehr als 60 Arbeitstagen.pdf",
+     "source_file": "formulare/GRE3 - Bescheinigung des Arbeitgebers über die Nichtrückkehr an mehr als 60 Arbeitstagen.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
      "zweck": "Nachweis von mehr als 60 Nichtrückkehrtagen zur Beurteilung der Grenzgängereigenschaft und der Zuteilung des Besteuerungsrechts nach dem DBA Deutschland/Schweiz.",
@@ -317360,7 +317360,7 @@
     {
      "id": 264,
      "title": "Antrag auf Anrechnung ausländischer Quellensteuer und zusätzlichen Steuerrückbehalt USA – für ausländische Dividenden und Zinsen – Fälligkeiten 2025 (DA-1/R-US)",
-     "source_file": "formulare/Steuern 2025 - Antrag auf Anrechnung ausländischer Quellensteuer und zusätzlichen Steuerrückbehalt USA.pdf",
+     "source_file": "formulare/Steuern 2025 - Antrag auf Anrechnung ausländischer Quellensteuer und zusätzlichen Steuerrückbehalt USA.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
      "zweck": "Prüfung des Anspruchs auf Anrechnung ausländischer Quellensteuern und des zusätzlichen Steuerrückbehalts USA auf Dividenden und Zinsen.",
@@ -318138,7 +318138,7 @@
     {
      "id": 265,
      "title": "Antrag auf Reduktion Eigenmietwert in Härtefällen",
-     "source_file": "formulare/Steuern 2025 - Antrag auf Reduktion Eigenmietwert in Härtefällen.pdf",
+     "source_file": "formulare/Steuern 2025 - Antrag auf Reduktion Eigenmietwert in Härtefällen.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
      "zweck": "Prüfung anhand von Einkommen und Vermögen, ob die Voraussetzungen für eine Härtefallreduktion des Eigenmietwerts erfüllt sind.",
@@ -318707,7 +318707,7 @@
     {
      "id": 266,
      "title": "Arbeitszeitbestätigung des Arbeitgebers",
-     "source_file": "formulare/Steuern 2025 - Arbeitszeitbestätigung des Arbeitgebers.pdf",
+     "source_file": "formulare/Steuern 2025 - Arbeitszeitbestätigung des Arbeitgebers.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
      "zweck": "Überprüfung der geltend gemachten Berufsauslagen, insbesondere des Abzugs für auswärtige Verpflegung, anhand der bestätigten Arbeitszeiten.",
@@ -319250,7 +319250,7 @@
     {
      "id": 267,
      "title": "Bestätigung des Arbeitgebers über die Benützung / Bereithaltung des privaten Motorfahrzeuges für Berufsfahrten",
-     "source_file": "formulare/Steuern 2025 - Bestätigung Geschäftsfahrten.pdf",
+     "source_file": "formulare/Steuern 2025 - Bestätigung Geschäftsfahrten.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
      "zweck": "Prüfung des Abzugs für die berufliche Nutzung des Privatfahrzeugs anhand der Arbeitgeberangaben zu Fahrten und Entschädigungen.",
@@ -328978,7 +328978,7 @@
     {
      "id": 282,
      "title": "Gesuch Strafverbüssung in Halbgefangenschaft",
-     "source_file": "formulare/Gesuch Strafverbüssung in Halbgefangenschaft.pdf",
+     "source_file": "formulare/Gesuch Strafverbüssung in Halbgefangenschaft.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
      "zweck": "Prüfung der Voraussetzungen wie geregelte Arbeit, fehlende Fluchtgefahr und Strafdauer für den Vollzug der Freiheitsstrafe in Halbgefangenschaft.",
@@ -333503,7 +333503,7 @@
     {
      "id": 287,
      "title": "Gesuch um gemeinschaftliche Adoption unseres volljährigen Pflegekindes",
-     "source_file": "formulare/Gesuch um gemeinschaftliche Adoption volljähriges Pflegekind.docx",
+     "source_file": "formulare/Gesuch um gemeinschaftliche Adoption volljähriges Pflegekind.docx",
      "file_type": "pdf",
      "title_content_mismatch": false,
      "zweck": "Prüfung der Voraussetzungen und Zustimmungen für die gemeinschaftliche Adoption eines volljährigen Pflegekindes durch ein Ehepaar.",

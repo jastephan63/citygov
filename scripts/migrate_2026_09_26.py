@@ -36,6 +36,8 @@ nothing and reports 0 everywhere.
      same law, two renumbered with the heading the law PDF prints.
  14. Two rule summaries aligned with their law text (MedBG Art. 54 clock
      starts; KDSG Art. 5 Abs. 1 lit. b presumed consent); quotes unchanged.
+ 15. form.source_file in composed Unicode (NFC), as Git stores the files:
+     22 decomposed paths would 404 on a Linux web server (GitHub Pages).
   5. rechtsmittel_verdikt of form 414 named provision 116, which the second
      review struck: the verdict becomes 'offen' with the reason recorded.
   6. data_subfield.esh_code/esh_element restored for 1,221 parts from
@@ -300,6 +302,18 @@ def main():
                     "klar umschriebene Aufgabe unentbehrlich ist, oder wenn die betroffene Person ausdrücklich zugestimmt "
                     "hat oder ihre Zustimmung nach den Umständen unzweifelhaft vorausgesetzt werden darf."]).rowcount
     rep["14 Regel-Zusammenfassungen am Gesetz ausgerichtet"] = n
+
+    # 15. file paths in composed Unicode (NFC). Git stores the Formular files with
+    # composed umlauts; 22 source_file values were decomposed (NFD, as macOS hands
+    # them out). The Mac treats both as one file, a Linux web server (GitHub Pages)
+    # does not — those «Quelldatei» links would answer 404 online.
+    import unicodedata as _ud
+    n = 0
+    for fid, sf in c.execute("SELECT id, source_file FROM form WHERE source_file IS NOT NULL").fetchall():
+        nfc = _ud.normalize("NFC", sf)
+        if nfc != sf:
+            n += c.execute("UPDATE form SET source_file=? WHERE id=?", [nfc, fid]).rowcount
+    rep["15 Dateipfade in NFC"] = n
 
     # 12. technical snake_case keys shown as field names -> the form's own labels ----
     # (quellen/korrekturen/feldnamen_2026-09-26.json, judged from the form text and

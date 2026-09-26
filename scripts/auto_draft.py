@@ -203,6 +203,9 @@ def draft_form(path, office, dept, fields, scanned, sr, laws, arts, title=None):
     ext=os.path.splitext(path)[1].lower()
     sslug=slug(office.split("/")[-1]+"-"+base)   # slug stays filename-based (stable id)
     rel=os.path.relpath(path, ROOT)
+    # composed Unicode (NFC), as Git stores file names: a decomposed path from the
+    # macOS file system works locally and 404s on a Linux web server (GitHub Pages)
+    rel=__import__('unicodedata').normalize('NFC', rel)
 
     form_fields=[]; reqs={}; mappings=[]; svc_reqs=set()
     def ensure_req(key,dp,dtype,composite=False):
