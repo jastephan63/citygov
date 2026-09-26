@@ -1,0 +1,6 @@
+# Third-party libraries used by the scripts in scripts/. The core rebuild
+# (./build.sh without flags) is stdlib-only; these are needed by the loaders,
+# harvesters and the Datentresor:
+pypdf>=4.0          # ingest_bigcode.py, ingest_new.py (via auto_draft.py), extract_quotes.py, scan_documents.py, fill_pdf.py, fix_quality.py — reading law and form PDFs
+openpyxl>=3.1       # auto_draft.py (via ingest_new.py) — Excel forms
+cryptography>=42    # build_datentresor.py — AES-256-GCM (without it the build falls back to a labelled demo cipher)

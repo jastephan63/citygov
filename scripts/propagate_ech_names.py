@@ -12,16 +12,11 @@ the panel. Idempotent. Staging -> validate -> swap.
 
     python3 scripts/propagate_ech_names.py
 """
-import os, re, shutil, sys, unicodedata
+import os, re, shutil, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from common import DB_PATH, connect
+from common import DB_PATH, connect, norm_ascii as norm
 from validate_db import validate
 
-
-def norm(s):
-    s = unicodedata.normalize("NFD", (s or "").lower())
-    s = "".join(ch for ch in s if not unicodedata.combining(ch))
-    return re.sub(r"[^a-z0-9]+", " ", s).strip()
 
 
 def main():

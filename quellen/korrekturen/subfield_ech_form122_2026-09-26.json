@@ -1,0 +1,21 @@
+{
+  "hinweis": "Teilfeld-Zuordnungen für Formular 122 «Lohndeklaration 2025» (Teilfelder 7057–7070) und Teilfeld 5567, aus der Qualitätsprüfung vom 2026-09-26 (Befund: die Teile trugen kein eigenes Element und keine Once-Only-Marke). Elemente gegen den Katalog geprüft; wo kein Standard das Datum benennt (Vorsorgeeinrichtung, Beitragsdauer, Lohnsumme, Verwandtschaftsgrad, Rentenfreibetrag — eCH-0248 kennt nur Container-Elemente), ehrlich kein_standard. Angewandt mit scripts/load_subfield_ech.py <diese Datei>.",
+  "form_id": 122,
+  "zuordnungen": [
+    {"subfield_id": 7062, "elternfeld": "Mitarbeitende", "teilfeld": "AHV-Nummer", "standard": "eCH-0044", "element": "vn", "kontext": "personIdentificationLightType", "grund": "AHV-Nummer der Person = vn."},
+    {"subfield_id": 7063, "elternfeld": "Mitarbeitende", "teilfeld": "Geburtsdatum", "standard": "eCH-0044", "element": "dateOfBirth", "kontext": "personIdentificationLightType", "grund": "Geburtsdatum der Person."},
+    {"subfield_id": 7064, "elternfeld": "Mitarbeitende", "teilfeld": "Name", "standard": "eCH-0044", "element": "officialName", "kontext": "personIdentificationLightType", "grund": "Amtlicher Name der Person."},
+    {"subfield_id": 7065, "elternfeld": "Mitarbeitende", "teilfeld": "Vorname", "standard": "eCH-0044", "element": "firstName", "kontext": "personIdentificationLightType", "grund": "Vorname der Person."},
+    {"subfield_id": 7060, "elternfeld": "Kontaktperson bei Rückfragen", "teilfeld": "E-Mail", "standard": "eCH-0046", "element": "emailAddress", "kontext": "emailType", "grund": "E-Mail-Adresse der Kontaktperson."},
+    {"subfield_id": 7061, "elternfeld": "Kontaktperson bei Rückfragen", "teilfeld": "Telefon", "standard": "eCH-0046", "element": "phoneNumber", "kontext": "phoneType", "grund": "Telefonnummer der Kontaktperson."},
+    {"subfield_id": 7059, "elternfeld": "Kontaktperson bei Rückfragen", "teilfeld": "Name / Vorname", "kein_standard": true, "grund": "Bündelt zwei Daten (officialName, firstName) in einem Teil — im Formular aufzuteilen, kein Element für das Bündel."},
+    {"subfield_id": 7057, "elternfeld": "Neue Vorsorgeeinrichtung", "teilfeld": "Name der Vorsorgeeinrichtung", "kein_standard": true, "grund": "eCH-0248 führt nur Container-Elemente; kein Standard benennt den Namen der Vorsorgeeinrichtung."},
+    {"subfield_id": 7058, "elternfeld": "Neue Vorsorgeeinrichtung", "teilfeld": "Seit (Datum)", "kein_standard": true, "grund": "Beginn des Anschlusses an die Vorsorgeeinrichtung — kein Element in einem Standard mit Elementkatalog."},
+    {"subfield_id": 7066, "elternfeld": "Mitarbeitende", "teilfeld": "VG (Verwandtschaftsgrad)", "kein_standard": true, "grund": "Verwandtschaftsgrad zum Arbeitgeber — kein Standard-Element."},
+    {"subfield_id": 7067, "elternfeld": "Mitarbeitende", "teilfeld": "Beitragsdauer von", "kein_standard": true, "grund": "Beitragsperiode der AHV-Lohndeklaration — kein Standard-Element."},
+    {"subfield_id": 7068, "elternfeld": "Mitarbeitende", "teilfeld": "Beitragsdauer bis", "kein_standard": true, "grund": "Beitragsperiode der AHV-Lohndeklaration — kein Standard-Element."},
+    {"subfield_id": 7069, "elternfeld": "Mitarbeitende", "teilfeld": "Verzicht RF (Rentenfreibetrag)", "kein_standard": true, "grund": "Verzicht auf den Rentnerfreibetrag — kein Standard-Element."},
+    {"subfield_id": 7070, "elternfeld": "Mitarbeitende", "teilfeld": "Beitragspflichtige Lohnsumme (CHF)", "kein_standard": true, "grund": "AHV-pflichtige Lohnsumme — kein Standard-Element (eCH-0248 ohne atomare Beträge)."},
+    {"subfield_id": 5567, "elternfeld": "Stellungnahme je Bestimmung", "teilfeld": "Bestimmung", "kein_standard": true, "grund": "Freitext-Stellungnahme zu Gesetzesbestimmungen — kein Standard-Element."}
+  ]
+}

@@ -14,9 +14,9 @@ Idempotent. Staging -> validate -> swap.
 
     python3 scripts/load_dvsh_harvest.py ../DVSH/dvsh_harvest_2026-09-03.json
 """
-import json, os, re, shutil, sys, unicodedata
+import json, os, re, shutil, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from common import DB_PATH, connect
+from common import DB_PATH, connect, norm_ascii as norm
 from validate_db import validate
 
 DDL = """
@@ -35,11 +35,6 @@ NEWCOLS = ["status TEXT", "online INTEGER", "online_version INTEGER", "published
            "form_definitions TEXT", "completeness TEXT", "email TEXT", "phone TEXT",
            "address TEXT", "org_id INTEGER", "opening_hours TEXT"]
 
-
-def norm(s):
-    s = unicodedata.normalize("NFD", (s or "").lower())
-    s = "".join(ch for ch in s if not unicodedata.combining(ch))
-    return re.sub(r"[^a-z0-9]+", " ", s).strip()
 
 
 def main():

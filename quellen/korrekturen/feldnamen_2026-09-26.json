@@ -1,0 +1,1687 @@
+{
+ "hinweis": "Umbenennung technischer snake_case-Schlüssel in data_field.name und data_subfield.name auf die Beschriftung, die das Formular selbst verwendet. Wo das Formular keine eigene Beschriftung hat, gelten die Worte der Definition. Ergebnis der Qualitätsprüfung vom 2026-09-26: beurteilt anhand der Quelldateien unter formulare/, zweitgeprüft und im Abgleich entschieden. 132 Felder und 108 Teilfelder. Angewendet durch scripts/migrate_2026_09_26.py Schritt 12, der data_field.name bzw. data_subfield.name und das subfields-JSON des Elternfelds in einem Schritt umbenennt. «alt» entspricht exakt dem Namen in der DB; die Migration ändert nur Zeilen, die noch so heissen.",
+ "felder": [
+  {
+   "data_field_id": 4069,
+   "form_id": 10,
+   "alt": "auftrag_beschreibung",
+   "neu": "Auftrag",
+   "quelle": "Abschnitt 1, Überschrift «Auftrag [Bsp. …]»"
+  },
+  {
+   "data_field_id": 4072,
+   "form_id": 10,
+   "alt": "wto_gatt_unterstellung",
+   "neu": "Gemäss WTO/GATT-Übereinkommen",
+   "quelle": "Abschnitt 1, Textbaustein «Gemäss WTO/GATT-Übereinkommen (/wenn nicht, löschen)» – Löschhinweis weggelassen"
+  },
+  {
+   "data_field_id": 4078,
+   "form_id": 10,
+   "alt": "einzureichende_unterlagen",
+   "neu": "Einzureichende Unterlagen und Beilagen",
+   "quelle": "Abschnitt 4, Überschrift «Einzureichende Unterlagen und Beilagen:»"
+  },
+  {
+   "data_field_id": 4079,
+   "form_id": 10,
+   "alt": "gueltigkeitsdauer_teilnahmeantrag",
+   "neu": "Gültigkeitsdauer des Teilnahmeantrags",
+   "quelle": "Abschnitt 6, Überschrift"
+  },
+  {
+   "data_field_id": 4081,
+   "form_id": 10,
+   "alt": "besondere_anforderungen",
+   "neu": "Besondere Anforderungen",
+   "quelle": "Abschnitt 8, Überschrift"
+  },
+  {
+   "data_field_id": 4082,
+   "form_id": 10,
+   "alt": "eignungskriterien_nachweise",
+   "neu": "Eignungskriterien und Nachweise",
+   "quelle": "Abschnitt 9, Überschrift"
+  },
+  {
+   "data_field_id": 4083,
+   "form_id": 10,
+   "alt": "subunternehmen_arbeitsgemeinschaften_zugelassen",
+   "neu": "Subunternehmen / Arbeitsgemeinschaften",
+   "quelle": "Abschnitt 11, Überschrift"
+  },
+  {
+   "data_field_id": 4084,
+   "form_id": 10,
+   "alt": "bestaetigung_unterschrift_firma",
+   "neu": "Firmenstempel und rechtsgültige Unterschrift(en)",
+   "quelle": "Schlussblock «Firmenstempel und rechtsgültige Unterschrift(en):»"
+  },
+  {
+   "data_field_id": 4192,
+   "form_id": 80,
+   "alt": "kursteilnehmer_name",
+   "neu": "Name Kursteilnehmer/in",
+   "quelle": "Block «Massnahme (Kursanmeldung liegt vor)», Zeile «Name Kursteilnehmer/in»"
+  },
+  {
+   "data_field_id": 4195,
+   "form_id": 80,
+   "alt": "datum_kursbeginn",
+   "neu": "Datum Kursbeginn",
+   "quelle": "Block «Massnahme», Zeile «Datum Kursbeginn»"
+  },
+  {
+   "data_field_id": 4196,
+   "form_id": 80,
+   "alt": "datum_kursende",
+   "neu": "Datum Kursende",
+   "quelle": "Block «Massnahme», Zeile «Datum Kursende»"
+  },
+  {
+   "data_field_id": 4197,
+   "form_id": 80,
+   "alt": "kurskosten_total",
+   "neu": "Kurskosten total",
+   "quelle": "Block «Erwartete Kosten in CHF», Zeile «Kurskosten total»"
+  },
+  {
+   "data_field_id": 4198,
+   "form_id": 80,
+   "alt": "abziehbare_subventionen_bund",
+   "neu": "Abziehbare Subventionen Bund (erwartet)",
+   "quelle": "Block «Erwartete Kosten in CHF», Zeile «Abziehbare Subventionen Bund (erwartet)»"
+  },
+  {
+   "data_field_id": 4199,
+   "form_id": 80,
+   "alt": "verbleibende_kurskosten",
+   "neu": "Verbleibende Kurskosten nach Abzug",
+   "quelle": "Block «Erwartete Kosten in CHF», Zeile «Verbleibende Kurskosten nach Abzug»"
+  },
+  {
+   "data_field_id": 4200,
+   "form_id": 80,
+   "alt": "nachweis_kursanmeldung",
+   "neu": "Nachweis Kursanmeldung",
+   "quelle": "Block «Erforderliche Beilagen», Zeile «Nachweis Kursanmeldung»"
+  },
+  {
+   "data_field_id": 4085,
+   "form_id": 169,
+   "alt": "personendaten_absolvent",
+   "neu": "Personendaten des/r Absolventen/in",
+   "quelle": "Blocküberschrift «Personendaten des/r Absolventen/in»"
+  },
+  {
+   "data_field_id": 4086,
+   "form_id": 169,
+   "alt": "cool_and_clean_registriert",
+   "neu": "Ich habe mich bei der App von «cool and clean» registriert",
+   "quelle": "Checkbox-Text «Ich habe mich bei der App von «cool and clean» registriert.» (Punkt und URL weggelassen)"
+  },
+  {
+   "data_field_id": 4087,
+   "form_id": 169,
+   "alt": "kontoangaben_absolvent",
+   "neu": "Kontoangaben des/r Absolventen/in",
+   "quelle": "Blocküberschrift «Kontoangaben des/r Absolventen/in»"
+  },
+  {
+   "data_field_id": 4088,
+   "form_id": 169,
+   "alt": "beilage_ausbildungsnachweis",
+   "neu": "Kopie des Ausbildungsnachweises oder des Führungszertifikats «Club Management»",
+   "quelle": "Beilagen-Checkbox 1"
+  },
+  {
+   "data_field_id": 4089,
+   "form_id": 169,
+   "alt": "beilage_nachweis_ehrenamt",
+   "neu": "Kopie Nachweis ehrenamtliche Tätigkeit (wie im Lehrgang eingereicht)",
+   "quelle": "Beilagen-Checkbox 2"
+  },
+  {
+   "data_field_id": 4090,
+   "form_id": 169,
+   "alt": "beilage_zahlungsbeleg",
+   "neu": "Kopie Zahlungsbeleg (Bank-/Postbeleg) der Lehrgangskosten von 350 Franken",
+   "quelle": "Beilagen-Checkbox 3 (Schlusspunkt weggelassen)"
+  },
+  {
+   "data_field_id": 4092,
+   "form_id": 171,
+   "alt": "bank_postverbindung",
+   "neu": "Bank-/Postverbindung",
+   "quelle": "Anmeldeblatt, Abschnittsüberschrift «Bank-/Postverbindung»"
+  },
+  {
+   "data_field_id": 4093,
+   "form_id": 171,
+   "alt": "beruf_gegenwaertige_taetigkeit",
+   "neu": "Beruf/gegenwärtige Tätigkeit",
+   "quelle": "Anmeldeblatt, Abschnitt «Tätigkeit und Bezug zu Schaffhausen», Zeile «Beruf/gegenwärtige Tätigkeit»"
+  },
+  {
+   "data_field_id": 4094,
+   "form_id": 171,
+   "alt": "bezug_zum_kanton_schaffhausen",
+   "neu": "Bezug zu Schaffhausen",
+   "quelle": "Anmeldeblatt, Abschnittsüberschrift «Tätigkeit und Bezug zu Schaffhausen» – nur der Bezug-Teil, die Tätigkeit ist Feld 4093"
+  },
+  {
+   "data_field_id": 4096,
+   "form_id": 171,
+   "alt": "dokumentation_bisherige_taetigkeit",
+   "neu": "Dokumentation der bisherigen kulturellen/künstlerischen Tätigkeit",
+   "quelle": "Anmeldeblatt, «Erforderliche Dokumente für den Antrag», Aufzählungspunkt 3 (Text vor dem Doppelpunkt)"
+  },
+  {
+   "data_field_id": 4097,
+   "form_id": 171,
+   "alt": "antrag_und_projektbeschreibung",
+   "neu": "Konkreter Antrag und ausführliche Projektbeschreibung",
+   "quelle": "Anmeldeblatt, «Erforderliche Dokumente für den Antrag», Aufzählungspunkt 4"
+  },
+  {
+   "data_field_id": 4098,
+   "form_id": 171,
+   "alt": "budget_und_finanzierungsplan",
+   "neu": "Budget und Finanzierungsplan",
+   "quelle": "Anmeldeblatt, «Erforderliche Dokumente für den Antrag», Aufzählungspunkt 5"
+  },
+  {
+   "data_field_id": 4099,
+   "form_id": 171,
+   "alt": "erwarteter_foerderbeitrag",
+   "neu": "Angabe zur Höhe des erwarteten Förderbeitrags",
+   "quelle": "Anmeldeblatt, «Erforderliche Dokumente für den Antrag», Aufzählungspunkt 6"
+  },
+  {
+   "data_field_id": 4102,
+   "form_id": 173,
+   "alt": "allgemeine_vorbemerkungen",
+   "neu": "Allgemeine Vorbemerkungen?",
+   "quelle": "Tabelle, erste Zeile «Allgemeine Vorbemerkungen?» (Fragezeichen wie im Formular)"
+  },
+  {
+   "data_field_id": 4103,
+   "form_id": 173,
+   "alt": "stellungnahme_pro_bestimmung",
+   "neu": "Beurteilung jeder Bestimmung",
+   "quelle": "definition – die Tabelle hat keine eigene Beschriftung, nur die Spaltenköpfe «Bestimmung» / «Sind Sie mit dem Vorschlag einverstanden?» / «Ihre Änderungsvorschläge/Ihre Bemerkungen», die den Teilfeldern gehören"
+  },
+  {
+   "data_field_id": 4104,
+   "form_id": 173,
+   "alt": "weitere_bemerkungen",
+   "neu": "Weitere Bemerkungen?",
+   "quelle": "Tabelle, letzte Zeile «Weitere Bemerkungen?»"
+  },
+  {
+   "data_field_id": 4105,
+   "form_id": 174,
+   "alt": "stellungnehmende_stelle",
+   "neu": "Gemeinde/VGGSH/Partei/Departement/Staatskanzlei/Gericht",
+   "quelle": "Block «Allgemeine Angaben», Zeile 1"
+  },
+  {
+   "data_field_id": 4107,
+   "form_id": 174,
+   "alt": "allgemeine_vorbemerkungen",
+   "neu": "Allgemeine Vorbemerkungen?",
+   "quelle": "Tabelle, erste Zeile «Allgemeine Vorbemerkungen?»"
+  },
+  {
+   "data_field_id": 4108,
+   "form_id": 174,
+   "alt": "stellungnahme_pro_bestimmung",
+   "neu": "Beurteilung jeder revidierten Bestimmung",
+   "quelle": "definition – die Tabelle hat keine eigene Beschriftung (Spaltenköpfe gehören den Teilfeldern)"
+  },
+  {
+   "data_field_id": 4109,
+   "form_id": 174,
+   "alt": "weitere_bemerkungen",
+   "neu": "Weitere Bemerkungen?",
+   "quelle": "Tabelle, letzte Zeile «Weitere Bemerkungen?»"
+  },
+  {
+   "data_field_id": 2617,
+   "form_id": 280,
+   "alt": "Präsident_Rechnungsprüfungsorgan",
+   "neu": "Präsident/in",
+   "quelle": "Blatt T1, Block «Kontakt», Zelle A26 «Präsident/in:» mit B26 «Vorname, Nachname, Gemeinde» – das Formular nennt das Rechnungsprüfungsorgan hier nicht"
+  },
+  {
+   "data_field_id": 2619,
+   "form_id": 280,
+   "alt": "Bericht_Anträge_Beschlüsse",
+   "neu": "Bericht, Anträge und Beschlüsse",
+   "quelle": "Blatt T2 (A16) und Inhaltsverzeichnis (D3) «Bericht, Anträge und Beschlüsse»"
+  },
+  {
+   "data_field_id": 4115,
+   "form_id": 289,
+   "alt": "heimatkanton_ehegatte",
+   "neu": "Heimatkanton/e Ehegatte",
+   "quelle": "S. 1, Feld «Heimatkanton/e» unter «Der Ehemann/die Ehefrau ist Schweizer Bürger/in und besitzt die Bürgerrechte von:»; angehängt ist «Ehegatte», die Abschnittsüberschrift des Formulars für dieselbe Person (gleiches Muster wie 4127). Das Feld hat kein Elternfeld, und das Element eCH-0135 cantonAbbreviation ist kein Personenstandard (REG_STD); die Partei kommt in datum_key nur aus dem Namen"
+  },
+  {
+   "data_field_id": 4116,
+   "form_id": 289,
+   "alt": "heimatgemeinde_ehegatte",
+   "neu": "Heimatgemeinde/n Ehegatte",
+   "quelle": "S. 1, Feld «Heimatgemeinde/n» unter «Der Ehemann/die Ehefrau ist Schweizer Bürger/in …»; angehängt ist die Abschnittsüberschrift «Ehegatte» (wie 4115 und 4127), weil das Element eCH-0135 placeOfOriginName kein Personenstandard ist und die Partei in datum_key nur aus dem Namen kommt"
+  },
+  {
+   "data_field_id": 4117,
+   "form_id": 289,
+   "alt": "bewerber_personalien",
+   "neu": "Bewerber/in",
+   "quelle": "S. 1, Abschnittsüberschrift «Bewerber/in / Requérant/e / Richiedente» (deutscher Teil)"
+  },
+  {
+   "data_field_id": 4120,
+   "form_id": 289,
+   "alt": "vater_personalien",
+   "neu": "Vater",
+   "quelle": "S. 1, Abschnitt «Eltern», Zeile «Vater: Familienname, ev. Ledigname, …» (Text vor dem Doppelpunkt)"
+  },
+  {
+   "data_field_id": 4121,
+   "form_id": 289,
+   "alt": "mutter_personalien",
+   "neu": "Mutter",
+   "quelle": "S. 1, Abschnitt «Eltern», Zeile «Mutter: Familienname, Ledigname, …» (Text vor dem Doppelpunkt)"
+  },
+  {
+   "data_field_id": 4123,
+   "form_id": 289,
+   "alt": "arbeitsverhaeltnis_bewerber",
+   "neu": "Arbeitsverhältnis Bewerber/in",
+   "quelle": "S. 1, Block «Arbeitsverhältnis» im Abschnitt «Bewerber/in» – das Formular verwendet «Arbeitsverhältnis» zweimal (auch beim Ehegatten, Feld 4127); die Abschnittsüberschrift «Bewerber/in» ist angehängt, damit die beiden Felder unterscheidbar bleiben"
+  },
+  {
+   "data_field_id": 4124,
+   "form_id": 289,
+   "alt": "aufenthalte_schweiz",
+   "neu": "Aufenthalte in der Schweiz",
+   "quelle": "Abschnittsüberschrift «Aufenthalte in der Schweiz / Séjours en Suisse / …»"
+  },
+  {
+   "data_field_id": 4125,
+   "form_id": 289,
+   "alt": "aufenthalte_ausland",
+   "neu": "Aufenthalte im Ausland",
+   "quelle": "Abschnittsüberschrift «Aufenthalte im Ausland / Séjours à l'étranger / …»"
+  },
+  {
+   "data_field_id": 4126,
+   "form_id": 289,
+   "alt": "ehegatte_personalien",
+   "neu": "Ehegatte",
+   "quelle": "Abschnittsüberschrift «Ehegatte / Conjoint / Coniuge»"
+  },
+  {
+   "data_field_id": 4127,
+   "form_id": 289,
+   "alt": "arbeitsverhaeltnis_ehegatte",
+   "neu": "Arbeitsverhältnis Ehegatte",
+   "quelle": "Block «Arbeitsverhältnis» im Abschnitt «Ehegatte» – Abschnittsüberschrift angehängt, weil «Arbeitsverhältnis» auch Feld 4123 (Bewerber/in) bezeichnet"
+  },
+  {
+   "data_field_id": 4128,
+   "form_id": 289,
+   "alt": "eheschliessung_datum_ort",
+   "neu": "Datum und Ort der Eheschliessung",
+   "quelle": "Zeile «Datum und Ort der Eheschliessung:»"
+  },
+  {
+   "data_field_id": 4129,
+   "form_id": 289,
+   "alt": "ehepartner_schweizer_seit",
+   "neu": "Der Ehepartner ist Schweizer seit",
+   "quelle": "Zeile «Der Ehepartner ist Schweizer seit:»"
+  },
+  {
+   "data_field_id": 4130,
+   "form_id": 289,
+   "alt": "buergerrechtserwerb_ehegatte",
+   "neu": "Art des Erwerbs des Schweizer Bürgerrechts durch den Ehepartner",
+   "quelle": "definition «Art des Erwerbs des Schweizer Buergerrechts durch den Ehepartner» (Umlaut wiederhergestellt, Schlusspunkt weggelassen) – im Formular nur «durch / par / per:» mit den Optionen Abstammung / Erleichterte Einbürgerung / Ordentliche Einbürgerung / Heirat, keine eigene Beschriftung; «Ehepartner» steht auch wörtlich in der Zeile «Der Ehepartner ist Schweizer seit:». «durch den Ehepartner» bleibt, sonst liest sich das Feld in einem Gesuch um erleichterte Einbürgerung als Erwerbsart der gesuchstellenden Person"
+  },
+  {
+   "data_field_id": 4135,
+   "form_id": 313,
+   "alt": "unterschrift_domizilhalter",
+   "neu": "Unterschrift des Domizilhalters",
+   "quelle": "definition – im Formular nur Unterschriftslinie «…………» mit «[Vorname Name]», keine Beschriftung"
+  },
+  {
+   "data_field_id": 4138,
+   "form_id": 314,
+   "alt": "art_der_domiziladresse",
+   "neu": "Domizil an der Geschäftsadresse oder an der privaten Adresse",
+   "quelle": "definition – im Formular nur die Platzhalter «[unserer Geschäftsadresse] / [seiner/ihrer privaten Adresse]» mit «[bitte nicht zutreffendes entfernen]», keine Beschriftung"
+  },
+  {
+   "data_field_id": 4140,
+   "form_id": 314,
+   "alt": "unterschrift_domizilhalter",
+   "neu": "Unterschrift des/der Domizilhalters/in",
+   "quelle": "definition – im Formular nur Unterschriftslinie mit «[Vorname Name]», keine Beschriftung"
+  },
+  {
+   "data_field_id": 4141,
+   "form_id": 315,
+   "alt": "firma_und_sitz",
+   "neu": "Firma und Sitz",
+   "quelle": "Tabellenzeile «Firma und Sitz»"
+  },
+  {
+   "data_field_id": 4144,
+   "form_id": 315,
+   "alt": "unterschriften_anmeldende_personen",
+   "neu": "Persönliche Unterschriften derjenigen Personen, welche die Handelsregisteranmeldung unterzeichnen",
+   "quelle": "Schlussblock, Satz vor den Unterschriftslinien (Doppelpunkt weggelassen)"
+  },
+  {
+   "data_field_id": 4150,
+   "form_id": 322,
+   "alt": "erklaerende_person",
+   "neu": "Absender",
+   "quelle": "Briefkopf-Platzhalter «[Absender]» (Name in Klarschrift zusätzlich als «[Vorname Name]» unter der Unterschrift) – so heisst das gleiche Feld in Form 323"
+  },
+  {
+   "data_field_id": 4152,
+   "form_id": 322,
+   "alt": "gewaehlte_funktion",
+   "neu": "Funktion",
+   "quelle": "definition – im Formular nur die Optionen «[Präsident/in des Verwaltungsrates …]» usw. nach «die Wahl als»; «Funktion» ist auch der Name des gleichen Felds in Form 323/324"
+  },
+  {
+   "data_field_id": 4160,
+   "form_id": 324,
+   "alt": "erklaerende_person",
+   "neu": "Absender",
+   "quelle": "Briefkopf-Platzhalter «[Absender]» (Name zusätzlich als «[Vorname Name]» unter der Unterschrift)"
+  },
+  {
+   "data_field_id": 4165,
+   "form_id": 325,
+   "alt": "erklaerende_person",
+   "neu": "Absender",
+   "quelle": "Briefkopf-Platzhalter «[Absender]» (Name zusätzlich als «[Vorname Name]» unter der Unterschrift)"
+  },
+  {
+   "data_field_id": 4166,
+   "form_id": 325,
+   "alt": "stiftung_firma",
+   "neu": "Firma",
+   "quelle": "Platzhalter «der [Firma]» im Adressblock und im Erklärungstext"
+  },
+  {
+   "data_field_id": 4167,
+   "form_id": 325,
+   "alt": "gewaehlte_funktion",
+   "neu": "Funktion",
+   "quelle": "definition – im Formular nur die Optionen «[Stiftungsratsmitglied …]» / «[Zeichnungsberechtigte/r …]» nach «die Wahl als»"
+  },
+  {
+   "data_field_id": 5034,
+   "form_id": 443,
+   "alt": "Identifikation_Equide",
+   "neu": "Identifizierung des Equiden",
+   "quelle": "S. 1, Abschnitt «1. Identifizierung des Equiden»"
+  },
+  {
+   "data_field_id": 5036,
+   "form_id": 443,
+   "alt": "Tierhaltung_Standort",
+   "neu": "Tierhaltung in welcher der Equide sich gewöhnlich aufhält",
+   "quelle": "S. 1, Abschnitt 3 «Tierhaltung in welcher der Equide sich gewöhnlich aufhält (gemäss Meldung an die TVD)» – Klammerhinweis weggelassen"
+  },
+  {
+   "data_field_id": 5037,
+   "form_id": 443,
+   "alt": "Zustaendiger_Tierhalter",
+   "neu": "Zuständige/r Tierhalter/in",
+   "quelle": "S. 1, Abschnitt 3, Unterblock «zuständige/r Tierhalter/in (in Druckbuchstaben)» – Druckhinweis weggelassen, Anfangsbuchstabe gross"
+  },
+  {
+   "data_field_id": 5038,
+   "form_id": 443,
+   "alt": "Rolle_Bestaetigung_Impfung_Tierarztkontrolle",
+   "neu": "Bestätigung zu Influenza-Impfung und zweimal jährlicher Vorstellung beim Tierarzt",
+   "quelle": "definition – S. 2 hat nur die Ankreuzfelder «Eigentümer/in» / «Tierhalter/in» unter der Bestätigung, keine Beschriftung"
+  },
+  {
+   "data_field_id": 5039,
+   "form_id": 443,
+   "alt": "Natursprung_Regelung",
+   "neu": "Natursprung",
+   "quelle": "definition/Formular – S. 2 hat nur die Optionen «kein Natursprung stattfindet» / «Natursprung nur in dafür vorgesehenen, abgetrennten Räumlichkeiten stattfindet», keine Beschriftung; «Natursprung» ist das gemeinsame Wort beider"
+  },
+  {
+   "data_field_id": 5040,
+   "form_id": 443,
+   "alt": "Bezeichnung_Raeumlichkeiten_Natursprung",
+   "neu": "Bezeichnung der Räumlichkeiten",
+   "quelle": "S. 2, «Bezeichnung der Räumlichkeiten:»"
+  },
+  {
+   "data_field_id": 5041,
+   "form_id": 443,
+   "alt": "Rolle_Hauptverantwortung_Tierarzneimittel",
+   "neu": "Person, welche die Hauptverantwortung trägt für den Einsatz von Tierarzneimitteln am Equiden",
+   "quelle": "S. 2, Satzanfang «Die Person, welche die Hauptverantwortung trägt für den Einsatz von Tierarzneimitteln am Equiden, bestätigt» (Ankreuzfelder Eigentümer/in / Tierhalter/in)"
+  },
+  {
+   "data_field_id": 5042,
+   "form_id": 443,
+   "alt": "Beilage_Equidenpass",
+   "neu": "Equidenpass",
+   "quelle": "S. 2, Schlusssatz «… ist zusammen mit dem Equidenpass an das Veterinäramt … einzusenden»"
+  },
+  {
+   "data_field_id": 5098,
+   "form_id": 449,
+   "alt": "Gemeinnuetzige_Arbeit_im_Wohnkanton",
+   "neu": "Möchten Sie die gemeinnützige Arbeit in Ihrem Wohnkanton leisten?",
+   "quelle": "S. 1, Frage «Möchten Sie die gemeinnützige Arbeit - eine Bewilligung in dieser Vollzugsform vorausgesetzt - in Ihrem Wohnkanton leisten?» – Einschub zwischen Gedankenstrichen weggelassen"
+  },
+  {
+   "data_field_id": 5099,
+   "form_id": 449,
+   "alt": "Beilage_Strafentscheid",
+   "neu": "Strafbefehl, Bussenverfügung oder Urteil",
+   "quelle": "S. 1, «Folgende Beilage muss zusammen mit diesem Gesuch eingereicht werden: Strafbefehl, Bussenverfügung oder Urteil»"
+  },
+  {
+   "data_field_id": 5192,
+   "form_id": 454,
+   "alt": "Beilagen_Erstantrag",
+   "neu": "Beilagen für Erstantrag",
+   "quelle": "Abschnitt «2.1 Beilagen für Erstantrag»"
+  },
+  {
+   "data_field_id": 5193,
+   "form_id": 454,
+   "alt": "Nachweis_Aspirantenkurs",
+   "neu": "Nachweis des absolvierten Aspirantenkurses",
+   "quelle": "definition «Nachweis des absolvierten Aspirantenkurses, nur für Bergführer-Aspirantinnen und -Aspiranten» – der Ankreuzpunkt «Bergführer-Aspirantinnen/ -Aspiranten» in Abschnitt 2.1 benennt, wer beilegt, nicht was beigelegt wird; darunter stehen nur die drei Kopie-Optionen zum Aspirantenkurs, die Beilage selbst hat keine eigene Beschriftung"
+  },
+  {
+   "data_field_id": 5194,
+   "form_id": 454,
+   "alt": "Nachweis_Zusatzausbildung_Canyoning",
+   "neu": "Nachweis der anerkannten Zusatzausbildung für die Bewilligung Canyoning",
+   "quelle": "definition (wörtlich, Schlusspunkt weggelassen) – der Ankreuzpunkt «Bewilligung für Canyoning (Art. 3 Abs. 1 Bst i RiskV)» in Abschnitt 2.1 benennt die beantragte Bewilligung, nicht die Beilage; darunter stehen nur die Kopie-Optionen («… anerkannte Zusatzausbildung des SBV/IVBV», Melde- oder Anerkennungsbestätigung)"
+  },
+  {
+   "data_field_id": 5195,
+   "form_id": 454,
+   "alt": "Beilagen_Erneuerungsantrag",
+   "neu": "Beilagen für Erneuerungsantrag",
+   "quelle": "Abschnitt «2.2 Beilagen für Erneuerungsantrag»"
+  },
+  {
+   "data_field_id": 5196,
+   "form_id": 454,
+   "alt": "Bisherige_Bewilligung_Erteilungsdatum",
+   "neu": "Datum der Erteilung / letzten Erneuerung",
+   "quelle": "Abschnitt 2.2, Zeile «Datum der Erteilung / letzten Erneuerung»"
+  },
+  {
+   "data_field_id": 5197,
+   "form_id": 454,
+   "alt": "Bisherige_Bewilligung_gueltig_bis",
+   "neu": "Bewilligung gültig bis",
+   "quelle": "Abschnitt 2.2, Zeile «Bewilligung gültig bis»"
+  },
+  {
+   "data_field_id": 5199,
+   "form_id": 455,
+   "alt": "Gesuchsteller_Betrieb",
+   "neu": "Gesuchsteller/in (Betrieb)",
+   "quelle": "S. 1, Zeile «Gesuchsteller/in (Betrieb):»"
+  },
+  {
+   "data_field_id": 5200,
+   "form_id": 455,
+   "alt": "Personalien_Jugendliche",
+   "neu": "Jugendliche/r",
+   "quelle": "S. 1, Zeile «Jugendliche/r (Vor-/Nachname):» – der Klammerteil ist das Teilfeld «Vor-/Nachname»"
+  },
+  {
+   "data_field_id": 5205,
+   "form_id": 455,
+   "alt": "Aerztliches_Zeugnis",
+   "neu": "Ärztliches Zeugnis",
+   "quelle": "S. 1, Einleitung «… wenn ein ärztliches Zeugnis bestätigt, dass …» (Anfangsbuchstabe gross)"
+  },
+  {
+   "data_field_id": 5207,
+   "form_id": 456,
+   "alt": "Bestellmengen_Formulare",
+   "neu": "Anzahl der bestellten Exemplare",
+   "quelle": "definition – der Formularbestellschein hat nur die Formularnamen als Spalten, keine Beschriftung der Mengenfelder"
+  },
+  {
+   "data_field_id": 5249,
+   "form_id": 461,
+   "alt": "Weitere_Angaben_zum_Schaetzungsgrund",
+   "neu": "Weitere Angaben zum Schätzungsgrund",
+   "quelle": "definition – die freien Zeilen (Widgets «Sg 1–16», «Text 1–16») tragen im Formular keine Beschriftung"
+  },
+  {
+   "data_field_id": 5254,
+   "form_id": 462,
+   "alt": "Datum_Bestandeszugehoerigkeit",
+   "neu": "Seit (Datum) im Bestand (Herkunftsort)",
+   "quelle": "S. 1, C) Bestätigung 2: «Untenstehende Equide (Sendung) ist seit (Datum) …… im Bestand (Herkunftsort).»"
+  },
+  {
+   "data_field_id": 5255,
+   "form_id": 462,
+   "alt": "Seit_diesem_Datum_eingestallte_Equiden",
+   "neu": "In diesem Bestand sind seit dem oben genannten Datum folgende Equide eingestallt worden",
+   "quelle": "S. 1, C) Bestätigung 2, zweiter Punkt (Tabellenüberschrift; Schlusspunkt weggelassen)"
+  },
+  {
+   "data_field_id": 5256,
+   "form_id": 462,
+   "alt": "Absender_Exporteur",
+   "neu": "Absender",
+   "quelle": "S. 2, Handelsbeteiligte, Zeile «Absender – Besitzer des Tieres vor Transport (Exporteur)»"
+  },
+  {
+   "data_field_id": 5257,
+   "form_id": 462,
+   "alt": "Empfaenger_Importeur",
+   "neu": "Empfänger",
+   "quelle": "S. 2, Handelsbeteiligte, Zeile «Empfänger – Besitzer des Tieres nach Transport (Importeur)»"
+  },
+  {
+   "data_field_id": 5259,
+   "form_id": 462,
+   "alt": "Herkunftsort_Verladeort",
+   "neu": "Herkunftsort / Verladeort",
+   "quelle": "S. 2, Zeile «Herkunftsort / Verladeort – Tierhaltung, in der das Tier vor dem Transport steht»"
+  },
+  {
+   "data_field_id": 5264,
+   "form_id": 462,
+   "alt": "Geburtsdatum_Tier",
+   "neu": "Geburtsdatum",
+   "quelle": "S. 3, Block «Sendung», Zeile «Geburtsdatum» (das Tier ergibt sich aus dem Block)"
+  },
+  {
+   "data_field_id": 5265,
+   "form_id": 462,
+   "alt": "Kennzeichnung_Tieridentifikation",
+   "neu": "Kennzeichnung / Tieridentifikation",
+   "quelle": "S. 3, Block «Sendung»"
+  },
+  {
+   "data_field_id": 5266,
+   "form_id": 462,
+   "alt": "UELN_Nummer",
+   "neu": "UELN-Nummer",
+   "quelle": "S. 3, Block «Sendung»"
+  },
+  {
+   "data_field_id": 5268,
+   "form_id": 462,
+   "alt": "Chip_Nummer",
+   "neu": "Chip-Nummer",
+   "quelle": "S. 3, Block «Sendung»"
+  },
+  {
+   "data_field_id": 5269,
+   "form_id": 462,
+   "alt": "Name_des_Tieres",
+   "neu": "Name",
+   "quelle": "S. 3, Block «Sendung», Zeile «Name» (Name des Tieres ergibt sich nur aus dem Block)"
+  },
+  {
+   "data_field_id": 5272,
+   "form_id": 462,
+   "alt": "Abfahrt_Datum_Uhrzeit",
+   "neu": "Abfahrt Datum / Uhrzeit",
+   "quelle": "S. 3, Block «Transport», «Abfahrt Datum / Uhrzeit»"
+  },
+  {
+   "data_field_id": 5273,
+   "form_id": 462,
+   "alt": "Rueckkehr_Datum_Uhrzeit",
+   "neu": "Rückkehr Datum / Uhrzeit",
+   "quelle": "S. 3, Block «Transport», «Rückkehr: Datum / Uhrzeit» (Doppelpunkt weggelassen)"
+  },
+  {
+   "data_field_id": 5276,
+   "form_id": 462,
+   "alt": "Strassenfahrzeug_Nummer_Kennzeichen",
+   "neu": "Straßenfahrzeug Nr. / Kennzeichen",
+   "quelle": "S. 3, Block «Transport», «Straßenfahrzeug Nr. /Kennzeichen» (Schreibung ß wie im Formular)"
+  },
+  {
+   "data_field_id": 5277,
+   "form_id": 462,
+   "alt": "Durchfuhr_EU_Mitgliedstaaten",
+   "neu": "Durchfuhr durch EU-Mitgliedstaaten",
+   "quelle": "S. 3, Block «Route», «Durchfuhr durch EU-Mitgliedstaaten: bitte angeben» (Trennstriche und Ausfüllhinweis weggelassen)"
+  },
+  {
+   "data_field_id": 5278,
+   "form_id": 462,
+   "alt": "Durchfuhr_Drittland",
+   "neu": "Durchfuhr durch ein Drittland?",
+   "quelle": "S. 3, Block «Route», «Durchfuhr durch ein Drittland? Bitte angeben» (Ausfüllhinweis weggelassen)"
+  },
+  {
+   "data_field_id": 5279,
+   "form_id": 462,
+   "alt": "Validierungsabzeichen_im_Equidenpass_vorhanden",
+   "neu": "Validierungsabzeichen in Equidenpass vorhanden?",
+   "quelle": "S. 3, «Validierungsabzeichen in Equidenpass vorhanden?»"
+  },
+  {
+   "data_field_id": 5280,
+   "form_id": 462,
+   "alt": "Validierungsabzeichen_ausgestellt_am",
+   "neu": "Falls ja, ausgestellt am",
+   "quelle": "S. 3, «falls ja, ausgestellt am:» (Anfangsbuchstabe gross)"
+  },
+  {
+   "data_field_id": 5281,
+   "form_id": 463,
+   "alt": "Personalien_Loeschberechtigter",
+   "neu": "Löschberechtigter",
+   "quelle": "Abschnitt «A) LÖSCHBERECHTIGTER» (so auch «Löschberechtigter telefonisch erreichbar»)"
+  },
+  {
+   "data_field_id": 5282,
+   "form_id": 463,
+   "alt": "Rechtsgueltiger_Antragsteller_bei_Firmen",
+   "neu": "Bei Firmen Name, Vorname und Funktion des rechtsgültigen Antragstellers",
+   "quelle": "Abschnitt A, Zeile «Bei Firmen Name, Vorname und Funktion des rechtsgültigen Antragstellers»"
+  },
+  {
+   "data_field_id": 5285,
+   "form_id": 463,
+   "alt": "Marke_und_Typ",
+   "neu": "Marke und Typ",
+   "quelle": "Abschnitt «B) FAHRZEUGANGABEN», Feld «Marke und Typ»"
+  },
+  {
+   "data_field_id": 5295,
+   "form_id": 466,
+   "alt": "Auftraggeber_und_Rechnungsadresse",
+   "neu": "Auftraggeber / Eigentümer und Rechnungsadresse",
+   "quelle": "Kopfblock links «Auftraggeber / Eigentümer und Rechnungsadresse:»"
+  },
+  {
+   "data_field_id": 5296,
+   "form_id": 466,
+   "alt": "Telefon_Auftraggeber",
+   "neu": "Telefonnummern Auftraggeber",
+   "quelle": "definition «Telefonnummern, unter denen die auftraggebende Person erreichbar ist» – im Formular nur die Zeilen «Tel. P.» / «Tel. G.» / «Tel. Mobil» (die Teilfelder) ohne gemeinsame Beschriftung; «Auftraggeber» stammt aus dem Kopfblock «Auftraggeber / Eigentümer und Rechnungsadresse:». Die Rolle eines Teilfelds steht im Elternfeld, und Form 466 hat mit 5297 einen separaten Eigentümer"
+  },
+  {
+   "data_field_id": 5299,
+   "form_id": 466,
+   "alt": "Art_des_Auftrages",
+   "neu": "Art des Auftrages",
+   "quelle": "Zeile «Art des Auftrages:»"
+  },
+  {
+   "data_field_id": 5301,
+   "form_id": 467,
+   "alt": "Personalien_Pflegeeltern",
+   "neu": "Gesuchstellende Personen",
+   "quelle": "Abschnittsüberschrift «Gesuchstellende Personen» (Spalten Pflegemutter / Pflegevater)"
+  },
+  {
+   "data_field_id": 5302,
+   "form_id": 467,
+   "alt": "Personalien_Pflegekind",
+   "neu": "Angaben zum Pflegekind",
+   "quelle": "Abschnittsüberschrift «Angaben zum Pflegekind»"
+  },
+  {
+   "data_field_id": 5303,
+   "form_id": 467,
+   "alt": "Konfession_Religionsgemeinschaft",
+   "neu": "Konfession / Religionsgemeinschaft",
+   "quelle": "Angaben zum Pflegekind, Zeile «Konfession / Religionsgemeinschaft:»"
+  },
+  {
+   "data_field_id": 5304,
+   "form_id": 467,
+   "alt": "Religionsausuebung_Umfang",
+   "neu": "Praktizierend, wenn ja in welchem Umfang",
+   "quelle": "Angaben zum Pflegekind, Zeile «Praktizierend, wenn ja in welchem Umfang:»"
+  },
+  {
+   "data_field_id": 5305,
+   "form_id": 467,
+   "alt": "Waise_Halbwaise",
+   "neu": "Waise / Halbwaise",
+   "quelle": "Angaben zum Pflegekind, Zeile «Waise / Halbwaise»"
+  },
+  {
+   "data_field_id": 5306,
+   "form_id": 467,
+   "alt": "Schule_Ausbildung",
+   "neu": "Schule / Ausbildung",
+   "quelle": "Angaben zum Pflegekind, Zeile «Schule / Ausbildung»"
+  },
+  {
+   "data_field_id": 5307,
+   "form_id": 467,
+   "alt": "Aktuelle_Klasse",
+   "neu": "Aktuelle Klasse",
+   "quelle": "Angaben zum Pflegekind, Zeile «Aktuelle Klasse»"
+  },
+  {
+   "data_field_id": 5309,
+   "form_id": 467,
+   "alt": "Vorheriger_Aufenthaltsort",
+   "neu": "Vorheriger Aufenthaltsort, Adresse",
+   "quelle": "Angaben zum Pflegekind, Zeile «vorheriger Aufenthaltsort, Adresse» (Anfangsbuchstabe gross)"
+  },
+  {
+   "data_field_id": 5310,
+   "form_id": 467,
+   "alt": "Zivilrechtlicher_Wohnsitz",
+   "neu": "Zivilrechtlicher Wohnsitz, Adresse",
+   "quelle": "Angaben zum Pflegekind, Zeile «Zivilrechtlicher Wohnsitz, Adresse»"
+  },
+  {
+   "data_field_id": 5314,
+   "form_id": 467,
+   "alt": "Angaben_zu_den_Kindseltern",
+   "neu": "Eltern des Kindes",
+   "quelle": "Abschnittsüberschrift «Eltern des Kindes» (Spalten Mutter / Vater)"
+  },
+  {
+   "data_field_id": 5315,
+   "form_id": 467,
+   "alt": "Weitere_Angaben_zu_den_Kindseltern",
+   "neu": "Weiteres (Eltern des Kindes)",
+   "quelle": "Zeile «weiteres» im Abschnitt «Eltern des Kindes» (Anfangsbuchstabe gross); die Abschnittsüberschrift steht in Klammern wie bei «Anderer Grund (Kind)», weil das Feld kein Elternfeld hat und «Weiteres» allein kein Datum benennt"
+  },
+  {
+   "data_field_id": 5316,
+   "form_id": 467,
+   "alt": "Geschwister_des_Pflegekindes",
+   "neu": "Geschwister des Pflegekindes",
+   "quelle": "Abschnittsüberschrift «Geschwister des Pflegekindes»"
+  },
+  {
+   "data_field_id": 5318,
+   "form_id": 467,
+   "alt": "Weitere_wichtige_Kontaktpersonen",
+   "neu": "Weitere wichtige Kontaktpersonen des Pflegekindes",
+   "quelle": "Abschnittsüberschrift «Weitere wichtige Kontaktpersonen des Pflegekindes»"
+  },
+  {
+   "data_field_id": 5319,
+   "form_id": 467,
+   "alt": "Inhaber_der_elterlichen_Sorge",
+   "neu": "Inhaber der elterlichen Sorge / gesetzliche Vertretung",
+   "quelle": "Abschnittsüberschrift «Inhaber der elterlichen Sorge / gesetzliche Vertretung»"
+  },
+  {
+   "data_field_id": 5320,
+   "form_id": 467,
+   "alt": "Zustaendige_KESB",
+   "neu": "Zuständige Kinder- und Erwachsenenschutzbehörde KESB",
+   "quelle": "Abschnittsüberschrift «Zuständige Kinder- und Erwachsenenschutzbehörde KESB»"
+  },
+  {
+   "data_field_id": 5321,
+   "form_id": 467,
+   "alt": "Zusammenarbeit_mit_DAF",
+   "neu": "Zusammenarbeit mit Dienstleistungsanbietende in der Familienpflege (DAF)",
+   "quelle": "Abschnittsüberschrift «Zusammenarbeit mit Dienstleistungsanbietende in der Familienpflege (DAF)» mit Ja/Nein"
+  },
+  {
+   "data_field_id": 5322,
+   "form_id": 467,
+   "alt": "Angaben_zur_DAF",
+   "neu": "Dienstleistungsanbietende in der Familienpflege (DAF)",
+   "quelle": "Abschnitt «Zusammenarbeit mit Dienstleistungsanbietende in der Familienpflege (DAF)» – der Kontaktblock darunter hat keine eigene Überschrift, übernommen ist das Wort der Überschrift, das die Stelle benennt"
+  },
+  {
+   "data_field_id": 5323,
+   "form_id": 467,
+   "alt": "Art_des_Pflegeplatzes",
+   "neu": "Art des Pflegeplatzes",
+   "quelle": "Abschnittsüberschrift «Art des Pflegeplatzes»"
+  },
+  {
+   "data_field_id": 5325,
+   "form_id": 467,
+   "alt": "Grund_der_Platzierung",
+   "neu": "Grund der Platzierung",
+   "quelle": "Abschnittsüberschrift «Grund der Platzierung»"
+  },
+  {
+   "data_field_id": 5326,
+   "form_id": 467,
+   "alt": "Beginn_des_Pflegeverhaeltnisses",
+   "neu": "Beginn des Pflegeverhältnisses",
+   "quelle": "Zeile «Beginn des Pflegeverhältnisses:»"
+  },
+  {
+   "data_field_id": 5327,
+   "form_id": 467,
+   "alt": "Voraussichtliche_Dauer_des_Pflegeverhaeltnisses",
+   "neu": "Voraussichtliche Dauer des Pflegeverhältnisses",
+   "quelle": "Zeile «voraussichtliche Dauer des Pflegeverhältnisses:» (Anfangsbuchstabe gross)"
+  },
+  {
+   "data_field_id": 5328,
+   "form_id": 467,
+   "alt": "Pflegevertrag_abgeschlossen",
+   "neu": "Pflegevertrag abgeschlossen",
+   "quelle": "Zeile «Pflegevertrag» / «Abgeschlossen» mit Ja/Nein"
+  },
+  {
+   "data_field_id": 5329,
+   "form_id": 467,
+   "alt": "Frueherer_Wohnort_des_Pflegekindes",
+   "neu": "Früherer Wohnort (Eltern, Pflegefamilie, Institution) des Pflegekindes",
+   "quelle": "Zeile «Früherer Wohnort (Eltern, Pflegefamilie, Institution) des Pflegekindes»"
+  },
+  {
+   "data_field_id": 5330,
+   "form_id": 467,
+   "alt": "Bestehende_zivilrechtliche_Kindesschutzmassnahmen",
+   "neu": "Bestehende zivilrechtliche Kindesschutzmassnahmen",
+   "quelle": "Abschnittsüberschrift «Bestehende zivilrechtliche Kindesschutzmassnahmen»"
+  },
+  {
+   "data_field_id": 5331,
+   "form_id": 467,
+   "alt": "Andere_Kindesschutzmassnahme",
+   "neu": "Andere Kindesschutzmassnahme",
+   "quelle": "Ankreuzpunkt «andere:» mit Textfeld unter «Bestehende zivilrechtliche Kindesschutzmassnahmen»; «Kindesschutzmassnahme» aus der Definition («Bezeichnung der Kindesschutzmassnahme, falls «andere» angekreuzt wurde»). Gleiches Muster wie «Andere Ersatzmassnahme»; «Andere» allein benennt ausserhalb des Formulars nichts"
+  },
+  {
+   "data_field_id": 5332,
+   "form_id": 467,
+   "alt": "Funktion_Beistand_oder_Vormund",
+   "neu": "Beistand / Vormund",
+   "quelle": "Zeile «Beistand ☐ / Vormund ☐»"
+  },
+  {
+   "data_field_id": 5333,
+   "form_id": 467,
+   "alt": "Kontaktdaten_Beistand_Vormund",
+   "neu": "Name und Kontaktangaben des Beistands beziehungsweise Vormunds",
+   "quelle": "definition – der Kontaktblock (Vorname, Name / Adresse / Telefon / E-Mail) hat keine eigene Überschrift; «Beistand / Vormund» trägt bereits Feld 5332"
+  }
+ ],
+ "teilfelder": [
+  {
+   "subfield_id": 5527,
+   "data_field_id": 4076,
+   "alt": "couvert_aufschrift",
+   "neu": "Aufschrift",
+   "quelle": "Abschnitt 3, «In einem verschlossenen Couvert mit der Aufschrift:……»"
+  },
+  {
+   "subfield_id": 5528,
+   "data_field_id": 4076,
+   "alt": "elektronischer_kanal",
+   "neu": "Elektronisch mittels",
+   "quelle": "Abschnitt 3, «… oder elektronisch mittels ……» (Anfangsbuchstabe gross)"
+  },
+  {
+   "subfield_id": 5530,
+   "data_field_id": 4084,
+   "alt": "rechtsgueltige_unterschrift",
+   "neu": "Rechtsgültige Unterschrift(en)",
+   "quelle": "Schlussblock «Firmenstempel und rechtsgültige Unterschrift(en):» – Teil nach «Firmenstempel und»"
+  },
+  {
+   "subfield_id": 5657,
+   "data_field_id": 4191,
+   "alt": "verantwortliche_person",
+   "neu": "Verantwortliche Person",
+   "quelle": "Block «Gesuchsteller/in», Zeile «Verantwortliche Person»"
+  },
+  {
+   "subfield_id": 5658,
+   "data_field_id": 4191,
+   "alt": "adresse_einrichtung",
+   "neu": "Adresse Einrichtung",
+   "quelle": "Block «Gesuchsteller/in», Zeile «Adresse Einrichtung»"
+  },
+  {
+   "subfield_id": 5659,
+   "data_field_id": 4191,
+   "alt": "plz_ort_einrichtung",
+   "neu": "PLZ/Ort Einrichtung",
+   "quelle": "Block «Gesuchsteller/in», Zeile «PLZ/Ort Einrichtung» (ein Formularfeld, bleibt ein Teilfeld)"
+  },
+  {
+   "subfield_id": 5661,
+   "data_field_id": 4191,
+   "alt": "telefon_tagsueber",
+   "neu": "Tel. tagsüber",
+   "quelle": "Block «Gesuchsteller/in», Zeile «Tel. tagsüber»"
+  },
+  {
+   "subfield_id": 5662,
+   "data_field_id": 4194,
+   "alt": "name_kursanbieter",
+   "neu": "Name Kursanbieter",
+   "quelle": "Block «Massnahme», Zeile «Name Kursanbieter»"
+  },
+  {
+   "subfield_id": 5663,
+   "data_field_id": 4194,
+   "alt": "adresse_kursanbieter",
+   "neu": "Adresse Kursanbieter",
+   "quelle": "Block «Massnahme», Zeile «Adresse Kursanbieter»"
+  },
+  {
+   "subfield_id": 5664,
+   "data_field_id": 4194,
+   "alt": "plz_ort_kursanbieter",
+   "neu": "PLZ/Ort Kursanbieter",
+   "quelle": "Block «Massnahme», Zeile «PLZ/Ort Kursanbieter»"
+  },
+  {
+   "subfield_id": 5665,
+   "data_field_id": 4194,
+   "alt": "telefon_kursanbieter",
+   "neu": "Tel. Kursanbieter",
+   "quelle": "Block «Massnahme», Zeile «Tel. Kursanbieter»"
+  },
+  {
+   "subfield_id": 5531,
+   "data_field_id": 4085,
+   "alt": "vorname_name",
+   "neu": "Vorname und Name",
+   "quelle": "Block «Personendaten des/r Absolventen/in», Zeile «Vorname und Name»"
+  },
+  {
+   "subfield_id": 5533,
+   "data_field_id": 4085,
+   "alt": "plz_ort",
+   "neu": "PLZ/Ort",
+   "quelle": "Block «Personendaten des/r Absolventen/in», Zeile «PLZ/Ort»"
+  },
+  {
+   "subfield_id": 5535,
+   "data_field_id": 4085,
+   "alt": "tel_tagsueber",
+   "neu": "Tel. tagsüber",
+   "quelle": "Block «Personendaten des/r Absolventen/in», Zeile «Tel. tagsüber»"
+  },
+  {
+   "subfield_id": 5536,
+   "data_field_id": 4085,
+   "alt": "verein_oder_verband",
+   "neu": "Verein oder Verband",
+   "quelle": "Block «Personendaten des/r Absolventen/in», Zeile «Verein oder Verband» (Zusatz «(aktuell als Funktionär/in tätig)» weggelassen)"
+  },
+  {
+   "subfield_id": 5537,
+   "data_field_id": 4087,
+   "alt": "name_kontoinhaber",
+   "neu": "Name Kontoinhaber/in",
+   "quelle": "Block «Kontoangaben des/r Absolventen/in», Zeile «Name Kontoinhaber/in»"
+  },
+  {
+   "subfield_id": 5538,
+   "data_field_id": 4087,
+   "alt": "plz_ort",
+   "neu": "PLZ/Ort",
+   "quelle": "Block «Kontoangaben des/r Absolventen/in», Zeile «PLZ/Ort»"
+  },
+  {
+   "subfield_id": 5540,
+   "data_field_id": 4087,
+   "alt": "iban_nr",
+   "neu": "IBAN-Nr.",
+   "quelle": "Block «Kontoangaben des/r Absolventen/in», Zeile «IBAN-Nr.»"
+  },
+  {
+   "subfield_id": 5541,
+   "data_field_id": 4091,
+   "alt": "name_vorname",
+   "neu": "Name/Vorname",
+   "quelle": "Anmeldeblatt, Block «Personalien», Zeile «Name/Vorname»"
+  },
+  {
+   "subfield_id": 5546,
+   "data_field_id": 4091,
+   "alt": "kontaktadresse_telefon_bei_abwesenheit",
+   "neu": "Kontaktadresse/Telefon (bei Abwesenheit)",
+   "quelle": "Anmeldeblatt, Block «Personalien», Zeile «Kontaktadresse/Telefon (bei Abwesenheit)»"
+  },
+  {
+   "subfield_id": 5547,
+   "data_field_id": 4092,
+   "alt": "bankverbindung_name_adresse",
+   "neu": "Bankverbindung (Name/Adresse)",
+   "quelle": "Anmeldeblatt, Block «Bank-/Postverbindung», Zeile «Bankverbindung (Name/Adresse)»"
+  },
+  {
+   "subfield_id": 5548,
+   "data_field_id": 4092,
+   "alt": "iban_nummer",
+   "neu": "IBAN-Nummer",
+   "quelle": "Anmeldeblatt, Block «Bank-/Postverbindung», Zeile «IBAN-Nummer (zwingend angeben)» – Ausfüllhinweis weggelassen"
+  },
+  {
+   "subfield_id": 5549,
+   "data_field_id": 4094,
+   "alt": "wohnhaft_oder_atelier_im_kanton_seit_jahr",
+   "neu": "Im Kanton Schaffhausen wohnhaft seit (Jahr) oder Atelier im Kanton Schaffhausen seit (Jahr)",
+   "quelle": "Anmeldeblatt, Block «Tätigkeit und Bezug zu Schaffhausen», Zeile 2"
+  },
+  {
+   "subfield_id": 5550,
+   "data_field_id": 4094,
+   "alt": "buergerort_oder_anderer_bezug",
+   "neu": "Bürgerort oder anderer Bezug zum Kanton Schaffhausen",
+   "quelle": "Anmeldeblatt, Block «Tätigkeit und Bezug zu Schaffhausen», Zeile 3"
+  },
+  {
+   "subfield_id": 5557,
+   "data_field_id": 4103,
+   "alt": "aenderungsvorschlaege_bemerkungen",
+   "neu": "Ihre Änderungsvorschläge/Ihre Bemerkungen",
+   "quelle": "Tabellenkopf, Spalte 3"
+  },
+  {
+   "subfield_id": 5558,
+   "data_field_id": 4106,
+   "alt": "vorname_name",
+   "neu": "Vorname und Name",
+   "quelle": "Block «Allgemeine Angaben», Zeile «Kontaktperson bei Fragen (Vorname und Name, Telefon, E-Mail)»"
+  },
+  {
+   "subfield_id": 5563,
+   "data_field_id": 4108,
+   "alt": "aenderungsvorschlaege_bemerkungen",
+   "neu": "Ihre Änderungsvorschläge/Ihre Bemerkungen",
+   "quelle": "Tabellenkopf, Spalte 3"
+  },
+  {
+   "subfield_id": 5576,
+   "data_field_id": 4117,
+   "alt": "geburtsort_und_staat",
+   "neu": "Geburtsort und -staat",
+   "quelle": "S. 1, Abschnitt «Bewerber/in», Feld «Geburtsort und -staat»"
+  },
+  {
+   "subfield_id": 5578,
+   "data_field_id": 4117,
+   "alt": "telefon_und_handynummer",
+   "neu": "Telefon- und Handynummer",
+   "quelle": "S. 1, Abschnitt «Bewerber/in», Feld «Telefon- und Handynummer»"
+  },
+  {
+   "subfield_id": 5579,
+   "data_field_id": 4117,
+   "alt": "email_adresse",
+   "neu": "E-Mail Adresse",
+   "quelle": "S. 1, Abschnitt «Bewerber/in», Feld «E-Mail Adresse»"
+  },
+  {
+   "subfield_id": 5580,
+   "data_field_id": 4118,
+   "alt": "andere_sprache",
+   "neu": "Andere",
+   "quelle": "S. 1, «Muttersprache»: Option «andere / autre / altro:» mit Textfeld (Anfangsbuchstabe gross)"
+  },
+  {
+   "subfield_id": 5584,
+   "data_field_id": 4120,
+   "alt": "geburtsdatum_und_ort",
+   "neu": "Geburtsdatum und -ort",
+   "quelle": "S. 1, Abschnitt «Eltern», Zeile «Vater: … Geburtsdatum und -ort …»"
+  },
+  {
+   "subfield_id": 5589,
+   "data_field_id": 4121,
+   "alt": "geburtsdatum_und_ort",
+   "neu": "Geburtsdatum und -ort",
+   "quelle": "S. 1, Abschnitt «Eltern», Zeile «Mutter: … Geburtsdatum und -ort …»"
+  },
+  {
+   "subfield_id": 5592,
+   "data_field_id": 4123,
+   "alt": "berufliche_taetigkeit",
+   "neu": "Berufliche Tätigkeit",
+   "quelle": "Block «Arbeitsverhältnis» (Bewerber/in), «ich übe folgende berufliche Tätigkeit aus»"
+  },
+  {
+   "subfield_id": 5593,
+   "data_field_id": 4123,
+   "alt": "praezisierung_anderes",
+   "neu": "Anderes (bitte präzisieren)",
+   "quelle": "Block «Arbeitsverhältnis» (Bewerber/in), Option «anderes (bitte präzisieren)» (Anfangsbuchstabe gross)"
+  },
+  {
+   "subfield_id": 5594,
+   "data_field_id": 4123,
+   "alt": "arbeitgeber_name_adresse_telefon",
+   "neu": "Name, Adresse und Telefonnummer des Arbeitgebers oder der Ausbildungsstätte",
+   "quelle": "Block «Arbeitsverhältnis» (Bewerber/in)"
+  },
+  {
+   "subfield_id": 5595,
+   "data_field_id": 4124,
+   "alt": "wohnort_kanton",
+   "neu": "Wohnort / Kanton",
+   "quelle": "Abschnitt «Aufenthalte in der Schweiz», Spaltenkopf 1"
+  },
+  {
+   "subfield_id": 5596,
+   "data_field_id": 4124,
+   "alt": "dauer_von_bis",
+   "neu": "Dauer (jeweils von wann bis wann)",
+   "quelle": "Abschnitt «Aufenthalte in der Schweiz», Spaltenkopf 2"
+  },
+  {
+   "subfield_id": 5597,
+   "data_field_id": 4125,
+   "alt": "wohnort_land",
+   "neu": "Wohnort / Land",
+   "quelle": "Abschnitt «Aufenthalte im Ausland», Spaltenkopf «Wohnort/ Land» (Leerzeichen angeglichen)"
+  },
+  {
+   "subfield_id": 5598,
+   "data_field_id": 4125,
+   "alt": "dauer_von_bis",
+   "neu": "Dauer (jeweils von wann bis wann)",
+   "quelle": "Abschnitt «Aufenthalte im Ausland», Spaltenkopf 2"
+  },
+  {
+   "subfield_id": 5603,
+   "data_field_id": 4126,
+   "alt": "geburtsort_und_staat",
+   "neu": "Geburtsort und -staat",
+   "quelle": "Abschnitt «Ehegatte», Zeile «Familienname, Ledigname, Vornamen, Geburtsdatum, Geburtsort und -staat»"
+  },
+  {
+   "subfield_id": 5605,
+   "data_field_id": 4127,
+   "alt": "berufliche_taetigkeit",
+   "neu": "Berufliche Tätigkeit",
+   "quelle": "Block «Arbeitsverhältnis» (Ehegatte), «der Ehegatte/die Ehegattin übt folgende berufliche Tätigkeit aus»"
+  },
+  {
+   "subfield_id": 5606,
+   "data_field_id": 4127,
+   "alt": "praezisierung_anderes",
+   "neu": "Anderes (bitte präzisieren)",
+   "quelle": "Block «Arbeitsverhältnis» (Ehegatte), Option «anderes (bitte präzisieren)»"
+  },
+  {
+   "subfield_id": 5607,
+   "data_field_id": 4127,
+   "alt": "arbeitgeber_name_adresse_telefon",
+   "neu": "Name, Adresse und Telefonnummer des Arbeitgebers oder der Ausbildungsstätte",
+   "quelle": "Block «Arbeitsverhältnis» (Ehegatte)"
+  },
+  {
+   "subfield_id": 5612,
+   "data_field_id": 4134,
+   "alt": "strasse_nr",
+   "neu": "Strasse Nr.",
+   "quelle": "Platzhalter «[Strasse Nr.]»"
+  },
+  {
+   "subfield_id": 5613,
+   "data_field_id": 4134,
+   "alt": "plz_ort",
+   "neu": "PLZ Ort",
+   "quelle": "Platzhalter «[PLZ Ort]» (ein Platzhalter, bleibt ein Teilfeld)"
+  },
+  {
+   "subfield_id": 5615,
+   "data_field_id": 4135,
+   "alt": "vorname_name",
+   "neu": "Vorname Name",
+   "quelle": "Platzhalter «[Vorname Name]» unter der Unterschriftslinie"
+  },
+  {
+   "subfield_id": 5616,
+   "data_field_id": 4136,
+   "alt": "vorname_name",
+   "neu": "Vorname Name",
+   "quelle": "Platzhalter «[Vorname Name]» (Absenderblock selbst nur «[Absender]»; das Formular schreibt den Namen als «Vorname Name»)"
+  },
+  {
+   "subfield_id": 5618,
+   "data_field_id": 4139,
+   "alt": "strasse_nr",
+   "neu": "Strasse Nr.",
+   "quelle": "Platzhalter «[Strasse Nr.]»"
+  },
+  {
+   "subfield_id": 5619,
+   "data_field_id": 4139,
+   "alt": "plz_ort",
+   "neu": "PLZ Ort",
+   "quelle": "Platzhalter «[PLZ Ort]»"
+  },
+  {
+   "subfield_id": 5620,
+   "data_field_id": 4140,
+   "alt": "vorname_name",
+   "neu": "Vorname Name",
+   "quelle": "Platzhalter «[Vorname Name]» unter der Unterschriftslinie"
+  },
+  {
+   "subfield_id": 5629,
+   "data_field_id": 4155,
+   "alt": "vorname_name",
+   "neu": "Vorname Name",
+   "quelle": "Platzhalter «[Vorname Name]» (Absenderblock selbst nur «[Absender]»)"
+  },
+  {
+   "subfield_id": 5631,
+   "data_field_id": 4159,
+   "alt": "vorname_name",
+   "neu": "Vorname Name",
+   "quelle": "Platzhalter «[Vorname Name]» unter der Unterschriftslinie"
+  },
+  {
+   "subfield_id": 7075,
+   "data_field_id": 5396,
+   "alt": "e_mail",
+   "neu": "E-Mail",
+   "quelle": "Abschnitt 1 «Angaben zum Betrieb», Zeile «E-Mail:»"
+  },
+  {
+   "subfield_id": 7077,
+   "data_field_id": 5396,
+   "alt": "e_mail_statistikauswertung",
+   "neu": "E-Mail für die jährliche Statistikauswertung",
+   "quelle": "Abschnitt 1, Zeile «E-Mail für die jährlicheStatistikauswertung:» (fehlendes Leerzeichen ergänzt)"
+  },
+  {
+   "subfield_id": 7082,
+   "data_field_id": 5399,
+   "alt": "e_mail",
+   "neu": "E-Mail",
+   "quelle": "Abschnitt 1, Block «Angaben weiterer Geschäftsräumlichkeiten („Betriebsstätten“)», Zeile «E-Mail:»"
+  },
+  {
+   "subfield_id": 7087,
+   "data_field_id": 5400,
+   "alt": "e_mail",
+   "neu": "E-Mail",
+   "quelle": "Abschnitt 1, Block «Angaben des Hauptsitzes», Zeile «E-Mail:»"
+  },
+  {
+   "subfield_id": 7093,
+   "data_field_id": 5443,
+   "alt": "ahv_nummer",
+   "neu": "Sozialversicherungsnummer (AHV-Nr.)",
+   "quelle": "Beiblatt «Verantwortliche Person», Zeile «Sozialversicherungs-nummer (AHV-Nr.):» (Trennstrich entfernt)"
+  },
+  {
+   "subfield_id": 7099,
+   "data_field_id": 5443,
+   "alt": "art_aufenthaltsbewilligung",
+   "neu": "Art der Aufenthaltsbewilligung",
+   "quelle": "Beiblatt, «(bei AusländerInnen auch Art der Aufenthaltsbewilligung)»"
+  },
+  {
+   "subfield_id": 7100,
+   "data_field_id": 5443,
+   "alt": "schulbildung_von_bis",
+   "neu": "Besuchte Schulen von / bis",
+   "quelle": "Beiblatt, Block «Besuchte Schulen», Spaltenkopf «von / bis» – Blocküberschrift vorangestellt, weil «von / bis» im Beiblatt dreimal steht"
+  },
+  {
+   "subfield_id": 7101,
+   "data_field_id": 5443,
+   "alt": "schulbildung_bezeichnung",
+   "neu": "Besuchte Schulen",
+   "quelle": "Beiblatt, Blocküberschrift «Besuchte Schulen» (die Bezeichnungsspalte hat keinen eigenen Kopf)"
+  },
+  {
+   "subfield_id": 7102,
+   "data_field_id": 5443,
+   "alt": "berufsausbildung_von_bis",
+   "neu": "Berufsbezogene Ausbildungen von / bis",
+   "quelle": "Beiblatt, Block «Berufsbezogene Ausbildungen», Spaltenkopf «von / bis» – Blocküberschrift vorangestellt"
+  },
+  {
+   "subfield_id": 7103,
+   "data_field_id": 5443,
+   "alt": "berufsausbildung_bezeichnung",
+   "neu": "Berufsbezogene Ausbildungen",
+   "quelle": "Beiblatt, Blocküberschrift «Berufsbezogene Ausbildungen» (Bezeichnungsspalte ohne eigenen Kopf)"
+  },
+  {
+   "subfield_id": 7104,
+   "data_field_id": 5443,
+   "alt": "berufliche_taetigkeit_von_bis",
+   "neu": "Berufliche Tätigkeit von / bis",
+   "quelle": "Beiblatt, Block «Berufliche Tätigkeit», Spaltenkopf «von / bis» – Blocküberschrift vorangestellt"
+  },
+  {
+   "subfield_id": 7105,
+   "data_field_id": 5443,
+   "alt": "berufliche_taetigkeit_arbeitgeber_funktion",
+   "neu": "Arbeitgeber und Funktion",
+   "quelle": "Beiblatt, Block «Berufliche Tätigkeit», «Arbeitgeber und Funktion, insbesondere Nachweis …»"
+  },
+  {
+   "subfield_id": 7107,
+   "data_field_id": 5443,
+   "alt": "teilzeit_prozent",
+   "neu": "Zu wie viel Prozent arbeiten Sie als verantwortliche Person eines der genannten Betriebe?",
+   "quelle": "Beiblatt, «Falls nein:» – Frage mit %-Feld"
+  },
+  {
+   "subfield_id": 7108,
+   "data_field_id": 5443,
+   "alt": "teilzeit_begruendung",
+   "neu": "Bitte begründen Sie kurz, weshalb Sie diese Tätigkeit nur als Teilzeitbeschäftigung ausüben",
+   "quelle": "Beiblatt, Aufforderung vor dem Textfeld (Doppelpunkt weggelassen)"
+  },
+  {
+   "subfield_id": 7109,
+   "data_field_id": 5443,
+   "alt": "aemter_andere_gesellschaften",
+   "neu": "Bekleiden Sie Ämter in andern Erwerbsgesellschaften (Verwaltungsratsmandate oder andere)?",
+   "quelle": "Beiblatt, Ja/Nein-Frage"
+  },
+  {
+   "subfield_id": 7110,
+   "data_field_id": 5443,
+   "alt": "geschaeftszwecke_andere_gesellschaften",
+   "neu": "Bitte nennen Sie den oder die Geschäftszweck(e), welche(n) die Gesellschaft, wo Sie ebenfalls ein Amt inne haben, verfolgt",
+   "quelle": "Beiblatt, «Falls ja:» – Aufforderung vor dem Textfeld (Doppelpunkt weggelassen)"
+  },
+  {
+   "subfield_id": 7111,
+   "data_field_id": 5443,
+   "alt": "ort_datum",
+   "neu": "Ort und Datum",
+   "quelle": "Beiblatt, Unterschriftsblock «Ort und Datum»"
+  },
+  {
+   "subfield_id": 6894,
+   "data_field_id": 5281,
+   "alt": "Name_und_Vorname_oder_Firmenname",
+   "neu": "Name und Vorname oder Firmenname",
+   "quelle": "Abschnitt A, «Name und Vorname oder Firmenname des Löschberechtigten» – Rolle steht im Elternfeld «Löschberechtigter»"
+  },
+  {
+   "subfield_id": 6895,
+   "data_field_id": 5281,
+   "alt": "Strasse_und_Nr",
+   "neu": "Strasse und Nr.",
+   "quelle": "Abschnitt A, «Strasse und Nr.»"
+  },
+  {
+   "subfield_id": 6896,
+   "data_field_id": 5281,
+   "alt": "PLZ_und_Ort",
+   "neu": "PLZ und Ort",
+   "quelle": "Abschnitt A, «PLZ und Ort» (ein Formularfeld, bleibt ein Teilfeld)"
+  },
+  {
+   "subfield_id": 6928,
+   "data_field_id": 5301,
+   "alt": "Pflegemutter_Vorname_Name",
+   "neu": "Pflegemutter Vorname, Name",
+   "quelle": "«Gesuchstellende Personen», Spalte «Pflegemutter» × Zeile «Vorname, Name» – Spaltenkopf bleibt, weil das Elternfeld beide Pflegeeltern enthält"
+  },
+  {
+   "subfield_id": 6929,
+   "data_field_id": 5301,
+   "alt": "Pflegemutter_Wohnadresse",
+   "neu": "Pflegemutter Wohnadresse",
+   "quelle": "«Gesuchstellende Personen», Spalte «Pflegemutter» × Zeile «Wohnadresse»"
+  },
+  {
+   "subfield_id": 6930,
+   "data_field_id": 5301,
+   "alt": "Pflegemutter_Telefon",
+   "neu": "Pflegemutter Telefon",
+   "quelle": "«Gesuchstellende Personen», Spalte «Pflegemutter» × Zeile «Telefon»"
+  },
+  {
+   "subfield_id": 6931,
+   "data_field_id": 5301,
+   "alt": "Pflegemutter_E_Mail",
+   "neu": "Pflegemutter E-Mail",
+   "quelle": "«Gesuchstellende Personen», Spalte «Pflegemutter» × Zeile «E-Mail»"
+  },
+  {
+   "subfield_id": 6932,
+   "data_field_id": 5301,
+   "alt": "Pflegevater_Vorname_Name",
+   "neu": "Pflegevater Vorname, Name",
+   "quelle": "«Gesuchstellende Personen», Spalte «Pflegevater» × Zeile «Vorname, Name»"
+  },
+  {
+   "subfield_id": 6933,
+   "data_field_id": 5301,
+   "alt": "Pflegevater_Wohnadresse",
+   "neu": "Pflegevater Wohnadresse",
+   "quelle": "«Gesuchstellende Personen», Spalte «Pflegevater» × Zeile «Wohnadresse»"
+  },
+  {
+   "subfield_id": 6934,
+   "data_field_id": 5301,
+   "alt": "Pflegevater_Telefon",
+   "neu": "Pflegevater Telefon",
+   "quelle": "«Gesuchstellende Personen», Spalte «Pflegevater» × Zeile «Telefon»"
+  },
+  {
+   "subfield_id": 6935,
+   "data_field_id": 5301,
+   "alt": "Pflegevater_E_Mail",
+   "neu": "Pflegevater E-Mail",
+   "quelle": "«Gesuchstellende Personen», Spalte «Pflegevater» × Zeile «E-Mail»"
+  },
+  {
+   "subfield_id": 6936,
+   "data_field_id": 5302,
+   "alt": "Vorname_Name",
+   "neu": "Vorname, Name",
+   "quelle": "«Angaben zum Pflegekind», Zeile «Vorname, Name»"
+  },
+  {
+   "subfield_id": 6939,
+   "data_field_id": 5302,
+   "alt": "Buergerort_Nationalitaet",
+   "neu": "Bürgerort, Nationalität",
+   "quelle": "«Angaben zum Pflegekind», Zeile «Bürgerort, Nationalität»"
+  },
+  {
+   "subfield_id": 6940,
+   "data_field_id": 5314,
+   "alt": "Mutter_Vorname_Name",
+   "neu": "Mutter Vorname, Name",
+   "quelle": "«Eltern des Kindes», Spalte «Mutter» × Zeile «Vorname, Name» – Spaltenkopf bleibt, weil das Elternfeld beide Elternteile enthält"
+  },
+  {
+   "subfield_id": 6941,
+   "data_field_id": 5314,
+   "alt": "Mutter_Geburtsdatum",
+   "neu": "Mutter Geburtsdatum",
+   "quelle": "«Eltern des Kindes», Spalte «Mutter» × Zeile «Geburtsdatum»"
+  },
+  {
+   "subfield_id": 6942,
+   "data_field_id": 5314,
+   "alt": "Mutter_Aktueller_Beruf",
+   "neu": "Mutter Aktueller Beruf",
+   "quelle": "«Eltern des Kindes», Spalte «Mutter» × Zeile «Aktueller Beruf»"
+  },
+  {
+   "subfield_id": 6943,
+   "data_field_id": 5314,
+   "alt": "Mutter_Wohnadresse",
+   "neu": "Mutter Wohnadresse",
+   "quelle": "«Eltern des Kindes», Spalte «Mutter» × Zeile «Wohnadresse»"
+  },
+  {
+   "subfield_id": 6944,
+   "data_field_id": 5314,
+   "alt": "Mutter_Zivilstand",
+   "neu": "Mutter Zivilstand",
+   "quelle": "«Eltern des Kindes», Spalte «Mutter» × Zeile «Zivilstand»"
+  },
+  {
+   "subfield_id": 6945,
+   "data_field_id": 5314,
+   "alt": "Mutter_Telefon",
+   "neu": "Mutter Telefon",
+   "quelle": "«Eltern des Kindes», Spalte «Mutter» × Zeile «Telefon»"
+  },
+  {
+   "subfield_id": 6946,
+   "data_field_id": 5314,
+   "alt": "Mutter_E_Mail",
+   "neu": "Mutter E-Mail",
+   "quelle": "«Eltern des Kindes», Spalte «Mutter» × Zeile «E-Mail»"
+  },
+  {
+   "subfield_id": 6947,
+   "data_field_id": 5314,
+   "alt": "Vater_Vorname_Name",
+   "neu": "Vater Vorname, Name",
+   "quelle": "«Eltern des Kindes», Spalte «Vater» × Zeile «Vorname, Name»"
+  },
+  {
+   "subfield_id": 6948,
+   "data_field_id": 5314,
+   "alt": "Vater_Geburtsdatum",
+   "neu": "Vater Geburtsdatum",
+   "quelle": "«Eltern des Kindes», Spalte «Vater» × Zeile «Geburtsdatum»"
+  },
+  {
+   "subfield_id": 6949,
+   "data_field_id": 5314,
+   "alt": "Vater_Aktueller_Beruf",
+   "neu": "Vater Aktueller Beruf",
+   "quelle": "«Eltern des Kindes», Spalte «Vater» × Zeile «Aktueller Beruf»"
+  },
+  {
+   "subfield_id": 6950,
+   "data_field_id": 5314,
+   "alt": "Vater_Wohnadresse",
+   "neu": "Vater Wohnadresse",
+   "quelle": "«Eltern des Kindes», Spalte «Vater» × Zeile «Wohnadresse»"
+  },
+  {
+   "subfield_id": 6951,
+   "data_field_id": 5314,
+   "alt": "Vater_Zivilstand",
+   "neu": "Vater Zivilstand",
+   "quelle": "«Eltern des Kindes», Spalte «Vater» × Zeile «Zivilstand»"
+  },
+  {
+   "subfield_id": 6952,
+   "data_field_id": 5314,
+   "alt": "Vater_Telefon",
+   "neu": "Vater Telefon",
+   "quelle": "«Eltern des Kindes», Spalte «Vater» × Zeile «Telefon»"
+  },
+  {
+   "subfield_id": 6953,
+   "data_field_id": 5314,
+   "alt": "Vater_E_Mail",
+   "neu": "Vater E-Mail",
+   "quelle": "«Eltern des Kindes», Spalte «Vater» × Zeile «E-Mail»"
+  },
+  {
+   "subfield_id": 6954,
+   "data_field_id": 5316,
+   "alt": "Vorname_Name",
+   "neu": "Vorname, Name",
+   "quelle": "«Geschwister des Pflegekindes», Zeile «Vorname, Name»"
+  },
+  {
+   "subfield_id": 6958,
+   "data_field_id": 5317,
+   "alt": "Zu_Mutter",
+   "neu": "Zu Mutter",
+   "quelle": "«Besuchsregelung», Zeile «Zu Mutter»"
+  },
+  {
+   "subfield_id": 6959,
+   "data_field_id": 5317,
+   "alt": "Zu_Vater",
+   "neu": "Zu Vater",
+   "quelle": "«Besuchsregelung», Zeile «Zu Vater»"
+  },
+  {
+   "subfield_id": 6960,
+   "data_field_id": 5317,
+   "alt": "Zu_anderen_Personen",
+   "neu": "Zu anderen Personen",
+   "quelle": "«Besuchsregelung», Zeile «Zu anderen Personen»"
+  },
+  {
+   "subfield_id": 6961,
+   "data_field_id": 5318,
+   "alt": "Vorname_Name",
+   "neu": "Vorname, Name",
+   "quelle": "«Weitere wichtige Kontaktpersonen des Pflegekindes», Zeile «Vorname, Name»"
+  },
+  {
+   "subfield_id": 6966,
+   "data_field_id": 5322,
+   "alt": "E_Mail",
+   "neu": "E-Mail",
+   "quelle": "Block DAF, Zeile «E-Mail»"
+  },
+  {
+   "subfield_id": 6967,
+   "data_field_id": 5322,
+   "alt": "Verantwortliche_Person",
+   "neu": "Verantwortliche Person",
+   "quelle": "Block DAF, Zeile «Verantwortliche Person»"
+  },
+  {
+   "subfield_id": 6968,
+   "data_field_id": 5329,
+   "alt": "Frueherer_Wohnort",
+   "neu": "Früherer Wohnort",
+   "quelle": "Zeile «Früherer Wohnort (Eltern, Pflegefamilie, Institution) des Pflegekindes» – Kern der Zeilenbeschriftung, das Ganze trägt das Elternfeld"
+  },
+  {
+   "subfield_id": 6969,
+   "data_field_id": 5329,
+   "alt": "Von_bis",
+   "neu": "Von / bis",
+   "quelle": "Zeile «Von / bis»"
+  },
+  {
+   "subfield_id": 6970,
+   "data_field_id": 5333,
+   "alt": "Vorname_Name",
+   "neu": "Vorname, Name",
+   "quelle": "Block Beistand / Vormund, Zeile «Vorname, Name»"
+  },
+  {
+   "subfield_id": 6973,
+   "data_field_id": 5333,
+   "alt": "E_Mail",
+   "neu": "E-Mail",
+   "quelle": "Block Beistand / Vormund, Zeile «E-Mail»"
+  }
+ ]
+}

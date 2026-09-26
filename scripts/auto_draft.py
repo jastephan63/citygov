@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Auto-draft modeller: each Formular -> a reviewable DRAFT, ONE requirement PER
+"""RETIRED (2026-06 layer; kept because ingest_new.py imports it) — the curated
+data_field / data_field_legal_basis layer with proof-gated loaders superseded the
+drafts this tool writes; its output is never exported or shown as a citation.
+
+Auto-draft modeller: each Formular -> a reviewable DRAFT, ONE requirement PER
 FIELD (conv 5/6).
 
 For each Formular it: copies the file into forms/, extracts the REAL fields

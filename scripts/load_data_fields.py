@@ -3,18 +3,37 @@
 
 Each JSON (scratchpad/df/<form_id>.json) is the logical data dictionary of one
 form: consolidated data fields (enum with allowed_values, composite with
-subfields, boolean, etc.), NOT raw widgets. Idempotent per form: all rows of
+subfields, boolean, etc.), NOT raw widgets. Replaces the BASE field list of a form;
+curated eCH/eSH/basis_typ/subjekt/citations/subfields/reviews are NOT preserved, so a
+form that already carries them is refused unless --force is given. All rows of
 a form being loaded are replaced. Staging -> validate -> swap.
 
     python3 scripts/load_data_fields.py <dir-of-json>
 """
-import glob, json, os, shutil, sys
+import glob, json, os, shutil, sqlite3, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import DB_PATH, connect
 from validate_db import validate
 
 TYPES = {"text", "date", "number", "money", "boolean", "enum", "multiselect",
          "composite", "attachment", "signature"}
+
+
+
+def curated_layers(conn, fid):
+    """Names of the curated layers that exist on a form's fields (empty = none)."""
+    out = []
+    cols = {r[1] for r in conn.execute("PRAGMA table_info(data_field)")}
+    for col, label in (("ech_element_id", "eCH"), ("esh_code", "eSH"), ("basis_typ", "basis_typ"), ("subjekt", "subjekt")):
+        if col in cols and conn.execute(f"SELECT 1 FROM data_field WHERE form_id=? AND {col} IS NOT NULL LIMIT 1", [fid]).fetchone():
+            out.append(label)
+    for tbl, sql in (("data_subfield", "SELECT 1 FROM data_subfield s JOIN data_field d ON d.id=s.data_field_id WHERE d.form_id=? LIMIT 1"),
+                     ("data_field_legal_basis", "SELECT 1 FROM data_field_legal_basis b JOIN data_field d ON d.id=b.data_field_id WHERE d.form_id=? LIMIT 1"),
+                     ("beilage", "SELECT 1 FROM beilage b JOIN data_field d ON d.id=b.data_field_id WHERE d.form_id=? LIMIT 1"),
+                     ("panel_review", "SELECT 1 FROM panel_review p JOIN data_field d ON d.id=p.item_id AND p.kind IN ('basis','subjekt') WHERE d.form_id=? LIMIT 1")):
+        if conn.execute("SELECT 1 FROM sqlite_master WHERE name=?", [tbl]).fetchone() and conn.execute(sql, [fid]).fetchone():
+            out.append(tbl)
+    return out
 
 
 def main():
@@ -41,9 +60,21 @@ def main():
             continue
         if not conn.execute("SELECT 1 FROM form WHERE id=?", [fid]).fetchone():
             continue
+        # replacing the field list drops everything curated on top of it (eCH,
+        # eSH, basis_typ, subjekt, citations, subfields, reviews). Refuse unless
+        # the caller says --force, so a re-run can never silently wipe a layer.
+        curated = curated_layers(conn, fid)
+        if curated and "--force" not in sys.argv:
+            print(f"ABORT: form {fid} already carries curated layers ({', '.join(curated)}); "
+                  f"re-run with --force to replace them", file=sys.stderr)
+            conn.close(); os.remove(staging); sys.exit(1)
         conn.execute("DELETE FROM data_field_legal_basis WHERE data_field_id IN "
                      "(SELECT id FROM data_field WHERE form_id=?)", [fid])
-        conn.execute("DELETE FROM data_field WHERE form_id=?", [fid])   # idempotent replace
+        try:
+            conn.execute("DELETE FROM data_field WHERE form_id=?", [fid])   # replace
+        except sqlite3.IntegrityError as e:
+            print(f"ABORT: form {fid}: rows still reference its fields ({e})", file=sys.stderr)
+            conn.close(); os.remove(staging); sys.exit(1)
         for i, d in enumerate(dfs):
             if not isinstance(d, dict) or not (d.get("name") or "").strip():
                 continue

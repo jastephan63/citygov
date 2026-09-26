@@ -1,0 +1,76 @@
+{
+ "felder": [
+  {
+   "data_field_id": 5248,
+   "form_id": 461,
+   "alt": "Schaetzungsgrund",
+   "neu": "Schätzungsgrund",
+   "quelle": "Formular druckt «Schätzungsgrund»"
+  },
+  {
+   "data_field_id": 5258,
+   "form_id": 462,
+   "alt": "Haendler",
+   "neu": "Händler",
+   "quelle": "Formular druckt «Händler»"
+  },
+  {
+   "data_field_id": 5288,
+   "form_id": 464,
+   "alt": "Frueherer Wohnort",
+   "neu": "Früherer Wohnort",
+   "quelle": "Formular druckt «Früherer Wohnort»"
+  },
+  {
+   "data_field_id": 5298,
+   "form_id": 466,
+   "alt": "Grundstuecke",
+   "neu": "Grundstücke",
+   "quelle": "Formular druckt «Grundstücke»"
+  },
+  {
+   "data_field_id": 5187,
+   "form_id": 454,
+   "alt": "Taetigkeitskategorie",
+   "neu": "Tätigkeitskategorie",
+   "quelle": "Keine eigene Beschriftung im Formular (Bezeichnung der Databank); Umlaut wie im Formulartext «Tätigkeiten»."
+  },
+  {
+   "data_field_id": 5231,
+   "form_id": 459,
+   "alt": "Empfaenger (Einschreiben)",
+   "neu": "Empfänger (Einschreiben)",
+   "quelle": "Umlaut nach Schweizer Rechtschreibung; das Formular druckt die Umlautform nicht wörtlich"
+  },
+  {
+   "data_field_id": 5232,
+   "form_id": 459,
+   "alt": "Zeitpunkt der Aufloesung",
+   "neu": "Zeitpunkt der Auflösung",
+   "quelle": "Formular druckt «Auflösung»"
+  },
+  {
+   "data_field_id": 5247,
+   "form_id": 461,
+   "alt": "Eigentuemer",
+   "neu": "Eigentümer",
+   "quelle": "Formular druckt «Eigentümer»"
+  },
+  {
+   "data_field_id": 5290,
+   "form_id": 464,
+   "alt": "Rueckgabe blauer Fuehrerausweis",
+   "neu": "Rückgabe blauer Führerausweis",
+   "quelle": "Umlaut nach Schweizer Rechtschreibung; das Formular druckt teils die Umlautform nicht wörtlich"
+  },
+  {
+   "data_field_id": 5297,
+   "form_id": 466,
+   "alt": "Eigentuemer",
+   "neu": "Eigentümer",
+   "quelle": "Formular druckt «Eigentümer»"
+  }
+ ],
+ "teilfelder": [],
+ "hinweis": "ASCII-Umschreibungen (ae/oe/ue) in Feld- und Teilfeldnamen, aus der Qualitätsprüfung vom 2026-09-26: der Name wird so geschrieben, wie das Formular ihn druckt (mit Umlaut). Jede Zeile gegen den Formulartext geprüft; angewandt durch scripts/migrate_2026_09_26.py Schritt 12."
+}

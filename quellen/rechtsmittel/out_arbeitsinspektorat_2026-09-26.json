@@ -1,0 +1,50 @@
+{
+  "hinweis": "Rechtsmittelnormen der Verordnung zum Arbeitsgesetz und zum UVG (SHR 822.101) und die Verdikte für die beiden Formulare des Arbeitsinspektorats. Befund der Qualitätsprüfung vom 2026-09-26: beide Verfahren zeigten die allgemeine VRG-Regel (20 Tage), obwohl § 8 Abs. 2 für Verfügungen des Arbeitsinspektorats 30 Tage vorsieht. Zitate wörtlich aus Gesetze/822.101-1-2.de.pdf; der Loader prüft sie gegen das PDF. Die Verordnung ist im DVSH-Dienstleistungsmodell beider Services als Rechtsgrundlage hinterlegt (recht_kantonal), was sie in den Kandidatenkreis bringt. § 8: Zitat = Abs. 1 Satz 1, Fristzitat = Abs. 2 (eigener Absatz, wie VRG Art. 16/20). § 9: Zitat bis «Einsprache», weil im PDF eine Fussnotenziffer am folgenden Wort klebt.",
+  "rules": [
+    {
+      "law_id": 252,
+      "article_no": "§ 8",
+      "heading": "Rechtsmittelverfahren: nach ArG",
+      "rechtsmittel_art": "rekurs",
+      "frist_tage": 30,
+      "instanz": "Regierungsrat",
+      "gilt_fuer": "Verfügungen des kantonalen Arbeitsinspektorates und Entscheide des Volkswirtschaftsdepartements im Bereich des Arbeitsgesetzes",
+      "quote": "Gegen Verfügungen des kantonalen Arbeitsinspektorates und Entscheide des Volkswirtschaftsdepartements kann beim Regierungsrat des Kantons Schaffhausen Rekurs erhoben werden.",
+      "hinweis": "Abweichung vom VRG: 30 statt 20 Tage (§ 8 Abs. 2, gestützt auf Art. 56 Abs. 1 ArG).",
+      "frist_quote": "Die Rekursfrist beträgt 30 Tage nach erfolgter Mitteilung (Art. 56 Abs. 1 ArG)."
+    },
+    {
+      "law_id": 252,
+      "article_no": "§ 9",
+      "heading": "Rechtsmittelverfahren: nach UVG",
+      "rechtsmittel_art": "einsprache",
+      "frist_tage": 30,
+      "instanz": "verfügende Stelle (Art. 52 ATSG)",
+      "gilt_fuer": "Verfügungen des kantonalen Arbeitsinspektorates und des Volkswirtschaftsdepartements im Bereich der Unfallversicherung",
+      "quote": "Gegen Verfügungen des kantonalen Arbeitsinspektorates und des Volkswirtschaftsdepartements kann innert 30 Tagen bei der verfügenden Stelle Einsprache",
+      "hinweis": "Nur für Verfügungen nach UVG; danach Beschwerde ans Obergericht (§ 9 Abs. 2)."
+    }
+  ],
+  "verdicts": [
+    {
+      "form_id": 296,
+      "quelle": "sektoral",
+      "regel": {
+        "law_id": 252,
+        "article_no": "§ 8",
+        "rechtsmittel_art": "rekurs"
+      },
+      "begruendung": "Nachweis im Plangenehmigungs- und Planbegutachtungsverfahren (§ 2 lit. a/b SHR 822.101): die Plangenehmigung ist eine Verfügung des kantonalen Arbeitsinspektorates nach ArG, gegen die § 8 den Rekurs an den Regierungsrat mit 30-tägiger Frist vorsieht."
+    },
+    {
+      "form_id": 455,
+      "quelle": "sektoral",
+      "regel": {
+        "law_id": 252,
+        "article_no": "§ 8",
+        "rechtsmittel_art": "rekurs"
+      },
+      "begruendung": "Bewilligung zur Beschäftigung von Jugendlichen unter 15 Jahren (Art. 30 ArG): das Arbeitsinspektorat ist die kantonale Behörde im Sinne des ArG (§ 1 SHR 822.101); gegen seine Verfügung steht nach § 8 der Rekurs an den Regierungsrat mit 30-tägiger Frist offen."
+    }
+  ]
+}

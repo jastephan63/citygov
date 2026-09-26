@@ -1,0 +1,1385 @@
+{
+ "hinweis": "Teilfeld-Zuordnungen (eCH-Elemente) für Formular 131 «Anmeldung für Ergänzungsleistungen (EL)» aus der Qualitätsprüfung vom 2026-09-26. Die namensbasierte Propagation hatte jedes «Ja/Nein» auf eCH-0278 statePensionContributions, jeden Einkommens-«Betrag CHF» auf employedRevenue und die Hilflosenentschädigung auf privateLiability gesetzt. Jedes der 169 Teilfelder wurde einzeln auf den Sachverhalt beurteilt (Judge), zweitgeprüft (Reviewer, 12 Einwände, alle am XSD in ech_xsd/eCH-0278 bestätigt: die betroffenen Elemente sind inline simpleContent-Erweiterungen von moneyType, die der flache Katalog ohne datatype zeigt) und abgeglichen (Reconciler, 5 weitere Korrekturen gleicher Art: totalLiability, officialName statt recipient, movingDate). 17 Einträge weichen vom Judge ab. Schlüssel: (Elternfeld, Teilfeld). 'kontext' nennt den XSD-complexType des Elements — nur informativ, scripts/load_subfield_ech.py löst (Standard, Element) über die erste Katalogzeile auf und ignoriert den Kontext (betrifft die gleichnamigen 'amount'-Elemente). Angewendet durch scripts/load_subfield_ech.py.",
+ "form_id": 131,
+ "zuordnungen": [
+  {
+   "subfield_id": 686,
+   "elternfeld": "Personalien GesuchstellerIn",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName",
+   "kontext": "personIdentificationLightType",
+   "grund": "Amtlicher Name der Person; officialName in personIdentificationLightType passt exakt."
+  },
+  {
+   "subfield_id": 687,
+   "elternfeld": "Personalien GesuchstellerIn",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName",
+   "kontext": "personIdentificationLightType",
+   "grund": "Vorname der Person; firstName passt exakt."
+  },
+  {
+   "subfield_id": 688,
+   "elternfeld": "Personalien GesuchstellerIn",
+   "teilfeld": "Adresse",
+   "standard": "eCH-0010",
+   "element": "street",
+   "kontext": "addressInformationType",
+   "grund": "Strassenzeile der Wohnadresse; street in addressInformationType ist das atomare Adresselement."
+  },
+  {
+   "subfield_id": 689,
+   "elternfeld": "Personalien GesuchstellerIn",
+   "teilfeld": "PLZ, Ort",
+   "standard": "eCH-0010",
+   "element": "swissZipCode",
+   "kontext": "addressInformationType",
+   "grund": "Postleitzahl der Schweizer Adresse; swissZipCode ist das erstgenannte Datum, Ort wäre town."
+  },
+  {
+   "subfield_id": 690,
+   "elternfeld": "Personalien GesuchstellerIn",
+   "teilfeld": "Heimatort",
+   "standard": "eCH-0011",
+   "element": "originName",
+   "kontext": "placeOfOriginType",
+   "grund": "Heimatort; originName in placeOfOriginType ist das Element dafür."
+  },
+  {
+   "subfield_id": 691,
+   "elternfeld": "Personalien GesuchstellerIn",
+   "teilfeld": "Geburtsdatum",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth",
+   "kontext": "personIdentificationLightType",
+   "grund": "Geburtsdatum; dateOfBirth passt exakt."
+  },
+  {
+   "subfield_id": 692,
+   "elternfeld": "Personalien GesuchstellerIn",
+   "teilfeld": "AHV-Nummer / Versichertennummer",
+   "standard": "eCH-0044",
+   "element": "vn",
+   "kontext": "personIdentificationLightType",
+   "grund": "Die 13-stellige AHV-Versichertennummer ist vn."
+  },
+  {
+   "subfield_id": 693,
+   "elternfeld": "Personalien GesuchstellerIn",
+   "teilfeld": "Zivilrechtlicher Wohnsitz in der Schweiz seit",
+   "kein_standard": true,
+   "grund": "Kein Standard nennt den Beginn des Wohnsitzes in der Schweiz; arrivalDate (eCH-0011) ist der Zuzug in die Gemeinde, arrivalDate (eCH-0278) der Zuzug in den Kanton, beides ein anderes Datum."
+  },
+  {
+   "subfield_id": 694,
+   "elternfeld": "Personalien GesuchstellerIn",
+   "teilfeld": "Wohnsitz in der Gemeinde seit",
+   "standard": "eCH-0011",
+   "element": "arrivalDate",
+   "kontext": "residenceDataType",
+   "grund": "Zuzugsdatum in die Meldegemeinde; arrivalDate in residenceDataType (Hauptwohnsitz), nicht in otherResidenceType."
+  },
+  {
+   "subfield_id": 695,
+   "elternfeld": "Personalien GesuchstellerIn",
+   "teilfeld": "Telefon",
+   "standard": "eCH-0046",
+   "element": "phoneNumber",
+   "kontext": "phoneType",
+   "grund": "Telefonnummer; phoneNumber passt exakt."
+  },
+  {
+   "subfield_id": 696,
+   "elternfeld": "Personalien GesuchstellerIn",
+   "teilfeld": "E-Mail",
+   "standard": "eCH-0046",
+   "element": "emailAddress",
+   "kontext": "emailType",
+   "grund": "E-Mail-Adresse; emailAddress passt exakt."
+  },
+  {
+   "subfield_id": 697,
+   "elternfeld": "Personalien GesuchstellerIn",
+   "teilfeld": "Nationalität",
+   "standard": "eCH-0011",
+   "element": "country",
+   "kontext": "countryInfoType",
+   "grund": "Staatsangehörigkeit als atomares Datum ist country in countryInfoType; nationalityData ist nur der zusammengesetzte Elternknoten."
+  },
+  {
+   "subfield_id": 698,
+   "elternfeld": "Personalien EhepartnerIn",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName",
+   "kontext": "personIdentificationLightType",
+   "grund": "Amtlicher Name der Person; officialName in personIdentificationLightType passt exakt."
+  },
+  {
+   "subfield_id": 699,
+   "elternfeld": "Personalien EhepartnerIn",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName",
+   "kontext": "personIdentificationLightType",
+   "grund": "Vorname der Person; firstName passt exakt."
+  },
+  {
+   "subfield_id": 700,
+   "elternfeld": "Personalien EhepartnerIn",
+   "teilfeld": "Adresse",
+   "standard": "eCH-0010",
+   "element": "street",
+   "kontext": "addressInformationType",
+   "grund": "Strassenzeile der Wohnadresse; street in addressInformationType ist das atomare Adresselement."
+  },
+  {
+   "subfield_id": 701,
+   "elternfeld": "Personalien EhepartnerIn",
+   "teilfeld": "PLZ, Ort",
+   "standard": "eCH-0010",
+   "element": "swissZipCode",
+   "kontext": "addressInformationType",
+   "grund": "Postleitzahl der Schweizer Adresse; swissZipCode ist das erstgenannte Datum, Ort wäre town."
+  },
+  {
+   "subfield_id": 702,
+   "elternfeld": "Personalien EhepartnerIn",
+   "teilfeld": "Heimatort",
+   "standard": "eCH-0011",
+   "element": "originName",
+   "kontext": "placeOfOriginType",
+   "grund": "Heimatort; originName in placeOfOriginType ist das Element dafür."
+  },
+  {
+   "subfield_id": 703,
+   "elternfeld": "Personalien EhepartnerIn",
+   "teilfeld": "Geburtsdatum",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth",
+   "kontext": "personIdentificationLightType",
+   "grund": "Geburtsdatum; dateOfBirth passt exakt."
+  },
+  {
+   "subfield_id": 704,
+   "elternfeld": "Personalien EhepartnerIn",
+   "teilfeld": "AHV-Nummer / Versichertennummer",
+   "standard": "eCH-0044",
+   "element": "vn",
+   "kontext": "personIdentificationLightType",
+   "grund": "Die 13-stellige AHV-Versichertennummer ist vn."
+  },
+  {
+   "subfield_id": 705,
+   "elternfeld": "Personalien EhepartnerIn",
+   "teilfeld": "Zivilrechtlicher Wohnsitz in der Schweiz seit",
+   "kein_standard": true,
+   "grund": "Kein Standard nennt den Beginn des Wohnsitzes in der Schweiz; arrivalDate (eCH-0011) ist der Zuzug in die Gemeinde, arrivalDate (eCH-0278) der Zuzug in den Kanton, beides ein anderes Datum."
+  },
+  {
+   "subfield_id": 706,
+   "elternfeld": "Personalien EhepartnerIn",
+   "teilfeld": "Wohnsitz in der Gemeinde seit",
+   "standard": "eCH-0011",
+   "element": "arrivalDate",
+   "kontext": "residenceDataType",
+   "grund": "Zuzugsdatum in die Meldegemeinde; arrivalDate in residenceDataType (Hauptwohnsitz), nicht in otherResidenceType."
+  },
+  {
+   "subfield_id": 707,
+   "elternfeld": "Personalien EhepartnerIn",
+   "teilfeld": "Telefon",
+   "standard": "eCH-0046",
+   "element": "phoneNumber",
+   "kontext": "phoneType",
+   "grund": "Telefonnummer; phoneNumber passt exakt."
+  },
+  {
+   "subfield_id": 708,
+   "elternfeld": "Personalien EhepartnerIn",
+   "teilfeld": "E-Mail",
+   "standard": "eCH-0046",
+   "element": "emailAddress",
+   "kontext": "emailType",
+   "grund": "E-Mail-Adresse; emailAddress passt exakt."
+  },
+  {
+   "subfield_id": 709,
+   "elternfeld": "Personalien EhepartnerIn",
+   "teilfeld": "Nationalität",
+   "standard": "eCH-0011",
+   "element": "country",
+   "kontext": "countryInfoType",
+   "grund": "Staatsangehörigkeit als atomares Datum ist country in countryInfoType; nationalityData ist nur der zusammengesetzte Elternknoten."
+  },
+  {
+   "subfield_id": 710,
+   "elternfeld": "Kinder mit Anspruch auf Waisen- oder Kinderrente",
+   "teilfeld": "Nachname, Vorname",
+   "standard": "eCH-0044",
+   "element": "officialName",
+   "kontext": "personIdentificationLightType",
+   "grund": "Name des Kindes; officialName ist das erstgenannte Datum, Vorname wäre firstName."
+  },
+  {
+   "subfield_id": 711,
+   "elternfeld": "Kinder mit Anspruch auf Waisen- oder Kinderrente",
+   "teilfeld": "Geburtsdatum",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth",
+   "kontext": "personIdentificationLightType",
+   "grund": "Geburtsdatum des Kindes; dateOfBirth passt exakt."
+  },
+  {
+   "subfield_id": 712,
+   "elternfeld": "Kinder mit Anspruch auf Waisen- oder Kinderrente",
+   "teilfeld": "Versicherten-Nr.",
+   "standard": "eCH-0044",
+   "element": "vn",
+   "kontext": "personIdentificationLightType",
+   "grund": "AHV-Versichertennummer des Kindes ist vn."
+  },
+  {
+   "subfield_id": 713,
+   "elternfeld": "Kinder mit Anspruch auf Waisen- oder Kinderrente",
+   "teilfeld": "Wohnort",
+   "standard": "eCH-0010",
+   "element": "town",
+   "kontext": "addressInformationType",
+   "grund": "Wohnort als Ortsname; town passt exakt."
+  },
+  {
+   "subfield_id": 714,
+   "elternfeld": "Kinder mit Anspruch auf Waisen- oder Kinderrente",
+   "teilfeld": "Status (Adoptivkind / Pflegekind / Stiefkind / Kind aus geschiedener Ehe / Aussereheliches Kind)",
+   "standard": "eCH-0021",
+   "element": "typeOfRelationship",
+   "kontext": "parentalRelationshipType",
+   "grund": "Art des Eltern-Kind-Verhältnisses (Pflege-, Stief-, leibliches Kind) ist typeOfRelationship in parentalRelationshipType; guardianRelationshipType (Beistandschaft) war falsch, die Werte 'aus geschiedener Ehe'/'ausserehelich' deckt die Codeliste nicht ab."
+  },
+  {
+   "subfield_id": 715,
+   "elternfeld": "Angaben zur gesetzlichen Vertretung",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName",
+   "kontext": "personIdentificationLightType",
+   "grund": "Name der Beistandsperson; officialName der personIdentificationLightType, die eCH-0021 für den Partner der Beistandschaft verwendet."
+  },
+  {
+   "subfield_id": 716,
+   "elternfeld": "Angaben zur gesetzlichen Vertretung",
+   "teilfeld": "Adresse",
+   "standard": "eCH-0010",
+   "element": "street",
+   "kontext": "addressInformationType",
+   "grund": "Adresse des Beistands; placeOfEmployer war falsch, street in addressInformationType ist die atomare Adresszeile."
+  },
+  {
+   "subfield_id": 717,
+   "elternfeld": "Angaben zur gesetzlichen Vertretung",
+   "teilfeld": "Sitz der Kindes- und Erwachsenenschutzbehörde (KESB)",
+   "kein_standard": true,
+   "grund": "Kein Standard führt die zuständige KESB; address in guardianRelationshipType ist die Adresse des Beistands, nicht der Behörde."
+  },
+  {
+   "subfield_id": 718,
+   "elternfeld": "EL-Bezug anderer Kanton Details",
+   "teilfeld": "Gemeinde",
+   "standard": "eCH-0007",
+   "element": "municipalityName",
+   "kontext": "swissMunicipalityType",
+   "grund": "Gemeindename; municipalityName passt exakt."
+  },
+  {
+   "subfield_id": 719,
+   "elternfeld": "EL-Bezug anderer Kanton Details",
+   "teilfeld": "Bis wann",
+   "kein_standard": true,
+   "grund": "Enddatum eines früheren EL-Bezugs kennt kein Standard; to in personalDetailType ist das Ende der Steuerpflicht, ein anderes Datum."
+  },
+  {
+   "subfield_id": 720,
+   "elternfeld": "Sozialhilfe Details",
+   "teilfeld": "Gemeinde",
+   "standard": "eCH-0007",
+   "element": "municipalityName",
+   "kontext": "swissMunicipalityType",
+   "grund": "Gemeindename; municipalityName passt exakt."
+  },
+  {
+   "subfield_id": 721,
+   "elternfeld": "Sozialhilfe Details",
+   "teilfeld": "Zeitraum",
+   "kein_standard": true,
+   "grund": "Zeitraum des Sozialhilfebezugs kennt kein Standard; from in personalDetailType ist der Beginn der Steuerpflicht."
+  },
+  {
+   "subfield_id": 722,
+   "elternfeld": "EEL-Bezug Zeitraum",
+   "teilfeld": "von",
+   "kein_standard": true,
+   "grund": "Beginn des EEL-Bezugs ist ein EL-spezifisches Datum ohne Standardelement; from in personalDetailType meint die Steuerpflicht."
+  },
+  {
+   "subfield_id": 723,
+   "elternfeld": "EEL-Bezug Zeitraum",
+   "teilfeld": "bis",
+   "kein_standard": true,
+   "grund": "Ende des EEL-Bezugs kennt kein Standard; to in personalDetailType meint die Steuerpflicht."
+  },
+  {
+   "subfield_id": 724,
+   "elternfeld": "Krankenkasse Name",
+   "teilfeld": "Name GesuchstellerIn",
+   "standard": "eCH-0021",
+   "element": "insuranceName",
+   "kontext": "healthInsuranceDataType",
+   "grund": "Name der Krankenkasse; insuranceName in healthInsuranceDataType passt exakt."
+  },
+  {
+   "subfield_id": 725,
+   "elternfeld": "Krankenkasse Name",
+   "teilfeld": "Name EhepartnerIn",
+   "standard": "eCH-0021",
+   "element": "insuranceName",
+   "kontext": "healthInsuranceDataType",
+   "grund": "Name der Krankenkasse; insuranceName passt exakt."
+  },
+  {
+   "subfield_id": 726,
+   "elternfeld": "Zusatzversicherung Krankenkasse",
+   "teilfeld": "GesuchstellerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "Ob eine Zusatzversicherung besteht ist ein Flag, supplementaryInsurancePremium ist ein Betrag; ein boolesches Element dafür gibt es nicht."
+  },
+  {
+   "subfield_id": 727,
+   "elternfeld": "Zusatzversicherung Krankenkasse",
+   "teilfeld": "GesuchstellerIn Betrag CHF",
+   "standard": "eCH-0275",
+   "element": "supplementaryInsurancePremium",
+   "kontext": "taxCertificateMedicalCostsType",
+   "grund": "Prämie der Zusatzversicherung; supplementaryInsurancePremium (moneyType) passt exakt."
+  },
+  {
+   "subfield_id": 728,
+   "elternfeld": "Zusatzversicherung Krankenkasse",
+   "teilfeld": "EhepartnerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "Flag 'Zusatzversicherung vorhanden' hat kein boolesches Element; der Betrag ist nicht das Flag."
+  },
+  {
+   "subfield_id": 729,
+   "elternfeld": "Zusatzversicherung Krankenkasse",
+   "teilfeld": "EhepartnerIn Betrag CHF",
+   "standard": "eCH-0275",
+   "element": "supplementaryInsurancePremium",
+   "kontext": "taxCertificateMedicalCostsType",
+   "grund": "Prämie der Zusatzversicherung; supplementaryInsurancePremium passt exakt."
+  },
+  {
+   "subfield_id": 730,
+   "elternfeld": "Nichterwerbstätigenbeiträge AHV/IV/EO",
+   "teilfeld": "GesuchstellerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "statePensionContributions ist der Beitragsbetrag (moneyType), kein boolesches Flag; ein Element 'Beiträge entrichtet' kennt kein Standard."
+  },
+  {
+   "subfield_id": 731,
+   "elternfeld": "Nichterwerbstätigenbeiträge AHV/IV/EO",
+   "teilfeld": "GesuchstellerIn Betrag CHF",
+   "standard": "eCH-0278",
+   "element": "statePensionContributions",
+   "kontext": "pensionFundContributionsType",
+   "grund": "Betrag der AHV/IV/EO-Beiträge Nichterwerbstätiger ist statePensionContributions, im XSD eine simpleContent-Erweiterung von moneyType; amount in pensionFundContributionsType gehört zu pillar3aBackPayments (3a-Nachzahlung), ein anderes Datum."
+  },
+  {
+   "subfield_id": 732,
+   "elternfeld": "Nichterwerbstätigenbeiträge AHV/IV/EO",
+   "teilfeld": "EhepartnerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "Kein boolesches Element für 'Nichterwerbstätigenbeiträge entrichtet'; statePensionContributions ist der Betrag, kein Flag."
+  },
+  {
+   "subfield_id": 733,
+   "elternfeld": "Nichterwerbstätigenbeiträge AHV/IV/EO",
+   "teilfeld": "EhepartnerIn Betrag CHF",
+   "standard": "eCH-0278",
+   "element": "statePensionContributions",
+   "kontext": "pensionFundContributionsType",
+   "grund": "Betrag der AHV/IV/EO-Beiträge ist statePensionContributions (moneyType per XSD); amount in diesem Kontext ist die 3a-Nachzahlung."
+  },
+  {
+   "subfield_id": 734,
+   "elternfeld": "Unterhaltspflichtig",
+   "teilfeld": "GesuchstellerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "Ob eine Unterhaltspflicht besteht hat kein boolesches Element; paymentAlimony ist ein Strukturknoten, statePensionContributions gehört zu Vorsorgebeiträgen."
+  },
+  {
+   "subfield_id": 735,
+   "elternfeld": "Unterhaltspflichtig",
+   "teilfeld": "GesuchstellerIn Betrag CHF",
+   "standard": "eCH-0278",
+   "element": "paymentAlimonyAmount",
+   "kontext": "alimonyPaymentsType",
+   "grund": "Geleistete Unterhaltsbeiträge sind paymentAlimonyAmount in alimonyPaymentsType; amount in alimonyIncomeType wäre erhaltener Unterhalt."
+  },
+  {
+   "subfield_id": 736,
+   "elternfeld": "Unterhaltspflichtig",
+   "teilfeld": "EhepartnerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "Kein boolesches Element für eine bestehende Unterhaltspflicht."
+  },
+  {
+   "subfield_id": 737,
+   "elternfeld": "Unterhaltspflichtig",
+   "teilfeld": "EhepartnerIn Betrag CHF",
+   "standard": "eCH-0278",
+   "element": "paymentAlimonyAmount",
+   "kontext": "alimonyPaymentsType",
+   "grund": "Geleisteter Unterhalt ist paymentAlimonyAmount in alimonyPaymentsType."
+  },
+  {
+   "subfield_id": 738,
+   "elternfeld": "Wohnen in Miete",
+   "teilfeld": "Ja/Nein",
+   "standard": "eCH-0185",
+   "element": "housingSituationType",
+   "kontext": "housingSituationMoveInMunicipalityType",
+   "grund": "Wohnsituation 'Mieter/in' ist ein Codewert von housingSituationType; das Ja entspricht genau diesem Wert."
+  },
+  {
+   "subfield_id": 739,
+   "elternfeld": "Wohnen in Miete",
+   "teilfeld": "Bruttomiete CHF (ohne Garage/Parkpl.)",
+   "kein_standard": true,
+   "grund": "Bezahlter Mietzins ist in keinem Standard ein Element; die Miet-Elemente von eCH-0278 sind erhaltene Mieterträge."
+  },
+  {
+   "subfield_id": 740,
+   "elternfeld": "Wohnen in Untermiete",
+   "teilfeld": "Ja/Nein",
+   "standard": "eCH-0185",
+   "element": "housingSituationType",
+   "kontext": "housingSituationMoveInMunicipalityType",
+   "grund": "Wohnsituation 'Untermiete' ist ein Codewert von housingSituationType."
+  },
+  {
+   "subfield_id": 741,
+   "elternfeld": "Wohnen in Untermiete",
+   "teilfeld": "Bruttomiete/Eigenmietwert CHF (ohne Garage/Parkpl.)",
+   "kein_standard": true,
+   "grund": "Unter dem Elternfeld Untermiete ist das der bezahlte Untermietzins, wofür kein Element existiert; propertyRentalValue ist der Eigenmietwert eigener Liegenschaften."
+  },
+  {
+   "subfield_id": 742,
+   "elternfeld": "Wohnen in Untermiete",
+   "teilfeld": "Bei wem wohnen Sie (Name / Vorname / Adresse)",
+   "standard": "eCH-0185",
+   "element": "name",
+   "kontext": "housingSituationMoveInMunicipalityType",
+   "grund": "Name des Vermieters/Hauptmieters ist name in housingSituationMoveInMunicipalityType; name in dogDataType war der Hundename."
+  },
+  {
+   "subfield_id": 743,
+   "elternfeld": "Rollstuhl benötigt",
+   "teilfeld": "GesuchstellerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "Rollstuhlbedarf kennt kein Standard."
+  },
+  {
+   "subfield_id": 744,
+   "elternfeld": "Rollstuhl benötigt",
+   "teilfeld": "EhepartnerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "Rollstuhlbedarf kennt kein Standard."
+  },
+  {
+   "subfield_id": 745,
+   "elternfeld": "Wohnen in einem Heim",
+   "teilfeld": "GesuchstellerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "typeOfHousehold (Kollektivhaushalt) ist breiter als 'Heim' und kein boolesches Flag; ein Element für Heimaufenthalt gibt es nicht."
+  },
+  {
+   "subfield_id": 746,
+   "elternfeld": "Wohnen in einem Heim",
+   "teilfeld": "GesuchstellerIn Name des Heims",
+   "standard": "eCH-0098",
+   "element": "organisationName",
+   "kontext": "organisationIdentificationType",
+   "grund": "Name des Heims als Organisation; organisationName passt (eCH-0097 hat keine Elemente im Katalog)."
+  },
+  {
+   "subfield_id": 747,
+   "elternfeld": "Wohnen in einem Heim",
+   "teilfeld": "GesuchstellerIn Heimeintritt",
+   "standard": "eCH-0011",
+   "element": "movingDate",
+   "kontext": "dwellingAddressType",
+   "grund": "Heimeintritt ist das Einzugsdatum in die neue Wohnung (das Heim), movingDate in dwellingAddressType; dwellingAddressValidFrom ist der registertechnische Gültigkeitsbeginn der Wohnungsadresse, arrivalDate der Gemeindezuzug."
+  },
+  {
+   "subfield_id": 748,
+   "elternfeld": "Wohnen in einem Heim",
+   "teilfeld": "GesuchstellerIn Taxe",
+   "kein_standard": true,
+   "grund": "Heimtaxe kennt kein Standard; expenseNursingStaff (eCH-0119) ist Pflegepersonalkosten als Krankheitskosten, nicht die Tagestaxe."
+  },
+  {
+   "subfield_id": 749,
+   "elternfeld": "Wohnen in einem Heim",
+   "teilfeld": "EhepartnerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "Kein boolesches Element für Heimaufenthalt; typeOfHousehold ist breiter."
+  },
+  {
+   "subfield_id": 750,
+   "elternfeld": "Wohnen in einem Heim",
+   "teilfeld": "EhepartnerIn Name des Heims",
+   "standard": "eCH-0098",
+   "element": "organisationName",
+   "kontext": "organisationIdentificationType",
+   "grund": "Name des Heims; organisationName passt."
+  },
+  {
+   "subfield_id": 751,
+   "elternfeld": "Wohnen in einem Heim",
+   "teilfeld": "EhepartnerIn Heimeintritt",
+   "standard": "eCH-0011",
+   "element": "movingDate",
+   "kontext": "dwellingAddressType",
+   "grund": "Einzugsdatum in die aktuelle Wohnung (Heim) ist movingDate in dwellingAddressType; dwellingAddressValidFrom ist der Gültigkeitsbeginn im Register."
+  },
+  {
+   "subfield_id": 752,
+   "elternfeld": "Wohnen in einem Heim",
+   "teilfeld": "EhepartnerIn Taxe",
+   "kein_standard": true,
+   "grund": "Heimtaxe kennt kein Standard."
+  },
+  {
+   "subfield_id": 753,
+   "elternfeld": "Freizügigkeitskonto (2. Säule)",
+   "teilfeld": "GesuchstellerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "Kein boolesches Element für ein bestehendes Freizügigkeitskonto; capitalBenefitsVestedAccount betrifft eine Kapitalauszahlung."
+  },
+  {
+   "subfield_id": 754,
+   "elternfeld": "Freizügigkeitskonto (2. Säule)",
+   "teilfeld": "GesuchstellerIn Betrag CHF",
+   "kein_standard": true,
+   "grund": "Guthaben eines Freizügigkeitskontos ist steuerlich nicht deklariert; capitalBenefitsVestedAccountAmount ist der ausbezahlte Betrag, ein anderes Datum."
+  },
+  {
+   "subfield_id": 755,
+   "elternfeld": "Freizügigkeitskonto (2. Säule)",
+   "teilfeld": "EhepartnerIn/Kinder Ja/Nein",
+   "kein_standard": true,
+   "grund": "capitalBenefitsVestedAccount ist eine Kapitalauszahlung, kein Flag für ein bestehendes Konto."
+  },
+  {
+   "subfield_id": 756,
+   "elternfeld": "Freizügigkeitskonto (2. Säule)",
+   "teilfeld": "EhepartnerIn/Kinder Betrag CHF",
+   "kein_standard": true,
+   "grund": "Kontoguthaben der Freizügigkeitsleistung kennt kein Standard; der Auszahlungsbetrag ist ein anderes Datum."
+  },
+  {
+   "subfield_id": 757,
+   "elternfeld": "Lebensversicherung / Leibrente",
+   "teilfeld": "GesuchstellerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "lifeInsurance in privateAssetsType ist ein Strukturknoten (lifeInsuranceAmount, lifeInsuranceDetail), kein boolesches Flag; statePensionContributions ist sachfremd."
+  },
+  {
+   "subfield_id": 758,
+   "elternfeld": "Lebensversicherung / Leibrente",
+   "teilfeld": "GesuchstellerIn Abschluss-/Ablaufjahr",
+   "standard": "eCH-0278",
+   "element": "startYear",
+   "kontext": "privateAssetsType",
+   "grund": "Abschlussjahr der Lebensversicherung ist startYear in privateAssetsType (Ablaufjahr wäre endYear)."
+  },
+  {
+   "subfield_id": 759,
+   "elternfeld": "Lebensversicherung / Leibrente",
+   "teilfeld": "EhepartnerIn/Kinder Ja/Nein",
+   "kein_standard": true,
+   "grund": "capitalBenefitsVestedAccount betrifft Freizügigkeitsauszahlungen; ein Flag für eine bestehende Lebensversicherung gibt es nicht."
+  },
+  {
+   "subfield_id": 760,
+   "elternfeld": "Lebensversicherung / Leibrente",
+   "teilfeld": "EhepartnerIn/Kinder Abschluss-/Ablaufjahr",
+   "standard": "eCH-0278",
+   "element": "startYear",
+   "kontext": "privateAssetsType",
+   "grund": "Abschlussjahr der Lebensversicherung ist startYear in privateAssetsType."
+  },
+  {
+   "subfield_id": 761,
+   "elternfeld": "Grundeigentum / Land in der Schweiz",
+   "teilfeld": "GesuchstellerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "Kein boolesches Element für Grundeigentum vorhanden; propertiesList ist eine Liste, statePensionContributions sachfremd."
+  },
+  {
+   "subfield_id": 762,
+   "elternfeld": "Grundeigentum / Land in der Schweiz",
+   "teilfeld": "EhepartnerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "Kein boolesches Element für Grundeigentum vorhanden."
+  },
+  {
+   "subfield_id": 763,
+   "elternfeld": "Grundeigentum / Land in der Schweiz",
+   "teilfeld": "selbstbewohnt / nicht selbstbewohnt",
+   "standard": "eCH-0278",
+   "element": "isSelfUsed",
+   "kontext": "propertyIncomeType",
+   "grund": "Selbstnutzung der Liegenschaft ist isSelfUsed (boolean) in propertyIncomeType."
+  },
+  {
+   "subfield_id": 764,
+   "elternfeld": "Grundeigentum / Land im Ausland",
+   "teilfeld": "GesuchstellerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "Kein boolesches Element für Grundeigentum im Ausland."
+  },
+  {
+   "subfield_id": 765,
+   "elternfeld": "Grundeigentum / Land im Ausland",
+   "teilfeld": "EhepartnerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "Kein boolesches Element für Grundeigentum im Ausland."
+  },
+  {
+   "subfield_id": 766,
+   "elternfeld": "Grundeigentum / Land im Ausland",
+   "teilfeld": "selbstbewohnt / nicht selbstbewohnt",
+   "standard": "eCH-0278",
+   "element": "isSelfUsed",
+   "kontext": "propertyIncomeType",
+   "grund": "Selbstnutzung ist isSelfUsed in propertyIncomeType, das auch ausländische Liegenschaften (countryCode) umfasst."
+  },
+  {
+   "subfield_id": 767,
+   "elternfeld": "Hypothekarschulden",
+   "teilfeld": "GesuchstellerIn Ja/Nein",
+   "standard": "eCH-0278",
+   "element": "isMortgage",
+   "kontext": "debtInterestsType",
+   "grund": "Ob eine Schuld eine Hypothek ist, ist isMortgage (boolean) in debtInterestsType."
+  },
+  {
+   "subfield_id": 768,
+   "elternfeld": "Hypothekarschulden",
+   "teilfeld": "EhepartnerIn Ja/Nein",
+   "standard": "eCH-0278",
+   "element": "isMortgage",
+   "kontext": "debtInterestsType",
+   "grund": "Hypothekarschuld Ja/Nein ist isMortgage in debtInterestsType."
+  },
+  {
+   "subfield_id": 769,
+   "elternfeld": "Fahrzeuge",
+   "teilfeld": "GesuchstellerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "motorVehicles ist ein Strukturknoten, kein boolesches Flag; statePensionContributions ist sachfremd."
+  },
+  {
+   "subfield_id": 770,
+   "elternfeld": "Fahrzeuge",
+   "teilfeld": "GesuchstellerIn CHF (gemäss Steuerveranlagung)",
+   "standard": "eCH-0278",
+   "element": "motorVehiclesAmount",
+   "kontext": "privateAssetsType",
+   "grund": "Steuerwert der Fahrzeuge ist motorVehiclesAmount (moneyType) in privateAssetsType, spezifischer als das generische taxValue."
+  },
+  {
+   "subfield_id": 771,
+   "elternfeld": "Fahrzeuge",
+   "teilfeld": "EhepartnerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "Kein boolesches Element für Fahrzeugbesitz."
+  },
+  {
+   "subfield_id": 772,
+   "elternfeld": "Fahrzeuge",
+   "teilfeld": "EhepartnerIn CHF (gemäss Steuerveranlagung)",
+   "standard": "eCH-0278",
+   "element": "motorVehiclesAmount",
+   "kontext": "privateAssetsType",
+   "grund": "Steuerwert der Fahrzeuge ist motorVehiclesAmount in privateAssetsType."
+  },
+  {
+   "subfield_id": 773,
+   "elternfeld": "Fahrzeuge",
+   "teilfeld": "Anschaffungsjahr",
+   "standard": "eCH-0278",
+   "element": "acquisitionYear",
+   "kontext": "privateAssetsType",
+   "grund": "Anschaffungsjahr des Fahrzeugs ist acquisitionYear (gYear) in privateAssetsType."
+  },
+  {
+   "subfield_id": 774,
+   "elternfeld": "Fahrzeuge",
+   "teilfeld": "Kaufpreis CHF",
+   "standard": "eCH-0278",
+   "element": "purchasePrice",
+   "kontext": "privateAssetsType",
+   "grund": "Kaufpreis des Fahrzeugs ist purchasePrice (moneyType) in privateAssetsType."
+  },
+  {
+   "subfield_id": 775,
+   "elternfeld": "Sonstiges Vermögen / Wertgegenstände",
+   "teilfeld": "GesuchstellerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "otherCollectibleAssets ist ein Strukturknoten, kein boolesches Flag."
+  },
+  {
+   "subfield_id": 776,
+   "elternfeld": "Sonstiges Vermögen / Wertgegenstände",
+   "teilfeld": "GesuchstellerIn CHF (gemäss Steuerveranlagung)",
+   "standard": "eCH-0278",
+   "element": "otherCollectibleAssetsAmount",
+   "kontext": "privateAssetsType",
+   "grund": "Steuerwert übriger Vermögenswerte/Wertgegenstände ist otherCollectibleAssetsAmount (moneyType) in privateAssetsType."
+  },
+  {
+   "subfield_id": 777,
+   "elternfeld": "Sonstiges Vermögen / Wertgegenstände",
+   "teilfeld": "EhepartnerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "Kein boolesches Element für sonstiges Vermögen."
+  },
+  {
+   "subfield_id": 778,
+   "elternfeld": "Sonstiges Vermögen / Wertgegenstände",
+   "teilfeld": "EhepartnerIn CHF (gemäss Steuerveranlagung)",
+   "standard": "eCH-0278",
+   "element": "otherCollectibleAssetsAmount",
+   "kontext": "privateAssetsType",
+   "grund": "Steuerwert übriger Wertgegenstände ist otherCollectibleAssetsAmount."
+  },
+  {
+   "subfield_id": 779,
+   "elternfeld": "Sonstiges Vermögen / Wertgegenstände",
+   "teilfeld": "Um welche Vermögen handelt es sich?",
+   "standard": "eCH-0119",
+   "element": "movablePropertyFreeText",
+   "kontext": "assetType",
+   "grund": "otherCollectibleAssetsDetail ist im XSD ein Strukturknoten (acquisitionYear, purchasePrice, taxValue) ohne Beschreibung; movablePropertyFreeText (string) in eCH-0119 assetType ist der Freitext zu den übrigen Vermögenswerten der Steuererklärung."
+  },
+  {
+   "subfield_id": 780,
+   "elternfeld": "Unverteilte Erbschaft",
+   "teilfeld": "GesuchstellerIn Ja/Nein",
+   "standard": "eCH-0278",
+   "element": "heirCommunityParticipation",
+   "kontext": "inheritanceAndGiftsType",
+   "grund": "Beteiligung an einer Erbengemeinschaft (unverteilte Erbschaft) ist heirCommunityParticipation (boolean) in inheritanceAndGiftsType."
+  },
+  {
+   "subfield_id": 781,
+   "elternfeld": "Unverteilte Erbschaft",
+   "teilfeld": "GesuchstellerIn CHF (gemäss Steuerveranlagung)",
+   "standard": "eCH-0278",
+   "element": "totalInheritanceTaxValue",
+   "kontext": "privateAssetsType",
+   "grund": "Steuerwert des Anteils an der unverteilten Erbschaft ist totalInheritanceTaxValue unter undistributedInheritanceShares, im XSD eine simpleContent-Erweiterung von moneyType; taxValue kommt in dieser Struktur nicht vor."
+  },
+  {
+   "subfield_id": 782,
+   "elternfeld": "Unverteilte Erbschaft",
+   "teilfeld": "EhepartnerIn Ja/Nein",
+   "standard": "eCH-0278",
+   "element": "heirCommunityParticipation",
+   "kontext": "inheritanceAndGiftsType",
+   "grund": "Beteiligung an einer Erbengemeinschaft ist heirCommunityParticipation."
+  },
+  {
+   "subfield_id": 783,
+   "elternfeld": "Unverteilte Erbschaft",
+   "teilfeld": "EhepartnerIn CHF (gemäss Steuerveranlagung)",
+   "standard": "eCH-0278",
+   "element": "totalInheritanceTaxValue",
+   "kontext": "privateAssetsType",
+   "grund": "Steuerwert des Erbanteils ist totalInheritanceTaxValue (moneyType per XSD) unter undistributedInheritanceShares."
+  },
+  {
+   "subfield_id": 784,
+   "elternfeld": "Schulden",
+   "teilfeld": "GesuchstellerIn Ja/Nein",
+   "standard": "eCH-0278",
+   "element": "privateLiability",
+   "kontext": "liabilitiesType",
+   "grund": "Private Schulden vorhanden ist privateLiability (boolean) in liabilitiesType; bleibt richtig."
+  },
+  {
+   "subfield_id": 785,
+   "elternfeld": "Schulden",
+   "teilfeld": "GesuchstellerIn Betrag CHF",
+   "standard": "eCH-0278",
+   "element": "totalLiability",
+   "kontext": "liabilitiesType",
+   "grund": "Gesamtbetrag der Schulden ist totalLiability im liability-Knoten von liabilitiesType, im XSD eine simpleContent-Erweiterung von moneyType; der Steuerstandard hat damit einen typisierten Schuldbetrag, der Umweg über eCH-0119 liability entfällt."
+  },
+  {
+   "subfield_id": 786,
+   "elternfeld": "Schulden",
+   "teilfeld": "EhepartnerIn Ja/Nein",
+   "standard": "eCH-0278",
+   "element": "privateLiability",
+   "kontext": "liabilitiesType",
+   "grund": "Private Schulden vorhanden ist privateLiability in liabilitiesType."
+  },
+  {
+   "subfield_id": 787,
+   "elternfeld": "Schulden",
+   "teilfeld": "EhepartnerIn Betrag CHF",
+   "standard": "eCH-0278",
+   "element": "totalLiability",
+   "kontext": "liabilitiesType",
+   "grund": "Gesamtbetrag der Schulden ist totalLiability (moneyType per XSD) in liabilitiesType."
+  },
+  {
+   "subfield_id": 788,
+   "elternfeld": "Vermögenswerte übertragen / verschenkt / verzichtet",
+   "teilfeld": "GesuchstellerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "Kein boolesches Element für 'Vermögen übertragen/verschenkt/verzichtet'; advanceInheritance deckt nur den Erbvorbezug und nicht den Vermögensverzicht."
+  },
+  {
+   "subfield_id": 789,
+   "elternfeld": "Vermögenswerte übertragen / verschenkt / verzichtet",
+   "teilfeld": "EhepartnerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "Kein boolesches Element für Vermögensübertragung oder Vermögensverzicht."
+  },
+  {
+   "subfield_id": 790,
+   "elternfeld": "Vermögenswerte übertragen / verschenkt / verzichtet",
+   "teilfeld": "Wann?",
+   "standard": "eCH-0278",
+   "element": "transactionDate",
+   "kontext": "inheritanceAndGiftsType",
+   "grund": "Datum der Schenkung/Übertragung ist transactionDate (date) in inheritanceAndGiftsType; transactionDate in headerType ist der Zeitstempel der Meldung."
+  },
+  {
+   "subfield_id": 791,
+   "elternfeld": "Vermögenswerte übertragen / verschenkt / verzichtet",
+   "teilfeld": "An wen?",
+   "standard": "eCH-0278",
+   "element": "officialName",
+   "kontext": "inheritanceAndGiftsType",
+   "grund": "recipient ist im XSD ein Strukturknoten (officialName, firstName, isChild, recipientAddress); das atomare Datum 'An wen?' ist der Name des Empfängers, officialName in inheritanceAndGiftsType."
+  },
+  {
+   "subfield_id": 792,
+   "elternfeld": "Vermögenswerte übertragen / verschenkt / verzichtet",
+   "teilfeld": "Betrag CHF",
+   "standard": "eCH-0278",
+   "element": "giftAmount",
+   "kontext": "inheritanceAndGiftsType",
+   "grund": "Wert der Schenkung/des Erbvorbezugs ist giftAmount (moneyType per XSD) in inheritanceAndGiftsType; employedRevenue war Erwerbseinkommen."
+  },
+  {
+   "subfield_id": 793,
+   "elternfeld": "Erwerbseinkommen",
+   "teilfeld": "GesuchstellerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "Kein boolesches Element für 'erzielt Erwerbseinkommen' bei Erwachsenen; statePensionContributions ist sachfremd."
+  },
+  {
+   "subfield_id": 794,
+   "elternfeld": "Erwerbseinkommen",
+   "teilfeld": "GesuchstellerIn Betrag CHF (brutto inkl. 13. Monatslohn/Gratifikation)",
+   "standard": "eCH-0278",
+   "element": "employedRevenue",
+   "kontext": "dependentEmploymentType",
+   "grund": "Lohn aus unselbständiger Erwerbstätigkeit ist employedRevenue in dependentEmploymentType; bleibt richtig."
+  },
+  {
+   "subfield_id": 795,
+   "elternfeld": "Erwerbseinkommen",
+   "teilfeld": "EhepartnerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "Kein boolesches Element für Erwerbseinkommen vorhanden."
+  },
+  {
+   "subfield_id": 796,
+   "elternfeld": "Erwerbseinkommen",
+   "teilfeld": "EhepartnerIn Betrag CHF (brutto inkl. 13. Monatslohn/Gratifikation)",
+   "standard": "eCH-0278",
+   "element": "employedRevenue",
+   "kontext": "dependentEmploymentType",
+   "grund": "Erwerbseinkommen ist employedRevenue in dependentEmploymentType."
+  },
+  {
+   "subfield_id": 797,
+   "elternfeld": "Erwerbseinkommen",
+   "teilfeld": "Kinder Ja/Nein",
+   "standard": "eCH-0278",
+   "element": "hasOwnIncome",
+   "kontext": "childType",
+   "grund": "Kind hat eigenes Einkommen ist hasOwnIncome (boolean) in childType; bleibt richtig."
+  },
+  {
+   "subfield_id": 798,
+   "elternfeld": "Erwerbseinkommen",
+   "teilfeld": "Kinder Betrag CHF (brutto inkl. 13. Monatslohn/Gratifikation)",
+   "standard": "eCH-0278",
+   "element": "ownIncomeAmount",
+   "kontext": "childType",
+   "grund": "Betrag des eigenen Einkommens des Kindes ist ownIncomeAmount (moneyType) in childType, nicht employedRevenue des Steuerpflichtigen."
+  },
+  {
+   "subfield_id": 799,
+   "elternfeld": "Erwerbseinkommen",
+   "teilfeld": "als ArbeitnehmerIn / als Selbständigerwerbende/r",
+   "standard": "eCH-0278",
+   "element": "isSelfEmployed",
+   "kontext": "personalDetailType",
+   "grund": "Unselbständig/selbständig ist isSelfEmployed (boolean) in personalDetailType; bleibt richtig."
+  },
+  {
+   "subfield_id": 800,
+   "elternfeld": "Fahrt zum Arbeitsplatz / Gewinnungskosten",
+   "teilfeld": "GesuchstellerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "Kein boolesches Element für 'Fahrtkosten vorhanden'; travelCostsHomeToWork ist ein Strukturknoten, statePensionContributions sachfremd."
+  },
+  {
+   "subfield_id": 801,
+   "elternfeld": "Fahrt zum Arbeitsplatz / Gewinnungskosten",
+   "teilfeld": "GesuchstellerIn Betrag CHF",
+   "standard": "eCH-0278",
+   "element": "amount",
+   "kontext": "jobCostsType",
+   "grund": "Betrag der Berufskosten (Fahrt zum Arbeitsplatz) ist amount (moneyType) unter travelCostsHomeToWork in jobCostsType; amount in alimonyIncomeType war Unterhalt."
+  },
+  {
+   "subfield_id": 802,
+   "elternfeld": "Fahrt zum Arbeitsplatz / Gewinnungskosten",
+   "teilfeld": "EhepartnerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "Kein boolesches Element für vorhandene Gewinnungskosten."
+  },
+  {
+   "subfield_id": 803,
+   "elternfeld": "Fahrt zum Arbeitsplatz / Gewinnungskosten",
+   "teilfeld": "EhepartnerIn Betrag CHF",
+   "standard": "eCH-0278",
+   "element": "amount",
+   "kontext": "jobCostsType",
+   "grund": "Berufskostenbetrag ist amount unter travelCostsHomeToWork in jobCostsType."
+  },
+  {
+   "subfield_id": 804,
+   "elternfeld": "Fahrt zum Arbeitsplatz / Gewinnungskosten",
+   "teilfeld": "Kinder Ja/Nein",
+   "kein_standard": true,
+   "grund": "hasOwnIncome bedeutet 'Kind hat Einkommen', nicht 'Kind hat Fahrtkosten'; ein Flag dafür gibt es nicht."
+  },
+  {
+   "subfield_id": 805,
+   "elternfeld": "Fahrt zum Arbeitsplatz / Gewinnungskosten",
+   "teilfeld": "Kinder Betrag CHF",
+   "standard": "eCH-0278",
+   "element": "amount",
+   "kontext": "jobCostsType",
+   "grund": "Berufskostenbetrag ist amount in jobCostsType; das Datum ist dasselbe, nur die Person (Kind) ist eine andere."
+  },
+  {
+   "subfield_id": 806,
+   "elternfeld": "Familienzulagen",
+   "teilfeld": "GesuchstellerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "Kein boolesches Element für 'bezieht Familienzulagen'; isChildAndFamilyAllowanceSwiss fragt nur nach der schweizerischen Herkunft."
+  },
+  {
+   "subfield_id": 807,
+   "elternfeld": "Familienzulagen",
+   "teilfeld": "GesuchstellerIn Betrag CHF",
+   "standard": "eCH-0278",
+   "element": "childAndFamilyAllowancesAmount",
+   "kontext": "socialAndOtherInsuranceIncomeType",
+   "grund": "Betrag der Kinder- und Familienzulagen ist childAndFamilyAllowancesAmount (moneyType) in socialAndOtherInsuranceIncomeType."
+  },
+  {
+   "subfield_id": 808,
+   "elternfeld": "Familienzulagen",
+   "teilfeld": "EhepartnerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "Kein boolesches Element für den Bezug von Familienzulagen."
+  },
+  {
+   "subfield_id": 809,
+   "elternfeld": "Familienzulagen",
+   "teilfeld": "EhepartnerIn Betrag CHF",
+   "standard": "eCH-0278",
+   "element": "childAndFamilyAllowancesAmount",
+   "kontext": "socialAndOtherInsuranceIncomeType",
+   "grund": "Familienzulagenbetrag ist childAndFamilyAllowancesAmount."
+  },
+  {
+   "subfield_id": 810,
+   "elternfeld": "IV-Rente",
+   "teilfeld": "GesuchstellerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "incapacityPension ist der Rentenbetrag (moneyType), kein boolesches Flag; ein IV-Bezugsflag kennt kein Standard."
+  },
+  {
+   "subfield_id": 811,
+   "elternfeld": "IV-Rente",
+   "teilfeld": "GesuchstellerIn Betrag CHF",
+   "standard": "eCH-0278",
+   "element": "incapacityPension",
+   "kontext": "socialAndOtherInsuranceIncomeType",
+   "grund": "Betrag der IV-Rente ist incapacityPension, im XSD eine simpleContent-Erweiterung von moneyType; insuranceAHVIV100Amount (eCH-0119) ist ein partnerAmountType-Kompositum und zudem AHV-oder-IV."
+  },
+  {
+   "subfield_id": 812,
+   "elternfeld": "IV-Rente",
+   "teilfeld": "EhepartnerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "Kein boolesches Element für den Bezug einer IV-Rente."
+  },
+  {
+   "subfield_id": 813,
+   "elternfeld": "IV-Rente",
+   "teilfeld": "Kinder Ja/Nein",
+   "kein_standard": true,
+   "grund": "hasOwnIncome bedeutet eigenes Einkommen des Kindes, nicht Bezug einer IV-Kinderrente; ein Flag dafür gibt es nicht."
+  },
+  {
+   "subfield_id": 814,
+   "elternfeld": "IV-Rente",
+   "teilfeld": "Kinder-/Waisenrente Betrag CHF",
+   "standard": "eCH-0278",
+   "element": "incapacityPension",
+   "kontext": "socialAndOtherInsuranceIncomeType",
+   "grund": "Die IV-Kinder-/Waisenrente unter dem Elternfeld IV-Rente ist eine Leistung der Invalidenversicherung; incapacityPension ist der atomare moneyType-Betrag dafür, konsistent mit 811."
+  },
+  {
+   "subfield_id": 815,
+   "elternfeld": "IV-Rente",
+   "teilfeld": "Name Ausgleichskasse",
+   "kein_standard": true,
+   "grund": "Die auszahlende Ausgleichskasse kennt kein Standard; insuranceCompany in otherIncomeAndGainsType ist der Versicherer von Leistungen bei Tod/Invalidität."
+  },
+  {
+   "subfield_id": 816,
+   "elternfeld": "Hilflosenentschädigung",
+   "teilfeld": "GesuchstellerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "privateLiability ist ein Schuldenflag; ein boolesches Element für den Bezug einer Hilflosenentschädigung gibt es nicht."
+  },
+  {
+   "subfield_id": 817,
+   "elternfeld": "Hilflosenentschädigung",
+   "teilfeld": "GesuchstellerIn Betrag CHF",
+   "standard": "eCH-0119",
+   "element": "allowanceHelplessCompensation",
+   "kontext": "handicapExpensesType",
+   "grund": "Betrag der bezogenen Hilflosenentschädigung ist allowanceHelplessCompensation (moneyType1) in handicapExpensesType; eCH-0278 nennt sie nicht (thirdPartyCompensations ist breiter), liability war ein Schuldbetrag."
+  },
+  {
+   "subfield_id": 818,
+   "elternfeld": "Hilflosenentschädigung",
+   "teilfeld": "EhepartnerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "Kein boolesches Element für den Bezug einer Hilflosenentschädigung."
+  },
+  {
+   "subfield_id": 819,
+   "elternfeld": "Hilflosenentschädigung",
+   "teilfeld": "EhepartnerIn Betrag CHF",
+   "standard": "eCH-0119",
+   "element": "allowanceHelplessCompensation",
+   "kontext": "handicapExpensesType",
+   "grund": "Hilflosenentschädigungsbetrag ist allowanceHelplessCompensation in handicapExpensesType."
+  },
+  {
+   "subfield_id": 820,
+   "elternfeld": "Hilflosenentschädigung",
+   "teilfeld": "Name Ausgleichskasse",
+   "kein_standard": true,
+   "grund": "Die Ausgleichskasse kennt kein Standard; insuranceCompany meint den Versicherer übriger Versicherungsleistungen."
+  },
+  {
+   "subfield_id": 821,
+   "elternfeld": "Pensionskassenrente",
+   "teilfeld": "GesuchstellerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "occupationalPension ist der Rentenbetrag (moneyType), kein boolesches Flag; ein Bezugsflag für die Pensionskassenrente gibt es nicht."
+  },
+  {
+   "subfield_id": 822,
+   "elternfeld": "Pensionskassenrente",
+   "teilfeld": "GesuchstellerIn Betrag CHF",
+   "standard": "eCH-0278",
+   "element": "occupationalPension",
+   "kontext": "socialAndOtherInsuranceIncomeType",
+   "grund": "Rente der beruflichen Vorsorge ist occupationalPension in pensionAndAnnuity, im XSD eine simpleContent-Erweiterung von moneyType; amount100 (eCH-0119) ist ein generischer Rentenbetrag ohne Bezug zur 2. Säule."
+  },
+  {
+   "subfield_id": 823,
+   "elternfeld": "Pensionskassenrente",
+   "teilfeld": "EhepartnerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "Kein boolesches Element für den Bezug einer Pensionskassenrente."
+  },
+  {
+   "subfield_id": 824,
+   "elternfeld": "Pensionskassenrente",
+   "teilfeld": "Kinder Ja/Nein",
+   "kein_standard": true,
+   "grund": "hasOwnIncome meint eigenes Einkommen des Kindes, nicht eine PK-Kinderrente; ein Flag dafür fehlt."
+  },
+  {
+   "subfield_id": 825,
+   "elternfeld": "Pensionskassenrente",
+   "teilfeld": "Kinder-/Waisenrente Betrag CHF",
+   "standard": "eCH-0278",
+   "element": "occupationalPension",
+   "kontext": "socialAndOtherInsuranceIncomeType",
+   "grund": "Die PK-Kinder-/Waisenrente ist eine Rente der beruflichen Vorsorge; occupationalPension ist der typisierte moneyType-Betrag dafür."
+  },
+  {
+   "subfield_id": 826,
+   "elternfeld": "Pensionskassenrente",
+   "teilfeld": "Name Pensionskasse",
+   "kein_standard": true,
+   "grund": "Name der rentenzahlenden Pensionskasse kennt kein Standard; institution in capitalBenefitsType ist die Einrichtung einer Kapitalauszahlung, institution in bankAccountIncomeType die Bank."
+  },
+  {
+   "subfield_id": 827,
+   "elternfeld": "Kapitalauszahlung",
+   "teilfeld": "Ja/Nein",
+   "kein_standard": true,
+   "grund": "capitalBenefits ist der zusammengesetzte Knoten, kein boolesches Flag; ein Element 'Kapitalauszahlung erfolgt' gibt es nicht."
+  },
+  {
+   "subfield_id": 828,
+   "elternfeld": "Kapitalauszahlung",
+   "teilfeld": "Wann?",
+   "standard": "eCH-0278",
+   "element": "paymentDate",
+   "kontext": "capitalBenefitsType",
+   "grund": "Auszahlungsdatum der Kapitalleistung ist paymentDate (date) in capitalBenefitsType; transactionDate in headerType ist der Meldungszeitstempel."
+  },
+  {
+   "subfield_id": 829,
+   "elternfeld": "Kapitalauszahlung",
+   "teilfeld": "Betrag CHF",
+   "standard": "eCH-0278",
+   "element": "amount",
+   "kontext": "capitalBenefitsType",
+   "grund": "Betrag der Kapitalleistung ist amount (moneyType) in capitalBenefitsType; employedRevenue war Lohn."
+  },
+  {
+   "subfield_id": 830,
+   "elternfeld": "Renten von ausländischen Sozialversicherungen",
+   "teilfeld": "GesuchstellerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "Kein boolesches Element für den Bezug ausländischer Sozialversicherungsrenten."
+  },
+  {
+   "subfield_id": 831,
+   "elternfeld": "Renten von ausländischen Sozialversicherungen",
+   "teilfeld": "EhepartnerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "Kein boolesches Element für den Bezug ausländischer Sozialversicherungsrenten."
+  },
+  {
+   "subfield_id": 832,
+   "elternfeld": "Renten von ausländischen Sozialversicherungen",
+   "teilfeld": "Betrag CHF",
+   "standard": "eCH-0278",
+   "element": "otherPensions",
+   "kontext": "socialAndOtherInsuranceIncomeType",
+   "grund": "otherPensions ist im XSD eine simpleContent-Erweiterung von moneyType und die Residualkategorie 'übrige Renten' in pensionAndAnnuity; Renten ausländischer Sozialversicherungen fallen in keine benannte Kategorie und werden in der Steuererklärung genau dort deklariert."
+  },
+  {
+   "subfield_id": 833,
+   "elternfeld": "Arbeitslosenversicherung",
+   "teilfeld": "GesuchstellerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "Kein boolesches Element für den Bezug von ALV-Leistungen."
+  },
+  {
+   "subfield_id": 834,
+   "elternfeld": "Arbeitslosenversicherung",
+   "teilfeld": "EhepartnerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "Kein boolesches Element für den Bezug von ALV-Leistungen."
+  },
+  {
+   "subfield_id": 835,
+   "elternfeld": "Arbeitslosenversicherung",
+   "teilfeld": "Betrag CHF",
+   "standard": "eCH-0278",
+   "element": "unemploymentInsurance",
+   "kontext": "socialAndOtherInsuranceIncomeType",
+   "grund": "Betrag der ALV-Taggelder ist unemploymentInsurance, im XSD eine simpleContent-Erweiterung von moneyType; das gleichnamige eCH-0119-Element ist ein partnerAmountType-Kompositum und weniger atomar."
+  },
+  {
+   "subfield_id": 836,
+   "elternfeld": "Krankenversicherung (Taggeld)",
+   "teilfeld": "GesuchstellerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "Kein boolesches Element für den Bezug von Krankentaggeld."
+  },
+  {
+   "subfield_id": 837,
+   "elternfeld": "Krankenversicherung (Taggeld)",
+   "teilfeld": "EhepartnerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "Kein boolesches Element für den Bezug von Krankentaggeld."
+  },
+  {
+   "subfield_id": 838,
+   "elternfeld": "Krankenversicherung (Taggeld)",
+   "teilfeld": "Betrag CHF",
+   "kein_standard": true,
+   "grund": "Krankentaggelder nennt kein Standard; otherCompensations (eCH-0278) ist ein undokumentierter Sammelbetrag ohne erkennbaren Umfang und wird nicht gedehnt, employedRevenue war Lohn."
+  },
+  {
+   "subfield_id": 839,
+   "elternfeld": "Lebensversicherung (Renteneinkommen)",
+   "teilfeld": "GesuchstellerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "annuity und pillar3bPension sind Rentenbeträge (moneyType), keine Flags; ein boolesches Element für Leibrentenbezug gibt es nicht."
+  },
+  {
+   "subfield_id": 840,
+   "elternfeld": "Lebensversicherung (Renteneinkommen)",
+   "teilfeld": "EhepartnerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "Kein boolesches Element für den Bezug einer Leibrente."
+  },
+  {
+   "subfield_id": 841,
+   "elternfeld": "Lebensversicherung (Renteneinkommen)",
+   "teilfeld": "Betrag CHF",
+   "standard": "eCH-0278",
+   "element": "annuity",
+   "kontext": "socialAndOtherInsuranceIncomeType",
+   "grund": "Renteneinkommen aus einer Lebensversicherung ist eine Leibrente; annuity in pensionAndAnnuity ist im XSD eine simpleContent-Erweiterung von moneyType, amount100 (eCH-0119) nur ein generischer Rentenbetrag."
+  },
+  {
+   "subfield_id": 842,
+   "elternfeld": "Andere Versicherung",
+   "teilfeld": "GesuchstellerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "Kein boolesches Element für Einkünfte aus anderer Versicherung."
+  },
+  {
+   "subfield_id": 843,
+   "elternfeld": "Andere Versicherung",
+   "teilfeld": "EhepartnerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "Kein boolesches Element für Einkünfte aus anderer Versicherung."
+  },
+  {
+   "subfield_id": 844,
+   "elternfeld": "Andere Versicherung",
+   "teilfeld": "Name / Art der Versicherung",
+   "standard": "eCH-0278",
+   "element": "insuranceCompany",
+   "kontext": "otherIncomeAndGainsType",
+   "grund": "Name des Versicherers ist insuranceCompany (string) in otherIncomeAndGainsType (Detail zu Versicherungsleistungen bei Tod/Invalidität), das einzige Versicherer-Namenselement des Steuerstandards; bleibt richtig."
+  },
+  {
+   "subfield_id": 845,
+   "elternfeld": "Andere Versicherung",
+   "teilfeld": "Betrag CHF",
+   "standard": "eCH-0278",
+   "element": "amount",
+   "kontext": "otherIncomeAndGainsType",
+   "grund": "Betrag der übrigen Versicherungsleistung ist amount (moneyType) im selben Detailknoten wie insuranceCompany in otherIncomeAndGainsType; employedRevenue war Lohn."
+  },
+  {
+   "subfield_id": 846,
+   "elternfeld": "Alimente / Unterhaltsleistungen",
+   "teilfeld": "GesuchstellerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "Für Erwachsene gibt es kein boolesches Element 'erhält Unterhalt'; statePensionContributions ist sachfremd."
+  },
+  {
+   "subfield_id": 847,
+   "elternfeld": "Alimente / Unterhaltsleistungen",
+   "teilfeld": "GesuchstellerIn Betrag CHF",
+   "standard": "eCH-0278",
+   "element": "amount",
+   "kontext": "alimonyIncomeType",
+   "grund": "Erhaltene Unterhaltsbeiträge sind amount (moneyType) unter restRevenueAlimony in alimonyIncomeType; bleibt richtig."
+  },
+  {
+   "subfield_id": 848,
+   "elternfeld": "Alimente / Unterhaltsleistungen",
+   "teilfeld": "EhepartnerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "Kein boolesches Element für erhaltenen Unterhalt bei Erwachsenen."
+  },
+  {
+   "subfield_id": 849,
+   "elternfeld": "Alimente / Unterhaltsleistungen",
+   "teilfeld": "Kinder Ja/Nein",
+   "standard": "eCH-0278",
+   "element": "isAlimonyReceiver",
+   "kontext": "childType",
+   "grund": "Kind erhält Alimente ist isAlimonyReceiver (boolean) in childType; hasOwnIncome meinte eigenes Einkommen."
+  },
+  {
+   "subfield_id": 850,
+   "elternfeld": "Alimente / Unterhaltsleistungen",
+   "teilfeld": "Betrag CHF",
+   "standard": "eCH-0278",
+   "element": "restRevenueAlimonyChildAmount",
+   "kontext": "alimonyIncomeType",
+   "grund": "Der auf das Kinder-Flag folgende Betrag ist der Kinderunterhalt, restRevenueAlimonyChildAmount (moneyType) in alimonyIncomeType; employedRevenue war Lohn."
+  },
+  {
+   "subfield_id": 851,
+   "elternfeld": "Sonstiges Einkommen",
+   "teilfeld": "GesuchstellerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "Kein boolesches Element für 'hat sonstiges Einkommen'; otherIncome ist ein Strukturknoten."
+  },
+  {
+   "subfield_id": 852,
+   "elternfeld": "Sonstiges Einkommen",
+   "teilfeld": "GesuchstellerIn Betrag CHF",
+   "standard": "eCH-0278",
+   "element": "otherIncomeAmount",
+   "kontext": "otherIncomeAndGainsType",
+   "grund": "Betrag übriger Einkünfte ist otherIncomeAmount (moneyType) in otherIncomeAndGainsType; amount in alimonyIncomeType war Unterhalt."
+  },
+  {
+   "subfield_id": 853,
+   "elternfeld": "Sonstiges Einkommen",
+   "teilfeld": "EhepartnerIn Ja/Nein",
+   "kein_standard": true,
+   "grund": "Kein boolesches Element für sonstiges Einkommen."
+  },
+  {
+   "subfield_id": 854,
+   "elternfeld": "Sonstiges Einkommen",
+   "teilfeld": "EhepartnerIn Betrag CHF",
+   "standard": "eCH-0278",
+   "element": "otherIncomeAmount",
+   "kontext": "otherIncomeAndGainsType",
+   "grund": "Betrag übriger Einkünfte ist otherIncomeAmount in otherIncomeAndGainsType."
+  }
+ ]
+}

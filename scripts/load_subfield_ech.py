@@ -9,18 +9,24 @@ the subfield alone would collapse those.
 Same gate as everywhere: an element is accepted only if (standard, element) really
 exists in the catalogue. Idempotent. Staging -> validate -> swap.
 
-    python3 scripts/load_subfield_ech.py <sfmap_out-dir> --inputs=<sfmap-dir> [--dry-run]
+    python3 scripts/load_subfield_ech.py <sfmap_out-dir|file.json> [--inputs=<sfmap-dir>] [--dry-run]
+
+Two kinds of entry in a zuordnungen list:
+  * name-keyed  {elternfeld, teilfeld, standard, element | kein_standard}: applies to
+    every subfield with that (parent, part) name pair, across forms (the original
+    panel format);
+  * id-keyed    {subfield_id, standard, element, kontext? | kein_standard}: applies to
+    exactly that row (a reviewed correction of one form, e.g.
+    quellen/korrekturen/subfield_ech_form131_2026-09-26.json). 'kontext' (the XSD
+    complexType) picks the right row among same-named elements (eCH-0278 has
+    several 'amount'); without it the first catalogue row is taken.
+An element assigned to a part clears its eSH draft code (convention 7).
 """
-import glob, json, os, re, shutil, sys, unicodedata
+import glob, json, os, re, shutil, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from common import DB_PATH, connect
+from common import DB_PATH, connect, norm_ascii as norm
 from validate_db import validate
 
-
-def norm(s):
-    s = unicodedata.normalize("NFD", (s or "").lower())
-    s = "".join(ch for ch in s if not unicodedata.combining(ch))
-    return re.sub(r"[^a-z0-9]+", " ", s).strip()
 
 
 def std_code(s):
@@ -37,10 +43,11 @@ def main():
         os.remove(st)
     shutil.copy2(DB_PATH, st)
     c = connect(st)
-    cat = {}
-    for r in c.execute("SELECT id, standard, name FROM ech_element"):
+    cat, cat_ctx = {}, {}
+    for r in c.execute("SELECT id, standard, name, context FROM ech_element"):
         cat.setdefault((r["standard"], r["name"]), r["id"])
         cat.setdefault((r["standard"], r["name"].lower()), r["id"])
+        cat_ctx[(r["standard"], r["name"], r["context"] or "")] = r["id"]
     known = {r["code"] for r in c.execute("SELECT code FROM ech_standard")}
     with_xsd = {r["code"] for r in c.execute("SELECT code FROM ech_standard WHERE n_elements>0")}
 
@@ -60,14 +67,29 @@ def main():
 
     elem, sonly, none_, rejected = {}, {}, set(), []
     elem_std, none_std = {}, set()          # fallback keyed by (parent standard, subfield)
+    by_id = {}                              # subfield_id -> ('elem', eid) | ('none',)
     for src in srcs:
-        for jf in sorted(glob.glob(os.path.join(src, "*.json"))):
+        files = [src] if os.path.isfile(src) else sorted(glob.glob(os.path.join(src, "*.json")))
+        for jf in files:
             try:
                 d = json.load(open(jf, encoding="utf-8"))
             except Exception:
                 continue
             for z in (d.get("zuordnungen", []) if isinstance(d, dict) else d):
                 if not isinstance(z, dict):
+                    continue
+                if z.get("subfield_id") is not None:          # id-keyed: exactly this row
+                    sid = int(z["subfield_id"])
+                    if z.get("kein_standard"):
+                        by_id[sid] = ("none",)
+                        continue
+                    s_, e_ = std_code(z.get("standard")), (z.get("element") or "").strip()
+                    eid = (cat_ctx.get((s_, e_, (z.get("kontext") or "").strip())) if z.get("kontext") else None) \
+                          or cat.get((s_, e_)) or cat.get((s_, e_.lower()))
+                    if s_ in known and eid:
+                        by_id[sid] = ("elem", eid)
+                    else:
+                        rejected.append(f"{z.get('standard')}:{e_} (id {sid})")
                     continue
                 k = (norm(z.get("elternfeld")), norm(z.get("teilfeld")))
                 if not k[1]:
@@ -98,7 +120,18 @@ def main():
                                COALESCE(e.standard, d.ech_standard_code) pstd
                         FROM data_subfield sf JOIN data_field d ON d.id=sf.data_field_id
                         LEFT JOIN ech_element e ON e.id=d.ech_element_id""").fetchall()
+    nid = 0
     for r in rows:
+        if r["id"] in by_id:                     # a reviewed row-level verdict wins
+            v = by_id[r["id"]]
+            if v[0] == "elem":
+                c.execute("UPDATE data_subfield SET ech_element_id=?, ech_standard_code=NULL,"
+                          " ech_status='assigned', esh_code=NULL, esh_element=NULL WHERE id=?", [v[1], r["id"]]); ne += 1
+            else:
+                c.execute("UPDATE data_subfield SET ech_element_id=NULL, ech_standard_code=NULL,"
+                          " ech_status='kein_standard' WHERE id=?", [r["id"]]); nn += 1
+            nid += 1
+            continue
         k = (norm(r["dn"]), norm(r["sn"]))
         ks = (r["pstd"], norm(r["sn"]))          # same subfield under a same-standard parent
         if k in elem:
@@ -122,7 +155,7 @@ def main():
         if errs:
             os.remove(st); print("ABORT:", *errs[:3], sep="\n  "); sys.exit(1)
         os.replace(st, DB_PATH)
-    print(f"Teilfelder: {ne} auf Element-Ebene ({len(elem)} Schlüssel, davon {nfb} über den "
+    print(f"Teilfelder: {ne} auf Element-Ebene ({len(elem)} Namens-Schlüssel, {nid} per Zeilen-ID, davon {nfb} über den "
           f"Eltern-Standard zugeordnet), {ns} nur Standard, {nn} 'kein Standard', "
           f"{len(rejected)} REJECTED durch das Katalog-Gate"
           + ("   (dry-run)" if dry else ""))

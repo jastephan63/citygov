@@ -113,7 +113,8 @@ BEGIN SELECT RAISE(ABORT, 'GATE: sensibler Wert darf nur verschlüsselt gespeich
 CREATE TRIGGER tg_grundlage_oder_einwilligung BEFORE INSERT ON datenpunkt
 WHEN NEW.grundlage_artikel IS NULL AND NEW.einwilligung_id IS NULL
      AND (NEW.grundlage IS NULL OR (NEW.grundlage NOT LIKE 'Rechtsgrundlage zu ermitteln%'
-          AND NEW.grundlage NOT LIKE 'Aufgabenerfüllung%' AND NEW.grundlage NOT LIKE 'Aufgabenbedarf%'))
+          AND NEW.grundlage NOT LIKE 'Aufgabenerfüllung%' AND NEW.grundlage NOT LIKE 'Aufgabenbedarf%'
+          AND NEW.grundlage NOT LIKE 'aufgabennotwendig — Grundlage nach KDSG Art. 5%'))
 BEGIN SELECT RAISE(ABORT, 'GATE: Datenpunkt braucht Rechtsgrundlage oder Einwilligung'); END;
 CREATE TRIGGER tg_format BEFORE INSERT ON datenpunkt
 WHEN NEW.verschluesselt = 0 AND NEW.format_glob IS NOT NULL AND NEW.wert NOT GLOB NEW.format_glob
@@ -254,7 +255,14 @@ def main():
         elif nr and r["jurisdiction_level"] == "federal":
             nr = f"SR {nr}"
         basis.setdefault(r["did"], (r["article_id"], f"{r['article_no']} {st}" + (f" ({nr})" if nr else "")))
-    # retention days per form: its laws' sektoral terms, else the 10-year standard
+    # retention days per form: its laws' sektoral terms, else the cantonal standard
+    # (ArchivV § 5: Registraturperioden of in der Regel 10–20 Jahren — the shorter end,
+    # read from the verified rule, never a literal)
+    row = src.execute("SELECT MIN(rt.duration_value) FROM retention_term rt JOIN data_rule dr ON dr.id=rt.data_rule_id "
+                      "JOIN article a ON a.id=dr.article_id JOIN law l ON l.id=a.law_id "
+                      "WHERE dr.scope='allgemein' AND dr.aspect='aufbewahrung' AND rt.duration_unit='jahre' "
+                      "AND l.cantonal_ref='SHR 172.301' AND rt.duration_value IS NOT NULL").fetchone()
+    DEFAULT_DAYS = (row[0] or 10) * 365
     ret_days = {}
     lt = {}
     for r in src.execute("SELECT a.law_id, rt.duration_value, rt.duration_unit "
@@ -296,8 +304,11 @@ def main():
                 "name": u["name"], "attr": aid,
                 "std": e["standard"] if e else None, "el": e["name"] if e else None,
                 "dt": e["datatype"] if e else None,
-                "typ": d["data_type"], "fmt": d["format_code"],
-                "vals": json.loads(d["allowed_values"] or "[]"),
+                # a PART never inherits its parent's type, format or value list (a
+                # «Land» part under a date-typed parent is not a date); its own eCH
+                # datatype decides, else it is free text
+                "typ": None if subs else d["data_type"], "fmt": None if subs else d["format_code"],
+                "vals": [] if subs else json.loads(d["allowed_values"] or "[]"),
                 "req": bool(d["required"]), "sens": d["sensitive"],
                 "no_basis": bool(d["no_basis"]), "basis_typ": d["basis_typ"],
                 "basis": basis.get(d["id"])})
@@ -341,11 +352,24 @@ def main():
              "callName": "vorname", "dateOfBirth": "geburtsdatum", "vn": "ahvn13",
              "street": "strasse", "swissZipCode": "plz", "town": "ort",
              "emailAddress": "email", "phoneNumber": "telefon"}
+    LAENDER = ["Schweiz", "Deutschland", "Italien", "Frankreich", "Österreich", "Portugal"]
+    DATE_DT = {"date", "datePartiallyKnownType", "generalDateType", "dateType", "xs:date"}
     def gen(p, s):
         if p["el"] in IDENT:
             return s[IDENT[p["el"]]]
         if p["vals"]:
             return str(random.choice(p["vals"]))
+        dt = p.get("dt") or ""
+        if dt in DATE_DT:
+            return (date(2023, 1, 1) + timedelta(days=random.randint(0, 1300))).strftime("%d.%m.%Y")
+        if "country" in dt.lower() or "nationality" in dt.lower():
+            return random.choice(LAENDER)
+        if dt in ("moneyType", "moneyType1", "taxAmountType"):
+            return f"{random.randint(20, 5000)}.00"
+        if dt in ("long", "quantityType", "percentageType"):
+            return str(random.randint(1, 250))
+        if dt == "boolean":
+            return random.choice(["Ja", "Nein"])
         f = p["fmt"]
         if f == "date.ch" or p["typ"] == "date":
             return (date(2023, 1, 1) + timedelta(days=random.randint(0, 1300))).strftime("%d.%m.%Y")
@@ -378,7 +402,7 @@ def main():
                     fm["meta"]["dienststelle"], ein.isoformat(), ab.isoformat(),
                     out_by_form.get(fid, "unbekannt")])
         fall_id = db.execute("SELECT last_insert_rowid()").fetchone()[0]
-        loesch = (ab + timedelta(days=ret_days.get(fid, 3650))).isoformat()
+        loesch = (ab + timedelta(days=ret_days.get(fid, DEFAULT_DAYS))).isoformat()
 
         for p in fm["punkte"]:
             if not p["req"] and random.random() < 0.4:
@@ -398,7 +422,11 @@ def main():
             # a merely undocumented basis is a research gap, not consent territory
             # (conflating the two was convention 8's original trap)
             einw_id, grundlage_txt = None, p["basis"][1] if p["basis"] else None
-            if p["basis_typ"] == "aufgabe":
+            if p["basis_typ"] == "aufgabe" and p["sens"] and not p["basis"]:
+                # besonders schützenswert: Art. 4 Abs. 1 lit. b is not enough — the
+                # Art.-5 basis is still to be named (same label as every other surface)
+                grundlage_txt = "aufgabennotwendig — Grundlage nach KDSG Art. 5 Abs. 1 noch nicht benannt"
+            elif p["basis_typ"] == "aufgabe":
                 grundlage_txt = "Aufgabenerfüllung (KDSG Art. 4 Abs. 1 lit. b) — keine explizite Norm"
             elif p["basis_typ"] == "offen":
                 grundlage_txt = "Aufgabenbedarf noch nicht beurteilt (kein Befund)"
@@ -473,6 +501,7 @@ def main():
           f"{stats['einw']} Einwilligungen, {stats['refus']} vom Format-Gate verweigert), "
           f"{stats['kopie']} Beleg-Kopien + {stats['vermerk']} Prüfvermerke, "
           f"{stats['log']} Log-Einträge — {size} MB")
+    print(f"  Verschlüsselung: {cipher_label}")
 
 
 if __name__ == "__main__":

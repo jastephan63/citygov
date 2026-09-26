@@ -19,6 +19,7 @@ from common import ROOT, DB_PATH, connect
 import pypdf
 
 
+# deliberately NOT common.norm_ascii: no spaces, matches AcroForm field ids
 def norm(s):
     s = unicodedata.normalize("NFD", (s or "").lower())
     s = "".join(ch for ch in s if not unicodedata.combining(ch))

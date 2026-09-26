@@ -20,15 +20,12 @@ Staging -> validate -> swap.
 """
 import glob, json, os, re, shutil, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from common import DB_PATH, connect
+from common import DB_PATH, connect, norm_label as norm
 from validate_db import validate
 
 ALT = {"variante": ("variante", None), "rolle": ("rolle", None),
        "pruefen_aufteilen": ("pruefen", "aufteilen"), "pruefen_zuordnung": ("pruefen", "zuordnung")}
 
-
-def norm(s):
-    return re.sub(r"\s+", " ", re.sub(r"[:*]+\s*$", "", (s or "").strip())).lower()
 
 
 def main():

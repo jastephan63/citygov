@@ -7,8 +7,9 @@ without an eCH element land in an explicit 'ohne_standard' section — the gap i
 part of the payload, never hidden. A form is 'voll' exchange-ready only when
 every atomic point carries an element.
 
-Honest limitation, stated in the file's meta: the catalogue has no XSD version
-column yet (needs a re-sweep of the eCH XSDs), so schemas are unversioned.
+meta.xsd_versionen records the XSD version each standard was mapped against
+(ech_standard.xsd_version, written by scripts/sweep_ech_xsd.py); a standard
+without its own schema file has no entry there, and the export says so.
 
     python3 scripts/export_ech_schema.py
 """

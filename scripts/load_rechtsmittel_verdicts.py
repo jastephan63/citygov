@@ -45,17 +45,29 @@ def main():
     c.executescript(DDL)
     have = {r["form_id"] for r in c.execute("SELECT form_id FROM form_outcome")}
     cands = {}
-    # a provision the second review struck is not a remedy and may not be named
-    for r in c.execute("SELECT DISTINCT d.form_id, rr.id FROM data_field_legal_basis lb "
-                       "JOIN data_field d ON d.id=lb.data_field_id JOIN article a ON a.id=lb.article_id "
-                       "JOIN rechtsmittel_regel rr ON rr.law_id=a.law_id AND rr.scope='sektoral' "
-                       "AND COALESCE(rr.gestrichen,0)=0"):
-        cands.setdefault(r["form_id"], set()).add(r["id"])
+    # a provision the second review struck is not a remedy and may not be named;
+    # the candidate laws are the ones load_rechtsmittel.py uses (fields + DVSH)
+    from load_rechtsmittel import cited_laws
+    rules_by_law = {}
+    for r in c.execute("SELECT id, law_id, article_id, rechtsmittel_art FROM rechtsmittel_regel "
+                       "WHERE scope='sektoral' AND COALESCE(gestrichen,0)=0"):
+        rules_by_law.setdefault(r["law_id"], []).append(r["id"])
+    for fid, laws in cited_laws(c).items():
+        for lid in laws:
+            for rid in rules_by_law.get(lid, []):
+                cands.setdefault(fid, set()).add(rid)
+    # a verdict written before the rule had an id names it by (law, article, art)
+    by_key = {(r["law_id"], (r["article_no"] or "").strip().lower(), r["rechtsmittel_art"]): r["id"]
+              for r in c.execute("SELECT rr.id, rr.law_id, a.article_no, rr.rechtsmittel_art FROM rechtsmittel_regel rr "
+                                 "JOIN article a ON a.id=rr.article_id")}
     n = rejected = 0
     counts = {}
     for jf in sorted(glob.glob(os.path.join(src, "out_*.json"))):
         for v in json.load(open(jf, encoding="utf-8")).get("verdicts", []):
             fid, q, rid = v.get("form_id"), v.get("quelle"), v.get("regel_id")
+            if rid is None and isinstance(v.get("regel"), dict):
+                k = v["regel"]
+                rid = by_key.get((k.get("law_id"), (k.get("article_no") or "").strip().lower(), k.get("rechtsmittel_art")))
             why = (v.get("begruendung") or "").strip()
             if fid not in have or q not in ("sektoral", "allgemein", "offen") or len(why) < 8:
                 rejected += 1; continue

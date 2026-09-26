@@ -199,6 +199,15 @@ def main():
                 offen += 1
         stats["rmverdicts"] = f"{n} Formulare geprüft, {over} umgehängt, {offen} auf offen gesetzt"
 
+    # a verdict that names a provision this review struck is void: the struck
+    # provision is not a person's remedy, so the form falls back to 'offen'
+    if c.execute("SELECT 1 FROM sqlite_master WHERE name='rechtsmittel_verdikt'").fetchone():
+        n_void = c.execute(
+            "UPDATE rechtsmittel_verdikt SET regel_id=NULL, quelle='offen', last_checked='Panel-Zweitprüfung', "
+            "begruendung=substr('Zweitprüfung: die zugeordnete Norm wurde in der Zweitprüfung gestrichen — ' "
+            "|| begruendung, 1, 400) WHERE regel_id IN (SELECT id FROM rechtsmittel_regel WHERE gestrichen=1)").rowcount
+        if n_void:
+            print(f"  {n_void} Verdikt(e) auf gestrichener Norm -> offen")
     c.commit()
     errs = validate(c)
     c.close()

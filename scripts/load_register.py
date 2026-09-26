@@ -6,8 +6,8 @@ Gates:
   * purpose        — form must exist; 30-250 chars; not just the title again
   * retention_term — rule must exist with a retention aspect; a duration is
                      only accepted if its number literally appears in the
-                     rule's PDF-verified quote or summary (digits or the
-                     German number word), so no invented Frist can enter
+                     rule's PDF-verified quote (digits or the German number
+                     word) — never only in the summary, which is a paraphrase
   * disclosure     — rule must be a sectoral bekanntgabe rule; recipients are
                      then fanned out to every form whose fields cite that law,
                      carrying the rule's article for traceability
@@ -29,6 +29,7 @@ WORDS = {1: ["ein", "eine", "einem"], 2: ["zwei"], 3: ["drei"], 4: ["vier"],
          50: ["fünfzig", "fuenfzig"], 80: ["achtzig"], 100: ["hundert"]}
 
 
+# deliberately NOT common.norm_ascii: keeps äöü for register-name self-matching
 def norm(s):
     return re.sub(r"[^a-zäöüß0-9]+", " ", (s or "").lower()).strip()
 
@@ -80,7 +81,9 @@ def main():
             if not r:
                 rejected.append(f"Frist: Regel #{rid} ist keine Retention-Regel"); continue
             dv = t.get("duration_value")
-            if dv is not None and not duration_in_text(int(dv), f"{r['quote']} {r['summary']}"):
+            # quote only: the summary is an agent's paraphrase and once carried a
+            # number the quote did not (WV Art. 66: 30 vs 50 Jahre)
+            if dv is not None and not duration_in_text(int(dv), r["quote"] or ""):
                 rejected.append(f"Frist: {dv} steht nicht im Zitat von Regel #{rid}"); continue
             c.execute("INSERT INTO retention_term(data_rule_id,duration_value,duration_unit,"
                       "min_or_max,trigger_event,disposition,last_checked) VALUES(?,?,?,?,?,?,?)",

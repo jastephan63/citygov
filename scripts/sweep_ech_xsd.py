@@ -42,7 +42,8 @@ DDL = """
 CREATE TABLE IF NOT EXISTS ech_codelist (
     id        INTEGER PRIMARY KEY,
     standard  TEXT NOT NULL REFERENCES ech_standard(code),
-    type_name TEXT NOT NULL,      -- the simpleType that carries the enumeration
+    type_name TEXT NOT NULL,      -- the named simpleType, or '@<complexType>.<element>' for an
+                                  -- anonymous enumeration inline in that element
     value     TEXT NOT NULL,
     doc       TEXT,               -- xs:documentation of the value, if any
     UNIQUE(standard, type_name, value)
@@ -81,10 +82,8 @@ def parse_xsd(path):
         if n:
             names.add(n)
     codes = []
-    for st in root.iter(XS + "simpleType"):
-        tname = st.get("name")
-        if not tname:
-            continue
+
+    def enums_of(st, key):
         for en in st.iter(XS + "enumeration"):
             v = en.get("value")
             if v is None:
@@ -93,7 +92,28 @@ def parse_xsd(path):
             d = en.find(f"{XS}annotation/{XS}documentation")
             if d is not None and d.text:
                 doc = re.sub(r"\s+", " ", d.text).strip()[:200]
-            codes.append((tname, v, doc))
+            codes.append((key, v, doc))
+
+    # named simpleTypes: keyed by their type name (the element's datatype)
+    for st in root.iter(XS + "simpleType"):
+        if st.get("name"):
+            enums_of(st, st.get("name"))
+    # anonymous simpleTypes inline in an element (eCH-0278 does this for most
+    # of its value lists): keyed '@<complexType>.<element>' so a field mapped
+    # to that element (context = the complexType) can find its code list
+    for ct in root.iter(XS + "complexType"):
+        cname = ct.get("name") or ""
+        for el in ct.iter(XS + "element"):
+            ename = el.get("name")
+            if not ename:
+                continue
+            for st in el.findall(XS + "simpleType"):
+                if st.find(f".//{XS}enumeration") is not None:
+                    enums_of(st, f"@{cname}.{ename}")
+    for el in root.findall(XS + "element"):          # top-level elements
+        for st in el.findall(XS + "simpleType"):
+            if st.find(f".//{XS}enumeration") is not None:
+                enums_of(st, f"@.{el.get('name')}")
     return version, names, codes
 
 
@@ -122,7 +142,12 @@ def main():
     for col in ("xsd_version", "xsd_file", "xsd_swept_at"):
         if col not in cols:
             c.execute(f"ALTER TABLE ech_standard ADD COLUMN {col} TEXT")
-    stds = [r["code"] for r in c.execute("SELECT code FROM ech_standard WHERE n_elements>0 ORDER BY code")]
+    # every standard with elements, plus every standard a field or subfield is
+    # mapped to (even without elements) — so "swept, nothing found" is recorded
+    used = "SELECT DISTINCT ech_standard_code FROM data_field WHERE ech_standard_code IS NOT NULL " \
+           "UNION SELECT DISTINCT ech_standard_code FROM data_subfield WHERE ech_standard_code IS NOT NULL " \
+           "UNION SELECT DISTINCT e.standard FROM data_field d JOIN ech_element e ON e.id=d.ech_element_id"
+    stds = [r["code"] for r in c.execute(f"SELECT code FROM ech_standard WHERE n_elements>0 OR code IN ({used}) ORDER BY code")]
     cat = {}
     for r in c.execute("SELECT standard, name FROM ech_element"):
         cat.setdefault(r["standard"], set()).add(r["name"])
@@ -152,8 +177,10 @@ def main():
             failed += 1
             report.append(f"{code}: keine eigene XSD auf der Seite"
                           + (f" (nur fremde: {', '.join(os.path.basename(f) for f in files[:3])})" if files else ""))
-            # never keep a version or code list that came from a foreign schema
-            c.execute("UPDATE ech_standard SET xsd_version=NULL, xsd_file=NULL WHERE code=?", [code])
+            # never keep a version or code list that came from a foreign schema;
+            # but record that the sweep looked, so the surfaces can say so
+            c.execute("UPDATE ech_standard SET xsd_version=NULL, xsd_file=NULL, xsd_swept_at=? WHERE code=?",
+                      [date.today().isoformat(), code])
             c.execute("DELETE FROM ech_codelist WHERE standard=?", [code])
             continue
         version, names, codes = parse_xsd(mx)

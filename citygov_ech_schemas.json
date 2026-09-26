@@ -91,7 +91,7 @@
   {
    "form_id": 7,
    "titel": "Formular Subventionsgesuch Denkmalpflege SH",
-   "dienststelle": "Amt fuer Denkmalpflege und Archaeologie",
+   "dienststelle": "Amt für Denkmalpflege und Archäologie",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 87,
    "ech": {
@@ -317,7 +317,7 @@
       {
        "element": "organisationName",
        "datatype": "unitNameType",
-       "feld": "name"
+       "feld": "Offizieller Name"
       }
      ]
     },
@@ -326,14 +326,14 @@
       {
        "element": "street",
        "datatype": "streetType",
-       "feld": "adresse"
+       "feld": "Adresse"
       }
      ],
      "countryType": [
       {
        "element": "organisationMailAdress",
        "datatype": "organisationMailAddressType",
-       "feld": "eingabeadresse"
+       "feld": "Eingabeadresse"
       }
      ]
     },
@@ -342,7 +342,7 @@
       {
        "element": "deadline",
        "datatype": "date",
-       "feld": "eingabefrist"
+       "feld": "Frist für die Einreichung der Teilnahmeanträge"
       }
      ]
     },
@@ -351,66 +351,66 @@
       {
        "element": "contact",
        "datatype": "contactType",
-       "feld": "auskunftsstelle"
+       "feld": "Auskunftsstelle für zusätzliche Informationen"
       }
      ]
     }
    },
    "ohne_standard": [
     {
-     "feld": "auftrag_beschreibung",
+     "feld": "Auftrag",
      "format": ""
     },
     {
-     "feld": "auftragsart",
+     "feld": "Auftragsart",
      "format": ""
     },
     {
-     "feld": "verfahrensart",
+     "feld": "Verfahrensart",
      "format": ""
     },
     {
-     "feld": "wto_gatt_unterstellung",
+     "feld": "Gemäss WTO/GATT-Übereinkommen",
      "format": ""
     },
     {
-     "feld": "couvert_aufschrift",
+     "feld": "Aufschrift",
      "format": ""
     },
     {
-     "feld": "elektronischer_kanal",
+     "feld": "Elektronisch mittels",
      "format": ""
     },
     {
-     "feld": "einzureichende_unterlagen",
+     "feld": "Einzureichende Unterlagen und Beilagen",
      "format": ""
     },
     {
-     "feld": "gueltigkeitsdauer_teilnahmeantrag",
+     "feld": "Gültigkeitsdauer des Teilnahmeantrags",
      "format": ""
     },
     {
-     "feld": "staatsvertragsbereich",
+     "feld": "Unterstellung",
      "format": ""
     },
     {
-     "feld": "besondere_anforderungen",
+     "feld": "Besondere Anforderungen",
      "format": ""
     },
     {
-     "feld": "eignungskriterien_nachweise",
+     "feld": "Eignungskriterien und Nachweise",
      "format": ""
     },
     {
-     "feld": "subunternehmen_arbeitsgemeinschaften_zugelassen",
+     "feld": "Subunternehmen / Arbeitsgemeinschaften",
      "format": ""
     },
     {
-     "feld": "firmenstempel",
+     "feld": "Firmenstempel",
      "format": ""
     },
     {
-     "feld": "rechtsgueltige_unterschrift",
+     "feld": "Rechtsgültige Unterschrift(en)",
      "format": ""
     }
    ]
@@ -873,7 +873,7 @@
   {
    "form_id": 14,
    "titel": "Energienachweis EN-120-SH: Erneuerbare Wärme beim Wärmeerzeugerersatz",
-   "dienststelle": "Feuerpolizei",
+   "dienststelle": "Kantonale Feuerpolizei",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 63,
    "ech": {
@@ -8934,29 +8934,29 @@
       {
        "element": "organisationName",
        "datatype": "unitNameType",
-       "feld": "einrichtung"
+       "feld": "Einrichtung"
       },
       {
        "element": "organisationName",
        "datatype": "unitNameType",
-       "feld": "name_kursanbieter"
+       "feld": "Name Kursanbieter"
       }
      ],
      "organisationType": [
       {
        "element": "emailAddress",
        "datatype": "emailType",
-       "feld": "email"
+       "feld": "Email"
       },
       {
        "element": "phoneNumber",
        "datatype": "phoneNumberType",
-       "feld": "telefon_tagsueber"
+       "feld": "Tel. tagsüber"
       },
       {
        "element": "phoneNumber",
        "datatype": "phoneNumberType",
-       "feld": "telefon_kursanbieter"
+       "feld": "Tel. Kursanbieter"
       }
      ]
     },
@@ -8965,12 +8965,12 @@
       {
        "element": "officialName",
        "datatype": "baseNameType",
-       "feld": "verantwortliche_person"
+       "feld": "Verantwortliche Person"
       },
       {
        "element": "officialName",
        "datatype": "baseNameType",
-       "feld": "kursteilnehmer_name"
+       "feld": "Name Kursteilnehmer/in"
       }
      ]
     },
@@ -8979,22 +8979,22 @@
       {
        "element": "street",
        "datatype": "streetType",
-       "feld": "adresse_einrichtung"
+       "feld": "Adresse Einrichtung"
       },
       {
        "element": "swissZipCode",
        "datatype": "swissZipCodeType",
-       "feld": "plz_ort_einrichtung"
+       "feld": "PLZ/Ort Einrichtung"
       },
       {
        "element": "street",
        "datatype": "streetType",
-       "feld": "adresse_kursanbieter"
+       "feld": "Adresse Kursanbieter"
       },
       {
        "element": "swissZipCode",
        "datatype": "swissZipCodeType",
-       "feld": "plz_ort_kursanbieter"
+       "feld": "PLZ/Ort Kursanbieter"
       }
      ]
     },
@@ -9003,12 +9003,12 @@
       {
        "element": "educationType",
        "datatype": "string",
-       "feld": "kursbezeichnung"
+       "feld": "Kursbezeichnung"
       },
       {
        "element": "furtherEducationCostsSelfPaid",
        "datatype": null,
-       "feld": "verbleibende_kurskosten"
+       "feld": "Verbleibende Kurskosten nach Abzug"
       }
      ]
     },
@@ -9017,14 +9017,14 @@
       {
        "element": "beginDate",
        "datatype": "date",
-       "feld": "datum_kursbeginn"
+       "feld": "Datum Kursbeginn"
       }
      ],
      "contractPartType": [
       {
        "element": "endDate",
        "datatype": "date",
-       "feld": "datum_kursende"
+       "feld": "Datum Kursende"
       }
      ]
     },
@@ -9033,18 +9033,18 @@
       {
        "element": "furtherEducationTotalCost",
        "datatype": "partnerAmountType",
-       "feld": "kurskosten_total"
+       "feld": "Kurskosten total"
       }
      ]
     }
    },
    "ohne_standard": [
     {
-     "feld": "abziehbare_subventionen_bund",
+     "feld": "Abziehbare Subventionen Bund (erwartet)",
      "format": "CHF"
     },
     {
-     "feld": "nachweis_kursanmeldung",
+     "feld": "Nachweis Kursanmeldung",
      "format": ""
     }
    ]
@@ -11620,7 +11620,7 @@
   {
    "form_id": 102,
    "titel": "Anordnung betreffend fürsorgerische Unterbringung",
-   "dienststelle": "Kantonsaerztlicher Dienst",
+   "dienststelle": "Kantonsärztlicher Dienst",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 50,
    "ech": {
@@ -11699,7 +11699,7 @@
   {
    "form_id": 103,
    "titel": "Einwilligung zur Ausweisbestellung",
-   "dienststelle": "Migrationsamt und Passbuero",
+   "dienststelle": "Migrationsamt und Passbüro",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 80,
    "ech": {
@@ -11822,7 +11822,7 @@
   {
    "form_id": 104,
    "titel": "Gesuch um Ausstellung eines Austauschpasses",
-   "dienststelle": "Migrationsamt und Passbuero",
+   "dienststelle": "Migrationsamt und Passbüro",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 80,
    "ech": {
@@ -15665,7 +15665,7 @@
    "titel": "Lohndeklaration 2025",
    "dienststelle": "SVA Schaffhausen",
    "exchange_ready": "teilweise",
-   "abdeckung_pct": 17,
+   "abdeckung_pct": 38,
    "ech": {
     "eCH-0098": {
      "organisationIdentificationType": [
@@ -15699,6 +15699,46 @@
        "feld": "IBAN"
       }
      ]
+    },
+    "eCH-0046": {
+     "emailType": [
+      {
+       "element": "emailAddress",
+       "datatype": "emailAddressType",
+       "feld": "E-Mail"
+      }
+     ],
+     "phoneType": [
+      {
+       "element": "phoneNumber",
+       "datatype": "phoneNumberType",
+       "feld": "Telefon"
+      }
+     ]
+    },
+    "eCH-0044": {
+     "personIdentificationLightType": [
+      {
+       "element": "vn",
+       "datatype": "vnType",
+       "feld": "AHV-Nummer"
+      },
+      {
+       "element": "dateOfBirth",
+       "datatype": "datePartiallyKnownType",
+       "feld": "Geburtsdatum"
+      },
+      {
+       "element": "officialName",
+       "datatype": "baseNameType",
+       "feld": "Name"
+      },
+      {
+       "element": "firstName",
+       "datatype": "baseNameType",
+       "feld": "Vorname"
+      }
+     ]
     }
    },
    "ohne_standard": [
@@ -15727,31 +15767,7 @@
      "format": ""
     },
     {
-     "feld": "E-Mail",
-     "format": ""
-    },
-    {
-     "feld": "Telefon",
-     "format": ""
-    },
-    {
      "feld": "Bemerkungen",
-     "format": ""
-    },
-    {
-     "feld": "AHV-Nummer",
-     "format": ""
-    },
-    {
-     "feld": "Geburtsdatum",
-     "format": ""
-    },
-    {
-     "feld": "Name",
-     "format": ""
-    },
-    {
-     "feld": "Vorname",
      "format": ""
     },
     {
@@ -17113,7 +17129,7 @@
    "titel": "Anmeldung für Ergänzungsleistungen (EL)",
    "dienststelle": "SVA Schaffhausen",
    "exchange_ready": "teilweise",
-   "abdeckung_pct": 96,
+   "abdeckung_pct": 58,
    "ech": {
     "eCH-0044": {
      "personIdentificationLightType": [
@@ -17133,6 +17149,11 @@
        "feld": "Geburtsdatum"
       },
       {
+       "element": "vn",
+       "datatype": "vnType",
+       "feld": "AHV-Nummer / Versichertennummer"
+      },
+      {
        "element": "officialName",
        "datatype": "baseNameType",
        "feld": "Name"
@@ -17148,6 +17169,11 @@
        "feld": "Geburtsdatum"
       },
       {
+       "element": "vn",
+       "datatype": "vnType",
+       "feld": "AHV-Nummer / Versichertennummer"
+      },
+      {
        "element": "officialName",
        "datatype": "baseNameType",
        "feld": "Nachname, Vorname"
@@ -17158,26 +17184,14 @@
        "feld": "Geburtsdatum"
       },
       {
-       "element": "officialName",
-       "datatype": "baseNameType",
-       "feld": "Name"
-      }
-     ],
-     "personIdentificationKeyOnlyType": [
-      {
-       "element": "vn",
-       "datatype": "vnType",
-       "feld": "AHV-Nummer / Versichertennummer"
-      },
-      {
-       "element": "vn",
-       "datatype": "vnType",
-       "feld": "AHV-Nummer / Versichertennummer"
-      },
-      {
        "element": "vn",
        "datatype": "vnType",
        "feld": "Versicherten-Nr."
+      },
+      {
+       "element": "officialName",
+       "datatype": "baseNameType",
+       "feld": "Name"
       }
      ],
      "datePartiallyKnownType": [
@@ -17201,6 +17215,11 @@
        "feld": "PLZ, Ort"
       },
       {
+       "element": "street",
+       "datatype": "streetType",
+       "feld": "Adresse"
+      },
+      {
        "element": "swissZipCode",
        "datatype": "swissZipCodeType",
        "feld": "PLZ, Ort"
@@ -17209,6 +17228,11 @@
        "element": "town",
        "datatype": "townType",
        "feld": "Wohnort"
+      },
+      {
+       "element": "street",
+       "datatype": "streetType",
+       "feld": "Adresse"
       }
      ]
     },
@@ -17225,12 +17249,7 @@
        "feld": "Heimatort"
       }
      ],
-     "otherResidenceType": [
-      {
-       "element": "arrivalDate",
-       "datatype": "generalDateType",
-       "feld": "Zivilrechtlicher Wohnsitz in der Schweiz seit"
-      },
+     "residenceDataType": [
       {
        "element": "arrivalDate",
        "datatype": "generalDateType",
@@ -17239,33 +17258,18 @@
       {
        "element": "arrivalDate",
        "datatype": "generalDateType",
-       "feld": "Zivilrechtlicher Wohnsitz in der Schweiz seit"
-      },
-      {
-       "element": "arrivalDate",
-       "datatype": "generalDateType",
        "feld": "Wohnsitz in der Gemeinde seit"
-      },
-      {
-       "element": "arrivalDate",
-       "datatype": "generalDateType",
-       "feld": "GesuchstellerIn Heimeintritt"
-      },
-      {
-       "element": "arrivalDate",
-       "datatype": "generalDateType",
-       "feld": "EhepartnerIn Heimeintritt"
       }
      ],
-     "personType": [
+     "countryInfoType": [
       {
-       "element": "nationalityData",
-       "datatype": "nationalityDataType",
+       "element": "country",
+       "datatype": "countryType",
        "feld": "Nationalität"
       },
       {
-       "element": "nationalityData",
-       "datatype": "nationalityDataType",
+       "element": "country",
+       "datatype": "countryType",
        "feld": "Nationalität"
       }
      ],
@@ -17283,14 +17287,14 @@
      ],
      "dwellingAddressType": [
       {
-       "element": "typeOfHousehold",
-       "datatype": "typeOfHouseholdType",
-       "feld": "GesuchstellerIn Ja/Nein"
+       "element": "movingDate",
+       "datatype": "generalDateType",
+       "feld": "GesuchstellerIn Heimeintritt"
       },
       {
-       "element": "typeOfHousehold",
-       "datatype": "typeOfHouseholdType",
-       "feld": "EhepartnerIn Ja/Nein"
+       "element": "movingDate",
+       "datatype": "generalDateType",
+       "feld": "EhepartnerIn Heimeintritt"
       }
      ]
     },
@@ -17321,28 +17325,11 @@
      ]
     },
     "eCH-0021": {
-     "occupationDataType": [
-      {
-       "element": "placeOfEmployer",
-       "datatype": "addressInformationType",
-       "feld": "Adresse"
-      },
-      {
-       "element": "placeOfEmployer",
-       "datatype": "addressInformationType",
-       "feld": "Adresse"
-      }
-     ],
-     "guardianRelationshipType": [
+     "parentalRelationshipType": [
       {
        "element": "typeOfRelationship",
        "datatype": null,
        "feld": "Status (Adoptivkind / Pflegekind / Stiefkind / Kind aus geschiedener Ehe / Aussereheliches Kind)"
-      },
-      {
-       "element": "address",
-       "datatype": "mailAddressType",
-       "feld": "Sitz der Kindes- und Erwachsenenschutzbehörde (KESB)"
       }
      ],
      "personAddonType": [
@@ -17373,33 +17360,6 @@
        "feld": "Zahlungsverbindung IBAN"
       }
      ],
-     "personalDetailType": [
-      {
-       "element": "to",
-       "datatype": "date",
-       "feld": "Bis wann"
-      },
-      {
-       "element": "from",
-       "datatype": "date",
-       "feld": "Zeitraum"
-      },
-      {
-       "element": "from",
-       "datatype": "date",
-       "feld": "von"
-      },
-      {
-       "element": "to",
-       "datatype": "date",
-       "feld": "bis"
-      },
-      {
-       "element": "isSelfEmployed",
-       "datatype": "boolean",
-       "feld": "als ArbeitnehmerIn / als Selbständigerwerbende/r"
-      }
-     ],
      "domesticAndForeignIncomeType": [
       {
        "element": "socialAndOtherInsuranceIncome",
@@ -17411,307 +17371,27 @@
       {
        "element": "statePensionContributions",
        "datatype": null,
-       "feld": "GesuchstellerIn Ja/Nein"
+       "feld": "GesuchstellerIn Betrag CHF"
       },
       {
        "element": "statePensionContributions",
        "datatype": null,
-       "feld": "EhepartnerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "GesuchstellerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "EhepartnerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "GesuchstellerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "GesuchstellerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "GesuchstellerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "EhepartnerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "GesuchstellerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "EhepartnerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "GesuchstellerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "EhepartnerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "GesuchstellerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "EhepartnerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "GesuchstellerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "EhepartnerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "GesuchstellerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "EhepartnerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "GesuchstellerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "EhepartnerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "GesuchstellerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "EhepartnerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "GesuchstellerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "EhepartnerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "GesuchstellerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "EhepartnerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "GesuchstellerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "EhepartnerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "GesuchstellerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "EhepartnerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "GesuchstellerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "EhepartnerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "GesuchstellerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "EhepartnerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "GesuchstellerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "EhepartnerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "GesuchstellerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "EhepartnerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "GesuchstellerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "EhepartnerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "GesuchstellerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "EhepartnerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "GesuchstellerIn Ja/Nein"
-      },
-      {
-       "element": "statePensionContributions",
-       "datatype": null,
-       "feld": "EhepartnerIn Ja/Nein"
+       "feld": "EhepartnerIn Betrag CHF"
       }
      ],
-     "alimonyIncomeType": [
+     "alimonyPaymentsType": [
       {
-       "element": "amount",
+       "element": "paymentAlimonyAmount",
        "datatype": "moneyType",
        "feld": "GesuchstellerIn Betrag CHF"
       },
       {
-       "element": "amount",
-       "datatype": "moneyType",
-       "feld": "EhepartnerIn Betrag CHF"
-      },
-      {
-       "element": "amount",
-       "datatype": "moneyType",
-       "feld": "GesuchstellerIn Betrag CHF"
-      },
-      {
-       "element": "amount",
-       "datatype": "moneyType",
-       "feld": "EhepartnerIn Betrag CHF"
-      },
-      {
-       "element": "amount",
-       "datatype": "moneyType",
-       "feld": "GesuchstellerIn Betrag CHF"
-      },
-      {
-       "element": "amount",
-       "datatype": "moneyType",
-       "feld": "GesuchstellerIn Betrag CHF"
-      },
-      {
-       "element": "amount",
-       "datatype": "moneyType",
-       "feld": "EhepartnerIn Betrag CHF"
-      },
-      {
-       "element": "amount",
-       "datatype": "moneyType",
-       "feld": "Kinder Betrag CHF"
-      },
-      {
-       "element": "amount",
-       "datatype": "moneyType",
-       "feld": "GesuchstellerIn Betrag CHF"
-      },
-      {
-       "element": "amount",
-       "datatype": "moneyType",
-       "feld": "EhepartnerIn Betrag CHF"
-      },
-      {
-       "element": "amount",
-       "datatype": "moneyType",
-       "feld": "GesuchstellerIn Betrag CHF"
-      },
-      {
-       "element": "amount",
-       "datatype": "moneyType",
-       "feld": "GesuchstellerIn Betrag CHF"
-      },
-      {
-       "element": "amount",
-       "datatype": "moneyType",
-       "feld": "GesuchstellerIn Betrag CHF"
-      },
-      {
-       "element": "amount",
-       "datatype": "moneyType",
-       "feld": "GesuchstellerIn Betrag CHF"
-      },
-      {
-       "element": "amount",
+       "element": "paymentAlimonyAmount",
        "datatype": "moneyType",
        "feld": "EhepartnerIn Betrag CHF"
       }
      ],
      "propertyIncomeType": [
-      {
-       "element": "propertyRentalValue",
-       "datatype": null,
-       "feld": "Bruttomiete/Eigenmietwert CHF (ohne Garage/Parkpl.)"
-      },
       {
        "element": "isSelfUsed",
        "datatype": "boolean",
@@ -17728,23 +17408,6 @@
        "feld": "selbstbewohnt / nicht selbstbewohnt"
       }
      ],
-     "capitalBenefitsType": [
-      {
-       "element": "capitalBenefitsVestedAccount",
-       "datatype": null,
-       "feld": "EhepartnerIn/Kinder Ja/Nein"
-      },
-      {
-       "element": "capitalBenefitsVestedAccountAmount",
-       "datatype": "moneyType",
-       "feld": "EhepartnerIn/Kinder Betrag CHF"
-      },
-      {
-       "element": "capitalBenefitsVestedAccount",
-       "datatype": null,
-       "feld": "EhepartnerIn/Kinder Ja/Nein"
-      }
-     ],
      "privateAssetsType": [
       {
        "element": "startYear",
@@ -17757,12 +17420,12 @@
        "feld": "EhepartnerIn/Kinder Abschluss-/Ablaufjahr"
       },
       {
-       "element": "taxValue",
+       "element": "motorVehiclesAmount",
        "datatype": "moneyType",
        "feld": "GesuchstellerIn CHF (gemäss Steuerveranlagung)"
       },
       {
-       "element": "taxValue",
+       "element": "motorVehiclesAmount",
        "datatype": "moneyType",
        "feld": "EhepartnerIn CHF (gemäss Steuerveranlagung)"
       },
@@ -17777,29 +17440,63 @@
        "feld": "Kaufpreis CHF"
       },
       {
-       "element": "taxValue",
+       "element": "otherCollectibleAssetsAmount",
        "datatype": "moneyType",
        "feld": "GesuchstellerIn CHF (gemäss Steuerveranlagung)"
       },
       {
-       "element": "taxValue",
+       "element": "otherCollectibleAssetsAmount",
        "datatype": "moneyType",
        "feld": "EhepartnerIn CHF (gemäss Steuerveranlagung)"
       },
       {
-       "element": "otherCollectibleAssetsDetail",
+       "element": "totalInheritanceTaxValue",
        "datatype": null,
-       "feld": "Um welche Vermögen handelt es sich?"
-      },
-      {
-       "element": "taxValue",
-       "datatype": "moneyType",
        "feld": "GesuchstellerIn CHF (gemäss Steuerveranlagung)"
       },
       {
-       "element": "taxValue",
-       "datatype": "moneyType",
+       "element": "totalInheritanceTaxValue",
+       "datatype": null,
        "feld": "EhepartnerIn CHF (gemäss Steuerveranlagung)"
+      }
+     ],
+     "debtInterestsType": [
+      {
+       "element": "isMortgage",
+       "datatype": "boolean",
+       "feld": "GesuchstellerIn Ja/Nein"
+      },
+      {
+       "element": "isMortgage",
+       "datatype": "boolean",
+       "feld": "EhepartnerIn Ja/Nein"
+      }
+     ],
+     "inheritanceAndGiftsType": [
+      {
+       "element": "heirCommunityParticipation",
+       "datatype": "boolean",
+       "feld": "GesuchstellerIn Ja/Nein"
+      },
+      {
+       "element": "heirCommunityParticipation",
+       "datatype": "boolean",
+       "feld": "EhepartnerIn Ja/Nein"
+      },
+      {
+       "element": "transactionDate",
+       "datatype": "date",
+       "feld": "Wann?"
+      },
+      {
+       "element": "officialName",
+       "datatype": "baseNameType",
+       "feld": "An wen?"
+      },
+      {
+       "element": "giftAmount",
+       "datatype": null,
+       "feld": "Betrag CHF"
       }
      ],
      "liabilitiesType": [
@@ -17809,46 +17506,22 @@
        "feld": "GesuchstellerIn Ja/Nein"
       },
       {
-       "element": "privateLiability",
-       "datatype": "boolean",
-       "feld": "EhepartnerIn Ja/Nein"
-      },
-      {
-       "element": "privateLiability",
-       "datatype": "boolean",
-       "feld": "GesuchstellerIn Ja/Nein"
-      },
-      {
-       "element": "privateLiability",
-       "datatype": "boolean",
-       "feld": "EhepartnerIn Ja/Nein"
-      }
-     ],
-     "headerType": [
-      {
-       "element": "transactionDate",
-       "datatype": "dateTime",
-       "feld": "Wann?"
-      },
-      {
-       "element": "transactionDate",
-       "datatype": "dateTime",
-       "feld": "Wann?"
-      }
-     ],
-     "inheritanceAndGiftsType": [
-      {
-       "element": "recipient",
+       "element": "totalLiability",
        "datatype": null,
-       "feld": "An wen?"
+       "feld": "GesuchstellerIn Betrag CHF"
+      },
+      {
+       "element": "privateLiability",
+       "datatype": "boolean",
+       "feld": "EhepartnerIn Ja/Nein"
+      },
+      {
+       "element": "totalLiability",
+       "datatype": null,
+       "feld": "EhepartnerIn Betrag CHF"
       }
      ],
      "dependentEmploymentType": [
-      {
-       "element": "employedRevenue",
-       "datatype": "moneyType",
-       "feld": "Betrag CHF"
-      },
       {
        "element": "employedRevenue",
        "datatype": "moneyType",
@@ -17858,46 +17531,6 @@
        "element": "employedRevenue",
        "datatype": "moneyType",
        "feld": "EhepartnerIn Betrag CHF (brutto inkl. 13. Monatslohn/Gratifikation)"
-      },
-      {
-       "element": "employedRevenue",
-       "datatype": "moneyType",
-       "feld": "Kinder Betrag CHF (brutto inkl. 13. Monatslohn/Gratifikation)"
-      },
-      {
-       "element": "employedRevenue",
-       "datatype": "moneyType",
-       "feld": "Betrag CHF"
-      },
-      {
-       "element": "employedRevenue",
-       "datatype": "moneyType",
-       "feld": "Betrag CHF"
-      },
-      {
-       "element": "employedRevenue",
-       "datatype": "moneyType",
-       "feld": "Betrag CHF"
-      },
-      {
-       "element": "employedRevenue",
-       "datatype": "moneyType",
-       "feld": "Betrag CHF"
-      },
-      {
-       "element": "employedRevenue",
-       "datatype": "moneyType",
-       "feld": "Betrag CHF"
-      },
-      {
-       "element": "employedRevenue",
-       "datatype": "moneyType",
-       "feld": "Betrag CHF"
-      },
-      {
-       "element": "employedRevenue",
-       "datatype": "moneyType",
-       "feld": "Betrag CHF"
       }
      ],
      "childType": [
@@ -17907,55 +17540,131 @@
        "feld": "Kinder Ja/Nein"
       },
       {
-       "element": "hasOwnIncome",
-       "datatype": "boolean",
-       "feld": "Kinder Ja/Nein"
+       "element": "ownIncomeAmount",
+       "datatype": "moneyType",
+       "feld": "Kinder Betrag CHF (brutto inkl. 13. Monatslohn/Gratifikation)"
       },
       {
-       "element": "hasOwnIncome",
+       "element": "isAlimonyReceiver",
        "datatype": "boolean",
        "feld": "Kinder Ja/Nein"
+      }
+     ],
+     "personalDetailType": [
+      {
+       "element": "isSelfEmployed",
+       "datatype": "boolean",
+       "feld": "als ArbeitnehmerIn / als Selbständigerwerbende/r"
+      }
+     ],
+     "jobCostsType": [
+      {
+       "element": "amount",
+       "datatype": "moneyType",
+       "feld": "GesuchstellerIn Betrag CHF"
       },
       {
-       "element": "hasOwnIncome",
-       "datatype": "boolean",
-       "feld": "Kinder Ja/Nein"
+       "element": "amount",
+       "datatype": "moneyType",
+       "feld": "EhepartnerIn Betrag CHF"
       },
       {
-       "element": "hasOwnIncome",
-       "datatype": "boolean",
-       "feld": "Kinder Ja/Nein"
+       "element": "amount",
+       "datatype": "moneyType",
+       "feld": "Kinder Betrag CHF"
+      }
+     ],
+     "socialAndOtherInsuranceIncomeType": [
+      {
+       "element": "childAndFamilyAllowancesAmount",
+       "datatype": "moneyType",
+       "feld": "GesuchstellerIn Betrag CHF"
+      },
+      {
+       "element": "childAndFamilyAllowancesAmount",
+       "datatype": "moneyType",
+       "feld": "EhepartnerIn Betrag CHF"
+      },
+      {
+       "element": "incapacityPension",
+       "datatype": null,
+       "feld": "GesuchstellerIn Betrag CHF"
+      },
+      {
+       "element": "incapacityPension",
+       "datatype": null,
+       "feld": "Kinder-/Waisenrente Betrag CHF"
+      },
+      {
+       "element": "occupationalPension",
+       "datatype": null,
+       "feld": "GesuchstellerIn Betrag CHF"
+      },
+      {
+       "element": "occupationalPension",
+       "datatype": null,
+       "feld": "Kinder-/Waisenrente Betrag CHF"
+      },
+      {
+       "element": "otherPensions",
+       "datatype": null,
+       "feld": "Betrag CHF"
+      },
+      {
+       "element": "unemploymentInsurance",
+       "datatype": null,
+       "feld": "Betrag CHF"
+      },
+      {
+       "element": "annuity",
+       "datatype": null,
+       "feld": "Betrag CHF"
+      }
+     ],
+     "capitalBenefitsType": [
+      {
+       "element": "paymentDate",
+       "datatype": "date",
+       "feld": "Wann?"
+      },
+      {
+       "element": "amount",
+       "datatype": "moneyType",
+       "feld": "Betrag CHF"
       }
      ],
      "otherIncomeAndGainsType": [
       {
        "element": "insuranceCompany",
        "datatype": "string",
-       "feld": "Name Ausgleichskasse"
-      },
-      {
-       "element": "insuranceCompany",
-       "datatype": "string",
-       "feld": "Name Ausgleichskasse"
-      },
-      {
-       "element": "insuranceCompany",
-       "datatype": "string",
        "feld": "Name / Art der Versicherung"
+      },
+      {
+       "element": "amount",
+       "datatype": "moneyType",
+       "feld": "Betrag CHF"
+      },
+      {
+       "element": "otherIncomeAmount",
+       "datatype": "moneyType",
+       "feld": "GesuchstellerIn Betrag CHF"
+      },
+      {
+       "element": "otherIncomeAmount",
+       "datatype": "moneyType",
+       "feld": "EhepartnerIn Betrag CHF"
       }
      ],
-     "bankAccountIncomeType": [
+     "alimonyIncomeType": [
       {
-       "element": "institution",
-       "datatype": "institutionType",
-       "feld": "Name Pensionskasse"
-      }
-     ],
-     "otherTaxableValuesType": [
+       "element": "amount",
+       "datatype": "moneyType",
+       "feld": "GesuchstellerIn Betrag CHF"
+      },
       {
-       "element": "capitalBenefits",
-       "datatype": "capitalBenefitsType",
-       "feld": "Ja/Nein"
+       "element": "restRevenueAlimonyChildAmount",
+       "datatype": "moneyType",
+       "feld": "Betrag CHF"
       }
      ]
     },
@@ -17967,55 +17676,28 @@
        "feld": "KontoinhaberIn"
       }
      ],
-     "diseaseAndAccidentExpensesType": [
+     "assetType": [
       {
-       "element": "expenseNursingStaff",
-       "datatype": "moneyType1",
-       "feld": "GesuchstellerIn Taxe"
-      },
-      {
-       "element": "expenseNursingStaff",
-       "datatype": "moneyType1",
-       "feld": "EhepartnerIn Taxe"
+       "element": "movablePropertyFreeText",
+       "datatype": "string",
+       "feld": "Um welche Vermögen handelt es sich?"
       }
      ],
-     "liabilitiesListingType": [
+     "handicapExpensesType": [
       {
-       "element": "liability",
+       "element": "allowanceHelplessCompensation",
        "datatype": "moneyType1",
        "feld": "GesuchstellerIn Betrag CHF"
       },
       {
-       "element": "liability",
+       "element": "allowanceHelplessCompensation",
        "datatype": "moneyType1",
        "feld": "EhepartnerIn Betrag CHF"
-      },
-      {
-       "element": "liability",
-       "datatype": "moneyType1",
-       "feld": "GesuchstellerIn Betrag CHF"
-      },
-      {
-       "element": "liability",
-       "datatype": "moneyType1",
-       "feld": "EhepartnerIn Betrag CHF"
-      }
-     ],
-     "pensionType": [
-      {
-       "element": "amount100",
-       "datatype": "moneyType1",
-       "feld": "Kinder-/Waisenrente Betrag CHF"
-      },
-      {
-       "element": "amount100",
-       "datatype": "moneyType1",
-       "feld": "Kinder-/Waisenrente Betrag CHF"
       }
      ]
     },
     "eCH-0007": {
-     "swissAndFlMunicipalityType": [
+     "swissMunicipalityType": [
       {
        "element": "municipalityName",
        "datatype": "municipalityNameType",
@@ -18033,17 +17715,7 @@
       {
        "element": "supplementaryInsurancePremium",
        "datatype": "moneyType",
-       "feld": "GesuchstellerIn Ja/Nein"
-      },
-      {
-       "element": "supplementaryInsurancePremium",
-       "datatype": "moneyType",
        "feld": "GesuchstellerIn Betrag CHF"
-      },
-      {
-       "element": "supplementaryInsurancePremium",
-       "datatype": "moneyType",
-       "feld": "EhepartnerIn Ja/Nein"
       },
       {
        "element": "supplementaryInsurancePremium",
@@ -18063,12 +17735,10 @@
        "element": "housingSituationType",
        "datatype": "housingSituationTypeType",
        "feld": "Ja/Nein"
-      }
-     ],
-     "dogDataType": [
+      },
       {
        "element": "name",
-       "datatype": "generalTextType",
+       "datatype": "shortTextType",
        "feld": "Bei wem wohnen Sie (Name / Vorname / Adresse)"
       }
      ]
@@ -18090,6 +17760,18 @@
    },
    "ohne_standard": [
     {
+     "feld": "Zivilrechtlicher Wohnsitz in der Schweiz seit",
+     "format": ""
+    },
+    {
+     "feld": "Zivilrechtlicher Wohnsitz in der Schweiz seit",
+     "format": ""
+    },
+    {
+     "feld": "Sitz der Kindes- und Erwachsenenschutzbehörde (KESB)",
+     "format": ""
+    },
+    {
      "feld": "Wirtschaftliche Verhältnisse dauernd verändert",
      "format": ""
     },
@@ -18102,7 +17784,47 @@
      "format": ""
     },
     {
+     "feld": "Bis wann",
+     "format": ""
+    },
+    {
      "feld": "Sozialhilfe bezogen",
+     "format": ""
+    },
+    {
+     "feld": "Zeitraum",
+     "format": ""
+    },
+    {
+     "feld": "von",
+     "format": ""
+    },
+    {
+     "feld": "bis",
+     "format": ""
+    },
+    {
+     "feld": "GesuchstellerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "EhepartnerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "GesuchstellerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "EhepartnerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "GesuchstellerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "EhepartnerIn Ja/Nein",
      "format": ""
     },
     {
@@ -18110,7 +17832,227 @@
      "format": ""
     },
     {
+     "feld": "Bruttomiete/Eigenmietwert CHF (ohne Garage/Parkpl.)",
+     "format": ""
+    },
+    {
      "feld": "Anzahl Personen im Haushalt",
+     "format": ""
+    },
+    {
+     "feld": "GesuchstellerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "EhepartnerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "GesuchstellerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "GesuchstellerIn Taxe",
+     "format": ""
+    },
+    {
+     "feld": "EhepartnerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "EhepartnerIn Taxe",
+     "format": ""
+    },
+    {
+     "feld": "GesuchstellerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "GesuchstellerIn Betrag CHF",
+     "format": ""
+    },
+    {
+     "feld": "EhepartnerIn/Kinder Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "EhepartnerIn/Kinder Betrag CHF",
+     "format": ""
+    },
+    {
+     "feld": "GesuchstellerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "EhepartnerIn/Kinder Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "GesuchstellerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "EhepartnerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "GesuchstellerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "EhepartnerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "GesuchstellerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "EhepartnerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "GesuchstellerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "EhepartnerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "GesuchstellerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "EhepartnerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "GesuchstellerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "EhepartnerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "GesuchstellerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "EhepartnerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "Kinder Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "GesuchstellerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "EhepartnerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "GesuchstellerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "EhepartnerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "Kinder Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "Name Ausgleichskasse",
+     "format": ""
+    },
+    {
+     "feld": "GesuchstellerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "EhepartnerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "Name Ausgleichskasse",
+     "format": ""
+    },
+    {
+     "feld": "GesuchstellerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "EhepartnerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "Kinder Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "Name Pensionskasse",
+     "format": ""
+    },
+    {
+     "feld": "Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "GesuchstellerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "EhepartnerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "GesuchstellerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "EhepartnerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "GesuchstellerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "EhepartnerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "Betrag CHF",
+     "format": ""
+    },
+    {
+     "feld": "GesuchstellerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "EhepartnerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "GesuchstellerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "EhepartnerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "GesuchstellerIn Ja/Nein",
+     "format": ""
+    },
+    {
+     "feld": "EhepartnerIn Ja/Nein",
      "format": ""
     },
     {
@@ -22504,7 +22446,7 @@
       {
        "element": "armedForcesValidFrom",
        "datatype": "date",
-       "feld": "von"
+       "feld": "Datum"
       },
       {
        "element": "armedForcesValidFrom",
@@ -23995,7 +23937,7 @@
   {
    "form_id": 158,
    "titel": "Formular zur Meldung von Hundebissverletzungen beim Tier",
-   "dienststelle": "Veterinaeramt",
+   "dienststelle": "Veterinäramt",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 37,
    "ech": {
@@ -24155,7 +24097,7 @@
   {
    "form_id": 159,
    "titel": "Untersuchungsantrag auf Trichinellen",
-   "dienststelle": "Veterinaeramt",
+   "dienststelle": "Veterinäramt",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 50,
    "ech": {
@@ -24221,7 +24163,7 @@
   {
    "form_id": 160,
    "titel": "Tiermeldeformular Kanton Schaffhausen",
-   "dienststelle": "Veterinaeramt",
+   "dienststelle": "Veterinäramt",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 38,
    "ech": {
@@ -24397,7 +24339,7 @@
   {
    "form_id": 161,
    "titel": "Antragsformular für Berufsausübungsbewilligungen",
-   "dienststelle": "Veterinaeramt",
+   "dienststelle": "Veterinäramt",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 95,
    "ech": {
@@ -24573,7 +24515,7 @@
   {
    "form_id": 163,
    "titel": "Formular zur Meldung eines Hundes, welcher Anzeichen eines übermässigen Aggressionsverhaltens zeigt (Verhaltensweisen die Menschen oder Tiere gefährden)",
-   "dienststelle": "Veterinaeramt",
+   "dienststelle": "Veterinäramt",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 48,
    "ech": {
@@ -24692,7 +24634,7 @@
   {
    "form_id": 164,
    "titel": "Gesuch Listenhund",
-   "dienststelle": "Veterinaeramt",
+   "dienststelle": "Veterinäramt",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 50,
    "ech": {
@@ -24804,7 +24746,7 @@
   {
    "form_id": 166,
    "titel": "Meldeformular für die befristete Berufsausübung im Kanton Schaffhausen für Tierärztinnen und Tierärzte",
-   "dienststelle": "Veterinaeramt",
+   "dienststelle": "Veterinäramt",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 81,
    "ech": {
@@ -25017,7 +24959,7 @@
   {
    "form_id": 167,
    "titel": "Meldung zu Tierschutzmängeln",
-   "dienststelle": "Veterinaeramt",
+   "dienststelle": "Veterinäramt",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 55,
    "ech": {
@@ -25092,7 +25034,7 @@
   {
    "form_id": 168,
    "titel": "Formular für den Nachweis über kynologische Fachkenntnisse",
-   "dienststelle": "Veterinaeramt",
+   "dienststelle": "Veterinäramt",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 45,
    "ech": {
@@ -25229,7 +25171,7 @@
       {
        "element": "officialName",
        "datatype": "baseNameType",
-       "feld": "vorname_name"
+       "feld": "Vorname und Name"
       }
      ]
     },
@@ -25238,17 +25180,17 @@
       {
        "element": "street",
        "datatype": "streetType",
-       "feld": "adresse"
+       "feld": "Adresse"
       },
       {
        "element": "swissZipCode",
        "datatype": "swissZipCodeType",
-       "feld": "plz_ort"
+       "feld": "PLZ/Ort"
       },
       {
        "element": "swissZipCode",
        "datatype": "swissZipCodeType",
-       "feld": "plz_ort"
+       "feld": "PLZ/Ort"
       }
      ]
     },
@@ -25257,14 +25199,14 @@
       {
        "element": "emailAddress",
        "datatype": "emailAddressType",
-       "feld": "email"
+       "feld": "Email"
       }
      ],
      "phoneType": [
       {
        "element": "phoneNumber",
        "datatype": "phoneNumberType",
-       "feld": "tel_tagsueber"
+       "feld": "Tel. tagsüber"
       }
      ]
     },
@@ -25273,7 +25215,7 @@
       {
        "element": "organisationName",
        "datatype": "unitNameType",
-       "feld": "verein_oder_verband"
+       "feld": "Verein oder Verband"
       }
      ]
     },
@@ -25282,36 +25224,36 @@
       {
        "element": "accountOwner",
        "datatype": null,
-       "feld": "name_kontoinhaber"
+       "feld": "Name Kontoinhaber/in"
       },
       {
        "element": "bankName",
        "datatype": null,
-       "feld": "bank"
+       "feld": "Bank"
       },
       {
        "element": "ibanNumber",
        "datatype": "string",
-       "feld": "iban_nr"
+       "feld": "IBAN-Nr."
       }
      ]
     }
    },
    "ohne_standard": [
     {
-     "feld": "cool_and_clean_registriert",
+     "feld": "Ich habe mich bei der App von «cool and clean» registriert",
      "format": ""
     },
     {
-     "feld": "beilage_ausbildungsnachweis",
+     "feld": "Kopie des Ausbildungsnachweises oder des Führungszertifikats «Club Management»",
      "format": ""
     },
     {
-     "feld": "beilage_nachweis_ehrenamt",
+     "feld": "Kopie Nachweis ehrenamtliche Tätigkeit (wie im Lehrgang eingereicht)",
      "format": ""
     },
     {
-     "feld": "beilage_zahlungsbeleg",
+     "feld": "Kopie Zahlungsbeleg (Bank-/Postbeleg) der Lehrgangskosten von 350 Franken",
      "format": ""
     }
    ]
@@ -25486,12 +25428,12 @@
       {
        "element": "officialName",
        "datatype": "baseNameType",
-       "feld": "name_vorname"
+       "feld": "Name/Vorname"
       },
       {
        "element": "dateOfBirth",
        "datatype": "datePartiallyKnownType",
-       "feld": "geburtsdatum"
+       "feld": "Geburtsdatum"
       }
      ]
     },
@@ -25500,7 +25442,7 @@
       {
        "element": "street",
        "datatype": "streetType",
-       "feld": "adresse"
+       "feld": "Adresse"
       }
      ]
     },
@@ -25509,14 +25451,14 @@
       {
        "element": "phoneNumber",
        "datatype": "phoneNumberType",
-       "feld": "mobiltelefon"
+       "feld": "Mobiltelefon"
       }
      ],
      "emailType": [
       {
        "element": "emailAddress",
        "datatype": "emailAddressType",
-       "feld": "email"
+       "feld": "E-Mail"
       }
      ]
     },
@@ -25525,21 +25467,21 @@
       {
        "element": "contactAddress",
        "datatype": "mailAddressType",
-       "feld": "kontaktadresse_telefon_bei_abwesenheit"
+       "feld": "Kontaktadresse/Telefon (bei Abwesenheit)"
       }
      ],
      "otherResidenceType": [
       {
        "element": "arrivalDate",
        "datatype": "generalDateType",
-       "feld": "wohnhaft_oder_atelier_im_kanton_seit_jahr"
+       "feld": "Im Kanton Schaffhausen wohnhaft seit (Jahr) oder Atelier im Kanton Schaffhausen seit (Jahr)"
       }
      ],
      "personType": [
       {
        "element": "placeOfOrigin",
        "datatype": "placeOfOriginType",
-       "feld": "buergerort_oder_anderer_bezug"
+       "feld": "Bürgerort oder anderer Bezug zum Kanton Schaffhausen"
       }
      ]
     },
@@ -25548,12 +25490,12 @@
       {
        "element": "bankName",
        "datatype": null,
-       "feld": "bankverbindung_name_adresse"
+       "feld": "Bankverbindung (Name/Adresse)"
       },
       {
        "element": "ibanNumber",
        "datatype": "string",
-       "feld": "iban_nummer"
+       "feld": "IBAN-Nummer"
       }
      ]
     },
@@ -25562,7 +25504,7 @@
       {
        "element": "jobTitle",
        "datatype": null,
-       "feld": "beruf_gegenwaertige_taetigkeit"
+       "feld": "Beruf/gegenwärtige Tätigkeit"
       }
      ]
     },
@@ -25571,26 +25513,26 @@
       {
        "element": "document",
        "datatype": "documentType",
-       "feld": "antrag_und_projektbeschreibung"
+       "feld": "Konkreter Antrag und ausführliche Projektbeschreibung"
       }
      ]
     }
    },
    "ohne_standard": [
     {
-     "feld": "lebenslauf",
+     "feld": "Lebenslauf",
      "format": "PDF (Teil des Gesamt-PDF, max. 15 MB)"
     },
     {
-     "feld": "dokumentation_bisherige_taetigkeit",
+     "feld": "Dokumentation der bisherigen kulturellen/künstlerischen Tätigkeit",
      "format": "PDF; Medien via Link (Vimeo, Spotify, Youtube, SwissTransfer)"
     },
     {
-     "feld": "budget_und_finanzierungsplan",
+     "feld": "Budget und Finanzierungsplan",
      "format": "PDF (Teil des Gesamt-PDF)"
     },
     {
-     "feld": "erwarteter_foerderbeitrag",
+     "feld": "Angabe zur Höhe des erwarteten Förderbeitrags",
      "format": "CHF"
     }
    ]
@@ -25607,12 +25549,12 @@
       {
        "element": "firstName",
        "datatype": "baseNameType",
-       "feld": "vorname"
+       "feld": "Vorname"
       },
       {
        "element": "officialName",
        "datatype": "baseNameType",
-       "feld": "name"
+       "feld": "Name"
       }
      ]
     },
@@ -25621,41 +25563,41 @@
       {
        "element": "phoneNumber",
        "datatype": "phoneNumberType",
-       "feld": "telefon"
+       "feld": "Telefon"
       }
      ],
      "emailType": [
       {
        "element": "emailAddress",
        "datatype": "emailAddressType",
-       "feld": "email"
+       "feld": "E-Mail"
       }
      ]
     }
    },
    "ohne_standard": [
     {
-     "feld": "vernehmlassungsteilnehmer",
+     "feld": "Gemeinde/VGGSH/Partei/Departement/Staatskanzlei/Gericht/Verband",
      "format": ""
     },
     {
-     "feld": "allgemeine_vorbemerkungen",
+     "feld": "Allgemeine Vorbemerkungen?",
      "format": ""
     },
     {
-     "feld": "bestimmung",
+     "feld": "Bestimmung",
      "format": "Tabellenzeile pro Artikel; einverstanden als JA/NEIN-Ankreuzfeld; Art. 36-39, 60"
     },
     {
-     "feld": "einverstanden",
+     "feld": "Sind Sie mit dem Vorschlag einverstanden?",
      "format": "Tabellenzeile pro Artikel; einverstanden als JA/NEIN-Ankreuzfeld; Art. 36-39, 60"
     },
     {
-     "feld": "aenderungsvorschlaege_bemerkungen",
+     "feld": "Ihre Änderungsvorschläge/Ihre Bemerkungen",
      "format": "Tabellenzeile pro Artikel; einverstanden als JA/NEIN-Ankreuzfeld; Art. 36-39, 60"
     },
     {
-     "feld": "weitere_bemerkungen",
+     "feld": "Weitere Bemerkungen?",
      "format": ""
     }
    ]
@@ -25672,7 +25614,7 @@
       {
        "element": "officialName",
        "datatype": "baseNameType",
-       "feld": "vorname_name"
+       "feld": "Vorname und Name"
       }
      ]
     },
@@ -25681,41 +25623,41 @@
       {
        "element": "phoneNumber",
        "datatype": "phoneNumberType",
-       "feld": "telefon"
+       "feld": "Telefon"
       }
      ],
      "emailType": [
       {
        "element": "emailAddress",
        "datatype": "emailAddressType",
-       "feld": "email"
+       "feld": "E-Mail"
       }
      ]
     }
    },
    "ohne_standard": [
     {
-     "feld": "stellungnehmende_stelle",
+     "feld": "Gemeinde/VGGSH/Partei/Departement/Staatskanzlei/Gericht",
      "format": ""
     },
     {
-     "feld": "allgemeine_vorbemerkungen",
+     "feld": "Allgemeine Vorbemerkungen?",
      "format": ""
     },
     {
-     "feld": "bestimmung",
+     "feld": "Bestimmung",
      "format": "Tabelle mit einer Zeile je Bestimmung (JA/NEIN-Ankreuzfelder plus Bemerkungsspal"
     },
     {
-     "feld": "einverstanden",
+     "feld": "Sind Sie mit dem Vorschlag einverstanden?",
      "format": "Tabelle mit einer Zeile je Bestimmung (JA/NEIN-Ankreuzfelder plus Bemerkungsspal"
     },
     {
-     "feld": "aenderungsvorschlaege_bemerkungen",
+     "feld": "Ihre Änderungsvorschläge/Ihre Bemerkungen",
      "format": "Tabelle mit einer Zeile je Bestimmung (JA/NEIN-Ankreuzfelder plus Bemerkungsspal"
     },
     {
-     "feld": "weitere_bemerkungen",
+     "feld": "Weitere Bemerkungen?",
      "format": ""
     }
    ]
@@ -25783,7 +25725,7 @@
   {
    "form_id": 177,
    "titel": "Antrag Aufhebung des Schutzraumes",
-   "dienststelle": "Bevoelkerungsschutz und Armee",
+   "dienststelle": "Bevölkerungsschutz und Armee",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 75,
    "ech": {
@@ -25842,7 +25784,7 @@
   {
    "form_id": 178,
    "titel": "Antrag für ein Duplikat-Dienstbüchlein",
-   "dienststelle": "Bevoelkerungsschutz und Armee",
+   "dienststelle": "Bevölkerungsschutz und Armee",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 57,
    "ech": {
@@ -25935,7 +25877,7 @@
   {
    "form_id": 179,
    "titel": "Wehrpflichtersatzabgabe: Antrag Rückerstattung",
-   "dienststelle": "Bevoelkerungsschutz und Armee",
+   "dienststelle": "Bevölkerungsschutz und Armee",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 92,
    "ech": {
@@ -26036,7 +25978,7 @@
   {
    "form_id": 180,
    "titel": "Antrag: Projektgenehmigung für Schutzraumbau",
-   "dienststelle": "Bevoelkerungsschutz und Armee",
+   "dienststelle": "Bevölkerungsschutz und Armee",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 81,
    "ech": {
@@ -26180,7 +26122,7 @@
   {
    "form_id": 181,
    "titel": "Gesuch um Dienstverschiebung",
-   "dienststelle": "Bevoelkerungsschutz und Armee",
+   "dienststelle": "Bevölkerungsschutz und Armee",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 65,
    "ech": {
@@ -26435,7 +26377,7 @@
   {
    "form_id": 182,
    "titel": "Gesuch für Auslandurlaub",
-   "dienststelle": "Bevoelkerungsschutz und Armee",
+   "dienststelle": "Bevölkerungsschutz und Armee",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 79,
    "ech": {
@@ -26567,7 +26509,7 @@
   {
    "form_id": 183,
    "titel": "Gesuch Schiessbewilligung für Ausländer",
-   "dienststelle": "Bevoelkerungsschutz und Armee",
+   "dienststelle": "Bevölkerungsschutz und Armee",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 92,
    "ech": {
@@ -26668,7 +26610,7 @@
   {
    "form_id": 184,
    "titel": "Arbeitshilfe 03 – Überprüfung Sicherheitsbeleuchtung/Sicherheitsstromversorgungen",
-   "dienststelle": "Feuerpolizei",
+   "dienststelle": "Kantonale Feuerpolizei",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 21,
    "ech": {
@@ -26750,7 +26692,7 @@
   {
    "form_id": 185,
    "titel": "Gesuch für Bühnenfeuerwerk (Indoor - Pyrotechnik)",
-   "dienststelle": "Feuerpolizei",
+   "dienststelle": "Kantonale Feuerpolizei",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 48,
    "ech": {
@@ -26922,7 +26864,7 @@
   {
    "form_id": 186,
    "titel": "Gesuch für offenes Feuer in Raum / Zelt > 300 Personen",
-   "dienststelle": "Feuerpolizei",
+   "dienststelle": "Kantonale Feuerpolizei",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 56,
    "ech": {
@@ -27076,7 +27018,7 @@
   {
    "form_id": 187,
    "titel": "Brandschutznachweis (Zusatzformular zu Baugesuch)",
-   "dienststelle": "Feuerpolizei",
+   "dienststelle": "Kantonale Feuerpolizei",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 25,
    "ech": {
@@ -27340,7 +27282,7 @@
   {
    "form_id": 188,
    "titel": "Formular 150 Blitzschutzsysteme (Neuausgabe 01.07.2024)",
-   "dienststelle": "Feuerpolizei",
+   "dienststelle": "Kantonale Feuerpolizei",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 55,
    "ech": {
@@ -27470,7 +27412,7 @@
   {
    "form_id": 189,
    "titel": "Gesuchsformular 160 Zulassung im Einzelfall",
-   "dienststelle": "Feuerpolizei",
+   "dienststelle": "Kantonale Feuerpolizei",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 71,
    "ech": {
@@ -27624,7 +27566,7 @@
   {
    "form_id": 190,
    "titel": "Merkblatt Inhouse-Funkversorgung für Einsatzkräfte",
-   "dienststelle": "Feuerpolizei",
+   "dienststelle": "Kantonale Feuerpolizei",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 86,
    "ech": {
@@ -27691,7 +27633,7 @@
   {
    "form_id": 191,
    "titel": "Meldeformular Wärmepumpen Schaffhausen 2024",
-   "dienststelle": "Feuerpolizei",
+   "dienststelle": "Kantonale Feuerpolizei",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 92,
    "ech": {
@@ -27852,7 +27794,7 @@
   {
    "form_id": 192,
    "titel": "Übereinstimmungserklärung",
-   "dienststelle": "Feuerpolizei",
+   "dienststelle": "Kantonale Feuerpolizei",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 80,
    "ech": {
@@ -27965,7 +27907,7 @@
   {
    "form_id": 195,
    "titel": "Selbstdeklaration zur Atemschutztauglichkeit",
-   "dienststelle": "Feuerpolizei",
+   "dienststelle": "Kantonale Feuerpolizei",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 80,
    "ech": {
@@ -28012,7 +27954,7 @@
   {
    "form_id": 196,
    "titel": "Voranmeldung einer Alarm - oder Einsatzübung",
-   "dienststelle": "Feuerpolizei",
+   "dienststelle": "Kantonale Feuerpolizei",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 42,
    "ech": {
@@ -28092,7 +28034,7 @@
   {
    "form_id": 197,
    "titel": "Prüfblatt für Atemschutzmasken mit Überdruck",
-   "dienststelle": "Feuerpolizei",
+   "dienststelle": "Kantonale Feuerpolizei",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 14,
    "ech": {
@@ -28136,7 +28078,7 @@
   {
    "form_id": 198,
    "titel": "Tauglichkeitsuntersuchung für Feuerwehrleute – Formular für die/den Ärztin/Arzt",
-   "dienststelle": "Feuerpolizei",
+   "dienststelle": "Kantonale Feuerpolizei",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 16,
    "ech": {
@@ -28606,7 +28548,7 @@
   {
    "form_id": 199,
    "titel": "Tauglichkeitsuntersuchung für Feuerwehrleute – Fragebogen für Angehörige der Feuerwehr (AdF)",
-   "dienststelle": "Feuerpolizei",
+   "dienststelle": "Kantonale Feuerpolizei",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 59,
    "ech": {
@@ -28845,7 +28787,7 @@
   {
    "form_id": 200,
    "titel": "Reservation Ausbildungsanlagen Ausbildungszentrum Oberwiesen",
-   "dienststelle": "Feuerpolizei",
+   "dienststelle": "Kantonale Feuerpolizei",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 28,
    "ech": {
@@ -28996,7 +28938,7 @@
   {
    "form_id": 201,
    "titel": "Reservation RFS Brandsimulationsanlage",
-   "dienststelle": "Feuerpolizei",
+   "dienststelle": "Kantonale Feuerpolizei",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 50,
    "ech": {
@@ -29104,7 +29046,7 @@
   {
    "form_id": 202,
    "titel": "Definitive Anmeldung WinFAP",
-   "dienststelle": "Feuerpolizei",
+   "dienststelle": "Kantonale Feuerpolizei",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 50,
    "ech": {
@@ -29199,7 +29141,7 @@
   {
    "form_id": 203,
    "titel": "Prüfblatt für Flucht- und Rettungsgeräte",
-   "dienststelle": "Feuerpolizei",
+   "dienststelle": "Kantonale Feuerpolizei",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 8,
    "ech": {
@@ -29267,7 +29209,7 @@
   {
    "form_id": 204,
    "titel": "Rapport Ausbildungszentrum Oberwiesen \"Durchgeführte Übungen\"",
-   "dienststelle": "Feuerpolizei",
+   "dienststelle": "Kantonale Feuerpolizei",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 33,
    "ech": {
@@ -29424,7 +29366,7 @@
   {
    "form_id": 206,
    "titel": "Atemschutz - Einsatz",
-   "dienststelle": "Feuerpolizei",
+   "dienststelle": "Kantonale Feuerpolizei",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 27,
    "ech": {
@@ -29511,7 +29453,7 @@
   {
    "form_id": 208,
    "titel": "Feedback Website",
-   "dienststelle": "Gebaudeversicherung",
+   "dienststelle": "Gebäudeversicherung",
    "exchange_ready": "nein",
    "abdeckung_pct": 0,
    "ech": {},
@@ -33377,7 +33319,7 @@
   {
    "form_id": 231,
    "titel": "Verrechnung von Nachzahlungen der AHV/IV/EO und EL",
-   "dienststelle": "Sekretariat Finanzdepartment",
+   "dienststelle": "Sekretariat Finanzdepartement",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 59,
    "ech": {
@@ -33484,7 +33426,7 @@
   {
    "form_id": 232,
    "titel": "Antrag zur Weitergeltung des schweizerischen Sozialversicherungsrechts während einer vorübergehenden Tätigkeit im Ausland",
-   "dienststelle": "Sekretariat Finanzdepartment",
+   "dienststelle": "Sekretariat Finanzdepartement",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 91,
    "ech": {
@@ -34091,7 +34033,7 @@
   {
    "form_id": 233,
    "titel": "Fragebogen Erlasswesen",
-   "dienststelle": "Sekretariat Finanzdepartment",
+   "dienststelle": "Sekretariat Finanzdepartement",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 94,
    "ech": {
@@ -34493,7 +34435,7 @@
   {
    "form_id": 235,
    "titel": "Hilfsblatt für die Bestimmung des anwendbaren Sozialversicherungsrechts bei Mehrfachtätigkeit nach VO (EG) Nr. 883/2004 und VO (EG) Nr. 987/2009",
-   "dienststelle": "Sekretariat Finanzdepartment",
+   "dienststelle": "Sekretariat Finanzdepartement",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 93,
    "ech": {
@@ -34927,7 +34869,7 @@
   {
    "form_id": 236,
    "titel": "Vereinbarung nach Artikel 21 Abs. 2 der Verordnung (EG) Nr. 987/09 zwischen Arbeitnehmer und Arbeitgeber",
-   "dienststelle": "Sekretariat Finanzdepartment",
+   "dienststelle": "Sekretariat Finanzdepartement",
    "exchange_ready": "voll",
    "abdeckung_pct": 100,
    "ech": {
@@ -43180,7 +43122,7 @@
   {
    "form_id": 275,
    "titel": "Vollständigkeitserklärung zur Jahresrechnung per 31. Dezember",
-   "dienststelle": "Amt fuer Justiz und Gemeinden",
+   "dienststelle": "Amt für Justiz und Gemeinden",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 33,
    "ech": {
@@ -43208,7 +43150,7 @@
   {
    "form_id": 278,
    "titel": "Formular Lebenslauf",
-   "dienststelle": "Amt fuer Justiz und Gemeinden",
+   "dienststelle": "Amt für Justiz und Gemeinden",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 64,
    "ech": {
@@ -43353,7 +43295,7 @@
   {
    "form_id": 279,
    "titel": "Bericht und Antrag Rechnungsprüfungskommission",
-   "dienststelle": "Amt fuer Justiz und Gemeinden",
+   "dienststelle": "Amt für Justiz und Gemeinden",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 53,
    "ech": {
@@ -43550,7 +43492,7 @@
   {
    "form_id": 280,
    "titel": "Bericht und Antrag Rechnungsprüfungsorgan",
-   "dienststelle": "Amt fuer Justiz und Gemeinden",
+   "dienststelle": "Amt für Justiz und Gemeinden",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 91,
    "ech": {
@@ -43689,7 +43631,7 @@
      "format": "JJJJ"
     },
     {
-     "feld": "Bericht_Anträge_Beschlüsse",
+     "feld": "Bericht, Anträge und Beschlüsse",
      "format": ""
     }
    ]
@@ -43697,7 +43639,7 @@
   {
    "form_id": 281,
    "titel": "Namensänderung nach Art. 30 Abs. 1 ZGB – Formular zur Einreichung eines Gesuches",
-   "dienststelle": "Amt fuer Justiz und Gemeinden",
+   "dienststelle": "Amt für Justiz und Gemeinden",
    "exchange_ready": "voll",
    "abdeckung_pct": 100,
    "ech": {
@@ -43767,7 +43709,7 @@
   {
    "form_id": 282,
    "titel": "Gesuch Strafverbüssung in Halbgefangenschaft",
-   "dienststelle": "Amt fuer Justiz und Gemeinden",
+   "dienststelle": "Amt für Justiz und Gemeinden",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 42,
    "ech": {
@@ -43952,7 +43894,7 @@
   {
    "form_id": 283,
    "titel": "Gesuch Strafverbüssung mit E Monitoring",
-   "dienststelle": "Amt fuer Justiz und Gemeinden",
+   "dienststelle": "Amt für Justiz und Gemeinden",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 57,
    "ech": {
@@ -44142,7 +44084,7 @@
   {
    "form_id": 284,
    "titel": "Gesuch gemeinnuetzige Arbeitsleistung (GA) bei Freiheitsstrafe",
-   "dienststelle": "Amt fuer Justiz und Gemeinden",
+   "dienststelle": "Amt für Justiz und Gemeinden",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 82,
    "ech": {
@@ -44226,7 +44168,7 @@
   {
    "form_id": 285,
    "titel": "Gesuch um Adoption meines volljährigen Stiefkindes",
-   "dienststelle": "Amt fuer Justiz und Gemeinden",
+   "dienststelle": "Amt für Justiz und Gemeinden",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 67,
    "ech": {
@@ -44255,7 +44197,7 @@
   {
    "form_id": 286,
    "titel": "Gesuch um Einzeladoption meines volljährigen Pflegekindes",
-   "dienststelle": "Amt fuer Justiz und Gemeinden",
+   "dienststelle": "Amt für Justiz und Gemeinden",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 33,
    "ech": {
@@ -44283,7 +44225,7 @@
   {
    "form_id": 287,
    "titel": "Gesuch um gemeinschaftliche Adoption unseres volljährigen Pflegekindes",
-   "dienststelle": "Amt fuer Justiz und Gemeinden",
+   "dienststelle": "Amt für Justiz und Gemeinden",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 67,
    "ech": {
@@ -44312,7 +44254,7 @@
   {
    "form_id": 288,
    "titel": "Gesuch um ordentliche Einbürgerung in der Schweiz, im Kanton Schaffhausen und in der Gemeinde",
-   "dienststelle": "Amt fuer Justiz und Gemeinden",
+   "dienststelle": "Amt für Justiz und Gemeinden",
    "exchange_ready": "voll",
    "abdeckung_pct": 100,
    "ech": {
@@ -44347,7 +44289,7 @@
   {
    "form_id": 289,
    "titel": "Gesuch um erleichterte Einbürgerung Art. 21 Abs. 1 BüG",
-   "dienststelle": "Amt fuer Justiz und Gemeinden",
+   "dienststelle": "Amt für Justiz und Gemeinden",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 91,
    "ech": {
@@ -44356,12 +44298,12 @@
       {
        "element": "cantonAbbreviation",
        "datatype": "cantonAbbreviationType",
-       "feld": "heimatkanton_ehegatte"
+       "feld": "Heimatkanton/e Ehegatte"
       },
       {
        "element": "placeOfOriginName",
        "datatype": "placeOfOriginNameType",
-       "feld": "heimatgemeinde_ehegatte"
+       "feld": "Heimatgemeinde/n Ehegatte"
       }
      ]
     },
@@ -44370,80 +44312,80 @@
       {
        "element": "mrMrs",
        "datatype": "mrMrsType",
-       "feld": "anrede"
+       "feld": "Frau / Herr"
       }
      ],
      "nameOfParentType": [
       {
        "element": "officialName",
        "datatype": "baseNameType",
-       "feld": "familienname"
+       "feld": "Familienname"
       },
       {
        "element": "firstName",
        "datatype": "officialFirstNameType",
-       "feld": "vornamen"
+       "feld": "Vornamen"
       },
       {
        "element": "officialName",
        "datatype": "baseNameType",
-       "feld": "familienname"
+       "feld": "Familienname"
       },
       {
        "element": "firstName",
        "datatype": "officialFirstNameType",
-       "feld": "vornamen"
+       "feld": "Vornamen"
       },
       {
        "element": "officialName",
        "datatype": "baseNameType",
-       "feld": "familienname"
+       "feld": "Familienname"
       },
       {
        "element": "firstName",
        "datatype": "officialFirstNameType",
-       "feld": "vornamen"
+       "feld": "Vornamen"
       }
      ],
      "jobDataType": [
       {
        "element": "kindOfEmployment",
        "datatype": null,
-       "feld": "status"
+       "feld": "Arbeitsverhältnis"
       },
       {
        "element": "jobTitle",
        "datatype": null,
-       "feld": "berufliche_taetigkeit"
+       "feld": "Berufliche Tätigkeit"
       },
       {
        "element": "kindOfEmployment",
        "datatype": null,
-       "feld": "status"
+       "feld": "Arbeitsverhältnis"
       },
       {
        "element": "jobTitle",
        "datatype": null,
-       "feld": "berufliche_taetigkeit"
+       "feld": "Berufliche Tätigkeit"
       }
      ],
      "occupationDataType": [
       {
        "element": "employer",
        "datatype": null,
-       "feld": "arbeitgeber_name_adresse_telefon"
+       "feld": "Name, Adresse und Telefonnummer des Arbeitgebers oder der Ausbildungsstätte"
       },
       {
        "element": "employer",
        "datatype": null,
-       "feld": "arbeitgeber_name_adresse_telefon"
+       "feld": "Name, Adresse und Telefonnummer des Arbeitgebers oder der Ausbildungsstätte"
       }
      ],
      "maritalDataAddonType": [
       {
        "element": "placeOfMarriage",
        "datatype": "generalPlaceType",
-       "feld": "ort"
+       "feld": "Ort"
       }
      ]
     },
@@ -44452,89 +44394,89 @@
       {
        "element": "officialName",
        "datatype": "baseNameType",
-       "feld": "familienname"
+       "feld": "Familienname"
       },
       {
        "element": "originalName",
        "datatype": "baseNameType",
-       "feld": "ledigname"
+       "feld": "Ledigname"
       }
      ],
      "foreignerNameType": [
       {
        "element": "firstName",
        "datatype": "baseNameType",
-       "feld": "vornamen"
+       "feld": "Vornamen"
       }
      ],
      "birthDataType": [
       {
        "element": "dateOfBirth",
        "datatype": "datePartiallyKnownType",
-       "feld": "geburtsdatum"
+       "feld": "Geburtsdatum"
       },
       {
        "element": "placeOfBirth",
        "datatype": "generalPlaceType",
-       "feld": "geburtsort_und_staat"
+       "feld": "Geburtsort und -staat"
       },
       {
        "element": "placeOfBirth",
        "datatype": "generalPlaceType",
-       "feld": "geburtsort_und_staat"
+       "feld": "Geburtsort und -staat"
       }
      ],
      "personType": [
       {
        "element": "nationalityData",
        "datatype": "nationalityDataType",
-       "feld": "staatsangehoerigkeiten"
+       "feld": "Staatsangehörigkeit/en"
       },
       {
        "element": "languageOfCorrespondance",
        "datatype": "languageType",
-       "feld": "verfahrenssprache"
+       "feld": "Verfahrenssprache"
       },
       {
        "element": "nationalityData",
        "datatype": "nationalityDataType",
-       "feld": "staatsangehoerigkeit"
+       "feld": "Staatsangehörigkeit"
       },
       {
        "element": "nationalityData",
        "datatype": "nationalityDataType",
-       "feld": "staatsangehoerigkeit"
+       "feld": "Staatsangehörigkeit"
       }
      ],
      "otherResidenceType": [
       {
        "element": "dwellingAddress",
        "datatype": "dwellingAddressType",
-       "feld": "wohnadresse"
+       "feld": "Wohnadresse"
       },
       {
        "element": "arrivalDate",
        "datatype": "generalDateType",
-       "feld": "dauer_von_bis"
+       "feld": "Dauer (jeweils von wann bis wann)"
       },
       {
        "element": "arrivalDate",
        "datatype": "generalDateType",
-       "feld": "dauer_von_bis"
+       "feld": "Dauer (jeweils von wann bis wann)"
       }
      ],
      "swissMunicipalityWithoutBFS": [
       {
        "element": "municipalityName",
        "datatype": "municipalityNameType",
-       "feld": "wohnort_kanton"
+       "feld": "Wohnort / Kanton"
       }
      ],
      "countryInfoType": [
       {
        "element": "nationalityValidFrom",
        "datatype": "generalDateType",
-       "feld": "ehepartner_schweizer_seit"
+       "feld": "Der Ehepartner ist Schweizer seit"
       }
      ]
     },
@@ -44543,14 +44485,14 @@
       {
        "element": "phoneNumber",
        "datatype": "phoneNumberType",
-       "feld": "telefon_und_handynummer"
+       "feld": "Telefon- und Handynummer"
       }
      ],
      "emailType": [
       {
        "element": "emailAddress",
        "datatype": "emailAddressType",
-       "feld": "email_adresse"
+       "feld": "E-Mail Adresse"
       }
      ]
     },
@@ -44559,7 +44501,7 @@
       {
        "element": "nativeLanguage",
        "datatype": "languageType",
-       "feld": "andere_sprache"
+       "feld": "Andere"
       }
      ]
     },
@@ -44568,32 +44510,32 @@
       {
        "element": "originalName",
        "datatype": "baseNameType",
-       "feld": "ledigname"
+       "feld": "Ledigname"
       },
       {
        "element": "dateOfBirth",
        "datatype": "datePartiallyKnownType",
-       "feld": "geburtsdatum_und_ort"
+       "feld": "Geburtsdatum und -ort"
       },
       {
        "element": "originalName",
        "datatype": "baseNameType",
-       "feld": "ledigname"
+       "feld": "Ledigname"
       },
       {
        "element": "dateOfBirth",
        "datatype": "datePartiallyKnownType",
-       "feld": "geburtsdatum_und_ort"
+       "feld": "Geburtsdatum und -ort"
       },
       {
        "element": "originalName",
        "datatype": "baseNameType",
-       "feld": "ledigname"
+       "feld": "Ledigname"
       },
       {
        "element": "dateOfBirth",
        "datatype": "datePartiallyKnownType",
-       "feld": "geburtsdatum"
+       "feld": "Geburtsdatum"
       }
      ]
     },
@@ -44602,7 +44544,7 @@
       {
        "element": "town",
        "datatype": "townType",
-       "feld": "wohnort_land"
+       "feld": "Wohnort / Land"
       }
      ]
     },
@@ -44611,26 +44553,26 @@
       {
        "element": "dateOfMaritalStatus",
        "datatype": "generalDateType",
-       "feld": "datum"
+       "feld": "Datum"
       }
      ]
     }
    },
    "ohne_standard": [
     {
-     "feld": "passfoto",
+     "feld": "Passfoto",
      "format": "Passfoto-Format"
     },
     {
-     "feld": "praezisierung_anderes",
+     "feld": "Anderes (bitte präzisieren)",
      "format": ""
     },
     {
-     "feld": "praezisierung_anderes",
+     "feld": "Anderes (bitte präzisieren)",
      "format": ""
     },
     {
-     "feld": "buergerrechtserwerb_ehegatte",
+     "feld": "Art des Erwerbs des Schweizer Bürgerrechts durch den Ehepartner",
      "format": "Bei ordentlicher Einbuergerung nach der Heirat ist die erleichterte Einbuergerun"
     }
    ]
@@ -44638,7 +44580,7 @@
   {
    "form_id": 290,
    "titel": "Inventarfragebogen – Steuerrechtliches Inventar im Erbschaftswesen",
-   "dienststelle": "Amt fuer Justiz und Gemeinden",
+   "dienststelle": "Amt für Justiz und Gemeinden",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 93,
    "ech": {
@@ -44928,7 +44870,7 @@
   {
    "form_id": 291,
    "titel": "Formular zur Mitteilung von Mietzinserhöhungen und anderen einseitigen Vertragsänderungen gemäss Art. 269d des Obligationenrechts",
-   "dienststelle": "Amt fuer Justiz und Gemeinden",
+   "dienststelle": "Amt für Justiz und Gemeinden",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 37,
    "ech": {
@@ -45783,7 +45725,7 @@
   {
    "form_id": 303,
    "titel": "Grobkonzept Geschäftsidee",
-   "dienststelle": "Arbeitsmarktliche Massnahmen AMM",
+   "dienststelle": "Arbeitsmarktliche Massnahmen",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 57,
    "ech": {
@@ -47428,31 +47370,31 @@
       {
        "element": "lastName",
        "datatype": "lastNameType",
-       "feld": "name"
+       "feld": "Name"
       }
      ],
      "addressInformationType": [
       {
        "element": "street",
        "datatype": "streetType",
-       "feld": "adresse"
+       "feld": "Adresse"
       },
       {
        "element": "street",
        "datatype": "streetType",
-       "feld": "strasse_nr"
+       "feld": "Strasse Nr."
       },
       {
        "element": "swissZipCode",
        "datatype": "swissZipCodeType",
-       "feld": "plz_ort"
+       "feld": "PLZ Ort"
       }
      ],
      "mailAddressType": [
       {
        "element": "addressCategory",
        "datatype": "addressCategoryType",
-       "feld": "adressart"
+       "feld": "Domizil an der Geschäftsadresse oder an der privaten Adresse"
       }
      ]
     },
@@ -47461,7 +47403,7 @@
       {
        "element": "organisationName",
        "datatype": "unitNameType",
-       "feld": "firma"
+       "feld": "Firma"
       }
      ]
     },
@@ -47470,14 +47412,14 @@
       {
        "element": "officialName",
        "datatype": "baseNameType",
-       "feld": "vorname_name"
+       "feld": "Vorname Name"
       }
      ]
     }
    },
    "ohne_standard": [
     {
-     "feld": "unterschrift",
+     "feld": "Unterschrift",
      "format": ""
     }
    ]
@@ -47494,31 +47436,31 @@
       {
        "element": "lastName",
        "datatype": "lastNameType",
-       "feld": "vorname_name"
+       "feld": "Vorname Name"
       }
      ],
      "addressInformationType": [
       {
        "element": "street",
        "datatype": "streetType",
-       "feld": "adresse"
+       "feld": "Adresse"
       },
       {
        "element": "street",
        "datatype": "streetType",
-       "feld": "strasse_nr"
+       "feld": "Strasse Nr."
       },
       {
        "element": "swissZipCode",
        "datatype": "swissZipCodeType",
-       "feld": "plz_ort"
+       "feld": "PLZ Ort"
       }
      ],
      "mailAddressType": [
       {
        "element": "addressCategory",
        "datatype": "addressCategoryType",
-       "feld": "art_der_domiziladresse"
+       "feld": "Domizil an der Geschäftsadresse oder an der privaten Adresse"
       }
      ]
     },
@@ -47527,7 +47469,7 @@
       {
        "element": "organisationName",
        "datatype": "unitNameType",
-       "feld": "firma"
+       "feld": "Firma"
       }
      ]
     },
@@ -47536,7 +47478,7 @@
       {
        "element": "officialName",
        "datatype": "baseNameType",
-       "feld": "vorname_name"
+       "feld": "Vorname Name"
       }
      ]
     }
@@ -47555,14 +47497,14 @@
       {
        "element": "organisationName",
        "datatype": "unitNameType",
-       "feld": "firma"
+       "feld": "Firma"
       }
      ],
      "swissHeadquarterType": [
       {
        "element": "headquarterMunicipality",
        "datatype": "swissMunicipalityType",
-       "feld": "sitz"
+       "feld": "Sitz"
       }
      ]
     },
@@ -47571,19 +47513,19 @@
       {
        "element": "addressCategory",
        "datatype": "addressCategoryType",
-       "feld": "domizilart"
+       "feld": "Geschäftsräumlichkeiten / c/o-Domizil"
       },
       {
        "element": "careOfAddressLine",
        "datatype": "careOfAddressLineType",
-       "feld": "domizilhalter"
+       "feld": "Domizilhalter"
       }
      ]
     }
    },
    "ohne_standard": [
     {
-     "feld": "unterschriften_anmeldende_personen",
+     "feld": "Persönliche Unterschriften derjenigen Personen, welche die Handelsregisteranmeldung unterzeichnen",
      "format": ""
     }
    ]
@@ -47991,19 +47933,19 @@
       {
        "element": "firstName",
        "datatype": "firstNameType",
-       "feld": "vorname"
+       "feld": "Vorname"
       },
       {
        "element": "lastName",
        "datatype": "lastNameType",
-       "feld": "name"
+       "feld": "Name"
       }
      ],
      "addressInformationType": [
       {
        "element": "street",
        "datatype": "streetType",
-       "feld": "adresse"
+       "feld": "Adresse"
       }
      ]
     },
@@ -48012,7 +47954,7 @@
       {
        "element": "organisationName",
        "datatype": "unitNameType",
-       "feld": "firma"
+       "feld": "Firma"
       }
      ]
     },
@@ -48021,18 +47963,18 @@
       {
        "element": "jobTitle",
        "datatype": null,
-       "feld": "funktion"
+       "feld": "Funktion"
       }
      ]
     }
    },
    "ohne_standard": [
     {
-     "feld": "zeichnungsart",
+     "feld": "Art der Zeichnungsberechtigung",
      "format": ""
     },
     {
-     "feld": "unterschrift",
+     "feld": "Unterschrift",
      "format": ""
     }
    ]
@@ -48105,19 +48047,19 @@
       {
        "element": "firstName",
        "datatype": "firstNameType",
-       "feld": "vorname"
+       "feld": "Vorname"
       },
       {
        "element": "lastName",
        "datatype": "lastNameType",
-       "feld": "name"
+       "feld": "Name"
       }
      ],
      "addressInformationType": [
       {
        "element": "street",
        "datatype": "streetType",
-       "feld": "adresse"
+       "feld": "Adresse"
       }
      ]
     },
@@ -48126,7 +48068,7 @@
       {
        "element": "organisationName",
        "datatype": "unitNameType",
-       "feld": "firma"
+       "feld": "Firma"
       }
      ]
     },
@@ -48135,18 +48077,18 @@
       {
        "element": "role",
        "datatype": "administrativeBodyRoleType",
-       "feld": "gewaehlte_funktion"
+       "feld": "Funktion"
       }
      ]
     }
    },
    "ohne_standard": [
     {
-     "feld": "zeichnungsart",
+     "feld": "Art der Zeichnungsberechtigung",
      "format": ""
     },
     {
-     "feld": "unterschrift",
+     "feld": "Unterschrift",
      "format": ""
     }
    ]
@@ -48163,14 +48105,14 @@
       {
        "element": "lastName",
        "datatype": "lastNameType",
-       "feld": "vorname_name"
+       "feld": "Vorname Name"
       }
      ],
      "addressInformationType": [
       {
        "element": "street",
        "datatype": "streetType",
-       "feld": "adresse"
+       "feld": "Adresse"
       }
      ]
     },
@@ -48179,7 +48121,7 @@
       {
        "element": "organisationName",
        "datatype": "unitNameType",
-       "feld": "firma"
+       "feld": "Firma"
       }
      ]
     },
@@ -48188,7 +48130,7 @@
       {
        "element": "jobTitle",
        "datatype": null,
-       "feld": "funktion"
+       "feld": "Funktion"
       }
      ]
     },
@@ -48197,14 +48139,14 @@
       {
        "element": "officialName",
        "datatype": "baseNameType",
-       "feld": "vorname_name"
+       "feld": "Vorname Name"
       }
      ]
     }
    },
    "ohne_standard": [
     {
-     "feld": "zeichnungsart",
+     "feld": "Art der Zeichnungsberechtigung",
      "format": "Einzelprokura/Kollektivprokura nur bei Funktion Zeichnungsberechtigte/r"
     }
    ]
@@ -48221,19 +48163,19 @@
       {
        "element": "firstName",
        "datatype": "firstNameType",
-       "feld": "vorname"
+       "feld": "Vorname"
       },
       {
        "element": "lastName",
        "datatype": "lastNameType",
-       "feld": "name"
+       "feld": "Name"
       }
      ],
      "addressInformationType": [
       {
        "element": "street",
        "datatype": "streetType",
-       "feld": "adresse"
+       "feld": "Adresse"
       }
      ]
     },
@@ -48242,7 +48184,7 @@
       {
        "element": "organisationName",
        "datatype": "unitNameType",
-       "feld": "firma"
+       "feld": "Firma"
       }
      ]
     },
@@ -48251,18 +48193,18 @@
       {
        "element": "jobTitle",
        "datatype": null,
-       "feld": "funktion"
+       "feld": "Funktion"
       }
      ]
     }
    },
    "ohne_standard": [
     {
-     "feld": "zeichnungsart",
+     "feld": "Art der Zeichnungsberechtigung",
      "format": ""
     },
     {
-     "feld": "unterschrift",
+     "feld": "Unterschrift",
      "format": ""
     }
    ]
@@ -48300,7 +48242,7 @@
       {
        "element": "organisationName",
        "datatype": "unitNameType",
-       "feld": "stiftung_firma"
+       "feld": "Firma"
       }
      ]
     },
@@ -48309,18 +48251,18 @@
       {
        "element": "role",
        "datatype": "administrativeBodyRoleType",
-       "feld": "gewaehlte_funktion"
+       "feld": "Funktion"
       }
      ]
     }
    },
    "ohne_standard": [
     {
-     "feld": "zeichnungsart",
+     "feld": "Art der Zeichnungsberechtigung",
      "format": ""
     },
     {
-     "feld": "unterschrift",
+     "feld": "Unterschrift",
      "format": ""
     }
    ]
@@ -53383,17 +53325,17 @@
       {
        "element": "organisationName",
        "datatype": "unitNameType",
-       "feld": "name"
+       "feld": "Name"
       },
       {
        "element": "organisationName",
        "datatype": "unitNameType",
-       "feld": "name"
+       "feld": "Name"
       },
       {
        "element": "organisationName",
        "datatype": "unitNameType",
-       "feld": "name"
+       "feld": "Name"
       }
      ],
      "organisationType": [
@@ -53410,7 +53352,7 @@
       {
        "element": "activityDescription",
        "datatype": "activityDescriptionType",
-       "feld": "geschaeftszwecke_andere_gesellschaften"
+       "feld": "Bitte nennen Sie den oder die Geschäftszweck(e), welche(n) die Gesellschaft, wo Sie ebenfalls ein Amt inne haben, verfolgt"
       }
      ],
      "swissHeadquarterType": [
@@ -53426,17 +53368,17 @@
       {
        "element": "addressInformation",
        "datatype": "addressInformationType",
-       "feld": "adresse"
+       "feld": "Adresse"
       },
       {
        "element": "addressInformation",
        "datatype": "addressInformationType",
-       "feld": "adresse"
+       "feld": "Adresse"
       },
       {
        "element": "addressInformation",
        "datatype": "addressInformationType",
-       "feld": "adresse"
+       "feld": "Adresse"
       }
      ]
     },
@@ -53445,66 +53387,66 @@
       {
        "element": "phoneNumber",
        "datatype": "phoneNumberType",
-       "feld": "telefon"
+       "feld": "Telefon"
       },
       {
        "element": "phoneNumber",
        "datatype": "phoneNumberType",
-       "feld": "fax"
+       "feld": "Fax"
       },
       {
        "element": "phoneNumber",
        "datatype": "phoneNumberType",
-       "feld": "telefon"
+       "feld": "Telefon"
       },
       {
        "element": "phoneNumber",
        "datatype": "phoneNumberType",
-       "feld": "fax"
+       "feld": "Fax"
       },
       {
        "element": "phoneNumber",
        "datatype": "phoneNumberType",
-       "feld": "telefon"
+       "feld": "Telefon"
       },
       {
        "element": "phoneNumber",
        "datatype": "phoneNumberType",
-       "feld": "fax"
+       "feld": "Fax"
       }
      ],
      "emailType": [
       {
        "element": "emailAddress",
        "datatype": "emailAddressType",
-       "feld": "e_mail"
+       "feld": "E-Mail"
       },
       {
        "element": "emailAddress",
        "datatype": "emailAddressType",
-       "feld": "e_mail_statistikauswertung"
+       "feld": "E-Mail für die jährliche Statistikauswertung"
       },
       {
        "element": "emailAddress",
        "datatype": "emailAddressType",
-       "feld": "e_mail"
+       "feld": "E-Mail"
       },
       {
        "element": "emailAddress",
        "datatype": "emailAddressType",
-       "feld": "e_mail"
+       "feld": "E-Mail"
       }
      ],
      "internetType": [
       {
        "element": "internetAddress",
        "datatype": "internetAddressType",
-       "feld": "homepage"
+       "feld": "Homepage"
       },
       {
        "element": "internetAddress",
        "datatype": "internetAddressType",
-       "feld": "homepage"
+       "feld": "Homepage"
       }
      ]
     },
@@ -53522,32 +53464,32 @@
       {
        "element": "officialName",
        "datatype": "baseNameType",
-       "feld": "name"
+       "feld": "Name"
       },
       {
        "element": "firstName",
        "datatype": "baseNameType",
-       "feld": "vorname"
+       "feld": "Vorname"
       },
       {
        "element": "vn",
        "datatype": "vnType",
-       "feld": "ahv_nummer"
+       "feld": "Sozialversicherungsnummer (AHV-Nr.)"
       },
       {
        "element": "officialName",
        "datatype": "baseNameType",
-       "feld": "name"
+       "feld": "Name"
       },
       {
        "element": "firstName",
        "datatype": "baseNameType",
-       "feld": "vorname"
+       "feld": "Vorname"
       },
       {
        "element": "dateOfBirth",
        "datatype": "datePartiallyKnownType",
-       "feld": "geburtsdatum"
+       "feld": "Geburtsdatum"
       }
      ]
     },
@@ -53570,19 +53512,19 @@
       {
        "element": "placeOfOrigin",
        "datatype": "placeOfOriginType",
-       "feld": "heimatort"
+       "feld": "Heimatort"
       },
       {
        "element": "nationalityData",
        "datatype": "nationalityDataType",
-       "feld": "nationalitaet"
+       "feld": "Nationalität"
       }
      ],
      "residencePermitDataType": [
       {
        "element": "residencePermit",
        "datatype": "residencePermitType",
-       "feld": "art_aufenthaltsbewilligung"
+       "feld": "Art der Aufenthaltsbewilligung"
       }
      ]
     },
@@ -53591,19 +53533,19 @@
       {
        "element": "occupationData",
        "datatype": "occupationDataType",
-       "feld": "berufliche_taetigkeit_von_bis"
+       "feld": "Berufliche Tätigkeit von / bis"
       },
       {
        "element": "kindOfEmployment",
        "datatype": null,
-       "feld": "vollzeitbeschaeftigung"
+       "feld": "Üben Sie Ihre Tätigkeit als eine für die Leitung verantwortliche Person eines Arbeitsvermittlungs- und / oder Personalverleihbetriebes im Rahmen einer Vollzeitbeschäftigung aus?"
       }
      ],
      "occupationDataType": [
       {
        "element": "employer",
        "datatype": null,
-       "feld": "berufliche_taetigkeit_arbeitgeber_funktion"
+       "feld": "Arbeitgeber und Funktion"
       }
      ]
     }
@@ -53698,11 +53640,11 @@
      "format": ""
     },
     {
-     "feld": "ort",
+     "feld": "Ort",
      "format": ""
     },
     {
-     "feld": "datum",
+     "feld": "Datum",
      "format": ""
     },
     {
@@ -53766,43 +53708,43 @@
      "format": ""
     },
     {
-     "feld": "schulbildung_von_bis",
+     "feld": "Besuchte Schulen von / bis",
      "format": ""
     },
     {
-     "feld": "schulbildung_bezeichnung",
+     "feld": "Besuchte Schulen",
      "format": ""
     },
     {
-     "feld": "berufsausbildung_von_bis",
+     "feld": "Berufsbezogene Ausbildungen von / bis",
      "format": ""
     },
     {
-     "feld": "berufsausbildung_bezeichnung",
+     "feld": "Berufsbezogene Ausbildungen",
      "format": ""
     },
     {
-     "feld": "teilzeit_prozent",
+     "feld": "Zu wie viel Prozent arbeiten Sie als verantwortliche Person eines der genannten Betriebe?",
      "format": ""
     },
     {
-     "feld": "teilzeit_begruendung",
+     "feld": "Bitte begründen Sie kurz, weshalb Sie diese Tätigkeit nur als Teilzeitbeschäftigung ausüben",
      "format": ""
     },
     {
-     "feld": "aemter_andere_gesellschaften",
+     "feld": "Bekleiden Sie Ämter in andern Erwerbsgesellschaften (Verwaltungsratsmandate oder andere)?",
      "format": ""
     },
     {
-     "feld": "ort_datum",
+     "feld": "Ort und Datum",
      "format": ""
     },
     {
-     "feld": "firmenstempel",
+     "feld": "Stempel der Firma",
      "format": ""
     },
     {
-     "feld": "unterschrift",
+     "feld": "Unterschrift der Gesuchstellenden",
      "format": ""
     },
     {
@@ -54024,7 +53966,7 @@
   {
    "form_id": 366,
    "titel": "Angaben zu Erben – Beilage zum Inventarfragebogen",
-   "dienststelle": "Amt fuer Justiz und Gemeinden",
+   "dienststelle": "Amt für Justiz und Gemeinden",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 92,
    "ech": {
@@ -54118,7 +54060,7 @@
   {
    "form_id": 367,
    "titel": "Beilage zum Inventarfragebogen",
-   "dienststelle": "Amt fuer Justiz und Gemeinden",
+   "dienststelle": "Amt für Justiz und Gemeinden",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 92,
    "ech": {
@@ -54227,7 +54169,7 @@
   {
    "form_id": 369,
    "titel": "Berichterstattung Kinder / Jugendliche",
-   "dienststelle": "Kindes- und Erwachsenenschutzbehoerde",
+   "dienststelle": "Kindes- und Erwachsenenschutzbehörde",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 58,
    "ech": {
@@ -54442,7 +54384,7 @@
   {
    "form_id": 372,
    "titel": "Bewilligungsgesuch für das Halten von Wildtieren",
-   "dienststelle": "Veterinaeramt",
+   "dienststelle": "Veterinäramt",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 21,
    "ech": {
@@ -55443,7 +55385,7 @@
   {
    "form_id": 378,
    "titel": "Bewilligungsgesuch für die gewerbsmässige Klauenpflege für Rinder bzw. die Hufpflege für Equiden",
-   "dienststelle": "Veterinaeramt",
+   "dienststelle": "Veterinäramt",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 67,
    "ech": {
@@ -55472,7 +55414,7 @@
   {
    "form_id": 380,
    "titel": "Bestellkarte für Publikationen der Archäologie",
-   "dienststelle": "Amt fuer Denkmalpflege und Archaeologie",
+   "dienststelle": "Amt für Denkmalpflege und Archäologie",
    "exchange_ready": "voll",
    "abdeckung_pct": 100,
    "ech": {
@@ -56636,7 +56578,7 @@
   {
    "form_id": 390,
    "titel": "Formular zur Meldung von Hundebissverletzungen beim Menschen",
-   "dienststelle": "Veterinaeramt",
+   "dienststelle": "Veterinäramt",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 43,
    "ech": {
@@ -56802,7 +56744,7 @@
   {
    "form_id": 391,
    "titel": "Formular zur Meldung von Hundebissverletzungen beim Tier",
-   "dienststelle": "Veterinaeramt",
+   "dienststelle": "Veterinäramt",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 37,
    "ech": {
@@ -57175,7 +57117,7 @@
   {
    "form_id": 394,
    "titel": "Antragsformular und Absichtserklärung für die Regelung oder Abänderung des Kindesunterhalts",
-   "dienststelle": "Kindes- und Erwachsenenschutzbehoerde",
+   "dienststelle": "Kindes- und Erwachsenenschutzbehörde",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 96,
    "ech": {
@@ -57442,7 +57384,7 @@
   {
    "form_id": 397,
    "titel": "Nachweis Objektschutzmassnahmen Formular A",
-   "dienststelle": "Abteilung Gewaesser und Materialabbau",
+   "dienststelle": "Abteilung Gewässer und Materialabbau",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 89,
    "ech": {
@@ -57571,7 +57513,7 @@
   {
    "form_id": 398,
    "titel": "Nachweis Objektschutzmassnahmen Formular B – Hochwasser",
-   "dienststelle": "Abteilung Gewaesser und Materialabbau",
+   "dienststelle": "Abteilung Gewässer und Materialabbau",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 62,
    "ech": {
@@ -57708,7 +57650,7 @@
   {
    "form_id": 400,
    "titel": "Nachweis Objektschutzmassnahmen Formular B – Rutschungen",
-   "dienststelle": "Abteilung Gewaesser und Materialabbau",
+   "dienststelle": "Abteilung Gewässer und Materialabbau",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 61,
    "ech": {
@@ -57856,7 +57798,7 @@
   {
    "form_id": 401,
    "titel": "Nachweis Objektschutzmassnahmen Formular B Steinschlag",
-   "dienststelle": "Abteilung Gewaesser und Materialabbau",
+   "dienststelle": "Abteilung Gewässer und Materialabbau",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 54,
    "ech": {
@@ -58371,7 +58313,7 @@
   {
    "form_id": 407,
    "titel": "Gesuch Zulassung im Einzelfall von VKF-anerkannten Bauteilen",
-   "dienststelle": "Feuerpolizei",
+   "dienststelle": "Kantonale Feuerpolizei",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 71,
    "ech": {
@@ -58733,7 +58675,7 @@
   {
    "form_id": 412,
    "titel": "Bestellung von Grenzangaben",
-   "dienststelle": "Amt fuer Geoinformation",
+   "dienststelle": "Amt für Geoinformation",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 77,
    "ech": {
@@ -58956,7 +58898,7 @@
   {
    "form_id": 416,
    "titel": "Gesuch um Erteilung einer Bewilligung für Sondierungen im Boden, Fels und Grundwasser",
-   "dienststelle": "Abteilung Gewaesser und Materialabbau",
+   "dienststelle": "Abteilung Gewässer und Materialabbau",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 84,
    "ech": {
@@ -59153,7 +59095,7 @@
   {
    "form_id": 418,
    "titel": "Anmeldung durch Bestandestierarzt/-ärztin (Delegation schmerzhafte Eingriffe)",
-   "dienststelle": "Veterinaeramt",
+   "dienststelle": "Veterinäramt",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 71,
    "ech": {
@@ -59280,7 +59222,7 @@
   {
    "form_id": 420,
    "titel": "Untersuchungsantrag auf Trichinellen",
-   "dienststelle": "Veterinaeramt",
+   "dienststelle": "Veterinäramt",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 38,
    "ech": {
@@ -59622,7 +59564,7 @@
   {
    "form_id": 426,
    "titel": "Bienenstände / Bienenvölker (Form. 730.008 d)",
-   "dienststelle": "Veterinaeramt",
+   "dienststelle": "Veterinäramt",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 78,
    "ech": {
@@ -59696,7 +59638,7 @@
   {
    "form_id": 428,
    "titel": "Anmeldung für Fleischuntersuchung bei Wildschweinen",
-   "dienststelle": "Veterinaeramt",
+   "dienststelle": "Veterinäramt",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 50,
    "ech": {
@@ -59824,7 +59766,7 @@
   {
    "form_id": 429,
    "titel": "Zusatzformular Gehege",
-   "dienststelle": "Veterinaeramt",
+   "dienststelle": "Veterinäramt",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 6,
    "ech": {
@@ -60025,7 +59967,7 @@
   {
    "form_id": 431,
    "titel": "Zusatzformular Tierbestand",
-   "dienststelle": "Veterinaeramt",
+   "dienststelle": "Veterinäramt",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 12,
    "ech": {
@@ -60898,7 +60840,7 @@
   {
    "form_id": 441,
    "titel": "Formular zur Einreichung eines Gesuches",
-   "dienststelle": "Amt fuer Justiz und Gemeinden",
+   "dienststelle": "Amt für Justiz und Gemeinden",
    "exchange_ready": "voll",
    "abdeckung_pct": 100,
    "ech": {
@@ -60997,7 +60939,7 @@
   {
    "form_id": 443,
    "titel": "Antrag für ein Validierungsabzeichen im Equidenpass",
-   "dienststelle": "Veterinaeramt",
+   "dienststelle": "Veterinäramt",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 62,
    "ech": {
@@ -61101,23 +61043,23 @@
      "format": "UELN 15-stellig, Mikrochip 15-stellig"
     },
     {
-     "feld": "Rolle_Bestaetigung_Impfung_Tierarztkontrolle",
+     "feld": "Bestätigung zu Influenza-Impfung und zweimal jährlicher Vorstellung beim Tierarzt",
      "format": ""
     },
     {
-     "feld": "Natursprung_Regelung",
+     "feld": "Natursprung",
      "format": ""
     },
     {
-     "feld": "Bezeichnung_Raeumlichkeiten_Natursprung",
+     "feld": "Bezeichnung der Räumlichkeiten",
      "format": ""
     },
     {
-     "feld": "Rolle_Hauptverantwortung_Tierarzneimittel",
+     "feld": "Person, welche die Hauptverantwortung trägt für den Einsatz von Tierarzneimitteln am Equiden",
      "format": ""
     },
     {
-     "feld": "Beilage_Equidenpass",
+     "feld": "Equidenpass",
      "format": ""
     }
    ]
@@ -61566,7 +61508,7 @@
   {
    "form_id": 449,
    "titel": "Gesuch – Strafverbüssung in Form einer gemeinnützigen Arbeitsleistung (GA)",
-   "dienststelle": "Amt fuer Justiz und Gemeinden",
+   "dienststelle": "Amt für Justiz und Gemeinden",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 82,
    "ech": {
@@ -61638,11 +61580,11 @@
    },
    "ohne_standard": [
     {
-     "feld": "Gemeinnuetzige_Arbeit_im_Wohnkanton",
+     "feld": "Möchten Sie die gemeinnützige Arbeit in Ihrem Wohnkanton leisten?",
      "format": ""
     },
     {
-     "feld": "Beilage_Strafentscheid",
+     "feld": "Strafbefehl, Bussenverfügung oder Urteil",
      "format": ""
     }
    ]
@@ -61650,7 +61592,7 @@
   {
    "form_id": 450,
    "titel": "Gesuch um Adoption meines minderjährigen Stiefkindes",
-   "dienststelle": "Amt fuer Justiz und Gemeinden",
+   "dienststelle": "Amt für Justiz und Gemeinden",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 96,
    "ech": {
@@ -61826,7 +61768,7 @@
   {
    "form_id": 451,
    "titel": "Gesuch um gemeinschaftliche Adoption unseres minderjährigen Pflegekindes",
-   "dienststelle": "Amt fuer Justiz und Gemeinden",
+   "dienststelle": "Amt für Justiz und Gemeinden",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 97,
    "ech": {
@@ -62041,7 +61983,7 @@
   {
    "form_id": 452,
    "titel": "Gesuchsformular 130 – Tankanlagen / Fasslager (gemäss GSchG und kantonaler GSchVV)",
-   "dienststelle": "Feuerpolizei",
+   "dienststelle": "Kantonale Feuerpolizei",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 30,
    "ech": {
@@ -62503,7 +62445,7 @@
       {
        "element": "profession",
        "datatype": "professionType",
-       "feld": "Taetigkeitskategorie"
+       "feld": "Tätigkeitskategorie"
       }
      ]
     },
@@ -62600,27 +62542,27 @@
      "format": "Einfachauswahl"
     },
     {
-     "feld": "Beilagen_Erstantrag",
+     "feld": "Beilagen für Erstantrag",
      "format": "Dateikopien / Beilagen"
     },
     {
-     "feld": "Nachweis_Aspirantenkurs",
+     "feld": "Nachweis des absolvierten Aspirantenkurses",
      "format": "Dateikopie"
     },
     {
-     "feld": "Nachweis_Zusatzausbildung_Canyoning",
+     "feld": "Nachweis der anerkannten Zusatzausbildung für die Bewilligung Canyoning",
      "format": "Dateikopie"
     },
     {
-     "feld": "Beilagen_Erneuerungsantrag",
+     "feld": "Beilagen für Erneuerungsantrag",
      "format": "Dateikopien / Beilagen"
     },
     {
-     "feld": "Bisherige_Bewilligung_Erteilungsdatum",
+     "feld": "Datum der Erteilung / letzten Erneuerung",
      "format": "TT.MM.JJJJ"
     },
     {
-     "feld": "Bisherige_Bewilligung_gueltig_bis",
+     "feld": "Bewilligung gültig bis",
      "format": "TT.MM.JJJJ"
     },
     {
@@ -62715,7 +62657,7 @@
       {
        "element": "document",
        "datatype": "documentType",
-       "feld": "Aerztliches_Zeugnis"
+       "feld": "Ärztliches Zeugnis"
       }
      ]
     }
@@ -62734,7 +62676,7 @@
   {
    "form_id": 456,
    "titel": "Formularbestellschein",
-   "dienststelle": "Veterinaeramt",
+   "dienststelle": "Veterinäramt",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 30,
    "ech": {
@@ -62796,7 +62738,7 @@
   {
    "form_id": 459,
    "titel": "Formular zur Mitteilung der Kündigung gemäss Art. 266l und 298 des Obligationenrechts (Miet- und Pachtverträge für Wohn- und Geschäftsräume)",
-   "dienststelle": "Amt fuer Justiz und Gemeinden",
+   "dienststelle": "Amt für Justiz und Gemeinden",
    "exchange_ready": "voll",
    "abdeckung_pct": 100,
    "ech": {
@@ -62857,7 +62799,7 @@
       {
        "element": "endOfContract",
        "datatype": "endOfContractType",
-       "feld": "Zeitpunkt der Aufloesung"
+       "feld": "Zeitpunkt der Auflösung"
       }
      ]
     }
@@ -63015,7 +62957,7 @@
   {
    "form_id": 461,
    "titel": "Schätzungsbegehren",
-   "dienststelle": "Amt fuer Grundstueckschaetzungen",
+   "dienststelle": "Amt für Grundstückschätzungen",
    "exchange_ready": "voll",
    "abdeckung_pct": 100,
    "ech": {
@@ -63056,12 +62998,12 @@
       {
        "element": "estimationReason",
        "datatype": "estimationReasonTextType",
-       "feld": "Schaetzungsgrund"
+       "feld": "Schätzungsgrund"
       },
       {
        "element": "estimationReason",
        "datatype": "estimationReasonTextType",
-       "feld": "Weitere_Angaben_zum_Schaetzungsgrund"
+       "feld": "Weitere Angaben zum Schätzungsgrund"
       }
      ]
     },
@@ -63135,7 +63077,7 @@
   {
    "form_id": 462,
    "titel": "Ausfuhr eines Pferdes in einen EU-Staat",
-   "dienststelle": "Veterinaeramt",
+   "dienststelle": "Veterinäramt",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 62,
    "ech": {
@@ -63331,7 +63273,7 @@
       {
        "element": "name",
        "datatype": "generalTextType",
-       "feld": "Name_des_Tieres"
+       "feld": "Name"
       }
      ]
     },
@@ -63340,19 +63282,19 @@
       {
        "element": "countryNameShort",
        "datatype": "countryNameShortType",
-       "feld": "Durchfuhr_EU_Mitgliedstaaten"
+       "feld": "Durchfuhr durch EU-Mitgliedstaaten"
       },
       {
        "element": "countryNameShort",
        "datatype": "countryNameShortType",
-       "feld": "Durchfuhr_Drittland"
+       "feld": "Durchfuhr durch ein Drittland?"
       }
      ]
     }
    },
    "ohne_standard": [
     {
-     "feld": "Datum_Bestandeszugehoerigkeit",
+     "feld": "Seit (Datum) im Bestand (Herkunftsort)",
      "format": "TT.MM.JJJJ"
     },
     {
@@ -63392,15 +63334,15 @@
      "format": ""
     },
     {
-     "feld": "Geburtsdatum_Tier",
+     "feld": "Geburtsdatum",
      "format": "TT.MM.JJJJ"
     },
     {
-     "feld": "Kennzeichnung_Tieridentifikation",
+     "feld": "Kennzeichnung / Tieridentifikation",
      "format": ""
     },
     {
-     "feld": "UELN_Nummer",
+     "feld": "UELN-Nummer",
      "format": ""
     },
     {
@@ -63408,7 +63350,7 @@
      "format": ""
     },
     {
-     "feld": "Chip_Nummer",
+     "feld": "Chip-Nummer",
      "format": ""
     },
     {
@@ -63416,11 +63358,11 @@
      "format": ""
     },
     {
-     "feld": "Abfahrt_Datum_Uhrzeit",
+     "feld": "Abfahrt Datum / Uhrzeit",
      "format": "TT.MM.JJJJ / hh:mm"
     },
     {
-     "feld": "Rueckkehr_Datum_Uhrzeit",
+     "feld": "Rückkehr Datum / Uhrzeit",
      "format": "TT.MM.JJJJ / hh:mm"
     },
     {
@@ -63428,15 +63370,15 @@
      "format": ""
     },
     {
-     "feld": "Strassenfahrzeug_Nummer_Kennzeichen",
+     "feld": "Straßenfahrzeug Nr. / Kennzeichen",
      "format": ""
     },
     {
-     "feld": "Validierungsabzeichen_im_Equidenpass_vorhanden",
+     "feld": "Validierungsabzeichen in Equidenpass vorhanden?",
      "format": ""
     },
     {
-     "feld": "Validierungsabzeichen_ausgestellt_am",
+     "feld": "Falls ja, ausgestellt am",
      "format": "TT.MM.JJJJ"
     }
    ]
@@ -63453,19 +63395,19 @@
       {
        "element": "lastName",
        "datatype": "lastNameType",
-       "feld": "Name_und_Vorname_oder_Firmenname"
+       "feld": "Name und Vorname oder Firmenname"
       }
      ],
      "addressInformationType": [
       {
        "element": "street",
        "datatype": "streetType",
-       "feld": "Strasse_und_Nr"
+       "feld": "Strasse und Nr."
       },
       {
        "element": "swissZipCode",
        "datatype": "swissZipCodeType",
-       "feld": "PLZ_und_Ort"
+       "feld": "PLZ und Ort"
       }
      ]
     },
@@ -63474,7 +63416,7 @@
       {
        "element": "personIdentification",
        "datatype": "personIdentificationType",
-       "feld": "Rechtsgueltiger_Antragsteller_bei_Firmen"
+       "feld": "Bei Firmen Name, Vorname und Funktion des rechtsgültigen Antragstellers"
       }
      ]
     },
@@ -63494,7 +63436,7 @@
      "format": "XXX.XXX.XXX"
     },
     {
-     "feld": "Marke_und_Typ",
+     "feld": "Marke und Typ",
      "format": ""
     }
    ]
@@ -63599,7 +63541,7 @@
      "format": ""
     },
     {
-     "feld": "Rueckgabe blauer Fuehrerausweis",
+     "feld": "Rückgabe blauer Führerausweis",
      "format": ""
     },
     {
@@ -63673,7 +63615,7 @@
   {
    "form_id": 466,
    "titel": "Schätzungsauftrag",
-   "dienststelle": "Amt fuer Grundstueckschaetzungen",
+   "dienststelle": "Amt für Grundstückschätzungen",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 93,
    "ech": {
@@ -63758,7 +63700,7 @@
       {
        "element": "typeOfvalue",
        "datatype": "typeOfvalueType",
-       "feld": "Art_des_Auftrages"
+       "feld": "Art des Auftrages"
       }
      ]
     }
@@ -63782,39 +63724,39 @@
       {
        "element": "officialName",
        "datatype": "baseNameType",
-       "feld": "Pflegemutter_Vorname_Name"
+       "feld": "Pflegemutter Vorname, Name"
       },
       {
        "element": "officialName",
        "datatype": "baseNameType",
-       "feld": "Pflegevater_Vorname_Name"
+       "feld": "Pflegevater Vorname, Name"
       },
       {
        "element": "officialName",
        "datatype": "baseNameType",
-       "feld": "Mutter_Vorname_Name"
+       "feld": "Mutter Vorname, Name"
       }
      ],
      "guardianRelationshipType": [
       {
        "element": "address",
        "datatype": "mailAddressType",
-       "feld": "Pflegemutter_Wohnadresse"
+       "feld": "Pflegemutter Wohnadresse"
       },
       {
        "element": "address",
        "datatype": "mailAddressType",
-       "feld": "Pflegevater_Wohnadresse"
+       "feld": "Pflegevater Wohnadresse"
       },
       {
        "element": "address",
        "datatype": "mailAddressType",
-       "feld": "Mutter_Wohnadresse"
+       "feld": "Mutter Wohnadresse"
       },
       {
        "element": "address",
        "datatype": "mailAddressType",
-       "feld": "Vater_Wohnadresse"
+       "feld": "Vater Wohnadresse"
       },
       {
        "element": "care",
@@ -63824,17 +63766,17 @@
       {
        "element": "care",
        "datatype": "careType",
-       "feld": "Zu_Mutter"
+       "feld": "Zu Mutter"
       },
       {
        "element": "care",
        "datatype": "careType",
-       "feld": "Zu_Vater"
+       "feld": "Zu Vater"
       },
       {
        "element": "care",
        "datatype": "careType",
-       "feld": "Zu_anderen_Personen"
+       "feld": "Zu anderen Personen"
       },
       {
        "element": "typeOfRelationship",
@@ -63844,24 +63786,24 @@
       {
        "element": "partnerIdOrganisation",
        "datatype": "partnerIdOrganisationType",
-       "feld": "Zustaendige_KESB"
+       "feld": "Zuständige Kinder- und Erwachsenenschutzbehörde KESB"
       },
       {
        "element": "typeOfRelationship",
        "datatype": null,
-       "feld": "Funktion_Beistand_oder_Vormund"
+       "feld": "Beistand / Vormund"
       }
      ],
      "personAddonType": [
       {
        "element": "parentalRelationship",
        "datatype": "parentalRelationshipType",
-       "feld": "Waise_Halbwaise"
+       "feld": "Waise / Halbwaise"
       },
       {
        "element": "parentalRelationship",
        "datatype": "parentalRelationshipType",
-       "feld": "Inhaber_der_elterlichen_Sorge"
+       "feld": "Inhaber der elterlichen Sorge / gesetzliche Vertretung"
       }
      ],
      "healthInsuranceDataType": [
@@ -63880,24 +63822,24 @@
       {
        "element": "jobTitle",
        "datatype": null,
-       "feld": "Mutter_Aktueller_Beruf"
+       "feld": "Mutter Aktueller Beruf"
       },
       {
        "element": "jobTitle",
        "datatype": null,
-       "feld": "Vater_Aktueller_Beruf"
+       "feld": "Vater Aktueller Beruf"
       }
      ],
      "guardianMeasureInfoType": [
       {
        "element": "basedOnLaw",
        "datatype": "basedOnLawType",
-       "feld": "Bestehende_zivilrechtliche_Kindesschutzmassnahmen"
+       "feld": "Bestehende zivilrechtliche Kindesschutzmassnahmen"
       },
       {
        "element": "basedOnLawAddOn",
        "datatype": null,
-       "feld": "Andere_Kindesschutzmassnahme"
+       "feld": "Andere Kindesschutzmassnahme"
       }
      ],
      "occupationDataType": [
@@ -63913,22 +63855,22 @@
       {
        "element": "phoneNumber",
        "datatype": "phoneNumberType",
-       "feld": "Pflegemutter_Telefon"
+       "feld": "Pflegemutter Telefon"
       },
       {
        "element": "phoneNumber",
        "datatype": "phoneNumberType",
-       "feld": "Pflegevater_Telefon"
+       "feld": "Pflegevater Telefon"
       },
       {
        "element": "phoneNumber",
        "datatype": "phoneNumberType",
-       "feld": "Mutter_Telefon"
+       "feld": "Mutter Telefon"
       },
       {
        "element": "phoneNumber",
        "datatype": "phoneNumberType",
-       "feld": "Vater_Telefon"
+       "feld": "Vater Telefon"
       },
       {
        "element": "phoneNumber",
@@ -63945,32 +63887,32 @@
       {
        "element": "emailAddress",
        "datatype": "emailAddressType",
-       "feld": "Pflegemutter_E_Mail"
+       "feld": "Pflegemutter E-Mail"
       },
       {
        "element": "emailAddress",
        "datatype": "emailAddressType",
-       "feld": "Pflegevater_E_Mail"
+       "feld": "Pflegevater E-Mail"
       },
       {
        "element": "emailAddress",
        "datatype": "emailAddressType",
-       "feld": "Mutter_E_Mail"
+       "feld": "Mutter E-Mail"
       },
       {
        "element": "emailAddress",
        "datatype": "emailAddressType",
-       "feld": "Vater_E_Mail"
+       "feld": "Vater E-Mail"
       },
       {
        "element": "emailAddress",
        "datatype": "emailAddressType",
-       "feld": "E_Mail"
+       "feld": "E-Mail"
       },
       {
        "element": "emailAddress",
        "datatype": "emailAddressType",
-       "feld": "E_Mail"
+       "feld": "E-Mail"
       }
      ]
     },
@@ -63979,7 +63921,7 @@
       {
        "element": "officialName",
        "datatype": "baseNameType",
-       "feld": "Vorname_Name"
+       "feld": "Vorname, Name"
       },
       {
        "element": "sex",
@@ -63994,22 +63936,22 @@
       {
        "element": "dateOfBirth",
        "datatype": "datePartiallyKnownType",
-       "feld": "Mutter_Geburtsdatum"
+       "feld": "Mutter Geburtsdatum"
       },
       {
        "element": "officialName",
        "datatype": "baseNameType",
-       "feld": "Vater_Vorname_Name"
+       "feld": "Vater Vorname, Name"
       },
       {
        "element": "dateOfBirth",
        "datatype": "datePartiallyKnownType",
-       "feld": "Vater_Geburtsdatum"
+       "feld": "Vater Geburtsdatum"
       },
       {
        "element": "officialName",
        "datatype": "baseNameType",
-       "feld": "Vorname_Name"
+       "feld": "Vorname, Name"
       },
       {
        "element": "dateOfBirth",
@@ -64019,7 +63961,7 @@
       {
        "element": "officialName",
        "datatype": "baseNameType",
-       "feld": "Vorname_Name"
+       "feld": "Vorname, Name"
       }
      ]
     },
@@ -64028,21 +63970,21 @@
       {
        "element": "originName",
        "datatype": "placeOfOriginNameType",
-       "feld": "Buergerort_Nationalitaet"
+       "feld": "Bürgerort, Nationalität"
       }
      ],
      "religionDataType": [
       {
        "element": "religion",
        "datatype": "religionType",
-       "feld": "Konfession_Religionsgemeinschaft"
+       "feld": "Konfession / Religionsgemeinschaft"
       }
      ],
      "personType": [
       {
        "element": "religionData",
        "datatype": "religionDataType",
-       "feld": "Religionsausuebung_Umfang"
+       "feld": "Praktizierend, wenn ja in welchem Umfang"
       },
       {
        "element": "languageOfCorrespondance",
@@ -64054,7 +63996,7 @@
       {
        "element": "comesFrom",
        "datatype": "destinationType",
-       "feld": "Vorheriger_Aufenthaltsort"
+       "feld": "Vorheriger Aufenthaltsort, Adresse"
       },
       {
        "element": "dwellingAddress",
@@ -64064,40 +64006,40 @@
       {
        "element": "arrivalDate",
        "datatype": "generalDateType",
-       "feld": "Von_bis"
+       "feld": "Von / bis"
       }
      ],
      "mainResidenceType": [
       {
        "element": "mainResidence",
        "datatype": "residenceRegisterDataType",
-       "feld": "Zivilrechtlicher_Wohnsitz"
+       "feld": "Zivilrechtlicher Wohnsitz, Adresse"
       }
      ],
      "maritalDataRestrictedDivorceType": [
       {
        "element": "maritalStatus",
        "datatype": null,
-       "feld": "Mutter_Zivilstand"
+       "feld": "Mutter Zivilstand"
       },
       {
        "element": "maritalStatus",
        "datatype": null,
-       "feld": "Vater_Zivilstand"
+       "feld": "Vater Zivilstand"
       }
      ],
      "nameDataType": [
       {
        "element": "officialName",
        "datatype": "baseNameType",
-       "feld": "Vorname_Name"
+       "feld": "Vorname, Name"
       }
      ],
      "generalPlaceType": [
       {
        "element": "town",
        "datatype": "townType",
-       "feld": "Frueherer_Wohnort"
+       "feld": "Früherer Wohnort"
       }
      ]
     },
@@ -64111,7 +64053,7 @@
       {
        "element": "lastName",
        "datatype": "lastNameType",
-       "feld": "Verantwortliche_Person"
+       "feld": "Verantwortliche Person"
       }
      ],
      "addressInformationType": [
@@ -64127,23 +64069,23 @@
       {
        "element": "care",
        "datatype": "eventCare",
-       "feld": "Beginn_des_Pflegeverhaeltnisses"
+       "feld": "Beginn des Pflegeverhältnisses"
       },
       {
        "element": "care",
        "datatype": "eventCare",
-       "feld": "Voraussichtliche_Dauer_des_Pflegeverhaeltnisses"
+       "feld": "Voraussichtliche Dauer des Pflegeverhältnisses"
       }
      ]
     }
    },
    "ohne_standard": [
     {
-     "feld": "Schule_Ausbildung",
+     "feld": "Schule / Ausbildung",
      "format": ""
     },
     {
-     "feld": "Aktuelle_Klasse",
+     "feld": "Aktuelle Klasse",
      "format": ""
     },
     {
@@ -64151,15 +64093,15 @@
      "format": ""
     },
     {
-     "feld": "Weitere_Angaben_zu_den_Kindseltern",
+     "feld": "Weiteres (Eltern des Kindes)",
      "format": ""
     },
     {
-     "feld": "Zusammenarbeit_mit_DAF",
+     "feld": "Zusammenarbeit mit Dienstleistungsanbietende in der Familienpflege (DAF)",
      "format": ""
     },
     {
-     "feld": "Art_des_Pflegeplatzes",
+     "feld": "Art des Pflegeplatzes",
      "format": ""
     },
     {
@@ -64167,11 +64109,11 @@
      "format": ""
     },
     {
-     "feld": "Grund_der_Platzierung",
+     "feld": "Grund der Platzierung",
      "format": "Freitext"
     },
     {
-     "feld": "Pflegevertrag_abgeschlossen",
+     "feld": "Pflegevertrag abgeschlossen",
      "format": ""
     },
     {
@@ -64674,7 +64616,7 @@
   {
    "form_id": 472,
    "titel": "Bestätigung über Arzneimitteleinsatz und Tiergesundheit bei Halterwechsel",
-   "dienststelle": "Veterinaeramt",
+   "dienststelle": "Veterinäramt",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 44,
    "ech": {
@@ -64772,7 +64714,7 @@
   {
    "form_id": 473,
    "titel": "Verlangen um Schwangerschaftsabbruch bei Notlage",
-   "dienststelle": "Kantonsaerztlicher Dienst",
+   "dienststelle": "Kantonsärztlicher Dienst",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 31,
    "ech": {
@@ -64847,7 +64789,7 @@
   {
    "form_id": 474,
    "titel": "Meldung der Aufnahme oder Beendigung der Erwerbstätigkeit (Ausweise B / S / F)",
-   "dienststelle": "Migrationsamt und Passbuero",
+   "dienststelle": "Migrationsamt und Passbüro",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 89,
    "ech": {
@@ -65517,7 +65459,7 @@
   {
    "form_id": 477,
    "titel": "Beitragsgesuch mit Kostenschätzung für den ökologischen Bachunterhalt",
-   "dienststelle": "Abteilung Gewaesser und Materialabbau",
+   "dienststelle": "Abteilung Gewässer und Materialabbau",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 13,
    "ech": {
@@ -65598,7 +65540,7 @@
   {
    "form_id": 478,
    "titel": "Bestellung von Geodaten des Kantons Schaffhausen",
-   "dienststelle": "Abteilung Gewaesser und Materialabbau",
+   "dienststelle": "Abteilung Gewässer und Materialabbau",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 71,
    "ech": {
@@ -69423,7 +69365,7 @@
   {
    "form_id": 502,
    "titel": "Meldeformular Tierbestand Nichtkommerzielle Tierhalter",
-   "dienststelle": "Veterinaeramt",
+   "dienststelle": "Veterinäramt",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 86,
    "ech": {
@@ -69520,7 +69462,7 @@
   {
    "form_id": 503,
    "titel": "Upload Baubewilligung",
-   "dienststelle": "Amt fuer Geoinformation",
+   "dienststelle": "Amt für Geoinformation",
    "exchange_ready": "voll",
    "abdeckung_pct": 100,
    "ech": {
@@ -69555,7 +69497,7 @@
   {
    "form_id": 504,
    "titel": "Planbeglaubigung",
-   "dienststelle": "Amt fuer Geoinformation",
+   "dienststelle": "Amt für Geoinformation",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 78,
    "ech": {
@@ -69727,7 +69669,7 @@
   {
    "form_id": 505,
    "titel": "Planbestellung amtliche Vermessung",
-   "dienststelle": "Amt fuer Geoinformation",
+   "dienststelle": "Amt für Geoinformation",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 79,
    "ech": {
@@ -69903,7 +69845,7 @@
   {
    "form_id": 506,
    "titel": "Verlust des Ausländerausweises",
-   "dienststelle": "Migrationsamt und Passbuero",
+   "dienststelle": "Migrationsamt und Passbüro",
    "exchange_ready": "voll",
    "abdeckung_pct": 100,
    "ech": {
@@ -69939,7 +69881,7 @@
   {
    "form_id": 507,
    "titel": "Namensänderungen und Nationalitätsänderungen",
-   "dienststelle": "Migrationsamt und Passbuero",
+   "dienststelle": "Migrationsamt und Passbüro",
    "exchange_ready": "voll",
    "abdeckung_pct": 100,
    "ech": {
@@ -69984,7 +69926,7 @@
   {
    "form_id": 508,
    "titel": "Verlängerungsgesuch",
-   "dienststelle": "Migrationsamt und Passbuero",
+   "dienststelle": "Migrationsamt und Passbüro",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 77,
    "ech": {
@@ -70165,7 +70107,7 @@
   {
    "form_id": 509,
    "titel": "Verlängerungsgesuch",
-   "dienststelle": "Migrationsamt und Passbuero",
+   "dienststelle": "Migrationsamt und Passbüro",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 77,
    "ech": {
@@ -70346,7 +70288,7 @@
   {
    "form_id": 510,
    "titel": "Verlängerungsgesuch Ausländerausweis",
-   "dienststelle": "Migrationsamt und Passbuero",
+   "dienststelle": "Migrationsamt und Passbüro",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 80,
    "ech": {
@@ -70523,7 +70465,7 @@
   {
    "form_id": 511,
    "titel": "Formular (Post/Schalter)",
-   "dienststelle": "Migrationsamt und Passbuero",
+   "dienststelle": "Migrationsamt und Passbüro",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 88,
    "ech": {
@@ -70655,7 +70597,7 @@
   {
    "form_id": 512,
    "titel": "Verlängerungsgesuch Ausländerausweis",
-   "dienststelle": "Migrationsamt und Passbuero",
+   "dienststelle": "Migrationsamt und Passbüro",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 52,
    "ech": {
@@ -70895,7 +70837,7 @@
   {
    "form_id": 513,
    "titel": "Formular (Post/Schalter)",
-   "dienststelle": "Migrationsamt und Passbuero",
+   "dienststelle": "Migrationsamt und Passbüro",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 88,
    "ech": {
@@ -71346,7 +71288,7 @@
   {
    "form_id": 517,
    "titel": "Gesuch für Auslandurlaub",
-   "dienststelle": "Bevoelkerungsschutz und Armee",
+   "dienststelle": "Bevölkerungsschutz und Armee",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 67,
    "ech": {
@@ -71453,7 +71395,7 @@
   {
    "form_id": 518,
    "titel": "Gesuch um Dienstverschiebung / Wiedererwägungsgesuch",
-   "dienststelle": "Bevoelkerungsschutz und Armee",
+   "dienststelle": "Bevölkerungsschutz und Armee",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 67,
    "ech": {
@@ -71560,7 +71502,7 @@
   {
    "form_id": 519,
    "titel": "Dienstverschiebungs-/Urlaubsgesuch",
-   "dienststelle": "Bevoelkerungsschutz und Armee",
+   "dienststelle": "Bevölkerungsschutz und Armee",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 45,
    "ech": {
@@ -71684,7 +71626,7 @@
   {
    "form_id": 520,
    "titel": "Erhebungsblatt Trink- und Brauchwasser",
-   "dienststelle": "Abteilung Gewaesser und Materialabbau",
+   "dienststelle": "Abteilung Gewässer und Materialabbau",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 36,
    "ech": {
@@ -71819,7 +71761,7 @@
   {
    "form_id": 523,
    "titel": "Anmeldeformular für die Orientierungsveranstaltung",
-   "dienststelle": "Bevoelkerungsschutz und Armee",
+   "dienststelle": "Bevölkerungsschutz und Armee",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 80,
    "ech": {
@@ -71896,7 +71838,7 @@
   {
    "form_id": 524,
    "titel": "Ratenzahlungsgesuch Wehrpflichtersatzabgabe",
-   "dienststelle": "Bevoelkerungsschutz und Armee",
+   "dienststelle": "Bevölkerungsschutz und Armee",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 65,
    "ech": {

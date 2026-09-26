@@ -1,0 +1,19 @@
+{
+  "hinweis": "Einzelkorrekturen aus der Qualitätsprüfung vom 2026-09-26, je mit Grund; angewandt durch scripts/load_korrekturen.py (BEGRIFFE_CHAIN=1, letzter Schritt der Kette). Element 2578 (eCH-0129 description in buildingAuthorityOnlyType) beschreibt die Baubehörde, nicht das Bauvorhaben: die drei «Projektbeschreibung…»-Etiketten sind keine Varianten von «Behörde», sondern falsch zugeordnet; der Vorschlag steht unter Vorbehalt.",
+  "begriff_label": [
+    {
+      "element_id": 2578,
+      "klasse_von": "variante",
+      "klasse": "pruefen",
+      "pruefart": "zuordnung",
+      "grund": "Das Element beschreibt die Baubehörde (eCH-0129 buildingAuthorityOnlyType); das Feld beschreibt das Bauvorhaben — Zuordnung in der Databank korrigieren."
+    }
+  ],
+  "begriff_vorschlag": [
+    {
+      "element_id": 2578,
+      "vorbehalt": 1,
+      "pruefung": "Die Zuordnung zum Element ist falsch (Beschreibung der Baubehörde, eCH-0129 buildingAuthorityOnlyType); ein Begriff lässt sich erst nach der Korrektur festlegen."
+    }
+  ]
+}

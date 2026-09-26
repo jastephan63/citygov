@@ -17,7 +17,9 @@ Kept for the record; git history has the full story.
   stay in scripts/ because ingest_new.py still imports them.)
 - **fetch_missing_forms.py / search_missing_forms.py** — the sh.ch missing-
   forms hunt (CMS full-text search + websearch). Collection is complete;
-  the method is written up in the project memory if we ever need it again.
+  the scripted method (sh.ch CMS full-text search via `/CMS/lists/list?filter_text=`
+  and `get/file/<uuid>` download) is described in the two scripts' docstrings. The
+  `docs.tsv` bulk index they consume was built once by hand and is not reproduced here.
 
 Note: these still point their sys.path at their own folder; to actually run
 one again, move it back to scripts/ first.

@@ -15,7 +15,10 @@ Verdicts (pessimistic signals win):
 
 Idempotent. Staging -> validate -> swap.
 
-    python3 scripts/load_currency.py <onlinecheck-dir> <dvshcheck-out-dir> [--dry-run]
+    python3 scripts/load_currency.py <onlinecheck-dir> <dvshcheck-out-dir> [--dry-run] [--only-found]
+
+--only-found (CMS-only re-check without a DVSH re-read): only «aktuell» and
+«aktualisiert» hits are written; a CMS miss never downgrades a row.
 """
 import glob, json, os, re, shutil, sys, unicodedata
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -59,6 +62,11 @@ def stem_year(name):
 def main():
     ocdir, dvdir = sys.argv[1], sys.argv[2]
     dry = "--dry-run" in sys.argv
+    # --only-found: a CMS-only re-check (no DVSH re-read) may confirm «aktuell»
+    # or flag a revised edition, but a miss of the CMS search is no evidence
+    # that a form disappeared — those rows are left as they are, with their
+    # older checked_at, so the Datenstand shows honestly how old they are
+    only_found = "--only-found" in sys.argv
     oc = {}
     p = os.path.join(ocdir, "results.json")
     if os.path.exists(p):
@@ -78,6 +86,8 @@ def main():
     shutil.copy2(DB_PATH, st)
     c = connect(st)
     c.executescript(DDL)
+    if "next_check_due" not in {r[1] for r in c.execute("PRAGMA table_info(form_check)")}:
+        c.execute("ALTER TABLE form_check ADD COLUMN next_check_due TEXT")
 
     # form -> linked dvsh ids
     fdv = {}
@@ -125,10 +135,22 @@ def main():
         if fdv.get(fid) and not seen_dvsh and base:
             note.append("von DVSH nicht (mehr) referenziert")
 
+        if only_found and o.get("status") not in ("aktuell", "aktualisiert"):
+            stats["unverändert"] += 1
+            continue
+        # a hit in another file format (our .docx vs a .jpg or .pdf online) is a
+        # different rendering, not evidence of a revised edition
+        if only_found and o.get("status") == "aktualisiert" and o.get("online_name") and \
+                os.path.splitext(o["online_name"])[1].lower() != os.path.splitext(base)[1].lower():
+            stats["unverändert (anderes Format)"] += 1
+            continue
         if not status:
             status = "nicht_gefunden"
+        if only_found:
+            note.append("Online-Nachprüfung sh.ch (nur Treffer übernommen)")
         c.execute("INSERT OR REPLACE INTO form_check(form_id,status,quelle,online_name,"
-                  "online_url,dvsh_neu,note) VALUES(?,?,?,?,?,?,?)",
+                  "online_url,dvsh_neu,note,checked_at,next_check_due) "
+                  "VALUES(?,?,?,?,?,?,?,datetime('now'),date('now','+42 days'))",
                   [fid, status, "+".join(quelle) or None, o.get("online_name"),
                    o.get("url"), dvneu, "; ".join(note) or None])
         stats[status] += 1

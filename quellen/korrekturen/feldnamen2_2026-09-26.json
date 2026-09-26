@@ -1,0 +1,1722 @@
+{
+ "hinweis": "Umbenennung der kleingeschriebenen technischen Ein-Wort-Schlüssel (Regex ^[a-zäöü][a-zäöü0-9]{2,}$) in data_field.name und data_subfield.name auf die Beschriftung, die das Formular selbst verwendet; wo das Formular keine eigene Beschriftung hat, gelten die Worte der Definition. Ergebnis der Qualitätsprüfung vom 2026-09-26: beurteilt anhand der Quelldateien unter formulare/, zweitgeprüft und im Abgleich entschieden. 47 Felder und 198 Teilfelder. Angewendet durch scripts/migrate_2026_09_26.py Schritt 12, der data_field.name bzw. data_subfield.name, das subfields-JSON des Elternfelds, die Verweise der geführten Abläufe und die Begriffs-Urteile in einem Schritt umbenennt. «alt» entspricht exakt dem Namen in der DB; die Migration ändert nur Zeilen, die noch so heissen. Einträge mit neu = alt (110 Teilfelder, z. B. «von», «bis», «vom», «seit», «zuständig») bleiben absichtlich so, weil das Formular sie klein gedruckt so beschriftet.",
+ "felder": [
+  {
+   "data_field_id": 4070,
+   "form_id": 10,
+   "alt": "auftragsart",
+   "neu": "Auftragsart",
+   "quelle": "Abschnitt 1 «Auftrag»: Formular druckt «Aufttragsart:» (Tippfehler mit Doppel-t, so auch in source_widgets); Wort in korrekter Schreibung übernommen"
+  },
+  {
+   "data_field_id": 4071,
+   "form_id": 10,
+   "alt": "verfahrensart",
+   "neu": "Verfahrensart",
+   "quelle": "Abschnitt 1 «Auftrag»: «Verfahrensart:»"
+  },
+  {
+   "data_field_id": 4073,
+   "form_id": 10,
+   "alt": "auftraggeber",
+   "neu": "Auftraggeber/-in",
+   "quelle": "Abschnitt 2, Überschrift «2. Auftraggeber/-in»"
+  },
+  {
+   "data_field_id": 4074,
+   "form_id": 10,
+   "alt": "eingabeadresse",
+   "neu": "Eingabeadresse",
+   "quelle": "Abschnitt 3, Überschrift «3. Eingabeadresse und Frist»"
+  },
+  {
+   "data_field_id": 4075,
+   "form_id": 10,
+   "alt": "eingabefrist",
+   "neu": "Frist für die Einreichung der Teilnahmeanträge",
+   "quelle": "Abschnitt 3: «Frist für die Einreichung der Teilnahmeanträge (Eingang bei der ausschreibenden Stelle …)»"
+  },
+  {
+   "data_field_id": 4076,
+   "form_id": 10,
+   "alt": "einreichungsmodalitaeten",
+   "neu": "Einreichungsweg",
+   "quelle": "kein wörtliches Label im Formular (Abschnitt 3 nur Satz «In einem verschlossenen Couvert mit der Aufschrift: … oder elektronisch mittels …»); Wort aus der definition («Angabe des elektronischen Einreichungswegs»)"
+  },
+  {
+   "data_field_id": 4077,
+   "form_id": 10,
+   "alt": "auskunftsstelle",
+   "neu": "Auskunftsstelle für zusätzliche Informationen",
+   "quelle": "Abschnitt 3 (zweite Nr. 3): «Auskunftsstelle für zusätzliche Informationen»"
+  },
+  {
+   "data_field_id": 4080,
+   "form_id": 10,
+   "alt": "staatsvertragsbereich",
+   "neu": "Unterstellung",
+   "quelle": "Abschnitt 7, Überschrift «Sprache des Verfahrens, Unterstellung» («untersteht dem Staatsvertragsbereich / dem Nicht-Staatsvertragsbereich»)"
+  },
+  {
+   "data_field_id": 4191,
+   "form_id": 80,
+   "alt": "gesuchsteller",
+   "neu": "Gesuchsteller/in",
+   "quelle": "S. 1, Blocküberschrift «Gesuchsteller/in»"
+  },
+  {
+   "data_field_id": 4193,
+   "form_id": 80,
+   "alt": "kursbezeichnung",
+   "neu": "Kursbezeichnung",
+   "quelle": "S. 1, Block «Massnahme»: «Kursbezeichnung»"
+  },
+  {
+   "data_field_id": 4194,
+   "form_id": 80,
+   "alt": "kursanbieter",
+   "neu": "Kursanbieter",
+   "quelle": "S. 1, Block «Massnahme (Kursanmeldung liegt vor)»: gemeinsames Wort der vier Labels «Name Kursanbieter», «Adresse Kursanbieter», «PLZ / Ort Kursanbieter», «Tel. Kursanbieter» (= die Teilfelder)"
+  },
+  {
+   "data_field_id": 4091,
+   "form_id": 171,
+   "alt": "personalien",
+   "neu": "Personalien",
+   "quelle": "Anmeldeblatt, Blocküberschrift «Personalien»"
+  },
+  {
+   "data_field_id": 4095,
+   "form_id": 171,
+   "alt": "lebenslauf",
+   "neu": "Lebenslauf",
+   "quelle": "«Erforderliche Dokumente für den Antrag»: Aufzählungspunkt «Lebenslauf»"
+  },
+  {
+   "data_field_id": 4100,
+   "form_id": 173,
+   "alt": "vernehmlassungsteilnehmer",
+   "neu": "Gemeinde/VGGSH/Partei/Departement/Staatskanzlei/Gericht/Verband",
+   "quelle": "«Allgemeine Angaben», Tabellenzeile «Gemeinde/VGGSH/Partei/Departe-ment/Staatskanzlei/Gericht/Verband» (manueller Trennstrich im Word entfernt)"
+  },
+  {
+   "data_field_id": 4101,
+   "form_id": 173,
+   "alt": "kontaktperson",
+   "neu": "Kontaktperson bei Fragen",
+   "quelle": "«Allgemeine Angaben»: «Kontaktperson bei Fragen (Vorname und Name, Telefon, E-Mail)»"
+  },
+  {
+   "data_field_id": 4106,
+   "form_id": 174,
+   "alt": "kontaktperson",
+   "neu": "Kontaktperson bei Fragen",
+   "quelle": "«Allgemeine Angaben»: «Kontaktperson bei Fragen (Vorname und Name, Telefon, E-Mail)»"
+  },
+  {
+   "data_field_id": 4118,
+   "form_id": 289,
+   "alt": "muttersprache",
+   "neu": "Muttersprache",
+   "quelle": "S. 1: «Muttersprache / Langue maternelle / Lingua madre»"
+  },
+  {
+   "data_field_id": 4119,
+   "form_id": 289,
+   "alt": "verfahrenssprache",
+   "neu": "Verfahrenssprache",
+   "quelle": "S. 1: «Verfahrenssprache / Langue de la procédure / Lingua della procedura»"
+  },
+  {
+   "data_field_id": 4122,
+   "form_id": 289,
+   "alt": "passfoto",
+   "neu": "Passfoto",
+   "quelle": "S. 1 Fotofeld «Passfoto / Photo-passeport»; Beilagenliste «Passfoto des/der Bewerbers/in»"
+  },
+  {
+   "data_field_id": 4131,
+   "form_id": 313,
+   "alt": "absender",
+   "neu": "Absender",
+   "quelle": "Platzhalter «[Absender]» im Briefkopf"
+  },
+  {
+   "data_field_id": 4132,
+   "form_id": 313,
+   "alt": "firma",
+   "neu": "Firma",
+   "quelle": "Platzhalter «[Firma]»"
+  },
+  {
+   "data_field_id": 4133,
+   "form_id": 313,
+   "alt": "adressart",
+   "neu": "Domizil an der Geschäftsadresse oder an der privaten Adresse",
+   "quelle": "kein Label; Formular druckt nur die Wahl «an [unserer Geschäftsadresse] / [seiner/ihrer privaten Adresse]» («bitte nicht zutreffendes entfernen»); Wortlaut der definition, identisch mit dem Schwesterfeld 4138 der GmbH-Fassung (Formular 314)"
+  },
+  {
+   "data_field_id": 4134,
+   "form_id": 313,
+   "alt": "domiziladresse",
+   "neu": "Adresse",
+   "quelle": "kein eigenes Label; Formular: «an [unserer Geschäftsadresse] / [seiner/ihrer privaten Adresse], [Strasse Nr.], [PLZ Ort], Domizil zu gewähren»; Wort aus der definition («Adresse, an der der Gesellschaft Domizil gewährt wird»)"
+  },
+  {
+   "data_field_id": 4136,
+   "form_id": 314,
+   "alt": "absender",
+   "neu": "Absender",
+   "quelle": "Platzhalter «[Absender]» im Briefkopf"
+  },
+  {
+   "data_field_id": 4137,
+   "form_id": 314,
+   "alt": "firma",
+   "neu": "Firma",
+   "quelle": "Platzhalter «[Firma]»"
+  },
+  {
+   "data_field_id": 4139,
+   "form_id": 314,
+   "alt": "domiziladresse",
+   "neu": "Adresse",
+   "quelle": "kein eigenes Label; Formular: «an [unserer Geschäftsadresse] / [seiner/ihrer privaten Adresse], [Strasse Nr.], [PLZ Ort], Domizil zu gewähren»; Wort aus der definition («Adresse, an der der Gesellschaft Domizil gewährt wird»)"
+  },
+  {
+   "data_field_id": 4142,
+   "form_id": 315,
+   "alt": "domizilart",
+   "neu": "Geschäftsräumlichkeiten / c/o-Domizil",
+   "quelle": "«Folgendes zum angemeldeten Domizil / zur angemeldeten Domiziländerung:» mit den zwei Ankreuzoptionen «… über Geschäftsräumlichkeiten …» / «… über ein c/o-Domizil …»"
+  },
+  {
+   "data_field_id": 4143,
+   "form_id": 315,
+   "alt": "domizilhalter",
+   "neu": "Domizilhalter",
+   "quelle": "Leerlinie nach «bei folgender Person bzw. folgendem Unternehmen befindet:»; Formular-Begriff «Domizilhalterin oder Domizilhalter» (Praxismitteilung im Formular)"
+  },
+  {
+   "data_field_id": 4145,
+   "form_id": 319,
+   "alt": "absender",
+   "neu": "Absender",
+   "quelle": "Platzhalter «[Absender]» im Briefkopf"
+  },
+  {
+   "data_field_id": 4146,
+   "form_id": 319,
+   "alt": "firma",
+   "neu": "Firma",
+   "quelle": "Platzhalter «An [Firma]» / «der [Firma]»"
+  },
+  {
+   "data_field_id": 4147,
+   "form_id": 319,
+   "alt": "funktion",
+   "neu": "Funktion",
+   "quelle": "Platzhalter «[Funktion mit Einzelunterschrift/Kollektivunterschrift zu zweien]»"
+  },
+  {
+   "data_field_id": 4148,
+   "form_id": 319,
+   "alt": "zeichnungsart",
+   "neu": "Art der Zeichnungsberechtigung",
+   "quelle": "kein Label (nur Varianten «Einzelunterschrift/Kollektivunterschrift zu zweien», «Einzelprokura/Kollektivprokura zu zweien»); Wortlaut der definition"
+  },
+  {
+   "data_field_id": 4149,
+   "form_id": 319,
+   "alt": "unterschrift",
+   "neu": "Unterschrift",
+   "quelle": "Punktlinie über «[Vorname Name]», kein gedrucktes Label; Wort aus der definition («Eigenhändige Unterschrift»)"
+  },
+  {
+   "data_field_id": 4151,
+   "form_id": 322,
+   "alt": "firma",
+   "neu": "Firma",
+   "quelle": "Platzhalter «der [Firma]»"
+  },
+  {
+   "data_field_id": 4153,
+   "form_id": 322,
+   "alt": "zeichnungsart",
+   "neu": "Art der Zeichnungsberechtigung",
+   "quelle": "kein Label (nur Varianten «mit Einzelunterschrift/Kollektivunterschrift zu zweien», «Einzelprokura/Kollektivprokura zu zweien»); Wortlaut der definition"
+  },
+  {
+   "data_field_id": 4154,
+   "form_id": 322,
+   "alt": "unterschrift",
+   "neu": "Unterschrift",
+   "quelle": "Punktlinie über «[Vorname Name]», kein gedrucktes Label; Wort aus der definition («Eigenhändige Unterschrift»)"
+  },
+  {
+   "data_field_id": 4155,
+   "form_id": 323,
+   "alt": "absender",
+   "neu": "Absender",
+   "quelle": "Platzhalter «[Absender]» im Briefkopf"
+  },
+  {
+   "data_field_id": 4156,
+   "form_id": 323,
+   "alt": "firma",
+   "neu": "Firma",
+   "quelle": "Platzhalter «der [Firma]»"
+  },
+  {
+   "data_field_id": 4157,
+   "form_id": 323,
+   "alt": "funktion",
+   "neu": "Funktion",
+   "quelle": "kein Label (nur Varianten «[Präsident der Verwaltung …]», «[Mitglied der Verwaltung …]» usw.); Wort aus der definition («Angenommene Funktion»)"
+  },
+  {
+   "data_field_id": 4158,
+   "form_id": 323,
+   "alt": "zeichnungsart",
+   "neu": "Art der Zeichnungsberechtigung",
+   "quelle": "kein Label (nur Varianten «mit Einzelunterschrift/Kollektivunterschrift zu zweien», «Einzelprokura/Kollektivprokura zu zweien»); Wortlaut der definition"
+  },
+  {
+   "data_field_id": 4159,
+   "form_id": 323,
+   "alt": "unterschrift",
+   "neu": "Unterschrift",
+   "quelle": "Punktlinie über «[Vorname Name]», kein gedrucktes Label; Wort aus der definition («Eigenhändige Unterschrift»)"
+  },
+  {
+   "data_field_id": 4161,
+   "form_id": 324,
+   "alt": "firma",
+   "neu": "Firma",
+   "quelle": "Platzhalter «der [Firma]»"
+  },
+  {
+   "data_field_id": 4162,
+   "form_id": 324,
+   "alt": "funktion",
+   "neu": "Funktion",
+   "quelle": "kein Label (nur Varianten «[Vorsitzende/r der Geschäftsführung …]», «[Geschäftsführer/in …]», «[Zeichnungsberechtigte/r …]»); Wort aus der definition"
+  },
+  {
+   "data_field_id": 4163,
+   "form_id": 324,
+   "alt": "zeichnungsart",
+   "neu": "Art der Zeichnungsberechtigung",
+   "quelle": "kein Label (nur Varianten «mit Einzelunterschrift/Kollektivunterschrift zu zweien», «Einzelprokura/Kollektivprokura zu zweien»); Wortlaut der definition"
+  },
+  {
+   "data_field_id": 4164,
+   "form_id": 324,
+   "alt": "unterschrift",
+   "neu": "Unterschrift",
+   "quelle": "Punktlinie über «[Vorname Name]», kein gedrucktes Label; Wort aus der definition («Eigenhändige Unterschrift»)"
+  },
+  {
+   "data_field_id": 4168,
+   "form_id": 325,
+   "alt": "zeichnungsart",
+   "neu": "Art der Zeichnungsberechtigung",
+   "quelle": "kein Label (nur Varianten «[Stiftungsratsmitglied mit Einzelunterschrift/Kollektivunterschrift zu zweien]» usw.); Wortlaut der definition"
+  },
+  {
+   "data_field_id": 4169,
+   "form_id": 325,
+   "alt": "unterschrift",
+   "neu": "Unterschrift",
+   "quelle": "Punktlinie über «[Vorname Name]», kein gedrucktes Label; Wort aus der definition («Eigenhändige Unterschrift»)"
+  }
+ ],
+ "teilfelder": [
+  {
+   "subfield_id": 5525,
+   "data_field_id": 4073,
+   "alt": "name",
+   "neu": "Offizieller Name",
+   "quelle": "Abschnitt 2: «Offizieller Name und Adresse des/-r Auftraggebers/-in»"
+  },
+  {
+   "subfield_id": 5526,
+   "data_field_id": 4073,
+   "alt": "adresse",
+   "neu": "Adresse",
+   "quelle": "Abschnitt 2: «Offizieller Name und Adresse des/-r Auftraggebers/-in»"
+  },
+  {
+   "subfield_id": 5529,
+   "data_field_id": 4084,
+   "alt": "firmenstempel",
+   "neu": "Firmenstempel",
+   "quelle": "Schlussblock «Firmenstempel und rechtsgültige Unterschrift(en):»"
+  },
+  {
+   "subfield_id": 3405,
+   "data_field_id": 2321,
+   "alt": "unkorrigiert",
+   "neu": "unkorrigiert",
+   "quelle": "S. 1, Ziff. 1.1: «Fernvisus rechts unkorrigiert: korrigiert:» – klein gedruckt"
+  },
+  {
+   "subfield_id": 3406,
+   "data_field_id": 2321,
+   "alt": "korrigiert",
+   "neu": "korrigiert",
+   "quelle": "S. 1, Ziff. 1.1: «Fernvisus rechts unkorrigiert: korrigiert:» – klein gedruckt"
+  },
+  {
+   "subfield_id": 3407,
+   "data_field_id": 2322,
+   "alt": "unkorrigiert",
+   "neu": "unkorrigiert",
+   "quelle": "S. 1, Ziff. 1.1: «Fernvisus links unkorrigiert: korrigiert:» – klein gedruckt"
+  },
+  {
+   "subfield_id": 3408,
+   "data_field_id": 2322,
+   "alt": "korrigiert",
+   "neu": "korrigiert",
+   "quelle": "S. 1, Ziff. 1.1: «Fernvisus links unkorrigiert: korrigiert:» – klein gedruckt"
+  },
+  {
+   "subfield_id": 4673,
+   "data_field_id": 3376,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "S. 1, Personalien: «Früherer Wohnort: bis» – klein gedruckt"
+  },
+  {
+   "subfield_id": 4859,
+   "data_field_id": 3535,
+   "alt": "zuständig",
+   "neu": "zuständig",
+   "quelle": "S. 1: «Bauherrschaft: Name: … zuständig: …» – klein gedruckt"
+  },
+  {
+   "subfield_id": 4865,
+   "data_field_id": 3536,
+   "alt": "zuständig",
+   "neu": "zuständig",
+   "quelle": "S. 1: «Projektverfasser: Name: … zuständig: …» – klein gedruckt"
+  },
+  {
+   "subfield_id": 4871,
+   "data_field_id": 3537,
+   "alt": "zuständig",
+   "neu": "zuständig",
+   "quelle": "S. 1: «Bauunternehmen: Name: … zuständig: …» – klein gedruckt"
+  },
+  {
+   "subfield_id": 4906,
+   "data_field_id": 3571,
+   "alt": "zuständig",
+   "neu": "zuständig",
+   "quelle": "S. 1 (gerendert), Projektverfasser: «Adresse: … zuständig: …» – klein gedruckt"
+  },
+  {
+   "subfield_id": 4950,
+   "data_field_id": 3616,
+   "alt": "zuständig",
+   "neu": "zuständig",
+   "quelle": "S. 1, Bauherrschaft: «Adresse: … zuständig: …» – klein gedruckt"
+  },
+  {
+   "subfield_id": 4955,
+   "data_field_id": 3617,
+   "alt": "zuständig",
+   "neu": "zuständig",
+   "quelle": "S. 1, Projektverfasser: «Adresse: … zuständig: …» – klein gedruckt"
+  },
+  {
+   "subfield_id": 5656,
+   "data_field_id": 4191,
+   "alt": "einrichtung",
+   "neu": "Einrichtung",
+   "quelle": "S. 1, Gesuchsteller/in: «Einrichtung»"
+  },
+  {
+   "subfield_id": 5660,
+   "data_field_id": 4191,
+   "alt": "email",
+   "neu": "Email",
+   "quelle": "S. 1, Gesuchsteller/in: «Email» (so geschrieben)"
+  },
+  {
+   "subfield_id": 62,
+   "data_field_id": 60,
+   "alt": "von",
+   "neu": "von",
+   "quelle": "Ziff. 2: «Dauer des Arbeitsverhältnisses von bis» – klein gedruckt"
+  },
+  {
+   "subfield_id": 63,
+   "data_field_id": 60,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "Ziff. 2: «Dauer des Arbeitsverhältnisses von bis» – klein gedruckt"
+  },
+  {
+   "subfield_id": 161,
+   "data_field_id": 110,
+   "alt": "von",
+   "neu": "von",
+   "quelle": "Ziff. 3: «Wie lange dauerte das Arbeitsverhältnis? von bis» – klein gedruckt"
+  },
+  {
+   "subfield_id": 162,
+   "data_field_id": 110,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "Ziff. 3: «Wie lange dauerte das Arbeitsverhältnis? von bis» – klein gedruckt"
+  },
+  {
+   "subfield_id": 165,
+   "data_field_id": 113,
+   "alt": "von",
+   "neu": "von",
+   "quelle": "Ziff. 6: «… ja, insgesamt … von bis» – klein gedruckt"
+  },
+  {
+   "subfield_id": 166,
+   "data_field_id": 113,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "Ziff. 6: «… ja, insgesamt … von bis» – klein gedruckt"
+  },
+  {
+   "subfield_id": 173,
+   "data_field_id": 120,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "Ziff. 13, Tabellenkopf «a) von bis b) AHV-pflichtiger Bruttolohn …» – klein gedruckt"
+  },
+  {
+   "subfield_id": 186,
+   "data_field_id": 123,
+   "alt": "von",
+   "neu": "von",
+   "quelle": "Ziff. 15, Tabellenkopf «von bis» – klein gedruckt"
+  },
+  {
+   "subfield_id": 187,
+   "data_field_id": 123,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "Ziff. 15, Tabellenkopf «von bis» – klein gedruckt"
+  },
+  {
+   "subfield_id": 246,
+   "data_field_id": 161,
+   "alt": "von",
+   "neu": "von",
+   "quelle": "Formular 10000d: Felder «von» «bis» klein gedruckt (bei der jeweiligen Frage)"
+  },
+  {
+   "subfield_id": 247,
+   "data_field_id": 161,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "Formular 10000d: Felder «von» «bis» klein gedruckt (bei der jeweiligen Frage)"
+  },
+  {
+   "subfield_id": 251,
+   "data_field_id": 168,
+   "alt": "von",
+   "neu": "von",
+   "quelle": "Formular 10000d: Felder «von» «bis» klein gedruckt (bei der jeweiligen Frage)"
+  },
+  {
+   "subfield_id": 252,
+   "data_field_id": 168,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "Formular 10000d: Felder «von» «bis» klein gedruckt (bei der jeweiligen Frage)"
+  },
+  {
+   "subfield_id": 253,
+   "data_field_id": 169,
+   "alt": "von",
+   "neu": "von",
+   "quelle": "Formular 10000d: Felder «von» «bis» klein gedruckt (bei der jeweiligen Frage)"
+  },
+  {
+   "subfield_id": 254,
+   "data_field_id": 169,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "Formular 10000d: Felder «von» «bis» klein gedruckt (bei der jeweiligen Frage)"
+  },
+  {
+   "subfield_id": 255,
+   "data_field_id": 170,
+   "alt": "von",
+   "neu": "von",
+   "quelle": "Formular 10000d: Felder «von» «bis» klein gedruckt (bei der jeweiligen Frage)"
+  },
+  {
+   "subfield_id": 256,
+   "data_field_id": 170,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "Formular 10000d: Felder «von» «bis» klein gedruckt (bei der jeweiligen Frage)"
+  },
+  {
+   "subfield_id": 258,
+   "data_field_id": 171,
+   "alt": "von",
+   "neu": "von",
+   "quelle": "Formular 10000d: Felder «von» «bis» klein gedruckt (bei der jeweiligen Frage)"
+  },
+  {
+   "subfield_id": 259,
+   "data_field_id": 171,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "Formular 10000d: Felder «von» «bis» klein gedruckt (bei der jeweiligen Frage)"
+  },
+  {
+   "subfield_id": 263,
+   "data_field_id": 175,
+   "alt": "von",
+   "neu": "von",
+   "quelle": "Formular 10000d: Felder «von» «bis» klein gedruckt (bei der jeweiligen Frage)"
+  },
+  {
+   "subfield_id": 264,
+   "data_field_id": 175,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "Formular 10000d: Felder «von» «bis» klein gedruckt (bei der jeweiligen Frage)"
+  },
+  {
+   "subfield_id": 268,
+   "data_field_id": 181,
+   "alt": "seit",
+   "neu": "seit",
+   "quelle": "Aktuelle Erwerbssituation: «Pensum seit» – klein gedruckt"
+  },
+  {
+   "subfield_id": 275,
+   "data_field_id": 184,
+   "alt": "von",
+   "neu": "von",
+   "quelle": "Formular 10000d: Felder «von» «bis» klein gedruckt (bei der jeweiligen Frage)"
+  },
+  {
+   "subfield_id": 276,
+   "data_field_id": 184,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "Formular 10000d: Felder «von» «bis» klein gedruckt (bei der jeweiligen Frage)"
+  },
+  {
+   "subfield_id": 289,
+   "data_field_id": 187,
+   "alt": "von",
+   "neu": "von",
+   "quelle": "Formular 10000d: Felder «von» «bis» klein gedruckt (bei der jeweiligen Frage)"
+  },
+  {
+   "subfield_id": 290,
+   "data_field_id": 187,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "Formular 10000d: Felder «von» «bis» klein gedruckt (bei der jeweiligen Frage)"
+  },
+  {
+   "subfield_id": 303,
+   "data_field_id": 199,
+   "alt": "von",
+   "neu": "von",
+   "quelle": "Formular 10006d: Felder «von» «bis» klein gedruckt (Ziff. 2/14/15/16/20/21)"
+  },
+  {
+   "subfield_id": 304,
+   "data_field_id": 199,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "Formular 10006d: Felder «von» «bis» klein gedruckt (Ziff. 2/14/15/16/20/21)"
+  },
+  {
+   "subfield_id": 320,
+   "data_field_id": 212,
+   "alt": "von",
+   "neu": "von",
+   "quelle": "Formular 10006d: Felder «von» «bis» klein gedruckt (Ziff. 2/14/15/16/20/21)"
+  },
+  {
+   "subfield_id": 321,
+   "data_field_id": 212,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "Formular 10006d: Felder «von» «bis» klein gedruckt (Ziff. 2/14/15/16/20/21)"
+  },
+  {
+   "subfield_id": 323,
+   "data_field_id": 213,
+   "alt": "von",
+   "neu": "von",
+   "quelle": "Formular 10006d: Felder «von» «bis» klein gedruckt (Ziff. 2/14/15/16/20/21)"
+  },
+  {
+   "subfield_id": 324,
+   "data_field_id": 213,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "Formular 10006d: Felder «von» «bis» klein gedruckt (Ziff. 2/14/15/16/20/21)"
+  },
+  {
+   "subfield_id": 327,
+   "data_field_id": 214,
+   "alt": "von",
+   "neu": "von",
+   "quelle": "Formular 10006d: Felder «von» «bis» klein gedruckt (Ziff. 2/14/15/16/20/21)"
+  },
+  {
+   "subfield_id": 328,
+   "data_field_id": 214,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "Formular 10006d: Felder «von» «bis» klein gedruckt (Ziff. 2/14/15/16/20/21)"
+  },
+  {
+   "subfield_id": 333,
+   "data_field_id": 220,
+   "alt": "von",
+   "neu": "von",
+   "quelle": "Formular 10006d: Felder «von» «bis» klein gedruckt (Ziff. 2/14/15/16/20/21)"
+  },
+  {
+   "subfield_id": 334,
+   "data_field_id": 220,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "Formular 10006d: Felder «von» «bis» klein gedruckt (Ziff. 2/14/15/16/20/21)"
+  },
+  {
+   "subfield_id": 343,
+   "data_field_id": 223,
+   "alt": "von",
+   "neu": "von",
+   "quelle": "Formular 10006d: Felder «von» «bis» klein gedruckt (Ziff. 2/14/15/16/20/21)"
+  },
+  {
+   "subfield_id": 344,
+   "data_field_id": 223,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "Formular 10006d: Felder «von» «bis» klein gedruckt (Ziff. 2/14/15/16/20/21)"
+  },
+  {
+   "subfield_id": 358,
+   "data_field_id": 231,
+   "alt": "von",
+   "neu": "von",
+   "quelle": "Arztzeugnis 10015d, Tabelle Arbeitsunfähigkeit: Spalten «von» «bis» klein gedruckt"
+  },
+  {
+   "subfield_id": 359,
+   "data_field_id": 231,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "Arztzeugnis 10015d, Tabelle Arbeitsunfähigkeit: Spalten «von» «bis» klein gedruckt"
+  },
+  {
+   "subfield_id": 388,
+   "data_field_id": 260,
+   "alt": "bei",
+   "neu": "bei",
+   "quelle": "Vorhergehende Tätigkeit: «als ArbeitnehmerIn bei … bis» – klein gedruckt"
+  },
+  {
+   "subfield_id": 389,
+   "data_field_id": 260,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "Vorhergehende Tätigkeit: «als ArbeitnehmerIn bei … bis» – klein gedruckt"
+  },
+  {
+   "subfield_id": 439,
+   "data_field_id": 295,
+   "alt": "vom",
+   "neu": "vom",
+   "quelle": "Handelsregistereintrag: «UID-Nummer vom» – klein gedruckt"
+  },
+  {
+   "subfield_id": 440,
+   "data_field_id": 297,
+   "alt": "bei",
+   "neu": "bei",
+   "quelle": "Vorhergehende Tätigkeit: «… bei … bis» – klein gedruckt"
+  },
+  {
+   "subfield_id": 441,
+   "data_field_id": 297,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "Vorhergehende Tätigkeit: «… bei … bis» – klein gedruckt"
+  },
+  {
+   "subfield_id": 474,
+   "data_field_id": 334,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "Weiterhin erwerbstätig: «zu … % bis» – klein gedruckt"
+  },
+  {
+   "subfield_id": 479,
+   "data_field_id": 340,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "Weiterhin erwerbstätig (EhepartnerIn): «zu … % bis» – klein gedruckt"
+  },
+  {
+   "subfield_id": 534,
+   "data_field_id": 428,
+   "alt": "von",
+   "neu": "von",
+   "quelle": "«Auszahlungsperiode 2025 von bis» – klein gedruckt"
+  },
+  {
+   "subfield_id": 535,
+   "data_field_id": 428,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "«Auszahlungsperiode 2025 von bis» – klein gedruckt"
+  },
+  {
+   "subfield_id": 539,
+   "data_field_id": 437,
+   "alt": "von",
+   "neu": "von",
+   "quelle": "«Auszahlungsperiode 2025 von bis» – klein gedruckt"
+  },
+  {
+   "subfield_id": 540,
+   "data_field_id": 437,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "«Auszahlungsperiode 2025 von bis» – klein gedruckt"
+  },
+  {
+   "subfield_id": 596,
+   "data_field_id": 485,
+   "alt": "seit",
+   "neu": "seit",
+   "quelle": "Eigentümer der Liegenschaft, Zivilstand: «getrennt gerichtlich getrennt seit» – klein gedruckt"
+  },
+  {
+   "subfield_id": 722,
+   "data_field_id": 563,
+   "alt": "von",
+   "neu": "von",
+   "quelle": "S. 3, EEL-Frage: Felder «von» «bis» – klein gedruckt"
+  },
+  {
+   "subfield_id": 723,
+   "data_field_id": 563,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "S. 3, EEL-Frage: Felder «von» «bis» – klein gedruckt"
+  },
+  {
+   "subfield_id": 1141,
+   "data_field_id": 784,
+   "alt": "seit",
+   "neu": "seit",
+   "quelle": "S. 1, Personalien GesuchstellerIn: Feld «seit» direkt unter den Zivilstand-Optionen (gerendert geprüft) – klein gedruckt"
+  },
+  {
+   "subfield_id": 1283,
+   "data_field_id": 865,
+   "alt": "von",
+   "neu": "von",
+   "quelle": "S. 2: «Unterbruch der Ausbildung von … bis» – klein gedruckt"
+  },
+  {
+   "subfield_id": 1284,
+   "data_field_id": 865,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "S. 2: «Unterbruch der Ausbildung von … bis» – klein gedruckt"
+  },
+  {
+   "subfield_id": 1287,
+   "data_field_id": 874,
+   "alt": "von",
+   "neu": "von",
+   "quelle": "S. 2, Mutation der Bezügerdaten: «Unbezahlter Urlaub von bis» – klein gedruckt"
+  },
+  {
+   "subfield_id": 1288,
+   "data_field_id": 874,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "S. 2, Mutation der Bezügerdaten: «Unbezahlter Urlaub von bis» – klein gedruckt"
+  },
+  {
+   "subfield_id": 1380,
+   "data_field_id": 920,
+   "alt": "von",
+   "neu": "von",
+   "quelle": "S. 2: «Unterbruch der Ausbildung von bis» – klein gedruckt"
+  },
+  {
+   "subfield_id": 1381,
+   "data_field_id": 920,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "S. 2: «Unterbruch der Ausbildung von bis» – klein gedruckt"
+  },
+  {
+   "subfield_id": 1388,
+   "data_field_id": 929,
+   "alt": "von",
+   "neu": "Datum",
+   "quelle": "S. 2 (gerendert), «Aufgaben der selbständigen Erwerbstätigkeit»: das einzige gedruckte Feld (Widget «Aufgaben der SE von») ist mit «Datum» beschriftet, nicht «von»"
+  },
+  {
+   "subfield_id": 1389,
+   "data_field_id": 929,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "kein gedrucktes Label: S. 2 (gerendert) zeigt bei «Aufgaben der selbständigen Erwerbstätigkeit» nur ein Feld «Datum» (= Teilfeld 1388); das Widget «Aufgaben der SE bis» liegt rechts daneben ohne Beschriftung und ohne Linie – alter Name aus dem Widgetnamen belassen"
+  },
+  {
+   "subfield_id": 1390,
+   "data_field_id": 930,
+   "alt": "von",
+   "neu": "von",
+   "quelle": "S. 2: «Unterbruch der selbständigen Erwerbstätigkeit von bis» – klein gedruckt"
+  },
+  {
+   "subfield_id": 1391,
+   "data_field_id": 930,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "S. 2: «Unterbruch der selbständigen Erwerbstätigkeit von bis» – klein gedruckt"
+  },
+  {
+   "subfield_id": 5532,
+   "data_field_id": 4085,
+   "alt": "adresse",
+   "neu": "Adresse",
+   "quelle": "Personendaten des/r Absolventen/in: «Adresse»"
+  },
+  {
+   "subfield_id": 5534,
+   "data_field_id": 4085,
+   "alt": "email",
+   "neu": "Email",
+   "quelle": "Personendaten des/r Absolventen/in: «Email» (so geschrieben)"
+  },
+  {
+   "subfield_id": 5539,
+   "data_field_id": 4087,
+   "alt": "bank",
+   "neu": "Bank",
+   "quelle": "Kontoangaben des/r Absolventen/in: «Bank»"
+  },
+  {
+   "subfield_id": 5542,
+   "data_field_id": 4091,
+   "alt": "adresse",
+   "neu": "Adresse",
+   "quelle": "Anmeldeblatt, Personalien: «Adresse»"
+  },
+  {
+   "subfield_id": 5543,
+   "data_field_id": 4091,
+   "alt": "geburtsdatum",
+   "neu": "Geburtsdatum",
+   "quelle": "Anmeldeblatt, Personalien: «Geburtsdatum»"
+  },
+  {
+   "subfield_id": 5544,
+   "data_field_id": 4091,
+   "alt": "mobiltelefon",
+   "neu": "Mobiltelefon",
+   "quelle": "Anmeldeblatt, Personalien: «Mobiltelefon»"
+  },
+  {
+   "subfield_id": 5545,
+   "data_field_id": 4091,
+   "alt": "email",
+   "neu": "E-Mail",
+   "quelle": "Anmeldeblatt, Personalien: «E-Mail»"
+  },
+  {
+   "subfield_id": 5551,
+   "data_field_id": 4101,
+   "alt": "vorname",
+   "neu": "Vorname",
+   "quelle": "«Kontaktperson bei Fragen (Vorname und Name, Telefon, E-Mail)»"
+  },
+  {
+   "subfield_id": 5552,
+   "data_field_id": 4101,
+   "alt": "name",
+   "neu": "Name",
+   "quelle": "«Kontaktperson bei Fragen (Vorname und Name, Telefon, E-Mail)»"
+  },
+  {
+   "subfield_id": 5553,
+   "data_field_id": 4101,
+   "alt": "telefon",
+   "neu": "Telefon",
+   "quelle": "«Kontaktperson bei Fragen (Vorname und Name, Telefon, E-Mail)»"
+  },
+  {
+   "subfield_id": 5554,
+   "data_field_id": 4101,
+   "alt": "email",
+   "neu": "E-Mail",
+   "quelle": "«Kontaktperson bei Fragen (Vorname und Name, Telefon, E-Mail)»"
+  },
+  {
+   "subfield_id": 5555,
+   "data_field_id": 4103,
+   "alt": "bestimmung",
+   "neu": "Bestimmung",
+   "quelle": "Tabellenkopf Spalte «Bestimmung»"
+  },
+  {
+   "subfield_id": 5556,
+   "data_field_id": 4103,
+   "alt": "einverstanden",
+   "neu": "Sind Sie mit dem Vorschlag einverstanden?",
+   "quelle": "Tabellenkopf Spalte «Sind Sie mit dem Vorschlag einverstanden?» (JA/NEIN)"
+  },
+  {
+   "subfield_id": 5559,
+   "data_field_id": 4106,
+   "alt": "telefon",
+   "neu": "Telefon",
+   "quelle": "«Kontaktperson bei Fragen (Vorname und Name, Telefon, E-Mail)»"
+  },
+  {
+   "subfield_id": 5560,
+   "data_field_id": 4106,
+   "alt": "email",
+   "neu": "E-Mail",
+   "quelle": "«Kontaktperson bei Fragen (Vorname und Name, Telefon, E-Mail)»"
+  },
+  {
+   "subfield_id": 5561,
+   "data_field_id": 4108,
+   "alt": "bestimmung",
+   "neu": "Bestimmung",
+   "quelle": "Tabellenkopf Spalte «Bestimmung»"
+  },
+  {
+   "subfield_id": 5562,
+   "data_field_id": 4108,
+   "alt": "einverstanden",
+   "neu": "Sind Sie mit dem Vorschlag einverstanden?",
+   "quelle": "Tabellenkopf Spalte «Sind Sie mit dem Vorschlag einverstanden?» (JA/NEIN)"
+  },
+  {
+   "subfield_id": 1680,
+   "data_field_id": 1209,
+   "alt": "vom",
+   "neu": "vom",
+   "quelle": "Ziff. 2 Vorgesehener Dienst: «vom bis» – klein gedruckt"
+  },
+  {
+   "subfield_id": 1681,
+   "data_field_id": 1209,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "Ziff. 2 Vorgesehener Dienst: «vom bis» – klein gedruckt"
+  },
+  {
+   "subfield_id": 2526,
+   "data_field_id": 1879,
+   "alt": "vom",
+   "neu": "vom",
+   "quelle": "Ziff. 3 Verrechnungsantrag: «Wenn ja, für die Zeit vom bis Fr.» – klein gedruckt"
+  },
+  {
+   "subfield_id": 2527,
+   "data_field_id": 1879,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "Ziff. 3 Verrechnungsantrag: «Wenn ja, für die Zeit vom bis Fr.» – klein gedruckt"
+  },
+  {
+   "subfield_id": 2771,
+   "data_field_id": 1985,
+   "alt": "seit",
+   "neu": "seit",
+   "quelle": "S. 2, «3. Partner / Partnerin»: «seit» neben der Zeile «PLZ, Wohnort» (gerendert geprüft) – klein gedruckt"
+  },
+  {
+   "subfield_id": 3017,
+   "data_field_id": 2168,
+   "alt": "vom",
+   "neu": "vom",
+   "quelle": "S. 1 (gerendert, PDF ohne Textschicht): «Zeitraum vom … bis» – klein gedruckt"
+  },
+  {
+   "subfield_id": 3018,
+   "data_field_id": 2168,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "S. 1 (gerendert, PDF ohne Textschicht): «Zeitraum vom … bis» – klein gedruckt"
+  },
+  {
+   "subfield_id": 3363,
+   "data_field_id": 2310,
+   "alt": "weitere",
+   "neu": "weitere",
+   "quelle": "Ziff. 5.2.9: «weitere:» – klein gedruckt"
+  },
+  {
+   "subfield_id": 3732,
+   "data_field_id": 2492,
+   "alt": "von",
+   "neu": "von",
+   "quelle": "Feld E: «von – du – dal» – klein gedruckt"
+  },
+  {
+   "subfield_id": 3733,
+   "data_field_id": 2492,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "Feld E: «bis – au – al» – klein gedruckt"
+  },
+  {
+   "subfield_id": 5570,
+   "data_field_id": 4117,
+   "alt": "anrede",
+   "neu": "Frau / Herr",
+   "quelle": "S. 1, Bewerber/in: kein Label, nur Ankreuzfelder «Frau / Madame / Signora  Herr / Monsieur / Signor» (deutsche Optionen übernommen)"
+  },
+  {
+   "subfield_id": 5571,
+   "data_field_id": 4117,
+   "alt": "familienname",
+   "neu": "Familienname",
+   "quelle": "S. 1, Bewerber/in: «Familienname»"
+  },
+  {
+   "subfield_id": 5572,
+   "data_field_id": 4117,
+   "alt": "ledigname",
+   "neu": "Ledigname",
+   "quelle": "S. 1, Bewerber/in: «Ledigname»"
+  },
+  {
+   "subfield_id": 5573,
+   "data_field_id": 4117,
+   "alt": "vornamen",
+   "neu": "Vornamen",
+   "quelle": "S. 1, Bewerber/in: «Vornamen»"
+  },
+  {
+   "subfield_id": 5574,
+   "data_field_id": 4117,
+   "alt": "geburtsdatum",
+   "neu": "Geburtsdatum",
+   "quelle": "S. 1, Bewerber/in: «Geburtsdatum»"
+  },
+  {
+   "subfield_id": 5575,
+   "data_field_id": 4117,
+   "alt": "staatsangehoerigkeiten",
+   "neu": "Staatsangehörigkeit/en",
+   "quelle": "S. 1, Bewerber/in: «Staatsangehörigkeit/en»"
+  },
+  {
+   "subfield_id": 5577,
+   "data_field_id": 4117,
+   "alt": "wohnadresse",
+   "neu": "Wohnadresse",
+   "quelle": "S. 1, Bewerber/in: «Wohnadresse (Strasse, Nummer und Postleitzahl)»"
+  },
+  {
+   "subfield_id": 5581,
+   "data_field_id": 4120,
+   "alt": "familienname",
+   "neu": "Familienname",
+   "quelle": "S. 1, Eltern: «Vater: Familienname, ev. Ledigname, Vornamen, Geburtsdatum und -ort, Staatsangehörigkeit»"
+  },
+  {
+   "subfield_id": 5582,
+   "data_field_id": 4120,
+   "alt": "ledigname",
+   "neu": "Ledigname",
+   "quelle": "S. 1, Eltern: «Vater: … ev. Ledigname …» («ev.» = falls vorhanden)"
+  },
+  {
+   "subfield_id": 5583,
+   "data_field_id": 4120,
+   "alt": "vornamen",
+   "neu": "Vornamen",
+   "quelle": "S. 1, Eltern: «Vater: … Vornamen …»"
+  },
+  {
+   "subfield_id": 5585,
+   "data_field_id": 4120,
+   "alt": "staatsangehoerigkeit",
+   "neu": "Staatsangehörigkeit",
+   "quelle": "S. 1, Eltern: «Vater: … Staatsangehörigkeit»"
+  },
+  {
+   "subfield_id": 5586,
+   "data_field_id": 4121,
+   "alt": "familienname",
+   "neu": "Familienname",
+   "quelle": "S. 1, Eltern: «Mutter: Familienname, Ledigname, Vornamen, Geburtsdatum und -ort, Staatsangehörigkeit»"
+  },
+  {
+   "subfield_id": 5587,
+   "data_field_id": 4121,
+   "alt": "ledigname",
+   "neu": "Ledigname",
+   "quelle": "S. 1, Eltern: «Mutter: … Ledigname …»"
+  },
+  {
+   "subfield_id": 5588,
+   "data_field_id": 4121,
+   "alt": "vornamen",
+   "neu": "Vornamen",
+   "quelle": "S. 1, Eltern: «Mutter: … Vornamen …»"
+  },
+  {
+   "subfield_id": 5590,
+   "data_field_id": 4121,
+   "alt": "staatsangehoerigkeit",
+   "neu": "Staatsangehörigkeit",
+   "quelle": "S. 1, Eltern: «Mutter: … Staatsangehörigkeit»"
+  },
+  {
+   "subfield_id": 5591,
+   "data_field_id": 4123,
+   "alt": "status",
+   "neu": "Arbeitsverhältnis",
+   "quelle": "S. 1, Überschrift «Arbeitsverhältnis / Activité professionnelle» direkt über der Wahl «ich übe folgende berufliche Tätigkeit aus / In Ausbildung / anderes»"
+  },
+  {
+   "subfield_id": 5599,
+   "data_field_id": 4126,
+   "alt": "familienname",
+   "neu": "Familienname",
+   "quelle": "S. 1, Ehegatte: «Familienname, Ledigname, Vornamen, Geburtsdatum, Geburtsort und -staat»"
+  },
+  {
+   "subfield_id": 5600,
+   "data_field_id": 4126,
+   "alt": "ledigname",
+   "neu": "Ledigname",
+   "quelle": "S. 1, Ehegatte: «… Ledigname …»"
+  },
+  {
+   "subfield_id": 5601,
+   "data_field_id": 4126,
+   "alt": "vornamen",
+   "neu": "Vornamen",
+   "quelle": "S. 1, Ehegatte: «… Vornamen …»"
+  },
+  {
+   "subfield_id": 5602,
+   "data_field_id": 4126,
+   "alt": "geburtsdatum",
+   "neu": "Geburtsdatum",
+   "quelle": "S. 1, Ehegatte: «… Geburtsdatum …»"
+  },
+  {
+   "subfield_id": 5604,
+   "data_field_id": 4127,
+   "alt": "status",
+   "neu": "Arbeitsverhältnis",
+   "quelle": "S. 1, Ehegatte: Überschrift «Arbeitsverhältnis / Activité professionnelle» direkt über der Wahl «… übt folgende berufliche Tätigkeit aus / In Ausbildung / anderes»"
+  },
+  {
+   "subfield_id": 5608,
+   "data_field_id": 4128,
+   "alt": "datum",
+   "neu": "Datum",
+   "quelle": "S. 1: «Datum und Ort der Eheschliessung:»"
+  },
+  {
+   "subfield_id": 5609,
+   "data_field_id": 4128,
+   "alt": "ort",
+   "neu": "Ort",
+   "quelle": "S. 1: «Datum und Ort der Eheschliessung:»"
+  },
+  {
+   "subfield_id": 5610,
+   "data_field_id": 4131,
+   "alt": "name",
+   "neu": "Name",
+   "quelle": "nur Platzhalter «[Absender]»; Wort aus der definition («Name und Adresse der Person …»)"
+  },
+  {
+   "subfield_id": 5611,
+   "data_field_id": 4131,
+   "alt": "adresse",
+   "neu": "Adresse",
+   "quelle": "nur Platzhalter «[Absender]»; Wort aus der definition («Name und Adresse der Person …»)"
+  },
+  {
+   "subfield_id": 5614,
+   "data_field_id": 4135,
+   "alt": "unterschrift",
+   "neu": "Unterschrift",
+   "quelle": "Punktlinie über «[Vorname Name]», kein gedrucktes Label; Wort aus der definition («Eigenhändige Unterschrift des Domizilhalters»)"
+  },
+  {
+   "subfield_id": 5617,
+   "data_field_id": 4136,
+   "alt": "adresse",
+   "neu": "Adresse",
+   "quelle": "nur Platzhalter «[Absender]»; Wort aus der definition («Name und Adresse des Absenders»)"
+  },
+  {
+   "subfield_id": 5621,
+   "data_field_id": 4141,
+   "alt": "firma",
+   "neu": "Firma",
+   "quelle": "Überschrift «Firma und Sitz»"
+  },
+  {
+   "subfield_id": 5622,
+   "data_field_id": 4141,
+   "alt": "sitz",
+   "neu": "Sitz",
+   "quelle": "Überschrift «Firma und Sitz»"
+  },
+  {
+   "subfield_id": 5623,
+   "data_field_id": 4145,
+   "alt": "vorname",
+   "neu": "Vorname",
+   "quelle": "Platzhalter «[Vorname Name]»"
+  },
+  {
+   "subfield_id": 5624,
+   "data_field_id": 4145,
+   "alt": "name",
+   "neu": "Name",
+   "quelle": "Platzhalter «[Vorname Name]»"
+  },
+  {
+   "subfield_id": 5625,
+   "data_field_id": 4145,
+   "alt": "adresse",
+   "neu": "Adresse",
+   "quelle": "nur Platzhalter «[Absender]»; Wort aus der definition («Name und Adresse der zurücktretenden Person»)"
+  },
+  {
+   "subfield_id": 5626,
+   "data_field_id": 4150,
+   "alt": "vorname",
+   "neu": "Vorname",
+   "quelle": "Platzhalter «[Vorname Name]»"
+  },
+  {
+   "subfield_id": 5627,
+   "data_field_id": 4150,
+   "alt": "name",
+   "neu": "Name",
+   "quelle": "Platzhalter «[Vorname Name]»"
+  },
+  {
+   "subfield_id": 5628,
+   "data_field_id": 4150,
+   "alt": "adresse",
+   "neu": "Adresse",
+   "quelle": "nur Platzhalter «[Absender]»; Wort aus der definition («Vorname, Name und Adresse der Person …»)"
+  },
+  {
+   "subfield_id": 5630,
+   "data_field_id": 4155,
+   "alt": "adresse",
+   "neu": "Adresse",
+   "quelle": "nur Platzhalter «[Absender]»; Wort aus der definition («Name und Adresse der erklärenden Person»)"
+  },
+  {
+   "subfield_id": 5632,
+   "data_field_id": 4160,
+   "alt": "vorname",
+   "neu": "Vorname",
+   "quelle": "Platzhalter «[Vorname Name]»"
+  },
+  {
+   "subfield_id": 5633,
+   "data_field_id": 4160,
+   "alt": "name",
+   "neu": "Name",
+   "quelle": "Platzhalter «[Vorname Name]»"
+  },
+  {
+   "subfield_id": 5634,
+   "data_field_id": 4160,
+   "alt": "adresse",
+   "neu": "Adresse",
+   "quelle": "nur Platzhalter «[Absender]», weder Formular noch definition nennen «Adresse» wörtlich; gleiches Wort nur grossgeschrieben (Adresszeile des Absenderblocks, wie in den Schwesterformularen 322/323)"
+  },
+  {
+   "subfield_id": 7071,
+   "data_field_id": 5396,
+   "alt": "name",
+   "neu": "Name",
+   "quelle": "1. Angaben zum Betrieb: «Name:»"
+  },
+  {
+   "subfield_id": 7072,
+   "data_field_id": 5396,
+   "alt": "adresse",
+   "neu": "Adresse",
+   "quelle": "1. Angaben zum Betrieb: «Adresse:»"
+  },
+  {
+   "subfield_id": 7073,
+   "data_field_id": 5396,
+   "alt": "telefon",
+   "neu": "Telefon",
+   "quelle": "1. Angaben zum Betrieb: «Telefon:»"
+  },
+  {
+   "subfield_id": 7074,
+   "data_field_id": 5396,
+   "alt": "fax",
+   "neu": "Fax",
+   "quelle": "1. Angaben zum Betrieb: «Fax:»"
+  },
+  {
+   "subfield_id": 7076,
+   "data_field_id": 5396,
+   "alt": "homepage",
+   "neu": "Homepage",
+   "quelle": "1. Angaben zum Betrieb: «Homepage:»"
+  },
+  {
+   "subfield_id": 7078,
+   "data_field_id": 5399,
+   "alt": "name",
+   "neu": "Name",
+   "quelle": "1., weitere Geschäftsräumlichkeiten («Betriebsstätten»): «Name:»"
+  },
+  {
+   "subfield_id": 7079,
+   "data_field_id": 5399,
+   "alt": "adresse",
+   "neu": "Adresse",
+   "quelle": "1., weitere Geschäftsräumlichkeiten («Betriebsstätten»): «Adresse:»"
+  },
+  {
+   "subfield_id": 7080,
+   "data_field_id": 5399,
+   "alt": "telefon",
+   "neu": "Telefon",
+   "quelle": "1., weitere Geschäftsräumlichkeiten («Betriebsstätten»): «Telefon:»"
+  },
+  {
+   "subfield_id": 7081,
+   "data_field_id": 5399,
+   "alt": "fax",
+   "neu": "Fax",
+   "quelle": "1., weitere Geschäftsräumlichkeiten («Betriebsstätten»): «Fax:»"
+  },
+  {
+   "subfield_id": 7083,
+   "data_field_id": 5400,
+   "alt": "name",
+   "neu": "Name",
+   "quelle": "1., Angaben des Hauptsitzes: «Name:»"
+  },
+  {
+   "subfield_id": 7084,
+   "data_field_id": 5400,
+   "alt": "adresse",
+   "neu": "Adresse",
+   "quelle": "1., Angaben des Hauptsitzes: «Adresse:»"
+  },
+  {
+   "subfield_id": 7085,
+   "data_field_id": 5400,
+   "alt": "telefon",
+   "neu": "Telefon",
+   "quelle": "1., Angaben des Hauptsitzes: «Telefon:»"
+  },
+  {
+   "subfield_id": 7086,
+   "data_field_id": 5400,
+   "alt": "fax",
+   "neu": "Fax",
+   "quelle": "1., Angaben des Hauptsitzes: «Fax:»"
+  },
+  {
+   "subfield_id": 7088,
+   "data_field_id": 5400,
+   "alt": "homepage",
+   "neu": "Homepage",
+   "quelle": "1., Angaben des Hauptsitzes: «Homepage:»"
+  },
+  {
+   "subfield_id": 7089,
+   "data_field_id": 5401,
+   "alt": "name",
+   "neu": "Name",
+   "quelle": "2. Person(en), die … verantwortlich ist / sind: «Name:»"
+  },
+  {
+   "subfield_id": 7090,
+   "data_field_id": 5401,
+   "alt": "vorname",
+   "neu": "Vorname",
+   "quelle": "2. Person(en), die … verantwortlich ist / sind: «Vorname:»"
+  },
+  {
+   "subfield_id": 7091,
+   "data_field_id": 5427,
+   "alt": "ort",
+   "neu": "Ort",
+   "quelle": "10. Bestätigung: «Ort und Datum»"
+  },
+  {
+   "subfield_id": 7092,
+   "data_field_id": 5427,
+   "alt": "datum",
+   "neu": "Datum",
+   "quelle": "10. Bestätigung: «Ort und Datum»"
+  },
+  {
+   "subfield_id": 7094,
+   "data_field_id": 5443,
+   "alt": "name",
+   "neu": "Name",
+   "quelle": "Beiblatt «Verantwortliche Person»: «Name:»"
+  },
+  {
+   "subfield_id": 7095,
+   "data_field_id": 5443,
+   "alt": "vorname",
+   "neu": "Vorname",
+   "quelle": "Beiblatt «Verantwortliche Person»: «Vorname:»"
+  },
+  {
+   "subfield_id": 7096,
+   "data_field_id": 5443,
+   "alt": "geburtsdatum",
+   "neu": "Geburtsdatum",
+   "quelle": "Beiblatt «Verantwortliche Person»: «Geburtsdatum:»"
+  },
+  {
+   "subfield_id": 7097,
+   "data_field_id": 5443,
+   "alt": "heimatort",
+   "neu": "Heimatort",
+   "quelle": "Beiblatt «Verantwortliche Person»: «Heimatort:»"
+  },
+  {
+   "subfield_id": 7098,
+   "data_field_id": 5443,
+   "alt": "nationalitaet",
+   "neu": "Nationalität",
+   "quelle": "Beiblatt «Verantwortliche Person»: «Nationalität:»"
+  },
+  {
+   "subfield_id": 7106,
+   "data_field_id": 5443,
+   "alt": "vollzeitbeschaeftigung",
+   "neu": "Üben Sie Ihre Tätigkeit als eine für die Leitung verantwortliche Person eines Arbeitsvermittlungs- und / oder Personalverleihbetriebes im Rahmen einer Vollzeitbeschäftigung aus?",
+   "quelle": "Beiblatt «Verantwortliche Person»: Frage wörtlich (Nein/Ja); Geschwister-Teilfelder tragen ebenfalls die volle Frage"
+  },
+  {
+   "subfield_id": 7112,
+   "data_field_id": 5443,
+   "alt": "firmenstempel",
+   "neu": "Stempel der Firma",
+   "quelle": "Beiblatt «Verantwortliche Person», Schlussblock: «Stempel der Firma»"
+  },
+  {
+   "subfield_id": 7113,
+   "data_field_id": 5443,
+   "alt": "unterschrift",
+   "neu": "Unterschrift der Gesuchstellenden",
+   "quelle": "Beiblatt «Verantwortliche Person», Schlussblock: «Unterschrift der Gesuchstellenden»"
+  },
+  {
+   "subfield_id": 5886,
+   "data_field_id": 4326,
+   "alt": "vom",
+   "neu": "vom",
+   "quelle": "«vom … bis … zu benützen» – klein gedruckt"
+  },
+  {
+   "subfield_id": 5887,
+   "data_field_id": 4326,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "«vom … bis … zu benützen» – klein gedruckt"
+  },
+  {
+   "subfield_id": 6060,
+   "data_field_id": 4515,
+   "alt": "wiederkehrend",
+   "neu": "wiederkehrend",
+   "quelle": "Pflegemassnahmen: «- wiederkehrend:» – klein gedruckt (Geschwister «initial / einmalig»)"
+  },
+  {
+   "subfield_id": 6470,
+   "data_field_id": 4928,
+   "alt": "von",
+   "neu": "von",
+   "quelle": "Ziff. 4: «Voraussichtliche Dauer der Kurzarbeit von bis» – klein gedruckt"
+  },
+  {
+   "subfield_id": 6471,
+   "data_field_id": 4928,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "Ziff. 4: «Voraussichtliche Dauer der Kurzarbeit von bis» – klein gedruckt"
+  },
+  {
+   "subfield_id": 6472,
+   "data_field_id": 4930,
+   "alt": "von",
+   "neu": "von",
+   "quelle": "Ziff. 6: «Sind Betriebsferien vereinbart? Wenn ja von bis» – klein gedruckt"
+  },
+  {
+   "subfield_id": 6473,
+   "data_field_id": 4930,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "Ziff. 6: «Sind Betriebsferien vereinbart? Wenn ja von bis» – klein gedruckt"
+  },
+  {
+   "subfield_id": 6608,
+   "data_field_id": 5011,
+   "alt": "extern",
+   "neu": "extern",
+   "quelle": "Blatt 1, Spaltenkopf (Zeile 42) «Fr. extern», gilt für 7.4 Aufwand – klein gedruckt"
+  },
+  {
+   "subfield_id": 6609,
+   "data_field_id": 5011,
+   "alt": "total",
+   "neu": "total",
+   "quelle": "Blatt 1, Spaltenkopf (Zeile 42) «Fr. total», gilt für 7.4 Aufwand – klein gedruckt"
+  },
+  {
+   "subfield_id": 6611,
+   "data_field_id": 5012,
+   "alt": "extern",
+   "neu": "extern",
+   "quelle": "Blatt 1, Spaltenkopf (Zeile 42) «Fr. extern», gilt für 7.4 Aufwand – klein gedruckt"
+  },
+  {
+   "subfield_id": 6612,
+   "data_field_id": 5012,
+   "alt": "total",
+   "neu": "total",
+   "quelle": "Blatt 1, Spaltenkopf (Zeile 42) «Fr. total», gilt für 7.4 Aufwand – klein gedruckt"
+  },
+  {
+   "subfield_id": 6614,
+   "data_field_id": 5014,
+   "alt": "extern",
+   "neu": "extern",
+   "quelle": "Blatt 1, Spaltenkopf (Zeile 42) «Fr. extern», gilt für 7.4 Aufwand – klein gedruckt"
+  },
+  {
+   "subfield_id": 6615,
+   "data_field_id": 5014,
+   "alt": "total",
+   "neu": "total",
+   "quelle": "Blatt 1, Spaltenkopf (Zeile 42) «Fr. total», gilt für 7.4 Aufwand – klein gedruckt"
+  },
+  {
+   "subfield_id": 6907,
+   "data_field_id": 5288,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "«Früherer Wohnort: bis» – klein gedruckt"
+  },
+  {
+   "subfield_id": 6955,
+   "data_field_id": 5316,
+   "alt": "wohnhaft",
+   "neu": "wohnhaft",
+   "quelle": "Geschwister des Pflegekindes: Spalte «wohnhaft» – klein gedruckt"
+  },
+  {
+   "subfield_id": 7329,
+   "data_field_id": 5630,
+   "alt": "vom",
+   "neu": "vom",
+   "quelle": "«Bruttolohn *1) vom bis CHF» – klein gedruckt"
+  },
+  {
+   "subfield_id": 7330,
+   "data_field_id": 5630,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "«Bruttolohn *1) vom bis CHF» – klein gedruckt"
+  },
+  {
+   "subfield_id": 7332,
+   "data_field_id": 5631,
+   "alt": "vom",
+   "neu": "vom",
+   "quelle": "«13. Monatslohn *2) vom bis CHF» – klein gedruckt"
+  },
+  {
+   "subfield_id": 7333,
+   "data_field_id": 5631,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "«13. Monatslohn *2) vom bis CHF» – klein gedruckt"
+  },
+  {
+   "subfield_id": 7344,
+   "data_field_id": 5636,
+   "alt": "vom",
+   "neu": "vom",
+   "quelle": "«Pauschalspesen *5) vom bis CHF» – klein gedruckt"
+  },
+  {
+   "subfield_id": 7345,
+   "data_field_id": 5636,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "«Pauschalspesen *5) vom bis CHF» – klein gedruckt"
+  },
+  {
+   "subfield_id": 7638,
+   "data_field_id": 5804,
+   "alt": "von",
+   "neu": "von",
+   "quelle": "S. 1: «Dauer des Aufenthaltes von bis Unbeschränkte Dauer» – klein gedruckt"
+  },
+  {
+   "subfield_id": 7639,
+   "data_field_id": 5804,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "S. 1: «Dauer des Aufenthaltes von bis Unbeschränkte Dauer» – klein gedruckt"
+  },
+  {
+   "subfield_id": 7663,
+   "data_field_id": 5822,
+   "alt": "von",
+   "neu": "von",
+   "quelle": "«Frühere Tätigkeiten in der Schweiz Nein Ja» / «von bis» – klein gedruckt"
+  },
+  {
+   "subfield_id": 7664,
+   "data_field_id": 5822,
+   "alt": "bis",
+   "neu": "bis",
+   "quelle": "«Frühere Tätigkeiten in der Schweiz Nein Ja» / «von bis» – klein gedruckt"
+  }
+ ]
+}

@@ -16,7 +16,8 @@ Two layers, kept apart so the dashboard can say which one it shows:
 Gates (nothing enters without them):
   * the quote must be found verbatim in the official PDF text (whitespace
     collapsed, PDF hyphenation removed) - same check as the data rules
-  * a Frist in days must appear in the quote as digits or number word
+  * a Frist in days must appear in the quote as digits or number word — or in
+    frist_quote, a second verbatim sentence when the Frist stands in its own Absatz
   * the article row must exist for that law, or is created from the verified
     quote (the PDF is the proof), never from memory
   * vocabulary for rechtsmittel_art
@@ -101,6 +102,39 @@ def art_key(no):
     return re.sub(r"\s+", "", (no or "").lower().replace("art.", "").replace("§", ""))
 
 
+
+def cited_laws(c):
+    """form_id -> {law_id: weight}: the laws a form's fields cite (weight = number
+    of citing fields) plus the cantonal laws the DVSH model names as the
+    service's Rechtsgrundlage (weight 1, only where not already cited). The
+    DVSH model is authoritative for legal bases, so a remedy provision of a law
+    it names is a candidate even before the field-level legal pass reached the
+    form. Federal DVSH references carry Fedlex URLs without SR numbers and are
+    not resolved here."""
+    cited = {}
+    for r in c.execute("SELECT d.form_id, a.law_id, COUNT(*) n FROM data_field_legal_basis lb "
+                       "JOIN data_field d ON d.id=lb.data_field_id JOIN article a ON a.id=lb.article_id "
+                       "GROUP BY d.form_id, a.law_id"):
+        cited.setdefault(r["form_id"], {})[r["law_id"]] = r["n"]
+    if not c.execute("SELECT 1 FROM sqlite_master WHERE name='dvsh_service'").fetchone():
+        return cited
+    by_ref = {r["cantonal_ref"]: r["id"] for r in c.execute("SELECT id, cantonal_ref FROM law WHERE cantonal_ref IS NOT NULL")}
+    for r in c.execute("SELECT f.id form_id, v.recht_kantonal FROM form f JOIN dvsh_service v ON v.service_id=f.service_id "
+                       "WHERE v.recht_kantonal IS NOT NULL"):
+        try:
+            refs = json.loads(r["recht_kantonal"])
+            if isinstance(refs, str):
+                refs = json.loads(refs)
+        except Exception:
+            continue
+        for ref in refs if isinstance(refs, list) else []:
+            nr = (ref or {}).get("ssr_nummer") if isinstance(ref, dict) else None
+            lid = by_ref.get("SHR " + str(nr).strip()) if nr else None
+            if lid:
+                cited.setdefault(r["form_id"], {}).setdefault(lid, 1)
+    return cited
+
+
 def find_or_add_article(c, law_id, article_no, heading, quote, nr):
     rows = c.execute("SELECT id, article_no, heading FROM article WHERE law_id=?", [law_id]).fetchall()
     for r in rows:
@@ -162,7 +196,8 @@ def main():
             l = laws.get(r.get("law_id"))
             art = (r.get("rechtsmittel_art") or "").strip().lower()
             q = (r.get("quote") or "").strip()
-            days = r.get("frist_tage")
+            fq = (r.get("frist_quote") or "").strip() or None   # the Frist sentence, when it is a
+            days = r.get("frist_tage")                            # separate Absatz (like VRG Art. 16 + 20)
             reason = None
             if not l: reason = "law"
             elif art not in VOCAB: reason = "vocab"
@@ -170,7 +205,8 @@ def main():
             else:
                 pdf, nr = pdf_of(l)
                 if not quote_ok(q, pdf): reason = "quote-not-in-pdf"
-                elif days is not None and not frist_ok(days, q): reason = "frist-not-in-quote"
+                elif fq and not quote_ok(fq, pdf): reason = "frist-quote-not-in-pdf"
+                elif days is not None and not frist_ok(days, fq or q): reason = "frist-not-in-quote"
             if reason:
                 rejected += 1; why[reason] = why.get(reason, 0) + 1
                 continue
@@ -191,11 +227,13 @@ def main():
             if rev:
                 art = rev["rechtsmittel_art"]
             c.execute("INSERT INTO rechtsmittel_regel(law_id, article_id, scope, rechtsmittel_art, "
-                      "frist_tage, instanz, gilt_fuer, quote, quote_verified, hinweis, last_checked) "
-                      "VALUES(?,?,?,?,?,?,?,?,1,?,?) ON CONFLICT(law_id, article_id, rechtsmittel_art) DO UPDATE SET "
-                      "frist_tage=excluded.frist_tage, instanz=excluded.instanz, gilt_fuer=excluded.gilt_fuer, "
+                      "frist_tage, frist_article_id, frist_quote, instanz, gilt_fuer, quote, quote_verified, hinweis, last_checked) "
+                      "VALUES(?,?,?,?,?,?,?,?,?,?,1,?,?) ON CONFLICT(law_id, article_id, rechtsmittel_art) DO UPDATE SET "
+                      "frist_tage=excluded.frist_tage, frist_article_id=excluded.frist_article_id, frist_quote=excluded.frist_quote, "
+                      "instanz=excluded.instanz, gilt_fuer=excluded.gilt_fuer, "
                       "quote=excluded.quote, hinweis=excluded.hinweis, last_checked=excluded.last_checked",
                       [l["id"], aid, "sektoral", art, int(days) if days is not None else None,
+                       aid if fq else None, fq,
                        (r.get("instanz") or None), (r.get("gilt_fuer") or None), q,
                        (r.get("hinweis") or None), f"Gesetze-PDF {nr}"])
             n += 1
@@ -217,11 +255,7 @@ def main():
     for r in rules:
         if usable(r):
             by_law.setdefault(r["law_id"], []).append(r)
-    cited = {}   # form_id -> {law_id: n_fields}
-    for r in c.execute("SELECT d.form_id, a.law_id, COUNT(*) n FROM data_field_legal_basis lb "
-                       "JOIN data_field d ON d.id=lb.data_field_id JOIN article a ON a.id=lb.article_id "
-                       "GROUP BY d.form_id, a.law_id"):
-        cited.setdefault(r["form_id"], {})[r["law_id"]] = r["n"]
+    cited = cited_laws(c)   # form_id -> {law_id: weight}
     # Which of a law's provisions governs THIS form's decision is a judgment
     # (GesG Art. 49 Abs. 2 covers Proben, not every Verfügung); it is made by a
     # verdict pass (load_rechtsmittel_verdicts.py), never by ranking. Here the

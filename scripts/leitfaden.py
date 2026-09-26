@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """The plain-language guide (Leitfaden) shown on the dashboard's Leitfaden tab.
 
-The Datenhandhabung tab lists all 247 verified rules — complete but dense.
+The Datenhandhabung tab lists the 248 verified rules — complete but dense.
 This module answers the practical questions in plain German: how may data be
 collected, what and where may it be stored, may we check a document without
 keeping a copy, how may data be used and passed on, how long is it kept.
@@ -28,26 +28,45 @@ LEITFADEN = [
           "selbst — nicht hinter ihrem Rücken bei Dritten.",
   "punkte": [
    {"text": "Daten sind grundsätzlich direkt bei der betroffenen Person zu erheben. "
-            "Wer systematisch Daten beschafft (z.B. mit einem Formular), muss zudem "
-            "darauf hinweisen, wenn die Person zur Auskunft nicht verpflichtet ist — "
-            "freiwillige Angaben müssen als freiwillig erkennbar sein.",
-    "refs": [("174.100", "Art. 7", "erhebung"), ("235.11", "Art. 30", "erhebung")]},
-   {"text": "Der Zweck muss bei der Beschaffung feststehen und für die Person erkennbar "
-            "sein — ein Formularfeld «auf Vorrat» ist unzulässig.",
-    "refs": [("235.1", "Art. 6", "erhebung")]},
+            "Bundesorgane müssen bei systematischer Beschaffung (z. B. mit einem Formular) "
+            "zudem darauf hinweisen, wenn die Person zur Auskunft nicht verpflichtet ist "
+            "(DSV Art. 30); im Kanton folgt die Information über Rechtsgrundlage, Zweck "
+            "und Rechte aus KDSG Art. 5a Abs. 2 lit. b/e — freiwillige Angaben sollten "
+            "dennoch als freiwillig erkennbar sein.",
+    "refs": [("174.100", "Art. 7", "erhebung"), ("174.100", "Art. 5a", "betroffenenrechte"),
+             ("235.11", "Art. 30", "erhebung")]},
+   {"text": "Der Zweck muss bei der Beschaffung feststehen — angegeben, aus den Umständen "
+            "ersichtlich oder gesetzlich vorgesehen — und für die Person erkennbar sein; "
+            "ein Formularfeld «auf Vorrat» ist unzulässig (KDSG Art. 4 Abs. 5; Bund: "
+            "DSG Art. 6 Abs. 3).",
+    "refs": [("174.100", "Art. 4", "bearbeitung"), ("235.1", "Art. 6", "erhebung")]},
    {"text": "Die Person muss wissen: wer bearbeitet die Daten, wozu, und an wen gehen "
             "sie? Diese Information ist auch geschuldet, wenn die Daten ausnahmsweise "
-            "bei Dritten (etwa einer anderen Behörde) beschafft werden.",
-    "refs": [("174.100", "Art. 5a", "betroffenenrechte"), ("235.1", "Art. 19", "betroffenenrechte")]},
-   {"text": "Es gilt Datenminimierung: Systeme und Voreinstellungen müssen die "
-            "Bearbeitung auf das Nötige beschränken — jedes Feld braucht einen Grund.",
-    "refs": [("235.1", "Art. 7", "bearbeitung"), ("235.1", "Art. 6", "bearbeitung", "allgemein")]},
+            "bei Dritten (etwa einer anderen Behörde) beschafft werden. Die "
+            "Informationspflicht entfällt, wenn das Bearbeiten ausdrücklich durch das "
+            "Gesetz vorgesehen ist, die Information nicht oder nur mit unverhältnismässigem "
+            "Aufwand möglich ist oder die Person die Angaben bereits hat (KDSG Art. 5a "
+            "Abs. 4; Bund: DSG Art. 20).",
+    "refs": [("174.100", "Art. 5a", "betroffenenrechte"), ("235.1", "Art. 19", "betroffenenrechte"),
+             ("235.1", "Art. 20", "betroffenenrechte")]},
+   {"text": "Datenminimierung: Nur was für den Zweck geeignet und erforderlich ist, darf "
+            "bearbeitet werden (KDSG Art. 4 Abs. 4); Bundesorgane und Private müssen das "
+            "zusätzlich durch datenschutzfreundliche Voreinstellungen sicherstellen "
+            "(DSG Art. 7 Abs. 3) — jedes Feld braucht einen Grund.",
+    "refs": [("174.100", "Art. 4", "aufbewahrung"), ("235.1", "Art. 7", "bearbeitung"),
+             ("235.1", "Art. 6", "bearbeitung", "allgemein")]},
   ],
   "praxis": "Ein Feld ohne ausdrückliche Norm ist nicht automatisch unzulässig: Was die "
             "Behörde zwingend braucht, um die Aufgabe zu erfüllen (Betrag, Kontakt, "
             "Kennzeichen), ist nach KDSG Art. 4 Abs. 1 lit. b gedeckt — die Databank "
             "nennt das «aufgabennotwendig». Over-collection ist nur, was weder eine Norm "
-            "noch die Aufgabe verlangt; solche Felder dürfen nur freiwillig erhoben werden.",
+            "noch die Aufgabe verlangt; solche Felder dürfen nur freiwillig erhoben werden. "
+            "— Für besonders schützenswerte Daten (⛨) genügt das nicht: KDSG Art. 5 "
+            "Abs. 1 verlangt ein formelles Gesetz, das die Bearbeitung ausdrücklich "
+            "vorsieht, die Unentbehrlichkeit für eine in einem formellen Gesetz klar "
+            "umschriebene Aufgabe oder die Zustimmung der Person. Solange keine dieser "
+            "Grundlagen benannt ist, zählt das Feld in dieser Databank als offen "
+            "(Abschnitt ⛨).",
  },
  {
   "id": "speichern",
@@ -87,7 +106,7 @@ LEITFADEN = [
   "praxis": "Zur Cloud-Frage: Einen Schweizer Serverstandort schreibt von den erfassten "
             "Regeln nur die Langzeitarchivierung ausdrücklich vor. Für die laufende "
             "Bearbeitung greifen stattdessen die Auslagerungs-Regeln (der Dritte darf "
-            "nur bearbeiten, was das Amt selbst dürfte; keine Geheimhaltungspflicht "
+            "nur bearbeiten, was die Dienststelle selbst dürfte; keine Geheimhaltungspflicht "
             "darf entgegenstehen) und die ISV-Sicherheitsanforderungen — ein "
             "Cloud-Einsatz ist also kein Standort-, sondern ein Vertrags- und "
             "Sicherheitsthema.",
@@ -114,14 +133,16 @@ LEITFADEN = [
              ("172.301", "§ 5", "aufbewahrung")]},
    {"text": "Fachrecht kann die Aufbewahrung des Belegs selbst verlangen — etwa "
             "Krankengeschichten (mindestens zehn Jahre nach der letzten Behandlung) "
-            "oder Waffenerwerbs-Unterlagen (zwanzig Jahre). Solche Spezialfristen "
-            "gehen vor.",
+            "oder die Unterlagen, die Waffenhändler der zuständigen kantonalen Behörde "
+            "übergeben (Bücher sowie Kopien der Waffenerwerbsscheine und der "
+            "Ausnahmebewilligungen; dort zwanzig Jahre, WG Art. 21 Abs. 4). Solche "
+            "Spezialfristen gehen vor.",
     "refs": [("810.102", "§ 36", "aufbewahrung"), ("514.54", "Art. 21", "aufbewahrung")]},
   ],
   "praxis": "Faustregel: Stützt sich ein Entscheid auf das Dokument, gehört es "
             "(oder eine Kopie) in die Akte — es muss nachvollziehbar bleiben, worauf "
             "entschieden wurde. Dient das Dokument nur der einmaligen Kontrolle "
-            "(z.B. einen Ausweis vorzeigen), genügt der Vermerk: wer hat wann was "
+            "(z. B. einen Ausweis vorzeigen), genügt der Vermerk: wer hat wann was "
             "geprüft, mit welchem Ergebnis — ohne Kopie. Das ist die datensparsamste "
             "Umsetzung der Verhältnismässigkeit.",
  },
@@ -137,8 +158,8 @@ LEITFADEN = [
             "ersichtlichen oder gesetzlich vorgesehenen Zweck verwendet werden. "
             "Zulässig ist die Bearbeitung gestützt auf eine gesetzliche Grundlage, "
             "zur Erfüllung der gesetzlich umschriebenen Aufgaben oder mit Zustimmung "
-            "der betroffenen Person; Bundesorgane brauchen stets eine gesetzliche "
-            "Grundlage.",
+            "der betroffenen Person; Bundesorgane brauchen grundsätzlich eine gesetzliche "
+            "Grundlage (Ausnahmen: DSG Art. 34 Abs. 4).",
     "refs": [("174.100", "Art. 4", "bearbeitung"), ("235.1", "Art. 34", "bearbeitung", "allgemein")]},
    {"text": "Für Statistik, Planung und Forschung dürfen Daten nur verwendet werden, "
             "wenn sie so früh wie möglich anonymisiert werden, keine Rückschlüsse auf "
@@ -146,7 +167,7 @@ LEITFADEN = [
     "refs": [("174.100", "Art. 12", "bearbeitung"), ("235.1", "Art. 39", "bearbeitung")]},
    {"text": "Auslagerung (Auftragsbearbeitung) ist nur zulässig, wenn keine "
             "Rechtsvorschrift oder Geheimhaltungspflicht entgegensteht und der Dritte "
-            "die Daten nur so bearbeitet, wie es das Amt selbst dürfte. Der Auftrag "
+            "die Daten nur so bearbeitet, wie es die Dienststelle selbst dürfte. Der Auftrag "
             "ist grundsätzlich schriftlich zu erteilen und muss Rückgabe oder "
             "Vernichtung der Daten nach Vertragsende regeln.",
     "refs": [("174.100", "Art. 13", "bearbeitung"), ("174.101", "§ 3", "bearbeitung"),
@@ -154,10 +175,18 @@ LEITFADEN = [
    {"text": "Vor Bearbeitungen mit erhöhtem Risiko für die Grundrechte braucht es eine "
             "Datenschutz-Folgenabschätzung; bleibt ein hohes Risiko, muss vorab die "
             "Aufsichtsstelle (kantonal: die oder der Datenschutzbeauftragte) Stellung "
-            "nehmen. Alle Bearbeitungstätigkeiten stehen in einem Verzeichnis.",
+            "nehmen. Nach Bundesrecht führen Verantwortliche und Auftragsbearbeiter ein "
+            "Verzeichnis ihrer Bearbeitungstätigkeiten (DSG Art. 12); im Kanton trifft die "
+            "Registerpflicht nach KDSG Art. 17b nur Polizei, Staatsanwaltschaft und "
+            "Justizvollzug.",
     "refs": [("174.100", "Art. 14b", "bearbeitung"), ("174.100", "Art. 14c", "bearbeitung"),
-             ("235.1", "Art. 22", "bearbeitung"), ("235.1", "Art. 12", "bearbeitung")]},
+             ("235.1", "Art. 22", "bearbeitung"), ("235.1", "Art. 12", "bearbeitung"),
+             ("174.100", "Art. 17b", "bearbeitung")]},
   ],
+  "praxis": "Für alle übrigen Dienststellen ist das «Verzeichnis der Bearbeitungstätigkeiten» dieser "
+            "Databank ein Steuerungsinstrument, keine kantonale Rechtspflicht; es folgt in "
+            "der Struktur KDSG Art. 17b Abs. 2 (Rechtsgrundlage, Zweck, Mittel, Art, Herkunft, "
+            "regelmässige Empfänger), damit die Angaben bei Bedarf registerfähig sind.",
  },
  {
   "id": "weitergeben",
@@ -179,8 +208,9 @@ LEITFADEN = [
     "refs": [("174.100", "Art. 8", "bekanntgabe"), ("174.100", "Art. 10", "bekanntgabe")]},
    {"text": "An Private gibt die Einwohnerregisterstelle ohne besonderes Interesse nur "
             "Name, Vorname, Adresse, Zu-/Wegzugsdatum und Beruf heraus — und jede "
-            "Person kann die Bekanntgabe an Private sperren lassen (Meldung an das "
-            "verantwortliche Organ; Behörden-Amtshilfe lässt sich nicht sperren).",
+            "Person kann die Bekanntgabe an Private sperren lassen (schriftliche Meldung "
+            "an das verantwortliche Organ, KDSV § 2; Behörden-Amtshilfe lässt sich nicht "
+            "sperren).",
     "refs": [("174.100", "Art. 9", "bekanntgabe"), ("174.100", "Art. 11", "betroffenenrechte"),
              ("174.101", "§ 2", "betroffenenrechte")]},
    {"text": "Unter Behörden gilt Amtshilfe nach Fachrecht: die Gesetze sagen genau, "
@@ -195,15 +225,20 @@ LEITFADEN = [
              ("850.100", "Art. 6", "bekanntgabe"), ("641.100", "Art. 127", "bekanntgabe"),
              ("180.100", "Art. 34", "bekanntgabe"), ("120.100", "Art. 14", "bekanntgabe")]},
    {"text": "Ins Ausland nur, wenn dort ein angemessenes Datenschutzniveau besteht "
-            "(massgeblich ist die vom Bundesrat festgestellte Staatenliste — das muss "
-            "niemand selbst beurteilen), wenn besondere Garantien vorliegen oder wenn "
+            "(die kantonale Stelle beurteilt das selbst, in Anlehnung an die Staatenliste "
+            "des Bundes in DSV Anhang 1 und unter Berücksichtigung aller Umstände des "
+            "Einzelfalls, KDSG Art. 11b Abs. 2; nur Bundesorgane und Private sind an die "
+            "Liste gebunden, DSG Art. 16 Abs. 1), wenn besondere Garantien vorliegen oder wenn "
             "im Einzelfall eine gesetzliche Ausnahme greift — namentlich Einwilligung "
             "der Person, Schutz von Leib und Leben oder überwiegende öffentliche "
             "Interessen. Für EU/EWR-Stellen gelten erleichterte Regeln.",
     "refs": [("174.100", "Art. 11a", "bekanntgabe"), ("174.100", "Art. 11b", "bekanntgabe"),
              ("235.1", "Art. 16", "bekanntgabe"), ("235.1", "Art. 17", "bekanntgabe")]},
-   {"text": "Personendaten sind nie Open Government Data; elektronischer Datenaustausch "
-            "zwischen Behörden läuft über geregelte Schnittstellen.",
+   {"text": "Beim Bund sind Personendaten nie Open Government Data (EMBAG Art. 10); die "
+            "Bundesbehörden müssen sicherstellen, dass sie den Datenaustausch untereinander "
+            "sowie mit Kantonen, Gemeinden und Privaten über elektronische Schnittstellen "
+            "abwickeln können, soweit keine überwiegenden Gründe entgegenstehen "
+            "(EMBAG Art. 13) — Bundesrecht.",
     "refs": [("172.019", "Art. 10", "bekanntgabe"), ("172.019", "Art. 13", "bekanntgabe")]},
   ],
   "praxis": "Zum Übermittlungsweg sagen die Bekanntgabe-Regeln nichts Ausdrückliches — "
@@ -230,19 +265,23 @@ LEITFADEN = [
              ("172.301", "§ 5", "aufbewahrung")]},
    {"text": "Fachrecht setzt eigene Fristen — Beispiele aus dieser Databank: "
             "Krankengeschichten mindestens 10 Jahre nach Abschluss der letzten "
-            "Behandlung; Waffenhandelsunterlagen 20 Jahre; Waffeninformationssysteme "
+            "Behandlung; Waffenhandelsunterlagen: beim Händler 10 Jahre (WG Art. 21 "
+            "Abs. 2), die zuständige kantonale Behörde bewahrt die ihr übergebenen "
+            "Unterlagen 20 Jahre auf (Abs. 4); Waffeninformationssysteme "
             "bis zu 50 Jahre (Systeme über Erwerb und Besitz: 30 Jahre nach "
             "Vernichtung der Waffe); Arbeitslosenversicherung: Geschäftsbücher und "
             "Belege 10 Jahre, Versicherungsfall-Daten 5 Jahre nach der letzten "
-            "Bearbeitung; Disziplinareinträge im Medizinalberuferegister 5 Jahre nach "
-            "Aufhebung bzw. Anordnung (befristete Berufsausübungsverbote werden nach "
-            "10 Jahren als gelöscht vermerkt).",
+            "Bearbeitung; Einträge zu Einschränkungen, Verwarnungen, Verweisen und Bussen "
+            "im Medizinalberuferegister 5 Jahre nach Aufhebung bzw. Anordnung "
+            "(befristete Berufsausübungsverbote werden zehn "
+            "Jahre nach ihrer Aufhebung als gelöscht vermerkt).",
     "refs": [("810.102", "§ 36", "aufbewahrung"), ("514.54", "Art. 21", "aufbewahrung"),
              ("514.541", "Art. 66", "aufbewahrung"), ("837.02", "Art. 125", "aufbewahrung"),
              ("811.11", "Art. 54", "loeschung")]},
-   {"text": "Auch Neben-Daten haben Fristen: Bearbeitungsprotokolle mindestens ein "
-            "Jahr, Datenschutz-Folgenabschätzungen mindestens zwei Jahre nach Ende "
-            "der Bearbeitung.",
+   {"text": "Beim Bund haben auch Neben-Daten Fristen: Bearbeitungsprotokolle mindestens "
+            "ein Jahr, Datenschutz-Folgenabschätzungen mindestens zwei Jahre nach Ende "
+            "der Bearbeitung (DSV Art. 4 Abs. 5, Art. 14; das KDSG und die KDSV setzen "
+            "keine solche Frist).",
     "refs": [("235.11", "Art. 4", "aufbewahrung"), ("235.11", "Art. 14", "aufbewahrung")]},
   ],
  },
@@ -283,9 +322,10 @@ LEITFADEN = [
           "müssen begründet und anfechtbar sein.",
   "punkte": [
    {"text": "Jede Person erhält auf Verlangen in verständlicher Form Auskunft, ob und "
-            "welche Daten über sie bearbeitet werden — grundsätzlich kostenlos und "
-            "schriftlich verlangt, gerichtet an die Stelle, die die Daten bearbeitet. "
-            "Beim Bund gilt eine Frist von 30 Tagen; das kantonale Recht setzt keine "
+            "welche Daten über sie bearbeitet werden — grundsätzlich kostenlos; die "
+            "Auskunft selbst erfolgt in der Regel schriftlich (Bund: Begehren schriftlich, "
+            "DSV Art. 16 Abs. 1). Das Begehren richtet sich an die Stelle, die die Daten "
+            "bearbeitet. Beim Bund gilt eine Frist von 30 Tagen; das kantonale Recht setzt keine "
             "feste Frist. Einschränkungen sind nur in engen gesetzlichen Grenzen "
             "zulässig und müssen begründet werden.",
     "refs": [("174.100", "Art. 18", "betroffenenrechte"), ("235.11", "Art. 18", "betroffenenrechte"),
@@ -298,8 +338,8 @@ LEITFADEN = [
             "darauf verzichtet werden.",
     "refs": [("174.100", "Art. 20", "betroffenenrechte"), ("174.100", "Art. 17a", "betroffenenrechte")]},
    {"text": "Sperren und wehren: Die Bekanntgabe der eigenen Daten an Private kann "
-            "gesperrt werden (Meldung an das verantwortliche Organ). Wer ein "
-            "schutzwürdiges Interesse dartut, kann zudem die Unterlassung "
+            "gesperrt werden (schriftliche Meldung an das verantwortliche Organ, "
+            "KDSV § 2). Wer ein schutzwürdiges Interesse dartut, kann zudem die Unterlassung "
             "widerrechtlicher Bearbeitung und die Vernichtung widerrechtlich "
             "bearbeiteter Daten verlangen.",
     "refs": [("174.100", "Art. 11", "betroffenenrechte"), ("174.101", "§ 2", "betroffenenrechte"),
@@ -319,10 +359,13 @@ LEITFADEN = [
  {
   "id": "sensibel",
   "frage": "Besonders schützenswerte Daten (⛨) — was gilt zusätzlich?",
-  "kurz": "Gesundheit, Religion, politische Ansichten, Sozialhilfe, Straf- und "
-          "Disziplinardaten: hier braucht die Bearbeitung ein formelles Gesetz "
-          "(vom Parlament beschlossen, nicht bloss eine Verordnung), die Unentbehrlichkeit "
-          "für eine gesetzlich umschriebene Aufgabe oder die Zustimmung der Person; "
+  "kurz": "Religiöse, weltanschauliche, politische oder gewerkschaftliche Ansichten und "
+          "Tätigkeiten, Gesundheit, Intimsphäre, ethnische Herkunft, Massnahmen der "
+          "sozialen Hilfe, administrative oder strafrechtliche Verfolgungen und Sanktionen, "
+          "genetische und biometrische Daten (KDSG Art. 2 Abs. 1 lit. d): hier braucht die "
+          "Bearbeitung ein formelles Gesetz (kantonales Gesetz oder referendumsfähiger "
+          "Gemeindeerlass, KDSG Art. 2 Abs. 1 lit. i), die Unentbehrlichkeit für eine in "
+          "einem formellen Gesetz klar umschriebene Aufgabe oder die Zustimmung der Person; "
           "im kantonalen Archiv gilt eine Sperrfrist von 100 Jahren.",
   "punkte": [
    {"text": "Bearbeitung und Profiling nur, wenn ein formelles Gesetz es ausdrücklich "

@@ -12,12 +12,48 @@ Also writes logs/citation_todo.txt — every not-yet-'verified' citation.
 
     python3 scripts/export_json.py
 """
-import json, os, re, sys
-from datetime import datetime
+import json, os, re, sqlite3, sys
+from datetime import datetime, date
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import DB_PATH, EXPORT_PATH, LOGS_DIR, connect
 from fix_quality import is_bad_label
+import labels as LABELS
+
+
+from common import _layer_skipped
+
+
+# «the same datum»: what may be compared across forms (Standard-Divergenzen)
+# and across services (Lebenslagen). Same eCH element, same judged party for
+# person/address data, same named role — conservative: when unsure, apart.
+CONTAINER = {"document", "attachment", "comment"}
+REG_STD = {"eCH-0044", "eCH-0010", "eCH-0011", "eCH-0007", "eCH-0008", "eCH-0046"}
+PARTY = re.compile(r"ehe(gatt|partner|frau|mann)|partner|kind|tochter|sohn|vater|mutter|eltern|"
+                   r"arbeitgeb|vertret|bevollm|verstorb|erblass|eigentüm|vermiet|mieter|pächter|"
+                   r"verpächt|käufer|verkäufer|halter|begleit|zeug|gläubig|schuldn|bürge|"
+                   r"teilhaber|gesellschafter|geschäftsführ|kontaktperson|ansprechperson", re.I)
+
+
+def datum_key(d, u, subs):
+    """(standard, element, party, role, party-words) for a unit, or None when the
+    unit must not be compared: no element, a container element, a naming
+    verdict that says the element is wrong, or an unjudged party on
+    person/address data."""
+    e = u.get("ech") or {}
+    if not e.get("element") or e["element"] in CONTAINER:
+        return None
+    b = u.get("begriff") or {}
+    if b.get("pruefart") == "zuordnung":
+        return None
+    reg_std = e["standard"] in REG_STD
+    if reg_std and d.get("subjekt") in (None, "gemischt"):
+        return None
+    lab = u.get("name") if subs else d["name"]
+    role = ((b.get("rolle") or "").strip().lower()) if b.get("klasse") == "rolle" else ""
+    ctx = d["name"] if subs else lab
+    party = "|".join(sorted({m.group(0).lower() for m in PARTY.finditer(ctx or "")}))
+    return (e["standard"], e["element"], d.get("subjekt") if reg_std else "", role, party)
 
 
 def rows(conn, q, *a):
@@ -73,6 +109,100 @@ def compose_path(f, req_by_id):
     return " › ".join(parts) if parts else label
 
 
+def handlungsbedarf(fm, today):
+    """Open points of one form as [{cat, n, detail}] — cat is a key of
+    labels.TODO_CATS. Mirrors what the dashboard used to compute in the browser,
+    so the board, the service page, the dossier and the CSV agree by construction."""
+    dfs = fm.get("data_fields") or []
+    it = []
+    if not dfs:
+        it.append({"cat": "keine-felder", "n": 1, "detail": "keine Datenfelder modelliert"})
+        return it
+    nE = sum(1 for d in dfs if not d.get("basis_typ") and not d.get("legal_basis"))
+    if nE:
+        it.append({"cat": "ermitteln", "n": nE, "detail": LABELS.pl(nE, "Feld", "Felder") + " ohne recherchierte Grundlage"})
+    nO = [d["name"] for d in dfs if d.get("basis_typ") == "offen"]
+    if nO:
+        it.append({"cat": "offen", "n": len(nO), "detail": " · ".join(nO)})
+    nX = [d["name"] for d in dfs if d.get("basis_typ") == "ohne"]
+    if nX:
+        it.append({"cat": "ohne", "n": len(nX), "detail": " · ".join(nX)})
+    a5 = [d["name"] for d in dfs if d.get("art5_offen")]
+    if a5:
+        it.append({"cat": "sensibel_art5", "n": len(a5), "detail": " · ".join(a5)})
+    if not fm.get("purpose"):
+        it.append({"cat": "zweck", "n": 1, "detail": "Zweck fehlt im Verzeichnis"})
+    if not fm.get("disclosures"):
+        it.append({"cat": "empf", "n": 1, "detail": "keine belegte Bekanntgabe erfasst"})
+    sens = sum(1 for d in dfs if d.get("sensitive"))
+    dsfa_ind = bool(sens >= 3 or (len(dfs) and sens / len(dfs) >= 0.5 and sens >= 1))
+    fm["dsfa_indiziert"] = dsfa_ind        # the ONE triage judgment the surfaces read
+    if dsfa_ind and not fm.get("dsfa_status"):
+        it.append({"cat": "dsfa", "n": 1, "detail": f"{sens} von {len(dfs)} Feldern besonders schützenswert"})
+    eN = sum(1 for d in dfs if not d.get("ech_status"))
+    # an element is only «owed» where the standard has an element catalogue
+    eS = sum(1 for d in dfs if d.get("ech_status") == "standard_only" and (d.get("ech") or {}).get("n_elements"))
+    if eN + eS:
+        it.append({"cat": "ech", "n": eN + eS,
+                   "detail": ", ".join(x for x in (f"{eN} nicht geprüft" if eN else "", f"{eS} Element offen" if eS else "") if x)})
+    bad = {"Aufgehoben", "Abgelöst", "Sistiert"}
+    alt = []
+    for d in dfs:
+        if d.get("ech") and d["ech"].get("status") in bad:
+            alt.append(d["name"])
+        for s_ in d.get("subfields") or []:
+            if isinstance(s_, dict) and s_.get("ech") and s_["ech"].get("status") in bad:
+                alt.append(s_["name"])
+    if alt:
+        it.append({"cat": "echalt", "n": len(alt), "detail": " · ".join(alt)})
+    chk = fm.get("check")
+    if chk and chk.get("status") in LABELS.CHECK and chk["status"] != "aktuell":
+        it.append({"cat": "veraltet", "n": 1, "detail": LABELS.CHECK[chk["status"]] + (" — " + chk["note"] if chk.get("note") else "")})
+    due = fm.get("next_check_due")
+    if not chk:
+        it.append({"cat": "pruefung_faellig", "n": 1, "detail": "Online-Fassung noch nie geprüft"})
+    elif due and due < today:
+        it.append({"cat": "pruefung_faellig", "n": 1, "detail": f"Wiedervorlage überfällig seit {LABELS.fmt_date(due)} (letzte Prüfung {LABELS.fmt_date(chk.get('d')) or '?'})"})
+    # a pair appears on both forms; count it on the lower id only, so the board
+    # total is the number of open DECISIONS, not twice that
+    du = [s_ for s_ in (fm.get("similar") or []) if not s_.get("verdict") and fm["id"] < s_["form_id"]]
+    if du:
+        it.append({"cat": "dup", "n": len(du),
+                   "detail": " · ".join(f"{s_['titel']} ({round(s_['jaccard'] * 100)} % gleiche Felder)" for s_ in du)})
+    sd = fm.get("standard_divergenzen")
+    if sd:
+        ang = [i for i in sd.get("angleichen") or [] if i["art"] != "pflicht_uneinheitlich"]
+        unk = [i for i in sd.get("angleichen") or [] if i["art"] == "pflicht_uneinheitlich"]
+        if ang:
+            it.append({"cat": "divergenz", "n": len(ang),
+                       "detail": " · ".join(f"{i['feld']}{' › ' + i['teilfeld'] if i.get('teilfeld') else ''} "
+                                            f"({LABELS.DIV.get(i['art'], i['art'])}: hier {i['hier']}, sonst {i['andere']})" for i in ang)})
+        bz = sd.get("bezeichnungen") or []
+        bzF = [i for i in bz if i.get("klasse") == "variante" or i.get("pruefart") == "aufteilen"]
+        bzZ = [i for i in bz if i.get("klasse") == "pruefen" and i.get("pruefart") != "aufteilen"]
+        if bzF:
+            it.append({"cat": "begriff", "n": len(bzF),
+                       "detail": " · ".join(f"«{i['hier']}»" + (f" → «{i['vorschlag']}»" if i.get("klasse") == "variante" else " (aufteilen)") for i in bzF)})
+        if bzZ:
+            it.append({"cat": "zuordnung", "n": len(bzZ),
+                       "detail": " · ".join(f"«{i['hier']}» ≠ {i['standard']} {i['element']}" for i in bzZ)})
+        if unk:
+            it.append({"cat": "divergenz_offen", "n": len(unk),
+                       "detail": " · ".join(f"{i['feld']}{' › ' + i['teilfeld'] if i.get('teilfeld') else ''} — {i['andere']}" for i in unk)})
+    o = fm.get("outcome") or {}
+    stt = o.get("rechtsmittel_status")
+    ea_txt = LABELS.OUTCOME.get(o.get("entscheid_art"), o.get("entscheid_art") or "")
+    if stt in ("beurteilt_offen", "nicht_beurteilt"):
+        it.append({"cat": "rechtsmittel", "n": 1,
+                   "detail": ea_txt + (" — " + o["rechtsmittel_verdikt"] if o.get("rechtsmittel_verdikt") else
+                                       (" — noch nicht geprüft" if stt == "nicht_beurteilt" else ""))})
+    elif stt == "default_allgemein":
+        it.append({"cat": "rechtsmittel_default", "n": 1, "detail": ea_txt + " — allgemeine VRG-Regel ohne Prüfvermerk"})
+    elif stt == "entscheidart_offen":
+        it.append({"cat": "entscheid_art", "n": 1, "detail": "Ergebnis des Verfahrens aus dem DVSH-Text nicht belegbar"})
+    return it
+
+
 def _has_esh(conn):
     try:
         conn.execute("SELECT 1 FROM esh_standard LIMIT 1")
@@ -84,8 +214,12 @@ def _has_esh(conn):
 def build(conn):
     services = rows(conn, "SELECT id,slug,name,name_alt,dienststelle,department,"
                           "COALESCE(in_dvsh,0) AS in_dvsh FROM service ORDER BY name")
+    # placeholder rows of the retired auto-draft (last_checked 'zitiert
+    # (unverifiziert)') are no laws; the migration removed them, this keeps
+    # a re-run of the old tool from reintroducing them into the surfaces
     laws = rows(conn, "SELECT id,slug,title,short_title,jurisdiction_level,sr_number,"
-                      "cantonal_ref,last_checked FROM law")
+                      "cantonal_ref,last_checked FROM law "
+                      "WHERE last_checked IS NULL OR last_checked != 'zitiert (unverifiziert)'")
     articles = rows(conn, "SELECT id,law_id,article_no,heading,last_checked FROM article")
     requirements = rows(conn, "SELECT id,data_point_key,data_point,label,data_type,condition,"
                               "is_composite FROM requirement")
@@ -109,8 +243,11 @@ def build(conn):
 
     for l in laws:
         l["articles"] = []
+    articles = [a for a in articles if a["law_id"] in law_by_id]
+    art_by_id = {a["id"]: a for a in articles}
     for a in articles:
         law_by_id[a["law_id"]]["articles"].append(a)
+    rlb = [lb for lb in rlb if lb["article_id"] in art_by_id]
 
     for r in requirements:
         r["legal_basis"] = []
@@ -141,7 +278,7 @@ def build(conn):
         df_lb = {}
         for lb in rows(conn, "SELECT dflb.data_field_id did, a.article_no, a.heading, a.text_excerpt, "
                              "l.id lid, l.title, l.short_title, l.jurisdiction_level, l.sr_number, l.cantonal_ref, "
-                             "dflb.last_checked, dflb.relation FROM data_field_legal_basis dflb "
+                             "a.last_checked, dflb.relation FROM data_field_legal_basis dflb "
                              "JOIN article a ON a.id=dflb.article_id JOIN law l ON l.id=a.law_id"):
             df_lb.setdefault(lb["did"], []).append({
                 "law_id": lb["lid"],
@@ -158,24 +295,25 @@ def build(conn):
             xsd_ver = {}
             try:
                 xsd_ver = {r["code"]: r["xsd_version"] for r in rows(conn, "SELECT code, xsd_version FROM ech_standard")}
-            except Exception:
-                pass
-            for e in rows(conn, "SELECT e.id, e.standard, e.name, e.datatype, s.title, s.url, "
-                                "s.status, s.reifegrad "
+            except Exception as _ex:
+                _layer_skipped('logical data-field catalogue (Datenfeld-Katalog)', _ex)
+            for e in rows(conn, "SELECT e.id, e.standard, e.name, e.datatype, e.context, s.title, s.url, "
+                                "s.status, s.reifegrad, s.n_elements "
                                 "FROM ech_element e JOIN ech_standard s ON s.code=e.standard"):
                 ech[e["id"]] = {"id": e["id"], "standard": e["standard"], "element": e["name"],
-                                "datatype": e["datatype"], "standard_titel": e["title"], "url": e["url"],
+                                "datatype": e["datatype"], "context": e["context"],
+                                "standard_titel": e["title"], "url": e["url"],
                                 "status": e["status"], "reifegrad": e["reifegrad"],
-                                "xsd_version": xsd_ver.get(e["standard"])}
-        except Exception:
-            pass
+                                "n_elements": e["n_elements"], "xsd_version": xsd_ver.get(e["standard"])}
+        except Exception as _ex:
+            _layer_skipped('logical data-field catalogue (Datenfeld-Katalog)', _ex)
         # subfields with their OWN eCH element (Name/Vorname/Geburtsdatum each exact)
         esh_std2 = {}
         try:
             for r in rows(conn, "SELECT code, titel FROM esh_standard"):
                 esh_std2[r["code"]] = r
-        except Exception:
-            pass
+        except Exception as _ex:
+            _layer_skipped('subfields with their OWN eCH element (Name/Vorna', _ex)
         subs_by_field = {}
         try:
             for s in rows(conn, "SELECT sf.*, st.title stitle, st.url surl, st.n_elements snel, "
@@ -192,14 +330,14 @@ def build(conn):
                     sub["esh"] = {"code": s["esh_code"], "element": s.get("esh_element"),
                                   "titel": esh_std2[s["esh_code"]]["titel"]}
                 subs_by_field.setdefault(s["data_field_id"], []).append(sub)
-        except Exception:
-            pass
+        except Exception as _ex:
+            _layer_skipped('subfields with their OWN eCH element (Name/Vorna', _ex)
         esh_std = {}
         try:
             for r in rows(conn, "SELECT code, titel, beschreibung, n_felder FROM esh_standard"):
                 esh_std[r["code"]] = r
-        except Exception:
-            pass
+        except Exception as _ex:
+            _layer_skipped('subfields with their OWN eCH element (Name/Vorna', _ex)
         for d in rows(conn, "SELECT * FROM data_field ORDER BY form_id, ord"):
             d["ech"] = ech.get(d.get("ech_element_id"))
             if d.get("esh_code") and d["esh_code"] in esh_std:
@@ -219,17 +357,22 @@ def build(conn):
             d["required"] = bool(d["required"])
             d["no_basis"] = bool(d.get("no_basis"))
             d["legal_basis"] = df_lb.get(d["id"], [])
+            # a besonders schützenswertes Datum judged «aufgabennotwendig» is NOT
+            # covered by KDSG Art. 4 Abs. 1 lit. b alone: Art. 5 Abs. 1 demands a
+            # formal law that clearly describes the task (lit. a) or express
+            # consent (lit. b) — until that is named, the basis is open
+            d["art5_offen"] = bool(d.get("sensitive")) and d.get("basis_typ") == "aufgabe" and not d["legal_basis"]
             dfs_by_form.setdefault(d["form_id"], []).append(d)
-    except Exception:
-        pass
+    except Exception as _ex:
+        _layer_skipped('subfields with their OWN eCH element (Name/Vorna', _ex)
 
     checks = {}
     try:
         for r in rows(conn, "SELECT form_id, status, quelle, dvsh_neu, note, "
                             "substr(checked_at,1,10) d FROM form_check"):
             checks[r["form_id"]] = r
-    except Exception:
-        pass
+    except Exception as _ex:
+        _layer_skipped('subfields with their OWN eCH element (Name/Vorna', _ex)
 
     # Verzeichnis layer: recipients, retention profile, decisions — per form
     disc_by_form, ret_by_form, dec_by_form = {}, {}, {}
@@ -255,8 +398,8 @@ def build(conn):
                 ret_by_form.setdefault(r["form_id"], []).append(t)
         for r in rows(conn, "SELECT * FROM retention_decision"):
             dec_by_form.setdefault(r.pop("form_id"), []).append(r)
-    except Exception:
-        pass
+    except Exception as _ex:
+        _layer_skipped("a form's specific retention terms = terms of ret", _ex)
 
     # Verfahren layer: enclosures, outcomes, near-duplicates, guided-flow anchor
     beil_by_form, out_by_form, sim_by_form = {}, {}, {}
@@ -288,16 +431,14 @@ def build(conn):
                                 "FROM rechtsmittel_regel rr JOIN article a ON a.id=rr.article_id JOIN law l ON l.id=rr.law_id "
                                 "WHERE rr.scope='sektoral' AND rr.gestrichen=0 ORDER BY rr.law_id, a.id"):
                 cand_by_law.setdefault(r["law_id"], []).append(r)
-            laws_of_form = {}
-            for r in rows(conn, "SELECT DISTINCT d.form_id, a.law_id FROM data_field_legal_basis lb "
-                                "JOIN data_field d ON d.id=lb.data_field_id JOIN article a ON a.id=lb.article_id"):
-                laws_of_form.setdefault(r["form_id"], []).append(r["law_id"])
+            from load_rechtsmittel import cited_laws      # fields + DVSH-named laws
+            laws_of_form = {fid: list(d.keys()) for fid, d in cited_laws(conn).items()}
             lvl_of_law = {l["id"]: l["jurisdiction_level"] for l in laws}
             reviewed = set()
             try:
                 reviewed = {r["form_id"] for r in rows(conn, "SELECT form_id FROM rechtsmittel_verdikt")}
-            except Exception:
-                pass
+            except Exception as _ex:
+                _layer_skipped('the one the databank applied', _ex)
             for fid, o in out_by_form.items():
                 cands = [c for lid in laws_of_form.get(fid, []) for c in cand_by_law.get(lid, [])]
                 if cands:
@@ -305,19 +446,30 @@ def build(conn):
                 # why a form has no remedy: assessed and left open, or not yet
                 # assessed at all - the surfaces must not claim the same reason
                 # for both, nor call a cantonal procedure federal
-                if not o.get("rechtsmittel") and o.get("entscheid_art") not in (None, "kein_entscheid", "unbekannt"):
+                ea = o.get("entscheid_art")
+                if ea == "unbekannt":
+                    # the outcome itself could not be backed from the DVSH text —
+                    # the remedy question is not reached yet (a gap, shown as one)
+                    o["rechtsmittel_status"] = "entscheidart_offen"
+                elif ea in (None, "kein_entscheid"):
+                    pass
+                elif not o.get("rechtsmittel"):
                     o["rechtsmittel_status"] = ("beurteilt_offen"
                                                 if o.get("rechtsmittel_quelle") == "offen" or fid in reviewed
                                                 else "nicht_beurteilt")
                     o["gesetzesebenen"] = sorted({lvl_of_law.get(lid) for lid in laws_of_form.get(fid, [])
                                                   if lvl_of_law.get(lid)})
+                elif o.get("rechtsmittel_quelle") == "allgemein" and fid not in reviewed:
+                    # the VRG fallback applied mechanically, no verdict yet that
+                    # no Fachgesetz goes first — distinguishable from a confirmed one
+                    o["rechtsmittel_status"] = "default_allgemein"
             # the panel's reasoning where a judgment was needed
             try:
                 for r in rows(conn, "SELECT form_id, quelle, begruendung FROM rechtsmittel_verdikt"):
                     if r["form_id"] in out_by_form:
                         out_by_form[r["form_id"]]["rechtsmittel_verdikt"] = f"{r['quelle']}: {r['begruendung']}"
-            except Exception:
-                pass
+            except Exception as _ex:
+                _layer_skipped("the panel's reasoning where a judgment was neede", _ex)
         except Exception:
             pass
         tit = {f["id"]: f["title"] for f in forms}
@@ -328,8 +480,8 @@ def build(conn):
                     {"form_id": other, "titel": tit.get(other, "?"),
                      "jaccard": r["jaccard_names"], "verdict": r["verdict"]})
         flow_forms = {r["form_id"] for r in rows(conn, "SELECT DISTINCT form_id FROM formflow")}
-    except Exception:
-        pass
+    except Exception as _ex:
+        _layer_skipped("the panel's reasoning where a judgment was neede", _ex)
     # which eCH elements the Einwohnerregister already holds (for the burden metric)
     reg_elems = set()
     try:
@@ -344,16 +496,23 @@ def build(conn):
     try:
         for eid, e in ech.items():
             conn_elem_ids[(e["standard"], e["element"])] = eid
-    except Exception:
-        pass
+    except Exception as _ex:
+        _layer_skipped('which eCH elements the Einwohnerregister already', _ex)
 
     # exchange readiness, citizen burden and named digitalization blockers per form
+    linked_dfs = set()
+    try:
+        linked_dfs = {r["data_field_id"] for r in rows(conn, "SELECT data_field_id FROM beilage WHERE data_field_id IS NOT NULL")}
+    except Exception as _ex:
+        _layer_skipped("Beilagen (beilage)", _ex)
     for fm in forms:
-        pts = ok = req = pref = att = 0
+        pts = ok = req = pref = 0
+        # enclosures = every row of the Beilagen list (Formular and DVSH), plus
+        # attachment fields that have no Beilage row; obligatorium is not weighted
+        att = len(beil_by_form.get(fm["id"], [])) + sum(
+            1 for d in dfs_by_form.get(fm["id"], []) if d.get("data_type") == "attachment" and d.get("id") not in linked_dfs)
         for d in dfs_by_form.get(fm["id"], []):
             subs = [s for s in (d.get("subfields") or []) if isinstance(s, dict)]
-            if d.get("data_type") == "attachment":
-                att += 1
             units = subs if subs else [d]
             pts += len(units)
             for u in units:
@@ -426,10 +585,33 @@ def build(conn):
                     v = []
                 elif isinstance(v, str):
                     v = [v]
+                if isinstance(v, list):
+                    # a list may still hold JSON text as items (double-encoded rows)
+                    flat = []
+                    for x in v:
+                        if isinstance(x, str) and x.lstrip().startswith(("[", "{")):
+                            try:
+                                y = json.loads(x)
+                                flat.extend(y if isinstance(y, list) else [y]); continue
+                            except Exception:
+                                pass
+                        flat.append(x)
+                    v = flat
                 d[k] = v
+            # scalar modeller text: «null» is no fee, and a parser glitch that left
+            # markup in the text is cut at the first tag and recorded as a defect
+            for k in ("gebuehren", "bearbeitungsdauer", "fristen"):
+                t = d.get(k)
+                if isinstance(t, str):
+                    if t.strip().lower() in ("null", "none", "leer", ""):
+                        d[k] = None; continue
+                    m = re.search(r"</|<parameter", t)
+                    if m:
+                        d[k] = t[:m.start()].rstrip()
+                        d.setdefault("dvsh_text_glitch", []).append(k)
             dvsh_by_service.setdefault(d["service_id"], []).append(d)
-    except Exception:
-        pass
+    except Exception as _ex:
+        _layer_skipped('so no consumer ever receives bare text where a l', _ex)
     # SHEP: the PUBLISHED citizen view of the same service
     shep_by_service = {}
     try:
@@ -440,12 +622,15 @@ def build(conn):
                 except Exception:
                     sp[k] = []
             shep_by_service[sp["service_id"]] = sp
-    except Exception:
-        pass
+    except Exception as _ex:
+        _layer_skipped('SHEP: the PUBLISHED citizen view of the same ser', _ex)
     for s in services:
         got = dvsh_by_service.get(s["id"])
         if got:
-            s["dvsh"] = got[0]
+            same = [g for g in got if (g.get("title") or "").strip().lower() == (s["name"] or "").strip().lower()]
+            s["dvsh"] = (same or got)[0]
+            if len(got) > 1:
+                s["dvsh_n"] = len(got)      # the dashboard says «eine von N Modellierungen»
         if s["id"] in shep_by_service:
             s["shep"] = shep_by_service[s["id"]]
 
@@ -473,8 +658,8 @@ def build(conn):
                              "LEFT JOIN ech_element e ON e.id=ca.ech_element_id "
                              "ORDER BY ca.n_forms DESC, ca.n_instances DESC")
         dienststellen = rows(conn, "SELECT name, department, dateninhaber, kontakt FROM dienststelle")
-    except Exception:
-        pass
+    except Exception as _ex:
+        _layer_skipped('canonical attribute catalogue + the divergence l', _ex)
 
     # data-governance rules (how data may be stored, treated, communicated);
     # the dashboard groups by scope and matches 'sektoral' rules to a form via law_id
@@ -486,8 +671,8 @@ def build(conn):
                             "FROM data_rule dr JOIN article a ON a.id=dr.article_id "
                             "JOIN law l ON l.id=a.law_id ORDER BY dr.scope, a.law_id, a.id"):
             handhabung.append(r)
-    except Exception:
-        pass
+    except Exception as _ex:
+        _layer_skipped("the dashboard groups by scope and matches 'sekto", _ex)
 
     # official code lists (enumerations from the swept XSDs) for the datatypes
     # of elements that fields actually map to - the dashboard compares a form's
@@ -495,17 +680,89 @@ def build(conn):
     codelists = {}
     try:
         used = set()
-        for r in rows(conn, "SELECT DISTINCT e.standard, e.datatype FROM ech_element e "
+        for r in rows(conn, "SELECT DISTINCT e.standard, e.datatype, e.context, e.name FROM ech_element e "
                             "WHERE e.id IN (SELECT ech_element_id FROM data_field WHERE ech_element_id IS NOT NULL "
                             "UNION SELECT ech_element_id FROM data_subfield WHERE ech_element_id IS NOT NULL)"):
             if r["datatype"]:
                 used.add((r["standard"], r["datatype"]))
+            used.add((r["standard"], f"@{r['context'] or ''}.{r['name']}"))
         for r in rows(conn, "SELECT standard, type_name, value, doc FROM ech_codelist ORDER BY standard, type_name, id"):
             if (r["standard"], r["type_name"]) in used:
                 codelists.setdefault(f"{r['standard']}|{r['type_name']}", []).append(
                     {"value": r["value"], "doc": r["doc"]})
-    except Exception:
-        pass
+    except Exception as _ex:
+        _layer_skipped('value list against them', _ex)
+
+    # ---- Begriffe: one datum, one name --------------------------------------
+    # The naming verdicts (load_begriffe.py) land on each unit, so the field
+    # row, the form's divergence panel and the Begriffe page read one answer.
+    begriffe, begriffe_stats, bez_by_form = [], {}, {}
+    try:
+        from common import norm_label as _bn      # the key of begriff_label, one definition
+        bv = {r["ech_element_id"]: r for r in rows(conn, "SELECT * FROM begriff_vorschlag")}
+        bl = {(r["ech_element_id"], r["label_norm"]): r for r in rows(conn, "SELECT * FROM begriff_label")}
+        # the same element name exists in several XML contexts (several ids);
+        # a verdict judged under one of them also answers the others
+        sib = {}
+        for eid0, e0 in ech.items():
+            sib.setdefault((e0["standard"], e0["element"]), []).append(eid0)
+        use = {}          # element id -> label_norm -> {"n", "forms"}
+        forms_var = set()
+        for fm in forms:
+            items = []
+            for d in fm.get("data_fields") or []:
+                subs = [x for x in (d.get("subfields") or []) if isinstance(x, dict)]
+                for u in (subs or [d]):
+                    e = u.get("ech") or {}
+                    if not e.get("element"):
+                        continue
+                    eid = e.get("id") or conn_elem_ids.get((e["standard"], e["element"]))
+                    lab = u.get("name") if subs else d["name"]
+                    ln = _bn(lab)
+                    if not ((eid, ln) in bl and eid in bv):
+                        alt = next((x for x in sib.get((e["standard"], e["element"]), [])
+                                    if (x, ln) in bl and x in bv), None)
+                        if alt is not None:
+                            eid = alt
+                    uu = use.setdefault(eid, {}).setdefault(ln, {"n": 0, "forms": set()})
+                    uu["n"] += 1; uu["forms"].add(fm["id"])
+                    v, lr = bv.get(eid), bl.get((eid, ln))
+                    if not (v and lr):
+                        continue
+                    u["begriff"] = {"klasse": lr["klasse"], "vorschlag": v["term"], "vorbehalt": bool(v.get("vorbehalt")),
+                                    "rolle": lr["rolle"], "grund": lr.get("pruefart_grund") or lr["grund"],
+                                    "pruefart": lr.get("pruefart")}
+                    if lr["klasse"] == "variante":
+                        forms_var.add(fm["id"])
+                    if lr["klasse"] in ("variante", "pruefen"):
+                        items.append({"feld": d["name"], "teilfeld": u.get("name") if subs else None,
+                                      "standard": e["standard"], "element": e["element"],
+                                      "klasse": lr["klasse"], "hier": lab, "vorschlag": v["term"],
+                                      "pruefart": lr.get("pruefart"),
+                                      "grund": lr.get("pruefart_grund") or lr["grund"]})
+            bez_by_form[fm["id"]] = items
+        for eid, v in bv.items():
+            e = ech.get(eid) or {}
+            labs = []
+            for r in rows(conn, "SELECT * FROM begriff_label WHERE ech_element_id=? ORDER BY klasse, label", eid):
+                uu = use.get(eid, {}).get(r["label_norm"], {"n": 0, "forms": set()})
+                labs.append({"label": r["label"], "klasse": r["klasse"], "rolle": r["rolle"],
+                             "pruefart": r.get("pruefart"), "grund": r.get("pruefart_grund") or r["grund"],
+                             "n": uu["n"], "formulare": sorted(uu["forms"])[:40], "n_formulare": len(uu["forms"])})
+            begriffe.append({"element_id": eid, "standard": e.get("standard"), "element": e.get("element"),
+                             "datentyp": e.get("datatype"), "standard_titel": e.get("standard_titel"),
+                             "vorschlag": v["term"], "begruendung": v.get("pruefung") or v["begruendung"],
+                             "vorbehalt": bool(v.get("vorbehalt")), "herkunft": v.get("herkunft") or "eigen",
+                             "labels": labs})
+        begriffe.sort(key=lambda b: -sum(l["n"] for l in b["labels"] if l["klasse"] == "variante"))
+        # untruncated totals — the per-label form lists above are capped at 40
+        n_single = sum(1 for eid0, labs in use.items() if eid0 not in bv and len(labs) == 1)
+        begriffe_stats = {"n_formulare_angleichen": len(forms_var),
+                          "n_felder_angleichen": sum(u2["n"] for eid0, labs in use.items() for ln0, u2 in labs.items()
+                                                     if (bl.get((eid0, ln0)) or {}).get("klasse") == "variante"),
+                          "n_elemente_eine_bezeichnung": n_single}
+    except Exception as ex:
+        _layer_skipped("Begriffe", ex)
 
     # ---- Standard-Divergenzen je Formular ------------------------------------
     # What keeps THIS form out of one coherent data standard. Two very different
@@ -521,17 +778,20 @@ def build(conn):
         subs = [s for s in (d.get("subfields") or []) if isinstance(s, dict)]
         return subs, (subs if subs else [d])
 
+    # statistics per datum — keyed like the Lebenslagen (datum_key): the address
+    # of the Ehegatte is never the practice the applicant's address deviates from
     el_stat = {}
     for fm in forms:
         for d in fm.get("data_fields") or []:
             subs, units = _parts(d)
             for u in units:
-                e = u.get("ech") or {}
-                if not e.get("element"):
+                key = datum_key(d, u, subs)
+                if key is None:
                     continue
-                st = el_stat.setdefault((e["standard"], e["element"]),
-                                        {"req": 0, "opt": 0, "shape": {}, "forms": set()})
+                st = el_stat.setdefault(key, {"req": 0, "opt": 0, "shape": {}, "forms": set(), "by_form": {}})
                 st["req" if d.get("required") else "opt"] += 1
+                bf = st["by_form"].setdefault(fm["id"], {"req": 0, "opt": 0})
+                bf["req" if d.get("required") else "opt"] += 1
                 st["forms"].add(fm["id"])
                 if not subs:          # shape belongs to the field, not to a part
                     sh = ((d.get("data_type") or "?"), (d.get("format") or ""))
@@ -541,6 +801,8 @@ def build(conn):
         if d.get("legal_basis"):
             b = d["legal_basis"][0]
             return f"{b.get('article_no','')} {b.get('law_short') or ''}".strip()
+        if d.get("art5_offen"):
+            return "aufgabennotwendig — Grundlage nach KDSG Art. 5 Abs. 1 noch nicht benannt"
         return {"aufgabe": "aufgabennotwendig (KDSG Art. 4 Abs. 1 lit. b)",
                 "ohne": "Over-collection", "offen": "Aufgabenbedarf offen"}.get(
                     d.get("basis_typ"), "Rechtsgrundlage zu ermitteln")
@@ -553,16 +815,19 @@ def build(conn):
                 e = u.get("ech") or {}
                 tf = u.get("name") if subs else None
                 if e.get("element"):
-                    key = (e["standard"], e["element"])
-                    st = el_stat.get(key) or {}
-                    # (a1) requiredness: this form against the rest of the corpus
+                    key = datum_key(d, u, subs)
+                    st = (el_stat.get(key) or {}) if key else {}
+                    # (a1) requiredness: this form against the OTHER forms — every
+                    # occurrence on this form is taken out of «the others»
                     r, o = st.get("req", 0), st.get("opt", 0)
-                    if r and o and (r + o) >= 3:
+                    mine = st.get("by_form", {}).get(fm["id"], {"req": 0, "opt": 0})
+                    n_other_forms = len(st.get("forms", ())) - 1
+                    if r and o and (r + o) >= 3 and n_other_forms >= 2:
                         here = bool(d.get("required"))
-                        others_req, others_opt = r - (1 if here else 0), o - (0 if here else 1)
+                        others_req, others_opt = r - mine["req"], o - mine["opt"]
                         n_oth = others_req + others_opt
                         andere = (f"{others_req} Pflicht / {others_opt} optional auf "
-                                  f"{len(st.get('forms', ())) - 1} anderen Formularen")
+                                  f"{n_other_forms} anderen Formularen")
                         maj_req = others_req > others_opt
                         share = max(others_req, others_opt) / n_oth if n_oth else 0
                         if n_oth >= 2 and share >= 2 / 3 and here != maj_req:
@@ -602,10 +867,21 @@ def build(conn):
                                            + f" auf {top[1]} Feldern"),
                                 "basis": _basis_txt(d),
                                 "aktion": ("Auf die gebräuchliche Form bringen — beim Austausch "
-                                           f"gilt ohnehin der XSD-Typ ⟨{e.get('datatype') or '?'}⟩.")})
-                    # (a3) own value list where the standard defines codes
-                    if not subs and e.get("datatype"):
-                        cl = codelists.get(f"{e['standard']}|{e['datatype']}")
+                                           + (f"gilt ohnehin der XSD-Typ ⟨{e['datatype']}⟩." if e.get("datatype")
+                                              else "gilt der Typ des Standards; er ist im Elementkatalog nicht erhoben."))})
+                    # (a3) own value list where the standard defines codes — a named
+                    # type, or the enumeration inline in the element (eCH-0278);
+                    # a restricted context with a single value is no code list
+                    if not subs:
+                        clk = f"{e['standard']}|{e['datatype']}" if e.get("datatype") else None
+                        cl = codelists.get(clk) if clk else None
+                        if not cl:
+                            clk = f"{e['standard']}|@{e.get('context') or ''}.{e['element']}"
+                            cl = codelists.get(clk)
+                        if cl and len(cl) >= 2:
+                            e["codelist_key"] = clk
+                        else:
+                            cl = None
                         vals = [str(v) for v in (d.get("allowed_values") or [])]
                         if cl and vals:
                             codes = {c["value"] for c in cl}
@@ -625,6 +901,15 @@ def build(conn):
                     if e.get("status") in DRAFT_STATUS:
                         k = ("standard_entwurf", e["standard"], e.get("status"))
                         offen.setdefault(k, []).append(tf or d["name"])
+                elif e.get("standard") and e.get("status") in DRAFT_STATUS:
+                    k = ("standard_entwurf", e["standard"], e.get("status"))
+                    offen.setdefault(k, []).append(tf or d["name"])
+                elif e.get("standard") and not e.get("n_elements"):
+                    # the standard has no element catalogue in the databank (no
+                    # XSD, or a process/FHIR standard): a standard-level match is
+                    # the final answer here, not an element still owed
+                    k = ("standard_ohne_elemente", e["standard"], e.get("status"))
+                    offen.setdefault(k, []).append(tf or d["name"])
                 elif e.get("standard"):
                     k = ("element_offen", e["standard"], e.get("status"))
                     offen.setdefault(k, []).append(tf or d["name"])
@@ -638,6 +923,9 @@ def build(conn):
                              "XML-Element fehlt noch.",
             "standard_entwurf": "Nicht in Kraft: der Standard ist ein Entwurf bzw. sistiert — bis "
                                 "eCH ihn verabschiedet, ist keine element-genaue Zuordnung möglich.",
+            "standard_ohne_elemente": "Der Standard führt in der Databank keinen XML-Elementkatalog "
+                                      "(keine eigene XSD bzw. Prozess-/FHIR-Standard) — die Zuordnung "
+                                      "bleibt auf Standard-Ebene; ein Element ist hier nicht zu bestimmen.",
             "kein_standard": "Kein eCH-Standard deckt dieses Datum ab — hier braucht es den "
                              "kantonalen Entwurf eSH (oder einen neuen, wo auch eSH fehlt).",
             "ungeprueft": "Noch nicht gegen den eCH-Katalog geprüft.",
@@ -649,87 +937,17 @@ def build(conn):
                           "aktion": AKT[art] + (" Entwurf vorhanden: " + std if art == "kein_standard" and std
                                                 else (" Kein eSH-Entwurf vorhanden." if art == "kein_standard" else ""))})
         ang = [i for i in items if not i.get("sammel")]
+        bez = bez_by_form.get(fm["id"], [])
         fm["standard_divergenzen"] = {
             "angleichen": ang,
             "fehlend": [i for i in items if i.get("sammel")],
-            "n_angleichen": len(ang),
+            # n_angleichen counts only what THIS form should align; a split
+            # corpus (pflicht_uneinheitlich) is a cantonal decision, counted apart
+            "n_angleichen": sum(1 for i in ang if i["art"] != "pflicht_uneinheitlich"),
+            "n_pflicht_ungeklaert": sum(1 for i in ang if i["art"] == "pflicht_uneinheitlich"),
             "n_fehlend": sum(i["n"] for i in items if i.get("sammel")),
+            "bezeichnungen": bez, "n_bezeichnungen": len(bez),
         } if (fm.get("data_fields") or []) else None
-
-    # ---- Begriffe: one datum, one name --------------------------------------
-    # The naming verdicts (load_begriffe.py) land on each unit, so the field
-    # row, the form's divergence panel and the Begriffe page read one answer.
-    begriffe, begriffe_stats = [], {}
-    try:
-        def _bn(x):
-            return re.sub(r"\s+", " ", re.sub(r"[:*]+\s*$", "", (x or "").strip())).lower()
-        bv = {r["ech_element_id"]: r for r in rows(conn, "SELECT * FROM begriff_vorschlag")}
-        bl = {(r["ech_element_id"], r["label_norm"]): r for r in rows(conn, "SELECT * FROM begriff_label")}
-        # the same element name exists in several XML contexts (several ids);
-        # a verdict judged under one of them also answers the others
-        sib = {}
-        for eid0, e0 in ech.items():
-            sib.setdefault((e0["standard"], e0["element"]), []).append(eid0)
-        use = {}          # element id -> label_norm -> {"n", "forms"}
-        forms_var = set()
-        for fm in forms:
-            sd = fm.get("standard_divergenzen")
-            items = []
-            for d in fm.get("data_fields") or []:
-                subs = [x for x in (d.get("subfields") or []) if isinstance(x, dict)]
-                for u in (subs or [d]):
-                    e = u.get("ech") or {}
-                    if not e.get("element"):
-                        continue
-                    eid = e.get("id") or conn_elem_ids.get((e["standard"], e["element"]))
-                    lab = u.get("name") if subs else d["name"]
-                    ln = _bn(lab)
-                    if not ((eid, ln) in bl and eid in bv):
-                        alt = next((x for x in sib.get((e["standard"], e["element"]), [])
-                                    if (x, ln) in bl and x in bv), None)
-                        if alt is not None:
-                            eid = alt
-                    uu = use.setdefault(eid, {}).setdefault(ln, {"n": 0, "forms": set()})
-                    uu["n"] += 1; uu["forms"].add(fm["id"])
-                    v, lr = bv.get(eid), bl.get((eid, ln))
-                    if not (v and lr):
-                        continue
-                    u["begriff"] = {"klasse": lr["klasse"], "vorschlag": v["term"], "vorbehalt": bool(v.get("vorbehalt")),
-                                    "rolle": lr["rolle"], "grund": lr.get("pruefart_grund") or lr["grund"],
-                                    "pruefart": lr.get("pruefart")}
-                    if lr["klasse"] == "variante":
-                        forms_var.add(fm["id"])
-                    if lr["klasse"] in ("variante", "pruefen"):
-                        items.append({"feld": d["name"], "teilfeld": u.get("name") if subs else None,
-                                      "standard": e["standard"], "element": e["element"],
-                                      "klasse": lr["klasse"], "hier": lab, "vorschlag": v["term"],
-                                      "pruefart": lr.get("pruefart"),
-                                      "grund": lr.get("pruefart_grund") or lr["grund"]})
-            if sd is not None:
-                sd["bezeichnungen"] = items
-                sd["n_bezeichnungen"] = len(items)
-        for eid, v in bv.items():
-            e = ech.get(eid) or {}
-            labs = []
-            for r in rows(conn, "SELECT * FROM begriff_label WHERE ech_element_id=? ORDER BY klasse, label", eid):
-                uu = use.get(eid, {}).get(r["label_norm"], {"n": 0, "forms": set()})
-                labs.append({"label": r["label"], "klasse": r["klasse"], "rolle": r["rolle"],
-                             "pruefart": r.get("pruefart"), "grund": r.get("pruefart_grund") or r["grund"],
-                             "n": uu["n"], "formulare": sorted(uu["forms"])[:40], "n_formulare": len(uu["forms"])})
-            begriffe.append({"element_id": eid, "standard": e.get("standard"), "element": e.get("element"),
-                             "datentyp": e.get("datatype"), "standard_titel": e.get("standard_titel"),
-                             "vorschlag": v["term"], "begruendung": v.get("pruefung") or v["begruendung"],
-                             "vorbehalt": bool(v.get("vorbehalt")), "herkunft": v.get("herkunft") or "eigen",
-                             "labels": labs})
-        begriffe.sort(key=lambda b: -sum(l["n"] for l in b["labels"] if l["klasse"] == "variante"))
-        # untruncated totals — the per-label form lists above are capped at 40
-        n_single = sum(1 for eid0, labs in use.items() if eid0 not in bv and len(labs) == 1)
-        begriffe_stats = {"n_formulare_angleichen": len(forms_var),
-                          "n_felder_angleichen": sum(u2["n"] for eid0, labs in use.items() for ln0, u2 in labs.items()
-                                                     if (bl.get((eid0, ln0)) or {}).get("klasse") == "variante"),
-                          "n_elemente_eine_bezeichnung": n_single}
-    except Exception as ex:
-        print("  Begriffe übersprungen:", ex)
 
     # ---- Lebenslagen: eCH-0049 Themengruppen, with live statistics -----------
     # What a person (or business) meets in one situation: which services, which
@@ -764,12 +982,8 @@ def build(conn):
         #  * a role named in the label («… des Ehegatten») or in the composite
         #    around it keeps data of different people apart — conservative:
         #    when unsure the units are counted apart, never together
-        CONTAINER = {"document", "attachment", "comment"}
-        REG_STD = {"eCH-0044", "eCH-0010", "eCH-0011", "eCH-0007", "eCH-0008", "eCH-0046"}
-        PARTY = re.compile(r"ehe(gatt|partner|frau|mann)|partner|kind|tochter|sohn|vater|mutter|eltern|"
-                           r"arbeitgeb|vertret|bevollm|verstorb|erblass|eigentüm|vermiet|mieter|pächter|"
-                           r"verpächt|käufer|verkäufer|halter|begleit|zeug|gläubig|schuldn|bürge|"
-                           r"teilhaber|gesellschafter|geschäftsführ|kontaktperson|ansprechperson", re.I)
+        # CONTAINER / REG_STD / PARTY and datum_key() are module-level: the same
+        # definition decides «same datum» here and in the Standard-Divergenzen
         for t in rows(conn, "SELECT id, katalog, bereich, gruppe, ord FROM themenkatalog ORDER BY katalog, ord"):
             sids = [sid for sid, L in th_by_svc.items() if any(x["id"] == t["id"] for x in L)]
             g = {"id": t["id"], "katalog": t["katalog"], "bereich": t["bereich"], "gruppe": t["gruppe"],
@@ -826,9 +1040,10 @@ def build(conn):
                                 lab = u.get("name") if subs else d["name"]
                                 role_txt = (b.get("rolle") or "").strip() if b.get("klasse") == "rolle" else ""
                                 role = role_txt.lower()
-                                ctx = d["name"] if subs else lab
-                                party = "|".join(sorted({m.group(0).lower() for m in PARTY.finditer(ctx or "")}))
-                                k = (e["standard"], e["element"], d.get("subjekt") if reg_std else "", role, party)
+                                k = datum_key(d, u, subs)
+                                if k is None:
+                                    continue
+                                party = k[4]
                                 el_svcs.setdefault(k, set()).add(sid)
                                 el_label.setdefault(k, (b.get("vorschlag") or lab)
                                                     + (f" ({role_txt})" if role_txt else "")
@@ -856,7 +1071,7 @@ def build(conn):
                 })
             themenkatalog.append(g)
     except Exception as ex:
-        print("  Lebenslagen übersprungen:", ex)
+        _layer_skipped("Lebenslagen", ex)
 
     # Bürgersicht: what the Datentresor holds about three synthetic people, seen
     # from THEIR side (Auskunft, Bekanntgaben, Einwilligungen, Löschdaten). Only
@@ -925,6 +1140,66 @@ def build(conn):
         except Exception as e:
             buergersicht["fehler"] = str(e)
 
+    # ---- Handlungsbedarf per form: ONE computation for the board, the service
+    # page, the dossiers and the CSV. Wording lives in scripts/labels.py.
+    today = date.today().isoformat()
+    for fm in forms:
+        fm["handlungsbedarf"] = handlungsbedarf(fm, today)
+
+    # ---- Datenstand: when was what last read (never only the build time) -------
+    datenstand = {"build": None}
+    try:
+        datenstand["shep_harvest"] = (rows(conn, "SELECT MAX(harvested_at) m FROM shep_service")[0]["m"] or "")[:10] or None
+        datenstand["dvsh_stand"] = (rows(conn, "SELECT MAX(dvsh_updated_at) m FROM dvsh_service")[0]["m"] or "")[:10] or None
+        oc = rows(conn, "SELECT MAX(substr(checked_at,1,10)) d, COUNT(*) n, "
+                        "SUM(next_check_due < date('now')) overdue, "
+                        "SUM(substr(checked_at,1,10) = (SELECT MAX(substr(checked_at,1,10)) FROM form_check)) recent FROM form_check")[0]
+        # the date most rows carry = the last FULL sweep; later dates are partial re-checks
+        full = rows(conn, "SELECT substr(checked_at,1,10) d, COUNT(*) n FROM form_check "
+                          "GROUP BY 1 ORDER BY n DESC LIMIT 1")
+        datenstand["online_check"] = {"date": oc["d"], "full_date": full[0]["d"] if full else None,
+                                      "n_checked": oc["n"], "n_recent": oc["recent"] or 0,
+                                      "n_forms": len(forms), "n_overdue": oc["overdue"] or 0,
+                                      "n_never": len(forms) - (oc["n"] or 0)}
+        sw = rows(conn, "SELECT MAX(xsd_swept_at) m, COUNT(xsd_swept_at) n, COUNT(xsd_file) n_xsd FROM ech_standard")[0]
+        datenstand["xsd_sweep"] = {"date": sw["m"], "n": sw["n"], "n_xsd": sw["n_xsd"]}
+    except Exception as ex:
+        _layer_skipped("Datenstand", ex)
+
+    # ---- verification levels of the curated citations (for the header chip) -------
+    zitate = {"verifiziert": 0, "quelle_pdf": 0, "unverifiziert": 0, "total": 0}
+    for fm in forms:
+        for d in fm.get("data_fields") or []:
+            for b in d.get("legal_basis") or []:
+                lc = b.get("last_checked") or ""
+                zitate["total"] += 1
+                if lc == "verified":
+                    zitate["verifiziert"] += 1
+                elif lc.startswith("Gesetze-PDF"):
+                    zitate["quelle_pdf"] += 1
+                else:
+                    zitate["unverifiziert"] += 1
+
+    # ---- shared sentences built from verified rules (never typed twice) -------------
+    texte = {}
+    try:
+        refs = []
+        for cref, art in (("SHR 174.100", "Art. 4"), ("SHR 172.301", "§ 6"), ("SHR 172.301", "§ 5"), ("SHR 172.301", "§ 7")):
+            r = rows(conn, "SELECT dr.aspect FROM data_rule dr JOIN article a ON a.id=dr.article_id "
+                           "JOIN law l ON l.id=a.law_id WHERE l.cantonal_ref=? AND a.article_no=? "
+                           "AND dr.quote_verified=1 AND dr.aspect IN ('aufbewahrung','archivierung') LIMIT 1", cref, art)
+            if r:
+                refs.append([cref.replace("SHR ", ""), art, r[0]["aspect"]])
+        texte["aufbewahrung_standard"] = {
+            "text": ("Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, "
+                     "als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der "
+                     "Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von "
+                     "in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv "
+                     "anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7)."),
+            "refs": refs}
+    except Exception as ex:
+        _layer_skipped("Texte", ex)
+
     # citation TODO -> log file (not inlined; can be thousands of rows)
     todo = []
     for l in laws:
@@ -933,11 +1208,15 @@ def build(conn):
                 todo.append((l["jurisdiction_level"], l["title"], l["sr_number"] or l["cantonal_ref"],
                              a["article_no"], a["heading"], a["last_checked"]))
 
+    datenstand["build"] = datetime.now().isoformat(timespec="seconds")[:10]
     data = {
         "generated_at": datetime.now().isoformat(timespec="seconds"),
         "verification_note": "Zitate 'UNVERIFIED' sind nicht amtlich geprüft. "
-                             "'Quelle' = aus offizieller SHR-PDF gelesen. Auto-Entwürfe: "
-                             "Mappings 'proposed', juristisch zu prüfen.",
+                             "'Quelle' = aus offizieller SHR-PDF gelesen; 'verified' = zusätzlich live "
+                             "gegen Fedlex/Rechtsbuch geprüft. Die Feld-Schicht (data_fields) ist die "
+                             "geprüfte; der Auto-Entwurf von 2026-06 (form_field/field_mapping) ist "
+                             "stillgelegt und wird nicht mehr exportiert.",
+        "datenstand": datenstand, "zitate": zitate, "labels": LABELS.as_export(), "texte": texte,
         "services": services, "laws": laws, "requirements": requirements,
         "forms": forms, "service_requirements": svc_req,
         "esh_katalog": esh_katalog, "datenhandhabung": handhabung,

@@ -13,16 +13,11 @@ standard to another. Idempotent. Staging -> validate -> swap.
 
     python3 scripts/load_ech_gaps.py <gap_out-dir> [--dry-run]
 """
-import glob, json, os, re, shutil, sys, unicodedata
+import glob, json, os, re, shutil, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from common import DB_PATH, connect
+from common import DB_PATH, connect, norm_ascii as norm
 from validate_db import validate
 
-
-def norm(s):
-    s = unicodedata.normalize("NFD", (s or "").lower())
-    s = "".join(ch for ch in s if not unicodedata.combining(ch))
-    return re.sub(r"[^a-z0-9]+", " ", s).strip()
 
 
 def std_code(s):

@@ -15,18 +15,13 @@ Idempotent: catalogue and assignments are fully reloaded. Staging -> validate ->
 
     python3 scripts/load_esh.py <katalog.json> <assign-dir> [--dry-run]
 """
-import collections, glob, json, os, re, shutil, sys, unicodedata
+import collections, glob, json, os, re, shutil, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from common import DB_PATH, connect
+from common import DB_PATH, connect, norm_ascii as norm
 from validate_db import validate
 
 EL = re.compile(r"^[a-z][a-zA-Z0-9]{2,50}$")
 
-
-def norm(s):
-    s = unicodedata.normalize("NFD", (s or "").lower())
-    s = "".join(ch for ch in s if not unicodedata.combining(ch))
-    return re.sub(r"[^a-z0-9]+", " ", s).strip()
 
 
 def main():
