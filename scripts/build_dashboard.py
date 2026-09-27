@@ -933,6 +933,9 @@ function readHash(){
   state.sub=p[2]||'felder';
   // legacy links (#tree/<id>, #info/<id>) open the Gesetze segment of the service page
   if(state.tab==='tree'||state.tab==='info'){state.tab='fields';state.sub='gesetze';}
+  // short form of a Dienststelle link (#dienststellen/<slug>) opens the same page
+  // as the canonical #dienststellen/all/<slug>; writeHash then normalises it
+  if(state.tab==='dienststellen'&&p[1]&&p[1]!=='all'&&!p[2]) state.sub=p[1];
   // a service id is meaningful on the service page only
   if(state.tab!=='fields') state.service='all';
 }

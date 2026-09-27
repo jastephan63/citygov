@@ -1,5 +1,5 @@
 {
- "hinweis": "Kennzahlen je Stand der Databank, ein Eintrag je Tag (der letzte Build des Tages gilt). Einträge mit «quelle: git …» sind aus der Git-Historie von citygov.db rekonstruiert (scripts/backfill_verlauf.py); None = in jenem Stand noch nicht erhoben. Geschrieben von scripts/export_json.py bei jedem Build.",
+ "hinweis": "Kennzahlen je Stand der Databank, ein Eintrag je Tag (der letzte Build des Tages gilt). Einträge mit «quelle: git …» sind aus der Git-Historie von citygov.db rekonstruiert (scripts/backfill_verlauf.py); null = in jenem Stand noch nicht erhoben. Geschrieben von scripts/export_json.py bei jedem Build.",
  "eintraege": [
   {
    "datum": "2026-08-25",

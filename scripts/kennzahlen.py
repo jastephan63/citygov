@@ -79,7 +79,7 @@ def load():
 def save(doc):
     doc["hinweis"] = ("Kennzahlen je Stand der Databank, ein Eintrag je Tag (der letzte Build des Tages gilt). "
                       "Einträge mit «quelle: git …» sind aus der Git-Historie von citygov.db rekonstruiert "
-                      "(scripts/backfill_verlauf.py); None = in jenem Stand noch nicht erhoben. "
+                      "(scripts/backfill_verlauf.py); null = in jenem Stand noch nicht erhoben. "
                       "Geschrieben von scripts/export_json.py bei jedem Build.")
     doc["eintraege"].sort(key=lambda e: e["datum"])
     json.dump(doc, open(VERLAUF_PATH, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
