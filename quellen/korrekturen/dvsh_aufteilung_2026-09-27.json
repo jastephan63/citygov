@@ -1,0 +1,1398 @@
+{
+ "hinweis": "Aufteilung der Services, die mehrere DVSH-Services bündelten (2026-09-27). DVSH ist der Katalog der Services; ein DVSH-Service mit eigener Datei bekommt eine eigene Zeile. Wo mehrere DVSH-Services dieselbe Datei nennen, bleibt die Zeile gebündelt und trägt einen Namen aus DVSH-Wortlaut. Beweis: sha256, die das DVSH-Modell je Datei führt, gegen form.file_hash (Feld «formulare» = byte-gleiche Formulare der Databank). Angewandt durch scripts/migrate_2026_09_27.py. Themengruppen neuer Zeilen sind von der bisherigen Zeile übernommen (nicht zweitgeprüft).",
+ "aufteilen": [
+  {
+   "service_id": 35,
+   "behaelt": {
+    "dvsh_id": 43,
+    "titel": "Gesuch um Erteilung eines Ausweis-Duplikates",
+    "slug": "gesuch-ausweis-duplikate",
+    "kanal": "formular_pdf",
+    "dienststelle_dvsh": "Strassenverkehrs- und Schifffahrtsamt",
+    "dateien": [
+     {
+      "rolle": "endpunkt",
+      "datei": "gesuch-ausweisduplikat-25-4-p.pdf",
+      "sha256": "38b24740feccdf85",
+      "formulare": [
+       35
+      ]
+     },
+     {
+      "rolle": "abgabe",
+      "typ": "formular_pdf",
+      "datei": "gesuch-ausweisduplikat-25-4-p.pdf",
+      "url": null,
+      "sha256": "38b24740feccdf85",
+      "formulare": [
+       35
+      ]
+     }
+    ],
+    "formulare": [
+     35
+    ]
+   },
+   "name": "Gesuch um Erteilung eines Ausweis-Duplikates",
+   "grund_thema": "Personen beantragen bei Verlust, Diebstahl oder aus anderen Gründen ein Duplikat ihres Fahrzeug-, Führer-, Schiffs- oder Lernfahrausweises.",
+   "neu": [
+    {
+     "dvsh_id": 46,
+     "titel": "Gesuch-Erteilung eines internationalen Führerausweises",
+     "slug": "gesuch-erteilung-eines-internationalen-fuhrerausweises",
+     "kanal": "eformular",
+     "dienststelle_dvsh": "Strassenverkehrs- und Schifffahrtsamt",
+     "dateien": [
+      {
+       "rolle": "abgabe",
+       "typ": "eformular",
+       "datei": "Bestellung internationaler Führerausweis",
+       "url": "https://eforms.sh.ch/strassenverkehrsamt/start.do?wfjs_enabled=true&vid=8af5c5b411a79732&wfjs_orig_req=%2Fstart.do%3Fgeneralid%3DBestellung_int_ausweis&txid=df1274f4eb9e72f412ea99afc6183210acc3715e#",
+       "sha256": null,
+       "formulare": null
+      }
+     ],
+     "formulare": [],
+     "thema": [
+      48
+     ],
+     "grund_thema": "Personen beantragen für Auslandfahrten einen internationalen Führerausweis."
+    }
+   ],
+   "begruendung": "Das einzige Formular (Ausweis-Duplikat) ist byte-gleich mit der Datei von DVSH 43; DVSH 46 ist ein eFormular ohne Felder und ohne Datei. Der bisherige Name gehörte zum Service ohne Formular; der bisherige Lebenslagen-Grund beschreibt DVSH 46 und geht dorthin."
+  },
+  {
+   "service_id": 171,
+   "behaelt": {
+    "dvsh_id": 207,
+    "titel": "Förderbeiträge von Kanton und Stadt Schaffhausen für Kulturschaffende",
+    "slug": "forderbeitrage-von-kanton-und-stadt-schaffhausen-fur-kulturschaffende",
+    "kanal": "formular_pdf",
+    "dienststelle_dvsh": "Fachstelle Kultur",
+    "dateien": [
+     {
+      "rolle": "endpunkt",
+      "datei": "Formular Förderbeiträge 2026.docx",
+      "sha256": "463653252a4a4880",
+      "formulare": [
+       171
+      ]
+     },
+     {
+      "rolle": "info",
+      "datei": "Reglement_Fo_rderbeitra_ge_2026.pdf",
+      "sha256": "20af9868dad5e613",
+      "formulare": null
+     },
+     {
+      "rolle": "abgabe",
+      "typ": "formular_pdf",
+      "datei": "Formular Förderbeiträge 2026.docx",
+      "url": null,
+      "sha256": "463653252a4a4880",
+      "formulare": [
+       171
+      ]
+     }
+    ],
+    "formulare": [
+     171
+    ]
+   },
+   "name": "Förderbeiträge von Kanton und Stadt Schaffhausen für Kulturschaffende",
+   "grund_thema": "Professionelle Kulturschaffende bewerben sich um Förderbeiträge von Kanton und Stadt.",
+   "neu": [
+    {
+     "dvsh_id": 206,
+     "titel": "Atelierstipendien des Kantons Schaffhausen in Berlin",
+     "slug": "atelierstipendien-fur-kulturschaffende-der-region-schaffhausen-im-schaffhauser-kunstleratelier-in-berlin",
+     "kanal": "eformular",
+     "dienststelle_dvsh": "Fachstelle Kultur",
+     "dateien": [
+      {
+       "rolle": "info",
+       "datei": "Reglement Atelier 2027.pdf",
+       "sha256": "230c6a791c03130c",
+       "formulare": null
+      },
+      {
+       "rolle": "endpunkt",
+       "datei": "Formular Atelier 2027.docx",
+       "sha256": "a074c54cb90ad739",
+       "formulare": null
+      },
+      {
+       "rolle": "abgabe",
+       "typ": "eformular",
+       "datei": "Antrag Atelierstipendium 2028.docx",
+       "url": null,
+       "sha256": null,
+       "formulare": null
+      }
+     ],
+     "formulare": [],
+     "thema": [
+      53
+     ],
+     "grund_thema": "Professionelle Kulturschaffende bewerben sich um ein Atelierstipendium im Schaffhauser Künstleratelier in Berlin."
+    }
+   ],
+   "begruendung": "Das einzige Formular «Formular Förderbeiträge 2026.docx» ist byte-gleich mit der Datei von DVSH 207; DVSH 206 nennt «Formular Atelier 2027.docx» (nicht in der Databank) und eine eigene eFormular-Definition."
+  },
+  {
+   "service_id": 191,
+   "behaelt": {
+    "dvsh_id": 358,
+    "titel": "Meldeverfahren Wärmepumpen",
+    "slug": "meldeverfahren-warmepumpen",
+    "kanal": "formular_pdf",
+    "dienststelle_dvsh": "Energiefachstelle",
+    "dateien": [
+     {
+      "rolle": "endpunkt",
+      "datei": "Meldeformular Wärmepumpen Schaffhausen 2024.pdf",
+      "sha256": "e32acd052f88a5cf",
+      "formulare": null
+     },
+     {
+      "rolle": "abgabe",
+      "typ": "formular_pdf",
+      "datei": "Meldeformular Wärmepumpen Schaffhausen 2024.pdf",
+      "url": null,
+      "sha256": "e32acd052f88a5cf",
+      "formulare": null
+     }
+    ],
+    "formulare": [
+     191,
+     14
+    ]
+   },
+   "name": "Meldeverfahren Wärmepumpen",
+   "dienststelle": "Energiefachstelle",
+   "department": "Baudepartement",
+   "neu": [
+    {
+     "dvsh_id": 209,
+     "titel": "Online Heiz- und Tankgesuch",
+     "slug": "online-heiz-und-tankgesuch",
+     "kanal": "eformular",
+     "dienststelle_dvsh": "Kantonale Feuerpolizei",
+     "dateien": [
+      {
+       "rolle": "info",
+       "datei": "Meldeformular Wärmepumpen Schaffhausen 2024.pdf",
+       "sha256": "776969f4be202174",
+       "formulare": [
+        191
+       ]
+      },
+      {
+       "rolle": "abgabe",
+       "typ": "eformular",
+       "datei": "Heizgesuch",
+       "url": "https://eforms.sh.ch/formserver_FP/start.do?wfjs_enabled=true&vid=349b9019528b28d6&wfjs_orig_req=%2Fstart.do%3Fgeneralid%3DHeizgesuch&txid=98e06a1065c0ab345298bc1496ca63c21c9a9b55#",
+       "sha256": null,
+       "formulare": null
+      }
+     ],
+     "formulare": [],
+     "thema": [
+      39,
+      43,
+      125
+     ],
+     "dienststelle": "Kantonale Feuerpolizei",
+     "department": "Finanzdepartement",
+     "grund_thema": "Hauseigentümer und Installationsfirmen beantragen die Erstellung oder Auswechslung einer Heiz- oder Tankanlage bei der Feuerpolizei."
+    }
+   ],
+   "begruendung": "DVSH 209 ist das eigene eFormular «Heizgesuch» der Feuerpolizei und führt das Meldeformular Wärmepumpen nur als Info-Dokument; sein Text verweist die meisten Wärmepumpen ins Meldeverfahren. Meldeformular (191) und EN-Formular (14, Unterlage «Energienachweis Haustechnik (EN-Formulare)») gehören zu DVSH 358. DVSH 358 nennt als Abgabe eine gleichnamige Datei mit anderen Bytes (unsere Kopie gleicht dem Info-Dokument von DVSH 209) — Aktualität prüfen. Dienststelle nach DVSH 358: Energiefachstelle (Entscheid der Eigentümerin 2026-09-27)."
+  },
+  {
+   "service_id": 257,
+   "behaelt": {
+    "dvsh_id": 277,
+    "titel": "Hilfsblatt für die Steuererklärung: Rebbau für Kleinbetriebe bis max. 1ha - 18R",
+    "slug": "hilfsblatt-rebbau-fur-kleinbetriebe-bis-max-1ha-18r",
+    "kanal": "eformular",
+    "dienststelle_dvsh": "Steuerverwaltung",
+    "dateien": [
+     {
+      "rolle": "abgabe",
+      "typ": "eformular",
+      "datei": "Hilfsblatt Rebbau zur Steuererklärung für Kleinbetriebe bis max. 1 ha",
+      "url": "https://sh.ch/CMS/get/file/1170f962-0f36-48e5-9873-bb9e3e120354",
+      "sha256": null,
+      "formulare": null
+     }
+    ],
+    "formulare": [
+     257
+    ]
+   },
+   "name": null,
+   "neu": [
+    {
+     "dvsh_id": 278,
+     "titel": "Steuererklärung Hilfsblatt: Rebbau mit Weinverkauf für Kleinbetriebe ohne kaufmännische Buchhaltung, bis maximal 1ha Rebfläche (18W)",
+     "slug": "hilfsblatt-rebbau-mit-weinverkauf-zur-steuererklarung-fur-kleinbetriebe-ohne-kaufmannische-buchhaltung-bis-maximal-1ha-rebflache",
+     "kanal": "eformular",
+     "dienststelle_dvsh": "Steuerverwaltung",
+     "dateien": [
+      {
+       "rolle": "abgabe",
+       "typ": "eformular",
+       "datei": "Hilfsblatt Rebbau mit Weinverkauf zur Steuererklärung für Kleinbetriebe ohne kaufmännische Buchhaltung, bis maximal 1ha Rebfläche (18W)",
+       "url": "https://sh.ch/CMS/get/file/8c1fbf37-ca9f-423b-9920-e55ec6c0c81f",
+       "sha256": null,
+       "formulare": null
+      }
+     ],
+     "formulare": [
+      258
+     ],
+     "thema": [
+      97,
+      94,
+      64
+     ],
+     "grund_thema": "Kleine Rebbaubetriebe mit Weinverkauf ohne kaufmännische Buchhaltung deklarieren ihre Einkünfte mit dem Hilfsblatt 18W zur Steuererklärung."
+    },
+    {
+     "dvsh_id": 276,
+     "titel": "Fragebogen für Land- und Forstwirtschaft",
+     "slug": "fragebogen-fur-land-und-forstwirtschaft",
+     "kanal": "eformular",
+     "dienststelle_dvsh": "Steuerverwaltung",
+     "dateien": [
+      {
+       "rolle": "info",
+       "datei": "Form 18_21_neu.pdf",
+       "sha256": "8facfb85c57fcf3a",
+       "formulare": null
+      },
+      {
+       "rolle": "info",
+       "datei": "Hilfsblatt_Rebbau_18R.pdf",
+       "sha256": "761c3456859f1237",
+       "formulare": [
+        257
+       ]
+      },
+      {
+       "rolle": "abgabe",
+       "typ": "eformular",
+       "datei": "Fragebogen  für Land- und Forstwirtschaft",
+       "url": "https://sh.ch/CMS/get/file/c4f4da60-d304-4022-97f2-368369ea6569",
+       "sha256": null,
+       "formulare": null
+      }
+     ],
+     "formulare": [
+      259
+     ],
+     "thema": [
+      97,
+      94,
+      64
+     ],
+     "grund_thema": "Selbständige Land- und Forstwirte deklarieren Betriebsdaten und Einkommen mit dem Fragebogen zur Steuererklärung."
+    },
+    {
+     "dvsh_id": 275,
+     "titel": "Fragebogen für landwirtschaftliche Kleinbetriebe nach vereinfachten Aufstellungen",
+     "slug": "fragebogen-fur-landwirtschaftliche-kleinbetriebe-nach-vereinfachten-aufstellungen",
+     "kanal": "eformular",
+     "dienststelle_dvsh": "Steuerverwaltung",
+     "dateien": [
+      {
+       "rolle": "info",
+       "datei": "Form 18_22_neu.pdf",
+       "sha256": "0b910334f63b8ce5",
+       "formulare": null
+      },
+      {
+       "rolle": "info",
+       "datei": "Hilfsblatt_Rebbau_18R.pdf",
+       "sha256": "761c3456859f1237",
+       "formulare": [
+        257
+       ]
+      },
+      {
+       "rolle": "abgabe",
+       "typ": "eformular",
+       "datei": "Fragebogen für landwirtschaftliche Kleinbetriebe nach vereinfachten Aufstellungen",
+       "url": "https://sh.ch/CMS/get/file/838d8fe1-ea8f-4d31-9d55-85f95e8c6d94",
+       "sha256": null,
+       "formulare": null
+      }
+     ],
+     "formulare": [
+      260
+     ],
+     "thema": [
+      97,
+      94,
+      64
+     ],
+     "grund_thema": "Landwirtschaftliche Kleinbetriebe deklarieren Betriebsdaten und Einkommen nach vereinfachten Aufstellungen zur Steuererklärung."
+    }
+   ],
+   "begruendung": "Vier DVSH-Services, vier Formulare, je eines pro Service: der Abgabe-Titel im DVSH-Modell ist der gedruckte Formulartitel (18R, 18W, Formular 18, 18.23)."
+  },
+  {
+   "service_id": 293,
+   "behaelt": {
+    "dvsh_id": 353,
+    "titel": "Einreichen von Arbeitsbemühungen",
+    "slug": "einreichen-von-arbeitsbemuhungen",
+    "kanal": "eformular",
+    "dienststelle_dvsh": "Arbeitsamt",
+    "dateien": [
+     {
+      "rolle": "endpunkt",
+      "datei": "716.007_neu.pdf",
+      "sha256": "9b23c26823494de4",
+      "formulare": null
+     },
+     {
+      "rolle": "abgabe",
+      "typ": "eformular",
+      "datei": "716.007_neu.pdf",
+      "url": "https://www.job-room.ch/home/job-seeker",
+      "sha256": null,
+      "formulare": null
+     }
+    ],
+    "formulare": [
+     293
+    ]
+   },
+   "name": "Einreichen von Arbeitsbemühungen",
+   "neu": [
+    {
+     "dvsh_id": 320,
+     "titel": "Anmeldung RAV",
+     "slug": "anmeldung-rav",
+     "kanal": "externer_link",
+     "dienststelle_dvsh": "Regionales Arbeitsvermittlungszentrum RAV",
+     "dateien": [
+      {
+       "rolle": "info",
+       "datei": "SECO_716 201 d_2023_web.pdf",
+       "sha256": "fb963a95f72953b1",
+       "formulare": null
+      },
+      {
+       "rolle": "info",
+       "datei": "716.007.pdf",
+       "sha256": "2d1fa7194186ffb8",
+       "formulare": [
+        293
+       ]
+      },
+      {
+       "rolle": "info",
+       "datei": "Flyer arbeit.swiss.pdf",
+       "sha256": "39a01498f1c441d7",
+       "formulare": null
+      },
+      {
+       "rolle": "info",
+       "datei": "Leitfaden Arbeitslosigkeit.pdf",
+       "sha256": "cfbda32bf50614a8",
+       "formulare": null
+      },
+      {
+       "rolle": "info",
+       "datei": "Leistungen Arbeitssuche Ausland.pdf",
+       "sha256": "02eb8065cdd1d9a7",
+       "formulare": null
+      },
+      {
+       "rolle": "info",
+       "datei": "Rechte Pflichten.pdf",
+       "sha256": "477e02a71079515b",
+       "formulare": null
+      },
+      {
+       "rolle": "abgabe",
+       "typ": "externer_link",
+       "datei": "Job-Room",
+       "url": "https://www.job-room.ch/aav",
+       "sha256": null,
+       "formulare": null
+      }
+     ],
+     "formulare": [
+      113
+     ],
+     "thema": [
+      24
+     ],
+     "dienststelle": "Arbeitsamt",
+     "department": "Volkswirtschaftsdepartement",
+     "grund_thema": "Stellensuchende melden sich beim RAV an, um Unterstützung bei der Stellensuche und Arbeitslosenentschädigung zu erhalten."
+    }
+   ],
+   "begruendung": "Slug, Alias und Lebenslagen-Grund der Zeile gehören zum Formular 716.007 (Arbeitsbemühungen), der Abgabe von DVSH 353 (DVSH 320 führt dieselbe Datei nur als Info). DVSH 320 verlangt «Arztzeugnis, falls Sie arbeitsunfähig sind» = Formular 113. DVSH 353 nennt als Abgabe «716.007_neu.pdf» mit anderen Bytes als unser 716.007.pdf — Aktualität prüfen. Dienststelle Arbeitsamt: das RAV ist im DVSH-Organisationsbaum eine Sektion des Arbeitsamts."
+  },
+  {
+   "service_id": 313,
+   "behaelt": {
+    "dvsh_id": 75,
+    "titel": "Anmeldung Neueintragung AG (Beurkundung hat bereits stattgefunden)",
+    "slug": "anmeldung-neueintragung-ag-keine-beurkundung-der-grundung-durch-das-handelsregister-schaffhausen",
+    "kanal": "formular_pdf",
+    "dienststelle_dvsh": "Handelsregisteramt",
+    "dateien": [
+     {
+      "rolle": "info",
+      "datei": "Verzichtserklaerung_auf_Revisionsstelle_AG.docx",
+      "sha256": "5b1f3c061d6922b5",
+      "formulare": null
+     },
+     {
+      "rolle": "info",
+      "datei": "Domizilhaltererklärung (AG).docx",
+      "sha256": "86312425c70b06af",
+      "formulare": [
+       313
+      ]
+     },
+     {
+      "rolle": "endpunkt",
+      "datei": "Anmeldeformular Neueintragung AG - Stand Juni 2022.pdf",
+      "sha256": "4f4e38894491fcb1",
+      "formulare": null
+     },
+     {
+      "rolle": "info",
+      "datei": "KMU_Erklaerung_Revstelle.docx",
+      "sha256": "c8f725d4f1f1aaaa",
+      "formulare": null
+     },
+     {
+      "rolle": "info",
+      "datei": "Erklärung Domizil.docx",
+      "sha256": "6fc93d72300807be",
+      "formulare": [
+       315
+      ]
+     },
+     {
+      "rolle": "info",
+      "datei": "LexFriedrichErklaerung_SH_13-02_HP.docx",
+      "sha256": "64ca78599f62ad20",
+      "formulare": null
+     },
+     {
+      "rolle": "abgabe",
+      "typ": "formular_pdf",
+      "datei": "Anmeldeformular Neueintragung AG - Stand Juni 2022.pdf",
+      "url": null,
+      "sha256": "4f4e38894491fcb1",
+      "formulare": null
+     }
+    ],
+    "formulare": [
+     312,
+     313,
+     315
+    ]
+   },
+   "name": null,
+   "neu": [
+    {
+     "dvsh_id": 82,
+     "titel": "Gründung einer Aktiengesellschaft: Beurkundung beim Handelsregisteramt",
+     "slug": "grundung-einer-ag-beurkundung-beim-handelsregisteramt",
+     "kanal": "eformular",
+     "dienststelle_dvsh": "Handelsregisteramt",
+     "dateien": [
+      {
+       "rolle": "info",
+       "datei": "Domizilhaltererklärung (AG).docx",
+       "sha256": "86312425c70b06af",
+       "formulare": [
+        313
+       ]
+      },
+      {
+       "rolle": "info",
+       "datei": "Spezialvollmacht_Gruendung_AG_Schaffhausen.docx",
+       "sha256": "b9b2ea378e3d4ef9",
+       "formulare": [
+        320
+       ]
+      },
+      {
+       "rolle": "info",
+       "datei": "KMU_Erklaerung_Revstelle.docx",
+       "sha256": "c8f725d4f1f1aaaa",
+       "formulare": null
+      },
+      {
+       "rolle": "info",
+       "datei": "AG Musterstatuten (kurz).docx",
+       "sha256": "1a6713af1835f6ca",
+       "formulare": null
+      },
+      {
+       "rolle": "info",
+       "datei": "AG Musterstatuten (lang).docx",
+       "sha256": "b4f5a4030c6c221e",
+       "formulare": null
+      },
+      {
+       "rolle": "info",
+       "datei": "LexFriedrichErklaerung_SH_13-02_HP.docx",
+       "sha256": "64ca78599f62ad20",
+       "formulare": null
+      },
+      {
+       "rolle": "info",
+       "datei": "Erklärung Domizil.docx",
+       "sha256": "6fc93d72300807be",
+       "formulare": [
+        315
+       ]
+      },
+      {
+       "rolle": "info",
+       "datei": "Verzichtserklaerung_auf_Revisionsstelle_AG.docx",
+       "sha256": "5b1f3c061d6922b5",
+       "formulare": null
+      },
+      {
+       "rolle": "info",
+       "datei": "AG_Gesuch_um_Gruendung-130320_beschreibbar_K1.pdf",
+       "sha256": "7f31304e0912b7ad",
+       "formulare": [
+        307
+       ]
+      },
+      {
+       "rolle": "abgabe",
+       "typ": "eformular",
+       "datei": "Gründung einer AG: Beurkundung beim Handelsregisteramt",
+       "url": "https://eforms.sh.ch/handelsregisteramt/app/portal?event=view&generalid=HRA_Gr_AG",
+       "sha256": null,
+       "formulare": null
+      }
+     ],
+     "formulare": [
+      307,
+      320
+     ],
+     "thema": [
+      129,
+      82
+     ],
+     "grund_thema": "Gründerinnen und Gründer lassen die Gründung einer AG beim Handelsregisteramt öffentlich beurkunden."
+    }
+   ],
+   "begruendung": "Zwei Verfahren: Neueintragung nach auswärtiger Beurkundung (DVSH 75) und Beurkundung beim Handelsregisteramt (DVSH 82). Gesuch (307) und Spezialvollmacht (320) sind byte-gleich nur in DVSH 82; Domizilhaltererklärung (313) und Erklärung Domizil (315) nennen beide — sie bleiben bei 313, weil ein Formular nur einen Service haben kann."
+  },
+  {
+   "service_id": 370,
+   "behaelt": {
+    "dvsh_id": 121,
+    "titel": "Angelfischer-Patent für Erwachsene bestellen",
+    "slug": "angelfischer-patent-fur-erwachsene-bestellen-1237156",
+    "kanal": "formular_pdf",
+    "dienststelle_dvsh": "Jagd und Fischerei",
+    "dateien": [
+     {
+      "rolle": "endpunkt",
+      "datei": "Bestellung_Angelfischer_Patent_-_NEU_2015_OF.pdf",
+      "sha256": "4e670dc31aa6a5ed",
+      "formulare": [
+       370
+      ]
+     },
+     {
+      "rolle": "info",
+      "datei": "Merkblatt – Ausübung der Fischerei.pdf",
+      "sha256": "66a1e4cfa3d43306",
+      "formulare": null
+     },
+     {
+      "rolle": "info",
+      "datei": "Regeln und Erläuterungen zum Angelfischer-Patent .pdf",
+      "sha256": "3e526163666fa2a7",
+      "formulare": null
+     },
+     {
+      "rolle": "abgabe",
+      "typ": "formular_pdf",
+      "datei": "Bestellung Angelfischer Patent Erwachsene.pdf",
+      "url": null,
+      "sha256": "005e5b8236ae208c",
+      "formulare": null
+     }
+    ],
+    "formulare": [
+     370
+    ]
+   },
+   "name": null,
+   "neu": [
+    {
+     "dvsh_id": 122,
+     "titel": "Angelfischer-Patent für Jugendliche bestellen",
+     "slug": "angelfischer-patent-fur-jugendliche-bestellen-289945",
+     "kanal": "formular_pdf",
+     "dienststelle_dvsh": "Jagd und Fischerei",
+     "dateien": [
+      {
+       "rolle": "endpunkt",
+       "datei": "Bestellung_Angelfischer_Patent_Jugendliche_-_NEU_2015_OF.pdf",
+       "sha256": null,
+       "formulare": null
+      },
+      {
+       "rolle": "info",
+       "datei": "Merkblatt – Ausübung der Fischerei.pdf",
+       "sha256": "66a1e4cfa3d43306",
+       "formulare": null
+      },
+      {
+       "rolle": "info",
+       "datei": "Regeln und Erläuterungen zum Angelfischer-Patent .pdf",
+       "sha256": "3e526163666fa2a7",
+       "formulare": null
+      },
+      {
+       "rolle": "abgabe",
+       "typ": "formular_pdf",
+       "datei": "Bestellung Angelfischer Patent Jugendliche.pdf",
+       "url": null,
+       "sha256": "e9e5b0ebf08d8ef3",
+       "formulare": null
+      }
+     ],
+     "formulare": [],
+     "thema": [
+      13,
+      14
+     ],
+     "grund_thema": "Jugendliche von 10 bis 16 Jahren bestellen ein Patent für die Angelfischerei in ihrer Freizeit."
+    }
+   ],
+   "begruendung": "DVSH 122 (Jugendliche) hat ein eigenes Bestellformular; es ist nicht als Formular in der Databank (die Datei liegt unter ../Verwaltung/…/Jagd und Fischerei/ und ist byte-gleich mit der DVSH-Abgabe — Aufnahme als Folgeschritt)."
+  },
+  {
+   "service_id": 397,
+   "behaelt": {
+    "dvsh_id": 309,
+    "titel": "Nachweis Objektschutzmassnahmen (Formular A)",
+    "slug": "nachweis-objektschutzmassnahmen-formular-a",
+    "kanal": "formular_pdf",
+    "dienststelle_dvsh": "Abteilung Gewässer und Materialabbau",
+    "dateien": [
+     {
+      "rolle": "info",
+      "datei": "GK_Leitfaden_Objektschutznachweis_SH_2017.pdf",
+      "sha256": "fad7235987195576",
+      "formulare": null
+     },
+     {
+      "rolle": "endpunkt",
+      "datei": "GK_Objektschutznachweis_Formular_A.pdf",
+      "sha256": "5a3c01c78cd76b83",
+      "formulare": [
+       397
+      ]
+     },
+     {
+      "rolle": "abgabe",
+      "typ": "formular_pdf",
+      "datei": "GK_Objektschutznachweis_Formular_A.pdf",
+      "url": null,
+      "sha256": "5a3c01c78cd76b83",
+      "formulare": [
+       397
+      ]
+     }
+    ],
+    "formulare": [
+     397,
+     398
+    ]
+   },
+   "name": "Nachweis Objektschutzmassnahmen",
+   "neu": [
+    {
+     "dvsh_id": 308,
+     "titel": "Objektschutzmassnahmen Steinschlag (Formular B)",
+     "slug": "objektschutzmassnahmen-steinschlag-formular-b",
+     "kanal": "formular_pdf",
+     "dienststelle_dvsh": "Abteilung Gewässer und Materialabbau",
+     "dateien": [
+      {
+       "rolle": "info",
+       "datei": "GK_Leitfaden_Objektschutznachweis_SH_2017.pdf",
+       "sha256": "fad7235987195576",
+       "formulare": null
+      },
+      {
+       "rolle": "info",
+       "datei": "GK_Objektschutznachweis_Formular_A.pdf",
+       "sha256": "5a3c01c78cd76b83",
+       "formulare": [
+        397
+       ]
+      },
+      {
+       "rolle": "abgabe",
+       "typ": "formular_pdf",
+       "datei": "Objektschutzmassnahmen Steinschlag (Formular B)",
+       "url": null,
+       "sha256": "a7ebc30628a66a96",
+       "formulare": [
+        401
+       ]
+      }
+     ],
+     "formulare": [
+      401
+     ],
+     "thema": [
+      43,
+      125
+     ],
+     "grund_thema": "Bauherrschaften in Gefahrenzonen weisen mit dem Baugesuch Objektschutzmassnahmen gegen Steinschlag nach."
+    },
+    {
+     "dvsh_id": 310,
+     "titel": "Objektschutzmassnahmen Rutschungen (Formular B)",
+     "slug": "objektschutzmassnahmen-rutschungen-formular-b",
+     "kanal": "eformular",
+     "dienststelle_dvsh": "Abteilung Gewässer und Materialabbau",
+     "dateien": [
+      {
+       "rolle": "info",
+       "datei": "GK_Leitfaden_Objektschutznachweis_SH_2017.pdf",
+       "sha256": "fad7235987195576",
+       "formulare": null
+      },
+      {
+       "rolle": "info",
+       "datei": "GK_Objektschutznachweis_Formular_A.pdf",
+       "sha256": "5a3c01c78cd76b83",
+       "formulare": [
+        397
+       ]
+      },
+      {
+       "rolle": "abgabe",
+       "typ": "eformular",
+       "datei": "Objektschutzmassnahmen Rutschungen (Formular B)",
+       "url": "http://www.sh.ch/fileadmin/Redaktoren/Dokumente/Tiefbauamt/GK__Objektschutznachweis__Formular_B_Rutschungen.pdf",
+       "sha256": null,
+       "formulare": null
+      }
+     ],
+     "formulare": [
+      400
+     ],
+     "thema": [
+      43,
+      125
+     ],
+     "grund_thema": "Bauherrschaften in Gefahrenzonen weisen mit dem Baugesuch Objektschutzmassnahmen gegen Rutschungen nach."
+    }
+   ],
+   "begruendung": "Die Zeile ist Formular A (Slug, Alias). Formular A ist byte-gleich mit der Abgabe von DVSH 309, B Steinschlag mit der von DVSH 308; die Abgabe-URL von DVSH 310 ist die Datei B Rutschungen. B Hochwasser hat keinen eigenen DVSH-Service; DVSH 309 verlangt «Formular B Gefahrenart» für jede Gefahrenart (Hochwasser, Rutschungen, Steinschlag). Name = DVSH-309-Titel ohne «(Formular A)», weil die Zeile A und B Hochwasser hält (Entscheid der Eigentümerin)."
+  }
+ ],
+ "umbenennen": [
+  {
+   "service_id": 34,
+   "name": "Gesuch-Erteilung eines Lernfahr- oder Führerausweises / Gesuch Umtausch ausländischer Führerausweis",
+   "dvsh": [
+    {
+     "dvsh_id": 39,
+     "titel": "Gesuch Umtausch ausländischer Führerausweis",
+     "slug": "gesuch-umtausch-auslandischer-fuhrerausweis",
+     "kanal": "formular_pdf",
+     "dienststelle_dvsh": "Strassenverkehrs- und Schifffahrtsamt",
+     "dateien": [
+      {
+       "rolle": "endpunkt",
+       "datei": "gesuch Lernfahr-Fuehrerausweis mit Fotokleber-25-p.pdf",
+       "sha256": "20e131698a46f86a",
+       "formulare": [
+        34
+       ]
+      },
+      {
+       "rolle": "info",
+       "datei": "2026 06-19 Fahrlehrerverzeichnis.pdf",
+       "sha256": "fdc6504c7ff4fc97",
+       "formulare": null
+      },
+      {
+       "rolle": "abgabe",
+       "typ": "formular_pdf",
+       "datei": "gesuch Lernfahr-Fuehrerausweis mit Fotokleber-25-p.pdf",
+       "url": null,
+       "sha256": "20e131698a46f86a",
+       "formulare": [
+        34
+       ]
+      }
+     ]
+    },
+    {
+     "dvsh_id": 47,
+     "titel": "Gesuch-Erteilung eines Lernfahr- oder Führerausweises",
+     "slug": "gesuch-erteilung-eines-lernfahr-oder-fuhrerausweises",
+     "kanal": "formular_pdf",
+     "dienststelle_dvsh": "Strassenverkehrs- und Schifffahrtsamt",
+     "dateien": [
+      {
+       "rolle": "endpunkt",
+       "datei": "gesuch Lernfahr-Fuehrerausweis mit Fotokleber-25-p (1).pdf",
+       "sha256": "20e131698a46f86a",
+       "formulare": [
+        34
+       ]
+      },
+      {
+       "rolle": "info",
+       "datei": "2026 06-19 Fahrlehrerverzeichnis.pdf",
+       "sha256": "fdc6504c7ff4fc97",
+       "formulare": null
+      },
+      {
+       "rolle": "abgabe",
+       "typ": "formular_pdf",
+       "datei": "gesuch Lernfahr-Fuehrerausweis mit Fotokleber-25-p (1).pdf",
+       "url": null,
+       "sha256": "20e131698a46f86a",
+       "formulare": [
+        34
+       ]
+      }
+     ]
+    }
+   ],
+   "begruendung": "Eine Datei mit zwei gedruckten Überschriften (Erteilung Lernfahr-/Führerausweis und Umtausch ausländischer Führerausweis); DVSH 39 und 47 nennen sie beide (byte-gleich). Name = die beiden DVSH-Titel."
+  },
+  {
+   "service_id": 56,
+   "name": "Beantragung von Konzessionen und Bewilligungen zur Gewässernutzung",
+   "dvsh": [
+    {
+     "dvsh_id": 223,
+     "titel": "Gesuch um Erteilung einer Bewilligung für den Bezug von Oberflächenwasser zur Bewässerung",
+     "slug": "gesuch-um-erteilung-einer-bewilligung-fur-den-bezug-von-oberflachenwasser-zur-bewasserung",
+     "kanal": "formular_pdf",
+     "dienststelle_dvsh": "Abteilung Gewässer und Materialabbau",
+     "dateien": [
+      {
+       "rolle": "endpunkt",
+       "datei": "GN_Gesuch_Bewilligungen_zur_Gewaessernutzung_2024.pdf",
+       "sha256": "1091b537794bb890",
+       "formulare": [
+        56
+       ]
+      },
+      {
+       "rolle": "abgabe",
+       "typ": "formular_pdf",
+       "datei": "GN_Gesuch_Bewilligungen_zur_Gewaessernutzung_2024.pdf",
+       "url": null,
+       "sha256": "1091b537794bb890",
+       "formulare": [
+        56
+       ]
+      }
+     ]
+    },
+    {
+     "dvsh_id": 265,
+     "titel": "Erhebungsblatt / Bewilligung für die thermische Nutzung von Grundwasser",
+     "slug": "erhebungsblatt-bewilligung-fur-die-thermische-nutzung-von-grundwasser",
+     "kanal": "formular_pdf",
+     "dienststelle_dvsh": "Abteilung Gewässer und Materialabbau",
+     "dateien": [
+      {
+       "rolle": "info",
+       "datei": "GN_Wärmenutzung_von_Grundwasser_Planungshilfe.pdf",
+       "sha256": "c683b1d2da2dea2c",
+       "formulare": null
+      },
+      {
+       "rolle": "endpunkt",
+       "datei": "GN_Gesuch_Bewilligungen_zur_Gewaessernutzung_2024.pdf",
+       "sha256": "1091b537794bb890",
+       "formulare": [
+        56
+       ]
+      },
+      {
+       "rolle": "info",
+       "datei": "GN_Erhebungsblatt_Heiz&Kuehlwasser.pdf",
+       "sha256": "457744af1f273cfb",
+       "formulare": null
+      },
+      {
+       "rolle": "abgabe",
+       "typ": "formular_pdf",
+       "datei": "GN_Gesuch_Bewilligungen_zur_Gewaessernutzung_2024.pdf",
+       "url": null,
+       "sha256": "1091b537794bb890",
+       "formulare": [
+        56
+       ]
+      }
+     ]
+    },
+    {
+     "dvsh_id": 306,
+     "titel": "Gesuch um Erteilung einer Bewilligung zur Nutzung von Wasser als Trink- oder Brauchwasser",
+     "slug": "gesuch-um-erteilung-einer-bewilligung-zur-nutzung-von-wasser-als-trink-oder-brauchwasser",
+     "kanal": "formular_pdf",
+     "dienststelle_dvsh": "Abteilung Gewässer und Materialabbau",
+     "dateien": [
+      {
+       "rolle": "endpunkt",
+       "datei": "GN_Gesuch_Bewilligungen_zur_Gewaessernutzung_2024.pdf",
+       "sha256": "1091b537794bb890",
+       "formulare": [
+        56
+       ]
+      },
+      {
+       "rolle": "abgabe",
+       "typ": "formular_pdf",
+       "datei": "GN_Gesuch_Bewilligungen_zur_Gewaessernutzung_2024.pdf",
+       "url": null,
+       "sha256": "1091b537794bb890",
+       "formulare": [
+        56
+       ]
+      }
+     ]
+    }
+   ],
+   "name_alt_plus": [
+    "Gesuch um Erteilung einer Bewilligung zur Nutzung von Wasser als Trink- oder Brauchwasser"
+   ],
+   "begruendung": "Ein Gesuchsformular für alle Nutzungen (Grund-/Oberflächenwasser/Drainage × Trink-/Brauchwasser/thermisch); DVSH 223, 265 und 306 nennen es (byte-gleich). Name wörtlich aus der Kurzbeschreibung von DVSH 265 (Entscheid der Eigentümerin); der bisherige Name bleibt als Suchbegriff."
+  },
+  {
+   "service_id": 616,
+   "name": "Gesuch – Führerausweis im Kreditkartenformat",
+   "dvsh": [
+    {
+     "dvsh_id": 52,
+     "titel": "Gesuch – Führerausweis im Kreditkartenformat",
+     "slug": "gesuch-fuhrerausweis-im-kreditkartenformat",
+     "kanal": "formular_pdf",
+     "dienststelle_dvsh": "Strassenverkehrs- und Schifffahrtsamt",
+     "dateien": [
+      {
+       "rolle": "endpunkt",
+       "datei": "ausstellen-eines-fuehrerausweises-25-p-1.pdf",
+       "sha256": "85476dde2780023d",
+       "formulare": [
+        464
+       ]
+      },
+      {
+       "rolle": "abgabe",
+       "typ": "formular_pdf",
+       "datei": "ausstellen-eines-fuehrerausweises-25-p-1.pdf",
+       "url": null,
+       "sha256": "85476dde2780023d",
+       "formulare": [
+        464
+       ]
+      }
+     ]
+    },
+    {
+     "dvsh_id": 59,
+     "titel": "Gesuch – Umtausch des blauen Führerausweises in einen neuen Führerausweis im Kreditkartenformat",
+     "slug": "gesuch-umtausch-des-blauen-fuhrerausweises-in-einen-neuen-fuhrerausweis-im-kreditkartenformat",
+     "kanal": "formular_pdf",
+     "dienststelle_dvsh": "Strassenverkehrs- und Schifffahrtsamt",
+     "dateien": [
+      {
+       "rolle": "endpunkt",
+       "datei": "ausstellen-eines-fuehrerausweises-25-p-1 (1).pdf",
+       "sha256": "85476dde2780023d",
+       "formulare": [
+        464
+       ]
+      },
+      {
+       "rolle": "abgabe",
+       "typ": "formular_pdf",
+       "datei": "ausstellen-eines-fuehrerausweises-25-p-1 (1).pdf",
+       "url": null,
+       "sha256": "85476dde2780023d",
+       "formulare": [
+        464
+       ]
+      }
+     ]
+    }
+   ],
+   "name_alt_plus": [
+    "Gesuch – Umtausch des blauen Führerausweises in einen neuen Führerausweis im Kreditkartenformat"
+   ],
+   "begruendung": "Eine Datei «Ausstellen eines Führerausweises» mit mehreren Gründen (Umtausch blauer Ausweis, Namensänderung, Brilleneintrag, Foto/defekt); DVSH 52 und 59 nennen sie (byte-gleich). DVSH 52 deckt alle Gründe ab («Erforderliche Beilagen je nach Grund des Gesuches»), DVSH 59 ist einer davon; der bisherige Name bleibt als Suchbegriff."
+  }
+ ],
+ "belassen": [
+  {
+   "service_id": 188,
+   "dvsh": [
+    {
+     "dvsh_id": 291,
+     "titel": "Anmeldung und Abnahme von Blitzschutzanlagen",
+     "slug": "formular-150-blitzschutzanlagen",
+     "kanal": "formular_pdf",
+     "dienststelle_dvsh": "Kantonale Feuerpolizei",
+     "dateien": [
+      {
+       "rolle": "info",
+       "datei": "Weisung_04_Kontrolle_und_Abnahme_von_Blitzschutzsystemen.pdf",
+       "sha256": "417a6e4097439701",
+       "formulare": null
+      },
+      {
+       "rolle": "endpunkt",
+       "datei": "Formular_150_Blitzschutzsysteme_ab_1.3.2017.pdf",
+       "sha256": "b8dce34a5d0fa573",
+       "formulare": null
+      },
+      {
+       "rolle": "abgabe",
+       "typ": "formular_pdf",
+       "datei": "Formular_150_Blitzschutzsysteme_ab_1.3.2017.pdf",
+       "url": null,
+       "sha256": "b8dce34a5d0fa573",
+       "formulare": null
+      }
+     ]
+    },
+    {
+     "dvsh_id": 316,
+     "titel": "Dokumentation Blitzschutzsysteme",
+     "slug": "dokumentation-blitzschutzsysteme",
+     "kanal": "formular_pdf",
+     "dienststelle_dvsh": "Kantonale Feuerpolizei",
+     "dateien": [
+      {
+       "rolle": "endpunkt",
+       "datei": "Formular_150_Blitzschutzsysteme_ab_01.07.2024.pdf",
+       "sha256": "4e9a489300c17e8e",
+       "formulare": [
+        188
+       ]
+      },
+      {
+       "rolle": "abgabe",
+       "typ": "formular_pdf",
+       "datei": "Formular_150_Blitzschutzsysteme_ab_01.07.2024.pdf",
+       "url": null,
+       "sha256": "4e9a489300c17e8e",
+       "formulare": [
+        188
+       ]
+      }
+     ]
+    }
+   ],
+   "begruendung": "Formular 150: DVSH 316 nennt die Ausgabe 2024 (= unser Formular, byte-gleich), DVSH 291 die Ausgabe 2017 (gleiches Formular, nur Normverweis geändert; die Databank hält nur die neueste Ausgabe). Name passt, bleibt."
+  },
+  {
+   "service_id": 513,
+   "dvsh": [
+    {
+     "dvsh_id": 202,
+     "titel": "Kantonale Spitex-Erhebung Kanton Schaffhausen",
+     "slug": "formular-kantonale-spitex-erhebung-kanton-sh",
+     "kanal": "formular_pdf",
+     "dienststelle_dvsh": "Gesundheitsamt",
+     "dateien": [
+      {
+       "rolle": "endpunkt",
+       "datei": "25 Pfl.Fachpersonen Erhebungsformular.xlsx",
+       "sha256": "9e0bc611e3be94fa",
+       "formulare": [
+        439,
+        475
+       ]
+      },
+      {
+       "rolle": "info",
+       "datei": "25-11-28_Spitex Berichtsfristen 2026.pdf",
+       "sha256": "d3be408a731aa1bc",
+       "formulare": null
+      },
+      {
+       "rolle": "info",
+       "datei": "Spitex Kennzahlenset 2025 V2.xlsx",
+       "sha256": "09ab874fec452e0a",
+       "formulare": null
+      },
+      {
+       "rolle": "info",
+       "datei": "24 Brief zum Erhebungsformular kantonale Spitex-Statistik.pdf",
+       "sha256": "cef3e833459095d4",
+       "formulare": null
+      },
+      {
+       "rolle": "abgabe",
+       "typ": "formular_pdf",
+       "datei": "25 Pfl.Fachpersonen Erhebungsformular.xlsx",
+       "url": null,
+       "sha256": "9e0bc611e3be94fa",
+       "formulare": [
+        439,
+        475
+       ]
+      }
+     ]
+    },
+    {
+     "dvsh_id": 203,
+     "titel": "Jährliche Datenerhebung für Selbständige Pflegefachpersonen",
+     "slug": "selbstandige-pflegefachpersonen-jahrliche-datenerhebung",
+     "kanal": "formular_pdf",
+     "dienststelle_dvsh": "Gesundheitsamt",
+     "dateien": [
+      {
+       "rolle": "info",
+       "datei": "24 Brief zum Erhebungsformular kantonale Spitex-Statistik.pdf",
+       "sha256": "cef3e833459095d4",
+       "formulare": null
+      },
+      {
+       "rolle": "info",
+       "datei": "25-11-28 Weisung Spitex Berichterstattung ab 1.1.2026.pdf",
+       "sha256": "6233518c337a51ca",
+       "formulare": null
+      },
+      {
+       "rolle": "endpunkt",
+       "datei": "Spitex-Datenerhebungsformular_fuer_Pflegefachpersonen.pdf",
+       "sha256": null,
+       "formulare": null
+      },
+      {
+       "rolle": "info",
+       "datei": "25-11-28_Spitex Berichtsfristen 2026.pdf",
+       "sha256": "d3be408a731aa1bc",
+       "formulare": null
+      },
+      {
+       "rolle": "abgabe",
+       "typ": "formular_pdf",
+       "datei": "Spitex-Datenerhebungsformular_fuer_Pflegefachpersonen.pdf",
+       "url": null,
+       "sha256": null,
+       "formulare": null
+      }
+     ]
+    }
+   ],
+   "begruendung": "Die Tabelle trägt beide DVSH-Titel im Kopf («Kantonale Spitex-Erhebung Kanton SH», Dokument «Selbständige Pflegefachpersonen, jährliche Datenerhebung»); die PDF-Abgabe von DVSH 203 ist nicht in der Databank. Name passt, bleibt."
+  }
+ ],
+ "duplikat": {
+  "entfernen": 475,
+  "behalten": 439,
+  "titel_439": "Selbständige Pflegefachpersonen, jährliche Datenerhebung",
+  "datei": "formulare/202__25 Pfl.Fachpersonen Erhebungsformular.xlsx",
+  "begruendung": "475 und 439 sind dieselbe Datei (sha256 gleich, = Abgabe von DVSH 202). 439 ist voll modelliert (27 Felder, Rechtsgrundlage für alle), 475 hat 12 Felder ohne Rechtsgrundlage. Titel von 439 = der auf dem Blatt gedruckte Dokumentname. eCH-Zuordnungen von 475 werden nur übernommen, wo 439 ein gleich benanntes Feld (bzw. Teilfeld unter gleich benanntem Feld) ohne eCH-Urteil hat — Regel von propagate_ech_names.py (Entscheid der Eigentümerin). Einziger Namenstreffer «Erträge total» trägt in 439 bereits ein eigenes Urteil (eCH-0237, Element offen) → nichts übernommen.",
+  "ech_verworfen": [
+   {
+    "art": "feld",
+    "id": 5539,
+    "eltern": null,
+    "name": "Familienname",
+    "ech": "eCH-0044:officialName",
+    "ech_element_id": 800
+   },
+   {
+    "art": "feld",
+    "id": 5540,
+    "eltern": null,
+    "name": "Aktuelle Adresse und Kontaktangaben",
+    "ech": "eCH-0010:personMailAddress",
+    "ech_element_id": 78
+   },
+   {
+    "art": "feld",
+    "id": 5547,
+    "eltern": null,
+    "name": "Erträge",
+    "ech": "eCH-0276:deliveriesAndServicesRevenue",
+    "ech_element_id": 7024
+   },
+   {
+    "art": "feld",
+    "id": 5548,
+    "eltern": null,
+    "name": "Aufwand",
+    "ech": "eCH-0276:expenses",
+    "ech_element_id": 7028
+   },
+   {
+    "art": "teilfeld",
+    "id": 7200,
+    "eltern": "Aktuelle Adresse und Kontaktangaben",
+    "name": "Name",
+    "ech": "eCH-0044:officialName",
+    "ech_element_id": 800
+   },
+   {
+    "art": "teilfeld",
+    "id": 7201,
+    "eltern": "Aktuelle Adresse und Kontaktangaben",
+    "name": "Strasse",
+    "ech": "eCH-0010:street",
+    "ech_element_id": 52
+   },
+   {
+    "art": "teilfeld",
+    "id": 7202,
+    "eltern": "Aktuelle Adresse und Kontaktangaben",
+    "name": "PLZ",
+    "ech": "eCH-0010:swissZipCode",
+    "ech_element_id": 59
+   },
+   {
+    "art": "teilfeld",
+    "id": 7203,
+    "eltern": "Aktuelle Adresse und Kontaktangaben",
+    "name": "Ort",
+    "ech": "eCH-0010:town",
+    "ech_element_id": 58
+   },
+   {
+    "art": "teilfeld",
+    "id": 7204,
+    "eltern": "Aktuelle Adresse und Kontaktangaben",
+    "name": "E-Mail",
+    "ech": "eCH-0046:emailAddress",
+    "ech_element_id": 910
+   },
+   {
+    "art": "teilfeld",
+    "id": 7205,
+    "eltern": "Aktuelle Adresse und Kontaktangaben",
+    "name": "Telefon",
+    "ech": "eCH-0046:phoneNumber",
+    "ech_element_id": 914
+   },
+   {
+    "art": "teilfeld",
+    "id": 7221,
+    "eltern": "Erträge",
+    "name": "Krankenversicherer Kostenbeteiligung",
+    "ech": "eCH-0276:serviceRevenue",
+    "ech_element_id": 7039
+   },
+   {
+    "art": "teilfeld",
+    "id": 7222,
+    "eltern": "Erträge",
+    "name": "Klientenanteil - für KLV-Pflegeleistung",
+    "ech": "eCH-0276:serviceRevenue",
+    "ech_element_id": 7039
+   },
+   {
+    "art": "teilfeld",
+    "id": 7223,
+    "eltern": "Erträge",
+    "name": "Gemeinde-Pflegeanteil",
+    "ech": "eCH-0276:publicSectorContributions",
+    "ech_element_id": 7041
+   },
+   {
+    "art": "teilfeld",
+    "id": 7224,
+    "eltern": "Erträge",
+    "name": "Klientenanteil - hauswirtsch. Leistung",
+    "ech": "eCH-0276:serviceRevenue",
+    "ech_element_id": 7039
+   },
+   {
+    "art": "teilfeld",
+    "id": 7225,
+    "eltern": "Erträge",
+    "name": "Sonstige Erträge",
+    "ech": "eCH-0276:otherOperatingRevenue",
+    "ech_element_id": 7040
+   },
+   {
+    "art": "teilfeld",
+    "id": 7226,
+    "eltern": "Erträge",
+    "name": "Erträge total",
+    "ech": "eCH-0276:totalDeliveriesAndServicesRevenue",
+    "ech_element_id": 7045
+   },
+   {
+    "art": "teilfeld",
+    "id": 7227,
+    "eltern": "Erträge",
+    "name": "Fr. für SH",
+    "ech": "eCH-0276:turnoverFactorsAmount",
+    "ech_element_id": 7535
+   },
+   {
+    "art": "teilfeld",
+    "id": 7228,
+    "eltern": "Erträge",
+    "name": "Fr. extern",
+    "ech": "eCH-0276:turnoverFactorsAmount",
+    "ech_element_id": 7535
+   },
+   {
+    "art": "teilfeld",
+    "id": 7229,
+    "eltern": "Erträge",
+    "name": "Fr. total",
+    "ech": "eCH-0276:totalDeliveriesAndServicesRevenue",
+    "ech_element_id": 7045
+   },
+   {
+    "art": "teilfeld",
+    "id": 7230,
+    "eltern": "Aufwand",
+    "name": "Personalaufwand",
+    "ech": "eCH-0276:totalEmployeeExpenses",
+    "ech_element_id": 7070
+   },
+   {
+    "art": "teilfeld",
+    "id": 7231,
+    "eltern": "Aufwand",
+    "name": "Sonst. Aufwand (EDV, Kfz., Miete, ...)",
+    "ech": "eCH-0276:TotalOtherOperatingExpenses",
+    "ech_element_id": 7082
+   }
+  ]
+ },
+ "notizen": {
+  "14": "zuordnung (DVSH-Aufteilung 2026-09-27): DVSH 358 «Meldeverfahren Wärmepumpen» verlangt als Unterlage «Energienachweis Haustechnik (EN-Formulare)» — «Erforderlich für beide Wärmepumpentypen».",
+  "398": "zuordnung (DVSH-Aufteilung 2026-09-27): Formular B Hochwasser hat keinen eigenen DVSH-Service; DVSH 309 «Nachweis Objektschutzmassnahmen (Formular A)» verlangt «Formular B Gefahrenart» für jede betroffene Gefahrenart (Hochwasser, Rutschungen, Steinschlag).",
+  "400": "zuordnung (DVSH-Aufteilung 2026-09-27): DVSH 310 «Objektschutzmassnahmen Rutschungen (Formular B)» gibt als Abgabe die Datei GK__Objektschutznachweis__Formular_B_Rutschungen.pdf an (gleicher Dateiname).",
+  "258": "zuordnung (DVSH-Aufteilung 2026-09-27): Abgabe-Titel von DVSH 278 «Hilfsblatt Rebbau mit Weinverkauf zur Steuererklärung für Kleinbetriebe ohne kaufmännische Buchhaltung, bis maximal 1ha Rebfläche (18W)» = gedruckter Formulartitel.",
+  "259": "zuordnung (DVSH-Aufteilung 2026-09-27): Abgabe-Titel von DVSH 276 «Fragebogen für Land- und Forstwirtschaft» = gedruckter Formulartitel (Formular 18).",
+  "260": "zuordnung (DVSH-Aufteilung 2026-09-27): Abgabe-Titel von DVSH 275 «Fragebogen für landwirtschaftliche Kleinbetriebe nach vereinfachten Aufstellungen» = gedruckter Formulartitel (Formular 18.23).",
+  "113": "zuordnung (DVSH-Aufteilung 2026-09-27): DVSH 320 «Anmeldung RAV» verlangt als Unterlage «Arztzeugnis, falls Sie arbeitsunfähig sind» — dieses ALV-Arztzeugnis."
+ }
+}

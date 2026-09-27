@@ -873,7 +873,7 @@
   {
    "form_id": 14,
    "titel": "Energienachweis EN-120-SH: Erneuerbare Wärme beim Wärmeerzeugerersatz",
-   "dienststelle": "Kantonale Feuerpolizei",
+   "dienststelle": "Energiefachstelle",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 63,
    "ech": {
@@ -27633,7 +27633,7 @@
   {
    "form_id": 191,
    "titel": "Meldeformular Wärmepumpen Schaffhausen 2024",
-   "dienststelle": "Kantonale Feuerpolizei",
+   "dienststelle": "Energiefachstelle",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 92,
    "ech": {
@@ -60257,7 +60257,7 @@
   },
   {
    "form_id": 439,
-   "titel": "Sie können das Formular auch herunterladen: www.sh.ch",
+   "titel": "Selbständige Pflegefachpersonen, jährliche Datenerhebung",
    "dienststelle": "Gesundheitsamt",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 19,
@@ -65018,219 +65018,6 @@
     },
     {
      "feld": "Bemerkungen",
-     "format": ""
-    }
-   ]
-  },
-  {
-   "form_id": 475,
-   "titel": "Selbständige Pflegefachpersonen, jährliche Datenerhebung",
-   "dienststelle": "Gesundheitsamt",
-   "exchange_ready": "teilweise",
-   "abdeckung_pct": 45,
-   "ech": {
-    "eCH-0044": {
-     "personIdentificationLightType": [
-      {
-       "element": "officialName",
-       "datatype": "baseNameType",
-       "feld": "Familienname"
-      },
-      {
-       "element": "officialName",
-       "datatype": "baseNameType",
-       "feld": "Name"
-      }
-     ]
-    },
-    "eCH-0010": {
-     "addressInformationType": [
-      {
-       "element": "street",
-       "datatype": "streetType",
-       "feld": "Strasse"
-      },
-      {
-       "element": "swissZipCode",
-       "datatype": "swissZipCodeType",
-       "feld": "PLZ"
-      },
-      {
-       "element": "town",
-       "datatype": "townType",
-       "feld": "Ort"
-      }
-     ]
-    },
-    "eCH-0046": {
-     "emailType": [
-      {
-       "element": "emailAddress",
-       "datatype": "emailAddressType",
-       "feld": "E-Mail"
-      }
-     ],
-     "phoneType": [
-      {
-       "element": "phoneNumber",
-       "datatype": "phoneNumberType",
-       "feld": "Telefon"
-      }
-     ]
-    },
-    "eCH-0276": {
-     "deliveriesAndServicesRevenueType": [
-      {
-       "element": "serviceRevenue",
-       "datatype": "long",
-       "feld": "Krankenversicherer Kostenbeteiligung"
-      },
-      {
-       "element": "serviceRevenue",
-       "datatype": "long",
-       "feld": "Klientenanteil - für KLV-Pflegeleistung"
-      },
-      {
-       "element": "publicSectorContributions",
-       "datatype": "long",
-       "feld": "Gemeinde-Pflegeanteil"
-      },
-      {
-       "element": "serviceRevenue",
-       "datatype": "long",
-       "feld": "Klientenanteil - hauswirtsch. Leistung"
-      },
-      {
-       "element": "otherOperatingRevenue",
-       "datatype": "long",
-       "feld": "Sonstige Erträge"
-      },
-      {
-       "element": "totalDeliveriesAndServicesRevenue",
-       "datatype": "long",
-       "feld": "Erträge total"
-      },
-      {
-       "element": "totalDeliveriesAndServicesRevenue",
-       "datatype": "long",
-       "feld": "Fr. total"
-      }
-     ],
-     "turnoverFactorsTotalType": [
-      {
-       "element": "turnoverFactorsAmount",
-       "datatype": "taxAmountType",
-       "feld": "Fr. für SH"
-      },
-      {
-       "element": "turnoverFactorsAmount",
-       "datatype": "taxAmountType",
-       "feld": "Fr. extern"
-      }
-     ],
-     "employeeExpensesType": [
-      {
-       "element": "totalEmployeeExpenses",
-       "datatype": "long",
-       "feld": "Personalaufwand"
-      }
-     ],
-     "otherOperatingExpensesType": [
-      {
-       "element": "TotalOtherOperatingExpenses",
-       "datatype": "long",
-       "feld": "Sonst. Aufwand (EDV, Kfz., Miete, ...)"
-      }
-     ]
-    }
-   },
-   "ohne_standard": [
-    {
-     "feld": "Erhebungsjahr",
-     "format": "JJJJ"
-    },
-    {
-     "feld": "ZSR-Nummer",
-     "format": ""
-    },
-    {
-     "feld": "Tätigkeitsstatus im Kanton SH",
-     "format": ""
-    },
-    {
-     "feld": "Externe Tätigkeit",
-     "format": ""
-    },
-    {
-     "feld": "Patientenbeteiligung",
-     "format": ""
-    },
-    {
-     "feld": "Anzahl Klienten total (Haushilfe+Pflege)",
-     "format": ""
-    },
-    {
-     "feld": "Davon Klienten nur mit KLV-Pflegeleistung",
-     "format": ""
-    },
-    {
-     "feld": "Davon Klienten nur Hauswirtschaft",
-     "format": ""
-    },
-    {
-     "feld": "Anzahl SH",
-     "format": ""
-    },
-    {
-     "feld": "Anzahl extern",
-     "format": ""
-    },
-    {
-     "feld": "Anzahl total",
-     "format": ""
-    },
-    {
-     "feld": "Bedarfsabklärung (Art. 7 II a KLV)",
-     "format": ""
-    },
-    {
-     "feld": "Behandlungspflege (Art. 7 II b KLV)",
-     "format": ""
-    },
-    {
-     "feld": "Grundpflege Mitarbeitende Spitex (Art. 7 II c KLV)",
-     "format": ""
-    },
-    {
-     "feld": "Grundpflege pflegende Angehörige",
-     "format": ""
-    },
-    {
-     "feld": "Hauswirtschaft/Sozialbetreuung/Sonst. Leistungen",
-     "format": ""
-    },
-    {
-     "feld": "Verrechenbare Stunden total",
-     "format": ""
-    },
-    {
-     "feld": "Verrechnete Stunden SH",
-     "format": ""
-    },
-    {
-     "feld": "Verrech. Std. andere Kantone",
-     "format": ""
-    },
-    {
-     "feld": "Verrech. Std. total",
-     "format": ""
-    },
-    {
-     "feld": "Aufwand total",
-     "format": "CHF"
-    },
-    {
-     "feld": "Bemerkung",
      "format": ""
     }
    ]

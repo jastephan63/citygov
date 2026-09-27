@@ -76,6 +76,8 @@ python3 scripts/fill_pdf.py <form_id> <answers.json>   # write flow answers into
 
 # one-off, evidence-backed corrections (kept, with their reasons, under quellen/)
 python3 scripts/migrate_2026_09_26.py             # idempotent; see its docstring
+python3 scripts/migrate_2026_09_27.py             # services that bundled several DVSH services, split or renamed
+                                                  # (quellen/korrekturen/dvsh_aufteilung_2026-09-27.json); again after run_begriffe.py
 python3 scripts/load_rechtsmittel.py quellen/rechtsmittel           # SHR 822.101 § 8/§ 9 (Arbeitsinspektorat), quotes PDF-gated
 python3 scripts/load_rechtsmittel_verdicts.py quellen/rechtsmittel  # sektoral verdicts for forms 296 and 455
 python3 scripts/load_rechtsmittel.py quellen/rechtsmittel           # re-apply so form_outcome reflects the verdicts
@@ -139,5 +141,6 @@ be broken, so the gate `validate_db.py` checks what it can):
 | `load_flows.py` / `fill_pdf.py` | Guided flows and writing answers back into the official PDF |
 | `commit_proposal.py` / `auto_draft.py` | The retired 2026-06 auto-draft layer (kept because `ingest_new.py` imports it; never exported) |
 | `migrate_2026_09_26.py` | One-off, idempotent corrections from the 2026-09-26 quality check |
+| `migrate_2026_09_27.py` | One-off, idempotent: one service row per DVSH service with its own file; same-file bundles named from DVSH wording; duplicate form 475 removed |
 | `annotate_pdf.swift` / `ocr_pdf.swift` | macOS helpers (PDFKit / Vision OCR) used by the field-label recovery of 2026-06; not part of the build |
 | `deprecated/` | Tools that did their job once and were superseded (see its README) |

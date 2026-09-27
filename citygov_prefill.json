@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generated_at": "2026-09-27T03:45:26",
+  "generated_at": "2026-09-27T13:41:44",
   "hinweis": "Datenpunkt→eCH-Element-Map je Formular (Schlüssel = Formular-id) für Once-Only-Prefill: ein nach eCH-Element gekeytes Profil einer natürlichen Person füllt damit die Punkte vor, die einwohnerregister = true und mehrdeutig = false tragen — nur diese, nie alle Punkte.",
   "felder": {
    "feld": "Pfad «Feld›Teilfeld» (ein Teilfeld ist die atomare Einheit; feld_parent = das Feld, sonst null). Ein zusammengesetztes Feld, dessen Teile eigene Elemente tragen, erscheint nicht neben seinen Teilen.",
@@ -10,8 +10,8 @@
    "mehrdeutig": "true, wenn dasselbe eCH-Element auf diesem Formular mehr als einen Punkt einer natürlichen Person bezeichnet (z. B. Name der gesuchstellenden Person und Name eines Familienmitglieds): das Profil hält einen Wert, keiner dieser Punkte darf damit befüllt werden. Zählt mit: das eigene Element eines zusammengesetzten Felds derselben Person, dessen Teilfelder hier als Punkte erscheinen (das Feld selbst ist kein Punkt) — ein so markierter Punkt kann darum ohne sichtbaren Zwilling stehen. Dieselbe Regel wie in flows.html."
   },
   "zaehlung": {
-   "n_formulare": 469,
-   "n_formulare_gesamt": 474,
+   "n_formulare": 468,
+   "n_formulare_gesamt": 473,
    "formulare_ohne_ech_punkt": [
     208,
     445,
@@ -19,8 +19,8 @@
     522,
     530
    ],
-   "n_punkte": 8185,
-   "n_einwohnerregister": 2262,
+   "n_punkte": 8167,
+   "n_einwohnerregister": 2261,
    "n_mehrdeutig": 1158,
    "hinweis": "n_punkte zählt alle eCH-Punkte (Pflicht und optional, alle Subjekte); die Kennzahl «vorbefüllbar» des Dashboards (burden.prefillable) zählt nur PFLICHT-Punkte mit einwohnerregister = true — beide Zahlen sind aus pflicht und einwohnerregister ableitbar."
   }
@@ -73440,188 +73440,6 @@
     "feld_parent": null,
     "standard": "eCH-0260",
     "element": "perMonthWeekHour1stYear",
-    "pflicht": true,
-    "subjekt": null,
-    "einwohnerregister": false,
-    "mehrdeutig": false
-   }
-  ],
-  "475": [
-   {
-    "feld": "Familienname",
-    "feld_parent": null,
-    "standard": "eCH-0044",
-    "element": "officialName",
-    "pflicht": true,
-    "subjekt": "natuerliche_person",
-    "einwohnerregister": true,
-    "mehrdeutig": false
-   },
-   {
-    "feld": "Aktuelle Adresse und Kontaktangaben›Name",
-    "feld_parent": "Aktuelle Adresse und Kontaktangaben",
-    "standard": "eCH-0044",
-    "element": "officialName",
-    "pflicht": true,
-    "subjekt": "gemischt",
-    "einwohnerregister": false,
-    "mehrdeutig": false
-   },
-   {
-    "feld": "Aktuelle Adresse und Kontaktangaben›Strasse",
-    "feld_parent": "Aktuelle Adresse und Kontaktangaben",
-    "standard": "eCH-0010",
-    "element": "street",
-    "pflicht": true,
-    "subjekt": "gemischt",
-    "einwohnerregister": false,
-    "mehrdeutig": false
-   },
-   {
-    "feld": "Aktuelle Adresse und Kontaktangaben›PLZ",
-    "feld_parent": "Aktuelle Adresse und Kontaktangaben",
-    "standard": "eCH-0010",
-    "element": "swissZipCode",
-    "pflicht": true,
-    "subjekt": "gemischt",
-    "einwohnerregister": false,
-    "mehrdeutig": false
-   },
-   {
-    "feld": "Aktuelle Adresse und Kontaktangaben›Ort",
-    "feld_parent": "Aktuelle Adresse und Kontaktangaben",
-    "standard": "eCH-0010",
-    "element": "town",
-    "pflicht": true,
-    "subjekt": "gemischt",
-    "einwohnerregister": false,
-    "mehrdeutig": false
-   },
-   {
-    "feld": "Aktuelle Adresse und Kontaktangaben›E-Mail",
-    "feld_parent": "Aktuelle Adresse und Kontaktangaben",
-    "standard": "eCH-0046",
-    "element": "emailAddress",
-    "pflicht": true,
-    "subjekt": "gemischt",
-    "einwohnerregister": false,
-    "mehrdeutig": false
-   },
-   {
-    "feld": "Aktuelle Adresse und Kontaktangaben›Telefon",
-    "feld_parent": "Aktuelle Adresse und Kontaktangaben",
-    "standard": "eCH-0046",
-    "element": "phoneNumber",
-    "pflicht": true,
-    "subjekt": "gemischt",
-    "einwohnerregister": false,
-    "mehrdeutig": false
-   },
-   {
-    "feld": "Erträge›Krankenversicherer Kostenbeteiligung",
-    "feld_parent": "Erträge",
-    "standard": "eCH-0276",
-    "element": "serviceRevenue",
-    "pflicht": true,
-    "subjekt": null,
-    "einwohnerregister": false,
-    "mehrdeutig": false
-   },
-   {
-    "feld": "Erträge›Klientenanteil - für KLV-Pflegeleistung",
-    "feld_parent": "Erträge",
-    "standard": "eCH-0276",
-    "element": "serviceRevenue",
-    "pflicht": true,
-    "subjekt": null,
-    "einwohnerregister": false,
-    "mehrdeutig": false
-   },
-   {
-    "feld": "Erträge›Gemeinde-Pflegeanteil",
-    "feld_parent": "Erträge",
-    "standard": "eCH-0276",
-    "element": "publicSectorContributions",
-    "pflicht": true,
-    "subjekt": null,
-    "einwohnerregister": false,
-    "mehrdeutig": false
-   },
-   {
-    "feld": "Erträge›Klientenanteil - hauswirtsch. Leistung",
-    "feld_parent": "Erträge",
-    "standard": "eCH-0276",
-    "element": "serviceRevenue",
-    "pflicht": true,
-    "subjekt": null,
-    "einwohnerregister": false,
-    "mehrdeutig": false
-   },
-   {
-    "feld": "Erträge›Sonstige Erträge",
-    "feld_parent": "Erträge",
-    "standard": "eCH-0276",
-    "element": "otherOperatingRevenue",
-    "pflicht": true,
-    "subjekt": null,
-    "einwohnerregister": false,
-    "mehrdeutig": false
-   },
-   {
-    "feld": "Erträge›Erträge total",
-    "feld_parent": "Erträge",
-    "standard": "eCH-0276",
-    "element": "totalDeliveriesAndServicesRevenue",
-    "pflicht": true,
-    "subjekt": null,
-    "einwohnerregister": false,
-    "mehrdeutig": false
-   },
-   {
-    "feld": "Erträge›Fr. für SH",
-    "feld_parent": "Erträge",
-    "standard": "eCH-0276",
-    "element": "turnoverFactorsAmount",
-    "pflicht": true,
-    "subjekt": null,
-    "einwohnerregister": false,
-    "mehrdeutig": false
-   },
-   {
-    "feld": "Erträge›Fr. extern",
-    "feld_parent": "Erträge",
-    "standard": "eCH-0276",
-    "element": "turnoverFactorsAmount",
-    "pflicht": true,
-    "subjekt": null,
-    "einwohnerregister": false,
-    "mehrdeutig": false
-   },
-   {
-    "feld": "Erträge›Fr. total",
-    "feld_parent": "Erträge",
-    "standard": "eCH-0276",
-    "element": "totalDeliveriesAndServicesRevenue",
-    "pflicht": true,
-    "subjekt": null,
-    "einwohnerregister": false,
-    "mehrdeutig": false
-   },
-   {
-    "feld": "Aufwand›Personalaufwand",
-    "feld_parent": "Aufwand",
-    "standard": "eCH-0276",
-    "element": "totalEmployeeExpenses",
-    "pflicht": true,
-    "subjekt": null,
-    "einwohnerregister": false,
-    "mehrdeutig": false
-   },
-   {
-    "feld": "Aufwand›Sonst. Aufwand (EDV, Kfz., Miete, ...)",
-    "feld_parent": "Aufwand",
-    "standard": "eCH-0276",
-    "element": "TotalOtherOperatingExpenses",
     "pflicht": true,
     "subjekt": null,
     "einwohnerregister": false,

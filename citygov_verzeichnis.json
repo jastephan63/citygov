@@ -1,7 +1,7 @@
 {
  "meta": {
-  "generated_at": "2026-09-27T03:45:26",
-  "hinweis": "Verzeichnis der Bearbeitungstätigkeiten je Formular, Struktur nach KDSG Art. 17b Abs. 2 (die Führungspflicht nach Art. 17b trifft nur Polizei, Staatsanwaltschaft und Justizvollzug; für alle anderen Stellen ist dies ein Steuerungsinstrument); «FEHLT» markiert offene Inhalte ehrlich. Erfasst sind die 474 von 474 Formularen mit modellierter Datenfeld-Schicht.",
+  "generated_at": "2026-09-27T13:41:44",
+  "hinweis": "Verzeichnis der Bearbeitungstätigkeiten je Formular, Struktur nach KDSG Art. 17b Abs. 2 (die Führungspflicht nach Art. 17b trifft nur Polizei, Staatsanwaltschaft und Justizvollzug; für alle anderen Stellen ist dies ein Steuerungsinstrument); «FEHLT» markiert offene Inhalte ehrlich. Erfasst sind die 473 von 473 Formularen mit modellierter Datenfeld-Schicht.",
   "felder": {
    "verantwortliche_stelle": "Dienststelle des Services; sonst die publizierende Dienststelle des Formulars; sonst FEHLT.",
    "datenkategorien.besonders_schuetzenswert": "Kategorien besonders schützenswerter Personendaten nach KDSG Art. 2 Abs. 1 lit. d, die das Formular erhebt (Codes: gesundheit = Gesundheit, religion_weltanschauung = Religion/Weltanschauung, politik = Politische oder gewerkschaftliche Ansichten, ethnie_herkunft = Ethnische Herkunft, genetik_biometrie = Genetik/Biometrie, strafen_verfahren = Verfolgungen und Sanktionen, sozialhilfe = Massnahmen der sozialen Hilfe).",
@@ -320,7 +320,7 @@
   {
    "form_id": 14,
    "formular": "Energienachweis EN-120-SH: Erneuerbare Wärme beim Wärmeerzeugerersatz",
-   "verantwortliche_stelle": "Kantonale Feuerpolizei",
+   "verantwortliche_stelle": "Energiefachstelle",
    "zweck": "Prüfung, ob beim Ersatz des Wärmeerzeugers der vorgeschriebene Anteil erneuerbarer Wärme eingehalten wird.",
    "datenkategorien": {
     "felder": 29,
@@ -8729,7 +8729,7 @@
   {
    "form_id": 191,
    "formular": "Meldeformular Wärmepumpen Schaffhausen 2024",
-   "verantwortliche_stelle": "Kantonale Feuerpolizei",
+   "verantwortliche_stelle": "Energiefachstelle",
    "zweck": "Kontrolle baubewilligungsfreier Wärmepumpenanlagen auf Einhaltung der brandschutz- und baurechtlichen Vorgaben vor Baubeginn.",
    "datenkategorien": {
     "felder": 12,
@@ -19598,7 +19598,7 @@
   },
   {
    "form_id": 439,
-   "formular": "Sie können das Formular auch herunterladen: www.sh.ch",
+   "formular": "Selbständige Pflegefachpersonen, jährliche Datenerhebung",
    "verantwortliche_stelle": "Gesundheitsamt",
    "zweck": "Jährliche Erhebung der verrechneten Pflege- und Hauswirtschaftsleistungen für die Aufsicht und die Versorgungsplanung im Gesundheitswesen.",
    "datenkategorien": {
@@ -21259,57 +21259,6 @@
     "zu_ermitteln": 17,
     "n_gedeckt": 0,
     "n_offen": 17
-   },
-   "empfaenger": "FEHLT",
-   "aufbewahrung": {
-    "fristen": [],
-    "standardregime": {
-     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
-     "refs": [
-      [
-       "174.100",
-       "Art. 4",
-       "aufbewahrung"
-      ],
-      [
-       "172.301",
-       "§ 6",
-       "aufbewahrung"
-      ],
-      [
-       "172.301",
-       "§ 5",
-       "aufbewahrung"
-      ],
-      [
-       "172.301",
-       "§ 7",
-       "archivierung"
-      ]
-     ]
-    }
-   },
-   "dsfa_status": "FEHLT"
-  },
-  {
-   "form_id": 475,
-   "formular": "Selbständige Pflegefachpersonen, jährliche Datenerhebung",
-   "verantwortliche_stelle": "Gesundheitsamt",
-   "zweck": "FEHLT",
-   "datenkategorien": {
-    "felder": 12,
-    "besonders_schuetzenswert": [],
-    "n_besonders_schuetzenswert": 0
-   },
-   "rechtsgrundlagen": {
-    "artikel": 0,
-    "aufgabe": 0,
-    "art5_offen": 0,
-    "ohne": 0,
-    "offen": 0,
-    "zu_ermitteln": 12,
-    "n_gedeckt": 0,
-    "n_offen": 12
    },
    "empfaenger": "FEHLT",
    "aufbewahrung": {
