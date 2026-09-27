@@ -14,8 +14,20 @@ Contents: Service (Dienststelle, Kontakt aus dem DVSH, DVSH-Status, Zweck),
 Rechtsgrundlagen des Services, Verfahrens-Ergebnis und Rechtsmittel, je
 Formular: Kanal/Unterschrift/Bürgerlast, die Datenfelder (Pflicht, eCH-Element
 und Datentyp, Grundlage, ⛨, ↺), Beilagen mit Halter, Empfänger mit Artikel,
-Aufbewahrung, Standard-Divergenzen und der Handlungsbedarf des Formulars; a
-printed legend explains the glyphs, the footer states the Datenstand.
+Aufbewahrung, Standard-Divergenzen und der Handlungsbedarf des Formulars; on
+top, the Handlungsbedarf of the whole service by priority tier (data standard
+first). The data-standard tier also carries the data points without an eCH
+standard in force (form.standard_divergenzen.fehlend: kein_standard, and
+standard_entwurf where echalt does not already hold it), which
+form.handlungsbedarf has no category for — the largest data-standard gap.
+Open points are GAPS still to close, never framed as a risk.
+
+One status language with the dashboard: every status badge takes one of the
+four tones of DATA.labels.ton through DATA.labels.ton_map / ton_of_art — the
+colour says who acts next (st-ok geklärt · st-act Dienststelle · st-dec Kanton ·
+st-open Databank) — and a symbol, so the tones stay apart in a black-and-white
+print. Markers (⛨, ↺, Rechtsebene, eSH) are neutral outlines, never a tone. A
+printed legend explains tones and glyphs, the footer states the Datenstand.
 
     python3 scripts/export_dossiers.py [--pdf] [--only <service_id>]
 """
@@ -24,6 +36,9 @@ import html, json, os, re, subprocess, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import labels as LABELS
 from labels import fmt_date, pl, render_label
+# the dashboard's wording pass over texts from the export (plain words instead of
+# «Over-collection», «Korpus»; counts with their unit) — one list for both surfaces
+from build_dashboard import gap_wording
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "dossiers")
@@ -38,11 +53,163 @@ STAND = ""
 TEXTE = {}
 DATENSTAND = {}
 ZITATE = {}
+# DATA.labels (data_export.json) — tones, priority tiers and Handlungsbedarf
+# wording are read from there, the same mapping the dashboard uses
+LAB = {}
+TODO = {}
 
 esc = lambda s: html.escape(str(s if s is not None else ""), quote=True)
 
-# the dashboard's badge classes (named in labels.TODO_CATS) -> the dossier's
-BCLS = {"b-unver": "warn", "b-over": "bad", "b-sens": "sens", "b-sourced": "ok", "b-match": "ok"}
+# ---- one status language: the colour says who acts next ---------------------
+# The four tones of DATA.labels.ton. The symbol (drawn by the CSS before the
+# badge text) keeps them apart in a black-and-white print; the legend maps
+# colour, symbol and who acts.
+TON_SYM = {"ok": "✓", "act": "●", "dec": "◆", "open": "○"}
+
+
+def ton_of(domain, code):
+    """Tone of a status code via DATA.labels.ton_map — the dashboard's mapping.
+    A code without an entry is grey (not yet settled), never green."""
+    t = ((LAB.get("ton_map") or {}).get(domain) or {}).get(code)
+    return t if t in TON_SYM else "open"
+
+
+def cat_ton(cat):
+    """Tone of a Handlungsbedarf category: its kind (todo_cats) via ton_of_art."""
+    c = TODO.get(cat)
+    t = (LAB.get("ton_of_art") or {}).get(c[3]) if c else None
+    return t if t in TON_SYM else "open"
+
+
+def item_ton(it):
+    """A Handlungsbedarf item carries its tone from export_json; else its category's."""
+    return it["ton"] if it.get("ton") in TON_SYM else cat_ton(it.get("cat"))
+
+
+def item_stufe(it):
+    """Priority tier of an item (DATA.labels.stufe_of_cat); unknown -> last tier."""
+    return it.get("stufe") or (LAB.get("stufe_of_cat") or {}).get(it.get("cat")) or 4
+
+
+def first_tier():
+    """The data-standard tier — the first of DATA.labels.stufen, which leads."""
+    return ((LAB.get("stufen") or [[1]])[0])[0]
+
+
+# thousands grouped as the dashboard's nf() (de-CH: 2'900)
+nf = lambda n: f"{int(n or 0):,}".replace(",", "'")
+
+
+# ---- the data standard's gaps that form.handlungsbedarf has no category for ----
+# export_json's handlungsbedarf counts divergences, labels, missing elements and a
+# standard «nicht in Kraft» (echalt), but not the data points WITHOUT an eCH
+# standard (the canton sets eSH) nor those whose standard is still «In Arbeit».
+# Both are amber in kopfzahlen.standard_ech (teile.dec) and in
+# standard_divergenzen.fehlend; the dossier adds them to the data-standard tier
+# from there, counted per data point (the atomic unit), in the tone of
+# ton_map.div — the largest data-standard gap must not be missing at the top.
+STD = "std:"
+STD_ARTS = ("kein_standard", "standard_entwurf")
+# the statuses export_json's handlungsbedarf already carries as «echalt» (its set
+# `bad`); such points stay with that item, so no point is counted twice
+ECHALT_STATUS = ("Aufgehoben", "Abgelöst", "Sistiert")
+
+
+def std_items(f):
+    """Tier-1 items from standard_divergenzen.fehlend, shaped like a
+    form.handlungsbedarf entry {cat, n, detail, stufe, ton}."""
+    sd = f.get("standard_divergenzen") or {}
+    has_alt = any(it.get("cat") == "echalt" for it in f.get("handlungsbedarf") or [])
+    agg = {}
+    for i in sd.get("fehlend") or []:
+        art = i.get("art")
+        if art not in STD_ARTS or not i.get("n"):
+            continue
+        if art == "standard_entwurf" and has_alt and i.get("status") in ECHALT_STATUS:
+            continue
+        key = STD + art + ((":" + i["status"]) if art == "standard_entwurf" and i.get("status") else "")
+        a = agg.setdefault(key, {"cat": key, "n": 0, "ton": ton_of("div", art), "stufe": first_tier(), "parts": []})
+        a["n"] += i["n"]
+        a["parts"].append((i.get("standard"), i["n"]))
+    out = []
+    for a in agg.values():
+        parts = sorted(a.pop("parts"), key=lambda p: (p[0] is None, -p[1], p[0] or ""))
+        if a["cat"] == STD + "kein_standard":
+            # the fehlend entry of kein_standard carries the eSH draft code, if any
+            has = [f"{c} ({nf(n)})" for c, n in parts if c]
+            none = sum(n for c, n in parts if not c)
+            a["detail"] = " · ".join(x for x in (("eSH-Entwurf: " + ", ".join(has)) if has else "",
+                                                 f"ohne eSH-Entwurf: {nf(none)}" if none else "") if x)
+        else:
+            a["detail"] = ", ".join(f"{c} ({nf(n)})" for c, n in parts if c)
+        out.append(a)
+    return out
+
+
+def form_items(f):
+    """form.handlungsbedarf — it carries the data-standard gaps itself (category
+    «kein_standard», export_json), so the dossier counts exactly like the board."""
+    return list(f.get("handlungsbedarf") or [])
+
+
+def std_label(cat):
+    """«Kein eCH-Standard — eSH festlegen» / «Standard nicht in Kraft (In Arbeit)»
+    — the words of DATA.labels.div, as in the Standard-Divergenzen below."""
+    art, _, status = cat[len(STD):].partition(":")
+    lb = render_label(LAB.get("div") or LABELS.DIV, art)
+    if art == "kein_standard":
+        return lb + " — eSH festlegen"
+    return lb + (f" ({status})" if status else "")
+
+
+# what the number of a Handlungsbedarf category counts (export_json.handlungsbedarf):
+# fields, data points or pairs of Formulare. None = one point per Formular, so
+# the chip carries no number and the Formulare are counted instead. A category
+# missing here shows its bare number.
+UNIT = LABELS.EINHEIT          # shared with the dashboard (labels.py)
+
+
+def count_txt(cat, n):
+    """«: 55 Datenpunkte» after a category label; empty for a per-Formular point."""
+    u = ("Datenpunkt", "Datenpunkte") if str(cat).startswith(STD) else UNIT.get(cat)
+    if u is None:                 # counted per Formular: the chip carries no number
+        return ""
+    return f": {nf(n)}" + (f" {u[0] if n == 1 else u[1]}" if u[0] else "")
+
+
+def stufe_of(nr):
+    """(«1 · Datenstandard», explanation) for a tier number of DATA.labels.stufen."""
+    for x in LAB.get("stufen") or []:
+        if x[0] == nr:
+            return f"{x[0]} · {x[1]}", (x[2] if len(x) > 2 else "")
+    return f"Stufe {nr}", ""
+
+
+def ton_label(t):
+    return ((LAB.get("ton") or {}).get(t) or {}).get("label") or t
+
+
+def ton_short(t):
+    """«geklärt» / «Dienststelle» / «Kanton» / «Databank» — who acts, in one word."""
+    lb = ton_label(t)
+    return lb if t == "ok" else lb.split()[0]
+
+
+def st(t, inner, short=False):
+    """One status badge in tone t. inner is ready HTML; the title names who acts
+    next and what that means (DATA.labels.ton) — only who acts where the badge
+    repeats by the hundred (index)."""
+    x = (LAB.get("ton") or {}).get(t) or {}
+    tip = " — ".join(v for v in (x.get("label"), None if short else x.get("bedeutung")) if v)
+    return f'<span class="b st-{t}" title="{esc(tip)}">{inner}</span>'
+
+
+def ton_key_html():
+    """The four tones in one line — dossier head, legend and index say it alike."""
+    parts = " · ".join(f"{esc(((LAB.get('ton') or {}).get(t) or {}).get('farbe') or '')} {st(t, esc(ton_short(t)))}"
+                       for t in ("ok", "act", "dec", "open"))
+    return (f"<div class='key'><b>Die Farbe sagt, wer als Nächstes handelt:</b> {parts} — grau ist eine "
+            "Hausaufgabe der Databank, kein Befund über die Verwaltung.</div>")
 # gesetzesebenen -> wording of the Rechtsmittel line; mirrors the inline literal in
 # build_dashboard.py (rechtsmittelLine) and belongs in labels.py with the other maps —
 # labels.JUR says «Bund/Kanton/Gemeinde», which is not the same sentence, so it is
@@ -61,9 +228,17 @@ a{color:#8F6400}a:hover{text-decoration:none}a.b{text-decoration:none}
 table{border-collapse:collapse;width:100%;font-size:9pt}th,td{text-align:left;vertical-align:top;padding:2px 5px;border-bottom:1px solid #EAE5DA}
 th{font-weight:600;color:#6B6455;font-size:8.5pt;text-transform:uppercase;letter-spacing:.03em}
 .b{display:inline-block;border:1px solid #D8D2C4;border-radius:4px;padding:0 4px;font-size:8.5pt;white-space:nowrap}
-.b.ok{color:#1F5A3A;background:#E3F2E8;border-color:#B9DEC6}.b.warn{color:#8F6400;background:#FBF3DC;border-color:#EBD9A8}
-.b.bad{color:#7A1F1F;background:#FBEAEA;border-color:#E8B4B4}.b.sens{color:#5A1F6B;background:#F1E6F5;border-color:#D7BFE0}
-.b.info{color:#1F3A6B;background:#E6ECF5;border-color:#BFCDE0}
+.b{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.b.st-ok{color:#1D5B3A;background:#E2F2E8;border-color:#8FC7A5}
+.b.st-act{color:#8E1B1B;background:#FBE8E8;border-color:#DE9A9A}
+.b.st-dec{color:#6E4A00;background:#FDF1D3;border-color:#D9AE4A;border-style:double;border-width:3px;padding:0 3px}
+.b.st-open{color:#55524A;background:#F2F1ED;border-color:#A9A498;border-style:dashed}
+.b.mk{color:#1F2A37;background:#fff;border-color:#A9A395}
+.key{font-size:8.5pt;color:#6B6455;margin:3px 0}
+.prio th{width:30%;text-transform:none;letter-spacing:0;font-size:9pt;color:#1F2A37;white-space:nowrap}
+.prio td .b{margin:1px 0}
+.nw{white-space:nowrap}
+.tier{font-weight:600;font-size:8.5pt;color:#6B6455;margin:5px 0 1px}
 .mono{font-family:ui-monospace,Menlo,monospace;font-size:8.5pt}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px}
 .box{border:1px solid #D8D2C4;border-radius:6px;padding:6px 9px;margin:6px 0}
@@ -73,9 +248,14 @@ th{font-weight:600;color:#6B6455;font-size:8.5pt;text-transform:uppercase;letter
 .legend{margin-top:12px;font-size:8.5pt;color:#6B6455;border-top:1px dashed #D8D2C4;padding-top:4px}
 .foot{margin-top:10px;font-size:8.5pt;color:#6B6455;border-top:1px solid #D8D2C4;padding-top:4px}
 input.filter{font:inherit;padding:4px 8px;border:1px solid #D8D2C4;border-radius:6px;margin:8px 0;width:360px;max-width:100%}
-@media print{.print,.nav,input.filter{display:none}body{padding:0}h2,h3{break-after:avoid}tr{break-inside:avoid}thead{display:table-header-group}
+@media print{.print,.nav,input.filter{display:none}.prio tr{break-inside:avoid}body{padding:0}h2,h3{break-after:avoid}tr{break-inside:avoid}thead{display:table-header-group}
 .b{white-space:normal}a{color:inherit;text-decoration:none}a[href^=http]::after{content:' (' attr(href) ')';font-size:7.5pt;color:#6B6455}}
 """
+# the tone symbol before every status badge — from TON_SYM, the one place it is
+# set; with the border (solid · solid · double · dashed) it keeps the four tones
+# apart in a black-and-white print
+CSS += ("".join(f'.b.st-{t}::before{{content:"{sym}\\00a0"}}' for t, sym in TON_SYM.items())
+        + ",".join(f".b.st-{t}::before" for t in TON_SYM) + "{font-weight:700;font-size:1.2em;line-height:1}\n")
 
 
 # short title -> jurisdiction, filled from the law table in main(); used to read
@@ -134,81 +314,156 @@ def basis_label(d):
         nr = b.get("sr_number") or b.get("cantonal_ref") or ""
         lc = b.get("last_checked") or ""
         # the proof level of the citation: live-checked, or read from the
-        # official PDF and still awaiting the live check
+        # official PDF and still awaiting the live check. The basis itself is
+        # «artikel» (geklärt); an unverified quote still leaves the Databank a
+        # check to do, so the badge takes the tone of the proof level
         if lc == "verified":
-            prov, cls = "verifiziert", "ok"
+            prov, lv = "verifiziert", "verified"
         elif lc.startswith("Gesetze-PDF"):
-            prov, cls = ("Quelle SHR-PDF" if b.get("jurisdiction") == "cantonal" else "Quelle Gesetzes-PDF") + " · Live-Abgleich offen", "ok"
+            prov, lv = ("Quelle SHR-PDF" if b.get("jurisdiction") == "cantonal" else "Quelle Gesetzes-PDF") + " · Live-Abgleich offen", "quelle_pdf"
         else:
-            prov, cls = "Zitat nicht verifiziert", "warn"
-        return (f'<span class="b {cls}">{esc(b.get("article_no"))} {esc((b.get("law_short") or "").strip())}'
-                f'{(" · " + esc(nr)) if nr else ""}</span> <span class="small muted">{prov}</span>')
+            prov, lv = "Zitat nicht verifiziert", "unverifiziert"
+        return (st(ton_of("verif", lv), f'{esc(b.get("article_no"))} {esc((b.get("law_short") or "").strip())}'
+                      f'{(" · " + esc(nr)) if nr else ""}') + f' <span class="small muted">{prov}</span>')
     if d.get("art5_offen"):
         # a besonders schützenswertes Datum judged «aufgabe»: KDSG Art. 4 Abs. 1
         # lit. b is not enough, Art. 5 Abs. 1 lit. a or b must be named -> OPEN
-        return ('<span class="b warn">aufgabennotwendig — Grundlage nach KDSG Art. 5 Abs. 1 noch nicht benannt</span>')
+        return st(ton_of("basis", "art5_offen"), "aufgabennotwendig — Grundlage nach KDSG Art. 5 Abs. 1 noch nicht benannt")
     bt = d.get("basis_typ")
     if bt == "aufgabe":
-        return f'<span class="b info">{esc(render_label(LABELS.BASIS_TYP, bt))} (KDSG Art. 4 Abs. 1 lit. b) — keine explizite Norm</span>'
+        return st(ton_of("basis", bt), f'{esc(render_label(LABELS.BASIS_TYP, bt))} (KDSG Art. 4 Abs. 1 lit. b) — keine explizite Norm')
     if bt == "ohne":
-        return f'<span class="b bad">{esc(render_label(LABELS.BASIS_TYP, bt))} — weder Norm noch Aufgabenbedarf</span>'
+        return st(ton_of("basis", bt), f'{esc(render_label(LABELS.BASIS_TYP, bt))} — weder Norm noch Aufgabenbedarf')
     if bt == "offen":
-        return f'<span class="b warn">{esc(render_label(LABELS.BASIS_TYP, bt))} — keine explizite Norm</span>'
+        return st(ton_of("basis", bt), f'{esc(render_label(LABELS.BASIS_TYP, bt))} — keine explizite Norm')
     if bt:
-        return f'<span class="b warn">{esc(render_label(LABELS.BASIS_TYP, bt))}</span>'
-    return '<span class="b warn">Rechtsgrundlage zu ermitteln</span>'
+        return st(ton_of("basis", bt), esc(render_label(LABELS.BASIS_TYP, bt)))
+    return st(ton_of("basis", "zu_ermitteln"), "Rechtsgrundlage zu ermitteln")
+
+
+# a standard that is not in force (the set export_json's _ech_state reads as
+# «standard_entwurf»)
+DRAFT_STATUS = ("In Arbeit", "Sistiert", "Aufgehoben", "Abgelöst")
 
 
 def std_badge(e):
     """The standard's own status when it is not in force (Sistiert, In Arbeit …)."""
-    return f' <span class="b warn">{esc(e["status"])}</span>' if e.get("status") and e["status"] != "Genehmigt" else ""
+    return (" " + st(ton_of("ech", "standard_entwurf"), esc(e["status"]))
+            if e.get("status") and e["status"] != "Genehmigt" else "")
 
 
-def ech_cell(d):
-    e = d.get("ech") or {}
-    st = std_badge(e)
+def ech_state(u):
+    """eCH state of one data point, in the order of export_json._ech_state — the
+    state the data-standard figures (kopfzahlen.standard_ech) count."""
+    e = u.get("ech") or {}
     if e.get("element"):
-        el = (f'<span class="mono">{esc(e["standard"])} {esc(e["element"])}</span>'
-              + (f' <span class="mono muted">⟨{esc(e["datatype"])}⟩</span>' if e.get("datatype") else "") + st)
-    elif e.get("standard"):
+        return "element"
+    if e.get("standard") and e.get("status") in DRAFT_STATUS:
+        return "standard_entwurf"
+    if e.get("standard") and not e.get("n_elements"):
+        return "standard_ohne_elemente"
+    if e.get("standard"):
+        return "element_offen"
+    if u.get("ech_status") == "kein_standard":
+        return "kein_standard"
+    return "ungeprueft"
+
+
+# the order of the sub-field chips: settled first, then who acts
+STATE_ORDER = ("element", "standard_ohne_elemente", "standard_entwurf", "kein_standard", "element_offen", "ungeprueft")
+
+
+def own_ech(d):
+    """What the Databank mapped to ONE data point — a field without sub-fields —
+    as a tone badge (ton_map.ech) plus the standard's status where not in force."""
+    e = d.get("ech") or {}
+    stb = std_badge(e)
+    if e.get("element"):
+        return (st(ton_of("ech", "element"), f'<span class="mono">{esc(e["standard"])} {esc(e["element"])}</span>')
+                + (f' <span class="mono muted">⟨{esc(e["datatype"])}⟩</span>' if e.get("datatype") else "") + stb)
+    if e.get("standard") and e.get("status") in DRAFT_STATUS:
+        # a standard not in force: the mapping cannot be cited until the canton
+        # decides (successor, eSH) — the status is the badge's own text
+        return st(ton_of("ech", "standard_entwurf"), f'<span class="mono">{esc(e["standard"])}</span> · {esc(e["status"])}')
+    if e.get("standard"):
         # an element is only owed where the databank holds an element catalogue
         # for the standard; without one (process/FHIR standard or XSD not swept)
         # the mapping stays on standard level — labels.DIV words it
+        code = "element_offen" if e.get("n_elements") else "standard_ohne_elemente"
         note = "Element offen" if e.get("n_elements") else render_label(LABELS.DIV, "standard_ohne_elemente")
-        el = f'<span class="mono">{esc(e["standard"])}</span> <span class="muted">{esc(note)}</span>' + st
+        return st(ton_of("ech", code), f'<span class="mono">{esc(e["standard"])}</span> · {esc(note)}') + stb
+    if d.get("ech_status") == "kein_standard":
+        return (st(ton_of("ech", "kein_standard"), "kein eCH-Standard")
+                + (f' <span class="b mk">{esc(d["esh"]["code"])} Entwurf (eSH)</span>' if d.get("esh") else ""))
+    return st(ton_of("ech", "ungeprueft"), "nicht geprüft")
+
+
+def parent_ech(d):
+    """The composite field's own mapping as plain muted text — never a tone: the
+    unit of the data standard is the sub-field, so the parent's mapping says
+    nothing about whether its data points are settled."""
+    e = d.get("ech") or {}
+    if e.get("element"):
+        txt = (f'<span class="mono">{esc(e["standard"])} {esc(e["element"])}</span>'
+               + (f' <span class="mono">⟨{esc(e["datatype"])}⟩</span>' if e.get("datatype") else ""))
+    elif e.get("standard"):
+        note = (e["status"] if e.get("status") in DRAFT_STATUS
+                else ("Element offen" if e.get("n_elements") else render_label(LABELS.DIV, "standard_ohne_elemente")))
+        txt = f'<span class="mono">{esc(e["standard"])}</span> · {esc(note)}'
     elif d.get("ech_status") == "kein_standard":
-        el = ('<span class="muted">kein eCH-Standard</span>'
-              + (f' <span class="b info">{esc(d["esh"]["code"])} Entwurf (eSH)</span>' if d.get("esh") else ""))
+        txt = "kein eCH-Standard" + (f' <span class="b mk">{esc(d["esh"]["code"])} Entwurf (eSH)</span>' if d.get("esh") else "")
     else:
-        el = '<span class="muted">nicht geprüft</span>'
-    # sub-fields carry their own elements and their own standard status
+        return ""
+    return f'<div class="small muted">Feld als Ganzes: {txt}</div>'
+
+
+def ech_cell(d):
     subs = [s for s in (d.get("subfields") or []) if isinstance(s, dict)]
-    if subs:
-        with_el = [s for s in subs if (s.get("ech") or {}).get("element")]
-        stds = []
-        for s in with_el:
-            if s["ech"]["standard"] not in stds:
-                stds.append(s["ech"]["standard"])
-        badges, seen = "", set()
-        for s in subs:
-            se = s.get("ech") or {}
-            key = (se.get("standard"), se.get("status"))
-            if se.get("status") and se["status"] != "Genehmigt" and key not in seen:
-                seen.add(key)
-                badges += f' <span class="b warn">{esc(se.get("standard") or "")} {esc(se["status"])}</span>'
-        el += (f'<div class="small muted">Teilfelder: {len(with_el)} von {len(subs)} eCH-zugeordnet'
-               + (f' ({esc(", ".join(stds[:4]))}{"…" if len(stds) > 4 else ""})' if stds else "")
-               + badges + "</div>")
-    return el
+    if not subs:
+        return own_ech(d)
+    # a composite: the tone comes from its sub-fields, one chip per eCH state
+    # (ton_map.ech), counted — the same units export_json counts
+    by = {}
+    for s in subs:
+        by.setdefault(ech_state(s), []).append(s)
+    div = LAB.get("div") or LABELS.DIV
+    chips = []
+    for code in sorted(by, key=lambda c: STATE_ORDER.index(c) if c in STATE_ORDER else 99):
+        us = by[code]
+        lb = "eCH-Element" if code == "element" else render_label(div, code)
+        extra = ""
+        if code == "standard_entwurf":
+            # which standard, in which status (Sistiert, In Arbeit …)
+            seen = []
+            for u in us:
+                k = f'{(u.get("ech") or {}).get("standard") or ""} {(u.get("ech") or {}).get("status") or ""}'.strip()
+                if k not in seen:
+                    seen.append(k)
+            extra = " · " + ", ".join(seen)
+        chips.append(st(ton_of("ech", code), f"{esc(lb)}: {len(us)}{esc(extra)}"))
+    # an element-mapped sub-field whose standard is itself not approved keeps
+    # the status badge a single field shows (std_badge)
+    stat = []
+    for u in by.get("element", []):
+        b = std_badge(u.get("ech") or {})
+        if b and b not in stat:
+            stat.append(b)
+    stds = []
+    for u in by.get("element", []):
+        if u["ech"]["standard"] not in stds:
+            stds.append(u["ech"]["standard"])
+    return (f'<div class="small">{pl(len(subs), "Teilfeld", "Teilfelder")} — ' + " ".join(chips) + "".join(stat)
+            + (f' <span class="muted">({esc(", ".join(stds[:4]))}{"…" if len(stds) > 4 else ""})</span>' if stds else "")
+            + "</div>" + parent_ech(d))
 
 
 def field_row(d):
     marks = ""
     if d.get("sensitive"):
-        marks += f' <span class="b sens">⛨ {esc(render_label(LABELS.SENS, d["sensitive"]))}</span>'
+        marks += f' <span class="b mk">⛨ {esc(render_label(LABELS.SENS, d["sensitive"]))}</span>'
     units = [s for s in (d.get("subfields") or []) if isinstance(s, dict)] or [d]
     if any(u.get("register") for u in units):
-        marks += ' <span class="b ok">↺ Einwohnerregister</span>'
+        marks += ' <span class="b mk">↺ Einwohnerregister</span>'
     typ = render_label(LABELS.DFTYPE, d.get("data_type"))
     subs = [s.get("name") if isinstance(s, dict) else s for s in (d.get("subfields") or [])]
     subs_txt = (f'<div class="small muted">Teilfelder: {esc(cut(" · ".join(x for x in subs if x), 160))}</div>'
@@ -219,26 +474,83 @@ def field_row(d):
             f'<td>{ech_cell(d)}</td><td>{basis_label(d)}</td></tr>')
 
 
+def cat_rank(cat):
+    """Place of a category inside its tier (DATA.labels.cat_order); the
+    data-standard gaps from standard_divergenzen sit right after «echalt», the
+    other «standard not in force» item, before the amber «Pflicht uneinheitlich»."""
+    order = {c: i for i, c in enumerate(LAB.get("cat_order") or [])}
+    if str(cat).startswith(STD):
+        return order.get("echalt", 98) + (0.25 if cat == STD + "kein_standard" else 0.5)
+    return order.get(cat, 99)
+
+
+def todo_sorted(items):
+    """Handlungsbedarf in priority order: tier (DATA.labels.stufen — the data
+    standard first), then DATA.labels.cat_order, then the larger item."""
+    return sorted(items, key=lambda it: (item_stufe(it), cat_rank(it.get("cat")), -(it.get("n") or 0)))
+
+
+def todo_label(cat):
+    if str(cat).startswith(STD):
+        return std_label(cat)
+    c = TODO.get(cat)
+    return c[1] if c else f"⟨{cat}⟩"
+
+
 def todo_html(f):
-    """form.handlungsbedarf as computed ONCE in export_json.py, worded by labels.TODO_BY."""
-    items = f.get("handlungsbedarf") or []
+    """form.handlungsbedarf as computed ONCE in export_json.py, worded by
+    DATA.labels.todo_cats, grouped by priority tier; the tone says who acts."""
+    items = form_items(f)
     if not items:
-        return "<span class='b ok'>keine offenen Punkte</span>"
-    out = []
-    for it in items:
-        c = LABELS.TODO_BY.get(it.get("cat"))
-        label = c[1] if c else f"⟨{it.get('cat')}⟩"
-        cls = BCLS.get(c[2], "warn") if c else "warn"
-        art = render_label(LABELS.TODO_ART, c[3]) if c else ""
+        return st("ok", "keine offenen Punkte")
+    out, cur = [], None
+    for it in todo_sorted(items):
+        if item_stufe(it) != cur:
+            cur = item_stufe(it)
+            name, expl = stufe_of(cur)
+            out.append(f"<div class='tier' title='{esc(expl)}'>{esc(name)}</div>")
+        t = item_ton(it)
         n = it.get("n") or 0
         det = cut(it.get("detail") or "", 240)
-        tail = " — ".join(x for x in (esc(art), esc(det)) if x)
-        out.append(f"<div class='todo'><span class='b {cls}'>{esc(label)}{(': ' + str(n)) if n > 1 else ''}</span>"
+        tail = " — ".join(x for x in (esc(ton_label(t)), esc(det)) if x)
+        out.append(f"<div class='todo'>{st(t, esc(todo_label(it.get('cat'))) + esc(count_txt(it.get('cat'), n)))}"
                    + (f" <span class='small muted'>{tail}</span>" if tail else "") + "</div>")
     return "".join(out)
 
 
-def ergebnis_html(out, forms):
+def prio_html(forms):
+    """The service's Handlungsbedarf at a glance: form.handlungsbedarf summed per
+    category over its Formulare (plus the data-standard gaps it has no category
+    for), one row per priority tier, data standard first."""
+    agg = {}
+    for f in forms:
+        for it in form_items(f):
+            a = agg.setdefault((it.get("cat"), item_ton(it)), {"n": 0, "forms": set(), "stufe": item_stufe(it)})
+            a["n"] += it.get("n") or 0
+            a["forms"].add(f.get("id"))
+    tiers = [x[0] for x in (LAB.get("stufen") or [])]
+    tiers += sorted({a["stufe"] for a in agg.values()} - set(tiers))
+    rows = []
+    for nr in tiers:
+        name, expl = stufe_of(nr)
+        cell = []
+        for (cat, t), a in sorted(agg.items(), key=lambda kv: (cat_rank(kv[0][0]), -kv[1]["n"])):
+            if a["stufe"] != nr:
+                continue
+            cell.append(st(t, esc(todo_label(cat)) + esc(count_txt(cat, a["n"])))
+                        + (f" <span class='small muted nw'>in {len(a['forms'])} von {len(forms)} Formularen</span>"
+                           if len(forms) > 1 else ""))
+        rows.append(f"<tr><th title='{esc(expl)}'>{esc(name)}</th><td>"
+                    + (" · ".join(cell) if cell else "<span class='small muted'>keine offenen Punkte</span>")
+                    + "</td></tr>")
+    return ("<h2>Handlungsbedarf nach Priorität</h2>"
+            "<div class='small muted'>Lücken, die noch zu schliessen sind — der Datenstandard zuerst. Die Zahl sagt, "
+            "wie viele Datenpunkte, Felder oder Formularpaare betroffen sind; ein Punkt ohne Zahl betrifft das Formular "
+            "als Ganzes. Einzelheiten je Formular unten.</div>"
+            f"<table class='prio'><tbody>{''.join(rows)}</tbody></table>" + ton_key_html())
+
+
+def ergebnis_html(out, forms, s=None):
     ea = out.get("entscheid_art")
     if not forms:
         # the Verfahren is modelled on a Formular; no Formular, no Verfahren — said
@@ -246,9 +558,17 @@ def ergebnis_html(out, forms):
         val = ('<span class="small muted">in der Databank nicht erfasst — das Verfahren wird am Formular '
                'modelliert, und für diesen Service liegt keines in der Databank</span>')
     elif not ea:
-        val = '<span class="small muted">noch nicht erfasst (Wissenslücke der Databank)</span>'
+        # no point of form.handlungsbedarf stands behind this line (the priority table, the
+        # Recherche page and the dashboard count none), so it carries no status badge:
+        # without a DVSH model there is no Ablauftext to derive it from; with one, it is
+        # simply not derived yet
+        if (s or {}).get("dvsh") is None:
+            val = ('<span class="small muted">nicht erfasst — der Service ist im DVSH nicht modelliert, es liegt '
+                   'kein Ablauftext vor, aus dem es sich ableiten liesse</span>')
+        else:
+            val = '<span class="small muted">noch nicht aus dem DVSH-Ablauftext abgeleitet</span>'
     elif ea == "unbekannt":
-        val = f'<span class="b warn">{esc(render_label(LABELS.OUTCOME, ea))}</span>'
+        val = st(cat_ton("entscheid_art"), esc(render_label(LABELS.OUTCOME, ea)))
     else:
         val = (esc(render_label(LABELS.OUTCOME, ea))
                + (f' — «{esc(out["ergebnis_dokument"])}»' if out.get("ergebnis_dokument") else "")
@@ -270,13 +590,14 @@ def rechtsmittel_html(out):
                      f"{(' an ' + esc(rm['instanz'])) if rm.get('instanz') else ''} {frist}")
         if rm.get("scope") == "allgemein":
             if stt == "default_allgemein":
-                src = (f'<span class="b warn">{esc(render_label(LABELS.RM_STATUS, stt))}</span> '
+                src = (st(ton_of("rechtsmittel", stt), esc(render_label(LABELS.RM_STATUS, stt))) + ' '
                        '<span class="small muted">VRG Art. 1: die allgemeine Regel gilt nur, soweit kein Fachgesetz abweicht — '
                        'ob eines vorgeht, hat noch kein Prüfvermerk bestätigt.</span>')
             else:
-                src = '<span class="b ok">allgemeine Regel des VRG — Prüfvermerk bestätigt, kein vorgehendes Fachgesetz</span>'
+                src = st(ton_of("rechtsmittel", "bestaetigt"),
+                         "allgemeine Regel des VRG — Prüfvermerk bestätigt, kein vorgehendes Fachgesetz")
         else:
-            src = f'<span class="b ok">sektoral: {esc(rm.get("short_title") or rm.get("law_title") or "")}</span>'
+            src = st(ton_of("rechtsmittel", "bestaetigt"), f'sektoral: {esc(rm.get("short_title") or rm.get("law_title") or "")}')
         h = [f'<div><b>Rechtsmittel:</b> {what} — {esc(rm.get("article_no"))} {esc(rm.get("short_title") or rm.get("law_title") or "")}'
              f'{(" (" + esc(nr) + ")") if nr else ""} {src}</div>',
              f'<div class="small muted">«{esc(cut(rm.get("quote"), 300))}»</div>']
@@ -290,13 +611,13 @@ def rechtsmittel_html(out):
         return '<div><b>Rechtsmittel:</b> <span class="muted">keines — das Verfahren endet ohne anfechtbare Verfügung (Meldung)</span></div>'
     if not stt:
         return ""
-    h = [f'<div><b>Rechtsmittel:</b> <span class="b warn">{esc(render_label(LABELS.RM_STATUS, stt))}</span>']
+    h = [f'<div><b>Rechtsmittel:</b> {st(ton_of("rechtsmittel", stt), esc(render_label(LABELS.RM_STATUS, stt)))}']
     if stt in ("beurteilt_offen", "nicht_beurteilt"):
         lv = " und ".join(EBENE.get(x) or render_label(LABELS.JUR, x) for x in (out.get("gesetzesebenen") or [])) \
              or "die zitierten Erlasse"
         h.append(f' <span class="small muted">Der Entscheid stützt sich auf {esc(lv)}'
                  f'{"; Registerverfahren haben oft eine eigene Rechtsmittelordnung" if out.get("entscheid_art") == "registereintrag" else ""}.'
-                 f'{" Eine Wissenslücke der Databank, kein Befund." if stt == "nicht_beurteilt" else ""}</span>')
+                 f'{" Eine Lücke der Databank, kein Befund über die Verwaltung." if stt == "nicht_beurteilt" else ""}</span>')
     elif stt == "entscheidart_offen":
         h.append(' <span class="small muted">Erst wenn feststeht, was das Verfahren zurückgibt, lässt sich die '
                  'zuständige Rechtsmittelnorm bestimmen.</span>')
@@ -346,18 +667,24 @@ def formless_html(s, dv):
 
 
 def legend_html():
-    return ("<div class='legend'><b>Legende:</b> ⛨ = besonders schützenswertes Personendatum · "
+    tiers = " · ".join(esc(stufe_of(x[0])[0]) for x in (LAB.get("stufen") or []))
+    return ("<div class='legend'><b>Legende</b>" + ton_key_html()
+            + "<div><b>Kennzeichen, keine Bewertung</b> (weiss, umrandet): ⛨ = besonders schützenswertes Personendatum · "
             "↺ = das Einwohnerregister führt dieses Datum bereits (Once-Only, nur Daten natürlicher Personen; gezählt je Teilfeld) · "
+            "Bund / Kanton / interkantonal = Rechtsebene des Erlasses; Ebene offen = die Ebene lässt sich aus dem "
+            "DVSH-Eintrag nicht belegen (kein amtlicher Link, keine SR-/SHR-Nummer, kein bekannter Kurztitel) · "
+            "eSH = Entwurf eines kantonalen Standards, kein offizieller eCH-Standard.</div>"
+            f"<div><b>Handlungsbedarf nach Priorität:</b> {tiers} — innerhalb einer Stufe in fester Reihenfolge.</div>"
+            "<div><b>Weitere Zeichen:</b> "
             "⟨Typ⟩ = Datentyp gemäss eCH-XSD · Element offen = Standard zugeordnet, XML-Element noch nicht bestimmt · "
+            "Teilfelder — ✓ … ◆ … = Stand der einzelnen Teilfelder eines zusammengesetzten Feldes (die Teilfelder sind die "
+            "Einheit des Datenstandards); «Feld als Ganzes» nennt nur, was dem übergeordneten Feld zugeordnet ist, ohne Bewertung · "
             "Standard ohne Elementkatalog = in der Databank ist für diesen Standard kein XML-Elementkatalog hinterlegt "
             "(Prozess-/FHIR-Standard oder XSD nicht eingelesen); die Zuordnung bleibt auf Standard-Ebene · "
-            "Pflicht im Korpus ungeklärt = die Formulare sind gespalten, eine kantonale Festlegung fehlt · "
+            f"{esc(render_label(LABELS.DIV, 'pflicht_uneinheitlich'))} = die Formulare sind sich uneins, eine kantonale Festlegung fehlt · "
             "Min. = Rechenmodell 0.4 Min. je Pflichtangabe + 5 Min. je Beilage, keine Messung; Beilage = jeder Eintrag der "
             f"Beilagenliste (Formular und DVSH) plus Felder vom Datentyp {esc(render_label(LABELS.DFTYPE, 'attachment'))} ohne "
-            "Listeneintrag, ohne Gewichtung nach Pflicht · "
-            "Farben: grün = belegt, blau = aufgabennotwendig (KDSG Art. 4 Abs. 1 lit. b), gelb = offen oder zu klären, "
-            "rot = Over-collection oder veraltete Fassung, violett = besonders schützenswert · "
-            "Handlungsbedarf: Recherche (Databank) / Entscheid (Kanton) / Bereinigung (Dienststelle) sagt, wer am Zug ist.</div>")
+            "Listeneintrag, ohne Gewichtung nach Pflicht.</div></div>")
 
 
 def foot_html():
@@ -380,14 +707,13 @@ def foot_html():
     if xs.get("date"):
         bits.append(f"eCH-XSD-Abgleich {fmt_date(xs['date'])} ({pl(xs.get('n') or 0, 'Standard', 'Standards')})")
     z = ZITATE or {}
-    # thousands grouped as the dashboard's nf() (de-CH: 2'900)
-    nf = lambda n: f"{int(n or 0):,}".replace(",", "'")
     zit = (f" Zitate der Rechtsgrundlagen: {nf(z.get('verifiziert'))} live verifiziert · {nf(z.get('quelle_pdf'))} aus dem "
            f"Gesetzes-PDF (Live-Abgleich offen) · {nf(z.get('unverifiziert'))} unverifiziert." if z else "")
     return ("<div class='foot'>Quelle: citygov.db (Feld-Schicht kuratiert; Rechtsgrundlagen gegen die amtlichen Gesetzestexte geprüft; "
-            "eCH aus den offiziellen XSDs; Empfänger und Fristen nur mit Artikel-Beleg). «zu ermitteln» und «offen» sind Wissenslücken "
-            "der Databank, keine festgestellten Verstösse. Schutzstufen (ISV) sind für die Felder noch nicht festgelegt — kantonaler "
-            f"Entscheid ausstehend.<br>Datenstand: {esc(' · '.join(bits))}.{esc(zit)}</div>")
+            "eCH aus den offiziellen XSDs; Empfänger und Fristen nur mit Artikel-Beleg). Offene Punkte sind Lücken — noch zu "
+            "klären oder noch nicht belegt; grau markierte sind Hausaufgaben der Databank, kein Befund über die Verwaltung. "
+            + st(ton_of("schutzstufe", "fehlt"), "Schutzstufen (ISV) nicht festgelegt")
+            + f" — für die Felder steht der kantonale Entscheid noch aus.<br>Datenstand: {esc(' · '.join(bits))}.{esc(zit)}</div>")
 
 
 def dossier(s, forms, dst):
@@ -430,9 +756,9 @@ def dossier(s, forms, dst):
             chip = f'{jl} · {esc(label)}{(" · " + esc(nr)) if nr else ""}'
             url = x.get("url") or ""
             if re.match(r"https?://", url):
-                laws.append(f'<a class="b" href="{esc(url)}" target="_blank" rel="noreferrer">{chip}</a>')
+                laws.append(f'<a class="b mk" href="{esc(url)}" target="_blank" rel="noreferrer">{chip}</a>')
             else:
-                laws.append(f'<span class="b">{chip}</span>')
+                laws.append(f'<span class="b mk">{chip}</span>')
     # the Entscheid is modelled on ONE of a service's Formulare; picking the
     # first blindly hid the proven Rechtsmittel of the others
     out = next((f["outcome"] for f in forms
@@ -451,15 +777,15 @@ def dossier(s, forms, dst):
     h = [GENERATED,
          f"<!DOCTYPE html><html lang='de'><head><meta charset='utf-8'><link rel='icon' href='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%277%27 fill=%27%23e8b100%27/%3E%3C/svg%3E'><title>Datenschutz-Dossier · {esc(s['name'])}</title><style>{CSS}</style></head><body>",
          "<button class='print' onclick='window.print()'>⎙ Drucken / als PDF sichern</button>",
-         f"<div class='nav'><a href='index.html'>← Alle Dossiers</a> <a href='../dashboard.html#fields/{s['id']}'>Service im Dashboard</a></div>",
+         f"<div class='nav'><a href='index.html'>← Alle Dossiers</a> <a href='../dashboard.html#fields/{s['id']}'>Service in der Databank</a></div>",
          f"<div class='sub'>Kanton Schaffhausen · Compliance-Databank · Datenschutz-Dossier · Stand {fmt_date(STAND)}</div>",
          f"<h1>{esc(s['name'])}</h1>",
          f"<div class='sub'>{esc(s.get('dienststelle') or '')} · {esc(s.get('department') or '')}"
          f"{(' · Kontakt: ' + esc(' · '.join(map(str, kontakt)))) if kontakt else ''}</div>",
          "<div class='grid'>",
-         f"<div><b>DVSH-Status (Modeller):</b> {esc(dv_txt)}{' · online' if dv.get('online') else ''}"
+         f"<div><b>DVSH-Status:</b> {esc(dv_txt)}{' · online' if dv.get('online') else ''}"
          f"{(' · Vollzug: ' + esc(dv.get('vollzugsbehoerde'))) if dv.get('vollzugsbehoerde') else ''}</div>",
-         ergebnis_html(out, forms),
+         ergebnis_html(out, forms, s),
          "</div>"]
     if dv.get("kurzbeschreibung"):
         h.append(f"<div class='small'>{esc(cut(dv['kurzbeschreibung'], 400))}</div>")
@@ -467,6 +793,8 @@ def dossier(s, forms, dst):
         h.append("<div class='small' style='margin-top:4px'><b>Themengruppe (eCH-0049):</b> " + " · ".join(
             f"{esc(t['gruppe'])} <span class='muted'>({esc(render_label(LABELS.KAT, t.get('katalog')))}, {esc(t['bereich'])})</span>"
             for t in s["themen"]) + "</div>")
+    if forms:
+        h.append(prio_html(forms))
     if laws:
         h.append("<h2>Rechtsgrundlagen des Services (DVSH)</h2><div>" + " ".join(laws) + "</div>")
     if rm_html:
@@ -488,21 +816,78 @@ def dossier(s, forms, dst):
         if f.get("purpose"):
             facts.append("Zweck: " + esc(f["purpose"]))
         ck = f.get("check") or {}
+        # the Wiedervorlage is export_json's item «pruefung_faellig»: past it (or
+        # never checked) the currency is open again — the Databank checks
+        faellig = any(it.get("cat") == "pruefung_faellig" for it in f.get("handlungsbedarf") or [])
         if ck.get("status") and ck["status"] != "aktuell":
-            facts.append(f'<span class="b bad">{esc(render_label(LABELS.CHECK, ck["status"]))}</span>')
+            facts.append(st(ton_of("check", ck["status"]), esc(render_label(LABELS.CHECK, ck["status"]))))
         elif ck.get("d"):
-            facts.append(f'<span class="muted">Online-Fassung geprüft {esc(fmt_date(ck["d"]))}</span>')
+            facts.append(st(ton_of("check", "faellig" if faellig else "aktuell"),
+                            f'Online-Fassung geprüft {esc(fmt_date(ck["d"]))}' + (" · Wiedervorlage fällig" if faellig else "")))
+        elif not ck and faellig:
+            facts.append(st(ton_of("check", "nie"), "Online-Fassung noch nie geprüft"))
         h.append("<div class='small'>" + " · ".join(facts) + "</div>")
         if dfs:
             h.append("<h3>Verlangte Daten</h3><table><thead><tr><th>Datenfeld</th><th>Pflicht</th><th>Standard / Datentyp</th><th>Rechtsgrundlage</th></tr></thead><tbody>")
             h.extend(field_row(d) for d in dfs)
             h.append("</tbody></table>")
+        sd = f.get("standard_divergenzen") or {}
+        ang, feh = sd.get("angleichen") or [], sd.get("fehlend") or []
+        bz = sd.get("bezeichnungen") or []
+        if ang or feh or bz:
+            nang = sd.get("n_angleichen", sum(1 for i in ang if i["art"] != "pflicht_uneinheitlich"))
+            nunk = sd.get("n_pflicht_ungeklaert", sum(1 for i in ang if i["art"] == "pflicht_uneinheitlich"))
+            nfeh = sd.get("n_fehlend", 0)
+            parts = []
+            if nang: parts.append(f"{nang} anzugleichen")
+            if nunk: parts.append(f"{nunk} {render_label(LABELS.DIV, 'pflicht_uneinheitlich')}")
+            if feh and nfeh: parts.append(pl(nfeh, "Punkt", "Punkte") + " ohne Standard")
+            h.append(f"<h3>Standard-Divergenzen{(' (' + ' · '.join(parts) + ')') if parts else ''}</h3>"
+                     + "<div class='small muted'>Was dieses Formular davon trennt, Teil eines einheitlichen "
+                       "Datenstandards zu sein: oben dasselbe Datum anders verlangt als anderswo, unten Daten "
+                       "ohne zitierbaren Standard.</div>")
+            if ang:
+                h.append("<table><thead><tr><th>Datenfeld</th><th>Art</th><th>hier</th>"
+                         "<th>auf den übrigen Formularen</th><th>Rechtsgrundlage hier</th></tr></thead><tbody>")
+                for i in ang:
+                    h.append(f"<tr><td><b>{esc(i['feld'])}</b>"
+                             + (f" › {esc(i['teilfeld'])}" if i.get("teilfeld") else "")
+                             + f"<div class='mono'>{esc(i.get('standard'))} {esc(i.get('element'))}</div></td>"
+                             f"<td class='small'>{esc(render_label(LABELS.DIV, i['art']))}</td>"
+                             f"<td class='small'>{st(ton_of('div', i['art']), esc(i['hier']))}</td>"
+                             f"<td class='small'>{esc(i['andere'])}</td>"
+                             f"<td class='small'>{esc(i.get('basis') or '')}</td></tr>"
+                             f"<tr><td colspan='5' class='small muted'>→ {esc(i['aktion'])}</td></tr>")
+                h.append("</tbody></table>")
+            var = [i for i in bz if i["klasse"] == "variante"]
+            auf = [i for i in bz if i["klasse"] == "pruefen" and i.get("pruefart") == "aufteilen"]
+            zuo = [i for i in bz if i["klasse"] == "pruefen" and i.get("pruefart") != "aufteilen"]
+            if var:
+                h.append("<div class='small' style='margin:6px 0'>" + st(ton_of("begriff", "variante"), "Umbenennen")
+                         + " — gleiches Datum, anderer Name: "
+                         + " · ".join(f"«{esc(i['hier'])}» → <b>«{esc(i['vorschlag'])}»</b>" for i in var) + "</div>")
+            if auf:
+                h.append("<div class='small' style='margin:6px 0'>"
+                         + st(ton_of("begriff", "aufteilen"), "Feld bündelt mehrere Daten — aufteilen") + " "
+                         + " · ".join(f"«{esc(i['hier'])}»" for i in auf) + "</div>")
+            if zuo:
+                h.append("<div class='small muted' style='margin:6px 0'>" + st(ton_of("begriff", "zuordnung"), "eCH-Zuordnung korrigieren")
+                         + " (Aufgabe der Databank, nicht des Formulars): "
+                         + " · ".join(f"«{esc(i['hier'])}» ≠ {esc(i.get('standard'))} {esc(i.get('element'))}" for i in zuo) + "</div>")
+            if feh:
+                h.append("<div class='small'>" + " ".join(
+                    f"<div style='margin:2px 0'>{st(ton_of('div', i['art']), esc(render_label(LABELS.DIV, i['art'])))}"
+                    + (f" ({esc(i['standard'])})" if i.get("standard") else "")
+                    + f": {pl(i['n'], 'Datenpunkt', 'Datenpunkte')} — {esc(' · '.join(i['felder']))}"
+                    + ("…" if i["n"] > len(i["felder"]) else "")
+                    + f"<div class='muted'>→ {esc(i['aktion'])}</div></div>"
+                    for i in feh) + "</div>")
         if f.get("beilagen"):
             parts = []
             for b in f["beilagen"]:
                 hl = render_label(LABELS.HALTER, b.get("halter"))
                 if b.get("fetchable"):
-                    parts.append(f"{esc(b['bezeichnung'])} <span class='b ok'>Once-Only möglich · Halter: {esc(hl)}</span>")
+                    parts.append(f"{esc(b['bezeichnung'])} <span class='b mk'>Once-Only möglich · Halter: {esc(hl)}</span>")
                 else:
                     parts.append(f"{esc(b['bezeichnung'])}" + (f" <span class='muted'>(Halter: {esc(hl)})</span>" if hl else ""))
             h.append("<h3>Beilagen</h3><div class='small'>" + " · ".join(parts) + "</div>")
@@ -512,7 +897,8 @@ def dossier(s, forms, dst):
                 f"{(', ' + esc(x.get('short_title') or '') + ' ' + esc(x.get('article_no') or '')) if x.get('article_no') else ''})</span>"
                 for x in f["disclosures"]) + "</div>")
         else:
-            h.append("<h3>Empfänger</h3><div class='small muted'>keine belegte Bekanntgabe erfasst — offen</div>")
+            h.append("<h3>Empfänger</h3><div class='small'>" + st(cat_ton("empf"), "keine belegte Bekanntgabe erfasst")
+                     + " <span class='muted'>— offen, bis eine Bekanntgabe mit Artikel belegt oder ihr Fehlen festgehalten ist</span></div>")
         ret = f.get("retention") or []
         if ret:
             h.append("<h3>Aufbewahrung / Löschung</h3><div class='small'>" + " ".join(
@@ -526,54 +912,6 @@ def dossier(s, forms, dst):
                      + (esc(t["text"]) + (f" <span class='mono'>Belege: {esc(refs)}</span>" if refs else "") if t.get("text")
                         else "keine sektorale Frist erfasst — die Standardregel ist im Export nicht hinterlegt (offen)")
                      + "</div>")
-        sd = f.get("standard_divergenzen") or {}
-        ang, feh = sd.get("angleichen") or [], sd.get("fehlend") or []
-        bz = sd.get("bezeichnungen") or []
-        if ang or feh or bz:
-            nang = sd.get("n_angleichen", sum(1 for i in ang if i["art"] != "pflicht_uneinheitlich"))
-            nunk = sd.get("n_pflicht_ungeklaert", sum(1 for i in ang if i["art"] == "pflicht_uneinheitlich"))
-            nfeh = sd.get("n_fehlend", 0)
-            parts = []
-            if nang: parts.append(f"{nang} anzugleichen")
-            if nunk: parts.append(f"{nunk} Pflicht im Korpus ungeklärt")
-            if feh and nfeh: parts.append(pl(nfeh, "Punkt", "Punkte") + " ohne Standard")
-            h.append(f"<h3>Standard-Divergenzen{(' (' + ' · '.join(parts) + ')') if parts else ''}</h3>"
-                     + "<div class='small muted'>Was dieses Formular davon trennt, Teil eines einheitlichen "
-                       "Datenstandards zu sein: oben dasselbe Datum anders verlangt als anderswo, unten Daten "
-                       "ohne zitierbaren Standard.</div>")
-            if ang:
-                h.append("<table><thead><tr><th>Datenfeld</th><th>Art</th><th>hier</th>"
-                         "<th>sonst im Korpus</th><th>Rechtsgrundlage hier</th></tr></thead><tbody>")
-                for i in ang:
-                    h.append(f"<tr><td><b>{esc(i['feld'])}</b>"
-                             + (f" › {esc(i['teilfeld'])}" if i.get("teilfeld") else "")
-                             + f"<div class='mono'>{esc(i.get('standard'))} {esc(i.get('element'))}</div></td>"
-                             f"<td class='small'>{esc(render_label(LABELS.DIV, i['art']))}</td>"
-                             f"<td class='small'><span class='b warn'>{esc(i['hier'])}</span></td>"
-                             f"<td class='small'>{esc(i['andere'])}</td>"
-                             f"<td class='small'>{esc(i.get('basis') or '')}</td></tr>"
-                             f"<tr><td colspan='5' class='small muted'>→ {esc(i['aktion'])}</td></tr>")
-                h.append("</tbody></table>")
-            var = [i for i in bz if i["klasse"] == "variante"]
-            auf = [i for i in bz if i["klasse"] == "pruefen" and i.get("pruefart") == "aufteilen"]
-            zuo = [i for i in bz if i["klasse"] == "pruefen" and i.get("pruefart") != "aufteilen"]
-            if var:
-                h.append("<div class='small' style='margin:6px 0'><b>Bezeichnung angleichen</b> — gleiches Datum, anderer Name: "
-                         + " · ".join(f"«{esc(i['hier'])}» → <b>«{esc(i['vorschlag'])}»</b>" for i in var) + "</div>")
-            if auf:
-                h.append("<div class='small' style='margin:6px 0'><b>Feld bündelt mehrere Daten — aufteilen:</b> "
-                         + " · ".join(f"«{esc(i['hier'])}»" for i in auf) + "</div>")
-            if zuo:
-                h.append("<div class='small muted' style='margin:6px 0'><b>eCH-Zuordnung korrigieren</b> (Aufgabe der Databank, nicht des Formulars): "
-                         + " · ".join(f"«{esc(i['hier'])}» ≠ {esc(i.get('standard'))} {esc(i.get('element'))}" for i in zuo) + "</div>")
-            if feh:
-                h.append("<div class='small'>" + " ".join(
-                    f"<div>• <b>{esc(render_label(LABELS.DIV, i['art']))}</b>"
-                    + (f" ({esc(i['standard'])})" if i.get("standard") else "")
-                    + f": {pl(i['n'], 'Datenpunkt', 'Datenpunkte')} — {esc(' · '.join(i['felder']))}"
-                    + ("…" if i["n"] > len(i["felder"]) else "")
-                    + f"<div class='muted'>→ {esc(i['aktion'])}</div></div>"
-                    for i in feh) + "</div>")
         h.append("<h3>Handlungsbedarf</h3><div class='small'>" + todo_html(f) + "</div></div>")
     if not forms:
         h.append(formless_html(s, dv))
@@ -583,16 +921,20 @@ def dossier(s, forms, dst):
 
 
 def main():
-    global STAND, TEXTE, DATENSTAND, ZITATE
+    global STAND, TEXTE, DATENSTAND, ZITATE, LAB, TODO
     pdf = "--pdf" in sys.argv
     only = None
     if "--only" in sys.argv:
         only = int(sys.argv[sys.argv.index("--only") + 1])
-    D = json.load(open(os.path.join(ROOT, "data_export.json"), encoding="utf-8"))
+    with open(os.path.join(ROOT, "data_export.json"), encoding="utf-8") as fh:
+        D = json.loads(gap_wording(fh.read()))
     STAND = (D.get("generated_at") or "")[:10]
     TEXTE = D.get("texte") or {}
     DATENSTAND = D.get("datenstand") or {}
     ZITATE = D.get("zitate") or {}
+    # the dashboard's DATA.labels; labels.py only fills a key an older export lacks
+    LAB = {**LABELS.as_export(), **(D.get("labels") or {})}
+    TODO = {c[0]: c for c in (LAB.get("todo_cats") or [])}
     for l in D.get("laws", []):
         s = (l.get("short_title") or "").strip()
         if 2 <= len(s) <= 24 and ";" not in s:
@@ -621,11 +963,26 @@ def main():
         # the PDF column only when at least one PDF exists (an always-empty
         # column reads as a rendering error)
         pdf_any = any(os.path.exists(os.path.join(OUT, slug + ".pdf")) for _, slug, _ in index)
+        tier1 = first_tier()      # the data standard leads
+
+        def who_cell(sid, first):
+            """The service's open points (form.handlungsbedarf plus the data-standard
+            gaps it has no category for, as in the dossier's priority block) summed
+            by tone, the data-standard tier or the others — red, amber, grey; green
+            is no open point."""
+            c = {"act": 0, "dec": 0, "open": 0}
+            for f in by_svc.get(sid, []):
+                for it in form_items(f):
+                    if (item_stufe(it) == tier1) == first and item_ton(it) in c:
+                        c[item_ton(it)] += it.get("n") or 0
+            chips = [st(t, nf(c[t]), short=True) for t in ("act", "dec", "open") if c[t]]
+            return " ".join(chips) if chips else "<span class='muted'>–</span>"
         rows = "".join(f"<tr><td>{esc(s.get('department') or '')}</td><td><a href='{slug}.html'>{esc(s['name'])}</a></td>"
-                       f"<td>{esc(s.get('dienststelle') or '')}</td><td>{nf}</td>"
+                       f"<td>{esc(s.get('dienststelle') or '')}</td><td>{nforms}</td>"
+                       f"<td class='nw'>{who_cell(s['id'], True)}</td><td class='nw'>{who_cell(s['id'], False)}</td>"
                        + (f"<td>{('<a href=' + chr(39) + slug + '.pdf' + chr(39) + '>PDF</a>') if os.path.exists(os.path.join(OUT, slug + '.pdf')) else ''}</td>" if pdf_any else "")
                        + "</tr>"
-                       for s, slug, nf in index)
+                       for s, slug, nforms in index)
         filt = ("<input class='filter' type='search' placeholder='Filter: Departement, Service oder Dienststelle …' "
                 "oninput=\"for(const r of document.querySelectorAll('tbody tr'))r.hidden=!r.textContent.toLowerCase().includes(this.value.toLowerCase())\">")
         # marker a locally opened dashboard.html probes for: present = the whole
@@ -638,13 +995,16 @@ def main():
             f"<!DOCTYPE html><html lang='de'><head><meta charset='utf-8'><link rel='icon' href='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%277%27 fill=%27%23e8b100%27/%3E%3C/svg%3E'><title>Datenschutz-Dossiers</title><style>{CSS}</style></head><body>"
             f"<h1>Datenschutz-Dossiers je Service</h1>"
             f"<div class='sub'><a href='../dashboard.html'>Dashboard</a> · {n} Services · Stand {fmt_date(STAND)} · ein bis wenige A4-Seiten je Service, druckbar</div>"
-            "<div class='small' style='margin:6px 0'>Jedes Dossier zeigt für einen Service: Dienststelle und Kontakt, DVSH-Status, "
-            "Rechtsgrundlagen, Ergebnis des Verfahrens und Rechtsmittel, je Formular die verlangten Daten mit Pflicht, eCH-Element, "
-            "Rechtsgrundlage und Kennzeichen (⛨, ↺), Beilagen mit Halter, Empfänger, Aufbewahrung, Standard-Divergenzen und den "
-            "Handlungsbedarf. Alle Seiten werden aus citygov.db (über data_export.json) erzeugt; «zu ermitteln» und «offen» "
-            "bezeichnen Wissenslücken der Databank, keine festgestellten Verstösse.</div>"
-            + filt +
-            f"<table><thead><tr><th>Departement</th><th>Service</th><th>Dienststelle</th><th>Formulare</th>{'<th>PDF</th>' if pdf_any else ''}</tr></thead><tbody>{rows}</tbody></table>"
+            "<div class='small' style='margin:6px 0'>Jedes Dossier zeigt für einen Service zuerst den Handlungsbedarf nach Priorität "
+            "(der Datenstandard vorn), dann Dienststelle und Kontakt, DVSH-Status, Rechtsgrundlagen, Ergebnis des Verfahrens "
+            "und Rechtsmittel, je Formular die verlangten Daten mit Pflicht, eCH-Element, Rechtsgrundlage und Kennzeichen (⛨, ↺), "
+            "Standard-Divergenzen, Beilagen mit Halter, Empfänger, Aufbewahrung und den Handlungsbedarf. Alle Seiten werden aus "
+            "citygov.db (über data_export.json) erzeugt. Offene Punkte sind Lücken — noch zu klären oder noch nicht belegt.</div>"
+            + ton_key_html() + filt +
+            "<table><thead><tr><th>Departement</th><th>Service</th><th>Dienststelle</th><th>Formulare</th>"
+            "<th title='Offene Punkte der Stufe Datenstandard, nach wer als Nächstes handelt — gezählt in Datenpunkten bzw. Feldern, einschliesslich der Datenpunkte ohne eCH-Standard'>Datenstandard</th>"
+            "<th title='Offene Punkte der übrigen Stufen (Rechtsgrundlage, Verfahren &amp; Verzeichnis, Bestand &amp; Aktualität), nach wer als Nächstes handelt — gezählt in Feldern, Formularen bzw. Formularpaaren'>Weitere Lücken</th>"
+            f"{'<th>PDF</th>' if pdf_any else ''}</tr></thead><tbody>{rows}</tbody></table>"
             f"<div class='foot'>Datenstand: Export {fmt_date(STAND)}"
             f"{(' · DVSH-Stand ' + esc(fmt_date(DATENSTAND['dvsh_stand']))) if DATENSTAND.get('dvsh_stand') else ''}.</div></body></html>")
     print(f"dossiers: {n} HTML" + (" + PDF" if pdf else "") + f" in {OUT}")

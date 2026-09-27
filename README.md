@@ -28,6 +28,7 @@ wrong.
 | `flows.html` | Guided questionnaires (2 MB; online: <https://jastephan63.github.io/citygov/flows.html>): a step-by-step walkthrough for 57 of the 474 Formulare — the page states this coverage itself. The other Formulare have none yet. |
 | `dossiers/` | One printable Datenschutz-Dossier per service (480 HTML pages; typically 1–4 A4 pages, longer where a Formular has many fields or divergences), generated from the same data. Online: <https://jastephan63.github.io/citygov/dossiers/> (in a local copy: open `dossiers/index.html`), or reach a service's dossier from its page in the dashboard. The page has a print button; `./build.sh --pdf` writes PDFs locally instead. |
 | `datentresor.db` | Example storage database with synthetic data (about 49 MB, see below). |
+| `verlauf.json` | The key figures per day (data standard, legal basis, open points by who acts), written by every build; the dashboard shows the trend from it. Snapshots before 2026-09-26 are reconstructed from the Git history of `citygov.db` (`scripts/backfill_verlauf.py`); `quellen/verlauf_bemerkungen.json` explains jumps (e.g. a correction of wrong mappings). |
 | `data_export.json` | Generated intermediate (about 37 MB): the one export of `citygov.db` that the dashboard, the flows, the dossiers and the machine-readable exports all read. |
 | `citygov_llm.json` and the other `citygov_*` files | Machine-readable exports of the databank: `citygov_llm.json` (about 17 MB), `citygov_datafields.jsonl`, `citygov_datarules.jsonl`, `citygov_prefill.json`, `citygov_verzeichnis.json`, `citygov_ech_schemas.json`. |
 | `schema.sql` | The database schema — all 43 tables — with the design notes per layer. |
@@ -83,6 +84,28 @@ and open `http://localhost:8917/`. Any other static file server works too.
 
 `datentresor.db` opens with any SQLite client, for example
 `sqlite3 datentresor.db` or DB Browser for SQLite.
+
+## How the dashboard is organised
+
+- **The data standard comes first.** The start page opens with three figures:
+  how many data points carry an eCH element, how many are demanded the same
+  way as on the other forms, and how many fields still carry a deviating name.
+  Legal-basis and register gaps follow, then the open points.
+- **Three entry points**, one per reader: *Für Dienststellen* (what an office
+  has to change on its forms — one page per Dienststelle with its most
+  important actions, printable as a brief), *Für den Kanton* (what has to be
+  decided) and *Methode & Quellen* (how the databank is built).
+- **The colour says who acts next**, on every page: green settled, red the
+  Dienststelle changes its form, amber the canton decides, grey the databank
+  still has to research it. Open points are gaps, not findings of a breach.
+- **Priorities**: data standard, then legal basis, then procedure & register,
+  then inventory & currency. The databank's own research homework has its own
+  list and is kept off the offices' lists.
+- **Trend**: every figure is compared with the previous snapshot in
+  `verlauf.json`; notes explain jumps.
+- **Prototypes** (the synthetic Datentresor view, the guided forms) sit in a
+  separate «Werkstatt» section; the eSH standard is marked as a draft wherever
+  it appears.
 
 ## What the data covers
 

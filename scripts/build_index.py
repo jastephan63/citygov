@@ -87,14 +87,23 @@ def main():
 <body>
 <main>
   <div class="kicker"><i></i>Kanton Schaffhausen</div>
-  <h1>Compliance-Databank · Formulare, Recht &amp; Standards</h1>
-  <p class="lead">Für jeden Service der kantonalen Verwaltung: die Gesetze dahinter (artikelgenau), die Daten,
-  die seine Formulare erheben (bis zum einzelnen Teilfeld), den Standard jedes Datums (eCH bzw. der kantonale
-  Entwurf eSH), die Regeln für Speichern, Weitergeben und Löschen — und was noch fehlt. Lücken stehen als Lücken da.</p>
+  <h1>Compliance-Databank · Datenstandards, Formulare &amp; Recht</h1>
+  <p class="lead">Für jeden Service der kantonalen Verwaltung: welche Daten seine Formulare erheben (bis zum
+  einzelnen Teilfeld) und nach welchem Standard (eCH bzw. der kantonale Entwurf eSH), ob dasselbe Datum überall
+  gleich verlangt und gleich benannt wird, die Gesetze dahinter (artikelgenau) und die Regeln für Speichern,
+  Weitergeben und Löschen — und was noch fehlt. Lücken stehen als Lücken da.</p>
 
   <a class="open" href="dashboard.html"><b>▶ Dashboard öffnen</b>
     <span>Eine Seite mit allen Daten (knapp {size_txt(dash_mb)}, über das Netz etwa 5 MB) — beim ersten Öffnen dauert das Laden je nach Verbindung und Gerät einige Sekunden.</span></a>
 
+  <div class="grid">
+    <a class="card" href="dashboard.html#dienststellen"><b>Für Dienststellen</b>
+      <span>Was muss ich an meinen Formularen ändern? Eine Seite je Dienststelle mit den wichtigsten Massnahmen, druckbar.</span></a>
+    <a class="card" href="dashboard.html#kanton"><b>Für den Kanton</b>
+      <span>Was muss entschieden werden — zuerst beim Datenstandard?</span></a>
+    <a class="card" href="dashboard.html#methode"><b>Für Fachleute</b>
+      <span>Wie ist die Databank gebaut: Methode, Quellen, Prüfungen, Verlauf.</span></a>
+  </div>
   <div class="grid">
     <a class="card" href="dossiers/index.html"><b>Datenschutz-Dossiers</b>
       <span>{n_dossiers} druckbare Seiten, eine je Service — Rechtsgrundlagen, Daten, Handhabung, offene Punkte.</span></a>

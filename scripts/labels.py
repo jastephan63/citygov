@@ -54,14 +54,13 @@ DVSH_STATUS = {"uebergeben": "übergeben"}
 
 MODE = {"systematisch": "systematisch", "auf_anfrage": "auf Anfrage"}
 
-DIV = {"pflicht": "Pflicht ↔ optional", "pflicht_uneinheitlich": "Pflicht im Korpus ungeklärt",
+DIV = {"pflicht": "Pflicht ↔ optional", "pflicht_uneinheitlich": "Pflicht uneinheitlich",
        "format": "Andere Form desselben Datums", "codeliste": "Eigene Werte statt der offiziellen Codes",
        "element_offen": "Element im Standard offen", "standard_ohne_elemente": "Standard ohne Elementkatalog",
-       "standard_entwurf": "Standard nicht in Kraft", "kein_standard": "Kein eCH-Standard",
+       "standard_entwurf": "Standard bei eCH in Arbeit", "standard_alt": "Standard nicht mehr in Kraft",
+       "kein_standard": "Kein eCH-Standard",
        "ungeprueft": "Noch nicht geprüft"}
-DIV_CLS = {"pflicht": "b-over", "pflicht_uneinheitlich": "b-unver", "format": "b-over", "codeliste": "b-over",
-           "element_offen": "b-unver", "standard_ohne_elemente": "b-unver", "standard_entwurf": "b-unver",
-           "kein_standard": "b-unver", "ungeprueft": "b-unver"}
+DIV_CLS = {k: "st-" + v for k, v in {"pflicht": "act", "pflicht_uneinheitlich": "dec", "format": "act", "codeliste": "act", "element_offen": "open", "standard_ohne_elemente": "ok", "standard_entwurf": "dec", "standard_alt": "open", "kein_standard": "dec", "ungeprueft": "open"}.items()}
 
 CHECK = {"aktuell": "aktuell", "veraltet": "neuere Fassung online", "veraltet_verdacht": "evtl. veraltet",
          "nicht_auffindbar": "nicht mehr online", "nicht_gefunden": "online nicht gefunden"}
@@ -104,7 +103,7 @@ DISPOSITION = {"vernichten": "vernichten", "anonymisieren": "anonymisieren",
 
 MINMAX = {"min": "mindestens", "max": "höchstens", "exakt": "genau"}
 
-BASIS_TYP = {"artikel": "Artikel belegt", "aufgabe": "aufgabennotwendig", "ohne": "Over-collection",
+BASIS_TYP = {"artikel": "Artikel belegt", "aufgabe": "aufgabennotwendig", "ohne": "ohne Grundlage",
              "offen": "Aufgabenbedarf offen"}
 
 SUBJEKT = {"natuerliche_person": "natürliche Person", "organisation": "Organisation", "sache": "Sache",
@@ -128,16 +127,17 @@ EBENE = {"federal": "Bundesrecht", "cantonal": "kantonales Recht", "communal": "
 
 # Handlungsbedarf: category -> (label, badge class, kind, meaning). The RULES that
 # emit an item live in export_json.py (fm['handlungsbedarf']); this is only the wording.
+TON_OF_ART_EARLY = {"bereinigung": "act", "entscheid": "dec", "recherche": "open"}
 TODO_ART = {"recherche": "Recherche (Databank)", "entscheid": "Entscheid (Kanton)",
             "bereinigung": "Bereinigung (Dienststelle)"}
 TODO_CATS = [
     ("ermitteln", "Rechtsgrundlage zu ermitteln", "b-unver", "recherche",
      "Für das Feld ist noch keine Rechtsgrundlage recherchiert — weder ein Artikel noch ein Befund "
-     "«aufgabennotwendig». Eine Wissenslücke der Databank, kein festgestellter Verstoss."),
+     "«aufgabennotwendig». Eine Wissenslücke der Databank, keine Aussage über die Verwaltung."),
     ("offen", "Aufgabenbedarf offen", "b-unver", "entscheid",
      "Keine Norm nennt das Feld; ob die gesetzliche Aufgabe es zwingend braucht (KDSG Art. 4 Abs. 1 lit. b), "
      "konnte aus dem Formular allein nicht entschieden werden."),
-    ("ohne", "Over-collection bereinigen", "b-over", "bereinigung",
+    ("ohne", "Felder ohne Grundlage bereinigen", "b-over", "bereinigung",
      "Weder eine Norm noch die Aufgabe verlangt das Feld. Optionen: Feld streichen, oder die Zustimmung der "
      "Person einholen (KDSG Art. 4 Abs. 1 lit. c; bei ⛨-Feldern KDSG Art. 5 Abs. 1 lit. b) — ausdrücklich "
      "oder nach den Umständen unzweifelhaft vorausgesetzt; in der Praxis ausdrücklich einholen."),
@@ -153,8 +153,11 @@ TODO_CATS = [
      "Keine belegte Bekanntgabe erfasst. Entweder es gibt keine (dann ist genau das festzuhalten) oder sie ist "
      "noch nicht mit Artikel dokumentiert."),
     ("dsfa", "DSFA-Entscheid offen", "b-sens", "entscheid",
-     "Die berechnete Triage zeigt eine hohe Dichte besonders schützenswerter Felder; ob eine "
-     "Datenschutz-Folgenabschätzung (KDSG Art. 14b) nötig ist, hat der Kanton noch nicht entschieden."),
+     "Das Formular verlangt mindestens drei besonders schützenswerte Datenfelder, oder mindestens die Hälfte "
+     "seiner Datenfelder ist besonders schützenswert. Das ist ein berechneter Anhaltspunkt (vgl. KDSV § 6: "
+     "Sammlung vieler besonders schützenswerter Personendaten). Ob eine Datenschutz-Folgenabschätzung nötig "
+     "ist, ist noch nicht entschieden. Durchzuführen hat sie das verantwortliche öffentliche Organ "
+     "(KDSG Art. 14b)."),
     ("ech", "eCH-Zuordnung offen", "b-unver", "recherche",
      "Das Feld ist noch nicht gegen den eCH-Katalog geprüft, oder es ist nur der Standard, nicht das konkrete "
      "XML-Element bestimmt (nur bei Standards, die einen Elementkatalog haben)."),
@@ -173,13 +176,17 @@ TODO_CATS = [
     ("keine-felder", "Datenfeld-Schicht fehlt", "b-unver", "recherche",
      "Für dieses Formular sind noch keine Datenfelder modelliert — alle anderen Prüfungen sind blind."),
     ("divergenz", "Standard-Divergenz angleichen", "b-over", "bereinigung",
-     "Dasselbe Datum wird auf diesem Formular anders verlangt als auf den übrigen (Pflicht statt optional, "
-     "andere Form, eigene Werte statt der offiziellen Codes). Entweder das Formular angleichen oder die "
-     "abweichende Rechtsgrundlage dokumentieren."),
-    ("divergenz_offen", "Pflicht im Korpus ungeklärt", "b-unver", "entscheid",
+     "Dasselbe Datum wird auf diesem Formular anders verlangt als auf den übrigen. Pflicht statt optional "
+     "oder eine andere Form: das Formular angleichen oder die abweichende Rechtsgrundlage dokumentieren. "
+     "Eigene Werte statt der offiziellen Codes: beim Austausch auf die eCH-Codes abbilden — im Formular "
+     "darf der Klartext stehen bleiben."),
+    ("kein_standard", "Kein geltender eCH-Standard", "b-unver", "entscheid",
+     "Für diese Datenpunkte gibt es keinen eCH-Standard, oder er ist bei eCH erst in Arbeit. Der Kanton "
+     "entscheidet, ob der kantonale Entwurf eSH gilt oder ob er bei eCH einen Standard beantragt."),
+    ("divergenz_offen", "Pflicht uneinheitlich", "b-unver", "entscheid",
      "Dasselbe Datum ist über die Formulare hinweg mal Pflicht, mal optional, ohne erkennbare Praxis — hier "
      "ist nicht ein Formular die Ausnahme, sondern es fehlt eine kantonale Festlegung."),
-    ("begriff", "Bezeichnung angleichen", "b-over", "bereinigung",
+    ("begriff", "Bezeichnung angleichen oder Feld aufteilen", "b-over", "bereinigung",
      "Das Feld benennt ein Datum anders als der einheitliche Begriff (Tab «Begriffe») oder bündelt mehrere "
      "Daten, die der Standard trennt — im Formular umbenennen bzw. aufteilen."),
     ("zuordnung", "eCH-Zuordnung korrigieren", "b-unver", "recherche",
@@ -195,7 +202,108 @@ TODO_CATS = [
      "Was das Verfahren zurückgibt (Bewilligung, Verfügung, Eintrag …), liess sich aus dem DVSH-Ablauftext "
      "nicht belegen — bis das feststeht, ist auch die Rechtsmittelfrage nicht erreicht."),
 ]
+# the badge class of a category follows its tone (who acts next), never a colour of its own
+TODO_CATS = [(c[0], c[1], "st-" + TON_OF_ART_EARLY[c[3]], c[3], c[4]) for c in TODO_CATS]
 TODO_BY = {c[0]: c for c in TODO_CATS}
+# what n counts, per category (singular, plural)
+EINHEIT = {
+    "divergenz": ("Datenpunkt", "Datenpunkte"), "divergenz_offen": ("Datenpunkt", "Datenpunkte"),
+    "kein_standard": ("Datenpunkt", "Datenpunkte"), "echalt": ("Datenpunkt", "Datenpunkte"),
+    # a naming verdict sits on the atomic unit (a Teilfeld, or a Datenfeld without parts)
+    "begriff": ("Datenpunkt", "Datenpunkte"), "zuordnung": ("Datenpunkt", "Datenpunkte"), "ech": ("Feld", "Felder"),
+    "ermitteln": ("Feld", "Felder"), "offen": ("Feld", "Felder"), "ohne": ("Feld", "Felder"),
+    "sensibel_art5": ("Feld", "Felder"), "dup": ("Formularpaar", "Formularpaare"),
+}   # every other category counts Formulare
+
+
+# ---- one status language -------------------------------------------------------
+# The colour of every status says WHO has to act next. Four tones, used the same
+# way on every page (CSS classes st-ok / st-act / st-dec / st-open):
+TON = {
+    "ok":   {"label": "geklärt", "farbe": "grün",
+             "bedeutung": "Erledigt oder belegt — niemand muss etwas tun."},
+    "act":  {"label": "Dienststelle handelt", "farbe": "rot",
+             "bedeutung": "Die Dienststelle muss ihr Formular ändern (bereinigen, angleichen, ersetzen)."},
+    "dec":  {"label": "Kanton entscheidet", "farbe": "amber",
+             "bedeutung": "Es braucht einen Entscheid des Kantons (Datenschutz, Standard, Fristen)."},
+    "open": {"label": "Databank recherchiert", "farbe": "grau",
+             "bedeutung": "Noch nicht recherchiert oder belegt — eine Hausaufgabe der Databank, kein Befund über die Verwaltung."},
+}
+TON_OF_ART = {"bereinigung": "act", "entscheid": "dec", "recherche": "open"}
+
+# per domain: code -> tone. A code missing here is shown grey (not yet settled).
+TON_MAP = {
+    # the legal question of a data field
+    "basis": {"artikel": "ok", "aufgabe": "ok", "art5_offen": "open", "ohne": "act",
+              "offen": "dec", "zu_ermitteln": "open"},
+    # verification level of a citation
+    "verif": {"verified": "ok", "quelle_pdf": "ok", "unverifiziert": "open"},
+    # remedy of a Verfahren (rechtsmittel_status; absent status + a rule = confirmed)
+    "rechtsmittel": {"bestaetigt": "ok", "kein_entscheid": "ok", "default_allgemein": "open", "beurteilt_offen": "open",
+                     "nicht_beurteilt": "open", "entscheidart_offen": "open"},
+    # eCH mapping of a data point
+    "ech": {"element": "ok", "zuordnung_falsch": "open", "standard_ohne_elemente": "ok", "element_offen": "open", "ungeprueft": "open",
+            "kein_standard": "dec", "standard_entwurf": "dec", "standard_alt": "open"},
+    # standard divergences
+    "div": {"pflicht": "act", "format": "act", "codeliste": "act", "pflicht_uneinheitlich": "dec",
+            "element_offen": "open", "standard_ohne_elemente": "ok", "standard_entwurf": "dec", "standard_alt": "open",
+            "kein_standard": "dec", "ungeprueft": "open"},
+    # one datum, one name
+    "begriff": {"vorschlag": "ok", "rolle": "ok", "variante": "act", "aufteilen": "act",
+                "zuordnung": "open", "vorbehalt": "dec"},
+    # currency of the Formular
+    "check": {"aktuell": "ok", "veraltet": "act", "veraltet_verdacht": "act", "nicht_auffindbar": "act",
+              "nicht_gefunden": "act", "faellig": "open", "nie": "open"},
+    # register (Verzeichnis) items and cantonal decisions
+    "dsfa": {"entschieden": "ok", "indiziert": "dec", "nicht_indiziert": "ok"},
+    "schutzstufe": {"festgelegt": "ok", "fehlt": "dec"},
+    "dup": {"entschieden": "ok", "offen": "dec"},
+}
+
+# ---- priority: what comes first on the board ------------------------------------
+# The data standard is the core of the databank, so it leads. These are GAPS —
+# work still to do — not findings of a risk or a breach. Independent of the tone:
+# a grey (research) item can still come first.
+STUFEN = [
+    (1, "Datenstandard", "Dasselbe Datum soll überall gleich verlangt, gleich benannt und nach eCH-Standard "
+        "ausgetauscht werden: Element, Form, Werteliste, Bezeichnung."),
+    (2, "Rechtsgrundlage", "Für jedes Datenfeld soll feststehen, worauf es sich stützt — belegte Norm oder "
+        "Aufgabe; wo das noch fehlt, ist es eine Lücke."),
+    (3, "Verfahren & Verzeichnis", "Was das Verzeichnis und die betroffene Person brauchen: Zweck, Empfänger, "
+        "Rechtsmittel, Verfahrens-Ergebnis, DSFA-Entscheid."),
+    (4, "Bestand & Aktualität", "Ist das Formular die geltende Fassung, gibt es Doppelungen, ist es vollständig erfasst?"),
+]
+STUFE_OF_CAT = {
+    "divergenz": 1, "begriff": 1, "ech": 1, "zuordnung": 1, "echalt": 1, "divergenz_offen": 1, "kein_standard": 1,
+    "ohne": 2, "offen": 2, "sensibel_art5": 2, "ermitteln": 2,
+    "zweck": 3, "empf": 3, "rechtsmittel": 3, "rechtsmittel_default": 3, "entscheid_art": 3, "dsfa": 3,
+    "dup": 4, "keine-felder": 4, "veraltet": 4, "pruefung_faellig": 4,
+}
+# order of the categories inside a tier (first = shown first)
+CAT_ORDER = ["divergenz", "begriff", "ech", "zuordnung", "echalt", "divergenz_offen", "kein_standard",
+             "ohne", "offen", "sensibel_art5", "ermitteln",
+             "zweck", "empf", "dsfa", "rechtsmittel", "rechtsmittel_default", "entscheid_art",
+             "veraltet", "dup", "keine-felder", "pruefung_faellig"]
+# a short imperative per category for the «top 5 actions» of a Dienststelle
+AKTION = {
+    "ohne": "Felder ohne Grundlage streichen oder die Zustimmung einholen",
+    "offen": "Klären, ob die Aufgabe diese Felder wirklich braucht",
+    "dsfa": "Über eine Datenschutz-Folgenabschätzung entscheiden",
+    "ech": "Datenfelder dem passenden eCH-Element zuordnen lassen",
+    "sensibel_art5": "Grundlage nach KDSG Art. 5 für besonders schützenswerte Daten benennen",
+    "divergenz": "Abweichung vom Datenstandard angleichen oder ihre Rechtsgrundlage dokumentieren",
+    # the same category when only value lists differ: nothing on the form has to change
+    "divergenz_codeliste": "Werte beim Austausch auf die eCH-Codes abbilden",
+    "divergenz_offen": "Kantonal festlegen, ob das Datum Pflicht ist",
+    "kein_standard": "Festlegen, ob der kantonale Entwurf eSH für diese Daten gilt",
+    "begriff": "Bezeichnungen umstellen oder Felder aufteilen",
+    "dup": "Entscheiden, ob ähnliche Formulare zusammengelegt werden",
+    "veraltet": "Prüfen, welche Fassung des Formulars gilt, und ersetzen",
+    # not a category of form.handlungsbedarf: the ISV decision for every field at once (#kanton)
+    "schutzstufe": "Schutzbedarf nach den Schutzzielen von ISV Art. 5 festlegen und die Daten nach ISV Art. 6 "
+                   "klassifizieren (Verfügbarkeit, Vertraulichkeit, Integrität, Nachvollziehbarkeit, "
+                   "Beweistauglichkeit)",
+}
 
 
 def pl(n, singular, plural):
@@ -225,5 +333,6 @@ def as_export():
             "jur": JUR, "aspect": ASPECT, "scope": SCOPE, "kat": KAT, "trigger": TRIGGER,
             "disposition": DISPOSITION, "minmax": MINMAX, "basis_typ": BASIS_TYP, "subjekt": SUBJEKT,
             "begriff_klasse": BEGRIFF_KLASSE, "esh_status": ESH_STATUS, "ebene": EBENE, "node_typ": NODE_TYP,
-            "todo_art": TODO_ART,
+            "todo_art": TODO_ART, "ton": TON, "ton_of_art": TON_OF_ART, "ton_map": TON_MAP,
+            "stufen": [list(x) for x in STUFEN], "stufe_of_cat": STUFE_OF_CAT, "cat_order": CAT_ORDER, "aktion": AKTION, "einheit": EINHEIT,
             "todo_cats": [list(c) for c in TODO_CATS]}

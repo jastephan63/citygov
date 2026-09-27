@@ -1,0 +1,6 @@
+{
+  "hinweis": "Erläuterungen zu Sprüngen im Verlauf der Kennzahlen (verlauf.json), je Datum. Werden im Dashboard neben dem Trend gezeigt, damit eine Korrektur nicht als Rückschritt gelesen wird.",
+  "2026-09-03": "74 Formulare aus dem DVSH-Modell neu aufgenommen (1'100 Datenfelder, Rechtsgrundlagen noch zu ermitteln); der Anteil mit eCH-Element sinkt deshalb vorübergehend.",
+  "2026-09-26": "Qualitätsprüfung: falsche eCH-Zuordnungen korrigiert (u. a. 169 Teilfelder der Anmeldung für Ergänzungsleistungen neu beurteilt) — daher weniger, aber richtige Datenpunkte mit eCH-Element.",
+  "2026-09-27": "Neu aufgebaute Arbeitslisten: Datenpunkte ohne geltenden eCH-Standard zählen jetzt als offener Entscheid des Kantons (3'561), Standard-Divergenzen je Datenpunkt statt je Befund — deshalb steigt «Kanton entscheidet» sprunghaft; an den Formularen hat sich nichts verschlechtert."
+}

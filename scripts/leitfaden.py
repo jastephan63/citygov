@@ -59,7 +59,7 @@ LEITFADEN = [
   "praxis": "Ein Feld ohne ausdrückliche Norm ist nicht automatisch unzulässig: Was die "
             "Behörde zwingend braucht, um die Aufgabe zu erfüllen (Betrag, Kontakt, "
             "Kennzeichen), ist nach KDSG Art. 4 Abs. 1 lit. b gedeckt — die Databank "
-            "nennt das «aufgabennotwendig». Over-collection ist nur, was weder eine Norm "
+            "nennt das «aufgabennotwendig». Ohne Grundlage ist nur, was weder eine Norm "
             "noch die Aufgabe verlangt; solche Felder dürfen nur freiwillig erhoben werden. "
             "— Für besonders schützenswerte Daten (⛨) genügt das nicht: KDSG Art. 5 "
             "Abs. 1 verlangt ein formelles Gesetz, das die Bearbeitung ausdrücklich "
@@ -121,8 +121,8 @@ LEITFADEN = [
   "punkte": [
    {"text": "Daten dürfen nicht länger aufbewahrt und bearbeitet werden, als der Zweck "
             "es erfordert; nicht mehr Erforderliches ist zu vernichten oder zu "
-            "anonymisieren. Eine unnötige Kopie ist also nicht «sicherheitshalber gut», "
-            "sondern ein Rechtsrisiko.",
+            "anonymisieren. Eine unnötige Kopie ist also nicht «sicherheitshalber gut»: "
+            "Ist der Zweck erfüllt, ist das weitere Aufbewahren nicht zulässig.",
     "refs": [("174.100", "Art. 4", "aufbewahrung"), ("235.1", "Art. 6", "loeschung")]},
    {"text": "Umgekehrt gilt die Registraturpflicht: Akten, die aus der eigenen Tätigkeit "
             "anfallen oder für die Aufgabenerfüllung erforderlich sind, werden "
@@ -151,7 +151,7 @@ LEITFADEN = [
   "frage": "Verwenden — wofür dürfen wir die Daten nutzen?",
   "kurz": "Nur für den Zweck, der bei der Erhebung genannt wurde, sich klar aus den "
           "Umständen ergibt oder im Gesetz steht. Ein neuer Zweck braucht eine neue "
-          "Grundlage. Wer Dritte bearbeiten lässt oder riskante Bearbeitungen plant, "
+          "Grundlage. Wer Dritte bearbeiten lässt oder Bearbeitungen mit erhöhtem Risiko für die Grundrechte plant, "
           "hat zusätzliche Pflichten.",
   "punkte": [
    {"text": "Zweckbindung: Daten dürfen nur für den bei der Beschaffung angegebenen, "

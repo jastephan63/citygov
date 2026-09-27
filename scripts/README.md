@@ -112,10 +112,12 @@ be broken, so the gate `validate_db.py` checks what it can):
 | Script | Purpose |
 |---|---|
 | `common.py` | Paths, `connect()`, the two shared normalisations (`norm_ascii`, `norm_label`), `pl()` |
-| `labels.py` | German labels for every enumerated value — the single source for dashboard, dossiers and exports |
+| `labels.py` | German labels for every enumerated value, the four status tones (who acts next) and the priority tiers — the single source for dashboard, dossiers and exports |
 | `validate_db.py` | Integrity gate every loader runs on its staging copy (FKs, vocabularies, cross-layer invariants, schema.sql coverage) |
 | `init_db.py` | Create an empty database from `schema.sql` |
-| `export_json.py` | `data_export.json` — one computation of every derived figure (divergences, Handlungsbedarf, Lebenslagen, labels, Datenstand) |
+| `export_json.py` | `data_export.json` — one computation of every derived figure (divergences, Handlungsbedarf with tier and tone, Dienststellen summaries, headline figures, Lebenslagen, labels, Datenstand); also writes today's snapshot to `verlauf.json` |
+| `kennzahlen.py` | The one definition of the key figures over time (works on a `citygov.db` of any vintage) and the `verlauf.json` reader/writer |
+| `backfill_verlauf.py` | One-off: reconstructs past snapshots from the Git history of `citygov.db` (idempotent; a live build's entry of the same day wins) |
 | `build_dashboard.py` | `dashboard.html` from `data_export.json` (+ `leitfaden.py`) |
 | `leitfaden.py` | The plain-German guide; the build refuses if a bullet cites a rule not in the databank |
 | `build_flows.py` | `flows.html`, the guided questionnaires |

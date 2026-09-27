@@ -7,17 +7,34 @@ with no server and no fetch (offline by default). Vanilla JS, no framework.
 Views (2026-09 redesign; state lives in the URL hash, so links are shareable):
   * sidebar: Formulare by department/office or flat A–Z, search also matches
     data-field names
-  * Überblick & Methode — landing: methodology box, KPI tiles, documentation state
+  * Übersicht — landing: the data standard first (three headline cards from
+    DATA.kopfzahlen), further gaps, three doors (Dienststellen / Kanton /
+    Fachleute), the tone key and a compact Verlauf
+  * Methode & Quellen — methodology, tones and priority tiers, all key figures,
+    the Verlauf table
+  * Für Dienststellen / Für den Kanton / Recherche der Databank — entry routes
   * Service-Seite — the per-Service hub (Datenfelder & Handhabung, Gesetze,
-    Beilagen, Blocker, Duplikat-Radar); the old Gesetzes-Baum/Geforderte
+    Beilagen, Digitalisierungs-Hürden, Duplikat-Radar); the old Gesetzes-Baum/Geforderte
     Informationen tabs live here as segments
   * Datenhandhabung / Leitfaden / Verzeichnis / Datenkatalog / eSH-Katalog
+One status language on every page: a status is drawn in its tone (st-ok / st-act /
+st-dec / st-open from DATA.labels.ton_map — the colour says who acts next; a code
+without a tone is grey, never green); Kennzeichen (level of law, ⛨, DVSH/SHEP,
+↺ Once-Only, channel) stay neutral. The legend is drawn from what the page shows:
+the four tones, then only the Kennzeichen the page draws, the data standard first.
+Every titled non-link element opens its explanation by click, tap, Enter or Space
+(#tipbox, announced via #tiplive) — inside a clickable row too, where the row keeps
+its action through its link; a chip with an action of its own (⛨, a rule chip)
+offers it in the box. Rows, toggles and links without an address are reachable by
+keyboard. Open points are gaps, never «risk»; «Over-collection» is said in plain German
+(«ohne Grundlage») and explained once on Methode (gap_wording for texts from elsewhere).
 Refuses to build when the Leitfaden cites a rule the databank does not hold.
 
     python3 scripts/build_dashboard.py
 """
 import json
 import os
+import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -84,10 +101,10 @@ window.addEventListener('load',function(){setTimeout(function(){__cgFail('Die Se
     --ink:#16150F; --ink-soft:#5C594D; --ink-faint:#8C897C;
     --line:#E4E1D6; --line-soft:#EEEBE1;
     --gold:#F2B705; --gold-deep:#C98E00;
-    --federal:#4553B8; --cantonal:#0C8A7B; --communal:#B26A00;
-    --match:#2E7D5B; --proposed:#2C6E91; --gap:#C0392B; --over:#B26A00;
-    --identity:#0C8A7B; --reason:#5B3E8F; --mechanic:#8C897C;
-    --unver:#B03A5B;
+    /* tones — the colour says who acts next (DATA.labels.ton): green geklärt · red
+       Dienststelle handelt · amber Kanton entscheidet · grey Databank recherchiert */
+    --ton-ok:#1E8657; --ton-ok2:#8CC7A4; --ton-act:#C8372D; --ton-dec:#DB8B00; --ton-open:#8A877D;
+    --ton-ok-bg:#E5F2EA; --ton-act-bg:#FBEAE8; --ton-dec-bg:#FCF1DC; --ton-open-bg:#EFEDE7;
     /* aliases kept for the JS template strings */
     --bg:var(--paper); --panel:var(--card); --panel2:var(--field);
     --bd:var(--line); --bd2:var(--line-soft); --tx:var(--ink);
@@ -107,8 +124,8 @@ window.addEventListener('load',function(){setTimeout(function(){__cgFail('Die Se
   header .htxt .sub{font-size:11px;color:var(--ink-faint);font-weight:600;letter-spacing:.4px;text-transform:uppercase}
   header h1{font-size:15px;margin:0;font-weight:700;letter-spacing:-.2px}
   header .stamp{margin-left:auto;color:var(--ink-faint);font-size:11px;text-align:right}
-  .warn{background:#FBEDEB;border:1px solid #EAC7C2;color:#8E2F23;padding:5px 12px;
-        border-radius:8px;font-size:12px;font-weight:500}
+  /* header chip: unverified citations are the databank's own homework — grey tone (st-open) */
+  .warn{border:1px solid transparent;padding:5px 12px;border-radius:8px;font-size:12px;font-weight:500}
   .layout{display:flex;min-height:calc(100vh - 57px)}
   aside{width:290px;flex:0 0 290px;background:var(--card);border-right:1px solid var(--line);
         padding:16px;overflow:auto}
@@ -128,8 +145,9 @@ window.addEventListener('load',function(){setTimeout(function(){__cgFail('Die Se
   .dephd .tg{color:var(--ink-faint);width:10px;display:inline-block}
   .dephd .ct{margin-left:auto;font-weight:500;font-size:11px;color:var(--ink-faint)}
   .office{margin:2px 0 2px 8px}
-  .offhd{padding:5px 8px;border-radius:6px;cursor:pointer;color:var(--ink-soft);font-size:12px;
-         font-weight:600;display:flex;gap:6px}
+  .offhd{padding:5px 8px;border-radius:6px;color:var(--ink-soft);font-size:12px;
+         font-weight:600;display:flex;gap:6px;align-items:baseline}
+  .offtg{display:inline-flex;gap:6px;cursor:pointer}
   .offhd:hover{color:var(--ink)}
   .offhd .ct{margin-left:auto;font-size:10.5px;color:var(--ink-faint)}
   .dept.collapsed .office,.office.collapsed .svc{display:none}
@@ -140,22 +158,24 @@ window.addEventListener('load',function(){setTimeout(function(){__cgFail('Die Se
   .tab.active{background:#FCFAF2;color:var(--ink);border-color:var(--gold-deep);font-weight:600}
   main{flex:1;padding:22px 26px;overflow:auto;max-width:1300px}
   h3.view{font-size:16px;margin:0 0 4px;font-weight:700;letter-spacing:-.2px}
+  /* the page title takes the focus after a change of page (screen readers read it); no ring */
+  h3.view:focus,main:focus{outline:none}
+  /* skip link: the first stop of the Tab key, visible only while focused */
+  .skip{position:absolute;left:8px;top:8px;z-index:2000;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);
+    white-space:nowrap;border:0;padding:0;font:inherit;font-size:13px;font-weight:600;background:var(--card);color:var(--ink);cursor:pointer}
+  .skip:focus{width:auto;height:auto;clip:auto;overflow:visible;padding:8px 14px;border-radius:8px;
+    outline:2px solid var(--gold-deep);outline-offset:1px;box-shadow:0 2px 10px rgba(0,0,0,.18)}
+  /* print-only lines (a URL instead of a long link list) */
+  .printonly{display:none}
   .hint{color:var(--ink-soft);font-size:12px;margin:0 0 18px}
   .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:16px}
   .badge{display:inline-block;padding:1px 8px;border-radius:20px;font-size:10.5px;font-weight:600;
          vertical-align:middle;white-space:nowrap;border:1px solid transparent}
-  .b-federal{color:var(--federal);border-color:#C7CDEB;background:#EDEFF9}
-  .b-cantonal{color:var(--cantonal);border-color:#BCE0DB;background:#E7F4F2}
-  .b-communal{color:var(--communal);border-color:#EBD3B3;background:#F9F0E2}
-  .b-match,.b-mapped,.b-confirmed{color:var(--match);border-color:#BFDCCB;background:#E7F2EC}
-  .b-proposed,.b-auto,.b-proposedm{color:var(--proposed);border-color:#BFD8E6;background:#E8F1F6}
-  .b-legal_gap,.b-gap{color:var(--gap);border-color:#EAC7C2;background:#FBEDEB}
-  .b-overcollection,.b-over{color:var(--over);border-color:#EBD3B3;background:#F9F0E2}
-  .b-identity_part{color:var(--identity);border-color:#BCE0DB;background:#E7F4F2}
-  .b-reason_facet{color:var(--reason);border-color:#D6C9EC;background:#F0EAF9}
-  .b-form_mechanic{color:var(--mechanic);border-color:var(--line);background:var(--field)}
-  .b-unver{color:var(--unver);border-color:#E8C3CE;background:#F9EBEF}
-  .b-sourced{color:#8F6400;border-color:#EBD9A8;background:#FBF3DC}
+  /* Kennzeichen — they mark a fact (level of the law, ⛨, source DVSH/SHEP, Once-Only,
+     channel, obligation), they never judge: outlined and neutral, never in one of the
+     four tone colours. Every STATUS is drawn with the tone classes st-* further down. */
+  .mk{background:var(--card);border-color:#C9C5B8;color:var(--ink-soft)}
+  .mk.mk-open{border-style:dashed}
   table{border-collapse:collapse;width:100%;font-size:12.5px}
   th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line-soft);vertical-align:top}
   th{color:var(--ink-faint);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.4px}
@@ -167,14 +187,6 @@ window.addEventListener('load',function(){setTimeout(function(){__cgFail('Die Se
   .pill .l{font-size:10.5px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.4px}
   .cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
   .colhead{font-size:12px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.6px;margin:0 0 8px}
-  .item{border:1px solid var(--line);border-left-width:3px;border-radius:8px;padding:9px 11px;
-        margin-bottom:8px;background:var(--card)}
-  .item.match{border-left-color:var(--match)}
-  .item.proposed{border-left-color:var(--proposed)}
-  .item.legal_gap{border-left-color:var(--gap)}
-  .item.overcollection{border-left-color:var(--over)}
-  .item .t{font-weight:600}
-  .item .d{color:var(--ink-soft);font-size:12px;margin-top:2px}
   .cite{color:var(--ink-soft);font-size:11.5px;margin-top:4px}
   /* law tree (list) */
   .tree{font-size:13px}
@@ -206,41 +218,33 @@ window.addEventListener('load',function(){setTimeout(function(){__cgFail('Die Se
       border:1px solid var(--line);border-radius:7px;padding:2px 8px;margin:2px 3px 0 0}
   .dfprov{font-size:11px;color:var(--ink-faint);margin-top:6px}
   .dfrg{min-width:150px;max-width:340px;text-align:right}
-  .b-sens{background:#F3E9F7;color:#7A2E8F;border:1px solid #DFC7E8;font-size:10.5px;padding:1px 8px;
+  /* ⛨ is a Kennzeichen (the category of the datum), not a verdict: neutral, outlined */
+  .b-sens{background:var(--card);color:var(--ink-soft);border:1px solid #C9C5B8;font-size:10.5px;padding:1px 8px;
       border-radius:6px;margin-left:6px;font-weight:600}
+  /* eCH chips: the tone (st-*) says the state — element ok · element open grey ·
+     no standard / not in force amber; the label says it in words */
   .echb{display:inline-block;margin-left:6px;font-size:10px;padding:1px 7px;border-radius:6px;
-    background:#E6F0F7;color:#1B5E82;border:1px solid #C3D9E7;text-decoration:none;vertical-align:middle;
+    border:1px solid var(--line);text-decoration:none;vertical-align:middle;color:var(--ink);
     font-family:'Roboto Mono',ui-monospace,monospace}
-  .echb:hover{background:#D8E9F4}
-  .echb.so{background:#FBF3DC;color:#8F6400;border-color:#EBD9A8}
-  .echb.so:hover{background:#F7ECC9}
-  .echb.todo{background:#F9F0E2;color:#B4530A;border-color:#EBD3B3;border-style:dashed}
-  .echb.todo:hover{background:#F4E7D0}
+  .echb:hover{text-decoration:underline}
   .echn{display:inline-block;margin-left:6px;font-size:10px;padding:1px 7px;border-radius:6px;
-    background:var(--field);color:var(--ink-faint);border:1px solid var(--line);vertical-align:middle}
+    border:1px solid var(--line);vertical-align:middle;color:var(--ink)}
+  .echb .sw,.echn .sw,.echdraft .sw,.fcheck .sw,.divc .sw,.begc .sw,.hubdiv .sw{width:7px;height:7px;margin-right:4px;vertical-align:0}
   .eshb{display:inline-block;margin-left:6px;font-size:10px;padding:1px 7px;border-radius:6px;
     background:#EFE9F8;color:#5B3E8F;border:1px dashed #C9B8E8;vertical-align:middle;
     font-family:'Roboto Mono',ui-monospace,monospace}
-  .eshb .ent{opacity:.8;font-size:9px;letter-spacing:.4px;text-transform:uppercase;margin-left:4px;
+  .eshb .ent,.sfe.esh .ent{opacity:.8;font-size:9px;letter-spacing:.4px;text-transform:uppercase;margin-left:4px;
     font-family:'Inter',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
   .chip.sub{display:inline-flex;align-items:center;gap:5px;padding-right:3px}
-  .sfe{font-size:9.5px;font-family:'Roboto Mono',ui-monospace,monospace;padding:1px 5px;border-radius:4px;
-    background:#E6F0F7;color:#1B5E82;text-decoration:none;white-space:nowrap}
-  .sfe:hover{background:#D8E9F4}
-  .sfe.so{background:#FBF3DC;color:#8F6400}
-  .sfe.none{background:var(--field);color:var(--ink-faint)}
-  .sfe.esh{background:#EFE9F8;color:#5B3E8F;border:1px dashed #C9B8E8}
+  .sfe{font-size:9.5px;font-family:'Roboto Mono',ui-monospace,monospace;padding:0 5px;border-radius:4px;
+    border:1px solid var(--line);color:var(--ink);text-decoration:none;white-space:nowrap}
+  a.sfe:hover{text-decoration:underline}
+  /* the eSH code is a Kennzeichen (a draft of the canton, never official eCH): violet, dashed */
+  .sfe.esh{background:#F3EFFA;color:#4A3570;border:1px dashed #9B84C9}
   .echdraft{display:inline-block;margin-left:5px;font-size:10px;padding:1px 6px;border-radius:6px;
-    background:#FBF3DC;color:#8F6400;border:1px solid #EBD9A8;vertical-align:middle}
-  .echdraft.susp{background:#F9F0E2;color:#B4530A;border-color:#EBD3B3}
-  .echdraft.rep{background:#FBEDEB;color:#C0392B;border-color:#EAC7C2;font-weight:700}
+    border:1px solid var(--line);vertical-align:middle;color:var(--ink)}
   .fcheck{display:inline-block;font-size:10.5px;font-weight:600;border-radius:6px;padding:1px 8px;
-    margin-left:8px;vertical-align:middle}
-  .fcheck.ok{background:#E7F2EC;color:#2E7D5B;border:1px solid #BFDCCB}
-  .fcheck.warn{background:#F9F0E2;color:#B26A00;border:1px solid #EBD3B3}
-  .fcheck.miss{background:var(--field);color:var(--ink-faint);border:1px solid var(--line)}
-  .fcheck.gone{background:#F9EBEF;color:#B03A5B;border:1px solid #E8C3CE}
-  .dvsh{border-left:3px solid var(--match)}
+    margin-left:8px;vertical-align:middle;border:1px solid var(--line)}
   .flinks{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:11px 16px}
   .flabel{font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--ink-faint)}
   .flink,.srcbtn{display:inline-block;padding:5px 11px;border-radius:8px;border:1px solid var(--line);
@@ -284,13 +288,13 @@ window.addEventListener('load',function(){setTimeout(function(){__cgFail('Die Se
   .gprax .gplabel{color:#7A5EA8}
   /* per-Formular Datenhandhabung profile */
   .pfstrip{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
-  .pfc{font-size:11px;padding:3px 10px;border-radius:999px;font-weight:600;border:1px solid var(--line);background:var(--field);color:var(--ink-soft)}
-  .pfc.sens{background:#F9E9E4;border-color:#E5B8A8;color:#A04A2E}
-  .pfc.law{background:#E7F2EC;border-color:#BFDCCB;color:#2E7D5B}
-  .pfc.frist{background:#F4EEDF;border-color:var(--gold-deep);color:#6B5A22}
-  .pfc.over{background:#FBEFEF;border-color:#E3B6B6;color:#A33B3B}
+  /* profile chips are Kennzeichen (⛨ category, special laws, retention regime) — neutral;
+     only the «ohne Grundlage» chip is a status and wears its tone (st-act) */
+  .pfc{font-size:11px;padding:3px 10px;border-radius:999px;font-weight:600;border:1px solid #C9C5B8;background:var(--card);color:var(--ink-soft)}
+  .pfc.frist{border-style:solid;color:var(--ink)}
+  .pfc .sw{width:8px;height:8px;margin-right:5px;vertical-align:0}
   .hstd{font-size:12.5px;line-height:1.55;color:var(--ink-soft);padding:4px 0}
-  .hstd.over{color:#A33B3B;border-top:1px dashed var(--line);margin-top:8px;padding-top:8px}
+  .hstd.over{color:var(--ink);border-top:1px dashed var(--line);margin-top:8px;padding-top:8px}
   .hstd .gchip{cursor:default}
   .hcat{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;padding:3px 0}
   /* redesigned navigation: grouped tabs with question subtitles */
@@ -316,11 +320,9 @@ window.addEventListener('load',function(){setTimeout(function(){__cgFail('Die Se
   /* form-page hub head */
   .hubhead{padding:10px 16px}
   .hubrow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:12px}
-  .ampel{font-size:15px;line-height:1}
-  .a-gruen{color:#2E7D5B}.a-gelb{color:#C98A00}.a-rot{color:#B3372F}
   .hubchan{font-weight:600;color:var(--ink-soft)}
-  .hubsig{color:#B3372F;font-weight:600}
-  .hubsig.ok{color:#2E7D5B}
+  /* signature and digitalisation blockers are facts about the Formular, not a tone */
+  .hubsig{color:var(--ink-soft);font-weight:600}
   .hubmeta{color:var(--ink-faint)}
   .hubout{margin-top:7px;font-size:12.5px}
   .hubburden{margin-top:5px;font-size:12.5px;color:var(--ink-soft)}
@@ -328,16 +330,17 @@ window.addEventListener('load',function(){setTimeout(function(){__cgFail('Die Se
   .beirow{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;padding:4px 0;
     border-top:1px dashed var(--line);font-size:12.5px}
   .beirow:first-of-type{border-top:none}
-  .beiob{font-size:10px;padding:1px 7px;border-radius:999px;font-weight:700;border:1px solid var(--line);color:var(--ink-soft)}
-  .beiob.zwingend{background:#F9E9E4;border-color:#E5B8A8;color:#A04A2E}
-  .beiob.bedingt{background:#F4EEDF;border-color:var(--gold);color:#6B5A22}
+  /* obligation and holder of a Beilage are Kennzeichen: neutral (zwingend solid, bedingt dashed) */
+  .beiob{font-size:10px;padding:1px 7px;border-radius:999px;font-weight:700;border:1px solid var(--line);color:var(--ink-soft);background:var(--card)}
+  .beiob.zwingend{border-color:#A9A597;color:var(--ink)}
+  .beiob.bedingt{border-style:dashed;border-color:#A9A597}
   .beih{margin-left:auto;font-size:11px;color:var(--ink-faint)}
-  .beih.f{color:#2E7D5B;font-weight:600}
+  .beih.f{color:var(--ink-soft);font-weight:600}
   .simlink{color:var(--gold-deep);cursor:pointer;text-decoration:none;font-weight:600}
   .simlink:hover{text-decoration:underline}
   .lawforms summary{cursor:pointer;font-size:11.5px;color:var(--gold-deep);font-weight:600;margin-top:6px}
   .flash{outline:2px solid var(--gold-deep);outline-offset:2px}
-  .katrow{cursor:pointer}
+  .katrow[aria-expanded]{cursor:pointer}
   .katforms td{background:var(--field);font-size:11.5px;line-height:1.7}
   /* Service-Dossier */
   .svclaws{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 12px;
@@ -346,6 +349,7 @@ window.addEventListener('load',function(){setTimeout(function(){__cgFail('Die Se
     background:#FCFAF2;color:var(--ink);text-decoration:none;font-weight:600;display:inline-block}
   a.lawchip:hover{border-color:var(--gold-deep)}
   .lawchip.nolink{border-style:dashed;color:var(--ink-soft)}
+  .lawchip .lawabbr{font-weight:500;color:var(--ink-soft)}
   .hsl{font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--gold-deep);
     font-weight:700;margin-right:6px}
   .verf summary{cursor:pointer;padding:2px 0}
@@ -377,6 +381,7 @@ window.addEventListener('load',function(){setTimeout(function(){__cgFail('Die Se
   .sres .srow{display:flex;gap:10px;align-items:baseline;padding:6px 0;border-bottom:1px solid var(--line)}
   .sres .srow:last-of-type{border-bottom:0}
   .stype{font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink-soft);min-width:84px}
+  a.slink{color:inherit;text-decoration:none;cursor:pointer;display:block}
   .slink:hover{text-decoration:underline}
   mark.hl{background:#FFF1B8;color:inherit;padding:0 1px;border-radius:2px}
   /* Lebenslagen */
@@ -386,35 +391,31 @@ window.addEventListener('load',function(){setTimeout(function(){__cgFail('Die Se
   .lltile:hover{border-color:var(--gold)}
   .lln{font-weight:700;font-size:13.5px}
   .lls{font-size:11.5px;color:var(--ink-soft)}
-  .llrep{color:#8F6400;font-weight:600}
+  /* an overlap across the offer is a count, not a status: neutral */
+  .llrep{color:var(--ink);font-weight:600}
   .llsum{font-size:13.5px;line-height:1.6}
-  .llnum{display:inline-block;font-size:14px;color:#8F6400;cursor:help}
+  .llnum{display:inline-block;font-size:14px;color:var(--ink-soft)}
+  .rstat .sw{width:8px;height:8px;margin:0 3px 0 6px;vertical-align:0}
+  .rstat .sw:first-child{margin-left:0}
   .crumbs{margin:0 0 6px;font-size:12.5px}
   /* Begriffe */
   .bgcard{padding:10px 14px}
   .bghead{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
   .bgvor{font-weight:700;font-size:15px}
   .bgrow{display:flex;flex-wrap:wrap;gap:5px;align-items:baseline;margin-top:6px}
-  .bglab{font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;min-width:150px;font-weight:700}
-  .bglab.var{color:#8F6400}.bglab.rol{color:#1F5A3A}.bglab.pr{color:#7A1F1F}
+  .bglab{font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;min-width:150px;font-weight:700;color:var(--ink)}
+  .bglab .sw{width:8px;height:8px;margin-right:5px;vertical-align:0}
   .bgl{font-size:12px;border:1px solid var(--line);border-radius:6px;padding:1px 7px;background:#fff}
-  .bgl.pr{border-color:#E8B4B4}
-  .begc{font-size:10.5px;color:#8F6400;background:#FBF3DC;border:1px dashed #EBD9A8;border-radius:6px;padding:0 6px;
-    white-space:nowrap;cursor:help}
-  .begc.pr{color:#7A1F1F;background:#FBEAEA;border-color:#E8B4B4}
-  .b-rolle{color:#1F5A3A;border-color:#B9DEC6;background:#E3F2E8}
-  .b-pruef{color:#7A1F1F;border-color:#E8B4B4;background:#FBEAEA}
+  .begc{font-size:10.5px;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:0 6px;white-space:nowrap}
   .svthemen{display:flex;flex-wrap:wrap;gap:5px;align-items:baseline;margin-top:6px;font-size:12px}
   .svthemen a{cursor:pointer}
   /* Standard divergence markers */
-  .divc{font-size:10.5px;color:#8F6400;background:#FBF3DC;border:1px solid #EBD9A8;
-    border-radius:6px;padding:0 6px;white-space:nowrap;cursor:help}
+  /* ⇄ divergence marker: red where the Dienststelle aligns, amber where the canton decides */
+  .divc{font-size:10.5px;color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:0 6px;white-space:nowrap}
   .divc.mini{padding:0 3px;margin-left:3px}
-  .chip.sub.dvs{border-color:#EBD9A8;background:#FDFAF1}
-  .hubdiv{font-size:11.5px;color:#8F6400;background:#FBF3DC;border:1px solid #EBD9A8;
-    border-radius:999px;padding:1px 9px}
-  .dvval{display:inline-block;white-space:normal;background:#FBF3DC;border:1px solid #EBD9A8;
-    border-radius:6px;padding:1px 6px;color:#8F6400}
+  .hubdiv{font-size:11.5px;color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:1px 9px}
+  a.hubdiv{text-decoration:none} a.hubdiv:hover{text-decoration:underline}
+  .dvval{display:inline-block;white-space:normal;border:1px solid var(--line);border-radius:6px;padding:1px 6px;color:var(--ink)}
   table.dvt{table-layout:fixed}
   table.dvt td{vertical-align:top;overflow-wrap:anywhere}
   table.dvt th:nth-child(1),table.dvt td:nth-child(1){width:32%}
@@ -431,25 +432,24 @@ window.addEventListener('load',function(){setTimeout(function(){__cgFail('Die Se
   .rmc{margin:6px 0 0 8px}
   .rmc blockquote.quote{margin:2px 0 0}
   /* Datenfluss diagram + Bürgersicht */
-  .synth{background:#FBEAEA;border:1px solid #E8B4B4;color:#7A1F1F;border-radius:8px;padding:8px 12px;
-    font-weight:600;font-size:13px;margin:0 0 10px}
   .flowsvg{width:100%;height:auto;display:block;font-size:11.5px}
   .flowsvg .flowhd{font-size:11px;font-weight:700;fill:var(--ink-soft);text-transform:uppercase;letter-spacing:.04em}
   .flowsvg .fn{cursor:pointer;fill:#1F2A37}
   .flowsvg .fn:hover{text-decoration:underline}
-  .flowsvg .fe{stroke:#8F6400;stroke-opacity:.55;transition:stroke-opacity .15s;cursor:pointer}
-  .flowsvg .fe.systematisch{stroke:#1F5A3A}
+  /* the mode of a disclosure is a Kennzeichen: solid = systematisch, dashed = auf Anfrage,
+     both neutral ink — never a tone */
+  .flowsvg .fe{stroke:var(--ink-soft);stroke-opacity:.5;transition:stroke-opacity .15s;cursor:pointer}
   .flowsvg .fe.auf_anfrage{stroke-dasharray:5 4}
   .flowsvg .fe:hover{stroke-opacity:1}
   .flowsvg .fe.dim{stroke-opacity:.08}
   .flowleg{display:flex;gap:16px;align-items:center;font-size:12px;margin-bottom:6px}
-  .flowleg .fl{display:inline-block;width:26px;height:0;border-top:2px solid #1F5A3A;vertical-align:middle;margin-right:4px}
-  .flowleg .fl.anf{border-top:2px dashed #8F6400}
+  .flowleg .fl{display:inline-block;width:26px;height:0;border-top:2px solid var(--ink-soft);vertical-align:middle;margin-right:4px}
+  .flowleg .fl.anf{border-top:2px dashed var(--ink-soft)}
   .lkrow{display:flex;align-items:center;gap:10px;margin:3px 0}
   .lky{font-variant-numeric:tabular-nums;min-width:40px;font-size:12.5px}
   /* once-only: the Einwohnerregister already holds this datum */
-  .regc{font-size:10.5px;color:#1F5A3A;background:#E3F2E8;border:1px solid #B9DEC6;
-    border-radius:6px;padding:0 6px;white-space:nowrap}
+  .regc{font-size:10.5px;color:var(--ink-soft);background:var(--card);border:1px solid #C9C5B8;
+    border-radius:6px;padding:0 6px;white-space:nowrap;font-weight:600}
   .chip.sub .regc{margin-left:4px;padding:0 4px}
   /* navigation redesign: browse modes, breadcrumb, Formular quick-jump */
   .navmodes{display:flex;gap:6px;margin:0 0 8px}
@@ -468,35 +468,263 @@ window.addEventListener('load',function(){setTimeout(function(){__cgFail('Die Se
   .regstats{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
   .rstat{font-size:12px;padding:6px 12px;border-radius:10px;background:var(--card);border:1px solid var(--line)}
   .rstat b{color:var(--gold-deep)}
-  .rstat.warn{border-color:#E5B8A8;background:#F9E9E4}
-  .miss{color:#A33B3B;font-weight:600;font-size:11px}
+  /* recipients, channel and source are Kennzeichen: neutral, outlined */
   .empchip{display:inline-block;font-size:11px;padding:2px 9px;margin:2px 4px 0 0;border-radius:999px;
-    background:#E7F2EC;border:1px solid #BFDCCB;color:#2E7D5B;font-weight:600}
+    background:var(--card);border:1px solid #C9C5B8;color:var(--ink);font-weight:600}
   .zweckline{font-size:12.5px;color:var(--ink-soft);margin:-4px 0 10px;font-style:italic}
-  .nodv{color:var(--communal);margin-right:4px}
-  .esvc{display:inline-block;font-size:10px;background:#E8F1F6;color:#2C6E91;border:1px solid #BFD8E6;
+  .nodv{color:var(--ink-faint);margin-right:4px}
+  .esvc{display:inline-block;font-size:10px;background:var(--card);color:var(--ink-soft);border:1px solid #C9C5B8;
     border-radius:6px;padding:0 6px;margin-left:6px;font-weight:600}
-  .b-nodv{background:#F9F0E2;color:#B26A00;border:1px solid #EBD3B3;font-size:10.5px;padding:2px 8px;
+  .b-nodv{background:var(--card);color:var(--ink-soft);border:1px dashed #A9A597;font-size:10.5px;padding:2px 8px;
     border-radius:6px;white-space:nowrap;font-weight:600}
-  .b-dvsh{background:#E7F2EC;color:#2E7D5B;border:1px solid #BFDCCB;font-size:10.5px;padding:2px 8px;
+  .b-dvsh{background:var(--card);color:var(--ink-soft);border:1px solid #C9C5B8;font-size:10.5px;padding:2px 8px;
     border-radius:6px;font-weight:700}
-  .stale{display:inline-flex;gap:6px;align-items:center;background:#FBEDEB;color:#C0392B;
-    border:1px solid #EAC7C2;font-size:11.5px;font-weight:600;border-radius:8px;padding:3px 9px;margin-left:8px}
   .seg{display:inline-flex;border:1.5px solid var(--line);border-radius:8px;overflow:hidden;margin-bottom:14px}
   .seg button{border:none;background:var(--card);color:var(--ink-soft);font:inherit;font-size:12.5px;
     font-weight:600;padding:6px 14px;cursor:pointer}
   .seg button.active{background:var(--field);color:var(--ink)}
   .pbar{height:8px;border-radius:5px;background:var(--field);border:1px solid var(--line);
     overflow:hidden;flex:1;min-width:140px;max-width:280px}
-  .pbar > i{display:block;height:100%;background:var(--match)}
+  /* the filled part of a progress bar is what is settled (tone ok); a bar that only
+     counts (Löschkalender) is neutral (.nt) */
+  .pbar > i{display:block;height:100%;background:var(--ton-ok)}
+  .pbar.nt > i{background:var(--ink-faint)}
   .nores{color:var(--ink-faint);padding:30px 0;text-align:center}
-  .legend{font-size:11.5px;color:var(--ink-soft);line-height:2}
+  .legend{font-size:11.5px;color:var(--ink-soft);line-height:1.45}
+  .legblk{margin:0 0 12px}
+  .leghd{font-size:10.5px;font-weight:700;color:var(--ink);margin:0 0 5px}
+  .legend .tleg{font-size:11.5px;gap:5px}
+  .legend .tleg li{align-items:flex-start}
+  .legend .tleg li .sw{transform:translateY(3px)}
+  .legend .tleg.mkl li{display:block}
+  .legend .tleg.mkl li>.badge,.legend .tleg.mkl li>.regc,.legend .tleg.mkl li>.eshb,.legend .tleg.mkl li>.edt,.legend .tleg.mkl li>.llnum{margin:0 5px 0 0;vertical-align:1px}
+  .legend .tleg.mkl li>.mkline{margin:0 4px 3px 0;vertical-align:middle}
+  .legex{display:block;color:var(--ink-faint);font-size:11px;line-height:1.4}
+  .mkline{display:inline-block;width:22px;height:0;border-top:2px solid var(--ink-soft);vertical-align:middle}
+  .mkline.dash{border-top-style:dashed}
   input#svcfilter{width:100%;padding:8px 10px;margin-bottom:8px;background:var(--card);
     border:1.5px solid var(--line);border-radius:8px;color:var(--ink);font:inherit;font-size:12.5px}
   input#svcfilter:focus{outline:none;border-color:var(--gold-deep);box-shadow:0 0 0 3px rgba(242,183,5,.25)}
-  .hubmeta.warn{color:#B26A00;font-weight:600}
   .tab.ext{text-decoration:none;color:var(--ink-soft);display:block}
   .datenstand{font-size:11.5px;color:var(--ink-soft);margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)}
+  /* page head: one visible sentence, the rest folded away */
+  .phkurz{margin:0;font-size:13px;line-height:1.5;color:var(--ink)}
+  details.phmore{margin-top:6px}
+  details.phmore>summary{cursor:pointer;font-size:11.5px;font-weight:600;color:var(--gold-deep);width:max-content}
+  details.phmore[open]>summary{margin-bottom:4px}
+  details.phmore>div{margin:3px 0}
+  /* tones — the colour says who acts next: segments, swatches (chips follow in the
+     status-language pass); text never wears the tone colour, it sits beside it */
+  .t-ok{background:var(--ton-ok)} .t-ok2{background:var(--ton-ok2)} .t-act{background:var(--ton-act)}
+  .t-dec{background:var(--ton-dec)} .t-open{background:var(--ton-open)} .t-rest{background:var(--line)}
+  .tbar{display:flex;gap:2px;height:10px;border-radius:4px;overflow:hidden;margin:2px 0 0}
+  .tbar>i{display:block;flex:1 1 0;min-width:3px}
+  .sw{display:inline-block;width:10px;height:10px;border-radius:3px;flex:none;vertical-align:-1px;margin-right:5px}
+  .tleg{list-style:none;margin:0;padding:0;font-size:12px;color:var(--ink-soft);display:flex;flex-direction:column;gap:3px}
+  .tleg li{display:flex;gap:6px;align-items:baseline}
+  .tleg li .sw{margin-right:0;transform:translateY(1px)}
+  .tleg li>b{color:var(--ink);font-variant-numeric:tabular-nums;min-width:48px;text-align:right;font-weight:600}
+  .tleg li.zero{opacity:.7}
+  .tleg .tw{color:var(--ink-faint)}
+  .tleg a.inl{margin-left:2px}
+  .tonlist li{font-size:12.5px;line-height:1.5}
+  /* home: data standard first */
+  .lead{font-size:14px;line-height:1.6;margin:0 0 12px;max-width:880px;color:var(--ink)}
+  .tonkey{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center;font-size:12.5px;color:var(--ink-soft);
+    margin:0 0 18px;padding:7px 12px;background:var(--card);border:1px solid var(--line);border-radius:10px;width:max-content;max-width:100%}
+  .tonkey .tk{display:inline-flex;align-items:center;white-space:nowrap}
+  .tonkey .sep{color:var(--ink-faint)}
+  .hsec{margin:0 0 22px}
+  .hsec>h4{font-size:12px;text-transform:uppercase;letter-spacing:.6px;color:var(--ink-soft);margin:0 0 4px}
+  .hsec.core>h4{font-size:15px;text-transform:none;letter-spacing:-.1px;color:var(--ink)}
+  .hsec.core{border-left:3px solid var(--gold);padding-left:14px}
+  .hsub{font-size:12.5px;color:var(--ink-soft);margin:0 0 10px;max-width:880px;line-height:1.5}
+  .kzgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:12px}
+  .kz{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;
+    flex-direction:column;gap:8px;min-width:0}
+  .kzl{font-size:13px;font-weight:700;color:var(--ink)}
+  .kzv{font-size:30px;font-weight:700;line-height:1.05;letter-spacing:-.5px;color:var(--ink)}
+  .kzv .kzvon{font-size:16px;font-weight:600;color:var(--ink-soft);letter-spacing:0}
+  .kzsub{font-size:12px;color:var(--ink-soft);line-height:1.45;margin-top:-4px}
+  .kzziel{font-size:12px;color:var(--ink);border-left:2px solid var(--gold);padding:1px 0 1px 8px}
+  .kznote{font-size:11.5px;color:var(--ink-faint);line-height:1.45}
+  .kznote.dsnote{margin-top:6px}
+  .kztrend{font-size:11.5px;color:var(--ink-soft);line-height:1.45}
+  .kztrend>b{color:var(--ink);font-weight:600}
+  .kztrend .bem{display:block;margin-top:3px;padding-left:8px;border-left:2px solid var(--line)}
+  .kzfoot{margin-top:auto;padding-top:2px}
+  .kzlink{font-size:12px;font-weight:600;color:var(--gold-deep);text-decoration:none}
+  /* small links get a 24 px target without moving the layout */
+  .kzlink,.offlink,a.inl{display:inline-block;padding:4px 2px;margin:-4px 0}
+  .kzlink:hover,a.inl:hover{text-decoration:underline}
+  a.inl{color:var(--gold-deep);font-weight:600;text-decoration:none;white-space:nowrap}
+  .doors{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+  .door{display:flex;flex-direction:column;gap:4px;background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:14px 16px;text-decoration:none;color:var(--ink)}
+  .door:hover{border-color:var(--gold-deep);background:#FCFAF2}
+  .door .dk{font-size:10.5px;text-transform:uppercase;letter-spacing:.6px;color:var(--gold-deep);font-weight:700}
+  .door .dq{font-size:15px;font-weight:700;line-height:1.3}
+  .door .dn{font-size:12px;color:var(--ink-soft)}
+  /* Verlauf: compact trend lines */
+  .vlgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+  .spark{width:100%;max-width:420px;height:auto;display:block;overflow:visible}
+  .spark .sg{stroke:var(--line);stroke-width:1}
+  .spark .sl{font-size:10px;fill:var(--ink-faint)}
+  .spark .sp{fill:none;stroke:var(--ink-soft);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+  .spark .hit{fill:transparent}
+  .spark .pt{fill:var(--ink-soft);stroke:var(--card);stroke-width:2}
+  .spark .pt.cur{fill:var(--ink)}
+  .spark .pt.git{fill:var(--card);stroke:var(--ink-soft);stroke-width:2}
+  .spark .nn{font-size:10px;font-weight:700;fill:var(--ink)}
+  .spark g[data-tip]:focus{outline:none}
+  .spark g[data-tip]:focus .pt,.spark g[aria-expanded="true"] .pt{stroke:var(--gold-deep);stroke-width:3}
+  .vlrow{font-size:11.5px;color:var(--ink-soft);font-variant-numeric:tabular-nums;line-height:1.5}
+  .vlrow b{color:var(--ink);font-weight:600}
+  .vlnotes{font-size:11.5px;color:var(--ink-soft);margin:10px 0 0;padding-left:20px;line-height:1.5}
+  .vlnote{font-size:11.5px;color:var(--ink-faint);margin-top:6px}
+  /* Methode & Quellen */
+  .stufen{margin:0;padding-left:0;list-style:none;font-size:12.5px;line-height:1.5}
+  .stufen li{padding:5px 0;border-top:1px dashed var(--line)}
+  .stufen li:first-child{border-top:none}
+  .stcats{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px}
+  .stcats .tchip.zero{opacity:.55}
+  .tscroll{overflow-x:auto;padding:6px 10px}
+  table.vltab{min-width:720px}
+  table.vltab td .nowrap{white-space:normal}
+  table.vltab tr.hasbem td{border-bottom:none;padding-bottom:2px}
+  table.vltab tr.vlbemrow td{padding-top:0;color:var(--ink-soft)}
+  table.vltab td{line-height:1.55}
+  .nowrap{white-space:nowrap}
+  /* prototypes and drafts carry a band nobody can overlook */
+  .band{border-radius:10px;padding:10px 14px;margin:0 0 12px;font-size:13px;line-height:1.5}
+  .band>b{display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.7px;margin-bottom:2px}
+  .band .small{display:block;margin-top:3px}
+  .band.werk{background:#2B2A24;color:#FAFAF6}
+  .band.werk .small{color:#D8D5CA}
+  .band.entwurf{background:#F3EFFA;color:#4A3570;border:2px dashed #9B84C9}
+  /* status classes: the tone of a chip or badge (DATA.labels.ton) — tinted surface,
+     tone-coloured border, ink text; a swatch inside names the tone, so the colour
+     never carries the statement alone */
+  .st-ok{background:var(--ton-ok-bg);border-color:#A9D3BA;color:var(--ink)}
+  .st-act{background:var(--ton-act-bg);border-color:#E7B2AC;color:var(--ink)}
+  .st-dec{background:var(--ton-dec-bg);border-color:#EACB8E;color:var(--ink)}
+  .st-open{background:var(--ton-open-bg);border-color:#D6D3C9;color:var(--ink)}
+  /* the same four classes as a solid fill where the element IS the colour: bar
+     segments, swatches, markers (the .t-* fills of the page head and bars are the same tones) */
+  .tbar>i.st-ok,.minibar>i.st-ok,.pbar>i.st-ok,.sw.st-ok{background:var(--ton-ok)}
+  .tbar>i.st-act,.minibar>i.st-act,.pbar>i.st-act,.sw.st-act{background:var(--ton-act)}
+  .tbar>i.st-dec,.minibar>i.st-dec,.pbar>i.st-dec,.sw.st-dec{background:var(--ton-dec)}
+  .tbar>i.st-open,.minibar>i.st-open,.pbar>i.st-open,.sw.st-open{background:var(--ton-open)}
+  .badge.st-ok,.badge.st-act,.badge.st-dec,.badge.st-open{font-weight:600}
+  .badge>.sw{width:7px;height:7px;margin-right:4px;vertical-align:0}
+  .tchip.badge{font-weight:500;white-space:normal}
+  .tchip .sw,.tcat .sw{width:8px;height:8px;margin-right:5px;vertical-align:0}
+  /* explanations without a mouse: an element with a title can be focused and opened
+     (click, tap, Enter, Space) — a small box shows the title text; subtle cue only */
+  [data-tip]{cursor:help}
+  span[data-tip]:not([class]),.tnum>span[data-tip],td[data-tip],b[data-tip],div[data-tip]:not([class]),sup[data-tip],li[data-tip]>span{
+    text-decoration:underline dotted rgba(22,21,15,.38);text-underline-offset:2px}
+  [data-tip]:focus-visible{outline:2px solid var(--gold-deep);outline-offset:1px;border-radius:4px}
+  [data-tip][aria-expanded="true"]{outline:2px solid var(--gold);outline-offset:1px;border-radius:4px}
+  #tipbox{position:absolute;z-index:1000;left:0;top:0;max-width:min(380px,calc(100vw - 24px));background:var(--card);
+    color:var(--ink);border:1px solid var(--line);border-radius:10px;box-shadow:0 6px 24px rgba(22,21,15,.18);
+    padding:9px 32px 9px 12px;font-size:12.5px;line-height:1.5;white-space:pre-line;overflow-wrap:anywhere;text-align:left}
+  #tipbox[hidden]{display:none}
+  #tipbox .tipx{position:absolute;top:4px;right:4px;border:0;background:none;font:inherit;font-size:16px;line-height:1;
+    padding:3px 7px;cursor:pointer;color:var(--ink-soft);border-radius:6px}
+  #tipbox .tipx:hover,#tipbox .tipx:focus-visible{background:var(--field);color:var(--ink)}
+  /* the box offers the action of a chip that has one (⛨ → Leitfaden, a rule → Datenhandhabung) */
+  #tipbox .tipgo{display:block;margin-top:7px;padding:4px 10px;border-radius:8px;border:1px solid var(--line);background:var(--card);
+    color:var(--gold-deep);font:inherit;font-size:12px;font-weight:600;cursor:pointer;white-space:normal;text-align:left}
+  #tipbox .tipgo[hidden]{display:none}
+  #tipbox .tipgo:hover,#tipbox .tipgo:focus-visible{border-color:var(--gold-deep);outline:none}
+  /* rows, toggles and links without an address that act on a click are reachable by keyboard */
+  [data-act]:focus-visible{outline:2px solid var(--gold-deep);outline-offset:1px;border-radius:4px}
+  tr[data-act]:focus-visible{outline-offset:-2px}
+  tr[data-act]:focus-visible>td{background:#FCFAF2}
+  .svc a.svname{color:inherit;text-decoration:none}
+  .svc a.svname:hover{text-decoration:underline}
+  .svc a.svname:focus-visible{outline:2px solid var(--gold-deep);outline-offset:1px;border-radius:4px}
+  .vh{position:absolute;left:0;top:0;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  /* worklists: who acts next, priority tier */
+  .tnum{display:inline-flex;gap:12px;font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:600}
+  .tnum>span{display:inline-flex;align-items:center;position:relative}
+  .tnum>span.z{color:var(--ink-faint);font-weight:400}
+  .filt{margin:6px 0 14px}
+  .filtrow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 7px}
+  .filtrow .fl{font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;color:var(--ink-faint);font-weight:700;min-width:96px}
+  button.tcat,a.tcat{font:inherit;font-size:12px;color:var(--ink);text-decoration:none}
+  .tcat.zero{opacity:.55}
+  .tcat.out{border-style:dashed}
+  .filtrow.top{align-items:flex-start}
+  .filtrow.top .fl{padding-top:6px}
+  .stgs{display:flex;flex-direction:column;gap:5px;flex:1 1 400px;min-width:0}
+  .stg{display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+  .stgl{font-size:10.5px;color:var(--ink-soft);font-weight:700;white-space:nowrap;min-width:150px}
+  a.dlink{color:var(--ink);font-weight:600;text-decoration:none;border-bottom:1px solid var(--line)}
+  a.dlink:hover{border-bottom-color:var(--gold-deep);color:var(--gold-deep)}
+  a.dlink.lt{font-weight:500}
+  .stufehd{font-size:12px;text-transform:uppercase;letter-spacing:.6px;color:var(--ink-soft);font-weight:700;margin:20px 0 4px}
+  .stufetx{font-size:12px;color:var(--ink-soft);margin:0 0 8px;max-width:880px}
+  .catblk{padding:12px 16px}
+  .cathd{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline}
+  .cathd .tchip{font-size:12px;font-weight:600}
+  .catn{font-size:12.5px;color:var(--ink-soft)}
+  .catn b{color:var(--ink)}
+  .catx{font-size:12.5px;line-height:1.5;color:var(--ink-soft);margin-top:5px;max-width:900px}
+  .catx .hsl{display:inline-block;min-width:92px}
+  details.catdet{margin-top:8px}
+  details.catdet>summary,details.dsdet>summary,details.dsov>summary{cursor:pointer;font-size:12px;font-weight:600;color:var(--gold-deep)}
+  details.catdet table,details.dsdet table{margin-top:6px}
+  tr.dgrp td{background:var(--field);font-weight:600;border-bottom:1px solid var(--line)}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+  .clipd{font-size:11.5px;color:var(--ink-soft);line-height:1.45}
+  /* Für Dienststellen: overview table */
+  table.dsttab{min-width:860px}
+  table.dsttab td{vertical-align:middle}
+  table.dsttab tr.dstrow{cursor:pointer}
+  table.dsttab tr.deprow td{background:var(--field);border-bottom:1px solid var(--line);font-size:12px}
+  table.dsttab tr.deprow td b{font-size:13px}
+  .minibar{display:inline-flex;gap:1px;height:8px;width:84px;border-radius:3px;overflow:hidden;vertical-align:middle;background:var(--line-soft);margin-right:6px}
+  .minibar>i{display:block;height:100%;flex:1 1 0;min-width:2px}
+  .stdcell{display:inline-flex;align-items:center;white-space:nowrap}
+  details.dsov{margin:4px 0 16px}
+  details.dsov>summary{font-size:13px;padding:4px 0}
+  /* one Dienststelle: the briefing */
+  .dshead{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;padding:11px 16px}
+  .dshead .dsmeta{display:flex;flex-direction:column;gap:3px;font-size:12.5px;flex:1 1 320px}
+  .dshead .hsl{display:inline-block;min-width:92px}
+  .dshead a{color:var(--gold-deep);font-weight:600;text-decoration:none}
+  .dshead a:hover{text-decoration:underline}
+  .dssec{margin:0 0 18px}
+  .dssec>h4{font-size:14px;margin:0 0 8px;padding-bottom:4px;border-bottom:2px solid var(--gold)}
+  .dssec .card{margin-bottom:10px}
+  .dsnone{margin:0;font-size:12.5px;color:var(--ink-soft)}
+  ol.massn{margin:0;padding-left:24px;font-size:13px;line-height:1.5}
+  ol.massn>li{padding:6px 0 6px 2px;border-top:1px dashed var(--line)}
+  ol.massn>li:first-child{border-top:none;padding-top:0}
+  ol.massn .sw{vertical-align:0}
+  .dsline{display:flex;gap:6px;align-items:baseline;font-size:12.5px;line-height:1.5;margin:6px 0 0}
+  .dsline .sw{transform:translateY(1px)}
+  .dsstdv{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline;margin-bottom:6px}
+  .dsstdv .kzv{font-size:26px}
+  .dsstufe{padding:8px 0;border-top:1px dashed var(--line)}
+  .dsstufe:first-child{border-top:none;padding-top:0}
+  .dsshd{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline;font-size:13px}
+  ul.pline{list-style:none;margin:0;padding:0}
+  ul.pline>li{padding:2px 0;display:flex;flex-wrap:wrap;gap:2px 8px;align-items:baseline}
+  table.dsptab td:first-child{width:36%}
+  ul.dssvc{margin:0;padding-left:18px;font-size:12.5px;line-height:1.55}
+  ul.dssvc a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+  ul.dssvc a:hover{border-bottom-color:var(--gold-deep)}
+  .dsfc{display:none}
+  .dsmob{display:none}
+  /* a DVSH grouping that is not an office of its own */
+  .sammel{font-size:10.5px;font-weight:600;color:var(--ink-soft);border:1px dashed #A9A597;border-radius:6px;padding:0 6px;margin-left:4px;display:inline-block}
+  .mzmix{font-size:12px;color:var(--ink-soft);margin-top:2px}
+  .offlink{font-size:10.5px;font-weight:600;color:var(--gold-deep);text-decoration:none;white-space:nowrap;margin-left:2px}
+  .offlink:hover{text-decoration:underline}
+  .offhd.active{color:var(--ink);background:#FCFAF2;box-shadow:inset 0 0 0 1px var(--gold-deep)}
   /* narrow viewports: the sidebar becomes a drawer behind a ☰ button — it is
      ~38'000 px tall at phone width, so stacking it above the content would
      push every page off screen */
@@ -510,13 +738,29 @@ window.addEventListener('load',function(){setTimeout(function(){__cgFail('Die Se
     header{padding:10px 14px}
     header .gsearch{min-width:0;flex:1 1 100%;margin-left:0}
     header .stamp{margin-left:0;text-align:left;flex:1 1 100%}
-    .navbtn{display:inline-block}
+    header .htxt{flex:1 1 0;min-width:0}
+    #warn.stamp,#stamp{display:none}
+    .navbtn{display:inline-block;position:fixed;right:12px;bottom:12px;z-index:60;box-shadow:0 2px 8px rgba(0,0,0,.18)}
+    main{padding-bottom:64px}
     .cols{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
     .hometiles .hometile{flex:1 1 140px}
     .dfrow{grid-template-columns:1fr}
     .dfrg{text-align:left;max-width:none}
     .dvgrid{grid-template-columns:1fr}
     .card{overflow-x:auto}
+  }
+  @media screen and (max-width:900px){
+    table.dsttab{min-width:0}
+    table.dsttab,table.dsttab tbody{display:block;width:100%}
+    table.dsttab thead{display:none}
+    table.dsttab tr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;padding:8px 0;border-bottom:1px solid var(--line)}
+    table.dsttab tr.deprow{background:var(--field);padding:8px 6px}
+    table.dsttab td{display:block;border:0;padding:0}
+    table.dsttab td:nth-child(2),table.dsttab td:nth-child(3){display:none}
+    table.dsttab td:nth-child(5),table.dsttab td:nth-child(6){grid-column:1/-1}
+    table.dsttab .tnum{white-space:normal;flex-wrap:wrap;gap:4px 12px}
+    table.dsttab tr.deprow td:nth-child(6){display:none}
+    table.dsttab .dsmob{display:block}
   }
   .offnote{background:#fff7d6;border-bottom:1px solid #e8d48a;padding:8px 16px;font-size:13px;line-height:1.45}
   .offnote a{color:inherit}
@@ -525,45 +769,104 @@ window.addEventListener('load',function(){setTimeout(function(){__cgFail('Die Se
   .bootmsg b{font-size:16px}
   .bootmsg.err{border-color:#c0392b}
   .bootmsg a{color:inherit}
+  /* print: the content only — no sidebar, no header bar, no controls; colours kept,
+     small blocks never split across pages (the Dienststellen briefing prints on one to two pages) */
+  @media print{
+    header,aside,.navbtn,.offnote,.noprint,details.phmore,#bootmsg,#tipbox{display:none !important}
+    [data-tip]{text-decoration:none !important;outline:none !important}
+    body{background:#fff;font-size:11.5px}
+    .layout{display:block;min-height:0}
+    main{padding:0;max-width:none;overflow:visible}
+    main *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .card,.pagehead{box-shadow:none;border-color:#D8D5CA}
+    h3.view,h4,.dvsub,.stufehd,.dsshd{break-after:avoid;page-break-after:avoid}
+    tr,li,.kz,.dsstufe,.dshead,.pagehead,.catblk{break-inside:avoid;page-break-inside:avoid}
+    .dssec{break-inside:auto}
+    a,a.dlink,.dshead a{color:inherit;text-decoration:none;border-bottom:none}
+    ul.dssvc{columns:2;column-gap:24px;font-size:10px;line-height:1.35}
+    .card{padding:8px 12px;margin-bottom:8px}
+    .pagehead{padding:6px 12px;margin-bottom:8px}
+    h3.view{font-size:15px}
+    .dssec{margin:0 0 8px}
+    .dssec>h4{font-size:12.5px;margin:0 0 5px;padding-bottom:2px}
+    .dssec .card{margin-bottom:4px}
+    ol.massn{font-size:11.5px;line-height:1.4}
+    ol.massn>li{padding:3px 0 3px 2px}
+    .dsstdv .kzv{font-size:20px}
+    .tleg{font-size:10.5px;gap:1px}
+    .dsstufe{padding:3px 0}
+    .dshead{padding:6px 12px}
+    table.ft th,table.ft td{padding:4px 8px}
+    .datenstand{font-size:9.5px}
+    .kznote.dsnote{font-size:9.5px;line-height:1.3;margin-top:3px}
+    ul.dssvc>li{break-inside:avoid}
+    .dsfl{display:none}
+    .dsfc{display:inline}
+    details.dsdet{display:none}
+    .card{overflow:visible}
+    .printonly{display:block}
+    .dssvcsec.long .card{display:none}
+    .dsstufe .tnum{gap:10px;white-space:normal;flex-wrap:wrap}
+    .dsstufe .tnum .vh{position:static;width:auto;height:auto;overflow:visible;clip:auto;white-space:nowrap;font-weight:400;margin-right:3px}
+    .tonkey{font-size:10.5px;padding:3px 8px;margin:0 0 6px}
+    .stufetx{font-size:10px;margin:1px 0 3px;line-height:1.35}
+    .mzmix,.kzziel{font-size:10.5px}
+    .dsline{font-size:11px;margin:4px 0 0}
+    .dshead .dsmeta{gap:1px;font-size:11.5px}
+    /* printed, the Formular's own title stays: two forms of one service must stay distinguishable */
+    .tscroll{overflow:visible}
+    table.dsttab{min-width:0}
+    @page{margin:14mm 12mm}
+  }
 </style>
 </head>
 <body>
+<button class="skip" type="button" onclick="var m=document.getElementById('main');m.setAttribute('tabindex','-1');m.focus();">Zum Inhalt</button>
 <header>
   <div class="crest" aria-hidden="true"></div>
   <div class="htxt"><div class="sub">Kanton Schaffhausen</div>
-    <h1>Compliance-Databank · Formulare, Recht &amp; Standards</h1></div>
-  <button class="navbtn" type="button" onclick="document.querySelector('.layout').classList.toggle('nav-open')" title="Navigation ein-/ausblenden">☰ Navigation</button>
+    <h1>Compliance-Databank · Datenstandards, Formulare &amp; Recht</h1></div>
+  <button class="navbtn" type="button" aria-controls="sidenav" aria-expanded="false" onclick="var o=document.querySelector('.layout').classList.toggle('nav-open');this.setAttribute('aria-expanded',String(o));if(o)window.scrollTo(0,0);" title="Navigation ein-/ausblenden">☰ Navigation</button>
   <input id="gsearch" class="gsearch" type="search" placeholder="Suche: Gesetz, Artikel, Datenfeld, Teilfeld, Regel, Empfänger, Dienststelle …" title="Suche über Services, Formulare, Datenfelder (inkl. Teilfelder), Gesetze, Regeln, Empfänger, Beilagen, Themengruppen (Lebenslagen), Begriffe, eCH-Standards, eSH-Entwürfe und Dienststellen — Enter oder kurz warten">
   <span class="warn" id="warn"></span>
   <span class="stamp" id="stamp"></span>
 </header>
 <div class="layout">
-  <aside>
+  <aside id="sidenav" aria-label="Navigation">
     <h2>Einstieg</h2>
-    <button class="tab" data-tab="home">Überblick &amp; Methode<span class="tabsub">Was ist diese Databank, wie arbeitet sie?</span></button>
-    <button class="tab" data-tab="lebenslagen">Lebenslagen<span class="tabsub">Die Themengruppen von eCH-0049: was eine Situation verlangt</span></button>
+    <button class="tab" data-tab="home">Übersicht<span class="tabsub">Datenstandard und Lücken auf einen Blick</span></button>
+    <button class="tab" data-tab="dienststellen">Für Dienststellen<span class="tabsub">Was muss ich an meinen Formularen ändern?</span></button>
+    <button class="tab" data-tab="kanton">Für den Kanton<span class="tabsub">Was muss entschieden werden?</span></button>
+    <button class="tab" data-tab="methode">Methode &amp; Quellen<span class="tabsub">Wie ist die Databank gebaut, woher stammen die Daten?</span></button>
+    <h2>Datenstandard</h2>
+    <button class="tab" data-tab="katalog">Datenkatalog<span class="tabsub">Jedes Datum einmal: eCH-Element, Einheitlichkeit, Once-Only</span></button>
+    <button class="tab" data-tab="begriffe">Begriffe<span class="tabsub">Ein Datum, ein Name</span></button>
+    <button class="tab" data-tab="esh">eSH-Katalog (Entwurf)<span class="tabsub">Entwurf des Kantons, wo kein eCH-Standard besteht</span></button>
+    <h2>Arbeitslisten</h2>
+    <button class="tab" data-tab="todo">Handlungsbedarf<span class="tabsub">Was Dienststellen ändern und der Kanton entscheidet — je Dienststelle</span></button>
+    <button class="tab" data-tab="recherche">Recherche der Databank<span class="tabsub">Was die Databank selbst noch nachschlagen muss</span></button>
+    <a class="tab ext" href="dossiers/index.html" target="_blank" rel="noreferrer" title="Index aller Datenschutz-Dossiers (ein Dossier je Service, druckbar; aus derselben Databank erzeugt)">Datenschutz-Dossiers ↗<span class="tabsub">Ein druckbares Dossier je Service (dossiers/index.html)</span></a>
     <h2>Nachschlagewerke</h2>
+    <button class="tab" data-tab="lebenslagen">Lebenslagen<span class="tabsub">Die Themengruppen von eCH-0049: was eine Situation verlangt</span></button>
+    <button class="tab" data-tab="register">Verzeichnis der Bearbeitungstätigkeiten<span class="tabsub">Registerstruktur nach KDSG Art. 17b Abs. 2 &amp; DSFA-Triage</span></button>
     <button class="tab" data-tab="rules">Datenhandhabung<span class="tabsub">Die Regeln im Wortlaut, je Gesetz</span></button>
     <button class="tab" data-tab="guide">Leitfaden<span class="tabsub">Dieselben Regeln in einfacher Sprache</span></button>
-    <button class="tab" data-tab="katalog">Datenkatalog<span class="tabsub">Jedes Datum einmal: Standards &amp; Once-Only</span></button>
-    <button class="tab" data-tab="begriffe">Begriffe<span class="tabsub">Ein Datum, ein Name</span></button>
     <button class="tab" data-tab="datenfluss">Datenfluss<span class="tabsub">Wer gibt wem Daten weiter — belegte Bekanntgaben</span></button>
-    <button class="tab" data-tab="esh">eSH-Katalog (Entwurf)<span class="tabsub">Kantonaler Standard-Vorschlag für eCH-Lücken</span></button>
-    <h2>Angewandt (Datentresor, synthetisch)</h2>
-    <button class="tab" data-tab="buerger">Bürgersicht<span class="tabsub">Was der Kanton über eine Person gespeichert hat</span></button>
-    <h2>Steuerung &amp; Lücken</h2>
-    <button class="tab" data-tab="register">Verzeichnis der Bearbeitungstätigkeiten<span class="tabsub">Registerstruktur nach KDSG Art. 17b Abs. 2 &amp; DSFA-Triage</span></button>
-    <button class="tab" data-tab="todo">Handlungsbedarf<span class="tabsub">Alle offenen Punkte je Dienststelle — Kontakt, soweit im DVSH hinterlegt</span></button>
-    <a class="tab ext" href="dossiers/index.html" target="_blank" rel="noreferrer" title="Index aller Datenschutz-Dossiers (ein Dossier je Service, druckbar; aus derselben Databank erzeugt)">Alle Datenschutz-Dossiers ↗<span class="tabsub">Index der Dossiers je Service (dossiers/index.html)</span></a>
+    <h2>Werkstatt · Prototypen</h2>
+    <button class="tab" data-tab="buerger">Bürgersicht<span class="tabsub">Datentresor, synthetisch: wie der Kanton speichern könnte</span></button>
+    <a class="tab ext" href="flows.html" target="_blank" rel="noopener" title="Prototyp: ein Formular als Folge einfacher Fragen, mit Vorbefüllung und Prüfung am Schluss (flows.html, mit eigener Formularsuche)">Geführte Formulare ↗<span class="tabsub">Prototyp: das Formular als einfache Fragen (flows.html)</span></a>
     <h2>Formulare &amp; Services</h2>
     <div id="services"></div>
-    <h2 id="legendhd">Legende <span class="legsub">— Badges dieser Seite</span></h2>
+    <h2 id="legendhd">Legende <span class="legsub">— Farben und Kennzeichen dieser Seite</span></h2>
     <div class="legend" id="legend"></div>
   </aside>
   <main id="main"><div class="bootmsg" id="bootmsg"><b>Die Databank wird geladen …</b>
     <span>Die Seite enthält alle Daten (knapp 40 MB, über das Netz etwa 5 MB). Beim ersten Öffnen dauert das je nach Verbindung und Gerät einige Sekunden bis gegen eine Minute.</span></div>
     <noscript><div class="bootmsg err"><b>JavaScript ist ausgeschaltet.</b> <span>Das Dashboard braucht JavaScript — bitte im Browser erlauben und die Seite neu laden.</span></div></noscript></main>
 </div>
+<div id="tipbox" role="dialog" aria-label="Erklärung" hidden><div class="tipt"></div><button class="tipgo" type="button" hidden></button><button class="tipx" type="button" aria-label="Erklärung schliessen">×</button></div>
+<div id="tiplive" class="vh" aria-live="polite"></div>
+<div id="routelive" class="vh" aria-live="polite"></div>
 <script id="data" type="application/json">/*DATA*/</script>
 <script>
 const DATA = JSON.parse(document.getElementById('data').textContent);
@@ -577,12 +880,43 @@ const ESH_STATUS=LAB.esh_status||{entwurf:'Entwurf'};
 const DFTYPE=LAB.dftype||{}, SENS=LAB.sens||{}, HSENS=SENS, OUTCOME_DE=LAB.outcome||{}, RM_DE=LAB.rm||{},
   RM_STATUS=LAB.rm_status||{}, HALTER_DE=LAB.halter||{}, OBLIG_DE=LAB.oblig||{}, CHAN_DE=LAB.chan||{},
   ENDPOINT_DE=LAB.endpoint||{}, DVSH_STATUS=LAB.dvsh_status||{}, MODE_DE=LAB.mode||{}, DIV_DE=LAB.div||{},
-  DIV_CLS=LAB.div_cls||{}, CHECK_DE=LAB.check||{}, JUR_DE=LAB.jur||{}, ASPECT=LAB.aspect||{}, SCOPE_DE=LAB.scope||{},
+  CHECK_DE=LAB.check||{}, JUR_DE=LAB.jur||{}, ASPECT=LAB.aspect||{}, SCOPE_DE=LAB.scope||{},
   KAT_DE=LAB.kat||{}, TRIGGER_DE=LAB.trigger||{}, DISP_DE=LAB.disposition||{}, MINMAX_DE=LAB.minmax||{},
   TODO_ART=LAB.todo_art||{}, TODO_CATS=LAB.todo_cats||[];
 const TODO_BY=Object.fromEntries(TODO_CATS.map(c=>[c[0],c]));
 // a category the labels do not know still renders (visibly marked), never crashes the board
-const todoCat=k=>TODO_BY[k]||[k,'⟨'+k+'⟩','b-unver','recherche',''];
+const todoCat=k=>TODO_BY[k]||[k,'⟨'+k+'⟩','st-open','recherche',''];
+// ---- one status language: the colour says who acts next (DATA.labels.ton / ton_map) ----
+// every status is drawn with st-ok · st-act · st-dec · st-open; a code without a tone
+// entry is not settled — grey, never green. Kennzeichen (level of law, ⛨, DVSH/SHEP,
+// ↺ Once-Only, channel) are neutral and outlined: they mark, they do not judge.
+const tonOf=(dom,code)=>((LAB.ton_map||{})[dom]||{})[code]||'open';
+const SW=t=>`<i class="sw t-${t}"></i>`;
+// the colour in words, for a title: «(rot: Dienststelle handelt)»
+const tonWords=t=>{const x=(LAB.ton||{})[t]||{}; return `(${x.farbe||'⟨'+t+'⟩'}: ${x.label||'⟨'+t+'⟩'})`;};
+// a status badge: tinted surface, tone border, swatch and a visible short label; the
+// title (raw text, escaped here) explains it and names who acts next. label arrives escaped
+const stBadge=(t,label,tip,cls,attrs)=>`<span class="badge st-${t}${cls?' '+cls:''}" title="${esc((tip?tip+'\n':'')+tonWords(t))}"${attrs||''}>${SW(t)}${label}</span>`;
+// a Kennzeichen as a badge: outlined, neutral — label arrives escaped, tip raw
+const mkBadge=(label,tip,cls)=>`<span class="badge mk${cls?' '+cls:''}"${tip?` title="${esc(tip)}"`:''}>${label}</span>`;
+// the eCH state of one data point — export_json._ech_state, question for question, so a
+// chip never says something else than the exported figures (kopfzahlen.standard_ech,
+// dienststellen_uebersicht[].standard.ech), which the pages read as they are: a standard
+// still in the works (In Arbeit) is standard_entwurf — the canton decides meanwhile
+// (amber); one no longer in force (sistiert, aufgehoben, abgelöst) is standard_alt — the
+// databank replaces the mapping by the successor (grey). Tones: DATA.labels.ton_map.ech
+const ECH_STD_STATE={'In Arbeit':'standard_entwurf','Sistiert':'standard_alt','Aufgehoben':'standard_alt','Abgelöst':'standard_alt'};
+// the tone of a standard's status; a status the export does not know is not settled: grey
+const echDraftTon=st=>ECH_STD_STATE[st]?tonOf('ech',ECH_STD_STATE[st]):'open';
+function echState(u){
+  const e=(u&&u.ech)||{};
+  if(e.element) return 'element';
+  if(e.standard&&ECH_STD_STATE[e.status]) return ECH_STD_STATE[e.status];
+  if(e.standard&&!e.n_elements) return 'standard_ohne_elemente';
+  if(e.standard) return 'element_offen';
+  if(u&&u.ech_status==='kein_standard') return 'kein_standard';
+  return 'ungeprueft';
+}
 // shareable links: state lives in location.hash (#tab/serviceId/sub), read at
 // startup and on back/forward, written by render()
 // the canonical (omitted) sub per tab: #lebenslagen === #lebenslagen/all/privat,
@@ -626,9 +960,21 @@ function writeHash(){
   if(/^#search\//.test(location.hash)&&/^#search\//.test(h)&&safeReplace(h)) return;
   _writingHash=true;location.hash=h;
 }
+// how the latest navigation came about, where the browser has the Navigation API:
+// 'traverse' = Back/Forward, whose scroll position the browser restores itself
+let _navType=null;
+try{if(window.navigation&&navigation.addEventListener) navigation.addEventListener('navigate',e=>{_navType=e.navigationType;});}catch(e){}
 window.addEventListener('hashchange',()=>{
+  const nav=_navType; _navType=null;
+  closeNav();
   if(_writingHash){_writingHash=false;return;}
+  const was=state.tab+'/'+state.service+'/'+state.sub, asked=location.hash;
   _fromUrl=true;readHash();render();
+  // a link typed or pasted within the session opens its page at the top, like a fresh
+  // load; a link the page had to correct (its notice sits at the top) always does —
+  // Back/Forward otherwise keep the position the browser restores
+  const moved=was!==state.tab+'/'+state.service+'/'+state.sub;
+  if(location.hash!==asked||(nav&&nav!=='traverse'&&moved)) window.scrollTo(0,0);
 });
 const DEPT_ORDER=['Baudepartement','Departement des Innern','Erziehungsdepartement','Finanzdepartement','Volkswirtschaftsdepartement'];
 function deptName(s){return (s.department||'(ohne Departement)').trim();}
@@ -654,12 +1000,26 @@ function deptKeys(){return Object.keys(deptTree).sort((a,b)=>{
 // A ⛨ field judged 'aufgabe' WITHOUT an Art.-5 anchor (d.art5_offen, computed
 // in export_json) is NOT settled: KDSG Art. 4 Abs. 1 lit. b does not cover
 // besonders schützenswerte Daten — it stays open in every coverage sum.
+// In the status language each field falls into one tone (the split of the Rechtsgrundlage
+// card on the Übersicht, export_json kopfzahlen.rechtsgrundlage): a cited norm or the
+// task → ok; «ohne» → the Dienststelle acts; «offen» → the canton decides; not yet
+// researched or ⛨ without its Art.-5 anchor → the databank. have = the green part only.
 function grounding(sid){
-  let need=0, have=0;
+  const g={need:0,have:0,ok:0,act:0,dec:0,open:0};
   (formsByService[sid]||[]).forEach(fm=>(fm.data_fields||[]).forEach(d=>{
-    need++;
-    if((d.legal_basis||[]).length || (d.basis_typ==='aufgabe'&&!d.art5_offen) || d.basis_typ==='ohne') have++;}));
-  return {need,have};
+    g.need++;
+    const t=((d.legal_basis||[]).length||(d.basis_typ==='aufgabe'&&!d.art5_offen))?'ok'
+      :d.basis_typ==='ohne'?tonOf('basis','ohne'):d.basis_typ==='offen'?tonOf('basis','offen')
+      :d.art5_offen?tonOf('basis','art5_offen'):tonOf('basis','zu_ermitteln');
+    const k=t in g?t:'open'; g[k]++; if(k==='ok') g.have++;}));
+  return g;
+}
+// the same split as a small segmented bar (tone fills), readable without colour through
+// its label and the numbers beside it
+function basisBar(g,aria,w){
+  const T=['ok','act','dec','open'], tot=T.reduce((a,t)=>a+(g[t]||0),0); if(!tot) return '';
+  return `<span class="minibar" style="width:${w||140}px" role="img" aria-label="${esc(aria+': '+T.map(t=>tonLabel(t)+' '+nf(g[t]||0)).join(', '))}">${
+    T.filter(t=>g[t]).map(t=>`<i class="t-${t}" style="flex-grow:${g[t]}"></i>`).join('')}</span>`;
 }
 
 // quotes included: most of this page puts DB text into title="…" attributes,
@@ -676,7 +1036,8 @@ function fmtPath(p){
   return (pre?pre+'<span class="crsep">›</span>':'')+`<b>${esc(leaf)}</b>`;
 }
 const el = (h)=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild;};
-const jur = j => `<span class="badge b-${j==='interkantonal'?'dvsh':j}">${lab(JUR_DE,j)}</span>`;
+// the level of a law is a Kennzeichen, never a tone
+const jur = j => `<span class="badge mk mk-${esc(j)}">${esc(lab(JUR_DE,j))}</span>`;
 // SR = Bundesrecht (Fedlex), SHR = Schaffhauser Rechtsbuch: the prefix follows the
 // law's jurisdiction, never the mere presence of a number — «SR 120.100» would send
 // a reader to a federal act instead of the Gemeindegesetz
@@ -692,12 +1053,14 @@ const fmtDate=s=>{const m=/^(\d{4})-(\d{2})-(\d{2})(?:[T ](\d{2}:\d{2}))?/.exec(
 // blocker keys are ASCII constants shared with export_json («eCH-Abdeckung < 50%»);
 // for the reader the percent sign gets its space («50 %») like every other percentage
 const blockerLabel=b=>esc(b).replace(/(\d)%/g,'$1 %');
-function unver(lc){   // three verification levels
-  if(!lc || lc==='UNVERIFIED') return ` <span class="badge b-unver" title="nicht verifiziert, keine Quelle">UNVERIFIED</span>`;
-  if(lc==='verified') return ` <span class="badge b-match" title="live gegen Fedlex/Rechtsbuch geprüft">verifiziert</span>`;
-  if(/^Gesetze/.test(lc)) return ` <span class="badge b-sourced" title="aus dem amtlichen SHR-Gesetzes-PDF gelesen; Live-Abgleich noch offen">Quelle ${esc(lc.replace('Gesetze-PDF ',''))}</span>`;
-  if(/^zitiert/.test(lc)) return ` <span class="badge b-sourced" title="im Formular zitiert; noch nicht gegen Gesetze/Fedlex verifiziert">zitiert (unverif.)</span>`;
-  return ` <span class="badge b-unver">${esc(lc)}</span>`;
+function unver(lc){   // three verification levels, in their tone (ton_map.verif)
+  const v=(k,label,tip)=>' '+stBadge(tonOf('verif',k),label,tip);
+  if(!lc || lc==='UNVERIFIED') return v('unverifiziert','unverifiziert','nicht verifiziert, keine Quelle — eine Hausaufgabe der Databank');
+  if(lc==='verified') return v('verified','verifiziert','live gegen Fedlex/Rechtsbuch geprüft');
+  if(/^Gesetze/.test(lc)) return v('quelle_pdf','Quelle '+esc(lc.replace('Gesetze-PDF ','')),'aus dem amtlichen SHR-Gesetzes-PDF gelesen; Live-Abgleich noch offen');
+  if(/^zitiert/.test(lc)) return v('unverifiziert','zitiert (unverif.)','im Formular zitiert; noch nicht gegen Gesetze/Fedlex verifiziert');
+  // a level this page does not know: not settled — grey
+  return v('⟨'+lc+'⟩',esc(lc),'Verifikationsstufe ohne Zuordnung');
 }
 function artLabel(no){
   if(!no || no==='UNKNOWN') return 'Art. UNBEKANNT';
@@ -713,31 +1076,45 @@ function citeStr(lb){
 // no explicit article is NOT one thing: needed for the task (KDSG Art. 4 lit. b),
 // genuinely surplus, not yet assessed, or not yet researched at all
 function basisBadge(d){
-  const why=d.basis_begruendung?' — '+esc(d.basis_begruendung):'';
+  const why=d.basis_begruendung?' — '+d.basis_begruendung:'';
+  // the tone of the answer to the legal question (ton_map.basis): aufgabe ok · art5_offen
+  // grey · ohne red · offen amber · not yet researched grey
+  const B=(k,label,tip)=>stBadge(tonOf('basis',k),label,tip);
   // a besonders schützenswertes Datum needs KDSG Art. 5 Abs. 1 (lit. a formelles
   // Gesetz / unentbehrlich, or lit. b Zustimmung); Art. 4 Abs. 1 lit. b alone is
   // not enough — until that anchor is named the field is OPEN, not covered
-  if(d.basis_typ==='aufgabe'&&d.art5_offen) return `<span class="badge b-unver" title="Erforderlichkeit für die Aufgabe bejaht (KDSG Art. 4 Abs. 1 lit. b); als besonders schützenswertes Datum nur zulässig nach KDSG Art. 5 Abs. 1 (lit. a: ein formelles Gesetz sieht es vor oder es ist für eine darin klar umschriebene Aufgabe unentbehrlich; lit. b: Zustimmung, ausdrücklich oder nach den Umständen unzweifelhaft vorausgesetzt) — diese Grundlage ist noch nicht benannt${why}">aufgabennotwendig — Grundlage nach KDSG Art. 5 Abs. 1 noch nicht benannt</span>`;
-  if(d.basis_typ==='aufgabe') return `<span class="badge b-sourced" title="Keine Norm nennt dieses Feld ausdrücklich, aber die Aufgabe ist ohne dieses Datum nicht erfüllbar — Einordnung der Databank nach dem Massstab von KDSG Art. 4 Abs. 1 lit. b${why}">aufgabennotwendig — keine explizite Norm</span>`;
-  if(d.basis_typ==='ohne') return `<span class="badge b-over" title="Weder eine Norm noch die Aufgabe verlangen dieses Feld — nur freiwillig erhebbar (Leitfaden «Erheben»)${why}">Over-collection — weder Norm noch Aufgabenbedarf</span>`;
-  if(d.basis_typ==='offen') return `<span class="badge b-unver" title="Keine explizite Norm; ob die Aufgabe das Feld zwingend braucht, ist noch nicht beurteilt">keine explizite Norm — Aufgabenbedarf offen</span>`;
-  return `<span class="badge b-unver" title="Noch nicht juristisch ermittelt — heisst NICHT, dass keine Grundlage existiert; hier fehlt Recherche, kein Recht">Rechtsgrundlage zu ermitteln</span>`;
+  if(d.basis_typ==='aufgabe'&&d.art5_offen) return B('art5_offen','aufgabennotwendig — Grundlage nach KDSG Art. 5 Abs. 1 noch nicht benannt',`Erforderlichkeit für die Aufgabe bejaht (KDSG Art. 4 Abs. 1 lit. b); als besonders schützenswertes Datum nur zulässig nach KDSG Art. 5 Abs. 1 (lit. a: ein formelles Gesetz sieht es vor oder es ist für eine darin klar umschriebene Aufgabe unentbehrlich; lit. b: Zustimmung, ausdrücklich oder nach den Umständen unzweifelhaft vorausgesetzt) — diese Grundlage ist noch nicht benannt${why}`);
+  if(d.basis_typ==='aufgabe') return B('aufgabe','aufgabennotwendig — keine explizite Norm',`Keine Norm nennt dieses Feld ausdrücklich, aber die Aufgabe ist ohne dieses Datum nicht erfüllbar — Einordnung der Databank nach dem Massstab von KDSG Art. 4 Abs. 1 lit. b${why}`);
+  if(d.basis_typ==='ohne') return B('ohne','ohne Grundlage — weder Norm noch Aufgabenbedarf',`Weder eine Norm noch die Aufgabe verlangen dieses Feld — nur freiwillig erhebbar (Leitfaden «Erheben»)${why}`);
+  if(d.basis_typ==='offen') return B('offen','keine explizite Norm — Aufgabenbedarf offen','Keine explizite Norm; ob die Aufgabe das Feld zwingend braucht, ist noch nicht beurteilt');
+  return B('zu_ermitteln','Rechtsgrundlage zu ermitteln','Noch nicht juristisch ermittelt — heisst NICHT, dass keine Grundlage existiert; hier fehlt Recherche, kein Recht');
 }
 
 // ---------- sidebar (grouped by department) ----------
 // the mobile drawer closes as soon as a view or a service is chosen
-const closeNav=()=>{const l=document.querySelector('.layout'); if(l) l.classList.remove('nav-open');};
+const closeNav=()=>{const l=document.querySelector('.layout'); if(l) l.classList.remove('nav-open');
+  const b=document.querySelector('.navbtn'); if(b) b.setAttribute('aria-expanded','false');};
 // Datenstand: WHEN the underlying facts were true — not only when the file was built
 function datenstandText(){
   const ds=DATA.datenstand||{}, oc=ds.online_check||{}, xs=ds.xsd_sweep||{};
   const p=[];
   if(ds.dvsh_stand) p.push('DVSH-Modell '+fmtDate(ds.dvsh_stand));
-  if(ds.shep_harvest) p.push('SHEP-Harvest '+fmtDate(ds.shep_harvest));
+  if(ds.shep_harvest) p.push('SHEP-Abzug '+fmtDate(ds.shep_harvest));
   if(oc.date) p.push(`Online-Prüfung: vollständig ${fmtDate(oc.full_date||oc.date)}${oc.full_date&&oc.date!==oc.full_date?', Nachprüfung '+fmtDate(oc.date)+' ('+pl(oc.n_recent||0,'Formular','Formulare')+')':''} — ${nf(oc.n_checked)}/${nf(oc.n_forms)} Formulare geprüft${oc.n_overdue?', '+pl(oc.n_overdue,'Wiedervorlage überfällig','Wiedervorlagen überfällig'):''}${oc.n_never?', '+nf(oc.n_never)+' nie geprüft':''}`);
   else p.push('Online-Prüfung: noch keine');
-  if(xs.date) p.push(`XSD-Sweep ${fmtDate(xs.date)} (${pl(xs.n,'Standard','Standards')} geprüft${xs.n_xsd!=null?', '+nf(xs.n_xsd)+' mit eigener XSD, '+nf(xs.n-xs.n_xsd)+' ohne':''})`);
+  if(xs.date) p.push(`XSD-Prüfung ${fmtDate(xs.date)} (${pl(xs.n,'Standard','Standards')} geprüft${xs.n_xsd!=null?', '+nf(xs.n_xsd)+' mit eigener XSD, '+nf(xs.n-xs.n_xsd)+' ohne':''})`);
   p.push('Gesetze: Stand je SHR-PDF');
-  p.push('Build '+fmtDate(ds.build||DATA.generated_at||''));
+  p.push('erstellt '+fmtDate(ds.build||DATA.generated_at||''));
+  return p.join(' · ');
+}
+// the Datenstand of one Dienststelle's page: only what its readers need — the DVSH model,
+// the last online check of ITS forms, the date of this page
+function datenstandKurz(fms){
+  const ds=DATA.datenstand||{}, p=[];
+  if(ds.dvsh_stand) p.push('Dienstleistungsmodell (DVSH) '+fmtDate(ds.dvsh_stand));
+  const last=(fms||[]).map(f=>f.check&&f.check.d).filter(Boolean).sort().pop();
+  p.push(last?'Formulare dieser Dienststelle zuletzt online geprüft '+fmtDate(last):'Formulare dieser Dienststelle noch nie online geprüft');
+  p.push('erstellt '+fmtDate(ds.build||DATA.generated_at||''));
   return p.join(' · ');
 }
 // citation verification levels, counted once in export_json (fallback: count here)
@@ -745,7 +1122,7 @@ const ZIT=DATA.zitate||(()=>{const z={verifiziert:0,quelle_pdf:0,unverifiziert:0
   DATA.forms.forEach(f=>(f.data_fields||[]).forEach(d=>(d.legal_basis||[]).forEach(b=>{z.total++;
     const lc=b.last_checked||''; if(lc==='verified')z.verifiziert++; else if(/^Gesetze/.test(lc))z.quelle_pdf++; else z.unverifiziert++;})));
   return z;})();
-let _navSvc=null;
+let _navSvc=null, _navDst=null;
 function renderSidebar(){
   const nForms=DATA.forms.length;
   const noForm=DATA.services.filter(x=>!(formsByService[x.id]||[]).length);
@@ -768,10 +1145,11 @@ function renderSidebar(){
   // the header chip states the LIVE count of unverified citations — a permanent
   // red «UNVERIFIED» over a corpus with zero such citations was the opposite of the data
   const w=document.getElementById('warn');
-  if(ZIT.unverifiziert>0){w.className='warn';w.textContent=`⚠ ${nf(ZIT.unverifiziert)} von ${nf(ZIT.total)} Zitaten noch ungeprüft (UNVERIFIED)`;
-    w.title='UNVERIFIED = noch nicht am Gesetzestext geprüft — eine Wissenslücke der Databank, kein Befund über die Verwaltung';}
+  if(ZIT.unverifiziert>0){const t=tonOf('verif','unverifiziert'); w.className='warn st-'+t;
+    w.innerHTML=SW(t)+esc(`${nf(ZIT.unverifiziert)} von ${nf(ZIT.total)} Zitaten noch unverifiziert`);
+    w.title='unverifiziert = noch nicht am Gesetzestext geprüft — eine Wissenslücke der Databank, kein Befund über die Verwaltung\n'+tonWords(t);}
   else {w.className='stamp';w.style.marginLeft='0';w.textContent=`Zitate: ${nf(ZIT.verifiziert)} verifiziert · ${nf(ZIT.quelle_pdf)} Quelle SHR-PDF · 0 ungeprüft`;
-    w.title='Jedes Zitat der kuratierten Feld-Schicht trägt eine Verifikationsstufe; die Stufe UNVERIFIED ist definiert, kommt derzeit nicht vor';}
+    w.title='Jedes Zitat der kuratierten Feld-Schicht trägt eine Verifikationsstufe; die Stufe «unverifiziert» ist definiert, kommt derzeit nicht vor';}
   const sv = document.getElementById('services'); sv.innerHTML='';
   const fb=el(`<input id="svcfilter" placeholder="Formular, Dienststelle oder Datenfeld suchen…" value="${esc(state.filter)}" `+
     `style="width:100%;padding:7px 9px;margin-bottom:8px;background:var(--panel);border:1px solid var(--bd);`+
@@ -787,68 +1165,110 @@ function renderSidebar(){
   const allr=el(`<div class="svc" style="margin-left:0;font-weight:600">▤ Alle Services · Übersicht <span class="meta">${pl(DATA.services.length,'Service','Services')}, ${pl(deptKeys().length,'Departement','Departemente')}</span></div>`);
   // the row is «current» only on the service page — on every other tab the
   // active tab button is the one current location
-  if(state.service==='all'&&state.tab==='fields') allr.classList.add('active');
-  allr.onclick=()=>{state.service='all';state.sub='felder';state.tab='fields';closeNav();render();};
+  if(state.service==='all'&&state.tab==='fields'){allr.classList.add('active'); allr.setAttribute('aria-current','page');}
+  allr.onclick=()=>{state.service='all';state.sub='felder';state.tab='fields';closeNav();render();window.scrollTo(0,0);};
   sv.appendChild(allr);
   const nav=el('<div id="nav"></div>'); sv.appendChild(nav);
   // a service reached via search, a link or a shared URL sits inside a collapsed
   // department: open its ancestors once, when the current service changes
   if(state.service!==_navSvc){_navSvc=state.service; const sv0=svcById[state.service];
     if(sv0){state.open[deptName(sv0)]=true; state.open[deptName(sv0)+'›'+(sv0.dienststelle||'(ohne Dienststelle)').trim()]=true;}}
+  const dsl=state.tab==='dienststellen'?state.sub:null;
+  if(dsl!==_navDst){_navDst=dsl; const d0=dstBySlug[dsl];
+    if(d0){const dk=(d0.department||'(ohne Departement)').trim(); state.open[dk]=true;}}
   if(state.navmode==='formulare') renderFormNav(); else renderNav();
   document.querySelectorAll('.tab[data-tab]').forEach(b=>{
-    b.classList.toggle('active', b.dataset.tab===state.tab);
+    const on=b.dataset.tab===state.tab;
+    b.classList.toggle('active', on);
+    if(on) b.setAttribute('aria-current','page'); else b.removeAttribute('aria-current');
     // a tab switch resets the per-tab sub-state: a Handlungsbedarf category or
-    // a Lebenslage id carried into «Begriffe» matched nothing and rendered an empty list
-    b.onclick=()=>{state.tab=b.dataset.tab;state.sub='felder';closeNav();render();};
+    // a Lebenslage id carried into «Begriffe» matched nothing and rendered an empty list;
+    // the new page opens at the top (render() alone keeps the scroll position — it also
+    // redraws a page in place)
+    b.onclick=()=>{state.tab=b.dataset.tab;state.sub='felder';closeNav();render();window.scrollTo(0,0);};
   });
-  // context legend: explain only the badges the CURRENT page actually draws;
-  // a tab without an entry gets NO legend (never a decorative Bund/Kanton fallback)
-  const unvTxt=ZIT.unverifiziert>0
-    ?`UNVERIFIED — ${nf(ZIT.unverifiziert)} Zitate noch nicht am Gesetzestext geprüft (Wissenslücke, kein Verstoss)`
-    :'UNVERIFIED — Stufe definiert, kommt derzeit nicht vor (0 Zitate)';
-  const LEG = {
-    home: [['b-match','verifiziert — live gegen Fedlex/Rechtsbuch geprüft'],
-           ['b-sourced','Quelle SHR-PDF — aus dem amtlichen Gesetzes-PDF gelesen'],
-           ['b-unver',unvTxt],
-           ['b-sens','⛨ besonders schützenswert (KDSG Art. 2 Abs. 1 lit. d)']],
-    fields: [
-      ['b-match','verifiziert — live gegen Fedlex/Rechtsbuch geprüft'],
-      ['b-sourced','Quelle SHR-PDF — aus dem amtlichen Gesetzes-PDF gelesen'],
-      ...(ZIT.unverifiziert>0?[['b-unver',unvTxt]]:[]),
-      ['b-sourced','aufgabennotwendig — keine explizite Norm, aber für die Aufgabe nötig (Massstab KDSG Art. 4 Abs. 1 lit. b)'],
-      ['b-unver','aufgabennotwendig (⛨) — Grundlage nach KDSG Art. 5 Abs. 1 noch nicht benannt: zählt als offen'],
-      ['b-unver','Rechtsgrundlage zu ermitteln · Aufgabenbedarf offen — Wissenslücke der Databank, kein Befund'],
-      ['b-over','Over-collection — weder Norm noch Aufgabenbedarf'],
-      ['b-sens','⛨ besonders schützenswert (KDSG Art. 2 Abs. 1 lit. d)'],
-      ['regc','↺ vorbefüllbar — das Einwohnerregister führt dieses Datum bereits (Once-Only)'],
-      ['divc','⇄ Standard-Divergenz — dasselbe Datum wird anderswo anders verlangt'],
-      ['begc','✎ Begriff angleichen · ✎? Feld aufteilen oder Zuordnung prüfen (Tab «Begriffe»)'],
-      ['eshb','eSH-Code — kantonaler Entwurf, nie offizielles eCH (auch die violett-gestrichelten Teilfeld-Codes)'],
-      ['b-dvsh','DVSH — amtliches Dienstleistungsmodell des Kantons (massgebliche Quelle für Verfahren und Rechtsgrundlage, nur lesend übernommen)'],
-      ['b-dvsh','SHEP — das publizierte Service-Portal des Kantons (Bürgersicht, shep.meetfrida.agency)'],
-      ['b-federal','Bund'],['b-cantonal','Kanton'],['b-communal','Gemeinde'],
-    ],
-    rules: [['b-sens','⛨ kategorienspezifische Regel'],['b-unver','Zitat unverifiziert'],
-            ['b-federal','Bund'],['b-cantonal','Kanton']],
-    guide: [],
-    register: [['b-sens','⛨ besonders schützenswerte Felder'],['b-over','Over-collection — weder Norm noch Aufgabenbedarf'],
-               ['b-unver','offen / fehlt / noch nicht recherchiert (inkl. ⛨-Felder ohne Art.-5-Grundlage)']],
-    todo: [['b-unver','Wissenslücke oder ausstehender Entscheid'],['b-over','Bereinigung nötig (Over-collection, veraltete Fassung, aufgehobener Standard, Divergenz)'],
-           ['b-sens','⛨ DSFA-Entscheid offen · Grundlage nach KDSG Art. 5 benennen']],
-    search: [],
-    lebenslagen: [],
-    begriffe: [['b-unver','Vorschlag unter Vorbehalt'],['b-sourced','Begriff aus anderen Formularen']],
-    datenfluss: [['b-sourced','systematisch — regelmässige Meldung von Gesetzes wegen'],['b-unver','auf Anfrage — Amtshilfe im Einzelfall']],
-    buerger: [['b-sens','⛨ besonders schützenswert / verschlüsselt gespeichert'],['b-over','auf Einwilligung gestützt'],['regc','↺ Once-Only wiederverwendet']],
-    katalog: [['b-dvsh','Datum liegt im Einwohnerregister'],['b-sens','⛨ in sensitivem Kontext erhoben'],['b-over','Divergenz: anzugleichen oder zu begründen'],['b-unver','Divergenz: kantonale Festlegung fehlt']],
-    esh: [['eshb','eSH-Code — kantonaler Entwurf, nie offizielles eCH']],
-  };
-  const rows=LEG[state.tab]||[];
-  const lh=document.getElementById('legendhd'); if(lh) lh.style.display=rows.length?'':'none';
-  document.getElementById('legend').innerHTML =
-    rows.map(([c,l])=>`<span><span class="badge ${c}">&nbsp;</span> ${l}</span>`).join('');
+  // the sidebar's own titled chips (◇, channel) explain themselves too; its rows and
+  // toggles are reachable by keyboard
+  enhanceTips(sv); enhanceActs(sv);
 }
+// ---------- legend: «Farbe = wer als Nächstes handelt» + the Kennzeichen of this page ----------
+// Drawn after the view, from what #main actually shows: the four tones always as one
+// block (a tone the page does not use is faded, «hier:» says what it marks on this page),
+// then only the Kennzeichen the page draws («Kennzeichen, keine Bewertung») — the data
+// standard first, like everything that has an order. A page without either has no legend.
+function renderLegend(){
+  const main=document.getElementById('main'), leg=document.getElementById('legend'); if(!main||!leg) return;
+  const has=sel=>!!main.querySelector(sel);
+  const hasTxt=(sel,ch)=>[...main.querySelectorAll(sel)].some(e=>e.textContent.includes(ch));
+  const unvEx=ZIT.unverifiziert>0?`Zitat unverifiziert (${nf(ZIT.unverifiziert)} Zitate)`:'';
+  const svcAll=state.tab==='fields'&&state.service==='all';
+  // what each tone marks on this page — the data standard first
+  const TONEX={
+    home: {ok:'Datenpunkt mit eCH-Element · Datenfeld mit Grundlage · Verzeichnis-Angaben erfasst',
+      act:'Datenpunkt anders verlangt · Bezeichnung angleichen · Feld ohne Grundlage',
+      dec:'kein eCH-Standard (eSH) oder Standard erst im Entwurf · Pflicht uneinheitlich · Aufgabenbedarf offen',
+      open:'eCH-Zuordnung offen oder zu korrigieren · eCH-Standard nicht mehr in Kraft · Rechtsgrundlage noch zu ermitteln'},
+    methode: {ok:'verifiziert · Quelle SHR-PDF · aufgabennotwendig',act:'ohne Grundlage',dec:'Aufgabenbedarf offen',
+      open:['unverifiziert','Rechtsgrundlage zu ermitteln'].join(' · ')},
+    fields: svcAll?{ok:'Datenfeld mit belegter Norm oder für die Aufgabe nötig',act:'Datenfeld ohne Grundlage',
+        dec:'Aufgabenbedarf offen',open:'Rechtsgrundlage noch zu ermitteln · ⛨ Grundlage nach KDSG Art. 5 offen'}
+      :{ok:'eCH-Element · Standard ohne Elementkatalog · keine Standard-Divergenz · Zitat verifiziert oder aus dem SHR-PDF · aufgabennotwendig · Formular aktuell · Rechtsmittel geklärt · Duplikat entschieden',
+      act:'⇄ Standard-Divergenz anzugleichen · ✎ Bezeichnung angleichen oder Feld aufteilen · Feld ohne Grundlage · neuere Fassung online',
+      dec:'kein eCH-Standard (eSH) · eCH-Standard erst im Entwurf · ⇄ Pflicht uneinheitlich · Begriff unter Vorbehalt · Aufgabenbedarf offen · Duplikat unentschieden',
+      open:['eCH-Element offen','eCH noch nicht geprüft','eCH-Standard nicht mehr in Kraft','✎? eCH-Zuordnung prüfen','Rechtsgrundlage zu ermitteln','⛨ Grundlage nach KDSG Art. 5 offen','Rechtsmittel noch ohne Prüfvermerk','Online-Prüfung fällig',unvEx].filter(Boolean).join(' · ')},
+    register: {ok:'Zweck erfasst',act:'Felder ohne Grundlage',dec:'DSFA indiziert — Entscheid des Kantons offen',
+      open:'fehlt (Zweck, Empfänger) · ⛨ Grundlage nach KDSG Art. 5 offen · noch nicht recherchiert'},
+    todo: {act:'Punkte, die eine Dienststelle an ihrem Formular ändert',dec:'Punkte, die auf einen Entscheid des Kantons warten',
+      open:'nicht auf dieser Seite — «Recherche der Databank»'},
+    dienststellen: {ok:'Datenpunkte mit eCH-Element',act:'Massnahmen der Dienststelle',
+      dec:'Entscheide des Kantons · kein eCH-Standard oder Standard erst im Entwurf',
+      open:'Hausaufgaben der Databank · eCH-Zuordnung offen oder zu korrigieren, Standard nicht mehr in Kraft'},
+    kanton: {dec:'alle Entscheide dieser Seite'},
+    recherche: {open:'alle Punkte dieser Seite — kein Befund über die Verwaltung'},
+    lebenslagen: {dec:'kein eCH-Standard',open:'eCH-Element offen · noch nicht geprüft'},
+    begriffe: {ok:'einheitlicher Begriff (Vorschlag) · Rolle — in Ordnung',act:'Bezeichnung angleichen · Feld aufteilen',
+      dec:'Vorschlag unter Vorbehalt',open:'eCH-Zuordnung korrigieren'},
+    katalog: {ok:'Formulare voll eCH-zugeordnet',act:'Divergenz anzugleichen · Klartext statt der offiziellen Codes',dec:'Pflicht uneinheitlich'},
+    rules: {open:'Zitat unverifiziert'},
+  };
+  const tx=TONEX[state.tab]||{};
+  const drawn=t=>has(`.st-${t},.t-${t}${t==='ok'?',.t-ok2':''}`);
+  const T=['ok','act','dec','open'], shown=T.filter(drawn);
+  const tonBlk=shown.length?`<div class="legblk"><div class="leghd">Farbe = wer als Nächstes handelt</div><ul class="tleg">${
+    T.map(t=>{const on=shown.includes(t);
+      return `<li${on?'':' class="zero"'}>${SW(t)}<span class="legt" title="${esc(tonTip(t))}"><b>${esc(tonLabel(t))}</b> <span class="tw">${esc((TON[t]||{}).farbe||'')}</span>${on&&tx[t]?`<span class="legex">hier: ${esc(tx[t])}</span>`:''}</span></li>`;}).join('')}</ul></div>`:'';
+  // Kennzeichen: [present on this page?, sample html, text] — the data standard first
+  const MK=[
+    [()=>has('.edt'),'<span class="edt">⟨Typ⟩</span>','Datentyp laut offiziellem eCH-XSD — in diesem Typ wird das Datum ausgetauscht (☰: mit offizieller Codeliste)'],
+    [()=>has('.eshb,.sfe.esh'),'<span class="eshb">eSH</span>','eSH-Code — Entwurf des Kantons, nie offizielles eCH'],
+    [()=>has('.regc')||hasTxt('.beih','↺'),'<span class="regc">↺</span>','Once-Only: das Einwohnerregister führt dieses Datum bereits (bei einer Beilage: der Kanton könnte sie beim Register beschaffen)'],
+    [()=>hasTxt('.b-sens,.pfc,.badge,th,.rstat','⛨'),'<span class="badge b-sens">⛨</span>','besonders schützenswert (KDSG Art. 2 Abs. 1 lit. d)'],
+    [()=>hasTxt('.b-sens','verschlüsselt'),'<span class="badge b-sens">verschlüsselt</span>','im Tresor verschlüsselt gespeichert'],
+    [()=>has('.mk-federal,.mk-cantonal,.mk-communal,.mk-interkantonal,.lawchip .mk-open'),`${jur('federal')} ${jur('cantonal')} ${jur('communal')}`,'Rechtsebene des Erlasses; «Ebene offen» (gestrichelt), wo sie nicht belegbar ist'],
+    [()=>has('.b-dvsh,.b-nodv'),'<span class="badge b-dvsh">DVSH</span>','DVSH — amtliches Dienstleistungsmodell (massgeblich für Verfahren und Rechtsgrundlage, nur lesend übernommen) · SHEP — das publizierte Service-Portal · ◇ keine DVSH-Modellierung'],
+    [()=>has('.hubchan'),'<span class="hubchan">PDF-Einreichung</span>','Kanal, über den das Formular eingereicht wird'],
+    [()=>has('.hubsig'),'<span class="hubsig">✍</span>','Unterschrift nötig (✍) oder digitale Signatur möglich (✓)'],
+    [()=>hasTxt('.badge.mk','Digitalisierung'),'<span class="badge mk">Digitalisierung</span>','Digitalisierungs-Hürden des Formulars (Unterschrift, kein Online-Kanal …) — ein Befund zum Formular, keine Farbe'],
+    [()=>has('.beiob'),'<span class="beiob zwingend">zwingend</span> <span class="beiob bedingt">bedingt</span>','Beilage zwingend (durchgezogen) oder nur unter einer Bedingung (gestrichelt) verlangt'],
+    [()=>has('.empchip'),'<span class="empchip">Empfänger</span>','belegter Empfänger einer Bekanntgabe (↻ = systematische Lieferpflicht)'],
+    [()=>has('.pfc:not(.st-ok):not(.st-act):not(.st-dec):not(.st-open)'),'<span class="pfc">Profil</span>','Profil der Datenhandhabung: ⛨-Kategorie, Spezialnormen, Aufbewahrung'],
+    [()=>has('.esvc'),'<span class="esvc">ohne Formular</span>','Service ohne Formular in der Databank, mit seinem Kanal laut DVSH (eService, E-Mail, vor Ort …)'],
+    [()=>hasTxt('.badge.mk','mehrere Entscheide'),'<span class="badge mk">mehrere Entscheide</span>','Der Service hat mehrere Formulare mit je eigenem Entscheid'],
+    [()=>hasTxt('.badge.mk','aus anderen Formularen'),'<span class="badge mk">aus anderen Formularen</span>','Herkunft des Vorschlags: der Begriff stammt aus anderen Formularen des Kantons (nie erfunden)'],
+    [()=>hasTxt('.badge.mk','Einwilligung'),'<span class="badge mk">Einwilligung</span>','Erhebungsgrundlage: Einwilligung der Person'],
+    [()=>has('.flowsvg,.mkline'),'<span class="mkline"></span>','systematisch — regelmässige Meldung von Gesetzes wegen'],
+    [()=>has('.flowsvg,.mkline.dash'),'<span class="mkline dash"></span>','auf Anfrage — Amtshilfe im Einzelfall'],
+    [()=>has('.llnum'),'<span class="llnum">①</span>','Nummer des Services in der Tabelle der Themengruppe'],
+  ];
+  const mks=MK.filter(([t])=>t());
+  const mkBlk=mks.length?`<div class="legblk"><div class="leghd">Kennzeichen, keine Bewertung</div><ul class="tleg mkl">${
+    mks.map(([,s,l])=>`<li>${s}<span>${esc(l)}</span></li>`).join('')}</ul></div>`:'';
+  const lh=document.getElementById('legendhd'); if(lh) lh.style.display=(tonBlk||mkBlk)?'':'none';
+  const html=tonBlk+mkBlk;
+  // redrawn only when it changes (the observer calls this after every change in #main)
+  if(leg._raw!==html){leg._raw=html; leg.innerHTML=html; enhanceTips(leg);}
+}
+
 // flat A–Z Formular navigation: one row per Formular, click = Formular-Ansicht
 const formNavIdx=DATA.forms.map(f=>{
   const svc=svcById[f.service_id]||{};
@@ -859,11 +1279,21 @@ function renderFormNav(){
   const f=state.filter.toLowerCase(); const nav=document.getElementById('nav'); if(!nav)return;
   const hits=formNavIdx.filter(x=>!f||x.k.includes(f)||(f.length>=3&&(fieldIdx[x.sid]||'').includes(f)));
   nav.innerHTML=`<div class="muted small" style="margin:2px 0 6px">${pl(hits.length,'Formular','Formulare')} A–Z — Klick öffnet die Formular-Ansicht</div>`+
-    (hits.map(x=>`<div class="svc fnav ${state.tab==='fields'&&(state.sub==='form-'+x.fid||(state.sub==='felder'&&String(x.sid)===String(state.service)))?'active':''}" data-fid="${x.fid}" data-sid="${x.sid}">
-      <span class="svname" title="${esc(x.t)} — ${esc(x.o)}">${esc(x.t)}</span>
-      <span class="meta">${esc(x.o)}</span></div>`).join('')||'<div class="nores small">keine Treffer</div>');
+    (hits.map(x=>{const on=state.tab==='fields'&&(String(state.sub).split('~')[0]==='form-'+x.fid||(state.sub==='felder'&&String(x.sid)===String(state.service)));
+      return `<div class="svc fnav ${on?'active':''}"${on?' aria-current="page"':''} data-fid="${x.fid}" data-sid="${x.sid}">
+      <a class="svname" href="#fields/${encodeURIComponent(x.sid)}/form-${encodeURIComponent(x.fid)}" data-rowlink title="${esc(x.t)} — ${esc(x.o)}">${esc(x.t)}</a>
+      <span class="meta">${esc(x.o)}</span></div>`;}).join('')||'<div class="nores small">keine Treffer</div>');
   nav.querySelectorAll('.fnav').forEach(e=>e.onclick=()=>{
-    state.service=e.dataset.sid;state.tab='fields';state.sub='form-'+e.dataset.fid;closeNav();render();});
+    state.service=e.dataset.sid;state.tab='fields';state.sub='form-'+e.dataset.fid;closeNav();render();window.scrollTo(0,0);});
+  navLinks(nav);
+}
+// a sidebar entry's name is a real link (keyboard, copy, new tab); a plain click routes
+// like the whole row, the ◇ and channel chips beside it explain themselves
+function navLinks(nav){
+  nav.querySelectorAll('a.svname').forEach(a=>a.onclick=e=>{e.stopPropagation();
+    if(e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button) return;
+    e.preventDefault(); const r=a.closest('.svc'); if(r&&r.onclick) r.onclick();});
+  enhanceTips(nav); enhanceActs(nav);
 }
 // search also finds services by their DATA FIELD names ('AHV-Nummer' -> forms asking it)
 const fieldIdx={};
@@ -884,24 +1314,38 @@ function renderNav(){
         || (f.length>=3 && (fieldIdx[s.id]||'').includes(f)));
       if(!svcs.length) return; svcMatch+=svcs.length;
       const offOpen = f || state.open[d+'›'+o];
-      deptHTML+=`<div class="office ${offOpen?'':'collapsed'}"><div class="offhd" data-o="${esc(d+'›'+o)}">`+
-        `<span class="tg">${offOpen?'▾':'▸'}</span>${esc(o)}<span class="ct">${svcs.length}</span></div>`+
-        svcs.map(s=>`<div class="svc ${String(s.id)===String(state.service)&&state.tab==='fields'?'active':''}" data-sid="${s.id}">`+
-          `${s.dvsh?'':'<span class="nodv" title="keine DVSH-Modellierung in der Databank">◇</span>'}<span class="svname" title="${esc(s.name)}${s.dienststelle?' — '+esc(s.dienststelle):''}">${esc(s.name)}</span>`+
-          `${(formsByService[s.id]||[]).length?'':noFormBadge(s)}</div>`).join('')+`</div>`;
+      const du=dstByName[o];
+      const offOn=du&&state.tab==='dienststellen'&&state.sub===du.slug;
+      deptHTML+=`<div class="office ${offOpen?'':'collapsed'}"><div class="offhd${offOn?' active':''}"${offOn?' aria-current="page"':''}>`+
+        `<span class="offtg" role="button" tabindex="0" aria-expanded="${offOpen?'true':'false'}" data-o="${esc(d+'›'+o)}"><span class="tg" aria-hidden="true">${offOpen?'▾':'▸'}</span>${esc(o)}</span>`+
+        (du?`<a class="offlink" href="#dienststellen/all/${esc(du.slug)}" data-slug="${esc(du.slug)}" title="Seite der Dienststelle «${esc(o)}»: ihre Massnahmen, ihr Datenstandard, die Entscheide des Kantons, die offenen Punkte">Seite ›</a>`:'')+
+        `<span class="ct">${svcs.length}</span></div>`+
+        svcs.map(s=>{const on=String(s.id)===String(state.service)&&state.tab==='fields'; return `<div class="svc ${on?'active':''}"${on?' aria-current="page"':''} data-sid="${s.id}">`+
+          `${s.dvsh?'':'<span class="nodv" title="keine DVSH-Modellierung in der Databank">◇</span>'}<a class="svname" href="#fields/${encodeURIComponent(s.id)}" data-rowlink title="${esc(s.name)}${s.dienststelle?' — '+esc(s.dienststelle):''}">${esc(s.name)}</a>`+
+          `${(formsByService[s.id]||[]).length?'':noFormBadge(s)}</div>`;}).join('')+`</div>`;
     });
     if(!svcMatch) return;
     const open = f || state.open[d];
-    h+=`<div class="dept ${open?'':'collapsed'}"><div class="dephd" data-d="${esc(d)}">`+
+    h+=`<div class="dept ${open?'':'collapsed'}"><div class="dephd" data-d="${esc(d)}" role="button" aria-expanded="${open?'true':'false'}">`+
        `<span class="tg">${open?'▾':'▸'}</span>${esc(d)}<span class="ct">${svcMatch}</span></div>${deptHTML}</div>`;
   });
   nav.innerHTML=h || '<div class="nores small">keine Treffer</div>';
-  nav.querySelectorAll('.dephd').forEach(e=>e.onclick=()=>{const d=e.dataset.d;state.open[d]=!state.open[d];renderNav();});
-  nav.querySelectorAll('.offhd').forEach(e=>e.onclick=()=>{const k=e.dataset.o;state.open[k]=!state.open[k];renderNav();});
+  // a toggle redraws the tree: the keyboard focus stays on the toggle
+  const refocus=(sel,k,v)=>{const n=[...nav.querySelectorAll(sel)].find(x=>x.dataset[k]===v); if(n) n.focus({preventScroll:true});};
+  nav.querySelectorAll('.dephd').forEach(e=>e.onclick=()=>{const d=e.dataset.d, f=document.activeElement===e;
+    state.open[d]=!state.open[d];renderNav(); if(f) refocus('.dephd','d',d);});
+  nav.querySelectorAll('.offtg').forEach(e=>{const tog=()=>{const k=e.dataset.o, f=document.activeElement===e;
+      state.open[k]=!state.open[k];renderNav(); if(f) refocus('.offtg','o',k);};
+    e.onclick=tog; e.onkeydown=ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault(); tog();}};});
+  nav.querySelectorAll('.offlink[data-slug]').forEach(a=>a.onclick=e=>{
+    e.stopPropagation();
+    if(e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button) return;
+    e.preventDefault(); state.tab='dienststellen'; state.service='all'; state.sub=a.dataset.slug; closeNav(); render(); window.scrollTo(0,0);});
   // a form click ALWAYS opens the form page — on corpus tabs a mere selection
   // change would be invisible and read as a broken click
   nav.querySelectorAll('.svc[data-sid]').forEach(e=>e.onclick=()=>{
-    state.service=e.dataset.sid;state.tab='fields';state.sub='felder';closeNav();render();});
+    state.service=e.dataset.sid;state.tab='fields';state.sub='felder';closeNav();render();window.scrollTo(0,0);});
+  navLinks(nav);
 }
 // a service without a Formular in the databank: «eService» ONLY when the DVSH
 // endpoint says eFormular; otherwise the badge names the DVSH channel (E-Mail,
@@ -916,18 +1360,484 @@ function noFormBadge(s){
 }
 
 // ---------- PRIMARY: fields & legal basis ----------
-// consistent page header: what the page shows, where its data comes from,
-// and how to read it — pitched at a peer who knows the domain, not a novice
-function pageHead(title, was, quelle, lesen){
-  return `<h3 class="view">${title}</h3>
-  <div class="pagehead">
-    <div><span class="phl">Was zeigt diese Seite</span>${was}</div>
-    <div><span class="phl">Datenherkunft</span>${quelle}</div>
-    ${lesen?`<div><span class="phl">Lesehinweis</span>${lesen}</div>`:''}
-  </div>`;
+// consistent page header: the title, ONE visible sentence, and the details —
+// what the page shows, where its data comes from, how to read it — folded into
+// «Mehr zu dieser Seite», so a reader who wants the page is not held up by its method
+function pageHead(title, kurz, was, quelle, lesen){
+  const more=[[was,'Was zeigt diese Seite'],[quelle,'Datenherkunft'],[lesen,'Lesehinweis']]
+    .filter(([t])=>t&&t!=='—').map(([t,l])=>`<div><span class="phl">${l}</span>${t}</div>`).join('');
+  return `<h3 class="view" tabindex="-1">${title}</h3>
+  <div class="pagehead"><p class="phkurz">${kurz}</p>${more?`<details class="phmore"><summary>Mehr zu dieser Seite</summary>${more}</details>`:''}</div>`;
 }
-// ---------- Überblick & Methode (the landing page) ----------
+// ---------- tones: the colour says who acts next (DATA.labels.ton — one source) ----------
+// ok = geklärt · act = Dienststelle handelt · dec = Kanton entscheidet · open = Databank
+// recherchiert (the databank's own homework, never a finding about the administration)
+const TON=LAB.ton||{};
+const tonLabel=t=>(TON[t]&&TON[t].label)||('⟨'+t+'⟩');
+const tonTip=t=>(TON[t]&&TON[t].bedeutung)||'';
+const nf1=x=>Number(x||0).toLocaleString('de-CH',{minimumFractionDigits:1,maximumFractionDigits:1});
+const pctR=(a,b)=>b?Math.round(100*a/b):0;
+// in-page links carry a real href (copyable, opens in a new tab) and change the
+// state like the sidebar does; the new page starts at the top
+function wireGo(root){
+  root.querySelectorAll('a[data-go]').forEach(a=>a.onclick=e=>{
+    if(e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button) return;
+    e.preventDefault(); state.tab=a.dataset.go; state.service='all'; state.sub=a.dataset.sub||'felder';
+    render(); window.scrollTo(0,0);});
+  // links into a service or a Formular (#fields/<id>[/form-<id>]) carry the whole
+  // address in their href and are routed the way the hash itself would be
+  root.querySelectorAll('a[data-nav]').forEach(a=>a.onclick=e=>{
+    if(e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button) return;
+    e.preventDefault(); goHref(a.getAttribute('href'));});
+}
+function goHref(h){
+  const p=String(h||'').replace(/^#/,'').split('/');
+  state.tab=p[0]||'home'; state.service=state.tab==='fields'?(p[1]||'all'):'all'; state.sub=p[2]||'felder';
+  closeNav(); render(); window.scrollTo(0,0);
+}
+const goLink=(tab,sub,txt,cls)=>`<a class="${cls||'kzlink'}" href="#${tab}${sub?'/all/'+sub:''}" data-go="${tab}"${sub?` data-sub="${sub}"`:''}>${txt}</a>`;
+const svcLink=(sid,txt,cls)=>`<a class="${cls||'dlink'}" href="#fields/${encodeURIComponent(sid)}" data-nav="1">${txt}</a>`;
+// sec 'div' opens the Formular-Ansicht at its block «Standard-Divergenzen» (#…/form-<id>~div)
+const formLink=(sid,fid,txt,cls,sec)=>`<a class="${cls||'dlink'}" href="#fields/${encodeURIComponent(sid)}/form-${encodeURIComponent(fid)}${sec?'~'+sec:''}" data-nav="1">${txt}</a>`;
+// the categories whose details sit in that block
+const DIV_SEC=k=>(k==='divergenz'||k==='begriff'||k==='divergenz_offen')?'div':'';
+// a long text in a table cell: the first `n` characters, the whole text in the title
+const clip=(s,n)=>{const t=String(s||''); return t.length>n?`<span title="${esc(t)}">${esc(t.slice(0,n-1).trimEnd())} …</span>`:esc(t);};
+// a share in words that never rounds a gap away: «100 %» only when nothing is missing
+const pctTxt=(a,b)=>{if(!b) return '—'; const p=Math.round(100*a/b);
+  return a<b&&p>=100?'> 99 %':(a>0&&p<=0?'< 1 %':p+' %');};
+
+// ---------- worklists: who acts next (tone), priority tier, the Dienststellen pages ----------
+// tone and tier of a point are computed once in export_json (item.ton, item.stufe);
+// the category mapping from DATA.labels is only the fallback for a point without them
+const TON_MAP=LAB.ton_map||{}, AKTION=LAB.aktion||{};
+const CAT_ORDER=(()=>{const o=(LAB.cat_order||[]).slice(); TODO_CATS.forEach(c=>{if(!o.includes(c[0])) o.push(c[0]);}); return o;})();
+const STUFEN=(LAB.stufen||[]).map(s=>({n:Number(s[0]),name:String(s[1]||''),text:String(s[2]||'')}));
+const LAST_STUFE=STUFEN.length?STUFEN[STUFEN.length-1].n:4;
+const stufeLabel=n=>{const s=STUFEN.find(x=>x.n===Number(n)); return s?`Stufe ${s.n} — ${s.name}`:`Stufe ⟨${n}⟩`;};
+// a category or status without a tone is not settled: grey, never green; the tone class
+// of a category is DATA.labels.todo_cats[*][2] (st-act · st-dec · st-open)
+const catTon=k=>{const x=/^st-(ok|act|dec|open)$/.exec(String(todoCat(k)[2]||'')); return x?x[1]:'open';};
+const catStufe=k=>Number((LAB.stufe_of_cat||{})[k]||LAST_STUFE);
+const itemTon=i=>i.ton||catTon(i.cat);
+const itemStufe=i=>Number(i.stufe||catStufe(i.cat));
+const catRank=k=>{const i=CAT_ORDER.indexOf(k); return i<0?999:i;};
+const byPrio=(a,b)=>itemStufe(a)-itemStufe(b)||catRank(a.cat)-catRank(b.cat)||b.n-a.n;
+// what ONE point of a category counts: DATA.labels.einheit[cat] = [singular, plural]; a
+// category missing there is about the whole form and counts Formulare
+const EINHEIT=LAB.einheit||{};
+const formCat=k=>!EINHEIT[k];
+const catUnitOf=k=>{const u=EINHEIT[k]; return Array.isArray(u)&&u.length>1?u:['Formular','Formulare'];};
+const catWord=(k,n)=>{const u=catUnitOf(k); return plw(n,u[0],u[1]);};
+const catUnit=(k,n)=>`${nf(n)} ${catWord(k,n)}`;
+// «· 76 Datenpunkte» for an explanation — unless its detail already begins with it
+const unitTip=i=>{const u=catUnit(i.cat,i.n); return String(i.detail||'').startsWith(u)?'':' · '+u;};
+// the points of one category, summed over every Formular (form.handlungsbedarf)
+const CAT_N={}; DATA.forms.forEach(f=>(f.handlungsbedarf||[]).forEach(i=>{CAT_N[i.cat]=(CAT_N[i.cat]||0)+(Number(i.n)||0);}));
+// a point as a chip: swatch + label (+ count), tinted in its tone; label arrives escaped
+const tonChip=(t,label,n,tip,attrs)=>`<span class="tchip badge st-${t}"${attrs||''} title="${esc(tip||tonLabel(t))}"><i class="sw t-${t}"></i>${label}${n!=null?` <b>${nf(n)}</b>`:''}</span>`;
+// three counts side by side — red Dienststelle, amber Kanton, grey Databank; the tone is
+// also said in words for screen readers and in the title
+function tonNums(o, ts){
+  return `<span class="tnum">${(ts||['act','dec','open']).map(t=>{const n=(o&&o[t])||0;
+    return `<span${n?'':' class="z"'} title="${esc(tonLabel(t))}: ${nf(n)}"><i class="sw t-${t}"></i><span class="vh">${esc(tonLabel(t))}: </span>${nf(n)}</span>`;}).join('')}</span>`;
+}
+// the eCH state of a set of data points as tone parts (DATA.labels.ton_map.ech);
+// «standard without element catalogue» is settled at standard level: its own light green
+function stdParts(ech){
+  const g={ok:0,ok2:0,dec:0,open:0};
+  Object.entries(ech||{}).forEach(([k,n])=>{
+    const t=k==='standard_ohne_elemente'?'ok2':((TON_MAP.ech||{})[k]||'open');
+    g[t in g?t:'open']+=Number(n)||0;});
+  return g;
+}
+// the grey part of a standard bar in words — every state it holds, each with its number;
+// zuordnung_falsch: an element the databank assigned although the label means another datum
+function stdOpenLabel(ech){
+  const E=ech||{}, alt=Number(E.standard_alt)||0, rest=(Number(E.element_offen)||0)+(Number(E.ungeprueft)||0),
+    zf=Number(E.zuordnung_falsch)||0;
+  const parts=[rest&&`eCH-Zuordnung noch offen (${nf(rest)})`, zf&&`eCH-Zuordnung wird von der Databank korrigiert (${nf(zf)})`,
+    alt&&`Standard nicht mehr in Kraft — sistiert, aufgehoben oder abgelöst (${nf(alt)})`].filter(Boolean);
+  if(!parts.length) return 'eCH-Zuordnung noch offen';
+  return parts.join(' · ')+' — die Databank ordnet zu';
+}
+// the Datenpunkte that carry an eCH element the databank itself has to correct (the label
+// means another datum — begriff.pruefart 'zuordnung'): not settled, whatever the export
+// counted them as. Read from the export where it has its own key, else from the forms.
+function zuordnungFalsch(fms, ech){
+  if(ech&&ech.zuordnung_falsch!=null) return 0;   // the export already moved them
+  let n=0; (fms||[]).forEach(f=>(((f.standard_divergenzen||{}).bezeichnungen)||[]).forEach(i=>{
+    if(i.klasse==='pruefen'&&i.pruefart==='zuordnung') n++;})); return n;
+}
+// the eCH states of a set of forms with those Datenpunkte moved from green to grey
+function echWithZuordnung(fms, ech){
+  const E=Object.assign({},ech||{}), z=zuordnungFalsch(fms,ech);
+  if(z){E.element=Math.max(0,(Number(E.element)||0)-z); E.zuordnung_falsch=z;}
+  return E;
+}
+// the amber part: exactly the points of the category «Kein geltender eCH-Standard»
+const KS_LABEL=()=>`${esc(todoCat('kein_standard')[1])} (keiner vorhanden oder erst im Entwurf): der Kanton legt fest (eSH)`;
+// the target of the data standard — the same line on the start page and on every Dienststelle page
+const ZIEL_STD='Ziel: jedes Datum mit Standard, damit es ausgetauscht werden kann';
+// the title of every eCH standard the field layer uses (visible where a code alone says little)
+const ECH_TITEL=(()=>{const t={}; DATA.forms.forEach(f=>(f.data_fields||[]).forEach(d=>[d,...(d.subfields||[])].forEach(u=>{
+  const e=u&&typeof u==='object'&&u.ech; if(e&&e.standard&&e.standard_titel&&!t[e.standard]) t[e.standard]=e.standard_titel;}))); return t;})();
+// the unit «Feld» of DATA.labels.einheit, as the page names it elsewhere
+const UNIT_WORD=w=>w==='Felder'?'Datenfelder':w==='Feld'?'Datenfeld':w;
+// the naming verdicts of the whole canton (standard_divergenzen.bezeichnungen, one per Datenpunkt):
+// rename (variante), split (aufteilen) — both «Bezeichnung angleichen oder Feld aufteilen» —
+// and a wrong eCH mapping the databank corrects (zuordnung)
+const BEZ_SPLIT=(()=>{let ren=0,split=0,zu=0; const fr=new Set(), fs=new Set(), fz=new Set(), fu=new Set();
+  DATA.forms.forEach(f=>(((f.standard_divergenzen||{}).bezeichnungen)||[]).forEach(i=>{
+    if(i.klasse==='variante'){ren++; fr.add(f.id); fu.add(f.id);}
+    else if(i.klasse==='pruefen'&&i.pruefart==='aufteilen'){split++; fs.add(f.id); fu.add(f.id);}
+    else if(i.klasse==='pruefen'){zu++; fz.add(f.id);}}));
+  return {ren,split,zu,forms:fu.size,formsRen:fr.size,formsSplit:fs.size,formsZu:fz.size};})();
+// the eSH catalogue counted on the atomic unit, like every other figure (a composite is
+// represented by its parts; its own code is not counted beside them)
+const ESH_ATOM=(()=>{const c={}; DATA.forms.forEach(f=>(f.data_fields||[]).forEach(d=>{
+  const ss=(d.subfields||[]).filter(s=>s&&typeof s==='object');
+  (ss.length?ss:[d]).forEach(u=>{if(u.esh&&u.esh.code) c[u.esh.code]=(c[u.esh.code]||0)+1;});})); return c;})();
+(DATA.esh_katalog||[]).forEach(k=>{k.n_live=ESH_ATOM[k.code]||0;});
+// «Kein geltender eCH-Standard» (3 kinds of decision): an eSH draft exists · neither eCH nor eSH ·
+// an eCH standard only in the works — from standard_divergenzen.fehlend, the source of the
+// category's points (form.handlungsbedarf 'kein_standard')
+const KS_SPLIT=(()=>{const r={esh:{n:0,forms:new Set(),codes:{}},none:{n:0,forms:new Set()},ech:{n:0,forms:new Set(),codes:{}}};
+  DATA.forms.forEach(f=>((((f.standard_divergenzen||{}).fehlend)||[])).forEach(i=>{
+    if(i.art!=='kein_standard'&&i.art!=='standard_entwurf') return;
+    const s=String(i.standard||''), k=/^eSH-/.test(s)?'esh':i.art==='kein_standard'?'none':'ech', g=r[k];
+    g.n+=Number(i.n)||0; g.forms.add(f.id); if(g.codes&&s) g.codes[s]=(g.codes[s]||0)+(Number(i.n)||0);}));
+  return r;})();
+// «Pflicht uneinheitlich» per datum (standard · element): the unit the canton decides on. A
+// Datenpunkt that is also demanded differently (red) on the same form counts there, as in
+// form.handlungsbedarf — so the totals come back to the category's Datenpunkte
+function pflichtUneinheitlichAgg(){
+  const A={};
+  DATA.forms.forEach(f=>{const L=((f.standard_divergenzen||{}).angleichen)||[], key=i=>String(i.feld)+'\u0001'+String(i.teilfeld||'');
+    const red=new Set(L.filter(i=>i.art!=='pflicht_uneinheitlich').map(key)), seen=new Set();
+    L.forEach(i=>{if(i.art!=='pflicht_uneinheitlich'||red.has(key(i))||seen.has(key(i))) return; seen.add(key(i));
+      const el=`${i.standard}·${i.element}`, x=A[el]=A[el]||{el,forms:new Set(),n:0,req:0,opt:0,labels:{},akt:new Set()};
+      x.forms.add(f); x.n++; if(i.hier==='Pflicht') x.req++; else x.opt++;
+      const lb=i.teilfeld||i.feld; x.labels[lb]=(x.labels[lb]||0)+1; if(i.aktion) x.akt.add(i.aktion);});});
+  return Object.values(A).map(x=>Object.assign(x,{label:Object.entries(x.labels).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0],'de'))[0][0]}))
+    .sort((a,b)=>b.forms.size-a.forms.size||b.n-a.n||a.el.localeCompare(b.el));
+}
+// the Massnahmen of a Dienststelle: one line per red category, summed over all its forms,
+// with the largest forms named — every red category once, in priority order (tier, then
+// the category order of DATA.labels.cat_order)
+function massnahmenOf(d){
+  const G={};
+  (d.formulare||[]).map(id=>formById[id]).filter(Boolean).forEach(f=>todoItems(f).forEach(i=>{if(itemTon(i)!=='act') return;
+    const g=G[i.cat]=G[i.cat]||{cat:i.cat,stufe:itemStufe(i),n:0,forms:[],mix:{}};
+    g.n+=i.n; g.forms.push({f,n:i.n});
+    // what kind of divergence: Pflicht, Format or value list (the latter changes nothing on the form)
+    if(i.cat==='divergenz') (((f.standard_divergenzen||{}).angleichen)||[]).forEach(x=>{
+      if(x.art==='pflicht'||x.art==='format'||x.art==='codeliste') g.mix[x.art]=(g.mix[x.art]||0)+1;});}));
+  return Object.values(G).sort((a,b)=>a.stufe-b.stufe||catRank(a.cat)-catRank(b.cat)).map(g=>{
+    g.forms.sort((x,y)=>y.n-x.n||String(x.f.title).localeCompare(String(y.f.title),'de'));
+    const onlyCl=g.cat==='divergenz'&&g.mix.codeliste&&!g.mix.pflicht&&!g.mix.format;
+    return Object.assign(g,{formulare:g.forms.length,gross:g.forms.slice(0,3),
+      aktion:(onlyCl&&AKTION.divergenz_codeliste)||AKTION[g.cat]||todoCat(g.cat)[1]});});
+}
+// how a Massnahme names a Formular: by its service (the name a reader knows), the form's
+// own title only where it says something else
+const sameName=(a,b)=>String(a||'').toLowerCase().replace(/[^a-z0-9äöüéèà]+/g,'')===String(b||'').toLowerCase().replace(/[^a-z0-9äöüéèà]+/g,'');
+function mzFormRef(f, cat, cls){
+  const s=svcById[f.service_id], nm=s?s.name:f.title;
+  return `«${formLink(f.service_id,f.id,esc(nm),cls||'dlink lt',DIV_SEC(cat))}»${s&&!sameName(f.title,s.name)?` <span class="muted mzft">(Formular «${esc(f.title)}»)</span>`:''}`;
+}
+// the kinds of a divergence Massnahme, in words
+function mzMix(g){
+  if(g.cat!=='divergenz') return '';
+  const W={pflicht:'Pflicht ↔ optional',format:'andere Form',codeliste:'eigene Werte statt der eCH-Codes'};
+  const p=['pflicht','format','codeliste'].filter(k=>g.mix[k]).map(k=>`${nf(g.mix[k])} ${W[k]}`);
+  if(!p.length) return '';
+  return `<div class="mzmix">Arten der Abweichung (ein Datenpunkt kann mehrere haben): ${p.join(' · ')}${g.mix.codeliste?' — Wertelisten nur beim Austausch auf die eCH-Codes abbilden; der Klartext im Formular darf bleiben':''}</div>`;
+}
+function miniBar(g, aria){
+  const tot=Object.values(g).reduce((a,b)=>a+b,0); if(!tot) return '';
+  return `<span class="minibar" role="img" aria-label="${esc(aria)}">${['ok','ok2','dec','open'].filter(t=>g[t]).map(t=>`<i class="t-${t}" style="flex-grow:${g[t]}"></i>`).join('')}</span>`;
+}
+const tonKeyLine=()=>`<div class="tonkey"><span>Die Farbe sagt, wer als Nächstes handelt:</span>${
+  [['ok','grün','geklärt'],['act','rot','Dienststelle'],['dec','amber','Kanton'],['open','grau','Databank']].map(([t,f,w])=>
+    `<span class="tk" title="${esc(tonLabel(t)+' — '+tonTip(t))}"><i class="sw t-${t}"></i>${esc((TON[t]&&TON[t].farbe)||f)} ${w}</span>`).join('<span class="sep">·</span>')}</div>`;
+// the Dienststellen (DATA.dienststellen_uebersicht, computed once in export_json)
+const DST=DATA.dienststellen_uebersicht||[];
+const dstBySlug=Object.fromEntries(DST.map(d=>[d.slug,d]));
+const dstByName=Object.fromEntries(DST.map(d=>[d.name,d]));
+const dstLink=(name,cls)=>{const d=dstByName[name]; return d?goLink('dienststellen',d.slug,esc(name),cls||'dlink'):esc(name);};
+const formById={}; DATA.forms.forEach(f=>{formById[f.id]=f;});
+// the exported eCH states of every Dienststelle, summed: the whole canton
+const ECH_ALL={}; DST.forEach(d=>Object.entries((d.standard||{}).ech||{}).forEach(([k,n])=>{ECH_ALL[k]=(ECH_ALL[k]||0)+(Number(n)||0);}));
+// a contact line: e-mail as mailto:, telephone as tel:, everything else as text
+function kontaktHtml(k){
+  const parts=[]; (k||[]).forEach(x=>String(x||'').split(' · ').forEach(p=>{p=p.trim(); if(p) parts.push(p);}));
+  return parts.map(p=>{
+    if(/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(p)) return `<a href="mailto:${esc(p)}">${esc(p)}</a>`;
+    if(/^\+?[\d\s()\/.-]+$/.test(p)&&(p.match(/\d/g)||[]).length>=9) return `<a href="tel:${esc(p.replace(/[^\d+]/g,''))}">${esc(p)}</a>`;
+    return esc(p);}).join(' · ');
+}
+// every point of one tone, by category: total, forms, and per Dienststelle the forms behind it
+function aggByCat(ton){
+  const A={};
+  DATA.forms.forEach(f=>todoItems(f).forEach(i=>{
+    if(itemTon(i)!==ton) return;
+    const a=A[i.cat]=A[i.cat]||{n:0,forms:0,byDst:{},fset:new Set()};
+    a.n+=i.n; a.forms++; a.fset.add(f.id);
+    const dn=dstOf(f), b=a.byDst[dn]=a.byDst[dn]||{n:0,rows:[]};
+    b.n+=i.n; b.rows.push({f,i});
+    // a duplicate pair is counted on one of its two forms (export_json); the other form and
+    // its Dienststelle are just as affected — listed as the partner, without a second count
+    if(i.cat==='dup') (f.similar||[]).filter(s=>!s.verdict&&f.id<s.form_id).forEach(s=>{
+      const p=formById[s.form_id]; if(!p) return; a.fset.add(p.id);
+      const pd=dstOf(p), pb=a.byDst[pd]=a.byDst[pd]||{n:0,rows:[]};
+      pb.rows.push({f:p,i:{cat:'dup',n:0,partner:1,detail:`Partner von «${f.title}» (${dstOf(f)}) — dort gezählt`}});});}));
+  Object.values(A).forEach(a=>{a.forms=a.fset.size;});
+  return A;
+}
+// one category as a card: what it means, what is to be done, and — folded — where it occurs
+function catBlock(k, a, verb, open, extra, headPre){
+  const c=todoCat(k), t=catTon(k), perForm=!formCat(k);
+  const dsts=Object.entries(a.byDst).sort((x,y)=>y[1].n-x[1].n||x[0].localeCompare(y[0],'de'));
+  const rows=dsts.map(([dn,b])=>`<tr class="dgrp"><td colspan="2">${dstLink(dn)}</td><td class="num">${b.n?nf(b.n):'—'}</td></tr>`
+    +b.rows.sort((x,y)=>y.i.n-x.i.n||String(x.f.title).localeCompare(String(y.f.title),'de')).map(({f,i})=>
+      `<tr><td>${formLink(f.service_id,f.id,esc(f.title),'',DIV_SEC(k))}</td><td class="clipd">${clip(i.detail,220)}</td><td class="num">${perForm&&!i.partner?nf(i.n):''}</td></tr>`).join('')).join('');
+  const size=k==='dup'?`<b>${catUnit(k,a.n)}</b> (${pl(a.forms,'Formular','Formulare')})`
+    :`<b>${catUnit(k,a.n)}</b>${formCat(k)?'':' in '+pl(a.forms,'Formular','Formularen')}`;
+  return `<div class="card catblk" id="cat-${esc(k)}">
+    <div class="cathd">${tonChip(t,esc(c[1]),null,tonLabel(t)+' · '+stufeLabel(catStufe(k)))}<span class="catn">${headPre?headPre+' (':''}${size} bei ${pl(dsts.length,'Dienststelle','Dienststellen')}${headPre?')':''}</span></div>
+    <div class="catx">${esc(c[4])}</div>
+    ${AKTION[k]?`<div class="catx"><span class="hsl">${verb}</span>${esc(AKTION[k])}</div>`:''}${extra||''}
+    <details class="catdet"${open?' open':''}><summary>Betroffene Dienststellen und Formulare (${nf(dsts.length)})</summary>
+      <div class="tscroll" style="padding:0"><table class="ft"><thead><tr><th>Formular</th><th>Detail</th><th class="num">${esc(catUnitOf(k)[1])}</th></tr></thead><tbody>${rows}</tbody></table></div></details></div>`;
+}
+// the categories of one tone, grouped under their priority tier (DATA.labels.stufen, cat_order);
+// opt.stufen limits the tiers, opt.extra[cat] adds a body to that category's card
+function catSections(ton, verb, focus, opt){
+  const o=opt||{}, A=aggByCat(ton);
+  return STUFEN.filter(s=>!o.stufen||o.stufen.includes(s.n)).map(s=>{
+    const ks=CAT_ORDER.filter(k=>A[k]&&catStufe(k)===s.n);
+    if(!ks.length) return '';
+    const n=ks.reduce((x,k)=>x+A[k].n,0);
+    return `<div class="stufehd">${esc(stufeLabel(s.n))} · ${pl(n,'Punkt','Punkte')}</div><p class="stufetx">${esc(s.text)}</p>`
+      +ks.map(k=>catBlock(k,A[k],verb,focus===k,(o.extra||{})[k],(o.head||{})[k])).join('');}).join('');
+}
+// a category named in the URL (#kanton/all/<cat>): open its card and bring it into view —
+// after the click handler's scroll to the top, hence the timeout
+function focusCat(m, k){
+  if(!k) return;
+  setTimeout(()=>{const t=document.getElementById('cat-'+k); if(!t||!m.contains(t)) return;
+    t.scrollIntoView({behavior:'smooth'}); t.classList.add('flash'); setTimeout(()=>t.classList.remove('flash'),1600);},0);
+}
+// segmented bar: one segment per part, widths proportional, a 2px surface gap
+// between them; every part is also a legend row with its number and the tone in
+// words, so no statement rests on colour alone. t: ok | ok2 | act | dec | open | rest
+function tonBar(parts, aria){
+  const tot=parts.reduce((a,p)=>a+(p.n||0),0);
+  const tw=p=>p.t==='rest'||p.bare?'':` <span class="tw">· ${esc(p.t==='ok2'?tonLabel('ok')+' (Standard-Ebene)':tonLabel(p.t))}</span>`;
+  const tip=p=>{const d=document.createElement('div'); d.innerHTML=p.label;
+    return `${d.textContent}: ${nf(p.n)} (${nf1(tot?100*p.n/tot:0)} %)${p.t==='rest'?'':' '+tonWords(p.t==='ok2'?'ok':p.t)}`;};
+  return `<div class="tbar" role="img" aria-label="${esc(aria)}">${parts.filter(p=>p.n>0).map(p=>
+      `<i class="t-${p.t}" style="flex-grow:${p.n}" data-notip></i>`).join('')}</div>
+    <ul class="tleg">${parts.map(p=>`<li${p.n?'':' class="zero"'}${p.n?` title="${esc(tip(p))}"`:''}><i class="sw t-${p.t}"></i><b>${nf(p.n)}</b><span>${p.label}${tw(p)}${p.link?' '+p.link:''}</span></li>`).join('')}</ul>`;
+}
+// ---------- Verlauf: are we getting better? (DATA.verlauf, one entry per day) ----------
+const VERLAUF=(DATA.verlauf||[]).filter(e=>e&&e.datum).slice().sort((a,b)=>String(a.datum).localeCompare(String(b.datum)));
+const isGit=e=>/^git/.test(String(e.quelle||''));
+const vDay=e=>Date.parse(String(e.datum).slice(0,10)+'T00:00:00Z');
+// the notes of every stand after `from` up to `to` — a jump is explained where it is shown
+const notesBetween=(from,to)=>VERLAUF.filter(e=>e.bemerkung&&e.datum>from&&e.datum<=to);
+// trend of one figure: compared with the LAST EARLIER entry that has it (a figure not
+// yet recorded in a stand is None there, never 0); get(e) -> {n, von} | null, von
+// null = an absolute count; the notes in between always stand beside a trend that
+// moved, otherwise a correction reads as a setback (an unchanged figure has no jump
+// to explain, so a note about another figure does not land on it); unit: a sentence
+// naming the series' unit where it differs from the card's headline
+function trendLine(get, what, unit){
+  const L=VERLAUF.map(e=>({e,r:get(e)})).filter(x=>x.r&&x.r.n!=null);
+  if(!L.length) return '';
+  const c=L[L.length-1], p=L[L.length-2];
+  if(!p) return `<div class="kztrend">Verlauf: erster erfasster Stand am ${fmtDate(c.e.datum)} — noch kein Vergleich möglich.</div>`;
+  let d, cnt;
+  if(c.r.von&&p.r.von){
+    const dp=100*c.r.n/c.r.von-100*p.r.n/p.r.von;
+    d=Math.abs(dp)<0.05?'unverändert':(dp>0?'+':'−')+nf1(Math.abs(dp))+' Prozentpunkte';
+    cnt=c.r.n===p.r.n&&c.r.von===p.r.von?`${nf(c.r.n)} von ${nf(c.r.von)}`
+      :c.r.von===p.r.von?`${nf(p.r.n)} → ${nf(c.r.n)} von ${nf(c.r.von)}`
+      :`${nf(p.r.n)} von ${nf(p.r.von)} → ${nf(c.r.n)} von ${nf(c.r.von)}`;
+  } else {
+    const dn=c.r.n-p.r.n, w=Array.isArray(what)?plw(Math.abs(dn),what[0],what[1]):(what||'');
+    d=dn===0?'unverändert':(dn>0?'+':'−')+nf(Math.abs(dn))+' '+w;
+    cnt=dn===0?nf(c.r.n):`${nf(p.r.n)} → ${nf(c.r.n)}`;
+  }
+  const notes=d==='unverändert'?[]:notesBetween(p.e.datum,c.e.datum);
+  return `<div class="kztrend"><b>${d}</b> gegenüber ${fmtDate(p.e.datum)}${isGit(p.e)?' (Stand aus der Git-Historie rekonstruiert)':''}: ${cnt}.${
+    unit?` ${unit}`:''}${
+    notes.map(e=>`<span class="bem">Anmerkung zum Stand ${fmtDate(e.datum)}: ${esc(e.bemerkung)}</span>`).join('')}</div>`;
+}
+// compact trend line over all stands: x follows time and is shared by every
+// sparkline on the page (stands a day apart are pushed at least SPARK_GAP px apart,
+// so no point hides another), y = the enclosing 10-%-band (printed at the left);
+// hollow point = stand reconstructed from the Git history; a small number = a note
+// on that stand where this figure moved (listed under the sparklines); hover names
+// date, value and that note
+const SPARK_W=320, SPARK_LP=40, SPARK_RP=12, SPARK_GAP=14;
+function sparkX(){
+  const x0=SPARK_LP, x1=SPARK_W-SPARK_RP, n=VERLAUF.length, m=new Map();
+  if(!n) return m;
+  const ts=VERLAUF.map(vDay), t0=Math.min(...ts), t1=Math.max(...ts);
+  let xs=ts.map(t=>x0+(t1>t0?(t-t0)/(t1-t0):1)*(x1-x0));
+  for(let i=1;i<n;i++) xs[i]=Math.max(xs[i],xs[i-1]+SPARK_GAP);
+  if(xs[n-1]>x1){xs[n-1]=x1; for(let i=n-2;i>=0;i--) xs[i]=Math.min(xs[i],xs[i+1]-SPARK_GAP);}
+  if(n>1&&xs[0]<x0) xs=xs.map((_,i)=>x0+i*(x1-x0)/(n-1));   // too many stands: even spacing
+  VERLAUF.forEach((e,i)=>m.set(e,xs[i]));
+  return m;
+}
+function sparkline(get, name, noteNo){
+  const P=VERLAUF.map(e=>({e,r:get(e)})).filter(x=>x.r&&x.r.n!=null&&x.r.von).map(x=>Object.assign(x,{p:100*x.r.n/x.r.von}));
+  if(!P.length) return '<div class="vlrow">Noch kein Stand erfasst.</div>';
+  const W=SPARK_W,H=84,Lp=SPARK_LP,Rp=SPARK_RP,Tp=16,Bp=20;
+  const XS=sparkX(), X=e=>XS.get(e);
+  // a note is marked only where this figure moved against the previous stand
+  const moved=i=>i>0&&(P[i].r.n!==P[i-1].r.n||P[i].r.von!==P[i-1].r.von);
+  const noteOf=i=>moved(i)&&P[i].e.bemerkung?noteNo[P[i].e.datum]:0;
+  let lo=Math.floor(Math.min(...P.map(x=>x.p))/10)*10, hi=Math.ceil(Math.max(...P.map(x=>x.p))/10)*10;
+  if(hi<=lo) hi=lo+10;
+  const Y=v=>Tp+(hi-v)/(hi-lo)*(H-Tp-Bp);
+  const r1=x=>Math.round(x*10)/10;
+  let s=`<svg class="spark" viewBox="0 0 ${W} ${H}" role="group" aria-label="${esc(name)}: ${P.map(x=>fmtDate(x.e.datum)+' '+nf1(x.p)+' %').join(', ')}">`;
+  [hi,lo].forEach(v=>{s+=`<line class="sg" x1="${Lp}" x2="${W-Rp}" y1="${r1(Y(v))}" y2="${r1(Y(v))}"/><text class="sl" x="${Lp-6}" y="${r1(Y(v)+3)}" text-anchor="end">${v} %</text>`;});
+  const d0=VERLAUF[0], d1=VERLAUF[VERLAUF.length-1];
+  s+=`<text class="sl" x="${Lp}" y="${H-4}">${fmtDate(d0.datum)}</text>`;
+  if(d1!==d0) s+=`<text class="sl" x="${W-Rp}" y="${H-4}" text-anchor="end">${fmtDate(d1.datum)}</text>`;
+  if(P.length>1) s+=`<path class="sp" d="${P.map((x,i)=>(i?'L':'M')+r1(X(x.e))+' '+r1(Y(x.p))).join(' ')}"/>`;
+  P.forEach((x,i)=>{
+    const cx=r1(X(x.e)), cy=r1(Y(x.p)), n=noteOf(i), last=i===P.length-1;
+    const tip=`${fmtDate(x.e.datum)}: ${nf1(x.p)} % (${nf(x.r.n)} von ${nf(x.r.von)})${isGit(x.e)?' — aus der Git-Historie rekonstruiert':''}${n?' — Anmerkung: '+x.e.bemerkung:''}`;
+    s+=`<g><title>${esc(tip)}</title><circle class="hit" cx="${cx}" cy="${cy}" r="${SPARK_GAP/2}"/><circle class="pt${isGit(x.e)?' git':''}${last?' cur':''}" cx="${cx}" cy="${cy}" r="4"/>${n?`<text class="nn" x="${cx}" y="${r1(cy-8)}" text-anchor="middle">${n}</text>`:''}</g>`;
+  });
+  s+='</svg>';
+  const tail=P.slice(-6);
+  const off=P.length-tail.length;
+  return s+`<div class="vlrow">${off?'… ':''}${tail.map((x,j)=>{const n=noteOf(off+j);return `${fmtDate(x.e.datum).slice(0,6)} <b>${nf1(x.p)} %</b>${n?`<sup>${n}</sup>`:''}`;}).join(' · ')}</div>`
+    +(P[0].e!==VERLAUF[0]?`<div class="vlrow">erhoben ab ${fmtDate(P[0].e.datum)}; frühere Stände kannten diese Kennzahl noch nicht</div>`:'');
+}
+// ---------- Übersicht (the landing page): the data standard first ----------
 function viewHome(){
+  const m=document.getElementById('main');
+  const K=DATA.kopfzahlen||{};
+  const S1=(LAB.stufen||[]).find(s=>Number(s[0])===1);
+  const card=o=>`<div class="kz"><div class="kzl">${o.label}</div><div class="kzv">${o.value}</div>${o.sub?`<div class="kzsub">${o.sub}</div>`:''}${o.body||''}${o.ziel?`<div class="kzziel">${o.ziel}</div>`:''}${o.trend||''}${o.link?`<div class="kzfoot">${o.link}</div>`:''}</div>`;
+  // (a) exchangeable: data points with a citable eCH element
+  const E=K.standard_ech, ET=(E&&E.teile)||{};
+  // an element the databank assigned wrongly (the label means another datum) is not settled:
+  // it moves from the green to the grey part — the headline still counts what carries an element
+  const ZF=ECH_ALL.zuordnung_falsch!=null?0:(CAT_N.zuordnung||0), EA=Object.assign({},ECH_ALL,ZF?{zuordnung_falsch:ZF}:{});
+  const cA=E?card({label:'Datenpunkte mit eCH-Element', value:pctR(E.wert,E.von)+' %',
+    sub:`${nf(E.wert)} von ${nf(E.von)} Datenpunkten tragen ein Element eines eCH-Standards${ZF?` — bei ${nf(ZF)} davon korrigiert die Databank die Zuordnung`:''}`,
+    body:tonBar([{t:'ok',n:(ET.ok||0)-ZF,label:'mit eCH-Element'},
+      {t:'ok2',n:ET.ok_standard||0,label:'nur auf Standard-Ebene (der Standard hat keinen Elementkatalog)'},
+      {t:'dec',n:ET.dec||0,label:KS_LABEL(),link:ET.dec?goLink('kanton','kein_standard','Für den Kanton ›','inl'):''},
+      {t:'open',n:(ET.open||0)+ZF,label:stdOpenLabel(EA),link:(ECH_ALL.standard_alt||ZF)?goLink('recherche',ZF?'zuordnung':'echalt','Recherche der Databank ›','inl'):''}],'Datenpunkte nach eCH-Stand'),
+    ziel:ZIEL_STD,
+    trend:trendLine(e=>e.punkte_ech!=null&&e.punkte?{n:e.punkte_ech,von:e.punkte}:null),
+    link:goLink('katalog','','Zum Datenkatalog ›')}):'';
+  // (b) demanded the same way everywhere
+  const U=K.standard_einheitlich, UT=(U&&U.teile)||{};
+  const cB=U?card({label:'Einheitlich verlangt', value:pctR(U.wert,U.von)+' %',
+    sub:`${nf(U.wert)} von ${nf(U.von)} Datenpunkten mit eCH-Element werden überall gleich verlangt (Pflicht, Format, Werteliste)`,
+    body:tonBar([{t:'ok',n:UT.ok||0,label:'gleich verlangt wie in der übrigen Praxis'},
+      {t:'act',n:UT.act||0,label:'anders verlangt als die übrige Praxis (Pflicht, Format oder Werteliste)'},
+      {t:'dec',n:UT.dec||0,label:`${esc(todoCat('divergenz_offen')[1])} (mal Pflicht, mal optional) — Kanton legt fest`,
+        link:UT.dec?goLink('kanton','divergenz_offen','Für den Kanton ›','inl'):''}],'Datenpunkte nach Einheitlichkeit')
+      +`<div class="kznote">Gezählt je Datenpunkt, jeder nur einmal; ein abweichender Datenpunkt zählt nicht zusätzlich als uneinheitlich.${
+        (CAT_N.divergenz||0)===(UT.act||0)&&(CAT_N.divergenz_offen||0)===(UT.dec||0)?' Der Handlungsbedarf zählt genauso.'
+        :` Der Handlungsbedarf zählt ${catUnit('divergenz',CAT_N.divergenz||0)} anders verlangt und ${catUnit('divergenz_offen',CAT_N.divergenz_offen||0)} «${esc(todoCat('divergenz_offen')[1])}», weil er jeden Eintrag je Formular zählt.`}</div>`,
+    trend:trendLine(e=>e.punkte_ech!=null&&e.div_punkte!=null&&e.div_offen!=null&&e.punkte_ech>0
+      ?{n:e.punkte_ech-e.div_punkte-e.div_offen,von:e.punkte_ech}:null),
+    link:goLink('todo','divergenz',`${nf(U.formulare_div)} von ${pl(U.formulare,'Formular','Formularen')} ${plw(U.formulare_div,'weicht','weichen')} ab ›`)}):'';
+  // (c) named the same way everywhere — the whole category «Bezeichnung angleichen oder Feld
+  // aufteilen» (the figure the Verlauf, the Handlungsbedarf and the Dienststellen count), in
+  // its two parts: rename, or split a field that bundles data the standard separates
+  const N=K.standard_benannt, BZ=BEZ_SPLIT;
+  const nBen=N&&N.begriff_felder!=null?N.begriff_felder:BZ.ren+BZ.split;
+  const cC=N?card({label:'Einheitlich benannt', value:nf(nBen),
+    sub:`${catWord('begriff',nBen)} in ${pl(BZ.forms,'Formular','Formularen')} ${plw(nBen,'trägt','tragen')} eine Bezeichnung, die vom einheitlichen Begriff abweicht oder mehrere Daten bündelt`,
+    body:tonBar([{t:'act',n:BZ.ren,label:'auf den einheitlichen Begriff umbenennen'},
+      {t:'act',n:BZ.split,label:'im Formular aufteilen (bündelt Daten, die der Standard trennt)'}],'Datenpunkte mit abweichender Bezeichnung'),
+    trend:trendLine(e=>e.begriff_felder!=null?{n:e.begriff_felder,von:null}:null,catUnitOf('begriff')),
+    link:goLink('begriffe','','Zu den Begriffen ›')}):'';
+  // further gaps
+  const R=K.rechtsgrundlage, RT=(R&&R.teile)||{};
+  const cR=R?card({label:'Rechtsgrundlage je Datenfeld', value:pctR(R.wert,R.von)+' %',
+    sub:`${nf(R.wert)} von ${nf(R.von)} Datenfeldern mit belegter oder begründeter Grundlage`,
+    body:tonBar([{t:'ok',n:RT.ok||0,label:'Norm belegt oder für die Aufgabe nötig'},
+      {t:'act',n:RT.act||0,label:'ohne Grundlage — weder Norm noch Aufgabe verlangt das Feld'},
+      {t:'dec',n:RT.dec||0,label:'Aufgabenbedarf offen'},
+      {t:'open',n:RT.open||0,label:`noch zu ermitteln${R.art5_offen?` (davon ${nf(R.art5_offen)} ⛨: Grundlage nach KDSG Art. 5 zu benennen)`:''}`}],'Datenfelder nach Rechtsgrundlage'),
+    ziel:'Ziel: jedes Datenfeld mit Grundlage (KDSG Art. 4)',
+    trend:trendLine(e=>e.felder_gedeckt!=null&&e.datenfelder?{n:e.felder_gedeckt,von:e.datenfelder}:null),
+    link:goLink('register','','Grundlagen je Service im Verzeichnis ›')}):'';
+  const V=K.verzeichnis;
+  // the forms whose purpose or recipients are not yet recorded are the databank's research
+  // (grey, as on «Recherche der Databank»); a missing own retention period alone is no point
+  const nZE=DATA.forms.filter(f=>(f.data_fields||[]).length&&(f.handlungsbedarf||[]).some(i=>i.cat==='zweck'||i.cat==='empf')).length;
+  const cV=V?card({label:'Verzeichnis-Angaben', value:`${nf(V.wert)} <span class="kzvon">von ${nf(V.von)}</span>`,
+    sub:'Formularen mit Zweck, belegten Empfängern und eigener Frist (Spezialfrist oder Fristentscheid)',
+    body:tonBar([{t:'ok',n:V.wert||0,label:'Zweck, Empfänger und Frist erfasst'},
+      {t:catTon('zweck'),n:nZE,label:'Zweck oder Empfänger nicht erfasst',link:nZE?goLink('recherche','zweck','Recherche der Databank ›','inl'):''},
+      {t:'rest',n:Math.max(0,(V.von||0)-(V.wert||0)-nZE),label:'nur die eigene Frist nicht festgelegt'}],'Formulare nach Verzeichnis-Angaben')
+      +'<div class="kznote">Ein Steuerungsinstrument: ein öffentliches Register verlangt KDSG Art. 17b nur von Polizei, Staatsanwaltschaft und Justizvollzug.</div>',
+    link:goLink('register','','Zum Verzeichnis ›')}):'';
+  const O=K.offene_punkte;
+  const nO=O?(O.act||0)+(O.dec||0)+(O.open||0):0;
+  // what one point counts: the units of DATA.labels.einheit, over every category with points
+  const UNITS=(()=>{const u={}; CAT_ORDER.filter(k=>CAT_N[k]).forEach(k=>{const w=catUnitOf(k); u[w[1]]=(u[w[1]]||0)+CAT_N[k];});
+    const ord=['Datenpunkte','Felder','Formularpaare','Formulare'];
+    return Object.entries(u).sort((a,b)=>(ord.indexOf(a[0])+1||9)-(ord.indexOf(b[0])+1||9));})();
+  const unitWord=UNIT_WORD;
+  const cO=O?card({label:'Offene Punkte nach «wer handelt»', value:nf(nO),
+    sub:`Punkte — je nach Art gezählt je ${UNITS.filter(([w])=>w!=='Formulare').map(([w])=>unitWord(catUnitOf(CAT_ORDER.find(k=>catUnitOf(k)[1]===w))[0])).join(', je ')}${UNITS.some(([w])=>w==='Formulare')?'; bei Angaben zum ganzen Formular je Formular':''}`,
+    body:tonBar([{t:'act',n:O.act||0,label:esc(tonLabel('act')),bare:1,link:goLink('dienststellen','','Für Dienststellen ›','inl')},
+      {t:'dec',n:O.dec||0,label:esc(tonLabel('dec')),bare:1,link:goLink('kanton','','Für den Kanton ›','inl')},
+      {t:'open',n:O.open||0,label:esc(tonLabel('open')),bare:1,link:goLink('recherche','','Recherche der Databank ›','inl')}],'Offene Punkte nach wer handelt')
+      +`<div class="kznote">davon ${UNITS.map(([w,n])=>`${nf(n)} ${unitWord(w)}`).join(' · ')}</div>`}):'';
+  const nDst=(DATA.dienststellen_uebersicht||[]).filter(d=>d.offen&&d.offen.act>0).length;
+  const door=(tab,k,q,n)=>`<a class="door" href="#${tab}" data-go="${tab}"><span class="dk">${k}</span><span class="dq">${q}</span><span class="dn">${n}</span></a>`;
+  const key=`<div class="tonkey"><span>Die Farbe sagt, wer als Nächstes handelt:</span>${
+    [['ok','grün','geklärt'],['act','rot','Dienststelle'],['dec','amber','Kanton'],['open','grau','Databank']].map(([t,f,w])=>
+      `<span class="tk" title="${esc(tonLabel(t)+' — '+tonTip(t))}"><i class="sw t-${t}"></i>${esc((TON[t]&&TON[t].farbe)||f)} ${w}</span>`).join('<span class="sep">·</span>')}</div>`;
+  const notes=VERLAUF.filter(e=>e.bemerkung), noteNo={}; notes.forEach((e,i)=>{noteNo[e.datum]=i+1;});
+  const anyGit=VERLAUF.some(isGit);
+  m.innerHTML=`<h3 class="view">Compliance-Databank Kanton Schaffhausen</h3>
+  <p class="lead">Die Databank hält für jedes der ${nf(DATA.forms.length)} Formulare der kantonalen Verwaltung fest, welche Daten es verlangt,
+  nach welchem Standard sie ausgetauscht werden können und auf welcher Rechtsgrundlage sie erhoben werden.
+  Sie zeigt den Dienststellen, was sie an ihren Formularen ändern können, und dem Kanton, was er festlegen muss.</p>
+  ${key}
+  <section class="hsec core"><h4>Datenstandard — das Kernstück</h4>
+    ${S1?`<p class="hsub">${esc(S1[2])}</p>`:''}
+    <div class="kzgrid">${cA}${cB}${cC}</div></section>
+  <section class="hsec"><h4>Weitere Lücken</h4>
+    <p class="hsub">Eine Lücke heisst: etwas ist noch zu klären, zu entscheiden oder zu belegen.</p>
+    <div class="kzgrid">${cR}${cV}${cO}</div></section>
+  <section class="hsec"><h4>Wo anfangen?</h4><div class="doors">
+    ${door('dienststellen','Für Dienststellen','Was muss ich an meinen Formularen ändern?',O?`${nf(O.act)} Punkte, die ${nDst===1?'eine Dienststelle':nf(nDst)+' Dienststellen'} selbst lösen ${plw(nDst,'kann','können')}`:'')}
+    ${door('kanton','Für den Kanton','Was muss entschieden werden?',O?`${nf(O.dec)} offene Punkte, meist Datenpunkte ohne Standard, warten auf einen Entscheid des Kantons`:'')}
+    ${door('methode','Für Fachleute','Wie ist die Databank gebaut?','Belege, Verifikationsstufen, Quellen und der Verlauf aller Kennzahlen')}
+  </div></section>
+  <section class="hsec"><h4>Verlauf</h4>
+    <div class="vlgrid">
+      <div class="kz"><div class="kzl">Datenpunkte mit eCH-Element</div>${sparkline(e=>e.punkte_ech!=null&&e.punkte?{n:e.punkte_ech,von:e.punkte}:null,'Anteil der Datenpunkte mit eCH-Element',noteNo)}</div>
+      <div class="kz"><div class="kzl">Datenfelder mit Rechtsgrundlage</div>${sparkline(e=>e.felder_gedeckt!=null&&e.datenfelder?{n:e.felder_gedeckt,von:e.datenfelder}:null,'Anteil der Datenfelder mit belegter oder begründeter Grundlage',noteNo)}</div>
+    </div>
+    ${notes.length?`<ol class="vlnotes">${notes.map(e=>`<li value="${noteNo[e.datum]}"><b>${fmtDate(e.datum)}:</b> ${esc(e.bemerkung)}</li>`).join('')}</ol>`:''}
+    <div class="vlnote">${anyGit?'Hohle Punkte: Stand aus der Git-Historie rekonstruiert. ':''}Alle Werte je Stand: ${goLink('methode','','Verlaufstabelle unter «Methode &amp; Quellen» ›','inl')}</div>
+  </section>
+  <div class="datenstand"><b>Datenstand</b> — wann die zugrunde liegenden Fakten galten: ${esc(datenstandText())}</div>`;
+  wireGo(m);
+}
+// ---------- Methode & Quellen: how the databank works, and every figure in detail ----------
+function viewMethode(){
   const m=document.getElementById('main');
   const F=DATA.forms, H=DATA.datenhandhabung||[], K=DATA.attribut_katalog||[];
   let nDf=0,nOver=0,nAuf=0,nA5=0,nSens=0,nEch=0,nPts=0;
@@ -937,28 +1847,73 @@ function viewHome(){
     (ss.length?ss:[d]).forEach(u=>{nPts++;if(u.ech&&u.ech.element)nEch++;});
   }));
   const tile=(n,l,tab,sub)=>`<button class="hometile" data-go="${tab}"${sub?` data-sub="${sub}"`:''}><span class="htn">${n}</span><span class="htl">${l}</span></button>`;
-  m.innerHTML=`<h3 class="view">Compliance-Databank Kanton Schaffhausen</h3>
+  const tonRows=['ok','act','dec','open'].map(t=>`<li><i class="sw t-${t}"></i><span><b>${esc(tonLabel(t))}</b>${TON[t]&&TON[t].farbe?` <span class="muted">(${esc(TON[t].farbe)})</span>`:''} — ${esc(tonTip(t))}</span></li>`).join('');
+  // each category as a chip in the tone of whoever closes it, with its points (0 dimmed, not hidden)
+  const stufen=STUFEN.map(s=>{
+    const cats=CAT_ORDER.filter(c=>TODO_BY[c]&&catStufe(c)===s.n);
+    return `<li><b>${esc(stufeLabel(s.n))}:</b> ${esc(s.text)}${cats.length?`<div class="stcats">${cats.map(c=>{const t=catTon(c), n=CAT_N[c]||0;
+      return tonChip(t,esc(todoCat(c)[1]),n,`${tonLabel(t)} · ${catUnit(c,n)} — ${todoCat(c)[4]}`,n?'':' data-zero="1"').replace('class="tchip badge','class="tchip badge'+(n?'':' zero'));}).join('')}</div>`:''}</li>`;}).join('');
+  const v=x=>x==null?'<span class="muted" title="in jenem Stand noch nicht erhoben">—</span>':nf(x);
+  const pc=(a,b)=>a!=null&&b?` <span class="muted">(${nf1(100*a/b)} %)</span>`:'';
+  const ln=(...xs)=>xs.map(x=>`<div class="nowrap">${x}</div>`).join('');
+  // the note explaining a jump sits in its own full-width row under the stand
+  const vrows=VERLAUF.map(e=>`<tr${e.bemerkung?' class="hasbem"':''}><td class="nowrap"><b>${fmtDate(e.datum)}</b>
+    <div class="small">${e.quelle==='build'?'Export':isGit(e)?`<div class="nowrap">Git-Historie</div><span class="mono">${esc(String(e.quelle).slice(4))}</span>`:esc(e.quelle||'')}</div></td>
+    <td class="small">${ln(v(e.formulare)+' Formulare',v(e.datenfelder)+' Datenfelder',v(e.punkte)+' Datenpunkte')}</td>
+    <td class="small">${ln('mit eCH-Element '+v(e.punkte_ech)+pc(e.punkte_ech,e.punkte),'anders verlangt '+v(e.div_punkte),esc(todoCat('divergenz_offen')[1])+' '+v(e.div_offen),'Formulare mit Abweichung '+v(e.formulare_div),catUnitOf('begriff')[1]+' umzubenennen oder aufzuteilen '+v(e.begriff_felder))}</td>
+    <td class="small">${ln('belegt oder begründet '+v(e.felder_gedeckt)+pc(e.felder_gedeckt,e.datenfelder),'mit Zitat '+v(e.felder_zitiert),'ohne Grundlage '+v(e.felder_ohne),'Aufgabenbedarf offen '+v(e.felder_offen),'zu ermitteln '+v(e.felder_zu_ermitteln),'Art. 5 offen '+v(e.felder_art5_offen))}</td>
+    <td class="small">${ln('mit Zweck '+v(e.formulare_mit_zweck),'vollständig '+v(e.verzeichnis_vollstaendig))}</td>
+    <td class="small">${ln(...['act','dec','open'].map(t=>`<i class="sw t-${t}"></i>${esc(tonLabel(t))} ${v(e['offen_'+t])}`))}</td>
+    </tr>${e.bemerkung?`<tr class="vlbemrow"><td></td><td colspan="5" class="small"><b>Anmerkung:</b> ${esc(e.bemerkung)}</td></tr>`:''}`).join('');
+  m.innerHTML=pageHead('Methode &amp; Quellen',
+    'Wie die Databank arbeitet: was «belegt» heisst, was Farben und Prioritäten bedeuten, woher die Daten stammen und wie sich die Kennzahlen entwickeln.',
+    'Die Arbeitsweise der Databank (Belege, Verifikationsstufen, Begriffe), die Farbsprache und die Prioritätsstufen der offenen Punkte, alle Kennzahlen im Detail und ihr Verlauf je Stand.',
+    'Farben, Stufen und Kennzahlen kommen aus demselben Export wie jede andere Seite (data_export.json, erzeugt aus citygov.db). Der Verlauf ist verlauf.json: ein Eintrag je Tag; frühere Stände sind aus der Git-Historie der Databank rekonstruiert.',
+    'Eine Kennzahl, die ein früherer Stand noch nicht kannte, steht dort als «—», nicht als 0. Eine Anmerkung erklärt einen Sprung, etwa wenn falsche Zuordnungen korrigiert wurden.')+`
   <div class="card">
-    <p style="font-size:13.5px;line-height:1.6;margin:0 0 10px">Diese Databank erfasst pro <b>Formular</b> der kantonalen
+    <p style="font-size:13.5px;line-height:1.6;margin:0">Diese Databank erfasst pro <b>Formular</b> der kantonalen
     Verwaltung: die <b>Gesetze</b>, die es verlangen (artikelgenau), die <b>Datenfelder</b>, die es erhebt (bis aufs
     atomare Teilfeld), den <b>Standard</b> jedes Datums (eCH, ersatzweise der kantonale Entwurf eSH), die
     <b>Handhabungsregeln</b> (Speichern, Weitergeben, Löschen — mit Wortlaut-Zitat) und den <b>Digitalisierungs-Stand</b>.
-    Konsument ist neben Menschen ein LLM-Agent, der Verwaltungsleistungen abwickeln soll — deshalb muss jede Angabe
+    Ihre Angaben werden auch maschinell weiterverarbeitet (Exporte für automatisierte Abläufe) — deshalb muss jede Angabe
     <b>präzise, belegt und nie stillschweigend falsch</b> sein.</p>
+  </div>
+  <div class="card"><div class="dvsub">Die Farbe sagt, wer als Nächstes handelt</div>
+    <ul class="tleg tonlist">${tonRows}<li><i class="sw t-ok2"></i><span><b>Hellgrün</b> — geklärt auf Standard-Ebene: der Standard hat keinen Elementkatalog, ein Element ist hier nicht zu bestimmen.</span></li></ul>
+    <p class="small muted" style="margin:8px 0 0">Offene Punkte sind Lücken — noch zu klären, zu entscheiden oder zu belegen. Grau ist die
+    Arbeitsliste der Databank selbst und sagt nichts über die Verwaltung. Ein Status, dem kein Ton zugeordnet ist, gilt als nicht geklärt, nie als geklärt.</p></div>
+  <div class="card"><div class="dvsub">Vier Prioritätsstufen — der Datenstandard zuerst</div>
+    <ol class="stufen">${stufen}</ol>
+    <p class="small muted" style="margin:6px 0 0">Die Farbe des Chips sagt, wer die Kategorie schliesst — rot die Dienststelle, amber der Kanton, grau die Databank; die Zahl sind die offenen Punkte heute. Innerhalb einer Stufe gilt die Reihenfolge der Kategorien. Die Massnahmen einer Dienststelle sind zuerst nach Stufe, dann nach dieser Reihenfolge der Kategorien und erst zuletzt nach Umfang geordnet.</p></div>
+  <div class="card">
     <div class="methodbox"><b>Methode — was hier «verifiziert» heisst</b>
-      <div>• <b>Proof-Gates:</b> Agenten erarbeiten Zuordnungen, aber Loader lehnen alles ab, was nicht existiert:
+      <div>• <b>Prüfschranken:</b> Zuordnungen werden maschinell vorgeschlagen, aber die Ladeprogramme lehnen alles ab, was nicht existiert:
       ein Gesetzesartikel muss eingelesen sein, ein eCH-Element muss im offiziellen XSD stehen, ein Regel-Zitat muss
       wörtlich im Gesetzes-PDF vorkommen, eine Frist-Zahl muss im Zitat stehen.</div>
-      <div>• <b>Drei Verifikationsstufen</b> an jeder Zitation: <span class="badge b-match">verifiziert</span> (live
-      gegen Fedlex/Rechtsbuch) · <span class="badge b-sourced">Quelle SHR-PDF</span> (aus dem amtlichen PDF gelesen) ·
-      <span class="badge b-unver">UNVERIFIED</span> (noch ungeprüft — eine Wissenslücke der Databank, kein Befund über
-      die Verwaltung). Im Korpus heute (${nf(ZIT.total)} Zitate der kuratierten Feld-Schicht): verifiziert <b>${nf(ZIT.verifiziert)}</b> ·
-      Quelle SHR-PDF <b>${nf(ZIT.quelle_pdf)}</b> · UNVERIFIED <b>${nf(ZIT.unverifiziert)}</b>${ZIT.unverifiziert?'':' (Stufe definiert, kommt derzeit nicht vor)'}.</div>
-      <div>• <b>Vier Antworten auf die Rechtsfrage</b> je Datenfeld: Artikel belegt · <span class="badge b-sourced">aufgabennotwendig</span>
-      (keine explizite Norm, aber ohne das Datum ist die Aufgabe nicht erfüllbar — Einordnung der Databank nach dem Massstab von KDSG Art. 4 Abs. 1 lit. b, keine Over-collection) ·
-      <span class="badge b-over">Over-collection</span> (weder Norm noch Aufgabe verlangt es) ·
-      <span class="badge b-unver">zu ermitteln / Aufgabenbedarf offen</span> (Wissenslücke, kein Verstoss). Für ⛨-Felder genügt
-      «aufgabennotwendig» nicht: die Grundlage nach KDSG Art. 5 Abs. 1 muss benannt sein, sonst zählt das Feld überall als offen.</div>
+      <div id="m-datenstandard">• <b>Datenstandard — wie gemessen wird:</b> Ein eCH-Element zählt nur, wenn es im offiziellen XSD steht. Gezählt wird
+      jeder atomare Datenpunkt einmal. ${stBadge(tonOf('div','pflicht'),'anders verlangt','Die Dienststelle gleicht das Formular an oder dokumentiert die abweichende Rechtsgrundlage')} heisst: Pflicht oder optional
+      gegen eine klare Praxis (das Datum kommt mindestens dreimal vor, auf mindestens zwei anderen Formularen, und mindestens 2/3 der
+      übrigen Vorkommen verlangen es umgekehrt) · ein anderer Datentyp oder ein anderes Format als mindestens 2/3 der Vorkommen ·
+      eigene Werte, wo das XSD eine Codeliste festlegt (dann genügt es, beim Austausch auf die Codes abzubilden).
+      ${stBadge(tonOf('div','pflicht_uneinheitlich'),esc(todoCat('divergenz_offen')[1]),'Kein Formular ist die Ausnahme — der Kanton legt fest')} heisst: die übrigen
+      Vorkommen sind gespalten, keine Seite erreicht 2/3 — kein Formular ist die Ausnahme, der Kanton legt fest.
+      <b>Begriffe:</b> der Vorschlag ist eine Bezeichnung, die für dieses Datum schon vorkommt, sonst eine aus anderen Formularen des
+      Kantons — nie erfunden. Klassen: angleichen · Rolle — in Ordnung · Feld aufteilen · eCH-Zuordnung korrigieren. Eine zweite,
+      unabhängige Prüfung bestätigt jeden Eintrag; korrigierte Einträge tragen in der Begründung den Vermerk «Zweitprüfung:», die
+      Korrekturen liegen in quellen/korrekturen/. <b>eSH</b> gilt nur für Datenpunkte ohne eCH-Standard, ist überall als «Entwurf»
+      markiert und überdeckt nie ein eCH-Element.</div>
+      <div>• <b>Drei Verifikationsstufen</b> an jeder Zitation: ${stBadge(tonOf('verif','verified'),'verifiziert','live gegen Fedlex/Rechtsbuch geprüft')} (live
+      gegen Fedlex/Rechtsbuch) · ${stBadge(tonOf('verif','quelle_pdf'),'Quelle SHR-PDF','aus dem amtlichen Gesetzes-PDF gelesen')} (aus dem amtlichen PDF gelesen) ·
+      ${stBadge(tonOf('verif','unverifiziert'),'unverifiziert','noch nicht am Gesetzestext geprüft')} (noch ungeprüft — eine Wissenslücke der Databank, kein Befund über
+      die Verwaltung). In der Databank heute (${nf(ZIT.total)} Zitate der kuratierten Feld-Schicht): verifiziert <b>${nf(ZIT.verifiziert)}</b> ·
+      Quelle SHR-PDF <b>${nf(ZIT.quelle_pdf)}</b> · unverifiziert <b>${nf(ZIT.unverifiziert)}</b>${ZIT.unverifiziert?'':' (Stufe definiert, kommt derzeit nicht vor)'}.</div>
+      <div>• <b>Die Rechtsfrage je Datenfeld</b> — drei Antworten und zwei Arten von Lücken: Artikel belegt · ${stBadge(tonOf('basis','aufgabe'),'aufgabennotwendig','keine explizite Norm, aber für die Aufgabe nötig')}
+      (keine explizite Norm, aber ohne das Datum ist die Aufgabe nicht erfüllbar — Einordnung der Databank nach dem Massstab von KDSG Art. 4 Abs. 1 lit. b) ·
+      ${stBadge(tonOf('basis','ohne'),'ohne Grundlage','weder Norm noch Aufgabe verlangt das Feld')} (Fachbegriff: Over-collection — weder Norm noch Aufgabe verlangt es) ·
+      ${stBadge(tonOf('basis','offen'),'Aufgabenbedarf offen','keine Norm; ob die Aufgabe das Datum braucht, ist noch nicht beurteilt')} (noch nicht beurteilt) ·
+      ${stBadge(tonOf('basis','zu_ermitteln'),'zu ermitteln','noch nicht recherchiert')} (noch nicht recherchiert) — die letzten beiden sind Lücken, die eine wartet auf eine Beurteilung, die andere auf die Recherche der Databank. Für ⛨-Felder genügt
+      «aufgabennotwendig» nicht: die Grundlage nach KDSG Art. 5 Abs. 1 muss benannt sein; sonst bleibt das Feld offen
+      (${stBadge(tonOf('basis','art5_offen'),'⛨ Grundlage nach KDSG Art. 5 offen','aufgabennotwendig, aber die Grundlage nach KDSG Art. 5 Abs. 1 ist noch nicht benannt')} — Recherche der Databank, nicht «Aufgabenbedarf offen»).</div>
       <div>• <b>↺ Once-Only:</b> das Einwohnerregister führt das Datum bereits — vorbefüllen statt neu erheben. Die Marke gilt nur für
       Daten natürlicher Personen, nie für Betriebs-, Behörden- oder Objektadressen. Sie ist eine Einordnung der Databank, kein
       Rechtsanspruch: ob eine Dienststelle das Register abfragen darf, braucht eine eigene Grundlage (KDSG Art. 8 Abs. 1 lit. a/b).</div>
@@ -970,62 +1925,383 @@ function viewHome(){
       <b>Attribut</b> = der Katalogeintrag: ein eCH-/eSH-Element, egal auf wie vielen Formularen es erhoben wird.</div>
       <div>• <b>Lücke = Lücke:</b> Fehlendes steht als «fehlt», «kein Standard», «zu ermitteln» offen da. Eine
       geschönte Anzeige von 100&nbsp;% wäre hier ein Defekt.</div>
-      <div>• <b>Quellen:</b> <b>DVSH</b> — das Dienstleistungsmodell des Kantons (amtlicher Modeller; massgebliche Quelle für Verfahren
+      <div>• <b>Quellen:</b> <b>DVSH</b> — das Dienstleistungsmodell des Kantons (amtliches Modellierungswerkzeug; massgebliche Quelle für Verfahren
       und Rechtsgrundlage, nur lesend übernommen) · <b>SHEP</b> — das publizierte Service-Portal des Kantons (Bürgersicht,
       shep.meetfrida.agency) · die amtlichen Formulare selbst ·
       Gesetzestexte (Schaffhauser Rechtsbuch SHR, Fedlex) · die eCH-Standards von ech.ch.
-      <b>eSH</b> ist unser eigener Entwurf für Daten ohne eCH-Standard — überall als «Entwurf» markiert, nie mit
+      <b>eSH</b> ist der Entwurf des Kantons für Daten ohne eCH-Standard — überall als «Entwurf» markiert, nie mit
       offiziellem eCH verwechselbar.</div>
       <div class="datenstand"><b>Datenstand</b> — wann die zugrunde liegenden Fakten galten (nicht nur, wann die Datei gebaut wurde): ${esc(datenstandText())}</div>
     </div>
   </div>
+  <h4 class="hscope">Kennzahlen im Detail</h4>
   <div class="hometiles">
+    ${tile(nf(nPts),'atomare Datenpunkte','katalog')}
+    ${tile(Math.round(100*nEch/(nPts||1))+' %','atomare Datenpunkte mit eCH-Element','katalog')}
+    ${tile(DATA.forms.filter(f=>((f.standard_divergenzen||{}).angleichen||[]).some(i=>i.art!=='pflicht_uneinheitlich')).length,'Formulare mit Standard-Divergenz','todo','divergenz')}
+    ${tile(nf((DATA.begriffe||[]).reduce((n,b)=>n+b.labels.filter(l=>l.klasse==='variante').length,0)),`verschiedene Bezeichnungen anzugleichen (auf ${pl(BEZ_SPLIT.ren,'Datenpunkt','Datenpunkten')})`,'begriffe','angleichen')}
+    ${tile(nf(BEZ_SPLIT.ren+BEZ_SPLIT.split),`${catUnitOf('begriff')[1]} umzubenennen oder aufzuteilen`,'todo','begriff')}
+    ${tile(nf(K.length),'verschiedene Attribute','katalog')}
+    ${tile((DATA.esh_katalog||[]).length,'eSH-Entwürfe','esh')}
     ${tile(DATA.services.filter(s=>s.dvsh).length,'Services im DVSH modelliert','fields')}
+    ${(()=>{const noF=DATA.services.filter(x=>!(formsByService[x.id]||[]).length), dv=noF.filter(x=>x.dvsh).length;
+      return tile(nf(noF.length),`Services ohne Formular (${nf(dv)} mit DVSH-Modellierung, ${nf(noF.length-dv)} ohne)`,'fields');})()}
     ${tile(DATA.services.filter(s=>s.shep).length,'auf SHEP publiziert','fields')}
     ${tile(F.length,'Formulare','fields')}
     ${tile(nf(nDf),'Datenfelder','fields')}
-    ${tile(Math.round(100*nEch/nPts)+' %','atomare Datenpunkte mit eCH-Element','katalog')}
     ${tile(H.length,'Regeln, Zitat PDF-verifiziert','rules')}
-    ${tile(nOver,'Over-collection (Felder)','register')}
+    ${tile(nOver,'Felder ohne Grundlage','register')}
     ${tile(nAuf,'aufgabennotwendig ohne Norm','register')}
-    ${nA5?tile(nA5,'⛨ aufgabennotwendig, Art.-5-Grundlage offen','todo','sensibel_art5'):''}
+    ${nA5?tile(nA5,'⛨ aufgabennotwendig, Art.-5-Grundlage offen','recherche','sensibel_art5'):''}
     ${tile(nSens,'⛨ sensible Felder','register')}
-    ${tile(DATA.forms.filter(f=>((f.standard_divergenzen||{}).angleichen||[]).some(i=>i.art!=='pflicht_uneinheitlich')).length,'Formulare mit Standard-Divergenz','todo','divergenz')}
     ${tile((DATA.themenkatalog||[]).filter(t=>t.n_services).length,'Themengruppen mit Services (eCH-0049)','lebenslagen')}
-    ${tile((DATA.begriffe||[]).reduce((n,b)=>n+b.labels.filter(l=>l.klasse==='variante').length,0),'Bezeichnungen anzugleichen','begriffe','angleichen')}
-    ${tile(nf(K.length),'einzigartige Attribute','katalog')}
-    ${tile((DATA.esh_katalog||[]).length,'eSH-Entwürfe','esh')}
   </div>
-  ${deptOverview()}`;
+  <h4 class="hscope">Verlauf der Kennzahlen</h4>
+  <p class="hint">Ein Eintrag je Tag (die letzte Aktualisierung des Tages gilt). Einträge mit Quelle «Git-Historie» sind aus früheren Ständen der Databank
+  rekonstruiert; «—» heisst: in jenem Stand noch nicht erhoben. Offene Punkte nach wer handelt: rot = ${esc(tonLabel('act'))} · amber = ${esc(tonLabel('dec'))} · grau = ${esc(tonLabel('open'))}.</p>
+  ${VERLAUF.length?`<div class="card tscroll"><table class="ft vltab"><thead><tr><th>Stand · Quelle</th><th>Umfang</th><th>Datenstandard</th><th>Rechtsgrundlage (Datenfelder)</th><th>Verzeichnis (Formulare)</th><th>Offene Punkte</th></tr></thead><tbody>${vrows}</tbody></table></div>`
+    :'<div class="nores">Noch kein Verlauf erfasst.</div>'}`;
   m.querySelectorAll('.hometile').forEach(b=>b.onclick=()=>{
-    state.tab=b.dataset.go; state.service='all'; state.sub=b.dataset.sub||'felder'; render();});
-  m.querySelectorAll('tr[data-sid]').forEach(tr=>tr.onclick=()=>{
-    state.service=tr.dataset.sid;state.tab='fields';state.sub='felder';render();});
+    state.tab=b.dataset.go; state.service='all'; state.sub=b.dataset.sub||'felder'; render(); window.scrollTo(0,0);});
+  wireGo(m);
 }
-function deptOverview(){
-  const f=state.filter.toLowerCase();
-  let h=`<h3 class="view">Übersicht nach Departement</h3>
-  <p class="hint">Dokumentationsstand der Databank, gerechnet auf der kuratierten Datenfeld-Schicht:
-  Der Balken zeigt, für wie viele Datenfelder die Rechtsfrage GEKLÄRT ist — belegte Grundlage, aufgabennotwendig oder geprüftes
-  «keine Grundlage» (Over-collection) zählen alle als Antwort; ein ⛨-Feld, das als aufgabennotwendig gilt, dessen Grundlage nach
-  KDSG Art. 5 Abs. 1 aber noch nicht benannt ist, bleibt offen. Ein kurzer Balken heisst «noch nicht ermittelt»,
-  nicht «unrechtmässig erhoben». Zeile anklicken öffnet die Service-Seite.</p>`;
+// ---------- Für Dienststellen: every Dienststelle in one table, then one briefing each ----------
+// DVSH groupings of services that are not an office with a leadership of their own — their
+// contact is another office (checked against the DVSH harvest; the DVSH data stays as it is)
+const SAMMEL=new Set(['Allgemein','Weitere Dienste','Departementssekretariat']);
+const sammelTag=d=>SAMMEL.has(d.name)?` <span class="sammel" title="Im DVSH-Dienstleistungsmodell eine Sammelgruppe von Services, keine Dienststelle mit eigener Leitung; der Kontakt ist der, den das DVSH für diese Gruppe führt">Sammelgruppe im DVSH — keine eigene Leitung</span>`:'';
+// the Schutzstufe, spelled out with its law (DATA.laws — never typed from memory)
+const ISV_LAW=(DATA.laws||[]).find(l=>l.short_title==='ISV');
+const ISV_TXT=`Schutzstufe nach der Informatiksicherheitsverordnung (ISV${ISV_LAW&&ISV_LAW.sr_number?', SHR '+ISV_LAW.sr_number:''})`;
+function viewDienststellen(){
+  if(state.sub&&state.sub!=='felder'){ viewDienststelle(state.sub); return; }
+  const m=document.getElementById('main');
+  const K=DATA.kopfzahlen||{}, KE=K.standard_ech;
+  // grouped by department (DEPT_ORDER), A–Z inside
+  const deps={};
+  DST.forEach(d=>{const k=(d.department||'(ohne Departement)').trim(); (deps[k]=deps[k]||[]).push(d);});
+  const depKeys=Object.keys(deps).sort((a,b)=>{const ia=DEPT_ORDER.indexOf(a), ib=DEPT_ORDER.indexOf(b);
+    return (ia<0?99:ia)-(ib<0?99:ib)||a.localeCompare(b,'de');});
+  const all={act:0,dec:0,open:0};
+  DST.forEach(d=>['act','dec','open'].forEach(t=>{all[t]+=((d.offen||{})[t])||0;}));
+  const nAct=DST.filter(d=>d.offen&&d.offen.act>0).length;
+  // the order of the Massnahmen: tier, then the fixed category order
+  const actOrder=CAT_ORDER.filter(k=>TODO_BY[k]&&catTon(k)==='act').map(k=>'«'+esc(todoCat(k)[1])+'»').join(' vor ');
+  let rows='';
+  depKeys.forEach(dep=>{
+    const ds=deps[dep].slice().sort((a,b)=>a.name.localeCompare(b.name,'de'));
+    const sum={act:0,dec:0,open:0}; let pts=0, mit=0, nS=0, nF=0; const eg={};
+    ds.forEach(d=>{const S=d.standard||{}; pts+=S.punkte||0; mit+=S.mit_element||0; nS+=(d.services||[]).length; nF+=(d.formulare||[]).length;
+      Object.entries(S.ech||{}).forEach(([k,n])=>{eg[k]=(eg[k]||0)+n;});
+      ['act','dec','open'].forEach(t=>{sum[t]+=((d.offen||{})[t])||0;});});
+    rows+=`<tr class="deprow"><td><b>${esc(dep)}</b> <span class="muted">· ${pl(ds.length,'Dienststelle','Dienststellen')}</span><div class="small muted dsmob">${pl(nS,'Service','Services')} · ${pl(nF,'Formular','Formulare')}</div></td>
+      <td class="num">${nf(nS)}</td><td class="num">${nf(nF)}</td>
+      <td>${pts?`<span class="stdcell">${miniBar(stdParts(eg),'Datenpunkte des Departements nach eCH-Stand')}<b>${pctTxt(mit,pts)}</b></span>`:''}</td>
+      <td>${tonNums(sum)}</td><td></td></tr>`;
+    ds.forEach(d=>{
+      const S=d.standard||{}, p=S.punkte||0, e=S.mit_element||0, MZ=massnahmenOf(d), mz=MZ[0], nf_=(d.formulare||[]).length, nS_=(d.services||[]).length;
+      rows+=`<tr class="dstrow" data-slug="${esc(d.slug)}">
+        <td>${goLink('dienststellen',d.slug,esc(d.name),'dlink')}${sammelTag(d)}<div class="small muted dsmob">${pl(nS_,'Service','Services')} · ${pl(nf_,'Formular','Formulare')}</div></td>
+        <td class="num">${nf(nS_)}</td>
+        <td class="num">${nf(nf_)}</td>
+        <td>${p?`<span class="stdcell" title="${esc(`${nf(e)} von ${pl(p,'Datenpunkt','Datenpunkten')} mit eCH-Element`)}">${miniBar(stdParts(S.ech),'Datenpunkte nach eCH-Stand')}<b>${pctTxt(e,p)}</b></span><div class="small muted">${nf(e)} von ${nf(p)}</div>`
+          :'<span class="small muted">keine Datenpunkte erfasst</span>'}</td>
+        <td>${nf_?tonNums(d.offen):'<span class="small muted">—</span>'}</td>
+        <td class="small">${mz?`<i class="sw t-act"></i>${esc(mz.aktion)}<div class="muted">${catUnit(mz.cat,mz.n)}${formCat(mz.cat)?'':' in '+pl(mz.formulare,'Formular','Formularen')} · ${mz.formulare>1?'grösste: ':''}${mzFormRef(mz.gross[0].f,mz.cat)}${MZ.length>1?` · +${pl(MZ.length-1,'weitere Massnahme','weitere Massnahmen')}`:''}</div>`
+          :`<span class="muted">${nf_?'keine Massnahme, die sie selbst treffen muss':'kein Formular in der Databank'}</span>`}</td></tr>`;
+    });
+  });
+  m.innerHTML=pageHead('Für Dienststellen · Was muss ich an meinen Formularen ändern?',
+    `Für jede der ${nf(DST.length)} Dienststellen: wie weit ihre Daten dem eCH-Standard folgen, wer ihre offenen Punkte lösen kann und was sie als Erstes ändern kann — eine Zeile öffnet das Briefing der Dienststelle.`,
+    'Je Dienststelle die Zahl ihrer Services und Formulare, der Anteil ihrer Datenpunkte mit eCH-Element, die offenen Punkte nach «wer handelt» und die wichtigste Massnahme, die sie selbst treffen kann. Darunter, aufklappbar, die Rechtsgrundlage je Service.',
+    'Aus den offenen Punkten der einzelnen Formulare und ihrer Datenstandard-Schicht zusammengezählt — dieselben Zahlen wie in den Briefings der Dienststellen. Die roten und amber Punkte stehen ebenso im Handlungsbedarf, die grauen unter «Recherche der Databank», alle zusammen in der CSV des Handlungsbedarfs. Dienststelle, Departement und Kontakt laut DVSH-Dienstleistungsmodell; «Sammelgruppe im DVSH» heisst: das DVSH fasst dort Services zusammen, die keine eigene Dienststelle mit eigener Leitung haben.',
+    `Rot: die Dienststelle kann es an ihrem Formular selbst ändern. Amber: es wartet auf einen Entscheid des Kantons. Grau: eine Hausaufgabe der Databank, kein Befund über die Dienststelle. Eine Massnahme fasst alle Punkte einer Kategorie über alle Formulare der Dienststelle zusammen. Die wichtigste folgt der Priorität: zuerst die Stufe (Datenstandard zuerst), dann die feste Reihenfolge der Kategorien (${actOrder}), erst zuletzt der Umfang.`)
+    +tonKeyLine()
+    +`<div class="regstats">
+      ${KE?`<span class="rstat">Datenpunkte mit eCH-Element, ganzer Kanton <b>${pctTxt(KE.wert,KE.von)}</b></span>`:''}
+      <span class="rstat">Dienststellen <b>${nf(DST.length)}</b></span>
+      <span class="rstat" title="Dienststellen mit mindestens einem roten Punkt — etwas, das sie an ihren Formularen selbst ändern kann">mit eigenen Massnahmen <b>${nf(nAct)}</b></span>
+      <span class="rstat">Offene Punkte ${tonNums(all)}</span></div>
+    <div class="card tscroll"><table class="ft dsttab"><thead><tr><th>Dienststelle</th><th class="num">Services</th><th class="num">Formulare</th>
+      <th title="Anteil der Datenpunkte mit dem Element eines eCH-Standards — der Balken zeigt auch die übrigen: hellgrün nur auf Standard-Ebene, amber ohne eCH-Standard oder Standard erst im Entwurf (kantonaler Entscheid, eSH), grau Zuordnung offen oder Standard nicht mehr in Kraft (Databank)">Datenstandard</th>
+      <th title="rot: Dienststelle handelt · amber: Kanton entscheidet · grau: Databank recherchiert">Offene Punkte</th><th>Wichtigste Massnahme</th></tr></thead><tbody>${rows}</tbody></table></div>
+    <details class="dsov"><summary>Rechtsgrundlage je Service — Dokumentationsstand der Databank, nach Departement</summary>${deptOverview({nested:true})}</details>`;
+  m.querySelectorAll('tr.dstrow').forEach(tr=>tr.onclick=e=>{
+    if(e.target.closest('a')) return;
+    state.tab='dienststellen'; state.service='all'; state.sub=tr.dataset.slug; render(); window.scrollTo(0,0);});
+  m.querySelectorAll('tr[data-sid]').forEach(tr=>tr.onclick=e=>{
+    if(e.target.closest('a')) return;
+    state.tab='fields'; state.service=tr.dataset.sid; state.sub='felder'; render(); window.scrollTo(0,0);});
+  wireGo(m);
+}
+// one Dienststelle: the briefing for its leadership — one to two printed pages
+function viewDienststelle(slug){
+  const m=document.getElementById('main');
+  const d=dstBySlug[slug];
+  if(!d){
+    m.innerHTML=pageHead('Dienststelle','Diese Dienststelle ist nicht in der Databank («'+esc(String(slug))+'») — der Link ist veraltet oder vertippt.')
+      +`<div class="nores">${goLink('dienststellen','','Alle Dienststellen ›','inl')}</div>`;
+    wireGo(m); return;
+  }
+  const fms=(d.formulare||[]).map(id=>formById[id]).filter(Boolean);
+  const O=Object.assign({act:0,dec:0,open:0},d.offen||{});
+  const nSvc=(d.services||[]).length, dep=d.department||'(ohne Departement)';
+  const S1=STUFEN.find(s=>s.n===1);
+  const kurz=!fms.length
+    ?`${pl(nSvc,'Service','Services')}, aber kein Formular in der Databank — darum auch keine offenen Punkte zu Formularen.`
+    :O.act
+    ?`${pl(nSvc,'Service','Services')} mit ${pl(fms.length,'Formular','Formularen')}: ${pl(O.act,'offenen Punkt','offene Punkte')} kann die Dienststelle selbst lösen, ${nf(O.dec)} ${plw(O.dec,'wartet','warten')} auf einen Entscheid des Kantons, ${nf(O.open)} ${plw(O.open,'ist eine Hausaufgabe','sind Hausaufgaben')} der Databank — gezählt je Datenpunkt, Feld oder Formular, aufgeschlüsselt unten.`
+    :`${pl(nSvc,'Service','Services')} mit ${pl(fms.length,'Formular','Formularen')}: Die Dienststelle muss an ihren Formularen selbst nichts ändern; ${pl(O.dec,'offener Punkt wartet','offene Punkte warten')} auf einen Entscheid des Kantons, ${nf(O.open)} ${plw(O.open,'ist eine Hausaufgabe','sind Hausaufgaben')} der Databank.`;
+  // (1) what the Dienststelle can do itself: one line per red category, data standard first —
+  // and why the data standard comes first, in the words of its priority tier
+  const MZ=massnahmenOf(d);
+  const s1=(S1?`<p class="stufetx">Zuerst der Datenstandard: ${esc(S1.text.charAt(0).toLowerCase()+S1.text.slice(1))}</p>`:'')
+    +(MZ.length
+    ?`<ol class="massn">${MZ.map(x=>`<li><i class="sw t-act"></i><b>${esc(x.aktion)}</b> — ${catUnit(x.cat,x.n)}${formCat(x.cat)?'':' in '+pl(x.formulare,'Formular','Formularen')}
+        ${mzMix(x)}
+        <div class="small">${x.formulare>1?'grösste: ':''}${x.gross.map(g=>mzFormRef(g.f,x.cat)+(x.formulare>1&&!formCat(x.cat)?` — ${catUnit(x.cat,g.n)}`:'')).join(' · ')}${x.formulare>x.gross.length?` · ${pl(x.formulare-x.gross.length,'weiteres Formular','weitere Formulare')}`:''}</div>
+        <div class="small muted">${esc(stufeLabel(x.stufe))} · ${esc(todoCat(x.cat)[1])}</div></li>`).join('')}</ol>`
+    :'<p class="dsnone">Keine Massnahme, die die Dienststelle selbst treffen muss.</p>');
+  // (2) its data standard; an element the databank assigned wrongly is not settled (grey)
+  const S=d.standard||{}, pts=S.punkte||0, EZ=echWithZuordnung(fms,S.ech), g=stdParts(EZ), zf=Number(EZ.zuordnung_falsch)||0, KE=(DATA.kopfzahlen||{}).standard_ech;
+  const mitE=S.mit_element!=null?S.mit_element:g.ok+zf;
+  // section (2) counts every Datenpunkt once (like the home page); the Massnahmen,
+  // section (4) and the CSV count every entry of form.handlungsbedarf — where the two
+  // differ, one line says by how much and why (reasons from standard_divergenzen)
+  const stdNote=(()=>{
+    let dvI=0, doI=0, multi=0, twiceA=0, twiceU=0, ovl=0;
+    fms.forEach(f=>{todoItems(f).forEach(i=>{if(i.cat==='divergenz') dvI+=i.n; else if(i.cat==='divergenz_offen') doI+=i.n;});
+      const act={}, unk={}, key=i=>String(i.feld)+'\u0001'+String(i.teilfeld||'');
+      (((f.standard_divergenzen||{}).angleichen)||[]).forEach(i=>{const o=i.art==='pflicht_uneinheitlich'?unk:act; (o[key(i)]=o[key(i)]||[]).push(i.art);});
+      Object.values(act).forEach(L=>{const u=new Set(L).size; multi+=u>1?1:0; twiceA+=L.length-u;});
+      Object.entries(unk).forEach(([k,L])=>{twiceU+=L.length-1; if(act[k]) ovl++;});});
+    const dp=S.div_punkte||0, dq=S.div_offen||0, parts=[];
+    if(dvI!==dp){const why=[multi&&'ein Datenpunkt weicht mehrfach ab', twiceA&&'ein Datum steht zweimal auf einem Formular'].filter(Boolean);
+      parts.push(`${catUnit('divergenz',dvI)} anders verlangt statt ${nf(dp)}${why.length?' ('+why.join('; ')+')':''}`);}
+    if(doI!==dq){const why=[ovl&&`${nf(ovl)} ${plw(ovl,'wird','werden')} zugleich anders verlangt und ${plw(ovl,'zählt','zählen')} hier als rot`, twiceU&&'ein Datum steht zweimal auf einem Formular'].filter(Boolean);
+      parts.push(`${nf(doI)} statt ${nf(dq)} ${catWord('divergenz_offen',doI)} «${esc(todoCat('divergenz_offen')[1])}»${why.length?' ('+why.join('; ')+')':''}`);}
+    return parts.length?`<div class="kznote dsnote">Hier zählt jeder Datenpunkt einmal; die Massnahmen, die offenen Punkte nach Priorität und die CSV zählen jeden Eintrag: dort ${parts.join(' und ')}.</div>`:'';})();
+  const s2=pts?`<div class="dsstdv"><span class="kzv">${pctTxt(mitE,pts)}</span><span class="kzsub" style="margin:0">${nf(mitE)} von ${pl(pts,'Datenpunkt','Datenpunkten')} tragen ein Element eines eCH-Standards${zf?` — bei ${nf(zf)} davon korrigiert die Databank die Zuordnung`:''}${KE?` — im ganzen Kanton ${pctTxt(KE.wert,KE.von)}`:''}.</span></div>
+      <div class="kzziel">${esc(ZIEL_STD)}</div>
+      ${tonBar([{t:'ok',n:g.ok,label:'mit eCH-Element'},
+        {t:'ok2',n:g.ok2,label:'nur auf Standard-Ebene (der Standard hat keinen Elementkatalog)'},
+        {t:'dec',n:g.dec,label:KS_LABEL()+(g.dec?' — steht unter «Was der Kanton entscheiden muss»':'')},
+        {t:'open',n:g.open,label:stdOpenLabel(EZ),link:g.open?goLink('recherche',zf?'zuordnung':'echalt','Recherche der Databank ›','inl noprint'):''}],'Datenpunkte dieser Dienststelle nach eCH-Stand')}
+      <ul class="tleg" style="margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)">
+        <li${S.div_punkte?'':' class="zero"'}><i class="sw t-act"></i><b>${nf(S.div_punkte)}</b><span>${catWord('divergenz',S.div_punkte)} anders verlangt als die übrige Praxis (Pflicht, Format oder Werteliste)${S.formulare_div?` — in ${pl(S.formulare_div,'Formular','Formularen')}`:''} <span class="tw">· ${esc(tonLabel('act'))}</span></span></li>
+        <li${S.div_offen?'':' class="zero"'}><i class="sw t-dec"></i><b>${nf(S.div_offen)}</b><span>${catWord('divergenz_offen',S.div_offen)} «${esc(todoCat('divergenz_offen')[1])}» — der Kanton legt fest, ob das Datum Pflicht ist <span class="tw">· ${esc(tonLabel('dec'))}</span></span></li>
+        <li${S.begriff_felder?'':' class="zero"'}><i class="sw t-act"></i><b>${nf(S.begriff_felder)}</b><span>${catWord('begriff',S.begriff_felder)} mit einer Bezeichnung, die auf den einheitlichen Begriff umzustellen oder aufzuteilen ist <span class="tw">· ${esc(tonLabel('act'))}</span></span></li>
+      </ul>${stdNote}
+      <div class="small noprint" style="margin-top:6px">${goLink('katalog','','Zum Datenkatalog ›','inl')} · ${goLink('begriffe','','Zu den Begriffen ›','inl')}</div>`
+    :'<p class="dsnone">Für diese Dienststelle sind keine Datenpunkte erfasst.</p>';
+  // (3) what only the canton can decide; a duplicate pair whose other form is counted at
+  // another Dienststelle is named here too (pairs count once, on one of their forms)
+  const EN=d.entscheide||[];
+  let nSf=0, nSfm=0;
+  fms.forEach(f=>{const k=(f.data_fields||[]).filter(x=>!x.schutzstufe).length; if(k){nSf+=k; nSfm++;}});
+  const myIds=new Set(fms.map(f=>f.id)); let dupP=0; const dupPD=new Set();
+  DATA.forms.forEach(f=>{if(myIds.has(f.id)) return; (f.similar||[]).forEach(s=>{
+    if(!s.verdict&&f.id<s.form_id&&myIds.has(s.form_id)){dupP++; dupPD.add(dstOf(f));}});});
+  const s3=(EN.length||dupP
+      ?`<table class="ft"><thead><tr><th>Entscheid</th><th>Umfang</th></tr></thead><tbody>${EN.map(e=>`<tr>
+          <td>${tonChip('dec',esc(todoCat(e.cat)[1]),null,tonLabel('dec')+' — '+todoCat(e.cat)[4])}${AKTION[e.cat]?`<div class="small muted">${esc(AKTION[e.cat])}</div>`:''}</td>
+          <td>${catUnit(e.cat,e.n)}${formCat(e.cat)||e.cat==='dup'?'':' in '+pl(e.formulare,'Formular','Formularen')}<div class="small noprint">${goLink('kanton',e.cat,'im ganzen Kanton ›','inl')}</div></td></tr>`).join('')}${dupP?`<tr>
+          <td>${tonChip('dec',esc(todoCat('dup')[1]),null,tonLabel('dec')+' — '+todoCat('dup')[4])}${AKTION.dup?`<div class="small muted">${esc(AKTION.dup)}</div>`:''}</td>
+          <td>${pl(dupP,'Formularpaar','Formularpaare')} mit einem Formular ${[...dupPD].map(x=>'der Dienststelle «'+esc(x)+'»').join(', ')} — dort gezählt<div class="small noprint">${goLink('kanton','dup','im ganzen Kanton ›','inl')}</div></td></tr>`:''}</tbody></table>`
+      :'<p class="dsnone">Kein Entscheid des Kantons zu einzelnen Formularen dieser Dienststelle offen.</p>')
+    +(nSf?`<div class="dsline"><i class="sw t-dec"></i><span>${esc(ISV_TXT)} für ${pl(nSf,'Datenfeld','Datenfelder')} in ${pl(nSfm,'Formular','Formularen')} nicht festgelegt — eine Klassifizierung, die der Kanton für alle Dienststellen zugleich trifft.</span></div>`:'');
+  // (4) every open point, by priority tier, each tier with the reason it has its place;
+  // per tier the forms fold open
+  const byS={};
+  fms.forEach(f=>{const gi={}; todoItems(f).forEach(i=>{const s=itemStufe(i); (gi[s]=gi[s]||[]).push(i);});
+    Object.entries(gi).forEach(([s,L])=>{(byS[s]=byS[s]||[]).push({f,its:L.sort(byPrio)});});});
+  const tsum=(its,t)=>its.filter(i=>itemTon(i)===t).reduce((a,i)=>a+i.n,0);
+  const s4=fms.length?STUFEN.map(st=>{
+    const c=Object.assign({act:0,dec:0,open:0},(d.stufen||{})[String(st.n)]||{});
+    const L=(byS[st.n]||[]).sort((a,b)=>tsum(b.its,'act')-tsum(a.its,'act')||tsum(b.its,'dec')-tsum(a.its,'dec')
+      ||b.its.reduce((x,i)=>x+i.n,0)-a.its.reduce((x,i)=>x+i.n,0));
+    return `<div class="dsstufe"><div class="dsshd"><b>${esc(stufeLabel(st.n))}</b>${tonNums(c)}</div><p class="stufetx">${esc(st.text)}</p>
+      ${L.length?`<details class="dsdet"><summary>${pl(L.length,'Formular','Formulare')} mit Punkten dieser Stufe</summary>
+        <table class="ft dsptab"><tbody>${L.map(({f,its})=>`<tr><td>${formLink(f.service_id,f.id,esc(f.title),'',its.some(i=>DIV_SEC(i.cat))?'div':'')}</td>
+          <td><ul class="pline">${its.map(i=>{const t=itemTon(i); return `<li>${tonChip(t,esc(todoCat(i.cat)[1]),i.n>1?i.n:null,`${tonLabel(t)} · ${catUnit(i.cat,i.n)} — ${todoCat(i.cat)[4]}`)}<span class="clipd">${clip(i.detail,160)}</span></li>`;}).join('')}</ul></td></tr>`).join('')}</tbody></table></details>`
+        :'<div class="small muted">Keine offenen Punkte in dieser Stufe.</div>'}</div>`;}).join('')
+    :'<p class="dsnone">Keine Formulare, keine offenen Punkte.</p>';
+  // (5) the databank's own homework
+  const rc={};
+  fms.forEach(f=>todoItems(f).filter(i=>itemTon(i)==='open').forEach(i=>{rc[i.cat]=(rc[i.cat]||0)+i.n;}));
+  const rk=Object.keys(rc).sort((a,b)=>catRank(a)-catRank(b));
+  const s5=(O.open?`<div class="dsline"><i class="sw t-open"></i><span><b>${pl(O.open,'offener Punkt','offene Punkte')}</b> (Datenpunkte, Felder oder Formulare — aufgeschlüsselt darunter): Hausaufgaben der Databank — kein Befund über die Dienststelle.</span></div>`
+      :'<p class="dsnone">Die Databank hat zu dieser Dienststelle keine offenen Recherche-Punkte.</p>')+`
+    ${rk.length?`<div class="small muted" style="margin:4px 0 0 16px">${rk.map(k=>`${esc(todoCat(k)[1])}: ${catUnit(k,rc[k])}`).join(' · ')}</div>`:''}
+    <div class="small noprint" style="margin:6px 0 0 16px">${goLink('recherche','','Zur Recherche der Databank ›','inl')}</div>`;
+  // (6) its services and forms; printed, a long list becomes one line with the page's address
+  const svcs=(d.services||[]).map(id=>svcById[id]).filter(Boolean).sort((a,b)=>a.name.localeCompare(b.name,'de'));
+  const online=(window.__cgSite||'https://jastephan63.github.io/citygov/')+'dashboard.html#dienststellen/all/'+encodeURIComponent(d.slug);
+  // one line per service; a Formular named like its service is not repeated
+  const s6=svcs.length?`<ul class="dssvc">${svcs.map(s=>{const fs=formsByService[s.id]||[];
+      return `<li>${svcLink(s.id,esc(s.name))} ${!fs.length?noFormBadge(s)
+        :fs.length===1&&sameName(fs[0].title,s.name)?`<span class="small muted">· ${formLink(fs[0].service_id,fs[0].id,'Formular','dlink lt')}</span>`
+        :`<span class="small muted dsfl">· ${plw(fs.length,'Formular','Formulare')} ${fs.map(f=>`«${formLink(f.service_id,f.id,esc(f.title),'dlink lt')}»`).join(' · ')}</span><span class="small muted dsfc">· ${fs.length===1?'Formular':pl(fs.length,'Formular','Formulare')}</span>`}</li>`;}).join('')}</ul>`
+    :'<p class="dsnone">Keine Services in der Databank.</p>';
+  // printed, more than a dozen services would push the briefing onto a third page
+  const longList=svcs.length>12;
+  const s6print=longList?`<div class="printonly small">${pl(svcs.length,'Service','Services')} mit ${pl(fms.length,'Formular','Formularen')} — vollständige Liste mit Links online: ${esc(online)}</div>`:'';
+  const sec=(t,b,card,cls)=>`<section class="dssec${cls?' '+cls:''}"><h4>${t}</h4>${card===false?b:`<div class="card">${b}</div>`}</section>`;
+  const sam=SAMMEL.has(d.name);
+  m.innerHTML=`<div class="bcrumb noprint"><a href="#dienststellen" data-go="dienststellen">‹ Alle Dienststellen</a><span>›</span><span>${esc(dep)}</span></div>`
+    +pageHead(esc(d.name)+sammelTag(d), kurz,
+      'Das Briefing für die Leitung der Dienststelle: zuerst, was sie selbst ändern kann, dann ihr Datenstandard, die Entscheide des Kantons, alle offenen Punkte nach Priorität, die Hausaufgaben der Databank und ihre Services und Formulare.',
+      'Aus den offenen Punkten der einzelnen Formulare zusammengezählt. Die roten und amber Punkte stehen ebenso im Handlungsbedarf, die grauen unter «Recherche der Databank», alle zusammen in der CSV des Handlungsbedarfs. Der Abschnitt «Datenstandard» zählt wie die Startseite jeden Datenpunkt einmal. Departement und Kontakt laut DVSH-Dienstleistungsmodell.',
+      'Rot handelt die Dienststelle, amber entscheidet der Kanton, grau recherchiert die Databank. Die Prioritätsstufen beginnen beim Datenstandard. Die Formulare je Stufe sind aufklappbar; gedruckt erscheinen die Zahlen je Stufe, und die Liste der Services steht bei grossen Dienststellen nur online.')
+    +tonKeyLine()
+    +`<div class="card dshead"><div class="dsmeta">
+        <div><span class="hsl">Departement</span>${esc(dep)}</div>
+        <div><span class="hsl">Kontakt</span>${(d.kontakt||[]).length?kontaktHtml(d.kontakt):'<span class="muted">nicht im DVSH hinterlegt</span>'}${sam?` <span class="small muted">(laut DVSH für diese Sammelgruppe; sie umfasst ${svcs.map(s=>'«'+esc(s.name)+'»').join(', ')||'keine Services'})</span>`:''}</div>
+        <div class="printonly small"><span class="hsl">Online</span>${esc(online)}</div></div>
+      <button class="srcbtn noprint" id="dsprint" type="button" title="Dieses Briefing drucken oder als PDF sichern — ohne Seitenleiste und Kopfzeile">⎙ Briefing drucken</button></div>`
+    +sec('Die wichtigsten Massnahmen',s1)
+    +sec('Datenstandard dieser Dienststelle',s2)
+    +sec('Was der Kanton entscheiden muss',s3)
+    +sec('Offene Punkte nach Priorität',s4)
+    +sec('Recherche der Databank',s5)
+    +sec('Services und Formulare',`<div class="card">${s6}</div>`+s6print,false,'dssvcsec'+(longList?' long':''))
+    +`<div class="datenstand"><b>Datenstand</b> — ${esc(datenstandKurz(fms))}</div>`;
+  const pb=document.getElementById('dsprint'); if(pb) pb.onclick=()=>window.print();
+  wireGo(m);
+}
+// ---------- Für den Kanton: what only the canton can decide (amber) ----------
+function viewKanton(){
+  const m=document.getElementById('main');
+  const K=DATA.kopfzahlen||{}, E=K.standard_ech||{}, ET=E.teile||{}, U=K.standard_einheitlich||{}, UT=U.teile||{};
+  const A=aggByCat('dec');
+  const focus=(state.sub&&state.sub!=='felder')?state.sub:null;
+  const badSub=focus&&!A[focus]&&focus!=='schutzstufe';
+  // a category of this page that has no open points right now is not a bad link
+  const emptySub=badSub&&TODO_BY[focus]&&catTon(focus)==='dec';
+  if(badSub) state.sub='felder';
+  // the data-standard decisions are the category cards of Stufe 1 — every gap once; the
+  // cards say how they relate to the figures of the start page (kopfzahlen)
+  const nEsh=(DATA.esh_katalog||[]).length, eshT=Object.fromEntries((DATA.esh_katalog||[]).map(k=>[k.code,k.titel]));
+  const ks=A.kein_standard, dvo=A.divergenz_offen, extra={}, head={};
+  if(ks){
+    // «Kein geltender eCH-Standard» holds three different decisions: set an eSH draft in force,
+    // fill a gap nobody has drafted yet, or wait for (or adopt) an eCH draft
+    const Z=KS_SPLIT, tot=Z.esh.n+Z.none.n+Z.ech.n;
+    const echT=ECH_TITEL;
+    const list=(codes,title,link)=>`<table class="ft"><thead><tr><th>Standard</th><th>Titel</th><th class="num">Datenpunkte</th></tr></thead><tbody>${
+      Object.entries(codes).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0])).map(([c,n])=>`<tr><td class="mono small nowrap">${link?`<a class="inl" href="#esh" data-go="esh">${esc(c)}</a>`:esc(c)}</td><td class="small">${esc(title[c]||'')}</td><td class="num">${nf(n)}</td></tr>`).join('')}</tbody></table>`;
+    const nEshC=Object.keys(Z.esh.codes).length, nEchC=Object.keys(Z.ech.codes).length;
+    extra.kein_standard=`<ul class="tleg" style="margin-top:8px">
+      <li><i class="sw t-dec"></i><b>${nf(Z.esh.n)}</b><span>${catWord('kein_standard',Z.esh.n)} in ${pl(Z.esh.forms.size,'Formular','Formularen')}: ein eSH-Entwurf liegt vor — der Kanton setzt den Entwurf in Kraft (${pl(nEshC,'Entwurf','Entwürfe')})</span></li>
+      <li><i class="sw t-dec"></i><b>${nf(Z.none.n)}</b><span>${catWord('kein_standard',Z.none.n)} in ${pl(Z.none.forms.size,'Formular','Formularen')}: weder eCH-Standard noch eSH-Entwurf — eSH ergänzen oder bei eCH einen Standard beantragen</span></li>
+      <li><i class="sw t-dec"></i><b>${nf(Z.ech.n)}</b><span>${catWord('kein_standard',Z.ech.n)} in ${pl(Z.ech.forms.size,'Formular','Formularen')}: eCH-Standard erst im Entwurf (${pl(nEchC,'Entwurf','Entwürfe')}) — eCH abwarten oder den Entwurf vorläufig übernehmen</span></li></ul>
+    ${nEshC?`<details class="catdet"><summary>Die eSH-Entwürfe (${nf(nEshC)})</summary>${list(Z.esh.codes,eshT,true)}</details>`:''}
+    ${nEchC?`<details class="catdet"><summary>Die eCH-Standards im Entwurf (${nf(nEchC)})</summary>${list(Z.ech.codes,echT,false)}</details>`:''}
+    <div class="kznote">${pctTxt(ks.n,E.von||0)} aller Datenpunkte — ${(ET.dec||0)===ks.n?'auf der Startseite der amber Teil':`die Startseite zählt ${nf(ET.dec||0)} im amber Teil`} von «Datenpunkte mit eCH-Element». Für ${nf(Z.esh.n)} davon liegt ein eSH-Entwurf vor, für ${nf(Z.none.n+Z.ech.n)} nicht; ein eSH-Entwurf ist kein offizieller eCH-Standard (${pl(nEsh,'Entwurf','Entwürfe')} im Katalog).${tot!==ks.n?` Die Aufteilung zählt ${nf(tot)} Datenpunkte (Abschnitt «Ohne zitierbaren Standard» der Formulare).`:''} ${goLink('esh','','Zum eSH-Katalog (Entwurf) ›','inl')}</div>`;
+  }
+  if(dvo){
+    // the canton decides once per datum, not per Formular: the same points, by eCH element
+    const PU=pflichtUneinheitlichAgg(), nPU=PU.reduce((a,x)=>a+x.n,0);
+    const row=x=>`<tr><td><span class="mono small">${esc(x.el.replace('·',' · '))}</span><div class="small muted">«${esc(x.label)}»</div></td>
+      <td class="small nowrap">${nf(x.req)} Pflicht · ${nf(x.opt)} optional</td><td class="num">${nf(x.forms.size)}</td><td class="num">${nf(x.n)}</td></tr>`;
+    const thead=`<thead><tr><th>eCH-Element</th><th title="Wie die Formulare dieser Zeile das Datum selbst verlangen">auf diesen Formularen</th><th class="num">Formulare</th><th class="num">Datenpunkte</th></tr></thead>`;
+    head.divergenz_offen=`<b>${pl(PU.length,'Datum','Daten')} festzulegen</b>`;
+    extra.divergenz_offen=`<div class="dvsub" style="margin-top:10px">Je Datum — festgelegt wird einmal je Datum, nicht je Formular</div>
+      <div class="tscroll" style="padding:0"><table class="ft">${thead}<tbody>${PU.slice(0,20).map(row).join('')}</tbody></table></div>
+      ${PU.length>20?`<details class="catdet"><summary>alle ${nf(PU.length)} anzeigen</summary><div class="tscroll" style="padding:0"><table class="ft">${thead}<tbody>${PU.slice(20).map(row).join('')}</tbody></table></div></details>`:''}
+      <div class="kznote">${(UT.dec||0)===dvo.n?'Dieselbe Zahl wie auf der Startseite («Einheitlich verlangt», amber).'
+        :`Gezählt wie im Handlungsbedarf: jede offene Festlegung je Formular. Die Startseite zählt jeden Datenpunkt nur einmal (${nf(UT.dec||0)}); ein Datenpunkt, der zugleich anders verlangt wird, zählt dort als rot.`}${nPU!==dvo.n?` Die Tabelle zählt ${nf(nPU)} Datenpunkte.`:''}
+        ${goLink('katalog','','Im Datenkatalog ›','inl')}</div>`;
+  }
+  // the ISV protection level: open for the fields of every Dienststelle at once
+  const ss={}; let nSf=0, nSfm=0, nAll=0, nSens=0; const sensF=new Set();
+  DATA.forms.forEach(f=>{const dfs=f.data_fields||[]; nAll+=dfs.length; const k=dfs.filter(x=>!x.schutzstufe).length;
+    dfs.forEach(x=>{if(x.sensitive&&!x.schutzstufe){nSens++; sensF.add(f.id);}});
+    if(!k) return;
+    nSf+=k; nSfm++; const dn=dstOf(f), e=ss[dn]=ss[dn]||{fields:0,forms:0}; e.fields+=k; e.forms++;});
+  const ssRows=Object.entries(ss).sort((a,b)=>b[1].fields-a[1].fields||a[0].localeCompare(b[0],'de'))
+    .map(([dn,e])=>`<tr><td>${dstLink(dn)}</td><td class="num">${nf(e.fields)}</td><td class="num">${nf(e.forms)}</td></tr>`).join('');
+  const isv=nSf?`<div class="card catblk" id="cat-schutzstufe">
+      <div class="cathd">${tonChip('dec','Schutzstufe (ISV) nicht festgelegt',null,tonLabel('dec'))}<span class="catn"><b>${pl(nSf,'Datenfeld','Datenfelder')}</b> in ${pl(nSfm,'Formular','Formularen')} bei ${pl(Object.keys(ss).length,'Dienststelle','Dienststellen')}</span></div>
+      <div class="catx">${nSf===nAll?'Für kein Datenfeld':'Für '+pl(nSf,'Datenfeld','Datenfelder')+' von '+nf(nAll)} ist eine ${esc(ISV_TXT)} festgelegt. Das ist eine kantonale Klassifizierung; die Databank setzt bewusst keine Standardwerte.</div>
+      ${AKTION.schutzstufe?`<div class="catx"><span class="hsl">Zu entscheiden</span>${esc(AKTION.schutzstufe)}</div>`:''}
+      ${nSens?`<div class="catx"><span class="hsl">Ein Anfang</span>Die ${pl(nSens,'besonders schützenswerte Datenfeld','besonders schützenswerten Datenfelder')} (⛨) in ${pl(sensF.size,'Formular','Formularen')} — für solche Daten nennt ISV Art. 6 Abs. 1 lit. b die Vertraulichkeitsstufe G (besonders schützenswert).</div>`:''}
+      <details class="catdet"${focus==='schutzstufe'?' open':''}><summary>Je Dienststelle (${nf(Object.keys(ss).length)})</summary>
+        <div class="tscroll" style="padding:0"><table class="ft"><thead><tr><th>Dienststelle</th><th class="num">Datenfelder</th><th class="num">Formulare</th></tr></thead><tbody>${ssRows}</tbody></table></div></details></div>`:'';
+  const nDec=Object.values(A).reduce((a,x)=>a+x.n,0);
+  // «Punkte» of different kinds: said, never summed silently
+  const uS={}; Object.keys(A).forEach(k=>{const w=catUnitOf(k)[1]; uS[w]=(uS[w]||0)+A[k].n;});
+  const uOrd=['Datenpunkte','Felder','Formularpaare','Formulare'];
+  const uTxt=Object.entries(uS).sort((a,b)=>(uOrd.indexOf(a[0])+1||9)-(uOrd.indexOf(b[0])+1||9)).map(([w,n])=>`${nf(n)} ${UNIT_WORD(w)}`).join(' · ');
+  const mostKs=ks&&ks.n*2>nDec;
+  m.innerHTML=pageHead('Für den Kanton · Was muss entschieden werden?',
+    `${pl(nDec,'offener Punkt wartet','offene Punkte warten')}${mostKs?' — die meisten davon Datenpunkte ohne geltenden eCH-Standard —':''} auf einen Entscheid des Kantons; der Datenstandard zuerst. Dazu die ${esc(ISV_TXT)}, die für alle Datenfelder noch festzulegen ist.`,
+    'Alles, was nur der Kanton entscheiden kann (amber): wo er einen Datenstandard festlegen muss, dann die Entscheide je Kategorie in der Reihenfolge der Prioritätsstufen, mit den betroffenen Dienststellen und Formularen, und die Schutzstufen nach ISV.',
+    'Die offenen Punkte je Formular, einmal für alle Seiten berechnet — dieselbe Liste wie im Handlungsbedarf, in den Briefings der Dienststellen und in der CSV. Die Aufteilung «kein eCH-Standard / Standard im Entwurf» stammt aus der Datenstandard-Auswertung derselben Datenpunkte, die Vergleichszahlen aus den Kennzahlen der Startseite.',
+    'Ein offener Entscheid ist eine Lücke, kein Versäumnis: die Databank setzt dort bewusst keinen Standardwert. «Zu entscheiden» nennt, was festzulegen ist; die aufklappbare Liste, wo es gilt. Ein Punkt ist je nach Kategorie ein Datenpunkt, ein Datenfeld, ein Formular oder ein Formularpaar.')
+    +(emptySub?`<div class="nores">Zur Kategorie «${esc(todoCat(focus)[1])}» gibt es zurzeit keine offenen Entscheide — gezeigt werden alle.</div>`
+      :badSub?`<div class="nores">Kategorie «${esc(TODO_BY[focus]?todoCat(focus)[1]:String(focus))}» gibt es unter den Entscheiden des Kantons nicht — gezeigt werden alle.</div>`:'')
+    +`<div class="regstats"><span class="rstat"><i class="sw t-dec"></i>${esc(tonLabel('dec'))} <b>${nf(nDec)}</b>${uTxt?` <span class="small muted">— davon ${uTxt}</span>`:''}</span>
+      <span class="rstat">Kategorien <b>${nf(Object.keys(A).length)}</b></span>
+      ${nSf?`<span class="rstat">dazu Schutzstufe (ISV) für <b>${nf(nSf)}</b> ${plw(nSf,'Datenfeld','Datenfelder')}</span>`:''}</div>
+    <section class="hsec core"><h4>Datenstandard: wo der Kanton festlegen muss</h4>
+      <p class="hsub">Wo eCH nichts vorgibt oder die Praxis auseinandergeht, kann keine Dienststelle allein entscheiden — erst eine kantonale Festlegung macht das Datum überall gleich.</p>
+      ${catSections('dec','Zu entscheiden',focus,{stufen:[1],extra,head})||'<div class="nores">Keine offenen Entscheide zum Datenstandard.</div>'}</section>
+    <h4 class="hscope">Weitere Entscheide des Kantons — nach Priorität</h4>
+    ${catSections('dec','Zu entscheiden',focus,{stufen:STUFEN.map(x=>x.n).filter(n=>n!==1)})||'<div class="nores">Keine weiteren offenen Entscheide.</div>'}
+    ${isv?`<div class="stufehd">Für alle Datenfelder zugleich</div>${isv}`:''}`;
+  wireGo(m); focusCat(m, badSub?null:focus);
+}
+// ---------- Recherche der Databank: the databank's own homework (grey) ----------
+function viewRecherche(){
+  const m=document.getElementById('main');
+  const A=aggByCat('open');
+  const focus=(state.sub&&state.sub!=='felder')?state.sub:null;
+  const badSub=focus&&!A[focus];
+  // a grey category without open points belongs here all the same — it just has none now
+  const emptySub=badSub&&TODO_BY[focus]&&catTon(focus)==='open';
+  if(badSub) state.sub='felder';
+  const n=Object.values(A).reduce((a,x)=>a+x.n,0);
+  const nF=new Set(), nD=new Set();
+  Object.values(A).forEach(a=>Object.entries(a.byDst).forEach(([dn,b])=>{nD.add(dn); b.rows.forEach(r=>nF.add(r.f.id));}));
+  const perS=STUFEN.map(s=>{const k=Object.keys(A).filter(c=>catStufe(c)===s.n).reduce((x,c)=>x+A[c].n,0);
+    return k?`<span class="rstat">${esc(stufeLabel(s.n))} <b>${nf(k)}</b></span>`:'';}).join('');
+  m.innerHTML=pageHead('Recherche der Databank',
+    `Hausaufgaben der Databank — kein Befund über die Verwaltung: ${pl(n,'Punkt','Punkte')}, die die Databank selbst noch nachschlagen, belegen oder zuordnen muss.`,
+    'Alle grauen Punkte nach Kategorie, in der Reihenfolge der Prioritätsstufen, mit ihrer Anzahl und — aufklappbar — den Dienststellen und Formularen, bei denen sie anfallen.',
+    'Die offenen Punkte je Formular, einmal für alle Seiten berechnet — dieselbe Liste wie in den Briefings der Dienststellen und in der CSV des Handlungsbedarfs.',
+    'Grau heisst: die Databank hat noch nicht nachgeschaut oder noch nicht belegt. Das sagt nichts darüber, ob die Dienststelle richtig arbeitet — erst die Recherche zeigt, ob dahinter etwas zu ändern oder zu entscheiden ist.')
+    +(emptySub?`<div class="nores">Zur Kategorie «${esc(todoCat(focus)[1])}» gibt es zurzeit keine offenen Punkte — gezeigt werden alle.</div>`
+      :badSub?`<div class="nores">Kategorie «${esc(TODO_BY[focus]?todoCat(focus)[1]:String(focus))}» gehört nicht zur Recherche der Databank — gezeigt werden alle.</div>`:'')
+    +`<div class="regstats"><span class="rstat"><i class="sw t-open"></i>${esc(tonLabel('open'))} <b>${nf(n)}</b></span>
+      <span class="rstat">Formulare <b>${nf(nF.size)}</b></span><span class="rstat">Dienststellen <b>${nf(nD.size)}</b></span>${perS}</div>
+    ${catSections('open','Zu tun',focus)||'<div class="nores">Die Databank hat keine offenen Recherche-Punkte.</div>'}`;
+  wireGo(m); focusCat(m, badSub?null:focus);
+}
+// nested (on «Für Dienststellen»): no own title, and the sidebar's filter text does not apply
+function deptOverview(opt){
+  const o=opt||{};
+  const f=o.nested?'':state.filter.toLowerCase();
+  let h=`${o.nested?'':'<h3 class="view">Übersicht nach Departement</h3>'}
+  <p class="hint">Dokumentationsstand der Databank, gerechnet auf der kuratierten Datenfeld-Schicht, in derselben Farbsprache wie
+  die Startseite — die Farbe sagt, wer als Nächstes handelt: grün Norm belegt oder für die Aufgabe nötig; rot ohne Grundlage
+  (die Dienststelle streicht das Feld oder holt die Zustimmung ein); amber Aufgabenbedarf offen (Kanton);
+  grau noch zu ermitteln, dazu ⛨-Felder, die als aufgabennotwendig gelten, deren Grundlage nach KDSG Art. 5 Abs. 1 aber noch
+  nicht benannt ist (Databank). Grau heisst: noch nicht ermittelt — eine Hausaufgabe der Databank. Zeile anklicken öffnet die Service-Seite.</p>`;
   deptKeys().forEach(d=>{
-    const offices=deptTree[d]; let body='',dn=0,dh=0,dsvc=0;
+    const offices=deptTree[d]; let body='',dsvc=0; const D={need:0,have:0,ok:0,act:0,dec:0,open:0};
     Object.keys(offices).sort().forEach(o=>offices[o].forEach(s=>{
       if(f && !(s.name+' '+o+' '+d).toLowerCase().includes(f)) return;
-      const g=grounding(s.id); dn+=g.need; dh+=g.have; dsvc++;
-      const pct=g.need?Math.round(100*g.have/g.need):100;
-      body+=`<tr data-sid="${s.id}" style="cursor:pointer"><td><b title="${esc(s.name)}">${esc(s.name)}</b></td>
+      const g=grounding(s.id); Object.keys(D).forEach(k=>{D[k]+=g[k];}); dsvc++;
+      body+=`<tr data-sid="${s.id}" style="cursor:pointer"><td>${svcLink(s.id,esc(s.name))}</td>
         <td class="small muted">${esc(o)}</td><td class="small">${g.need}</td>
-        <td><div class="pbar" style="display:inline-block;max-width:160px;vertical-align:middle"><i style="width:${pct}%"></i></div> <span class="small muted">${g.have}/${g.need}</span></td></tr>`;
+        <td>${g.need?`<span class="stdcell">${basisBar(g,'Datenfelder nach Rechtsgrundlage')}<span class="small muted">${g.have}/${g.need} mit Grundlage</span></span>`:'<span class="small muted">keine Datenfelder</span>'}</td></tr>`;
     }));
     if(!body) return;
-    const dpct=dn?Math.round(100*dh/dn):100;
-    h+=`<div class="card"><div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
+    h+=`<div class="card"><div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;flex-wrap:wrap">
       <b style="font-size:14px">${esc(d)}</b> <span class="small muted">${pl(dsvc,'Service','Services')}</span>
-      <div class="pbar"><i style="width:${dpct}%"></i></div><span class="small muted">${nf(dh)}/${nf(dn)} ${plw(dn,'Datenfeld','Datenfelder')} geklärt</span></div>
-      <table class="ft"><thead><tr><th>Service</th><th>Dienststelle</th><th>Datenfelder</th><th>Rechtsfrage geklärt</th></tr></thead><tbody>${body}</tbody></table></div>`;
+      ${basisBar(D,'Datenfelder des Departements nach Rechtsgrundlage',220)}<span class="small muted">${nf(D.have)}/${nf(D.need)} ${plw(D.need,'Datenfeld','Datenfelder')} mit Grundlage</span>${tonNums(D)}</div>
+      <table class="ft"><thead><tr><th>Service</th><th>Dienststelle</th><th>Datenfelder</th><th title="grün Norm belegt oder für die Aufgabe nötig · rot ohne Grundlage · amber Aufgabenbedarf offen · grau noch zu ermitteln">Rechtsgrundlage</th></tr></thead><tbody>${body}</tbody></table></div>`;
   });
   return h;
 }
@@ -1051,18 +2327,29 @@ function viewDataFields(forms){
         // «Element offen» only where the standard HAS an element catalogue; a
         // standard without one is a final answer (standard_ohne_elemente), not a task
         const n=dfs.filter(x=>x.ech&&x.ech.element).length;
-        const off=dfs.filter(x=>x.ech&&!x.ech.element&&x.ech.n_elements>0).length;
-        const so=dfs.filter(x=>x.ech&&!x.ech.element&&!(x.ech.n_elements>0)).length;
-        return (n?` · <b>${n}/${dfs.length}</b> eCH-standardisiert`:'')
-          +(off?` · <span title="Standard zugeordnet, konkretes XML-Element noch offen (der Standard führt einen Elementkatalog)">${off} Element offen</span>`:'')
-          +(so?` · <span title="${esc(lab(DIV_DE,'standard_ohne_elemente'))} — der Standard führt in der Databank keinen XML-Elementkatalog (FHIR-/Prozessstandard oder XSD nicht gesweept); die Zuordnung bleibt auf Standard-Ebene, ein Element ist hier nicht zu bestimmen">${so} nur Standard-Ebene</span>`:'');})()}</span>
-      ${(()=>{const ck=fm.check;if(!ck)return'';
-        if(ck.status==='aktuell')return`<span class="fcheck ok" title="online geprüft (${esc(ck.quelle||'')}) — unsere Kopie ist die aktuelle Fassung">✓ aktuell${ck.d?' · geprüft '+esc(fmtDate(ck.d)):''}</span>`;
-        if(ck.status==='veraltet')return`<span class="fcheck warn" style="font-weight:700" title="${esc(ck.note||'')}">⛔ veraltet — neuere Fassung online</span>`;
-        if(ck.status==='veraltet_verdacht')return`<span class="fcheck warn" title="${esc(ck.note||'')}${ck.dvsh_neu?' — neu: '+esc(ck.dvsh_neu):''}">⚠ evtl. veraltet</span>`;
-        if(ck.status==='nicht_auffindbar')return`<span class="fcheck gone" title="${esc(ck.note||'')} (geprüft ${esc(fmtDate(ck.d))}) — Formular wird online nicht mehr angeboten; evtl. ausser Gebrauch oder durch eServices ersetzt">✕ nicht mehr online</span>`;
-        if(ck.status==='nicht_gefunden')return`<span class="fcheck miss" title="weder auf sh.ch, im DVSH noch per Websuche auffindbar (geprüft ${esc(fmtDate(ck.d))})">? online nicht gefunden</span>`;
-        return'';})()}
+        const byS=k=>dfs.filter(x=>x.ech&&!x.ech.element&&echState(x)===k).length;
+        const off=byS('element_offen'), so=byS('standard_ohne_elemente'), dr=byS('standard_entwurf'), alt=byS('standard_alt');
+        const cnt=(k,num,txt,tip)=>{const t=tonOf('ech',k); return ` · <span class="nowrap" title="${esc(tip+'\n'+tonWords(t))}">${SW(t)}${num}</span>`;};
+        return (n?` · <span class="nowrap">${SW(tonOf('ech','element'))}<b>${n}/${dfs.length}</b> eCH-standardisiert</span>`:'')
+          +(off?cnt('element_offen',`${off} Element offen`,'','Standard zugeordnet, konkretes XML-Element noch offen (der Standard führt einen Elementkatalog)'):'')
+          +(so?cnt('standard_ohne_elemente',`${so} nur Standard-Ebene`,'',`${lab(DIV_DE,'standard_ohne_elemente')} — der Standard führt in der Databank keinen XML-Elementkatalog (FHIR-/Prozessstandard oder XSD noch nicht geprüft); die Zuordnung bleibt auf Standard-Ebene, ein Element ist hier nicht zu bestimmen`):'')
+          +(dr?cnt('standard_entwurf',`${dr} Standard im Entwurf`,'','Der zugeordnete eCH-Standard ist noch in Arbeit (nicht genehmigt) — bis eCH ihn verabschiedet, legt der Kanton fest, wie das Datum verlangt wird (eSH)'):'')
+          +(alt?cnt('standard_alt',`${alt} Standard nicht mehr in Kraft`,'','Der zugeordnete eCH-Standard ist sistiert, aufgehoben oder abgelöst — die Databank ersetzt die Zuordnung durch den Nachfolger'):'');})()}</span>
+      ${(()=>{const ck=fm.check; if(!ck||!ck.status) return '';
+        // currency of the Formular, in its tone (ton_map.check): aktuell ok, every
+        // «not the current version» red; label from DATA.labels.check. Past its Wiedervorlage
+        // an «aktuell» is open again (grey) — the rule of formFacts and the dossier
+        const faellig=ck.status==='aktuell'&&((fm.handlungsbedarf||[]).some(i=>i.cat==='pruefung_faellig')
+          ||(fm.next_check_due&&fm.next_check_due<new Date().toISOString().slice(0,10)));
+        if(faellig){const tf=tonOf('check','faellig');
+          return `<span class="fcheck st-${tf}" title="${esc('Wiedervorlage der Online-Prüfung abgelaufen — ob die Kopie der Databank noch die aktuelle Fassung ist, ist unbekannt (Recherche der Databank «Online-Prüfung fällig»)\n'+tonWords(tf))}">${SW(tf)}geprüft ${esc(fmtDate(ck.d))} · Wiedervorlage fällig</span>`;}
+        const t=tonOf('check',ck.status);
+        const tip={aktuell:`online geprüft${ck.quelle?' ('+ck.quelle+')':''} — die Kopie der Databank ist die aktuelle Fassung`,
+          veraltet:ck.note||'Online liegt eine neuere Fassung',
+          veraltet_verdacht:(ck.note||'Verdacht auf eine neuere Fassung')+(ck.dvsh_neu?' — neu: '+ck.dvsh_neu:''),
+          nicht_auffindbar:`${ck.note||''} (geprüft ${fmtDate(ck.d)}) — Formular wird online nicht mehr angeboten; evtl. ausser Gebrauch oder durch eServices ersetzt`,
+          nicht_gefunden:`weder auf sh.ch, im DVSH noch per Websuche auffindbar (geprüft ${fmtDate(ck.d)})`}[ck.status]||'Ergebnis der Online-Prüfung';
+        return `<span class="fcheck st-${t}" title="${esc(tip+'\n'+tonWords(t))}">${SW(t)}${esc(lab(CHECK_DE,ck.status))}${ck.status==='aktuell'&&ck.d?' · geprüft '+esc(fmtDate(ck.d)):''}</span>`;})()}
       ${fm.source_file?`<a class="srcbtn" href="${esc(fm.source_file)}" style="margin-left:auto">↗ Quelldatei</a>`:''}</div>`;
     dfs.forEach(d=>{
       const subs=(d.subfields||[]).map(s=>typeof s==='string'?s:(s&&s.name)||'').filter(Boolean);
@@ -1072,36 +2359,51 @@ function viewDataFields(forms){
           <span class="dfname">${esc(d.name)}</span>
           ${d.required?'<span class="req">✱ Pflicht</span>':'<span class="muted small">optional</span>'}
           ${divChip(DIX[d.name+'|'])}${begChip(d.begriff)}
-          ${d.ech?(()=>{const e=d.ech.element, nx=!e&&d.ech.n_elements>0;
+          ${d.ech?(()=>{const e=d.ech.element, nx=!e&&d.ech.n_elements>0, t=tonOf('ech',echState(d));
             const st=d.ech.status, draft=st&&st!=='Genehmigt';
-            const tip=esc(d.ech.standard_titel||'')+(e?` — Element ${esc(e)}`
+            const tip=(d.ech.standard_titel||'')+(e?` — Element ${e}`
               :(nx?` — Element noch nicht bestimmt (${pl(d.ech.n_elements,'Element','Elemente')} im Standard)`
                   :' — Standard ohne XSD: kein zitierbares XML-Element'))
-              +(st?` · Status: ${esc(st)}${d.ech.reifegrad?', Reifegrad '+esc(d.ech.reifegrad):''}`:' · Status nicht erhoben (kein Genehmigungsstatus dieses Standards in der Databank geladen)');
-            return `<a class="echb${e?'':(nx?' todo':' so')}" href="${esc(d.ech.url)}" target="_blank" rel="noreferrer" title="${tip}">${esc(d.ech.standard)}${e?` · ${esc(e)}`:(nx?' · Element offen':' · nur Standard')}</a>`
+              +(st?` · Status: ${st}${d.ech.reifegrad?', Reifegrad '+d.ech.reifegrad:''}`:' · Status nicht erhoben (kein Genehmigungsstatus dieses Standards in der Databank geladen)')
+              +'\n'+tonWords(t);
+            return `<a class="echb st-${t}" href="${esc(d.ech.url)}" target="_blank" rel="noreferrer" title="${esc(tip)}">${SW(t)}${esc(d.ech.standard)}${e?` · ${esc(e)}`:(nx?' · Element offen':' · nur Standard')}</a>`
               +(d.ech.datatype?(()=>{const cl=(DATA.ech_codelists||{})[d.ech.codelist_key||(d.ech.standard+'|'+d.ech.datatype)];
                   const ver=d.ech.xsd_version?` (XSD ${esc(d.ech.xsd_version)})`:'';
                   const codes=cl?`\nOffizielle Codeliste (${pl(cl.length,'Wert','Werte')}): `+cl.slice(0,12).map(c=>c.value+(c.doc?' = '+c.doc:'')).join(' · ')+(cl.length>12?' …':''):'';
                   return `<span class="edt${cl?' cl':''}" title="Datentyp gemäss dem offiziellen ${esc(d.ech.standard)}-XSD${ver} — in diesem Typ ist das Datum zu speichern und auszutauschen${esc(codes)}">⟨${esc(d.ech.datatype)}⟩${cl?'<span style="font-size:10px;margin-left:2px">☰</span>':''}</span>`;})():'')
               +(d.register?`<span class="regc" title="Once-Only: dieses Datum (eCH-Element ${esc(e||'')}) führt das Einwohnerregister für Einwohnerinnen und Einwohner bereits — statt neu zu erheben: eigene Daten vorbefüllen, Daten Dritter abgleichen (Verhältnismässigkeit, KDSG Art. 4 Abs. 2) — Einordnung der Databank; der Registerzugriff der Dienststelle braucht eine eigene Grundlage (KDSG Art. 8 Abs. 1 lit. a/b). Gilt nur für Daten natürlicher Personen; Betriebs-, Behörden- und Objektadressen tragen die Marke nicht.">↺ vorbefüllbar · Einwohnerregister</span>`:'')
-              +(draft?`<span class="echdraft${(st==='Aufgehoben'||st==='Abgelöst')?' rep':(st==='Sistiert'?' susp':'')}" title="${
-                  (st==='Aufgehoben'||st==='Abgelöst')?`Dieser eCH-Standard ist ${esc(st).toUpperCase()} — nicht mehr in Kraft, die Zuordnung muss ersetzt werden`
-                : st==='Sistiert'?'Dieser eCH-Standard ist SISTIERT (ausgesetzt) — nicht in Kraft, Zuordnung vorläufig'
-                : 'Dieser eCH-Standard ist noch nicht genehmigt (in Arbeit) — Zuordnung vorläufig'}">${(st==='Aufgehoben'||st==='Abgelöst')?'⛔':'⚠'} ${esc(st)}</span>`:'');})()
-            :(d.ech_status==='kein_standard'?('<span class="echn" title="kein eCH-Standard deckt dieses Feld ab">kein eCH-Standard</span>'+(d.esh?`<span class="eshb" title="Vorschlag für den kantonalen Standard eSH (E-Schaffhausen) — ENTWURF, nicht offiziell: ${esc(d.esh.titel)}">${esc(d.esh.code)} · ${esc(d.esh.element||'')}<span class="ent">Entwurf</span></span>`:'')):'')}
+              // a standard that is not in force: still in the works — the canton decides
+              // meanwhile (amber); sistiert, aufgehoben or abgelöst — the databank replaces the
+              // mapping by the successor (grey, the tone of the worklists' «nicht in Kraft» point)
+              +(draft?(()=>{const t2=echDraftTon(st), gone=st==='Aufgehoben'||st==='Abgelöst';
+                  return `<span class="echdraft st-${t2}" title="${esc((gone?`Dieser eCH-Standard ist ${String(st).toUpperCase()} — nicht mehr in Kraft; die Databank ersetzt die Zuordnung durch den Nachfolger`
+                    : st==='Sistiert'?'Dieser eCH-Standard ist SISTIERT (ausgesetzt) — nicht in Kraft; die Databank ersetzt die Zuordnung durch den Nachfolger'
+                    : st==='In Arbeit'?'Dieser eCH-Standard ist noch nicht genehmigt (in Arbeit) — bis eCH ihn verabschiedet, legt der Kanton fest, wie das Datum verlangt wird'
+                    : `Status «${st}» dieses eCH-Standards ist keinem Ton zugeordnet — gilt als nicht geklärt`)+'\n'+tonWords(t2))}">${SW(t2)}${esc(st)}</span>`;})():'');})()
+            :(d.ech_status==='kein_standard'?(()=>{const t=tonOf('ech','kein_standard');
+                return `<span class="echn st-${t}" title="${esc('kein eCH-Standard deckt dieses Feld ab — damit es trotzdem einheitlich verlangt und ausgetauscht werden kann, legt der Kanton es fest (eSH-Entwurf)\n'+tonWords(t))}">${SW(t)}kein eCH-Standard</span>`
+                  +(d.esh?`<span class="eshb" title="Vorschlag für den kantonalen Standard eSH (E-Schaffhausen) — ENTWURF, nicht offiziell: ${esc(d.esh.titel)}">${esc(d.esh.code)} · ${esc(d.esh.element||'')}<span class="ent">Entwurf</span></span>`:'');})()
+              // a Datenpunkt nobody has checked against eCH yet: a gap, said — never silence
+              :(!subs.length?(()=>{const t=tonOf('ech','ungeprueft');
+                return `<span class="echn st-${t}" title="${esc('Dieses Datenfeld ist noch nicht gegen den eCH-Katalog geprüft\n'+tonWords(t))}">${SW(t)}eCH noch nicht geprüft</span>`;})():''))}
           ${d.sensitive?(()=>{const n=(_sensRules[d.sensitive]||[]).length+(_sensRules['*']||[]).length;
-            return `<span class="badge b-sens senslink" title="besonders schützenswert nach KDSG Art. 2 Abs. 1 lit. d (für Bundesorgane: DSG Art. 5 lit. c) — es gelten zusätzlich:\n${esc(sensTip(d.sensitive))}\nKlick: Leitfaden">⛨ ${esc(lab(SENS,d.sensitive))}${n?` · ${pl(n,'Zusatzregel','Zusatzregeln')}`:''}</span>`;})():''}
+            return `<span class="badge b-sens senslink" title="besonders schützenswert nach KDSG Art. 2 Abs. 1 lit. d (für Bundesorgane: DSG Art. 5 lit. c) — es gelten zusätzlich:\n${esc(sensTip(d.sensitive))}" data-tipgo="Leitfaden: besonders schützenswerte Daten ›">⛨ ${esc(lab(SENS,d.sensitive))}${n?` · ${pl(n,'Zusatzregel','Zusatzregeln')}`:''}</span>`;})():''}
           ${d.format?`<span class="muted small">· ${esc(d.format)}</span>`:''}
-          ${d.schutzstufe?`<span class="badge b-sourced">Schutzstufe ${esc(d.schutzstufe)}</span>`:''}</div>
+          ${d.schutzstufe?stBadge(tonOf('schutzstufe','festgelegt'),'Schutzstufe '+esc(d.schutzstufe),'Schutzstufe nach ISV festgelegt'):''}</div>
         ${d.definition?`<div class="dfdef">${esc(d.definition)}</div>`:''}
         ${subs.length?`<div class="dfchips"><span class="muted small">Teilfelder:</span> ${(d.subfields||[]).slice(0,24).map(s=>{
             const nmv=typeof s==='string'?s:(s&&s.name)||''; if(!nmv) return '';
-            const e=s&&s.ech;
-            const dr=e&&e.status&&e.status!=='Genehmigt'?((e.status==='Aufgehoben'||e.status==='Abgelöst')?' ⛔':' ⚠'):'';
+            const e=s&&s.ech, t=tonOf('ech',typeof s==='object'?echState(s):'ungeprueft');
+            // a subfield on a standard not in force: its own small chip, in the tone of a field's
+            const dr=e&&e.status&&e.status!=='Genehmigt'?(()=>{const t2=echDraftTon(e.status);
+              return `<span class="echdraft st-${t2}" title="${esc((ECH_STD_STATE[e.status]==='standard_alt'?'Standard nicht mehr in Kraft ('+e.status+') — die Databank ersetzt die Zuordnung durch den Nachfolger'
+                :e.status==='In Arbeit'?'Standard noch nicht in Kraft (in Arbeit) — bis eCH ihn verabschiedet, legt der Kanton fest'
+                :'Standard-Status «'+e.status+'» ohne Ton — nicht geklärt')+'\n'+tonWords(t2))}">${SW(t2)}${esc(e.status)}</span>`;})():'';
             const dvs=DIX[d.name+'|'+nmv];
-            if(e&&e.element) return `<span class="chip sub${dvs?' dvs':''}"${dvs?` title="${esc(dvs.map(i=>lab(DIV_DE,i.art)+': hier '+i.hier+' — '+i.andere).join('\n'))}"`:''}><b>${esc(nmv)}</b>${dvs?'<span class="divc mini">⇄</span>':''}<a class="sfe" href="${esc(e.url)}" target="_blank" rel="noreferrer" title="${esc(e.standard_titel||'')} — ${esc(e.standard)} ${esc(e.element)}${e.datatype?' · wird geführt als '+esc(e.datatype):''}${e.status?' · Status: '+esc(e.status):' · Status nicht erhoben'}">${esc(e.standard)}·${esc(e.element)}${dr}</a>${begChip(s.begriff,true)}${s.register?`<span class="regc" title="Once-Only: dieses Teilfeld führt das Einwohnerregister bereits (${esc(e.standard)} ${esc(e.element)}) — vorbefüllbar statt neu erheben. Einordnung der Databank: der Zugriff der Stelle auf das Register braucht eine eigene Grundlage (KDSG Art. 8 Abs. 1 lit. a/b)">↺</span>`:''}</span>`;
-            if(e) return `<span class="chip sub"><b>${esc(nmv)}</b><a class="sfe so" href="${esc(e.url)}" target="_blank" rel="noreferrer" title="${esc(e.standard_titel||'')} — Standard ohne XSD">${esc(e.standard)}</a></span>`;
-            if(s&&s.ech_status==='kein_standard') return `<span class="chip sub"><b>${esc(nmv)}</b>${s.esh?`<a class="sfe esh" title="eSH-Entwurf: ${esc(s.esh.titel)}">${esc(s.esh.code.replace('eSH-','eSH'))}·${esc(s.esh.element||'')}</a>`:`<span class="sfe none" title="kein eCH-Standard">kein Std.</span>`}</span>`;
+            if(e&&e.element) return `<span class="chip sub${dvs?' dvs':''}"${dvs?` title="${esc(dvs.map(i=>lab(DIV_DE,i.art)+': hier '+i.hier+' — '+i.andere+' '+tonWords(tonOf('div',i.art))).join('\n'))}"`:''}><b>${esc(nmv)}</b>${dvs?`<span class="divc mini st-${divTon(dvs)}">⇄</span>`:''}<a class="sfe st-${t}" href="${esc(e.url)}" target="_blank" rel="noreferrer" title="${esc((e.standard_titel||'')+' — '+e.standard+' '+e.element+(e.datatype?' · wird geführt als '+e.datatype:'')+(e.status?' · Status: '+e.status:' · Status nicht erhoben')+'\n'+tonWords(t))}">${esc(e.standard)}·${esc(e.element)}</a>${dr}${begChip(s.begriff,true)}${s.register?`<span class="regc" title="Once-Only: dieses Teilfeld führt das Einwohnerregister bereits (${esc(e.standard)} ${esc(e.element)}) — vorbefüllbar statt neu erheben. Einordnung der Databank: der Zugriff der Stelle auf das Register braucht eine eigene Grundlage (KDSG Art. 8 Abs. 1 lit. a/b)">↺</span>`:''}</span>`;
+            if(e){const nx=e.n_elements>0;
+              return `<span class="chip sub"><b>${esc(nmv)}</b><a class="sfe st-${t}" href="${esc(e.url)}" target="_blank" rel="noreferrer" title="${esc((e.standard_titel||'')+(nx?' — Element noch nicht bestimmt':' — Standard ohne XSD: kein zitierbares Element')+'\n'+tonWords(t))}">${esc(e.standard)}${nx?'·Element offen':'·nur Standard'}</a>${dr}</span>`;}
+            if(s&&s.ech_status==='kein_standard') return `<span class="chip sub"><b>${esc(nmv)}</b><span class="sfe st-${t}" title="${esc('kein eCH-Standard — der Kanton legt das Datum fest (eSH-Entwurf)\n'+tonWords(t))}">kein Std.</span>${s.esh?`<span class="sfe esh" title="eSH-Entwurf des Kantons, nicht offiziell: ${esc(s.esh.titel)}">${esc(s.esh.code)}·${esc(s.esh.element||'')}<span class="ent">Entwurf</span></span>`:''}</span>`;
             return `<span class="chip sub"><b>${esc(nmv)}</b></span>`;}).join('')}</div>`
           :(vals.length?`<div class="dfchips"><span class="muted small">Werte:</span> ${vals.slice(0,24).map(v=>`<span class="chip">${esc(String(v))}</span>`).join('')}</div>`:'')}
         ${(d.source_widgets||[]).length?`<div class="dfprov">↩ erfasst durch: ${d.source_widgets.slice(0,8).map(w=>esc(String(w))).join(' · ')}</div>`:''}
@@ -1114,10 +2416,10 @@ function viewDataFields(forms){
   return h;
 }
 function widgetTable(s,forms){
-  const g=grounding(s.id); const pct=g.need?Math.round(100*g.have/g.need):100;
-  let h=`<div class="card"><div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
-    <div class="pbar" style="max-width:340px"><i style="width:${pct}%"></i></div>
-    <span><b>${g.have}/${g.need}</b> ${plw(g.need,'Datenfeld','Datenfelder')} mit geklärter Rechtsfrage</span>
+  const g=grounding(s.id);
+  let h=`<div class="card"><div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;flex-wrap:wrap">
+    ${basisBar(g,'Datenfelder des Services nach Rechtsgrundlage',220)}
+    <span><b>${g.have}/${g.need}</b> ${plw(g.need,'Datenfeld','Datenfelder')} des Services mit Grundlage</span>${g.need?tonNums(g):''}
     ${forms[0]&&forms[0].source_file?`<a class="srcbtn" href="${esc(forms[0].source_file)}" style="margin-left:auto">↗ Quelldatei</a>`:''}</div>
   <table class="ft"><thead><tr><th>#</th><th>Formularfeld</th><th>Rechtsgrundlage</th><th title="Klassifizierung aus dem Auto-Entwurf (maschinell, ungeprüft) — nur zur Orientierung, kein Befund">Klasse (Auto-Entwurf)</th></tr></thead><tbody>`;
   // German labels for the auto-draft classifications; raw slug stays as tooltip
@@ -1129,7 +2431,7 @@ function widgetTable(s,forms){
   // legal bases exist solely in the proof-gated data_field layer
   forms.forEach(fm=>(fm.fields||[]).forEach(fl=>{ i++; const mp=fl.mapping; const cls=mp?mp.classification:'—';
     const cell = cls==='form_mechanic' ? '<span class="muted small">— keine nötig</span>'
-      : '<span class="badge b-unver" title="Die Datenfeld-Schicht dieses Formulars ist noch nicht kuratiert — die Rechtsgrundlage je Feld ist noch nicht ermittelt; heisst NICHT, dass keine existiert">zu ermitteln (Datenfeld-Schicht fehlt)</span>';
+      : stBadge(tonOf('basis','zu_ermitteln'),'zu ermitteln (Datenfeld-Schicht fehlt)','Die Datenfeld-Schicht dieses Formulars ist noch nicht kuratiert — die Rechtsgrundlage je Feld ist noch nicht ermittelt; heisst NICHT, dass keine existiert');
     h+=`<tr><td>${i}</td>
       <td>${fmtPath(fl.path||fl.label)}</td>
       <td>${cell}</td><td><span class="small" title="${esc(cls)}">${esc(CLS_DE[cls]||cls)}</span></td></tr>`;
@@ -1150,7 +2452,7 @@ function serviceHead(s, forms){
   const outMulti=forms.filter(f=>f.outcome&&f.outcome.entscheid_art&&f.outcome.entscheid_art!=='unbekannt').length>1;
   return `<div class="card hubhead">
     <div class="hubrow" style="margin-bottom:6px">
-      ${dv?`<span class="badge b-dvsh" title="DVSH — amtliches Dienstleistungsmodell des Kantons (nur lesend übernommen) · Status im DVSH-Modeller${dv.version?' · Version '+esc(String(dv.version)):''}${s.dvsh_n>1?' · dieser Service ist mit '+s.dvsh_n+' DVSH-Modellierungen verknüpft; gezeigt wird eine davon':''}">DVSH: ${esc(dv.status?lab(DVSH_STATUS,dv.status):'modelliert')}${dv.online?' · online':''}${s.dvsh_n>1?' · eine von '+s.dvsh_n+' DVSH-Modellierungen':''}</span>`:'<span class="badge b-nodv">◇ nicht im DVSH modelliert</span>'}
+      ${dv?`<span class="badge b-dvsh" title="DVSH — amtliches Dienstleistungsmodell des Kantons (nur lesend übernommen) · Status im DVSH-Modellierungswerkzeug${dv.version?' · Version '+esc(String(dv.version)):''}${s.dvsh_n>1?' · dieser Service ist mit '+s.dvsh_n+' DVSH-Modellierungen verknüpft; gezeigt wird eine davon':''}">DVSH: ${esc(dv.status?lab(DVSH_STATUS,dv.status):'modelliert')}${dv.online?' · online':''}${s.dvsh_n>1?' · eine von '+s.dvsh_n+' DVSH-Modellierungen':''}</span>`:'<span class="badge b-nodv">◇ nicht im DVSH modelliert</span>'}
       ${sp?`<a class="badge b-dvsh" style="text-decoration:none" href="https://shep.meetfrida.agency/de/services/${esc(sp.slug)}" target="_blank" rel="noreferrer" title="SHEP — publiziertes Service-Portal des Kantons (Bürgersicht) · auf SHEP publiziert · Stand ${esc(sp.updated||'')}">SHEP publiziert ↗</a>`:(dv?'<span class="hubmeta">noch nicht auf SHEP publiziert</span>':'')}
       ${dv&&dv.vollzugsbehoerde?`<span class="hubmeta">Vollzug: ${esc(dv.vollzugsbehoerde)}</span>`:''}
       ${dv?(()=>{const g=dv.gebuehren==null?'':String(dv.gebuehren).trim(), has=/[0-9A-Za-zÄÖÜäöü]/.test(g);
@@ -1161,9 +2463,9 @@ function serviceHead(s, forms){
     ${out&&out.entscheid_art?`<div class="hubout">Ergebnis des Verfahrens:
       <b>${esc(lab(OUTCOME_DE,out.entscheid_art))}</b>${out.ergebnis_dokument?` — «${esc(out.ergebnis_dokument)}»`:''}
       <span class="muted small">(${out.entscheid_art==='unbekannt'?'DVSH-Ablauftext geprüft, kein belegbares Ergebnis':'aus dem DVSH-Ablauftext abgeleitet'}${forms.length>1?', Formular «'+esc(outForm.title)+'»':''})</span>
-      ${outMulti?`<span class="badge b-unver" title="Dieser Service hat mehrere Formulare mit je eigenem Entscheid — hier steht der des genannten Formulars; die übrigen stehen in ihrer Formular-Ansicht">mehrere Entscheide im Service</span>`:''}</div>`:''}
+      ${outMulti?mkBadge('mehrere Entscheide im Service','Dieser Service hat mehrere Formulare mit je eigenem Entscheid — hier steht der des genannten Formulars; die übrigen stehen in ihrer Formular-Ansicht'):''}</div>`:''}
     ${out?rechtsmittelLine(out):''}
-    ${(s.themen||[]).length?`<div class="svthemen"><span class="muted small">Themengruppe (eCH-0049):</span>${s.themen.map(x=>`<a class="lawchip thlink" data-g="${x.id}" title="${esc(lab(KAT_DE,x.katalog))} · ${esc(x.bereich)}">${esc(x.gruppe)}</a>`).join('')}</div>`:''}
+    ${(s.themen||[]).length?`<div class="svthemen"><span class="muted small">Themengruppe (eCH-0049):</span>${s.themen.map(x=>`<a class="lawchip thlink" href="#lebenslagen/all/g-${encodeURIComponent(x.id)}" data-g="${x.id}" title="${esc(lab(KAT_DE,x.katalog))} · ${esc(x.bereich)}">${esc(x.gruppe)}</a>`).join('')}</div>`:''}
   </div>`;
 }
 // Rechtsmittel: what a person can do against the decision - sektoral (the cited
@@ -1171,21 +2473,23 @@ function serviceHead(s, forms){
 function rechtsmittelLine(out){
   const r=out.rechtsmittel;
   if(!r){
-    if(out.entscheid_art==='kein_entscheid') return `<div class="hubout rm"><span class="rmlbl">Rechtsmittel:</span> <span class="muted small">keines — das Verfahren endet ohne anfechtbare Verfügung (Meldung)</span></div>`;
+    // nothing to appeal: the remedy question has its answer — the state of a confirmed
+    // provision (ton_map.rechtsmittel.bestaetigt); no point is open, nobody acts
+    if(out.entscheid_art==='kein_entscheid') return `<div class="hubout rm"><span class="rmlbl">Rechtsmittel:</span> ${stBadge(tonOf('rechtsmittel','bestaetigt'),'keines','Das Verfahren endet ohne anfechtbare Verfügung (Meldung) — es gibt nichts anzufechten; die Rechtsmittelfrage ist damit beantwortet')} <span class="muted small">das Verfahren endet ohne anfechtbare Verfügung (Meldung)</span></div>`;
     if(!out.rechtsmittel_status) return '';
     // the outcome itself could not be backed from the DVSH text: the remedy
     // question is not reached yet — said, never left as silence
     if(out.rechtsmittel_status==='entscheidart_offen') return `<div class="hubout rm"><span class="rmlbl">Rechtsmittel:</span>
-      <span class="badge b-unver" title="Was das Verfahren zurückgibt (Bewilligung, Verfügung, Eintrag …), liess sich aus dem DVSH-Ablauftext nicht belegen; bis das feststeht, stellt sich die Rechtsmittelfrage nicht — eine Lücke der Databank, kein Befund.">${esc(lab(RM_STATUS,'entscheidart_offen'))}</span></div>`;
+      ${stBadge(tonOf('rechtsmittel','entscheidart_offen'),esc(lab(RM_STATUS,'entscheidart_offen')),'Was das Verfahren zurückgibt (Bewilligung, Verfügung, Eintrag …), liess sich aus dem DVSH-Ablauftext nicht belegen; bis das feststeht, stellt sich die Rechtsmittelfrage nicht — eine Lücke der Databank, kein Befund.')}</div>`;
     // say exactly WHY nothing is stated: assessed and undecidable, or not yet
     // assessed — and name the level of the cited law instead of assuming Bund
     const lv=(out.gesetzesebenen||[]).map(x=>lab(LAB.ebene||{},x));
     const lvTxt=lv.length?lv.join(' und '):'die zitierten Erlasse';
     const beurteilt=out.rechtsmittel_status==='beurteilt_offen';
     return `<div class="hubout rm"><span class="rmlbl">Rechtsmittel:</span>
-      <span class="badge b-unver" title="${beurteilt
+      ${stBadge(tonOf('rechtsmittel',out.rechtsmittel_status),esc(lab(RM_STATUS,out.rechtsmittel_status)),beurteilt
         ?'Geprüft: keine der Rechtsmittelnormen der zitierten Gesetze deckt diesen Entscheid, und die allgemeine VRG-Regel wurde nicht unterstellt. Die Begründung steht im Prüfvermerk.'
-        :'Für dieses Verfahren wurde noch keine Rechtsmittelnorm untersucht — eine Wissenslücke der Databank, kein Befund.'}">${esc(lab(RM_STATUS,out.rechtsmittel_status))}</span>
+        :'Für dieses Verfahren wurde noch keine Rechtsmittelnorm untersucht — eine Wissenslücke der Databank, kein Befund.')}
       <span class="muted small">Der Entscheid stützt sich auf ${esc(lvTxt)}${out.entscheid_art==='registereintrag'?'; Registerverfahren haben oft eine eigene Rechtsmittelordnung':''}.</span>
       ${out.rechtsmittel_verdikt?`<details class="qd" style="display:inline-block"><summary>Prüfvermerk</summary><blockquote class="quote">${esc(out.rechtsmittel_verdikt)}</blockquote></details>`:''}</div>`;
   }
@@ -1199,22 +2503,23 @@ function rechtsmittelLine(out){
   // panel has confirmed no Fachgesetz goes first (Prüfvermerk), or it is the
   // bare fallback nobody has checked yet (default_allgemein) — a default is not a verdict
   const dflt=out.rechtsmittel_status==='default_allgemein';
+  // tone (ton_map.rechtsmittel): a confirmed provision green, the bare fallback grey
+  const tOk=tonOf('rechtsmittel','bestaetigt');
   const src=r.scope==='allgemein'
     ?(dflt
-      ?`<span class="badge b-unver" title="VRG Art. 1: die allgemeinen Verfahrensregeln gelten nur, soweit nicht abweichende Vorschriften in andern Gesetzen, Dekreten oder Verordnungen bestehen. Ob für dieses Formular ein Fachgesetz eine eigene Rechtsmittelnorm vorsieht, hat noch kein Prüfvermerk geklärt — die allgemeine Regel steht hier als Rückfall, nicht als Befund.">${esc(lab(RM_STATUS,'default_allgemein'))}</span>`
-      :`<span class="badge b-sourced" title="VRG Art. 1: die allgemeinen Verfahrensregeln gelten nur, soweit nicht abweichende Vorschriften in andern Gesetzen, Dekreten oder Verordnungen bestehen. Ein Prüfvermerk hat bestätigt, dass für dieses Formular kein Fachgesetz eine eigene Rechtsmittelnorm vorsieht.">allgemeine Regel des VRG — Prüfvermerk bestätigt</span>`)
-    :`<span class="badge b-sourced" title="Rechtsmittelnorm aus dem Fachgesetz, das die Datenfelder dieses Formulars zitieren${r.gilt_fuer?' — gilt für: '+esc(r.gilt_fuer):''}">sektoral: ${esc(r.short_title||r.law_title||'')}</span>`;
+      ?stBadge(tonOf('rechtsmittel','default_allgemein'),esc(lab(RM_STATUS,'default_allgemein')),'VRG Art. 1: die allgemeinen Verfahrensregeln gelten nur, soweit nicht abweichende Vorschriften in andern Gesetzen, Dekreten oder Verordnungen bestehen. Ob für dieses Formular ein Fachgesetz eine eigene Rechtsmittelnorm vorsieht, hat noch kein Prüfvermerk geklärt — die allgemeine Regel steht hier als Rückfall, nicht als Befund.')
+      :stBadge(tOk,'allgemeine Regel des VRG — Prüfvermerk bestätigt','VRG Art. 1: die allgemeinen Verfahrensregeln gelten nur, soweit nicht abweichende Vorschriften in andern Gesetzen, Dekreten oder Verordnungen bestehen. Ein Prüfvermerk hat bestätigt, dass für dieses Formular kein Fachgesetz eine eigene Rechtsmittelnorm vorsieht.'))
+    :stBadge(tOk,'sektoral: '+esc(r.short_title||r.law_title||''),'Rechtsmittelnorm aus dem Fachgesetz, das die Datenfelder dieses Formulars zitieren'+(r.gilt_fuer?' — gilt für: '+r.gilt_fuer:''));
   const cands=(out.rechtsmittel_kandidaten||[]).filter(k=>!(r.scope==='sektoral'&&k.id===out.rechtsmittel_regel_id));
   const candList=cands.length?`<details class="qd rmcand"><summary>${cands.length} weitere Rechtsmittelnorm${cands.length===1?'':'en'} in den zitierten Gesetzen${r.scope==='allgemein'?' — zu prüfen, ob eine davon vorgeht':''}</summary>
       ${cands.map(k=>`<div class="small rmc"><b>${esc(lab(RM_DE,k.rechtsmittel_art))}</b>${k.instanz?' an '+esc(k.instanz):''}${k.frist_tage?' · '+k.frist_tage+' Tage':''} — ${esc(artLabel(k.article_no))} ${esc(k.short_title||k.law_title||'')}${k.gilt_fuer?' · gilt für: '+esc(k.gilt_fuer):''}${k.hinweis?' <span class="muted">('+esc(k.hinweis)+')</span>':''}<blockquote class="quote">«${esc(k.quote||'')}»</blockquote></div>`).join('')}</details>`:'';
   return `<div class="hubout rm"><span class="rmlbl">Rechtsmittel:</span> ${what}
     <details class="qd" style="display:inline-block;margin-left:6px"><summary title="${tip}">${esc(artLabel(r.article_no))} ${esc(law)} · Zitat</summary><blockquote class="quote">«${esc(r.quote||'')}»${r.frist_quote?`<br>«${esc(r.frist_quote)}»`:''}</blockquote></details>
-    ${src}${out.rechtsmittel_verdikt?`<span class="badge b-match" title="${esc(out.rechtsmittel_verdikt)}">Zuordnung geprüft</span>`:''}</div>${candList}`;
+    ${src}${out.rechtsmittel_verdikt?stBadge(tOk,'Zuordnung geprüft',out.rechtsmittel_verdikt):''}</div>${candList}`;
 }
 // FORM-level facts strip: channel, signature, Ampel, Bürgerlast, currency
 function formFacts(fm){
   const bl=fm.blockers||[];
-  const amp=bl.length===0?'gruen':(bl.length<=2?'gelb':'rot');
   // the check date is a FACT and stands as text; the age is computed when the
   // page is opened (not frozen at build time); an overdue Wiedervorlage and a
   // never-checked form are said, not hidden in a tooltip
@@ -1224,20 +2529,33 @@ function formFacts(fm){
     const days=Math.round((nowMs-Date.parse(fm.check.d))/864e5);
     const over=fm.next_check_due&&fm.next_check_due<today;
     checked=`<span class="hubmeta" title="Aktualität der Online-Fassung geprüft${fm.check.quelle?' ('+esc(fm.check.quelle)+')':''}${fm.next_check_due?' · Wiedervorlage '+esc(fmtDate(fm.next_check_due)):''}">online geprüft ${esc(fmtDate(fm.check.d))}${isFinite(days)?` (${days<=0?'heute':days===1?'gestern':'vor '+pl(days,'Tag','Tagen')})`:''}</span>`
-      +(over?`<span class="hubmeta warn" title="Die Wiedervorlage der Online-Prüfung ist abgelaufen — ob die Kopie der Databank noch die aktuelle Fassung ist, ist unbekannt (Handlungsbedarf «Online-Prüfung fällig»)">Wiedervorlage überfällig seit ${esc(fmtDate(fm.next_check_due))}</span>`:'');
-  } else checked=`<span class="hubmeta warn" title="Für dieses Formular gibt es noch keine Online-Prüfung — ob die Kopie der Databank die aktuelle Fassung ist, ist unbekannt">online noch nie geprüft</span>`;
+      +(over?stBadge(tonOf('check','faellig'),'Wiedervorlage überfällig seit '+esc(fmtDate(fm.next_check_due)),'Die Wiedervorlage der Online-Prüfung ist abgelaufen — ob die Kopie der Databank noch die aktuelle Fassung ist, ist unbekannt (Recherche der Databank «Online-Prüfung fällig»)'):'');
+  } else checked=stBadge(tonOf('check','nie'),'online noch nie geprüft','Für dieses Formular gibt es noch keine Online-Prüfung — ob die Kopie der Databank die aktuelle Fassung ist, ist unbekannt');
+  // the data standard leads the row (the owner's order): divergences and naming first; each
+  // chip jumps to the block «Standard-Divergenzen» of this Formular
+  const divHref=`#fields/${encodeURIComponent(fm.service_id)}/form-${encodeURIComponent(fm.id)}~div`;
+  const dsfaInd=dsfaIndOf(fm), dsfaIt=(fm.handlungsbedarf||[]).find(i=>i.cat==='dsfa');
   return `<div class="hubrow">
-      ${(fm.data_fields||[]).length?`<span class="ampel a-${amp}" title="Digitalisierungs-Blocker: ${bl.length?bl.map(blockerLabel).join(' · '):'keine'}">●</span>`:''}
+      ${(()=>{const sd=fm.standard_divergenzen; if(!sd) return '';
+        // red: the Formular demands a datum differently; amber: the practice is split and
+        // the canton decides; green: every standardised datum is demanded like elsewhere
+        const nU=(sd.angleichen||[]).filter(i=>i.art==='pflicht_uneinheitlich').length;
+        const chip=(t,txt,tip)=>`<a class="hubdiv st-${t}" href="${divHref}" data-fid="${fm.id}" title="${esc(tip+' — zum Abschnitt «Standard-Divergenzen» springen\n'+tonWords(t))}">${SW(t)}${txt}</a>`;
+        return (sd.n_angleichen?chip(tonOf('div','pflicht'),`⇄ ${sd.n_angleichen} Standard-Divergenz${sd.n_angleichen===1?'':'en'}`,'Dasselbe Datum wird hier anders verlangt als auf den übrigen Formularen'):'')
+          +(nU?chip(tonOf('div','pflicht_uneinheitlich'),`⇄ ${nU} ${esc(todoCat('divergenz_offen')[1])}`,'Dasselbe Datum ist über die Formulare hinweg mal Pflicht, mal optional — der Kanton legt fest'):'')
+          +(!sd.n_angleichen&&!nU?chip('ok','⇄ keine Standard-Divergenz','Jedes standardisierte Datum wird gleich verlangt wie anderswo'):'');})()}
+      ${(()=>{const bz=(fm.standard_divergenzen||{}).bezeichnungen||[]; const n=bz.filter(i=>i.klasse==='variante'||i.pruefart==='aufteilen').length;
+        const t=tonOf('begriff','variante');
+        return n?`<a class="hubdiv st-${t}" href="${divHref}" data-fid="${fm.id}" title="${esc('Datenpunkte, die ein Datum anders benennen als der einheitliche Begriff oder mehrere Daten bündeln — zum Abschnitt «Standard-Divergenzen» springen\n'+tonWords(t))}">${SW(t)}✎ ${n} Bezeichnung${n===1?'':'en'}</a>`:'';})()}
+      ${dsfaInd?stBadge(tonOf('dsfa',fm.dsfa_status?'entschieden':'indiziert'),fm.dsfa_status?esc(fm.dsfa_status):esc(todoCat('dsfa')[1]),
+        (fm.dsfa_status?'DSFA-Entscheid getroffen':todoCat('dsfa')[4])+(dsfaIt&&dsfaIt.detail?' — '+dsfaIt.detail:'')):''}
+      ${(fm.data_fields||[]).length?mkBadge(bl.length?'Digitalisierung: '+pl(bl.length,'Hürde','Hürden'):'Digitalisierung: keine Hürden',
+        'Digitalisierungs-Hürden: '+(bl.length?bl.map(b=>String(b).replace(/(\d)%/g,'$1 %')).join(' · '):'keine')+' — ein Befund zum Formular, keine Farbe; Einzelheiten unter «Details zu diesem Formular»'):''}
       ${fm.dvsh_match&&/konsolidiert|zuordnung/.test(fm.dvsh_match)?`<span class="hubmeta" title="${esc(fm.dvsh_match)}">↳ diesem DVSH-Service zugeordnet</span>`:''}
       <span class="hubchan">${esc(fm.submission_channel?lab(CHAN_DE,fm.submission_channel):(CHAN_DE.unbekannt||'Kanal unbekannt'))}</span>
       ${fm.signature_requirement==='handschriftlich'?`<span class="hubsig" title="${esc(fm.signature_evidence||'')}">✍ Unterschrift nötig</span>`:''}
-      ${fm.signature_requirement==='sig_widget'?`<span class="hubsig ok">✓ digitale Signatur möglich</span>`:''}
-      ${fm.has_flow?`<a class="hubmeta" href="flows.html" target="_blank" rel="noopener" title="geführter Flow zu diesem Formular — flows.html öffnet mit eigener Formularsuche">geführter Flow ↗</a>`:''}
-      ${(()=>{const sd=fm.standard_divergenzen; if(!sd) return '';
-        return sd.n_angleichen?`<span class="hubdiv" title="Dasselbe Datum wird hier anders verlangt als auf den übrigen Formularen — Details im Abschnitt «Standard-Divergenzen»">⇄ ${sd.n_angleichen} Standard-Divergenz${sd.n_angleichen===1?'':'en'}</span>`
-          :`<span class="hubmeta" title="Jedes standardisierte Datum wird gleich verlangt wie anderswo">⇄ keine Standard-Divergenz</span>`;})()}
-      ${(()=>{const bz=(fm.standard_divergenzen||{}).bezeichnungen||[]; const n=bz.filter(i=>i.klasse==='variante'||i.pruefart==='aufteilen').length;
-        return n?`<span class="hubdiv" title="Felder, die ein Datum anders benennen als der einheitliche Begriff oder mehrere Daten bündeln — Details im Abschnitt «Standard-Divergenzen»">✎ ${n} Bezeichnung${n===1?'':'en'}</span>`:'';})()}
+      ${fm.signature_requirement==='sig_widget'?`<span class="hubsig">✓ digitale Signatur möglich</span>`:''}
+      ${fm.has_flow?`<a class="hubmeta" href="flows.html" target="_blank" rel="noopener" title="Prototyp: geführter Flow zu diesem Formular — flows.html öffnet mit eigener Formularsuche">geführter Flow (Prototyp) ↗</a>`:''}
       ${checked}
     </div>
     ${fm.burden?`<div class="hubburden">Bürgerlast: <b>${fm.burden.inputs}</b> ${plw(fm.burden.inputs,'Pflichtangabe','Pflichtangaben')}
@@ -1249,13 +2567,13 @@ function blockerPanel(forms){
   const fm=forms[0]||{}; const bl=fm.blockers||[];
   if(!(fm.data_fields||[]).length) return '';
   if(!bl.length) return `<div class="card"><div class="dvsub">Digitalisierung</div>
-    <div class="hstd">Keine Blocker erkannt — dieses Formular ist ein Kandidat für die durchgängig digitale Abwicklung.</div></div>`;
+    <div class="hstd">Keine Hürden erkannt — dieses Formular ist ein Kandidat für die durchgängig digitale Abwicklung.</div></div>`;
   const detail={'Unterschrift':fm.signature_evidence?`Beleg: ${fm.signature_evidence}`:'',
     'Quelle nicht befüllbar':fm.parse_error?`PDF nicht maschinell lesbar (${fm.parse_error})`:'flaches PDF ohne AcroForm-Felder',
     'kein Online-Kanal':'kein Online-Formular im DVSH-Abgabekanal',
     'eCH-Abdeckung < 50%':`nur ${fm.exchange_pct} % der atomaren Datenpunkte standardisiert`,
     };
-  return `<div class="card"><div class="dvsub">Digitalisierungs-Blocker (${bl.length})</div>
+  return `<div class="card"><div class="dvsub">Digitalisierungs-Hürden (${bl.length})</div>
     ${bl.map(b=>`<div class="hstd">✕ <b>${blockerLabel(b)}</b><span class="muted small"> — ${esc(detail[b]||'')}</span></div>`).join('')}</div>`;
 }
 function beilagenPanel(forms){
@@ -1276,8 +2594,9 @@ function similarPanel(forms){
   return `<div class="card"><div class="dvsub">Duplikat-Radar — sehr ähnliche Formulare (Feldmengen-Überlappung ≥ 50&nbsp;%)</div>
     ${sim.slice(0,6).map(x=>{
       const svc=DATA.forms.find(f=>f.id===x.form_id);
+      const t=tonOf('dup',x.verdict?'entschieden':'offen');
       return `<div class="hstd">≈ <a class="simlink" data-sid="${svc?svc.service_id:''}">${esc(x.titel)}</a>
-      <span class="muted small">Jaccard ${x.jaccard}${x.verdict?' · '+esc(x.verdict):' · unbeurteilt'}</span></div>`;}).join('')}</div>`;
+      <span class="muted small">Jaccard ${x.jaccard}</span> ${stBadge(t,x.verdict?esc(x.verdict):'unbeurteilt',x.verdict?'Duplikat-Verdacht beurteilt':'Ob die beiden Formulare zusammengelegt werden sollen, ist noch nicht entschieden')}</div>`;}).join('')}</div>`;
 }
 // ---------- the Service-Dossier ----------
 // One narrative per page: SERVICE (identity, legal basis, Verfahren)
@@ -1285,14 +2604,18 @@ function similarPanel(forms){
 //   -> per datum its LEGAL BASIS, and the HANDLING rules glued to the table.
 // Everything that is not this narrative folds into a Details drawer.
 function lawChip(t,n,u,j){
-  const badge=j?jur(j):'<span class="badge b-unver" title="Ebene nicht belegbar: der DVSH-Eintrag ist freier Text ohne SR/SHR-Nummer, ohne Quelle und ohne selbsterklärenden Titel — «Verordnung über …» gibt es auf Bundes- und auf Kantonsebene">Ebene offen</span>';
+  // the level is a Kennzeichen; where it cannot be evidenced it says so (dashed), still neutral
+  const badge=j?jur(j):mkBadge('Ebene offen','Ebene nicht belegbar: der DVSH-Eintrag ist freier Text ohne SR/SHR-Nummer, ohne Quelle und ohne selbsterklärenden Titel — «Verordnung über …» gibt es auf Bundes- und auf Kantonsebene','mk-open');
   // no URL in the DVSH entry -> not a link; a href="#" that opens a blank tab
   // promises a source that does not exist. A bare host («www.rechtsbuch.sh.ch»)
   // is completed to a URL; a non-URL value («<UNKNOWN>») is not a link either —
   // relative to this file it would open a 404
   if(u&&/^www\./i.test(String(u).trim())) u='https://'+String(u).trim();
-  if(!u||u==='#'||!/^https?:\/\//i.test(u)) return `<span class="lawchip nolink" title="${esc(t)} — im DVSH ohne Quellenlink, nur als Freitext geführt">${badge} ${esc(n||t)}</span>`;
-  return `<a class="lawchip" href="${esc(u)}" target="_blank" rel="noreferrer" title="${esc(t)}">${badge} ${esc(n||t)}</a>`;
+  // a number alone («721.100») says nothing on a phone: its abbreviation («WWG») or title stands beside it
+  const ab=n&&t&&n!==t?((/\(([^)]{2,24})\)/.exec(String(t))||[])[1]||t):'';
+  const txt=`${badge} ${esc(n||t)}${ab?` <span class="lawabbr">${esc(ab)}</span>`:''}`;
+  if(!u||u==='#'||!/^https?:\/\//i.test(u)) return `<span class="lawchip nolink" title="${esc(t)} — im DVSH ohne Quellenlink, nur als Freitext geführt">${txt}</span>`;
+  return `<a class="lawchip" href="${esc(u)}" target="_blank" rel="noreferrer" title="${esc(t)}">${txt}</a>`;
 }
 // The DVSH's second list is free text ("Art. 3 GesG", a rechtsbuch link ...) and
 // often holds CANTONAL law despite its name - the level is read from evidence
@@ -1379,15 +2702,19 @@ function handlingStrip(s,fm){
     <span class="hs"><span class="hsl">Weitergabe</span>${empt.length
       ? empt.slice(0,4).map(e=>`<span class="empchip" title="${esc(artLabel(e.article_no)+' '+(e.short_title||''))}">${esc(e.empfaenger)}${e.mode==='systematisch'?' ↻':''}</span>`).join('')+(empt.length>4?` +${empt.length-4}`:'')
       : `nur nach den allgemeinen Regeln ${guideChip(["174.100","Art. 8","bekanntgabe"])}`}</span>
-    ${cats.length?`<span class="hs"><span class="hsl">⛨ zusätzlich</span><span class="badge b-sens senslink" title="besonders schützenswerte Daten — Klick: was zusätzlich gilt">${cats.map(x=>esc(lab(HSENS,x))).join(', ')}</span></span>`:''}
-    ${nb?`<span class="hs"><span class="hsl">ohne Grundlage</span><span class="badge b-over">${pl(nb,'Feld','Felder')} — nur freiwillig</span></span>`:''}
+    ${cats.length?`<span class="hs"><span class="hsl">⛨ zusätzlich</span><span class="badge b-sens senslink" title="besonders schützenswerte Daten dieses Formulars — für sie gelten zusätzliche Regeln (KDSG Art. 5, Leitfaden «besonders schützenswerte Daten»)" data-tipgo="Leitfaden: besonders schützenswerte Daten ›">${cats.map(x=>esc(lab(HSENS,x))).join(', ')}</span></span>`:''}
+    ${nb?`<span class="hs"><span class="hsl">ohne Grundlage</span>${stBadge(tonOf('basis','ohne'),pl(nb,'Feld','Felder')+' — nur freiwillig','Weder eine Norm noch die Aufgabe verlangt diese Felder — nur freiwillig erhebbar')}</span>`:''}
   </div>`;
 }
 // one bounded section per Formular: facts, handling, the data table, drawer.
 // `single` renders the old full per-Formular view (drawer open, no border)
 // ---------- Standard-Divergenzen: what keeps THIS form out of one standard ----
-// labels/classes per art come from DATA.labels.div / div_cls (incl. standard_ohne_elemente)
-const divCls=art=>DIV_CLS[art]||'b-unver';
+// labels per art come from DATA.labels.div, the tone per art from DATA.labels.ton_map.div
+// (DATA.labels.div_cls carries the same tone as a st-* class): aligning red, a missing
+// cantonal decision amber, the databank's own mapping work grey, a final answer green
+// several divergences on one unit: red as soon as the Dienststelle can align one of them
+const divTon=list=>{const ts=(list||[]).map(i=>tonOf('div',i.art));
+  return ts.includes('act')?'act':ts.includes('dec')?'dec':ts.includes('open')||!ts.length?'open':'ok';};
 // one key per diverging unit, so the field row can carry the same marker
 function divKey(i){return (i.feld||'')+'|'+(i.teilfeld||'');}
 function divIndex(fm){
@@ -1396,59 +2723,72 @@ function divIndex(fm){
 }
 function divChip(list){
   if(!list||!list.length) return '';
-  const tip=list.map(i=>`${lab(DIV_DE,i.art)}: hier ${i.hier} — ${i.andere}\n→ ${i.aktion}`).join('\n\n');
-  return `<span class="divc" title="${esc(tip)}">⇄ ${list.length>1?list.length+' Divergenzen':esc(lab(DIV_DE,list[0].art))}</span>`;
+  const t=divTon(list);
+  const tip=list.map(i=>`${lab(DIV_DE,i.art)} ${tonWords(tonOf('div',i.art))}: hier ${i.hier} — ${i.andere}\n→ ${i.aktion}`).join('\n\n');
+  return `<span class="divc st-${t}" title="${esc(tip)}">${SW(t)}⇄ ${list.length>1?list.length+' Divergenzen':esc(lab(DIV_DE,list[0].art))}</span>`;
 }
 function begChip(b,mini){
   if(!b) return '';
-  if(b.klasse==='variante') return `<span class="begc" title="Gleiches Datum, einheitlicher Begriff: «${esc(b.vorschlag)}»${b.vorbehalt?' (Vorschlag unter Vorbehalt)':''}${b.grund?' — '+esc(b.grund):''} (Tab «Begriffe»)">${mini?'✎':'Begriff → «'+esc(b.vorschlag)+'»'+(b.vorbehalt?' ?':'')}</span>`;
-  if(b.klasse==='pruefen') return `<span class="begc pr" title="${esc(b.grund||'Die Bezeichnung verspricht mehr oder anderes als das Standard-Element')}">${mini?'✎?':(b.pruefart==='aufteilen'?'Feld aufteilen':b.pruefart==='zuordnung'?'Zuordnung prüfen':'Bezeichnung prüfen')}</span>`;
+  // the tone of a naming verdict (ton_map.begriff): rename or split red (the Dienststelle
+  // changes the Formular), a wrong eCH mapping grey (the databank corrects it)
+  // a proposal under reservation carries a second chip: the canton decides the term
+  // (ton_map.begriff.vorbehalt, amber) — as on the Begriffe page
+  if(b.klasse==='variante'){const t=tonOf('begriff','variante'), tv=tonOf('begriff','vorbehalt');
+    const vb=b.vorbehalt?`<span class="begc st-${tv}" title="${esc('Vorschlag unter Vorbehalt — über den einheitlichen Begriff «'+b.vorschlag+'» entscheidet der Kanton (Tab «Begriffe»)\n'+tonWords(tv))}">${mini?'?':SW(tv)+'Vorbehalt'}</span>`:'';
+    return `<span class="begc st-${t}" title="${esc(`Gleiches Datum, einheitlicher Begriff: «${b.vorschlag}»${b.grund?' — '+b.grund:''} (Tab «Begriffe»)\n`+tonWords(t))}">${mini?'✎':SW(t)+'Begriff → «'+esc(b.vorschlag)+'»'}</span>`+vb;}
+  if(b.klasse==='pruefen'){const t=tonOf('begriff',b.pruefart||'pruefen');
+    return `<span class="begc st-${t}" title="${esc((b.grund||'Die Bezeichnung verspricht mehr oder anderes als das Standard-Element')+'\n'+tonWords(t))}">${mini?'✎?':SW(t)+(b.pruefart==='aufteilen'?'Feld aufteilen':b.pruefart==='zuordnung'?'Zuordnung prüfen':'Bezeichnung prüfen')}</span>`;}
   return '';
 }
 function divergencePanel(fm){
   const sd=fm.standard_divergenzen; if(!sd) return '';
   const ang=sd.angleichen||[], feh=sd.fehlend||[];
-  if(!ang.length&&!feh.length&&!(sd.bezeichnungen||[]).length) return `<div class="card"><div class="dvsub">Standard-Divergenzen</div>
-    <div class="hstd">Keine: jedes Datum dieses Formulars trägt ein eCH-Element und wird gleich verlangt wie auf den übrigen Formularen.</div></div>`;
+  if(!ang.length&&!feh.length&&!(sd.bezeichnungen||[]).length) return `<div class="card" id="stddiv-${fm.id}"><div class="dvsub">Standard-Divergenzen</div>
+    <div class="hstd">${SW('ok')}Keine: jedes Datum dieses Formulars trägt ein eCH-Element und wird gleich verlangt wie auf den übrigen Formularen.</div></div>`;
   const grp={}; ang.forEach(i=>{(grp[i.art]=grp[i.art]||[]).push(i);});
   // the headline number must match the Handlungsbedarf: «anzugleichen» never
   // counts the pflicht_uneinheitlich items, which ask the canton, not this form
   const nAng=sd.n_angleichen!=null?sd.n_angleichen:ang.filter(i=>i.art!=='pflicht_uneinheitlich').length;
   const nUnk=sd.n_pflicht_ungeklaert!=null?sd.n_pflicht_ungeklaert:ang.filter(i=>i.art==='pflicht_uneinheitlich').length;
-  const hd=[nAng?`${nAng} anzugleichen`:'',nUnk?`${nUnk} Pflicht im Korpus ungeklärt`:'',feh.length?`${pl(sd.n_fehlend,'Punkt','Punkte')} ohne Standard`:''].filter(Boolean);
-  let h=`<div class="card"><div class="dvsub">Standard-Divergenzen${hd.length?` (${hd.join(' · ')})`:''}</div>
+  const hd=[nAng?`${SW(tonOf('div','pflicht'))}${nAng} anzugleichen`:'',nUnk?`${SW(tonOf('div','pflicht_uneinheitlich'))}${nUnk} ${esc(todoCat('divergenz_offen')[1])}`:'',feh.length?`${pl(sd.n_fehlend,'Punkt','Punkte')} ohne Standard`:''].filter(Boolean);
+  let h=`<div class="card" id="stddiv-${fm.id}"><div class="dvsub">Standard-Divergenzen${hd.length?` (${hd.join(' · ')})`:''}</div>
     <div class="hstd muted small">Was dieses Formular davon trennt, Teil EINES kohärenten Datenstandards zu sein. Oben: dasselbe Datum wird hier anders verlangt als anderswo — das ist anzugleichen oder zu begründen. Unten: für das Datum gibt es (noch) keinen zitierbaren Standard — das ist eine Lücke, keine Abweichung.</div>`;
   ['pflicht','format','codeliste','pflicht_uneinheitlich'].forEach(art=>{
     const L=grp[art]; if(!L) return;
-    h+=`<table class="ft dvt"><thead><tr><th>${esc(lab(DIV_DE,art))} (${L.length})</th><th>auf diesem Formular</th><th>sonst im Korpus</th><th>Rechtsgrundlage hier</th></tr></thead><tbody>`;
+    const t=tonOf('div',art);
+    h+=`<table class="ft dvt"><thead><tr><th><span title="${esc(tonWords(t))}">${SW(t)}</span>${esc(lab(DIV_DE,art))} (${L.length})</th><th>auf diesem Formular</th><th>auf den übrigen Formularen</th><th>Rechtsgrundlage hier</th></tr></thead><tbody>`;
     L.forEach(i=>{h+=`<tr><td><b>${esc(i.feld)}</b>${i.teilfeld?` › ${esc(i.teilfeld)}`:''}
         <div class="mono small muted">${esc(i.standard)} ${esc(i.element)}</div></td>
       <td class="small">${art==='codeliste'
-        ?`<span class="dvval">${esc(i.hier)}</span>`
-        :`<span class="badge ${divCls(art)}">${esc(i.hier)}</span>`}</td>
+        ?`<span class="dvval st-${t}">${esc(i.hier)}</span>`
+        :`<span class="badge st-${t}">${SW(t)}${esc(i.hier)}</span>`}</td>
       <td class="small">${esc(i.andere)}</td>
       <td class="small muted">${esc(i.basis||'')}</td></tr>
       <tr class="dvact"><td colspan="4" class="small">→ ${esc(i.aktion)}</td></tr>`;});
     h+=`</tbody></table>`;
   });
   const bz=sd.bezeichnungen||[];
-  const bzBlock=(L,title,hint,col)=>L.length?`<div class="dvsub" style="margin-top:10px">${title} (${L.length})</div>
+  const bzBlock=(L,title,hint,col,t)=>L.length?`<div class="dvsub" style="margin-top:10px"><span title="${esc(tonWords(t))}">${SW(t)}</span>${title} (${L.length})</div>
       <div class="small muted">${hint}</div>
       <table class="ft dvt"><thead><tr><th>Datenfeld</th><th>heisst hier</th><th>${col}</th><th>Hinweis</th></tr></thead><tbody>
       ${L.map(i=>`<tr><td><b>${esc(i.feld)}</b>${i.teilfeld?` › ${esc(i.teilfeld)}`:''}<div class="mono small muted">${esc(i.standard)} ${esc(i.element)}</div></td>
         <td class="small">«${esc(i.hier)}»</td>
         <td class="small">${i.klasse==='variante'?`<b>«${esc(i.vorschlag)}»</b>`:esc(i.pruefart==='aufteilen'?'in einzelne Felder':'Zuordnung korrigieren')}</td>
         <td class="small muted">${esc(i.grund||'')}</td></tr>`).join('')}</tbody></table>`:'';
-  h+=bzBlock(bz.filter(i=>i.klasse==='variante'),'Bezeichnung angleichen — gleiches Datum, anderer Name','Das Feld meint dasselbe wie der einheitliche Begriff, heisst aber anders → im Formular umbenennen (Dienststelle).','einheitlich');
-  h+=bzBlock(bz.filter(i=>i.klasse==='pruefen'&&i.pruefart==='aufteilen'),'Feld bündelt mehrere Daten — aufteilen','Der Standard trennt, was dieses Feld zusammenfasst (z. B. Strasse und Hausnummer) → im Formular in einzelne Felder aufteilen (Dienststelle).','Handlung');
-  h+=bzBlock(bz.filter(i=>i.klasse==='pruefen'&&i.pruefart!=='aufteilen'),'eCH-Zuordnung korrigieren — die Bezeichnung meint ein anderes Datum','Kein Fehler des Formulars: die Databank hat das Feld einem unpassenden eCH-Element zugeordnet → Zuordnung korrigieren (Databank).','Handlung');
+  h+=bzBlock(bz.filter(i=>i.klasse==='variante'),'Umbenennen — gleiches Datum, anderer Name','Das Feld meint dasselbe wie der einheitliche Begriff, heisst aber anders → im Formular umbenennen (Dienststelle).','einheitlich',tonOf('begriff','variante'));
+  h+=bzBlock(bz.filter(i=>i.klasse==='pruefen'&&i.pruefart==='aufteilen'),'Feld bündelt mehrere Daten — aufteilen','Der Standard trennt, was dieses Feld zusammenfasst (z. B. Strasse und Hausnummer) → im Formular in einzelne Felder aufteilen (Dienststelle).','Handlung',tonOf('begriff','aufteilen'));
+  h+=bzBlock(bz.filter(i=>i.klasse==='pruefen'&&i.pruefart!=='aufteilen'),'eCH-Zuordnung korrigieren — die Bezeichnung meint ein anderes Datum','Kein Fehler des Formulars: die Databank hat das Feld einem unpassenden eCH-Element zugeordnet → Zuordnung korrigieren (Databank).','Handlung',tonOf('begriff','zuordnung'));
   if(feh.length){
     h+=`<div class="dvsub" style="margin-top:10px">Ohne zitierbaren Standard (${pl(sd.n_fehlend,'Datenpunkt','Datenpunkte')})</div>
       <table class="ft dvt"><thead><tr><th>Art</th><th>Punkte</th><th>Felder</th></tr></thead><tbody>`;
-    feh.forEach(i=>{h+=`<tr><td><span class="badge ${divCls(i.art)}">${esc(lab(DIV_DE,i.art))}</span>
+    feh.forEach(i=>{
+      // the export names the state (standard_divergenzen.fehlend[].art): no standard or one
+      // still in the works — the canton decides; one no longer in force — the databank re-maps
+      const t=tonOf('div',i.art), akt=i.aktion||'';
+      h+=`<tr><td>${stBadge(t,esc(lab(DIV_DE,i.art)),akt)}
         ${i.standard?`<div class="mono small muted">${esc(i.standard)}${i.status?' · '+esc(i.status):(/^eCH-/.test(i.standard)?' · Status nicht erhoben':'')}</div>`:''}</td>
       <td>${i.n}</td><td class="small">${i.felder.map(esc).join(' · ')}${i.n>i.felder.length?' …':''}</td></tr>
-      <tr class="dvact"><td colspan="3" class="small">→ ${esc(i.aktion)}</td></tr>`;});
+      <tr class="dvact"><td colspan="3" class="small">→ ${esc(akt)}</td></tr>`;});
     h+=`</tbody></table>`;
   }
   return h+`</div>`;
@@ -1463,55 +2803,61 @@ function formSection(s,fm,single){
   h+= beilagenPanel([fm]);
   h+= divergencePanel(fm);
   const extras=blockerPanel([fm])+handlingPanel(s,[fm])+similarPanel([fm]);
-  h+=`<details class="hgen" style="margin:0 0 4px" ${single?'open':''}><summary class="dvsub" style="cursor:pointer">Details zu diesem Formular — Digitalisierungs-Blocker, volles Datenhandhabungs-Profil, Duplikat-Radar</summary>${extras}</details>`;
+  h+=`<details class="hgen" style="margin:0 0 4px" ${single?'open':''}><summary class="dvsub" style="cursor:pointer">Details zu diesem Formular — Digitalisierungs-Hürden, volles Datenhandhabungs-Profil, Duplikat-Radar</summary>${extras}</details>`;
   return h+`</div>`;
 }
 // a mistyped or stale tab in a shared link: an explicit notice under the
 // address as typed — render() is the whitelist, no second list to keep in sync
-function viewUnknown(){document.getElementById('main').innerHTML=pageHead('Unbekannte Seite','Diese Seite gibt es in der Databank nicht («'+esc(String(state.tab))+'») — der Link ist veraltet oder vertippt.','—')
-  +'<div class="nores">Unbekannte Seite — links einen Bereich oder Service wählen.</div>';}
+function viewUnknown(){const m=document.getElementById('main');
+  m.innerHTML=pageHead('Unbekannte Seite','Diese Seite gibt es in der Databank nicht («'+esc(String(state.tab))+'») — der Link ist veraltet oder vertippt.')
+    +`<div class="nores">Unbekannte Seite — bitte in der Navigation einen Bereich wählen. ${goLink('home','','Zur Übersicht ›','inl')}</div>`;
+  wireGo(m);}
 function viewFields(){
   const m=document.getElementById('main');
   if(state.service==='all'){
     m.innerHTML=pageHead('Service-Seite',
-      'Links einen Service wählen (oder oben suchen). Die Seite erzählt eine Sache: welcher Service, auf welcher Rechtsgrundlage — welche Formulare — welche Daten sie verlangen, mit Rechtsgrundlage und Handhabung je Datum.',
+      'In der Navigation einen Service wählen oder oben suchen: die Seite zeigt je Service seine Formulare, ihre Datenfelder und die Rechtsgrundlage jedes Datums.',
+      'Die Seite erzählt eine Sache: welcher Service, auf welcher Rechtsgrundlage — welche Formulare — welche Daten sie verlangen, mit Rechtsgrundlage und Handhabung je Datum.',
       'Verfahren & Service-Recht: DVSH-Modell und SHEP-Portal (massgebliche Quellen, nur lesend übernommen). Daten-, Standard- und Regel-Schicht: eigene kuratierte Analyse, quellenbelegt.',
       'Unten der Dokumentationsstand aller Departemente.')+deptOverview();
-    m.querySelectorAll('tr[data-sid]').forEach(tr=>tr.onclick=()=>{state.service=tr.dataset.sid;render();}); return; }
+    m.querySelectorAll('tr[data-sid]').forEach(tr=>tr.onclick=e=>{if(e.target.closest('a')) return; state.service=tr.dataset.sid;render();});
+    wireGo(m); return; }
   const s=svcById[state.service];
   // a stale or mistyped shared link (#fields/99999): an empty state, never the
   // previous page under the wrong address
-  if(!s){m.innerHTML=pageHead('Service-Seite','Dieser Service ist nicht in der Databank (ID '+esc(String(state.service))+') — der Link ist veraltet oder vertippt.','—')
-    +'<div class="nores">Unbekannter Service — links einen Service wählen.</div>';return;}
+  if(!s){m.innerHTML=pageHead('Service-Seite','Dieser Service ist nicht in der Databank (ID '+esc(String(state.service))+') — der Link ist veraltet oder vertippt.')
+    +`<div class="nores">Unbekannter Service — bitte in der Navigation einen Service wählen. ${goLink('fields','','Alle Services ›','inl')} · ${goLink('home','','Zur Übersicht ›','inl')}</div>`;
+    wireGo(m); return;}
   const forms=formsByService[s.id]||[];
   const dv=s.dvsh, sp=s.shep;
   // the old per-Formular view, one form as its own page
   // an unknown Formular or segment in the URL falls back to the service page — and says so
   let fBad='';
   if(state.sub&&state.sub.startsWith('form-')){
-    const fid=+state.sub.slice(5);
+    const [fidS,sec]=state.sub.slice(5).split('~'), fid=+fidS;
     const fm=forms.find(f=>f.id===fid);
     if(fm){
-      m.innerHTML=`<h3 class="view">${esc(fm.title)}</h3>
-        <p class="hint">Formular-Ansicht · gehört zum Service <a class="simlink" id="backsvc">${esc(s.name)}</a> · ${esc(s.dienststelle||'')}</p>
+      // a section the page does not know falls back to the plain Formular-Ansicht
+      if(sec&&sec!=='div') state.sub='form-'+fid;
+      m.innerHTML=`<h3 class="view" tabindex="-1">${esc(fm.title)}</h3>
+        <p class="hint">Formular-Ansicht · gehört zum Service <a class="simlink" id="backsvc" href="#fields/${encodeURIComponent(s.id)}">${esc(s.name)}</a> · ${esc(s.dienststelle||'')}</p>
         ${formSection(s,fm,true)}`;
-      document.getElementById('backsvc').onclick=()=>{state.sub='felder';render();};
+      document.getElementById('backsvc').onclick=e=>{if(e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button) return; e.preventDefault(); state.sub='felder';render();window.scrollTo(0,0);};
       m.querySelectorAll('.simlink[data-sid]').forEach(a=>a.onclick=()=>{
         state.service=a.dataset.sid;state.sub='felder';render();});
-      m.querySelectorAll('.senslink').forEach(b=>b.onclick=()=>{
-        state.tab='guide';render();
-        const t=[...document.querySelectorAll('.gq')].find(x=>x.textContent.includes('schützenswerte'));
-        if(t)t.scrollIntoView({behavior:'smooth'});});
+      m.querySelectorAll('.senslink').forEach(b=>b.onclick=goSensGuide);
+      wireDivChips(m); wireGo(m);
+      if(sec==='div') focusDiv(fid);
       return;
     }
-    fBad=`Formular «${esc(state.sub.slice(5))}» gehört nicht zu diesem Service — gezeigt wird die Service-Seite.`; state.sub='felder';
+    fBad=`Formular «${esc(fidS)}» gehört nicht zu diesem Service — gezeigt wird die Service-Seite.`; state.sub='felder';
   }
   if(state.sub!=='gesetze'&&state.sub!=='felder'){fBad=`Ansicht «${esc(String(state.sub))}» ist auf dieser Seite unbekannt — gezeigt wird die Service-Seite.`; state.sub='felder';}
   const laws=svcLaws(dv);
   let h=`<div class="bcrumb"><a id="bc-home">⌂ Übersicht</a><span>›</span>
     <a class="bc-flt" data-f="${esc(s.department||'')}">${esc(s.department||'—')}</a><span>›</span>
     <a class="bc-flt" data-f="${esc(s.dienststelle||'')}">${esc(s.dienststelle||'—')}</a></div>
-  <h3 class="view">${esc(s.name)}</h3>
+  <h3 class="view" tabindex="-1">${esc(s.name)}</h3>
   <p class="hint" style="margin-bottom:8px">Service-Seite · ${dv
     ?'Verfahren und Rechtsgrundlage aus dem DVSH-Dienstleistungsmodell (amtlich, nur lesend übernommen)'+(sp?' und dem publizierten SHEP-Portal (Bürgersicht)':'')
     :'für diesen Service liegt keine DVSH-Modellierung in der Databank vor, Verfahren und Service-Recht sind darum nicht belegt'} — darunter die Formulare und ihre Daten mit Rechtsgrundlage, Standard und Handhabung: die eigene, quellenbelegte Schicht der Databank.</p>
@@ -1522,8 +2868,8 @@ function viewFields(){
   h+=laws.length?`<div class="svclaws"><span class="hsl">Rechtsgrundlage des Services (DVSH)</span>${laws.join('')}</div>`:'';
   if(!s.dvsh) h+=`<div class="card nodvbox"><span class="badge b-nodv">◇ ${s.in_dvsh?'DVSH-Modellierung nicht in der Databank':'Nicht im DVSH-Modell'}</span>
     <span class="muted small">${s.in_dvsh
-      ?'Dieser Service ist mit dem DVSH verknüpft, aber die Modellierung liegt in dieser Databank nicht vor (beim letzten Harvest nicht mitgeliefert). Die Rechtsgrundlagen unten stammen aus unserer eigenen, quellenbelegten Analyse.'
-      :'Dieser Service ist in unserem Katalog erfasst, aber (noch) nicht in der amtlichen DVSH-Modellierung. Die Rechtsgrundlagen unten stammen aus unserer eigenen, quellenbelegten Analyse.'}</span></div>`;
+      ?'Dieser Service ist mit dem DVSH verknüpft, aber die Modellierung liegt in dieser Databank nicht vor (beim letzten Abzug aus dem DVSH nicht mitgeliefert). Die Rechtsgrundlagen unten stammen aus der eigenen, quellenbelegten Analyse der Databank.'
+      :'Dieser Service ist in der Databank erfasst, aber (noch) nicht in der amtlichen DVSH-Modellierung. Die Rechtsgrundlagen unten stammen aus der eigenen, quellenbelegten Analyse der Databank.'}</span></div>`;
   h+=`<div class="seg">
     <button data-sub="felder" class="${state.sub!=='gesetze'?'active':''}">▤ Verfahren, Formulare &amp; Daten</button>
     <button data-sub="gesetze" class="${state.sub==='gesetze'?'active':''}">⚖ Gesetze im Detail</button>
@@ -1547,7 +2893,8 @@ function viewFields(){
   if(fBad) m.insertAdjacentHTML('afterbegin',`<div class="nores">${fBad}</div>`);
   m.querySelectorAll('.seg button[data-sub]').forEach(b=>b.onclick=()=>{state.sub=b.dataset.sub;render();});
   m.querySelectorAll('.fmopen[data-fid]').forEach(b=>b.onclick=()=>{state.sub='form-'+b.dataset.fid;render();});
-  m.querySelectorAll('.thlink[data-g]').forEach(a=>a.onclick=()=>{state.tab='lebenslagen';state.service='all';state.sub='g-'+a.dataset.g;render();window.scrollTo(0,0);});
+  m.querySelectorAll('.thlink[data-g]').forEach(a=>a.onclick=e=>{if(e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button) return;
+    e.preventDefault(); state.tab='lebenslagen';state.service='all';state.sub='g-'+a.dataset.g;render();window.scrollTo(0,0);});
   const bch=document.getElementById('bc-home');
   if(bch)bch.onclick=()=>{state.service='all';state.sub='felder';render();};
   m.querySelectorAll('.bc-flt').forEach(a=>a.onclick=()=>{
@@ -1557,11 +2904,28 @@ function viewFields(){
     if(t)t.scrollIntoView({behavior:'smooth'});});
   m.querySelectorAll('.simlink[data-sid]').forEach(a=>a.onclick=()=>{
     state.service=a.dataset.sid;state.sub='felder';render();});
-  // a ⛨ badge jumps to the Leitfaden section on sensitive data
-  m.querySelectorAll('.senslink').forEach(b=>b.onclick=()=>{
-    state.tab='guide';render();
-    const t=[...document.querySelectorAll('.gq')].find(x=>x.textContent.includes('schützenswerte'));
-    if(t)t.scrollIntoView({behavior:'smooth'});});
+  // a ⛨ badge explains itself; its box leads to the Leitfaden section on sensitive data
+  m.querySelectorAll('.senslink').forEach(b=>b.onclick=goSensGuide);
+  wireDivChips(m);
+}
+// the ⇄ / ✎ chips of a Formular jump to its block «Standard-Divergenzen» on the same page
+// (their href opens the Formular-Ansicht there, for a new tab or a copied link)
+function focusDiv(fid){
+  setTimeout(()=>{const t=document.getElementById('stddiv-'+fid); if(!t) return;
+    t.scrollIntoView({behavior:'smooth'}); t.classList.add('flash'); setTimeout(()=>t.classList.remove('flash'),1600);},0);
+}
+function wireDivChips(root){
+  root.querySelectorAll('a.hubdiv[data-fid]').forEach(a=>a.onclick=e=>{
+    if(e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button) return;
+    const t=document.getElementById('stddiv-'+a.dataset.fid); if(!t) return;
+    e.preventDefault(); focusDiv(a.dataset.fid);});
+}
+// the Leitfaden, at its section on besonders schützenswerte Daten — a canonical address
+// (#guide), not the Formular's sub carried along
+function goSensGuide(){
+  state.tab='guide'; state.service='all'; state.sub='felder'; render(); window.scrollTo(0,0);
+  const t=[...document.querySelectorAll('.gq')].find(x=>x.textContent.includes('schützenswerte'));
+  if(t) t.scrollIntoView({behavior:'smooth'});
 }
 
 // ---------- Datenhandhabung rendering helpers ----------
@@ -1574,7 +2938,7 @@ function ruleCite(r){
   return `${jur(r.jurisdiction_level)} <span class="mono">${esc(artLabel(r.article_no))}</span> ${esc(r.short_title||r.law_title)}${sr?' · '+esc(sr):''}`;
 }
 function ruleItem(r){
-  const q=r.quote?`<details class="qd"><summary>${ruleCite(r)}${r.quote_verified?'':' <span class="badge b-unver">Zitat unverifiziert</span>'}</summary><blockquote class="quote">«${esc(r.quote)}»</blockquote></details>`:ruleCite(r);
+  const q=r.quote?`<details class="qd"><summary>${ruleCite(r)}${r.quote_verified?'':' '+stBadge(tonOf('verif','unverifiziert'),'Zitat unverifiziert','Das Zitat ist noch nicht mechanisch gegen das Gesetzes-PDF geprüft')}</summary><blockquote class="quote">«${esc(r.quote)}»</blockquote></details>`:ruleCite(r);
   return `<div class="hrule"><span class="hasp">${esc(lab(ASPECT,r.aspect))}</span>
     <div class="hbody"><div>${esc(r.summary)}${r.sensitive_category?` <span class="badge b-sens">⛨ ${esc(lab(SENS,r.sensitive_category))}</span>`:''}</div>
     <div class="small">${q}</div></div></div>`;
@@ -1609,8 +2973,8 @@ function handlingPanel(s,forms){
   if(sektLaws.length) strip+=`<span class="pfc law">Spezialnormen: ${esc(sektLaws.join(' · '))}</span>`;
   const hasTerm=forms.some(fm=>(fm.retention||[]).length||(fm.retention_decisions||[]).length);
   strip+=(hasTerm||frist.length)?`<span class="pfc frist">Aufbewahrung: Spezialfrist</span>`
-                     :`<span class="pfc std">Aufbewahrung: Standard (Registraturperiode)</span>`;
-  if(nNoBasis) strip+=`<span class="pfc over">${pl(nNoBasis,'Feld','Felder')} ohne Grundlage</span>`;
+                     :`<span class="pfc std">Aufbewahrung: Regelfrist (Registraturperiode)</span>`;
+  if(nNoBasis){const t=tonOf('basis','ohne'); strip+=`<span class="pfc st-${t}" title="${esc('Weder eine Norm noch die Aufgabe verlangt diese Felder\n'+tonWords(t))}">${SW(t)}${pl(nNoBasis,'Feld','Felder')} ohne Grundlage</span>`;}
 
   const purpose=forms.map(fm=>fm.purpose).filter(Boolean)[0];
   const terms=forms.flatMap(fm=>fm.retention||[]);
@@ -1656,8 +3020,8 @@ function handlingPanel(s,forms){
     h+=`</div>`;
   }
   if(rest.length) h+=`<div class="hgrp"><div class="dvsub">Weitere Spezialnormen dieses Formulars</div>${rulesByAspect(rest)}</div>`;
-  if(nNoBasis) h+=`<div class="hstd over">⚠ ${nNoBasis} ${nNoBasis===1?'Datenfeld hat':'Datenfelder haben'} keine gesetzliche
-    Grundlage (Over-collection) — ${nNoBasis===1?'es darf':'sie dürfen'} nur freiwillig erhoben werden.</div>`;
+  if(nNoBasis) h+=`<div class="hstd over">${SW(tonOf('basis','ohne'))}${nNoBasis} ${nNoBasis===1?'Datenfeld ist':'Datenfelder sind'} ohne Grundlage —
+    weder eine Norm noch die Aufgabe verlangt ${nNoBasis===1?'es; es darf':'sie; sie dürfen'} nur freiwillig erhoben werden.</div>`;
   // the addressee decides: the KDSG binds the cantonal organs, the DSG binds
   // Bundesorgane — presenting both as "applies to this form" would be wrong
   const allgK=allg.filter(r=>r.jurisdiction_level==='cantonal');
@@ -1672,7 +3036,8 @@ function viewRules(){
   const m=document.getElementById('main');
   const H=DATA.datenhandhabung||[];
   let h=pageHead('Datenhandhabung · Speicherung, Bearbeitung, Bekanntgabe',
-    'Der vollständige Regel-Korpus: eine Zeile je (Artikel, Aspekt), gruppiert nach Geltungsbereich und Gesetz.',
+    'Alle Regeln für das Speichern, Bearbeiten und Weitergeben von Personendaten — im Wortlaut, geordnet nach Geltungsbereich und Gesetz.',
+    'Der vollständige Regelbestand: eine Zeile je (Artikel, Aspekt), gruppiert nach Geltungsbereich und Gesetz.',
     `8 Governance-Gesetze (KDSG/KDSV/ISV/ArchivV, DSG/DSV/BGA/EMBAG) vollständig gelesen plus die Datenhandhabungs-Artikel von ${new Set(H.filter(r=>r.scope==='sektoral').map(r=>r.law_id)).size} Fachgesetzen; jede Regel trägt ein wörtliches Zitat, das der Loader mechanisch gegen das amtliche Gesetzes-PDF geprüft hat.`,
     '«allgemein» gilt für alle Personendaten · «besonders schützenswert» zusätzlich für ⛨-Felder · «sektoral» nur für Formulare, deren Felder das jeweilige Gesetz zitieren («gilt für N Formulare» aufklappen). Adressat beachten: für die Organe des Kantons gilt das KDSG (KDSG Art. 3 Abs. 1 i.V.m. Art. 2 Abs. 1 lit. c); DSG, DSV, BGA und EMBAG binden Bundesorgane und stehen hier als Vergleichsmassstab — auch beim Vollzug von Bundesrecht gilt für die kantonalen Organe das KDSG (KDSG Art. 3 Abs. 1), hinzu treten die Datenschutzbestimmungen des jeweiligen Bundes-Fachgesetzes (Gruppe «sektoral»).');
   if(!H.length){m.innerHTML=h+'<div class="nores">Noch keine Regeln geladen (scripts/load_data_rules.py).</div>';return;}
@@ -1714,7 +3079,7 @@ function guideChip(ref){
     &&x.aspect===asp&&(!scope||x.scope===scope));
   if(!r) return '';
   const tip=(r.summary||'')+(r.quote?'\n«'+r.quote+'»':'');
-  return `<span class="gchip" data-law="${r.law_id}" data-scope="${esc(r.scope)}" title="${esc(tip)}">${esc(r.short_title||r.law_title)} ${esc(artLabel(r.article_no))}</span>`;
+  return `<span class="gchip" data-law="${r.law_id}" data-scope="${esc(r.scope)}" title="${esc(tip)}" data-tipgo="Zur Regel in der Datenhandhabung ›">${esc(r.short_title||r.law_title)} ${esc(artLabel(r.article_no))}</span>`;
 }
 // the ONE sentence for the default retention regime (no sectoral Frist), computed
 // in export_json from the verified cantonal rules and rendered identically here,
@@ -1727,8 +3092,9 @@ function aufbewahrungStd(){
 function viewGuide(){
   const m=document.getElementById('main');
   let h=pageHead('Leitfaden · Was heisst das für den Umgang mit Daten?',
+    `Dieselben Regeln in einfacher Sprache: ${nf(GUIDE.length)} Fragen vom Erheben bis zum Vernichten, jede Aussage mit der Regel, auf der sie beruht.`,
     `Die praktischen Antworten hinter den ${nf((DATA.datenhandhabung||[]).length)} Regeln des Tabs «Datenhandhabung», in einfacher Sprache — neun Fragen vom Erheben bis zum Vernichten.`,
-    'Kuratierter Text; der Build verweigert sich, sobald eine Aussage eine Regel zitiert, die nicht in der Databank ist. Chips zeigen beim Überfahren das wörtliche, PDF-verifizierte Zitat; Klick springt zur Regel. Violette Kästen sind Einordnung, kein Gesetzeszitat.',
+    'Kuratierter Text; die Seite wird nur erzeugt, wenn jede zitierte Regel in der Databank steht. Ein Klick, ein Tipp oder Enter auf einen Chip zeigt das wörtliche, PDF-verifizierte Zitat; von dort führt ein Knopf zur Regel in der Datenhandhabung. Violette Kästen sind Einordnung, kein Gesetzeszitat.',
     'Massgeblich bleibt der Gesetzestext. Formular-spezifisches steht im Datenhandhabungs-Profil der jeweiligen Service-Seite.');
   GUIDE.forEach(sec=>{
     h+=`<div class="card gsec"><h4 class="gq">${esc(sec.frage)}</h4>
@@ -1743,14 +3109,14 @@ function viewGuide(){
   m.innerHTML=h;
   // a chip jumps to the cited law's card in the full rule corpus
   m.querySelectorAll('.gchip').forEach(c=>c.onclick=()=>{
-    state.tab='rules';render();
+    state.tab='rules';state.service='all';state.sub='felder';render();
     const t=document.getElementById(`law-${c.dataset.law}-${c.dataset.scope}`);
     if(t){t.scrollIntoView({behavior:'smooth'});t.classList.add('flash');setTimeout(()=>t.classList.remove('flash'),1600);}
   });
 }
 // ---------- tree (list + diagram) ----------
 function needService(label){
-  return `<h3 class="view">${label}</h3><div class="nores">Bitte links einen einzelnen Service wählen `+
+  return `<h3 class="view" tabindex="-1">${label}</h3><div class="nores">Bitte in der Navigation einen einzelnen Service wählen `+
          `(bei ${nf(DATA.services.length)} Services ist die Gesamtansicht zu gross).</div>`;
 }
 // build the law -> article -> data-field structure for the current selection
@@ -1776,7 +3142,7 @@ function viewTree(into){
   if(state.service==='all'){ m.innerHTML=needService('Gesetzes-Baum · Gesetz → Artikel → Datenfeld'); return; }
   const model=treeModel();
   let h=`<h3 class="view">Gesetzes-Baum · Gesetz → Artikel → Datenfeld</h3>
-  <p class="hint">Beide Darstellungen sind ein- und ausklappbar. Farbe = Zuständigkeitsebene; Verifikationsstufe der Zitation je Datenfeld farbig markiert.</p>
+  <p class="hint">Beide Darstellungen sind ein- und ausklappbar. Die Ebene (Bund, Kanton, Gemeinde) steht als neutrales Kennzeichen; die Farbe gehört allein der Verifikationsstufe: grün geklärt (verifiziert oder aus dem Gesetzes-PDF), grau noch zu prüfen (Databank).</p>
   <div class="seg">
     <button data-t="list" class="${state.tree==='list'?'active':''}">▤ Liste</button>
     <button data-t="diagram" class="${state.tree==='diagram'?'active':''}">⌗ Diagramm</button>
@@ -1789,7 +3155,10 @@ function viewTree(into){
   m.querySelectorAll('.ttog').forEach(t=>t.onclick=()=>t.closest('.tgrp').classList.toggle('collapsed'));
   m.querySelectorAll('.dgbox').forEach(b=>b.onclick=(e)=>{e.stopPropagation();b.closest('.dgnode').classList.toggle('collapsed')});
 }
-function statusBadge(s){return `<span class="badge b-${s==='sourced'?'sourced':s}">${({match:'verifiziert',sourced:'Quelle SHR-PDF',proposed:'UNVERIFIED'}[s]||s)}</span>`;}
+// verification level of a citation in its tone (ton_map.verif); an unknown level is grey
+const TREE_VERIF={match:'verified',sourced:'quelle_pdf',proposed:'unverifiziert'};
+const treeTon=s=>tonOf('verif',TREE_VERIF[s]||s);
+function statusBadge(s){return stBadge(treeTon(s),esc(({match:'verifiziert',sourced:'Quelle SHR-PDF',proposed:'unverifiziert'}[s]||s)),'Verifikationsstufe der Zitation');}
 function listLaw(L){
   const nr=refNo(L.jur,L.sr,L.cref);
   return `<div class="tgrp"><div class="tline"><span class="ttog">▾</span> ${jur(L.jur)} <b>${esc(L.short||L.title)}</b> <span class="muted small">${esc(L.title)}</span>${nr?' <span class="mono small">'+esc(nr)+'</span>':''}</div>
@@ -1801,12 +3170,12 @@ function listArt(A){
 }
 function dgLaw(L){
   const nr=refNo(L.jur,L.sr,L.cref);
-  return `<div class="dgnode"><div class="dgbox" style="border-left-color:var(--${L.jur})"><span class="ttl">${esc(L.short||L.title)}</span> ${jur(L.jur)}<div class="sub">${esc(L.title)}${nr?' · '+esc(nr):''}</div></div>
+  return `<div class="dgnode"><div class="dgbox" style="border-left-color:var(--line)"><span class="ttl">${esc(L.short||L.title)}</span> ${jur(L.jur)}<div class="sub">${esc(L.title)}${nr?' · '+esc(nr):''}</div></div>
     <div class="dgchildren">${L.arts.map(dgArt).join('')}</div></div>`;
 }
 function dgArt(A){
-  return `<div class="dgnode"><div class="dgbox" style="border-left-color:var(--mechanic)"><span class="ttl mono">${esc(artLabel(A.no))}</span><div class="sub">${esc(A.heading||'')}${unver(A.lc)}</div></div>
-    <div class="dgchildren">${A.reqs.map(r=>`<div class="dgnode"><div class="dgbox" style="border-left-color:var(--${r.status==='proposed'?'proposed':'match'})"><span class="ttl">${esc(r.dp)}</span> ${statusBadge(r.status)}<div class="sub">${esc(lab(DFTYPE,r.type))}</div></div></div>`).join('')}</div></div>`;
+  return `<div class="dgnode"><div class="dgbox" style="border-left-color:var(--line)"><span class="ttl mono">${esc(artLabel(A.no))}</span><div class="sub">${esc(A.heading||'')}${unver(A.lc)}</div></div>
+    <div class="dgchildren">${A.reqs.map(r=>`<div class="dgnode"><div class="dgbox" style="border-left-color:var(--ton-${treeTon(r.status)})"><span class="ttl">${esc(r.dp)}</span> ${statusBadge(r.status)}<div class="sub">${esc(lab(DFTYPE,r.type))}</div></div></div>`).join('')}</div></div>`;
 }
 
 // ---------- required information per law ----------
@@ -1836,7 +3205,7 @@ function viewInfo(into){
         <td class="mono small">${esc(artLabel(lb.article_no))}${lb.citation_detail?' '+esc(lb.citation_detail):''}${unver(lb.last_checked)}</td>
         <td class="small">${esc(lab(DFTYPE,req.data_type))}</td>
         <td class="small">${esc(req.condition||'—')}</td>
-        <td>${cap.length?cap.map(c=>`«${esc(c.label)}»${c.st==='formular'?'':` <span class="badge b-${c.st==='confirmed'?'confirmed':'proposedm'}">${c.st}</span>`}`).join('<br>'):'—'}</td>
+        <td>${cap.length?cap.map(c=>`«${esc(c.label)}»`).join('<br>'):'—'}</td>
       </tr>`).join('')}
       </tbody></table></div>`;
   });
@@ -1853,6 +3222,10 @@ function retLine(t){
   const disp=t.disposition?'→ '+lab(DISP_DE,t.disposition):'';
   return `<b>${esc(dur)}</b> ${esc(fmtTrigger(t.trigger_event))} ${disp} <span class="muted small">(${esc(artLabel(t.article_no))} ${esc(t.short_title||'')})</span>`;
 }
+// DSFA indication is judged ONCE in export_json.handlungsbedarf (dsfa_ind); the dashboard
+// reads it — a Python-side dsfa_indiziert flag wins once exported, else the 'dsfa'
+// Handlungsbedarf item. One rule for the Verzeichnis, the service page and the Formular-Ansicht
+function dsfaIndOf(fm){return fm.dsfa_indiziert!=null?!!fm.dsfa_indiziert:(fm.handlungsbedarf||[]).some(i=>i.cat==='dsfa');}
 function formStats(fm){
   const dfs=fm.data_fields||[];
   const sens=dfs.filter(d=>d.sensitive).length;
@@ -1867,10 +3240,7 @@ function formStats(fm){
   const ohne=dfs.filter(d=>d.basis_typ==='ohne').length;
   const offen=dfs.filter(d=>d.basis_typ==='offen').length;
   const todo=dfs.filter(d=>!d.basis_typ&&!(d.legal_basis||[]).length).length;
-  // DSFA indication is judged ONCE in export_json.handlungsbedarf (dsfa_ind); the
-  // dashboard reads it — a Python-side dsfa_indiziert flag wins once exported,
-  // else the 'dsfa' Handlungsbedarf item (exact today: no form has dsfa_status)
-  const dsfaInd=fm.dsfa_indiziert!=null?!!fm.dsfa_indiziert:(fm.handlungsbedarf||[]).some(i=>i.cat==='dsfa');
+  const dsfaInd=dsfaIndOf(fm);
   return {n:dfs.length,sens,lb,auf,a5,ohne,offen,todo,dsfaInd,
     hasZweck:!!fm.purpose,hasEmpf:(fm.disclosures||[]).length>0,
     hasFrist:(fm.retention||[]).length>0||(fm.retention_decisions||[]).length>0};
@@ -1883,28 +3253,29 @@ function viewRegister(){
   st.forEach(({s})=>{if(s.hasZweck)c.zweck++;if(s.hasEmpf)c.empf++;if(s.hasFrist)c.frist++;
     if(s.dsfaInd)c.dsfa++;if(s.hasZweck&&s.hasEmpf&&s.hasFrist)c.voll++;});
   let h=pageHead('Verzeichnis der Bearbeitungstätigkeiten',
-    'Ein Verzeichnis-Auszug je Formular — verantwortliche Stelle, Zweck, Datenkategorien, Rechtsgrundlagen, Empfänger, Aufbewahrung — plus DSFA-Triage und Dienststellen-Risikobild.',
-    'Verantwortliche und Kategorien aus der kuratierten Feld-Schicht; Zwecke agent-kuratiert; Empfänger nur mit Artikel-Beleg; Fristen aus dem zitatverifizierten Fristen-Register. Die DSFA-Spalte ist ein BERECHNETER Vorschlag (Prüfpflicht: KDSG Art. 14b) — entschieden wird von Menschen.',
-    'Rechtliche Einordnung: Die Struktur folgt KDSG Art. 17b Abs. 2 (Rechtsgrundlage, Zweck, Mittel, Art, Herkunft, regelmässige Empfänger); das Gesetz nennt sie dort «öffentliche Register über die Datenbearbeitungstätigkeiten». Eine PFLICHT, ein solches Register öffentlich zu führen, trifft nach KDSG Art. 17b nur Polizei, Staatsanwaltschaft und Justizvollzug; für alle übrigen Dienststellen ist dieses Verzeichnis ein Steuerungsinstrument der Databank, keine kantonale Rechtspflicht. Fehlende Inhalte stehen als «fehlt» — das ist der Arbeitsvorrat, kein Darstellungsfehler.')+`
+    'Je Formular die Angaben eines Verzeichnisses — Zweck, Datenkategorien, Rechtsgrundlagen, Empfänger, Aufbewahrung —, dazu die DSFA-Triage und eine Übersicht je Dienststelle.',
+    'Ein Verzeichnis-Auszug je Formular — verantwortliche Stelle, Zweck, Datenkategorien, Rechtsgrundlagen, Empfänger, Aufbewahrung — plus DSFA-Triage und Übersicht je Dienststelle.',
+    'Verantwortliche und Kategorien aus der kuratierten Feld-Schicht; Zwecke kuratiert; Empfänger nur mit Artikel-Beleg; Fristen aus dem zitatverifizierten Fristen-Register. Die DSFA-Spalte ist ein berechneter Vorschlag (Prüfpflicht: KDSG Art. 14b) — entschieden wird von Menschen.',
+    'Rechtliche Einordnung: Die Struktur folgt KDSG Art. 17b Abs. 2 (Rechtsgrundlage, Zweck, Mittel, Art, Herkunft, regelmässige Empfänger); das Gesetz nennt sie dort «öffentliche Register über die Datenbearbeitungstätigkeiten». Eine Pflicht, ein solches Register öffentlich zu führen, trifft nach KDSG Art. 17b nur Polizei, Staatsanwaltschaft und Justizvollzug; für alle übrigen Dienststellen ist dieses Verzeichnis ein Steuerungsinstrument der Databank, keine kantonale Rechtspflicht. Fehlende Inhalte stehen als «fehlt» — das ist der Arbeitsvorrat, kein Darstellungsfehler.')+`
   <div class="regstats">
     <span class="rstat">Zweck erfasst <b>${c.zweck}/${st.length}</b></span>
     <span class="rstat">Empfänger belegt <b>${c.empf}/${st.length}</b></span>
     <span class="rstat">Spezialfrist/Entscheid <b>${c.frist}/${st.length}</b></span>
     <span class="rstat" title="Zweck, mindestens ein belegter Empfänger und eine Spezialfrist/ein Fristentscheid sind erfasst — sagt nichts über die Rechtsgrundlagen der Felder">Zweck, Empfänger und Frist erfasst <b>${c.voll}/${st.length}</b></span>
-    <span class="rstat warn">DSFA indiziert <b>${c.dsfa}</b></span>
+    <span class="rstat" title="${esc('Formulare, bei denen die berechnete Triage eine Datenschutz-Folgenabschätzung nahelegt (KDSG Art. 14b) — entscheiden muss der Kanton\n'+tonWords(tonOf('dsfa','indiziert')))}">${SW(tonOf('dsfa','indiziert'))}DSFA indiziert <b>${c.dsfa}</b></span>
   </div>`;
   // DSFA triage: computed from real sensitive-field density, decided by humans
-  const triage=st.filter(x=>x.s.dsfaInd).sort((a,b)=>b.s.sens-a.s.sens).slice(0,15);
+  const triage=st.filter(x=>x.s.dsfaInd).sort((a,b)=>b.s.sens-a.s.sens);
   if(triage.length){
-    h+=`<div class="card"><div class="dvsub">DSFA-Triage — Formulare mit hoher Dichte besonders schützenswerter Felder (berechnet; Entscheid ist Sache des Kantons)</div>
+    h+=`<div class="card"><div class="dvsub">DSFA-Triage — Formulare mit mindestens drei (oder zur Hälfte) besonders schützenswerten Feldern (berechnet; ob eine DSFA nötig ist, ist noch nicht entschieden)</div>
     <table class="ft"><thead><tr><th>Formular</th><th>⛨ Felder</th><th>Anteil</th><th>DSFA-Status</th></tr></thead><tbody>`;
     triage.forEach(({f,s})=>{
-      h+=`<tr data-sid="${f.service_id}" style="cursor:pointer"><td>${esc(f.title)}</td>
+      h+=`<tr data-sid="${f.service_id}" style="cursor:pointer"><td>${formLink(f.service_id,f.id,esc(f.title))}</td>
         <td>${s.sens}/${s.n}</td><td>${Math.round(100*s.sens/s.n)} %</td>
-        <td>${f.dsfa_status?esc(f.dsfa_status):'<span class="badge b-unver">offen</span>'}</td></tr>`;});
+        <td>${f.dsfa_status?stBadge(tonOf('dsfa','entschieden'),esc(f.dsfa_status),'DSFA-Entscheid getroffen'):stBadge(tonOf('dsfa','indiziert'),'offen','DSFA indiziert — der Entscheid des Kantons steht aus (KDSG Art. 14b)')}</td></tr>`;});
     h+=`</tbody></table></div>`;
   }
-  // Dienststellen risk heatmap: who actually holds the sensitive data
+  // Übersicht je Dienststelle: where the besonders schützenswerte fields are collected
   const heat={};
   DATA.forms.forEach(f=>(f.data_fields||[]).forEach(d=>{
     if(!d.sensitive)return;
@@ -1913,12 +3284,12 @@ function viewRegister(){
     e.total++; e.cats[d.sensitive]=(e.cats[d.sensitive]||0)+1; if(d.basis_typ==='ohne')e.nb++; if(d.art5_offen)e.a5++;}));
   const hrows=Object.entries(heat).sort((a,b)=>b[1].total-a[1].total).slice(0,15);
   if(hrows.length){
-    h+=`<div class="card"><div class="dvsub">Wer hält die heiklen Daten? — sensible Felder je Dienststelle</div>
-    <table class="ft"><thead><tr><th>Dienststelle</th><th>⛨ total</th><th>Kategorien</th><th title="Over-collection (weder Norm noch Aufgabenbedarf) sowie ⛨-Felder, die als aufgabennotwendig gelten, deren Grundlage nach KDSG Art. 5 Abs. 1 aber noch nicht benannt ist">davon ohne benannte Grundlage</th></tr></thead><tbody>`;
+    h+=`<div class="card"><div class="dvsub">Übersicht je Dienststelle — besonders schützenswerte Felder</div>
+    <table class="ft"><thead><tr><th>Dienststelle</th><th>⛨ total</th><th>Kategorien</th><th title="Felder ohne Grundlage (weder Norm noch Aufgabenbedarf) sowie ⛨-Felder, die als aufgabennotwendig gelten, deren Grundlage nach KDSG Art. 5 Abs. 1 aber noch nicht benannt ist">davon ohne benannte Grundlage</th></tr></thead><tbody>`;
     hrows.forEach(([dn,e])=>{
       h+=`<tr><td>${esc(dn)}</td><td><b>${e.total}</b></td>
         <td class="small">${Object.entries(e.cats).map(([k,v])=>`${esc(lab(HSENS,k))} ${v}`).join(' · ')}</td>
-        <td>${e.nb?`<span class="badge b-over" title="Over-collection">${e.nb}</span> `:''}${e.a5?`<span class="badge b-unver" title="aufgabennotwendig, Grundlage nach KDSG Art. 5 Abs. 1 noch nicht benannt — offen">Art. 5 offen ${e.a5}</span>`:''}${(e.nb||e.a5)?'':'—'}</td></tr>`;});
+        <td>${e.nb?stBadge(tonOf('basis','ohne'),'ohne Grundlage '+nf(e.nb),'Felder ohne Grundlage — weder Norm noch Aufgabenbedarf')+' ':''}${e.a5?stBadge(tonOf('basis','art5_offen'),'Art. 5 offen '+nf(e.a5),'aufgabennotwendig, Grundlage nach KDSG Art. 5 Abs. 1 noch nicht benannt — offen'):''}${(e.nb||e.a5)?'':'—'}</td></tr>`;});
     h+=`</tbody></table></div>`;
   }
   // the register itself, one row per SERVICE (its forms aggregated)
@@ -1929,24 +3300,26 @@ function viewRegister(){
     e.forms++; e.n+=s.n; e.sens+=s.sens; e.lb+=s.lb; e.empf+=(f.disclosures||[]).length;
     e.auf+=s.auf; e.a5+=s.a5; e.ohne+=s.ohne; e.offen+=s.offen; e.todo+=s.todo;
     e.zweck=e.zweck&&s.hasZweck; e.frist=e.frist||s.hasFrist; e.purpose=e.purpose||f.purpose;});
-  h+=`<div class="card"><div class="dvsub">Verzeichnis-Auszug je Service — «Grundlagen» zählt Artikel-belegte Felder plus die aufgabennotwendigen (Massstab KDSG Art. 4 Abs. 1 lit. b); ⛨-Felder ohne benannte Grundlage nach KDSG Art. 5 Abs. 1, «offen/zu ermitteln» und «Over-collection» zählen als ungedeckt</div>
+  h+=`<div class="card"><div class="dvsub">Verzeichnis-Auszug je Service — «Grundlagen» zählt Artikel-belegte Felder plus die aufgabennotwendigen (Massstab KDSG Art. 4 Abs. 1 lit. b); ⛨-Felder ohne benannte Grundlage nach KDSG Art. 5 Abs. 1, «offen/zu ermitteln» und «ohne Grundlage» zählen als ungedeckt</div>
     <table class="ft"><thead><tr><th>Service</th><th>Dienststelle</th>
-    <th>Formulare</th><th>Zweck</th><th>Felder</th><th>Grundlagen</th><th>Empfänger</th><th>Frist</th></tr></thead><tbody>`;
+    <th>Formulare</th><th>Zweck</th><th>Felder</th><th>Grundlagen</th><th>Empfänger</th><th title="Regelfrist = die allgemeine Aufbewahrung (Registraturperiode); Spezialfrist = eine eigene Frist aus dem Fachrecht oder ein Fristentscheid">Frist</th></tr></thead><tbody>`;
   Object.entries(bySvc).forEach(([sid,e])=>{
     const nm=e.svc?e.svc.name:'?';
     h+=`<tr data-sid="${sid}" style="cursor:pointer">
-      <td title="${esc(e.purpose||'')}">${esc(nm.length>64?nm.slice(0,62)+'…':nm)}</td>
+      <td><a class="dlink" href="#fields/${encodeURIComponent(sid)}" data-nav="1">${esc(nm)}</a></td>
       <td class="small muted">${esc((e.svc&&e.svc.dienststelle)||'')}</td>
       <td class="small">${e.forms}</td>
-      <td>${e.zweck?'✓':'<span class="miss">fehlt</span>'}</td>
+      <td>${e.zweck?stBadge('ok','erfasst','Zweck der Bearbeitung festgehalten'+(e.purpose?': «'+e.purpose+'»':'')):stBadge(catTon('zweck'),'fehlt','Der Bearbeitungszweck ist für mindestens ein Formular dieses Services noch nicht festgehalten')}</td>
       <td class="small">${e.n}${e.sens?` <span class="badge b-sens">⛨${e.sens}</span>`:''}</td>
-      <td class="small" title="${pl(e.lb,'Feld','Felder')} mit Artikel · ${e.auf} aufgabennotwendig (Massstab KDSG Art. 4 Abs. 1 lit. b) · ${e.a5} ⛨ aufgabennotwendig, Grundlage nach KDSG Art. 5 Abs. 1 noch nicht benannt (offen) · ${e.ohne} Over-collection · ${e.offen} Aufgabenbedarf offen · ${e.todo} noch nicht recherchiert">${e.lb+e.auf}/${e.n}${e.auf?` <span class="muted">(${e.lb}+${e.auf})</span>`:''}${e.ohne?` <span class="badge b-over" title="Over-collection">${e.ohne}</span>`:''}${e.a5?` <span class="badge b-unver" title="⛨ ohne benannte Grundlage nach KDSG Art. 5 Abs. 1">⛨${e.a5}</span>`:''}${e.todo?` <span class="badge b-unver" title="noch nicht recherchiert">${e.todo}</span>`:''}</td>
-      <td>${e.empf?e.empf:'<span class="miss">fehlt</span>'}</td>
-      <td class="small">${e.frist?'<b>spezial</b>':'Standard'}</td></tr>`;});
+      <td class="small" title="${pl(e.lb,'Feld','Felder')} mit Artikel · ${e.auf} aufgabennotwendig (Massstab KDSG Art. 4 Abs. 1 lit. b) · ${e.a5} ⛨ aufgabennotwendig, Grundlage nach KDSG Art. 5 Abs. 1 noch nicht benannt (offen) · ${e.ohne} ohne Grundlage · ${e.offen} Aufgabenbedarf offen · ${e.todo} noch nicht recherchiert">${e.lb+e.auf}/${e.n}${e.auf?` <span class="muted">(${e.lb}+${e.auf})</span>`:''}${e.ohne?' '+stBadge(tonOf('basis','ohne'),nf(e.ohne),'Felder ohne Grundlage'):''}${e.a5?' '+stBadge(tonOf('basis','art5_offen'),'⛨'+nf(e.a5),'⛨ ohne benannte Grundlage nach KDSG Art. 5 Abs. 1'):''}${e.todo?' '+stBadge(tonOf('basis','zu_ermitteln'),nf(e.todo),'noch nicht recherchiert'):''}</td>
+      <td>${e.empf?e.empf:stBadge(catTon('empf'),'fehlt','Keine belegte Bekanntgabe erfasst — entweder gibt es keine, oder sie ist noch nicht mit Artikel dokumentiert')}</td>
+      <td class="small">${e.frist?'<b>Spezialfrist</b>':'Regelfrist'}</td></tr>`;});
   h+=`</tbody></table></div>`;
   m.innerHTML=h;
   // a row opens the DATA view of the service, whatever segment was open before
-  m.querySelectorAll('tr[data-sid]').forEach(tr=>tr.onclick=()=>{state.service=tr.dataset.sid;state.tab='fields';state.sub='felder';render();});
+  m.querySelectorAll('tr[data-sid]').forEach(tr=>tr.onclick=e=>{if(e.target.closest('a')) return;
+    state.service=tr.dataset.sid;state.tab='fields';state.sub='felder';render();});
+  wireGo(m);
 }
 
 // ---------- Datenkatalog (canonical attributes, Once-Only, divergences) ----------
@@ -1957,9 +3330,10 @@ function viewKatalog(){
   // only the instances collected as a NATURAL PERSON's datum can come from the
   // register; the same element also carries business and object addresses
   const regInst=reg.reduce((n,a)=>n+(a.n_register||0),0);
-  let h=pageHead(`Datenkatalog · die ${nf(kat.length)} einzigartigen Attribute des Kantons`,
+  let h=pageHead(`Datenkatalog · die ${nf(kat.length)} verschiedenen Attribute des Kantons`,
+    'Jedes Datum des Kantons einmal: mit welchem eCH- oder eSH-Element es erfasst ist, wo es anders verlangt wird und was das Einwohnerregister schon führt.',
     'Eine Zeile je Attribut (kanonisches Attribut = ein eCH- oder eSH-Element), egal auf wie vielen Formularen es erhoben wird — die Stammdaten-Sicht über den ganzen Katalog.',
-    'Vollständig abgeleitet aus den eCH/eSH-Zuordnungen der Feld-Schicht, neu berechnet bei jedem Build. «Einwohnerregister» markiert Attribute, die zu einem der Personen- und Adressstandards gehören (eCH-0044/0010/0011/0007/0008) UND mindestens einmal als Datum einer natürlichen Person erhoben werden.',
+    'Vollständig abgeleitet aus den eCH/eSH-Zuordnungen der Feld-Schicht, bei jeder Aktualisierung neu berechnet. «Einwohnerregister» markiert Attribute, die zu einem der Personen- und Adressstandards gehören (eCH-0044/0010/0011/0007/0008) UND mindestens einmal als Datum einer natürlichen Person erhoben werden.',
     `Der Kanton fragt registergeführte Personendaten trotzdem ${nf(regInst)} Mal ab — das ist das Once-Only-Potenzial. Gezählt sind nur Erhebungen bei natürlichen Personen: dieselben Elemente tragen auch Betriebs- und Objektadressen, die das Register nicht führt. Divergenzen zeigen, wo dasselbe Datum uneinheitlich erhoben wird. Zeile aufklappen listet die erhebenden Formulare.`);
   // exchange pipeline: how close is each form to a real eCH payload?
   const withDf=DATA.forms.filter(f=>(f.data_fields||[]).length);
@@ -1968,13 +3342,13 @@ function viewKatalog(){
   const full=withDf.filter(f=>f.exchange_pct===100), p80=withDf.filter(f=>f.exchange_pct>=80&&f.exchange_pct<100);
   const pilot=full.filter(f=>online.has(f.service_id));
   h+=`<div class="regstats">
-    <span class="rstat">voll eCH-zugeordnet <b>${full.length}</b></span>
-    <span class="rstat">80–99&nbsp;% <b>${p80.length}</b></span>
-    <span class="rstat">voll zugeordnet ∧ Online-Kanal <b>${pilot.length}</b> → Pilotmenge</span>
+    <span class="rstat" title="${esc('Formulare, deren Datenpunkte alle ein eCH-Element tragen\n'+tonWords(tonOf('ech','element')))}">${SW(tonOf('ech','element'))}Formulare voll eCH-zugeordnet <b>${nf(full.length)}</b></span>
+    <span class="rstat">Formulare zu 80–99&nbsp;% zugeordnet <b>${nf(p80.length)}</b></span>
+    <span class="rstat" title="Formulare, die voll eCH-zugeordnet sind und laut DVSH schon online eingereicht werden können — ein Teil der voll zugeordneten">voll zugeordnet und online einreichbar <b>${nf(pilot.length)}</b> → Pilotmenge</span>
     <span class="rstat">registerbeziehbare Attribute <b>${reg.length}</b></span>
   </div>`;
   if(pilot.length){
-    h+=`<div class="card"><div class="dvsub">Datenaustausch-Pilotliste — voll standardisiert UND schon online einreichbar</div>
+    h+=`<div class="card"><div class="dvsub">Datenaustausch-Pilotliste — voll standardisiert und schon online einreichbar</div>
     ${pilot.map(f=>`<div class="small" style="padding:2px 0">• <a class="simlink" data-sid="${f.service_id}">${esc(f.title)}</a></div>`).join('')}</div>`;
   }
   // divergences are NOT recomputed here: the tables aggregate the per-form
@@ -1986,22 +3360,24 @@ function viewKatalog(){
     const el=`${i.standard}·${i.element}`, k=i.art+'|'+el;
     const x=dvAgg[k]=dvAgg[k]||{art:i.art,el,forms:new Set(),n:0,akt:new Set()};
     x.forms.add(f); x.n++; if(i.aktion) x.akt.add(i.aktion);}));
-  const dvRows=art=>Object.values(dvAgg).filter(x=>x.art===art).sort((a,b)=>b.forms.size-a.forms.size||b.n-a.n||a.el.localeCompare(b.el));
+  // «Pflicht uneinheitlich» per datum: the same helper as the card on «Für den Kanton»
+  const dvRows=art=>art==='pflicht_uneinheitlich'?pflichtUneinheitlichAgg()
+    :Object.values(dvAgg).filter(x=>x.art===art).sort((a,b)=>b.forms.size-a.forms.size||b.n-a.n||a.el.localeCompare(b.el));
   // the action text is the one export_json wrote per item; it is uniform for some
   // arts and element-specific for others (format names the XSD type, pflicht says
   // whether the others demand or leave optional) — never generalise one row's text
   const dvTable=(art,title)=>{const R=dvRows(art); if(!R.length) return '';
     const akts=[...new Set(R.flatMap(x=>[...x.akt]))];
-    const cap=akts.length===1?esc(akts[0]):`Handlung je Element im Tooltip der Zeile (${akts.length} Varianten, z. B. «${esc(akts[0]||'')}»)`;
-    return `<div class="card"><div class="dvsub"><span class="badge ${divCls(art)}">${esc(lab(DIV_DE,art))}</span> ${title} (${pl(R.length,'Element','Elemente')})</div>
+    const cap=akts.length===1?esc(akts[0]):`Handlung je Element: das eCH-Element antippen (${akts.length} Varianten, z. B. «${esc(akts[0]||'')}»)`;
+    return `<div class="card"><div class="dvsub">${stBadge(tonOf('div',art),esc(lab(DIV_DE,art)),tonOf('div',art)==='dec'?'Kein Formular ist die Ausnahme — der Kanton legt fest':'Die Dienststelle gleicht das Formular an oder begründet die Abweichung')} ${title} (${pl(R.length,'Element','Elemente')})</div>
       <div class="small muted" style="margin:4px 0 6px">→ ${cap}</div>
       <table class="ft"><thead><tr><th>eCH-Element</th><th>Formulare</th><th>Datenpunkte</th><th>Formulare (Auszug)</th></tr></thead><tbody>
       ${R.slice(0,15).map(x=>`<tr><td class="mono small" title="${esc([...x.akt].join('\n'))}">${esc(x.el)}</td><td>${x.forms.size}</td><td>${x.n}</td>
         <td class="small">${[...x.forms].slice(0,3).map(f=>`<a class="simlink" data-sid="${f.service_id}">${esc(f.title.length>40?f.title.slice(0,38)+'…':f.title)}</a>`).join(' · ')}${x.forms.size>3?` <span class="muted">+${x.forms.size-3}</span>`:''}</td></tr>`).join('')}
       </tbody></table>${R.length>15?`<div class="small muted" style="padding:4px 2px">— die 15 häufigsten von ${R.length} Elementen; massgeblich ist der Abschnitt «Standard-Divergenzen» je Formular bzw. der Handlungsbedarf</div>`:''}</div>`;};
   h+=dvTable('pflicht','— dasselbe Datum ist hier Pflicht, dort optional, gegen eine klare Praxis (≥ 2/3 der übrigen Vorkommen)');
-  h+=dvTable('pflicht_uneinheitlich','— der Korpus ist gespalten: kein Formular ist die Ausnahme, es fehlt eine kantonale Festlegung');
-  h+=dvTable('format','— dasselbe Datum in anderer Form (Datentyp/Format) als die Mehrheit');
+  h+=dvTable('pflicht_uneinheitlich','— die Formulare sind sich uneins: kein Formular ist die Ausnahme, es fehlt eine kantonale Festlegung');
+  h+=dvTable('format','— dasselbe Datum in anderer Form (Datentyp/Format) als ≥ 2/3 der Vorkommen');
   h+=dvTable('codeliste','— eigene Wertelisten statt der offiziellen Codes des Standards');
   // code-list check: the swept XSDs define enumerations (sex 1/2/3, maritalStatus 1..9 ...);
   // a form that offers its own value list must be mapped onto those codes at exchange time
@@ -2015,13 +3391,13 @@ function viewKatalog(){
     const key=d.ech.standard+'·'+d.ech.element; const x=clSeen[key]=clSeen[key]||{el:key,dt:d.ech.datatype,n:0,codeOk:0,text:0,forms:new Set(),sample:vals.slice(0,4),cl};
     x.n++; x.forms.add(f); if(asCode===vals.length) x.codeOk++; else x.text++;}));
   const clList=Object.values(clSeen).sort((a,b)=>b.n-a.n);
-  h+=`<div class="card"><div class="dvsub">Codelisten-Abgleich — Wertelisten der Formulare gegen die offiziellen Codes aus den eCH-XSDs (${pl(clList.length,'Element','Elemente')} mit Codeliste; XSD-Sweep ${(()=>{const v=DATA.forms.flatMap(f=>(f.data_fields||[]).map(d=>d.ech&&d.ech.xsd_version)).find(Boolean);return v?'versioniert':'';})()})</div>
-    <div class="small muted" style="margin-bottom:6px">«Klartext» heisst: das Formular lässt z. B. «ledig / verheiratet» ankreuzen, der Standard tauscht den Code (1, 2, …) aus — beim Export ist die Wertliste auf die Codes abzubilden; das ist keine Rechtsfrage, aber eine Voraussetzung für den Datenaustausch.</div>
+  h+=`<div class="card"><div class="dvsub">Codelisten-Abgleich — Wertelisten der Formulare gegen die offiziellen Codes aus den eCH-XSDs (${pl(clList.length,'Element','Elemente')} mit Codeliste; XSD-Prüfung ${(()=>{const v=DATA.forms.flatMap(f=>(f.data_fields||[]).map(d=>d.ech&&d.ech.xsd_version)).find(Boolean);return v?'versioniert':'';})()})</div>
+    <div class="small muted" style="margin-bottom:6px">«Klartext» heisst: das Formular lässt z. B. «ledig / verheiratet» ankreuzen, der Standard tauscht den Code (1, 2, …) aus — beim Export ist die Werteliste auf die Codes abzubilden; das ist keine Rechtsfrage, aber eine Voraussetzung für den Datenaustausch.</div>
     <table class="ft"><thead><tr><th>eCH-Element</th><th>Typ</th><th>offizielle Codes</th><th>Felder</th><th>Codes verwendet</th><th>Klartext</th><th>Beispielwerte</th></tr></thead><tbody>
-    ${clList.slice(0,20).map(x=>`<tr><td class="mono small">${esc(x.el)}</td><td class="mono small">${esc(x.dt)}</td><td class="small" title="${esc(x.cl.slice(0,20).map(c=>c.value+(c.doc?' = '+c.doc:'')).join('\n'))}">${x.cl.length}</td><td>${x.n}</td><td>${x.codeOk}</td><td>${x.text?`<span class="badge b-unver">${x.text}</span>`:'—'}</td><td class="small muted">${esc(x.sample.join(' · '))}</td></tr>`).join('')}
+    ${clList.slice(0,20).map(x=>`<tr><td class="mono small">${esc(x.el)}</td><td class="mono small">${esc(x.dt)}</td><td class="small" title="${esc(x.cl.slice(0,20).map(c=>c.value+(c.doc?' = '+c.doc:'')).join('\n'))}">${x.cl.length}</td><td>${x.n}</td><td>${x.codeOk}</td><td>${x.text?stBadge(tonOf('div','codeliste'),nf(x.text),'Felder mit Klartext statt der offiziellen Codes — beim Austausch auf die Codes abzubilden, oder das Formular bietet die Codes an'):'—'}</td><td class="small muted">${esc(x.sample.join(' · '))}</td></tr>`).join('')}
     </tbody></table>${clList.length?'':'<div class="small muted">Keine Felder mit Werteliste auf einem Element mit Codeliste.</div>'}</div>`;
   // the catalogue itself, most-collected first
-  h+=`<div class="card"><table class="ft"><thead><tr><th>Attribut</th><th>Standard-Element</th>
+  h+=`<div class="card"><table class="ft"><thead><tr><th>Attribut</th><th>eCH-Element / eSH-Entwurf</th>
     <th>Formulare</th><th>Erhebungen</th><th>Register</th><th>⛨</th></tr></thead><tbody>`;
   // which forms collect a given element (for the expandable rows)
   const collectors={};
@@ -2039,40 +3415,45 @@ function viewKatalog(){
     const el=a.ech_standard?`${a.ech_standard}·${a.ech_element}`:(a.esh_key||'');
     let cats=[]; try{cats=JSON.parse(a.sensitive_categories||'[]')}catch(e){}
     const fms=[...(collectors[el]||[])];
-    h+=`<tr class="katrow" data-el="${esc(el)}"><td><b>${esc(a.label)}</b></td><td class="mono small">${esc(el)}</td>
+    // an eSH code is the canton's draft, never official eCH: violet, dashed, «Entwurf»
+    const elCell=!a.ech_standard&&a.esh_key?`<td><span class="eshb" style="margin-left:0" title="Vorschlag für den kantonalen Standard eSH (E-Schaffhausen) — Entwurf, nicht offiziell">${esc(String(a.esh_key).replace(':',' · '))}<span class="ent">Entwurf</span></span></td>`
+      :`<td><span class="mono small">${esc(el)}</span>${a.ech_standard&&ECH_TITEL[a.ech_standard]?`<div class="small muted">${esc(ECH_TITEL[a.ech_standard])}</div>`:''}</td>`;
+    h+=`<tr class="katrow" data-el="${esc(el)}"${fms.length?' aria-expanded="false"':''}><td><b>${esc(a.label)}</b></td>${elCell}
       <td${fms.length!==a.n_forms?` title="Katalogwert ${a.n_forms} — gezählt wird die Liste, die diese Zeile aufklappt"`:''}>${fms.length||a.n_forms}</td><td>${a.n_instances}</td>
-      <td>${a.register_source?'<span class="badge b-dvsh">Einwohnerregister</span>':'—'}</td>
+      <td>${a.register_source?'<span class="regc" title="Once-Only: das Einwohnerregister führt dieses Datum — ein Kennzeichen, keine Bewertung">↺ Einwohnerregister</span>':'—'}</td>
       <td>${cats.length?`<span class="badge b-sens" title="auf mindestens einem Formular in sensitivem Kontext erhoben">⛨ ${cats.map(x=>esc(lab(HSENS,x))).join(', ')}</span>`:''}</td></tr>
       ${fms.length?`<tr class="katforms" hidden><td colspan="6">${fms.slice(0,30).map(f=>`<a class="simlink small" data-sid="${f.service_id}">• ${esc(f.title)}</a>`).join('<br>')}
         ${fms.length>30?`<div class="muted small">— 30 von ${fms.length} Formularen angezeigt; die ganze Liste steht in data_export.json (forms → data_fields → ech) oder über die Suche nach dem Element</div>`:''}</td></tr>`:''}`;});
   h+=`</tbody></table><div class="muted small" style="padding:6px 2px">Die 120 meist-erhobenen von ${nf(kat.length)} Attributen; der ganze Katalog steht in data_export.json (Schlüssel attribut_katalog). Zeile anklicken = erhebende Formulare.</div></div>`;
   m.innerHTML=h;
-  m.querySelectorAll('.katrow').forEach(tr=>tr.onclick=()=>{
-    const nx=tr.nextElementSibling;
-    if(nx&&nx.classList.contains('katforms')) nx.hidden=!nx.hidden;});
+  m.querySelectorAll('.katrow').forEach(tr=>{const nx=tr.nextElementSibling;
+    if(!(nx&&nx.classList.contains('katforms'))) return;
+    tr.onclick=()=>{nx.hidden=!nx.hidden; tr.setAttribute('aria-expanded',String(!nx.hidden));};});
   m.querySelectorAll('.simlink[data-sid]').forEach(a=>a.onclick=(ev)=>{ev.stopPropagation();
     state.service=a.dataset.sid;state.tab='fields';state.sub='felder';render();});
 }
 function viewEsh(){
   const m=document.getElementById('main');
   const kat=DATA.esh_katalog||[];
-  // live = what the field layer says today; the stored n_felder is the snapshot
-  // from the draft's creation; the live count shrinks whenever eCH takes a
-  // field over and grows when new fields are captured — drift either way is expected
-  const eshLive=kat.reduce((n,k)=>n+(k.n_live||0),0), eshSnap=kat.reduce((n,k)=>n+(k.n_felder||0),0);
-  const ohneEch=(()=>{let n=0;DATA.forms.forEach(f=>(f.data_fields||[]).forEach(d=>{
-    const ss=(d.subfields||[]).filter(s=>s&&typeof s==='object'&&s.name);
-    (ss.length?ss:[d]).forEach(u=>{if(!(u.ech&&u.ech.element))n++;});}));return n;})();
-  let h=pageHead('eSH-Katalog · E-Schaffhausen-Standard (ENTWURF)',
-    `Unser eigener Entwurf eines kantonalen Datenstandards für Datenpunkte, die kein eCH-Standard abdeckt — ${pl(kat.length,'Standard','Standards')}, abgeleitet aus den realen Formularfeldern. Heute ${eshLive===1?'trägt':'tragen'} <b>${nf(eshLive)}</b> ${plw(eshLive,'Datenpunkt','Datenpunkte')} einen eSH-Code.`,
-    `Eigenleistung dieses Projekts, NICHT offiziell; im ganzen Dashboard violett-gestrichelt und als «Entwurf» markiert, damit er nie mit offiziellem eCH verwechselt wird (Regel: eSH überdeckt nie ein eCH-Element — wo eCH zugeordnet wird, fällt der Entwurfscode weg; ${eshLive<eshSnap?`darum liegt die Zahl unter dem Stand bei der Erstellung von ${nf(eshSnap)}`:eshLive>eshSnap?`heute liegt die Zahl dennoch über dem Stand bei der Erstellung von ${nf(eshSnap)}, weil seither Datenpunkte hinzugekommen sind`:`die Zahl entspricht heute dem Stand bei der Erstellung von ${nf(eshSnap)}`}).`,
-    `Gedacht als Diskussionsgrundlage für den Kanton. Insgesamt ${nf(ohneEch)} atomare Datenpunkte haben kein zitierbares eCH-Element — die Differenz zu den ${nf(eshLive)} eSH-Punkten ist der noch offene Teil.`);
+  // live = what the field layer says today, counted on the atomic unit (ESH_ATOM): a
+  // composite is represented by its parts, its own code is not counted beside them
+  const eshLive=kat.reduce((n,k)=>n+(k.n_live||0),0);
+  // the data points without an eCH standard in force (the amber part of the start page) and
+  // what eSH covers of them; the grey and light-green parts are outside eSH's scope
+  const ET=((DATA.kopfzahlen||{}).standard_ech||{}).teile||{}, Z=KS_SPLIT;
+  const nKs=ET.dec!=null?ET.dec:Z.esh.n+Z.none.n+Z.ech.n, nOpen=nKs-Z.esh.n;
+  let h=`<div class="band entwurf" role="note"><b>Entwurf</b>Entwurf des Kantons — kein offizieller eCH-Standard. Ein eSH-Code gilt nur dort, wo kein eCH-Standard das Datum abdeckt.</div>`
+    +pageHead('eSH-Katalog · E-Schaffhausen-Standard (Entwurf)',
+    `Der Entwurf des Kantons für Daten ohne eCH-Standard: ${pl(kat.length,'eSH-Entwurf','eSH-Entwürfe')}, heute auf ${pl(eshLive,'Datenpunkt','Datenpunkten')} — kein offizieller eCH-Standard.`,
+    `Ein kantonaler Entwurf eines Datenstandards für Datenpunkte, die kein eCH-Standard abdeckt — ${pl(kat.length,'Entwurf','Entwürfe')}, abgeleitet aus den realen Formularfeldern. Heute ${eshLive===1?'trägt':'tragen'} <b>${nf(eshLive)}</b> ${plw(eshLive,'Datenpunkt','Datenpunkte')} einen eSH-Code (gezählt je Datenpunkt: ein Teilfeld, oder ein Datenfeld ohne Teile).`,
+    `Ein Entwurf des Kantons, von der Databank aus den realen Formularfeldern abgeleitet — nicht offiziell; in der ganzen Databank violett-gestrichelt und als «Entwurf» markiert, damit er nie mit offiziellem eCH verwechselt wird. Regel: eSH überdeckt nie ein eCH-Element — wo eCH zugeordnet wird, fällt der Entwurfscode weg.`,
+    `Gedacht als Diskussionsgrundlage für den Kanton. Von ${pl(nKs,'Datenpunkt','Datenpunkten')} ohne geltenden eCH-Standard ${plw(Z.esh.n,'trägt','tragen')} ${nf(Z.esh.n)} einen eSH-Entwurf; ${nf(nOpen)} ${plw(nOpen,'ist','sind')} noch offen (${nf(Z.none.n)} ohne eCH-Standard, ${nf(Z.ech.n)} mit eCH-Standard erst im Entwurf). Ausserhalb von eSH liegen ${pl(ET.ok_standard||0,'Datenpunkt','Datenpunkte')}, die auf Standard-Ebene geklärt ${plw(ET.ok_standard||0,'ist','sind')}, und ${nf(ET.open||0)}, die an einem Standard ${plw(ET.open||0,'hängt','hängen')}, der nicht mehr in Kraft ist oder dessen Element noch offen ist — die Databank ordnet sie zu.`);
   if(!kat.length){m.innerHTML=h+'<div class="nores">Noch kein Katalog geladen.</div>';return;}
   kat.forEach(k=>{
     let th=[]; try{th=JSON.parse(k.themen||'[]')}catch(e){}
     h+=`<div class="card" id="esh-${esc(k.code)}"><div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap">
-      <span class="eshb" style="font-size:12px">${esc(k.code)}</span><b style="font-size:14px">${esc(k.titel)}</b>
-      <span class="muted small" style="margin-left:auto" title="Stand bei der Erstellung des Entwurfs: ${k.n_felder||0}">${pl(k.n_live||0,'Datenpunkt','Datenpunkte')} heute · Status: ${esc(lab(ESH_STATUS,k.status||'entwurf'))}</span></div>
+      <span class="eshb" style="font-size:12px">${esc(k.code)}<span class="ent">Entwurf</span></span><b style="font-size:14px">${esc(k.titel)}</b>
+      <span class="muted small" style="margin-left:auto">${pl(k.n_live||0,'Datenpunkt','Datenpunkte')} heute · Status: ${esc(lab(ESH_STATUS,k.status||'entwurf'))}</span></div>
       <div class="dfdef" style="margin-top:6px">${esc(k.beschreibung||'')}</div>
       ${th.length?`<div class="dfchips" style="margin-top:6px">${th.map(t=>`<span class="chip">${esc(t)}</span>`).join('')}</div>`:''}
     </div>`;
@@ -2094,90 +3475,139 @@ const dstInfo=Object.fromEntries((DATA.dienststellen||[]).map(d=>{
   return [d.name,{department:d.department,kontakt:k}];}));
 function viewTodo(){
   const m=document.getElementById('main');
-  // filter: one category, one Art (art-bereinigung / art-entscheid / art-recherche), or everything
-  const sub=state.sub||'alle';
-  const art=(/^art-/.test(sub)&&TODO_ART[sub.slice(4)])?sub.slice(4):null;
-  const cat=(!art&&TODO_BY[sub])?sub:'alle';
-  // the URL names what is shown; an unknown filter is replaced AND said so
-  const asked=state.sub; state.sub=art?'art-'+art:cat; const badSub=asked&&asked!=='felder'&&asked!==state.sub;
-  const artOf=k=>todoCat(k)[3];
-  const keep=i=>art?artOf(i.cat)===art:(cat==='alle'||i.cat===cat);
-  const ARTS=['bereinigung','entscheid','recherche'];
-  const artTxt=o=>ARTS.filter(a=>o[a]).map(a=>`${esc(lab(TODO_ART,a))} ${nf(o[a])}`).join(' · ');
-  // every form once; its open items (computed once in export_json); grouped by the owning Dienststelle
+  // the board shows what Dienststellen change (red) and what the canton decides (amber);
+  // the databank's own homework (grey) has its page «Recherche der Databank».
+  // Filter in the URL: 'alle' · one category · 'wer-act' | 'wer-dec' · 'stufe-N' · the
+  // last two joined by '~'; the older 'art-bereinigung' / 'art-entscheid' still work
+  const asked=state.sub;
+  let wer=null, stufe=null, cat=null, bad=false;
+  String(asked||'alle').split('~').forEach(t=>{
+    if(!t||t==='alle'||t==='felder') return;
+    let x;
+    if((x=/^wer-(act|dec)$/.exec(t))) wer=x[1];
+    else if(t==='art-bereinigung') wer='act';
+    else if(t==='art-entscheid') wer='dec';
+    else if((x=/^stufe-(\d+)$/.exec(t))&&STUFEN.some(s=>s.n===Number(x[1]))) stufe=Number(x[1]);
+    else if(TODO_BY[t]&&catTon(t)!=='open') cat=t;
+    else bad=true;});
+  if(cat){wer=null; stufe=null;}
+  const subOf=(w,s)=>[w&&'wer-'+w, s&&'stufe-'+s].filter(Boolean).join('~')||'alle';
+  state.sub=cat||subOf(wer,stufe);
+  const keep=i=>{const t=itemTon(i); if(t==='open') return false;
+    if(cat) return i.cat===cat;
+    return (!wer||t===wer)&&(!stufe||itemStufe(i)===stufe);};
+  // counts: every chip row counts under the OTHER active filter, so a number always
+  // says what a click on it will show
+  const tot={act:0,dec:0,open:0}, byCat={}, byStufe={}, byWer={act:0,dec:0};
+  DATA.forms.forEach(f=>todoItems(f).forEach(i=>{const t=itemTon(i); tot[t]=(tot[t]||0)+i.n;
+    if(t==='open') return;
+    byCat[i.cat]=(byCat[i.cat]||0)+i.n;
+    const s=itemStufe(i);
+    if(!wer||t===wer) byStufe[s]=(byStufe[s]||0)+i.n;
+    if(!stufe||s===stufe) byWer[t]=(byWer[t]||0)+i.n;}));
+  // every form once, its points in the filter, grouped by the owning Dienststelle
   const groups={}; let nForms=0, nItems=0;
   DATA.forms.forEach(f=>{
-    const its=todoItems(f).filter(keep); if(!its.length) return;
+    const its=todoItems(f).filter(keep).sort(byPrio); if(!its.length) return;
     nForms++;
-    const dn=dstOf(f); const g=groups[dn]=groups[dn]||{forms:[],n:0,fields:0,byArt:{}};
-    g.forms.push({f,its}); g.fields+=(f.data_fields||[]).length;
-    its.forEach(i=>{nItems+=i.n; g.n+=i.n; const a=artOf(i.cat); g.byArt[a]=(g.byArt[a]||0)+i.n;});});
-  const allTot={}, allArt={};
-  DATA.forms.forEach(f=>todoItems(f).forEach(i=>{allTot[i.cat]=(allTot[i.cat]||0)+i.n; const a=artOf(i.cat); allArt[a]=(allArt[a]||0)+i.n;}));
-  const allN=Object.values(allTot).reduce((a,b)=>a+b,0);
+    const dn=dstOf(f); const g=groups[dn]=groups[dn]||{forms:[],n:0,byTon:{act:0,dec:0,open:0}};
+    g.forms.push({f,its});
+    its.forEach(i=>{nItems+=i.n; g.n+=i.n; g.byTon[itemTon(i)]+=i.n;});});
   const nVerf=DATA.forms.filter(f=>f.outcome).length;
   // the Schutzstufe gap is corpus-wide, not a property of the current filter —
-  // count it over ALL forms of a Dienststelle, whatever is filtered
-  const dstAll={}; DATA.forms.forEach(f=>{const e=dstAll[dstOf(f)]=dstAll[dstOf(f)]||{forms:0,fields:0};
-    e.forms++; e.fields+=(f.data_fields||[]).length;});
-  let h=pageHead('Handlungsbedarf · Offene Punkte je Dienststelle',
-    `Alles, was die Databank als offen kennt — ${TODO_CATS.length} Arten von Punkten: ${TODO_CATS.map(c=>'«'+esc(c[1])+'»').join(', ')}, dazu die fehlende Schutzstufe (ISV) — sortiert nach der Dienststelle, die es lösen kann, mit deren Kontakt, soweit im DVSH hinterlegt. Recherche-Punkte sind Hausaufgaben der Databank und stehen bei der Dienststelle nur zur Orientierung. 1 Punkt = 1 Datenfeld (bzw. 1 Formular bei Zweck, Empfänger, DSFA, Fassung, Online-Prüfung, Duplikat-Verdacht, fehlender Datenfeld-Schicht, Rechtsmittel und Verfahrens-Ergebnis).`,
-    'Einmal berechnet beim Export (form.handlungsbedarf) aus der kuratierten Feld-Schicht, dem Verzeichnis, der Online-Prüfung, dem Duplikat-Radar, der Begriffe- und Divergenz-Schicht, der Rechtsmittel-Prüfung und den Verfahren — Board, Service-Seite, Dossier und CSV lesen dieselbe Liste. Die Schutzstufe (ISV) fehlt für ALLE Felder, weil der Kanton sie noch nicht festgelegt hat — sie steht deshalb einmal je Dienststelle, nicht je Formular.',
-    'Ein offener Punkt ist eine Lücke im Wissen oder eine ausstehende Entscheidung — kein festgestellter Verstoss. Der Chip-Tooltip und die CSV-Spalte «Art» sagen, wer den Punkt schliessen kann; die drei Art-Chips filtern danach, die Kategorie-Chips nach der Sache.');
-  const ART_TIP={bereinigung:'Das Formular oder die Praxis der Dienststelle muss geändert werden',
-    entscheid:'Nur die zuständige kantonale Stelle kann das entscheiden — die Databank setzt keinen Default',
-    recherche:'Die Databank hat noch nicht nachgeschaut — ihre eigene Arbeitsliste, kein Auftrag an die Dienststelle'};
-  h+=`<div class="todocats">${ARTS.map(a=>`<span class="tcat${art===a?' on':''}" data-cat="art-${a}" title="${esc(ART_TIP[a])}"><b>${nf(allArt[a]||0)}</b> ${esc(lab(TODO_ART,a))}</span>`).join('')}
-    <span class="muted small" style="margin:0 4px">·</span>
-    ${TODO_CATS.map(c=>`<span class="tcat${cat===c[0]?' on':''}" data-cat="${c[0]}" title="${esc(lab(TODO_ART,c[3]))} — ${esc(c[4])}"><span class="badge ${c[2]}">&nbsp;</span>${esc(c[1])} <b>${allTot[c[0]]||0}</b></span>`).join('')}
-    <span class="tcat${(!art&&cat==='alle')?' on':''}" data-cat="alle">alle Punkte <b>${nf(allN)}</b></span>
-    <button class="srcbtn" id="todocsv" title="Arbeitsliste als CSV (Semikolon, UTF-8) — eine Zeile je Formular und Punkt, im aktuellen Filter (je Art oder Kategorie)">⇩ Arbeitsliste (CSV)</button></div>`;
+  // counted over ALL forms of a Dienststelle, fields without a Schutzstufe only
+  const dstAll={}; DATA.forms.forEach(f=>{const k=(f.data_fields||[]).filter(x=>!x.schutzstufe).length; if(!k) return;
+    const e=dstAll[dstOf(f)]=dstAll[dstOf(f)]||{forms:0,fields:0}; e.forms++; e.fields+=k;});
+  const showIsv=!cat&&!stufe&&wer!=='act';
+  const actCats=CAT_ORDER.filter(k=>TODO_BY[k]&&catTon(k)!=='open');
+  // what one point counts, in the words of DATA.labels.einheit
+  const uW=[...new Set(actCats.filter(k=>!formCat(k)).map(k=>UNIT_WORD(catUnitOf(k)[0])))].map(w=>'1 '+w);
+  const unitTxt=`1 Punkt = je nach Kategorie ${uW.length>1?uW.slice(0,-1).join(', ')+' oder '+uW[uW.length-1]:uW.join('')}${actCats.some(formCat)?`${uW.length?', ':''}bei Angaben zum ganzen Formular 1 Formular`:''}.`;
+  let h=pageHead('Handlungsbedarf · Was Dienststellen ändern und der Kanton entscheidet',
+    `${pl(tot.act,'Punkt','Punkte')} kann eine Dienststelle an ihrem Formular selbst ändern, ${nf(tot.dec)} ${plw(tot.dec,'wartet','warten')} auf einen Entscheid des Kantons — je Dienststelle, nach Priorität; die Hausaufgaben der Databank stehen unter «Recherche der Databank».`,
+    `Die offenen Punkte, bei denen jemand in der Verwaltung handeln muss — ${actCats.length} Arten: ${actCats.map(k=>'«'+esc(todoCat(k)[1])+'»').join(', ')}, dazu die fehlende Schutzstufe (ISV) —, sortiert nach der Dienststelle mit ihrem Kontakt, soweit im DVSH hinterlegt. ${unitTxt}`,
+    'Aus den offenen Punkten der einzelnen Formulare zusammengezählt (der kuratierten Feld-Schicht, dem Verzeichnis, der Online-Prüfung, dem Duplikat-Radar, der Begriffe- und Divergenz-Schicht, der Rechtsmittel-Prüfung und den Verfahren) — die Briefings der Dienststellen, «Für den Kanton», «Recherche der Databank», die Dossiers und die CSV lesen dieselbe Liste. Die Schutzstufe (ISV) fehlt für alle Felder, weil der Kanton sie noch nicht festgelegt hat — sie steht deshalb einmal je Dienststelle, nicht je Formular.',
+    'Ein offener Punkt ist eine Lücke — etwas ist noch zu klären, zu entscheiden oder zu belegen. Die Farbe sagt, wer als Nächstes handelt; die Filter zeigen einen Teil nach «wer handelt», Priorität oder Kategorie. Die CSV enthält immer alle Punkte, auch die grauen, mit den Spalten «Wer handelt» und «Priorität».');
+  const on=b=>b?' on':'';
+  const btn=(sub,cls,inner,tip)=>`<button type="button" class="tcat${cls}" data-sub="${sub}"${tip?` title="${esc(tip)}"`:''}>${inner}</button>`;
+  h+=`<div class="filt">
+    <div class="filtrow"><span class="fl">Wer handelt</span>
+      ${btn(subOf(null,stufe),on(!cat&&!wer),`alle <b>${nf(byWer.act+byWer.dec)}</b>`)}
+      ${['act','dec'].map(t=>btn(subOf(t,stufe),on(!cat&&wer===t)+(byWer[t]?'':' zero'),`<i class="sw t-${t}"></i>${esc(tonLabel(t))} <b>${nf(byWer[t])}</b>`,tonTip(t))).join('')}
+      <a class="tcat out" href="#recherche" data-go="recherche" title="${esc(tonTip('open'))}"><i class="sw t-open"></i>${esc(tonLabel('open'))} <b>${nf(tot.open)}</b> — eigene Seite ›</a></div>
+    <div class="filtrow"><span class="fl">Priorität</span>
+      ${btn(subOf(wer,null),on(!cat&&!stufe),'alle Stufen')}
+      ${STUFEN.map(s=>btn(subOf(wer,s.n),on(!cat&&stufe===s.n)+(byStufe[s.n]?'':' zero'),`${esc(stufeLabel(s.n))} <b>${nf(byStufe[s.n]||0)}</b>`,s.text)).join('')}</div>
+    <div class="filtrow top"><span class="fl">Kategorie</span><div class="stgs">${STUFEN.map(s=>{
+      const ks=actCats.filter(k=>catStufe(k)===s.n); if(!ks.length) return '';
+      return `<span class="stg"><span class="stgl">${esc(String(s.n))} · ${esc(s.name)}</span>${ks.map(k=>{const c=todoCat(k), t=catTon(k);
+        return btn(cat===k?'alle':k,on(cat===k)+(byCat[k]?'':' zero'),`<i class="sw t-${t}"></i>${esc(c[1])} <b>${nf(byCat[k]||0)}</b>`,`${tonLabel(t)} · ${catUnit(k,byCat[k]||0)} — ${c[4]}`);}).join('')}</span>`;}).join('')}</div></div>
+    <div class="filtrow"><button class="srcbtn" id="todocsv" type="button" title="Die ganze Arbeitsliste als CSV (Semikolon, UTF-8): alle offenen Punkte aller Formulare — auch die grauen der Databank — mit den Spalten «Wer handelt» und «Priorität», unabhängig vom Filter. Die Schutzstufe (ISV), die für alle Felder offen ist, steht nicht darin.">⇩ Alle Punkte als CSV</button></div></div>`;
   h+=`<details class="card todoexpl"><summary><b>Was die Punkte bedeuten und wer sie schliessen kann</b></summary>
-    <table class="ft"><thead><tr><th>Punkt</th><th>Art</th><th>Bedeutung</th></tr></thead><tbody>${TODO_CATS.map(c=>`<tr><td><span class="badge ${c[2]}">${esc(c[1])}</span></td><td class="small">${esc(lab(TODO_ART,c[3]))}</td><td>${esc(c[4])}</td></tr>`).join('')}
-    <tr><td><span class="badge b-unver">Schutzstufe fehlt</span></td><td class="small">${esc(lab(TODO_ART,'entscheid'))}</td><td>Für kein Datenfeld ist eine ISV-Schutzstufe festgelegt. Das ist eine kantonale Klassifizierungsentscheidung; die Databank setzt bewusst keine Standardwerte.</td></tr></tbody></table>
-    <div class="small muted" style="margin-top:6px">${esc(lab(TODO_ART,'recherche'))} = die Databank hat noch nicht nachgeschaut · ${esc(lab(TODO_ART,'entscheid'))} = nur die zuständige Stelle kann das entscheiden · ${esc(lab(TODO_ART,'bereinigung'))} = das Formular oder die Praxis muss geändert werden.</div></details>`;
-  const filt=art?' («'+esc(lab(TODO_ART,art))+'»)':(cat!=='alle'?' («'+esc(todoCat(cat)[1])+'»)':'');
-  h+=`<div class="regstats"><span class="rstat">Formulare mit offenen Punkten <b>${nForms}/${DATA.forms.length}</b></span>
-    <span class="rstat">Dienststellen <b>${Object.keys(groups).length}</b></span>
-    <span class="rstat">Punkte${filt} <b>${nf(nItems)}</b>${(!art&&cat==='alle')?` <span class="muted">— ${artTxt(allArt)}</span>`:''}</span>
-    <span class="rstat" title="Für so viele Formulare ist ein Verfahrens-Ergebnis (Entscheid und Rechtsmittel) modelliert; für die übrigen ist die Rechtsmittelfrage noch nicht erreicht">Verfahren modelliert <b>${nVerf}/${DATA.forms.length}</b></span></div>`;
-  const csv=[['Dienststelle','Departement','Kontakt','Service','Formular','Punkt','Art','Anzahl','Detail']];
-  Object.entries(groups).sort((a,b)=>b[1].n-a[1].n).forEach(([dn,g])=>{
-    const info=dstInfo[dn]||{}; const dep=info.department||(svcById[g.forms[0].f.service_id]||{}).department||'';
-    const kk=info.kontakt||[]; const reachable=kk.some(k=>/@|\+?\d[\d\s]{6,}\d/.test(String(k)));
-    // the card id slugs the RAW name — the search index anchors the same way
-    h+=`<div class="card dstcard" id="dst-${dn.replace(/[^A-Za-z0-9]+/g,'-')}"><div class="dsthead"><h4>${esc(dn)}</h4>
+    <table class="ft"><thead><tr><th>Punkt</th><th>Wer handelt</th><th>Priorität</th><th>Bedeutung</th></tr></thead><tbody>${actCats.map(k=>{const c=todoCat(k), t=catTon(k);
+      return `<tr><td>${tonChip(t,esc(c[1]),null,tonLabel(t))}</td><td class="small">${esc(tonLabel(t))}</td><td class="small nowrap">${esc(stufeLabel(catStufe(k)))}</td><td>${esc(c[4])}</td></tr>`;}).join('')}
+    <tr><td>${tonChip('dec','Schutzstufe (ISV) nicht festgelegt',null,tonLabel('dec'))}</td><td class="small">${esc(tonLabel('dec'))}</td><td class="small">alle Datenfelder</td><td>Für kein Datenfeld ist eine ${esc(ISV_TXT)} festgelegt. Das ist eine kantonale Klassifizierungsentscheidung; die Databank setzt bewusst keine Standardwerte.</td></tr></tbody></table>
+    <div class="small muted" style="margin-top:6px">Rot = ${esc(tonTip('act'))} · Amber = ${esc(tonTip('dec'))} · Grau = ${esc(tonTip('open'))} Die grauen Punkte stehen unter ${goLink('recherche','','«Recherche der Databank»','inl')}.</div></details>`;
+  const filt=cat?'«'+esc(todoCat(cat)[1])+'»':[wer&&'«'+esc(tonLabel(wer))+'»',stufe&&'«'+esc(stufeLabel(stufe))+'»'].filter(Boolean).join(' · ');
+  h+=`<div class="regstats"><span class="rstat">Formulare mit Punkten${cat||wer||stufe?' im Filter':''} <b>${nf(nForms)}/${nf(DATA.forms.length)}</b></span>
+    <span class="rstat">Dienststellen <b>${nf(Object.keys(groups).length)}</b></span>
+    <span class="rstat">Punkte${filt?' '+filt:''} <b>${nf(nItems)}</b></span>
+    <span class="rstat" title="Für so viele Formulare ist ein Verfahrens-Ergebnis (Entscheid und Rechtsmittel) modelliert; für die übrigen ist die Rechtsmittelfrage noch nicht erreicht">Verfahren modelliert <b>${nf(nVerf)}/${nf(DATA.forms.length)}</b></span></div>`;
+  Object.entries(groups).sort((a,b)=>b[1].n-a[1].n||a[0].localeCompare(b[0],'de')).forEach(([dn,g])=>{
+    const info=dstInfo[dn]||{}, du=dstByName[dn];
+    const dep=(du&&du.department)||info.department||(svcById[g.forms[0].f.service_id]||{}).department||'';
+    const kk=(du&&du.kontakt&&du.kontakt.length?du.kontakt:info.kontakt)||[];
+    const reachable=kk.some(k=>/@|\+?\d[\d\s]{6,}\d/.test(String(k)));
+    // the card id slugs the RAW name — older links anchor the same way
+    h+=`<div class="card dstcard" id="dst-${dn.replace(/[^A-Za-z0-9]+/g,'-')}"><div class="dsthead"><h4>${dstLink(dn)}</h4>
       <span class="muted small">${esc(dep)}</span>
-      <span class="muted small" style="margin-left:auto">${pl(g.forms.length,'Formular','Formulare')} · <b>${nf(g.n)}</b> ${plw(g.n,'Punkt','Punkte')}${Object.keys(g.byArt).length>1?` — davon ${artTxt(g.byArt)}`:''}</span></div>
-      ${kk.length?`<div class="dstkontakt" title="Kontakt laut DVSH-Dienstleistungsmodell${reachable?'':' — nur eine Adresse, kein Telefon und keine E-Mail hinterlegt'}">${reachable?'☏':'Adresse:'} ${kk.map(esc).join(' · ')}</div>`:`<div class="dstkontakt muted">Kontakt: nicht im DVSH hinterlegt</div>`}
-      ${(dstAll[dn]||{}).fields?`<div class="dstkontakt muted">Schutzstufe (ISV) für ${pl(dstAll[dn].fields,'Datenfeld','Datenfelder')} in ${pl(dstAll[dn].forms,'Formular','Formularen')} dieser Dienststelle nicht festgelegt — kantonaler Entscheid ausstehend (gilt für alle Formulare, unabhängig vom Filter)</div>`:''}
+      <span class="small" style="margin-left:auto">${du&&(du.formulare||[]).length>g.forms.length?`${nf(g.forms.length)} von ${pl(du.formulare.length,'Formular','Formularen')} mit Punkten`:`${pl(g.forms.length,'Formular','Formulare')} mit Punkten`} · ${tonNums(g.byTon,['act','dec'])}</span></div>
+      ${kk.length?`<div class="dstkontakt" title="Kontakt laut DVSH-Dienstleistungsmodell${reachable?'':' — nur eine Adresse, kein Telefon und keine E-Mail hinterlegt'}">${reachable?'☏':'Adresse:'} ${kontaktHtml(kk)}</div>`:`<div class="dstkontakt muted">Kontakt: nicht im DVSH hinterlegt</div>`}
+      ${showIsv&&(dstAll[dn]||{}).fields?`<div class="dstkontakt dsline" style="margin:2px 0 6px"><i class="sw t-dec"></i><span>Schutzstufe (ISV) für ${pl(dstAll[dn].fields,'Datenfeld','Datenfelder')} in ${pl(dstAll[dn].forms,'Formular','Formularen')} dieser Dienststelle nicht festgelegt — ${esc(tonLabel('dec'))} (gilt für alle Formulare, unabhängig vom Filter)</span></div>`:''}
       <table class="ft"><thead><tr><th>Formular</th><th>Offene Punkte</th></tr></thead><tbody>`;
     g.forms.sort((a,b)=>b.its.reduce((x,i)=>x+i.n,0)-a.its.reduce((x,i)=>x+i.n,0)).forEach(({f,its})=>{
       const svc=svcById[f.service_id];
-      h+=`<tr><td><a class="simlink" data-sid="${f.service_id}" data-fid="${f.id}">${esc(f.title)}</a>${svc&&svc.name!==f.title?`<div class="small muted">${esc(svc.name)}</div>`:''}</td>
-        <td>${its.map(i=>{const c=todoCat(i.cat);return `<span class="tchip badge ${c[2]}" data-sid="${f.service_id}" data-fid="${f.id}" data-cat="${esc(i.cat)}" title="${esc(lab(TODO_ART,c[3]))} — ${esc(i.detail||'')}">${esc(c[1])}${i.n>1?` <b>${i.n}</b>`:''}</span>`;}).join('')}</td></tr>`;
-      its.forEach(i=>{const c=todoCat(i.cat);csv.push([dn,dep,kk.join(' / '),svc?svc.name:'',f.title,c[1],lab(TODO_ART,c[3]),String(i.n),i.detail||'']);});
+      h+=`<tr><td><a class="simlink" href="#fields/${encodeURIComponent(f.service_id)}/form-${encodeURIComponent(f.id)}" data-sid="${f.service_id}" data-fid="${f.id}">${esc(f.title)}</a>${svc&&svc.name!==f.title?`<div class="small muted">${esc(svc.name)}</div>`:''}</td>
+        <td>${its.map(i=>{const c=todoCat(i.cat), t=itemTon(i);
+          return tonChip(t,esc(c[1]),i.n>1?i.n:null,`${tonLabel(t)} · ${stufeLabel(itemStufe(i))}${unitTip(i)} — ${i.detail||c[4]}`,
+            ` data-sid="${f.service_id}" data-fid="${f.id}" data-cat="${esc(i.cat)}" data-tipgo="Zur Stelle im Formular ›" tabindex="0"`);}).join(' ')}</td></tr>`;
     });
     h+=`</tbody></table></div>`;
   });
-  if(!Object.keys(groups).length) h+='<div class="nores">Keine offenen Punkte dieser Art.</div>';
+  if(!Object.keys(groups).length) h+='<div class="nores">Keine offenen Punkte in diesem Filter.</div>';
   m.innerHTML=h;
-  if(badSub) m.insertAdjacentHTML('afterbegin',`<div class="nores">Filter «${esc(asked)}» ist auf dieser Seite unbekannt — gezeigt werden alle Punkte.</div>`);
-  m.querySelectorAll('.tcat').forEach(c=>c.onclick=()=>{state.sub=c.dataset.cat;render();});
+  if(bad) m.insertAdjacentHTML('afterbegin',`<div class="nores">Filter «${esc(String(asked))}» ist auf dieser Seite unbekannt — gezeigt wird ${cat||wer||stufe?'der erkannte Teil':'alles, was Dienststellen und Kanton betrifft'}.</div>`);
+  m.querySelectorAll('button.tcat[data-sub]').forEach(c=>c.onclick=()=>{state.sub=c.dataset.sub;render();});
   // a Formular name opens its Formular-Ansicht; a chip opens the segment where the
   // point lives — form-level points the Formular-Ansicht, field-level points the
   // service page scrolled to that Formular's section
   const FORM_LEVEL=new Set(['veraltet','dup','keine-felder','pruefung_faellig']);
-  m.querySelectorAll('.simlink[data-fid]').forEach(a=>a.onclick=()=>{state.service=a.dataset.sid;state.tab='fields';state.sub='form-'+a.dataset.fid;render();});
-  m.querySelectorAll('.tchip').forEach(c=>c.onclick=()=>{state.service=c.dataset.sid;state.tab='fields';
-    const single=FORM_LEVEL.has(c.dataset.cat);
-    state.sub=single?'form-'+c.dataset.fid:'felder';render();
-    if(!single){const t=document.getElementById('fsec-'+c.dataset.fid); if(t){t.scrollIntoView({behavior:'smooth'});t.classList.add('flash');setTimeout(()=>t.classList.remove('flash'),1600);}}});
+  m.querySelectorAll('.simlink[data-fid]').forEach(a=>a.onclick=e=>{
+    if(e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button) return; e.preventDefault();
+    state.service=a.dataset.sid;state.tab='fields';state.sub='form-'+a.dataset.fid;render();window.scrollTo(0,0);});
+  const openChip=c=>{state.service=c.dataset.sid;state.tab='fields';
+    const single=FORM_LEVEL.has(c.dataset.cat), div=!!DIV_SEC(c.dataset.cat);
+    // a divergence or naming point opens the Formular at its block «Standard-Divergenzen»
+    state.sub=single?'form-'+c.dataset.fid:div?'form-'+c.dataset.fid+'~div':'felder';render();
+    if(single){window.scrollTo(0,0);return;}
+    if(div){window.scrollTo(0,0); return;}   // viewFields scrolls to the block itself
+    const t=document.getElementById('fsec-'+c.dataset.fid); if(t){t.scrollIntoView({behavior:'smooth'});t.classList.add('flash');setTimeout(()=>t.classList.remove('flash'),1600);}};
+  m.querySelectorAll('.tchip[data-fid]').forEach(c=>{c.onclick=()=>openChip(c);});
+  wireGo(m);
   const b=document.getElementById('todocsv'); if(b) b.onclick=()=>{
+    // the whole list, grey included, Dienststelle by Dienststelle in priority order
+    const rows=[];
+    DATA.forms.forEach(f=>todoItems(f).forEach(i=>rows.push({dn:dstOf(f),f,i})));
+    rows.sort((a,b)=>a.dn.localeCompare(b.dn,'de')||byPrio(a.i,b.i)||String(a.f.title).localeCompare(String(b.f.title),'de'));
+    const csv=[['Dienststelle','Departement','Kontakt','Service','Formular','Priorität','Punkt','Wer handelt','Anzahl','Detail']];
+    rows.forEach(({dn,f,i})=>{const du=dstByName[dn], info=dstInfo[dn]||{}, svc=svcById[f.service_id];
+      const kk=(du&&du.kontakt&&du.kontakt.length?du.kontakt:info.kontakt)||[];
+      csv.push([dn,(du&&du.department)||info.department||(svc||{}).department||'',kk.join(' / '),svc?svc.name:'',f.title,
+        stufeLabel(itemStufe(i)),todoCat(i.cat)[1],tonLabel(itemTon(i)),String(i.n),i.detail||'']);});
     const q=v=>'"'+String(v).replace(/"/g,'""')+'"';
     const txt='﻿'+csv.map(r=>r.map(q).join(';')).join('\r\n');
     const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([txt],{type:'text/csv;charset=utf-8'}));
-    a.download='handlungsbedarf'+(art?'-art-'+art:(cat!=='alle'?'-'+cat:''))+'.csv'; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),2000);};
+    a.download='handlungsbedarf-alle-punkte.csv'; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),2000);};
 }
 // ---------- global search over everything the databank holds ----------
 let SIDX=null;
@@ -2245,15 +3675,18 @@ function searchIndex(){
   (DATA.begriffe||[]).forEach(b=>ix.push({t:'Begriff',label:b.vorschlag,
     sub:`${b.standard} ${b.element} · ${pl(b.labels.filter(l=>l.klasse==='variante').length,'Bezeichnung','Bezeichnungen')} anzugleichen`,
     key:lc(b.vorschlag+' '+b.labels.map(l=>l.label).join(' ')+' '+b.element),go:{tab:'begriffe',service:'all',sub:'alle',q:b.vorschlag,anchor:'beg-'+b.element_id}}));
-  // a Dienststelle owns a Handlungsbedarf card only when one of its forms has
-  // open items; the others route to their service page (or carry no link)
-  const owners=new Set(DATA.forms.filter(f=>todoItems(f).length).map(dstOf));
+  // a Dienststelle hit opens its own page (the briefing); a name the overview does
+  // not know falls back to one of its services (or carries no link)
   (DATA.dienststellen||[]).forEach(d=>{
+    const u=dstByName[d.name];
     let go=null;
-    if(owners.has(d.name)) go={tab:'todo',service:'all',sub:'alle',anchor:'dst-'+d.name.replace(/[^A-Za-z0-9]+/g,'-')};
+    if(u) go={tab:'dienststellen',service:'all',sub:u.slug};
     else {const sv=DATA.services.find(s=>s.dienststelle===d.name); if(sv) go={tab:'fields',service:sv.id,sub:'felder'};}
-    const k=(dstInfo[d.name]||{}).kontakt||[];
-    ix.push({t:'Dienststelle',label:d.name,sub:(d.department||'')+(owners.has(d.name)?'':' · kein Formular mit offenen Punkten')+(k.length?' · '+k.join(' · '):''),
+    const k=(u&&u.kontakt&&u.kontakt.length?u.kontakt:(dstInfo[d.name]||{}).kontakt)||[];
+    const o=u&&u.offen, nF=u?(u.formulare||[]).length:0;
+    ix.push({t:'Dienststelle',label:d.name,sub:(d.department||'')
+      +(u?(nF?` · ${pl(nF,'Formular','Formulare')} · offene Punkte: ${nf(o.act)} ${tonLabel('act')}, ${nf(o.dec)} ${tonLabel('dec')}, ${nf(o.open)} ${tonLabel('open')}`:' · kein Formular in der Databank'):'')
+      +(k.length?' · '+k.join(' · '):''),
       key:lc(d.name+' '+(d.department||'')),go});});
   // byte-identical entries never appear twice
   const seen=new Set();
@@ -2268,12 +3701,19 @@ function hl(text,toks){
   const re=new RegExp('('+T.join('|')+')','ig');
   return s.split(re).map((p,i)=>i%2?`<mark class="hl">${esc(p)}</mark>`:esc(p)).join('');
 }
+// the address of a search target, as the hash writes it
+function hrefOf(g){
+  if(!g) return '';
+  const svc=g.tab==='fields'?String(g.service==null?'all':g.service):'all', sub=g.sub||'felder';
+  return '#'+g.tab+(svc!=='all'||sub!=='felder'?'/'+encodeURIComponent(svc):'')+(sub!=='felder'?'/'+sub:'');
+}
 function goTo(g){
   if(!g) return;
   // ids are strings everywhere in state (hash segments, dataset values); a
   // numeric id from the index would never match the sidebar's String(s.id)
   state.tab=g.tab; state.service=g.service==null?'all':String(g.service); state.sub=g.sub||'felder'; state.begq=g.q||'';
-  render();
+  closeNav(); render();
+  if(!g.anchor) window.scrollTo(0,0);
   if(g.anchor){const t=document.getElementById(g.anchor);
     if(t){t.scrollIntoView({behavior:'smooth'});t.classList.add('flash');setTimeout(()=>t.classList.remove('flash'),1600);}
     else {const m=document.getElementById('main'); if(m) m.insertAdjacentHTML('afterbegin',`<div class="nores">Der gesuchte Eintrag wird auf dieser Seite nicht dargestellt (Anker «${esc(g.anchor)}» nicht gefunden) — die Seite zeigt den Gesamtbestand.</div>`); window.scrollTo(0,0);}}
@@ -2287,9 +3727,11 @@ function viewSearch(){
   const inp=document.getElementById('gsearch'); if(inp&&inp.value.trim()!==q) inp.value=q;
   const toks=q.toLowerCase().split(/\s+/).filter(t=>t.length>=2);
   let h=pageHead('Suche · Services, Formulare, Datenfelder, Recht, Standards, Dienststellen',
+    q?'Treffer für «'+esc(q)+'» — alle Wörter müssen vorkommen, Reihenfolge und Gross-/Kleinschreibung egal.'
+     :'Ein Suchfeld über Services, Formulare, Datenfelder, Gesetze, Regeln, Standards und Dienststellen.',
     'Ein Suchfeld über Services, Formulare, Datenfelder (inkl. Teilfelder), Gesetze und Artikel, Datenhandhabungs-Regeln, Empfänger, Beilagen, Themengruppen (Tab «Lebenslagen»), Begriffe, eCH-Standards, eSH-Entwürfe und Dienststellen.',
     'Durchsucht wird der Export der Databank, wie er in dieser Seite steckt — nichts Externes. Alle Wörter müssen vorkommen (Reihenfolge egal, Gross/Klein egal). Der Datenkatalog (1 Zeile je Attribut) ist nicht separat indexiert; seine Daten sind über die Datenfelder und eCH-Standards erreichbar.',
-    'Ein Treffer mit Ziel springt an die Stelle, an der das Objekt in der Databank lebt: Service-Seite (Formular-Abschnitt), Formular-Ansicht, Regel-Karte, Begriffs-Karte, eSH-Karte oder Handlungsbedarf; Einträge ohne Ziel sagen es.');
+    'Ein Treffer mit Ziel springt an die Stelle, an der das Objekt in der Databank lebt: Service-Seite (Formular-Abschnitt), Formular-Ansicht, Regel-Karte, Begriffs-Karte, eSH-Karte oder die Seite der Dienststelle; Einträge ohne Ziel sagen es.');
   if(!toks.length){m.innerHTML=h+'<div class="nores">Mindestens ein Wort mit zwei Zeichen eingeben — z. B. «AHV-Nummer», «Art. 17b», «Steuerverwaltung», «Strafregisterauszug», «eCH-0044», «eSH-0001».</div>';return;}
   // rank: whole-word matches (so «17b» prefers Art. 17b over Art. 317bis), then label matches
   const wb=(s,t)=>{const i=s.indexOf(t);return i>=0&&(i===0||!/[a-z0-9äöü]/.test(s[i-1]));};
@@ -2305,15 +3747,16 @@ function viewSearch(){
     h+=`<div class="card sres"><div class="dvsub">${esc(t)} · ${L.length}</div>`;
     L.forEach((e,i)=>{const li=linkStore.push(e)-1;
       h+=`<div class="srow${i>=10?' more':''}" ${i>=10?`data-more="${id}" style="display:none"`:''}><span class="stype">${esc(t)}</span><div style="flex:1">
-        <div${e.go?` class="slink" data-li="${li}" style="cursor:pointer"`:''}>${hl(e.label,toks)}</div>
+        ${e.go?`<a class="slink" data-li="${li}" href="${esc(hrefOf(e.go))}">${hl(e.label,toks)}</a>`:`<div>${hl(e.label,toks)}</div>`}
         ${e.sub?`<div class="small muted">${hl(e.sub,toks)}</div>`:''}
-        ${(e.links||[]).length?`<div class="small">→ ${e.links.map((g,k)=>`<a class="simlink" data-li="${li}" data-k="${k}">${esc(g.label)}</a>`).join(' · ')}</div>`:''}</div></div>`;});
+        ${(e.links||[]).length?`<div class="small">→ ${e.links.map((g,k)=>`<a class="simlink" data-li="${li}" data-k="${k}" href="${esc(hrefOf(g))}">${esc(g.label)}</a>`).join(' · ')}</div>`:''}</div></div>`;});
     if(L.length>10) h+=`<a class="simlink small" data-showmore="${id}">alle ${L.length} anzeigen</a>`;
     h+=`</div>`;});
   m.innerHTML=h;
   m.querySelectorAll('.simlink[data-q]').forEach(a=>a.onclick=()=>{state.sub=encodeURIComponent(a.dataset.q);render();});
-  m.querySelectorAll('.slink').forEach(a=>a.onclick=()=>goTo(linkStore[+a.dataset.li].go));
-  m.querySelectorAll('.simlink[data-k]').forEach(a=>a.onclick=()=>goTo(linkStore[+a.dataset.li].links[+a.dataset.k]));
+  const plain=e=>!(e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button);
+  m.querySelectorAll('a.slink').forEach(a=>a.onclick=e=>{if(!plain(e)) return; e.preventDefault(); goTo(linkStore[+a.dataset.li].go);});
+  m.querySelectorAll('.simlink[data-k]').forEach(a=>a.onclick=e=>{if(!plain(e)) return; e.preventDefault(); goTo(linkStore[+a.dataset.li].links[+a.dataset.k]);});
   m.querySelectorAll('[data-showmore]').forEach(a=>a.onclick=()=>{m.querySelectorAll(`[data-more="${a.dataset.showmore}"]`).forEach(r=>r.style.display='');a.remove();});
 }
 // ---------- Datenfluss: who passes data to whom, from the article-backed disclosures ----------
@@ -2330,19 +3773,20 @@ function viewDatenfluss(){
   const R=Object.entries(recips).sort((a,b)=>b[1]-a[1]).map(x=>x[0]);
   const nSys=E.filter(e=>e.mode==='systematisch').length, nAnf=E.filter(e=>e.mode==='auf_anfrage').length;
   let h=pageHead('Datenfluss · Wer gibt wem Personendaten weiter',
+    'Wer welche Personendaten an wen weitergibt — nur Bekanntgaben, die ein Artikel belegt.',
     'Die belegten Bekanntgaben aus allen Formularen, verdichtet zu Verbindungen: sendende Dienststelle → Empfänger, je mit Modus, Formularen und dem Artikel, der die Weitergabe erlaubt.',
     `Quelle sind die ${nf(DATA.forms.reduce((a,f)=>a+(f.disclosures||[]).length,0))} Empfänger-Einträge des Verzeichnisses (nur mit Artikel-Beleg geladen). ${nFormsWith} von ${DATA.forms.length} Formularen haben dokumentierte Bekanntgaben — für die übrigen ist die Weitergabe noch nicht erfasst, was nicht heisst, dass es keine gibt (siehe Handlungsbedarf).`,
     '«systematisch» = regelmässige Meldung von Gesetzes wegen (z. B. an die Zentrale Ausgleichsstelle); «auf Anfrage» = Amtshilfe auf Ersuchen im Einzelfall. Linienstärke = Anzahl Formulare. Klick auf eine Dienststelle oder einen Empfänger hebt die Verbindungen hervor; Klick auf eine Linie listet die Formulare.');
   h+=`<div class="regstats"><span class="rstat">Dienststellen mit Bekanntgaben <b>${S.length}</b></span>
     <span class="rstat">Empfänger <b>${R.length}</b></span><span class="rstat">Verbindungen <b>${E.length}</b></span>
-    <span class="rstat">davon systematisch <b>${nSys}</b> · auf Anfrage <b>${nAnf}</b></span>
+    <span class="rstat">davon <span class="mkline"></span> systematisch <b>${nSys}</b> · <span class="mkline dash"></span> auf Anfrage <b>${nAnf}</b></span>
     <span class="rstat">Formulare mit belegter Bekanntgabe <b>${nFormsWith}/${DATA.forms.length}</b></span></div>`;
   if(!E.length){m.innerHTML=h+'<div class="nores">Keine belegten Bekanntgaben geladen.</div>';return;}
   // bipartite diagram: senders left, recipients right
   const rowH=22, top=28, W=980, H=top+Math.max(S.length,R.length)*rowH+20, xL=300, xR=W-320;
   const yS=Object.fromEntries(S.map((s,i)=>[s,top+i*rowH+rowH/2])), yR=Object.fromEntries(R.map((r,i)=>[r,top+i*rowH+rowH/2]));
   const short=(t,n)=>t.length>n?t.slice(0,n-1)+'…':t;
-  let svg=`<svg class="flowsvg" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Datenfluss-Diagramm">
+  let svg=`<svg class="flowsvg" data-noact viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Datenfluss-Diagramm">
     <text x="${xL}" y="16" text-anchor="end" class="flowhd">Dienststelle (gibt bekannt)</text>
     <text x="${xR}" y="16" class="flowhd">Empfänger</text>`;
   E.forEach((e,i)=>{const y1=yS[e.s], y2=yR[e.r], w=1+Math.log2(e.forms.size);
@@ -2356,12 +3800,12 @@ function viewDatenfluss(){
   h+=`<div class="card"><div class="dvsub">Alle Verbindungen — je Dienststelle, Empfänger, Modus</div>
     <table class="ft"><thead><tr><th>Dienststelle</th><th>Empfänger</th><th>Modus</th><th>Formulare</th><th>Erlaubnisnorm</th></tr></thead><tbody>`;
   E.slice().sort((a,b)=>a.s.localeCompare(b.s)||b.forms.size-a.forms.size).forEach(e=>{
-    h+=`<tr><td>${esc(e.s)}</td><td>${esc(e.r)}</td><td><span class="badge ${e.mode==='systematisch'?'b-sourced':'b-unver'}">${esc(e.mode?lab(MODE_DE,e.mode):'Modus unbekannt')}</span></td>
-      <td class="small">${[...e.forms].slice(0,4).map(f=>`<a class="simlink" data-sid="${f.service_id}" data-fid="${f.id}">${esc(short(f.title,50))}</a>`).join('<br>')}${e.forms.size>4?`<div class="muted">… ${pl(e.forms.size-4,'weiteres','weitere')}</div>`:''}</td>
-      <td class="small">${esc([...e.arts].join(' · '))||'<span class="miss">ohne Artikel</span>'}</td></tr>`;});
+    h+=`<tr><td>${esc(e.s)}</td><td>${esc(e.r)}</td><td>${mkBadge(esc(e.mode?lab(MODE_DE,e.mode):'Modus unbekannt'),e.mode==='systematisch'?'regelmässige Meldung von Gesetzes wegen — ein Kennzeichen, keine Bewertung':e.mode==='auf_anfrage'?'Amtshilfe auf Ersuchen im Einzelfall — ein Kennzeichen, keine Bewertung':'',e.mode==='auf_anfrage'?'mk-open':'')}</td>
+      <td class="small">${[...e.forms].slice(0,4).map(f=>formLink(f.service_id,f.id,esc(short(f.title,50)),'simlink')).join('<br>')}${e.forms.size>4?`<div class="muted">… ${pl(e.forms.size-4,'weiteres','weitere')}</div>`:''}</td>
+      <td class="small">${esc([...e.arts].join(' · '))||stBadge(catTon('empf'),'ohne Artikel','Für diese Bekanntgabe ist noch kein Artikel dokumentiert')}</td></tr>`;});
   h+=`</tbody></table></div>`;
   m.innerHTML=h;
-  m.querySelectorAll('.simlink[data-fid]').forEach(a=>a.onclick=()=>{state.service=a.dataset.sid;state.tab='fields';state.sub='form-'+a.dataset.fid;render();});
+  wireGo(m);
   const svgEl=m.querySelector('.flowsvg'); const det=document.getElementById('flowdetail');
   const focus=(pred)=>{svgEl.querySelectorAll('.fe').forEach(p=>p.classList.toggle('dim',!pred(p)));};
   svgEl.querySelectorAll('.fn').forEach(t=>t.onclick=()=>{const s=t.dataset.s, r=t.dataset.r;
@@ -2370,19 +3814,21 @@ function viewDatenfluss(){
     det.innerHTML=`<b>${esc(s||r)}</b> — ${pl(list.length,'Verbindung','Verbindungen')}: `+list.map(e=>`${esc(s?e.r:e.s)} (${e.mode?lab(MODE_DE,e.mode):'Modus unbekannt'}, ${e.forms.size})`).join(' · ');});
   svgEl.querySelectorAll('.fe').forEach(p=>p.onclick=()=>{const e=E[+p.dataset.i]; focus(q=>q===p);
     det.innerHTML=`<b>${esc(e.s)} → ${esc(e.r)}</b> · ${e.mode?lab(MODE_DE,e.mode):'Modus unbekannt'} · Erlaubnisnorm: ${esc([...e.arts].join(', '))||'—'}<br>`+
-      [...e.forms].map(f=>`<a class="simlink" data-sid="${f.service_id}" data-fid="${f.id}">${esc(f.title)}</a>`).join(' · ');
-    det.querySelectorAll('.simlink').forEach(a=>a.onclick=()=>{state.service=a.dataset.sid;state.tab='fields';state.sub='form-'+a.dataset.fid;render();});});
+      [...e.forms].map(f=>formLink(f.service_id,f.id,esc(f.title),'simlink')).join(' · ');
+    wireGo(det);});
   svgEl.onclick=(ev)=>{if(ev.target===svgEl){focus(()=>true);det.textContent='Klick auf eine Linie zeigt hier die Formulare und Artikel.';}};
 }
 // ---------- Bürgersicht: the Datentresor seen from one (synthetic) person's side ----------
 function viewBuerger(){
   const m=document.getElementById('main');
   const B=DATA.buergersicht||{personen:[]}; const P=B.personen||[];
-  let h=pageHead('Bürgersicht · Was der Kanton über eine Person gespeichert hat',
+  let h=`<div class="band werk" role="note"><b>Werkstatt · Prototyp</b>Alle Personendaten synthetisch; zeigt, wie der Kanton speichern könnte, nicht den heutigen Stand.`
+      +`<span class="small">${esc(B.hinweis||'keine realen Personen')}${B.verschluesselung?' · Verschlüsselung: '+esc(B.verschluesselung):''}</span></div>`
+    +pageHead('Bürgersicht · Was der Kanton über eine Person speichern würde',
+    'Wie eine Auskunft aussähe, wenn der Kanton jedes Datum einmal speichert und später wiederverwendet — an erfundenen Personen gezeigt.',
     'Die Auskunft, wie sie der Datentresor aus seinen Tabellen beantwortet: je Fall, welche Daten neu erhoben und welche aus früheren Fällen wiederverwendet wurden, mit Erhebungsgrundlage, Löschdatum, Belegen und jeder protokollierten Bekanntgabe.',
-    'Quelle ist datentresor.db (View v_auskunft, Once-Only-Ledger, Beleg- und Zugriffsprotokoll) — ALLE PERSONEN UND WERTE SIND SYNTHETISCH ERZEUGT. Verschlüsselte Werte verlassen den Tresor nicht und erscheinen hier als «verschlüsselt». Gezeigt werden die drei Personen mit den meisten beteiligten Dienststellen.',
+    'Quelle ist datentresor.db (View v_auskunft, Once-Only-Ledger, Beleg- und Zugriffsprotokoll) — <b>alle Personen und Werte sind synthetisch erzeugt</b>. Verschlüsselte Werte verlassen den Tresor nicht und erscheinen hier als «verschlüsselt». Gezeigt werden die drei Personen mit den meisten beteiligten Dienststellen.',
     'So sieht Once-Only aus der Sicht der betroffenen Person aus: ein Datum wird einmal erhoben, spätere Fälle verweisen darauf. Jede Zeile trägt die Grundlage, auf der sie gespeichert wurde — «zu ermitteln» bleibt sichtbar, nicht kaschiert.');
-  h+=`<div class="synth">⚠ Beispiel mit synthetischen Daten — ${esc(B.hinweis||'keine realen Personen')}${B.verschluesselung?' · Verschlüsselung: '+esc(B.verschluesselung):''}</div>`;
   if(!P.length){m.innerHTML=h+'<div class="nores">Kein Datentresor-Export vorhanden (scripts/build_datentresor.py, dann export_json.py).</div>';return;}
   const asked=state.sub; let pi=parseInt(state.sub,10);
   const badSub=!(pi>=0&&pi<P.length)&&state.sub!=='felder'; if(!(pi>=0&&pi<P.length)) pi=0; state.sub=String(pi);
@@ -2396,14 +3842,14 @@ function viewBuerger(){
       <span class="rstat">Once-Only wiederverwendet <b>${st.wiederverwendet||0}</b></span></div>
     <div class="small muted">Wiederverwendet = ein späterer Fall hat das Datum nicht neu erhoben, sondern auf den bestehenden Datenpunkt verwiesen. «mit Artikel» zählt Datenpunkte mit belegter Erhebungsnorm; der Rest ist aufgabennotwendig, per Einwilligung oder noch «zu ermitteln».</div></div>`;
   p.faelle.forEach(f=>{const fm=formOf(f.form_id);
-    h+=`<div class="card"><div class="dsthead"><h4>${esc(fmtDate(f.eingereicht))} · ${fm?`<a class="simlink" data-sid="${fm.service_id}" data-fid="${fm.id}">${esc(f.formular)}</a>`:esc(f.formular)}</h4>
+    h+=`<div class="card"><div class="dsthead"><h4>${esc(fmtDate(f.eingereicht))} · ${fm?formLink(fm.service_id,fm.id,esc(f.formular),'simlink'):esc(f.formular)}</h4>
       <span class="muted small">${esc(f.dienststelle||'')} · Entscheid: ${esc(f.entscheid?lab(OUTCOME_DE,f.entscheid):'—')}${f.abgeschlossen?' · abgeschlossen '+esc(fmtDate(f.abgeschlossen)):''}</span></div>
       <div class="small" style="margin:4px 0 8px">neu erhoben <b>${f.neu.length}</b> · wiederverwendet <b>${f.wiederverwendet.length}</b> · Belege <b>${f.belege.length}</b> · Bekanntgaben <b>${f.bekanntgaben.length}</b> · Lesezugriffe protokolliert <b>${f.lesezugriffe}</b></div>`;
     if(f.neu.length){h+=`<details${f===p.faelle[0]?' open':''}><summary class="small">Neu erhobene Datenpunkte (${f.neu.length})</summary><table class="ft"><thead><tr><th>Attribut</th><th>Standard</th><th>Wert</th><th>Erhebungsgrundlage</th><th>Löschdatum</th></tr></thead><tbody>`;
       f.neu.forEach(d=>{h+=`<tr><td>${esc(d.attribut)}${d.sensitive?` <span class="badge b-sens" title="besonders schützenswert: ${esc(lab(HSENS,d.sensitive))}">⛨</span>`:''}</td>
         <td class="small">${d.ech_element?`${esc(d.ech_standard)} ${esc(d.ech_element)}${d.ech_datatype?` <span class="edt">⟨${esc(d.ech_datatype)}⟩</span>`:''}`:'<span class="muted">—</span>'}</td>
         <td class="small">${d.verschluesselt?'<span class="badge b-sens" title="AES-256-GCM; nur mit dem Schlüssel ausserhalb der DB lesbar">verschlüsselt</span>':esc(d.wert||'')}</td>
-        <td class="small">${d.einwilligung?'<span class="badge b-over">Einwilligung</span> ':''}${esc(d.grundlage||'')}</td><td class="small">${esc(fmtDate(d.loeschdatum))}</td></tr>`;});
+        <td class="small">${d.einwilligung?mkBadge('Einwilligung','Erhebungsgrundlage: Einwilligung der Person — ein Kennzeichen, keine Bewertung')+' ':''}${esc(d.grundlage||'')}</td><td class="small">${esc(fmtDate(d.loeschdatum))}</td></tr>`;});
       h+=`</tbody></table></details>`;}
     if(f.wiederverwendet.length){h+=`<details><summary class="small">Wiederverwendet statt neu erhoben (${f.wiederverwendet.length})</summary><div class="small">${f.wiederverwendet.map(w=>`<div><span class="regc" title="Once-Only: aus einem früheren Fall übernommen">↺</span> <b>${esc(w.attribut)}</b> — erhoben ${esc(fmtDate(w.erhoben_am))} für «${esc(w.herkunft)}» (${esc(w.herkunft_dst||'')})</div>`).join('')}</div></details>`;}
     if(f.belege.length){h+=`<details><summary class="small">Belege (${f.belege.length})</summary><div class="small">${f.belege.map(b=>`<div>${b.art==='pruefvermerk'?'✓ Prüfvermerk':'⎘ Kopie gespeichert'} — ${esc(b.bezeichnung)}${b.halter?' · Halter: '+esc(lab(HALTER_DE,b.halter)):''}${b.geprueft_am?' · geprüft '+esc(fmtDate(b.geprueft_am))+' von '+esc(b.geprueft_von||''):''}${b.loeschdatum?' · Löschung '+esc(fmtDate(b.loeschdatum)):''}</div>`).join('')}</div></details>`;}
@@ -2412,12 +3858,12 @@ function viewBuerger(){
   h+=`<div class="card"><div class="dvsub">Einwilligungen (${p.einwilligungen.length})</div>${p.einwilligungen.length?p.einwilligungen.map(e=>`<div class="small">${esc(fmtDate(e.erteilt_am))} — ${esc(e.gegenstand)}${e.formular?' («'+esc(e.formular)+'»)':''}${e.widerrufen_am?' · widerrufen '+esc(fmtDate(e.widerrufen_am)):''}</div>`).join(''):'<div class="small muted">Keine — alle Datenpunkte dieser Person stützen sich auf eine Norm oder den Aufgabenbedarf.</div>'}</div>`;
   const mx=Math.max(1,...p.loeschkalender.map(k=>k.n));
   h+=`<div class="card"><div class="dvsub">Löschkalender — wann welche Datenpunkte fällig werden (berechnet aus den Aufbewahrungsfristen)</div>
-    ${p.loeschkalender.map(k=>`<div class="lkrow"><span class="lky">${esc(k.jahr)}</span><div class="pbar" style="max-width:420px"><i style="width:${Math.round(100*k.n/mx)}%"></i></div><span class="small">${k.n}</span></div>`).join('')}
+    ${p.loeschkalender.map(k=>`<div class="lkrow"><span class="lky">${esc(k.jahr)}</span><div class="pbar nt" style="max-width:420px"><i style="width:${Math.round(100*k.n/mx)}%"></i></div><span class="small">${k.n}</span></div>`).join('')}
     <div class="small muted" style="margin-top:6px">Ein Datenpunkt wird nie hart gelöscht: der Status wechselt auf «vernichtet» oder «anonymisiert», und dieser Wechsel schreibt selbst einen Protokolleintrag (Trigger im Schema).</div></div>`;
   m.innerHTML=h;
   if(badSub) m.insertAdjacentHTML('afterbegin',`<div class="nores">Person «${esc(asked)}» gibt es in diesem Export nicht — gezeigt wird ${esc(P[0].vorname)} ${esc(P[0].name)}.</div>`);
   m.querySelectorAll('.tcat[data-pi]').forEach(c=>c.onclick=()=>{state.sub=c.dataset.pi;render();});
-  m.querySelectorAll('.simlink[data-fid]').forEach(a=>a.onclick=()=>{state.service=a.dataset.sid;state.tab='fields';state.sub='form-'+a.dataset.fid;render();});
+  wireGo(m);
 }
 // ---------- Lebenslagen (eCH-0049): what one situation asks of a person ----------
 const CIRC=n=>n<=20?String.fromCharCode(0x2460+n-1):'('+n+')';
@@ -2430,8 +3876,9 @@ function viewLebenslagen(){
   const kat=sub==='unternehmen'?'unternehmen':'privat';
   const badSub=sub!=='privat'&&sub!=='unternehmen'; state.sub=kat;
   let h=pageHead('Lebenslagen · die Themengruppen von eCH-0049',
+    'Die Services des Kantons nach den Themengruppen von eCH-0049 — so, wie eine Person oder ein Betrieb sie sucht, mit den Daten, die sie verlangen.',
     'Die Services des Kantons, gegliedert nach dem offiziellen Themenkatalog eCH-0049 — so, wie eine Person oder ein Betrieb sie sucht. Der Standard nennt die Einheiten <b>Themengruppen</b>; viele davon sind Lebenslagen (Geburt, Wohnen und Umziehen, Todesfall, Arbeitslosigkeit, Pensionierung, Berufliche Selbständigkeit), andere Themen (Steuern, Energie). Je Themengruppe: welche Services und Dienststellen man trifft, wie viele Datenpunkte verlangt werden, wo sich die Services beim selben Datum <b>überschneiden</b>, und was das Einwohnerregister schon weiss.',
-    'Katalog: eCH-0049 V4.00 (genehmigt), Beilage 1-1 Privatpersonen und 2-1 Unternehmen; jede Themengruppe ist im amtlichen PDF unter ihrem Themenbereich geprüft. Welcher Service in welche Themengruppe gehört (bis zu drei je Service), ist maschinell vorgeschlagen (siehe Methode auf der Startseite) und je Eintrag durch eine zweite, unabhängige Prüfung bestätigt oder mit Grund korrigiert (Korrekturen in quellen/korrekturen/). «Dasselbe Datum» heisst: gleiches eCH-Element, bei Personen- und Adressdaten dieselbe beurteilte Partei, dieselbe genannte Rolle — Dokumente, Beilagen, Bemerkungen und Felder mit abweichender Zuordnung werden nie gleichgesetzt; im Zweifel wird getrennt gezählt.',
+    'Katalog: eCH-0049 V4.00 (genehmigt), Beilage 1-1 Privatpersonen und 2-1 Unternehmen; jede Themengruppe ist im amtlichen PDF unter ihrem Themenbereich geprüft. Welcher Service in welche Themengruppe gehört (bis zu drei je Service), ist maschinell vorgeschlagen (siehe «Methode &amp; Quellen») und je Eintrag durch eine zweite, unabhängige Prüfung bestätigt oder mit Grund korrigiert (Korrekturen in quellen/korrekturen/). «Dasselbe Datum» heisst: gleiches eCH-Element, bei Personen- und Adressdaten dieselbe beurteilte Partei, dieselbe genannte Rolle — Dokumente, Beilagen, Bemerkungen und Felder mit abweichender Zuordnung werden nie gleichgesetzt; im Zweifel wird getrennt gezählt.',
     '<b>Überschneidungen</b> zählen, wie oft ein Service ein Datum verlangt, das ein anderer Service derselben Themengruppe auch verlangt. Das beschreibt das Angebot, nicht die Last einer einzelnen Person: Services können Alternativen sein, die niemand zusammen durchläuft (z. B. B- und C-Bewilligung). Kachel anklicken für die Einzelheiten.');
   h+=`<div class="todocats">${['privat','unternehmen'].map(k=>`<span class="tcat${k===kat?' on':''}" data-kat="${k}">${esc(lab(KAT_DE,k))} <b>${T.filter(t=>t.katalog===k&&t.n_services).length}</b> Themengruppen mit Services</span>`).join('')}</div>`;
   const byB={}; T.filter(t=>t.katalog===kat).forEach(t=>{(byB[t.bereich]=byB[t.bereich]||[]).push(t);});
@@ -2474,7 +3921,7 @@ function viewLebenslage(id){
     <span class="rstat">Datenpunkte <b>${t.n_angaben}</b></span>
     <span class="rstat" title="Wie oft ein Service ein Datum verlangt, das ein anderer Service dieser Themengruppe auch verlangt">Überschneidungen <b>${t.n_ueberschneidungen}</b></span>
     <span class="rstat">vorbefüllbar <b>${t.n_vorbefuellbar}</b>${t.n_vorbefuellbar_offen?` · ${t.n_vorbefuellbar_offen} nicht beurteilt`:''}</span>
-    <span class="rstat" title="Ohne eCH-Element lässt sich nicht erkennen, ob zwei Formulare dasselbe verlangen">ohne eCH-Element <b>${t.n_ohne_standard}</b>${t.n_ohne_standard?` <span class="muted">(kein Standard ${t.n_kein_standard} · Element offen ${t.n_element_offen} · ungeprüft ${t.n_ungeprueft})</span>`:''}</span>
+    <span class="rstat" title="Ohne eCH-Element lässt sich nicht erkennen, ob zwei Formulare dasselbe verlangen">ohne eCH-Element <b>${t.n_ohne_standard}</b>${t.n_ohne_standard?` <span class="muted">(${SW(tonOf('ech','kein_standard'))}kein Standard ${t.n_kein_standard} · ${SW(tonOf('ech','element_offen'))}Element offen ${t.n_element_offen} · ${SW(tonOf('ech','ungeprueft'))}ungeprüft ${t.n_ungeprueft})</span>`:''}</span>
     ${(t.n_container+t.n_zuordnung_offen+t.n_partei_offen)?`<span class="rstat" title="Mit Element, aber bewusst nicht verglichen">nicht gleichgesetzt <b>${t.n_container+t.n_zuordnung_offen+t.n_partei_offen}</b> <span class="muted">(Dokument/Beilage/Bemerkung ${t.n_container} · andere Zuordnung ${t.n_zuordnung_offen} · Partei offen ${t.n_partei_offen})</span></span>`:''}
     <span class="rstat">Beilagen <b>${t.n_beilagen}</b>${t.n_beilagen_beziehbar?` · ${t.n_beilagen_beziehbar} bei der Dienststelle beziehbar`:''}</span>
     <span class="rstat">online einreichbar <b>${t.n_online}/${t.n_formulare}</b></span>
@@ -2514,16 +3961,17 @@ function viewBegriffe(){
   const occ=k=>B.reduce((n,b)=>n+b.labels.filter(l=>l.klasse===k).reduce((x,l)=>x+l.n,0),0);
   const BS=DATA.begriffe_stats||{};
   let h=pageHead('Begriffe · Ein Datum, ein Name',
+    'Wo dasselbe Datum unter verschiedenen Bezeichnungen erfragt wird — und welcher Begriff einheitlich gelten soll.',
     'Für jedes Datum mit offiziellem eCH-Element, das unter <b>mindestens zwei</b> Bezeichnungen erfragt wird: unter welchen Bezeichnungen die Formulare danach fragen, welcher Begriff einheitlich verwendet werden soll — und welche Abweichungen in Ordnung sind, weil sie sagen, <i>wessen</i> oder <i>welches</i> Datum gemeint ist.',
-    'Vorschlag und Einordnung sind maschinell erarbeitet (siehe Methode auf der Startseite) und je Eintrag durch eine zweite, unabhängige Prüfung bestätigt oder mit Grund korrigiert (Spalte zweitgeprueft; Korrekturen in quellen/korrekturen/). Der Vorschlag ist immer eine Bezeichnung, die in den Formularen bereits vorkommt — kein erfundener Begriff. Die Zählungen kommen live aus der Feld-Schicht.',
-    '<b>angleichen</b> = dieselbe Sache, nur anders geschrieben («Nachname», «Familienname») → auf den Vorschlag umbenennen. <b>Rolle — in Ordnung</b> = die Bezeichnung nennt, wessen oder welches Datum gemeint ist — Partei, Art, Ort oder Zeitraum («Name Arbeitnehmer», «Adresse bisher») → so lassen. <b>Feld aufteilen</b> = das Feld bündelt mehrere Daten, die der Standard trennt («Strasse und Nr», «PLZ und Ort») → im Formular aufteilen. <b>eCH-Zuordnung prüfen</b> = die Bezeichnung meint ein anderes Datum als das Element → die Zuordnung in der Databank korrigieren.');
+    `Vorschlag und Einordnung sind maschinell erarbeitet (siehe ${goLink('methode','','«Methode &amp; Quellen»','inl')}) und je Eintrag durch eine zweite, unabhängige Prüfung bestätigt oder mit Grund korrigiert; korrigierte Einträge tragen in der Begründung den Vermerk «Zweitprüfung:», die Korrekturen liegen in quellen/korrekturen/. Der Vorschlag ist immer eine Bezeichnung, die in den Formularen bereits vorkommt — kein erfundener Begriff. Die Zählungen kommen live aus der Feld-Schicht.`,
+    '<b>angleichen</b> = dieselbe Sache, nur anders geschrieben («Nachname», «Familienname») → auf den Vorschlag umbenennen. <b>Rolle — in Ordnung</b> = die Bezeichnung nennt, wessen oder welches Datum gemeint ist — Partei, Art, Ort oder Zeitraum («Name Arbeitnehmer», «Adresse bisher») → so lassen. <b>Feld aufteilen</b> = das Feld bündelt mehrere Daten, die der Standard trennt («Strasse und Nr», «PLZ und Ort») → im Formular aufteilen. <b>eCH-Zuordnung korrigieren</b> = die Bezeichnung meint ein anderes Datum als das Element → die Databank korrigiert die Zuordnung.');
   h+=`<div class="regstats"><span class="rstat">Daten mit Vorschlag <b>${B.length}</b></span>
-    <span class="rstat">Bezeichnungen anzugleichen <b>${cnt('variante')}</b> · ${pl(BS.n_felder_angleichen??occ('variante'),'Feld','Felder')} in ${BS.n_formulare_angleichen!=null?pl(BS.n_formulare_angleichen,'Formular','Formularen'):'? Formularen'}</span>
-    <span class="rstat">Rollen-Bezeichnungen <b>${cnt('rolle')}</b></span>
-    <span class="rstat">Vorschläge unter Vorbehalt <b>${B.filter(b=>b.vorbehalt).length}</b></span>
-    <span class="rstat">Feld aufteilen <b>${B.reduce((n,b)=>n+b.labels.filter(l=>l.pruefart==='aufteilen').length,0)}</b></span>
-    <span class="rstat">eCH-Zuordnung prüfen <b>${B.reduce((n,b)=>n+b.labels.filter(l=>l.pruefart==='zuordnung').length,0)}</b></span>
-    ${BS.n_elemente_eine_bezeichnung?`<span class="rstat" title="Daten, nach denen nur unter einer einzigen Bezeichnung gefragt wird, sind hier nicht geprüft — auch sie können vom einheitlichen Begriff abweichen">nur eine Bezeichnung (nicht geprüft) <b>${BS.n_elemente_eine_bezeichnung}</b></span>`:''}</div>`;
+    <span class="rstat" title="Verschiedene Bezeichnungen, die auf den einheitlichen Begriff umzubenennen sind — und wie viele Datenpunkte in wie vielen Formularen sie tragen">${SW(tonOf('begriff','variante'))}Bezeichnungen anzugleichen <b>${nf(cnt('variante'))}</b> · ${pl(BS.n_felder_angleichen??BEZ_SPLIT.ren,'Datenpunkt','Datenpunkte')} in ${pl(BS.n_formulare_angleichen??BEZ_SPLIT.formsRen,'Formular','Formularen')}</span>
+    <span class="rstat">${SW(tonOf('begriff','rolle'))}Rollen-Bezeichnungen <b>${nf(cnt('rolle'))}</b></span>
+    <span class="rstat">${SW(tonOf('begriff','vorbehalt'))}Vorschläge unter Vorbehalt <b>${nf(B.filter(b=>b.vorbehalt).length)}</b></span>
+    <span class="rstat" title="Bezeichnungen, die mehrere Daten bündeln — und wie viele Datenpunkte in wie vielen Formularen sie tragen">${SW(tonOf('begriff','aufteilen'))}Feld aufteilen <b>${nf(B.reduce((n,b)=>n+b.labels.filter(l=>l.pruefart==='aufteilen').length,0))}</b> · ${pl(BEZ_SPLIT.split,'Datenpunkt','Datenpunkte')} in ${pl(BEZ_SPLIT.formsSplit,'Formular','Formularen')}</span>
+    <span class="rstat" title="Bezeichnungen, deren eCH-Zuordnung die Databank korrigiert — und wie viele Datenpunkte sie tragen">${SW(tonOf('begriff','zuordnung'))}${esc(todoCat('zuordnung')[1])} <b>${nf(B.reduce((n,b)=>n+b.labels.filter(l=>l.pruefart==='zuordnung').length,0))}</b> · ${pl(BEZ_SPLIT.zu,'Datenpunkt','Datenpunkte')}</span>
+    ${BS.n_elemente_eine_bezeichnung?`<span class="rstat" title="Daten, nach denen nur unter einer einzigen Bezeichnung gefragt wird, sind hier nicht geprüft — auch sie können vom einheitlichen Begriff abweichen">nur eine Bezeichnung (nicht geprüft) <b>${nf(BS.n_elemente_eine_bezeichnung)}</b></span>`:''}</div>`;
   h+=`<div class="todocats">${[['angleichen','mit Angleichungsbedarf'],['pruefen','mit Prüfbedarf'],['alle','alle Daten']].map(([k,l])=>`<span class="tcat${k===f?' on':''}" data-f="${k}">${l}</span>`).join('')}
     <input id="begq" class="gsearch" style="margin-left:8px;max-width:260px" placeholder="Bezeichnung filtern …" value="${esc(q0)}"></div><div id="beglist"></div>`;
   m.innerHTML=h;
@@ -2536,32 +3984,201 @@ function viewBegriffe(){
     L.slice(0,60).forEach(b=>{
       const g=k=>b.labels.filter(l=>l.klasse===k).sort((x,y)=>y.n-x.n);
       const vor=b.labels.find(l=>l.klasse==='vorschlag');
-      const chip=l=>`<span class="bgl" title="${l.n}× in ${l.n_formulare} Formular${l.n_formulare===1?'':'en'}${l.grund?' — '+esc(l.grund):''}">«${esc(l.label)}» <span class="muted">${l.n}×</span></span>`;
+      // the tone of a label (ton_map.begriff): rename or split red, a role fine green,
+      // a wrong eCH mapping grey (the databank's), a proposal under reserve amber (the canton's)
+      const T=k=>tonOf('begriff',k);
+      const chip=l=>`<span class="bgl st-${T('variante')}" title="${esc(`${l.n}× in ${l.n_formulare} Formular${l.n_formulare===1?'':'en'}${l.grund?' — '+l.grund:''}\n`+tonWords(T('variante')))}">«${esc(l.label)}» <span class="muted">${l.n}×</span></span>`;
       o+=`<div class="card bgcard" id="beg-${esc(String(b.element_id))}"><div class="bghead"><span class="bgvor">«${esc(b.vorschlag)}»</span>
-          ${b.vorbehalt?`<span class="badge b-unver" title="${esc(b.begruendung||'Vorschlag unter Vorbehalt')}">Vorschlag unter Vorbehalt</span>`:''}
-          ${b.herkunft==='korpus'?`<span class="badge b-sourced" title="Die Formulare dieses Datums verwenden keinen sauberen Begriff; der Vorschlag stammt aus anderen Formularen des Kantons (nie erfunden)">Begriff aus anderen Formularen</span>`:''}
+          ${b.vorbehalt?stBadge(T('vorbehalt'),'Vorschlag unter Vorbehalt',b.begruendung||'Vorschlag unter Vorbehalt — über den einheitlichen Begriff entscheidet der Kanton')
+            :stBadge(T('vorschlag'),'einheitlicher Begriff','Der Vorschlag ist eine Bezeichnung, die in den Formularen bereits vorkommt — so soll das Datum überall heissen')}
+          ${b.herkunft==='korpus'?mkBadge('Begriff aus anderen Formularen','Die Formulare dieses Datums verwenden keinen sauberen Begriff; der Vorschlag stammt aus anderen Formularen des Kantons (nie erfunden) — ein Kennzeichen, keine Bewertung'):''}
           <span class="mono small muted">${esc(b.standard)} ${esc(b.element)}${b.datentyp?` ⟨${esc(b.datentyp)}⟩`:''}</span>
           <span class="small muted" style="margin-left:auto">${vor?`Vorschlag ${vor.n}× verwendet`:''}</span></div>
         ${b.begruendung?`<div class="small muted">${esc(b.begruendung)}</div>`:''}
-        ${g('variante').length?`<div class="bgrow"><span class="bglab var">angleichen → «${esc(b.vorschlag)}»</span>${g('variante').map(chip).join('')}</div>`:''}
-        ${g('rolle').length?`<div class="bgrow"><span class="bglab rol">Rolle — in Ordnung</span>${g('rolle').map(l=>`<span class="bgl" title="${l.n}× · Rolle: ${esc(l.rolle||'')}">«${esc(l.label)}» <span class="muted">${esc(l.rolle||'')}</span></span>`).join('')}</div>`:''}
+        ${g('variante').length?`<div class="bgrow"><span class="bglab">${SW(T('variante'))}angleichen → «${esc(b.vorschlag)}»</span>${g('variante').map(chip).join('')}</div>`:''}
+        ${g('rolle').length?`<div class="bgrow"><span class="bglab">${SW(T('rolle'))}Rolle — in Ordnung</span>${g('rolle').map(l=>`<span class="bgl st-${T('rolle')}" title="${esc(`${l.n}× · Rolle: ${l.rolle||''}\n`+tonWords(T('rolle')))}">«${esc(l.label)}» <span class="muted">${esc(l.rolle||'')}</span></span>`).join('')}</div>`:''}
         ${(()=>{const P=g('pruefen'); if(!P.length) return '';
-          const row=(L,lab,cls)=>L.length?`<div class="bgrow"><span class="bglab pr">${lab}</span>${L.map(l=>`<span class="bgl pr" title="${esc(l.grund||'')}">«${esc(l.label)}» <span class="muted">${esc(l.grund||'')}</span></span>`).join('')}</div>`:'';
-          return row(P.filter(l=>l.pruefart==='aufteilen'),'Feld aufteilen')
-            +row(P.filter(l=>l.pruefart==='zuordnung'),'eCH-Zuordnung prüfen')
-            +row(P.filter(l=>!l.pruefart),'prüfen');})()}
+          const row=(L,lab,t)=>L.length?`<div class="bgrow"><span class="bglab">${SW(t)}${lab}</span>${L.map(l=>`<span class="bgl st-${t}" title="${esc((l.grund||'')+'\n'+tonWords(t))}">«${esc(l.label)}» <span class="muted">${esc(l.grund||'')}</span></span>`).join('')}</div>`:'';
+          return row(P.filter(l=>l.pruefart==='aufteilen'),'Feld aufteilen',T('aufteilen'))
+            +row(P.filter(l=>l.pruefart==='zuordnung'),'eCH-Zuordnung korrigieren',T('zuordnung'))
+            +row(P.filter(l=>!l.pruefart),'prüfen',T('pruefen'));})()}
       </div>`;});
     document.getElementById('beglist').innerHTML=o;
   };
   draw();
   document.getElementById('begq').addEventListener('input',draw);
   m.querySelectorAll('.tcat[data-f]').forEach(c=>c.onclick=()=>{state.sub=c.dataset.f;render();});
+  wireGo(m);
 }
+// ---------- explanations without a mouse ----------
+// Every element that carries a title but is not itself a link or a control (badge, chip,
+// marker, bar segment, a point of a trend line, a count in a clickable row) becomes
+// focusable; a click, a tap, Enter or Space opens a small box with the title text, which a
+// polite live region also announces. Esc, Tab or a click elsewhere closes it.
+//  * a link or a control keeps its own action — its status is readable without hovering
+//    (tone + short label) — and nothing inside it becomes an explanation
+//  * inside a clickable row (a table row, a sidebar entry, a toggle) or a <summary>, a
+//    titled badge explains itself: its click does not also open the row (data-tip="in");
+//    the row keeps its action everywhere else and through the link it carries
+//  * a titled chip with an action of its own (⛨ → Leitfaden, a rule chip → Datenhandhabung)
+//    explains itself first; the box offers that action as a button (data-tip="self", the
+//    button text from data-tipgo)
+// Clickable elements that are neither links nor buttons (a row without a link, a sidebar
+// toggle, a link without an address, a filter chip) are made reachable by keyboard:
+// focusable, Enter acts, Space too except on a link (data-act).
+const TIP_CTRL='a,button,input,select,textarea,label,[role="link"]:not([data-act]),[role="button"]:not([data-tip]):not([data-act])';
+const _clickable=x=>typeof x.onclick==='function'||x.hasAttribute('data-act');
+function tipCtx(el){
+  if(el.tagName==='SUMMARY'||el.closest(TIP_CTRL)) return 'ctrl';
+  if(_clickable(el)) return 'self';
+  for(let x=el.parentElement; x&&x.nodeType===1&&x!==document.body; x=x.parentElement)
+    if(x.tagName==='SUMMARY'||_clickable(x)) return 'in';
+  return 'plain';
+}
+function tipText(el){
+  const t=el.getAttribute('title');
+  if(t) return t;
+  const c=[...el.children].find(n=>n.tagName&&n.tagName.toLowerCase()==='title');
+  return c?c.textContent:'';
+}
+function enhanceTips(root){
+  if(!root) return;
+  const els=[...root.querySelectorAll('[title]:not([data-tip]):not([data-notip])')];
+  root.querySelectorAll('g:not([data-tip]):not([data-notip])>title').forEach(t=>els.push(t.parentNode));
+  els.forEach(el=>{
+    if(el.hasAttribute('data-tip')||el.hasAttribute('data-notip')) return;
+    const ctx=tipText(el).trim()?tipCtx(el):'ctrl';
+    if(ctx==='ctrl'){el.setAttribute('data-notip',''); return;}
+    el.setAttribute('data-tip',ctx==='plain'?'':ctx);
+    if(!el.hasAttribute('tabindex')) el.setAttribute('tabindex','0');
+    // a generic element becomes a button that opens the explanation; a table cell or a
+    // list item keeps its own role (the table stays a table), the live region speaks for it
+    if(!el.hasAttribute('role')&&/^(span|i|b|div|g|sup|small|em|strong)$/i.test(el.tagName)){
+      el.setAttribute('role','button'); el.setAttribute('aria-haspopup','dialog'); el.setAttribute('aria-expanded','false');}
+  });
+}
+// runs after enhanceTips: an element that explains itself (data-tip) keeps Enter for its box
+function enhanceActs(root){
+  if(!root) return;
+  const all=root.getElementsByTagName('*');
+  for(let i=0;i<all.length;i++){const x=all[i];
+    if(typeof x.onclick!=='function'||x.hasAttribute('data-act')||x.hasAttribute('data-tip')||x.hasAttribute('data-noact')||x.hasAttribute('tabindex')) continue;
+    const tag=x.tagName.toLowerCase();
+    if(/^(button|input|select|textarea|summary|label|option)$/.test(tag)||(tag==='a'&&x.hasAttribute('href'))) continue;
+    // a row whose action a link inside it already carries needs no second stop
+    if(x.querySelector('[data-rowlink]')||(tag==='tr'&&x.querySelector('a[href]'))) continue;
+    x.setAttribute('data-act',''); x.setAttribute('tabindex','0');
+    // a role only where it is true for the whole element: a link without address, a
+    // toggle with nothing focusable inside; a row stays a row
+    if(!x.hasAttribute('role')&&!/^(tr|td|th|svg)$/.test(tag)){
+      if(tag==='a') x.setAttribute('role','link');
+      else if(!x.querySelector('a[href],button,[tabindex],[title]')) x.setAttribute('role','button');}
+  }
+}
+let _tipEl=null, _tipPass=false;
+const fireClick=el=>el.dispatchEvent(new MouseEvent('click',{bubbles:true,cancelable:true,view:window}));
+function tipClose(refocus){
+  const box=document.getElementById('tipbox'); if(box) box.hidden=true;
+  const el=_tipEl; _tipEl=null;
+  if(el){if(el.hasAttribute('aria-expanded')) el.setAttribute('aria-expanded','false'); if(refocus&&el.isConnected&&el.focus) el.focus({preventScroll:true});}
+}
+function tipOpen(el,kb){
+  const box=document.getElementById('tipbox'); const txt=tipText(el);
+  if(!box||!txt) return;
+  if(_tipEl===el&&!box.hidden){tipClose(!!kb); return;}   // a second click closes it again
+  if(_tipEl&&_tipEl.hasAttribute('aria-expanded')) _tipEl.setAttribute('aria-expanded','false');
+  _tipEl=el; box.querySelector('.tipt').textContent=txt;
+  box.style.left='0px'; box.style.top='0px';   // measured unconstrained, never at an old position
+  // a chip with an action of its own offers it here
+  const go=box.querySelector('.tipgo'), act=el.getAttribute('data-tip')==='self';
+  if(go){go.hidden=!act; go.textContent=act?(el.getAttribute('data-tipgo')||'Öffnen ›'):'';}
+  box.hidden=false;
+  if(el.hasAttribute('aria-expanded')) el.setAttribute('aria-expanded','true');
+  // below the element, kept inside the window; above it when there is no room below
+  const r=el.getBoundingClientRect(), bw=box.offsetWidth, bh=box.offsetHeight;
+  const vw=document.documentElement.clientWidth, sx=window.scrollX, sy=window.scrollY;
+  const x=Math.max(8,Math.min(r.left,vw-bw-8));
+  const y=(r.bottom+bh+10>window.innerHeight&&r.top>bh+10)?r.top-bh-6:r.bottom+6;
+  box.style.left=(x+sx)+'px'; box.style.top=(y+sy)+'px';
+  const live=document.getElementById('tiplive');
+  if(live){live.textContent=''; setTimeout(()=>{if(_tipEl===el) live.textContent=txt;},40);}
+  // opened by keyboard: the action waits in the box — focus goes there, Esc returns
+  if(kb&&act&&go) go.focus({preventScroll:true});
+}
+// the action of the explained chip, run as its own click (past the capture below)
+function tipGo(){
+  const el=_tipEl; if(!el||!el.isConnected) return;
+  tipClose(false);
+  _tipPass=true; try{fireClick(el);}finally{_tipPass=false;}
+}
+// capture phase: a badge inside a clickable row or a <summary>, and a chip with an action
+// of its own, explain themselves before the row, the summary or the chip act
+document.addEventListener('click',e=>{
+  if(_tipPass) return;
+  const tg=e.target, t=tg&&tg.closest?tg.closest('[data-tip="in"],[data-tip="self"]'):null;
+  if(!t) return;
+  // a link or control inside the explained element keeps its own action
+  const c=tg.closest(TIP_CTRL); if(c&&t.contains(c)&&c!==t) return;
+  e.preventDefault(); e.stopPropagation(); tipOpen(t);
+},true);
+document.addEventListener('click',e=>{
+  if(_tipPass) return;
+  const box=document.getElementById('tipbox'), tg=e.target;
+  if(box&&tg&&box.contains(tg)){
+    if(tg.closest('.tipx')) tipClose(true);
+    else if(tg.closest('.tipgo')) tipGo();
+    return;}
+  const t=tg&&tg.closest?tg.closest('[data-tip]'):null;
+  // a link or control inside an explained element keeps its own action
+  const c=tg&&tg.closest?tg.closest(TIP_CTRL):null;
+  if(t&&!(c&&t.contains(c)&&c!==t)){tipOpen(t); return;}
+  if(_tipEl) tipClose(false);
+});
+document.addEventListener('keydown',e=>{
+  const box=document.getElementById('tipbox');
+  if(e.key==='Escape'&&_tipEl){e.preventDefault(); tipClose(true); return;}
+  // Tab out of the box: back to the explained element, the browser moves on from there
+  if(e.key==='Tab'&&_tipEl&&box&&box.contains(document.activeElement)){tipClose(true); return;}
+  // Tab moves on from an explained element: its box closes (the browser still moves the focus)
+  if(e.key==='Tab'&&_tipEl) tipClose(false);
+  if(e.key==='Escape'&&!_tipEl){const l=document.querySelector('.layout');
+    if(l&&l.classList.contains('nav-open')){e.preventDefault(); closeNav(); const b=document.querySelector('.navbtn'); if(b) b.focus(); return;}}
+  const t=e.target;
+  if(!t||!t.hasAttribute||(box&&box.contains(t))) return;
+  if((e.key==='Enter'||e.key===' ')&&t.hasAttribute('data-tip')){e.preventDefault(); tipOpen(t,true); return;}
+  if(t.hasAttribute('data-act')&&(e.key==='Enter'||(e.key===' '&&t.getAttribute('role')!=='link'))){e.preventDefault(); fireClick(t);}
+});
+// an inner scroll (the sidebar on small screens) would leave the box behind: close it
+window.addEventListener('scroll',e=>{if(_tipEl&&e.target!==document&&!(e.target&&e.target.id==='tipbox')) tipClose(false);},true);
+window.addEventListener('resize',()=>{if(_tipEl) tipClose(false);});
+// content drawn after render() (Begriffe filter, Datenfluss details, «alle anzeigen»)
+try{const mo=new MutationObserver(()=>{const mn=document.getElementById('main'); enhanceTips(mn); enhanceActs(mn); renderLegend();});
+  const mn=document.getElementById('main'); if(mn) mo.observe(mn,{childList:true,subtree:true});}catch(e){}
+// tabs that read no sub-segment: an unknown one is dropped and said at the top of the page
+const NO_SUB=new Set(['home','methode','katalog','esh','register','datenfluss','rules','guide']);
+let _lastRoute=null;
 function render(){
   // legacy #tree/#info aliases are normalised in readHash, so the sidebar and
-  // the legend are drawn for the real tab on the first paint
+  // the legend are drawn for the real tab on the first paint.
+  // The Handlungsbedarf shows red and amber only: a grey (Databank) category or the
+  // older «Recherche» filter of the board opens «Recherche der Databank» instead
+  if(state.tab==='todo'){const s0=String(state.sub||'');
+    if(s0==='art-recherche'){state.tab='recherche';state.sub='felder';}
+    else if(TODO_BY[s0]&&catTon(s0)==='open'){state.tab='recherche';state.sub=s0;}}
+  // a category named on the wrong worklist opens where it lives: red → Handlungsbedarf,
+  // amber → Für den Kanton, grey → Recherche der Databank
+  if((state.tab==='kanton'||state.tab==='recherche')&&TODO_BY[state.sub]){const t=catTon(state.sub);
+    if(state.tab==='kanton'&&t!=='dec') state.tab=t==='open'?'recherche':'todo';
+    else if(state.tab==='recherche'&&t!=='open') state.tab=t==='dec'?'kanton':'todo';}
+  let noSub=null;
+  if(NO_SUB.has(state.tab)&&state.sub!=='felder'){noSub=state.sub; state.sub='felder';}
+  tipClose(false);
   renderSidebar();
   if(state.tab==='home') viewHome();
+  else if(state.tab==='methode') viewMethode();
+  else if(state.tab==='dienststellen') viewDienststellen();
+  else if(state.tab==='kanton') viewKanton();
+  else if(state.tab==='recherche') viewRecherche();
   else if(state.tab==='rules') viewRules();
   else if(state.tab==='guide') viewGuide();
   else if(state.tab==='register') viewRegister();
@@ -2575,6 +4192,24 @@ function render(){
   else if(state.tab==='esh') viewEsh();
   else if(state.tab==='fields') viewFields();
   else viewUnknown();
+  if(noSub!=null){let t=noSub; try{t=decodeURIComponent(noSub);}catch(e){}
+    const m0=document.getElementById('main'); if(m0) m0.insertAdjacentHTML('afterbegin',`<div class="nores">Filter «${esc(t)}» ist auf dieser Seite unbekannt — gezeigt wird die ganze Seite.</div>`);}
+  // explanations and keyboard access for what the view drew, then the legend of THIS page
+  const mn=document.getElementById('main'); enhanceTips(mn); enhanceActs(mn);
+  renderLegend(); enhanceTips(document.querySelector('header'));
+  // the page title names the page (browser tab, bookmark, history); after a change of page
+  // the focus moves to the page title, which a screen reader then reads — not on the first
+  // load, and never away from a field the reader is typing in (that change is announced)
+  const h=mn&&mn.querySelector('h3.view');
+  // the page title without tag badges (e.g. «Sammelgruppe im DVSH»), which have no separator in the text
+  const hc=h?h.cloneNode(true):null; if(hc) hc.querySelectorAll('.sammel,.badge,.tag').forEach(x=>x.remove());
+  const SUF='Compliance-Databank Kanton Schaffhausen', ht=hc?hc.textContent.replace(/\s+/g,' ').trim():'';
+  document.title=(ht&&ht!==SUF?ht+' — ':'')+SUF;
+  const route=state.tab+'/'+state.service+'/'+state.sub;
+  if(_lastRoute!==null&&route!==_lastRoute&&h){const ae=document.activeElement;
+    if(ae&&/^(INPUT|TEXTAREA|SELECT)$/.test(ae.tagName)){const rl=document.getElementById('routelive'); if(rl) rl.textContent=h.textContent.trim();}
+    else {if(!h.hasAttribute('tabindex')) h.setAttribute('tabindex','-1'); h.focus({preventScroll:true});}}
+  _lastRoute=route;
   writeHash();
 }
 // header search: Enter (or a pause in typing) opens the results page
@@ -2621,9 +4256,47 @@ def check_guide(conn):
     return bad
 
 
+# The owner's rule: open points are GAPS — to be clarified, decided or evidenced — never
+# «risk» or «Verstoss» (the verbatim law term «erhöhtes Risiko für die Grundrechte» stays).
+# Two texts that reach the page from other sources still frame it otherwise; the page shows
+# them in gap wording. Once scripts/labels.py (todo_cats «ermitteln») and scripts/leitfaden.py
+# («verwenden») carry the same wording, these replacements find nothing and change nothing.
+WORDING = [
+    # «Over-collection» is explained once, on #methode; everywhere else the plain words
+    ('"basis":"Over-collection"', '"basis":"ohne Grundlage"'),
+    # «Korpus» is databank jargon: the other forms of the canton
+    ("Der Korpus ist bei diesem Datum selbst gespalten — hier ist nicht dieses Formular die Ausnahme",
+     "Die Formulare verlangen dieses Datum uneinheitlich — hier ist nicht dieses Formular die Ausnahme"),
+    ("im Korpus", "in den Formularen des Kantons"),
+    ("Over-collection ist nur, was weder eine Norm ", "Ohne Grundlage ist nur, was weder eine Norm "),
+    ("Eine Wissenslücke der Databank, kein festgestellter Verstoss.",
+     "Eine Wissenslücke der Databank, kein Befund über die Verwaltung."),
+    ("Wer Dritte bearbeiten lässt oder riskante Bearbeitungen plant, hat zusätzliche Pflichten.",
+     "Wer Dritte bearbeiten lässt oder eine Bearbeitung plant, die eine Datenschutz-Folgenabschätzung "
+     "verlangt, hat zusätzliche Pflichten."),
+]
+
+
+# «17 Pflicht / 27 optional auf 27 anderen Formularen» reads as if 44 > 27 were a contradiction:
+# the first two numbers count Datenpunkte (occurrences), the last one Formulare — said so
+ANDERE = re.compile(r"(\d+) Pflicht / (\d+) optional auf (\d+) anderen Formularen")
+
+
+def _andere(m):
+    n = lambda x: f"{int(x):,}".replace(",", "'")
+    r, o = int(m.group(1)), int(m.group(2))
+    return f"{n(r)}× Pflicht, {n(o)}× optional ({n(r + o)} Datenpunkte) auf {n(m.group(3))} anderen Formularen"
+
+
+def gap_wording(text):
+    for old, new in WORDING:
+        text = text.replace(old, new)
+    return ANDERE.sub(_andere, text)
+
+
 def main():
     with open(EXPORT_PATH, encoding="utf-8") as fh:
-        data = fh.read()
+        data = gap_wording(fh.read())
     conn = connect(DB_PATH)
     bad = check_guide(conn)
     conn.close()
@@ -2634,7 +4307,7 @@ def main():
         sys.exit(1)
     # inline as JSON text inside a <script type=application/json> (escape </ to be safe)
     safe = data.replace("</", "<\\/")
-    guide = json.dumps(LEITFADEN, ensure_ascii=False).replace("</", "<\\/")
+    guide = gap_wording(json.dumps(LEITFADEN, ensure_ascii=False)).replace("</", "<\\/")
     html = TEMPLATE.replace("/*DATA*/", safe).replace("/*GUIDE*/", guide)
     with open(DASHBOARD_PATH, "w", encoding="utf-8") as fh:
         fh.write(html)

@@ -196,13 +196,13 @@ def make_cipher(key):
         def enc(val):
             nonce = secrets.token_bytes(12)
             return aes.encrypt(nonce, val.encode(), None).hex(), nonce.hex()
-        return enc, "AES-256-GCM (cryptography); Schlüssel in datentresor.key, NIE in der DB."
+        return enc, "AES-256-GCM (cryptography); der Schlüssel liegt in datentresor.key, nie in der Datenbank."
     except ImportError:
         def enc(val):
             nonce = secrets.token_bytes(12)
             return keystream_xor(key, nonce, val.encode()).hex(), nonce.hex()
         return enc, ("Demo-Streamcipher (SHA-256-Keystream) — cryptography-Lib fehlte beim Build. "
-                     "Nicht produktionstauglich; Schlüssel in datentresor.key, NIE in der DB.")
+                     "Nicht produktionstauglich; der Schlüssel liegt in datentresor.key, nie in der Datenbank.")
 
 
 # the storage-shape contracts the tg_format trigger enforces, per format code
@@ -488,7 +488,7 @@ def main():
                 stats["log"] += 1
 
     for k, v in {
-        "hinweis": "SÄMTLICHE Daten synthetisch generiert — keine realen Personen.",
+        "hinweis": "Alle Daten sind synthetisch erzeugt — es gibt darin keine realen Personen.",
         "erzeugt": date.today().isoformat(), "seed": str(SEED),
         "quelle": "citygov.db (Schema, Standards, Regeln, Fristen, Empfänger)",
         "verschluesselung": cipher_label,

@@ -145,14 +145,13 @@ def handlungsbedarf(fm, today):
     if eN + eS:
         it.append({"cat": "ech", "n": eN + eS,
                    "detail": ", ".join(x for x in (f"{eN} nicht geprüft" if eN else "", f"{eS} Element offen" if eS else "") if x)})
-    bad = {"Aufgehoben", "Abgelöst", "Sistiert"}
+    # data points on a standard no longer in force (the same unit as every standard figure)
     alt = []
     for d in dfs:
-        if d.get("ech") and d["ech"].get("status") in bad:
-            alt.append(d["name"])
-        for s_ in d.get("subfields") or []:
-            if isinstance(s_, dict) and s_.get("ech") and s_["ech"].get("status") in bad:
-                alt.append(s_["name"])
+        subs = [x for x in (d.get("subfields") or []) if isinstance(x, dict)]
+        for u in (subs or [d]):
+            if _ech_state(u) == "standard_alt":
+                alt.append(u.get("name") or d["name"])
     if alt:
         it.append({"cat": "echalt", "n": len(alt), "detail": " · ".join(alt)})
     chk = fm.get("check")
@@ -170,11 +169,24 @@ def handlungsbedarf(fm, today):
         it.append({"cat": "dup", "n": len(du),
                    "detail": " · ".join(f"{s_['titel']} ({round(s_['jaccard'] * 100)} % gleiche Felder)" for s_ in du)})
     sd = fm.get("standard_divergenzen")
+    # data points without a standard in force for them: the canton decides (eSH or an eCH request)
+    ks = ke = 0
+    for d in dfs:
+        subs = [x for x in (d.get("subfields") or []) if isinstance(x, dict)]
+        for u in (subs or [d]):
+            stt = _ech_state(u)
+            if stt in ("kein_standard", "standard_entwurf"):
+                ks += 1
+                ke += bool(u.get("esh"))
+    if ks:
+        it.append({"cat": "kein_standard", "n": ks,
+                   "detail": LABELS.pl(ks, "Datenpunkt", "Datenpunkte") + " ohne geltenden eCH-Standard"
+                             + (f", davon {ke} mit eSH-Entwurf" if ke else "")})
     if sd:
         ang = [i for i in sd.get("angleichen") or [] if i["art"] != "pflicht_uneinheitlich"]
         unk = [i for i in sd.get("angleichen") or [] if i["art"] == "pflicht_uneinheitlich"]
         if ang:
-            it.append({"cat": "divergenz", "n": len(ang),
+            it.append({"cat": "divergenz", "n": len({(i["feld"], i.get("teilfeld")) for i in ang}),
                        "detail": " · ".join(f"{i['feld']}{' › ' + i['teilfeld'] if i.get('teilfeld') else ''} "
                                             f"({LABELS.DIV.get(i['art'], i['art'])}: hier {i['hier']}, sonst {i['andere']})" for i in ang)})
         bz = sd.get("bezeichnungen") or []
@@ -186,8 +198,11 @@ def handlungsbedarf(fm, today):
         if bzZ:
             it.append({"cat": "zuordnung", "n": len(bzZ),
                        "detail": " · ".join(f"«{i['hier']}» ≠ {i['standard']} {i['element']}" for i in bzZ)})
+        # a point that differs from the practice counts there; «corpus split» keeps the rest
+        ang_u = {(i["feld"], i.get("teilfeld")) for i in ang}
+        unk = [i for i in unk if (i["feld"], i.get("teilfeld")) not in ang_u]
         if unk:
-            it.append({"cat": "divergenz_offen", "n": len(unk),
+            it.append({"cat": "divergenz_offen", "n": len({(i["feld"], i.get("teilfeld")) for i in unk}),
                        "detail": " · ".join(f"{i['feld']}{' › ' + i['teilfeld'] if i.get('teilfeld') else ''} — {i['andere']}" for i in unk)})
     o = fm.get("outcome") or {}
     stt = o.get("rechtsmittel_status")
@@ -201,6 +216,226 @@ def handlungsbedarf(fm, today):
     elif stt == "entscheidart_offen":
         it.append({"cat": "entscheid_art", "n": 1, "detail": "Ergebnis des Verfahrens aus dem DVSH-Text nicht belegbar"})
     return it
+
+
+# the remedy notes are the review's reasoning; readers get it without the review's
+# internal vocabulary. Substance is untouched; a truncated second opinion (the
+# loader capped notes at 400 characters) is dropped rather than shown cut off.
+_PV_WORDS = [
+    ("Zweitprüfung: die zugeordnete Norm wurde in der Zweitprüfung gestrichen — ", "Die zunächst zugeordnete Norm trägt nicht — "),
+    ("nicht unter den Kandidaten ist – aus dem Material nicht entscheidbar", "nicht unter den geprüften Normen ist — aus den ausgewerteten Rechtsgrundlagen nicht entscheidbar"),
+    ("lässt sich aus den Kandidaten nicht entscheiden", "lässt sich aus den geprüften Normen nicht entscheiden"),
+    ("fehlt im Material", "ist unter den ausgewerteten Rechtsgrundlagen nicht vorhanden"),
+    ("von keiner Kandidatenbestimmung erfasst", "von keiner der geprüften Normen erfasst"),
+    ("fehlt unter den Kandidaten", "fehlt unter den geprüften Normen"),
+    ("Kein Kandidat erfasst", "Keine der geprüften Normen erfasst"),
+    ("von keinem Kandidaten erfasst", "von keiner der geprüften Normen erfasst"),
+    ("die hier nicht als Kandidaten vorliegen", "die hier nicht unter den geprüften Normen sind"),
+    ("Einziger Kandidat Art. 32b TSchG betrifft", "Die einzige geprüfte Norm, Art. 32b TSchG, betrifft"),
+    (", weshalb 'offen' nicht zutrifft", ""),
+]
+
+
+def _klartext(t):
+    """Reader-facing reasoning without the review's shorthand («Korpus» = the forms)."""
+    if not t:
+        return t
+    t = re.sub(r"\bim Korpus\b", "in den Formularen", t)
+    t = re.sub(r"\bdes Korpus\b", "der Formulare", t)
+    return re.sub(r"\bKorpus\b", "Formularbestand", t)
+
+
+def _lesbar_pruefvermerk(t):
+    t = (t or "").strip()
+    uneinig = t.startswith("Zweitprüfung uneinig: ")
+    if uneinig:
+        t = t[len("Zweitprüfung uneinig: "):]
+        parts = [x.strip() for x in t.split(" / ")]
+        if len(parts) > 1 and not re.search(r"[.!?)»]$", parts[-1]):
+            parts = parts[:-1]                      # cut off at load time — never show a fragment
+        t = " / ".join(parts)
+    elif t.startswith("Zweitprüfung: ") and not t.startswith("Zweitprüfung: die zugeordnete Norm"):
+        t = t[len("Zweitprüfung: "):]
+    for a, b in _PV_WORDS:
+        t = t.replace(a, b)
+    t = re.sub(r"\s*\(Regel \d+[^)]*\)", "", t)
+    if uneinig:
+        t = "Die Prüfungen sind uneinig. Eine Prüfung hält fest: " + t
+    left = [w for w in ("Kandidat", "Zweitprüfung", "im Material") if w in t] + re.findall(r"Regel \d+", t)
+    if left:
+        raise RuntimeError(f"Prüfvermerk mit interner Wortwahl ({left}): {t[:120]}")
+    return t
+
+
+def _dst_slug(name):
+    from common import norm_ascii
+    return norm_ascii(name).replace(" ", "-") or "ohne-dienststelle"
+
+
+def _units(d):
+    subs = [x for x in (d.get("subfields") or []) if isinstance(x, dict)]
+    return subs or [d]
+
+
+def _ech_state(u):
+    e = u.get("ech") or {}
+    if e.get("element") and (u.get("begriff") or {}).get("pruefart") == "zuordnung":
+        # an element is assigned, but the naming layer found the label means another
+        # datum: the databank corrects its own mapping (grey) — never counted as settled
+        return "zuordnung_falsch"
+    if e.get("element"):
+        return "element"
+    if e.get("standard") and e.get("status") == "In Arbeit":
+        return "standard_entwurf"
+    if e.get("standard") and e.get("status") in ("Sistiert", "Aufgehoben", "Abgelöst"):
+        return "standard_alt"
+    if e.get("standard") and not e.get("n_elements"):
+        return "standard_ohne_elemente"
+    if e.get("standard"):
+        return "element_offen"
+    if u.get("ech_status") == "kein_standard":
+        return "kein_standard"
+    return "ungeprueft"
+
+
+def _standard_zahlen(fms):
+    """Data-standard figures of a set of forms: atomic points, their eCH state, how
+    many are demanded differently than elsewhere, how many labels to align."""
+    z = {"punkte": 0, "ech": {}, "div_punkte": 0, "div_offen": 0, "begriff_felder": 0, "formulare_div": 0}
+    for fm in fms:
+        for d in fm.get("data_fields") or []:
+            for u in _units(d):
+                z["punkte"] += 1
+                st = _ech_state(u)
+                z["ech"][st] = z["ech"].get(st, 0) + 1
+        sd = fm.get("standard_divergenzen") or {}
+        ang = sd.get("angleichen") or []
+        # distinct data points, not items: one point can differ in requiredness AND format
+        act_u = {(i["feld"], i.get("teilfeld")) for i in ang if i["art"] != "pflicht_uneinheitlich"}
+        dec_u = {(i["feld"], i.get("teilfeld")) for i in ang if i["art"] == "pflicht_uneinheitlich"} - act_u
+        z["div_punkte"] += len(act_u)
+        z["div_offen"] += len(dec_u)
+        z["formulare_div"] += bool(any(i["art"] != "pflicht_uneinheitlich" for i in ang))
+        z["begriff_felder"] += sum(1 for i in (sd.get("bezeichnungen") or [])
+                                   if i.get("klasse") == "variante" or i.get("pruefart") == "aufteilen")
+    # «with an eCH element» = every point with an assigned element, including the
+    # ones whose mapping the databank itself flags for correction (shown apart)
+    z["mit_element"] = z["ech"].get("element", 0) + z["ech"].get("zuordnung_falsch", 0)
+    return z
+
+
+def uebersichten(conn, services, forms, dienststellen, begriffe_stats):
+    """Per Dienststelle: services, forms, open points by tone and tier, the most
+    important actions and the data-standard figures; the headline figures of the
+    home page (data standard first); and the trend snapshot (verlauf.json)."""
+    import kennzahlen as KZ
+    svc = {s["id"]: s for s in services}
+    def dst_of(fm):
+        s = svc.get(fm["service_id"]) or {}
+        return (s.get("dienststelle") or fm.get("publisher_dienststelle") or "(ohne Dienststelle)").strip()
+    info = {}
+    for d in dienststellen:
+        try:
+            k = json.loads(d.get("kontakt") or "[]")
+        except ValueError:
+            k = [d["kontakt"]] if d.get("kontakt") else []
+        info[d["name"]] = {"department": d.get("department"), "kontakt": [x for x in k if x and x != d["name"]]}
+    by_dst = {}
+    for fm in forms:
+        by_dst.setdefault(dst_of(fm), []).append(fm)
+    svc_by_dst = {}
+    for s in services:
+        svc_by_dst.setdefault((s.get("dienststelle") or "(ohne Dienststelle)").strip(), []).append(s["id"])
+    order = {c: i for i, c in enumerate(LABELS.CAT_ORDER)}
+    uebersicht = []
+    for name in sorted(set(by_dst) | set(svc_by_dst)):
+        fms = by_dst.get(name, [])
+        cnt = {"act": 0, "dec": 0, "open": 0}
+        stufen = {}
+        pairs = []                                  # (cat, form) with n — for the action list
+        for fm in fms:
+            for it in fm.get("handlungsbedarf") or []:
+                cnt[it["ton"]] += it["n"]
+                st = stufen.setdefault(str(it["stufe"]), {"act": 0, "dec": 0, "open": 0})
+                st[it["ton"]] += it["n"]
+                pairs.append((it, fm))
+        # the most important actions: what THIS Dienststelle can do itself (red),
+        # data standard first, then by size; the canton's decisions and the
+        # databank's research are listed apart on its page
+        act = sorted([p for p in pairs if p[0]["ton"] == "act"],
+                     key=lambda p: (p[0]["stufe"], order.get(p[0]["cat"], 99), -p[0]["n"]))
+        massnahmen = [{"cat": it["cat"], "stufe": it["stufe"], "n": it["n"], "form_id": fm["id"],
+                       "form": fm.get("title"), "service_id": fm.get("service_id"),
+                       "aktion": LABELS.AKTION.get(it["cat"], LABELS.TODO_BY[it["cat"]][1])}
+                      for it, fm in act[:5]]
+        entscheide = {}
+        for it, fm in pairs:
+            if it["ton"] == "dec":
+                e = entscheide.setdefault(it["cat"], {"cat": it["cat"], "stufe": it["stufe"], "n": 0, "formulare": 0})
+                e["n"] += it["n"]; e["formulare"] += 1
+        i = info.get(name, {})
+        uebersicht.append({
+            "slug": _dst_slug(name), "name": name,
+            "department": i.get("department") or next((svc[x].get("department") for x in svc_by_dst.get(name, [])
+                                                       if svc.get(x) and svc[x].get("department")), None),
+            "kontakt": i.get("kontakt", []),
+            "services": sorted(svc_by_dst.get(name, [])), "formulare": sorted(fm["id"] for fm in fms),
+            "offen": cnt, "stufen": stufen, "massnahmen": massnahmen,
+            "n_massnahmen": sum(1 for p in pairs if p[0]["ton"] == "act"),
+            "entscheide": sorted(entscheide.values(), key=lambda e: (e["stufe"], order.get(e["cat"], 99))),
+            "standard": _standard_zahlen(fms)})
+    # headline figures — data standard first; each as a share of the whole
+    std = _standard_zahlen(forms)
+    nf_ = sum(len(fm.get("data_fields") or []) for fm in forms)
+    dfs = [d for fm in forms for d in (fm.get("data_fields") or [])]
+    gedeckt = sum(1 for d in dfs if d.get("legal_basis") or (d.get("basis_typ") == "aufgabe" and not d.get("art5_offen")))
+    ohne = sum(1 for d in dfs if d.get("basis_typ") == "ohne")
+    offen = sum(1 for d in dfs if d.get("basis_typ") == "offen")
+    a5 = sum(1 for d in dfs if d.get("art5_offen"))
+    ermitteln = sum(1 for d in dfs if not d.get("basis_typ") and not d.get("legal_basis"))
+    mit_daten = [fm for fm in forms if fm.get("data_fields")]
+    verz = sum(1 for fm in mit_daten if fm.get("purpose") and fm.get("disclosures")
+               and (fm.get("retention") or fm.get("retention_decisions")))
+    tot = {"act": 0, "dec": 0, "open": 0}
+    for fm in forms:
+        for it in fm.get("handlungsbedarf") or []:
+            tot[it["ton"]] += it["n"]
+    e = std["ech"]
+    kopf = {
+        # «with an eCH element» stays the headline (as on every page); points whose
+        # standard has no element catalogue are settled at standard level — own segment
+        "standard_ech": {"wert": std["mit_element"], "von": std["punkte"],
+                          "teile": {"ok": e.get("element", 0), "zuordnung_falsch": e.get("zuordnung_falsch", 0),
+                                    "ok_standard": e.get("standard_ohne_elemente", 0),
+                                    "dec": e.get("kein_standard", 0) + e.get("standard_entwurf", 0),
+                                    "open": e.get("element_offen", 0) + e.get("ungeprueft", 0) + e.get("standard_alt", 0)}},
+        "standard_einheitlich": {"wert": std["mit_element"] - std["div_punkte"] - std["div_offen"], "von": std["mit_element"],
+                                 "teile": {"ok": std["mit_element"] - std["div_punkte"] - std["div_offen"],
+                                           "act": std["div_punkte"], "dec": std["div_offen"]},
+                                 "formulare_div": std["formulare_div"], "formulare": len(mit_daten)},
+        "standard_benannt": {"wert": (begriffe_stats or {}).get("n_felder_angleichen"), "formulare":
+                             (begriffe_stats or {}).get("n_formulare_angleichen"), "begriff_felder": std["begriff_felder"]},
+        "rechtsgrundlage": {"wert": gedeckt, "von": nf_, "teile": {"ok": gedeckt, "act": ohne, "dec": offen,
+                                                                     "open": ermitteln + a5},
+                            "ohne": ohne, "offen": offen, "zu_ermitteln": ermitteln, "art5_offen": a5},
+        "verzeichnis": {"wert": verz, "von": len(mit_daten)},
+        "offene_punkte": tot,
+    }
+    # trend: today's snapshot (DB-level figures + the export-level ones), history, notes
+    doc = KZ.load()
+    snap = KZ.db_kennzahlen(conn) or {}
+    snap.update({"div_punkte": std["div_punkte"], "div_offen": std["div_offen"],
+                 "formulare_div": std["formulare_div"], "begriff_felder": std["begriff_felder"],
+                 "verzeichnis_vollstaendig": verz, "offen_act": tot["act"], "offen_dec": tot["dec"],
+                 "offen_open": tot["open"]})
+    KZ.upsert(doc, {"datum": date.today().isoformat(), "quelle": "build", **snap})
+    KZ.save(doc)
+    try:
+        notes = json.load(open(os.path.join(os.path.dirname(DB_PATH), "quellen", "verlauf_bemerkungen.json"), encoding="utf-8"))
+    except (OSError, ValueError):
+        notes = {}
+    verlauf = [{**e, "bemerkung": notes.get(e["datum"])} for e in doc["eintraege"]]
+    return uebersicht, kopf, verlauf
 
 
 def _has_esh(conn):
@@ -467,7 +702,7 @@ def build(conn):
             try:
                 for r in rows(conn, "SELECT form_id, quelle, begruendung FROM rechtsmittel_verdikt"):
                     if r["form_id"] in out_by_form:
-                        out_by_form[r["form_id"]]["rechtsmittel_verdikt"] = f"{r['quelle']}: {r['begruendung']}"
+                        out_by_form[r["form_id"]]["rechtsmittel_verdikt"] = f"{r['quelle']}: {_lesbar_pruefvermerk(r['begruendung'])}"
             except Exception as _ex:
                 _layer_skipped("the panel's reasoning where a judgment was neede", _ex)
         except Exception:
@@ -644,7 +879,8 @@ def build(conn):
         # is what the field layer says TODAY, and the two drift apart with every
         # eCH assignment that replaces a draft code
         esh_katalog = rows(conn, "SELECT code, titel, beschreibung, themen, status, n_felder, "
-                                 "(SELECT COUNT(*) FROM data_field d WHERE d.esh_code=esh_standard.code) "
+                                 "(SELECT COUNT(*) FROM data_field d WHERE d.esh_code=esh_standard.code AND NOT EXISTS "
+                                 " (SELECT 1 FROM data_subfield x WHERE x.data_field_id=d.id)) "
                                  "+(SELECT COUNT(*) FROM data_subfield s WHERE s.esh_code=esh_standard.code) n_live "
                                  "FROM esh_standard ORDER BY code")
 
@@ -730,7 +966,7 @@ def build(conn):
                     if not (v and lr):
                         continue
                     u["begriff"] = {"klasse": lr["klasse"], "vorschlag": v["term"], "vorbehalt": bool(v.get("vorbehalt")),
-                                    "rolle": lr["rolle"], "grund": lr.get("pruefart_grund") or lr["grund"],
+                                    "rolle": lr["rolle"], "grund": _klartext(lr.get("pruefart_grund") or lr["grund"]),
                                     "pruefart": lr.get("pruefart")}
                     if lr["klasse"] == "variante":
                         forms_var.add(fm["id"])
@@ -739,7 +975,7 @@ def build(conn):
                                       "standard": e["standard"], "element": e["element"],
                                       "klasse": lr["klasse"], "hier": lab, "vorschlag": v["term"],
                                       "pruefart": lr.get("pruefart"),
-                                      "grund": lr.get("pruefart_grund") or lr["grund"]})
+                                      "grund": _klartext(lr.get("pruefart_grund") or lr["grund"])})
             bez_by_form[fm["id"]] = items
         for eid, v in bv.items():
             e = ech.get(eid) or {}
@@ -747,11 +983,11 @@ def build(conn):
             for r in rows(conn, "SELECT * FROM begriff_label WHERE ech_element_id=? ORDER BY klasse, label", eid):
                 uu = use.get(eid, {}).get(r["label_norm"], {"n": 0, "forms": set()})
                 labs.append({"label": r["label"], "klasse": r["klasse"], "rolle": r["rolle"],
-                             "pruefart": r.get("pruefart"), "grund": r.get("pruefart_grund") or r["grund"],
+                             "pruefart": r.get("pruefart"), "grund": _klartext(r.get("pruefart_grund") or r["grund"]),
                              "n": uu["n"], "formulare": sorted(uu["forms"])[:40], "n_formulare": len(uu["forms"])})
             begriffe.append({"element_id": eid, "standard": e.get("standard"), "element": e.get("element"),
                              "datentyp": e.get("datatype"), "standard_titel": e.get("standard_titel"),
-                             "vorschlag": v["term"], "begruendung": v.get("pruefung") or v["begruendung"],
+                             "vorschlag": v["term"], "begruendung": _klartext(v.get("pruefung") or v["begruendung"]),
                              "vorbehalt": bool(v.get("vorbehalt")), "herkunft": v.get("herkunft") or "eigen",
                              "labels": labs})
         begriffe.sort(key=lambda b: -sum(l["n"] for l in b["labels"] if l["klasse"] == "variante"))
@@ -804,7 +1040,7 @@ def build(conn):
         if d.get("art5_offen"):
             return "aufgabennotwendig — Grundlage nach KDSG Art. 5 Abs. 1 noch nicht benannt"
         return {"aufgabe": "aufgabennotwendig (KDSG Art. 4 Abs. 1 lit. b)",
-                "ohne": "Over-collection", "offen": "Aufgabenbedarf offen"}.get(
+                "ohne": "ohne Grundlage", "offen": "Aufgabenbedarf offen"}.get(
                     d.get("basis_typ"), "Rechtsgrundlage zu ermitteln")
 
     for fm in forms:
@@ -849,7 +1085,7 @@ def build(conn):
                                 "standard": e["standard"], "element": e["element"],
                                 "hier": "Pflicht" if here else "optional",
                                 "andere": andere, "basis": _basis_txt(d),
-                                "aktion": ("Der Korpus ist bei diesem Datum selbst gespalten — hier "
+                                "aktion": ("Die übrigen Formulare sind bei diesem Datum selbst uneinheitlich — hier "
                                            "ist nicht dieses Formular die Ausnahme, sondern es fehlt "
                                            "eine kantonale Festlegung, ob das Datum verlangt wird.")})
                     # (a2) type/format of the same datum
@@ -899,10 +1135,12 @@ def build(conn):
                                                "im Formular darf der Klartext stehen, ausgetauscht "
                                                "wird der Code.")})
                     if e.get("status") in DRAFT_STATUS:
-                        k = ("standard_entwurf", e["standard"], e.get("status"))
+                        k = ("standard_entwurf" if e.get("status") == "In Arbeit" else "standard_alt",
+                             e["standard"], e.get("status"))
                         offen.setdefault(k, []).append(tf or d["name"])
                 elif e.get("standard") and e.get("status") in DRAFT_STATUS:
-                    k = ("standard_entwurf", e["standard"], e.get("status"))
+                    k = ("standard_entwurf" if e.get("status") == "In Arbeit" else "standard_alt",
+                         e["standard"], e.get("status"))
                     offen.setdefault(k, []).append(tf or d["name"])
                 elif e.get("standard") and not e.get("n_elements"):
                     # the standard has no element catalogue in the databank (no
@@ -921,8 +1159,10 @@ def build(conn):
         AKT = {
             "element_offen": "Element im Standard bestimmen — der Standard passt, das konkrete "
                              "XML-Element fehlt noch.",
-            "standard_entwurf": "Nicht in Kraft: der Standard ist ein Entwurf bzw. sistiert — bis "
-                                "eCH ihn verabschiedet, ist keine element-genaue Zuordnung möglich.",
+            "standard_entwurf": "Bei eCH noch in Arbeit — bis der Standard verabschiedet ist, entscheidet der "
+                                "Kanton, was gilt; eine element-genaue Zuordnung ist erst danach möglich.",
+            "standard_alt": "Nicht mehr in Kraft (sistiert, aufgehoben oder abgelöst) — die Zuordnung ist auf den "
+                            "Nachfolger umzustellen.",
             "standard_ohne_elemente": "Der Standard führt in der Databank keinen XML-Elementkatalog "
                                       "(keine eigene XSD bzw. Prozess-/FHIR-Standard) — die Zuordnung "
                                       "bleibt auf Standard-Ebene; ein Element ist hier nicht zu bestimmen.",
@@ -1145,6 +1385,12 @@ def build(conn):
     today = date.today().isoformat()
     for fm in forms:
         fm["handlungsbedarf"] = handlungsbedarf(fm, today)
+        for it in fm["handlungsbedarf"]:
+            it["stufe"] = LABELS.STUFE_OF_CAT[it["cat"]]
+            it["ton"] = LABELS.TON_OF_ART[LABELS.TODO_BY[it["cat"]][3]]
+
+    # ---- Dienststellen, headline figures, trend: computed once here ----------------
+    dienststellen_uebersicht, kopfzahlen, verlauf = uebersichten(conn, services, forms, dienststellen, begriffe_stats)
 
     # ---- Datenstand: when was what last read (never only the build time) -------
     datenstand = {"build": None}
@@ -1221,6 +1467,7 @@ def build(conn):
         "forms": forms, "service_requirements": svc_req,
         "esh_katalog": esh_katalog, "datenhandhabung": handhabung,
         "attribut_katalog": katalog, "dienststellen": dienststellen,
+        "dienststellen_uebersicht": dienststellen_uebersicht, "kopfzahlen": kopfzahlen, "verlauf": verlauf,
         "buergersicht": buergersicht, "ech_codelists": codelists,
         "begriffe": begriffe, "begriffe_stats": begriffe_stats, "themenkatalog": themenkatalog,
         "process_steps_by_service": steps_by_service,
