@@ -89,7 +89,7 @@ def main():
   <div class="kicker"><i></i>Kanton Schaffhausen</div>
   <h1>Compliance-Databank · Datenstandards, Formulare &amp; Recht</h1>
   <p class="lead">Für jeden Service der kantonalen Verwaltung: welche Daten seine Formulare erheben (bis zum
-  einzelnen Teilfeld) und nach welchem Standard (eCH bzw. der kantonale Entwurf eSH), ob dasselbe Datum überall
+  einzelnen Teilfeld) und nach welchem Standard (eCH bzw. der kantonale Entwurf eSH), ob dieselbe Angabe überall
   gleich verlangt und gleich benannt wird, die Gesetze dahinter (artikelgenau) und die Regeln für Speichern,
   Weitergeben und Löschen — und was noch fehlt. Lücken stehen als Lücken da.</p>
 

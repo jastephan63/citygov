@@ -68,3 +68,12 @@ def _layer_skipped(name, ex):
         print(f"  LAYER SKIPPED {name}: {ex}", file=sys.stderr)
         return
     raise RuntimeError(f"export layer '{name}' failed: {ex}") from ex
+
+
+def klartext(t):
+    """Reader-facing reasoning without the review's shorthand («Korpus» = the forms)."""
+    if not t:
+        return t
+    t = _re.sub(r"\bim Korpus\b", "in den Formularen", t)
+    t = _re.sub(r"\bdes Korpus\b", "der Formulare", t)
+    return _re.sub(r"\bKorpus\b", "Formularbestand", t)

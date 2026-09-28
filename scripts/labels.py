@@ -55,7 +55,7 @@ DVSH_STATUS = {"uebergeben": "übergeben"}
 MODE = {"systematisch": "systematisch", "auf_anfrage": "auf Anfrage"}
 
 DIV = {"pflicht": "Pflicht ↔ optional", "pflicht_uneinheitlich": "Pflicht uneinheitlich",
-       "format": "Andere Form desselben Datums", "codeliste": "Eigene Werte statt der offiziellen Codes",
+       "format": "Andere Form derselben Angabe", "codeliste": "Eigene Werte statt der offiziellen Codes",
        "element_offen": "Element im Standard offen", "standard_ohne_elemente": "Standard ohne Elementkatalog",
        "standard_entwurf": "Standard bei eCH in Arbeit", "standard_alt": "Standard nicht mehr in Kraft",
        "kein_standard": "Kein eCH-Standard",
@@ -142,7 +142,7 @@ TODO_CATS = [
      "Person einholen (KDSG Art. 4 Abs. 1 lit. c; bei ⛨-Feldern KDSG Art. 5 Abs. 1 lit. b) — ausdrücklich "
      "oder nach den Umständen unzweifelhaft vorausgesetzt; in der Praxis ausdrücklich einholen."),
     ("sensibel_art5", "Grundlage nach KDSG Art. 5 benennen", "b-sens", "recherche",
-     "Ein besonders schützenswertes Datum ist als aufgabennotwendig beurteilt; für solche Daten reicht die "
+     "Eine besonders schützenswerte Angabe ist als aufgabennotwendig beurteilt; für solche Daten reicht die "
      "Aufgabe allein nicht — es braucht ein formelles Gesetz, das die Aufgabe klar umschreibt (KDSG Art. 5 "
      "Abs. 1 lit. a), oder die Zustimmung der Person — ausdrücklich oder nach den Umständen unzweifelhaft "
      "vorausgesetzt (lit. b). Diese Grundlage ist noch nicht benannt."),
@@ -176,7 +176,7 @@ TODO_CATS = [
     ("keine-felder", "Datenfeld-Schicht fehlt", "b-unver", "recherche",
      "Für dieses Formular sind noch keine Datenfelder modelliert — alle anderen Prüfungen sind blind."),
     ("divergenz", "Standard-Divergenz angleichen", "b-over", "bereinigung",
-     "Dasselbe Datum wird auf diesem Formular anders verlangt als auf den übrigen. Pflicht statt optional "
+     "Dieselbe Angabe wird auf diesem Formular anders verlangt als auf den übrigen. Pflicht statt optional "
      "oder eine andere Form: das Formular angleichen oder die abweichende Rechtsgrundlage dokumentieren. "
      "Eigene Werte statt der offiziellen Codes: beim Austausch auf die eCH-Codes abbilden — im Formular "
      "darf der Klartext stehen bleiben."),
@@ -184,13 +184,13 @@ TODO_CATS = [
      "Für diese Datenpunkte gibt es keinen eCH-Standard, oder er ist bei eCH erst in Arbeit. Der Kanton "
      "entscheidet, ob der kantonale Entwurf eSH gilt oder ob er bei eCH einen Standard beantragt."),
     ("divergenz_offen", "Pflicht uneinheitlich", "b-unver", "entscheid",
-     "Dasselbe Datum ist über die Formulare hinweg mal Pflicht, mal optional, ohne erkennbare Praxis — hier "
+     "Dieselbe Angabe ist über die Formulare hinweg mal Pflicht, mal optional, ohne erkennbare Praxis — hier "
      "ist nicht ein Formular die Ausnahme, sondern es fehlt eine kantonale Festlegung."),
     ("begriff", "Bezeichnung angleichen oder Feld aufteilen", "b-over", "bereinigung",
-     "Das Feld benennt ein Datum anders als der einheitliche Begriff (Tab «Begriffe») oder bündelt mehrere "
+     "Das Feld benennt eine Angabe anders als der einheitliche Begriff (Tab «Begriffe») oder bündelt mehrere "
      "Daten, die der Standard trennt — im Formular umbenennen bzw. aufteilen."),
     ("zuordnung", "eCH-Zuordnung korrigieren", "b-unver", "recherche",
-     "Die Bezeichnung meint ein anderes Datum als das eCH-Element, dem die Databank das Feld zugeordnet hat "
+     "Die Bezeichnung meint eine andere Angabe als das eCH-Element, dem die Databank das Feld zugeordnet hat "
      "— ein Fehler der Databank, nicht des Formulars."),
     ("rechtsmittel", "Rechtsmittel nicht bestimmt", "b-unver", "recherche",
      "Das Verfahren endet mit einem anfechtbaren Entscheid, aber weder eine Spezialnorm noch die allgemeine "
@@ -265,7 +265,7 @@ TON_MAP = {
 # work still to do — not findings of a risk or a breach. Independent of the tone:
 # a grey (research) item can still come first.
 STUFEN = [
-    (1, "Datenstandard", "Dasselbe Datum soll überall gleich verlangt, gleich benannt und nach eCH-Standard "
+    (1, "Datenstandard", "Dieselbe Angabe soll überall gleich verlangt, gleich benannt und nach eCH-Standard "
         "ausgetauscht werden: Element, Form, Werteliste, Bezeichnung."),
     (2, "Rechtsgrundlage", "Für jedes Datenfeld soll feststehen, worauf es sich stützt — belegte Norm oder "
         "Aufgabe; wo das noch fehlt, ist es eine Lücke."),
@@ -294,7 +294,7 @@ AKTION = {
     "divergenz": "Abweichung vom Datenstandard angleichen oder ihre Rechtsgrundlage dokumentieren",
     # the same category when only value lists differ: nothing on the form has to change
     "divergenz_codeliste": "Werte beim Austausch auf die eCH-Codes abbilden",
-    "divergenz_offen": "Kantonal festlegen, ob das Datum Pflicht ist",
+    "divergenz_offen": "Kantonal festlegen, ob die Angabe Pflicht ist",
     "kein_standard": "Festlegen, ob der kantonale Entwurf eSH für diese Daten gilt",
     "begriff": "Bezeichnungen umstellen oder Felder aufteilen",
     "dup": "Entscheiden, ob ähnliche Formulare zusammengelegt werden",

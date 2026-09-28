@@ -10,7 +10,8 @@ undo the others. The later steps therefore refuse to run outside this chain.
 
 <panel-base-dir> holds the panel outputs: begriffe/ pruefart/ vorschlag/
 konsistenz/ rolle2/ themen/. The verified single corrections come from
-quellen/korrekturen/ and are applied last.
+quellen/korrekturen/ and are applied last, followed by the reviewed reader
+wording (scripts/apply_wortwahl.py).
 """
 import glob, os, subprocess, sys
 
@@ -35,6 +36,11 @@ def main():
         r = subprocess.run([sys.executable, os.path.join(HERE, "load_korrekturen.py"), k], env=env)
         if r.returncode:
             sys.exit(f"ABBRUCH in load_korrekturen.py ({k})")
+    # the reviewed reader wording («Angabe», not «Datum» for a piece of data) —
+    # the steps above rebuild those texts from the panel outputs
+    r = subprocess.run([sys.executable, os.path.join(HERE, "apply_wortwahl.py")], env=env)
+    if r.returncode:
+        sys.exit("ABBRUCH in apply_wortwahl.py")
     print("Begriffe-Kette vollständig.")
 
 

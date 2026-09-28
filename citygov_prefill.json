@@ -1,12 +1,12 @@
 {
  "meta": {
-  "generated_at": "2026-09-27T13:41:44",
+  "generated_at": "2026-09-28T16:27:45",
   "hinweis": "Datenpunkt→eCH-Element-Map je Formular (Schlüssel = Formular-id) für Once-Only-Prefill: ein nach eCH-Element gekeytes Profil einer natürlichen Person füllt damit die Punkte vor, die einwohnerregister = true und mehrdeutig = false tragen — nur diese, nie alle Punkte.",
   "felder": {
    "feld": "Pfad «Feld›Teilfeld» (ein Teilfeld ist die atomare Einheit; feld_parent = das Feld, sonst null). Ein zusammengesetztes Feld, dessen Teile eigene Elemente tragen, erscheint nicht neben seinen Teilen.",
    "pflicht": "Pflichtangabe des Felds (ein Teilfeld erbt die Pflicht seines Felds).",
-   "subjekt": "wessen Datum: natuerliche_person = natürliche Person, organisation = Organisation, sache = Sache, behoerde = Behörde, gemischt = gemischt; null = noch nicht beurteilt (dann nie vorbefüllen).",
-   "einwohnerregister": "true nur, wenn das Einwohnerregister das Datum tatsächlich führt: Personen-/Adressstandard (eCH-0044, eCH-0010, eCH-0011, eCH-0007, eCH-0008) UND subjekt natürliche Person — dieselbe Marke ↺ wie im Dashboard. Eine Betriebs- oder Behördenadresse ist eCH-0010, aber nicht im Register.",
+   "subjekt": "wessen Angabe: natuerliche_person = natürliche Person, organisation = Organisation, sache = Sache, behoerde = Behörde, gemischt = gemischt; null = noch nicht beurteilt (dann nie vorbefüllen).",
+   "einwohnerregister": "true nur, wenn das Einwohnerregister die Angabe tatsächlich führt: Personen-/Adressstandard (eCH-0044, eCH-0010, eCH-0011, eCH-0007, eCH-0008) UND subjekt natürliche Person — dieselbe Marke ↺ wie im Dashboard. Eine Betriebs- oder Behördenadresse ist eCH-0010, aber nicht im Register.",
    "mehrdeutig": "true, wenn dasselbe eCH-Element auf diesem Formular mehr als einen Punkt einer natürlichen Person bezeichnet (z. B. Name der gesuchstellenden Person und Name eines Familienmitglieds): das Profil hält einen Wert, keiner dieser Punkte darf damit befüllt werden. Zählt mit: das eigene Element eines zusammengesetzten Felds derselben Person, dessen Teilfelder hier als Punkte erscheinen (das Feld selbst ist kein Punkt) — ein so markierter Punkt kann darum ohne sichtbaren Zwilling stehen. Dieselbe Regel wie in flows.html."
   },
   "zaehlung": {

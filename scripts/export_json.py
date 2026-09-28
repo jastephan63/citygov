@@ -21,7 +21,7 @@ from fix_quality import is_bad_label
 import labels as LABELS
 
 
-from common import _layer_skipped
+from common import _layer_skipped, klartext as _klartext
 
 
 # «the same datum»: what may be compared across forms (Standard-Divergenzen)
@@ -236,13 +236,6 @@ _PV_WORDS = [
 ]
 
 
-def _klartext(t):
-    """Reader-facing reasoning without the review's shorthand («Korpus» = the forms)."""
-    if not t:
-        return t
-    t = re.sub(r"\bim Korpus\b", "in den Formularen", t)
-    t = re.sub(r"\bdes Korpus\b", "der Formulare", t)
-    return re.sub(r"\bKorpus\b", "Formularbestand", t)
 
 
 def _lesbar_pruefvermerk(t):
@@ -1073,7 +1066,7 @@ def build(conn):
                                 "standard": e["standard"], "element": e["element"],
                                 "hier": "Pflicht" if here else "optional",
                                 "andere": andere, "basis": _basis_txt(d),
-                                "aktion": ("Angleichen oder begründen: dasselbe Datum ist anderswo "
+                                "aktion": ("Angleichen oder begründen: dieselbe Angabe ist anderswo "
                                            + ("Pflicht" if maj_req else "optional")
                                            + ". Eine abweichende Rechtsgrundlage rechtfertigt die "
                                              "Abweichung — dann gehört sie dokumentiert.")})
@@ -1085,9 +1078,9 @@ def build(conn):
                                 "standard": e["standard"], "element": e["element"],
                                 "hier": "Pflicht" if here else "optional",
                                 "andere": andere, "basis": _basis_txt(d),
-                                "aktion": ("Die übrigen Formulare sind bei diesem Datum selbst uneinheitlich — hier "
+                                "aktion": ("Die übrigen Formulare sind bei dieser Angabe selbst uneinheitlich — hier "
                                            "ist nicht dieses Formular die Ausnahme, sondern es fehlt "
-                                           "eine kantonale Festlegung, ob das Datum verlangt wird.")})
+                                           "eine kantonale Festlegung, ob die Angabe verlangt wird.")})
                     # (a2) type/format of the same datum
                     if not subs and st.get("shape"):
                         mine = ((d.get("data_type") or "?"), (d.get("format") or ""))
@@ -1166,7 +1159,8 @@ def build(conn):
             "standard_ohne_elemente": "Der Standard führt in der Databank keinen XML-Elementkatalog "
                                       "(keine eigene XSD bzw. Prozess-/FHIR-Standard) — die Zuordnung "
                                       "bleibt auf Standard-Ebene; ein Element ist hier nicht zu bestimmen.",
-            "kein_standard": "Kein eCH-Standard deckt dieses Datum ab — hier braucht es den "
+            # {obj}: «diese Angabe» / «diese Angaben» — the item collects one or several fields
+            "kein_standard": "Kein eCH-Standard deckt {obj} ab — hier braucht es den "
                              "kantonalen Entwurf eSH (oder einen neuen, wo auch eSH fehlt).",
             "ungeprueft": "Noch nicht gegen den eCH-Katalog geprüft.",
         }
@@ -1174,7 +1168,8 @@ def build(conn):
             items.append({"art": art, "sammel": True, "n": len(felder),
                           "standard": std, "status": status,
                           "felder": sorted(set(felder))[:14],
-                          "aktion": AKT[art] + (" Entwurf vorhanden: " + std if art == "kein_standard" and std
+                          "aktion": AKT[art].replace("{obj}", "diese Angabe" if len(felder) == 1 else "diese Angaben")
+                                    + (" Entwurf vorhanden: " + std if art == "kein_standard" and std
                                                 else (" Kein eSH-Entwurf vorhanden." if art == "kein_standard" else ""))})
         ang = [i for i in items if not i.get("sammel")]
         bez = bez_by_form.get(fm["id"], [])
@@ -1476,10 +1471,46 @@ def build(conn):
     return data, todo
 
 
+def _wortwahl_pruefen(data):
+    """«Datum» is a calendar date to readers. The databank's own naming and basis
+    texts may say «Datum» only where quellen/wortwahl_datum.json confirms a date
+    (scripts/apply_wortwahl.py applies the reviewed rewrites). A new text without
+    a verdict stops the export; field definitions only warn, because they are
+    almost always about real dates."""
+    import apply_wortwahl as W
+    _, behalten = W.lade()
+    streng, def_ = set(), set()
+    def fld(d):
+        b = d.get("begriff") or {}
+        streng.update([b.get("grund"), b.get("rolle"), d.get("basis_begruendung")])
+        def_.add(d.get("definition"))
+    for b in data.get("begriffe") or []:
+        streng.add(b.get("begruendung"))
+        for l in b.get("labels") or []:
+            streng.update([l.get("grund"), l.get("rolle")])
+    for f in data.get("forms") or []:
+        for d in f.get("data_fields") or []:
+            fld(d)
+            for s in d.get("subfields") or []:
+                fld(s)
+        for b in (f.get("standard_divergenzen") or {}).get("bezeichnungen") or []:
+            streng.add(b.get("grund"))
+    offen = W.offen(streng, behalten)
+    if offen:
+        raise RuntimeError(f"{len(offen)} Begriffs-/Grundlagentext(e) sagen «Datum» ohne Prüfung — "
+                           "in quellen/wortwahl_datum.json einordnen, dann scripts/apply_wortwahl.py: "
+                           + " | ".join(t[:100] for t in offen[:5]))
+    offen_def = W.offen(def_, behalten)
+    if offen_def:
+        print(f"  Hinweis: {len(offen_def)} Felddefinition(en) mit «Datum» noch ohne Prüfung "
+              f"(quellen/wortwahl_datum.json), z. B. {offen_def[0][:90]!r}")
+
+
 def main():
     conn = connect(DB_PATH)
     data, todo = build(conn)
     conn.close()
+    _wortwahl_pruefen(data)
     with open(EXPORT_PATH, "w", encoding="utf-8") as fh:
         json.dump(data, fh, ensure_ascii=False, separators=(",", ":"))
     os.makedirs(LOGS_DIR, exist_ok=True)

@@ -1,0 +1,1850 @@
+{
+ "hinweis": "Leserwortwahl 2026-09-28 (Wunsch des Eigentümers): Im allgemeinen Sprachgebrauch ist «Datum» ein Kalenderdatum. Wo die Databank in ihren eigenen Texten ein einzelnes Stück Information meint, sagt sie «Angabe» (Plural «Angaben») oder «Daten». «ersetzen»: Text, wie die Website ihn zeigt (nach common.klartext) -> geprüfte Umformulierung. «behalten»: Texte, in denen «Datum» wirklich ein Kalenderdatum ist. Jede Zeile von einer Prüfung beurteilt und von einer zweiten, skeptischen Prüfung nachkontrolliert. Angewandt durch scripts/apply_wortwahl.py; export_json.py bricht ab, wenn ein Begriffs- oder Grundlagentext «Datum» sagt und hier fehlt. Zitate aus Formularen, Gesetzen, eCH, DVSH und SHEP werden nie verändert. «flow_teiltexte»: exakte Teiltexte in formflow.flow (die geführten Formulare), je Formular; der alte Text muss genau einmal vorkommen oder die Ersetzung bereits angewandt sein.",
+ "ersetzen": [
+  {
+   "alt": "Abkürzung desselben Datums.",
+   "neu": "Abkürzung derselben Angabe.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Abkürzung/Schreibvariante desselben Datums.",
+   "neu": "Abkürzung/Schreibvariante derselben Angabe.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Abkürzung; der Hund ist im Datum bereits enthalten.",
+   "neu": "Abkürzung; der Hund ist in der Angabe bereits enthalten.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Abweichende Schreibweise, gleiches Datum.",
+   "neu": "Abweichende Schreibweise, gleiche Angabe.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Allgemeine Kurzform desselben Datums.",
+   "neu": "Allgemeine Kurzform derselben Angabe.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Allgemeiner Organisationsbegriff; gleiches Datum.",
+   "neu": "Allgemeiner Organisationsbegriff; gleiche Angabe.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Amtlicher Begriff (eCH) für dasselbe Datum.",
+   "neu": "Amtlicher Begriff (eCH) für dieselbe Angabe.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Art der Arbeiten bei einer Installation (z.B. neu, Ersatz); gleiches Datum.",
+   "neu": "Art der Arbeiten bei einer Installation (z.B. neu, Ersatz); gleiche Angabe.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Aufzählung allgemeiner Organisationsformen; gleiches Datum.",
+   "neu": "Aufzählung allgemeiner Organisationsformen; gleiche Angabe.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Ausgeschrieben, ein Datum, ohne Rolle.",
+   "neu": "Ausgeschrieben, eine Angabe, ohne Rolle.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Ausgeschriebener Fachbegriff für genau dieses Datum.",
+   "neu": "Ausgeschriebener Fachbegriff für genau diese Angabe.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "BIC und SWIFT-Code sind dasselbe Datum.",
+   "neu": "BIC und SWIFT-Code sind dieselbe Angabe.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Bedingung im Label, gleiches Datum.",
+   "neu": "Bedingung im Label, gleiche Angabe.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Benennt das Hochladen; gleiches Datum.",
+   "neu": "Benennt das Hochladen; gleiche Angabe.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Benennt das Total des Ertrags ohne Rolle oder zweites Datum.",
+   "neu": "Benennt das Total des Ertrags ohne Rolle oder zweite Angabe.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Benennt die Spesen ohne Rolle oder zweites Datum.",
+   "neu": "Benennt die Spesen ohne Rolle oder zweite Angabe.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Benennt genau die übrigen Renten; «in- und ausländisch» ist ein Geltungsbereich, kein zweites Datum.",
+   "neu": "Benennt genau die übrigen Renten; «in- und ausländisch» ist ein Geltungsbereich, keine zweite Angabe.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Benennt genau dieses Datum ohne zweites Datum, Rolle oder Antworthinweis.",
+   "neu": "Benennt genau diese Angabe ohne zweite Angabe, Rolle oder Antworthinweis.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Das Beitragsjahr ist ein anderes Datum als der Beginn der Bewirtschaftung.",
+   "neu": "Das Beitragsjahr ist eine andere Angabe als der Beginn der Bewirtschaftung.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Das Eintragungsdatum im Handelsregister ist ein anderes Datum als das Gründungsdatum.",
+   "neu": "Das Eintragungsdatum im Handelsregister ist eine andere Angabe als das Gründungsdatum.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Das Element zählt Anteile (ganze Zahl neben Nominalwert und Prozent); ein Geldbetrag ist ein anderes Datum.",
+   "neu": "Das Element zählt Anteile (ganze Zahl neben Nominalwert und Prozent); ein Geldbetrag ist eine andere Angabe.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Das Fälligkeitsdatum ist ein anderes Datum als das Zahlungsdatum.",
+   "neu": "Das Fälligkeitsdatum ist eine andere Angabe als das Zahlungsdatum.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Das Geburtsland ist ein anderes Datum als die Staatsangehörigkeit.",
+   "neu": "Das Geburtsland ist eine andere Angabe als die Staatsangehörigkeit.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Das Pensum (Prozent) ist ein anderes Datum als die Erwerbsart.",
+   "neu": "Das Pensum (Prozent) ist eine andere Angabe als die Erwerbsart.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Das Statutendatum ist ein anderes Datum als das Gründungsdatum.",
+   "neu": "Das Statutendatum ist eine andere Angabe als das Gründungsdatum.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Der Aufenthaltszweck ist ein migrationsrechtliches Datum, nicht die Erwerbsart.",
+   "neu": "Der Aufenthaltszweck ist eine migrationsrechtliche Angabe, nicht die Erwerbsart.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Der Beschäftigungsgrad (Prozent) ist ein anderes Datum als die Erwerbsart.",
+   "neu": "Der Beschäftigungsgrad (Prozent) ist eine andere Angabe als die Erwerbsart.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Der Betreuungsanteil (Obhut) ist ein anderes Datum als die elterliche Sorge.",
+   "neu": "Der Betreuungsanteil (Obhut) ist eine andere Angabe als die elterliche Sorge.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Der Waisenstatus ist ein anderes Datum als die Elternbeziehung.",
+   "neu": "Der Waisenstatus ist eine andere Angabe als die Elternbeziehung.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Der Wohnsitzstaat ist ein anderes Datum als die Staatsangehörigkeit.",
+   "neu": "Der Wohnsitzstaat ist eine andere Angabe als die Staatsangehörigkeit.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Der letzte Arbeitstag ist ein anderes Datum als das Ende des Arbeitsverhältnisses.",
+   "neu": "Der letzte Arbeitstag ist eine andere Angabe als das Ende des Arbeitsverhältnisses.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Die AHV-Beitragsdauer ist ein anderes Datum als die Tätigkeitsdauer; das Element passt keinem Teil.",
+   "neu": "Die AHV-Beitragsdauer ist eine andere Angabe als die Tätigkeitsdauer; das Element passt keinem Teil.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Die Anzahl Kinder ist ein anderes Datum als die Anzahl Kinderabzüge.",
+   "neu": "Die Anzahl Kinder ist eine andere Angabe als die Anzahl Kinderabzüge.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Die Befristung des Arbeitsverhältnisses ist ein anderes Datum als die Erwerbsart.",
+   "neu": "Die Befristung des Arbeitsverhältnisses ist eine andere Angabe als die Erwerbsart.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Die Besitzesdauer ist ein anderes Datum als das Eigentumsverhältnis.",
+   "neu": "Die Besitzesdauer ist eine andere Angabe als das Eigentumsverhältnis.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Die Besuchsregelung ist ein anderes Datum als die elterliche Sorge.",
+   "neu": "Die Besuchsregelung ist eine andere Angabe als die elterliche Sorge.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Die Frage benennt genau das Datum; die Frageform ist nur Stil.",
+   "neu": "Die Frage benennt genau die Angabe; die Frageform ist nur Stil.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Die Fremdplatzierung ist ein anderes Datum als die elterliche Sorge.",
+   "neu": "Die Fremdplatzierung ist eine andere Angabe als die elterliche Sorge.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Die Kirchensteuer ist ein anderes Datum als die Konfession.",
+   "neu": "Die Kirchensteuer ist eine andere Angabe als die Konfession.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Ein Anteil ist ein anderes Datum als eine Fläche.",
+   "neu": "Ein Anteil ist eine andere Angabe als eine Fläche.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Ein Datum (Ort der Ausbildung), ohne Rolle oder Hinweis.",
+   "neu": "Eine Angabe (Ort der Ausbildung), ohne Rolle oder Hinweis.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Ein Datum, ohne Rolle oder Antworthinweis.",
+   "neu": "Eine Angabe, ohne Rolle oder Antworthinweis.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Ein Datum, ohne Rolle oder Hinweis.",
+   "neu": "Eine Angabe, ohne Rolle oder Hinweis.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Ein Tätigkeitsgebiet ist ein anderes Datum als ein einzelner Gemeindename.",
+   "neu": "Ein Tätigkeitsgebiet ist eine andere Angabe als ein einzelner Gemeindename.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Eine freie Adresszeile ist ein anderes Datum als die Strasse.",
+   "neu": "Eine freie Adresszeile ist eine andere Angabe als die Strasse.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Eine freie Zeile des Besteller-Blocks ist ein anderes Datum als die Postleitzahl.",
+   "neu": "Eine freie Zeile des Besteller-Blocks ist eine andere Angabe als die Postleitzahl.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Eine freie Zeile des Name/Adresse-Blocks ist ein anderes Datum als die Postleitzahl.",
+   "neu": "Eine freie Zeile des Name/Adresse-Blocks ist eine andere Angabe als die Postleitzahl.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Ende des früheren Wohnorts; gleiches Datum.",
+   "neu": "Ende des früheren Wohnorts; gleiche Angabe.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Fachbegriff für genau dieses Datum.",
+   "neu": "Fachbegriff für genau diese Angabe.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Frageform, gleiches Datum.",
+   "neu": "Frageform, gleiche Angabe.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Fragt die Dienstart; armedForcesData kennt dieses Datum nicht.",
+   "neu": "Fragt die Dienstart; armedForcesData kennt diese Angabe nicht.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Fragt die Funktion in der Rekrutenschule; armedForcesData kennt dieses Datum nicht.",
+   "neu": "Fragt die Funktion in der Rekrutenschule; armedForcesData kennt diese Angabe nicht.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gewinn oder Verlust ist ein anderes Datum als der Ertrag.",
+   "neu": "Gewinn oder Verlust ist eine andere Angabe als der Ertrag.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum (Beginn der Ausführung), anders formuliert.",
+   "neu": "Gleiche Angabe (Beginn der Ausführung), anders formuliert.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum (Beistand oder Vormund); technischer Feldname.",
+   "neu": "Gleiche Angabe (Beistand oder Vormund); technischer Feldname.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum (leistende Versicherung), unklar formuliert.",
+   "neu": "Gleiche Angabe (leistende Versicherung), unklar formuliert.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum als Frage formuliert.",
+   "neu": "Gleiche Angabe als Frage formuliert.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum als Kurzform im Zeitraum; Zuordnung unter 'Gratifikation / Bonus' prüfen.",
+   "neu": "Gleiche Angabe als Kurzform im Zeitraum; Zuordnung unter 'Gratifikation / Bonus' prüfen.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum als Substantivform.",
+   "neu": "Gleiche Angabe als Substantivform.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum auf Gattungsebene, anders formuliert.",
+   "neu": "Gleiche Angabe auf Gattungsebene, anders formuliert.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum mit Antworthinweis.",
+   "neu": "Gleiche Angabe mit Antworthinweis.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum mit Aufzählung der Rentenarten.",
+   "neu": "Gleiche Angabe mit Aufzählung der Rentenarten.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum mit Ausfüllhinweis.",
+   "neu": "Gleiche Angabe mit Ausfüllhinweis.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum mit Ausfüllhinweis; die Rolle steckt im Elternfeld.",
+   "neu": "Gleiche Angabe mit Ausfüllhinweis; die Rolle steckt im Elternfeld.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum mit Hinweis auf die Schreibweise gemäss Handelsregister.",
+   "neu": "Gleiche Angabe mit Hinweis auf die Schreibweise gemäss Handelsregister.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum mit Nummernhinweis.",
+   "neu": "Gleiche Angabe mit Nummernhinweis.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum mit Pluralhinweis.",
+   "neu": "Gleiche Angabe mit Pluralhinweis.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum mit Verweis auf das Beiblatt.",
+   "neu": "Gleiche Angabe mit Verweis auf das Beiblatt.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum mit Zusatz 'Nr.'.",
+   "neu": "Gleiche Angabe mit Zusatz 'Nr.'.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum mit erklärendem Zusatz.",
+   "neu": "Gleiche Angabe mit erklärendem Zusatz.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum mit überflüssigem Zusatz.",
+   "neu": "Gleiche Angabe mit überflüssigem Zusatz.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum, allgemeiner formuliert (Tier statt Hund).",
+   "neu": "Gleiche Angabe, allgemeiner formuliert (Tier statt Hund).",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum, allgemeiner formuliert.",
+   "neu": "Gleiche Angabe, allgemeiner formuliert.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum, als Bau- oder Einrichtungsobjekt formuliert.",
+   "neu": "Gleiche Angabe, als Bau- oder Einrichtungsobjekt formuliert.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum, als Einzug formuliert.",
+   "neu": "Gleiche Angabe, als Einzug formuliert.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum, als Frage formuliert.",
+   "neu": "Gleiche Angabe, als Frage formuliert.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum, als Satzteil formuliert.",
+   "neu": "Gleiche Angabe, als Satzteil formuliert.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum, als ausgeübte Tätigkeit umschrieben.",
+   "neu": "Gleiche Angabe, als ausgeübte Tätigkeit umschrieben.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum, amtlich formuliert.",
+   "neu": "Gleiche Angabe, amtlich formuliert.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum, anders formuliert.",
+   "neu": "Gleiche Angabe, anders formuliert.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum, anders formuliert; amtlich 'Ledigname'.",
+   "neu": "Gleiche Angabe, anders formuliert; amtlich 'Ledigname'.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum, auf Verwandtschaft bezogen formuliert.",
+   "neu": "Gleiche Angabe, auf Verwandtschaft bezogen formuliert.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum, auf den Kauf bezogen.",
+   "neu": "Gleiche Angabe, auf den Kauf bezogen.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum, aus Sicht der Person formuliert.",
+   "neu": "Gleiche Angabe, aus Sicht der Person formuliert.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum, formeller formuliert.",
+   "neu": "Gleiche Angabe, formeller formuliert.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum, für ein Studium formuliert.",
+   "neu": "Gleiche Angabe, für ein Studium formuliert.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum, für landwirtschaftliche Betriebe formuliert.",
+   "neu": "Gleiche Angabe, für landwirtschaftliche Betriebe formuliert.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum, knapper formuliert.",
+   "neu": "Gleiche Angabe, knapper formuliert.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum, kürzer formuliert.",
+   "neu": "Gleiche Angabe, kürzer formuliert.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum, nur als Rückfrage formuliert.",
+   "neu": "Gleiche Angabe, nur als Rückfrage formuliert.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum, nur anders formuliert.",
+   "neu": "Gleiche Angabe, nur anders formuliert.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum, sehr allgemein formuliert.",
+   "neu": "Gleiche Angabe, sehr allgemein formuliert.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum, sehr knapp formuliert.",
+   "neu": "Gleiche Angabe, sehr knapp formuliert.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum, um das Bauobjekt ergänzt formuliert.",
+   "neu": "Gleiche Angabe, um das Bauobjekt ergänzt formuliert.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum, über Kindergarten oder Schulhaus benannt.",
+   "neu": "Gleiche Angabe, über Kindergarten oder Schulhaus benannt.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum, über das Schulhaus benannt.",
+   "neu": "Gleiche Angabe, über das Schulhaus benannt.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum, über den Fähigkeitsausweis formuliert.",
+   "neu": "Gleiche Angabe, über den Fähigkeitsausweis formuliert.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum, über die Anmeldung formuliert.",
+   "neu": "Gleiche Angabe, über die Anmeldung formuliert.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum: Name, auf den das Konto lautet.",
+   "neu": "Gleiche Angabe: Name, auf den das Konto lautet.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum: auf wen das Auszahlungskonto lautet.",
+   "neu": "Gleiche Angabe: auf wen das Auszahlungskonto lautet.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; 'Firma' allein nennt die Rolle als Arbeitgeber nicht.",
+   "neu": "Gleiche Angabe; 'Firma' allein nennt die Rolle als Arbeitgeber nicht.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; 'Name' allein ist mehrdeutig (ganzer Name, Firma).",
+   "neu": "Gleiche Angabe; 'Name' allein ist mehrdeutig (ganzer Name, Firma).",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; 'Ort' kann als Ortschaft statt politische Gemeinde verstanden werden.",
+   "neu": "Gleiche Angabe; 'Ort' kann als Ortschaft statt politische Gemeinde verstanden werden.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; 'Ort' kann als Ortschaft verstanden werden.",
+   "neu": "Gleiche Angabe; 'Ort' kann als Ortschaft verstanden werden.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; 'Zone' allein ist mehrdeutig.",
+   "neu": "Gleiche Angabe; 'Zone' allein ist mehrdeutig.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; 'aktuell' ist ohnehin gemeint.",
+   "neu": "Gleiche Angabe; 'aktuell' ist ohnehin gemeint.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; 'eingetragen' ist im Handelsregister selbstverständlich.",
+   "neu": "Gleiche Angabe; 'eingetragen' ist im Handelsregister selbstverständlich.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; Abkürzung mit Zusatzcode.",
+   "neu": "Gleiche Angabe; Abkürzung mit Zusatzcode.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; Abkürzung, «Parzellen» ist ein Synonym.",
+   "neu": "Gleiche Angabe; Abkürzung, «Parzellen» ist ein Synonym.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; Fachbegriff für Hunde.",
+   "neu": "Gleiche Angabe; Fachbegriff für Hunde.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; Mehrzahl in Klammern.",
+   "neu": "Gleiche Angabe; Mehrzahl in Klammern.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; Mehrzahl und Kantonsangabe sind nur Ausfüllhinweise.",
+   "neu": "Gleiche Angabe; Mehrzahl und Kantonsangabe sind nur Ausfüllhinweise.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; Sitz der Hauptniederlassung.",
+   "neu": "Gleiche Angabe; Sitz der Hauptniederlassung.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; andere Antwortwerte.",
+   "neu": "Gleiche Angabe; andere Antwortwerte.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; das Kind ergibt sich aus dem Elternfeld.",
+   "neu": "Gleiche Angabe; das Kind ergibt sich aus dem Elternfeld.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; der Geschäftsfall ist hier ein Gesuch.",
+   "neu": "Gleiche Angabe; der Geschäftsfall ist hier ein Gesuch.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; der Pluralzusatz ist nur eine Schreibvariante.",
+   "neu": "Gleiche Angabe; der Pluralzusatz ist nur eine Schreibvariante.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; der Satz ist im Label bereits vorgegeben.",
+   "neu": "Gleiche Angabe; der Satz ist im Label bereits vorgegeben.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; der Staat ist Teil des eCH-Geburtsorts (generalPlaceType).",
+   "neu": "Gleiche Angabe; der Staat ist Teil des eCH-Geburtsorts (generalPlaceType).",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; der Zeilenhinweis betrifft nur die Darstellung.",
+   "neu": "Gleiche Angabe; der Zeilenhinweis betrifft nur die Darstellung.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; der Zusatz ist nur ein Ausfüllhinweis.",
+   "neu": "Gleiche Angabe; der Zusatz ist nur ein Ausfüllhinweis.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; der Zusatz nennt nur die Antwortwerte.",
+   "neu": "Gleiche Angabe; der Zusatz nennt nur die Antwortwerte.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; der Zusatz nennt nur die Währung.",
+   "neu": "Gleiche Angabe; der Zusatz nennt nur die Währung.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; der Zusatz «IBAN» ist als Kontoart ungenau.",
+   "neu": "Gleiche Angabe; der Zusatz «IBAN» ist als Kontoart ungenau.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; die Fläche bezieht sich ohnehin auf das Grundstück.",
+   "neu": "Gleiche Angabe; die Fläche bezieht sich ohnehin auf das Grundstück.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; die Klammer nennt nur die Auswahlwerte.",
+   "neu": "Gleiche Angabe; die Klammer nennt nur die Auswahlwerte.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; die Zeichnung ergibt sich aus dem Gründungskontext.",
+   "neu": "Gleiche Angabe; die Zeichnung ergibt sich aus dem Gründungskontext.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; eine Zustelladresse ist per Definition eine abweichende Adresse.",
+   "neu": "Gleiche Angabe; eine Zustelladresse ist per Definition eine abweichende Adresse.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; gefragt ist der nachgewiesene Ausbildungsabschluss.",
+   "neu": "Gleiche Angabe; gefragt ist der nachgewiesene Ausbildungsabschluss.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; im Block 'Angaben zum Hund' ausreichend.",
+   "neu": "Gleiche Angabe; im Block 'Angaben zum Hund' ausreichend.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; nennt IV/EO nicht ausdrücklich.",
+   "neu": "Gleiche Angabe; nennt IV/EO nicht ausdrücklich.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; nennt nur die Antwortwerte statt des Begriffs.",
+   "neu": "Gleiche Angabe; nennt nur die Antwortwerte statt des Begriffs.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; nennt nur die Antwortwerte.",
+   "neu": "Gleiche Angabe; nennt nur die Antwortwerte.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; nur Abkürzung.",
+   "neu": "Gleiche Angabe; nur Abkürzung.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; nur Schreibweise (Binnen-I).",
+   "neu": "Gleiche Angabe; nur Schreibweise (Binnen-I).",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; nur Schreibweise (Leerzeichen).",
+   "neu": "Gleiche Angabe; nur Schreibweise (Leerzeichen).",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; nur Schreibweise (Paarform).",
+   "neu": "Gleiche Angabe; nur Schreibweise (Paarform).",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; nur andere Einheitsangabe.",
+   "neu": "Gleiche Angabe; nur andere Einheitsangabe.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; nur die Masseinheit ist angegeben.",
+   "neu": "Gleiche Angabe; nur die Masseinheit ist angegeben.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; ohne Hinweis, dass die Gemeinde gemeint ist.",
+   "neu": "Gleiche Angabe; ohne Hinweis, dass die Gemeinde gemeint ist.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; technische Schreibweise.",
+   "neu": "Gleiche Angabe; technische Schreibweise.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; technischer Feldname.",
+   "neu": "Gleiche Angabe; technischer Feldname.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; «Arbeitsgebiet» ist nur eine Ausweichformulierung.",
+   "neu": "Gleiche Angabe; «Arbeitsgebiet» ist nur eine Ausweichformulierung.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; «Einsatzort» ist ein Synonym für den Arbeitsort.",
+   "neu": "Gleiche Angabe; «Einsatzort» ist ein Synonym für den Arbeitsort.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; «Status» mit Auswahlwerten, die Rolle steht im übergeordneten Feld.",
+   "neu": "Gleiche Angabe; «Status» mit Auswahlwerten, die Rolle steht im übergeordneten Feld.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; «aktuell» ist der Normalfall.",
+   "neu": "Gleiche Angabe; «aktuell» ist der Normalfall.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; «geschätzt» und «mutmasslich» doppeln sich.",
+   "neu": "Gleiche Angabe; «geschätzt» und «mutmasslich» doppeln sich.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Gleiches Datum; «oder» verweist nur auf eine Alternative.",
+   "neu": "Gleiche Angabe; «oder» verweist nur auf eine Alternative.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Klarstellender Zusatz, gleiches Datum.",
+   "neu": "Klarstellender Zusatz, gleiche Angabe.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Kurzform desselben Datums.",
+   "neu": "Kurzform derselben Angabe.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Kurzform, gleiches Datum.",
+   "neu": "Kurzform, gleiche Angabe.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Kurzform; gleiches Datum.",
+   "neu": "Kurzform; gleiche Angabe.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Landwirtschaftlicher Fachbegriff für genau dieses Datum.",
+   "neu": "Landwirtschaftlicher Fachbegriff für genau diese Angabe.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Längere Form, gleiches Datum.",
+   "neu": "Längere Form, gleiche Angabe.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Mit Beispielen; gleiches Datum.",
+   "neu": "Mit Beispielen; gleiche Angabe.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Mit Quellenhinweis; gleiches Datum.",
+   "neu": "Mit Quellenhinweis; gleiche Angabe.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Nennt ausdrücklich die Abkürzung; gleiches Datum.",
+   "neu": "Nennt ausdrücklich die Abkürzung; gleiche Angabe.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Nennt das Datum vollständig.",
+   "neu": "Nennt die Angabe vollständig.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Nennt genau das Datum, ohne Rolle.",
+   "neu": "Nennt genau die Angabe, ohne Rolle.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Nennt genau das Datum.",
+   "neu": "Nennt genau die Angabe.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Nennt sprachlich nur eine Kategorie; gleiches Datum.",
+   "neu": "Nennt sprachlich nur eine Kategorie; gleiche Angabe.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Nettoeinkommen inkl. Nebenerwerb und Spesen ist ein anderes Datum als der Bruttolohn.",
+   "neu": "Nettoeinkommen inkl. Nebenerwerb und Spesen ist eine andere Angabe als der Bruttolohn.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Pluralform desselben Datums.",
+   "neu": "Pluralform derselben Angabe.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Pluralform, gleiches Datum.",
+   "neu": "Pluralform, gleiche Angabe.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Präpositionale Kurzform, gleiches Datum.",
+   "neu": "Präpositionale Kurzform, gleiche Angabe.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Rechtsbegriff für den Namen eines Unternehmens; gleiches Datum.",
+   "neu": "Rechtsbegriff für den Namen eines Unternehmens; gleiche Angabe.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Rückfrage nach demselben Datum, anders formuliert.",
+   "neu": "Rückfrage nach derselben Angabe, anders formuliert.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Satzbestimmendes Einkommen ist ein anderes Datum als das steuerbare Einkommen.",
+   "neu": "Satzbestimmendes Einkommen ist eine andere Angabe als das steuerbare Einkommen.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Schliesst die eigene Einzelfirma ein; gleiches Datum (Name).",
+   "neu": "Schliesst die eigene Einzelfirma ein; gleiche Angabe (Name).",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Schutzmassnahmen sind ein anderes Datum als das ÖREB-Thema.",
+   "neu": "Schutzmassnahmen sind eine andere Angabe als das ÖREB-Thema.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Stundenanteil im Elternfeld «Wöchentliche Arbeitszeit»; gleiches Datum.",
+   "neu": "Stundenanteil im Elternfeld «Wöchentliche Arbeitszeit»; gleiche Angabe.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Synonym desselben Datums.",
+   "neu": "Synonym derselben Angabe.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Typischer Inhalt des Adresszusatzes; gleiches Datum.",
+   "neu": "Typischer Inhalt des Adresszusatzes; gleiche Angabe.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Umschreibung, gleiches Datum.",
+   "neu": "Umschreibung, gleiche Angabe.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Zusatz 'Bankverbindung', gleiches Datum.",
+   "neu": "Zusatz 'Bankverbindung', gleiche Angabe.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Zusatz 'Zahlungsverbindung', gleiches Datum.",
+   "neu": "Zusatz 'Zahlungsverbindung', gleiche Angabe.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Zweitprüfung: 'der Organisation' ist das allgemeine Subjekt jeder Rechtsform und benennt keine bestimmte Partei. Das Label enthält keine Rolle, gleiches Datum.",
+   "neu": "Zweitprüfung: 'der Organisation' ist das allgemeine Subjekt jeder Rechtsform und benennt keine bestimmte Partei. Das Label enthält keine Rolle, gleiche Angabe.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Zweitprüfung: Benennt das Datum selbst statt eines allgemeinen Betrags mit Währung.",
+   "neu": "Zweitprüfung: Benennt die Angabe selbst statt eines allgemeinen Betrags mit Währung.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Zweitprüfung: Das Element ist das ÖREB-Thema; «Objekttyp» ist ein anderes Datum.",
+   "neu": "Zweitprüfung: Das Element ist das ÖREB-Thema; «Objekttyp» ist eine andere Angabe.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Zweitprüfung: Das Element ist der Kanton; «Anteil Kantonssteuer» ist ein Steuerbetrag, also ein anderes Datum.",
+   "neu": "Zweitprüfung: Das Element ist der Kanton; «Anteil Kantonssteuer» ist ein Steuerbetrag, also eine andere Angabe.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Zweitprüfung: Das Element ist die Naturgefahr selbst; das Schutzziel ist ein anderes Datum.",
+   "neu": "Zweitprüfung: Das Element ist die Naturgefahr selbst; das Schutzziel ist eine andere Angabe.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Zweitprüfung: Das Element meint das Kind; «Anzahl Kinder neu» ist eine Anzahl, also ein anderes Datum.",
+   "neu": "Zweitprüfung: Das Element meint das Kind; «Anzahl Kinder neu» ist eine Anzahl, also eine andere Angabe.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Zweitprüfung: Das Element zählt Personen; «Beschäftigte VZÄ im Berichtsjahr» misst Vollzeitäquivalente und ist ein anderes Datum.",
+   "neu": "Zweitprüfung: Das Element zählt Personen; «Beschäftigte VZÄ im Berichtsjahr» misst Vollzeitäquivalente und ist eine andere Angabe.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Zweitprüfung: Der Klammerzusatz 'neu eingetragene Person' ist der Antwortwert (Neueintragung), keine Rolle: gefragt wird die Art der Änderung, also dasselbe Datum wie bei 'Art (Neueintragung | Mutation)'. Nur anders formuliert.",
+   "neu": "Zweitprüfung: Der Klammerzusatz 'neu eingetragene Person' ist der Antwortwert (Neueintragung), keine Rolle: gefragt wird die Art der Änderung, also dieselbe Angabe wie bei 'Art (Neueintragung | Mutation)'. Nur anders formuliert.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Zweitprüfung: Der Verzicht auf Revision ist ein eigenes Datum.",
+   "neu": "Zweitprüfung: Der Verzicht auf Revision ist eine eigene Angabe.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Zweitprüfung: Die Konfession bestimmt, ob und an welche Landeskirche die Kirchensteuer auf dem Grundstückgewinn geht — ohne sie kann die Steuerverwaltung die Aufgabe nicht erfüllen. Die massgebende Norm (kirchliches Steuerdekret) ist nicht unter den eingelesenen Gesetzestexten und daher hier nicht zitiert; als besonders schützenswertes Datum braucht es zudem eine Grundlage nach KDSG Art. 5 Abs. 1 — noch zu belegen.",
+   "neu": "Zweitprüfung: Die Konfession bestimmt, ob und an welche Landeskirche die Kirchensteuer auf dem Grundstückgewinn geht — ohne sie kann die Steuerverwaltung die Aufgabe nicht erfüllen. Die massgebende Norm (kirchliches Steuerdekret) ist nicht unter den eingelesenen Gesetzestexten und daher hier nicht zitiert; als besonders schützenswerte Angabe braucht sie zudem eine Grundlage nach KDSG Art. 5 Abs. 1 — noch zu belegen.",
+   "quelle": [
+    "data_field.basis_begruendung"
+   ]
+  },
+  {
+   "alt": "Zweitprüfung: Einzahl für ein Datum; so heisst document auch in eCH-0211.",
+   "neu": "Zweitprüfung: Einzahl für eine Angabe; so heisst document auch in eCH-0211.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Zweitprüfung: Gleicher Begriff wie eCH-0010 swissZipCode; der Ort ist ein eigenes Datum.",
+   "neu": "Zweitprüfung: Gleicher Begriff wie eCH-0010 swissZipCode; der Ort ist eine eigene Angabe.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Zweitprüfung: Gleicher Begriff wie eCH-0011 placeOfOrigin; der Staat ist ein eigenes Datum.",
+   "neu": "Zweitprüfung: Gleicher Begriff wie eCH-0011 placeOfOrigin; der Staat ist eine eigene Angabe.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Zweitprüfung: Gleiches Datum ohne Abkürzung und ohne Beispielliste.",
+   "neu": "Zweitprüfung: Gleiche Angabe ohne Abkürzung und ohne Beispielliste.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Zweitprüfung: Gleiches Datum ohne Rollenzusatz «der Eltern».",
+   "neu": "Zweitprüfung: Gleiche Angabe ohne Rollenzusatz «der Eltern».",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Zweitprüfung: Gleiches Datum ohne den Antworthinweis «(Freitext)».",
+   "neu": "Zweitprüfung: Gleiche Angabe ohne den Antworthinweis «(Freitext)».",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Zweitprüfung: Nennt ein Datum statt einer Aufzählung von Organisationsarten; so heisst organisationName auch in eCH-0098.",
+   "neu": "Zweitprüfung: Nennt eine Angabe statt einer Aufzählung von Organisationsarten; so heisst organisationName auch in eCH-0098.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Zweitprüfung: Nur die Bodennutzung; «Zustand bei Pachtbeginn» ist ein zweites Datum.",
+   "neu": "Zweitprüfung: Nur die Bodennutzung; «Zustand bei Pachtbeginn» ist eine zweite Angabe.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Zweitprüfung: Passt zu purchase «Kauf»; «Abgänge laufendes Jahr» ist das Datum disposals.",
+   "neu": "Zweitprüfung: Passt zu purchase «Kauf»; «Abgänge laufendes Jahr» ist die Angabe disposals.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Zweitprüfung: Sachbegriff statt Satzfragment für dasselbe Datum.",
+   "neu": "Zweitprüfung: Sachbegriff statt Satzfragment für dieselbe Angabe.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Zweitprüfung: Wie das Geschwisterelement heisst das Datum «Land»; das alte Label trägt eine Rolle und meint auch Regionen und Kontinente.",
+   "neu": "Zweitprüfung: Wie das Geschwisterelement heisst die Angabe «Land»; das alte Label trägt eine Rolle und meint auch Regionen und Kontinente.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Zweitprüfung: occupation ist der Beruf; «Funktion» meint die Stellung im Betrieb und ist ein anderes Datum.",
+   "neu": "Zweitprüfung: occupation ist der Beruf; «Funktion» meint die Stellung im Betrieb und ist eine andere Angabe.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Zweitprüfung: sizeClassFte ist die Grössenklasse nach Vollzeitäquivalenten (eCH-0108, Werte 1–12). Die Summe der Pensen ist genau dieses Mass (VZÄ), also kein anderes Datum als das Element. Die Begründung «nicht die Anzahl Personen» misst am Vorschlag statt am Element. Das Label nennt nur, für welche Personalgruppe gezählt wird; das ist eine Rolle wie beim Geschwisterfeld «… – Anzahl».",
+   "neu": "Zweitprüfung: sizeClassFte ist die Grössenklasse nach Vollzeitäquivalenten (eCH-0108, Werte 1–12). Die Summe der Pensen ist genau dieses Mass (VZÄ), also keine andere Angabe als das Element. Die Begründung «nicht die Anzahl Personen» misst am Vorschlag statt am Element. Das Label nennt nur, für welche Personalgruppe gezählt wird; das ist eine Rolle wie beim Geschwisterfeld «… – Anzahl».",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Zweitprüfung: «1» ist nur die Laufnummer einer Listenzeile und nennt weder Partei noch Ort noch Zweck; gleiches Datum wie die übrigen Grundstücknummern.",
+   "neu": "Zweitprüfung: «1» ist nur die Laufnummer einer Listenzeile und nennt weder Partei noch Ort noch Zweck; gleiche Angabe wie die übrigen Grundstücknummern.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Zweitprüfung: «2» ist nur die Laufnummer einer Listenzeile und nennt weder Partei noch Ort noch Zweck; gleiches Datum wie die übrigen Grundstücknummern.",
+   "neu": "Zweitprüfung: «2» ist nur die Laufnummer einer Listenzeile und nennt weder Partei noch Ort noch Zweck; gleiche Angabe wie die übrigen Grundstücknummern.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "Zweitprüfung: «7%» ist ein Wert, kein Begriff; «Steuersatz» benennt das Datum.",
+   "neu": "Zweitprüfung: «7%» ist ein Wert, kein Begriff; «Steuersatz» benennt die Angabe.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Zweitprüfung: «Adresse» benennt nur die Adresse; das alte Label fügt den Wohnort als zweites Datum an.",
+   "neu": "Zweitprüfung: «Adresse» benennt nur die Adresse; das alte Label fügt den Wohnort als zweite Angabe an.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Zweitprüfung: «Betrag (Fr.)» nennt das Datum nicht; «Schuldzinsen» nutzt auch eCH-0119 liabilityInterest.",
+   "neu": "Zweitprüfung: «Betrag (Fr.)» nennt die Angabe nicht; «Schuldzinsen» nutzt auch eCH-0119 liabilityInterest.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Zweitprüfung: «Betrag in Franken» nennt das Datum nicht; «Steuerwert» nutzt auch assetTaxValue.",
+   "neu": "Zweitprüfung: «Betrag in Franken» nennt die Angabe nicht; «Steuerwert» nutzt auch assetTaxValue.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Zweitprüfung: «Gesuchstellende Person (Fr.)» ist eine Rolle; «IV-Rente» benennt das Datum selbst.",
+   "neu": "Zweitprüfung: «Gesuchstellende Person (Fr.)» ist eine Rolle; «IV-Rente» benennt die Angabe selbst.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Zweitprüfung: «Kinder» allein nennt Personen, nicht den Unterhaltsbeitrag; «Kinderalimente» benennt das Datum.",
+   "neu": "Zweitprüfung: «Kinder» allein nennt Personen, nicht den Unterhaltsbeitrag; «Kinderalimente» benennt die Angabe.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Zweitprüfung: «Militärdienststatus» benennt die Militärdienstangaben; «Einteilung» meint die Truppeneinteilung, ein anderes Datum.",
+   "neu": "Zweitprüfung: «Militärdienststatus» benennt die Militärdienstangaben; «Einteilung» meint die Truppeneinteilung, eine andere Angabe.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Zweitprüfung: «Steuerwert» benennt das Datum; «Wert 7/10 Fl.» meint den Wert einer bestimmten Flaschengrösse.",
+   "neu": "Zweitprüfung: «Steuerwert» benennt die Angabe; «Wert 7/10 Fl.» meint den Wert einer bestimmten Flaschengrösse.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Zweitprüfung: «der Betriebsleiterwohnung» ist ein Sonderfall; «Mietwert» benennt das Datum allgemein.",
+   "neu": "Zweitprüfung: «der Betriebsleiterwohnung» ist ein Sonderfall; «Mietwert» benennt die Angabe allgemein.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "Zählt nur die Adressbestandteile auf; gleiches Datum.",
+   "neu": "Zählt nur die Adressbestandteile auf; gleiche Angabe.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "gleiches Datum wie in den anderen Standards — einheitlich «Gültig ab»",
+   "neu": "gleiche Angabe wie in den anderen Standards — einheitlich «Gültig ab»",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "«(Gemeinde)» präzisiert das Datum und ist kein Antworthinweis.",
+   "neu": "«(Gemeinde)» präzisiert die Angabe und ist kein Antworthinweis.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "«(c/o)» präzisiert das Datum und ist kein Antworthinweis.",
+   "neu": "«(c/o)» präzisiert die Angabe und ist kein Antworthinweis.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "«Andere» allein nennt kein Datum; sauber wäre «Andere Abzüge».",
+   "neu": "«Andere» allein nennt keine Angabe; sauber wäre «Andere Abzüge».",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  },
+  {
+   "alt": "«Name» meint im Elternfeld die Tierart; gleiches Datum.",
+   "neu": "«Name» meint im Elternfeld die Tierart; gleiche Angabe.",
+   "quelle": [
+    "begriff_label.grund"
+   ]
+  },
+  {
+   "alt": "«PID» ist die kantonale lokale Personennummer und benennt genau dieses Datum.",
+   "neu": "«PID» ist die kantonale lokale Personennummer und benennt genau diese Angabe.",
+   "quelle": [
+    "begriff_vorschlag.begruendung"
+   ]
+  }
+ ],
+ "behalten": [
+  "Abzuziehende Teilzahlungen des Schuldners mit Datum und Betrag (bis zu drei Positionen) sowie deren Summe.",
+  "Angabe, welche Grundlagendokumente für den Nachweis verwendet wurden, je mit Datum und Bemerkungen.",
+  "Aufstellung der beigelegten Pläne mit Anzahl, Massstab, Datum und Bemerkungen; die Terraingestaltung muss ersichtlich sein.",
+  "Bei befristeten Arbeitsverträgen das Datum des Vertragsendes.",
+  "Benennt das Datum des Vorgangs ohne Zusatz.",
+  "Benennt genau das Datum der Auszahlung.",
+  "Bezeichnung und Datum der Forderungsurkunde sowie Grund der Forderung.",
+  "Bezeichnung, Datum und Ort der Veranstaltung sowie Angaben zum Veranstaltungsgebäude, an der das Bühnenfeuerwerk stattfindet.",
+  "Das Datum bzw. die Daten, an denen das Grundstueck erworben wurde.",
+  "Das Datum der Betriebsübernahme ist hier der Gültigkeitsbeginn.",
+  "Das Datum der Einbuergerung ist fuer die Pruefung der persoenlichen und fachlichen Voraussetzungen nicht erforderlich.",
+  "Das Datum der Errichtung bzw. der Statuten der Gesellschaft.",
+  "Das Datum der Statuten der Gesellschaft.",
+  "Das Datum der Veraeusserung des Grundstuecks.",
+  "Das Datum der vorliegenden Risikobeurteilung, auf die sich die Schutzmassnahmen beziehen.",
+  "Das Datum des Buchhaltungsabschlusses.",
+  "Das Datum des Zivilstandsbeginns hat keinen Bezug zur Abrechnung der Beiträge für Hauspersonal.",
+  "Das Datum des jeweiligen Arbeits- bzw. Betreuungstages in der wöchentlichen Zeiterfassung.",
+  "Das Datum früherer Gewichtsänderungen kann der Aktenzuordnung dienen, ist aber aus den Fahrzeugregistern ersichtlich; die Erforderlichkeit ist unklar.",
+  "Das Datum, ab welchem die Familienzulagen beantragt werden.",
+  "Das Datum, an dem die Förderzusage für das Gesuch erteilt wurde.",
+  "Das Datum, an dem die angegebene Mutation eingetreten ist.",
+  "Das Datum, an dem die selbständige Erwerbstätigkeit definitiv aufgegeben bzw. die Liquidation abgeschlossen wurde.",
+  "Das Datum, an dem die steuerpflichtige Leistung realisiert wurde.",
+  "Das Datum, an dem zuletzt eine Gewichtsänderung vorgenommen wurde.",
+  "Das Datum, per welchem die Betriebsübernahme erfolgt.",
+  "Das Datum, seit dem der angegebene Zivilstand besteht.",
+  "Das Datum, seit dem der angegebene Zivilstand gilt.",
+  "Das Datum, seit wann der angegebene Zivilstand besteht.",
+  "Das Datum, seit wann die angegebene Erwerbsart der Ehepartnerin oder des Ehepartners besteht.",
+  "Das Datum, seit wann die angegebene Erwerbsart des anderen Elternteils besteht.",
+  "Das genaue Datum einer erfolgten Statutenänderung.",
+  "Das voraussichtliche Datum, an dem der Hund übernommen wird.",
+  "Datum bzw. Eröffnungsdatum, an dem die Handelstätigkeit beginnt.",
+  "Datum bzw. Termin, an dem der Pachtzins jeden Jahres fällig ist.",
+  "Datum bzw. Termin, auf den das Miet- oder Pachtverhältnis aufgelöst wird.",
+  "Datum der Anmeldung in der aktuellen Wohngemeinde.",
+  "Datum der Arzneimittelbehandlung bzw. der Verfütterung der betreffenden Futtermittel.",
+  "Datum der Aufnahme der Erwerbstätigkeit des anderen Elternteils im Wohnkanton des Kindes.",
+  "Datum der Aufnahme der Geschäftstätigkeit; darf nicht in der Zukunft liegen.",
+  "Datum der Aufnahme des Arbeitsverhältnisses bzw. der selbständigen Tätigkeit.",
+  "Datum der Bestellung; mit der Bestellung werden die AGB für die Nutzung von Geodaten des Kantons Schaffhausen anerkannt.",
+  "Datum der Bestätigung der Richtigkeit der Angaben.",
+  "Datum der Bestätigung durch die Leitung der Institution.",
+  "Datum der Eheschliessung bzw. der Eintragung der Partnerschaft.",
+  "Datum der Einbürgerung in die Schweiz, falls eine solche erfolgt ist.",
+  "Datum der Einbürgerung, falls eine Einbürgerung in die Schweiz erfolgt ist.",
+  "Datum der Erstellung des Beitragsgesuchs.",
+  "Datum der Erteilung oder der letzten Erneuerung der bisherigen Bewilligung.",
+  "Datum der Eröffnung des Geschäfts/Betriebes.",
+  "Datum der Gesuchseinreichung.",
+  "Datum der Meldung.",
+  "Datum der Rentengewährung und der Wohnsitznahme in Frankreich für Rentenbeziehende.",
+  "Datum der Statutenänderung gemäss beiliegender öffentlicher Urkunde, sofern eine solche erforderlich ist.",
+  "Datum der Tollwutimpfung, die vor der Blutentnahme für die Antikörperbestimmung erfolgte.",
+  "Datum der Unterzeichnung der Belastungsermächtigung Bankkonto.",
+  "Datum der Unterzeichnung der Belastungsermächtigung Postkonto.",
+  "Datum der Unterzeichnung des Gesuchs.",
+  "Datum der Unterzeichnung durch den Antragsteller.",
+  "Datum der Unterzeichnung durch den Fahrzeughalter, falls dieser nicht der Antragsteller ist.",
+  "Datum der augenärztlichen Untersuchung.",
+  "Datum der ersten Inverkehrsetzung des Fahrzeugs (durch den Verkehrsexperten festgehalten).",
+  "Datum der erteilten Bewilligung.",
+  "Datum der erteilten Konzession für die Wasserentnahme.",
+  "Datum der geplanten Alarm- oder Einsatzübung.",
+  "Datum der geplanten Betriebseröffnung.",
+  "Datum der geplanten Hinfahrt.",
+  "Datum der geplanten Inbetriebnahme der Anlage.",
+  "Datum der geplanten Rückfahrt.",
+  "Datum der geplanten Übung.",
+  "Datum der letzten Prüfung des Ersatzfahrzeuges.",
+  "Datum der letzten amtlichen Fahrzeugprüfung gemäss Fahrzeugausweis (FZA Feld 39).",
+  "Datum der letzten feuerwehrärztlichen Untersuchung.",
+  "Datum der Änderung des Zivilstands.",
+  "Datum der ärztlichen Untersuchung.",
+  "Datum des Abbruchs der Ausbildung des Kindes.",
+  "Datum des Arbeitsbeginns der antragstellenden Person beim Arbeitgeber.",
+  "Datum des Atemschutz-Einsatzes.",
+  "Datum des Austritts aus der Kantonalen Pensionskasse Schaffhausen.",
+  "Datum des Austritts bzw. Ende der Lohnzahlung.",
+  "Datum des Baubeginns.",
+  "Datum des Beginns des Arbeitsverhältnisses bzw. der selbstständigen Tätigkeit.",
+  "Datum des Beginns des Arbeitsverhältnisses.",
+  "Datum des Beginns von Schule oder Studium des Kindes.",
+  "Datum des Eintritts des Kindes in die Sonderschule.",
+  "Datum des Endes der Haltung oder Angabe 'bis auf Weiteres'.",
+  "Datum des Ereignisses, das die Mutation auslöst.",
+  "Datum des Handelsregistereintrags.",
+  "Datum des Lehrbeginns des Kindes.",
+  "Datum des Miet- bzw. Pachtvertrags, auf dem die Forderungssumme beruht.",
+  "Datum des Spitaleintritts der versicherten Person.",
+  "Datum des Stellenantritts der neuen Mitarbeiterin bzw. des neuen Mitarbeiters.",
+  "Datum des Stellenantritts.",
+  "Datum des Tages, an dem die Ausnahmebewilligung gelten soll.",
+  "Datum des Todes des Kindes.",
+  "Datum des Tätigkeitsendes oder Angabe 'bis auf Weiteres'.",
+  "Datum des letzten tatsächlich geleisteten Arbeitstags.",
+  "Datum sowie Beginn und Ende der durchgeführten Nachsuche.",
+  "Datum und Ort der Eheschliessung.",
+  "Datum und Uhrzeit der Abfahrt des Transports.",
+  "Datum und Uhrzeit der Rückkehr.",
+  "Datum und Uhrzeit des Beginns der Veranstaltung.",
+  "Datum und Uhrzeit des Bissvorfalls.",
+  "Datum und Uhrzeit des Endes der Veranstaltung.",
+  "Datum und Uhrzeit des Vorfalls.",
+  "Datum und Uhrzeit in einem Feld; eventDate passt nur zum Datum.",
+  "Datum und Uhrzeit von Einsatzbeginn und Einsatzende.",
+  "Datum und Uhrzeit, ab wann der Tagesausweis gültig sein soll.",
+  "Datum und Uhrzeit, bis wann der Tagesausweis gültig sein soll.",
+  "Datum und Uhrzeit, wann das Tier entlaufen bzw. gefunden wurde.",
+  "Datum und Uhrzeit, zu der die Hundebissverletzung erfolgte.",
+  "Datum und Uhrzeit, zu der die Probe entnommen wurde.",
+  "Datum und Uhrzeit, zu welcher sich der Vorfall ereignet hat.",
+  "Datum und Unterschrift; damit erklärt der Gesuchstellende, dass er die Betreibung für nicht gerechtfertigt hält, Rechtsvorschlag erhoben hat und ihm kein Rechtsöffnungsgesuch und keine Anerkennungsklage bekannt sind.",
+  "Datum und gegebenenfalls Zeit, an dem der Werbeanlass beginnt.",
+  "Datum und gegebenenfalls Zeit, an dem der Werbeanlass endet.",
+  "Datum und gegebenenfalls neue Adresse zum Wechsel des Zulagenbezugs auf den anderen Elternteil.",
+  "Datum und neue Adresse beim Umzug der Familie in den Erwerbsortkanton des anderen Elternteils.",
+  "Datum und neue Adresse beim Wegzug des Kindes.",
+  "Datum und neue Adresse der bezugsberechtigten Person.",
+  "Datum und neue Adresse, ab dem das Kind neu beim anderen Elternteil lebt.",
+  "Datum und neue Geschäftssitz- oder Wohnsitzadresse bei einer Adressänderung.",
+  "Datum wann gekündigt wurde und Zeitpunkt auf welchen gekündigt wurde.",
+  "Datum zur Erklärung über den Umtausch bzw. den Verzicht auf Kategorien.",
+  "Datum, ab dem das Jahreseinkommen unter CHF 7'560 liegt.",
+  "Datum, ab dem das Kind wegen Krankheit oder Gebrechen erwerbsunfähig ist.",
+  "Datum, ab dem der Auftrag – ungeachtet allfälliger wetterbedingter Verzögerungen – zur Ausführung bereitstand (Ziff. 4).",
+  "Datum, ab dem der Verzugszins von 5% gefordert wird.",
+  "Datum, ab dem der andere Elternteil das höhere Einkommen erzielt und beide Eltern im Wohnkanton arbeiten.",
+  "Datum, ab dem der andere Elternteil das höhere Einkommen erzielt und kein Elternteil im Wohnkanton arbeitet.",
+  "Datum, ab dem die Anmeldung zum vereinfachten Verfahren beantragt wird.",
+  "Datum, ab dem die Benutzung des Fahrzeugs gestattet ist.",
+  "Datum, ab dem die Differenzzahlungen beantragt werden.",
+  "Datum, ab dem die Erwerbsunfähigkeit wegen Krankheit oder Gebrechen besteht.",
+  "Datum, ab dem die Familienzulagen beantragt werden.",
+  "Datum, ab dem die Mietzinsänderung in Kraft tritt.",
+  "Datum, ab dem die andere einseitige Vertragsänderung in Kraft tritt.",
+  "Datum, ab dem die gewerbsmässige Klauen- bzw. Hufpflege ausgeübt wird oder seit wann sie bereits ausgeübt wird.",
+  "Datum, ab dem die versicherte Person für die angestammte Tätigkeit wieder arbeitsfähig ist, und der zugehörige Prozentsatz.",
+  "Datum, ab dem und Prozentsatz, zu dem die versicherte Person für leidensangepasste Tätigkeiten arbeitsfähig ist.",
+  "Datum, ab wann die Familienzulagen beantragt werden.",
+  "Datum, ab wann die neue Adresse gilt.",
+  "Datum, ab welchem Anspruch auf Arbeitslosenentschädigung erhoben wird.",
+  "Datum, an dem Schule oder Studium des Kindes beginnt.",
+  "Datum, an dem das Delikt begangen wurde.",
+  "Datum, an dem das Gesuch um Berufsausübungsbewilligung gestellt wurde.",
+  "Datum, an dem das Kugelprogramm absolviert wurde.",
+  "Datum, an dem das Pachtverhältnis beginnt.",
+  "Datum, an dem das Pflegeverhältnis beginnt.",
+  "Datum, an dem das Programm auf bewegte Ziele absolviert wurde.",
+  "Datum, an dem das Schrotprogramm absolviert wurde.",
+  "Datum, an dem das Tier erlegt wurde.",
+  "Datum, an dem das Vorgespräch mit der Gefängnisverwaltung stattgefunden hat.",
+  "Datum, an dem das ausserordentliche Ereignis eingetreten ist.",
+  "Datum, an dem das befristete Pachtverhältnis endet.",
+  "Datum, an dem das letzte Arbeitsverhältnis vor der Geburt endete.",
+  "Datum, an dem das neue Messmittel in Betrieb genommen wurde.",
+  "Datum, an dem der Bericht bzw. die Ausführungsbestätigung erfasst wurde.",
+  "Datum, an dem der Bewirtschafterwechsel erfolgt.",
+  "Datum, an dem der Gesuchsteller ins Ausland ausreist.",
+  "Datum, an dem der Halter bei der Versicherung den elektronischen Versicherungsnachweis angefordert hat.",
+  "Datum, an dem der Kurs beginnt.",
+  "Datum, an dem der Kurs endet.",
+  "Datum, an dem der Mitarbeiter aus dem Unternehmen austritt.",
+  "Datum, an dem der Pachtzins fällig ist.",
+  "Datum, an dem die Ambrosia gefunden wurde.",
+  "Datum, an dem die Ausbildung abgebrochen wird.",
+  "Datum, an dem die Ausreise aus der Schweiz erfolgt oder erfolgte.",
+  "Datum, an dem die Baubewilligung erteilt wurde.",
+  "Datum, an dem die Beschäftigung der oder des Jugendlichen beginnt.",
+  "Datum, an dem die Erwerbstätigkeit aufgenommen bzw. beendet wird.",
+  "Datum, an dem die Erwerbstätigkeit aufgenommen wurde bzw. wird.",
+  "Datum, an dem die Kollektivgesellschaft ihre Tätigkeit aufgenommen hat oder aufnimmt.",
+  "Datum, an dem die Konzession bzw. Bewilligung erteilt wurde.",
+  "Datum, an dem die Kurzarbeit beginnt.",
+  "Datum, an dem die Kurzarbeit voraussichtlich endet.",
+  "Datum, an dem die Lehre des Kindes beginnt.",
+  "Datum, an dem die Mofa-Kontrolle durchgeführt wurde.",
+  "Datum, an dem die Pacht beginnt.",
+  "Datum, an dem die Person zuletzt gearbeitet hat.",
+  "Datum, an dem die TAM-Vereinbarung zwischen Tierhalter/in und Bestandestierarzt/-ärztin abgeschlossen wurde.",
+  "Datum, an dem die Tierausstellung stattfindet.",
+  "Datum, an dem die Tätigkeit als Privatapotheke aufgenommen werden soll.",
+  "Datum, an dem die Unterlagen per A-Post an das Strassenverkehrsamt geschickt wurden.",
+  "Datum, an dem die Verzichtserklärung unterzeichnet wird.",
+  "Datum, an dem die Wildtierhaltung beginnt.",
+  "Datum, an dem die Zertifizierung erteilt oder letztmals erneuert wurde.",
+  "Datum, an dem die bestellten Impfstoffe geliefert werden sollen.",
+  "Datum, an dem die letzte Periode/Menstruation begann.",
+  "Datum, an dem die Übung durchgeführt wurde.",
+  "Datum, an dem die ärztliche Eintrittsuntersuchung durchgeführt wurde.",
+  "Datum, auf das das unbefristete Pachtverhältnis frühestens kündbar ist.",
+  "Datum, auf das die Pacht frühestens gekündigt werden kann.",
+  "Datum, auf das gekündigt wird, sowie das späteste Datum für den Eingang der Kündigung.",
+  "Datum, auf das sich der eingetragene Kilometerstand bezieht.",
+  "Datum, auf welches der Fahrzeugwechsel erfolgen soll (nur auszufüllen, wenn Fahrzeugwechsel angekreuzt ist).",
+  "Datum, bis zu dem der Ehepartner bzw. die Ehepartnerin AHV-Beiträge bezahlt hat.",
+  "Datum, bis zu dem der Lohn erhalten wurde.",
+  "Datum, bis zu dem die Benutzung des Fahrzeugs gestattet ist.",
+  "Datum, bis zu dem die Lohnzahlung erfolgte.",
+  "Datum, bis zu dem die Tätigkeit ausgeübt werden soll, oder Angabe 'bis auf Weiteres'.",
+  "Datum, bis zu dem die bestehende Bewilligung bzw. Zertifizierung gültig ist.",
+  "Datum, bis zu dem die erste Pachtperiode läuft.",
+  "Datum, bis zu dem die gesuchstellende Person AHV-Beiträge bezahlt hat.",
+  "Datum, per welchem der Betrieb aufgegeben wird.",
+  "Datum, seit dem AHV-pflichtiges Personal beschäftigt wird.",
+  "Datum, seit dem Personal beschäftigt wird.",
+  "Datum, seit dem der Ehepartner bzw. die Ehepartnerin nicht mehr erwerbstätig ist.",
+  "Datum, seit dem der Eigentümer zivilrechtlichen Wohnsitz in der Schweiz hat.",
+  "Datum, seit dem der aktuelle Zivilstand besteht.",
+  "Datum, seit dem der angegebene Zivilstand besteht.",
+  "Datum, seit dem der untenstehende Equide im Bestand (Herkunftsort) steht (Bestätigung 2).",
+  "Datum, seit dem die Ehe bzw. die eingetragene Partnerschaft besteht.",
+  "Datum, seit dem die Ehegatten bzw. Partnerinnen/Partner ununterbrochen in gemeinsamem Haushalt leben.",
+  "Datum, seit dem die Ehegatten ununterbrochen in gemeinsamem Haushalt leben.",
+  "Datum, seit dem die Gesuchstellenden mit dem Kind in gemeinsamem Haushalt leben.",
+  "Datum, seit dem die Gesuchstellenden miteinander verheiratet sind.",
+  "Datum, seit dem die Person Atemschutzträger/in ist.",
+  "Datum, seit dem die Person allgemeinen Feuerwehrdienst leistet.",
+  "Datum, seit dem die antragstellende Person zivilrechtlichen Wohnsitz im Kanton Schaffhausen hat.",
+  "Datum, seit dem die antragstellende Person zivilrechtlichen Wohnsitz in der Schweiz hat.",
+  "Datum, seit dem die gesuchstellende Person mit dem Kind in gemeinsamem Haushalt lebt.",
+  "Datum, seit dem die gesuchstellende Person nicht mehr erwerbstätig ist.",
+  "Datum, seit dem die neue Vorsorgeeinrichtung bzw. Anschlusspflicht gilt.",
+  "Datum, seit wann AHV-pflichtiges Personal beschäftigt wird.",
+  "Datum, seit wann das Fahrzeug im Ausland stationiert ist.",
+  "Datum, seit wann das Unternehmen im Handelsregister eingetragen ist.",
+  "Datum, seit wann der Zivilstand besteht (bei geschieden, gerichtlich getrennt, getrennt lebend oder aufgelöster Partnerschaft).",
+  "Datum, seit wann der aktuelle Zivilstand besteht.",
+  "Datum, seit wann der angegebene Zivilstand besteht.",
+  "Datum, seit wann die Person Teilhaber ist.",
+  "Datum, seit wann die Person ihren zivilrechtlichen Wohnsitz in der Schweiz hat.",
+  "Datum, seit wann die antragstellende Person als mitarbeitendes Familienmitglied tätig ist.",
+  "Datum, seit wann die gesuchstellende Person getrennt lebt.",
+  "Datum, seit wann die gesuchstellende Person verheiratet ist.",
+  "Datum, seit wann sich die Person in der Schweiz aufhält.",
+  "Datum, seit welchem der Ehepartner das Schweizer Buergerrecht besitzt.",
+  "Die Rebbestandsschätzung ist Grundlage des Pachtzinses; Urheber und Datum belegen ihre Herkunft.",
+  "Eigenhändige Bestätigung der erklärenden Person mit Ort, Datum sowie Name und Vorname, dass sie die Ausführungen und Verpflichtungen zur Kenntnis genommen hat.",
+  "Ein sauberer Begriff wäre «Datum der Auflösung des Lehrvertrags»; Abbruch der Ausbildung ist nicht dasselbe.",
+  "Einteilung und Grad kennt armedForcesData nicht (nur Dienst, Pflicht, Datum); Zuordnung korrigieren.",
+  "Erfragt die Anzahl Ausbildungsbeginne im Berichtsjahr, kein Datum.",
+  "Erfragt eine Anzahl, kein Datum.",
+  "Ergebnisse der Leistungs- bzw. Belastungstests mit Datum und ob der Zielwert erfüllt wurde.",
+  "Frist (Datum und Uhrzeit des Eingangs) für die Einreichung der Teilnahmeanträge; der Poststempel ist nicht massgebend.",
+  "Geburtsdatum und Geburtsort in einem Feld; dateOfBirth deckt nur das Datum.",
+  "Genaues Datum der beschlossenen Statutenänderung.",
+  "Geplantes Datum der Inbetriebnahme der Anlage.",
+  "Geplantes Datum des Baubeginns.",
+  "Geplantes Datum des Beginns der Grundwasserabsenkung.",
+  "Gibt an, ob das Arbeitsverhältnis weitergeführt wird (befristet bis Datum, unbefristet oder gekündigt).",
+  "Ja/Nein, Datum und Universität der Qualifikation; der geführte Titel passt keinem Teil.",
+  "Jährliche Ablesung des Wasserzählers mit Datum, Zählerstand, Verbrauch und Bemerkung (jeweils auf Ende Jahr).",
+  "Jährliche Zählerablesungen (per Ende Jahr) mit Datum, Zählerstand, Verbrauch sowie Angabe der Nutzung für Wärme oder Kälte; Tabelle mit bis zu 10 Zeilen.",
+  "Liste der absolvierten Schiessveranstaltungen mit Ort/Datum, durchfuehrender Organisation sowie Name und Unterschrift der vor Ort verantwortlichen Person.",
+  "Liste der ausgerichteten Erbvorbezüge und Schenkungen mit Empfänger, Datum, Betrag und allfälligem Gegenstand.",
+  "Liste der einzelnen Transportfahrten mit Datum, Behandlungsgrund, Behandlungsort, Strecke und Kosten je Verkehrsmittel.",
+  "Liste der seit dem genannten Datum in den Bestand eingestallten Equiden (bis 5 Zeilen).",
+  "Meldungsart-Code und Datum in einem Feld; eventDate passt nur zum Datum.",
+  "Mikrochip- bzw. Tätowierungsnummer des Tieres und Datum der Implantation oder Tätowierung.",
+  "Mutationscode und Datum in einem Feld; eventDate passt nur zum Datum.",
+  "Name der Ausgleichskasse und Datum in einem Feld; organisationName passt nur zum Namen.",
+  "Name der Person, die die Schätzung des Rebbestandes vorgenommen hat, mit Datum.",
+  "Name der bisherigen Ausgleichskasse und Datum des Anschlusses.",
+  "Name und Beginn-Datum der neuen bzw. gewechselten BVG-Vorsorgeeinrichtung.",
+  "Name und Datum («seit») in einem Feld; organisationName passt nur zum Namen.",
+  "Neuer Zivilstand und Datum der Zivilstandsänderung.",
+  "Ort und Datum der Antragstellung.",
+  "Ort und Datum der Berichterstellung.",
+  "Ort und Datum der Einreichung des Begehrens.",
+  "Ort und Datum der Einwilligung.",
+  "Ort und Datum der Forderungseingabe.",
+  "Ort und Datum der Gesuchstellung.",
+  "Ort und Datum der Gesuchsunterzeichnung.",
+  "Ort und Datum der Unterzeichnung des Gesuchs.",
+  "Ort und Datum der Unterzeichnung durch die Frau.",
+  "Ort und Datum der Unterzeichnung.",
+  "Ort und Datum der Vollmachtserteilung.",
+  "Ort und Datum der wahrheitsgetreuen Bestätigung der Angaben.",
+  "Ort und Datum des Konkursbegehrens.",
+  "Ort und Datum, an dem die persönliche Untersuchung des Patienten stattfand.",
+  "Ort, Datum sowie Stempel und Unterschrift des Arbeitgebers; erforderlich bei Erwerbstätigkeit.",
+  "Ort, Datum und Unterschrift der erziehungsberechtigten Person; bestätigt die vollständige und wahrheitsgetreue Ausfüllung.",
+  "Ort, Datum und Unterschrift der gesuchstellenden Person.",
+  "Ort, Datum und Unterschrift der gesuchstellenden Person; bestätigt die vollständige und wahrheitsgetreue Ausfüllung.",
+  "Realisierung (z. B. Veräusserung, Gewinnrealisierung) ist ein anderer Zeitpunkt als die Auszahlung; die Umbenennung auf «Datum der Auszahlung» ginge verloren. Gleich behandelt wie der Nachbar «Fällig am» (pruefen).",
+  "Tabellarische Auflistung der einzelnen abgerechneten Leistungen (z.B. Fahrten) mit Datum, Art, Anzahl und Betrag; mehrfach wiederholbar.",
+  "Tabellarische Prüfeinträge der Atemschutzmaske mit Datum, visueller Kontrolle, Bemerkungen und Visum.",
+  "Tabelle mit den einzelnen Prüfeinträgen zu Datum, Prüfanlass, Flaschendruck, visueller Kontrolle und Bemerkungen.",
+  "Termin, auf den gekündigt werden kann, mit spätestem Datum für den Empfang der Kündigung.",
+  "Voraussichtliches Datum der Fertigstellung des Baus.",
+  "Voraussichtliches Datum des Baubeginns.",
+  "Voraussichtliches Datum des Bauendes.",
+  "Voraussichtliches Datum des Beginns der Tätigkeit.",
+  "Voraussichtliches Datum, an dem die Tätigkeit aufgenommen wird.",
+  "Vorgesehenes Datum der Ausführung der Arbeiten.",
+  "Weitere Beilagen und Referenzen mit Nummer bzw. Datum.",
+  "Zeitpunkt (Datum und Uhrzeit), zu dem die Probe entnommen wurde.",
+  "Zweitprüfung: Das Element ist die Prüfungsperiode (Frühling bis Winter), kein Datum wie «vom 1».",
+  "Zweitprüfung: Kein reiner Wortlaut-Unterschied: Nach einem Rechtsformwechsel ist das Datum «in dieser Rechtsform seit» ein anderes als die Geschäftseröffnung. Eine Umbenennung in «Datum der Geschäftseröffnung» würde nach dem falschen Datum fragen. «In dieser Rechtsform» sagt, welches Datum gemeint ist.",
+  "Zweitprüfung: Nennt den Übergang von Nutzen und Gefahr; «Genaues Datum» sagt nicht, welches Datum.",
+  "Zweitprüfung: Wie startDate in eCH-0278 «Beginn»; «Semesterstart» bindet das Datum an einen Semesterkontext.",
+  "Zweitprüfung: «Einzugsdatum» benennt das Datum ohne Rolle; das alte Label fragt nach dem Haushalt mit dem Kind.",
+  "Zweitprüfung: «Geplant» legt fest, welches Datum gemeint ist: ein künftiges, noch nicht eingetretenes. Als variante würde das Feld in «Datum der Geschäftseröffnung» umbenannt und die Vorgabe ginge verloren. Gleich behandelt wie «Voraussichtlicher Beginn der Tätigkeit» (rolle).",
+  "Zweitprüfung: «per (Beendigungstermin)» ist umständlich; «Ende des Arbeitsverhältnisses» benennt das Datum direkt.",
+  "geplant (künftiges Datum)",
+  "«Datum» allein sagt nicht, welches Datum gemeint ist; sauber wäre «Eröffnungsdatum», das in den Formularen fehlt.",
+  "«Geburtsdatum» benennt genau das Datum.",
+  "«Neue» bindet das Datum an einen Umzug; ein sauberer Begriff wie «Wohnadresse gültig ab» fehlt in den Formularen.",
+  "«Zivilstand seit» benennt genau das Datum des Zivilstands.",
+  "«ab (Datum)» ist nur Präposition mit Typhinweis; sauber wäre «Statusdatum», das in den Formularen fehlt.",
+  "Ärztlicher Tauglichkeitsentscheid je Untersuchungszweck (Feuerwehrdienst, Atemschutz, Kategorie C/C1) mit Datum bei Zurückstellung oder vorzeitiger Untersuchung."
+ ],
+ "flow_teiltexte": [
+  {
+   "form_id": 102,
+   "alt": "Als besonders schützenswertes Gesundheitsdatum wird er nur",
+   "neu": "Als besonders schützenswerte Angabe über die Gesundheit wird er nur"
+  },
+  {
+   "form_id": 102,
+   "alt": "ist ein besonders schützenswertes Gesundheitsdatum.",
+   "neu": "ist eine besonders schützenswerte Angabe über die Gesundheit."
+  }
+ ]
+}

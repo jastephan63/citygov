@@ -81,7 +81,7 @@ META = {
                      "task requires it = real over-collection ('over_collection' is true only here); "
                      "offen=assessed, undecidable from the form; null=not researched yet "
                      "('zu ermitteln'). Covered = artikel or aufgabe — except where art5_offen is true.",
-        "art5_offen": "true when a besonders schützenswertes Datum (sensitive_category set) is "
+        "art5_offen": "true when a sensitive datum (besonders schützenswerte Personendaten; sensitive_category set) is "
                       "judged 'aufgabe' without an article. KDSG Art. 4 Abs. 1 lit. b does NOT carry "
                       "such data: Art. 5 Abs. 1 lit. a (a formal law that clearly describes the task, "
                       "«unentbehrlich») or lit. b (consent, express or unmistakably presumed from the circumstances) must be named. Rendered as open "
@@ -716,7 +716,7 @@ def main():
                                 f"artikel = {BT['artikel']} (Artikel zitiert und gegen den Gesetzestext geprüft) · "
                                 f"aufgabe = {BT['aufgabe']} (keine Norm nennt das Feld, die gesetzliche Aufgabe "
                                 "braucht es — KDSG Art. 4 Abs. 1 lit. b; keine Over-collection) · "
-                                "art5_offen = besonders schützenswertes Datum, nur als aufgabennotwendig beurteilt — "
+                                "art5_offen = besonders schützenswerte Angabe, nur als aufgabennotwendig beurteilt — "
                                 "Grundlage nach KDSG Art. 5 Abs. 1 lit. a oder b noch nicht benannt; OFFEN, nie gedeckt · "
                                 f"ohne = {BT['ohne']} (weder Norm noch Aufgabe verlangen das Feld) · "
                                 f"offen = {BT['offen']} (beurteilt, aus dem Formular nicht entscheidbar) · "
@@ -745,9 +745,9 @@ def main():
                                     "Feld, sonst null). Ein zusammengesetztes Feld, dessen Teile eigene Elemente "
                                     "tragen, erscheint nicht neben seinen Teilen.",
                             "pflicht": "Pflichtangabe des Felds (ein Teilfeld erbt die Pflicht seines Felds).",
-                            "subjekt": "wessen Datum: " + ", ".join(f"{k} = {v}" for k, v in L.SUBJEKT.items())
+                            "subjekt": "wessen Angabe: " + ", ".join(f"{k} = {v}" for k, v in L.SUBJEKT.items())
                                        + "; null = noch nicht beurteilt (dann nie vorbefüllen).",
-                            "einwohnerregister": "true nur, wenn das Einwohnerregister das Datum tatsächlich führt: "
+                            "einwohnerregister": "true nur, wenn das Einwohnerregister die Angabe tatsächlich führt: "
                                                  "Personen-/Adressstandard (eCH-0044, eCH-0010, eCH-0011, eCH-0007, "
                                                  "eCH-0008) UND subjekt natürliche Person — dieselbe Marke ↺ wie im "
                                                  "Dashboard. Eine Betriebs- oder Behördenadresse ist eCH-0010, aber "

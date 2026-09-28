@@ -67,6 +67,7 @@ python3 scripts/load_panel_reviews.py <dir>       # second opinions on basis_typ
 python3 scripts/load_themenkatalog.py             # eCH-0049 catalogue, verbatim-gated against quellen/ech-0049/*.pdf
 python3 scripts/run_begriffe.py <panel-base-dir>  # begriffe -> pruefart -> vorschlag_check -> konsistenz
                                                   # -> rollen -> themen -> quellen/korrekturen/*.json
+                                                  # -> apply_wortwahl.py (reader wording, see below)
 
 # 6. currency and flows
 python3 scripts/check_online.py <out>             # is our copy still the current edition? (sh.ch)
@@ -78,6 +79,8 @@ python3 scripts/fill_pdf.py <form_id> <answers.json>   # write flow answers into
 python3 scripts/migrate_2026_09_26.py             # idempotent; see its docstring
 python3 scripts/migrate_2026_09_27.py             # services that bundled several DVSH services, split or renamed
                                                   # (quellen/korrekturen/dvsh_aufteilung_2026-09-27.json); again after run_begriffe.py
+python3 scripts/apply_wortwahl.py                 # «Angabe», not «Datum», where the databank means a piece of data
+                                                  # (quellen/wortwahl_datum.json, reviewed per text); idempotent
 python3 scripts/load_rechtsmittel.py quellen/rechtsmittel           # SHR 822.101 § 8/§ 9 (Arbeitsinspektorat), quotes PDF-gated
 python3 scripts/load_rechtsmittel_verdicts.py quellen/rechtsmittel  # sektoral verdicts for forms 296 and 455
 python3 scripts/load_rechtsmittel.py quellen/rechtsmittel           # re-apply so form_outcome reflects the verdicts
@@ -136,11 +139,12 @@ be broken, so the gate `validate_db.py` checks what it can):
 | `load_ech_map.py` / `load_subfield_ech.py` / `load_ech_verdicts*.py` / `load_ech_gaps.py` / `propagate_ech_names.py` / `load_esh.py` / `sweep_ech_xsd.py` | Standards |
 | `load_field_legal.py` / `load_basis_typ.py` / `load_subjekt.py` / `load_data_rules.py` / `init_register.py` / `load_register.py` | Law layer per field, rules, register |
 | `load_rechtsmittel.py` / `load_rechtsmittel_verdicts.py` / `load_panel_reviews.py` | Remedies and second opinions |
-| `load_themenkatalog.py` / `run_begriffe.py` (+ `load_begriffe.py`, `load_pruefart.py`, `load_vorschlag_check.py`, `load_begriff_konsistenz.py`, `load_begriff_rollen.py`, `load_themen.py`, `load_korrekturen.py`) | Naming («Ein Datum, ein Name») and Themengruppen |
+| `load_themenkatalog.py` / `run_begriffe.py` (+ `load_begriffe.py`, `load_pruefart.py`, `load_vorschlag_check.py`, `load_begriff_konsistenz.py`, `load_begriff_rollen.py`, `load_themen.py`, `load_korrekturen.py`) | Naming («Eine Angabe, ein Name») and Themengruppen |
 | `check_online.py` / `load_currency.py` | Is our copy still the current edition? |
 | `load_flows.py` / `fill_pdf.py` | Guided flows and writing answers back into the official PDF |
 | `commit_proposal.py` / `auto_draft.py` | The retired 2026-06 auto-draft layer (kept because `ingest_new.py` imports it; never exported) |
 | `migrate_2026_09_26.py` | One-off, idempotent corrections from the 2026-09-26 quality check |
 | `migrate_2026_09_27.py` | One-off, idempotent: one service row per DVSH service with its own file; same-file bundles named from DVSH wording; duplicate form 475 removed |
+| `apply_wortwahl.py` | Reader wording: in everyday German «Datum» is a calendar date, so the databank's own naming and basis texts say «Angabe» where they mean a piece of data. Applies the reviewed whole-text rewrites of `quellen/wortwahl_datum.json`; runs last in `run_begriffe.py`; `export_json.py` stops on a naming or basis text that says «Datum» without a verdict there |
 | `annotate_pdf.swift` / `ocr_pdf.swift` | macOS helpers (PDFKit / Vision OCR) used by the field-label recovery of 2026-06; not part of the build |
 | `deprecated/` | Tools that did their job once and were superseded (see its README) |

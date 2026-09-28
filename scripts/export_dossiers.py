@@ -669,8 +669,8 @@ def formless_html(s, dv):
 def legend_html():
     tiers = " · ".join(esc(stufe_of(x[0])[0]) for x in (LAB.get("stufen") or []))
     return ("<div class='legend'><b>Legende</b>" + ton_key_html()
-            + "<div><b>Kennzeichen, keine Bewertung</b> (weiss, umrandet): ⛨ = besonders schützenswertes Personendatum · "
-            "↺ = das Einwohnerregister führt dieses Datum bereits (Once-Only, nur Daten natürlicher Personen; gezählt je Teilfeld) · "
+            + "<div><b>Kennzeichen, keine Bewertung</b> (weiss, umrandet): ⛨ = besonders schützenswerte Personendaten · "
+            "↺ = das Einwohnerregister führt diese Angabe bereits (Once-Only, nur Daten natürlicher Personen; gezählt je Teilfeld) · "
             "Bund / Kanton / interkantonal = Rechtsebene des Erlasses; Ebene offen = die Ebene lässt sich aus dem "
             "DVSH-Eintrag nicht belegen (kein amtlicher Link, keine SR-/SHR-Nummer, kein bekannter Kurztitel) · "
             "eSH = Entwurf eines kantonalen Standards, kein offizieller eCH-Standard.</div>"
@@ -844,7 +844,7 @@ def dossier(s, forms, dst):
             if feh and nfeh: parts.append(pl(nfeh, "Punkt", "Punkte") + " ohne Standard")
             h.append(f"<h3>Standard-Divergenzen{(' (' + ' · '.join(parts) + ')') if parts else ''}</h3>"
                      + "<div class='small muted'>Was dieses Formular davon trennt, Teil eines einheitlichen "
-                       "Datenstandards zu sein: oben dasselbe Datum anders verlangt als anderswo, unten Daten "
+                       "Datenstandards zu sein: oben dieselbe Angabe anders verlangt als anderswo, unten Daten "
                        "ohne zitierbaren Standard.</div>")
             if ang:
                 h.append("<table><thead><tr><th>Datenfeld</th><th>Art</th><th>hier</th>"
@@ -864,7 +864,7 @@ def dossier(s, forms, dst):
             zuo = [i for i in bz if i["klasse"] == "pruefen" and i.get("pruefart") != "aufteilen"]
             if var:
                 h.append("<div class='small' style='margin:6px 0'>" + st(ton_of("begriff", "variante"), "Umbenennen")
-                         + " — gleiches Datum, anderer Name: "
+                         + " — gleiche Angabe, anderer Name: "
                          + " · ".join(f"«{esc(i['hier'])}» → <b>«{esc(i['vorschlag'])}»</b>" for i in var) + "</div>")
             if auf:
                 h.append("<div class='small' style='margin:6px 0'>"
