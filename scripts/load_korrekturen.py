@@ -55,7 +55,7 @@ def main():
                 rej += 1; continue
             c.execute("UPDATE begriff_label SET klasse='vorschlag', pruefart=NULL, grund=NULL WHERE ech_element_id=? AND label_norm=?",
                       [eid, norm(k["term"])])
-            c.execute("UPDATE begriff_label SET klasse='variante', grund='gleiches Datum, anders geschrieben' "
+            c.execute("UPDATE begriff_label SET klasse='variante', grund='gleiche Angabe, anders geschrieben' "
                       "WHERE ech_element_id=? AND klasse='vorschlag' AND label_norm!=?", [eid, norm(k["term"])])
             c.execute("UPDATE begriff_vorschlag SET term=?, herkunft=? WHERE ech_element_id=?", [k["term"], k.get("herkunft", "eigen"), eid])
         c.execute("UPDATE begriff_vorschlag SET vorbehalt=?, pruefung=? WHERE ech_element_id=?",

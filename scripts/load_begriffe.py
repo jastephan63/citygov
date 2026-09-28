@@ -110,7 +110,7 @@ def main():
                 if ln == vor_n:
                     kl = "vorschlag"
                 elif kl == "vorschlag":
-                    kl, grund = "variante", "gleiches Datum, anders geschrieben als der Vorschlag"
+                    kl, grund = "variante", "gleiche Angabe, anders geschrieben als der Vorschlag"
                 if kl not in VOCAB:
                     rej.append(f"element {eid}: Klasse «{kl}»"); continue
                 c.execute("INSERT INTO begriff_label(ech_element_id,label_norm,label,klasse,rolle,grund,zweitgeprueft) VALUES(?,?,?,?,?,?,?)",

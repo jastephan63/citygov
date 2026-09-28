@@ -89,8 +89,8 @@ ART66_ABS2 = ("Die Daten der elektronischen Informationssysteme über den Erwerb
 FIELD_2428_WHY = ("Zweitprüfung: Die Konfession bestimmt, ob und an welche Landeskirche die Kirchensteuer "
                   "auf dem Grundstückgewinn geht — ohne sie kann die Steuerverwaltung die Aufgabe nicht "
                   "erfüllen. Die massgebende Norm (kirchliches Steuerdekret) ist nicht unter den "
-                  "eingelesenen Gesetzestexten und daher hier nicht zitiert; als besonders schützenswertes "
-                  "Datum braucht es zudem eine Grundlage nach KDSG Art. 5 Abs. 1 — noch zu belegen.")
+                  "eingelesenen Gesetzestexten und daher hier nicht zitiert; als besonders schützenswerte "
+                  "Angabe braucht sie zudem eine Grundlage nach KDSG Art. 5 Abs. 1 — noch zu belegen.")
 
 
 def main():

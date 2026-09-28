@@ -78,7 +78,7 @@ def main():
                 continue
             own = {r[0] for r in c.execute("SELECT label_norm FROM begriff_label WHERE ech_element_id=?", [eid])}
             c.execute("UPDATE begriff_label SET klasse='variante', grund=? WHERE ech_element_id=? AND label_norm=? AND klasse='vorschlag'",
-                      [f"gleiches Datum wie in den anderen Standards — einheitlich «{term}»", eid, old])
+                      [f"gleiche Angabe wie in den anderen Standards — einheitlich «{term}»", eid, old])
             if norm(term) in own:
                 c.execute("UPDATE begriff_label SET klasse='vorschlag', pruefart=NULL, grund=NULL WHERE ech_element_id=? AND label_norm=?",
                           [eid, norm(term)])
