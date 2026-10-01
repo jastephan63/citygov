@@ -1,5 +1,5 @@
 // Render each page of a PDF to a PNG with every AcroForm field widget outlined in
-// red and tagged with "#<fieldName>", so an agent can read the printed caption
+// red and tagged with "#<fieldName>", so a reviewer can read the printed caption
 // next to each box and return {fieldName: label}.
 //   swift annotate_pdf.swift <pdf> <outDir> [scale=3.0]
 import Foundation

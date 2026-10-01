@@ -12,7 +12,7 @@ Two mechanical passes over the form-less DVSH services:
      the DVSH-matched service and marked 'tentativ (Titel-Aehnlichkeit)' —
      visible, revocable, never silent.
 Services whose channel is email/telefon/vor_ort/externer_link keep no form at
-all — that is their honest shape (user decision 2026-09-03).
+all — that is their honest shape (owner decision 2026-09-03).
 
 Idempotent. Staging -> validate -> swap.
 

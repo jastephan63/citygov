@@ -26,7 +26,8 @@ def main():
     shutil.copy2(DB_PATH, st)
     c = connect(st)
     # provenance: a copied verdict is weaker evidence than a judged one - it is
-    # marked so the verification pass (and any reader) can tell them apart
+    # marked (ech_herkunft, documented in schema.sql) so the verification pass
+    # and any reader can tell them apart; added here only on an older database
     for tbl in ("data_field", "data_subfield"):
         if "ech_herkunft" not in {r[1] for r in c.execute(f"PRAGMA table_info({tbl})")}:
             c.execute(f"ALTER TABLE {tbl} ADD COLUMN ech_herkunft TEXT")

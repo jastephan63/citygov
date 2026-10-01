@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Apply the agent service-consolidation verdicts, PROOF-GATED.
+"""Apply the service-consolidation verdicts (stage 2), PROOF-GATED.
 
 Gates: the target must be a real, DVSH-linked service; confidence must use the
 vocabulary; only 'sicher' and 'wahrscheinlich' are applied ('kein_match' rows

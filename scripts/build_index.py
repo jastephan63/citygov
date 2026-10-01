@@ -1,36 +1,36 @@
 #!/usr/bin/env python3
 """Build index.html — the landing page of the published site and of a clone.
 
-GitHub cannot display dashboard.html (38 MB) and serves its «raw» link as
-sandboxed plain text, so a visitor needs one address that simply opens it.
+GitHub cannot display dashboard.html (the whole databank in one file of some
+tens of MB) and serves its «raw» link as sandboxed plain text, so a visitor
+needs one address that simply opens it.
 With GitHub Pages serving the repository, that address is this page:
 https://jastephan63.github.io/citygov/ . It links the dashboard, the guided
 flows, the dossiers and the repository, states size and data date, and says
 how to keep an offline copy. Figures come from data_export.json (one source),
-so the page never drifts from the dashboard.
+so the page never drifts from the dashboard; the dashboard's size and transfer
+size are measured on dashboard.html with the same rounding the dashboard uses
+for itself (common.size_txt / net_size_txt). Also writes 404.html, which GitHub
+Pages serves for any missing path.
 
     python3 scripts/build_index.py        (run by ./build.sh)
 """
 import html, json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from common import ROOT, EXPORT_PATH
+from common import ROOT, EXPORT_PATH, size_txt, net_size_txt
 from labels import fmt_date
 
 SITE = "https://jastephan63.github.io/citygov/"
 REPO = "https://github.com/jastephan63/citygov"
 
 
-def size_txt(m):
-    """«40 MB» style, rounded UP to the next 10 MB: true in decimal and binary units."""
-    import math
-    return f"{int(math.ceil((m or 0) / 10.0) * 10)} MB" if m else "40 MB"
-
-
-def mb(path):
+def dash_size():
+    """«knapp 30 MB, über das Netz etwa 4 MB» for dashboard.html as it is on disk."""
     try:
-        return os.path.getsize(os.path.join(ROOT, path)) / 1e6
+        raw = open(os.path.join(ROOT, "dashboard.html"), "rb").read()
     except OSError:
-        return None
+        sys.exit("dashboard.html fehlt — zuerst scripts/build_dashboard.py ausführen")
+    return f"knapp {size_txt(len(raw))}, über das Netz etwa {net_size_txt(raw)}"
 
 
 def main():
@@ -41,7 +41,7 @@ def main():
     n_flows = sum(1 for f in D["forms"] if f.get("has_flow"))
     n_dossiers = len([x for x in os.listdir(os.path.join(ROOT, "dossiers")) if x.endswith(".html") and x != "index.html"]) \
         if os.path.isdir(os.path.join(ROOT, "dossiers")) else 0
-    dash_mb, flows_mb = mb("dashboard.html"), mb("flows.html")
+    dash = dash_size()
     e = html.escape
     stand = " · ".join(x for x in (
         f"Daten exportiert {fmt_date(ds.get('build'))}" if ds.get("build") else "",
@@ -94,7 +94,7 @@ def main():
   Weitergeben und Löschen — und was noch fehlt. Lücken stehen als Lücken da.</p>
 
   <a class="open" href="dashboard.html"><b>▶ Dashboard öffnen</b>
-    <span>Eine Seite mit allen Daten (knapp {size_txt(dash_mb)}, über das Netz etwa 5 MB) — beim ersten Öffnen dauert das Laden je nach Verbindung und Gerät einige Sekunden.</span></a>
+    <span>Eine Seite mit allen Daten ({dash}) — beim ersten Öffnen dauert das Laden je nach Verbindung und Gerät einige Sekunden.</span></a>
 
   <div class="grid">
     <a class="card" href="dashboard.html#dienststellen"><b>Für Dienststellen</b>

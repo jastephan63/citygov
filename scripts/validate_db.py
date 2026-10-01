@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Integrity validation for a citygov database (convention 10).
+"""Integrity validation for a citygov database (staging -> validate -> swap,
+convention 9).
 
 Checks, in order:
   1. PRAGMA foreign_key_check       -> no orphan / broken foreign keys
@@ -19,7 +20,12 @@ Checks, in order:
                                        quote it hangs on, eCH status <-> element,
                                        begriff terms that exist as labels, reviewed
                                        items that exist, schema.sql listing every
-                                       table). Each is named in the error text.
+                                       table, column and index). Each is named in
+                                       the error text.
+  7. source files                  -> every form.source_file is NFC, names a
+                                       file directly in formulare/ exactly as
+                                       listed there (case, no '..');
+                                       form.file_type agrees with the extension.
 
 Returns a list of error strings. Empty list == valid.
 Every loader runs this on its staging copy before swapping; also runnable
@@ -31,7 +37,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from common import DB_PATH, connect
+from common import DB_PATH, ROOT, connect
 
 
 def validate(conn):
@@ -252,6 +258,11 @@ def judgment_layer_checks(conn):
             lc = {r[1] for r in conn.execute(f"PRAGMA table_info({t})")}
             if lc - doc_cols[t]:
                 errors.append(f"schema.sql lacks columns of {t}: {sorted(lc - doc_cols[t])}")
+        # explicit indices (sqlite_autoindex_* carry no SQL and are not listed)
+        doc_ix = {r[0] for r in scratch.execute("SELECT name FROM sqlite_master WHERE type='index' AND sql IS NOT NULL")}
+        live_ix = {r[0] for r in conn.execute("SELECT name FROM sqlite_master WHERE type='index' AND sql IS NOT NULL")}
+        if live_ix - doc_ix:
+            errors.append(f"schema.sql lacks indices: {sorted(live_ix - doc_ix)}")
     except OSError:
         pass
 
@@ -262,6 +273,27 @@ def judgment_layer_checks(conn):
         n = sum(1 for (sf,) in conn.execute("SELECT source_file FROM form WHERE source_file IS NOT NULL")
                 if sf != _ud.normalize("NFC", sf))
         if n: errors.append(f"{n} form.source_file values are not in composed Unicode (NFC)")
+        # the Quelldatei link on the website resolves only for a tracked copy in
+        # formulare/ (flat), resolved against the repository root, never the cwd.
+        # Compared with the exact folder listing (names in NFC, as Git stores
+        # them): the default macOS file system also opens a name that differs in
+        # case or leaves the folder through '..', and GitHub Pages serves neither.
+        fdir = os.path.join(ROOT, "formulare")
+        listed = ({_ud.normalize("NFC", f) for f in os.listdir(fdir) if os.path.isfile(os.path.join(fdir, f))}
+                  if os.path.isdir(fdir) else set())
+        bad = [sf for (sf,) in conn.execute("SELECT source_file FROM form WHERE source_file IS NOT NULL")
+               if not sf.startswith("formulare/") or sf[len("formulare/"):] not in listed]
+        if bad: errors.append(f"{len(bad)} form.source_file values are not an existing file under formulare/: "
+                              f"{bad[:3]}")
+        # file_type agrees with the file: pdf <-> .pdf, word <-> .doc/.docx,
+        # excel <-> .xls/.xlsx/.xlsm, eformular <-> no file
+        if "file_type" in _cols(conn, "form"):
+            want = {".pdf": "pdf", ".doc": "word", ".docx": "word",
+                    ".xls": "excel", ".xlsx": "excel", ".xlsm": "excel"}
+            bad = [(fid, ft, sf) for fid, ft, sf in conn.execute("SELECT id, file_type, source_file FROM form")
+                   if ft != (want.get(os.path.splitext(sf)[1].lower(), "?") if sf else "eformular")]
+            if bad: errors.append(f"{len(bad)} form rows whose file_type disagrees with the file extension: "
+                                  f"ids {[b[0] for b in bad][:8]}")
 
     # the verification level shown for a citation is the ARTICLE's (one source)
     if _has(conn, "data_field_legal_basis"):

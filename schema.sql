@@ -28,8 +28,8 @@ CREATE TABLE IF NOT EXISTS meta (
 );
 
 -- ---------------------------------------------------------------------------
--- service  — the *modelled* unit. A nominal service may be split into several
---            modelled services (convention 2).
+-- service — one row per DVSH service (the catalogue unit); same-file bundles stay one
+--           row named from DVSH wording; services DVSH has not modelled have in_dvsh=0.
 -- ---------------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS service (
     id           INTEGER PRIMARY KEY,
@@ -51,7 +51,8 @@ CREATE TABLE IF NOT EXISTS law (
     short_title        TEXT,
     jurisdiction_level TEXT NOT NULL
         CHECK (jurisdiction_level IN ('federal','cantonal','communal')),
-    sr_number          TEXT,           -- federal SR number; NULL if n/a / unknown
+    sr_number          TEXT,           -- SR number (federal); some cantonal rows also carry their
+                                       -- SHR number here — the level is jurisdiction_level
     cantonal_ref       TEXT,           -- cantonal systematic ref; NULL if n/a
     source_note        TEXT,
     last_checked       TEXT NOT NULL DEFAULT 'UNVERIFIED'   -- conv 6
@@ -69,7 +70,7 @@ CREATE TABLE IF NOT EXISTS article (
 
 -- ---------------------------------------------------------------------------
 -- requirement — a discrete legal demand tied to a concrete data point.
---   Deduped by data_point_key (convention 8). Linked to article(s) via the
+--   Deduped by data_point_key (conv 8 of the 2026-06 layer). Linked to article(s) via the
 --   requirement_legal_basis M2M, so a shared requirement (e.g. Personalien)
 --   can carry several legal bases without being duplicated.
 -- ---------------------------------------------------------------------------
@@ -80,7 +81,7 @@ CREATE TABLE IF NOT EXISTS requirement (
     label          TEXT,                   -- description of the demand
     data_type      TEXT,                   -- string|date|number|boolean|enum|document|composite
     condition      TEXT,                   -- constraint that must hold (NULL = mere presence)
-    is_composite   INTEGER NOT NULL DEFAULT 0,  -- 1 = has identity_part sub-fields (conv 4)
+    is_composite   INTEGER NOT NULL DEFAULT 0,  -- 1 = has identity_part sub-fields
     notes          TEXT
 );
 
@@ -102,7 +103,7 @@ CREATE TABLE IF NOT EXISTS service_requirement (
 );
 
 -- ---------------------------------------------------------------------------
--- form — a Formular that actually serves a service (decided by CONTENT, conv 1).
+-- form — a Formular that actually serves a service (decided by CONTENT, not title).
 -- ---------------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS form (
     id                     INTEGER PRIMARY KEY,
@@ -110,23 +111,25 @@ CREATE TABLE IF NOT EXISTS form (
     service_id             INTEGER NOT NULL REFERENCES service(id),
     title                  TEXT NOT NULL,   -- title as published
     actual_purpose         TEXT,            -- what the content shows it really serves
-    title_content_mismatch INTEGER NOT NULL DEFAULT 0,  -- conv 1 finding flag
+    title_content_mismatch INTEGER NOT NULL DEFAULT 0,  -- 1 = the content serves something else than the title says
     mismatch_note          TEXT,
-    source_file            TEXT,            -- path under forms/
-    file_type              TEXT,            -- pdf|excel|...
+    source_file            TEXT,            -- path under formulare/ (NFC; NULL for eFormulare)
+    file_type              TEXT,            -- pdf|word|excel|eformular (agrees with the extension; gated)
     publisher_dienststelle TEXT,
     last_extracted         TEXT
 , purpose TEXT, dsfa_status TEXT, dsfa_note TEXT, file_hash TEXT, acroform INTEGER, signature_requirement TEXT, signature_evidence TEXT, parse_error TEXT, submission_channel TEXT, dvsh_match TEXT);
 
 -- LEGACY auto-draft layer (2026-06, retired): requirement / form_field /
 --   field_mapping / requirement_legal_basis were written by scripts/auto_draft.py
---   (now scripts/deprecated/). Superseded by data_field + data_field_legal_basis,
---   the proof-gated layer every surface reads. Kept for provenance («aus N
---   Formularfeldern verdichtet»); its 'proposed' mappings are never exported,
+--   (retired; kept in scripts/ because ingest_new.py imports it). Superseded by
+--   data_field + data_field_legal_basis, the proof-gated layer every surface
+--   reads. Kept in the DB for the record only (no surface reads it;
+--   citygov_llm.json keeps the 388 per-service notes as legacy findings); its
+--   'proposed' mappings are never exported,
 --   and the 240 placeholder law rows it created (last_checked 'zitiert
 --   (unverifiziert)') were removed by scripts/migrate_2026_09_26.py.
 -- form_field — the field as it actually appears on the form. Independent of
---   the law (convention 3): no requirement FK here.
+--   the law (conv 3 of the 2026-06 layer): no requirement FK here.
 CREATE TABLE IF NOT EXISTS form_field (
     id         INTEGER PRIMARY KEY,
     form_id    INTEGER NOT NULL REFERENCES form(id),
@@ -181,8 +184,12 @@ CREATE TABLE IF NOT EXISTS process_step (
 );
 
 -- ---------------------------------------------------------------------------
--- document — inventory of EVERY source file with its classification (conv 7).
---   Only doc_type='formular' becomes a form (form_id set after extraction).
+-- document — ingest-time inventory of the canton's source files with their
+--   classification (decided before modelling). Only doc_type='formular' becomes
+--   a form (form_id set after extraction). source_file is the path relative to
+--   the repository root AT INGEST TIME (../Verwaltung/…, or the untracked forms/
+--   mirror for the two oldest rows): provenance, NOT the tracked copy in
+--   formulare/ (that is form.source_file). Not exported.
 -- ---------------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS document (
     id                  INTEGER PRIMARY KEY,
@@ -199,7 +206,8 @@ CREATE TABLE IF NOT EXISTS document (
 
 -- ---------------------------------------------------------------------------
 -- finding — recorded flags: title/content mismatch, legal gaps, over-collection,
---   citation TODOs, validation issues (conv 1,6,10). Also rendered in dashboard.
+--   citation TODOs, validation issues (title vs content, never a citation from
+--   memory, no duplicate rows). Legacy: today only the 2026-06 auto-draft notes.
 -- ---------------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS finding (
     id          INTEGER PRIMARY KEY,
@@ -238,8 +246,8 @@ CREATE TABLE IF NOT EXISTS data_field (
   format TEXT,             -- unit/format hint
   source_widgets TEXT,     -- JSON array of widget labels (provenance)
   derived_by TEXT DEFAULT 'agent'
-, no_basis INTEGER DEFAULT 0, sensitive TEXT, ech_element_id INTEGER REFERENCES ech_element(id), ech_status TEXT, ech_standard_code TEXT REFERENCES ech_standard(code), esh_code TEXT REFERENCES esh_standard(code), esh_element TEXT, schutzstufe TEXT, format_code TEXT, basis_typ TEXT, basis_begruendung TEXT, subjekt TEXT);
-CREATE INDEX IF NOT EXISTS idx_data_field_form ON data_field(form_id);
+, no_basis INTEGER DEFAULT 0, sensitive TEXT, ech_element_id INTEGER REFERENCES ech_element(id), ech_status TEXT, ech_standard_code TEXT REFERENCES ech_standard(code), esh_code TEXT REFERENCES esh_standard(code), esh_element TEXT, schutzstufe TEXT, format_code TEXT, basis_typ TEXT, basis_begruendung TEXT, subjekt TEXT, ech_herkunft TEXT);
+CREATE INDEX IF NOT EXISTS ix_data_field_form ON data_field(form_id);
 
 -- besonders schützenswerte Personendaten: für die kantonalen Organe gilt KDSG
 -- Art. 2 Abs. 1 lit. d (Religion/Weltanschauung/Politik/Gewerkschaft, Gesundheit/
@@ -260,7 +268,10 @@ CREATE TABLE IF NOT EXISTS ech_standard (
 CREATE TABLE IF NOT EXISTS ech_element (
     id INTEGER PRIMARY KEY, standard TEXT NOT NULL REFERENCES ech_standard(code),
     name TEXT NOT NULL, datatype TEXT, context TEXT, UNIQUE(standard, name, context));
--- data_field.ech_element_id -> ech_element(id); data_field.ech_status: assigned|kein_standard
+CREATE INDEX IF NOT EXISTS ix_ech_el_std ON ech_element(standard);
+CREATE INDEX IF NOT EXISTS ix_ech_el_name ON ech_element(name);
+-- data_field.ech_element_id -> ech_element(id); data_field.ech_status: assigned | standard_only |
+--   kein_standard (see the data_field column notes below)
 
 -- ---------------------------------------------------------------------------
 -- Data-management layer (2026-09): register of processing activities,
@@ -268,7 +279,7 @@ CREATE TABLE IF NOT EXISTS ech_element (
 -- Created/seeded by scripts/init_register.py; curated content is loaded
 -- through the proof gates of scripts/load_register.py.
 -- New columns on existing tables:
---   form.purpose        (Zweck der Bearbeitung, agent-curated)
+--   form.purpose        (Zweck der Bearbeitung, curated, proof-gated)
 --   form.dsfa_status / form.dsfa_note   (DSFA decision, human-set)
 --   data_field.schutzstufe              (ISV classification, human-set; empty = gap)
 --   data_field.format_code -> format_pattern(code)
@@ -380,9 +391,17 @@ CREATE TABLE IF NOT EXISTS form_similarity (       -- Duplikat-Radar, verdict cu
 --   law.governance                      1 = one of the 8 data-governance laws (KDSG, KDSV, ISV,
 --                                        ArchivV, DSG, DSV, BGA, EMBAG) whose rules the Leitfaden
 --                                        and the Datenhandhabung tab group as «allgemein»
---   service.in_dvsh                     1 = the service exists in the DVSH model (load_dvsh_harvest.py)
+--   service.in_dvsh                     1 = the service is modelled in DVSH (load_dvsh_harvest.py); 7 such
+--                                        rows have no dvsh_service row in the current harvest and are
+--                                        shown as «DVSH-Modellierung nicht in der Databank»
 --   service.name_alt                    alternative name found in DVSH/SHEP (never replaces name)
---   form.dvsh_match                     how the Formular was matched to DVSH: exact|normalized|fuzzy|none
+--   form.dvsh_match                     why the Formular sits under its DVSH service: NULL (filename link
+--                                        of 2026-07, or a service DVSH has not modelled) |
+--                                        dvsh-formdefinition (eFormular built from DVSH) |
+--                                        konsolidiert (Dateiname im DVSH-Modell) |
+--                                        zuordnung (sicher|wahrscheinlich): <Beleg> |
+--                                        zuordnung (DVSH-Aufteilung 2026-09-27): <Beleg> |
+--                                        tentativ (Titel-Ähnlichkeit <score>) (link_dvsh_eforms.py)
 --   form.signature_requirement/evidence which signature the form demands, and the quote proving it
 --   form.file_hash                      SHA-256 of the source file (change detection, formflow.form_hash)
 --   data_field.no_basis                 1 = the legal pass found no article (superseded by basis_typ;
@@ -393,6 +412,12 @@ CREATE TABLE IF NOT EXISTS form_similarity (       -- Duplikat-Radar, verdict cu
 --   data_field.ech_standard_code        the standard when ech_status = standard_only
 --   data_field.esh_code / esh_element   the draft cantonal standard where eCH has nothing;
 --                                        NULL whenever ech_element_id is set (convention 7, gated)
+--   data_field.ech_herkunft / data_subfield.ech_herkunft   provenance of the eCH verdict:
+--                                        NULL = no copy recorded (judged directly, or copied before
+--                                        2026-09-16 when no marker was written) | 'propagiert (Name Nx
+--                                        geprüft)' / 'propagiert' = copied from a same-named field by
+--                                        propagate_ech_names.py | 'zweitgeprüft' = later covered by a
+--                                        verdict (load_ech_verdicts_new.py)
 --   form_outcome.rechtsmittel_regel_id -> rechtsmittel_regel(id); form_outcome.rechtsmittel_quelle
 --                                        allgemein | sektoral | offen | NULL (see the Rechtsmittel layer)
 --   canonical_attribute.n_register      how many of the datum's fields describe a natural person
@@ -417,7 +442,9 @@ CREATE TABLE IF NOT EXISTS data_subfield (         -- atomic parts of a composit
     ech_status        TEXT,                        -- assigned | standard_only | kein_standard
     esh_code          TEXT REFERENCES esh_standard(code),
     esh_element       TEXT,
+    ech_herkunft      TEXT,                        -- provenance of the eCH verdict (column notes above)
     UNIQUE(data_field_id, ord));
+CREATE INDEX IF NOT EXISTS ix_subfield_field ON data_subfield(data_field_id);
 
 CREATE TABLE IF NOT EXISTS data_field_legal_basis ( -- article-level citation per field (gated:
     id              INTEGER PRIMARY KEY,           --  the article must exist in the ingested law)
@@ -426,6 +453,7 @@ CREATE TABLE IF NOT EXISTS data_field_legal_basis ( -- article-level citation pe
     citation_detail TEXT,                          -- Abs./lit. within the article
     last_checked    TEXT,                          -- verification level shown in the dashboard
     relation        TEXT DEFAULT 'requires');      -- requires | permits | informs
+CREATE INDEX IF NOT EXISTS ix_dflb_df ON data_field_legal_basis(data_field_id);
 
 CREATE TABLE IF NOT EXISTS esh_standard (          -- the DRAFT cantonal standard (eSH): one row per
     code TEXT PRIMARY KEY,                         --  standard, covering what eCH does not; never
@@ -440,6 +468,7 @@ CREATE TABLE IF NOT EXISTS ech_codelist (          -- enumerations read from the
     value     TEXT NOT NULL,
     doc       TEXT,                                -- xs:documentation of the value, if any
     UNIQUE(standard, type_name, value));
+CREATE INDEX IF NOT EXISTS ix_codelist_std ON ech_codelist(standard);
 
 -- ---------------------------------------------------------------------------
 -- Data-handling rules (2026-08): what the law says about storing, processing,
@@ -458,6 +487,7 @@ CREATE TABLE IF NOT EXISTS data_rule (
     quote              TEXT,                       -- verbatim from the law PDF
     quote_verified     INTEGER NOT NULL DEFAULT 0,
     last_checked       TEXT);
+CREATE INDEX IF NOT EXISTS ix_data_rule_article ON data_rule(article_id);
 
 -- ---------------------------------------------------------------------------
 -- Source-of-truth mirrors (read-only harvests; never written back):
@@ -477,6 +507,7 @@ CREATE TABLE IF NOT EXISTS dvsh_service (          -- one row per DVSH service, 
     endpoint_typ TEXT, vollzugsbehoerde TEXT, submission_endpoint TEXT,
     documents TEXT, sources TEXT, form_definitions TEXT, completeness TEXT,   -- JSON
     email TEXT, phone TEXT, address TEXT, org_id INTEGER, opening_hours TEXT);
+CREATE INDEX IF NOT EXISTS idx_dvsh_service ON dvsh_service(service_id);
 
 CREATE TABLE IF NOT EXISTS dvsh_organisation (     -- the DVSH organisation tree with contacts
     id INTEGER PRIMARY KEY, parent_id INTEGER,
@@ -496,8 +527,10 @@ CREATE TABLE IF NOT EXISTS shep_service (          -- one row per SHEP portal pa
     harvested_at TEXT);
 
 CREATE TABLE IF NOT EXISTS form_check (            -- is the Formular still the current one online?
-    form_id     INTEGER PRIMARY KEY REFERENCES form(id) ON DELETE CASCADE,   -- (check_online.py)
+    form_id     INTEGER PRIMARY KEY REFERENCES form(id) ON DELETE CASCADE,   -- (load_currency.py, from
+                                                   -- check_online.py output; Formulare with a file only)
     status      TEXT NOT NULL,                     -- aktuell | veraltet_verdacht | nicht_gefunden | nicht_auffindbar
+                                                   -- | lokal_fehlt
     quelle TEXT, online_name TEXT, online_url TEXT, dvsh_neu TEXT, note TEXT,
     checked_at  TEXT DEFAULT (datetime('now')),
     next_check_due TEXT);
@@ -558,10 +591,11 @@ CREATE TABLE IF NOT EXISTS panel_review (
     PRIMARY KEY (kind, item_id));
 
 -- ---------------------------------------------------------------------------
--- «Ein Datum, ein Name» (2026-09): for every eCH element the forms ask for under
+-- «Eine Angabe, ein Name» (2026-09): for every eCH element the forms ask for under
 -- two or more labels, one proposed term (always an existing form label) and a
 -- class per label. Chain: scripts/run_begriffe.py (the single loaders refuse to
--- run alone, BEGRIFFE_CHAIN guard), corrections from quellen/korrekturen/*.json.
+-- run alone, BEGRIFFE_CHAIN guard), corrections from the quellen/korrekturen/ files
+-- that carry begriff_label / begriff_vorschlag / service_thema.
 -- ---------------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS begriff_vorschlag (
     ech_element_id INTEGER PRIMARY KEY REFERENCES ech_element(id),

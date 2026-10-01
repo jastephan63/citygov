@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Idempotently commit a service-model proposal into citygov.db (conventions 8,10).
+"""Idempotently commit a service-model proposal into citygov.db (legacy 2026-06
+layer; conventions 8 and 10 of that era, see the schema.sql header).
 
 A proposal JSON fully describes one modelled service: the service, the laws and
 articles that govern it, the requirements (deduped by data_point_key), the
@@ -15,7 +16,26 @@ Safety wrapper:
   4. only if valid: atomically swap staging in. Otherwise abort, keep the source
      of truth untouched, and log the failure.
 
-    python3 scripts/commit_proposal.py proposals/anmeldung-wohnsitz.json
+    python3 scripts/commit_proposal.py <proposal.json>
+
+<proposal.json> is one JSON object; only "service" is required, every list
+may be empty, and the "ref" values tie the parts together:
+
+    {"service": {"slug", "name", "dienststelle", "department", "description", "notes"},
+     "laws": [{"slug", "title", "jurisdiction_level", "sr_number", ...,
+               "articles": [{"ref", "article_no", "heading", "text_excerpt"}]}],
+     "requirements": [{"ref", "data_point_key", "data_point", "label", "data_type",
+                       "is_composite", "legal_basis": [{"article_ref", "citation_detail"}]}],
+     "service_requirements": [{"requirement_ref", "applicability_condition"}],
+     "form": {"slug", "title", "source_file", "file_type", "publisher_dienststelle", ...},
+     "form_fields": [{"ref", "field_key", "label", "section", "field_type", "options"}],
+     "field_mappings": [{"form_field_ref", "requirement_ref", "classification", "match_status"}],
+     "process_steps": [{"step_no", "description", "mode"}],
+     "documents": [{"source_file", "file_name", "doc_type", "is_this_form"}],
+     "findings": [{"type", "severity", "description", "fingerprint"}]}
+
+auto_draft.draft_form() builds exactly this shape; ingest_new.py passes it in
+memory.
 """
 import argparse
 import json

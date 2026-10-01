@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Load agent-derived data dictionaries into the data_field table.
+"""Load derived data dictionaries into the data_field table.
 
-Each JSON (scratchpad/df/<form_id>.json) is the logical data dictionary of one
+Each JSON (<dir>/<form_id>.json) is the logical data dictionary of one
 form: consolidated data fields (enum with allowed_values, composite with
 subfields, boolean, etc.), NOT raw widgets. Replaces the BASE field list of a form;
 curated eCH/eSH/basis_typ/subjekt/citations/subfields/reviews are NOT preserved, so a

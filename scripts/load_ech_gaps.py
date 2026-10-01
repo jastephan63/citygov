@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Apply the gap-closing verdicts (scratchpad/gap_out/*.json), PROOF-GATED.
+"""Apply the gap-closing verdicts (<dir>/*.json), PROOF-GATED.
 
 Three kinds of item, two target tables:
   teilfeld_offen        -> data_subfield  (a part that had no verdict yet)

@@ -3,8 +3,8 @@
 
 Writes inventory/gesetze_index.json: [{file, shr, title}]. Used by the legal pass
 to resolve a cited cantonal law name (e.g. "Baugesetz") to the real SHR PDF, so
-citations are matched to source, never invented (conv 6). Offline (macOS PDFKit
-via JXA).
+citations are matched to source (never a citation from memory, convention 5).
+Offline (macOS PDFKit via JXA).
 
     python3 scripts/build_gesetze_index.py
 """

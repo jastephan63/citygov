@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Ingest cantonal laws (by SHR number) into law+article, and optionally dump a
-compact JSON per law for the mapping agents. Article numbers and headings are
+compact JSON per law as mapping input. Article numbers and headings are
 read from the official Gesetze PDF (extract_law.py --index) — the ground truth
 the proof gate maps against. Upserts are idempotent; last_checked is set to
 'Gesetze-PDF SHR <n> (Stand …)'. Writes go staging -> validate -> swap.

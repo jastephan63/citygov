@@ -10,15 +10,31 @@ every atomic point carries an element.
 meta.xsd_versionen records the XSD version each standard was mapped against
 (ech_standard.xsd_version, written by scripts/sweep_ech_xsd.py); a standard
 without its own schema file has no entry there, and the export says so.
+meta.generated_at and meta.datenstand (build date, XSD sweep) repeat the stamp
+of data_export.json, like every other export of the same build.
 
-    python3 scripts/export_ech_schema.py
+    python3 scripts/export_ech_schema.py          # after scripts/export_json.py
 """
 import json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from common import ROOT, DB_PATH, connect
+from common import ROOT, DB_PATH, EXPORT_PATH, connect, assert_no_local_paths
+
+
+def _stamp():
+    """generated_at and the Datenstand of data_export.json — one stamp per build."""
+    try:
+        with open(EXPORT_PATH, encoding="utf-8") as fh:
+            x = json.load(fh)
+    except Exception as ex:
+        sys.exit(f"data_export.json fehlt oder ist nicht lesbar ({ex}) — zuerst scripts/export_json.py ausführen")
+    if not x.get("generated_at"):
+        sys.exit("data_export.json trägt kein generated_at — zuerst scripts/export_json.py ausführen")
+    ds = x.get("datenstand") or {}
+    return x["generated_at"], {"build": ds.get("build"), "xsd_sweep": ds.get("xsd_sweep")}
 
 
 def main():
+    generated_at, datenstand = _stamp()
     c = connect(DB_PATH)
     rows = lambda q, *a: [dict(r) for r in c.execute(q, a).fetchall()]
     elems = {r["id"]: r for r in rows("SELECT id, standard, name, datatype, context FROM ech_element")}
@@ -38,7 +54,7 @@ def main():
                       "WHERE form_id=? ORDER BY ord", fm["id"]):
             subs = rows("SELECT name, ech_element_id FROM data_subfield "
                         "WHERE data_field_id=? ORDER BY ord", d["id"])
-            # the atomic unit: a composite's subfields replace it (convention 6)
+            # the atomic unit: a composite's subfields replace it (the atomic part, convention 3)
             pts = subs if subs else [d]
             for p in pts:
                 m, u = point(p["name"], p.get("ech_element_id"), d.get("format"))
@@ -66,15 +82,20 @@ def main():
         c2.close()
     except Exception:
         pass
-    doc = {"meta": {"hinweis": "eCH-Austauschschemata je Formular, verschachtelt nach den "
+    doc = {"meta": {"generated_at": generated_at, "datenstand": datenstand,
+                    "hinweis": "eCH-Austauschschemata je Formular, verschachtelt nach den "
                     "complexTypes der offiziellen XSDs. 'ohne_standard' sind echte Lücken. "
                     "'xsd_versionen' nennt die Schema-Fassung, gegen die zugeordnet wurde "
                     "(scripts/sweep_ech_xsd.py); ein Standard ohne Eintrag publiziert keine "
                     "eigene XSD.",
                     "xsd_versionen": versions,
-                    "quelle": "citygov.db"}, "formulare": out}
+                    "quelle": "citygov.db (generated_at = Stempel von data_export.json)"},
+           "formulare": out}
     path = os.path.join(ROOT, "citygov_ech_schemas.json")
-    json.dump(doc, open(path, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    text = json.dumps(doc, ensure_ascii=False, indent=1)
+    assert_no_local_paths("citygov_ech_schemas.json", text)
+    with open(path, "w", encoding="utf-8") as fh:
+        fh.write(text)
     voll = sum(1 for f in out if f["exchange_ready"] == "voll")
     print(f"wrote citygov_ech_schemas.json: {len(out)} Formulare, {voll} voll exchange-ready")
 

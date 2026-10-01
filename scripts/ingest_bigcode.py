@@ -7,7 +7,7 @@ Fedlex glues onto numbers ('Art. 654a576' = Art. 654a + fn 576) is removed
 inline via the monotonic-sequence rule (article numbers only increase; the real
 number is the shortest increasing prefix). Heading = the preceding short
 marginal-title line when present, else the first words of the article body.
-Upserts law+article (last_checked='verified') and dumps the agent JSON.
+Upserts law+article (last_checked='verified') and dumps the mapping-input JSON.
 
     python3 scripts/ingest_bigcode.py <SR>=<pdf>=<title>=<short> [...] --out <dir>
 """

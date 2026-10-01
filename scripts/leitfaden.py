@@ -12,10 +12,10 @@ resolve to a loaded data_rule row, so the guide can never cite law that is
 not in the databank. Interpretive advice (not a rule paraphrase) goes into
 a 'praxis' box that is visibly labelled as Einordnung, not Gesetzeszitat.
 
-Every section was adversarially reviewed against the rule quotes in the DB
-(workflow verify-leitfaden); the wording below carries those corrections —
-be precise about actors (Kanton vs. Bundesorgane), qualifiers ("in der
-Regel", "mindestens") and alternative conditions before editing.
+Every section went through a second, adversarial review against the rule
+quotes in the DB; the wording below carries those corrections — be precise
+about actors (Kanton vs. Bundesorgane), qualifiers ("in der Regel",
+"mindestens") and alternative conditions before editing.
 """
 
 # ref = (sr_number, article_no, aspect) or (sr_number, article_no, aspect, scope)

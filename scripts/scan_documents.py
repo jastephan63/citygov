@@ -18,7 +18,7 @@ text cannot be read stays 'unbekannt' — never guessed. Idempotent, staging swa
 """
 import hashlib, os, re, shutil, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from common import DB_PATH, connect
+from common import ROOT, DB_PATH, connect
 from validate_db import validate
 
 SIG_RX = re.compile(r"unterschrift|unterschreib|unterzeichn|signatur", re.I)
@@ -72,7 +72,7 @@ def main():
     stats = {"sig_widget": 0, "handschriftlich": 0, "keine": 0, "unbekannt": 0}
     n = flat = 0
     for r in c.execute("SELECT id, source_file FROM form WHERE source_file IS NOT NULL").fetchall():
-        path = r["source_file"]
+        path = os.path.join(ROOT, r["source_file"])     # repository-relative, never the cwd
         if not os.path.exists(path):
             c.execute("UPDATE form SET parse_error='datei_fehlt' WHERE id=?", [r["id"]])
             continue

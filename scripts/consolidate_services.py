@@ -9,7 +9,7 @@ Stage 1 (this script, mechanical): match our ours-only services' form FILES
 against the file names the DVSH model itself declares (sources[].url basename
 and originalFilename, documents[].titel/datei, submissionEndpoint.titel).
 A form is re-parented only when exactly ONE DVSH service claims its file —
-ambiguity is left for the agent pass (stage 2, gated separately).
+ambiguity is left for stage 2 (apply_consolidation.py, gated separately).
 
 When a re-parenting empties an ours-only service row, its legacy references
 (findings, process steps, service_requirements) move along to the target and
@@ -112,7 +112,7 @@ def main():
         os.remove(st); print("ABORT:", *errs[:3], sep="\n  "); sys.exit(1)
     os.replace(st, DB_PATH)
     print(f"Stufe 1: {moved} Formulare per Dateinamen-Beleg konsolidiert, {ambiguous} mehrdeutig "
-          f"(für die Agenten-Stufe), {deleted} geleerte Zeilen entfernt — {n_total} Services übrig")
+          f"(für Stufe 2), {deleted} geleerte Zeilen entfernt — {n_total} Services übrig")
 
 
 if __name__ == "__main__":

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Ingest federal laws into law+article from PDFs fetched from the official
-Fedlex filestore, and optionally dump a JSON per law for the mapping agents.
+Fedlex filestore, and optionally dump a JSON per law as mapping input.
 Article numbers and headings are read from the actual PDF (extract_law.py
 --index); rows get last_checked='verified' because Fedlex is the official
 source. Writes go staging -> validate -> swap.

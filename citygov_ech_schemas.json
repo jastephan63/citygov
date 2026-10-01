@@ -1,5 +1,14 @@
 {
  "meta": {
+  "generated_at": "2026-10-01T14:12:50",
+  "datenstand": {
+   "build": "2026-10-01",
+   "xsd_sweep": {
+    "date": "2026-09-26",
+    "n": 116,
+    "n_xsd": 82
+   }
+  },
   "hinweis": "eCH-Austauschschemata je Formular, verschachtelt nach den complexTypes der offiziellen XSDs. 'ohne_standard' sind echte Lücken. 'xsd_versionen' nennt die Schema-Fassung, gegen die zugeordnet wurde (scripts/sweep_ech_xsd.py); ein Standard ohne Eintrag publiziert keine eigene XSD.",
   "xsd_versionen": {
    "eCH-0006": "3.0",
@@ -85,7 +94,7 @@
    "eCH-0277": "1.0",
    "eCH-0278": "1.0"
   },
-  "quelle": "citygov.db"
+  "quelle": "citygov.db (generated_at = Stempel von data_export.json)"
  },
  "formulare": [
   {
@@ -23717,7 +23726,7 @@
   },
   {
    "form_id": 156,
-   "titel": "Gesuchsformular Solidaritätsbeitrag",
+   "titel": "Gesuchsformular Solidaritätsbeitrag",
    "dienststelle": "Sozialamt",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 85,
@@ -35020,7 +35029,7 @@
   },
   {
    "form_id": 238,
-   "titel": "Abklärung internationaler Wochenaufenthalter",
+   "titel": "Abklärung internationaler Wochenaufenthalter",
    "dienststelle": "Steuerverwaltung",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 76,
@@ -37285,7 +37294,7 @@
   },
   {
    "form_id": 249,
-   "titel": "Antrag auf Rückerstattung der Quellensteuer auf Vorsorgeleistungen",
+   "titel": "Antrag auf Rückerstattung der Quellensteuer auf Vorsorgeleistungen",
    "dienststelle": "Steuerverwaltung",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 86,
@@ -43708,7 +43717,7 @@
   },
   {
    "form_id": 282,
-   "titel": "Gesuch Strafverbüssung in Halbgefangenschaft",
+   "titel": "Gesuch Strafverbüssung in Halbgefangenschaft",
    "dienststelle": "Amt für Justiz und Gemeinden",
    "exchange_ready": "teilweise",
    "abdeckung_pct": 42,

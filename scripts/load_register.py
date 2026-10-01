@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Load the curated Verzeichnis layer — purposes, retention terms, recipients —
-from agent output, PROOF-GATED like every other agent-written layer.
+from derived input files, PROOF-GATED like every other machine-written layer.
 
 Gates:
   * purpose        — form must exist; 30-250 chars; not just the title again
@@ -12,7 +12,9 @@ Gates:
                      then fanned out to every form whose fields cite that law,
                      carrying the rule's article for traceability
 
-Idempotent (agent-derived rows are replaced wholesale). Staging -> validate -> swap.
+Idempotent (retention terms, and the form_disclosure rows whose last_checked
+starts with 'agent', are replaced wholesale; purposes are overwritten).
+Staging -> validate -> swap.
 
     python3 scripts/load_register.py <out-dir>
 """
@@ -81,7 +83,7 @@ def main():
             if not r:
                 rejected.append(f"Frist: Regel #{rid} ist keine Retention-Regel"); continue
             dv = t.get("duration_value")
-            # quote only: the summary is an agent's paraphrase and once carried a
+            # quote only: the summary is a paraphrase and once carried a
             # number the quote did not (WV Art. 66: 30 vs 50 Jahre)
             if dv is not None and not duration_in_text(int(dv), r["quote"] or ""):
                 rejected.append(f"Frist: {dv} steht nicht im Zitat von Regel #{rid}"); continue

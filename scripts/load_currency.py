@@ -10,8 +10,11 @@ Verdicts (pessimistic signals win):
   aktuell            our copy is what's online / what DVSH references today
   veraltet_verdacht  a differing or newer-year edition exists online or in DVSH
   nicht_gefunden     no online trace found (sh.ch + DVSH) — possibly out of use,
-                     possibly hosted elsewhere; listed for the websearch tail
+                     possibly hosted elsewhere; listed for a manual web search
   lokal_fehlt        we have no local source file to compare
+
+eFormulare (source_file NULL) are skipped: they have no file to compare and
+keep no form_check row.
 
 Idempotent. Staging -> validate -> swap.
 
@@ -98,7 +101,7 @@ def main():
 
     from collections import Counter
     stats = Counter()
-    for f in c.execute("SELECT id, source_file FROM form").fetchall():
+    for f in c.execute("SELECT id, source_file FROM form WHERE source_file IS NOT NULL").fetchall():
         fid = f["id"]
         base = os.path.basename(f["source_file"] or "")
         mystem, myyear = stem_year(base)

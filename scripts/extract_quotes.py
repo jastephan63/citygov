@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Fill article.text_excerpt with the real text of every article cited by a
 data_field_legal_basis row, copied mechanically from the official law PDF —
-no agent involved, so the never-type-a-citation-from-memory rule holds.
+no judgement involved, so the never-type-a-citation-from-memory rule holds.
 
 Pages are streamed with pypdf and split into articles at 'Art. N' / '§ N'
 headings. Extracted headings often have footnote counters glued onto the

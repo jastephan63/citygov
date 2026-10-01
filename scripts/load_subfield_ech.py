@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Apply agent-assigned eCH elements to SUBFIELDS (data_subfield), PROOF-GATED.
+"""Apply proposed eCH elements to SUBFIELDS (data_subfield), PROOF-GATED.
 
 The key is the PAIR (parent field, subfield), because the parent decides what the
 part means: 'Name' under 'Personalien' is a person's surname (eCH-0044
@@ -52,7 +52,7 @@ def main():
     with_xsd = {r["code"] for r in c.execute("SELECT code FROM ech_standard WHERE n_elements>0")}
 
     # The chunk INPUTS were keyed by (parent standard, subfield) — one representative
-    # parent name stands for every parent sharing that standard. The agents echo back
+    # parent name stands for every parent sharing that standard. The outputs echo back
     # only that representative, so applying by parent NAME alone would leave every
     # other parent unassigned. Read the inputs to recover parent name -> standard.
     pstd = {}

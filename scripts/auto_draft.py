@@ -4,10 +4,12 @@ data_field / data_field_legal_basis layer with proof-gated loaders superseded th
 drafts this tool writes; its output is never exported or shown as a citation.
 
 Auto-draft modeller: each Formular -> a reviewable DRAFT, ONE requirement PER
-FIELD (conv 5/6).
+FIELD (proposed, never confirmed; never a citation from memory — the 2026-06
+rules, see the schema.sql header).
 
-For each Formular it: copies the file into forms/, extracts the REAL fields
-(AcroForm fields; if none, parses field labels from the PDF text; Word .doc/.docx
+For each Formular it: copies the file into formulare/ (form.source_file points
+there; document.source_file keeps the ../Verwaltung/ path), extracts the REAL
+fields (AcroForm fields; if none, parses field labels from the PDF text; Word .doc/.docx
 via macOS textutil; Excel sheets via openpyxl; scanned PDFs are flagged for
 OCR/manual), breaks every substantive field into its own requirement,
 auto-classifies each field, and records the legal references the document + its
@@ -16,23 +18,49 @@ Merkblätter actually CITE as research leads in a finding.
 Deliberately does NOT assign a legal basis per field: the correct basis depends on
 the SERVICE's governing law (a "Name" field on a weapons permit vs a tax return vs
 a residence registration have different bases), so guessing one would manufacture
-wrong citations — exactly what conv 6 forbids. Each field-requirement is therefore
-left legal_basis = [] ("Rechtsgrundlage zu ermitteln"); finding the real Art./§ per
+wrong citations — exactly what «never a citation from memory» forbids. Each
+field-requirement is therefore left legal_basis = [] ("Rechtsgrundlage zu
+ermitteln"); finding the real Art./§ per
 field is the review pass (extract_law.py / Fedlex), driven office-by-office.
 
 Everything here is match_status='proposed'/'auto'. Nothing reads as compliant.
 
-    python3 scripts/auto_draft.py "../Verwaltung/Finanzdepartement /Polizei"
-    python3 scripts/auto_draft.py --all
+As a command it is retired: its office-by-office run (one folder, or --all)
+upserted every file it found, so a re-run would overwrite curated titles and
+labels, and it registered new services without a Themengruppe or a reason.
+New files go through ingest_new.py, which uses the functions below, skips
+known files, and removes its formulare/ copies when a run fails.
+
+    python3 scripts/ingest_new.py <names.json>
 """
-import argparse, json, os, re, shutil, sys
+import hashlib, json, os, re, shutil, sys, unicodedata
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from common import ROOT, FORMS_DIR, DB_PATH, connect, log
+from common import ROOT, DB_PATH, connect, log
 from classify import classify, HELPER
-from commit_proposal import commit
-from validate_db import validate
 
 VERW = os.path.normpath(os.path.join(ROOT, "..", "Verwaltung"))
+FORMULARE_DIR = os.path.join(ROOT, "formulare")    # tracked, flat; the website links here
+
+
+def formulare_name(path):
+    """The file's name in formulare/: composed Unicode (NFC), as Git stores file
+    names — a decomposed name from the macOS file system works locally and 404s
+    on a Linux web server (GitHub Pages)."""
+    return unicodedata.normalize("NFC", os.path.basename(path))
+
+
+def copy_into_formulare(path):
+    """Copy a source file into formulare/. Returns True when copied, False when
+    the identical file is already there; raises FileExistsError when another file
+    of that name is there (a tracked file is never overwritten)."""
+    dest = os.path.join(FORMULARE_DIR, formulare_name(path))
+    if os.path.exists(dest):
+        same = lambda f: hashlib.sha256(open(f, "rb").read()).hexdigest()
+        if same(dest) != same(path):
+            raise FileExistsError(f"formulare/{formulare_name(path)} exists with other content — not overwritten")
+        return False
+    shutil.copy2(path, dest)
+    return True
 
 # ---- field extraction --------------------------------------------------------
 CHECKGLYPH = re.compile(r"^\s*(?:[☐☑□■○◯❑❏]|\[\s?\]|□|❑|◻|○|o)\s+(.+)$")
@@ -198,14 +226,19 @@ def clean_label(label):
     return _clean_seg(l) or label
 
 def draft_form(path, office, dept, fields, scanned, sr, laws, arts, title=None):
-    base=os.path.splitext(os.path.basename(path))[0]
+    # every stored name in composed Unicode (NFC): the macOS file system may hand
+    # back decomposed names, which then differ from the same text typed elsewhere
+    NFC=lambda t: unicodedata.normalize('NFC', t) if t else t
+    office, dept, title = NFC(office), NFC(dept), NFC(title)
+    fname=NFC(os.path.basename(path))
+    base=os.path.splitext(fname)[0]
     name=title or base                    # human-readable display title (PDF /Title)
     ext=os.path.splitext(path)[1].lower()
     sslug=slug(office.split("/")[-1]+"-"+base)   # slug stays filename-based (stable id)
-    rel=os.path.relpath(path, ROOT)
-    # composed Unicode (NFC), as Git stores file names: a decomposed path from the
-    # macOS file system works locally and 404s on a Linux web server (GitHub Pages)
-    rel=__import__('unicodedata').normalize('NFC', rel)
+    # provenance: where the file was read from (document.source_file), NFC
+    rel=unicodedata.normalize('NFC', os.path.relpath(path, ROOT))
+    # the tracked copy the website links to (form.source_file)
+    tracked="formulare/"+formulare_name(path)
 
     form_fields=[]; reqs={}; mappings=[]; svc_reqs=set()
     def ensure_req(key,dp,dtype,composite=False):
@@ -240,19 +273,19 @@ def draft_form(path, office, dept, fields, scanned, sr, laws, arts, title=None):
 
     return {
       "service":{"slug":sslug,"name":name,"dienststelle":office.split("/")[-1],
-                 "department":dept,"description":f"AUTO-ENTWURF aus {rel}. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
-                 "notes":"auto_draft; Datei: "+os.path.basename(path)},
+                 "department":dept,"description":None,
+                 "notes":"auto_draft; Datei: "+fname},
       "laws":[], "requirements":list(reqs.values()),
       "service_requirements":[{"requirement_ref":r} for r in svc_reqs],
       "form":{"slug":sslug+"-form","title":name,"actual_purpose":None,
-              "title_content_mismatch":False,"source_file":rel,
-              "file_type":"excel" if ext.startswith(".xls") else "pdf",
+              "title_content_mismatch":False,"source_file":tracked,
+              "file_type":"excel" if ext.startswith(".xls") else "word" if ext in (".doc",".docx") else "pdf",
               "publisher_dienststelle":office.split("/")[-1],"last_extracted":"auto"},
       "form_fields":form_fields,"field_mappings":mappings,
-      "documents":[{"source_file":rel,"file_name":os.path.basename(path),
+      "documents":[{"source_file":rel,"file_name":fname,
                     "department":dept,"dienststelle":office.split("/")[-1],
                     "doc_type":"formular","is_this_form":True,
-                    "classification_note":"auto-klassifiziert (conv 7)."}],
+                    "classification_note":"auto-klassifiziert."}],
       "findings":[{"type":("validation" if scanned else "note"),
                    "severity":("warning" if scanned else "info"),"fingerprint":"autodraft-"+sslug,
                    "description":note,"status":"open","created_at":"AUTODRAFT"}],
@@ -261,7 +294,7 @@ def draft_form(path, office, dept, fields, scanned, sr, laws, arts, title=None):
 def _m(fref,req,cls):
     return {"form_field_ref":fref,"requirement_ref":req,"classification":cls,
             "match_status":"proposed","mapped_by":"auto","confidence":0.4,
-            "notes":"Auto-Entwurf (conv 5) — Rechtsgrundlage zu prüfen."}
+            "notes":"Auto-Entwurf — Rechtsgrundlage zu prüfen."}
 
 # ---- office processing -------------------------------------------------------
 def office_helper_text(office_dir):
@@ -275,62 +308,9 @@ def office_helper_text(office_dir):
                 if len(txt)>40000: return txt
     return txt
 
-def process_office(conn, office_dir):
-    rel_office=os.path.relpath(office_dir, VERW); dept=rel_office.split("/")[0]
-    helper_txt=office_helper_text(office_dir)
-    n=0
-    for root,_,files in os.walk(office_dir):     # recurse into office subfolders
-        if "_files" in root: continue
-        for f in sorted(files):
-            full=os.path.join(root,f)
-            if not os.path.isfile(full): continue
-            ext=os.path.splitext(f)[1].lower()
-            if ext not in (".pdf",".xlsx",".xlsm",".xls",".doc",".docx"): continue
-            if HELPER.search(os.path.splitext(f)[0]): continue   # strong guidance -> never a form
-            if ext in (".xlsx",".xlsm",".xls"): fields,ftext,scanned,title,acro=extract_xlsx(full)
-            elif ext==".pdf":                   fields,ftext,scanned,title,acro=extract_pdf(full)
-            else:                               fields,ftext,scanned,title,acro=extract_doc(full)
-            # a file is a FORM if its name says so OR it is a fillable PDF (>=3 AcroForm
-            # fields) — recovers coded/hash-named sheets (e.g. SVA's bei02, allg01).
-            if not (classify(f)[0]=="formular" or acro>=3):
-                continue
-            dest=os.path.join(FORMS_DIR, os.path.relpath(full, VERW))
-            os.makedirs(os.path.dirname(dest), exist_ok=True)
-            if not os.path.exists(dest):
-                try: shutil.copy2(full,dest)
-                except Exception: pass
-            sr,laws,arts=mine_citations((ftext or "")+"\n"+helper_txt[:8000])
-            commit(conn, draft_form(full, rel_office, dept, fields, scanned, sr, laws, arts, title)); n+=1
-    return n
-
 def main():
-    ap=argparse.ArgumentParser(); ap.add_argument("office", nargs="?"); ap.add_argument("--all", action="store_true")
-    args=ap.parse_args()
-    staging=DB_PATH+".staging"
-    if os.path.exists(staging): os.remove(staging)
-    shutil.copy2(DB_PATH, staging)
-    conn=connect(staging); total=0
-    try:
-        if args.all:
-            for dep in sorted(os.listdir(VERW)):
-                dpath=os.path.join(VERW,dep)
-                if not os.path.isdir(dpath): continue
-                for off in sorted(os.listdir(dpath)):
-                    op=os.path.join(dpath,off)
-                    if os.path.isdir(op) and "_files" not in off:
-                        k=process_office(conn,op)
-                        if k: print(f"  {k:3} forms <- {os.path.relpath(op,VERW)}")
-                        total+=k
-        else:
-            total=process_office(conn,args.office); print(f"  {total} forms from {args.office}")
-        conn.commit()
-    except Exception as e:
-        conn.close(); os.remove(staging); log("auto_draft.log",f"ABORT: {e!r}")
-        print(f"ABORT: {e!r}",file=sys.stderr); sys.exit(1)
-    errs=validate(conn); conn.close()
-    if errs:
-        os.remove(staging); print("ABORT validation:",*errs[:5],sep="\n  ",file=sys.stderr); sys.exit(1)
-    os.replace(staging,DB_PATH); print(f"committed {total} draft form(s)")
+    sys.exit("auto_draft.py is retired as a command (a re-run would overwrite curated rows).\n"
+             "New files: python3 scripts/ingest_new.py <names.json>")
 
 if __name__=="__main__":
     main()

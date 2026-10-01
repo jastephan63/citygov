@@ -9,7 +9,10 @@ best candidate and byte-compare against our copy.
   aktuell        online file found, byte-identical to ours
   aktualisiert   same (or year-shifted) name online, DIFFERENT content — the
                  form was revised; candidate saved next to results
-  nicht_gefunden no online trace via CMS search (tail goes to websearch agents)
+  nicht_gefunden no online trace via CMS search (left for a manual web search)
+
+Only Formulare with a file are checked: an eFormular (source_file NULL) is
+built from its DVSH definition and has no file on sh.ch to compare.
 
 Read-only towards the databank; results land in <out>/results.json.
 
@@ -20,7 +23,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from common import DB_PATH, connect
+from common import ROOT, DB_PATH, connect
 
 BASE = "https://sh.ch"
 UUID = re.compile(r"get/file/([0-9a-fA-F-]{36})")
@@ -86,7 +89,8 @@ def content_files(cid):
 
 def check_form(f, outdir):
     fid, src, title = f["id"], f["source_file"], f["title"]
-    ours = src if os.path.exists(src) else None
+    # form.source_file is repository-relative (formulare/…), never cwd-relative
+    ours = os.path.join(ROOT, src) if src and os.path.exists(os.path.join(ROOT, src)) else None
     base = os.path.basename(src or "")
     res = {"form_id": fid, "titel": title, "datei": base, "status": "nicht_gefunden",
            "online_name": None, "url": None, "note": None}
@@ -144,7 +148,8 @@ def main():
     rpath = os.path.join(outdir, "results.json")
     results = json.load(open(rpath, encoding="utf-8")) if os.path.exists(rpath) else {}
     c = connect(DB_PATH)
-    forms = [dict(r) for r in c.execute("SELECT id, title, source_file FROM form ORDER BY id")]
+    forms = [dict(r) for r in c.execute("SELECT id, title, source_file FROM form "
+                                        "WHERE source_file IS NOT NULL ORDER BY id")]
     c.close()
     todo = [f for f in forms if str(f["id"]) not in results]
     if limit:

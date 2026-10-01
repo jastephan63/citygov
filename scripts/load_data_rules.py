@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Load data-governance rules (how personal data may be stored, treated and
-communicated) from agent output into the data_rule table, PROOF-GATED.
+communicated) from derived input files into the data_rule table, PROOF-GATED.
 
 A rule is one article's statement about the handling of personal data —
 retention, processing limits, who it may be disclosed to, security duties,

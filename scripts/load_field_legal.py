@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Load agent-proposed data-field -> article mappings (scratchpad/dfmap/<form_id>.json)
+"""Load proposed data-field -> article mappings (<dir>/<form_id>.json)
 into data_field_legal_basis, PROOF-GATED.
 
 A citation is accepted only if the cited (cref, article_no) exists as a real

@@ -9,14 +9,28 @@ undo the others. The later steps therefore refuse to run outside this chain.
     python3 scripts/run_begriffe.py <panel-base-dir>
 
 <panel-base-dir> holds the panel outputs: begriffe/ pruefart/ vorschlag/
-konsistenz/ rolle2/ themen/. The verified single corrections come from
-quellen/korrekturen/ and are applied last, followed by the reviewed reader
-wording (scripts/apply_wortwahl.py).
+konsistenz/ rolle2/ themen/. The verified naming corrections come from the
+quellen/korrekturen/ files that carry begriff_label, begriff_vorschlag or
+service_thema (the only keys load_korrekturen.py reads; today
+begriffe*.json — the other files there feed other loaders) and are applied
+last, followed by the reviewed reader wording (scripts/apply_wortwahl.py).
 """
-import glob, os, subprocess, sys
+import glob, json, os, subprocess, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
+# the top-level keys load_korrekturen.py applies
+KORREKTUR_KEYS = {"begriff_label", "begriff_vorschlag", "service_thema"}
+
+
+def korrektur_files():
+    """quellen/korrekturen/*.json that load_korrekturen.py understands, sorted."""
+    out = []
+    for k in sorted(glob.glob(os.path.join(ROOT, "quellen", "korrekturen", "*.json"))):
+        d = json.load(open(k, encoding="utf-8"))
+        if isinstance(d, dict) and KORREKTUR_KEYS & set(d):
+            out.append(k)
+    return out
 
 
 def main():
@@ -32,7 +46,7 @@ def main():
         r = subprocess.run([sys.executable, os.path.join(HERE, script), src], env=env)
         if r.returncode:
             sys.exit(f"ABBRUCH in {script} — die vorherigen Schritte sind gespeichert, die folgenden nicht gelaufen")
-    for k in sorted(glob.glob(os.path.join(ROOT, "quellen", "korrekturen", "*.json"))):
+    for k in korrektur_files():
         r = subprocess.run([sys.executable, os.path.join(HERE, "load_korrekturen.py"), k], env=env)
         if r.returncode:
             sys.exit(f"ABBRUCH in load_korrekturen.py ({k})")

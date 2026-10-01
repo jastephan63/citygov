@@ -36,7 +36,9 @@ def main():
     fm = c.execute("SELECT title, source_file FROM form WHERE id=?", [fid]).fetchone()
     if not fm:
         print(f"form #{fid} unbekannt"); sys.exit(1)
-    src = fm["source_file"]
+    if not fm["source_file"]:
+        print(f"'{fm['title']}' ist ein eFormular ohne Datei — PDF-Befüllung nicht möglich."); sys.exit(2)
+    src = os.path.join(ROOT, fm["source_file"])      # repository-relative, never the cwd
     reader = pypdf.PdfReader(src)
     widgets = reader.get_fields() or {}
     if not widgets:

@@ -2,12 +2,12 @@
  "meta": {
   "about": "Kanton Schaffhausen compliance databank of the cantonal administration's Formulare. Per service: its Formulare, their curated data fields (data_fields — the proof-gated layer: every article citation exists in an ingested law text, every eCH element in the swept catalogue, every eSH code in the draft catalogue) with the legal basis, standard mapping and sensitivity of each field, the Verfahren (outcome, remedy, enclosures, channel), the DVSH model of the service, the eCH-0049 Themengruppen and the naming catalogue. Gaps are exported as gaps (null / 'offen' / FEHLT) and never filled; 'not researched' is never the same value as 'proven'.",
   "quelle": "generated from citygov.db via data_export.json (scripts/export_json.py, then scripts/export_llm.py); generated_at is data_export.json's stamp; never hand-edit.",
-  "retired_layer": "The 2026-06 auto-draft layer (DB tables form_field/field_mapping/requirement_legal_basis: 19,156 'proposed' widget->requirement links; 389 requirement->article links kept for provenance — the placeholder-law citations it lifted from form text were removed by scripts/migrate_2026_09_26.py) is NOT exported any more — neither as a 'fields' key per Formular nor as citygov_fields.jsonl (removed). It never passed the proof gate and is superseded by data_fields; the tables remain in the DB for provenance only. Never cite from it.",
+  "retired_layer": "The 2026-06 auto-draft layer (DB tables form_field/field_mapping/requirement_legal_basis: 19,156 'proposed' widget->requirement links; 389 requirement->article links kept for provenance — the placeholder-law citations it lifted from form text were removed by scripts/migrate_2026_09_26.py) is NOT exported any more — neither here (no 'fields' key per Formular, citygov_fields.jsonl removed) nor in data_export.json. It never passed the proof gate and is superseded by data_fields; the tables remain in the DB for provenance only. Never cite from it. Two traces of it remain visible on purpose: services[].findings holds its 388 per-service notes (legacy text, see trust_rules), and a service description it wrote as a placeholder («AUTO-ENTWURF aus …») is exported as null.",
   "trust_rules": {
    "labels": "Every code in this file (data_type, sensitive_category, entscheid_art, rechtsmittel_art, rechtsmittel_status, halter, obligatorium, submission_channel, signature_requirement, dvsh status, mode, divergence arts, check status, jurisdiction, aspect, scope, trigger_event, disposition, min_or_max, basis_typ, subjekt, begriff pruefart (klasse 'pruefen' is decoded through pruefart, see trust_rules.begriffe), Handlungsbedarf categories) has its German label in meta.labels — the same dicts (scripts/labels.py) the dashboard and the dossiers render. A code missing there is a defect, never silently raw.",
    "legal_basis.verification": {
-    "verified": "cross-checked live against Fedlex / Rechtsbuch SH — authoritative",
-    "sourced_pdf": "read from the official cantonal SHR PDF (Gesetze folder); not yet live-checked",
+    "verified": "a federal article read from the official Fedlex text when the law was ingested (last_checked 'verified', set by scripts/ingest_fed.py / ingest_bigcode.py); no cantonal article carries this level",
+    "sourced_pdf": "an article read from the official law PDF when the law was ingested (last_checked 'Gesetze-PDF SHR … (Stand …)', set by scripts/ingest_laws.py); for cantonal law the PDF of the Schaffhauser Rechtsbuch",
     "cited_unverified": "a citation lifted from the form/Merkblatt, not yet resolved to a law text; the dashboard shows it as «zitiert (unverif.)». In the curated data_fields layer this level does not occur today (see meta.zitate).",
     "UNVERIFIED": "no source; do NOT rely on it (does not occur in the curated layer today)",
     "_hinweis": "An empty legal_basis list is not a verification level: read basis_typ."
@@ -27,11 +27,11 @@
    "lebenslagen": "services grouped by the Themengruppen of the official eCH-0049 topic catalogues (V4.00, approved; katalog privat = natural persons, unternehmen = businesses) — where the person or business who needs a service would look; many groups are life situations, some are topics, so the export calls them Themengruppen. Assignment: panel with sceptical review, <= 3 groups per service. Per group: services (ids), n_services, n_dienststellen, services_modelliert (services with at least one Formular whose data fields are modelled — every counter below covers ONLY these), services_ohne_daten (services of the group without modelled form data — listed, never counted as zero burden), n_formulare (modelled Formulare). Counters over the atomic data points (subfields where they exist, else the field): n_angaben = all points; n_pflicht = required points of fields WITHOUT subfields; n_pflicht_teil = points of required composite fields (a part inherits its field's Pflicht); n_vorbefuellbar = points the Einwohnerregister already holds (person/address standards AND subjekt natuerliche_person); n_vorbefuellbar_offen = points of person/address standards whose subjekt is not judged or whose mapping is flagged pruefart zuordnung — could be prefillable, not claimed; n_kein_standard / n_element_offen / n_ungeprueft and their sum n_ohne_standard = points without a citable element, counted apart and never matched as «the same datum»; n_zuordnung_offen = points whose label means another datum than the mapped element (pruefart zuordnung) — excluded from matching; n_container = points on generic container elements (document, attachment, comment) — excluded from matching; n_partei_offen = person/address points whose party is null or gemischt — excluded from matching, never guessed; n_sensibel = fields with a sensitive_category; n_beilagen / n_beilagen_beziehbar = demanded enclosures and those a register could supply; n_online = Formulare with an online channel; n_unterschrift = Formulare demanding a handwritten signature; n_daten = distinct matched data (datum keys); wiederholt (top 40) and n_wiederholt = data asked by 2+ services of the group, where «the same datum» means same eCH element, same judged party for person/address data, same named role. n_ueberschneidungen counts overlaps across the OFFER — the services can be alternatives nobody uses together, so it is not the burden of one person.",
    "begriffe": "one datum, one name: per eCH element (match by element_id — the same element name exists in several XML contexts) the proposed term vorschlag (always one of the labels the Formulare already use; the loader rejects invented terms), begruendung, herkunft (eigen = the term comes from this element's own labels; korpus = from another element's labels — never invented), vorbehalt (true = no clean term exists anywhere in the corpus; the proposal stands with an explicit reservation) and labels[] with klasse -> UI name (meta.labels.begriff_klasse): vorschlag = the proposed term itself; variante = same datum, other wording -> UI «angleichen»; rolle = the label names whose datum it is (rolle = the role) -> UI «Rolle», fine as it is; pruefen = the label promises more/other data than the element, split by pruefart: aufteilen = the field bundles data the standard separates -> UI «Feld aufteilen» (fix the FORM), zuordnung = the label means another datum -> UI «eCH-Zuordnung korrigieren» (fix the DATABANK mapping). n / formulare / n_formulare = where the label occurs (Formular ids as in services[].forms[].id).",
    "datenhandhabung.scope": "allgemein=applies to every personal-data field; besonders_schuetzenswert=additionally applies to fields with a sensitive category (matching sensitive_category, or all when null); sektoral=applies only to fields whose legal basis cites the same law (match on law). The addressee is part of the claim: rules from DSG/DSV/BGA/EMBAG bind Bundesorgane, not the canton (see each rule's law and quote).",
-   "process_steps / findings": "legacy service-level rows of the 2026-06 era (kept as text; process_steps mode is a code); the Verfahren facts a reader should rely on are dvsh_verfahren and forms[].verfahren."
+   "process_steps / findings": "legacy service-level rows of the 2026-06 era, kept as text (process_steps mode is a code; findings are the auto-draft's notes, status as drafted, never reviewed — see retired_layer); the Verfahren facts a reader should rely on are dvsh_verfahren and forms[].verfahren."
   },
-  "generated_at": "2026-09-28T16:27:45",
+  "generated_at": "2026-10-01T14:12:50",
   "datenstand": {
-   "build": "2026-09-28",
+   "build": "2026-10-01",
    "shep_harvest": "2026-09-03",
    "dvsh_stand": "2026-09-03",
    "online_check": {
@@ -66969,7 +66969,7 @@
    "name": "Subventionsgesuch Denkmalpflege",
    "department": "Baudepartement",
    "dienststelle": "Amt für Denkmalpflege und Archäologie",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Amt fuer Denkmalpflege und Archaeologie/Formular Subventionsgesuch neu.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -68297,7 +68297,7 @@
    "name": "Unbefangenheitserklärung und Meldepflicht",
    "department": "Baudepartement",
    "dienststelle": "Departementssekretariat Baudepartement",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Departementssekretariat Baudepartement/2_A_Unbefangenheitserklärung.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -68314,7 +68314,7 @@
      "id": 9,
      "title": "Unbefangenheitserklärung und Meldepflicht",
      "source_file": "formulare/2_A_Unbefangenheitserklärung.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Feststellung allfälliger Interessenkonflikte und Sicherung der Unbefangenheit der am Vergabeverfahren beteiligten Personen.",
      "empfaenger": [],
@@ -68598,7 +68598,7 @@
    "name": "Teilnahmeantrag für die erste Stufe des selektiven Verfahrens",
    "department": "Baudepartement",
    "dienststelle": "Departementssekretariat Baudepartement",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Departementssekretariat Baudepartement/5_Selektives_Verfahren_Allgemeine_Angaben_zur_ersten_Stufe_des_Verfahrens_Teilnahmeantrag.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -68615,7 +68615,7 @@
      "id": 10,
      "title": "Selektives Verfahren – Allgemeine Angaben zur ersten Stufe des Verfahrens / Teilnahmeantrag",
      "source_file": "formulare/5_Selektives_Verfahren_Allgemeine_Angaben_zur_ersten_Stufe_des_Verfahrens_Teilnahmeantrag.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Prüfung der Eignung der Bewerbenden für die Zulassung zur zweiten Stufe des selektiven Vergabeverfahrens.",
      "empfaenger": [],
@@ -69619,7 +69619,7 @@
    "name": "Selbstdeklaration für Anbietende im Submissionsverfahren",
    "department": "Baudepartement",
    "dienststelle": "Departementssekretariat Baudepartement",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Departementssekretariat Baudepartement/9_ Selbstdeklaration Fragen.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -69636,7 +69636,7 @@
      "id": 11,
      "title": "Angaben zur Unternehmung / Selbstdeklaration – Fragebogen für Anbieterinnen und Anbieter im Submissionsverfahren",
      "source_file": "formulare/9_ Selbstdeklaration Fragen.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Prüfung der Eignung der Anbietenden sowie der Einhaltung von Steuer-, Sozialversicherungs- und Arbeitsbedingungen im Submissionsverfahren.",
      "empfaenger": [],
@@ -70372,7 +70372,7 @@
    "name": "Energienachweis Energiebedarf Standardlösungskombination (EN-101a)",
    "department": "Baudepartement",
    "dienststelle": "Departementssekretariat Baudepartement",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Departementssekretariat Baudepartement/EN-101a-SH_2026.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -71264,7 +71264,7 @@
    "name": "Energienachweis Eigenstromerzeugung bei Neubauten (EN-104-SH)",
    "department": "Baudepartement",
    "dienststelle": "Departementssekretariat Baudepartement",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Departementssekretariat Baudepartement/EN-104-SH_2026.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -72441,7 +72441,7 @@
    "name": "Gesuch für Beiträge an die Kosten von Aus- und Weiterbildungskurse von Forstpersonal oder Waldarbeiter",
    "department": "Baudepartement",
    "dienststelle": "Kantonsforstamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Kantonsforstamt/2021.11.10. Gesuchsformular Aus- und Weiterbildungskurse.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -73318,7 +73318,7 @@
    "name": "Rodungsgesuch",
    "department": "Baudepartement",
    "dienststelle": "Kantonsforstamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Kantonsforstamt/External/rodungsgesuch.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -73347,7 +73347,7 @@
      "id": 21,
      "title": "Rodungsgesuch",
      "source_file": "formulare/rodungsgesuch.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Beurteilung der Zulässigkeit der Rodung und Festlegung von Ersatzaufforstungen und Ersatzmassnahmen samt Fristen.",
      "empfaenger": [],
@@ -74039,7 +74039,7 @@
    "name": "Antrag auf begünstigte Veranlagung oder Befreiung von der Schwerkehrsabgabe (Fahrzeuge des Schausteller- und Zirkusgewerbes)",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/Antrag Schausteller.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -74434,7 +74434,7 @@
    "name": "Antrag auf Befreiung von der Schwerverkehrsabgabe (Fahrschulfahrzeuge)",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/Antrag_befreiung_fuerfahrschulfahrzeuge.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -74843,7 +74843,7 @@
    "name": "Gesuch um Erteilung einer Bewilligung einer rad- oder motorsportlichen Veranstaltung",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/Gesuchsformular rad- oder motorsportliche Veranstaltung_V1-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -76154,7 +76154,7 @@
    "name": "Abtretung eines Kontrollschildes",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/kontrollschilderabtretung-25-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -76634,7 +76634,7 @@
    "name": "Ärztlicher Bericht zur Fahreignung",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/aerztlicher-bericht-ueber-die-fahreignung-25-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -79211,7 +79211,7 @@
    "name": "Anmeldung zur Fahrzeugprüfung ohne Kontrollschilder",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/anmeldung-fahrzeugpruefung-ohne-kontrollschilder-25-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -79874,7 +79874,7 @@
    "name": "Augenärztliches Zeugnis zur Fahreignung",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/augenaerztliches-zeugnis-25-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -80776,7 +80776,7 @@
    "name": "Neuanfertigung von Kontrollschildern",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/bestellung-kontrollschilder-25-2-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -81265,7 +81265,7 @@
    "name": "Gesuch um Bewilligung von gelben Gefahrenlichtern",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/bewilligung-gefahrenlichter-25-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -81931,7 +81931,7 @@
    "name": "Gesuch um Exportschilder zur Überführung eines Fahrzeuges ins Ausland",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/exportfahrzeug-mit-best-betriebssicherheit-25-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -82785,7 +82785,7 @@
    "name": "Gesuch-Fahrzeuganmeldung im Standortkanton",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/fz-anmeldung-standortkanton-25-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -83515,7 +83515,7 @@
    "name": "Gesuch-Erteilung eines Lernfahr- oder Führerausweises / Gesuch Umtausch ausländischer Führerausweis",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/gesuch Lernfahr-Fuehrerausweis mit Fotokleber-25-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -85295,7 +85295,7 @@
    "name": "Gesuch um Erteilung eines Ausweis-Duplikates",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/gesuch-ausweisduplikat-25-4-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -86209,7 +86209,7 @@
    "name": "Gesuch-Fahrzeugausweis für ein Ersatzfahrzeug",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/gesuch-ersatzfahrzeugausweis-25-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -87106,7 +87106,7 @@
    "name": "Gesuch um Erteilung eines Schiffsführerausweises",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/gesuch-erteilung-schiffsfuehrerausweis-26-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -88729,7 +88729,7 @@
    "name": "Gesuch um Erteilung einer nautischen Bewilligung",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/gesuch-fasnachtswagen-25-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -89751,7 +89751,7 @@
    "name": "Ausnahmebewilligung für gewerbliche Fahrten mit Landwirtschaftsfahrzeugen",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/gesuch-gewerbliche-fahrten-25-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -90188,7 +90188,7 @@
    "name": "Gesuch um Erteilung eines Kollektiv-Fahrzeugausweises in Verbindung mit Händlerschildern",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/gesuch-haendlerschild-formular-25-2-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -92249,7 +92249,7 @@
    "name": "Gesuch um Erteilung eines Schiffsausweises",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/gesuch-schiffsausweis-25-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -93624,7 +93624,7 @@
    "name": "Gesuch-Tagesausweis für Motorfahrzeuge oder Anhänger",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/gesuch-tagesausweis-25-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -94475,7 +94475,7 @@
    "name": "Antrag für zusätzliches Händlerschild",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/gesuch-zusaetzliches-haendlerschild-25-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -95217,7 +95217,7 @@
    "name": "Gesuch – Gewichtsänderung im Fahrzeugausweis",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/gew_aend-25-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -95962,7 +95962,7 @@
    "name": "Gesuch-Nachprüfung eines im Ausland stationierten Fahrzeuges mit SH-Kontrollschildern",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/nachprüfung-ausland-25-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -96433,7 +96433,7 @@
    "name": "Teilabnahme von Anhängerkupplungen an leichten Motorwagen",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/teilabnahme-von-anhaengerkupplungen-25-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -98028,7 +98028,7 @@
    "name": "Verzichtserklärung auf Führerausweiskategorien",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/verzichtserklaerung-25-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -98682,7 +98682,7 @@
    "name": "Gesuch – Vorläufige Verkehrsberechtigung in der Schweiz",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/vorlaeufige-verkehrsberechtigung-25-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -99429,7 +99429,7 @@
    "name": "Bewilligung für die Verwendung von Fahrzeugen im werkinternen Verkehr",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/werkinterener-verkehr-25-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -100067,7 +100067,7 @@
    "name": "Gesuch um Ausnahmebewilligung für Bauten unter den mittleren Grundwasserspiegel und temporäre Grundwasserabsenkungen im Gewässerschutzbereich Au",
    "department": "Baudepartement",
    "dienststelle": "Tiefbau Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Tiefbau Schaffhausen/BGW_Gesuch_Bauten_im_Grundwasser_2024.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -101848,7 +101848,7 @@
    "name": "Gesuch um Ausnahmebewilligung für die Querung eines Gewässers",
    "department": "Baudepartement",
    "dienststelle": "Tiefbau Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Tiefbau Schaffhausen/BGW_Gesuch_Querung Gewaesser_Formular_Oktober_2024.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -103480,7 +103480,7 @@
    "name": "Gesuch um Erteilung einer Bewilligung für den Entzug von Wärme mittels Erdsonden, Erdkörben oder Erdkollektoren",
    "department": "Baudepartement",
    "dienststelle": "Tiefbau Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Tiefbau Schaffhausen/EW_Gesuch_Bewilligung_fuer_Erdsonden_Koerbe_Kollektoren_Febr_2024.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -106797,7 +106797,7 @@
    "name": "Vorabklärung für den Entzug von Wärme mittels Erdsonden",
    "department": "Baudepartement",
    "dienststelle": "Tiefbau Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Tiefbau Schaffhausen/EW_Vorabklaerung_Erdsonden_März_2026.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -107929,7 +107929,7 @@
    "name": "Vorabklärung für den Entzug von Wärme mittels Erdkörben oder Erdkollektoren",
    "department": "Baudepartement",
    "dienststelle": "Tiefbau Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Tiefbau Schaffhausen/EW_Vorabklaerung_Koerbe_Kollektoren_Sept_2024.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -109414,7 +109414,7 @@
    "name": "Bezug von Oberflächenwasser zur Bewässerung (Erhebungsblatt)",
    "department": "Baudepartement",
    "dienststelle": "Tiefbau Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Tiefbau Schaffhausen/GN_Erhebungsblatt_Bewaesserung.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -110156,7 +110156,7 @@
    "name": "Beantragung von Konzessionen und Bewilligungen zur Gewässernutzung",
    "department": "Baudepartement",
    "dienststelle": "Tiefbau Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Tiefbau Schaffhausen/GN_Gesuch_Bewilligungen_zur_Gewaessernutzung_2024.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -111931,7 +111931,7 @@
    "name": "Antragsformular für eine Berufsausübungsbewilligung",
    "department": "Departement des Innern",
    "dienststelle": "Bewilligungen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Bewilligungen/Antragsformular BAB inkl. Selbstdeklaration Version 2025.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -114629,7 +114629,7 @@
    "name": "Bestätigung der Kompetenzübertragung an die fachliche Leitung von Institutionen des Gesundheitswesens",
    "department": "Departement des Innern",
    "dienststelle": "Bewilligungen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Bewilligungen/Formular Kompetenzübertragung GmbH,AG,Institutionen.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -115062,7 +115062,7 @@
    "name": "Ärzteschaft: Abrechnung Schulärztliche Tätigkeit",
    "department": "Departement des Innern",
    "dienststelle": "Gesundheitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Gesundheitsamt/2014 Abrechnungsformular.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -115659,7 +115659,7 @@
    "name": "Gesuch um Kostengutsprache bei einer ausserkantonalen Hospitalisation",
    "department": "Departement des Innern",
    "dienststelle": "Gesundheitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Gesundheitsamt/2021 Formular Kostengutsprachegesuch.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -115754,7 +115754,7 @@
      "id": 65,
      "title": "Formular Kostengutsprachegesuch",
      "source_file": "formulare/2021 Formular Kostengutsprachegesuch.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Beurteilung der medizinischen Notwendigkeit der ausserkantonalen Spitalbehandlung für den Entscheid über die Kostengutsprache.",
      "empfaenger": [
@@ -116633,7 +116633,7 @@
    "name": "Antrag für eine Betriebsbewilligung als Institution des Gesundheitswesens im Kanton Schaffhausen",
    "department": "Departement des Innern",
    "dienststelle": "Gesundheitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Gesundheitsamt/2022 Antragsformular BB Betriebsbewilligung Institutionen.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -120069,7 +120069,7 @@
    "name": "Gesuch zur Bewilligung der Führung einer Praxisapotheke",
    "department": "Departement des Innern",
    "dienststelle": "Gesundheitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Gesundheitsamt/2023.03_Gesuch ärztliche Privatapotheke SH.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -121347,7 +121347,7 @@
    "name": "Spitex-Anbieter: 2026 Erhebungsformular pflegende Angehörige",
    "department": "Departement des Innern",
    "dienststelle": "Gesundheitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Gesundheitsamt/2026-03 Final Erhebungsformular pflegende Angehörige.xlsx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -122251,7 +122251,7 @@
    "name": "OKP-Zulassung für Organisationen der Krankenpflege und Hilfe zu Hause",
    "department": "Departement des Innern",
    "dienststelle": "Gesundheitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Gesundheitsamt/24-02_SPITEX ORGANISATIONEN-Zulassung OKP.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -123230,7 +123230,7 @@
    "name": "Zulassung zur Taetigkeit zulasten der OKP fuer Zahnaerztinnen und Zahnaerzte",
    "department": "Departement des Innern",
    "dienststelle": "Gesundheitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Gesundheitsamt/24-02_ZAHNARZT-Zulassung OKP.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -124442,7 +124442,7 @@
    "name": "Auszahlung des Beitrags an Kosten berufspädagogischer Weiterbildungen",
    "department": "Departement des Innern",
    "dienststelle": "Gesundheitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Gesundheitsamt/24-11-25 PI Gesuchsformular Kurskosten Auszahlung.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -124471,7 +124471,7 @@
      "id": 72,
      "title": "Auszahlungsgesuch für die Gewährung eines Beitrages an die Kosten berufspädagogischer Weiterbildungen (Art. 7 EG FAP)",
      "source_file": "formulare/24-11-25 PI Gesuchsformular Kurskosten Auszahlung.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Prüfung der effektiv angefallenen Kosten und Auszahlung des bewilligten Beitrags an berufspädagogische Weiterbildungen.",
      "empfaenger": [],
@@ -124996,7 +124996,7 @@
    "name": "Bewilligungsgesuch Spitex-Organisation",
    "department": "Departement des Innern",
    "dienststelle": "Gesundheitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Gesundheitsamt/Antragsformular BB Spitex-Bewilligung 2025.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -127609,7 +127609,7 @@
    "name": "Gesuch um Verzicht auf die Erhebung einer Ersatzabgabe",
    "department": "Departement des Innern",
    "dienststelle": "Gesundheitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Gesundheitsamt/Ausbildungsoffensive Berichtsformular Spitäler.xlsx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -128749,7 +128749,7 @@
    "name": "Schulärzteschaftt: Bestellung Schul-Impfstoff",
    "department": "Departement des Innern",
    "dienststelle": "Gesundheitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Gesundheitsamt/Bestellformular Impfstoffe 2022.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -129217,7 +129217,7 @@
    "name": "Meldung verimpfte Dosen (HPV-Impfungen)",
    "department": "Departement des Innern",
    "dienststelle": "Gesundheitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Gesundheitsamt/Erfassungsformular_fuer_HPV-Impfungen.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -129818,7 +129818,7 @@
    "name": "Untersuchung im 1. Kindergarten",
    "department": "Departement des Innern",
    "dienststelle": "Gesundheitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Gesundheitsamt/Formular Untersuchungsbestätigung.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -130351,7 +130351,7 @@
    "name": "Nachweis der Fortbildungen der letzten 3 Jahre für bewilligungspflichtige Gesundheitsberufe",
    "department": "Departement des Innern",
    "dienststelle": "Gesundheitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Gesundheitsamt/Formular für Fortbildungsnachweis.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -130442,7 +130442,7 @@
      "id": 78,
      "title": "Formular für Fortbildungsnachweis",
      "source_file": "formulare/Formular für Fortbildungsnachweis.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Kontrolle der Erfüllung der gesetzlichen Fortbildungspflicht von Inhaberinnen und Inhabern einer Berufsausübungsbewilligung im Gesundheitswesen.",
      "empfaenger": [],
@@ -130768,7 +130768,7 @@
    "name": "Gesuch Impfen in öffentlichen Apotheken",
    "department": "Departement des Innern",
    "dienststelle": "Gesundheitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Gesundheitsamt/Gesuch Impfen in Apotheken_SH_10_2020.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -131972,7 +131972,7 @@
    "name": "Beitrag an die Kosten berufspädagogischer Weiterbildungen (Pflege)",
    "department": "Departement des Innern",
    "dienststelle": "Gesundheitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Gesundheitsamt/Gesuchformular Kursbeiträge.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -132001,7 +132001,7 @@
      "id": 80,
      "title": "Beitragsgesuch für die Gewährung eines Beitrages an die Kosten berufspädagogischer Weiterbildungen auf Grundlage Art. 7 EG FAP (SHR 811.100)",
      "source_file": "formulare/Gesuchformular Kursbeiträge.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Prüfung der Anspruchsvoraussetzungen und Bemessung des Kantonsbeitrags an die Kosten berufspädagogischer Weiterbildungen in der Pflege.",
      "empfaenger": [],
@@ -132533,7 +132533,7 @@
    "name": "Nachweis der Qualitätsanforderungen gemäss Art. 58g KVV (Zusatz Institutionen)",
    "department": "Departement des Innern",
    "dienststelle": "Gesundheitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Gesundheitsamt/INSTITUTION_zusätzlich_FB-Art. 58g_DEF.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -133488,7 +133488,7 @@
    "name": "Zulassung zur Tätigkeit zulasten der OKP für Ärztinnen und Ärzte",
    "department": "Departement des Innern",
    "dienststelle": "Gesundheitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Gesundheitsamt/OKP Zulassung p ARZT 2025.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -134560,7 +134560,7 @@
    "name": "Zulassung zur Tätigkeit zulasten der OKP für Chiropraktoren (2025)",
    "department": "Departement des Innern",
    "dienststelle": "Gesundheitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Gesundheitsamt/OKP Zulassung p CHIROPRAKTIKER 2025.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -135252,7 +135252,7 @@
    "name": "Zulassung zulasten der OKP für Ergotherapeuten und Ergotherapeutinnen",
    "department": "Departement des Innern",
    "dienststelle": "Gesundheitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Gesundheitsamt/OKP Zulassung p ERGOTHERAPEUT 2025.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -136114,7 +136114,7 @@
    "name": "Zulassung zur Tätigkeit zulasten der OKP für Ernährungsberater/-innen",
    "department": "Departement des Innern",
    "dienststelle": "Gesundheitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Gesundheitsamt/OKP Zulassung p ERNÄHRUNGSBERATER 2025.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -136966,7 +136966,7 @@
    "name": "Zulassung zur Tätigkeit zulasten der OKP für Hebammen (2025)",
    "department": "Departement des Innern",
    "dienststelle": "Gesundheitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Gesundheitsamt/OKP Zulassung p HEBAMME 2025.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -137753,7 +137753,7 @@
    "name": "Zulassung zur Tätigkeit zulasten der OKP für Logopädinnen und Logopäden",
    "department": "Departement des Innern",
    "dienststelle": "Gesundheitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Gesundheitsamt/OKP Zulassung p LOGOPÄDEN 2025.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -138666,7 +138666,7 @@
    "name": "OKP-Zulassung für Neuropsychologinnen und Neuropsychologen",
    "department": "Departement des Innern",
    "dienststelle": "Gesundheitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Gesundheitsamt/OKP Zulassung p NEUROPSYCHOLOGE 2025.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -139449,7 +139449,7 @@
    "name": "Zulassung zur Tätigkeit zulasten der OKP für Pflegefachpersonen (2025)",
    "department": "Departement des Innern",
    "dienststelle": "Gesundheitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Gesundheitsamt/OKP Zulassung p PFLEGEFACHPERSON 2025.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -140287,7 +140287,7 @@
    "name": "OKP-Zulassung für Physiotherapeutinnen und Physiotherapeuten",
    "department": "Departement des Innern",
    "dienststelle": "Gesundheitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Gesundheitsamt/OKP Zulassung p PHYSIOTHERAPEUT 2025.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -141138,7 +141138,7 @@
    "name": "Zulassung zur Tätigkeit zulasten der OKP für Podologen und Podologinnen",
    "department": "Departement des Innern",
    "dienststelle": "Gesundheitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Gesundheitsamt/OKP Zulassung p PODOLOGEN 2025.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -142104,7 +142104,7 @@
    "name": "OKP-Zulassung für psychologische Psychotherapeutinnen und -therapeuten",
    "department": "Departement des Innern",
    "dienststelle": "Gesundheitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Gesundheitsamt/OKP Zulassung p PSYCHOTHERAPEUT 2025.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -142933,7 +142933,7 @@
    "name": "Nachweis der Qualitätsanforderungen gemäss Art. 58g KVV (alle Leistungserbringer)",
    "department": "Departement des Innern",
    "dienststelle": "Gesundheitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Gesundheitsamt/Qualitätsanforderungen_Art. 58g ALLE.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -143313,7 +143313,7 @@
    "name": "Bestellformular für Gardasil® 9 (Ärzteschaft) Kantonales HPV-Impfprogramm",
    "department": "Departement des Innern",
    "dienststelle": "Gesundheitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Gesundheitsamt/SH - Bestellformular Gardasil9 - 2023 .pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -143604,7 +143604,7 @@
    "name": "Selbstdeklaration EPD-Anbindungsfähigkeit",
    "department": "Departement des Innern",
    "dienststelle": "Gesundheitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Gesundheitsamt/External/2024_Selbstdeklarationsformular_de.xlsx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -143843,7 +143843,7 @@
    "name": "Anmeldung zur Jägerprüfung",
    "department": "Departement des Innern",
    "dienststelle": "Jagd und Fischerei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Jagd und Fischerei/Anmeldung Jägerprüfung.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -144372,7 +144372,7 @@
    "name": "Antragsformular NSZG Revier und Bewilligung",
    "department": "Departement des Innern",
    "dienststelle": "Jagd und Fischerei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Jagd und Fischerei/Antragsformular NSZG Revier und Bewilligung.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -144833,7 +144833,7 @@
    "name": "Meldung über Nachsuchengespann",
    "department": "Departement des Innern",
    "dienststelle": "Jagd und Fischerei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Jagd und Fischerei/Formular Meldung Nachsuchengespann 07.2017.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -145603,7 +145603,7 @@
    "name": "Treffsicherheitsnachweis",
    "department": "Departement des Innern",
    "dienststelle": "Jagd und Fischerei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Jagd und Fischerei/SH Treffsicherheitsnachweis_JFK-Standard - Juli 2019.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -146548,7 +146548,7 @@
    "name": "Anordnung betreffend fürsorgerische Unterbringung (FU)",
    "department": "Departement des Innern",
    "dienststelle": "Kantonsärztlicher Dienst",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Kantonsaerztlicher Dienst/FU_Formular_2013.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -147260,7 +147260,7 @@
    "name": "Gesuch um Ausstellung eines Austauschpasses",
    "department": "Departement des Innern",
    "dienststelle": "Migrationsamt und Passbüro",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Migrationsamt und Passbuero/Gesuch_um_Ausstellung_eines_Austauschpasses_def.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -147704,7 +147704,7 @@
    "name": "Arbeitgeberbescheinigung international",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/716-052_d_V2.1-ausfuellbar.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -150023,7 +150023,7 @@
    "name": "Wahl des Krankenversicherungssystems bei Wohnsitz in Frankreich",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/Choix_du_système_d_assurance_maladie_juin_2019.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -150977,7 +150977,7 @@
    "name": "Antrag auf Insolvenzentschädigung (Formular 10023d)",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/a778d041-bcd9-45c0-892e-7e05beb9ece6.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -152957,7 +152957,7 @@
    "name": "Vollmacht / Ermächtigung (Arbeitslosenkasse)",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/alk01.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -153410,7 +153410,7 @@
    "name": "Vollmacht / Ermächtigung AHV-Ausgleichskasse (Formular allg01)",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/allg01.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -154017,7 +154017,7 @@
    "name": "Antrag auf Arbeitslosenentschädigung (Formular 10000d)",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/antrag-auf-arbeitslosenentschaedigung_10000d_v02.2025u.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -157918,7 +157918,7 @@
    "name": "Arbeitgeberbescheinigung für die Arbeitslosenversicherung",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/arbeitgeberbescheinigung_10006d_v02.2025u.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -160500,7 +160500,7 @@
    "name": "Belastungsermächtigung Postkonto (CH-DD-Lastschrift) / Bankkonto (LSV)",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/bei01.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -161107,7 +161107,7 @@
    "name": "Anmeldung für Selbständigerwerbende und Gesellschaften (SE)",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/bei02.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -163939,7 +163939,7 @@
    "name": "Anmeldung für TeilhaberInnen von Gesellschaften und für Erben (TH)",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/bei03.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -165432,7 +165432,7 @@
    "name": "Anmeldung für Hausdienstarbeitgebende (HD)",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/bei04.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -166591,7 +166591,7 @@
    "name": "Anmeldung für Nichterwerbstätige (NE) – AHV/IV/EO-Beiträge (Formular bei05)",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/bei05.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -169136,7 +169136,7 @@
    "name": "Anmeldung für juristische Personen (JP)",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/bei06.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -170781,7 +170781,7 @@
    "name": "Änderung der Pauschallohnsumme während des Jahres",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/bei07.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -171378,7 +171378,7 @@
    "name": "Lohndeklaration 2025 (Formular bei08-2025)",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/bei08-2025.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -172411,7 +172411,7 @@
    "name": "Lohndeklaration 2025 – FAK (Formular bei09)",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/bei09.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -172957,7 +172957,7 @@
    "name": "Lohndeklaration 2020 - Sozialfonds",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/bei10.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -173494,7 +173494,7 @@
    "name": "Lohndeklaration im vereinfachten Verfahren",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/bei11.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -174296,7 +174296,7 @@
    "name": "Anmeldung zum vereinfachten Abrechnungsverfahren",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/bei12.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -175314,7 +175314,7 @@
    "name": "Lohndeklaration für Hausangestellte und Hauswartung",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/bei15.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -176333,7 +176333,7 @@
    "name": "Anmeldung für Hauswartarbeitgeber",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/bei16.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -177508,7 +177508,7 @@
    "name": "Korrektur Lohndeklaration",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/bei17.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -178357,7 +178357,7 @@
    "name": "Monatliche Bescheinigung über Zwischenverdienst (Arbeitslosenversicherung)",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/bescheinigung-ueber-zwischenverdienst_10018d_v02.2025u.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -180187,7 +180187,7 @@
    "name": "Anmeldung für Ergänzungsleistungen (EL)",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/el01.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -184556,7 +184556,7 @@
    "name": "Fragebogen zu Kapitalbezügen aus der 2. Säule (BVG) und der Säule 3a",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/el02.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -185494,7 +185494,7 @@
    "name": "Antrag auf Vergütung von Krankheits- und Behinderungskosten (ohne Zahnkosten, Formular el03)",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/el03.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -185694,7 +185694,7 @@
    "name": "Zahnkosten – Antrag auf Vergütung von Krankheits- und Behinderungskosten (Formular el04)",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/el04.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -186088,7 +186088,7 @@
    "name": "Antrag Abrechnung von Transportkosten zur Ergänzungsleistung",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/el06.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -186527,7 +186527,7 @@
    "name": "Vollmacht / Ermächtigung IV-Stelle (Formular iv01)",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/iv01.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -186956,7 +186956,7 @@
    "name": "Antrag auf Zuschlag für Kinder-/Ausbildungszulagen",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/unterhaltspflicht-gegenueber-kindern_10009d_v04.2025u.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -188764,7 +188764,7 @@
    "name": "Anmeldung für Familienzulagen für Arbeitnehmende",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/zul03.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -190825,7 +190825,7 @@
    "name": "Anmeldung für Familienzulagen für Selbständigerwerbende",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/zul04.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -192811,7 +192811,7 @@
    "name": "Anmeldung für Familienzulagen für Nichterwerbstätige (Formular zul05)",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/zul05.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -194862,7 +194862,7 @@
    "name": "Antrag für Erwerbsersatzleistungen für alleinerziehende Eltern",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/zul07.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -197984,7 +197984,7 @@
    "name": "Anmeldung für Familienzulagen für Arbeitnehmer in der Landwirtschaft",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/zul08.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -200679,7 +200679,7 @@
    "name": "Anmeldung für Familienzulagen für Landwirte und Landwirtinnen",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/zul09.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -202872,7 +202872,7 @@
    "name": "Meldung zur Krankenversicherungspflicht für GrenzgängerInnen",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/zul10.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -203926,7 +203926,7 @@
    "name": "Meldung von Lohnsumme und Familienzulagen für den Lastenausgleich",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/zul14.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -204450,7 +204450,7 @@
    "name": "Familienzulagen für Arbeitnehmende Mutationsmeldung",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/zul15.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -206592,7 +206592,7 @@
    "name": "Familienzulagen Anmeldung für Differenzzahlungen",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/zul16.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -208975,7 +208975,7 @@
    "name": "Austritt aus dem Unternehmen: Mutationsmeldung für Familienzulagen (Formular zul18)",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/zul18.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -209434,7 +209434,7 @@
    "name": "Familienzulagen für Selbständigerwerbende Mutationsmeldung",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/zul19.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -211076,7 +211076,7 @@
    "name": "Anmeldung für Ausbildungszulagen für Kinder ab 15 Jahren",
    "department": "Departement des Innern",
    "dienststelle": "SVA Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/SVA Schaffhausen/zul20.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -212401,7 +212401,7 @@
    "name": "Antrag auf Intensivbetreuung mit Zusatzfinanzierung",
    "department": "Departement des Innern",
    "dienststelle": "Sozialamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Sozialamt/Antrag Sonderfinanzierung.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -212424,7 +212424,7 @@
      "id": 152,
      "title": "Antrag auf Intensivbetreuung mit Zusatzfinanzierung",
      "source_file": "formulare/Antrag Sonderfinanzierung.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Prüfung, ob bei der betreuten Person ein erhöhter Betreuungsbedarf besteht, der eine Zusatzfinanzierung der Institution rechtfertigt.",
      "empfaenger": [
@@ -212832,7 +212832,7 @@
    "name": "Antrag auf Leistungen der öffentlichen Sozialhilfe",
    "department": "Departement des Innern",
    "dienststelle": "Sozialamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Sozialamt/Formularvorlage_Antrag_auf_Leistungen_Sozialhilfe_2020.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -212849,7 +212849,7 @@
      "id": 153,
      "title": "Antrag auf Leistungen der öffentlichen Sozialhilfe",
      "source_file": "formulare/Formularvorlage_Antrag_auf_Leistungen_Sozialhilfe_2020.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Abklärung der finanziellen und persönlichen Verhältnisse zur Beurteilung der Bedürftigkeit und Bemessung der Sozialhilfeleistungen.",
      "empfaenger": [
@@ -214268,7 +214268,7 @@
    "name": "Gesuchsformular Opferhilfe",
    "department": "Departement des Innern",
    "dienststelle": "Sozialamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Sozialamt/Gesuchsformular Opferhilfe 06.02.2025.doc. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -214443,7 +214443,7 @@
      "id": 155,
      "title": "Gesuch um Opferhilfe",
      "source_file": "formulare/Gesuchsformular Opferhilfe 06.02.2025.doc",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Prüfung der Opfereigenschaft und des Anspruchs auf Opferhilfeleistungen wie Entschädigung und Genugtuung nach einer Straftat.",
      "empfaenger": [
@@ -218094,7 +218094,7 @@
    "name": "Gesuch Kantonaler Solidaritätsbeitrag",
    "department": "Departement des Innern",
    "dienststelle": "Sozialamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Sozialamt/Gesuchsformular Solidaritätsbeitrag.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -218176,7 +218176,7 @@
    "forms": [
     {
      "id": 156,
-     "title": "Gesuchsformular Solidaritätsbeitrag",
+     "title": "Gesuchsformular Solidaritätsbeitrag",
      "source_file": "formulare/Gesuchsformular Solidaritätsbeitrag.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -219468,7 +219468,7 @@
    "name": "Meldung über Hundebiss an Tier",
    "department": "Departement des Innern",
    "dienststelle": "Veterinäramt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Veterinaeramt/2021-Formular Hundebissmeldung Opfer Tier aktiv.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -222373,7 +222373,7 @@
    "name": "Formular Trichinenuntersuchung (Pferde, Wildschwein)",
    "department": "Departement des Innern",
    "dienststelle": "Veterinäramt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Veterinaeramt/2023 Formular Annahme Trichinenproben.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -223085,7 +223085,7 @@
      "id": 420,
      "title": "Untersuchungsantrag auf Trichinellen",
      "source_file": "formulare/Untersuchungsantrag auf Trichinellen durch TA.DOC",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Zuordnung der Proben zu Tier und Schlachtbetrieb für die amtliche Trichinellenuntersuchung und die Freigabe des Fleisches.",
      "empfaenger": [],
@@ -224527,7 +224527,7 @@
    "name": "Meldung über vermisste / gefundene Tiere",
    "department": "Departement des Innern",
    "dienststelle": "Veterinäramt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Veterinaeramt/21_05_20_Tiermeldeformular Kt SH.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -226044,7 +226044,7 @@
    "name": "Bewilligungsgesuch Berufsausübung als Tierärztin oder Tierarzt",
    "department": "Departement des Innern",
    "dienststelle": "Veterinäramt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Veterinaeramt/Bewilligungsgesuch Berufsausübung TierärzteInnen.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -226150,7 +226150,7 @@
      "id": 161,
      "title": "Antragsformular für Berufsausübungsbewilligungen",
      "source_file": "formulare/Bewilligungsgesuch Berufsausübung TierärzteInnen.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Prüfung der persönlichen und fachlichen Voraussetzungen für die Erteilung der tierärztlichen Berufsausübungsbewilligung.",
      "empfaenger": [
@@ -227042,7 +227042,7 @@
    "name": "Meldung verhaltensauffälliger Hund",
    "department": "Departement des Innern",
    "dienststelle": "Veterinäramt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Veterinaeramt/Formular Meldung verhaltensauffälliger Hund.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -228211,7 +228211,7 @@
    "name": "Gesuch für das Halten von Hunden mit erhöhtem Gefährdungspotential",
    "department": "Departement des Innern",
    "dienststelle": "Veterinäramt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Veterinaeramt/Gesuch Listenhund 23-02.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -230441,7 +230441,7 @@
    "name": "Meldeformular für eine befristete Berufsausübung als Tierarzt / Tierärztin",
    "department": "Departement des Innern",
    "dienststelle": "Veterinäramt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Veterinaeramt/Meldeformular_fuer_befristete_Berufsausuebung__max._90_Tage__fuer_TieraerzteInnen.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -231959,7 +231959,7 @@
    "name": "Meldung über Tierschutzmängel",
    "department": "Departement des Innern",
    "dienststelle": "Veterinäramt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Veterinaeramt/Meldung_von_Tierschutzmaengeln.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -232660,7 +232660,7 @@
    "name": "Kopie des Ausbildungsnachweises oder des Führungszertifikats «Club Management»",
    "department": "Erziehungsdepartement",
    "dienststelle": "Departementssekretariat",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Erziehungsdepartement/Departementssekretariat/Formular_Clubmanagement.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -232677,7 +232677,7 @@
      "id": 169,
      "title": "Kopie des Ausbildungsnachweises oder des Führungszertifikats «Club Management»",
      "source_file": "formulare/Formular_Clubmanagement.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Prüfung des Ausbildungsabschlusses und der ehrenamtlichen Tätigkeit zur Ausrichtung des Beitrags an den Lehrgang «Club Management».",
      "empfaenger": [],
@@ -233217,7 +233217,7 @@
    "name": "Abrechnung kantonale Betreuungsgutschriften (BeGu) ausserkantonal",
    "department": "Erziehungsdepartement",
    "dienststelle": "Dienststelle Familie und Jugend",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Erziehungsdepartement/Dienststelle Familie und Jugend/2026_Abrechnungsformular_ausserkantonal.xlsx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -234007,7 +234007,7 @@
    "name": "Förderbeiträge von Kanton und Stadt Schaffhausen für Kulturschaffende",
    "department": "Erziehungsdepartement",
    "dienststelle": "Fachstelle Kultur",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Erziehungsdepartement/Fachstelle Kultur/Formular Förderbeiträge 2026.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -234142,7 +234142,7 @@
      "id": 171,
      "title": "Förderbeiträge (Vergabe 2026) – Anmeldeblatt",
      "source_file": "formulare/Formular Förderbeiträge 2026.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Beurteilung der künstlerischen Tätigkeit, des Kantonsbezugs und des eingereichten Projekts zur Vergabe der Förderbeiträge an Kulturschaffende.",
      "empfaenger": [],
@@ -234956,7 +234956,7 @@
    "name": "Stellungnahme zur Totalrevision des Polizeigesetzes",
    "department": "Finanzdepartement",
    "dienststelle": "Allgemein",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Allgemein/20231220 Fragebogen Polizeigesetz.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -234979,7 +234979,7 @@
      "id": 173,
      "title": "Stellungnahme betreffend Totalrevision des Polizeigesetzes",
      "source_file": "formulare/20231220 Fragebogen Polizeigesetz.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Erfassung und Auswertung der Stellungnahmen der Vernehmlassungsteilnehmenden zur Totalrevision des Polizeigesetzes.",
      "empfaenger": [],
@@ -235424,7 +235424,7 @@
    "name": "Stellungnahme zur Teilrevision des Bevölkerungsschutzgesetzes",
    "department": "Finanzdepartement",
    "dienststelle": "Allgemein",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Allgemein/Fragebogen Bevölkerungsschutzgesetz.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -235447,7 +235447,7 @@
      "id": 174,
      "title": "Stellungnahme betreffend Teilrevision des Bevölkerungsschutzgesetzes",
      "source_file": "formulare/Fragebogen Bevölkerungsschutzgesetz.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Auswertung der Vernehmlassungsstellungnahmen zur Teilrevision des Bevölkerungsschutzgesetzes und Zuordnung zur stellungnehmenden Stelle.",
      "empfaenger": [],
@@ -235780,7 +235780,7 @@
    "name": "Stellungnahme zur Teilrevision des Zivilschutzgesetzes",
    "department": "Finanzdepartement",
    "dienststelle": "Allgemein",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Allgemein/Fragebogen Zivilschutzgesetz.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -235803,7 +235803,7 @@
      "id": 175,
      "title": "Stellungnahme betreffend Teilrevision des Zivilschutzgesetzes",
      "source_file": "formulare/Fragebogen Zivilschutzgesetz.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Auswertung der Vernehmlassungsstellungnahmen zur Teilrevision des Zivilschutzgesetzes und Zuordnung zur stellungnehmenden Stelle.",
      "empfaenger": [],
@@ -236140,7 +236140,7 @@
    "name": "Antrag zur Aufhebung des Schutzraumes",
    "department": "Finanzdepartement",
    "dienststelle": "Bevölkerungsschutz und Armee",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Bevoelkerungsschutz und Armee/Antrag Aufhebung des Schutzraumes Website.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -236573,7 +236573,7 @@
    "name": "Antrag für ein Duplikat-Dienstbüchlein",
    "department": "Finanzdepartement",
    "dienststelle": "Bevölkerungsschutz und Armee",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Bevoelkerungsschutz und Armee/Antrag Duplikat DB Kt SH.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -237245,7 +237245,7 @@
    "name": "Rückerstattung Wehrpflichtersatzabgabe",
    "department": "Finanzdepartement",
    "dienststelle": "Bevölkerungsschutz und Armee",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Bevoelkerungsschutz und Armee/Antrag Rückerstattung.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -238016,7 +238016,7 @@
    "name": "Schutzraumbaupflicht - Bau eines Schutzraumes",
    "department": "Finanzdepartement",
    "dienststelle": "Bevölkerungsschutz und Armee",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Bevoelkerungsschutz und Armee/Formular Verfügung über die Schutzraumbaupflicht 25 .pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -239086,7 +239086,7 @@
    "name": "Militärdienst: Gesuch um Dienstverschiebung durch Studium",
    "department": "Finanzdepartement",
    "dienststelle": "Bevölkerungsschutz und Armee",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Bevoelkerungsschutz und Armee/Formular_Dienstverschiebung_Studium.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -240625,7 +240625,7 @@
    "name": "Gesuch Schiessbewilligung für Ausländer",
    "department": "Finanzdepartement",
    "dienststelle": "Bevölkerungsschutz und Armee",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Bevoelkerungsschutz und Armee/Gesuch Schiessbewilligung für ausländische Staatsangehörige.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -241320,7 +241320,7 @@
    "name": "Arbeitshilfe Überprüfung von Sicherheitsbeleuchtung / Sicherheitsstromversorgung",
    "department": "Finanzdepartement",
    "dienststelle": "Kantonale Feuerpolizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Feuerpolizei/Baulicher Brandschutz/Fuer Planer und Spezialisten/03_Arbeitshilfe_20180406.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -242176,7 +242176,7 @@
    "name": "Gesuch für Bühnenfeuerwerk (Indoor - Pyrotechnik)",
    "department": "Finanzdepartement",
    "dienststelle": "Kantonale Feuerpolizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Feuerpolizei/Baulicher Brandschutz/Fuer Planer und Spezialisten/20250331 Gesuch inkl. Zusatzblatt B__hnenfeuerwerk Indoor - Pyrotechnik.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -243301,7 +243301,7 @@
    "name": "Gesuch für offenes Feuer in Raum / Zelt >300 Personen",
    "department": "Finanzdepartement",
    "dienststelle": "Kantonale Feuerpolizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Feuerpolizei/Baulicher Brandschutz/Fuer Planer und Spezialisten/20250331 Gesuch inkl. Zusatzblatt Offenes Feuer Raum mit grosser Personenbelegung.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -244374,7 +244374,7 @@
    "name": "Brandschutznachweis",
    "department": "Finanzdepartement",
    "dienststelle": "Kantonale Feuerpolizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Feuerpolizei/Baulicher Brandschutz/Fuer Planer und Spezialisten/Brandschutznachweis_20200710.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -246752,7 +246752,7 @@
    "name": "Dokumentation Blitzschutzsysteme",
    "department": "Finanzdepartement",
    "dienststelle": "Kantonale Feuerpolizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Feuerpolizei/Baulicher Brandschutz/Fuer Planer und Spezialisten/Formular_150_Blitzschutzsysteme_ab_01.07.2024.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -247707,7 +247707,7 @@
    "name": "Gesuchsformular 160 Zulassung im Einzelfall",
    "department": "Finanzdepartement",
    "dienststelle": "Kantonale Feuerpolizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Feuerpolizei/Baulicher Brandschutz/Fuer Planer und Spezialisten/Gesuchsformular_160_Zulassung_im_Einzelfall_20200529.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -248645,7 +248645,7 @@
    "name": "Inhouse-Funkversorgung für Einsatzkräfte",
    "department": "Finanzdepartement",
    "dienststelle": "Kantonale Feuerpolizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Feuerpolizei/Inhouse Funkversorgung für Einsatzkräfte 01.07.2023 mit Formular.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -249183,7 +249183,7 @@
    "name": "Meldeverfahren Wärmepumpen",
    "department": "Baudepartement",
    "dienststelle": "Energiefachstelle",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Feuerpolizei/Meldeformular Wärmepumpen Schaffhausen 2024.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -252305,7 +252305,7 @@
    "name": "Übereinstimmungserklärung Brandschutz",
    "department": "Finanzdepartement",
    "dienststelle": "Kantonale Feuerpolizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Feuerpolizei/Baulicher Brandschutz/Fuer Planer und Spezialisten/Uebereinstimmungserklaerung.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -253082,7 +253082,7 @@
    "name": "Selbstdeklaration zur Atemschutztauglichkeit",
    "department": "Finanzdepartement",
    "dienststelle": "Kantonale Feuerpolizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Feuerpolizei/Feuerwehrinspektorat/2022-Form02 - Selbstdeklaration zur Atemschutztauglichkeit OSFIK.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -253399,7 +253399,7 @@
    "name": "Voranmeldung einer Alarm - oder Einsatzübung",
    "department": "Finanzdepartement",
    "dienststelle": "Kantonale Feuerpolizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Feuerpolizei/Feuerwehrinspektorat/7.1 Anhang_2-Voranmeldung_Alarmübung.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -254009,7 +254009,7 @@
    "name": "Prüfblatt für Atemschutzmasken mit Überdruck",
    "department": "Finanzdepartement",
    "dienststelle": "Kantonale Feuerpolizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Feuerpolizei/Feuerwehrinspektorat/Atemschutz_Pruefblatt_fuer_Atemschutzmasken_mit_UEberdruck.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -254332,7 +254332,7 @@
    "name": "Tauglichkeitsuntersuchung Feuerwehr (FKS-01, Formular für den Arzt)",
    "department": "Finanzdepartement",
    "dienststelle": "Kantonale Feuerpolizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Feuerpolizei/Feuerwehrinspektorat/FKS-01-Tauglichkeitsuntersuchung_Formular_fuer_Arzt-leer_DE.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -257228,7 +257228,7 @@
    "name": "Tauglichkeitsuntersuchung Feuerwehr (FKS-03, Fragebogen für Angehörige der Feuerwehr)",
    "department": "Finanzdepartement",
    "dienststelle": "Kantonale Feuerpolizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Feuerpolizei/Feuerwehrinspektorat/FKS-03-Tauglichkeitsuntersuchung_Fragebogen_fuer_Angehoerige_der_Feuerwehr_leer_DE.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -259320,7 +259320,7 @@
    "name": "Reservation von Ausbildungsanlagen im Ausbildungszentrum Oberwiesen",
    "department": "Finanzdepartement",
    "dienststelle": "Kantonale Feuerpolizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Feuerpolizei/Feuerwehrinspektorat/Formular Reservation Ausbildungsanlagen AZO 12-24.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -260456,7 +260456,7 @@
    "name": "Reservation RFS Brandsimulationsanlage",
    "department": "Finanzdepartement",
    "dienststelle": "Kantonale Feuerpolizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Feuerpolizei/Feuerwehrinspektorat/Formular Reservation RFS.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -261097,7 +261097,7 @@
    "name": "Definitive Anmeldung WinFAP",
    "department": "Finanzdepartement",
    "dienststelle": "Kantonale Feuerpolizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Feuerpolizei/Feuerwehrinspektorat/Meldeformular ausserkantonale Kurse 2021.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -261739,7 +261739,7 @@
    "name": "Kontrolle und Dichtigkeitsprüfung von Flucht- und Rettungsgeräten",
    "department": "Finanzdepartement",
    "dienststelle": "Kantonale Feuerpolizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Feuerpolizei/Feuerwehrinspektorat/Pruefblatt_Fluchtgeraete_02.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -262185,7 +262185,7 @@
    "name": "Rapport über durchgeführte Übungen im Ausbildungszentrum Oberwiesen",
    "department": "Finanzdepartement",
    "dienststelle": "Kantonale Feuerpolizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Feuerpolizei/Feuerwehrinspektorat/Rapport_Oberwiesen_-Durchgefuehrte_Uebung.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -263245,7 +263245,7 @@
    "name": "Protokoll für Atemschutz-Einsatz (Truppüberwachung)",
    "department": "Finanzdepartement",
    "dienststelle": "Kantonale Feuerpolizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Feuerpolizei/Feuerwehrinspektorat/Truppueberwacherprotokoll.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -263801,7 +263801,7 @@
    "name": "Feedback zur Website der Gebäudeversicherung",
    "department": "Finanzdepartement",
    "dienststelle": "Gebäudeversicherung",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Gebaudeversicherung/Feedback_Website_version1.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -263967,7 +263967,7 @@
    "name": "Bewerbung als Aspirant/in bei der Schaffhauser Polizei",
    "department": "Finanzdepartement",
    "dienststelle": "Polizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Polizei/Bewerbungsformular_Schaffhauser_Polizei.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -266158,7 +266158,7 @@
    "name": "Bewilligung zur Führung eines kantonsansässigen Sicherheitsunternehmens (Erstgesuch)",
    "department": "Finanzdepartement",
    "dienststelle": "Polizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Polizei/Bewilligungsgesuch Führung eines kantonsansässigen Sicherheitsunternehmens.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -266796,7 +266796,7 @@
    "name": "Gesuch um Bewilligung zur Ausuebung privater Sicherheitsdienste als Angestellte/-r ausserkantonaler Unternehmen (Erstgesuch)",
    "department": "Finanzdepartement",
    "dienststelle": "Polizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Polizei/Bewilligungsgesuch Sicherheitsangestellte-r ausserkantonaler Unternehmen u Betriebe.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -267390,7 +267390,7 @@
    "name": "Meldung des Einsatzes von Sicherheitspersonal im öffentlichen Raum",
    "department": "Finanzdepartement",
    "dienststelle": "Polizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Polizei/Einsatzmeldung im öffentlichen Raum SH.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -268164,7 +268164,7 @@
    "name": "Meldung der Mitarbeiter für einen Einsatz",
    "department": "Finanzdepartement",
    "dienststelle": "Polizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Polizei/Einsatzmeldung.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -268654,7 +268654,7 @@
    "name": "Europäischer Feuerwaffenpass (Ausstellung, Verlängerung, Nachtrag)",
    "department": "Finanzdepartement",
    "dienststelle": "Polizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Polizei/GESUCH FWP_DE.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -269467,7 +269467,7 @@
    "name": "Erteilung eines Waffenerwerbsscheins",
    "department": "Finanzdepartement",
    "dienststelle": "Polizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Polizei/GESUCH WES_DE.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -270148,7 +270148,7 @@
    "name": "Gesuch um Erteilung einer Waffentragbewilligung (Art. 27 WG und 48 WV)",
    "department": "Finanzdepartement",
    "dienststelle": "Polizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Polizei/GESUCH WTB_DE.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -271078,7 +271078,7 @@
    "name": "Gesuch um Betriebs- und Führungsbewilligung für ausserkantonale Sicherheitsunternehmen",
    "department": "Finanzdepartement",
    "dienststelle": "Polizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Polizei/Gesuch Betriebs- und Führungsbewilligung für ausserkantonale Sicherheitsunternehmen.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -272197,7 +272197,7 @@
    "name": "Betriebsbewilligung für die Zweigniederlassung eines Sicherheitsunternehmens",
    "department": "Finanzdepartement",
    "dienststelle": "Polizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Polizei/Gesuch Betriebsbewilligung kantonsansässige Zweigniederlassung.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -273210,7 +273210,7 @@
    "name": "Bewilligung zum Verkauf von pyrotechnischen Gegenständen (Feuerwerk)",
    "department": "Finanzdepartement",
    "dienststelle": "Polizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Polizei/Gesuch Feuerwerkverkauf.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -273711,7 +273711,7 @@
    "name": "Bewilligung für gewerbsmässigen Waffenhandel und Waffenherstellung",
    "department": "Finanzdepartement",
    "dienststelle": "Polizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Polizei/Gesuch Waffenhandelsbewilligunge_de.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -274663,7 +274663,7 @@
    "name": "Meldung Führung einer Zweigniederlassung eines Sicherheitsunternehmens als Inhaber/in einer ausserkantonalen Bewilligung",
    "department": "Finanzdepartement",
    "dienststelle": "Polizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Polizei/Meldung_Fuehrung_Zweigniederlassung_einer_Sicherheitsfirma_als_Inhaber_einer_Bewilligung_eines_anderen_Kantons_neu.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -275703,7 +275703,7 @@
    "name": "Nachweis des regelmässigen sportlichen Schiessens",
    "department": "Finanzdepartement",
    "dienststelle": "Polizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Polizei/Nachweis regelmaessiges sportliches Schiessen.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -276173,7 +276173,7 @@
    "name": "Verlängerungsgesuch Betriebs- und Führungsbewilligung für ausserkantonale Sicherheitsunternehmen",
    "department": "Finanzdepartement",
    "dienststelle": "Polizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Polizei/Verlängerungsgesuch Betriebs- und Führungsbewilligung für ausserkantonale Sicherheitsunternehmen.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -277168,7 +277168,7 @@
    "name": "Verlängerung der Bewilligung zur Führung eines kantonsansässigen Sicherheitsunternehmens",
    "department": "Finanzdepartement",
    "dienststelle": "Polizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Polizei/Verlängerungsgesuch Bewilligung Führung eines kantonsansässigen Sicherheitsunternehmens.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -277804,7 +277804,7 @@
    "name": "Gesuch um Bewilligungsverlaengerung zur Ausuebung privater Sicherheitsdienste als Angestellte/-r ausserkantonaler Unternehmen",
    "department": "Finanzdepartement",
    "dienststelle": "Polizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Polizei/Verlängerungsgesuch Bewilligung Sicherheitsangestellte-r ausserkantonaler Unternehmen u Betriebe.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -278386,7 +278386,7 @@
    "name": "Verlängerung Betriebsbewilligung Zweigniederlassung Sicherheitsunternehmen",
    "department": "Finanzdepartement",
    "dienststelle": "Polizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Polizei/Verlängerungsgesuch Betriebsbewilligung kantonsansässige Zweigniederlassung.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -279550,7 +279550,7 @@
    "name": "Bewilligungsverlängerung private Sicherheitsdienste (Angestellte)",
    "department": "Finanzdepartement",
    "dienststelle": "Polizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Polizei/Verlängerungsgesuch Bewilligung Sicherheitsangestellte-r kantonaler Unternehmen u. Betriebe.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -280190,7 +280190,7 @@
    "name": "Meldung des rechtmässigen Besitzes von Feuerwaffen",
    "department": "Finanzdepartement",
    "dienststelle": "Polizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Polizei/meldung-rechtmaessiger-besitz-d.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -281058,7 +281058,7 @@
    "name": "Härtefallgesuch bei der Schulzahnklinik",
    "department": "Finanzdepartement",
    "dienststelle": "Schulzahnklinik",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Schulzahnklinik/Gesuchsformular-fuer-Haertefall96.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -283743,7 +283743,7 @@
    "name": "Gesuchsformular für die Beteiligung an die Kosten einer Behandlung",
    "department": "Finanzdepartement",
    "dienststelle": "Schulzahnklinik",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Schulzahnklinik/Gesuchsformular-fuer-die-Beteiligung-an-die-Kosten-einer-kieferorthopaedishen-Behandlung.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -284457,7 +284457,7 @@
    "name": "Gesuch um Verrechnung von Nachzahlungen der AHV/IV/EO und EL",
    "department": "Finanzdepartement",
    "dienststelle": "Sekretariat Finanzdepartement",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Sekretariat Finanzdepartment/318183d.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -285058,7 +285058,7 @@
    "name": "Antrag zur Weitergeltung des schweizerischen Sozialversicherungsrechts",
    "department": "Finanzdepartement",
    "dienststelle": "Sekretariat Finanzdepartement",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Sekretariat Finanzdepartment/Antrag zur Weitergeltung 1.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -288121,7 +288121,7 @@
    "name": "Erlass von Verfahrenskosten",
    "department": "Finanzdepartement",
    "dienststelle": "Sekretariat Finanzdepartement",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Sekretariat Finanzdepartment/Fragebogen Erlasswesen.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -291003,7 +291003,7 @@
    "name": "Bestimmung des anwendbaren Sozialversicherungsrechts bei Mehrfachtätigkeit",
    "department": "Finanzdepartement",
    "dienststelle": "Sekretariat Finanzdepartement",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Sekretariat Finanzdepartment/Mehrfachtätigkeit 1.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -293338,7 +293338,7 @@
    "name": "Vereinbarung nach Art. 21 Abs. 2 der Verordnung (EG) Nr. 987/2009",
    "department": "Finanzdepartement",
    "dienststelle": "Sekretariat Finanzdepartement",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Sekretariat Finanzdepartment/Vereinbarung Art. 21 der Verordnung (EG) Nr. 987_2009 1.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -293796,7 +293796,7 @@
    "name": "Bestellformular für weitere Formulare 2025",
    "department": "Finanzdepartement",
    "dienststelle": "Steuerverwaltung",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Steuerverwaltung/112 SH Bestellformular 2025 VA DEF.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -294158,10 +294158,10 @@
   {
    "id": 238,
    "slug": "steuerverwaltung-abkla-rung-internationaler-woch",
-   "name": "Abklärung internationaler Wochenaufenthalter",
+   "name": "Abklärung internationaler Wochenaufenthalter",
    "department": "Finanzdepartement",
    "dienststelle": "Steuerverwaltung",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Steuerverwaltung/Abklärung internationaler Wochenaufenthalter.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -294176,7 +294176,7 @@
    "forms": [
     {
      "id": 238,
-     "title": "Abklärung internationaler Wochenaufenthalter",
+     "title": "Abklärung internationaler Wochenaufenthalter",
      "source_file": "formulare/Abklärung internationaler Wochenaufenthalter.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -296902,7 +296902,7 @@
    "name": "Neuberechnung der Quellensteuer",
    "department": "Finanzdepartement",
    "dienststelle": "Steuerverwaltung",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Steuerverwaltung/Antrag auf Neuberechnung der Quellensteuer.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -297708,10 +297708,10 @@
   {
    "id": 249,
    "slug": "steuerverwaltung-antrag-auf-ru-ckerstattung-der-",
-   "name": "Antrag auf Rückerstattung der Quellensteuer auf Vorsorgeleistungen",
+   "name": "Antrag auf Rückerstattung der Quellensteuer auf Vorsorgeleistungen",
    "department": "Finanzdepartement",
    "dienststelle": "Steuerverwaltung",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Steuerverwaltung/Antrag auf Rückerstattung der Quellensteuer auf Vorsorgeleistungen.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -297732,7 +297732,7 @@
    "forms": [
     {
      "id": 249,
-     "title": "Antrag auf Rückerstattung der Quellensteuer auf Vorsorgeleistungen",
+     "title": "Antrag auf Rückerstattung der Quellensteuer auf Vorsorgeleistungen",
      "source_file": "formulare/Antrag auf Rückerstattung der Quellensteuer auf Vorsorgeleistungen.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -299223,7 +299223,7 @@
    "name": "Antrag auf nachträgliche ordentliche Veranlagung (NOV)",
    "department": "Finanzdepartement",
    "dienststelle": "Steuerverwaltung",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Steuerverwaltung/Antrag auf nachträgliche ordentliche Veranlagung (NOV).pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -300088,7 +300088,7 @@
    "name": "Formular DA-3: Antrag auf Anrechnung ausländischer Quellensteuer für ausländische Lizenzgebühren",
    "department": "Finanzdepartement",
    "dienststelle": "Steuerverwaltung",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Steuerverwaltung/DA-3 Pauschale Steueranrechnung.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -301185,7 +301185,7 @@
    "name": "Gesuch um Steuererlass",
    "department": "Finanzdepartement",
    "dienststelle": "Steuerverwaltung",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Steuerverwaltung/Erlass-Fragebogen.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -303609,7 +303609,7 @@
    "name": "Ansässigkeitsbescheinigung für Grenzgänger",
    "department": "Finanzdepartement",
    "dienststelle": "Steuerverwaltung",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Steuerverwaltung/GRE1 - Ansässigkeitsbescheinigung für Grenzgänger.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -304214,7 +304214,7 @@
    "name": "Bescheinigung über die Nichtrückkehr an mehr als 60 Arbeitstagen",
    "department": "Finanzdepartement",
    "dienststelle": "Steuerverwaltung",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Steuerverwaltung/GRE3 - Bescheinigung des Arbeitgebers über die Nichtrückkehr an mehr als 60 Arbeitstagen.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -305023,7 +305023,7 @@
    "name": "Hilfsblatt für die Steuererklärung: Rebbau für Kleinbetriebe bis max. 1ha - 18R",
    "department": "Finanzdepartement",
    "dienststelle": "Steuerverwaltung",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Steuerverwaltung/Hilfsblatt_Rebbau_18R.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -306764,7 +306764,7 @@
    "name": "Bescheinigung bei unterjährigem Arbeitsverhältnis (Frankreich)",
    "department": "Finanzdepartement",
    "dienststelle": "Steuerverwaltung",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Steuerverwaltung/QST Arbeitgeberbescheinigung DBA Frankreich - CH.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -307452,7 +307452,7 @@
    "name": "Formular: Steuererklärung für Grundstückgewinnsteuer",
    "department": "Finanzdepartement",
    "dienststelle": "Steuerverwaltung",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Steuerverwaltung/Steuererklärung Grundstueckgewinnsteuer beschreibbar.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -310179,7 +310179,7 @@
    "name": "Anrechnung ausländischer Quellensteuer und Steuerrückbehalt USA (DA-1)",
    "department": "Finanzdepartement",
    "dienststelle": "Steuerverwaltung",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Steuerverwaltung/Steuern 2025 - Antrag auf Anrechnung ausländischer Quellensteuer und zusätzlichen Steuerrückbehalt USA.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -310963,7 +310963,7 @@
    "name": "Antrag auf Reduktion Eigenmietwert in Härtefällen",
    "department": "Finanzdepartement",
    "dienststelle": "Steuerverwaltung",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Steuerverwaltung/Steuern 2025 - Antrag auf Reduktion Eigenmietwert in Härtefällen.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -311526,7 +311526,7 @@
    "name": "Arbeitszeitbestätigung des Arbeitgebers",
    "department": "Finanzdepartement",
    "dienststelle": "Steuerverwaltung",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Steuerverwaltung/Steuern 2025 - Arbeitszeitbestätigung des Arbeitgebers.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -312069,7 +312069,7 @@
    "name": "Arbeitgeberbestätigung zur Benützung des Privatautos für Berufsfahrten",
    "department": "Finanzdepartement",
    "dienststelle": "Steuerverwaltung",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Steuerverwaltung/Steuern 2025 - Bestätigung Geschäftsfahrten.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -312621,7 +312621,7 @@
    "name": "Liquidationsgewinn bei Geschäftsaufgabe",
    "department": "Finanzdepartement",
    "dienststelle": "Steuerverwaltung",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Steuerverwaltung/Steuern 2025 - Liquidationsgewinn - Formular.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -313063,7 +313063,7 @@
    "name": "Form. 11: Lohnausweis – Certificat de salaire – Certificato di salario",
    "department": "Finanzdepartement",
    "dienststelle": "Steuerverwaltung",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Steuerverwaltung/Steuern 2025 - Lohnausweis.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -314710,7 +314710,7 @@
    "name": "Vertretungsvollmacht in Steuerangelegenheiten - generell und unbefristet",
    "department": "Finanzdepartement",
    "dienststelle": "Steuerverwaltung",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Steuerverwaltung/Vertretungsvollmacht_SH-generell.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -315476,7 +315476,7 @@
    "name": "Vertretungsvollmacht in Steuerangelegenheiten - ohne Steuerrechnung",
    "department": "Finanzdepartement",
    "dienststelle": "Steuerverwaltung",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Steuerverwaltung/Vertretungsvollmacht_SH-ohne-Rechnung.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -316272,7 +316272,7 @@
    "name": "Aktuelles Monatsbudget für Zahlungsvereinbarung",
    "department": "Finanzdepartement",
    "dienststelle": "Steuerverwaltung",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Steuerverwaltung/Zahlungsvereinbarungen.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -317951,7 +317951,7 @@
    "name": "Vertretungsvollmacht in Steuerangelegenheiten - Zustelldomizil",
    "department": "Finanzdepartement",
    "dienststelle": "Steuerverwaltung",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Steuerverwaltung/Zustelldomizil-Steuerangelegenheiten_SH.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -318752,7 +318752,7 @@
    "name": "Gemeindefinanzen: Jahresrechnung einer Gemeinde einreichen",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Amt für Justiz und Gemeinden",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Amt fuer Justiz und Gemeinden/Anhang 3 Vollständigkeitserklärung.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [],
    "dvsh_verfahren": {
@@ -318807,7 +318807,7 @@
      "id": 275,
      "title": "Vollständigkeitserklärung zur Jahresrechnung per 31. Dezember",
      "source_file": "formulare/Anhang 3 Vollständigkeitserklärung.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Bestätigung der Vollständigkeit der eingereichten Jahresrechnung als Grundlage für die aufsichtsrechtliche Prüfung durch den Kanton.",
      "empfaenger": [],
@@ -319102,7 +319102,7 @@
    "name": "Unterstützung für Gemeinden bei der Umstellung auf die Rechnungslegung nach HRM2",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Amt für Justiz und Gemeinden",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Amt fuer Justiz und Gemeinden/Formularsatz Jahresrechnung Zweckverband.xlsx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [],
    "dvsh_verfahren": {
@@ -321228,7 +321228,7 @@
    "name": "Gesuch um Bewilligung einer Namensänderung",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Amt für Justiz und Gemeinden",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Amt fuer Justiz und Gemeinden/Gesuch  um Namensänderung Art. 30 Abs. 1 ZGB.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -321311,7 +321311,7 @@
      "id": 281,
      "title": "Namensänderung nach Art. 30 Abs. 1 ZGB – Formular zur Einreichung eines Gesuches",
      "source_file": "formulare/Gesuch  um Namensänderung Art. 30 Abs. 1 ZGB.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Prüfung, ob achtenswerte Gründe für die beantragte Änderung des Vor- oder Familiennamens nach Art. 30 Abs. 1 ZGB vorliegen.",
      "empfaenger": [],
@@ -321669,7 +321669,7 @@
    "name": "Halbgefangenschaft bei Freiheits- oder Ersatzfreiheitsstrafe",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Amt für Justiz und Gemeinden",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Amt fuer Justiz und Gemeinden/Gesuch Strafverbüssung in Halbgefangenschaft.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -321818,7 +321818,7 @@
    "forms": [
     {
      "id": 282,
-     "title": "Gesuch Strafverbüssung in Halbgefangenschaft",
+     "title": "Gesuch Strafverbüssung in Halbgefangenschaft",
      "source_file": "formulare/Gesuch Strafverbüssung in Halbgefangenschaft.pdf",
      "file_type": "pdf",
      "title_content_mismatch": false,
@@ -323229,7 +323229,7 @@
    "name": "Elektronisch überwachter Hausarrest (Electronic Monitoring)",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Amt für Justiz und Gemeinden",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Amt fuer Justiz und Gemeinden/Gesuch Strafverbüssung mit E-Monitoring.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -324812,7 +324812,7 @@
    "name": "Gemeinnützige Arbeit bei Freiheitsstrafe",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Amt für Justiz und Gemeinden",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Amt fuer Justiz und Gemeinden/Gesuch gemeinnuetzige Arbeitsleistung (GA) bei Freiheitsstrafe.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -325338,7 +325338,7 @@
    "name": "Adoption Stiefkind (volljährig)",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Amt für Justiz und Gemeinden",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Amt fuer Justiz und Gemeinden/Gesuch um Adoption volljähriges Stiefkind.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -325459,7 +325459,7 @@
      "id": 285,
      "title": "Gesuch um Adoption meines volljährigen Stiefkindes",
      "source_file": "formulare/Gesuch um Adoption volljähriges Stiefkind.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Prüfung der gesetzlichen Adoptionsvoraussetzungen und der Zustimmung aller Beteiligten für die Adoption eines volljährigen Stiefkindes.",
      "empfaenger": [],
@@ -325781,7 +325781,7 @@
    "name": "Adoption durch Einzelperson",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Amt für Justiz und Gemeinden",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Amt fuer Justiz und Gemeinden/Gesuch um Einzeladoption volljährige Person.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -325911,7 +325911,7 @@
      "id": 286,
      "title": "Gesuch um Einzeladoption meines volljährigen Pflegekindes",
      "source_file": "formulare/Gesuch um Einzeladoption volljährige Person.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Prüfung der gesetzlichen Voraussetzungen und Zustimmungen für die Einzeladoption einer volljährigen Person nach langjährigem Pflegeverhältnis.",
      "empfaenger": [],
@@ -326214,7 +326214,7 @@
    "name": "Adoption Pflegekind (volljährig)",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Amt für Justiz und Gemeinden",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Amt fuer Justiz und Gemeinden/Gesuch um gemeinschaftliche Adoption volljähriges Pflegekind.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -326345,7 +326345,7 @@
      "id": 287,
      "title": "Gesuch um gemeinschaftliche Adoption unseres volljährigen Pflegekindes",
      "source_file": "formulare/Gesuch um gemeinschaftliche Adoption volljähriges Pflegekind.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Prüfung der Voraussetzungen und Zustimmungen für die gemeinschaftliche Adoption eines volljährigen Pflegekindes durch ein Ehepaar.",
      "empfaenger": [],
@@ -326651,7 +326651,7 @@
    "name": "Gesuch um ordentliche Einbürgerung",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Amt für Justiz und Gemeinden",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Amt fuer Justiz und Gemeinden/Gesuch um ordentliche Einbürgerung.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -327730,7 +327730,7 @@
      "id": 288,
      "title": "Gesuch um ordentliche Einbürgerung in der Schweiz, im Kanton Schaffhausen und in der Gemeinde",
      "source_file": "formulare/Gesuch um ordentliche Einbürgerung.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Abklärung der Integration, der Sprachkenntnisse und der persönlichen Verhältnisse für den Entscheid über die ordentliche Einbürgerung auf Gemeinde-, Kantons- und Bundesebene.",
      "empfaenger": [],
@@ -328005,7 +328005,7 @@
    "name": "Erleichterte Einbürgerung / Wiedereinbürgerung",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Amt für Justiz und Gemeinden",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Amt fuer Justiz und Gemeinden/Gesuchsformular_Art21Abs1.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -329537,7 +329537,7 @@
    "name": "Inventarfragebogen für Erben",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Amt für Justiz und Gemeinden",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Amt fuer Justiz und Gemeinden/Inventarfragebogen 2022.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -331954,7 +331954,7 @@
    "name": "Mitteilung von Mietzinserhöhungen  und anderen einseitigen Vertragsänderungen",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Amt für Justiz und Gemeinden",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Amt fuer Justiz und Gemeinden/Mietzinserhöhung - Formular gültig ab 1. Oktober 2025.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -332875,7 +332875,7 @@
    "name": "Einreichen von Arbeitsbemühungen",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Arbeitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Arbeitsamt/716.007.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -333480,7 +333480,7 @@
    "name": "Einarbeitungsplan für Einarbeitungszuschüsse",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Arbeitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Arbeitsamt/743FO007b_P Muster Einarbeitungsplan Einarbeitungszuschüsse.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -333971,7 +333971,7 @@
    "name": "Plangenehmigungs- und Planbegutachtungsverfahren",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Arbeitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Arbeitsamt/Baubeschrieb.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -334989,7 +334989,7 @@
    "name": "Erklärungen zum Formular Erfassung der Arbeitszeit",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Arbeitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Arbeitsamt/Erfassungsformular Arbeitszeiten 24h-Betreuung im Stundenlohn.xlsx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -335834,7 +335834,7 @@
    "name": "Meldeformular für Arbeitsverhältnisse in der 24-Stunden-Betreuung",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Arbeitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Arbeitsamt/Meldeformular NAV HW SH.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -335857,7 +335857,7 @@
      "id": 299,
      "title": "Meldeformular für Arbeitsverhältnisse in der 24-Stunden-Betreuung",
      "source_file": "formulare/Meldeformular NAV HW SH.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Erfassung von Arbeitsverhältnissen in der 24-Stunden-Betreuung zur Kontrolle der Einhaltung des Normalarbeitsvertrags und der Arbeitsbedingungen.",
      "empfaenger": [],
@@ -336316,7 +336316,7 @@
    "name": "Ärztliches Zeugnis für schwangere Frauen und stillende Mütter",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Arbeitsinspektorat Eichamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Arbeitsinspektorat Eichamt/Aerztliches_Zeugnis_MuSchu_DE.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -336875,7 +336875,7 @@
    "name": "Checkliste - Mutterschutz am Arbeitsplatz",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Arbeitsinspektorat Eichamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Arbeitsinspektorat Eichamt/CL_Mutterschutz_Arbeitsplatz_A4.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -337679,7 +337679,7 @@
    "name": "Grobkonzept Geschäftsidee für selbständige Erwerbstätigkeit",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Arbeitsmarktliche Massnahmen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Arbeitsmarktliche Massnahmen AMM/2405_N AMM FSE Grobkonzept Geschäftsidee.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -338261,7 +338261,7 @@
    "name": "Einverständniserklärung für ein mit nur einem Elternteil reisendes Kind",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Grundbuchamt Notariat",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Grundbuchamt Notariat/Bewilligung für ein mit nur einem Elternteil reisendes Kind.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -338707,7 +338707,7 @@
    "name": "Bewilligung für ein ohne Eltern reisendes Kind",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Grundbuchamt Notariat",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Grundbuchamt Notariat/Bewilligung für ein ohne Eltern reisendes Kind.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -339213,7 +339213,7 @@
    "name": "Erstellung Anmeldung Löschung Einzelunternehmen",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Handelsregisteramt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Handelsregisteramt/Anmeldeformular Löschung Einzelunternehmen.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -339783,7 +339783,7 @@
    "name": "Anmeldung Neueintragung einer Gesellschaft mit beschränkter Haftung (GmbH) (Beurkundung hat bereits stattgefunden)",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Handelsregisteramt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Handelsregisteramt/Anmeldeformular Neueintragung GmbH 181031.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -341564,7 +341564,7 @@
    "name": "Anmeldung Neueintragung AG (Beurkundung hat bereits stattgefunden)",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Handelsregisteramt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Handelsregisteramt/Domizilhaltererklärung (AG).docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -342939,7 +342939,7 @@
      "id": 313,
      "title": "Domizilhaltererklärung",
      "source_file": "formulare/Domizilhaltererklärung (AG).docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Nachweis, dass der Aktiengesellschaft am angegebenen c/o-Domizil ein Rechtsdomizil gewährt wird, als Voraussetzung für den Handelsregistereintrag.",
      "empfaenger": [],
@@ -343493,7 +343493,7 @@
      "id": 315,
      "title": "Erklärung betreffend Domizil",
      "source_file": "formulare/Erklärung Domizil.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Bestätigung des Rechtsdomizils der Gesellschaft gegenüber dem Handelsregisteramt zur Sicherstellung ihrer Erreichbarkeit an der eingetragenen Adresse.",
      "empfaenger": [],
@@ -343827,7 +343827,7 @@
    "name": "Anmeldung: Allgemeine Änderungen bei einer GmbH  (insb. Abtretung von Stammanteilen)",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Handelsregisteramt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Handelsregisteramt/Domizilhaltererklärung (GmbH).docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -344009,7 +344009,7 @@
      "id": 314,
      "title": "Domizilhaltererklärung (GmbH)",
      "source_file": "formulare/Domizilhaltererklärung (GmbH).docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Nachweis des Domizilhalters, dass er der GmbH an der angegebenen Adresse ein Rechtsdomizil gewährt, für die Eintragung im Handelsregister.",
      "empfaenger": [],
@@ -346122,7 +346122,7 @@
    "name": "Anmeldung Neueintragung Einzelunternehmen ins Handelsregister",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Handelsregisteramt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Handelsregisteramt/Formular_Anmeldung_Einzelunternehmen_180227.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -347305,7 +347305,7 @@
    "name": "Gründung einer GmbH: Beurkundung beim Handelsregisteramt",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Handelsregisteramt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Handelsregisteramt/Negativerklärung zuhanden der Urkundsperson.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -349032,7 +349032,7 @@
      "id": 321,
      "title": "Vollmacht (mit Substitutionsbefugnis)",
      "source_file": "formulare/Vollmacht mit Substitutionsbefugnis Gründung GmbH.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Nachweis der Bevollmächtigung einer Drittperson zur Vertretung des Vollmachtgebers bei der Gründung und Anmeldung der GmbH.",
      "empfaenger": [],
@@ -349189,7 +349189,7 @@
    "name": "Anmeldung Änderungen AG / Genossenschaft / Stiftung / Verein",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Handelsregisteramt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Handelsregisteramt/Wahlannahmeerklärung AG.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -350995,7 +350995,7 @@
      "id": 319,
      "title": "Rücktrittserklärung Muster",
      "source_file": "formulare/Rücktrittserklärung Muster.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Nachweis des Rücktritts einer eingetragenen Person aus ihrer Funktion als Grundlage für die Löschung ihres Eintrags im Handelsregister.",
      "empfaenger": [],
@@ -351365,7 +351365,7 @@
      "id": 322,
      "title": "Wahlannahmeerklärung",
      "source_file": "formulare/Wahlannahmeerklärung AG.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Nachweis, dass die gewählte Person ihre Wahl in das Organ der Aktiengesellschaft annimmt, als Voraussetzung für ihre Eintragung im Handelsregister.",
      "empfaenger": [],
@@ -351860,7 +351860,7 @@
      "id": 323,
      "title": "Wahlannahmeerklärung Genossenschaft",
      "source_file": "formulare/Wahlannahmeerklärung Genossenschaft.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Nachweis der Annahme der Wahl in ein Organ der Genossenschaft als Voraussetzung für die Eintragung der gewählten Person im Handelsregister.",
      "empfaenger": [],
@@ -352270,7 +352270,7 @@
      "id": 325,
      "title": "Wahlannahmeerklärung Stiftung",
      "source_file": "formulare/Wahlannahmeerklärung Stiftung.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Nachweis der Annahme der Wahl in den Stiftungsrat als Voraussetzung für die Eintragung der gewählten Person im Handelsregister.",
      "empfaenger": [],
@@ -352674,7 +352674,7 @@
      "id": 326,
      "title": "Wahlannahmeerklärung",
      "source_file": "formulare/Wahlannahmeerklärung Verein.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Nachweis der Annahme der Wahl als Vorstandsmitglied des Vereins als Voraussetzung für die Eintragung der Person im Handelsregister.",
      "empfaenger": [],
@@ -352866,7 +352866,7 @@
    "name": "Anmeldung von Personenmutationen im Handelsregister",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Handelsregisteramt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Handelsregisteramt/Wahlannahmeerklärung GmbH.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -353972,7 +353972,7 @@
      "id": 324,
      "title": "Wahlannahmeerklärung GmbH",
      "source_file": "formulare/Wahlannahmeerklärung GmbH.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Nachweis der Annahme der Wahl in die Geschäftsführung der GmbH als Voraussetzung für die Eintragung der Person im Handelsregister.",
      "empfaenger": [],
@@ -354448,7 +354448,7 @@
    "name": "Anmeldung für die Kompetenzliste: Bekämpfung invasiver Neophyten",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Landwirtschaftsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Landwirtschaftsamt/Anmeldung Kompetenzliste Neophytenbekämpfung.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -354964,7 +354964,7 @@
    "name": "Bewilligung zur Neupflanzung von Reben zur Weinerzeugung (Kanton Schaffhausen)",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Landwirtschaftsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Landwirtschaftsamt/Bewilligung zur Neupflanzung SH.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -355822,7 +355822,7 @@
    "name": "Gesuch Bekämpfung invasiver Neophyten",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Landwirtschaftsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Landwirtschaftsamt/Gesuch Bekämpfung invasiver Neophyten.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -356623,7 +356623,7 @@
    "name": "Gesuch Betriebsanerkennung",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Landwirtschaftsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Landwirtschaftsamt/Gesuch Betriebsanerkennung.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -358375,7 +358375,7 @@
    "name": "Beitragsgesuch für einen Füll- und Waschplatz; Entwässerung in Güllegrube",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Landwirtschaftsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Landwirtschaftsamt/Gesuch Füll- und Waschplatz mit Güllengrube_2025.xlsx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -359891,7 +359891,7 @@
    "name": "Genehmigung des Versands tierischer Nebenprodukte in andere Mitgliedstaaten",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Landwirtschaftsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Landwirtschaftsamt/Gesuch_Hofdüngerverbingung_ab2024.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -360799,7 +360799,7 @@
    "name": "Gesuch für eine Bewilligung bzw. Feststellung betreffend das bäuerliche Bodenrecht",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Landwirtschaftsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Landwirtschaftsamt/Gesuchsformular BGBB ab Juni 2024.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -363174,7 +363174,7 @@
    "name": "Gesuch für Bewilligungen über die landwirtschaftliche Pacht",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Landwirtschaftsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Landwirtschaftsamt/Gesuchsformular landwirtschaftliche Pacht.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -368168,7 +368168,7 @@
    "name": "Beitragsgesuch für die Pflanzung von robusten Rebsorten (PIWI)",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Landwirtschaftsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Landwirtschaftsamt/Gesuchsformular_PIWI_2025.xlsx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -369174,7 +369174,7 @@
    "name": "Meldeformular für Ambrosia",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Landwirtschaftsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Landwirtschaftsamt/Meldeformular Ambrosia.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -369754,7 +369754,7 @@
    "name": "Meldung Betriebsaufgabe eines landwirtschaftlichen Betriebs",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Landwirtschaftsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Landwirtschaftsamt/Meldeformular Betriebsaufgabe.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -370809,7 +370809,7 @@
    "name": "Bewirtschafterwechsel NICHT-DZ-Betrieb",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Landwirtschaftsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Landwirtschaftsamt/Meldeformular Bewirtschafterwechsel.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -372059,7 +372059,7 @@
    "name": "Bewirtschafterwechsel",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Landwirtschaftsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Landwirtschaftsamt/Meldeformular NICHT-DZ Bewirtschafterwechsel.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -372574,7 +372574,7 @@
    "name": "Meldeformular neuer Kellerbetrieb mit Traubenannahme",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Landwirtschaftsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Landwirtschaftsamt/Meldeformular neue Kellerei.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -372924,7 +372924,7 @@
    "name": "Vertrag ÖLN BFF",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Landwirtschaftsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Landwirtschaftsamt/Vertrag ÖLN BFF.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -373204,7 +373204,7 @@
    "name": "Vertrag ÖLN ausgeglichene Düngerbilanz",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Landwirtschaftsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Landwirtschaftsamt/Vertrag ÖLN ausgeglichene Düngerbilanz.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -373710,7 +373710,7 @@
    "name": "Vertrag ÖLN gesamt",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Landwirtschaftsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Landwirtschaftsamt/Vertrag ÖLN gesamt.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -374021,7 +374021,7 @@
    "name": "Anmeldung zur Pflanzenschutzgeräteprüfung Obst-/Weinbau 2026",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Landwirtschaftsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Landwirtschaftsamt/External/07_Anmeldeformular_Obstsprayer.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -374456,7 +374456,7 @@
    "name": "Gesuch für die Neupflanzung von Reben zur Weinerzeugung (ab 7.5.2025)",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Landwirtschaftsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Landwirtschaftsamt/External/2025_Gesuch_für_die_Neupflanzung_von_Reben_zur_Weinerzeugung__ab_7.5.2025_.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -375354,7 +375354,7 @@
    "name": "Meldung von Lebensmittelbetrieben, Permanent-Make-up- und Tätowier-Studios",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Sekretariat Volkswirtschaftsdepartement",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Sekretariat Volkswirtschaftsdepartement/Meldeformular bspw. B&B.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -376736,7 +376736,7 @@
    "name": "Auflösen einer AG: Beurkundung beim Handelsregisteramt",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Sekretariat Volkswirtschaftsdepartement",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Sekretariat Volkswirtschaftsdepartement/AG Gesuch um Auflösung.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -377800,7 +377800,7 @@
    "name": "Meldung einer Adressenänderung an die Schulzahnklinik",
    "department": "Finanzdepartement",
    "dienststelle": "Schulzahnklinik",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Schulzahnklinik/Adressaenderung.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -378247,7 +378247,7 @@
    "name": "Anmeldung Auflösung / Löschung Kollektivgesellschaft",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Handelsregisteramt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Handelsregisteramt/Anmeldeformular Auflösung, Löschung Kollektivgesellschaft.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -379185,7 +379185,7 @@
    "name": "Anmeldung Änderungen Einzelunternehmen",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Handelsregisteramt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Handelsregisteramt/Anmeldeformular Änderungen Einzelunternehmen181031.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -380556,7 +380556,7 @@
    "name": "Gründung einer Kollektivgesellschaft: Neueintragung",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Handelsregisteramt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Handelsregisteramt/Anmeldeformular_Neueintragung Kollektivgesellschaft.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -383289,7 +383289,7 @@
    "name": "Bewilligung für Personalvermittlung und -verleih",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Arbeitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Arbeitsamt/Arbeitsvermittlung_Personalverleih_Bewilligungungsgesuch.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -383491,7 +383491,7 @@
      "id": 364,
      "title": "Bewilligungsgesuch für private Arbeitsvermittlung und Personalverleih (AVG 2025)",
      "source_file": "formulare/251202_P Bewilligungsgesuch AVG 2025.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Prüfung der betrieblichen und persönlichen Voraussetzungen für die Erteilung der Bewilligung zur privaten Arbeitsvermittlung und zum Personalverleih.",
      "empfaenger": [],
@@ -387293,7 +387293,7 @@
    "name": "Austritt aus der Kantonalen Pensionskasse Schaffhausen",
    "department": "Finanzdepartement",
    "dienststelle": "Pensionskasse",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Pensionskasse/Austrittsformular.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -388379,7 +388379,7 @@
    "name": "Berichterstattung der Beistände über Kinder und Jugendliche",
    "department": "Departement des Innern",
    "dienststelle": "Kindes- und Erwachsenenschutzbehörde",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Kindes- und Erwachsenenschutzbehoerde/Berichterstattung Kinder und Jugendliche Formular Beistände_neu.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -388402,7 +388402,7 @@
      "id": 369,
      "title": "Berichterstattung Kinder / Jugendliche",
      "source_file": "formulare/Berichterstattung Kinder und Jugendliche Formular Beistände_neu.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Überprüfung der Mandatsführung der Beistandschaft und des Wohls der betreuten Kinder und Jugendlichen durch die Behörde.",
      "empfaenger": [],
@@ -389121,7 +389121,7 @@
    "name": "Angelfischer-Patent für Erwachsene bestellen",
    "department": "Departement des Innern",
    "dienststelle": "Jagd und Fischerei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Jagd und Fischerei/Bestellung_Angelfischer_Patent_-_NEU_2015_OF.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -389639,7 +389639,7 @@
    "name": "Ermächtigung der Nutzung eines Fahrzeugs durch Drittpersonen",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/Bewilligung Benutzung Fahrzeug Drittperson.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -390566,7 +390566,7 @@
    "name": "Bewilligung für Wildtierhaltung",
    "department": "Departement des Innern",
    "dienststelle": "Veterinäramt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Veterinaeramt/Bewilligungsg_Halten+von+Wildtieren_dt.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -393502,7 +393502,7 @@
    "name": "Bewilligungsgesuch für den Handel mit Tieren",
    "department": "Departement des Innern",
    "dienststelle": "Departementssekretariat",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Departementssekretariat/Bewilligungsg_Handel_dt.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -395316,7 +395316,7 @@
    "name": "Bewilligungsgesuch für Tourneen von Zirkussen mit Wildtieren",
    "department": "Departement des Innern",
    "dienststelle": "Departementssekretariat",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Departementssekretariat/Bewilligungsg_Tournee_dt.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -397241,7 +397241,7 @@
    "name": "Werbung mit Tieren",
    "department": "Departement des Innern",
    "dienststelle": "Departementssekretariat",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Departementssekretariat/Bewilligungsg_Werbung_dt.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -398443,7 +398443,7 @@
    "name": "Bewilligung für Tierausstellung ohne Handel",
    "department": "Departement des Innern",
    "dienststelle": "Departementssekretariat",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Departementssekretariat/Bewilligungsgesuch Ausstellung ohne Handel.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -398526,7 +398526,7 @@
      "id": 376,
      "title": "Gesuch betreffend Ausstellung mit Tieren, die nicht verkauft werden",
      "source_file": "formulare/Bewilligungsgesuch Ausstellung ohne Handel.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Beurteilung der geplanten Tierausstellung hinsichtlich Tierschutz und Tiergesundheit für die Erteilung der Bewilligung.",
      "empfaenger": [],
@@ -399156,7 +399156,7 @@
    "name": "Bewilligung für die gewerbsmässige Huf- und Klauenpflege",
    "department": "Departement des Innern",
    "dienststelle": "Veterinäramt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Veterinaeramt/Bewilligungsgesuch Huf-Klauenpflege SH 18-11.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -399261,7 +399261,7 @@
      "id": 378,
      "title": "Bewilligungsgesuch für die gewerbsmässige Klauenpflege für Rinder bzw. die Hufpflege für Equiden",
      "source_file": "formulare/Bewilligungsgesuch Huf-Klauenpflege SH 18-11.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Prüfung der anerkannten Ausbildung für die Bewilligung der gewerbsmässigen Klauen- und Hufpflege bei Rindern und Equiden.",
      "empfaenger": [],
@@ -399522,7 +399522,7 @@
    "name": "Publikationen der Kantonsarchäologie bestellen",
    "department": "Baudepartement",
    "dienststelle": "Amt für Denkmalpflege und Archäologie",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Amt fuer Denkmalpflege und Archaeologie/Buchbestellung.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -399996,7 +399996,7 @@
    "name": "Naturschutzinventar der Gemeinde: Objektblatt (Inventar der Schutzzonen und -objekte)",
    "department": "Baudepartement",
    "dienststelle": "Departementssekretariat Baudepartement",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Departementssekretariat Baudepartement/Digitalisierung_Natuschutzinventar_Objektblatt_Formular.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [],
    "dvsh_verfahren": null,
@@ -401897,7 +401897,7 @@
    "name": "Anmeldung zur logopädischen Abklärung",
    "department": "Erziehungsdepartement",
    "dienststelle": "Abteilung Finanz- und Personalwesen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Erziehungsdepartement/Abteilung Finanz- und Personalwesen/Form01_08_Anmeldung_fuer_SpKG_SpHS-1.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -402952,7 +402952,7 @@
    "name": "Meldung über Hundebiss an Mensch",
    "department": "Departement des Innern",
    "dienststelle": "Veterinäramt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Veterinaeramt/Formular Hundebissmeldung Opfer Mensch 18-06.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -404514,7 +404514,7 @@
    "name": "Ausführungsbestätigung zur Energieverbrauchsanalyse für Grossverbraucher",
    "department": "Departement des Innern",
    "dienststelle": "Departementssekretariat",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Departementssekretariat/Formular_G_Ausfuehrungsbestaetigung.xls. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -405402,7 +405402,7 @@
    "name": "Regelung oder Abänderung des Kindesunterhalts",
    "department": "Departement des Innern",
    "dienststelle": "Kindes- und Erwachsenenschutzbehörde",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Kindes- und Erwachsenenschutzbehoerde/Formular_Regelung_Kindesunterhalt.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -406307,7 +406307,7 @@
    "name": "Gesuch um Erteilung einer Zulassung zur Privaten Kontrolle",
    "department": "Baudepartement",
    "dienststelle": "Energiefachstelle",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Energiefachstelle/Formular_Zulassung_PK_SH.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -407038,7 +407038,7 @@
    "name": "Nachweis Objektschutzmassnahmen",
    "department": "Baudepartement",
    "dienststelle": "Abteilung Gewässer und Materialabbau",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Tiefbau Schaffhausen/Abteilung Gewaesser und Materialabbau/GK_Objektschutznachweis_Formular_A.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -408697,7 +408697,7 @@
    "name": "Erhebungsblatt für den Wasserbezug zur thermischen Nutzung",
    "department": "Baudepartement",
    "dienststelle": "Tiefbau Schaffhausen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Tiefbau Schaffhausen/GN__Erhebungsblatt_Heiz_Kuehlwasser.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -409526,7 +409526,7 @@
    "name": "Gesuch Kostenübernahmegarantie gemäss IVSE A/D",
    "department": "Departement des Innern",
    "dienststelle": "Sozialamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Sozialamt/Gesuch Küg IVSE AD.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -409651,7 +409651,7 @@
      "id": 151,
      "title": "Gesuch um Kostenübernahmegarantie (KÜG)",
      "source_file": "formulare/2025 Gesuch um Kostenübernahmegarantie.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Prüfung und Sicherstellung der Kostenübernahme für die Unterbringung erwachsener Personen mit Behinderung in einer ausserkantonalen IVSE-Einrichtung.",
      "empfaenger": [
@@ -409892,7 +409892,7 @@
      "id": 403,
      "title": "Gesuch um Kostenübernahmegarantie (KÜG)",
      "source_file": "formulare/Gesuch Küg IVSE AD.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Prüfung der Voraussetzungen für die Kostenübernahmegarantie bei ausserkantonalen Platzierungen in sozialen Einrichtungen und Sonderschulen nach IVSE.",
      "empfaenger": [
@@ -410264,7 +410264,7 @@
    "name": "Gesuch um Übernahme der Transportkosten bei ausserkantonalen Sonderschulungen",
    "department": "Erziehungsdepartement",
    "dienststelle": "Departementssekretariat Erziehungsdepartement",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Erziehungsdepartement/Departementssekretariat Erziehungsdepartement/Gesuch Transportkosten Sosch Kt SH 2023_ausserkant_mSchutz.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -410344,7 +410344,7 @@
      "id": 405,
      "title": "Gesuch/Kostengutsprache für den Transport bei ausserkantonaler Sonderschulung",
      "source_file": "formulare/Gesuch Transportkosten Sosch Kt SH 2023_ausserkant_mSchutz.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Prüfung des Anspruchs auf Vergütung der Transportkosten von Kindern, die eine ausserkantonale Sonderschule besuchen.",
      "empfaenger": [],
@@ -410936,7 +410936,7 @@
    "name": "Statutenänderung bei einer AG, GmbH oder Genossenschaft: Beurkundung beim Handelsregisteramt",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Handelsregisteramt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Handelsregisteramt/Gesuch_um_Beurkundung_allgemein.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -412121,7 +412121,7 @@
      "id": 419,
      "title": "Vollmacht mit Substitutionsbefugnis",
      "source_file": "formulare/Spezialvollmacht_Schaffhausen.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Nachweis und Prüfung der rechtsgültigen Vertretung des Vollmachtgebers im bezeichneten Handelsregistergeschäft.",
      "empfaenger": [],
@@ -412294,7 +412294,7 @@
    "name": "Zulassung im Einzelfall von VKF-anerkannten Bauteilen",
    "department": "Finanzdepartement",
    "dienststelle": "Kantonale Feuerpolizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Finanzdepartement /Feuerpolizei/Gesuchsformular 160 Zulassung im Einzelfall von VKF zertifizierten Bauteilen.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -413355,7 +413355,7 @@
    "name": "Auflösen einer GmbH: Beurkundung beim Handelsregisteramt",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Sekretariat Volkswirtschaftsdepartement",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Sekretariat Volkswirtschaftsdepartement/GmbH Beurkundungsgesuch um Auflösung 181031.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -414348,7 +414348,7 @@
    "name": "Bestellung von Grenzangaben",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Amt für Geoinformation",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Amt fuer Geoinformation/Grenzangaben.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": false,
    "lebenslagen_ech0049": [
     {
@@ -414935,7 +414935,7 @@
    "name": "Anmeldung Opting-Out / Revisionsstellenverzicht",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Handelsregisteramt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Handelsregisteramt/Handelsregisteranmeldung Verzicht auf Revision.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -415476,7 +415476,7 @@
    "name": "Bestellung eines Kaufvertrags für Grundstücke",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Grundbuchamt Notariat",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Grundbuchamt Notariat/Postalische Bestellung Grundstückkaufvertrag 2019.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -415655,7 +415655,7 @@
      "id": 414,
      "title": "Auftrag zur Erstellung eines Grundstückkaufvertrages",
      "source_file": "formulare/Postalische Bestellung Grundstückkaufvertrag 2019.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Erstellung und öffentliche Beurkundung des Grundstückkaufvertrags gemäss den Angaben der Vertragsparteien.",
      "empfaenger": [],
@@ -416306,7 +416306,7 @@
    "name": "Sondierung: Gesuch um Erteilung einer Bewilligung für Sondierungen in Boden, Fels und Grundwasser",
    "department": "Baudepartement",
    "dienststelle": "Abteilung Gewässer und Materialabbau",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Tiefbau Schaffhausen/Abteilung Gewaesser und Materialabbau/SO_Gesuch_Sondierbewilligung.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -417696,7 +417696,7 @@
    "name": "Befugnis schmerzhafte Eingriffe an Tieren",
    "department": "Departement des Innern",
    "dienststelle": "Veterinäramt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Veterinaeramt/Schmerzhafte Eingriffe-Anmeldung durch PTA.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -417822,7 +417822,7 @@
      "id": 418,
      "title": "Anmeldung durch Bestandestierarzt/-ärztin (Delegation schmerzhafte Eingriffe)",
      "source_file": "formulare/Schmerzhafte Eingriffe-Anmeldung durch PTA.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Prüfung von Sachkundenachweis und tierärztlicher Begleitung für die Befugnis zu schmerzhaften Eingriffen am eigenen Tierbestand.",
      "empfaenger": [
@@ -418575,7 +418575,7 @@
    "name": "Bestellung Informationstafel zu Altgras oder Anmeldung für Beratung oder Massnahmenänderung",
    "department": "Baudepartement",
    "dienststelle": "Departementssekretariat Baudepartement",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Departementssekretariat Baudepartement/Vernetzungsprojekt_Randen_Anmeldeformular_2018.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -419152,7 +419152,7 @@
    "name": "Voranmeldung von Kurzarbeit",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Arbeitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Arbeitsamt/Voranmeldung und Zustimmung KAE.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -420933,7 +420933,7 @@
    "name": "Betreuung, Pflege, Zucht und Haltung von Heimtieren und Nutzhunden",
    "department": "Departement des Innern",
    "dienststelle": "Departementssekretariat",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Departementssekretariat/Zusatzf_Personenblatt_dt.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -421035,7 +421035,7 @@
      "id": 377,
      "title": "Bewilligungsgesuch für die Betreuung, Pflege, Zucht und Haltung von Heimtieren und Nutzhunden",
      "source_file": "formulare/Bewilligungsgesuch BetreuungPflegeZuchtHaltungHeimtierenNutzhunden BLV 18-06.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Prüfung von Sachkunde und Einrichtungen für die Bewilligung der gewerbsmässigen Betreuung, Pflege, Zucht und Haltung von Heimtieren und Nutzhunden.",
      "empfaenger": [],
@@ -459021,7 +459021,7 @@
    "name": "Jährliche Datenerhebung für Selbständige Pflegefachpersonen",
    "department": "Departement des Innern",
    "dienststelle": "Gesundheitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Gesundheitsamt/24 Brief zum Erhebungsformular kantonale Spitex-Statistik.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -461508,7 +461508,7 @@
    "name": "Beurkundung eines Ehevertrages",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Amt für Justiz und Gemeinden",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Amt fuer Justiz und Gemeinden/Ehevertrag.PDF. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -461592,7 +461592,7 @@
    "name": "Beurkundung eines Erbvertrages",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Amt für Justiz und Gemeinden",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Amt fuer Justiz und Gemeinden/Erbvertrag.PDF. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -490256,7 +490256,7 @@
    "name": "Gesuch um einen Koordinationsbeitrag für Lehrbetriebe",
    "department": "Erziehungsdepartement",
    "dienststelle": "Fachstelle Sport",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Erziehungsdepartement/Fachstelle Sport/Formular_Gesuch_Koordinationsbeitrag_mit_Zusatzvereinbarung_SH_Vers8.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -491752,7 +491752,7 @@
    "name": "Gesuch zur gewerbsmässigen Gewährung/Vermittlung von Konsumkrediten",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Amt für Justiz und Gemeinden",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Amt fuer Justiz und Gemeinden/Gesuch um Bewilligung zur Vermittlung von Konsumkrediten.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -491937,7 +491937,7 @@
      "id": 441,
      "title": "Formular zur Einreichung eines Gesuches",
      "source_file": "formulare/Gesuch um Bewilligung zur Vermittlung von Konsumkrediten.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Prüfung von Ruf, Fachkenntnissen, Eigenkapital und Versicherungsschutz für die Bewilligung zur gewerbsmässigen Konsumkreditvergabe.",
      "empfaenger": [],
@@ -492383,7 +492383,7 @@
    "name": "Kontrollschilderdepot verlängern",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/Kontrollschilderdepot-verlaengern-25-3-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -492703,7 +492703,7 @@
    "name": "Antrag für ein Validierungsabzeichen im Equidenpass",
    "department": "Departement des Innern",
    "dienststelle": "Veterinäramt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Veterinaeramt/Traces-Antrag Pferd Validierungsabzeichen 23-04-26.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -493742,7 +493742,7 @@
    "name": "Fahrpraxis-Bestätigung der Kategorie C (Lastwagen)",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/fahrpraxis-bestaetigung-kat-c-25-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -494579,7 +494579,7 @@
    "name": "Gesuch um Zulassung als Feuerwehr- / Zivilschutzfahrzeug",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/feuerwehr-zivilschutzfahrzeug-25-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -495386,7 +495386,7 @@
    "name": "Gesuch zum Ablegen der Führerprüfung in einem anderen Kanton",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/gesuch-zum-ablegen-der-fuehrerpruefung-in-einem-anderen-kanton-25-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -495926,7 +495926,7 @@
    "name": "Gesuch Zulassung als Veteranenfahrzeug",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/veteranenfahrzeuge-25-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -497494,7 +497494,7 @@
    "name": "Anmeldung von Weiden als landwirtschaftliche Nutzfläche",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Landwirtschaftsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Landwirtschaftsamt/Anmeldung von Weiden.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -497528,7 +497528,7 @@
    "name": "Gemeinnützige Arbeit bei Busse oder Geldstrafe",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Amt für Justiz und Gemeinden",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Amt fuer Justiz und Gemeinden/Gesuch gemeinnuetzige Arbeitsleistung (GA) bei Bussen oder Geldstrafen.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -498060,7 +498060,7 @@
    "name": "Adoption Stiefkind (minderjährig)",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Amt für Justiz und Gemeinden",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Amt fuer Justiz und Gemeinden/Gesuch um Adoption minderjähriges Stiefkind.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -498209,7 +498209,7 @@
      "id": 450,
      "title": "Gesuch um Adoption meines minderjährigen Stiefkindes",
      "source_file": "formulare/Gesuch um Adoption minderjähriges Stiefkind.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Prüfung der gesetzlichen Adoptionsvoraussetzungen wie Ehedauer, Hausgemeinschaft und Pflegeverhältnis für den Entscheid über die Stiefkindadoption.",
      "empfaenger": [],
@@ -499439,7 +499439,7 @@
    "name": "Adoption Pflegekind (minderjährig)",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Amt für Justiz und Gemeinden",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Amt fuer Justiz und Gemeinden/Gesuch um gemeinschaftliche Adoption minderjährigen Pflegeki.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -499582,7 +499582,7 @@
      "id": 451,
      "title": "Gesuch um gemeinschaftliche Adoption unseres minderjährigen Pflegekindes",
      "source_file": "formulare/Gesuch um gemeinschaftliche Adoption minderjährigen Pflegeki.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Prüfung der gesetzlichen Voraussetzungen für den Entscheid über die gemeinschaftliche Adoption des minderjährigen Pflegekindes.",
      "empfaenger": [],
@@ -500898,7 +500898,7 @@
    "name": "Gesuch zum Bau, Umbau oder die Erweiterung einer Tankanlage oder eines Fasslagers",
    "department": "Departement des Innern",
    "dienststelle": "Kantonale Feuerpolizei",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Feuerpolizei/130_Gesuch_Tankanlagen.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -504414,7 +504414,7 @@
    "name": "Gesuch um Bewilligung von Risikoaktivitäten für einen zertifizierten Anbieter",
    "department": "Erziehungsdepartement",
    "dienststelle": "Fachstelle Sport",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Erziehungsdepartement/Fachstelle Sport/722FO035_P_Formular Gesuch um Bewiligung für eine zertifizierten Anbieter.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -504540,7 +504540,7 @@
      "id": 453,
      "title": "Gesuch um Bewilligung für einen zertifizierten Anbieter",
      "source_file": "formulare/722FO035_P_Formular Gesuch um Bewiligung für eine zertifizierten Anbieter.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Prüfung der Zertifizierung und der betrieblichen Voraussetzungen für die Bewilligung zum gewerbsmässigen Anbieten von Risikoaktivitäten.",
      "empfaenger": [],
@@ -505193,7 +505193,7 @@
    "name": "Gesuch um Bewilligung von Risikoaktivitäten für Personen mit Fachausweis",
    "department": "Erziehungsdepartement",
    "dienststelle": "Fachstelle Sport",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Erziehungsdepartement/Fachstelle Sport/722FO036_P_Formular Gesuch um Bewiligung für Personen mit Fachausweis.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -505291,7 +505291,7 @@
      "id": 454,
      "title": "Gesuch um Bewilligung für Personen mit Fachausweis",
      "source_file": "formulare/722FO036_P_Formular Gesuch um Bewiligung für Personen mit Fachausweis.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Prüfung der fachlichen Qualifikation und der persönlichen Voraussetzungen für die Bewilligung zur gewerbsmässigen Ausübung von Risikoaktivitäten.",
      "empfaenger": [
@@ -506332,7 +506332,7 @@
    "name": "Gesuch Beschäftigung Jugendliche unter 15 Jahren",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Arbeitsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Arbeitsamt/722FO107_P_Gesuch_Beschäftigung_Jugendliche_unter_15_Jahren.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -506934,7 +506934,7 @@
    "name": "Bestellung von Formularen",
    "department": "Departement des Innern",
    "dienststelle": "Veterinäramt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Veterinaeramt/Bestellung Dokumente.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -507298,7 +507298,7 @@
    "name": "Kündigung von Miet- und Pachtverträgen",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Amt für Justiz und Gemeinden",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Amt fuer Justiz und Gemeinden/Kündigung Miet- und Pachtverträge.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -507857,7 +507857,7 @@
    "name": "Meldeverfahren Solaranlagen",
    "department": "Baudepartement",
    "dienststelle": "Energiefachstelle",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Energiefachstelle/Meldeformular-Solaranlagen_SH_2023.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -509082,7 +509082,7 @@
    "name": "Schätzungsauftrag",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Amt für Grundstückschätzungen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Amt fuer Grundstueckschaetzungen/Schaetzungsanmeldung.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -509999,7 +509999,7 @@
    "name": "Ausfuhr eines Pferdes in einen EU-Staat – Traces-Antrag",
    "department": "Departement des Innern",
    "dienststelle": "Veterinäramt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Veterinaeramt/Traces-Antrag Pferd 23-04-20.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -512059,7 +512059,7 @@
    "name": "Löschung der Ziffer 178 «Halterwechsel verboten» im Fahrzeugausweis",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/Ziffer_178_Loeschung.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -512569,7 +512569,7 @@
    "name": "Gesuch – Führerausweis im Kreditkartenformat",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/ausstellen-eines-fuehrerausweises-25-p-1 (1).pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -513360,7 +513360,7 @@
    "name": "Vollmacht für minderjährige Halter",
    "department": "Baudepartement",
    "dienststelle": "Strassenverkehrs- und Schifffahrtsamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Baudepartement/Strassenverkehrs- und Schifffahrtsamt/bestaetigung-vollmacht-25-p.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -513855,7 +513855,7 @@
    "name": "Schätzungsauftrag Grundstück (Verkehrswert)",
    "department": "Volkswirtschaftsdepartement",
    "dienststelle": "Amt für Grundstückschätzungen",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Volkswirtschaftsdepartement/Amt fuer Grundstueckschaetzungen/schaetzungsauftrag.pdf. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -514673,7 +514673,7 @@
    "name": "Gesuch zur Erteilung einer Aufnahmebewilligung für ein Pflegekind",
    "department": "Departement des Innern",
    "dienststelle": "Sozialamt",
-   "description": "AUTO-ENTWURF aus ../Verwaltung/Department des Innern/Sozialamt/PFFA_Gesuch_Aufnahmebewilligung_Pflegekind.docx. Felder einzeln; Rechtsgrundlagen zu ermitteln.",
+   "description": null,
    "in_dvsh": true,
    "lebenslagen_ech0049": [
     {
@@ -514783,7 +514783,7 @@
      "id": 467,
      "title": "Gesuch zur Erteilung einer Aufnahmebewilligung für ein Pflegekind",
      "source_file": "formulare/PFFA_Gesuch_Aufnahmebewilligung_Pflegekind.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Prüfung der Eignung der Pflegeeltern und der Lebensumstände für die Bewilligung zur Aufnahme des Pflegekindes.",
      "empfaenger": [],
@@ -527676,7 +527676,7 @@
      "id": 154,
      "title": "Fragebogen zur Klärung der örtlichen Zuständigkeit bei unklaren Zuständigkeitsfällen",
      "source_file": "formulare/Fragebogen zur Klärung der örtlichen Zuständigkeit_.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Feststellung des Unterstützungswohnsitzes zur Klärung, welches Gemeinwesen für die Ausrichtung der Sozialhilfe zuständig ist.",
      "empfaenger": [
@@ -529678,7 +529678,7 @@
      "id": 410,
      "title": "Gesuch für die Einfuhr oder Wiedereinfuhr von Hunden, Katzen oder Frettchen aus einem Tollwut-Risikoland",
      "source_file": "formulare/Gesuchsformular_fuer_Heimtiere_aus_Tollwutrisikolaendern_2016_DE.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Prüfung des Tollwut-Impfschutzes und der Identifikation des Tieres für die Erteilung der Einfuhrbewilligung aus einem Tollwut-Risikoland.",
      "empfaenger": [],
@@ -543537,7 +543537,7 @@
      "id": 320,
      "title": "Vollmacht (mit Substitutionsbefugnis)",
      "source_file": "formulare/Spezialvollmacht_Gruendung_AG_Schaffhausen.docx",
-     "file_type": "pdf",
+     "file_type": "word",
      "title_content_mismatch": false,
      "zweck": "Nachweis der Bevollmächtigung einer Drittperson zur Vertretung des Vollmachtgebers bei der Gründung und Anmeldung der Aktiengesellschaft.",
      "empfaenger": [],

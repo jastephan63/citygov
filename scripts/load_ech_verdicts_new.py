@@ -48,6 +48,11 @@ def main():
         os.remove(st)
     shutil.copy2(DB_PATH, st)
     c = connect(st)
+    # ech_herkunft (schema.sql) is written by propagate_ech_names.py; an older
+    # database where that loader never ran lacks the column
+    for tbl in ("data_field", "data_subfield"):
+        if "ech_herkunft" not in {r[1] for r in c.execute(f"PRAGMA table_info({tbl})")}:
+            c.execute(f"ALTER TABLE {tbl} ADD COLUMN ech_herkunft TEXT")
     cat = {}
     for r in c.execute("SELECT id, standard, name FROM ech_element"):
         cat.setdefault((r["standard"], r["name"]), r["id"])

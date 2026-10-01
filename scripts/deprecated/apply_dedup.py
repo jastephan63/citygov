@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Apply the duplicate-Formular verdicts (scratchpad/dup2_out/*.json).
+"""Apply the duplicate-Formular verdicts (<dir>/*.json).
 
 Removals are destructive, so this is deliberately conservative:
   * a group must keep at least one service, else it is skipped

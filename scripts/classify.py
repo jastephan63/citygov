@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Classify source files as Formular / calculation_tool / helper (convention 7).
+"""Classify source files as Formular / calculation_tool / helper (classify before
+modelling — a 2026-06 rule).
 
 Classification happens BEFORE modelling: only files classified 'formular' enter
 the reconciliation pipeline. Calculation tools (Excel formulas) are documented but
@@ -9,7 +10,6 @@ This produces a *proposal* (inventory/<dir>.classified.json) for human review �
 heuristics are a starting point, not the final word. Review it, correct doc_type,
 then fold the entries into a service proposal's `documents` list (or commit as-is).
 
-    python3 scripts/classify.py forms/
     python3 scripts/classify.py "../Verwaltung/Finanzdepartement /Steuerverwaltung"
 """
 import argparse
@@ -37,8 +37,8 @@ CALC    = re.compile(r"rechner|berechnung|kalkul|tarif|abrechnungsformular", re.
 def classify(name):
     base, ext = os.path.splitext(name)
     is_sheet = ext.lower() in (".xlsx", ".xlsm", ".xls", ".csv")
-    # strong helper signal wins first (conv 7): guidance is not a form even if its
-    # title contains 'Gesuch'/'Bewilligung' (e.g. 'Vollzugshilfe ...bewilligung').
+    # strong helper signal wins first: guidance is not a form even if its title
+    # contains 'Gesuch'/'Bewilligung' (e.g. 'Vollzugshilfe ...bewilligung').
     if HELPER.search(base):
         return "helper", "filename indicates guidance (Wegleitung/Merkblatt/Vollzugshilfe)"
     # Abrechnungsformular*.xlsx etc. are genuine forms even though they're sheets.
@@ -72,7 +72,7 @@ def main():
     tag = re.sub(r"[^a-z0-9]+", "-", os.path.basename(os.path.normpath(args.directory)).lower()).strip("-") or "root"
     out = os.path.join(INVENTORY_DIR, f"{tag}.classified.json")
     with open(out, "w", encoding="utf-8") as fh:
-        json.dump({"_comment": "PROPOSED classifications (conv 7) — REVIEW before use. "
+        json.dump({"_comment": "PROPOSED classifications (classify before modelling) — REVIEW before use. "
                    "Only doc_type='formular' should be modelled as a form.",
                    "source_dir": args.directory, "documents": items}, fh,
                   ensure_ascii=False, indent=2)

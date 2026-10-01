@@ -21,7 +21,8 @@ the sha256 the DVSH model records for each file against form.file_hash.
      stay where they are: no surface shows them.
   2. Rename (3 rows kept together because every DVSH service names the SAME
      file): a name from DVSH wording that covers all of them (34, 56, 616). A
-     DVSH title that leaves the name stays findable in name_alt.
+     DVSH title that leaves the name stays findable in name_alt. 188 and 513
+     already carried a fitting DVSH name and stay unchanged (8 + 3 + 2 = 13).
   3. Dienststelle of 191 follows DVSH 358 (Energiefachstelle, Baudepartement).
   4. Duplicate form 475 = the same file as 439 (identical sha256). 475's eCH
      verdicts are copied onto 439 only where 439 has a same-named field (or a

@@ -14,7 +14,7 @@ EXPORT_PATH    = os.path.join(ROOT, "data_export.json")
 DASHBOARD_PATH = os.path.join(ROOT, "dashboard.html")
 FORMS_DIR      = os.path.join(ROOT, "forms")
 INVENTORY_DIR  = os.path.join(ROOT, "inventory")
-PROPOSALS_DIR  = os.path.join(ROOT, "proposals")
+PROPOSALS_DIR  = os.path.join(ROOT, "proposals")   # read only by scripts/deprecated/extract_form.py
 LOGS_DIR       = os.path.join(ROOT, "logs")
 
 
@@ -68,6 +68,43 @@ def _layer_skipped(name, ex):
         print(f"  LAYER SKIPPED {name}: {ex}", file=sys.stderr)
         return
     raise RuntimeError(f"export layer '{name}' failed: {ex}") from ex
+
+
+# Paths of the author's machine that must never reach a published file: the
+# sibling source folders (../Verwaltung, ../Gesetze, ../DVSH, ../formflows) and
+# absolute macOS home or temp paths. A URL path («admin.ch/…/home/…») is not
+# one: the absolute paths count only where no host name runs into them.
+# Exporters call assert_no_local_paths() on the exact text they are about to write.
+LOCAL_PATH = _re.compile(r"\.\./(?:Verwaltung|Gesetze|DVSH|formflows)\b|(?<![\w.%-])/(?:Users|private)/")
+
+
+def assert_no_local_paths(name, text):
+    """Stop the export when its text names a local path (the first hits are shown)."""
+    hits = [m.group(0) for m in LOCAL_PATH.finditer(text)]
+    if hits:
+        import sys
+        ctx = []
+        for m in list(LOCAL_PATH.finditer(text))[:3]:
+            ctx.append(text[max(0, m.start() - 60):m.end() + 40].replace("\n", " "))
+        sys.exit(f"ABBRUCH: {name} enthielte {len(hits)} lokale Pfade ({', '.join(sorted(set(hits)))}) — "
+                 "nichts geschrieben. Beispiele: " + " | ".join(ctx))
+
+
+# ---- the size of a published page, as the pages state it -----------------------
+# dashboard.html says how large it must be (a truncated download is the commonest
+# failure) and index.html repeats it; both measure the real bytes with these two.
+def size_txt(n_bytes):
+    """«30 MB» for «knapp 30 MB»: rounded UP to the next 10 MB, so it is true in
+    decimal and in binary units."""
+    import math
+    return f"{int(math.ceil(n_bytes / 1e7) * 10)} MB"
+
+
+def net_size_txt(data):
+    """«4 MB» for «über das Netz etwa 4 MB»: the gzip size of the page bytes (GitHub
+    Pages sends the page compressed), rounded to whole MB, never below 1 MB."""
+    import gzip
+    return f"{max(1, round(len(gzip.compress(data, compresslevel=6)) / 1e6))} MB"
 
 
 def klartext(t):

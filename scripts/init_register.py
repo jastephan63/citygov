@@ -4,7 +4,7 @@ canonical attribute catalogue, format patterns and the Dienststellen entity.
 
 This is the schema + mechanical-seed half of the 2026-09 data-management
 build (the curated half — purposes, recipients, retention terms — comes from
-agent output through load_register.py's proof gates). Everything here is
+derived input files through load_register.py's proof gates). Everything here is
 derivable or empty-by-design:
 
   * form.purpose / dsfa_status / dsfa_note  — empty until curated/decided

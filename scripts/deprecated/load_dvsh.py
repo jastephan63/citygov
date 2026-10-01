@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Load parsed DVSH modeller services into the databank (authoritative source).
 
-DVSH is the canton's own curated service model; per the user its legal bases are
+DVSH is the canton's own curated service model; per the owner's decision its legal bases are
 AUTHORITATIVE. Stored verbatim in `dvsh_service` (never merged into our derived
 tables) and matched to our services by name/Dienststelle so the dashboard can
 show the official model next to our field-level analysis.

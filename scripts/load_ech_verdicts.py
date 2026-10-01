@@ -49,7 +49,7 @@ def main():
                 d = json.load(open(jf, encoding="utf-8"))
             except Exception:
                 continue
-            # agents write either {"urteile": [...]} or a bare list
+            # an input file holds either {"urteile": [...]} or a bare list
             for u in (d.get("urteile", []) if isinstance(d, dict) else d):
                 if not isinstance(u, dict):
                     continue

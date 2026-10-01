@@ -420,7 +420,8 @@ def main():
                 continue
             # gate 2: PROVEN over-collection (no_basis) needs a consent record;
             # a merely undocumented basis is a research gap, not consent territory
-            # (conflating the two was convention 8's original trap)
+            # (conflating the two was the original trap behind «gaps are gaps»,
+            # convention 8 in scripts/README.md)
             einw_id, grundlage_txt = None, p["basis"][1] if p["basis"] else None
             if p["basis_typ"] == "aufgabe" and p["sens"] and not p["basis"]:
                 # besonders schützenswert: Art. 4 Abs. 1 lit. b is not enough — the

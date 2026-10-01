@@ -27,12 +27,15 @@ links; the placeholder-law citations it lifted from form text were removed by
 scripts/migrate_2026_09_26.py). It never passed the proof gate and is superseded
 by data_fields, so it is no longer exported (the live counts are written into
 META.retired_layer at build time); a stale citygov_fields.jsonl is removed when found.
+Its placeholder service descriptions («AUTO-ENTWURF aus <Ablage>») are exported
+as null; its per-service notes stay in services[].findings, marked legacy.
+Nothing is written when one of the five files would name a local file path.
 
     python3 scripts/export_llm.py          # after scripts/export_json.py
 """
 import json, os, re, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from common import ROOT, connect, DB_PATH, EXPORT_PATH, _layer_skipped
+from common import ROOT, connect, DB_PATH, EXPORT_PATH, _layer_skipped, assert_no_local_paths
 import labels as L
 
 RETIRED_FILE = "citygov_fields.jsonl"
@@ -53,10 +56,13 @@ META = {
                      "requirement_legal_basis: {n_fm:,} 'proposed' widget->requirement links; {n_rlb:,} "
                      "requirement->article links kept for provenance — the placeholder-law citations it "
                      "lifted from form text were removed by scripts/migrate_2026_09_26.py) is NOT "
-                     "exported any more — neither as a 'fields' key per Formular nor as "
-                     "citygov_fields.jsonl (removed). It never passed the proof gate and is "
-                     "superseded by data_fields; the tables remain in the DB for provenance only. "
-                     "Never cite from it.",
+                     "exported any more — neither here (no 'fields' key per Formular, "
+                     "citygov_fields.jsonl removed) nor in data_export.json. It never passed the proof "
+                     "gate and is superseded by data_fields; the tables remain in the DB for provenance "
+                     "only. Never cite from it. Two traces of it remain visible on purpose: "
+                     "services[].findings holds its {n_fi:,} per-service notes (legacy text, see "
+                     "trust_rules), and a service description it wrote as a placeholder "
+                     "(«AUTO-ENTWURF aus …»{ph}) is exported as null.",
     "trust_rules": {
         "labels": "Every code in this file (data_type, sensitive_category, entscheid_art, "
                   "rechtsmittel_art, rechtsmittel_status, halter, obligatorium, submission_channel, "
@@ -67,8 +73,12 @@ META = {
                   "meta.labels — the same dicts (scripts/labels.py) the dashboard and the dossiers "
                   "render. A code missing there is a defect, never silently raw.",
         "legal_basis.verification": {
-            "verified": "cross-checked live against Fedlex / Rechtsbuch SH — authoritative",
-            "sourced_pdf": "read from the official cantonal SHR PDF (Gesetze folder); not yet live-checked",
+            "verified": "a federal article read from the official Fedlex text when the law was "
+                        "ingested (last_checked 'verified', set by scripts/ingest_fed.py / "
+                        "ingest_bigcode.py); no cantonal article carries this level",
+            "sourced_pdf": "an article read from the official law PDF when the law was ingested "
+                           "(last_checked 'Gesetze-PDF SHR … (Stand …)', set by scripts/ingest_laws.py); "
+                           "for cantonal law the PDF of the Schaffhauser Rechtsbuch",
             "cited_unverified": "a citation lifted from the form/Merkblatt, not yet resolved to a law "
                                 "text; the dashboard shows it as «zitiert (unverif.)». In the curated "
                                 "data_fields layer this level does not occur today (see meta.zitate).",
@@ -254,9 +264,11 @@ META = {
                                  "(match on law). The addressee is part of the claim: rules from "
                                  "DSG/DSV/BGA/EMBAG bind Bundesorgane, not the canton (see each rule's "
                                  "law and quote).",
-        "process_steps / findings": "legacy service-level rows of the 2026-06 era (kept as text; "
-                                    "process_steps mode is a code); the Verfahren facts a reader "
-                                    "should rely on are dvsh_verfahren and forms[].verfahren.",
+        "process_steps / findings": "legacy service-level rows of the 2026-06 era, kept as text "
+                                    "(process_steps mode is a code; findings are the auto-draft's "
+                                    "notes, status as drafted, never reviewed — see retired_layer); "
+                                    "the Verfahren facts a reader should rely on are dvsh_verfahren "
+                                    "and forms[].verfahren.",
     },
 }
 
@@ -380,9 +392,12 @@ def main():
     # the retired layer's size is read, never typed (and the placeholder laws must be gone)
     n_fm = c.execute("SELECT count(*) FROM field_mapping WHERE match_status='proposed'").fetchone()[0]
     n_rlb = c.execute("SELECT count(*) FROM requirement_legal_basis").fetchone()[0]
+    n_fi = c.execute("SELECT count(*) FROM finding").fetchone()[0]
+    n_ph = c.execute("SELECT count(*) FROM service WHERE description LIKE 'AUTO-ENTWURF%'").fetchone()[0]
     assert c.execute("SELECT count(*) FROM law WHERE last_checked LIKE 'zitiert%'").fetchone()[0] == 0, \
         "placeholder laws present — run scripts/migrate_2026_09_26.py"
-    META["retired_layer"] = META["retired_layer"].format(n_fm=n_fm, n_rlb=n_rlb)
+    META["retired_layer"] = META["retired_layer"].format(
+        n_fm=n_fm, n_rlb=n_rlb, n_fi=n_fi, ph=f"; {n_ph:,} services in the DB today" if n_ph else "")
     rows = lambda q: [dict(r) for r in c.execute(q).fetchall()]
     services = rows("SELECT * FROM service")
     svc_dst = {s["id"]: s["dienststelle"] for s in services}
@@ -650,7 +665,10 @@ def main():
         xs = x_svcs.get(s["id"]) or {}
         svc = {"id": s["id"], "slug": s["slug"], "name": s["name"],
                "department": s["department"], "dienststelle": s["dienststelle"],
-               "description": s["description"],
+               # the auto-draft's placeholder («AUTO-ENTWURF aus <Ablage>») is no
+               # description; filtered here, so a later ingest cannot bring it back
+               "description": (None if (s["description"] or "").startswith("AUTO-ENTWURF")
+                               else s["description"]),
                "in_dvsh": bool(s.get("in_dvsh")),
                "lebenslagen_ech0049": [{"id": t.get("id"), "katalog": t["katalog"], "bereich": t["bereich"], "gruppe": t["gruppe"]}
                                        for t in (xs.get("themen") or [])],
@@ -689,16 +707,13 @@ def main():
                            for t in (X.get("themenkatalog") or []) if t.get("n_services")],
            "begriffe": X.get("begriffe") or [],
            "services": out_services}
-    json.dump(doc, open(os.path.join(ROOT, "citygov_llm.json"), "w", encoding="utf-8"),
-              ensure_ascii=False, indent=1)
-    with open(os.path.join(ROOT, "citygov_datafields.jsonl"), "w", encoding="utf-8") as fh:
-        for r in dfl:
-            fh.write(json.dumps(r, ensure_ascii=False) + "\n")
-    with open(os.path.join(ROOT, "citygov_datarules.jsonl"), "w", encoding="utf-8") as fh:
-        for r in datarules:
-            fh.write(json.dumps(r, ensure_ascii=False) + "\n")
+    # every file is serialised first and checked, then all are written: a local
+    # path in one of them stops the run before any file changes
+    out = {"citygov_llm.json": json.dumps(doc, ensure_ascii=False, indent=1),
+           "citygov_datafields.jsonl": "".join(json.dumps(r, ensure_ascii=False) + "\n" for r in dfl),
+           "citygov_datarules.jsonl": "".join(json.dumps(r, ensure_ascii=False) + "\n" for r in datarules)}
     BT = L.BASIS_TYP
-    json.dump({"meta": {"generated_at": generated_at,
+    out["citygov_verzeichnis.json"] = json.dumps({"meta": {"generated_at": generated_at,
                         "hinweis": "Verzeichnis der Bearbeitungstätigkeiten je Formular, Struktur "
                         "nach KDSG Art. 17b Abs. 2 (die Führungspflicht nach Art. 17b trifft nur "
                         "Polizei, Staatsanwaltschaft und Justizvollzug; für alle anderen Stellen "
@@ -730,12 +745,10 @@ def main():
                             "dsfa_status": "Entscheid des Kantons zur Datenschutz-Folgenabschätzung (KDSG Art. 14b); "
                                            "FEHLT = noch nicht entschieden, die Databank setzt keinen.",
                         }},
-               "verzeichnis": verzeichnis},
-              open(os.path.join(ROOT, "citygov_verzeichnis.json"), "w", encoding="utf-8"),
-              ensure_ascii=False, indent=1)
+               "verzeichnis": verzeichnis}, ensure_ascii=False, indent=1)
     n_pts = sum(len(v) for v in prefill.values())
     n_reg = sum(1 for v in prefill.values() for p in v if p["einwohnerregister"])
-    json.dump({"meta": {"generated_at": generated_at,
+    out["citygov_prefill.json"] = json.dumps({"meta": {"generated_at": generated_at,
                         "hinweis": "Datenpunkt→eCH-Element-Map je Formular (Schlüssel = Formular-id) für "
                                    "Once-Only-Prefill: ein nach eCH-Element gekeytes Profil einer natürlichen "
                                    "Person füllt damit die Punkte vor, die einwohnerregister = true und "
@@ -770,9 +783,12 @@ def main():
                                        "PFLICHT-Punkte mit einwohnerregister = true — beide Zahlen sind aus pflicht "
                                        "und einwohnerregister ableitbar.",
                         }},
-               "formulare": prefill},
-              open(os.path.join(ROOT, "citygov_prefill.json"), "w", encoding="utf-8"),
-              ensure_ascii=False, indent=1)
+               "formulare": prefill}, ensure_ascii=False, indent=1)
+    for name, text in out.items():
+        assert_no_local_paths(name, text)
+    for name, text in out.items():
+        with open(os.path.join(ROOT, name), "w", encoding="utf-8") as fh:
+            fh.write(text)
     # the retired auto-draft export must not linger next to the curated files
     retired = os.path.join(ROOT, RETIRED_FILE)
     removed = False

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Apply agent-assigned eCH standards to data fields, PROOF-GATED against the
+"""Apply proposed eCH standards to data fields, PROOF-GATED against the
 catalogue swept from the official eCH site (290 standards, 85 of them with XSD).
 
 Three outcomes per field, in descending quality:
@@ -54,7 +54,7 @@ def main():
                 d = json.load(open(jf, encoding="utf-8"))
             except Exception:
                 continue
-            # agents write either {"zuordnungen": [...]} or a bare list
+            # an input file holds either {"zuordnungen": [...]} or a bare list
             zs = d.get("zuordnungen", []) if isinstance(d, dict) else d
             for z in zs:
                 if not isinstance(z, dict):

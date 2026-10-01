@@ -12,8 +12,9 @@ exchange format expects.
 What it does, per standard with n_elements>0:
   * GET https://www.ech.ch/de/ech/<code>, collect every *.xsd href on the page
     (soft-404 guard: the site serves its homepage for unknown codes)
-  * download the XSDs into ech_xsd/<code>/ (kept in the repo: they are the
-    proof behind every element citation)
+  * download the XSDs into ech_xsd/<code>/ under their decoded, composed (NFC)
+    file name (kept in the repo: they are the proof behind every element
+    citation)
   * parse, prefix-agnostic (xs:/xsd:): schema version attribute, element
     names (to compare with the catalogue), simpleType enumerations
   * write ech_standard.xsd_version / xsd_file / xsd_swept_at and the table
@@ -24,7 +25,7 @@ standard are reported and leave that standard untouched.
 
     python3 scripts/sweep_ech_xsd.py [--offline]   (offline = parse what is on disk)
 """
-import glob, html, os, re, shutil, sys, time, urllib.request
+import glob, html, os, re, shutil, sys, time, unicodedata, urllib.parse, urllib.request
 from datetime import date
 import xml.etree.ElementTree as ET
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -117,16 +118,39 @@ def parse_xsd(path):
     return version, names, codes
 
 
+# an illustrative supplement published next to the schema (eCH-0147 «V1.2
+# Zusatzbestimmungen ÜDP illustrativ») is an example, not the standard
+SUPPLEMENT = re.compile(r"illustrativ|zusatzbestimmung", re.I)
+
+
+def own_files(code, files):
+    """The standard's OWN schema files: named after the code, without the French
+    twins (-4-1f) and without illustrative supplements — the files whose
+    elements and enumerations may stand for this standard."""
+    own = [f for f in files if os.path.basename(f).lower().startswith(code.lower())]
+    own = [f for f in own if not re.search(r"-\d+-\d+f\.xsd$", f, re.I)] or own
+    return [f for f in own if not SUPPLEMENT.search(os.path.basename(f))]
+
+
+def _rank(code, f):
+    """Sort key: highest version first; within a version the lowest part
+    (eCH-0147_V1.2_T0 holds the types T1 and T2 import); ties by file name."""
+    b = os.path.basename(f)[len(code):]
+    m = re.search(r"[-_]v?(\d+)[-.](\d+)", b, re.I)
+    ver = (int(m.group(1)), int(m.group(2))) if m else (-1, -1)
+    t = re.search(r"_T(\d+)", b)
+    return (-ver[0], -ver[1], int(t.group(1)) if t else 0, b)
+
+
 def main_xsd(code, files):
     """The schema file of the standard ITSELF: eCH-0044-4-1.xsd, not the French
-    twin (-4-1f) and not an imported foreign standard (ili2.xsd and friends).
+    twin (-4-1f), not an illustrative supplement and not an imported foreign
+    standard (ili2.xsd and friends).
 
     Returns None when the standard publishes no own schema — pinning a foreign
     file as this standard's proof, and storing its enumerations as this
     standard's official code list, would be worse than recording nothing."""
-    own = [f for f in files if os.path.basename(f).lower().startswith(code.lower())]
-    own = [f for f in own if not re.search(r"-\d+-\d+f\.xsd$", f, re.I)] or own
-    own.sort(key=lambda f: [int(x) for x in re.findall(r"\d+", os.path.basename(f))], reverse=True)
+    own = sorted(own_files(code, files), key=lambda f: _rank(code, f))
     return own[0] if own else None
 
 
@@ -162,7 +186,9 @@ def main():
                 links = page_xsds(code)
                 for h in links:
                     url = h if h.startswith("http") else BASE + h
-                    dest = os.path.join(d, os.path.basename(h))
+                    # the href is URL-encoded («%20%C3%9C»); the file keeps its real name
+                    name = unicodedata.normalize("NFC", urllib.parse.unquote(os.path.basename(h)))
+                    dest = os.path.join(d, name)
                     if not os.path.exists(dest):
                         open(dest, "wb").write(get(url, binary=True))
                         time.sleep(0.3)
@@ -186,10 +212,9 @@ def main():
         version, names, codes = parse_xsd(mx)
         # a standard may split its schema over several files (eCH-0147 T0/T1/T2,
         # eCH-0213 base + messages): union the standard's OWN files, skip the
-        # French twins and imported foreign schemas
-        for f in files:
-            b = os.path.basename(f).lower()
-            if f == mx or not b.startswith(code.lower()) or re.search(r"-\d+-\d+f\.xsd$", b):
+        # French twins, illustrative supplements and imported foreign schemas
+        for f in own_files(code, files):
+            if f == mx or re.search(r"-\d+-\d+f\.xsd$", os.path.basename(f), re.I):
                 continue
             v2, n2, c2 = parse_xsd(f)
             names |= n2

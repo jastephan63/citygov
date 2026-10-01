@@ -4,8 +4,9 @@
 
 Why: a Dienststelle should get its own picture on one to four A4 pages (longer
 where a Formular has many Standard-Divergenzen) without opening the dashboard
-(about 37 MB). Everything on the page comes from data_export.json, i.e. from
-citygov.db, and says what it is: verified, curated, derived or open. Nothing
+(the whole databank in one large page). Everything on the page comes from
+data_export.json, i.e. from citygov.db, and says what it is: verified,
+curated, derived or open. Nothing
 here is a new judgment: the labels come from scripts/labels.py, the
 Handlungsbedarf from export_json.py (form.handlungsbedarf), the default
 retention sentence from data.texte - the same places the dashboard reads.
@@ -16,10 +17,9 @@ Formular: Kanal/Unterschrift/Bürgerlast, die Datenfelder (Pflicht, eCH-Element
 und Datentyp, Grundlage, ⛨, ↺), Beilagen mit Halter, Empfänger mit Artikel,
 Aufbewahrung, Standard-Divergenzen und der Handlungsbedarf des Formulars; on
 top, the Handlungsbedarf of the whole service by priority tier (data standard
-first). The data-standard tier also carries the data points without an eCH
-standard in force (form.standard_divergenzen.fehlend: kein_standard, and
-standard_entwurf where echalt does not already hold it), which
-form.handlungsbedarf has no category for — the largest data-standard gap.
+first). The data-standard tier includes the data points without an eCH
+standard in force (form.handlungsbedarf category «kein_standard»: no eCH
+standard, or one still «In Arbeit») — the largest data-standard gap.
 Open points are GAPS still to close, never framed as a risk.
 
 One status language with the dashboard: every status badge takes one of the
@@ -28,6 +28,12 @@ colour says who acts next (st-ok geklärt · st-act Dienststelle · st-dec Kanto
 st-open Databank) — and a symbol, so the tones stay apart in a black-and-white
 print. Markers (⛨, ↺, Rechtsebene, eSH) are neutral outlines, never a tone. A
 printed legend explains tones and glyphs, the footer states the Datenstand.
+
+With --pdf the PDFs land next to the HTML pages and dossiers/index.html gets a
+PDF column; without --pdf the index never links a PDF, even if one from an
+earlier --pdf run is still on disk (the PDFs are local, not published).
+Also writes dossiers/_repo.js, the marker a locally opened dashboard.html
+probes for to know the whole repository sits next to it.
 
     python3 scripts/export_dossiers.py [--pdf] [--only <service_id>]
 """
@@ -100,66 +106,10 @@ def first_tier():
 nf = lambda n: f"{int(n or 0):,}".replace(",", "'")
 
 
-# ---- the data standard's gaps that form.handlungsbedarf has no category for ----
-# export_json's handlungsbedarf counts divergences, labels, missing elements and a
-# standard «nicht in Kraft» (echalt), but not the data points WITHOUT an eCH
-# standard (the canton sets eSH) nor those whose standard is still «In Arbeit».
-# Both are amber in kopfzahlen.standard_ech (teile.dec) and in
-# standard_divergenzen.fehlend; the dossier adds them to the data-standard tier
-# from there, counted per data point (the atomic unit), in the tone of
-# ton_map.div — the largest data-standard gap must not be missing at the top.
-STD = "std:"
-STD_ARTS = ("kein_standard", "standard_entwurf")
-# the statuses export_json's handlungsbedarf already carries as «echalt» (its set
-# `bad`); such points stay with that item, so no point is counted twice
-ECHALT_STATUS = ("Aufgehoben", "Abgelöst", "Sistiert")
-
-
-def std_items(f):
-    """Tier-1 items from standard_divergenzen.fehlend, shaped like a
-    form.handlungsbedarf entry {cat, n, detail, stufe, ton}."""
-    sd = f.get("standard_divergenzen") or {}
-    has_alt = any(it.get("cat") == "echalt" for it in f.get("handlungsbedarf") or [])
-    agg = {}
-    for i in sd.get("fehlend") or []:
-        art = i.get("art")
-        if art not in STD_ARTS or not i.get("n"):
-            continue
-        if art == "standard_entwurf" and has_alt and i.get("status") in ECHALT_STATUS:
-            continue
-        key = STD + art + ((":" + i["status"]) if art == "standard_entwurf" and i.get("status") else "")
-        a = agg.setdefault(key, {"cat": key, "n": 0, "ton": ton_of("div", art), "stufe": first_tier(), "parts": []})
-        a["n"] += i["n"]
-        a["parts"].append((i.get("standard"), i["n"]))
-    out = []
-    for a in agg.values():
-        parts = sorted(a.pop("parts"), key=lambda p: (p[0] is None, -p[1], p[0] or ""))
-        if a["cat"] == STD + "kein_standard":
-            # the fehlend entry of kein_standard carries the eSH draft code, if any
-            has = [f"{c} ({nf(n)})" for c, n in parts if c]
-            none = sum(n for c, n in parts if not c)
-            a["detail"] = " · ".join(x for x in (("eSH-Entwurf: " + ", ".join(has)) if has else "",
-                                                 f"ohne eSH-Entwurf: {nf(none)}" if none else "") if x)
-        else:
-            a["detail"] = ", ".join(f"{c} ({nf(n)})" for c, n in parts if c)
-        out.append(a)
-    return out
-
-
 def form_items(f):
     """form.handlungsbedarf — it carries the data-standard gaps itself (category
     «kein_standard», export_json), so the dossier counts exactly like the board."""
     return list(f.get("handlungsbedarf") or [])
-
-
-def std_label(cat):
-    """«Kein eCH-Standard — eSH festlegen» / «Standard nicht in Kraft (In Arbeit)»
-    — the words of DATA.labels.div, as in the Standard-Divergenzen below."""
-    art, _, status = cat[len(STD):].partition(":")
-    lb = render_label(LAB.get("div") or LABELS.DIV, art)
-    if art == "kein_standard":
-        return lb + " — eSH festlegen"
-    return lb + (f" ({status})" if status else "")
 
 
 # what the number of a Handlungsbedarf category counts (export_json.handlungsbedarf):
@@ -171,7 +121,7 @@ UNIT = LABELS.EINHEIT          # shared with the dashboard (labels.py)
 
 def count_txt(cat, n):
     """«: 55 Datenpunkte» after a category label; empty for a per-Formular point."""
-    u = ("Datenpunkt", "Datenpunkte") if str(cat).startswith(STD) else UNIT.get(cat)
+    u = UNIT.get(cat)
     if u is None:                 # counted per Formular: the chip carries no number
         return ""
     return f": {nf(n)}" + (f" {u[0] if n == 1 else u[1]}" if u[0] else "")
@@ -313,20 +263,21 @@ def basis_label(d):
         b = d["legal_basis"][0]
         nr = b.get("sr_number") or b.get("cantonal_ref") or ""
         lc = b.get("last_checked") or ""
-        # the proof level of the citation: live-checked, or read from the
-        # official PDF and still awaiting the live check. The basis itself is
+        # the proof level of the citation as the ingest scripts set it: a federal
+        # article read from the official Fedlex text ('verified'), or an article
+        # read from the official law PDF ('Gesetze-PDF …'). The basis itself is
         # «artikel» (geklärt); an unverified quote still leaves the Databank a
         # check to do, so the badge takes the tone of the proof level
         if lc == "verified":
-            prov, lv = "verifiziert", "verified"
+            prov, lv = "verifiziert (Fedlex)", "verified"
         elif lc.startswith("Gesetze-PDF"):
-            prov, lv = ("Quelle SHR-PDF" if b.get("jurisdiction") == "cantonal" else "Quelle Gesetzes-PDF") + " · Live-Abgleich offen", "quelle_pdf"
+            prov, lv = ("Quelle SHR-PDF" if b.get("jurisdiction") == "cantonal" else "Quelle Gesetzes-PDF"), "quelle_pdf"
         else:
             prov, lv = "Zitat nicht verifiziert", "unverifiziert"
         return (st(ton_of("verif", lv), f'{esc(b.get("article_no"))} {esc((b.get("law_short") or "").strip())}'
                       f'{(" · " + esc(nr)) if nr else ""}') + f' <span class="small muted">{prov}</span>')
     if d.get("art5_offen"):
-        # a besonders schützenswertes Datum judged «aufgabe»: KDSG Art. 4 Abs. 1
+        # a besonders schützenswerte Angabe judged «aufgabe»: KDSG Art. 4 Abs. 1
         # lit. b is not enough, Art. 5 Abs. 1 lit. a or b must be named -> OPEN
         return st(ton_of("basis", "art5_offen"), "aufgabennotwendig — Grundlage nach KDSG Art. 5 Abs. 1 noch nicht benannt")
     bt = d.get("basis_typ")
@@ -475,12 +426,8 @@ def field_row(d):
 
 
 def cat_rank(cat):
-    """Place of a category inside its tier (DATA.labels.cat_order); the
-    data-standard gaps from standard_divergenzen sit right after «echalt», the
-    other «standard not in force» item, before the amber «Pflicht uneinheitlich»."""
+    """Place of a category inside its tier (DATA.labels.cat_order)."""
     order = {c: i for i, c in enumerate(LAB.get("cat_order") or [])}
-    if str(cat).startswith(STD):
-        return order.get("echalt", 98) + (0.25 if cat == STD + "kein_standard" else 0.5)
     return order.get(cat, 99)
 
 
@@ -491,8 +438,6 @@ def todo_sorted(items):
 
 
 def todo_label(cat):
-    if str(cat).startswith(STD):
-        return std_label(cat)
     c = TODO.get(cat)
     return c[1] if c else f"⟨{cat}⟩"
 
@@ -707,8 +652,9 @@ def foot_html():
     if xs.get("date"):
         bits.append(f"eCH-XSD-Abgleich {fmt_date(xs['date'])} ({pl(xs.get('n') or 0, 'Standard', 'Standards')})")
     z = ZITATE or {}
-    zit = (f" Zitate der Rechtsgrundlagen: {nf(z.get('verifiziert'))} live verifiziert · {nf(z.get('quelle_pdf'))} aus dem "
-           f"Gesetzes-PDF (Live-Abgleich offen) · {nf(z.get('unverifiziert'))} unverifiziert." if z else "")
+    zit = (f" Zitate der Rechtsgrundlagen: {nf(z.get('verifiziert'))} verifiziert (Bundesrecht, aus dem amtlichen "
+           f"Fedlex-Text gelesen) · {nf(z.get('quelle_pdf'))} aus dem amtlichen Gesetzes-PDF gelesen (kantonales Recht: "
+           f"Schaffhauser Rechtsbuch) · {nf(z.get('unverifiziert'))} unverifiziert." if z else "")
     return ("<div class='foot'>Quelle: citygov.db (Feld-Schicht kuratiert; Rechtsgrundlagen gegen die amtlichen Gesetzestexte geprüft; "
             "eCH aus den offiziellen XSDs; Empfänger und Fristen nur mit Artikel-Beleg). Offene Punkte sind Lücken — noch zu "
             "klären oder noch nicht belegt; grau markierte sind Hausaufgaben der Databank, kein Befund über die Verwaltung. "
@@ -960,9 +906,11 @@ def main():
                             "file://" + os.path.join(OUT, slug + ".html")],
                            capture_output=True, timeout=120)
     if not only:
-        # the PDF column only when at least one PDF exists (an always-empty
-        # column reads as a rendering error)
-        pdf_any = any(os.path.exists(os.path.join(OUT, slug + ".pdf")) for _, slug, _ in index)
+        # the PDF column only in a --pdf run and only when at least one PDF exists
+        # (an always-empty column reads as a rendering error). A plain build never
+        # links a PDF: they are local files, and a committed index must not point
+        # at PDFs the published site does not carry
+        pdf_any = pdf and any(os.path.exists(os.path.join(OUT, slug + ".pdf")) for _, slug, _ in index)
         tier1 = first_tier()      # the data standard leads
 
         def who_cell(sid, first):

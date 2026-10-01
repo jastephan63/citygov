@@ -7,11 +7,12 @@ Gates:
                form's Beilagen-checklist fields, or an entry in the DVSH
                unterlagen of the form's service. A document no source names
                is rejected; halter/obligatorium must use the CHECK vocabulary.
-  * outcome  — only forms whose service has DVSH data; the agent's beleg
+  * outcome  — only forms whose service has DVSH data; the proposed beleg
                substring must literally occur in the DVSH titel/kurz-
                beschreibung/ablauf text, or the row falls back to 'unbekannt'.
 
-Idempotent (agent rows replaced wholesale). Staging -> validate -> swap.
+Idempotent (rows whose last_checked starts with 'agent' are replaced wholesale).
+Staging -> validate -> swap.
 
     python3 scripts/load_verfahren.py <out-dir>
 """

@@ -7,7 +7,7 @@ Mechanical part (this script): DDL, channel harvest from the DVSH abgabe
 strings, form_check review dates, Dienststellen contacts backfilled from the
 read-only DVSH harvest, and the truncated VRG title repaired from the official
 Rechtsbuch API. The curated part (beilage classification, outcome derivation)
-comes from agents through load_verfahren.py's gates.
+comes from derived input files through load_verfahren.py's gates.
 
 Idempotent. Staging -> validate -> swap.
 

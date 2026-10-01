@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
-"""Export citygov.db -> data_export.json (compact base data for the dashboard).
+"""Export citygov.db -> data_export.json: the base data plus ONE computation of
+every derived figure (Handlungsbedarf with tier and tone, Standard-Divergenzen,
+Dienststellen summaries, kopfzahlen, Lebenslagen, Begriffe, labels, Datenstand)
+that the dashboard, the guided flows, the dossiers, the landing page and the
+machine-readable exports read. Heavy free-text columns (source_note, mapping
+notes) stay in the DB for review; the one exception is the capped article
+excerpt on data-field legal bases. The retired 2026-06 auto-draft layer
+(form_field, field_mapping, requirement*, service_requirement) is not exported.
 
-The dashboard computes the reconciliation buckets in the browser from this base
-data, so nothing is duplicated here (important now that the databank holds
-hundreds of forms and thousands of fields). Heavy free-text columns
-(source_note, mapping notes) live in the DB for review but are not inlined into
-the dashboard payload; the one exception is the capped article excerpt on
-data-field legal bases.
-
-Also writes logs/citation_todo.txt — every not-yet-'verified' citation.
+Also writes today's snapshot to verlauf.json (scripts/kennzahlen.py) and
+logs/citation_todo.txt (every ingested article not at level 'verified').
+Stops before writing data_export.json when it would carry a local file path
+or an unreviewed «Datum» in the databank's own naming/basis texts.
 
     python3 scripts/export_json.py
 """
@@ -16,8 +19,7 @@ import json, os, re, sqlite3, sys
 from datetime import datetime, date
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from common import DB_PATH, EXPORT_PATH, LOGS_DIR, connect
-from fix_quality import is_bad_label
+from common import DB_PATH, EXPORT_PATH, LOGS_DIR, connect, assert_no_local_paths
 import labels as LABELS
 
 
@@ -58,55 +60,6 @@ def datum_key(d, u, subs):
 
 def rows(conn, q, *a):
     return [dict(r) for r in conn.execute(q, a).fetchall()]
-
-
-def _n(s):
-    return re.sub(r"[^a-z0-9]+", "", (s or "").lower())
-
-
-def compose_path(f, req_by_id):
-    """Full-depth contextual label for a field, so a sub-item reads standalone:
-    'Kennzeichnung › Nummer', 'Personalien › Vorname', 'Rasse › Terrier'.
-    Levels = section  ›  group (the requirement a sub-field maps to)  ›  the
-    field's own label (which may itself already be a dotted breadcrumb). Levels
-    are de-duplicated so nothing repeats, and the field's own label is always the
-    leaf. Purely derived — the DB label is untouched."""
-    label = (f.get("label") or "").strip()
-    parts, seen = [], set()
-
-    def add(x, guard=False):
-        x = (x or "").strip(" ›").strip()
-        if not x:
-            return
-        # guarded levels (section/group) must look like a real heading: a proper
-        # word, not too long, not a mangled slug token (e.g. '1erdsonde','12bivalent'),
-        # and NOT a raw technical field name (Kontrollkästchen 20, Optionsfeld 19, …).
-        if guard and (len(x) > 48 or re.match(r"^\d", x)
-                      or not re.search(r"[A-Za-zÄÖÜäöü]{3,}", x)
-                      or is_bad_label(x)):
-            return
-        n = _n(x)
-        if n and n not in seen:
-            seen.add(n)
-            parts.append(x)
-
-    grp = None
-    m = f.get("mapping")
-    if m and m.get("requirement_id") and m.get("classification") in ("identity_part", "reason_facet"):
-        r = req_by_id.get(m["requirement_id"])
-        if r:
-            grp = (r.get("data_point") or "").strip()
-    sec = (f.get("section") or "").strip()
-    if sec and grp:                                # drop section if it just echoes the group
-        st = set(re.findall(r"[a-zäöü]{4,}", sec.lower()))
-        gt = set(re.findall(r"[a-zäöü]{4,}", grp.lower()))
-        if st & gt:
-            sec = ""
-    add(sec, True)                                 # section header (top level)
-    add(grp, True)                                 # the group this sub-field belongs to
-    for seg in label.split("›"):                   # the field's own (possibly nested) label
-        add(seg)
-    return " › ".join(parts) if parts else label
 
 
 def handlungsbedarf(fm, today):
@@ -449,56 +402,23 @@ def build(conn):
                       "cantonal_ref,last_checked FROM law "
                       "WHERE last_checked IS NULL OR last_checked != 'zitiert (unverifiziert)'")
     articles = rows(conn, "SELECT id,law_id,article_no,heading,last_checked FROM article")
-    requirements = rows(conn, "SELECT id,data_point_key,data_point,label,data_type,condition,"
-                              "is_composite FROM requirement")
-    rlb = rows(conn, "SELECT * FROM requirement_legal_basis")
-    svc_req = rows(conn, "SELECT * FROM service_requirement")
     forms = rows(conn, "SELECT id,service_id,title,actual_purpose,title_content_mismatch,"
                        "mismatch_note,publisher_dienststelle,source_file,file_type,"
                        "purpose,dsfa_status,submission_channel,signature_requirement,"
                        "signature_evidence,acroform,parse_error,dvsh_match FROM form")
-    fields = rows(conn, "SELECT id,form_id,label,section,field_type,options,raw_order "
-                        "FROM form_field ORDER BY form_id, raw_order")
-    mappings = {m["form_field_id"]: m for m in
-                rows(conn, "SELECT form_field_id,requirement_id,classification,match_status,mapped_by "
-                           "FROM field_mapping")}
-    steps = rows(conn, "SELECT service_id,step_no,description,mode FROM process_step ORDER BY service_id,step_no")
-    findings = rows(conn, "SELECT type,severity,service_id,form_id,law_id,description,status FROM finding")
+    # the retired 2026-06 auto-draft layer (form_field, field_mapping, requirement,
+    # requirement_legal_basis, service_requirement) and its service-level rows
+    # (process_step, finding) are not read here: no page shows them, and the
+    # proof-gated data_field layer below is the only source of a legal basis
+    # (citygov_llm.json lists process_step/finding as legacy text, read by
+    # export_llm.py from the DB)
 
     law_by_id = {l["id"]: l for l in laws}
-    art_by_id = {a["id"]: a for a in articles}
-    req_by_id = {r["id"]: r for r in requirements}
-
     for l in laws:
         l["articles"] = []
     articles = [a for a in articles if a["law_id"] in law_by_id]
-    art_by_id = {a["id"]: a for a in articles}
     for a in articles:
         law_by_id[a["law_id"]]["articles"].append(a)
-    rlb = [lb for lb in rlb if lb["article_id"] in art_by_id]
-
-    for r in requirements:
-        r["legal_basis"] = []
-        r["services"] = []
-    for lb in rlb:
-        art = art_by_id[lb["article_id"]]; law = law_by_id[art["law_id"]]
-        req_by_id[lb["requirement_id"]]["legal_basis"].append({
-            "jurisdiction": law["jurisdiction_level"], "law_short": law["short_title"],
-            "law_title": law["title"], "sr_number": law["sr_number"],
-            "cantonal_ref": law["cantonal_ref"], "article_no": art["article_no"],
-            "article_heading": art["heading"], "citation_detail": lb["citation_detail"],
-            "last_checked": lb["last_checked"]})
-    for sr in svc_req:
-        req_by_id[sr["requirement_id"]]["services"].append(sr["service_id"])
-
-    fields_by_form = {}
-    for f in fields:
-        f["options"] = json.loads(f["options"]) if f["options"] else None
-        m = mappings.get(f["id"])
-        f["mapping"] = {"requirement_id": m["requirement_id"], "classification": m["classification"],
-                        "match_status": m["match_status"], "mapped_by": m["mapped_by"]} if m else None
-        f["path"] = compose_path(f, req_by_id)     # full-depth contextual label
-        fields_by_form.setdefault(f["form_id"], []).append(f)
 
     # logical data-field catalogue (Datenfeld-Katalog), if derived for this form
     dfs_by_form = {}
@@ -524,7 +444,7 @@ def build(conn):
             try:
                 xsd_ver = {r["code"]: r["xsd_version"] for r in rows(conn, "SELECT code, xsd_version FROM ech_standard")}
             except Exception as _ex:
-                _layer_skipped('logical data-field catalogue (Datenfeld-Katalog)', _ex)
+                _layer_skipped('XSD-Fassungen (ech_standard.xsd_version)', _ex)
             for e in rows(conn, "SELECT e.id, e.standard, e.name, e.datatype, e.context, s.title, s.url, "
                                 "s.status, s.reifegrad, s.n_elements "
                                 "FROM ech_element e JOIN ech_standard s ON s.code=e.standard"):
@@ -534,14 +454,14 @@ def build(conn):
                                 "status": e["status"], "reifegrad": e["reifegrad"],
                                 "n_elements": e["n_elements"], "xsd_version": xsd_ver.get(e["standard"])}
         except Exception as _ex:
-            _layer_skipped('logical data-field catalogue (Datenfeld-Katalog)', _ex)
+            _layer_skipped('eCH-Katalog (ech_standard, ech_element)', _ex)
         # subfields with their OWN eCH element (Name/Vorname/Geburtsdatum each exact)
         esh_std2 = {}
         try:
             for r in rows(conn, "SELECT code, titel FROM esh_standard"):
                 esh_std2[r["code"]] = r
         except Exception as _ex:
-            _layer_skipped('subfields with their OWN eCH element (Name/Vorna', _ex)
+            _layer_skipped('eSH-Titel (esh_standard)', _ex)
         subs_by_field = {}
         try:
             for s in rows(conn, "SELECT sf.*, st.title stitle, st.url surl, st.n_elements snel, "
@@ -559,13 +479,13 @@ def build(conn):
                                   "titel": esh_std2[s["esh_code"]]["titel"]}
                 subs_by_field.setdefault(s["data_field_id"], []).append(sub)
         except Exception as _ex:
-            _layer_skipped('subfields with their OWN eCH element (Name/Vorna', _ex)
+            _layer_skipped('Teilfelder (data_subfield)', _ex)
         esh_std = {}
         try:
             for r in rows(conn, "SELECT code, titel, beschreibung, n_felder FROM esh_standard"):
                 esh_std[r["code"]] = r
         except Exception as _ex:
-            _layer_skipped('subfields with their OWN eCH element (Name/Vorna', _ex)
+            _layer_skipped('eSH-Titel (esh_standard)', _ex)
         for d in rows(conn, "SELECT * FROM data_field ORDER BY form_id, ord"):
             d["ech"] = ech.get(d.get("ech_element_id"))
             if d.get("esh_code") and d["esh_code"] in esh_std:
@@ -582,17 +502,19 @@ def build(conn):
                 d[k] = json.loads(d[k]) if d.get(k) else []
             if d["id"] in subs_by_field:      # normalised subfields win over the raw JSON
                 d["subfields"] = subs_by_field[d["id"]]
+            if d.get("ech_herkunft") is None:   # provenance marker, set only on copied verdicts
+                d.pop("ech_herkunft", None)
             d["required"] = bool(d["required"])
             d["no_basis"] = bool(d.get("no_basis"))
             d["legal_basis"] = df_lb.get(d["id"], [])
-            # a besonders schützenswertes Datum judged «aufgabennotwendig» is NOT
+            # a besonders schützenswerte Angabe judged «aufgabennotwendig» is NOT
             # covered by KDSG Art. 4 Abs. 1 lit. b alone: Art. 5 Abs. 1 demands a
             # formal law that clearly describes the task (lit. a) or express
             # consent (lit. b) — until that is named, the basis is open
             d["art5_offen"] = bool(d.get("sensitive")) and d.get("basis_typ") == "aufgabe" and not d["legal_basis"]
             dfs_by_form.setdefault(d["form_id"], []).append(d)
     except Exception as _ex:
-        _layer_skipped('subfields with their OWN eCH element (Name/Vorna', _ex)
+        _layer_skipped('Datenfelder (data_field, data_subfield, data_field_legal_basis)', _ex)
 
     checks = {}
     try:
@@ -600,7 +522,7 @@ def build(conn):
                             "substr(checked_at,1,10) d FROM form_check"):
             checks[r["form_id"]] = r
     except Exception as _ex:
-        _layer_skipped('subfields with their OWN eCH element (Name/Vorna', _ex)
+        _layer_skipped('Online-Prüfung (form_check)', _ex)
 
     # Verzeichnis layer: recipients, retention profile, decisions — per form
     disc_by_form, ret_by_form, dec_by_form = {}, {}, {}
@@ -627,7 +549,7 @@ def build(conn):
         for r in rows(conn, "SELECT * FROM retention_decision"):
             dec_by_form.setdefault(r.pop("form_id"), []).append(r)
     except Exception as _ex:
-        _layer_skipped("a form's specific retention terms = terms of ret", _ex)
+        _layer_skipped('Bekanntgabe/Aufbewahrung (form_disclosure, retention_term, retention_decision)', _ex)
 
     # Verfahren layer: enclosures, outcomes, near-duplicates, guided-flow anchor
     beil_by_form, out_by_form, sim_by_form = {}, {}, {}
@@ -666,7 +588,7 @@ def build(conn):
             try:
                 reviewed = {r["form_id"] for r in rows(conn, "SELECT form_id FROM rechtsmittel_verdikt")}
             except Exception as _ex:
-                _layer_skipped('the one the databank applied', _ex)
+                _layer_skipped('Rechtsmittel-Verdikt (rechtsmittel_verdikt)', _ex)
             for fid, o in out_by_form.items():
                 cands = [c for lid in laws_of_form.get(fid, []) for c in cand_by_law.get(lid, [])]
                 if cands:
@@ -697,7 +619,7 @@ def build(conn):
                     if r["form_id"] in out_by_form:
                         out_by_form[r["form_id"]]["rechtsmittel_verdikt"] = f"{r['quelle']}: {_lesbar_pruefvermerk(r['begruendung'])}"
             except Exception as _ex:
-                _layer_skipped("the panel's reasoning where a judgment was neede", _ex)
+                _layer_skipped('Rechtsmittel-Verdikt (rechtsmittel_verdikt)', _ex)
         except Exception:
             pass
         tit = {f["id"]: f["title"] for f in forms}
@@ -709,7 +631,7 @@ def build(conn):
                      "jaccard": r["jaccard_names"], "verdict": r["verdict"]})
         flow_forms = {r["form_id"] for r in rows(conn, "SELECT DISTINCT form_id FROM formflow")}
     except Exception as _ex:
-        _layer_skipped("the panel's reasoning where a judgment was neede", _ex)
+        _layer_skipped('Verfahren (beilage, form_outcome, form_similarity, formflow)', _ex)
     # which eCH elements the Einwohnerregister already holds (for the burden metric)
     reg_elems = set()
     try:
@@ -725,7 +647,7 @@ def build(conn):
         for eid, e in ech.items():
             conn_elem_ids[(e["standard"], e["element"])] = eid
     except Exception as _ex:
-        _layer_skipped('which eCH elements the Einwohnerregister already', _ex)
+        _layer_skipped('Einwohnerregister-Elemente (ech_element)', _ex)
 
     # exchange readiness, citizen burden and named digitalization blockers per form
     linked_dfs = set()
@@ -778,7 +700,6 @@ def build(conn):
         fm["blockers"] = blockers if pts else None
         fm["has_flow"] = fm["id"] in flow_forms
         fm["next_check_due"] = checks_due.get(fm["id"])
-        fm["fields"] = fields_by_form.get(fm["id"], [])
         fm["data_fields"] = dfs_by_form.get(fm["id"], [])
         fm["check"] = checks.get(fm["id"])
         fm["disclosures"] = disc_by_form.get(fm["id"], [])
@@ -839,7 +760,7 @@ def build(conn):
                         d.setdefault("dvsh_text_glitch", []).append(k)
             dvsh_by_service.setdefault(d["service_id"], []).append(d)
     except Exception as _ex:
-        _layer_skipped('so no consumer ever receives bare text where a l', _ex)
+        _layer_skipped('DVSH-Modell (dvsh_service)', _ex)
     # SHEP: the PUBLISHED citizen view of the same service
     shep_by_service = {}
     try:
@@ -851,7 +772,7 @@ def build(conn):
                     sp[k] = []
             shep_by_service[sp["service_id"]] = sp
     except Exception as _ex:
-        _layer_skipped('SHEP: the PUBLISHED citizen view of the same ser', _ex)
+        _layer_skipped('SHEP-Portal (shep_service)', _ex)
     for s in services:
         got = dvsh_by_service.get(s["id"])
         if got:
@@ -861,10 +782,6 @@ def build(conn):
                 s["dvsh_n"] = len(got)      # the dashboard says «eine von N Modellierungen»
         if s["id"] in shep_by_service:
             s["shep"] = shep_by_service[s["id"]]
-
-    steps_by_service = {}
-    for st in steps:
-        steps_by_service.setdefault(st["service_id"], []).append(st)
 
     esh_katalog = []
     if _has_esh(conn):
@@ -888,7 +805,7 @@ def build(conn):
                              "ORDER BY ca.n_forms DESC, ca.n_instances DESC")
         dienststellen = rows(conn, "SELECT name, department, dateninhaber, kontakt FROM dienststelle")
     except Exception as _ex:
-        _layer_skipped('canonical attribute catalogue + the divergence l', _ex)
+        _layer_skipped('Attributkatalog (canonical_attribute, dienststelle)', _ex)
 
     # data-governance rules (how data may be stored, treated, communicated);
     # the dashboard groups by scope and matches 'sektoral' rules to a form via law_id
@@ -901,7 +818,7 @@ def build(conn):
                             "JOIN law l ON l.id=a.law_id ORDER BY dr.scope, a.law_id, a.id"):
             handhabung.append(r)
     except Exception as _ex:
-        _layer_skipped("the dashboard groups by scope and matches 'sekto", _ex)
+        _layer_skipped('Datenhandhabung (data_rule)', _ex)
 
     # official code lists (enumerations from the swept XSDs) for the datatypes
     # of elements that fields actually map to - the dashboard compares a form's
@@ -920,7 +837,7 @@ def build(conn):
                 codelists.setdefault(f"{r['standard']}|{r['type_name']}", []).append(
                     {"value": r["value"], "doc": r["doc"]})
     except Exception as _ex:
-        _layer_skipped('value list against them', _ex)
+        _layer_skipped('Codelisten (ech_codelist)', _ex)
 
     # ---- Begriffe: one datum, one name --------------------------------------
     # The naming verdicts (load_begriffe.py) land on each unit, so the field
@@ -1441,7 +1358,8 @@ def build(conn):
     except Exception as ex:
         _layer_skipped("Texte", ex)
 
-    # citation TODO -> log file (not inlined; can be thousands of rows)
+    # every ingested article not at level 'verified' -> log file (not inlined;
+    # thousands of rows, most of them cantonal articles read from the Gesetze PDF)
     todo = []
     for l in laws:
         for a in l["articles"]:
@@ -1449,24 +1367,29 @@ def build(conn):
                 todo.append((l["jurisdiction_level"], l["title"], l["sr_number"] or l["cantonal_ref"],
                              a["article_no"], a["heading"], a["last_checked"]))
 
-    datenstand["build"] = datetime.now().isoformat(timespec="seconds")[:10]
+    # one stamp: every surface and export built from this file repeats it
+    now = datetime.now().isoformat(timespec="seconds")
+    datenstand["build"] = now[:10]
     data = {
-        "generated_at": datetime.now().isoformat(timespec="seconds"),
-        "verification_note": "Zitate 'UNVERIFIED' sind nicht amtlich geprüft. "
-                             "'Quelle' = aus offizieller SHR-PDF gelesen; 'verified' = zusätzlich live "
-                             "gegen Fedlex/Rechtsbuch geprüft. Die Feld-Schicht (data_fields) ist die "
-                             "geprüfte; der Auto-Entwurf von 2026-06 (form_field/field_mapping) ist "
-                             "stillgelegt und wird nicht mehr exportiert.",
+        "generated_at": now,
+        # the levels as the ingest scripts set them (ingest_fed.py / ingest_bigcode.py
+        # write 'verified', ingest_laws.py writes 'Gesetze-PDF SHR … (Stand …)')
+        "verification_note": "Verifikationsstufen der Zitate (last_checked): 'verified' = Artikel des "
+                             "Bundesrechts, beim Einlesen aus dem amtlichen Fedlex-Text gelesen "
+                             "(Dashboard: «verifiziert»); 'Gesetze-PDF SHR … (Stand …)' = Artikel aus "
+                             "dem amtlichen Gesetzes-PDF gelesen, für kantonales Recht aus dem "
+                             "Schaffhauser Rechtsbuch (Dashboard: «Quelle SHR-PDF»); 'UNVERIFIED' = "
+                             "ohne Quelle, nicht amtlich geprüft. Massgeblich ist die geprüfte "
+                             "Feld-Schicht (forms[].data_fields); der Auto-Entwurf von 2026-06 "
+                             "(form_field, field_mapping, requirement) ist stillgelegt und wird "
+                             "nicht exportiert.",
         "datenstand": datenstand, "zitate": zitate, "labels": LABELS.as_export(), "texte": texte,
-        "services": services, "laws": laws, "requirements": requirements,
-        "forms": forms, "service_requirements": svc_req,
+        "services": services, "laws": laws, "forms": forms,
         "esh_katalog": esh_katalog, "datenhandhabung": handhabung,
         "attribut_katalog": katalog, "dienststellen": dienststellen,
         "dienststellen_uebersicht": dienststellen_uebersicht, "kopfzahlen": kopfzahlen, "verlauf": verlauf,
         "buergersicht": buergersicht, "ech_codelists": codelists,
         "begriffe": begriffe, "begriffe_stats": begriffe_stats, "themenkatalog": themenkatalog,
-        "process_steps_by_service": steps_by_service,
-        "findings": findings, "citation_todo_count": len(todo),
     }
     return data, todo
 
@@ -1511,17 +1434,21 @@ def main():
     data, todo = build(conn)
     conn.close()
     _wortwahl_pruefen(data)
+    text = json.dumps(data, ensure_ascii=False, separators=(",", ":"))
+    # a published file never carries a path of the author's machine
+    assert_no_local_paths("data_export.json", text)
     with open(EXPORT_PATH, "w", encoding="utf-8") as fh:
-        json.dump(data, fh, ensure_ascii=False, separators=(",", ":"))
+        fh.write(text)
     os.makedirs(LOGS_DIR, exist_ok=True)
     with open(os.path.join(LOGS_DIR, "citation_todo.txt"), "w", encoding="utf-8") as fh:
-        fh.write(f"UNVERIFIED / unsourced CITATIONS to verify ({len(todo)})\n" + "=" * 60 + "\n")
+        fh.write(f"ARTICLES NOT AT LEVEL 'verified' ({len(todo)}) — status 'Gesetze-PDF …' = read from "
+                 "the official PDF; any other status has no source yet\n" + "=" * 60 + "\n")
         for jur, title, num, art, head, lc in todo:
             fh.write(f"[{jur:9}] {title}  | Art. {art} ({head})  ref={num}  status={lc}\n")
     sz = os.path.getsize(EXPORT_PATH) / 1024
-    print(f"exported {EXPORT_PATH}  ({sz:.0f} KB)")
+    print(f"exported {EXPORT_PATH}  ({sz:.0f} KB, generated_at {data['generated_at']})")
     print(f"  services={len(data['services'])} forms={len(data['forms'])} "
-          f"requirements={len(data['requirements'])} citation_todo={len(todo)}")
+          f"not_verified_articles={len(todo)}")
 
 
 if __name__ == "__main__":

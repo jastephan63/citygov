@@ -16,7 +16,7 @@ Rejected flows are reported per form and NOT loaded (fix + rerun; idempotent).
 """
 import glob, hashlib, json, os, re, shutil, sys, unicodedata
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from common import DB_PATH, connect
+from common import DB_PATH, ROOT, connect
 from validate_db import validate
 
 DDL = """
@@ -40,7 +40,7 @@ def _n(x):
 
 
 def repair_fields(flow, dfnames, submap):
-    """Agents sometimes put a TEILFELD name (or a slight variant) into node.field.
+    """Flow drafts sometimes put a TEILFELD name (or a slight variant) into node.field.
     Map it back to the parent Datenfeld deterministically; unknowns stay and get
     rejected by the gate. Also dedupes within a node."""
     ndf = {_n(x): x for x in dfnames}
@@ -149,8 +149,9 @@ def main():
             # record which edition of the source file this flow was derived from (staleness check)
             sfile = c.execute("SELECT source_file FROM form WHERE id=?", [fid]).fetchone()["source_file"]
             fh = None
-            if sfile and os.path.exists(sfile):
-                fh = hashlib.sha256(open(sfile, "rb").read()).hexdigest()[:16]
+            spath = os.path.join(ROOT, sfile) if sfile else None   # source_file is repo-relative
+            if spath and os.path.exists(spath):
+                fh = hashlib.sha256(open(spath, "rb").read()).hexdigest()[:16]
             c.execute("INSERT OR REPLACE INTO formflow(form_id, flow, n_nodes, n_ausgelassen, form_hash) "
                       "VALUES(?,?,?,?,?)",
                       [fid, json.dumps(flow, ensure_ascii=False),

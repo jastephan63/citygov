@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Parse harvested DVSH modeller pages (raw text) into structured JSON.
 
-Purely deterministic (no model judgement): the admin page renders fixed section
+Purely deterministic (no judgement involved): the admin page renders fixed section
 headers, so we slice between them. Extracts the authoritative legal bases
 (KANTONALES RECHT with SSR numbers, BUNDESRECHT with SR numbers) plus the
 service metadata that is useful in the dashboard.
