@@ -28,7 +28,8 @@ just identify points that are inconsistent»). Open points are «Lücken». The
 figures of this layer stay on their own page: they never enter «offene
 Punkte» or the Handlungsbedarf of the data standard.
 
-The hook into export_json.py (a later step; three lines after uebersichten()):
+The hook in export_json.build() (three lines after uebersichten(); the page
+#gestaltung of build_dashboard.py draws what it returns):
     gest, gestaltung = gestaltung_export.berechne(conn, forms, services, dienststellen_uebersicht)
     for fm in forms: fm["gestaltung"] = gest[fm["id"]]
     data["gestaltung"] = gestaltung
@@ -69,8 +70,8 @@ says that no rule lies before the DATABANK and that the Formulare show none —
 never that «nothing is laid down».
 
 Output — per Formular (compact; to be stored as forms[].gestaltung)
-  {"messart", "n": {"act", "betroffen", "open"}, "merkmale": [{"k", "u", "w",
-  "p", "d"}]}; an eFormular: {"messart": null, "entfaellt": true}.
+  {"messart", "n": {"act", "betroffen", "dec", "open"}, "merkmale": [{"k", "u",
+  "w", "p", "d"}]}; an eFormular: {"messart": null, "entfaellt": true}.
   k Merkmal, u verdict key, w the value as shown, p the practice value (only
   with «entspricht»/«weicht_ab»), d a LIST of detail sentences or null.
 Output — overview (to be stored as top-level «gestaltung»): stand, methode,
@@ -83,9 +84,11 @@ Judgements the specification leaves open (each decided conservatively)
     than 5 % small text). It is counted in the overview and, like «entfaellt»,
     left out of the per-Formular list.
   * Per Formular, n.act counts «weicht_ab» + «luecke», n.open «nicht_messbar»
-    + «nicht_gemessen», n.betroffen only «betroffen». «uneinheitlich» is listed
-    on the Formular but not counted: every measured Formular carries it, and
-    the open point is the canton's, once per Merkmal.
+    + «nicht_gemessen», n.betroffen only «betroffen», and n.dec the Merkmale of
+    the Formular that wait for the canton: «uneinheitlich» + «betroffen» —
+    exactly the entscheide whose lists name the Formular (invariant 3), so that
+    the summary of a Formular says as many as its rows show. The open point
+    stays the canton's, once per Merkmal: on a Formular it has no colour.
   * The five keys k, u, w, p, d are always present (null when empty); d is
     always a list when it holds something — never a bare string.
   * A row with messart 'nicht_messbar' (.doc, .xls) and a Formular with a file
@@ -166,9 +169,13 @@ Judgements the specification leaves open (each decided conservatively)
   * entscheide[].verteilung lists the Formulare by value (form ids); for
     kleinschrift only the bands that are «betroffen».
   * overview.dienststellen has one entry per entry of the input, in its
-    order, also for a Dienststelle without Formulare; top = the TOP Merkmale
-    with the most «act» verdicts; akzente counts accent families of PDFs only;
-    act_je_formular puts the count in relation to the measured Formulare.
+    order, also for a Dienststelle without Formulare; n.act is split into
+    n.abweichungen («weicht_ab») and n.luecken («luecke»); top = the TOP pairs
+    (Merkmal, verdict) with the most «act» verdicts, each with its verdict u;
+    akzente counts accent families of PDFs only; act_je_formular puts the count
+    in relation to the Formulare whose content could be measured — n_gemessen
+    minus n_nicht_messbar (a file in an old format has a row but no measured
+    Merkmal).
   * kennzahlen: formulare_mit_luecke counts Formulare with a «luecke»,
     formulare_mit_abweichung those with a «weicht_ab», formulare_mit_act
     those with either. Nearly every Formular has one: the figure says little.
@@ -183,17 +190,37 @@ Judgements the specification leaves open (each decided conservatively)
     (tel_format: one number in several notations; seitenzahlen: the numbering
     patterns; akzentfarbe: what stands beside the comparison; bf_tags: tagged
     without fields or headings; tel_erklaerung: the Dienststellen of the
-    remark), gruppen[].vorbehalt, praxis.n, bestand.ohne_datei,
-    dienststellen[].act_je_formular, labels.kennzahl and the kennzahlen ok,
+    remark), merkmale[].urteil_labels (a verdict named for this Merkmal:
+    akzentfarbe's «hinweis» / «kein_hinweis» are the Word and Excel files with
+    and without a colour), gruppen[].vorbehalt, gruppen[].kennzahl (the ONE
+    figure of the group's door on the page, with its source — invariant 10),
+    entscheide[].frage (what is to be decided), praxis.n, bestand.ohne_datei,
+    bestand.dienststellen / .dienststellen_gemessen / .dienststellen_ohne_formular
+    (the page's door and table «Je Dienststelle»), labels.eformular (the
+    sentence of an eFormular), labels.ton_zusatz (what a tone adds to its
+    verdicts), labels.art_erklaerung (what each kind of Merkmal means),
+    labels.urteil_gesamt (a verdict named for a count over many Formulare),
+    labels.urteil_nomen (a red verdict as a noun: «Abweichung», «Lücke»),
+    labels.entscheide (the one sentence on the missing rule, said once for all
+    decisions), dienststellen[].act_je_formular / .n_nicht_messbar /
+    .n.abweichungen / .n.luecken, labels.kennzahl and the kennzahlen ok,
     abweichungen, luecken, betroffen, hinweis, formulare_mit_act,
     formulare_mit_abweichung.
+
+Numbers are written as the rest of the dashboard writes them (de-CH): a
+decimal point («10.5 pt», «4.8 %»).
 
 Remarks of the measurement
   BEMERKUNG passes `hinweise` of the measurement on as remarks of a Merkmal,
   verbatim. A sentence is recognised by the constant of gestaltung_text.py
   from which the measuring modules build it (H_…), never by a wording written
   down here a second time; the two facts that decide a verdict are values of
-  the profil (text_lesbar, sprache_passt).
+  the profil (text_lesbar, sprache_passt). Two changes of form only: a decimal
+  comma that an older run of the measurement wrote before «pt» or «%» is
+  written as a point (_DEZIMALKOMMA), and the sentences of KURZ lose their
+  closing parenthesis with the element name of the PDF structure («(kein
+  Form-Element)», «(H, H1–H6)», «(/MarkInfo)»). The remarks name colours by
+  their family, never by a colour code.
 
 Invariants (pruefen(); each raises RuntimeError and names the Merkmal)
   1 per Merkmal the verdict counts sum to the number of Formulare, and the
@@ -202,9 +229,13 @@ Invariants (pruefen(); each raises RuntimeError and names the Merkmal)
   2 every act / betroffen / hinweis / open count equals the length of its
     list, the lists equal the per-Formular entries; n.dec is 0 or 1 and the
     decisions are exactly the Merkmale with n.dec = 1;
-  3 per Formular n equals its own entries; the kennzahlen equal the sums over
-    Merkmale and over Formulare;
-  4 the Dienststellen sums equal the canton's (Formulare, gemessen, act, open);
+  3 per Formular n equals its own entries, and n.dec the number of entscheide
+    whose lists name it; the kennzahlen equal the sums over Merkmale and over
+    Formulare;
+  4 the Dienststellen sums equal the canton's (Formulare, gemessen, nicht
+    messbar, act, Abweichungen, Lücken, open), act = Abweichungen + Lücken for
+    each, and bestand counts them (dienststellen, dienststellen_gemessen,
+    dienststellen_ohne_formular);
   5 no «@» in any exported string;
   6 no local path in any exported string;
   7 the quote of a phone number appears only for 'bezeichnung' / 'ohne';
@@ -212,7 +243,10 @@ Invariants (pruefen(); each raises RuntimeError and names the Merkmal)
     exported string: stored texts are passed on without them (_rein), and a
     page must never receive one;
   9 (added here) a stored document title that looks like the name of a person
-    appears in no exported string.
+    appears in no exported string;
+ 10 (added here) the figure of each group's door (gruppen[].kennzahl) is the
+    count it names as its source: a verdict of a Merkmal of that group, or a
+    kennzahl.
 """
 import argparse
 import copy
@@ -262,22 +296,39 @@ URTEIL = {
     "nicht_gemessen": ("noch nicht gemessen", "open"),
     "entfaellt":      ("entfällt", None),
 }
+# a verdict named for a count over many Formulare (the overview), where the label above speaks of one Formular
+URTEIL_GESAMT = {"betroffen": "betroffen"}
+# a red finding as a noun, for the lists of the most frequent ones per Dienststelle («Lücke bei 41»)
+URTEIL_NOMEN = {"weicht_ab": "Abweichung", "luecke": "Lücke"}
+# a verdict named for one Merkmal: akzentfarbe compares PDF only — its «hinweis» / «kein_hinweis» are the Word and
+# Excel files with and without a colour
+URTEIL_MERKMAL = {"akzentfarbe": {"hinweis": "Word/Excel mit Farbe", "kein_hinweis": "Word/Excel ohne Farbe"}}
 NICHT_EXPORTIERT = ("entfaellt", "kein_hinweis")        # left out of forms[].gestaltung.merkmale
 LISTEN = ("weicht_ab", "luecke", "betroffen", "hinweis", "nicht_messbar", "nicht_gemessen")
 _GEMESSEN = (None, "vorhanden", "luecke", "betroffen", "hinweis", "kein_hinweis")   # None: a value still to be judged
 
-# what the four tones mean IN THIS LAYER (the colours are those of labels.TON)
+# what the four tones mean IN THIS LAYER (the colours are those of labels.TON): TON_ZUSATZ is what a tone adds to
+# its verdicts (the page's reading hint names the verdicts once and puts this beside them), TON the whole sentence.
+# A red verdict describes a difference; whether a rule is broken, the databank cannot say (no corporate-design
+# manual, no accessibility test)
+TON_ZUSATZ = {
+    "ok":   "derselbe Wert wie bei mindestens zwei Dritteln der gemessenen Formulare, oder das geprüfte Merkmal ist da",
+    "act":  "ein Unterschied am Formular der Dienststelle, keine Aufforderung, es zu ändern; ob eine Vorgabe "
+            "verletzt ist, sagt das nicht",
+    "dec":  "der Databank liegt keine Vorgabe vor; festgelegt wird einmal je Merkmal, nicht je Formular",
+    "open": "offen bei der Databank, kein Befund über das Formular",
+}
 TON = {
-    "ok":   "entspricht der Praxis, oder das Merkmal ist vorhanden",
-    "act":  "weicht von der Praxis ab, oder ein Merkmal fehlt — betrifft das Formular der Dienststelle; eine "
-            "Vorgabe ist damit nicht verletzt",
-    "dec":  "keine klare Praxis, und der Databank liegt keine Vorgabe vor — der Kanton legt fest",
-    "open": "nicht messbar oder noch nicht gemessen — eine Lücke der Databank, kein Befund über das Formular",
+    "ok":   "entspricht der Praxis, oder das Merkmal ist vorhanden — " + TON_ZUSATZ["ok"],
+    "act":  "weicht von der Praxis ab, oder ein Merkmal fehlt — " + TON_ZUSATZ["act"],
+    "dec":  "keine klare Praxis oder keine Regel — " + TON_ZUSATZ["dec"],
+    "open": "nicht messbar oder noch nicht gemessen — " + TON_ZUSATZ["open"],
 }
 # the headline figures (overview.kennzahlen)
 KENNZAHL = {
     "pdf": "PDF-Formulare",
-    "pdf_mindestmerkmale": "PDF-Formulare mit Struktur-Tags, Dokumentsprache und Dokumenttitel",
+    "pdf_mindestmerkmale": "PDF-Formulare mit Struktur-Tags, Dokumentsprache und einem Dokumenttitel, der das "
+                           "Formular nennt",
     "ok": "Merkmale, die der Praxis entsprechen oder vorhanden sind (Formular × Merkmal)",
     "act": "Abweichungen von der Praxis und Lücken (Formular × Merkmal)",
     "abweichungen": "Abweichungen von der Praxis (Formular × Merkmal)",
@@ -292,6 +343,16 @@ KENNZAHL = {
 }
 ART = {"praxis": "Vergleich mit der Praxis", "pruefpunkt": "Prüfpunkt", "regel_offen": "Regel offen",
        "hinweis": "Hinweis"}
+ART_ERKLAERUNG = {
+    "praxis": "Der Wert eines Formulars ist mit der Praxis verglichen: dem Wert, den mindestens zwei Drittel der "
+              "gemessenen Formulare teilen. Erreicht kein Wert zwei Drittel, gibt es keine klare Praxis, und der "
+              "Kanton legt fest.",
+    "pruefpunkt": "Das Merkmal ist vorhanden oder fehlt — unabhängig davon, was die übrigen Formulare zeigen. Ein "
+                  "fehlendes Merkmal ist eine Lücke.",
+    "regel_offen": "Eine Grenze liegt der Databank nicht vor: Sie nennt die Formulare über ihrer eigenen Schwelle, "
+                   "und der Kanton legt fest, ob und welche Regel gilt.",
+    "hinweis": "Eine Feststellung ohne Bewertung und ohne Farbe.",
+}
 MESSART = {"pdf": "PDF", "pdf_bild": "PDF ohne Text (Bild, z. B. ein Scan)", "word": "Word", "excel": "Excel",
            "nicht_messbar": "nicht messbar (altes Dateiformat)"}
 
@@ -340,7 +401,7 @@ MERKMALE = (
      "und 5 % sind Setzungen der Databank, keine Norm: Sie kennt keine Vorgabe für eine Mindest-Schriftgrösse, "
      "und ob der Kanton eine vorgibt, ist ihr nicht bekannt. Deshalb ist das keine Lücke des einzelnen "
      "Formulars. Unter 5 % steht nur dann ein Hinweis, wenn die kleinste Grösse unter 6 pt liegt. Grössen sind "
-     "auf einen halben Punkt gerundet — 7,75 pt zählt als 8 pt.",
+     "auf einen halben Punkt gerundet — 7.75 pt zählt als 8 pt.",
      "Formulare mit gemessener Schriftgrösse"),
     ("eingebettet", "schrift", "pruefpunkt", ("pdf",), "Schriften eingebettet",
      "Bringt die PDF-Datei ihre Schriften mit?",
@@ -352,13 +413,13 @@ MERKMALE = (
     ("schriftfamilien", "schrift", "hinweis", None, "Mehrere Schriften",
      "Mischt das Formular mehr als zwei Schriften?",
      "Gezählt sind Schriften, die mindestens 2 % der Zeichen setzen; Symbolschriften (Ankreuzfelder, Pfeile) "
-     "zählen nicht. " + _T_SCHNITT + " Ein Hinweis, kein Urteil.",
+     "zählen nicht. " + _T_SCHNITT + " Ein Hinweis ohne Bewertung.",
      "Formulare mit gemessener Schrift"),
     ("akzentfarbe", "farben", "praxis", None, "Akzentfarbe",
      "Verwendet der Seiteninhalt — ohne Logo und Bilder — neben Schwarz und Grau eine Farbe, und welche?",
      "Die Akzentfarbe ist die Farbfamilie (Rot, Blau, Gelb …), die im Seiteninhalt am meisten Fläche einnimmt: "
      "Flächen, Linien und farbiger Text; beim Formular steht, was davon farbig ist. Sie zählt, wenn ihre "
-     "Farbtöne zusammen mindestens 0,1 % der Seitenfläche einnehmen; darunter gilt «keine Akzentfarbe», und die "
+     "Farbtöne zusammen mindestens 0.1 % der Seitenfläche einnehmen; darunter gilt «keine Akzentfarbe», und die "
      "Farbe ist beim Formular genannt. Die Grenze ist eine Setzung der Databank: Formulare derselben Gestaltung "
      "können knapp darüber und knapp darunter liegen. Nicht als Akzentfarbe zählen die Farbe von Internet- und "
      "E-Mail-Adressen und von verlinkten Wörtern, die Farbe von Formularfeldern und eine kleine Farbmarke im Kopf "
@@ -367,11 +428,12 @@ MERKMALE = (
      "ist die Farbe genannt, aber nicht beurteilt. " + V_FARBEN,
      "PDF-Formulare mit gemessenen Farben (Word und Excel: genannt, nicht verglichen)"),
     ("farbvielfalt", "farben", "hinweis", None, "Mehrere Farben",
-     "Kommen im Seiteninhalt zwei oder mehr Farbfamilien vor?",
+     "Kommen im Seiteninhalt zwei oder mehr Farbfamilien vor — ohne die Farbe von Adressen, Formularfeldern und der "
+     "Farbmarke im Kopf?",
      "Gezählt sind die Farbfamilien der Flächen, der Linien und des farbigen Textes — ohne die Farbe von "
      "Internet- und E-Mail-Adressen und verlinkten Wörtern, ohne die Farbe von Formularfeldern und ohne eine "
      "kleine Farbmarke im Kopf der ersten Seite. In Word- und Excel-Dateien zählt schon eine einzelne gefüllte "
-     "Zelle. Ein Hinweis, kein Urteil. " + V_FARBEN,
+     "Zelle. Ein Hinweis ohne Bewertung. " + V_FARBEN,
      "Formulare mit gemessenen Farben"),
     ("bf_tags", "barrierefrei", "pruefpunkt", ("pdf",), "Struktur-Tags",
      "Ist das PDF für Screenreader ausgezeichnet (getaggt)?",
@@ -385,8 +447,9 @@ MERKMALE = (
      "nicht zur Sprache des Textes passt. Tragen nur einzelne Teile des Dokuments eine Sprachangabe, steht das "
      "beim Formular. «de-DE» statt «de-CH» ist nur eine Bemerkung. PDF und Word.",
      "PDF- und Word-Formulare"),
-    ("bf_titel", "barrierefrei", "pruefpunkt", ("pdf", "word", "excel"), "Dokumenttitel",
-     "Trägt die Datei einen Titel, der das Formular nennt?",
+    ("bf_titel", "barrierefrei", "pruefpunkt", ("pdf", "word", "excel"), "Dokumenttitel (Dateieigenschaft)",
+     "Trägt die Datei in ihren Eigenschaften einen Titel, der das Formular nennt — nicht die Überschrift, die auf "
+     "dem Formular gedruckt ist?",
      "Fehlt der Titel, nennen der Reiter (Tab) des Anzeigeprogramms und der Screenreader den Dateinamen. Als "
      "Lücke zählt auch ein Titel, der nur ein Datei- oder Platzhaltername ist («Microsoft Word - …», "
      "«Dokument»), und ein Titel, der etwas anderes nennt als das Formular. Massstab ist der Name des Formulars "
@@ -427,13 +490,13 @@ MERKMALE = (
     ("fax", "kontakt", "hinweis", None, "Faxnummer",
      "Druckt das Formular eine Faxnummer?",
      "Genannt sind die Formulare, die eine Faxnummer drucken. Eine Nummer, die in der Datei durchgestrichen ist, "
-     "zählt nicht. Ein Hinweis, kein Urteil.",
+     "zählt nicht. Ein Hinweis ohne Bewertung.",
      "Formulare mit lesbarem Text"),
     ("email_art", "kontakt", "hinweis", None, "Persönliche E-Mail-Adresse",
      "Druckt das Formular die E-Mail-Adresse einer Person?",
      "Die Databank speichert keine Adressen, nur ihre Art und die Domain. Als persönlich zählt eine Adresse nur "
      "mit Beleg (Vorname.Nachname, Initialen oder der Name daneben): Die Zahl ist deshalb eine Untergrenze. Ein "
-     "Hinweis, kein Urteil.",
+     "Hinweis ohne Bewertung.",
      "Formulare mit lesbarem Text"),
     ("seitenformat", "aufbau", "praxis", None, "Seitenformat",
      "Welches Seitenformat hat das Formular?",
@@ -481,13 +544,14 @@ ENTSCHEID = {
     "stand_angabe": ("Stand-Angabe auf dem Formular", "zur Stand-Angabe", None),
     "seitenzahlen": ("Seitenzahlen auf mehrseitigen Formularen", "zu den Seitenzahlen", None),
     "absender": ("Absender auf der ersten Seite", "zum Absender auf der ersten Seite",
-                 "Wie der Absender auf der ersten Seite steht — als Text, nur im Logo oder gar nicht —, ist "
-                 "uneinheitlich; gelesen ist nur der Text."),
+                 "Ob der Absender im Text der ersten Seite steht, ist uneinheitlich; ein Absender, der nur im Logo "
+                 "steht, ist nicht erkannt."),
 }
-T_OHNE_VORGABE = ("Eine Vorgabe {wozu} liegt der Databank nicht vor (" + V_HANDBUCH + "); die Formulare selbst "
-                  "zeigen keine einheitliche Regel.")
-T_OHNE_VORGABE_KLEIN = ("Eine Vorgabe {wozu} liegt der Databank nicht vor (" + V_HANDBUCH + "); ob der Kanton "
-                        "eine vorgibt, ist ihr nicht bekannt.")
+# what is to be decided (entscheide[].frage), and the one sentence on the missing rule, said once for all
+# decisions (labels.entscheide) — the databank knows only that it holds no rule, not what the canton laid down
+T_FRAGE = "ob eine Vorgabe {wozu} gilt und welche — oder ob das Corporate-Design-Handbuch des Kantons sie schon regelt"
+T_ENTSCHEIDE = ("Zu keinem dieser Merkmale liegt der Databank eine Vorgabe vor (" + V_HANDBUCH + "); ob der Kanton "
+                "schon etwas festgelegt hat, weiss sie nicht.")
 
 # ---- sentences of the measurement that this layer passes on as remarks of a Merkmal (or as the reason of
 # «nicht messbar»), verbatim. They are recognised by the constants of gestaltung_text.py from which the
@@ -517,10 +581,20 @@ BEMERKUNG = {
     "absender": (GT.H_OHNE_TEXT, GT.H_OHNE_UMBRUCH),
 }
 
+# a decimal comma that an older run of the measurement wrote before a unit («10,5 pt»): written as a point, like
+# every number of the dashboard
+_DEZIMALKOMMA = re.compile(r"(?<=\d),(?=\d+\s?(?:pt|%))")
+# sentences of the measurement that close with the element name of the PDF structure in parentheses — passed on
+# without it
+KURZ = (GT.H_TAGS_OHNE_FELDER, GT.H_TAGS_OHNE_UEBERSCHRIFT, GT.H_BAUM_OHNE_MARKE)
+_SCHLUSSKLAMMER = re.compile(r"\s\([^()]*\)(?=\.?$)")
+
 T_EFORMULAR = "eFormular der Plattform — kein eigenes Erscheinungsbild"
 T_NUR = {("pdf",): "nur PDF", ("word",): "nur Word", ("pdf", "word"): "nur PDF und Word",
          ("pdf", "word", "excel"): "nur PDF, Word und Excel"}
 T_AKZENT_OHNE = "keine Akzentfarbe"
+T_SEITENZAHLEN_JA = "Seitenzahlen vorhanden"
+T_FARBEN_KEINE = "keine Farbfamilie gezählt"
 T_BILD = "Seite 1 trägt ein Bild (in der Regel das Logo); seine Farben sind nicht gemessen."
 T_OHNE_NUMMER = "keine Telefonnummer im Text"      # a number inside an image is not read
 T_UNLESBAR = "Die Datei legt ihren Text nicht lesbar ab (Steuerzeichen statt Buchstaben)."
@@ -555,11 +629,11 @@ def _pl(n, einzahl, mehrzahl):
 
 
 def _zahl(x, stellen):
-    """A number the Swiss German way: decimal comma, no trailing zeros."""
+    """A number as the dashboard writes it (de-CH): decimal point, no trailing zeros."""
     t = f"{x:.{stellen}f}"
     if "." in t:
         t = t.rstrip("0").rstrip(".")
-    return t.replace(".", ",")
+    return t
 
 
 def _pt(x):
@@ -573,7 +647,7 @@ def _proz(x):
 
 
 def _proz_flaeche(x):
-    """A share of the page area — small values keep their digits: «0,016 %», «0,59 %», «2,5 %», «33 %»."""
+    """A share of the page area — small values keep their digits: «0.016 %», «0.59 %», «2.5 %», «33 %»."""
     p = x * 100
     return _zahl(p, 0 if p >= 10 else 1 if p >= 1 else 2 if p >= 0.1 else 3) + " %"
 
@@ -600,9 +674,19 @@ def _sprache_norm(s):
     return "-".join([teile[0].lower()] + [t.upper() if len(t) == 2 else t for t in teile[1:]])
 
 
+def _hin_lesen(profil):
+    """The hinweise of a stored profil, in their stored order; a decimal comma before a unit as a point."""
+    return [_DEZIMALKOMMA.sub(".", h) for h in (profil.get("hinweise") or []) if isinstance(h, str)]
+
+
+def _ohne_klammer(h):
+    """A sentence of KURZ without its closing parenthesis (the element name of the PDF structure)."""
+    return _SCHLUSSKLAMMER.sub("", h) if any(h.startswith(teil) for teil in KURZ) else h
+
+
 def _bem(z, key):
-    """The hinweise of the measurement that belong to this Merkmal, verbatim, in their stored order."""
-    return [h for h in z["hin"] if any(teil in h for teil in BEMERKUNG.get(key, ()))]
+    """The hinweise of the measurement that belong to this Merkmal, verbatim (but _ohne_klammer), in their stored order."""
+    return [_ohne_klammer(h) for h in z["hin"] if any(teil in h for teil in BEMERKUNG.get(key, ()))]
 
 
 def _hat(z, teil):
@@ -669,7 +753,7 @@ def _m_kleinschrift(z):
             "50 % der Zeichen und mehr")
     k = z["p"]["kleinste"]
     klein = [f"kleinste Schriftgrösse: {_pt(k)}"] if k is not None else None
-    wert = f"{_zahl(a * 100, 1 if a < 0.10 else 0)} % der Zeichen unter {KLEIN_PT} pt"     # «4,8 %», «5,3 %», «23 %»
+    wert = f"{_zahl(a * 100, 1 if a < 0.10 else 0)} % der Zeichen unter {KLEIN_PT} pt"     # «4.8 %», «5.3 %», «23 %»
     if a < KLEIN_ANTEIL:
         if a > 0 and k is not None and k < KLEIN_WINZIG:        # little small text, but very small
             return _f("hinweis", wert, v=band, d=klein)
@@ -716,14 +800,24 @@ def _eigene_farben(p):
     return [f for f in p["farben"] if not f["nur_link"] and not f["feld"] and not f["nur_kopf"]]
 
 
+def _familien(farben):
+    """The colour families of a list of colours, each once, in their order: «Blau», «Blau, Rot»."""
+    aus = []
+    for f in farben:
+        if f["familie"] not in aus:
+            aus.append(f["familie"])
+    return ", ".join(aus)
+
+
 def _nebenfarben(p):
-    """Why a Formular that shows colour has no accent: link colours, field colours, a mark in the head."""
-    link = [f["hex"] for f in p["farben"] if f["nur_link"]]
-    feld = [f["hex"] for f in p["farben"] if f["feld"]]
-    kopf = [f["hex"] for f in p["farben"] if f["nur_kopf"]]
-    teile = ([f"die Farbe der Internet- und E-Mail-Adressen und der verlinkten Wörter ({', '.join(link)})"] if link else []) + \
-            ([f"die Farbe der Formularfelder ({', '.join(feld)})"] if feld else []) + \
-            ([f"eine kleine Farbmarke im Kopf der ersten Seite, in der Regel ein gezeichnetes Logo ({', '.join(kopf)})"]
+    """Why a Formular that shows colour has no accent: link colours, field colours, a mark in the head —
+    named by their family, never by a colour code."""
+    link = [f for f in p["farben"] if f["nur_link"]]
+    feld = [f for f in p["farben"] if f["feld"]]
+    kopf = [f for f in p["farben"] if f["nur_kopf"]]
+    teile = ([f"die Farbe der Internet- und E-Mail-Adressen und der verlinkten Wörter ({_familien(link)})"] if link else []) + \
+            ([f"die Farbe der Formularfelder ({_familien(feld)})"] if feld else []) + \
+            ([f"eine kleine Farbmarke im Kopf der ersten Seite, in der Regel ein gezeichnetes Logo ({_familien(kopf)})"]
              if kopf else [])
     if not teile:
         return None
@@ -751,8 +845,7 @@ def _m_akzentfarbe(z):
         if not a:
             return _f("kein_hinweis", T_AKZENT_OHNE, pop=False)
         return _f("hinweis", a["familie"] + (" (blass)" if GT.ist_blass(a["hex"]) else ""), pop=False,
-                  d=[f"{a['hex']} — Word- und Excel-Dateien zählen Farben nach anderen Regeln als PDF und sind "
-                     "nicht verglichen."])
+                  d=["Word- und Excel-Dateien zählen Farben nach anderen Regeln als PDF und sind nicht verglichen."])
     bild = [T_BILD] if z["bild1"] else []
     if not a:
         return _f(None, T_AKZENT_OHNE, d=[_nebenfarben(p)] + _bem(z, "akzentfarbe") + bild)
@@ -762,14 +855,15 @@ def _m_akzentfarbe(z):
                            "einmal mit ihrem Gewicht unter den Farben ihrer Familie; die Regel der Messung hat "
                            "sich geändert")
     g = round(sum(f["gewicht"] for f in toene), 5)             # the family as a whole, as the measurement weighs it
-    name = a["hex"] + (f" und {_pl(len(toene) - 1, 'weiterer Farbton', 'weitere Farbtöne')}" if len(toene) > 1 else "")
+    toene_n = _pl(len(toene), "Farbton", "Farbtöne")
     if g < AKZENT_MIN:
         return _f(None, T_AKZENT_OHNE,
-                  d=[f"{a['familie']} ({name}) auf {_proz_flaeche(g)} der Seitenfläche — {_was_farbig(toene)}; unter "
-                     f"{_proz_flaeche(AKZENT_MIN)}, zählt nicht als Akzentfarbe.", _nebenfarben(p)]
+                  d=[f"{a['familie']} ({toene_n}) auf {_proz_flaeche(g)} der Seitenfläche — {_was_farbig(toene)}; "
+                     f"unter {_proz_flaeche(AKZENT_MIN)}, zählt nicht als Akzentfarbe.", _nebenfarben(p)]
                   + _bem(z, "akzentfarbe") + bild)
     return _f(None, a["familie"] + (" (blass)" if GT.ist_blass(a["hex"]) else ""), v=a["familie"],
-              d=[f"{name}, {_proz_flaeche(g)} der Seitenfläche — {_was_farbig(toene)}"] + _bem(z, "akzentfarbe") + bild)
+              d=[f"{toene_n} der Familie {a['familie']}, {_proz_flaeche(g)} der Seitenfläche — {_was_farbig(toene)}"]
+              + _bem(z, "akzentfarbe") + bild)
 
 
 def _m_farbvielfalt(z):
@@ -784,7 +878,7 @@ def _m_farbvielfalt(z):
     if len(familien) != n:
         raise RuntimeError(f"farbvielfalt: Formular {z['id']} — n_farbfamilien = {n}, die Liste farben ergibt "
                            f"{len(familien)}; die Zählregel der Messung hat sich geändert")
-    wert = "keine Farbe im Seiteninhalt" if n == 0 else _pl(n, "Farbfamilie", "Farbfamilien")
+    wert = T_FARBEN_KEINE if n == 0 else _pl(n, "Farbfamilie", "Farbfamilien")
     if n >= MEHR_FARBEN:
         return _f("hinweis", wert, d=[", ".join(familien)] + _bem(z, "farbvielfalt")
                   + ([T_BILD] if z["bild1"] and z["art"] == "pdf" else []))
@@ -959,7 +1053,7 @@ def _m_seitenzahlen(z):
             return _entf("einseitig")
         return _nm(z, "seitenzahlen")
     if s["vorhanden"]:
-        return _f(None, "Seitenzahlen vorhanden", d=[f"gedruckt: {_zitat(s['muster'])}"] if s["muster"] else None)
+        return _f(None, T_SEITENZAHLEN_JA, d=[f"gedruckt: {_zitat(s['muster'])}"] if s["muster"] else None)
     if z["unles"]:
         return _nm(z, "seitenzahlen")
     return _f(None, "keine Seitenzahlen")
@@ -1033,7 +1127,7 @@ def _tabelle(forms, zeilen):
             art = fm.get("file_type") if fm.get("file_type") in ("pdf", "word", "excel") else None
         z = None
         if zeile and zeile[0] != "nicht_messbar":
-            hin = [h for h in zeile[2].get("hinweise") or [] if isinstance(h, str)]
+            hin = _hin_lesen(zeile[2])
             try:
                 z = {"id": fid, "p": zeile[2], "hin": hin, "art": art,
                      "unles": zeile[2]["barrierefrei"]["text_lesbar"] is False,
@@ -1050,8 +1144,7 @@ def _tabelle(forms, zeilen):
             elif zeile is None:
                 zellen[key] = _f("nicht_gemessen", URTEIL["nicht_gemessen"][0])
             elif z is None:
-                zellen[key] = _f("nicht_messbar", URTEIL["nicht_messbar"][0],
-                                 d=[h for h in zeile[2].get("hinweise") or [] if isinstance(h, str)])
+                zellen[key] = _f("nicht_messbar", URTEIL["nicht_messbar"][0], d=[_ohne_klammer(h) for h in _hin_lesen(zeile[2])])
             else:
                 try:
                     zellen[key] = _FN[key](z)
@@ -1097,8 +1190,11 @@ def _kompakt(messart, zellen):
 
 
 def _n_formular(merkmale):
+    """act, betroffen, open — and dec: the Merkmale of the Formular that wait for the canton (uneinheitlich,
+    betroffen), the open decisions whose lists name it."""
     ton = Counter(URTEIL[m["u"]][1] for m in merkmale)
-    return {"act": ton["act"], "betroffen": sum(1 for m in merkmale if m["u"] == "betroffen"), "open": ton["open"]}
+    return {"act": ton["act"], "betroffen": sum(1 for m in merkmale if m["u"] == "betroffen"),
+            "dec": sum(1 for m in merkmale if m["u"] in ("uneinheitlich", "betroffen")), "open": ton["open"]}
 
 
 def _mindestmerkmale(g):
@@ -1122,12 +1218,8 @@ def _verteilung(zellen_mit_id, mit_formularen=False):
     return aus
 
 
-def _anteile(verteilung, n, hoechstens=4):
-    return ", ".join(f"{v['w']} {_proz(v['n'] / n)}" for v in verteilung[:hoechstens])
-
-
 def _hinweise(zeile):
-    return [h for h in (zeile[2].get("hinweise") or []) if isinstance(h, str)] if zeile else []
+    return _hin_lesen(zeile[2]) if zeile else []
 
 
 def _zusatz_tel(forms, zeilen):
@@ -1260,12 +1352,11 @@ def _grenzen(forms, dienststellen, zeilen, tab):
         "oder Dritter sind gleich gemessen; die Databank unterscheidet die Herausgeberschaft nicht.",
         "Alles, was in einem Bild steckt, ist nicht gemessen: Logos und ihre Farben, Schrift, Telefonnummern und "
         "E-Mail-Adressen in Bildern." + bild,
-        "Welches Logo ein Formular trägt — das gelbe oder das schwarz-weisse sh.ch-Logo, ein eigenes, ein fremdes "
-        "oder keines —, ist nicht erfasst. Ein Logo, das nicht als Bild eingefügt, sondern gezeichnet ist, zählt "
+        "Welches Logo ein Formular trägt und in welcher Farbe, ist nicht erfasst. Ein Logo, das nicht als Bild eingefügt, sondern gezeichnet ist, zählt "
         "als kleine Farbmarke im Kopf der ersten Seite ebenfalls nicht als Akzentfarbe.",
         V_FARBEN + " «Keine Akzentfarbe» heisst deshalb nicht «schwarz-weiss»: Farbe kann im Logo stehen, in "
         "Formularfeldern, in Internet-Adressen und verlinkten Wörtern oder auf sehr kleinen Flächen." + ohne_akzent,
-        "Eine Farbfamilie zählt ab 0,1 % der Seitenfläche als Akzentfarbe; die Grenze ist eine Setzung der "
+        f"Eine Farbfamilie zählt ab {_proz_flaeche(AKZENT_MIN)} der Seitenfläche als Akzentfarbe; die Grenze ist eine Setzung der "
         "Databank. Die Flächen sind Obergrenzen, weil überlappende Formen nicht verrechnet sind. Farbfamilien "
         "(Rot, Blau, Gelb …) sind grobe Namen: Ein Farbton nahe an einer Grenze kann in die Nachbarfamilie fallen, "
         "ein blasser Farbton wirkt oft eher grau oder beige als nach seiner Familie, und Druckfarben (CMYK, "
@@ -1274,7 +1365,7 @@ def _grenzen(forms, dienststellen, zeilen, tab):
         "keine messbaren Flächen. Ihre Farben sind genannt, aber nicht mit den PDF-Formularen verglichen.",
         "Die Schrift ist die, die die Datei nennt — nicht, was ein Gerät ohne diese Schrift anzeigt. " + _T_SCHNITT
         + " " + _T_ANHANG + " Schrift und Text in Formularfeldern sind nicht gemessen.",
-        "Schriftgrössen sind auf einen halben Punkt gerundet: 7,75 pt zählt als 8 pt. Die Grundgrösse ist die "
+        "Schriftgrössen sind auf einen halben Punkt gerundet: 7.75 pt zählt als 8 pt. Die Grundgrösse ist die "
         "Grösse mit den meisten Zeichen. Die Grenzen für kleine Schrift (8 pt, 5 % der Zeichen) sind Setzungen der "
         "Databank; auch Fusszeilen, Fussnoten und Feldhinweise zählen.",
         "Die Merkmale zur Barrierefreiheit sind maschinell prüfbare Mindestmerkmale. Ein fehlendes Merkmal ist "
@@ -1295,39 +1386,90 @@ def _grenzen(forms, dienststellen, zeilen, tab):
         "Adressen selbst sind nirgends gespeichert.",
         "Seitenzahlen von Word-Dateien stammen aus den Dokumenteigenschaften (Stand beim letzten Speichern); "
         "Excel-Dateien haben keine feste Seitenzahl und sind bei den Seitenzahlen nicht verglichen.",
-        nicht_messbar + "Wo sich ein Merkmal nicht messen lässt, steht «nicht messbar» statt eines Urteils: "
+        nicht_messbar + "Wo sich ein Merkmal nicht messen lässt, steht «nicht messbar» statt eines Befunds: "
         "Nichts gefunden heisst nicht, dass nichts da ist.",
     ] + eformulare
 
 
 def _entscheid_text(key, m_art, eintrag, pop, urteile):
-    """The plain sentence of the ONE open decision of a Merkmal."""
-    _titel, wozu, mehr = ENTSCHEID[key]
+    """What is open about ONE decision of a Merkmal: the threshold the Formulare miss. The values themselves stand
+    beside it as a list (entscheide[].verteilung), the missing rule is said once for all decisions
+    (labels.entscheide), what is to be decided in entscheide[].frage."""
+    mehr = ENTSCHEID[key][2]
     n = len(pop)
     if m_art == "regel_offen":
         stark = sum(1 for _fid, c in pop if c["u"] == "betroffen" and c["v"] in ("20 bis unter 50 % der Zeichen",
                                                                                  "50 % der Zeichen und mehr"))
         return (f"{urteile['betroffen']} von {n} gemessenen Formularen setzen mindestens {_proz(KLEIN_ANTEIL)} "
                 f"ihrer Zeichen kleiner als {KLEIN_PT} pt, {stark} davon 20 % und mehr. Auch Fusszeilen, Fussnoten "
-                "und Feldhinweise zählen. " + T_OHNE_VORGABE_KLEIN.format(wozu=wozu))
+                "und Feldhinweise zählen.")
     vert = eintrag["verteilung"]
     if n < PRAXIS_MIN:
         kopf = (f"Keine klare Praxis: Gemessen sind nur {_pl(n, 'Formular', 'Formulare')} — zu wenige für eine "
-                f"Praxis (unter {PRAXIS_MIN}): {_anteile(vert, n)}.")
+                f"Praxis (unter {PRAXIS_MIN}).")
     else:
-        kopf = (f"Keine klare Praxis: Unter den {n} gemessenen Formularen erreicht kein Wert zwei Drittel — "
-                f"{_anteile(vert, n)}.")
+        kopf = f"Keine klare Praxis: Unter den {n} gemessenen Formularen erreicht kein Wert zwei Drittel."
         if vert and vert[0]["n"] / n >= KNAPP:                  # close: say how close
             noetig = -(-2 * n // 3)
             kopf += (f" Knapp: «{vert[0]['w']}» haben {vert[0]['n']} Formulare, für zwei Drittel wären es {noetig}.")
-    return " ".join([kopf] + ([mehr] if mehr else []) + [T_OHNE_VORGABE.format(wozu=wozu)])
+    return " ".join([kopf] + ([mehr] if mehr else []))
+
+
+def _tuer(gruppe, M, K):
+    """The ONE figure of a group's door on the page: {n, text (what follows the number), quelle (a verdict of a
+    Merkmal of the group, or a kennzahl)} — or None. Invariant 10 recounts it."""
+    def tuer(n, text, **quelle):
+        return {"n": n, "text": text, "quelle": quelle}
+
+    def wa(key):
+        return M[key]["urteile"].get("weicht_ab", 0)
+
+    def praxis(key):
+        return (M.get(key) or {}).get("praxis") and M[key]["praxis"]["w"]
+    if gruppe == "schrift" and praxis("schrift"):
+        n = wa("schrift")
+        return tuer(n, f"{'Formular' if n == 1 else 'Formulare'} in einer anderen Schrift als {praxis('schrift')}",
+                    merkmal="schrift", urteil="weicht_ab")
+    if gruppe == "farben" and praxis("akzentfarbe"):
+        n, p = wa("akzentfarbe"), praxis("akzentfarbe")
+        wort = "PDF-Formular" if n == 1 else "PDF-Formulare"
+        return tuer(n, f"{wort} mit einer Akzentfarbe; die Praxis ist «{p}»" if p == T_AKZENT_OHNE
+                    else f"{wort} mit einer anderen Akzentfarbe als {p}", merkmal="akzentfarbe", urteil="weicht_ab")
+    if gruppe == "barrierefrei" and K["pdf"]:
+        n = K["pdf_mindestmerkmale"]
+        return tuer(n, f"von {K['pdf']} PDF-Formularen {'trägt' if n == 1 else 'tragen'} Struktur-Tags, eine "
+                       "Dokumentsprache und einen Dokumenttitel, der das Formular nennt", kennzahl="pdf_mindestmerkmale")
+    if gruppe == "kontakt" and "tel_erklaerung" in M:
+        n = M["tel_erklaerung"]["urteile"].get("luecke", 0)
+        return tuer(n, f"{'Formular druckt' if n == 1 else 'Formulare drucken'} eine Telefonnummer ohne jede "
+                       "Bezeichnung", merkmal="tel_erklaerung", urteil="luecke")
+    if gruppe == "aufbau" and praxis("seitenzahlen") == T_SEITENZAHLEN_JA:
+        n = wa("seitenzahlen")
+        return tuer(n, f"von {M['seitenzahlen']['n_gemessen']} mehrseitigen Formularen {'trägt' if n == 1 else 'tragen'}"
+                       " keine Seitenzahlen", merkmal="seitenzahlen", urteil="weicht_ab")
+    # otherwise: the first comparison with a practice of the group, or its first check with a Lücke
+    ms = [m for m in M.values() if m["gruppe"] == gruppe]
+    p = next((m for m in ms if m["praxis"]), None)
+    if p:
+        n = wa(p["key"])
+        return tuer(n, f"{'Formular weicht' if n == 1 else 'Formulare weichen'} beim Merkmal «{p['label']}» von der "
+                       "Praxis ab", merkmal=p["key"], urteil="weicht_ab")
+    lu = next((m for m in ms if m["urteile"].get("luecke")), None)
+    if lu:
+        n = lu["urteile"]["luecke"]
+        return tuer(n, f"{'Formular' if n == 1 else 'Formulare'} mit einer Lücke beim Merkmal «{lu['label']}»",
+                    merkmal=lu["key"], urteil="luecke")
+    return None
 
 
 def _uebersicht(conn, forms, dienststellen, zeilen, tab, praxis, per_form):
     """The overview (top-level «gestaltung»):
     stand, methode — when and with which method the Formulare were measured;
-    bestand       — formulare, mit_datei, ohne_datei (eFormulare), gemessen (has a row), messart counts;
-    gruppen       — [{key, label, frage(, vorbehalt)}], the five groups in reading order;
+    bestand       — formulare, mit_datei, ohne_datei (eFormulare), gemessen (has a row), messart counts,
+                    dienststellen (entries of the input), dienststellen_gemessen (those with at least
+                    one measured Formular) and dienststellen_ohne_formular (those without a Formular);
+    gruppen       — [{key, label, frage(, vorbehalt), kennzahl}], the five groups in reading order; kennzahl
+                    is the ONE figure of the group's door ({n, text, quelle} or null, _tuer);
     merkmale      — per Merkmal: key, gruppe, label, art, frage, erklaerung, basis (what n_gemessen
                     counts), n_gemessen and verteilung [{w, n}] (the measured population; for a praxis
                     Merkmal the Formulare that are compared), praxis {w, n, anteil} | null,
@@ -1340,10 +1482,13 @@ def _uebersicht(conn, forms, dienststellen, zeilen, tab, praxis, per_form):
     entscheide    — the open decisions of the canton: key (the Merkmal), label, was, verteilung
                     [{w, n, formulare}];
     dienststellen — per Dienststelle of the export: name, slug, n_formulare, n_gemessen, n {act, open},
-                    act_je_formular (act ÷ gemessen, null without a measured Formular), schriften /
+                    n_nicht_messbar, n {act, abweichungen, luecken, open}, act_je_formular (act ÷ the
+                    Formulare measured in content, null without one), schriften /
                     groessen / akzente (distinct values among its Formulare), top;
     grenzen       — what a reader must know before reading a verdict;
-    labels        — urteil {key: {label, ton}}, ton, art, messart, gruppe, merkmal, kennzahl."""
+    labels        — urteil {key: {label, ton}}, ton, ton_zusatz, urteil_gesamt, urteil_nomen, art, art_erklaerung, messart,
+                    gruppe, merkmal, kennzahl, eformular (the sentence that stands for an eFormular, which has
+                    no look of its own), entscheide (the sentence on the missing rule)."""
     art = Counter(z[0] for z in zeilen.values())
     methoden = sorted({z[1] for z in zeilen.values() if z[1]})
     mit_datei = sum(1 for fm in forms if fm.get("source_file"))
@@ -1359,6 +1504,7 @@ def _uebersicht(conn, forms, dienststellen, zeilen, tab, praxis, per_form):
             dec = 1 if urteile["betroffen"] else 0
         eintrag = {
             "key": key, "gruppe": gruppe, "label": label, "art": m_art, "frage": frage, "erklaerung": erklaerung,
+            **({"urteil_labels": URTEIL_MERKMAL[key]} if key in URTEIL_MERKMAL else {}),
             "basis": basis, "n_gemessen": len(pop), "verteilung": _verteilung(pop),
             "praxis": ({"w": praxis[key][0], "n": praxis[key][1], "anteil": round(praxis[key][1] / len(pop), 4)}
                        if m_art == "praxis" and praxis[key] else None),
@@ -1383,29 +1529,36 @@ def _uebersicht(conn, forms, dienststellen, zeilen, tab, praxis, per_form):
             vert = (_verteilung([(fid, c) for fid, c in pop if c["u"] == "betroffen"], True)
                     if m_art == "regel_offen" else _verteilung(pop, True))
             entscheide.append({"key": key, "label": ENTSCHEID[key][0],
-                               "was": _entscheid_text(key, m_art, eintrag, pop, urteile), "verteilung": vert})
+                               "was": _entscheid_text(key, m_art, eintrag, pop, urteile),
+                               "frage": T_FRAGE.format(wozu=ENTSCHEID[key][1]), "verteilung": vert})
 
     # per Dienststelle — from the lists the export holds; the sums are checked against the canton's
     dst = []
     rang = {k: i for i, k in enumerate(MERKMAL_KEYS)}
     for d in dienststellen:
         ids = [fid for fid in d["formulare"] if fid in tab]
-        n_act, n_open = Counter(), 0
+        n_act, n_open = Counter(), 0                       # n_act: (Merkmal, verdict) -> Formulare
         for fid in ids:
             n_open += per_form[fid].get("n", {}).get("open", 0)
             for m in per_form[fid].get("merkmale", []):
                 if URTEIL[m["u"]][1] == "act":
-                    n_act[m["k"]] += 1
+                    n_act[(m["k"], m["u"])] += 1
         pdf_akzente = {tab[fid]["akzentfarbe"]["v"] for fid in ids if tab[fid]["akzentfarbe"]["pop"]} - {T_AKZENT_OHNE}
         n_gemessen = sum(1 for fid in ids if fid in zeilen)
+        n_nm = sum(1 for fid in ids if fid in zeilen and zeilen[fid][0] == "nicht_messbar")
+        n_messbar = n_gemessen - n_nm                      # a file in an old format has a row, but nothing measured
         dst.append({
             "name": d["name"], "slug": d["slug"], "n_formulare": len(d["formulare"]), "n_gemessen": n_gemessen,
-            "n": {"act": sum(n_act.values()), "open": n_open},
-            "act_je_formular": round(sum(n_act.values()) / n_gemessen, 2) if n_gemessen else None,
+            "n_nicht_messbar": n_nm,
+            "n": {"act": sum(n_act.values()),
+                  "abweichungen": sum(n for (_k, u), n in n_act.items() if u == "weicht_ab"),
+                  "luecken": sum(n for (_k, u), n in n_act.items() if u == "luecke"), "open": n_open},
+            "act_je_formular": round(sum(n_act.values()) / n_messbar, 2) if n_messbar else None,
             "schriften": len({tab[fid]["schrift"]["v"] for fid in ids if tab[fid]["schrift"]["pop"]}),
             "groessen": len({tab[fid]["groesse"]["v"] for fid in ids if tab[fid]["groesse"]["pop"]}),
             "akzente": len(pdf_akzente),
-            "top": [{"key": k, "n": n} for k, n in sorted(n_act.items(), key=lambda x: (-x[1], rang[x[0]]))[:TOP]],
+            "top": [{"key": k, "u": u, "n": n} for (k, u), n in sorted(n_act.items(),
+                                                                         key=lambda x: (-x[1], rang[x[0][0]], x[0][1]))][:TOP],
         })
 
     exportiert = [g for g in per_form.values() if not g.get("entfaellt")]
@@ -1423,18 +1576,25 @@ def _uebersicht(conn, forms, dienststellen, zeilen, tab, praxis, per_form):
         "formulare_mit_luecke": sum(1 for g in exportiert if _hat_urteil(g, "luecke")),
     }
     assert set(kennzahlen) == set(KENNZAHL)
+    M = {m["key"]: m for m in merkmale}
     return {
         "stand": _stand(conn) if zeilen else None,
         "methode": ", ".join(methoden) or None,
         "bestand": {"formulare": len(forms), "mit_datei": mit_datei, "ohne_datei": len(forms) - mit_datei,
-                    "gemessen": len(zeilen), "messart": {k: art[k] for k in MESSART if art[k]}},
-        "gruppen": [dict({"key": k, "label": l, "frage": f}, **({"vorbehalt": v} if v else {}))
+                    "gemessen": len(zeilen), "messart": {k: art[k] for k in MESSART if art[k]},
+                    "dienststellen": len(dst), "dienststellen_gemessen": sum(1 for d in dst if d["n_gemessen"]),
+                    "dienststellen_ohne_formular": sum(1 for d in dst if not d["n_formulare"])},
+        "gruppen": [dict({"key": k, "label": l, "frage": f}, **({"vorbehalt": v} if v else {}),
+                         kennzahl=_tuer(k, M, kennzahlen))
                     for k, l, f, v in GRUPPEN],
         "merkmale": merkmale, "kennzahlen": kennzahlen, "entscheide": entscheide, "dienststellen": dst,
         "grenzen": _grenzen(forms, dienststellen, zeilen, tab),
         "labels": {"urteil": {k: {"label": v[0], "ton": v[1]} for k, v in URTEIL.items()}, "ton": TON,
-                   "art": ART, "messart": MESSART, "gruppe": {g[0]: g[1] for g in GRUPPEN},
-                   "merkmal": {m[0]: m[4] for m in MERKMALE}, "kennzahl": KENNZAHL},
+                   "ton_zusatz": TON_ZUSATZ, "urteil_gesamt": URTEIL_GESAMT, "urteil_nomen": URTEIL_NOMEN,
+                   "art": ART, "art_erklaerung": ART_ERKLAERUNG, "messart": MESSART,
+                   "gruppe": {g[0]: g[1] for g in GRUPPEN},
+                   "merkmal": {m[0]: m[4] for m in MERKMALE}, "kennzahl": KENNZAHL, "eformular": T_EFORMULAR,
+                   "entscheide": T_ENTSCHEIDE},
     }
 
 
@@ -1511,6 +1671,18 @@ def pruefen(per_form, overview, forms, dienststellen, profile):
     mit_dec = [m["key"] for m in overview["merkmale"] if m["n"]["dec"] == 1]
     if [e["key"] for e in overview["entscheide"]] != mit_dec:
         fehler.append(f"entscheide: {[e['key'] for e in overview['entscheide']]} statt {mit_dec}")
+    in_entscheiden = Counter()                                                  # 3: n.dec of a Formular
+    for e in overview["entscheide"]:
+        for v in e["verteilung"]:
+            if v["n"] != len(v["formulare"]):
+                fehler.append(f"entscheide: «{e['key']}» nennt beim Wert «{v['w']}» {v['n']} Formulare, die Liste "
+                              f"{len(v['formulare'])}")
+            in_entscheiden.update(v["formulare"])
+    for fid in sorted(per_form):
+        g = per_form[fid]
+        if not g.get("entfaellt") and g["n"].get("dec") != in_entscheiden.get(fid, 0):
+            fehler.append(f"Formular {fid}: n.dec = {g['n'].get('dec')}, die Listen der Entscheide nennen es "
+                          f"{in_entscheiden.get(fid, 0)}-mal")
     K = overview["kennzahlen"]                                                  # 3
     exportiert = [g for g in per_form.values() if not g.get("entfaellt")]
     for name, ist, soll in (
@@ -1542,10 +1714,36 @@ def pruefen(per_form, overview, forms, dienststellen, profile):
         fehler.append("dienststellen: nicht die Dienststellen des Exports, oder in anderer Reihenfolge")
     for name, ist, soll in (("n_formulare", sum(d["n_formulare"] for d in D), B["formulare"]),
                             ("n_gemessen", sum(d["n_gemessen"] for d in D), B["gemessen"]),
+                            ("n_nicht_messbar", sum(d["n_nicht_messbar"] for d in D), B["messart"].get("nicht_messbar", 0)),
                             ("n.act", sum(d["n"]["act"] for d in D), K["act"]),
+                            ("n.abweichungen", sum(d["n"]["abweichungen"] for d in D), K["abweichungen"]),
+                            ("n.luecken", sum(d["n"]["luecken"] for d in D), K["luecken"]),
                             ("n.open", sum(d["n"]["open"] for d in D), K["open"])):
         if ist != soll:
             fehler.append(f"dienststellen: die Summe von {name} ist {ist}, der Kanton hat {soll}")
+    for d in D:
+        if d["n"]["abweichungen"] + d["n"]["luecken"] != d["n"]["act"]:
+            fehler.append(f"dienststellen: «{d['slug']}» — Abweichungen {d['n']['abweichungen']} und Lücken "
+                          f"{d['n']['luecken']} ergeben nicht act {d['n']['act']}")
+    gezaehlt = (len(D), sum(1 for d in D if d["n_gemessen"]), sum(1 for d in D if not d["n_formulare"]))
+    if (B.get("dienststellen"), B.get("dienststellen_gemessen"), B.get("dienststellen_ohne_formular")) != gezaehlt:
+        fehler.append(f"dienststellen: bestand nennt {B.get('dienststellen')} Dienststellen, "
+                      f"{B.get('dienststellen_gemessen')} mit gemessenem Formular, {B.get('dienststellen_ohne_formular')} "
+                      f"ohne Formular — nachgezählt {gezaehlt[0]}, {gezaehlt[1]}, {gezaehlt[2]}")
+    M = {m["key"]: m for m in overview["merkmale"]}                              # 10
+    for g in overview["gruppen"]:
+        t = g.get("kennzahl")
+        if not t:
+            continue
+        q = t.get("quelle") or {}
+        if "kennzahl" in q:
+            soll = K.get(q["kennzahl"])
+        elif q.get("merkmal") in M and M[q["merkmal"]]["gruppe"] == g["key"]:
+            soll = M[q["merkmal"]]["urteile"].get(q.get("urteil"), 0)
+        else:
+            soll = None
+        if t.get("n") != soll:
+            fehler.append(f"gruppen: die Tür «{g['key']}» nennt {t.get('n')}, ihre Quelle {q} zählt {soll}")
     in_dst = sorted(fid for d in dienststellen for fid in d["formulare"])
     if in_dst != sorted(alle):
         fehler.append("dienststellen: die Formulare der Dienststellen sind nicht genau die Formulare des Exports")
@@ -1705,7 +1903,7 @@ def _drucke_uebersicht(per_form, overview):
         je = "—" if d["act_je_formular"] is None else _zahl(d["act_je_formular"], 2)
         print(f"  {_kurz(d['name'], 45):<46}{d['n_formulare']:>6}{d['n_gemessen']:>6}{d['n']['act']:>6}{je:>7}"
               f"{d['n']['open']:>6}{d['schriften']:>6}{d['groessen']:>5}{d['akzente']:>5}  "
-              + ", ".join(f"{t['key']} {t['n']}" for t in d["top"]))
+              + ", ".join(f"{t['key']} ({t['u']}) {t['n']}" for t in d["top"]))
     a, b = _bytes(per_form, overview)
     print(f"\nGrösse in data_export.json: forms[].gestaltung {a:,} Bytes + gestaltung {b:,} Bytes = "
           f"{a + b:,} Bytes".replace(",", "'"))
@@ -1722,7 +1920,7 @@ def _drucke_formular(fid, forms, services, dienststellen, per_form, overview, ta
     print(f"  Service: {sv.get('name', '—')} · Dienststelle: {dst} · Datei: {fm.get('file_type')} · "
           f"Messart: {g['messart'] or '—'}")
     if not g.get("entfaellt"):
-        print(f"  n: act {g['n']['act']} · betroffen {g['n']['betroffen']} · open {g['n']['open']}")
+        print(f"  n: act {g['n']['act']} · betroffen {g['n']['betroffen']} · dec {g['n']['dec']} · open {g['n']['open']}")
     praxis = {m["key"]: m for m in overview["merkmale"]}
     gruppe = None
     for key, grp, m_art, _nur, label, _frage, _erkl, _basis in MERKMALE:
@@ -1893,6 +2091,32 @@ def _selbsttest(conn, forms, services, dienststellen):
         "dienststellen", "n.open", name="4 Dienststellen-Summe open")
     mit(lambda pf, ov: ov["dienststellen"][0].update(n_gemessen=ov["dienststellen"][0]["n_gemessen"] + 1),
         "dienststellen", "n_gemessen", name="4 Dienststellen-Summe gemessen")
+    mit(lambda pf, ov: ov["bestand"].update(dienststellen_gemessen=ov["bestand"]["dienststellen_gemessen"] + 1),
+        "dienststellen", "mit gemessenem Formular", name="4 Dienststellen mit gemessenem Formular")
+    mit(lambda pf, ov: ov["bestand"].update(dienststellen_ohne_formular=ov["bestand"]["dienststellen_ohne_formular"] + 1),
+        "dienststellen", "ohne Formular", name="4 Dienststellen ohne Formular")
+    mit(lambda pf, ov: next(d for d in ov["dienststellen"] if d["n"]["luecken"])["n"].update(luecken=0),
+        "dienststellen", "n.luecken", name="4 Dienststellen-Summe Lücken")
+    mit(lambda pf, ov: next(d for d in ov["dienststellen"] if d["n"]["abweichungen"])["n"].update(
+            abweichungen=0, luecken=next(d for d in ov["dienststellen"] if d["n"]["abweichungen"])["n"]["act"]),
+        "dienststellen", "n.abweichungen", name="4 Abweichungen einer Dienststelle als Lücken gezählt")
+    mit(lambda pf, ov: ov["dienststellen"][0].update(n_nicht_messbar=ov["dienststellen"][0]["n_nicht_messbar"] + 1),
+        "dienststellen", "n_nicht_messbar", name="4 Dienststellen-Summe nicht messbar")
+    f_dec = next(fid for fid in sorted(per_form) if not per_form[fid].get("entfaellt") and per_form[fid]["n"]["dec"])
+    def ohne_im_entscheid(pf, ov):
+        for e in ov["entscheide"]:
+            for v in e["verteilung"]:
+                if f_dec in v["formulare"]:
+                    v["formulare"].remove(f_dec)
+                    v["n"] -= 1
+                    return
+    mit(ohne_im_entscheid, f"Formular {f_dec}", "n.dec", name="3 n.dec eines Formulars gegen die Listen der Entscheide")
+    mit(lambda pf, ov: next(e for e in ov["entscheide"])["verteilung"][0].update(n=0),
+        "entscheide", "Liste", name="3 Zahl eines Werts gegen seine Liste im Entscheid")
+    mit(lambda pf, ov: next(g for g in ov["gruppen"] if g["key"] == "schrift")["kennzahl"].update(n=0),
+        "gruppen", "schrift", name="10 Zahl der Tür gegen ihre Quelle")
+    mit(lambda pf, ov: next(g for g in ov["gruppen"] if g["key"] == "barrierefrei")["kennzahl"].update(n=1),
+        "gruppen", "barrierefrei", name="10 Zahl der Tür gegen ihre Kennzahl")
     mit(lambda pf, ov: ov["grenzen"].append("Auskunft: amt@example.org"), "«@»", "gestaltung",
         name="5 «@» in der Übersicht")
     mit(lambda pf, ov: pf[f_l]["merkmale"][0].update(d=["siehe ../Verwaltung/liste.xlsx"]), "lokaler Pfad",

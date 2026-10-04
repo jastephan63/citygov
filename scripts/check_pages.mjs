@@ -18,11 +18,14 @@
 //   seiten    every page in PAGES and every document in DOCUMENTS opens: enough text, no start-up
 //             error, no «Unbekannte Seite», no error in the console, no request to another host;
 //             every page the navigation offers is listed in PAGES
-//   summen    every bar adds up: segments = legend = the total its card states
+//   summen    every bar adds up: segments = legend = the total its card states; every list that
+//             states its total (.sumbox: the numbers .sumn and the one .sumtot) adds up to it —
+//             a box with several columns pairs them by data-s
 //   kontrast  text colour against its background: 4.5:1, large text 3:1 (WCAG 2.1 AA, 1.4.3)
 //   links     no link in the browser's default blue
 //   schrift   no visible text below 12 px
-//   groesse   dashboard.html stays below 45 MiB (GitHub warns at 50 MiB)
+//   groesse   dashboard.html stays below 95 MiB: GitHub refuses a file over 100 MB, so the push and
+//             the website would stop updating; from 50 MiB GitHub only warns (size is no goal)
 //   tastatur  whatever reacts to a click can be reached with the Tab key
 //
 // Not seen by the check: text that CSS draws (::before), text on a picture or gradient
@@ -49,6 +52,9 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 // of the dashboard offers a page that is missing from this list.
 //   contrast: true   the text colours of this page are measured as well (check «kontrast»);
 //                    set it for a page that brings colours of its own
+//   open: true       before anything is measured, every folded part of the page is opened
+//                    (<details>) and every «weitere …» / «alle … zeigen» button pressed — for a
+//                    page that keeps much of its text folded
 // A route that names one Dienststelle or one service must name one that exists; when
 // it goes, the check says so and another one is put here.
 // =====================================================================================
@@ -63,6 +69,8 @@ const PAGES = [
   { route: 'katalog' },
   { route: 'begriffe' },
   { route: 'esh' },
+  { route: 'gestaltung', contrast: true, open: true },                   // Gestaltung der Formulare, all of it unfolded
+  { route: 'gestaltung/all/grenzen', contrast: true },                   // a section address (opens the folded limits)
   { route: 'lebenslagen' },
   { route: 'register' },
   { route: 'rules' },
@@ -71,6 +79,7 @@ const PAGES = [
   { route: 'buerger' },
   { route: 'fields' },
   { route: 'fields/296', contrast: true },                               // one service page
+  { route: 'fields/116/form-116~gest', contrast: true, open: true },     // one Formular-Ansicht, its panel «Gestaltung» open
   { route: 'search/all/zivilstand' },                                    // one search
 ];
 
@@ -90,7 +99,8 @@ const CONTRAST_NORMAL = 4.5;     // WCAG 2.1 AA
 const CONTRAST_LARGE = 3;        // … for text from 24 px, or from 18.66 px when bold
 const TEXT_FLOOR_PX = 12;
 const TEXT_FLOOR_EXEMPT = 'sup, sub';   // footnote marks and indices are smaller by nature
-const MAX_DASHBOARD_MIB = 45;    // GitHub warns at 50 MiB
+const MAX_DASHBOARD_MIB = 95;    // GitHub refuses files over 100 MB; size is otherwise no goal (owner, 2026-10-04)
+const WARN_DASHBOARD_MIB = 50;   // GitHub prints a warning on push from here — information only
 const VIEWPORT = { width: 1280, height: 900 };   // an office laptop; --breite changes the width
 const TIME_LIMIT_S = 100;        // the whole check; it normally takes five to ten seconds
 const SHOWN = 8;                 // detail lines per finding without --verbose
@@ -447,6 +457,33 @@ function pageLib() {
     return o;
   });
 
+  // ---- lists that state their total (.sumbox): its numbers .sumn add up to its one .sumtot; a
+  // .sumbox inside another counts for itself; a box with several columns (a table) pairs its
+  // numbers and totals by data-s — each column adds up to its own total
+  const sums = () => [...mainEl().querySelectorAll('.sumbox')].flatMap(box => {
+    const own = e => e.closest('.sumbox') === box, col = e => e.dataset.s || '';
+    const tot = [...box.querySelectorAll('.sumtot')].filter(own), parts = [...box.querySelectorAll('.sumn')].filter(own);
+    const sec = box.closest('section'), cap = box.querySelector('.gcap, caption, .kzl') || (sec && sec.querySelector('h4')) || box;
+    const cols = [...new Set([...tot, ...parts].map(col))];
+    return (cols.length ? cols : ['']).map(s => {
+      const t = tot.filter(e => col(e) === s);
+      return { label: clean(cap.textContent).slice(0, 90 - (s ? s.length + 3 : 0)) + (s ? ` [${s}]` : ''), nTot: t.length,
+        total: t.length === 1 ? num(t[0].textContent) : null, parts: parts.filter(e => col(e) === s).map(e => num(e.textContent)) };
+    });
+  });
+
+  // ---- open: true — every folded part opened, every «weitere …» / «alle … zeigen» pressed (a
+  // pressed button may bring new folded parts: a few rounds)
+  const unfold = () => {
+    const m = mainEl(); let n = 0;
+    for (let i = 0; i < 6; i++) {
+      const d = [...m.querySelectorAll('details:not([open])')], bt = [...m.querySelectorAll('button[data-showmore], button[data-gx][aria-expanded="false"]')];
+      if (!d.length && !bt.length) break;
+      d.forEach(x => { x.open = true; }); bt.forEach(x => x.click()); n += d.length + bt.length;
+    }
+    return n;
+  };
+
   // ---- links in the browser's default colour. A link without a colour rule is blue and
   // turns purple once visited; the computed style always reports the unvisited colour.
   const links = () => {
@@ -491,12 +528,15 @@ function pageLib() {
     let h = 0; for (let i = 0; i < t.length; i++) h = (h * 31 + t.charCodeAt(i)) | 0;
     const boot = document.querySelector('.bootmsg.err') || m.querySelector('[role="alert"]');
     const failed = /[^.!?\n]*konnte nicht (gezeichnet|dargestellt|angezeigt|geladen|gestartet) werden[^.!?\n]*/.exec(t);
-    const word = /(^|[^A-Za-zÀ-ÿ])(undefined|NaN|\[object Object\])($|[^A-Za-zÀ-ÿ])/.exec(t);
+    // a text the page quotes verbatim from its source ([data-wortlaut]: the remarks of the measurement
+    // of a Formular) may name a placeholder it found, such as «undefined» — that is no program word
+    let tw = t; for (const e of m.querySelectorAll('[data-wortlaut]')) { const x = e.innerText; if (x) tw = tw.split(x).join(' '); }
+    const word = /(^|[^A-Za-zÀ-ÿ])(undefined|NaN|\[object Object\])($|[^A-Za-zÀ-ÿ])/.exec(tw);
     return { hash: location.hash, title: document.title, chars: clean(t).length, sig: h,
       head: clean((m.querySelector('h3.view, h1, h2') || {}).textContent).slice(0, 80),
       boot: clean(boot ? boot.innerText : failed ? failed[0] : '').slice(0, 300), loading: !!document.getElementById('bootmsg'),
       unknown: /Unbekannte Seite/.test(t), nores: [...m.querySelectorAll('.nores')].map(e => clean(e.innerText).slice(0, 140)),
-      word: word ? clean(t.slice(Math.max(0, word.index - 30), word.index + 40)) : '',
+      word: word ? clean(tw.slice(Math.max(0, word.index - 30), word.index + 40)) : '',
       tabs: [...document.querySelectorAll('aside [data-tab]')].map(b => b.getAttribute('data-tab')) };
   };
 
@@ -514,7 +554,7 @@ function pageLib() {
     location.hash = hash;
   });
 
-  window.__cp = { text, bars, links, keyboard, info, go, drawn };
+  window.__cp = { text, bars, sums, unfold, links, keyboard, info, go, drawn };
 }
 
 // ---------------------------------------------------------------- a. syntax
@@ -574,8 +614,10 @@ function checkSize() {
   const file = path.join(ROOT, 'dashboard.html');
   if (!fs.existsSync(file)) { fail('groesse', 'dashboard.html fehlt'); return; }
   const mib = fs.statSync(file).size / 1048576;
-  measured.set('groesse', `dashboard.html ${mib.toFixed(1)} MiB, erlaubt sind weniger als ${MAX_DASHBOARD_MIB} MiB`);
-  if (mib >= MAX_DASHBOARD_MIB) fail('groesse', `dashboard.html ist ${mib.toFixed(1)} MiB gross — erlaubt sind weniger als ${MAX_DASHBOARD_MIB} MiB (GitHub warnt ab 50 MiB)`);
+  measured.set('groesse', `dashboard.html ${mib.toFixed(1)} MiB` + (mib >= WARN_DASHBOARD_MIB
+    ? ` — GitHub warnt beim Hochladen ab ${WARN_DASHBOARD_MIB} MiB, lädt die Datei aber hoch` : '')
+    + `; die Grenze liegt bei ${MAX_DASHBOARD_MIB} MiB (GitHub nimmt keine Datei über 100 MB an)`);
+  if (mib >= MAX_DASHBOARD_MIB) fail('groesse', `dashboard.html ist ${mib.toFixed(1)} MiB gross — GitHub nimmt keine Datei über 100 MB an; ab ${MAX_DASHBOARD_MIB} MiB bricht die Prüfung ab, bevor das Hochladen scheitert`);
 }
 
 // ---------------------------------------------------------------- the walk
@@ -585,6 +627,7 @@ function checkSize() {
 const lowBy = new Map(), smallBy = new Map(), linkBy = new Map(), keyBy = new Map();   // document -> Map(key -> group)
 const textStats = { nodes: 0, chars: 0, pages: 0, cNodes: 0, cPages: 0, undetermined: 0, inSvg: 0 };
 const barStats = { bars: 0, withTotal: 0, pages: 0 };
+const sumStats = { lists: 0 };
 const linkStats = { pages: 0 }, keyStats = { pages: 0 }, pageStats = { pages: 0, documents: 0 };
 const group = (by, doc, key, init) => {
   let m = by.get(doc); if (!m) by.set(doc, m = new Map());
@@ -659,6 +702,18 @@ function checkBars(doc, where, bars) {
   note('summen', `${doc} · ${where}: ${nf(n)} Balken`);
 }
 
+function checkSums(doc, where, boxes) {
+  for (const o of boxes) {
+    const at = `${doc} · ${where}, Liste «${cut(o.label, 60)}»`;
+    sumStats.lists++;
+    if (o.nTot !== 1) { fail('summen', `${at}: ${o.nTot ? `nennt ${o.nTot} Totale` : 'nennt kein Total'}, mit dem sich ihre Zahlen vergleichen lassen`); continue; }
+    if (!o.parts.length) { fail('summen', `${at}: hat keine Zahlen, die sich zum Total ${nf(o.total)} zusammenzählen lassen`); continue; }
+    const s = o.parts.reduce((x, y) => x + (y || 0), 0);
+    if (s !== o.total) fail('summen', `${at}: die Zahlen ergeben ${nf(s)}, das Total nennt ${nf(o.total)} — ${s < o.total ? `es fehlen ${nf(o.total - s)}` : `${nf(s - o.total)} zu viel`}`, [`${o.parts.map(nf).join(' + ')} = ${nf(s)}`]);
+  }
+  if (boxes.length) note('summen', `${doc} · ${where}: ${nf(boxes.length)} Listen mit Total`);
+}
+
 function checkPage(doc, where, info, minText, errors, requests) {
   const at = `${doc} · ${where}`, why = [];
   if (info.boot) why.push(`zeigt eine Fehlermeldung: ${cut(info.boot, 200)}`);
@@ -696,7 +751,8 @@ async function walkDashboard(b) {
     const drawn = await b.ev(`__cp.go(${JSON.stringify('#' + p.route)})`);
     const info = await b.ev('__cp.info()');
     tabs = info.tabs;
-    if (wanted('summen')) checkBars(doc, p.route, await b.ev('__cp.bars()'));
+    if (p.open) { const n = await b.ev('__cp.unfold()'); await sleep(150); note('seiten', `${doc} · ${p.route}: ${nf(n)} gefaltete Teile geöffnet`); }
+    if (wanted('summen')) { checkBars(doc, p.route, await b.ev('__cp.bars()')); checkSums(doc, p.route, await b.ev('__cp.sums()')); }
     await probe(b, doc, p.route, !!p.contrast);
     if (wanted('seiten')) {
       pageStats.pages++;
@@ -741,7 +797,7 @@ async function walkDocuments(b) {
 // ---------------------------------------------------------------- findings of the walk
 function reportWalk() {
   const rows = (list, line) => { const all = list.map(line); return OPT.verbose || all.length <= SHOWN ? all : all.slice(0, SHOWN).concat(`… und ${all.length - SHOWN} weitere (alle mit --verbose)`); };
-  if (wanted('summen')) measured.set('summen', `${nf(barStats.bars)} Balken auf ${barStats.pages} Seiten, ${nf(barStats.withTotal)} davon mit einem genannten Total`);
+  if (wanted('summen')) measured.set('summen', `${nf(barStats.bars)} Balken auf ${barStats.pages} Seiten, ${nf(barStats.withTotal)} davon mit einem genannten Total; ${nf(sumStats.lists)} Listen mit Total`);
   if (wanted('kontrast')) {
     measured.set('kontrast', `${nf(textStats.cNodes)} Textstellen auf ${textStats.cPages} Seiten gegen ihren Hintergrund gemessen`
       + (textStats.inSvg ? `; ${nf(textStats.inSvg)} in Grafiken nicht gemessen` : '') + (textStats.undetermined ? `; ${nf(textStats.undetermined)} auf Bild oder Verlauf nicht berechenbar` : ''));

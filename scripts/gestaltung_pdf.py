@@ -398,7 +398,8 @@ def farbwahl(eintraege):
 
 
 def _pt(x):
-    return ("%g" % x).replace(".", ",")
+    """A size as the dashboard writes numbers (de-CH): «10.5» (gestaltung_export.py reads an older «10,5» the same way)."""
+    return "%g" % x
 
 
 def knapp_hinweise(schriften, groessen, hinweise):

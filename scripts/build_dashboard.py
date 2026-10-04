@@ -5,7 +5,7 @@ The JSON is inlined into the HTML so the file opens straight from disk via file:
 with no server and no fetch (offline by default). Vanilla JS, no framework.
 
 Views (2026-09 redesign; state lives in the URL hash, so links are shareable),
-in the five groups of the sidebar:
+in the six groups of the sidebar:
   * Einstieg — Übersicht (#home: the data standard first, three headline cards
     from DATA.kopfzahlen, further gaps, three doors, the tone key, a compact
     Verlauf) · Für Dienststellen (#dienststellen, + /all/<slug> per office) ·
@@ -13,6 +13,12 @@ in the five groups of the sidebar:
     tiers, all key figures, the Verlauf table)
   * Datenstandard — Datenkatalog (#katalog) · Begriffe (#begriffe) ·
     eSH-Katalog (#esh, marked «Entwurf»)
+  * Erscheinungsbild — Gestaltung der Formulare (#gestaltung, + /all/<gruppe> and
+    /all/m-<merkmal>, /all/e-<merkmal>, /all/kanton, /all/dienststellen, /all/grenzen as
+    shareable section addresses: how the Formulare look — Schrift, Farben, Mindestmerkmale
+    der Barrierefreiheit, Kontaktangaben, Aufbau — against the practice of the measured
+    Formulare; DATA.gestaltung and form.gestaltung from scripts/gestaltung_export.py; the
+    texts describe what differs and never ask an office to change its Formular)
   * Arbeitslisten — Handlungsbedarf (#todo: red and amber only, per
     Dienststelle, CSV) · Recherche der Databank (#recherche: the databank's own
     homework) · Datenschutz-Dossiers (link to dossiers/index.html)
@@ -23,7 +29,8 @@ in the five groups of the sidebar:
     Geführte Formulare (link to flows.html)
 plus the Service-Seite (#fields/<service id>: the per-Service hub with
 Datenfelder & Handhabung, Gesetze, Beilagen, Digitalisierungs-Hürden,
-Duplikat-Radar and a Formular-Ansicht per Formular), the sidebar list of
+Duplikat-Radar, a folded panel «Gestaltung» and a Formular-Ansicht per Formular
+(#fields/<id>/form-<id>~gest opens it at that panel)), the sidebar list of
 Formulare & Services, and the header search (#search/all/<query>).
 The page draws, it does not compute: every figure and every classification comes from
 data_export.json (kopfzahlen, dienststellen_uebersicht, the stamped ech_state /
@@ -620,6 +627,109 @@ window.addEventListener('load',function(){setTimeout(function(){__cgFail('Die Se
   .door .dk{font-size:var(--fs-xs);text-transform:uppercase;letter-spacing:.6px;color:var(--link);font-weight:700}
   .door .dq{font-size:var(--fs-l);font-weight:700;line-height:1.3}
   .door .dn{font-size:var(--fs-xs);color:var(--ink-soft)}
+  /* Gestaltung der Formulare — the page #gestaltung, the panel of a Formular, a section of the
+     briefing. What the Formulare show is drawn neutral (ink and grey); only a verdict wears a tone */
+  .glinkline{margin:12px 0 0;font-size:var(--fs-s);color:var(--ink-soft)}
+  .gdoors .door .dq{font-size:var(--fs-m);font-weight:600;line-height:1.4}
+  .gdoors .door .dz{padding-top:6px;font-size:var(--fs-s);color:var(--ink-soft);line-height:1.4}
+  .gdoors .door .dz b{display:block;font-size:var(--fs-xl);color:var(--ink);line-height:1.15}
+  .gstsec{margin:24px 0 0}
+  .gstsec>h4{margin:0 0 6px;padding-bottom:4px;border-bottom:2px solid var(--gold);font-size:var(--fs-l)}
+  .gfrage{margin:0 0 6px;max-width:880px;font-size:var(--fs-m);line-height:1.5}
+  .gvorb{margin:0 0 12px;max-width:880px;padding:1px 0 1px 9px;border-left:2px solid var(--line-strong);
+    font-size:var(--fs-s);color:var(--ink-soft);line-height:1.45}
+  .gm{padding:14px 18px 12px}
+  /* the heading and the badge of its kind flow as text («Schrift Vergleich mit der Praxis»), so that
+     a reader that copies or reads them aloud hears a space between them */
+  .gmhd{line-height:1.6}
+  .gmhd h5{display:inline;margin:0 6px 0 0;font-size:var(--fs-l);font-weight:700}
+  .gmhd .badge{vertical-align:2px}
+  .gzue{margin:0 0 10px;font-size:var(--fs-s);line-height:1.5}
+  .gzue .hsl{margin-right:2px}
+  [data-jump]:focus{outline:none}
+  .gmq{margin:2px 0 10px;font-size:var(--fs-s);color:var(--ink-soft);line-height:1.45}
+  .gpr{margin:0 0 10px;font-size:var(--fs-s);line-height:1.6}
+  .gcols{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:12px 28px;align-items:start}
+  .gcap{margin:0 0 5px;font-size:var(--fs-xs);color:var(--ink-soft);line-height:1.4}
+  .gcap b{color:var(--ink)}
+  ul.gdist{list-style:none;margin:0;padding:0;font-size:var(--fs-s)}
+  ul.gdist>li{display:grid;grid-template-columns:minmax(0,15em) minmax(40px,1fr) 3.4em;gap:10px;align-items:center;
+    padding:1px 0;line-height:1.35}
+  ul.gdist>li[hidden]{display:none}
+  .gdl{overflow-wrap:anywhere}
+  .gdb{height:8px;border-radius:3px;background:var(--line-soft);overflow:hidden}
+  .gdb>i{display:block;height:100%;min-width:2px;background:var(--ink-faint)}
+  .gdn{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+  ul.gdist>li.gp .gdl{font-weight:700}
+  ul.gdist>li.gp .gdb>i{background:var(--ink-soft)}
+  .gpm{margin-left:2px;padding:0 5px;border:1px solid var(--line-strong);border-radius:6px;font-size:var(--fs-xs);
+    font-weight:600;color:var(--ink-soft);white-space:nowrap}
+  .gdbx{display:inline-block;width:22px;height:8px;border-radius:3px;background:var(--ink-faint);vertical-align:middle}
+  .gurt{display:flex;flex-wrap:wrap;gap:5px}
+  .gfr .tchip{margin:0 2px 0 0}
+  .gurt .tchip{margin:0}
+  .gm .tchip:not([data-tip]),.gpanel .tchip:not([data-tip]){cursor:default}
+  .gmorebtn{display:inline-block;margin-top:3px;padding:4px 0;border:0;background:none;cursor:pointer;font:inherit;
+    font-size:var(--fs-xs);font-weight:600;color:var(--link)}
+  .gmorebtn:hover{text-decoration:underline}
+  .gzus{margin-top:10px;padding-top:8px;border-top:1px dashed var(--line);font-size:var(--fs-s);color:var(--ink-soft);line-height:1.5}
+  .gzus b{color:var(--ink);font-weight:600}
+  details.gfl,details.gwie{margin-top:8px}
+  details.gfl>summary,details.gwie>summary{cursor:pointer;font-size:var(--fs-xs);font-weight:600;color:var(--link)}
+  ul.gfll{margin:6px 0 0;padding-left:18px;font-size:var(--fs-s);line-height:1.5;columns:2 24em;column-gap:28px;overflow-wrap:anywhere}
+  ul.gfll>li{break-inside:avoid;padding:1px 0}
+  .gvw{margin:10px 0 0;font-size:var(--fs-s)}
+  details.gwie>p{margin:6px 0 0;max-width:880px;font-size:var(--fs-s);color:var(--ink-soft);line-height:1.5}
+  .gmlink{margin-top:8px;font-size:var(--fs-xs)}
+  ul.ggrenz{margin:8px 0 0;padding-left:20px;max-width:900px;font-size:var(--fs-s);color:var(--ink-soft);line-height:1.5}
+  ul.ggrenz>li{margin:0 0 6px}
+  table.gdst{min-width:880px}
+  table.gdst td{vertical-align:baseline}
+  .gpanel{padding:10px 16px}
+  details.gpanel>summary{cursor:pointer;font-size:var(--fs-s);line-height:1.5}
+  .gpanel .dvsub{display:inline;margin:0 4px 0 0;color:var(--ink)}
+  .gsumm{color:var(--ink-soft)}
+  .gsumm .sw{vertical-align:-1px}
+  .gfgrp{margin:12px 0 2px;font-size:var(--fs-xs);font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--ink-faint)}
+  .gfr{display:grid;grid-template-columns:minmax(0,190px) minmax(0,1fr);gap:2px 14px;padding:6px 0;
+    border-top:1px dashed var(--line);font-size:var(--fs-s);line-height:1.5}
+  .gfgrp+.gfr{border-top:none}
+  .gfr.gfr1{grid-template-columns:minmax(0,1fr)}
+  ul.gfd{margin:3px 0 0;padding-left:18px;color:var(--ink-soft)}
+  .gfoot{margin-top:10px;font-size:var(--fs-xs);color:var(--ink-soft)}
+  @media (max-width:1100px){.gcols{grid-template-columns:minmax(0,1fr)} ul.gdist{max-width:720px}}
+  /* the table per Dienststelle: up to 1340 px «Häufigste Abweichungen und Lücken» stands under the name (.wd/.nw);
+     up to 1100 px (a narrow content column beside the sidebar, or a phone) each Dienststelle is
+     a block of labelled numbers */
+  table.gdst{min-width:600px}
+  @media screen and (min-width:1341px){table.gdst{min-width:880px} table.gdst th.wd{width:24%}}
+  .gtop{white-space:nowrap}
+  table.gdst td.wd .gtop{white-space:normal}
+  .gml{display:none}
+  table.gdst tr.gdep td{padding-top:12px;font-size:var(--fs-s)}
+  /* up to 1100 px each Dienststelle is a block; each number stands on one line with its label
+     («ABWEICHUNGEN 3»), so the numbers of a block line up. The column headers stay for a screen
+     reader (hidden from view only); the labels in the cells are for the eye only */
+  @media screen and (max-width:1100px){
+    table.gdst{min-width:0}
+    table.gdst thead{position:absolute;left:0;top:0;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+    table.gdst,table.gdst tbody{display:block}
+    table.gdst tr{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:4px 14px;padding:8px 0;border-bottom:1px solid var(--line)}
+    table.gdst tr.dgrp{background:var(--field);padding:8px 6px}
+    table.gdst td{display:block;border:0;padding:0;text-align:left}
+    table.gdst td:first-child{grid-column:1/-1}
+    table.gdst td:empty,table.gdst td.wd{display:none}
+    table.gdst tr.dgrp td,table.gdst tr.gdep td{border:0;background:none}
+    table.gdst tr.gdep{padding:12px 0 2px}
+    table.gdst .gml{display:inline;margin-right:6px;font-size:var(--fs-xs);font-weight:600;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.4px}
+    .gtop{white-space:normal}
+  }
+  @media (max-width:600px){
+    ul.gdist>li{grid-template-columns:minmax(0,9.5em) minmax(32px,1fr) 3em;gap:8px}
+    .gfr{grid-template-columns:minmax(0,1fr)}
+    ul.gfll{columns:1}
+    .gm{padding:12px 14px}
+  }
   /* Verlauf: compact trend lines */
   /* a sparkline is 320 units wide and its labels are sized in those units: the card is
      never narrower than the drawing, so the labels stay at 12 px or more */
@@ -942,7 +1052,7 @@ window.addEventListener('load',function(){setTimeout(function(){__cgFail('Die Se
   <div class="htxt"><div class="sub">Kanton Schaffhausen</div>
     <h1>Compliance-Databank · Datenstandards, Formulare &amp; Recht</h1></div>
   <button class="navbtn" type="button" aria-controls="sidenav" aria-expanded="false" onclick="var o=document.querySelector('.layout').classList.toggle('nav-open');this.setAttribute('aria-expanded',String(o));if(o)window.scrollTo(0,0);" title="Navigation ein-/ausblenden">☰ Navigation</button>
-  <input id="gsearch" class="gsearch" type="search" placeholder="Suche: Gesetz, Artikel, Datenfeld, Teilfeld, Regel, Empfänger, Dienststelle …" title="Suche über Services, Formulare, Datenfelder (inkl. Teilfelder), Gesetze, Regeln, Empfänger, Beilagen, Themengruppen (Lebenslagen), Begriffe, eCH-Standards, eSH-Entwürfe und Dienststellen — Enter oder kurz warten">
+  <input id="gsearch" class="gsearch" type="search" placeholder="Suche: Gesetz, Artikel, Datenfeld, Teilfeld, Regel, Empfänger, Dienststelle …" title="Suche über Services, Formulare, Datenfelder (inkl. Teilfelder), Gesetze, Regeln, Empfänger, Beilagen, Themengruppen (Lebenslagen), Begriffe, eCH-Standards, eSH-Entwürfe, Dienststellen und die Gestaltung der Formulare — Enter oder kurz warten">
   <span class="warn" id="warn"></span>
   <span class="stamp" id="stamp"></span>
 </header>
@@ -957,6 +1067,8 @@ window.addEventListener('load',function(){setTimeout(function(){__cgFail('Die Se
     <button class="tab" data-tab="katalog">Datenkatalog<span class="tabsub">Jede Angabe einmal: eCH-Element, Einheitlichkeit, Once-Only</span></button>
     <button class="tab" data-tab="begriffe">Begriffe<span class="tabsub">Eine Angabe, ein Name</span></button>
     <button class="tab" data-tab="esh">eSH-Katalog (Entwurf)<span class="tabsub">Entwurf des Kantons, wo kein eCH-Standard besteht</span></button>
+    <h2>Erscheinungsbild</h2>
+    <button class="tab" data-tab="gestaltung">Gestaltung der Formulare<span class="tabsub">Schrift, Farben, Barrierefreiheit, Kontaktangaben, Aufbau</span></button>
     <h2>Arbeitslisten</h2>
     <button class="tab" data-tab="todo">Handlungsbedarf<span class="tabsub">Was Dienststellen ändern und der Kanton entscheidet — je Dienststelle</span></button>
     <button class="tab" data-tab="recherche">Recherche der Databank<span class="tabsub">Was die Databank selbst noch nachschlagen muss</span></button>
@@ -1175,6 +1287,9 @@ window.addEventListener('hashchange',()=>{
   if(location.hash!==asked) window.scrollTo(0,0);
 });
 const DEPT_ORDER=['Baudepartement','Departement des Innern','Erziehungsdepartement','Finanzdepartement','Volkswirtschaftsdepartement'];
+// departments in that order, any other A–Z after them («Für Dienststellen», «Gestaltung der Formulare»)
+const deptCmp=(a,b)=>{const ia=DEPT_ORDER.indexOf(a), ib=DEPT_ORDER.indexOf(b);
+  return (ia<0?99:ia)-(ib<0?99:ib)||a.localeCompare(b,'de');};
 function deptName(s){return (s.department||'(ohne Departement)').trim();}
 
 // ---- indexes + in-browser reconciliation (computed, never stored) ----------
@@ -1412,11 +1527,21 @@ function renderLegend(){
     rules: {open:'Zitat unverifiziert'},
   };
   const tx=TONEX[state.tab]||{};
-  const drawn=t=>has(`.st-${t},.t-${t}${t==='ok'?',.t-ok2':''}`);
+  // on #gestaltung the tones speak the layer's words (DATA.gestaltung.labels: the findings of a tone
+  // and what the tone adds); elsewhere the panel «Gestaltung» of a Formular (.gpanel) lights no tone
+  // of the data standard — it gets a block of its own below, in the layer's words
+  const gst=state.tab==='gestaltung'&&!!GEST;
+  const hasOut=sel=>[...main.querySelectorAll(sel)].some(e=>!e.closest('.gpanel'));
+  const drawn=t=>hasOut(`.st-${t},.t-${t}${t==='ok'?',.t-ok2':''}`);
   const T=['ok','act','dec','open'], shown=T.filter(drawn);
-  const tonBlk=shown.length?`<div class="legblk"><div class="leghd">Farbe = wer als Nächstes handelt</div><ul class="tleg">${
+  const tonBlk=shown.length?`<div class="legblk"><div class="leghd">${gst?'Farbe nur bei einem Befund — er beschreibt einen Unterschied und verlangt keine Änderung':'Farbe = wer als Nächstes handelt'}</div><ul class="tleg">${
     T.map(t=>{const on=shown.includes(t);
+      if(gst) return `<li${on?'':' class="zero"'}>${SW(t)}<span class="legt" title="${esc(gTonTip(t))}"><b>${esc(gTonWords(t))}</b> <span class="tw">${esc((TON[t]||{}).farbe||'')}</span><span class="legex">${esc(gTonZusatz(t))}</span></span></li>`;
       return `<li${on?'':' class="zero"'}>${SW(t)}<span class="legt" title="${esc(tonTip(t))}"><b>${esc(tonLabel(t))}</b> <span class="tw">${esc((TON[t]||{}).farbe||'')}</span>${on&&tx[t]?`<span class="legex">hier: ${esc(tx[t])}</span>`:''}</span></li>`;}).join('')}</ul></div>`:'';
+  // the panel «Gestaltung» of a Formular: its tones in the layer's words, apart from «wer handelt»
+  const gT=!gst&&GEST&&has('.gpanel')?T.filter(t=>has(`.gpanel .st-${t},.gpanel .t-${t}`)):[];
+  const gBlk=gT.length?`<div class="legblk"><div class="leghd">Gestaltung der Formulare — Farbe nur bei einem Befund</div><ul class="tleg">${
+    gT.map(t=>`<li>${SW(t)}<span class="legt" title="${esc(gTonTip(t))}"><b>${esc(gTonWords(t))}</b> <span class="legex">${esc(gTonZusatz(t))}</span></span></li>`).join('')}</ul></div>`:'';
   // Kennzeichen: [present on this page?, sample html, text] — the data standard first
   const MK=[
     [()=>has('.edt'),'<span class="edt">⟨Typ⟩</span>','Datentyp laut offiziellem eCH-XSD — in diesem Typ wird die Angabe ausgetauscht (☰: mit offizieller Codeliste)'],
@@ -1439,12 +1564,14 @@ function renderLegend(){
     [()=>has('.flowsvg,.mkline'),'<span class="mkline"></span>','systematisch — regelmässige Meldung von Gesetzes wegen'],
     [()=>has('.flowsvg,.mkline.dash'),'<span class="mkline dash"></span>','auf Anfrage — Amtshilfe im Einzelfall'],
     [()=>has('.llnum'),'<span class="llnum">①</span>','Nummer des Services in der Tabelle der Themengruppe'],
+    [()=>has('.gdist'),'<span class="gdbx"></span>','gemessene Werte (Gestaltung) — grau und ohne Bewertung; die Farbe steht nur bei einem Befund'],
+    [()=>has('.gurt .badge.mk,.gfr .badge.mk'),'<span class="badge mk">Hinweis</span>','Gestaltung: «Hinweis», «betroffen», «entfällt» — eine Feststellung ohne Farbe. Auf einem Formular steht auch «keine klare Praxis» ohne Farbe: Der Kanton legt einmal je Merkmal fest'],
   ];
   const mks=MK.filter(([t])=>t());
   const mkBlk=mks.length?`<div class="legblk"><div class="leghd">Kennzeichen, keine Bewertung</div><ul class="tleg mkl">${
     mks.map(([,s,l])=>`<li>${s}<span>${esc(l)}</span></li>`).join('')}</ul></div>`:'';
-  const lh=document.getElementById('legendhd'); if(lh) lh.style.display=(tonBlk||mkBlk)?'':'none';
-  const html=tonBlk+mkBlk;
+  const lh=document.getElementById('legendhd'); if(lh) lh.style.display=(tonBlk||gBlk||mkBlk)?'':'none';
+  const html=tonBlk+gBlk+mkBlk;
   // redrawn only when it changes (the observer calls this after every change in #main)
   if(leg._raw!==html){leg._raw=html; leg.innerHTML=html; enhanceTips(leg);}
 }
@@ -1574,7 +1701,8 @@ function goHref(h){
   state.tab=p[0]||'home'; state.service=state.tab==='fields'?(p[1]||'all'):'all'; state.sub=p[2]||'felder';
   closeNav(); render();
 }
-const goLink=(tab,sub,txt,cls)=>`<a class="${cls||'kzlink'}" href="#${tab}${sub?'/all/'+sub:''}" data-go="${tab}"${sub?` data-sub="${sub}"`:''}>${txt}</a>`;
+// tab and sub are escaped here (a slug or a key of the data); txt is html the caller escaped
+const goLink=(tab,sub,txt,cls)=>`<a class="${cls||'kzlink'}" href="#${esc(tab)}${sub?'/all/'+esc(sub):''}" data-go="${esc(tab)}"${sub?` data-sub="${esc(sub)}"`:''}>${txt}</a>`;
 const svcLink=(sid,txt,cls)=>`<a class="${cls||'dlink'}" href="#fields/${encodeURIComponent(sid)}" data-nav="1">${txt}</a>`;
 // sec 'div' opens the Formular-Ansicht at its block «Standard-Divergenzen» (#…/form-<id>~div)
 const formLink=(sid,fid,txt,cls,sec)=>`<a class="${cls||'dlink'}" href="#fields/${encodeURIComponent(sid)}/form-${encodeURIComponent(fid)}${sec?'~'+sec:''}" data-nav="1">${txt}</a>`;
@@ -1789,7 +1917,7 @@ function catSections(ton, verb, focus, opt){
 function focusCat(m, k){
   if(!k||comingBack()) return;
   setTimeout(()=>{const t=document.getElementById('cat-'+k); if(!t||!m.contains(t)) return;
-    t.scrollIntoView({behavior:MOTION}); t.classList.add('flash'); setTimeout(()=>t.classList.remove('flash'),1600);},0);
+    t.scrollIntoView({behavior:MOTION}); focusIn(t); t.classList.add('flash'); setTimeout(()=>t.classList.remove('flash'),1600);},0);
 }
 // segmented bar: one segment per part, widths proportional, a 2px surface gap
 // between them; every part is also a legend row with its number and the tone in
@@ -1884,6 +2012,16 @@ function sparkline(get, name, noteNo){
   return s+`<div class="vlrow">${off?'… ':''}${tail.map((x,j)=>{const n=noteOf(off+j);return `${fmtDate(x.e.datum).slice(0,6)} <b>${nf1(x.p)} %</b>${n?`<sup>${n}</sup>`:''}`;}).join(' · ')}</div>`
     +(P[0].e!==VERLAUF[0]?`<div class="vlrow">erhoben ab ${fmtDate(P[0].e.datum)}; frühere Stände kannten diese Kennzahl noch nicht</div>`:'');
 }
+// ---------- Gestaltung der Formulare: the layer's data and words ----------
+// Computed once in scripts/gestaltung_export.py — per Formular form.gestaltung, the overview
+// DATA.gestaltung — and only drawn here. Its vocabulary is its own (DATA.gestaltung.labels): a
+// verdict and its tone (urteil) and what each tone means in this layer (ton) — never the generic
+// «Die Dienststelle muss ihr Formular ändern». Its figures never enter the counts of the data
+// standard, the open points or the Handlungsbedarf.
+const GEST=DATA.gestaltung||null;
+const GL=(GEST&&GEST.labels)||{};
+const GM=Object.fromEntries(((GEST&&GEST.merkmale)||[]).map(m=>[m.key,m]));
+const GGRP=(GEST&&GEST.gruppen)||[];
 // ---------- Glossar: the terms the headline figures rest on, each said once ----------
 // One list for three places: the explanation of a term where a headline card uses it
 // (term() — a click, a tap or Enter opens it, like every explanation), the section «Glossar»
@@ -1905,13 +2043,17 @@ const GLOSSAR=(()=>{
     ['teilfeld','Teilfeld','Der atomare Teil eines zusammengesetzten Datenfelds: Name, Vorname und Geburtsdatum in «Personalien».'],
     ['datenpunkt','Datenpunkt','Eine einzelne Angabe, die ein Formular verlangt — zum Beispiel der Familienname. In dieser Einheit zählt die Databank beim Datenstandard: ein Teilfeld, oder ein Datenfeld ohne Teilfelder.'],
     ['attribut','Attribut','Der Eintrag im Datenkatalog: ein eCH- oder eSH-Element, egal auf wie vielen Formularen es erhoben wird.'],
-    ['luecke','Lücke','Ein offener Punkt: etwas ist noch zu klären, zu entscheiden oder zu belegen. Die Farbe sagt, wer als Nächstes handelt — die Dienststelle, der Kanton oder die Databank.'],
+    ['luecke','Lücke','Ein offener Punkt: etwas ist noch zu klären, zu entscheiden oder zu belegen. Die Farbe sagt, wer als Nächstes handelt — die Dienststelle, der Kanton oder die Databank.'
+      +(GEST?' In der Gestaltung der Formulare heisst Lücke: ein geprüftes Merkmal fehlt, etwa ein Mindestmerkmal der Barrierefreiheit — ein Befund über die Datei, kein offener Punkt des Datenstandards.':'')],
     ['dvsh','DVSH','Das Dienstleistungsmodell des Kantons (amtliches Modellierungswerkzeug): massgebliche Quelle für Verfahren und Rechtsgrundlage, nur lesend übernommen. Auch die Kontakte der Dienststellen stammen von dort.'],
     ['shep','SHEP','Das publizierte Service-Portal des Kantons — was Bürgerinnen und Bürger zu einem Service sehen.'],
     kdsg&&['kdsg','KDSG',`${kdsg.title}${kdsg.sr_number?' (SHR '+kdsg.sr_number+')':''} — das Datenschutzgesetz des Kantons; es gilt für die Organe des Kantons.`],
     ['besonders-schuetzenswert','Besonders schützenswert (⛨)','Besonders schützenswerte Personendaten nach KDSG Art. 2 Abs. 1 lit. d. Für sie genügt «aufgabennotwendig» nicht: die Grundlage nach KDSG Art. 5 Abs. 1 muss benannt sein.'],
     ['dsfa','DSFA','Datenschutz-Folgenabschätzung (KDSG Art. 14b). Die Databank berechnet nur einen Anhaltspunkt aus der Zahl der besonders schützenswerten Felder; ob eine DSFA nötig ist, ist ein Entscheid, kein Rechenergebnis.'],
     ['once-only','Once-Only (↺)','Eine Angabe nur einmal erheben: das Einwohnerregister führt sie bereits, sie kann vorbefüllt statt neu erhoben werden. Die Marke gilt nur für Daten natürlicher Personen.'],
+    GEST&&['gestaltung','Gestaltung der Formulare','Wie ein Formular aussieht und aufgebaut ist — Schrift, Farben, die Mindestmerkmale der Barrierefreiheit, Kontaktangaben und Aufbau —, gemessen an den veröffentlichten Dateien und mit den übrigen Formularen verglichen. Ein eigener Teil des Dashboards: Er beschreibt, was sich unterscheidet; seine Zahlen gehören nicht zu den offenen Punkten des Datenstandards.'],
+    GEST&&['praxis','Praxis (Gestaltung)',`Der Wert, den mindestens zwei Drittel der gemessenen Formulare in einem Merkmal teilen${GM.schrift&&GM.schrift.praxis?' — zum Beispiel die Schrift '+GM.schrift.praxis.w:''}. Er ist der Massstab, weil der Databank kein Corporate-Design-Handbuch des Kantons vorliegt: «weicht von der Praxis ab» heisst nicht, dass eine Vorgabe verletzt ist. Erreicht kein Wert zwei Drittel, gibt es keine klare Praxis, und der Kanton legt fest.`],
+    GEST&&['mindestmerkmale','Mindestmerkmale (Barrierefreiheit)',`Was sich an einer Datei maschinell prüfen lässt und worauf sich ein Screenreader (Vorleseprogramm) stützt: ${(GEST.merkmale||[]).filter(m=>m.gruppe==='barrierefrei').map(m=>m.label).join(', ')}. Ein fehlendes Merkmal ist eine Lücke; ein vorhandenes ist kein Nachweis der Barrierefreiheit — kein Test nach eCH-0059, WCAG oder PDF/UA.`],
   ].filter(Boolean).map(([id,wort,text])=>({id,wort,text}));})();
 const GLOSS_BY=Object.fromEntries(GLOSSAR.map(g=>[g.id,g]));
 // a term of the glossary inside a text: its explanation opens like every other one
@@ -2025,7 +2167,7 @@ function viewHome(){
     ${door('dienststellen','Für Dienststellen','Was muss ich an meinen Formularen ändern?',O?`${nf(O.act)} Punkte, die ${nDst===1?'eine Dienststelle':nf(nDst)+' Dienststellen'} selbst lösen ${plw(nDst,'kann','können')}`:'')}
     ${door('kanton','Für den Kanton','Was muss entschieden werden?',O?`${nf(O.dec)} offene Punkte, meist Datenpunkte ohne Standard, warten auf einen Entscheid des Kantons`:'')}
     ${door('methode','Für Fachleute','Wie ist die Databank gebaut?','Belege, Verifikationsstufen, Quellen und der Verlauf aller Kennzahlen')}
-  </div></section>
+  </div>${GEST?`<p class="glinkline">Auch: ${goLink('gestaltung','','Gestaltung der Formulare — Schrift, Farben, Barrierefreiheit ›','inl')}</p>`:''}</section>
   <section class="hsec"><h4>Verlauf</h4>
     <div class="vlgrid">
       <div class="kz"><div class="kzl">Datenpunkte mit eCH-Element</div>${sparkline(e=>e.punkte_ech!=null&&e.punkte?{n:e.punkte_ech,von:e.punkte}:null,'Anteil der Datenpunkte mit eCH-Element',noteNo)}</div>
@@ -2122,6 +2264,13 @@ function viewMethode(){
       <div>• <b>Fünf Begriffsebenen</b>, die hier nie vermischt werden: Formularfeld, Datenfeld, Teilfeld, Datenpunkt und Attribut — jede im Glossar unten erklärt.</div>
       <div>• <b>Lücke = Lücke:</b> Fehlendes steht als «fehlt», «kein Standard», «zu ermitteln» offen da. Eine
       geschönte Anzeige von 100&nbsp;% wäre hier ein Defekt.</div>
+      ${GEST?`<div id="m-gestaltung">• <b>Gestaltung der Formulare</b> — ein eigener Teil: wie die Formulare aussehen — Schrift, Farben,
+      die maschinell prüfbaren Mindestmerkmale der Barrierefreiheit, Kontaktangaben und Aufbau —, gemessen an den veröffentlichten Dateien
+      (Methode ${esc(GEST.methode||'—')}, Stand der Messung ${fmtDate(GEST.stand)}). Massstab ist die Praxis der gemessenen Formulare: ein Wert,
+      den mindestens zwei Drittel von ihnen teilen; ein Corporate-Design-Handbuch des Kantons liegt der Databank nicht vor. Erreicht kein Wert
+      zwei Drittel, legt der Kanton fest. Was in Bildern und Logos steht, ist nicht gemessen; die eFormulare der Plattform haben kein eigenes
+      Erscheinungsbild. Die Seite beschreibt, was sich unterscheidet, und verlangt von keiner Dienststelle, ein Formular zu ändern; ihre Zahlen
+      gehören nicht zu den offenen Punkten und nicht zu den Kennzahlen des Datenstandards. ${goLink('gestaltung','','Zur Gestaltung der Formulare ›','inl')}</div>`:''}
       <div>• <b>Quellen:</b> <b>DVSH</b> — das Dienstleistungsmodell des Kantons (amtliches Modellierungswerkzeug; massgebliche Quelle für Verfahren
       und Rechtsgrundlage, nur lesend übernommen) · <b>SHEP</b> — das publizierte Service-Portal des Kantons (Bürgersicht,
       shep.meetfrida.agency) · die amtlichen Formulare selbst ·
@@ -2164,6 +2313,297 @@ function viewMethode(){
     state.tab=b.dataset.go; state.service='all'; state.sub=b.dataset.sub||'felder'; render();});
   wireGo(m);
 }
+// ---------- Gestaltung der Formulare (#gestaltung): how the Formulare look ----------
+// The page opens like the start page — one question, a handful of doors (the readers first, then the
+// groups) —, then one section per group with one block per Merkmal: the practice (or none), the
+// measured values as a NEUTRAL list (ink and grey: a value is no finding), the findings as chips in
+// their tone, the Formulare concerned folded. The Merkmale without a clear practice, the comparison
+// per Dienststelle and the limits of the measurement follow. Every figure is the export's
+// (DATA.gestaltung, also the figure of each door); the page counts nothing itself. The texts describe
+// what differs — they never ask an office to change its Formular. Section addresses:
+// #gestaltung/all/<gruppe> · m-<merkmal> · e-<merkmal> (an open decision) · kanton · dienststellen ·
+// grenzen.
+const GTON=['ok','act','dec','open'];
+// a finding (verdict) and its tone; its name for one Merkmal (merkmale[].urteil_labels) or for a
+// count over many Formulare (labels.urteil_gesamt) where the layer gives one
+const gUrteil=(u,o)=>{const x=((GL.urteil||{})[u])||{label:'⟨'+u+'⟩',ton:null}, p=o||{};
+  const lbl=(p.m&&p.m.urteil_labels&&p.m.urteil_labels[u])||(p.gesamt&&(GL.urteil_gesamt||{})[u])||x.label;
+  return {label:lbl,ton:GTON.includes(x.ton)?x.ton:null};};
+// a measured value or a sentence of the layer, escaped; a number keeps its unit on its line («30 %», «8 pt», «+41 …»)
+const gx=v=>esc(v).replace(/(\d) (?=%|pt\b|…)/g,'$1 ').replace(/ …/g,' …');
+const gMerkmal=k=>(GL.merkmal||{})[k]||('⟨'+k+'⟩');
+// the four tones in the words of this layer: the findings of a tone, what the tone adds to them, the
+// whole sentence (a tooltip)
+const gTonWords=t=>Object.values(GL.urteil||{}).filter(x=>x.ton===t).map(x=>x.label).join(' / ');
+const gTonZusatz=t=>(GL.ton_zusatz||{})[t]||'';
+const gTonTip=t=>(GL.ton||{})[t]||'';
+// a finding as a chip: in its tone (colour, symbol and word), or outlined and neutral where it has
+// none (Hinweis, betroffen, entfällt). On a Formular the canton's open decision («keine klare
+// Praxis») is neutral as well: it is drawn once per Merkmal, on the page
+function gChip(u,n,opt){
+  const o=opt||{}, U=gUrteil(u,o), t=o.form&&U.ton==='dec'?null:U.ton;
+  const lbl=esc(U.label), num=n!=null?` <b class="sumn">${nf(n)}</b>`:'', tip=o.tip?` title="${esc(o.tip)}"`:'';
+  return t?`<span class="tchip badge st-${t}"${tip}><i class="sw t-${t}"></i>${lbl}${num}</span>`
+    :`<span class="tchip badge mk"${tip}>${lbl}${num}</span>`;
+}
+// the amber chip of a Merkmal that waits for the canton: no clear practice, or no rule at all
+const gDecChip=m=>m&&m.art==='regel_offen'
+  ?`<span class="tchip badge st-dec"><i class="sw t-dec"></i>${esc(lab(GL.art,'regel_offen'))} — der Kanton legt fest</span>`
+  :gChip('uneinheitlich');
+// the kind of a Merkmal as a badge that explains itself (labels.art, labels.art_erklaerung)
+const gArt=a=>mkBadge(esc(lab(GL.art,a)),(GL.art_erklaerung||{})[a]||'');
+// a finding in a list of the most frequent ones: «Abweichung», «Lücke» (labels.urteil_nomen)
+const gNomen=u=>(GL.urteil_nomen||{})[u]||gUrteil(u).label;
+// the value one Formular shows for a Merkmal (form.gestaltung — as measured, never recomputed)
+const gWert=(f,k)=>{const x=f&&f.gestaltung&&(f.gestaltung.merkmale||[]).find(y=>y.k===k); return x?x.w:null;};
+// a list of Formulare, each linking to its Formular-Ansicht with the panel «Gestaltung» open;
+// the first GCAP are drawn, «weitere N anzeigen» draws the rest (Back/Forward draws it again)
+const GCAP=24;
+let _gN=0; const _gRest={};
+function gFormItem(fid,k){
+  const f=formById[fid]; if(!f) return `<li>Formular ${esc(fid)}</li>`;
+  const w=k?gWert(f,k):null;
+  return `<li>${formLink(f.service_id,f.id,esc(f.title),'dlink lt','gest')} <span class="small muted">· ${esc(f.dienststelle||'')}${w?' · '+gx(w):''}</span></li>`;
+}
+function gFormList(ids,k){
+  const by=x=>{const f=formById[x]||{}; return [String((k&&gWert(f,k))||''),String(f.dienststelle||''),String(f.title||'')];};
+  const L=(ids||[]).slice().sort((a,b)=>{const x=by(a), y=by(b);
+    for(let i=0;i<3;i++){const c=x[i].localeCompare(y[i],'de'); if(c) return c;} return a-b;});
+  const id='gl'+(_gN++), rest=L.slice(GCAP);
+  if(rest.length) _gRest[id]={ids:rest,k};
+  return `<ul class="gfll" id="${id}">${L.slice(0,GCAP).map(x=>gFormItem(x,k)).join('')}</ul>${
+    rest.length?`<button type="button" class="gmorebtn" data-showmore="${id}">weitere ${nf(rest.length)} anzeigen</button>`:''}`;
+}
+const gFolded=(summary,body,open)=>`<details class="gfl"${open?' open':''}><summary>${summary}</summary>${body}</details>`;
+// the measured values as a neutral list: value, a grey bar, the number — the practice is named
+// («Praxis», bold), never coloured. The numbers add up to the total the caption states (.sumbox)
+function gDist(vert,total,cap,praxisW){
+  const F=6, L=vert||[];
+  const rows=L.map((v,i)=>{const p=praxisW!=null&&v.w===praxisW;
+    return `<li${p?' class="gp"':''}${i>=F?' hidden data-gx':''}><span class="gdl">${gx(v.w)}${p?' <span class="gpm">Praxis</span>':''}</span>`
+      +`<span class="gdb" aria-hidden="true"><i style="width:${total?(100*v.n/total).toFixed(1):0}%"></i></span><b class="gdn sumn">${nf(v.n)}</b></li>`;}).join('');
+  const more=L.length>F?`alle ${nf(L.length)} Werte zeigen`:'';
+  return `<div class="sumbox"><div class="gcap">${cap}</div><ul class="gdist">${rows}</ul>${
+    more?`<button type="button" class="gmorebtn" data-gx data-label="${more}" aria-expanded="false">${more}</button>`:''}</div>`;
+}
+// every finding of a Merkmal over all Formulare, in the order of the layer's labels
+function gUrteile(m){
+  const U=m.urteile||{};
+  return `<div class="sumbox"><div class="gcap">Befunde über alle <b class="sumtot">${nf(GEST.bestand.formulare)}</b> Formulare</div><div class="gurt">${
+    Object.keys(GL.urteil||{}).filter(u=>U[u]).map(u=>gChip(u,U[u],{m,gesamt:1})).join(' ')}</div></div>`;
+}
+const gEntscheidOf=k=>(GEST.entscheide||[]).find(e=>e.key===k);
+function gPraxis(m){
+  if(m.praxis) return `<div class="gpr">Praxis: <b>${gx(m.praxis.w)}</b> — ${nf(m.praxis.n)} von ${nf(m.n_gemessen)} gemessenen Formularen (${nf1(100*m.praxis.anteil)} %)</div>`;
+  const e=gEntscheidOf(m.key);
+  return e?`<div class="gpr">${gDecChip(m)} ${goLink('gestaltung','e-'+m.key,`Ohne Vorgabe in der Databank: «${esc(e.label)}» ›`,'inl')}</div>`:'';
+}
+// a list of written forms with their counts: each «form» N on one line, the separator at its end
+const gMuster=L=>(L||[]).map((x,i,a)=>`<span class="nowrap">«${esc(x.w)}» ${nf(x.n)}${i<a.length-1?' ·':''}</span>`).join(' ');
+// what the overview says beside a Merkmal (merkmale[].zusatz), in plain sentences
+function gZusatz(m){
+  const z=m.zusatz; if(!z) return '';
+  const L=`<b>${esc(z.label)}:</b> `;
+  if(m.key==='akzentfarbe') return `<div class="gzus">${L}${nf(z.farben_gemessen)} Formulare mit gemessenen Farben, davon ${nf(z.office)} Word- und Excel-Dateien
+    (${nf(z.office_mit_farbe)} mit einer Farbe, ${nf(z.office_ohne_farbe)} ohne) — ihre Farben sind genannt, aber nicht verglichen.
+    Unter den PDF-Formularen zeigen ${nf(z.pdf_mit_linkfarbe)} farbige Internet- oder E-Mail-Adressen, ${nf(z.pdf_mit_feldfarbe)} farbige Formularfelder
+    und ${nf(z.pdf_mit_kopfmarke)} eine kleine Farbmarke im Kopf der ersten Seite; keine davon zählt als Akzentfarbe.
+    Von den ${nf(z.pdf_ohne_akzent)} PDF-Formularen ohne Akzentfarbe tragen ${nf(z.pdf_ohne_akzent_mit_bild)} auf der ersten Seite ein Bild, dessen Farben nicht gemessen sind;
+    ${nf(z.pdf_ohne_akzent_farbe_unter_schwelle)} zeigen eine Farbe unter der Schwelle.</div>`;
+  if(m.key==='bf_tags') return `<div class="gzus">${L}Von den ${nf(z.getaggt)} getaggten PDF-Formularen binden ${nf(z.ohne_formularfelder)} ihre Formularfelder nicht in den Strukturbaum ein,
+    und ${nf(z.ohne_ueberschriften)} tragen dort keine Überschriften.</div>`;
+  if(m.key==='tel_erklaerung'&&(z.dienststellen||[]).length) return `<div class="gzus">${L}${z.dienststellen.map(d=>`${goLink('dienststellen',d.slug,esc(d.name),'dlink lt')} ${nf(d.n)}`).join(' · ')}</div>`;
+  if(m.key==='tel_format') return `<div class="gzus">${L}${nf(z.n_mehrfach)} von ${nf(z.n_nummern)} gedruckten Nummern stehen auf den Formularen in mehr als einer Schreibweise.
+    ${gFolded('Schreibweisen anzeigen (9 steht für eine Ziffer)',`<div class="gvw">Alle gedruckten Nummern: ${gMuster(z.schreibweisen)}</div>${
+      (z.nummern||[]).length?`<ul class="gfll">${z.nummern.map(x=>`<li><span class="mono">${esc(x.nummer)}</span>: ${(x.schreibweisen||[]).map(y=>`«${esc(y.w)}» auf ${pl(y.n,'Formular','Formularen')}`).join(' · ')}</li>`).join('')}</ul>`:''}`)}</div>`;
+  if(m.key==='seitenzahlen') return `<div class="gzus">${L}${gMuster(z.muster)} <span class="small">(n steht für die Seite, N für die Zahl der Seiten)</span></div>`;
+  return '';
+}
+function gBlock(m){
+  const lists=Object.keys(m.formulare||{}).map(u=>{const ids=m.formulare[u]||[]; if(!ids.length) return '';
+    // a value is shown beside each Formular — not where it would only repeat «nicht messbar»
+    return gFolded(`${pl((m.urteile||{})[u]!=null?m.urteile[u]:ids.length,'Formular','Formulare')} anzeigen — ${esc(gUrteil(u,{m,gesamt:1}).label)}`,gFormList(ids,u==='nicht_messbar'||u==='nicht_gemessen'?null:m.key));}).join('');
+  return `<div class="card gm" id="gm-${esc(m.key)}"><div class="gmhd"><h5>${esc(m.label)}</h5> ${gArt(m.art)}</div>
+    <p class="gmq">${esc(m.frage)}</p>${gPraxis(m)}
+    <div class="gcols">${gDist(m.verteilung,m.n_gemessen,`Verteilung: <b class="sumtot">${nf(m.n_gemessen)}</b> ${esc(m.basis)}`,m.praxis?m.praxis.w:null)}${gUrteile(m)}</div>
+    ${gZusatz(m)}${lists}
+    <details class="gwie"><summary>Wie gemessen</summary><p>${gx(m.erklaerung)}</p></details></div>`;
+}
+// one Merkmal without a clear practice or rule: what is open, what is to be decided, the values the
+// Formulare show, the Formulare per value
+function gEntscheid(e){
+  const m=GM[e.key]||{}, kl=m.art==='regel_offen';
+  const total=kl?((m.urteile||{}).betroffen||0):m.n_gemessen;
+  const per=(e.verteilung||[]).map(v=>`<div class="gvw"><b>${gx(v.w)}</b> · ${pl(v.n,'Formular','Formulare')}</div>${gFormList(v.formulare||[],e.key)}`).join('');
+  return `<div class="card gm" id="ge-${esc(e.key)}"><div class="gmhd"><h5>${esc(e.label)}</h5> ${gDecChip(m)}</div>
+    <p class="gpr">${gx(e.was)}</p>${e.frage?`<p class="gzue"><span class="hsl">Zu entscheiden</span> ${gx(e.frage)}</p>`:''}
+    <div class="gcols">${gDist(e.verteilung,total,`Verteilung: <b class="sumtot">${nf(total)}</b> ${kl?'Formulare, die es betrifft':esc(m.basis||'')}`,null)}
+      <div>${gFolded('Formulare je Wert anzeigen',per)}<div class="gmlink">${goLink('gestaltung','m-'+e.key,`Zum Merkmal «${esc(gMerkmal(e.key))}» ›`,'inl')}</div></div></div></div>`;
+}
+// the most frequent Abweichungen and Lücken of a Dienststelle: «Merkmal: Lücke bei N»
+const gTopItem=(t,lang)=>`${esc(gMerkmal(t.key))}: ${esc(gNomen(t.u))} bei ${lang?pl(t.n,'Formular','Formularen'):nf(t.n)}`;
+// per Dienststelle (overview.dienststellen), in the order of «Für Dienststellen» (by Departement,
+// A–Z inside): Abweichungen and Lücken apart, each adding up to the canton's (.sumbox, data-s)
+function gDstTabelle(){
+  const K=GEST.kennzahlen, B=GEST.bestand, A=(GEST.dienststellen||[]).filter(d=>d.n_formulare);
+  const depOf=Object.fromEntries(DST.map(d=>[d.slug,(d.department||'(ohne Departement)').trim()]));
+  const deps={}; A.forEach(d=>{const k=depOf[d.slug]||'(ohne Departement)'; (deps[k]=deps[k]||[]).push(d);});
+  // a separator stays at the end of its line, never at the start of the next
+  const topL=d=>(d.top||[]).map((t,i,a)=>`<span class="gtop">${goLink('gestaltung','m-'+t.key,esc(gMerkmal(t.key)),'dlink lt')}: ${esc(gNomen(t.u))} bei ${nf(t.n)}${i<a.length-1?' ·':''}</span>`);
+  const dash='<span class="muted">—</span>', ml=t=>`<span class="gml" aria-hidden="true">${t}</span>`;
+  const row=d=>{const T=topL(d), mess=d.act_je_formular!=null;
+    return `<tr><td>${goLink('dienststellen',d.slug,esc(d.name),'dlink')}${T.length?`<div class="nw small">Häufigste Abweichungen und Lücken: ${T.join(' ')}</div>`:''}</td>
+    <td class="num">${ml('gemessen')}${nf(d.n_gemessen)} <span class="muted">von ${nf(d.n_formulare)}</span>${d.n_nicht_messbar?`<div class="small muted">${nf(d.n_nicht_messbar)} nicht messbar</div>`:''}</td>
+    <td class="num">${ml('Abweichungen')}${mess?`<b class="sumn" data-s="ab">${nf(d.n.abweichungen)}</b>`:dash}</td>
+    <td class="num">${ml('Lücken')}${mess?`<b class="sumn" data-s="lu">${nf(d.n.luecken)}</b>`:dash}</td>
+    <td class="num">${ml('je Formular')}${mess?nf1(d.act_je_formular):dash}</td>
+    <td class="num">${ml('Schriften')}${mess?nf(d.schriften):dash}</td><td class="num">${ml('Grundgrössen')}${mess?nf(d.groessen):dash}</td><td class="num">${ml('Akzentfarben')}${mess?nf(d.akzente):dash}</td>
+    <td class="small wd">${T.length?T.map(x=>x.replace(/ ·<\/span>$/,'</span>')).join('<br>'):dash}</td></tr>`;};
+  const rows=Object.keys(deps).sort(deptCmp).map(dep=>`<tr class="gdep"><td colspan="9"><b>${esc(dep)}</b> <span class="muted">· ${pl(deps[dep].length,'Dienststelle','Dienststellen')}</span></td></tr>`
+    +deps[dep].slice().sort((a,b)=>a.name.localeCompare(b.name,'de')).map(row).join('')).join('');
+  const ohne=B.dienststellen_ohne_formular||0;
+  return `<div class="card tscroll sumbox"><table class="ft gdst"><thead><tr><th>Dienststelle</th><th class="num">Formulare gemessen</th>
+      <th class="num" title="Abweichungen von der Praxis, gezählt je Formular und Merkmal">${SW('act')}Abweichungen von der Praxis</th>
+      <th class="num" title="Lücken — ein geprüftes Merkmal fehlt, zum Beispiel ein Mindestmerkmal der Barrierefreiheit; gezählt je Formular und Merkmal">${SW('act')}Lücken</th>
+      <th class="num" title="Abweichungen und Lücken je Formular, dessen Inhalt gemessen ist (ohne Dateien in einem alten Format)">je Formular</th>
+      <th class="num" title="Verschiedene Schriften unter ihren gemessenen Formularen">Schriften</th>
+      <th class="num" title="Verschiedene Grundgrössen der Schrift unter ihren gemessenen Formularen">Grund&shy;grössen</th>
+      <th class="num" title="Verschiedene Akzentfarben unter ihren PDF-Formularen — «keine Akzentfarbe» zählt nicht">Akzent&shy;farben</th>
+      <th class="wd">Häufigste Abweichungen und Lücken (Formulare)</th></tr></thead><tbody>
+    <tr class="dgrp"><td>Ganzer Kanton</td><td class="num">${ml('gemessen')}${nf(B.gemessen)} <span class="muted">von ${nf(B.formulare)}</span></td><td class="num">${ml('Abweichungen')}<b class="sumtot" data-s="ab">${nf(K.abweichungen)}</b></td><td class="num">${ml('Lücken')}<b class="sumtot" data-s="lu">${nf(K.luecken)}</b></td><td></td><td></td><td></td><td></td><td class="wd"></td></tr>
+    ${rows}</tbody></table></div>${ohne?`<p class="hint">${pl(ohne,'Dienststelle','Dienststellen')} ohne Formular in der Databank ${plw(ohne,'ist','sind')} nicht aufgeführt. «—»: keine Datei der Dienststelle ist gemessen — ihre Formulare sind eFormulare der Plattform oder in einem alten Format.</p>`:''}`;
+}
+// the keyboard follows a jump within a page: the heading of the target (or its summary) takes the
+// focus without scrolling again — not away from a field the reader is typing in
+function focusIn(t){
+  const ae=document.activeElement; if(ae&&/^(INPUT|TEXTAREA|SELECT)$/.test(ae.tagName)) return;
+  const h=t.tagName==='DETAILS'?t.querySelector(':scope>summary')
+    :(t.querySelector(':scope>h4,:scope>.gmhd>h5,:scope>.cathd,:scope>.dvsub')||t);
+  if(!h) return;
+  if(h.tagName!=='SUMMARY'&&!h.hasAttribute('tabindex')){h.setAttribute('tabindex','-1'); h.setAttribute('data-jump','');}
+  h.focus({preventScroll:true});
+}
+// a section named in the address: open it (the limits are folded), bring it into view and give it
+// the focus — after render() has put a new page at its top, hence the timeout
+function gFocus(m,k){
+  if(!k||comingBack()) return;
+  setTimeout(()=>{const id=k.startsWith('m-')?'gm-'+k.slice(2):k.startsWith('e-')?'ge-'+k.slice(2):'gs-'+k;
+    const t=document.getElementById(id); if(!t||!m.contains(t)) return;
+    if(k==='grenzen') t.querySelectorAll('details').forEach(d=>{d.open=true;});
+    t.scrollIntoView({behavior:MOTION}); focusIn(t); t.classList.add('flash'); setTimeout(()=>t.classList.remove('flash'),1600);},0);
+}
+// the buttons of the page: the rest of a list of Formulare, all values of a distribution
+function gWire(root){
+  root.querySelectorAll('button.gmorebtn[data-showmore]').forEach(b=>b.onclick=()=>{
+    const id=b.dataset.showmore, r=_gRest[id], ul=document.getElementById(id); if(!r||!ul) return;
+    const had=document.activeElement===b, n0=ul.children.length;
+    ul.insertAdjacentHTML('beforeend',r.ids.map(x=>gFormItem(x,r.k)).join(''));
+    ul.setAttribute('data-shown',id); b.remove(); wireGo(ul);
+    // the keyboard stays in the list: on the first Formular that was added
+    if(had){const a=ul.children[n0]&&ul.children[n0].querySelector('a'); if(a) a.focus({preventScroll:true});}});
+  root.querySelectorAll('button.gmorebtn[data-gx]').forEach(b=>b.onclick=()=>{
+    const box=b.closest('.sumbox'), on=b.getAttribute('aria-expanded')!=='true';
+    if(box) box.querySelectorAll('li[data-gx]').forEach(li=>{li.hidden=!on;});
+    b.setAttribute('aria-expanded',String(on)); b.textContent=on?'weniger zeigen':b.dataset.label;});
+}
+function viewGestaltung(){
+  const m=document.getElementById('main');
+  if(!GEST){m.innerHTML=pageHead('Gestaltung der Formulare','Dieser Export enthält keine Messung der Gestaltung.')
+    +`<div class="nores">${goLink('home','','Zur Übersicht ›','inl')}</div>`; wireGo(m); return;}
+  _gN=0; Object.keys(_gRest).forEach(k=>{delete _gRest[k];});
+  const B=GEST.bestand, K=GEST.kennzahlen, MA=GL.messart||{};
+  const sub=(state.sub&&state.sub!=='felder')?state.sub:null;
+  const known=new Set([...GGRP.map(g=>g.key),'kanton','dienststellen','grenzen',
+    ...Object.keys(GM).map(k=>'m-'+k),...(GEST.entscheide||[]).map(e=>'e-'+e.key)]);
+  const bad=sub&&!known.has(sub); if(bad) state.sub='felder';
+  // «Wo anfangen?»: the readers first (a Dienststelle, the canton), then one door per group — each
+  // with ONE figure of the export (gruppen[].kennzahl)
+  const door=(sub,k,q,f)=>`<a class="door" href="#gestaltung/all/${esc(sub)}" data-go="gestaltung" data-sub="${esc(sub)}"><span class="dk">${k}</span><span class="dq">${q}</span>${f?`<span class="dz"><b>${f[0]}</b> ${f[1]}</span>`:''}</a>`;
+  const doors=door('dienststellen','Je Dienststelle','Wie unterscheiden sich die Formulare der einzelnen Dienststellen?',[nf(B.dienststellen_gemessen),`${plw(B.dienststellen_gemessen,'Dienststelle','Dienststellen')} mit gemessenen Formularen — Abweichungen, Lücken, Schriften und Farben je Dienststelle`])
+    +door('kanton','Für den Kanton','Was ist festzulegen, wo die Formulare keine klare Praxis zeigen?',[nf(K.dec),`${plw(K.dec,'Merkmal','Merkmale')} ohne klare Praxis oder Regel — eine Vorgabe liegt der Databank nicht vor`])
+    +GGRP.map(g=>door(g.key,esc(g.label),esc(g.frage),g.kennzahl?[nf(g.kennzahl.n),esc(g.kennzahl.text)]:null)).join('');
+  const sec=(id,title,body)=>`<section class="gstsec" id="gs-${esc(id)}"><h4>${title}</h4>${body}</section>`;
+  // the first use of a term of the glossary explains itself (term())
+  const frage=g=>g.key==='barrierefrei'?esc(g.frage).replace('Mindestmerkmale',term('mindestmerkmale','Mindestmerkmale')):esc(g.frage);
+  const groups=GGRP.map(g=>sec(g.key,esc(g.label),`<p class="gfrage">${frage(g)}</p>${g.vorbehalt?`<p class="gvorb">${esc(g.vorbehalt)}</p>`:''}`
+    +(GEST.merkmale||[]).filter(x=>x.gruppe===g.key).map(gBlock).join(''))).join('');
+  const ENT=GEST.entscheide||[];
+  const kanton=sec('kanton','Für den Kanton — Merkmale ohne klare Praxis',`<p class="gfrage">Bei ${pl(K.dec,'Merkmal','Merkmalen')} zeigen die Formulare keine klare Praxis, oder es gibt keine Regel. ${esc(GL.entscheide||'')}</p>
+    <p class="gvorb">Nicht in den offenen Punkten des Datenstandards gezählt — die Seite «Für den Kanton» weist nur auf sie hin.</p>`
+    +(ENT.length?ENT.map(gEntscheid).join(''):'<div class="nores">Kein Merkmal ohne klare Praxis.</div>'));
+  const dst=sec('dienststellen','Je Dienststelle',`<p class="gfrage">Wie viele Abweichungen von der Praxis und wie viele Lücken die Formulare einer Dienststelle zeigen und wie viele verschiedene Schriften, Grundgrössen und Akzentfarben sie verwenden — die Dienststelle öffnet ihr Briefing.</p>
+    <p class="gvorb">Die meisten Lücken sind Eigenschaften der Datei — Dokumenttitel, Feldbeschreibungen, eingebettete Schriften, Struktur-Tags, Dokumentsprache —, nicht das sichtbare Aussehen.</p>`+gDstTabelle());
+  const grenzen=sec('grenzen','Grenzen der Messung',gFolded(`Alle ${nf((GEST.grenzen||[]).length)} Punkte anzeigen — was die Messung nicht sieht und was ein Befund nicht heisst`,
+    `<ul class="ggrenz">${(GEST.grenzen||[]).map(t=>`<li>${gx(t)}</li>`).join('')}</ul>`,sub==='grenzen'));
+  const arten=Object.keys(GL.art||{}).map(a=>`<br><b>${esc(lab(GL.art,a))}</b> — ${esc((GL.art_erklaerung||{})[a]||'')}`).join('');
+  m.innerHTML=pageHead('Gestaltung der Formulare',
+    `Wie die Formulare aussehen — und wo ein Formular von der ${term('praxis','Praxis')} der anderen abweicht.`,
+    `Für jedes Merkmal der Gestaltung — ${GGRP.map(g=>esc(g.label)).join(', ')} —, welche Werte die Formulare zeigen, ob es eine Praxis gibt und welche Formulare davon abweichen; dazu die Merkmale ohne klare Praxis, die der Kanton festlegt, der Vergleich je Dienststelle und die Grenzen der Messung. Die Seite beschreibt, was sich unterscheidet; sie verlangt von keiner Dienststelle, ein Formular zu ändern.`,
+    `Gemessen an den veröffentlichten Dateien der ${nf(B.mit_datei)} Formulare mit eigener Datei (PDF, Word, Excel) — Methode ${esc(GEST.methode||'—')}, Stand der Messung ${fmtDate(GEST.stand)}. Die ${nf(B.ohne_datei)} eFormulare der Plattform haben keine eigene Datei. Ein Corporate-Design-Handbuch des Kantons liegt der Databank nicht vor. Die Zahlen dieser Seite gehören nicht zu den offenen Punkten des Datenstandards und nicht zu den Kennzahlen der Startseite.`,
+    `Massstab ist die Praxis der gemessenen Formulare: ein Wert, den mindestens zwei Drittel von ihnen teilen. Die Farbe steht nur bei einem Befund, nie bei einem gemessenen Wert:${GTON.map(t=>`<br>${SW(t)}<b>${esc(gTonWords(t))}</b> — ${esc(gTonZusatz(t))}`).join('')}<br>Ohne Farbe: «${esc(gUrteil('hinweis').label)}» und «${esc(gUrteil('betroffen',{gesamt:1}).label)}» — eine Feststellung ohne Bewertung.<br><br>Jedes Merkmal trägt seine Art:${arten}`)
+    +(bad?`<div class="nores">Den Abschnitt «${esc(sub)}» gibt es auf dieser Seite nicht — gezeigt wird die ganze Seite.</div>`:'')
+    +`<div class="tonkey"><span>Farbe nur bei einem Befund — er beschreibt einen Unterschied und verlangt keine Änderung:</span>${GTON.map(t=>`<span class="tk" title="${esc(gTonTip(t))}"><i class="sw t-${t}"></i>${esc(gTonWords(t))}</span>`).join(' ')}</div>
+    <div class="regstats"><span class="rstat">Formulare <b>${nf(B.formulare)}</b></span>
+      <span class="rstat">gemessen <b>${nf(B.gemessen)}</b> <span class="small muted">— ${Object.entries(B.messart||{}).map(([k,n])=>`${esc(lab(MA,k))} ${nf(n)}`).join(' · ')}</span></span>
+      <span class="rstat">eFormulare ohne eigene Datei <b>${nf(B.ohne_datei)}</b></span>
+      <span class="rstat">Abweichungen <b>${nf(K.abweichungen)}</b> · Lücken <b>${nf(K.luecken)}</b> <span class="small muted">(je Formular und Merkmal)</span></span></div>
+    <section class="hsec"><h4>Wo anfangen?</h4><div class="doors gdoors">${doors}</div></section>
+    ${groups}${kanton}${dst}${grenzen}
+    <div class="datenstand"><b>Stand der Messung</b> ${fmtDate(GEST.stand)} · Methode ${esc(GEST.methode||'—')} · erstellt ${fmtDate((DATA.datenstand||{}).build||DATA.generated_at||'')}</div>`;
+  gWire(m); wireGo(m); gFocus(m,bad?null:sub);
+}
+// the panel «Gestaltung» of one Formular (form.gestaltung): folded, one line of summary; open,
+// one row per Merkmal — label, finding, value, the practice where the value differs, the remarks
+// of the measurement. What cannot be measured is said once, with its reason, not row by row
+function gestPanel(fm,open){
+  const g=fm.gestaltung; if(!g||!GEST) return '';
+  const head='<span class="dvsub">Gestaltung</span>';
+  if(g.entfaellt) return `<div class="card gpanel" id="gest-${esc(fm.id)}">${head} <span class="gsumm">${esc(GL.eformular||'')}</span></div>`;
+  const n=g.n||{}, L=g.merkmale||[];
+  const OFFEN=['nicht_messbar','nicht_gemessen'], mess=L.filter(x=>!OFFEN.includes(x.u));
+  // the summary says as many as the rows show: n.dec = the rows «keine klare Praxis» and
+  // «betroffen» — the Merkmale of this Formular that wait for the canton
+  const sum=[g.messart?esc(lab(GL.messart,g.messart)):esc(gUrteil('nicht_gemessen').label),
+    n.act?`${SW('act')}${pl(n.act,'Abweichung oder Lücke','Abweichungen oder Lücken')}`:(mess.length?'keine Abweichung und keine Lücke':''),
+    n.dec?`${pl(n.dec,'Merkmal','Merkmale')} ohne Vorgabe in der Databank — der Kanton legt fest`:'',
+    n.open?`${SW('open')}${pl(n.open,'Merkmal','Merkmale')} ${g.messart?'nicht messbar':'noch nicht gemessen'}`:''].filter(Boolean).join(' · ');
+  // the remarks of the measurement, verbatim (data-wortlaut: the page check reads no program word in them)
+  const dl=d=>(d||[]).length?`<ul class="gfd" data-wortlaut>${d.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:'';
+  const tipDec='Keine klare Praxis: Kein Wert erreicht zwei Drittel der gemessenen Formulare, und der Databank liegt keine Vorgabe vor. Das betrifft nicht dieses Formular allein — der Kanton legt einmal je Merkmal fest (Seite «Gestaltung der Formulare», Abschnitt «Für den Kanton»).';
+  const rows=GGRP.map(gr=>{const R=mess.filter(x=>(GM[x.k]||{}).gruppe===gr.key); if(!R.length) return '';
+    return `<div class="gfgrp">${esc(gr.label)}</div>`+R.map(x=>`<div class="gfr"><div>${goLink('gestaltung','m-'+x.k,esc(gMerkmal(x.k)),'dlink lt')}</div>
+      <div>${gChip(x.u,null,{form:1,m:GM[x.k],tip:x.u==='uneinheitlich'?tipDec:''})} <span class="gfw">${gx(x.w||'')}</span>${x.u==='weicht_ab'&&x.p?` <span class="muted">· Praxis: ${gx(x.p)}</span>`:''}${dl(x.d)}</div></div>`).join('');}).join('');
+  const offen=OFFEN.map(u=>{const R=L.filter(x=>x.u===u); if(!R.length) return '';
+    return `<div class="gfgrp">${esc(gUrteil(u).label)}</div><div class="gfr gfr1"><div>${gChip(u,null,{form:1})} ${R.map(x=>esc(gMerkmal(x.k))).join(', ')}${dl([...new Set(R.flatMap(x=>x.d||[]))])}</div></div>`;}).join('');
+  return `<details class="card gpanel" id="gest-${esc(fm.id)}"${open?' open':''}><summary>${head} <span class="gsumm">${sum}</span></summary>
+    ${rows}${offen}<div class="gfoot">Verglichen mit den übrigen Formularen; beschreibt, was sich unterscheidet, und verlangt keine Änderung — ${goLink('gestaltung','','Gestaltung der Formulare ›','inl')}</div></details>`;
+}
+// the Formular-Ansicht opened at its panel «Gestaltung» (#…/form-<id>~gest): open, in view, focused
+function focusGest(fid){
+  if(comingBack()) return;
+  setTimeout(()=>{const t=document.getElementById('gest-'+fid); if(!t) return; if(t.tagName==='DETAILS') t.open=true;
+    t.scrollIntoView({behavior:MOTION}); focusIn(t); t.classList.add('flash'); setTimeout(()=>t.classList.remove('flash'),1600);},0);
+}
+// the short section of a Dienststelle's briefing: its counts as the overview holds them — a part of
+// its own, never in the open points of the briefing, and no Massnahme
+function gestBrief(d){
+  const g=GEST&&(GEST.dienststellen||[]).find(x=>x.slug===d.slug);
+  if(!g||!g.n_formulare) return '';
+  const top=(g.top||[]).map(t=>gTopItem(t,true)).join(' · ');
+  // nothing measured: say why — all eFormulare (no file of their own), or no measured file
+  const alleE=(d.formulare||[]).length&&(d.formulare||[]).every(id=>{const f=formById[id]; return f&&f.gestaltung&&f.gestaltung.entfaellt;});
+  const nichts=alleE
+    ?(g.n_formulare===1?'Ihr einziges Formular ist ein eFormular der Plattform: Es hat keine eigene Datei und kein eigenes Erscheinungsbild.'
+      :`Alle ${nf(g.n_formulare)} Formulare sind eFormulare der Plattform: Sie haben keine eigene Datei und kein eigenes Erscheinungsbild.`)
+    :(g.n_formulare===1?'Ihr Formular hat keine gemessene Datei.':`Keines ihrer ${nf(g.n_formulare)} Formulare hat eine gemessene Datei.`);
+  const body=g.n_gemessen
+    ?`<div class="dsline"><span><b>${nf(g.n_gemessen)}</b> von ${pl(g.n_formulare,'Formular','Formularen')} gemessen${g.n_nicht_messbar?` (${pl(g.n_nicht_messbar,'Datei','Dateien')} in einem alten Format, nicht messbar)`:''} · <b>${nf(g.n.abweichungen)}</b> ${plw(g.n.abweichungen,'Abweichung','Abweichungen')} von der Praxis · <b>${nf(g.n.luecken)}</b> ${plw(g.n.luecken,'Lücke','Lücken')} (je Formular und Merkmal gezählt${g.act_je_formular!=null?`; zusammen ${nf1(g.act_je_formular)} je Formular mit gemessenem Inhalt`:''})${g.n.open?` · ${pl(g.n.open,'Merkmal','Merkmale')} nicht messbar`:''}</span></div>
+      ${top?`<div class="dsline"><span>Häufigste Abweichungen und Lücken: ${top}</span></div>`:''}
+      ${g.act_je_formular!=null?`<div class="dsline"><span>Unter ihren gemessenen Formularen: ${pl(g.schriften,'Schrift','Schriften')}, ${pl(g.groessen,'Grundgrösse','Grundgrössen')}, ${pl(g.akzente,'Akzentfarbe','Akzentfarben')} (PDF)</span></div>`:''}`
+    :`<p class="dsnone">${nichts}</p>`;
+  return body+`<div class="kznote dsnote">Ein eigener Teil des Dashboards: Er beschreibt, wie die Formulare aussehen und wo sie von der Praxis der übrigen abweichen — keine Massnahme und keine Aufforderung, ein Formular zu ändern; nicht in den offenen Punkten dieses Briefings gezählt.</div>
+    <div class="small noprint" style="margin-top:6px">${goLink('gestaltung','dienststellen','Zur Gestaltung der Formulare ›','inl')}</div>`;
+}
 // ---------- Für Dienststellen: every Dienststelle in one table, then one briefing each ----------
 // DVSH groupings of services that are not an office with a leadership of their own — their
 // contact is another office (checked against the DVSH harvest; the DVSH data stays as it is)
@@ -2179,8 +2619,7 @@ function viewDienststellen(){
   // grouped by department (DEPT_ORDER), A–Z inside
   const deps={};
   DST.forEach(d=>{const k=(d.department||'(ohne Departement)').trim(); (deps[k]=deps[k]||[]).push(d);});
-  const depKeys=Object.keys(deps).sort((a,b)=>{const ia=DEPT_ORDER.indexOf(a), ib=DEPT_ORDER.indexOf(b);
-    return (ia<0?99:ia)-(ib<0?99:ib)||a.localeCompare(b,'de');});
+  const depKeys=Object.keys(deps).sort(deptCmp);
   const all={act:0,dec:0,open:0};
   DST.forEach(d=>['act','dec','open'].forEach(t=>{all[t]+=((d.offen||{})[t])||0;}));
   const nAct=DST.filter(d=>d.offen&&d.offen.act>0).length;
@@ -2364,6 +2803,7 @@ function viewDienststelle(slug){
     +sec('Was der Kanton entscheiden muss',s3)
     +sec('Offene Punkte nach Priorität',s4)
     +sec('Recherche der Databank',s5)
+    +(gestBrief(d)?sec('Gestaltung ihrer Formulare',gestBrief(d)):'')
     +sec('Services und Formulare',`<div class="card">${s6}</div>`+s6print,false,'dssvcsec'+(longList?' long':''))
     +`<div class="datenstand"><b>Datenstand</b> — ${esc(datenstandKurz(fms))}</div>`;
   const pb=document.getElementById('dsprint'); if(pb) pb.onclick=()=>window.print();
@@ -2449,7 +2889,9 @@ function viewKanton(){
       ${catSections('dec','Zu entscheiden',focus,{stufen:[1],extra,head})||'<div class="nores">Keine offenen Entscheide zum Datenstandard.</div>'}</section>
     <h4 class="hscope">Weitere Entscheide des Kantons — nach Priorität</h4>
     ${catSections('dec','Zu entscheiden',focus,{stufen:STUFEN.map(x=>x.n).filter(n=>n!==1)})||'<div class="nores">Keine weiteren offenen Entscheide.</div>'}
-    ${isv?`<div class="stufehd">Für alle Datenfelder zugleich</div>${isv}`:''}`;
+    ${isv?`<div class="stufehd">Für alle Datenfelder zugleich</div>${isv}`:''}
+    ${GEST&&(GEST.entscheide||[]).length?`<div class="stufehd">Ausserhalb dieser Zählung</div>
+      <div class="dsline"><i class="sw t-dec"></i><span>Gestaltung der Formulare: ${pl(GEST.kennzahlen.dec,'Merkmal','Merkmale')} ohne klare Praxis oder Regel — ${GEST.entscheide.map(e=>esc(e.label)).join(', ')}. Eine Vorgabe liegt der Databank nicht vor; ob und welche gilt, legt der Kanton fest. Ein eigener Teil des Dashboards, in den Zahlen dieser Seite nicht enthalten. ${goLink('gestaltung','kanton','Zu diesen Merkmalen ›','inl')}</span></div>`:''}`;
   wireGo(m); focusCat(m, badSub?null:focus);
 }
 // ---------- Recherche der Databank: the databank's own homework (grey) ----------
@@ -2983,7 +3425,7 @@ function divergencePanel(fm){
   }
   return h+`</div>`;
 }
-function formSection(s,fm,single){
+function formSection(s,fm,single,sec){
   const hasDF=(fm.data_fields||[]).length;
   let h=`<div class="${single?'':'formsec'}" ${single?'':`id="fsec-${fm.id}"`}>
     <div class="card" style="padding:9px 16px 7px">
@@ -2992,6 +3434,7 @@ function formSection(s,fm,single){
   h+= hasDF? viewDataFields([fm]) : noFieldsCard(fm);
   h+= beilagenPanel([fm]);
   h+= divergencePanel(fm);
+  h+= gestPanel(fm,single&&sec==='gest');
   const extras=blockerPanel([fm])+handlingPanel(s,[fm])+similarPanel([fm]);
   h+=`<details class="hgen" style="margin:0 0 4px" ${single?'open':''}><summary class="dvsub" style="cursor:pointer">Details zu diesem Formular — Digitalisierungs-Hürden, volles Datenhandhabungs-Profil, Duplikat-Radar</summary>${extras}</details>`;
   return h+`</div>`;
@@ -3028,16 +3471,17 @@ function viewFields(){
     const fm=forms.find(f=>f.id===fid);
     if(fm){
       // a section the page does not know falls back to the plain Formular-Ansicht
-      if(sec&&sec!=='div') state.sub='form-'+fid;
+      if(sec&&sec!=='div'&&sec!=='gest') state.sub='form-'+fid;
       m.innerHTML=`<h3 class="view" tabindex="-1">${esc(fm.title)}</h3>
         <p class="hint">Formular-Ansicht · gehört zum Service <a class="simlink" id="backsvc" href="#fields/${encodeURIComponent(s.id)}">${esc(s.name)}</a> · ${esc(s.dienststelle||'')}</p>
-        ${formSection(s,fm,true)}`;
+        ${formSection(s,fm,true,sec)}`;
       document.getElementById('backsvc').onclick=e=>{if(e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button) return; e.preventDefault(); state.sub='felder';render();};
       m.querySelectorAll('.simlink[data-sid]').forEach(a=>a.onclick=()=>{
         state.service=a.dataset.sid;state.sub='felder';render();});
       m.querySelectorAll('.senslink').forEach(b=>b.onclick=goSensGuide);
       wireDivChips(m); wireGo(m);
       if(sec==='div') focusDiv(fid);
+      if(sec==='gest') focusGest(fid);
       return;
     }
     fBad=`Formular «${esc(fidS)}» gehört nicht zu diesem Service — gezeigt wird die Service-Seite.`; state.sub='felder';
@@ -3103,7 +3547,7 @@ function viewFields(){
 function focusDiv(fid){
   if(comingBack()) return;
   setTimeout(()=>{const t=document.getElementById('stddiv-'+fid); if(!t) return;
-    t.scrollIntoView({behavior:MOTION}); t.classList.add('flash'); setTimeout(()=>t.classList.remove('flash'),1600);},0);
+    t.scrollIntoView({behavior:MOTION}); focusIn(t); t.classList.add('flash'); setTimeout(()=>t.classList.remove('flash'),1600);},0);
 }
 function wireDivChips(root){
   root.querySelectorAll('a.hubdiv[data-fid]').forEach(a=>a.onclick=e=>{
@@ -3867,6 +4311,17 @@ function searchIndex(){
     ix.push({t:'Dienststelle',label:u.name,sub:(u.department||'')
       +(nF?` · ${pl(nF,'Formular','Formulare')} · offene Punkte: ${nf(o.act)} ${tonLabel('act')}, ${nf(o.dec)} ${tonLabel('dec')}, ${nf(o.open)} ${tonLabel('open')}`:' · kein Formular in der Databank'),
       kontakt:k, key:lc(u.name+' '+(u.department||'')),go:{tab:'dienststellen',service:'all',sub:u.slug}});});
+  // the Gestaltung der Formulare: the page, its groups, its Merkmale and the canton's open decisions
+  if(GEST){
+    const gg=sub=>({tab:'gestaltung',service:'all',sub});
+    ix.push({t:'Gestaltung',label:'Gestaltung der Formulare',sub:GGRP.map(g=>g.label).join(' · '),
+      key:lc('Gestaltung der Formulare Erscheinungsbild Aussehen '+GGRP.map(g=>g.label+' '+g.frage).join(' ')),go:gg('felder')});
+    GGRP.forEach(g=>ix.push({t:'Gestaltung',label:g.label,sub:g.frage,key:lc('Gestaltung '+g.label+' '+g.frage),go:gg(g.key)}));
+    (GEST.merkmale||[]).forEach(x=>ix.push({t:'Gestaltung',label:x.label,sub:`${lab(GL.gruppe,x.gruppe)} · ${x.frage}`,
+      key:lc('Gestaltung '+x.label+' '+x.frage+' '+lab(GL.gruppe,x.gruppe)),go:gg('m-'+x.key)}));
+    (GEST.entscheide||[]).forEach(e=>ix.push({t:'Gestaltung',label:e.label,sub:'Gestaltung der Formulare · ohne klare Praxis oder Regel — der Kanton legt fest',
+      key:lc('Gestaltung Festlegung Kanton Praxis '+e.label),go:gg('e-'+e.key)}));
+  }
   // the glossary of «Methode & Quellen»: a term is found by its word and by its explanation
   GLOSSAR.forEach(g=>ix.push({t:'Glossar',label:g.wort,sub:g.text,key:lc(g.wort+' '+g.text),
     go:{tab:'methode',service:'all',sub:'felder',anchor:'gl-'+g.id}}));
@@ -3919,7 +4374,7 @@ function viewSearch(){
   const hits=searchIndex().filter(e=>toks.every(t=>e.key.includes(t)))
     .map(e=>{const L=e.label.toLowerCase();return {e,sc:(L.startsWith(toks[0])?2:0)+(toks.every(t=>L.includes(t))?1:0)+(toks.every(t=>wb(e.key,t))?3:0)};})
     .sort((a,b)=>b.sc-a.sc);
-  const order=['Glossar','Themengruppe','Service','Formular','Datenfeld','Begriff','Gesetz','Artikel','Regel','Empfänger','Beilage','eCH-Standard','eSH-Entwurf','Dienststelle'];
+  const order=['Glossar','Themengruppe','Service','Formular','Datenfeld','Begriff','Gesetz','Artikel','Regel','Empfänger','Beilage','eCH-Standard','eSH-Entwurf','Dienststelle','Gestaltung'];
   const byT={}; hits.forEach(x=>(byT[x.e.t]=byT[x.e.t]||[]).push(x.e));
   h+=`<div class="regstats">${order.filter(t=>byT[t]).map(t=>`<span class="rstat">${esc(t)} <b>${byT[t].length}</b></span>`).join('')}${hits.length?'':'<span class="rstat">keine Treffer</span>'}</div>`;
   if(!hits.length&&toks.length>1) h+=`<div class="nores">Alle Wörter müssen im selben Eintrag vorkommen. Mit einem einzelnen Begriff suchen (${toks.map(t=>`<a class="simlink" data-q="${esc(t)}">${esc(t)}</a>`).join(' · ')}) oder die Schreibweise des Gesetzestexts verwenden — Fristen stehen dort meist als Zahlwort («zehn Jahre»), nicht als Ziffer.</div>`;
@@ -4366,9 +4821,16 @@ try{const mo=new MutationObserver(()=>{const mn=document.getElementById('main');
 //                   pageKey() when a sub-segment opens a page of its own
 //  4. search index  its entries in searchIndex() (type, label, key, go) and the type in the
 //                   `order` list of viewSearch()
-//  5. legend        what the four tones mark on the page: TONEX in renderLegend()
+//  5. legend        what the four tones mark on the page: TONEX in renderLegend(); a layer
+//                   with words of its own speaks them there instead (Gestaltung: the branch
+//                   `gst` on #gestaltung and the block of the panel .gpanel, which lights no
+//                   tone of the data standard — DATA.gestaltung.labels)
 //  6. page check    its route in PAGES of scripts/check_pages.mjs (the check fails when the
-//                   navigation offers a page that is not listed there)
+//                   navigation offers a page that is not listed there); a bar (.tbar, .minibar)
+//                   is summed as it is, a list that states its total is put into a .sumbox —
+//                   its numbers (.sumn) must add up to its .sumtot (several columns of one
+//                   table: each pair .sumn/.sumtot carries the same data-s); `open: true` there
+//                   when the page folds much of its text (details, «weitere …»)
 //  7. documents     the list of views in the docstring of scripts/build_dashboard.py
 // Figures of the page are computed in scripts/export_json.py (with their sum check) and
 // only drawn here; colours and text sizes come from scripts/theme.py.
@@ -4394,6 +4856,7 @@ function drawView(){
   else if(state.tab==='buerger') viewBuerger();
   else if(state.tab==='katalog') viewKatalog();
   else if(state.tab==='esh') viewEsh();
+  else if(state.tab==='gestaltung') viewGestaltung();
   else if(state.tab==='fields') viewFields();
   else viewUnknown();
 }
@@ -4533,7 +4996,7 @@ def gap_wording(text):
 # older one — the page would draw empty cards as if nothing were open, so the build stops.
 REQUIRED = {
     "": ("labels", "kopfzahlen", "dienststellen_uebersicht", "forms", "services", "laws",
-         "zitate", "datenstand", "verlauf"),
+         "zitate", "datenstand", "verlauf", "gestaltung"),
     "labels": ("ton", "ton_map", "kontakt"),
     "kopfzahlen": ("standard_ech", "standard_einheitlich", "standard_benannt", "rechtsgrundlage",
                    "verzeichnis", "offene_punkte", "kein_standard", "kategorien"),
@@ -4541,14 +5004,21 @@ REQUIRED = {
     "kopfzahlen.standard_benannt": ("begriff_felder", "von", "teile", "formulare_begriff", "formulare_teile"),
     "kopfzahlen.verzeichnis": ("wert", "von", "teile"),
     "kopfzahlen.kein_standard": ("von", "teile", "formulare", "codes"),
+    # scripts/gestaltung_export.py (the hook in export_json.py)
+    "gestaltung": ("stand", "methode", "bestand", "gruppen", "merkmale", "kennzahlen", "entscheide",
+                   "dienststellen", "grenzen", "labels"),
+    "gestaltung.bestand": ("formulare", "mit_datei", "ohne_datei", "gemessen", "messart", "dienststellen_gemessen",
+                           "dienststellen_ohne_formular"),
+    "gestaltung.labels": ("urteil", "ton", "ton_zusatz", "urteil_gesamt", "urteil_nomen", "art", "art_erklaerung",
+                          "messart", "gruppe", "merkmal", "eformular", "entscheide"),
 }
 
 
 def missing_keys(export):
     """The keys of REQUIRED the export does not have, as dotted paths; and whether its
     Datenfelder carry the stamped classifications (ech_state, basis_state), its forms
-    their Dienststelle and their data-standard figures (standard) and its services the
-    file name of their dossier."""
+    their Dienststelle, their data-standard figures (standard) and their Gestaltung, and
+    its services the file name of their dossier."""
     out = []
     for path, keys in REQUIRED.items():
         node = export
@@ -4565,6 +5035,8 @@ def missing_keys(export):
         out.append("forms[].standard")
     if any("dossier_slug" not in s for s in export.get("services") or []):
         out.append("services[].dossier_slug")
+    if any("gestaltung" not in fm for fm in forms):
+        out.append("forms[].gestaltung")
     return out
 
 

@@ -11,8 +11,9 @@ verdict are computed elsewhere, from these rows.
     python3 scripts/scan_gestaltung.py --dry            # print the rows as JSON, write nothing
 
 Needs pypdf (requirements.txt) and refuses to start under a Python without
-it: half a scan would look like «not measured» for 348 PDFs. Nothing in
-./build.sh imports this script or the measuring modules, so the plain build
+it: half a scan would look like «not measured» for 348 PDFs. ./build.sh does
+not run this script; it reads the stored rows through gestaltung_export.py,
+which imports only gestaltung_text.py (standard library), so the plain build
 keeps working without pypdf.
 
 Who measures what

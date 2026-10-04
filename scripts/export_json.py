@@ -29,6 +29,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import DB_PATH, EXPORT_PATH, LOGS_DIR, connect, assert_no_local_paths
 from common import SKIPPED_LAYERS, _layer_skipped, dossier_slug, klartext as _klartext
 import labels as LABELS
+import gestaltung_export                # the Gestaltung of the Formulare (standard library only)
 
 
 # «the same datum»: what may be compared across forms (Standard-Divergenzen)
@@ -724,6 +725,13 @@ def _summen_pruefen(data):
            "jedes Formular bei genau einer Dienststelle")
     gleich("dienststellen_uebersicht[].services", sorted(i for d in DU for i in d["services"]), sorted(sv["id"] for sv in data["services"]),
            "jeder Service bei genau einer Dienststelle")
+    # the Gestaltung layer (gestaltung_export.pruefen holds its own invariants): its Formulare
+    # per Dienststelle are the ones above, in the same order
+    G = data.get("gestaltung")
+    if G is not None:
+        gleich("gestaltung.dienststellen[].n_formulare", [(d["slug"], d["n_formulare"]) for d in G["dienststellen"]],
+               [(d["slug"], len(d["formulare"])) for d in DU], "Formulare je Dienststelle gegen dienststellen_uebersicht")
+        gleich("gestaltung.bestand.formulare", G["bestand"]["formulare"], len(forms), "Formulare der Gestaltung gegen forms")
     names = {d["name"] for d in DU}
     for fm in forms:
         if fm.get("dienststelle") not in names:
@@ -1699,6 +1707,10 @@ def build(conn):
 
     # ---- Dienststellen, headline figures, trend: computed once here ----------------
     dienststellen_uebersicht, kopfzahlen, verlauf = uebersichten(conn, services, forms, dienststellen, begriffe_stats)
+    # ---- Gestaltung der Formulare: how each Formular looks against the others — its own
+    # page; never part of kopfzahlen, handlungsbedarf or the Dienststellen figures above
+    gest, gestaltung = gestaltung_export.berechne(conn, forms, services, dienststellen_uebersicht)
+    for fm in forms: fm["gestaltung"] = gest[fm["id"]]
 
     # ---- Datenstand: when was what last read (never only the build time) -------
     datenstand = {"build": None}
@@ -1787,6 +1799,7 @@ def build(conn):
         "buergersicht": buergersicht, "ech_codelists": codelists,
         "begriffe": begriffe, "begriffe_stats": begriffe_stats, "themenkatalog": themenkatalog,
     }
+    data["gestaltung"] = gestaltung
     if SKIPPED_LAYERS:
         # a half-empty export says so itself (convention: skipped only when the table is missing)
         datenstand["uebersprungen"] = [f"{name} — Tabelle {table} fehlt" for name, table in SKIPPED_LAYERS]
