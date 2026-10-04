@@ -1,0 +1,403 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "citygov_datafields.jsonl",
+ "description": "Struktur von citygov_datafields.jsonl, Version 1.0.0 — eine Zeile der Datei (JSON Lines). Erzeugt aus der Datei, wie der Build sie schreibt (scripts/export_vertrag.py); Änderungen und Regeln in exportvertrag.json. Nie von Hand ändern.",
+ "$ref": "#/$defs/datei",
+ "$defs": {
+  "datei": {
+   "type": "object",
+   "properties": {
+    "allowed_values": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "angabe_kennung": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "pattern": "^sh:angabe:e(?:CH|SH)-[0-9]{4}:[A-Za-z0-9_.-]+(?::[A-Za-z0-9_]+)?(?:~[0-9]+)?$"
+    },
+    "art5_offen": {
+     "type": "boolean"
+    },
+    "basis_begruendung": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "basis_typ": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "data_type": {
+     "type": "string"
+    },
+    "definition": {
+     "type": "string"
+    },
+    "department": {
+     "type": "string"
+    },
+    "dienststelle": {
+     "type": "string"
+    },
+    "ech": {
+     "type": "object",
+     "properties": {
+      "datatype": {
+       "type": [
+        "string",
+        "null"
+       ]
+      },
+      "element": {
+       "type": [
+        "string",
+        "null"
+       ]
+      },
+      "standard": {
+       "type": "string"
+      },
+      "standard_status": {
+       "type": [
+        "string",
+        "null"
+       ]
+      },
+      "standard_titel": {
+       "type": "string"
+      },
+      "status": {
+       "type": "string"
+      },
+      "url": {
+       "type": "string"
+      }
+     },
+     "required": [
+      "status"
+     ],
+     "additionalProperties": false
+    },
+    "esh_entwurf": {
+     "type": [
+      "object",
+      "null"
+     ],
+     "properties": {
+      "code": {
+       "type": "string"
+      },
+      "element": {
+       "type": "string"
+      },
+      "status": {
+       "type": "string"
+      },
+      "titel": {
+       "type": "string"
+      }
+     },
+     "required": [
+      "code",
+      "element",
+      "status",
+      "titel"
+     ],
+     "additionalProperties": false
+    },
+    "form": {
+     "type": "string"
+    },
+    "form_id": {
+     "type": "integer"
+    },
+    "formular_kennung": {
+     "type": "string",
+     "pattern": "^sh:formular:[a-z0-9][a-z0-9.-]*(?:~[0-9]+)?$"
+    },
+    "id": {
+     "type": "integer"
+    },
+    "kennung": {
+     "type": "string",
+     "pattern": "^sh:(?:service|formular|angabe|gesetz):[A-Za-z0-9_.:~-]+$"
+    },
+    "legal_basis": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "properties": {
+       "article_no": {
+        "type": "string"
+       },
+       "artikel_kennung": {
+        "type": "string",
+        "pattern": "^sh:gesetz:[a-z0-9][a-z0-9.-]*(?:~[0-9]+)?:(?:art|par|nr)-[a-z0-9][a-z0-9.-]*(?:~[0-9]+)?$"
+       },
+       "cantonal_ref": {
+        "type": [
+         "string",
+         "null"
+        ]
+       },
+       "citation_detail": {
+        "type": "null"
+       },
+       "jurisdiction": {
+        "type": "string"
+       },
+       "law_short": {
+        "type": "string"
+       },
+       "law_title": {
+        "type": "string"
+       },
+       "sr_number": {
+        "type": [
+         "string",
+         "null"
+        ]
+       },
+       "verification": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "article_no",
+       "artikel_kennung",
+       "cantonal_ref",
+       "citation_detail",
+       "jurisdiction",
+       "law_short",
+       "law_title",
+       "sr_number",
+       "verification"
+      ],
+      "additionalProperties": false
+     }
+    },
+    "name": {
+     "type": "string"
+    },
+    "over_collection": {
+     "type": "boolean"
+    },
+    "partei": {
+     "type": [
+      "object",
+      "null"
+     ],
+     "properties": {
+      "entitaet": {
+       "type": [
+        "string",
+        "null"
+       ]
+      },
+      "nr": {
+       "type": [
+        "integer",
+        "null"
+       ]
+      },
+      "rolle": {
+       "type": [
+        "string",
+        "null"
+       ]
+      },
+      "status": {
+       "type": "string"
+      }
+     },
+     "required": [
+      "entitaet",
+      "nr",
+      "rolle",
+      "status"
+     ],
+     "additionalProperties": false
+    },
+    "required": {
+     "type": "boolean"
+    },
+    "sensitive": {
+     "type": "boolean"
+    },
+    "sensitive_category": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "service": {
+     "type": "string"
+    },
+    "source_file": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "subfields": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "properties": {
+       "angabe_kennung": {
+        "type": [
+         "string",
+         "null"
+        ],
+        "pattern": "^sh:angabe:e(?:CH|SH)-[0-9]{4}:[A-Za-z0-9_.-]+(?::[A-Za-z0-9_]+)?(?:~[0-9]+)?$"
+       },
+       "ech": {
+        "type": "object",
+        "properties": {
+         "element": {
+          "type": [
+           "string",
+           "null"
+          ]
+         },
+         "standard": {
+          "type": "string"
+         },
+         "standard_status": {
+          "type": [
+           "string",
+           "null"
+          ]
+         },
+         "status": {
+          "type": "string"
+         }
+        },
+        "required": [
+         "status"
+        ],
+        "additionalProperties": false
+       },
+       "esh_entwurf": {
+        "type": "object",
+        "properties": {
+         "code": {
+          "type": "string"
+         },
+         "element": {
+          "type": "string"
+         },
+         "status": {
+          "type": "string"
+         },
+         "titel": {
+          "type": "string"
+         }
+        },
+        "required": [
+         "code",
+         "element",
+         "status",
+         "titel"
+        ],
+        "additionalProperties": false
+       },
+       "kennung": {
+        "type": "string",
+        "pattern": "^sh:(?:service|formular|angabe|gesetz):[A-Za-z0-9_.:~-]+$"
+       },
+       "name": {
+        "type": "string"
+       },
+       "partei": {
+        "type": "object",
+        "properties": {
+         "entitaet": {
+          "type": [
+           "string",
+           "null"
+          ]
+         },
+         "nr": {
+          "type": [
+           "integer",
+           "null"
+          ]
+         },
+         "rolle": {
+          "type": [
+           "string",
+           "null"
+          ]
+         },
+         "status": {
+          "type": "string"
+         }
+        },
+        "required": [
+         "entitaet",
+         "nr",
+         "rolle",
+         "status"
+        ],
+        "additionalProperties": false
+       }
+      },
+      "required": [
+       "angabe_kennung",
+       "ech",
+       "kennung",
+       "name",
+       "partei"
+      ],
+      "additionalProperties": false
+     }
+    },
+    "subjekt": {
+     "type": [
+      "string",
+      "null"
+     ]
+    }
+   },
+   "required": [
+    "allowed_values",
+    "angabe_kennung",
+    "art5_offen",
+    "basis_begruendung",
+    "basis_typ",
+    "data_type",
+    "definition",
+    "department",
+    "dienststelle",
+    "ech",
+    "esh_entwurf",
+    "form",
+    "form_id",
+    "formular_kennung",
+    "id",
+    "kennung",
+    "legal_basis",
+    "name",
+    "over_collection",
+    "partei",
+    "required",
+    "sensitive",
+    "sensitive_category",
+    "service",
+    "source_file",
+    "subfields",
+    "subjekt"
+   ],
+   "additionalProperties": false
+  }
+ }
+}

@@ -5,7 +5,12 @@ INSERT time instead of just documented.
 
 Everything in ../datentresor.db is SYNTHETIC (generated people, generated
 values). The schema comes from citygov.db: the storage unit is the canonical
-attribute (once-only: one datum per person, later Fälle reference it), the
+attribute (once-only: one datum per person, later Fälle reference it — only the
+applicant's own Angaben, by the party layer of scripts/rollen.py), named by its
+permanent identifier (kennung, scripts/kennungen.py; table angabe) and never by
+canonical_attribute.id, which init_register.py renumbers on every build; a Fall
+names its Formular and service, a datapoint its article, by permanent identifier
+too (the row ids beside them are those of the build); the
 storage type is the eCH datatype, sensitive values are encrypted at rest,
 every datapoint carries its Erhebungsgrundlage and a computed Löschdatum from
 the real retention rules, Beilagen the state could fetch itself become a
@@ -31,7 +36,8 @@ Two things make this more than a script's promise:
 import hashlib, json, os, random, re, secrets, sqlite3, sys
 from datetime import date, timedelta
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from common import DB_PATH, ROOT, connect
+from common import DB_PATH, ROOT, connect, norm_ascii
+import kennungen
 
 OUT = os.path.join(ROOT, "datentresor.db")
 KEYFILE = os.path.join(ROOT, "datentresor.key")
@@ -49,15 +55,25 @@ CREATE TABLE subjekt (
 CREATE TABLE fall (
     id INTEGER PRIMARY KEY,
     subjekt_id INTEGER NOT NULL REFERENCES subjekt(id),
-    service_id INTEGER, form_id INTEGER NOT NULL,
+    service_id INTEGER, form_id INTEGER NOT NULL,  -- row ids of citygov.db AT BUILD TIME (a retired row id
+                                  -- can be handed out again there): a reference that must last uses
+    service_kennung TEXT,         -- the permanent identifiers (scripts/kennungen.py)
+    formular_kennung TEXT NOT NULL,
     formular TEXT, dienststelle TEXT,
     eingereicht TEXT, abgeschlossen TEXT,
     entscheid TEXT
 );
+CREATE TABLE angabe (             -- the canonical Angaben this vault stores once per person
+    id INTEGER PRIMARY KEY,       -- local to this file and rebuilt with it; never canonical_attribute.id
+    kennung TEXT NOT NULL UNIQUE  -- permanent identifier in citygov.db (table kennung, art angabe, e.g.
+                                  -- sh:angabe:eCH-0044:firstName:personIdentificationLightType)
+);
 CREATE TABLE datenpunkt (
     id INTEGER PRIMARY KEY,
     subjekt_id INTEGER NOT NULL REFERENCES subjekt(id),
-    attribut_id INTEGER,          -- canonical_attribute.id in citygov.db; NULL = form-only datum
+    angabe_id INTEGER REFERENCES angabe(id),   -- the canonical Angabe (its permanent identifier is
+                                  -- angabe.kennung); NULL = stored per Fall, never reused (not a
+                                  -- natural person's Angabe)
     attribut TEXT NOT NULL,       -- readable label
     ech_standard TEXT, ech_element TEXT, ech_datatype TEXT,
     wert TEXT,                    -- the stored value; ciphertext when verschluesselt=1
@@ -67,7 +83,8 @@ CREATE TABLE datenpunkt (
     sensitive TEXT,               -- gesundheit / politik / ... or NULL
     erhoben_am TEXT,
     erhebungs_fall INTEGER REFERENCES fall(id),
-    grundlage_artikel INTEGER,    -- article.id in citygov.db (Erhebungsgrundlage)
+    grundlage_artikel INTEGER,    -- article.id in citygov.db at build time (Erhebungsgrundlage)
+    artikel_kennung TEXT,         -- its permanent identifier (sh:gesetz:…:art-…), what a lasting reference uses
     grundlage TEXT,               -- readable citation
     einwilligung_id INTEGER,      -- set instead of grundlage for no_basis fields
     loeschdatum TEXT,             -- computed from the retention rules
@@ -221,20 +238,43 @@ GLOBS = {
 def main():
     n_subj = int(sys.argv[1]) if len(sys.argv) > 1 else 1200
     n_fall = int(sys.argv[2]) if len(sys.argv) > 2 else 10000
+    src = connect(DB_PATH)
+    # canonical attribute -> its PERMANENT identifier. Never canonical_attribute.id:
+    # init_register.py renumbers that table on every build, and a stored number would
+    # silently name another Angabe after the next data change. Checked before anything
+    # is written — the key file included, so a stop never orphans the existing vault.
+    try:
+        kennung_of = kennungen.angabe_nach_attribut(src)
+        k_formular = kennungen.kennungen_aktiv(src, "formular")
+        k_service = kennungen.kennungen_aktiv(src, "service")
+        k_artikel = kennungen.kennungen_aktiv(src, "artikel")
+        fehlt = [i for (i,) in src.execute("SELECT id FROM form") if i not in k_formular]
+        if fehlt:
+            raise RuntimeError(f"{len(fehlt)} Formulare ohne aktive Kennung (z. B. {fehlt[:3]})")
+    except (RuntimeError, sqlite3.OperationalError) as ex:
+        sys.exit(f"ABBRUCH build_datentresor.py: {ex} — zuerst scripts/kennungen.py ausführen; nichts geschrieben")
+    # once-only reuses only the APPLICANT's own Angaben (party layer, scripts/rollen.py): a
+    # child's or a spouse's name stored in one Fall must never come back as the person's own
+    try:
+        eigene = {(r[0], r[1]) for r in src.execute(
+            "SELECT d.data_field_id, d.teil FROM datenpunkt_partei d JOIN formular_partei p "
+            "ON p.form_id=d.form_id AND p.partei_nr=d.partei_nr "
+            "WHERE d.status='zugeordnet' AND p.rolle='gesuchsteller' AND p.entitaet='natuerliche_person'")}
+    except sqlite3.OperationalError as ex:
+        sys.exit(f"ABBRUCH build_datentresor.py: {ex} — zuerst scripts/rollen.py ableiten; nichts geschrieben")
     random.seed(SEED)
     key = secrets.token_bytes(32)
     open(KEYFILE, "wb").write(key)
     encrypt, cipher_label = make_cipher(key)
 
-    src = connect(DB_PATH)
     # patterns for the format gate
     pat = {r["code"]: re.compile(r["regex"]) for r in
            src.execute("SELECT code, regex FROM format_pattern")}
-    # canonical attribute by eCH element / eSH key
-    attr_by_ech = {r["ech_element_id"]: r["id"] for r in
+    # canonical attribute by eCH element / eSH key -> its permanent identifier
+    attr_by_ech = {r["ech_element_id"]: kennung_of[r["id"]] for r in
                    src.execute("SELECT id, ech_element_id FROM canonical_attribute "
                                "WHERE ech_element_id IS NOT NULL")}
-    attr_by_esh = {r["esh_key"]: r["id"] for r in
+    attr_by_esh = {r["esh_key"]: kennung_of[r["id"]] for r in
                    src.execute("SELECT id, esh_key FROM canonical_attribute "
                                "WHERE esh_key IS NOT NULL")}
     edata = {r["id"]: r for r in src.execute("SELECT id, standard, name, datatype FROM ech_element")}
@@ -288,6 +328,7 @@ def main():
             "WHERE data_field_id=? ORDER BY ord", [d["id"]])]
         units = subs if subs else [dict(d)]
         for u in units:
+            teil = norm_ascii(u["name"]) if subs else ""
             eid = u.get("ech_element_id")
             e = edata.get(eid)
             aid = attr_by_ech.get(eid)
@@ -298,7 +339,7 @@ def main():
             # is stored per Fall, never reused as the person's datum. Whitelist,
             # not blacklist - a field the panel has not judged (subjekt NULL) is
             # not silently treated as the person's own datum
-            if d["subjekt"] != "natuerliche_person":
+            if d["subjekt"] != "natuerliche_person" or (d["id"], teil) not in eigene:
                 aid = None
             forms[d["form_id"]]["punkte"].append({
                 "name": u["name"], "attr": aid,
@@ -387,7 +428,15 @@ def main():
         return f"{p['name']}: {random.choice(WOERTER)}"
 
     # --- the Fälle, with every gate live ------------------------------------
-    dp_of = {}          # (subjekt_id, attribut_id) -> datenpunkt id (once-only)
+    dp_of = {}          # (subjekt_id, Angabe identifier) -> datenpunkt id (once-only)
+    angabe_nr = {}      # Angabe identifier -> angabe.id of this file, issued on first use
+
+    def angabe_id(kennung):
+        if kennung is None:
+            return None
+        if kennung not in angabe_nr:
+            angabe_nr[kennung] = db.execute("INSERT INTO angabe(kennung) VALUES(?)", [kennung]).lastrowid
+        return angabe_nr[kennung]
     stats = {"dp": 0, "reuse": 0, "einw": 0, "verschl": 0, "refus": 0,
              "kopie": 0, "vermerk": 0, "log": 0}
     for fi in range(n_fall):
@@ -396,9 +445,10 @@ def main():
         fm = forms[fid]
         ein = date(2023, 9, 1) + timedelta(days=random.randint(0, 1080))
         ab = ein + timedelta(days=random.randint(5, 60))
-        db.execute("INSERT INTO fall(subjekt_id,service_id,form_id,formular,dienststelle,"
-                   "eingereicht,abgeschlossen,entscheid) VALUES(?,?,?,?,?,?,?,?)",
-                   [s["id"], fm["meta"]["service_id"], fid, fm["meta"]["title"],
+        db.execute("INSERT INTO fall(subjekt_id,service_id,form_id,service_kennung,formular_kennung,formular,"
+                   "dienststelle,eingereicht,abgeschlossen,entscheid) VALUES(?,?,?,?,?,?,?,?,?,?)",
+                   [s["id"], fm["meta"]["service_id"], fid, k_service.get(fm["meta"]["service_id"]),
+                    k_formular[fid], fm["meta"]["title"],
                     fm["meta"]["dienststelle"], ein.isoformat(), ab.isoformat(),
                     out_by_form.get(fid, "unbekannt")])
         fall_id = db.execute("SELECT last_insert_rowid()").fetchone()[0]
@@ -444,13 +494,14 @@ def main():
                 wert, nonce = encrypt(wert)
                 versch = 1
                 stats["verschl"] += 1
-            db.execute("INSERT INTO datenpunkt(subjekt_id,attribut_id,attribut,ech_standard,"
+            db.execute("INSERT INTO datenpunkt(subjekt_id,angabe_id,attribut,ech_standard,"
                        "ech_element,ech_datatype,wert,verschluesselt,nonce,format_glob,sensitive,"
-                       "erhoben_am,erhebungs_fall,grundlage_artikel,grundlage,einwilligung_id,loeschdatum) "
-                       "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-                       [s["id"], p["attr"], p["name"], p["std"], p["el"], p["dt"],
+                       "erhoben_am,erhebungs_fall,grundlage_artikel,artikel_kennung,grundlage,einwilligung_id,"
+                       "loeschdatum) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+                       [s["id"], angabe_id(p["attr"]), p["name"], p["std"], p["el"], p["dt"],
                         wert, versch, nonce, GLOBS.get(p["fmt"]), p["sens"], ein.isoformat(),
                         fall_id, p["basis"][0] if p["basis"] else None,
+                        k_artikel.get(p["basis"][0]) if p["basis"] else None,
                         grundlage_txt, einw_id, loesch])
             dp_id = db.execute("SELECT last_insert_rowid()").fetchone()[0]
             db.execute("INSERT INTO datenpunkt_verwendung VALUES(?,?,0)", [fall_id, dp_id])
@@ -492,6 +543,15 @@ def main():
         "hinweis": "Alle Daten sind synthetisch erzeugt — es gibt darin keine realen Personen.",
         "erzeugt": date.today().isoformat(), "seed": str(SEED),
         "quelle": "citygov.db (Schema, Standards, Regeln, Fristen, Empfänger)",
+        "angabe": "datenpunkt.angabe_id nennt eine Zeile der Tabelle angabe, die die dauerhafte Kennung "
+                  "der Angabe aus citygov.db trägt (Tabelle kennung, scripts/kennungen.py); angabe.id gilt nur "
+                  "in dieser Datei — nie die laufende Nummer canonical_attribute.id",
+        "kennungen": "fall.formular_kennung, fall.service_kennung und datenpunkt.artikel_kennung sind die "
+                     "dauerhaften Kennungen; form_id, service_id und grundlage_artikel sind Zeilennummern von "
+                     "citygov.db zum Zeitpunkt des Aufbaus und gelten nur zusammen mit diesem Stand",
+        "once_only": "wiederverwendet wird nur eine Angabe der einreichenden Person (Parteien-Schicht: Rolle "
+                     "Gesuchsteller/in, natürliche Person); Angaben eines Ehepartners, eines Kindes oder anderer "
+                     "Personen werden je Fall gespeichert und nie als eigene Angabe der Person wiederverwendet",
         "verschluesselung": cipher_label,
     }.items():
         db.execute("INSERT INTO meta VALUES(?,?)", [k, v])

@@ -1,0 +1,204 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "citygov_ech_schemas.json",
+ "description": "Struktur von citygov_ech_schemas.json, Version 1.0.0. Erzeugt aus der Datei, wie der Build sie schreibt (scripts/export_vertrag.py); Änderungen und Regeln in exportvertrag.json. Nie von Hand ändern.",
+ "$ref": "#/$defs/datei",
+ "$defs": {
+  "datei": {
+   "type": "object",
+   "properties": {
+    "formulare": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "properties": {
+       "abdeckung_pct": {
+        "type": "integer"
+       },
+       "dienststelle": {
+        "type": "string"
+       },
+       "ech": {
+        "type": "object",
+        "additionalProperties": {
+         "type": "object",
+         "additionalProperties": {
+          "type": "array",
+          "items": {
+           "type": "object",
+           "properties": {
+            "angabe_kennung": {
+             "type": "string",
+             "pattern": "^sh:angabe:e(?:CH|SH)-[0-9]{4}:[A-Za-z0-9_.-]+(?::[A-Za-z0-9_]+)?(?:~[0-9]+)?$"
+            },
+            "datatype": {
+             "type": [
+              "string",
+              "null"
+             ]
+            },
+            "element": {
+             "type": "string"
+            },
+            "feld": {
+             "type": "string"
+            },
+            "kennung": {
+             "type": "string",
+             "pattern": "^sh:(?:service|formular|angabe|gesetz):[A-Za-z0-9_.:~-]+$"
+            }
+           },
+           "required": [
+            "angabe_kennung",
+            "datatype",
+            "element",
+            "feld",
+            "kennung"
+           ],
+           "additionalProperties": false
+          }
+         }
+        }
+       },
+       "exchange_ready": {
+        "type": "string"
+       },
+       "form_id": {
+        "type": "integer"
+       },
+       "formular_kennung": {
+        "type": "string",
+        "pattern": "^sh:formular:[a-z0-9][a-z0-9.-]*(?:~[0-9]+)?$"
+       },
+       "ohne_standard": {
+        "type": "array",
+        "items": {
+         "type": "object",
+         "properties": {
+          "feld": {
+           "type": "string"
+          },
+          "format": {
+           "type": "string"
+          },
+          "kennung": {
+           "type": "string",
+           "pattern": "^sh:(?:service|formular|angabe|gesetz):[A-Za-z0-9_.:~-]+$"
+          }
+         },
+         "required": [
+          "feld",
+          "format",
+          "kennung"
+         ],
+         "additionalProperties": false
+        }
+       },
+       "titel": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "abdeckung_pct",
+       "dienststelle",
+       "ech",
+       "exchange_ready",
+       "form_id",
+       "formular_kennung",
+       "ohne_standard",
+       "titel"
+      ],
+      "additionalProperties": false
+     }
+    },
+    "meta": {
+     "type": "object",
+     "properties": {
+      "datenstand": {
+       "type": "object",
+       "properties": {
+        "build": {
+         "type": "string"
+        },
+        "xsd_sweep": {
+         "type": "object",
+         "properties": {
+          "date": {
+           "type": "string"
+          },
+          "n": {
+           "type": "integer"
+          },
+          "n_xsd": {
+           "type": "integer"
+          }
+         },
+         "required": [
+          "date",
+          "n",
+          "n_xsd"
+         ],
+         "additionalProperties": false
+        }
+       },
+       "required": [
+        "build",
+        "xsd_sweep"
+       ],
+       "additionalProperties": false
+      },
+      "generated_at": {
+       "type": "string"
+      },
+      "hinweis": {
+       "type": "string"
+      },
+      "quelle": {
+       "type": "string"
+      },
+      "vertrag": {
+       "type": "object",
+       "properties": {
+        "aenderungen": {
+         "type": "string"
+        },
+        "schema": {
+         "type": "string"
+        },
+        "version": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "aenderungen",
+        "schema",
+        "version"
+       ],
+       "additionalProperties": false
+      },
+      "xsd_versionen": {
+       "type": "object",
+       "additionalProperties": {
+        "type": "string"
+       }
+      }
+     },
+     "required": [
+      "datenstand",
+      "generated_at",
+      "hinweis",
+      "quelle",
+      "vertrag",
+      "xsd_versionen"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "required": [
+    "formulare",
+    "meta"
+   ],
+   "additionalProperties": false
+  }
+ }
+}

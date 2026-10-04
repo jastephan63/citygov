@@ -1,5 +1,6 @@
 # The generated pages and exports (dashboard, flows, index, 404,
-# data_export.json, the citygov_* exports, dossiers/): GitHub leaves them out
+# data_export.json, the citygov_* exports, their contract schema/ and
+# exportvertrag.json, dossiers/): GitHub leaves them out
 # of the language statistics and collapses their diffs. verlauf.json and
 # citygov.db, which the build also writes, are not marked. Linguist attributes
 # only; local Git behaviour (diff, line endings) is unchanged.
@@ -10,6 +11,9 @@ index.html linguist-generated
 data_export.json linguist-generated
 citygov_*.json linguist-generated
 citygov_*.jsonl linguist-generated
+# the export contract the exporters write (scripts/export_vertrag.py)
+schema/** linguist-generated
+exportvertrag.json linguist-generated
 dossiers/** linguist-generated
 
 # third-party reference data inlined into flows.html (see quellen/README.md)

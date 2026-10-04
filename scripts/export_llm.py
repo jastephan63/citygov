@@ -35,8 +35,10 @@ Nothing is written when one of the five files would name a local file path.
 """
 import json, os, re, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from common import ROOT, connect, DB_PATH, EXPORT_PATH, _layer_skipped, assert_no_local_paths
+from common import ROOT, connect, DB_PATH, EXPORT_PATH, _layer_skipped, assert_no_local_paths, norm_ascii
 import labels as L
+import export_vertrag as EV
+import register_map                     # the one prefill rule (prefill_punkte), standard library only
 
 RETIRED_FILE = "citygov_fields.jsonl"
 
@@ -104,6 +106,13 @@ META = {
                    "behoerde | gemischt | null (not judged). Only natuerliche_person may be "
                    "prefilled from the Einwohnerregister — the same eCH element also carries "
                    "business and object addresses, which the register does not hold.",
+        "partei": "the party of the Formular whose Angabe the point is (scripts/rollen.py): nr, "
+                  "rolle, entitaet (null when not settled) and status — gesuchsteller (the "
+                  "applicant, a natural person: the only party whose Angaben are prefilled), "
+                  "andere_partei (a party with another role — spouse, child, employee, organ …, also a "
+                  "Bauherrschaft or Halter/in until stage B2 confirms it is the applicant; never "
+                  "prefilled, relations not confirmed) or partei_offen. On the field when it has no subfields, else on each "
+                  "subfield.",
         "sensitive_category": "the category of besonders schützenswerte Personendaten after KDSG "
                               "Art. 2 Abs. 1 lit. d (meta.labels.sens: gesundheit, religion_"
                               "weltanschauung, politik, ethnie_herkunft, genetik_biometrie, "
@@ -221,11 +230,14 @@ META = {
                        "data points (subfields where they exist, else the field): n_angaben = all "
                        "points; n_pflicht = required points of fields WITHOUT subfields; "
                        "n_pflicht_teil = points of required composite fields (a part inherits its "
-                       "field's Pflicht); n_vorbefuellbar = points the Einwohnerregister already "
-                       "holds (person/address standards AND subjekt natuerliche_person); "
-                       "n_vorbefuellbar_offen = points of person/address standards whose subjekt is "
-                       "not judged or whose mapping is flagged pruefart zuordnung — could be "
-                       "prefillable, not claimed; n_kein_standard / n_element_offen / n_ungeprueft "
+                       "field's Pflicht); n_einwohnerregister = points the Einwohnerregister holds "
+                       "for the person concerned (a quoted Einwohnerregister rule names the element "
+                       "AND subjekt natuerliche_person — whoever the person is: the applicant, a "
+                       "spouse, a child); n_einwohnerregister_offen = points of person/address "
+                       "standards whose subjekt is not judged or whose mapping is flagged pruefart "
+                       "zuordnung — not claimed; register.n_vorbefuellbar_korrigiert = the "
+                       "required points that are vorbefüllbar (the applicant's own, not "
+                       "mehrdeutig — citygov_prefill.json); n_kein_standard / n_element_offen / n_ungeprueft "
                        "and their sum n_ohne_standard = points without a citable element, counted "
                        "apart and never matched as «the same datum»; n_zuordnung_offen = points "
                        "whose label means another datum than the mapped element (pruefart "
@@ -257,6 +269,16 @@ META = {
                     "another datum -> UI «eCH-Zuordnung korrigieren» (fix the DATABANK mapping). "
                     "n / formulare / n_formulare = where the label occurs (Formular ids as in "
                     "services[].forms[].id).",
+        "kennung": "permanent identifiers (scripts/kennungen.py): kennung on every service, Formular, data "
+                   "field, part (subfields[]) and handling rule; formular_kennung, artikel_kennung and "
+                   "angabe_kennung where an entry refers to a Formular, an article or a canonical Angabe "
+                   "(angabe_kennung = the eCH element with its context or the eSH key of an atomic unit; "
+                   "null for a composite field or a unit without an element). Store these, never the "
+                   "numeric ids: an identifier never changes meaning and is never reused (a retired one "
+                   "stays, marked entfallen or abgeloest with its successor), while the numeric ids may "
+                   "be renumbered. The scheme is sh:<art>:… without a web address. meta.vertrag carries "
+                   "this file's version; exportvertrag.json lists every change and "
+                   "schema/citygov_llm.schema.json describes the structure.",
         "datenhandhabung.scope": "allgemein=applies to every personal-data field; "
                                  "besonders_schuetzenswert=additionally applies to fields with a "
                                  "sensitive category (matching sensitive_category, or all when null); "
@@ -376,12 +398,22 @@ def main():
     x_svcs = {s["id"]: s for s in X.get("services", [])}
     # art5_offen and the legal-basis state are judged once (export_json.py: basis_state,
     # the keys of labels.ton_map.basis); read them per data_field id
-    art5, bstate = {}, {}
+    art5, bstate, partei_feld, partei_teil = {}, {}, {}, {}
     for f in x_forms.values():
         for d in f.get("data_fields") or []:
             art5[d["id"]] = bool(d.get("art5_offen"))
             if d.get("basis_state"):
                 bstate[d["id"]] = d["basis_state"]
+            # whose Angabe each point is (party layer): {nr, rolle, entitaet} of the party or
+            # null, and the status of the prefill rule (register_map.partei_von)
+            subs_x = [s for s in (d.get("subfields") or []) if isinstance(s, dict)]
+            for u in (subs_x or [d]):
+                info, status = register_map.partei_von(f, u)
+                eintrag = {**(info or {"nr": None, "rolle": None, "entitaet": None}), "status": status}
+                if subs_x:
+                    partei_teil.setdefault(d["id"], []).append(eintrag)
+                else:
+                    partei_feld[d["id"]] = eintrag
     if not bstate:
         sys.exit("data_export.json trägt kein basis_state — Export veraltet; zuerst scripts/export_json.py ausführen")
     lawjur = _lawjur(X.get("laws", []))
@@ -404,6 +436,7 @@ def main():
     META["retired_layer"] = META["retired_layer"].format(
         n_fm=n_fm, n_rlb=n_rlb, n_fi=n_fi, ph=f"; {n_ph:,} services in the DB today" if n_ph else "")
     rows = lambda q: [dict(r) for r in c.execute(q).fetchall()]
+    rows_t = lambda q: [tuple(r) for r in c.execute(q).fetchall()]
     services = rows("SELECT * FROM service")
     svc_dst = {s["id"]: s["dienststelle"] for s in services}
     forms = rows("SELECT * FROM form")
@@ -455,6 +488,13 @@ def main():
             sub["esh_entwurf"] = {"code": r["esh_code"], "element": r["esh_element"],
                                   "titel": eshk.get(r["esh_code"]), "status": "entwurf"}
         subs.setdefault(r["d"], []).append(sub)
+    for did, lst in subs.items():
+        pt = partei_teil.get(did) or []
+        if len(pt) != len(lst):
+            sys.exit(f"Datenfeld {did}: {len(lst)} Teilfelder in citygov.db, {len(pt)} in data_export.json — "
+                     "Export veraltet; zuerst scripts/export_json.py ausführen")
+        for sub, pa in zip(lst, pt):
+            sub["partei"] = pa
 
     dfs_by_form = {}
     missing_a5 = 0
@@ -484,6 +524,7 @@ def main():
             "basis_typ": d["basis_typ"], "basis_begruendung": d["basis_begruendung"],
             "art5_offen": art5.get(d["id"], False),
             "subjekt": d["subjekt"],
+            "partei": None if subs.get(d["id"]) else partei_feld.get(d["id"]),
             "esh_entwurf": ({"code": d["esh_code"], "element": d["esh_element"],
                              "titel": eshk.get(d["esh_code"]), "status": "entwurf"}
                             if d["esh_code"] else None),
@@ -515,58 +556,60 @@ def main():
         _layer_skipped('Bekanntgabe/Fristen je Formular (form_disclosure, retention_term)', _ex)
 
     # prefill map: every eCH-keyed ATOMIC point of every form, for once-only
-    # autofill — read from the export so 'einwohnerregister' is the SAME mark the
-    # dashboard shows (register standards eCH-0044/0010/0011/0007/0008 AND subjekt
-    # natuerliche_person; a Betrieb's street is eCH-0010 too, but not in the
-    # residents register). A composite whose parts carry their own elements is
-    # not counted next to its own parts.
-    prefill = {}
-    n_mehrdeutig = 0
+    # autofill. ONE rule, register_map.prefill_punkte(), which also counts the
+    # dashboard's «aus dem Einwohnerregister vorbefüllbar» (burden.prefillable) and
+    # fills the flows: 'einwohnerregister' is the mark export_json put on the unit (a
+    # quoted Einwohnerregister rule names the element AND subjekt natuerliche_person; a
+    # Betrieb's street is eCH-0010 too, but not in the residents register); 'partei' is
+    # whose Angabe it is; within ONE party an element that identifies MORE than one
+    # point is 'mehrdeutig' and prefills none of them (the profile holds one value), a
+    # composite parent's own element counting as a partner of its Teilfelder;
+    # 'vorbefuellbar' = the mark AND the applicant's own Angabe AND not mehrdeutig. A
+    # composite whose parts carry their own elements is not counted next to its parts.
+    # the party of every point straight from citygov.db (datenpunkt_partei + formular_partei),
+    # independent of the export's own reading: the gate below compares the two
+    db_partei = {}
+    try:
+        for did, teil, st, rolle, ent in rows_t(
+                "SELECT d.data_field_id, d.teil, d.status, p.rolle, p.entitaet FROM datenpunkt_partei d "
+                "LEFT JOIN formular_partei p ON p.form_id=d.form_id AND p.partei_nr=d.partei_nr"):
+            db_partei[(did, teil)] = (rolle, ent) if st == "zugeordnet" else (None, None)
+    except Exception as _ex:
+        _layer_skipped("Parteien je Datenpunkt (datenpunkt_partei)", _ex)
+    prefill, fremd = {}, []
     for fid, xf in x_forms.items():
-        pts = []
-        # a composite parent whose Teilfelder carry their own elements gets no
-        # point of its own — but build_flows.py puts the parent's OWN element into
-        # the collision set next to its Teilfelder, so a leaf that shares it (the
-        # applicant's «Personalien» eCH-0044·personIdentification vs. «Name /
-        # Vorname der MitbewohnerInnen») is flagged. Register it as a virtual
-        # partner (None marker) so the rule here is the same rule.
-        virt = []
-        for d in xf.get("data_fields") or []:
-            sf = [s for s in (d.get("subfields") or []) if isinstance(s, dict)]
-            pe = d.get("ech") or {}
-            if sf and d.get("subjekt") == "natuerliche_person" and pe.get("element"):
-                virt.append((pe["standard"], pe["element"]))
-            for s in (sf or [None]):
-                u = s if s is not None else d
-                e = u.get("ech") or {}
-                if not e.get("element"):
-                    continue
-                pts.append({"feld": d["name"] + ("›" + s["name"] if s is not None else ""),
-                            "feld_parent": d["name"] if s is not None else None,
-                            "standard": e["standard"], "element": e["element"],
-                            "pflicht": bool(d.get("required")),
-                            "subjekt": d.get("subjekt"),
-                            "einwohnerregister": u.get("register") == "einwohnerregister",
-                            "mehrdeutig": False})
-        # same rule as build_flows.py: among a natural person's points, an element
-        # that identifies MORE than one point cannot prefill any of them — the
-        # profile holds one value, and writing it into both would fill a wrong
-        # answer (e.g. the applicant's and a family member's Name)
-        seen = {}
-        for p in pts:
-            if p["subjekt"] == "natuerliche_person":
-                seen.setdefault((p["standard"], p["element"]), []).append(p)
-        for key in virt:
-            seen.setdefault(key, []).append(None)   # virtual partner, never exported
-        for ps in seen.values():
-            if len(ps) > 1:
-                for p in ps:
-                    if p is None:
-                        continue
-                    p["mehrdeutig"] = True
-                    n_mehrdeutig += 1
+        roh = register_map.prefill_punkte(xf)
+        pts = [{k: v for k, v in p.items() if k != "_u"} for p in roh]
         if pts:
             prefill[fid] = pts
+        # the file and the dashboard figure are the same count: required points with
+        # vorbefuellbar = true
+        bu = xf.get("burden") or {}
+        n = sum(1 for p in pts if p["pflicht"] and p["vorbefuellbar"])
+        if bu and n != bu.get("prefillable"):
+            sys.exit(f"ABBRUCH export_llm.py: Formular {fid} — {n} vorbefüllbare Pflichtpunkte in "
+                     f"citygov_prefill.json, burden.prefillable {bu.get('prefillable')} in data_export.json; "
+                     "nichts geschrieben (zuerst scripts/export_json.py)")
+        # gate: no vorbefüllbar point belongs to anyone but the applicant (a natural person),
+        # read from the database, not from the export
+        for d in xf.get("data_fields") or []:
+            subs_x = [s for s in (d.get("subfields") or []) if isinstance(s, dict)]
+            for u in (subs_x or [d]):
+                if not u.get("vorbefuellbar"):
+                    continue
+                teil = norm_ascii(u.get("name")) if subs_x else ""
+                if db_partei.get((d["id"], teil)) != ("gesuchsteller", "natuerliche_person"):
+                    fremd.append(f"{fid}:{d['name']}" + (f"›{u.get('name')}" if subs_x else ""))
+    if fremd:
+        sys.exit(f"ABBRUCH export_llm.py: {len(fremd)} vorbefüllbare Punkte gehören laut citygov.db nicht der "
+                 f"einreichenden Person (natürliche Person), z. B. {fremd[:3]} — nichts geschrieben")
+    n_mehrdeutig = sum(1 for v in prefill.values() for p in v if p["mehrdeutig"])
+    n_vorbefuellbar = sum(1 for v in prefill.values() for p in v if p["vorbefuellbar"])
+    n_partei = {}
+    for v in prefill.values():
+        for p in v:
+            if p["einwohnerregister"]:
+                n_partei[p["partei_status"]] = n_partei.get(p["partei_status"], 0) + 1
 
     # data-governance rules: how the data may be stored, treated, communicated
     datarules = []
@@ -693,7 +736,7 @@ def main():
               "services_mit_dvsh": len(dvsh_svc)}
     LEBENSLAGEN_KEYS = ("id", "katalog", "bereich", "gruppe", "n_services", "n_dienststellen", "n_formulare",
                         "services", "services_modelliert", "services_ohne_daten",
-                        "n_angaben", "n_pflicht", "n_pflicht_teil", "n_vorbefuellbar", "n_vorbefuellbar_offen",
+                        "n_angaben", "n_pflicht", "n_pflicht_teil", "n_einwohnerregister", "n_einwohnerregister_offen",
                         "n_kein_standard", "n_element_offen", "n_ungeprueft", "n_ohne_standard",
                         "n_zuordnung_offen", "n_container", "n_partei_offen", "n_sensibel",
                         "n_beilagen", "n_beilagen_beziehbar", "n_online", "n_unterschrift",
@@ -706,13 +749,21 @@ def main():
                            for t in (X.get("themenkatalog") or []) if t.get("n_services")],
            "begriffe": X.get("begriffe") or [],
            "services": out_services}
+    # permanent identifiers on every object and the version stamp of the export
+    # contract (scripts/export_vertrag.py); the JSON-lines files carry their version
+    # only in exportvertrag.json
+    vertrag = EV.Vertrag()
+    ck = connect(DB_PATH)
+    doc = EV.fertigstellen(vertrag, "citygov_llm.json", doc, ck, generated_at)
+    dfl = EV.fertigstellen(vertrag, "citygov_datafields.jsonl", dfl, ck, generated_at)
+    datarules = EV.fertigstellen(vertrag, "citygov_datarules.jsonl", datarules, ck, generated_at)
     # every file is serialised first and checked, then all are written: a local
     # path in one of them stops the run before any file changes
     out = {"citygov_llm.json": json.dumps(doc, ensure_ascii=False, indent=1),
            "citygov_datafields.jsonl": "".join(json.dumps(r, ensure_ascii=False) + "\n" for r in dfl),
            "citygov_datarules.jsonl": "".join(json.dumps(r, ensure_ascii=False) + "\n" for r in datarules)}
     BT = L.BASIS_TYP
-    out["citygov_verzeichnis.json"] = json.dumps({"meta": {"generated_at": generated_at,
+    out["citygov_verzeichnis.json"] = json.dumps(EV.fertigstellen(vertrag, "citygov_verzeichnis.json", {"meta": {"generated_at": generated_at,
                         "hinweis": "Verzeichnis der Bearbeitungstätigkeiten je Formular, Struktur "
                         "nach KDSG Art. 17b Abs. 2 (die Führungspflicht nach Art. 17b trifft nur "
                         "Polizei, Staatsanwaltschaft und Justizvollzug; für alle anderen Stellen "
@@ -744,50 +795,72 @@ def main():
                             "dsfa_status": "Entscheid des Kantons zur Datenschutz-Folgenabschätzung (KDSG Art. 14b); "
                                            "FEHLT = noch nicht entschieden, die Databank setzt keinen.",
                         }},
-               "verzeichnis": verzeichnis}, ensure_ascii=False, indent=1)
+               "verzeichnis": verzeichnis}, ck, generated_at), ensure_ascii=False, indent=1)
     n_pts = sum(len(v) for v in prefill.values())
     n_reg = sum(1 for v in prefill.values() for p in v if p["einwohnerregister"])
-    out["citygov_prefill.json"] = json.dumps({"meta": {"generated_at": generated_at,
+    out["citygov_prefill.json"] = json.dumps(EV.fertigstellen(vertrag, "citygov_prefill.json", {"meta": {"generated_at": generated_at,
                         "hinweis": "Datenpunkt→eCH-Element-Map je Formular (Schlüssel = Formular-id) für "
-                                   "Once-Only-Prefill: ein nach eCH-Element gekeytes Profil einer natürlichen "
-                                   "Person füllt damit die Punkte vor, die einwohnerregister = true und "
-                                   "mehrdeutig = false tragen — nur diese, nie alle Punkte.",
+                                   "Once-Only-Prefill: ein nach eCH-Element gekeytes Profil der einreichenden "
+                                   "Person füllt damit die Punkte vor, die vorbefuellbar = true tragen — nur diese, "
+                                   "nie alle Punkte, nie die Angaben einer anderen Person (Ehepartner/in, Kind, "
+                                   "Arbeitnehmer/in …).",
                         "felder": {
+                            "kennung": "dauerhafte Kennung des Punkts (Datenfeld oder Teilfeld, scripts/kennungen.py): "
+                                       "ändert nie ihre Bedeutung und wird nie neu vergeben — ein Profil oder ein "
+                                       "Abgleich speichert sie, nie die laufende Formular-id oder den Pfad «feld». "
+                                       "meta.formular_kennung nennt die Kennung jedes Formulars (Schlüssel = Formular-id).",
+                            "angabe_kennung": "dauerhafte Kennung der kanonischen Angabe, die der Punkt erfragt "
+                                              "(eCH-Element mit Kontext oder eSH-Schlüssel): derselbe Wert auf zwei "
+                                              "Formularen ist dieselbe Angabe.",
                             "feld": "Pfad «Feld›Teilfeld» (ein Teilfeld ist die atomare Einheit; feld_parent = das "
                                     "Feld, sonst null). Ein zusammengesetztes Feld, dessen Teile eigene Elemente "
                                     "tragen, erscheint nicht neben seinen Teilen.",
                             "pflicht": "Pflichtangabe des Felds (ein Teilfeld erbt die Pflicht seines Felds).",
                             "subjekt": "wessen Angabe: " + ", ".join(f"{k} = {v}" for k, v in L.SUBJEKT.items())
                                        + "; null = noch nicht beurteilt (dann nie vorbefüllen).",
-                            "einwohnerregister": "true nur, wenn das Einwohnerregister die Angabe tatsächlich führt: "
-                                                 "Personen-/Adressstandard (eCH-0044, eCH-0010, eCH-0011, eCH-0007, "
-                                                 "eCH-0008) UND subjekt natürliche Person — dieselbe Marke ↺ wie im "
-                                                 "Dashboard. Eine Betriebs- oder Behördenadresse ist eCH-0010, aber "
-                                                 "nicht im Register.",
-                            "mehrdeutig": "true, wenn dasselbe eCH-Element auf diesem Formular mehr als einen Punkt "
-                                          "einer natürlichen Person bezeichnet (z. B. Name der gesuchstellenden Person "
-                                          "und Name eines Familienmitglieds): das Profil hält einen Wert, keiner "
-                                          "dieser Punkte darf damit befüllt werden. Zählt mit: das eigene Element eines "
-                                          "zusammengesetzten Felds derselben Person, dessen Teilfelder hier als Punkte "
-                                          "erscheinen (das Feld selbst ist kein Punkt) — ein so markierter Punkt kann "
-                                          "darum ohne sichtbaren Zwilling stehen. Dieselbe Regel wie in flows.html.",
+                            "einwohnerregister": "true, wenn eine zitierte Regel des Einwohnerregisters (RHG Art. 6, "
+                                                 "Gemeindegesetz Art. 88 Abs. 2 — Tabelle register_angabe) das Element "
+                                                 "nennt UND subjekt natürliche Person ist — dieselbe Marke ↺ wie im "
+                                                 "Dashboard. Sie sagt, dass das Register solche Angaben für die "
+                                                 "betroffene Person führt, nicht, wessen Angabe der Punkt ist (das sagt "
+                                                 "partei). Eine Betriebs- oder Behördenadresse ist eCH-0010, aber nicht "
+                                                 "im Register.",
+                            "partei": "wessen Angabe der Punkt ist (Parteien-Schicht, scripts/rollen.py): nr, rolle "
+                                      "und entitaet der Partei des Formulars, null = nicht geklärt.",
+                            "partei_status": "; ".join(f"{k} = {v}" for k, v in register_map.PARTEI_STATUS.items()),
+                            "mehrdeutig": "true, wenn dasselbe eCH-Element mehr als einen Punkt DERSELBEN Partei "
+                                          "(natürliche Person) auf diesem Formular bezeichnet: das Profil hält einen "
+                                          "Wert, keiner dieser Punkte darf damit befüllt werden. Zählt mit: das eigene "
+                                          "Element eines zusammengesetzten Felds, dessen Teilfelder dieser Partei hier "
+                                          "als Punkte erscheinen (das Feld selbst ist kein Punkt) — ein so markierter "
+                                          "Punkt kann darum ohne sichtbaren Zwilling stehen. Punkte ohne geklärte "
+                                          "Partei werden untereinander verglichen.",
+                            "vorbefuellbar": "true = einwohnerregister UND partei_status gesuchsteller UND nicht "
+                                             "mehrdeutig: nur diese Punkte füllt ein Profil der einreichenden Person "
+                                             "vor (dieselbe Regel in flows.html; Zählung des Dashboards = "
+                                             "Pflichtpunkte davon). Angaben anderer Personen erst, wenn der Kanton "
+                                             "bestätigt, dass Beziehungen geliefert werden dürfen.",
                         },
                         "zaehlung": {
                             "n_formulare": len(prefill), "n_formulare_gesamt": len(x_forms),
                             "formulare_ohne_ech_punkt": sorted(int(fid) for fid in x_forms if fid not in prefill),
                             "n_punkte": n_pts, "n_einwohnerregister": n_reg,
-                            "n_mehrdeutig": n_mehrdeutig,
-                            "hinweis": "n_punkte zählt alle eCH-Punkte (Pflicht und optional, alle Subjekte); die "
-                                       "Kennzahl «vorbefüllbar» des Dashboards (burden.prefillable) zählt nur "
-                                       "PFLICHT-Punkte mit einwohnerregister = true — beide Zahlen sind aus pflicht "
-                                       "und einwohnerregister ableitbar.",
+                            "n_mehrdeutig": n_mehrdeutig, "n_vorbefuellbar": n_vorbefuellbar,
+                            "partei": dict(sorted(n_partei.items())),
+                            "hinweis": "n_punkte zählt alle eCH-Punkte (Pflicht und optional, alle Subjekte und Parteien); "
+                                       "die Kennzahl «vorbefüllbar» des Dashboards (burden.prefillable) zählt nur "
+                                       "PFLICHT-Punkte mit vorbefuellbar = true — genau die Punkte, die diese Datei und "
+                                       "die geführten Formulare füllen würden; partei zählt die Punkte mit "
+                                       "Einwohnerregister-Marke je partei_status.",
                         }},
-               "formulare": prefill}, ensure_ascii=False, indent=1)
+               "formulare": prefill}, ck, generated_at), ensure_ascii=False, indent=1)
     for name, text in out.items():
         assert_no_local_paths(name, text)
     for name, text in out.items():
         with open(os.path.join(ROOT, name), "w", encoding="utf-8") as fh:
             fh.write(text)
+    ck.close()
+    vertrag.festschreiben()             # schema/*.schema.json + exportvertrag.json, after the files
     # the retired auto-draft export must not linger next to the curated files
     retired = os.path.join(ROOT, RETIRED_FILE)
     removed = False
@@ -800,7 +873,8 @@ def main():
           f"citygov_datafields.jsonl ({len(dfl)} Datenfelder, {nech} mit eCH-Standard, {n_a5} art5_offen) + "
           f"citygov_datarules.jsonl ({len(datarules)} Regeln) + "
           f"citygov_verzeichnis.json ({len(verzeichnis)} Formulare) + "
-          f"citygov_prefill.json ({n_pts} Prefill-Punkte, {n_reg} Einwohnerregister, {n_mehrdeutig} mehrdeutig)")
+          f"citygov_prefill.json ({n_pts} Prefill-Punkte, {n_reg} Einwohnerregister, {n_vorbefuellbar} vorbefüllbar, "
+          f"{n_mehrdeutig} mehrdeutig)")
     print(f"{RETIRED_FILE}: " + ("entfernt — " if removed else "wird nicht mehr geschrieben — ")
           + "die Auto-Entwurf-Schicht (form_field/field_mapping) wird nicht mehr exportiert; massgeblich ist data_fields")
 

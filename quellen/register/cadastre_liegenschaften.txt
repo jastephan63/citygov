@@ -1,0 +1,101 @@
+url: https://www.cadastre-manual.admin.ch/de/informationsebene-liegenschaften
+art: html
+titel: cadastre-manual: Informationsebene «Liegenschaften»
+abgerufen: 2026-10-04T22:17:41
+sha256: 23a9b288d19bcce9a2be62fbedfff78eaf18182e8f441fcfc47a6e23c899fbdf
+---
+Zum Hauptinhalt springen
+Alle Schweizer Bundesbehörden
+Sprach Dropdown Deutsch ausgewählt
+DE
+FR
+IT
+Handbücher für Fachleute des schweizerischen Katastersystems
+Bundesamt für Landestopografie swisstopo
+Handbücher für Fachleute des schweizerischen Katastersystems
+Handbücher für Fachleute des schweizerischen Katastersystems
+Bundesamt für Landestopografie swisstopo
+Suche
+Suche
+Fachzeitschrift «cadastre»
+Newslist abonnieren
+Kontakt
+Veröffentlicht am 17. Januar 2024
+Informationsebene «Liegenschaften»
+Die Informationsebene «Liegenschaften» ist im Datenmodell DM.01-AV-CH beschrieben und im Objektkatalog konkretisiert.
+Rechtsgrundlagen
+Verordnung über die amtliche Vermessung (VAV) vom 18. November 1992 (Stand am 1. September 2023)
+Art. 3 Planung und Umsetzung
+3 Bei Landumlegungen und in Gebieten, in denen eine notwendige land- oder forstwirtschaftliche Landumlegung in absehbarer Zeit nicht durchgeführt werden kann, werden die technischen Arbeiten zur Erfassung von Daten über die Informationsebene Liegenschaften in einem vereinfachten Verfahren durchgeführt. Das VBS legt die technischen Anforderungen fest.
+Art. 6 Datenmodell der amtlichen Vermessung
+1 Das Datenmodell beschreibt den Inhalt gemäss Objektkatalog und die Datenstruktur in einer normierten Datenbeschreibungssprache.
+2 Der Objektkatalog umfasst die folgenden Informationsebenen:
+a. Fixpunkte;
+b. Bodenbedeckung;
+c. Einzelobjekte;
+d. Höhen;
+e. Nomenklatur;
+f. Liegenschaften;
+g. Rohrleitungen;
+h. Hoheitsgrenzen;
+i. dauernde Bodenverschiebungen;
+j. Gebäudeadressen;
+k. administrative Einteilungen.
+3 Zur Informationsebene Liegenschaften gehören die Grundstücke nach Artikel 655 Absatz 2 ZGB, soweit sie flächenmässig ausgeschieden werden können, mit Ausnahme der Miteigentumsanteile.
+Artikel 18 GBV
+Inhalt und Datenstruktur der Informationsebene «Liegenschaften» sind im Datenmodell DM.01-AV-CH beschrieben. Der Objektkatalog liefert detaillierte Informationen dazu.
+Arbeiten im Bereich der Informationsebene «Liegenschaften» darf der Kanton nur ausführen lassen durch:
+Gemeinden, andere öffentlich-rechtliche Körperschaften und juristische Personen des öffentlichen Rechts, wenn sie über eine eigene Dienststelle für Vermessung unter der Leitung eines Ingenieur-Geometers oder einer Ingenieur-Geometerin verfügen, der oder die im Register eingetragen ist;
+Ingenieur-Geometer und -Geometerinnen, die im Register eingetragen sind. (gemäss Artikel 44 VAV)
+Einführung der Eidgenössischen Grundstücksidentifikation «E-GRID»
+Nach der geltenden Regelung des schweizerischen Grundbuchrechts muss jedes Grundstück schweizweit eindeutig identifiziert werden können. Gestützt auf Artikel 18 GBV führte der Bund zu diesem Zweck die eindeutige Eidgenössische Grundstücksidentifikation (E-GRID) ein.
+Die Registrierung ist nur für Softwarehersteller und kantonale Fachstellen (Vermessung und Grundbuch) vorgesehen, welche den eindeutigen Grundstücksidentifikator (E-GRID) bereitstellen müssen.
+Der E-GRID besteht aus einem Präfix und einer Nummer. Der Präfix wird zentral vergeben, die Nummernvergabe erfolgt dezentral in den Systemen.
+Das Erlangen eines Präfixes ist nur für Softwareentwickler und für die Kantone erforderlich, welche den E-GRID-Generierungsalgorithmus bereitstellen. In allen anderen Fällen ist er nutzlos.
+Die Registrierung und der Erhalt eines Präfixes sind kostenlos und bedürfen einzig einer Meldung via untenstehendes Formular.
+Ihre Firma resp. Ihre Amtsstelle verfügt bereits über eine Registrierung und Sie benötigen einen Präfix
+Ihre Firma resp. Ihre Amtsstelle ist noch nicht registriert.
+Vorschriften
+Leitfaden «Führung der Eidgenössischen Grundstückidentifikation E-GRID»
+Seit der Einführung der E-GRID 2010 haben sämtliche Kantone die erstmalige Vergabe der E-GRID für bestehende Grundstücke abgeschlossen. Dieses Dokument widmet sich daher der ordentlichen Vergabe der E-GRID, allfälligen Sonderfällen und den möglichen Fehlerquellen im Normalbetrieb.
+PDF607.43 kB1. Juli 2020
+Weisung «Amtliche Vermessung: Punktgenauigkeiten»
+Diese Weisung regelt die Genauigkeitsanforderungen an Punkte in der amtlichen Vermessung.
+PDF176.35 kB1. Januar 2015
+Empfehlung «Struktur des eindeutigen Identifikators der Daten der amtlichen Vermessung»
+Bei der Überarbeitung des Datenmodells DM.01-AV-CH, Version 24 wird von wesentlicher Bedeutung sein, allen Objekten der AV eine eindeutige Identifizierung zuzuweisen. Einige Kantone haben den Wunsch geäussert, bereits heute solche Identifikatoren als kantonale Erweiterungen in ihr Datenmodell einzuführen. Die Empfehlung soll helfen, eine künftige Kompatibilität dieser Informationen zu gewährleisten.
+PDF51.44 kB14. April 2011
+Empfehlungen «Beurteilung von Vermessungswerken bezüglich lokaler Spannungen und Ausscheidung spannungsarmer Gebiete»
+Diese Empfehlungen sollen eine Hilfestellung für die Beurteilung, Klassierung, Gebietsausscheidung der Vermessungswerke in Bezug auf lokale Spannungen im geometrischen Bezugsrahmen darstellen.
+PDF517.88 kB1. Februar 2011
+Richtlinie «Einsatz von GNSS bei der Bestimmung von Detailpunkten in der amtlichen Vermessung»
+Die Richtlinie gilt für die Bestimmung (Aufnahme sowie Absteckung) von Detailpunkten in der amtlichen Vermessung mittels GNSS-Messausrüstungen unter Anwendung der Methode der differentiellen Phasenmessung.
+PDF1.67 MB1. Dezember 2010
+Empfehlungen «Behandlung von dauernden Bodenverschiebungen in der amtlichen Vermessung»
+Mit der Revision des Immobiliensachenrechts vom 1. Januar 1994 wurde die Behandlung von dauernden Bodenverschiebungen mit dem Art. 660a und 660b ZGB gesetzlich neu geregelt. Die Bezeichnung von Gebieten mit dauernden Bodenverschiebungen und deren Anmerkung im Grundbuch dient vor allem der Rechtssicherheit.
+PDF167.54 kB28. April 2004
+Richtlinien «Beurteilung und die Überführung von bestehenden Grenzpunktinformationen»
+Die Richtlinie soll dazu beitragen, bestehende Grenzpunktinformationen möglichst rationell beurteilen zu können, ob sie den neuen Anforderungen genügen.
+PDF1.31 MB1. September 1994
+Service
+Checkservice CheckCH DM.01-AV-CH
+Spezifikationen und Erklärungen des Algorithmus, welcher den Identifikator E-GRID generiert
+Beschreibung des Mechanismus
+PDF190.77 kB15. Dezember 2011
+Spezifikation des Algorithmus
+PDF50.68 kB30. November 2011
+Oberleitung & Oberaufsicht Amtliche Vermessung
+Bundesamt für Landestopografie – Fachstelle Eidgenössische Vermessungsdirektion
+Seftigenstrasse 264
+CH-3084 Wabern
+vermessung@swisstopo.ch
+Für Fachleute
+cadastre-manual.admin.ch
+©swisstopo
+Bleiben Sie informiert!
+Newslist cadastre.ch
+Weitere Informationen
+Über die Handbücher Kontakt
+Impressum
+Rechtliches
+Erklärung zur Barrierefreiheit

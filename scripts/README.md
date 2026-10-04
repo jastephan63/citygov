@@ -1,8 +1,9 @@
 # scripts/ — how the databank is built and loaded
 
 `citygov.db` is the only data source. `./build.sh` regenerates every file it
-lists from it (its first step, `init_register.py`, rewrites only derived data
-inside the DB); `verlauf.json` keeps one snapshot per build day. The code, the
+lists from it (its first three steps, `init_register.py`, `kennungen.py` and
+`rollen.py ableiten`, rewrite only derived data inside the DB, each through
+staging → validate → swap); `verlauf.json` keeps one snapshot per build day. The code, the
 schema and `quellen/` are maintained by hand. `formulare/` (`ingest_new.py`),
 `ech_xsd/` (`sweep_ech_xsd.py`) and `inventory/` (`build_gesetze_index.py`,
 `fetch_rechtsbuch.py`) are inputs written by loaders, never by `./build.sh`.
@@ -21,11 +22,13 @@ in the official PDF.
 ## Rebuild every generated surface
 
 ```bash
-./build.sh            # init_register → export_json → theme --check → build_dashboard → build_flows
-                      # → export_llm → export_ech_schema → export_dossiers → build_index → validate_db
-                      # → check_pages (page check; skipped without Node or Chrome)
-./build.sh --tresor   # + build_datentresor right after init_register, before export_json reads the
-                      #   vault for the Bürgersicht (needs .venv with cryptography)
+./build.sh            # init_register → kennungen → rollen ableiten → export_json → theme --check
+                      # → build_dashboard → build_flows → export_llm → export_ech_schema
+                      # → export_vertrag (contract check) → kennungen --pruefen → export_dossiers
+                      # → build_index → validate_db → check_pages (page check; skipped without Node or Chrome)
+./build.sh --tresor   # + build_datentresor right after rollen ableiten, before export_json reads the
+                      #   vault for the Bürgersicht (needs .venv with cryptography; the vault names every
+                      #   Angabe by its permanent identifier, so it needs kennungen.py first)
 ./build.sh --pdf      # + dossiers/*.pdf (needs Google Chrome in /Applications; local only, ignored by Git)
 ```
 
@@ -33,6 +36,30 @@ The build reads nothing outside the repository: `build_flows.py` inlines
 `quellen/ch-geo.js` and stops when it is missing, and `export_json.py`,
 `export_llm.py`, `export_ech_schema.py` and `build_flows.py` refuse to write
 a text that names a local path (`common.assert_no_local_paths`).
+
+`export_json.py` also computes the data-model layers once, each from a module
+of its own (standard library only): the party of every data point
+(`rollen.parteien_anhaengen`, from the tables `rollen.py ableiten` wrote), the
+change-impact index per law and article with the edition read and its latest
+check (`wirkung.py`), and the register map with the corrected
+«vorbefüllbar» count (`register_map.prefill_korrigieren`, `export_register`);
+a missing table is skipped loudly like any layer. Then every exporter puts the
+permanent identifiers on its objects (`kennungen.anreichern`: `kennung` next
+to every id, `formular_kennung`, `artikel_kennung`, `angabe_kennung` next to
+every reference; an identifier that does not resolve stops the export) and
+stamps its version (`export_vertrag.fertigstellen`); after its files are
+written, `Vertrag.festschreiben()` writes the JSON Schema under `schema/` and
+`exportvertrag.json` — only when the structure or a count changed. The rules:
+a removed required key path, a changed type or an object that became a map
+raises the major version, an added key path, a removed optional one or a
+changed nullability or presence the minor version, a moved count (not the
+trend history `verlauf`, which grows by one entry per build day) or a changed
+schema wording the patch; objects keyed by states or codes are maps (a state
+reaching zero is a moved count), every identifier key carries the pattern of
+its scheme, and a reviewed note in
+`quellen/exportvertrag_hinweise.json` (absent today) can raise it where a key
+kept its name but changed its meaning. `export_vertrag.py` checks all seven
+exports read-only at the end of the build.
 
 `export_json.py` also computes the comparison of the Gestaltung: it imports
 `gestaltung_export.py` (standard library only; of the measuring modules it
@@ -52,7 +79,17 @@ of the Gestaltung's own invariants fails (`gestaltung_export.pruefen()`) or
 that is genuinely missing is skipped, loudly, and listed in
 `datenstand.uebersprungen`; `theme.py --check` stops on a colour pair below
 4.5:1 or a colour, size or font literal in one of the four page generators;
-`build_dashboard.py` stops with «ABORT — data_export.json fehlt, was die Seite
+`export_json.py` also stops when a figure of the data-model layers does not
+add up (the corrected «vorbefüllbar» against its parts, the parties counted
+again on the data points, the register figures against the Formulare) or
+`wirkung.pruefen()` finds a count of the change-impact index that the
+citations do not back; `export_llm.py` stops when its prefill map and the
+dashboard's «vorbefüllbar» disagree on a Formular or when a prefilled point
+belongs, by `citygov.db`, to anyone but the applicant; `export_vertrag.py` stops
+on an export whose version, schema file or counts differ from
+`exportvertrag.json` (a hand-edited schema file stops the next export, too);
+`kennungen.py --pruefen` stops when an object has no active identifier or an
+identifier no longer names its object; `build_dashboard.py` stops with «ABORT — data_export.json fehlt, was die Seite
 ohne eigene Berechnung liest» on an export that lacks a key the page reads
 without computing it (`kopfzahlen.standard_ech.ech_ton`,
 `standard_benannt.teile`, `kein_standard`, `kategorien`, `verzeichnis.teile`,
@@ -176,10 +213,33 @@ python3 scripts/sweep_ech_xsd.py [--offline]      # XSD versions + code lists (f
 python3 scripts/load_field_legal.py <dir>         # article citations, gated against the law text
 python3 scripts/load_basis_typ.py <dir>           # aufgabe / ohne / offen for fields without an article
 python3 scripts/load_subjekt.py <dir>             # whose datum (natural person / organisation / ...)
+python3 scripts/rollen.py ableiten                  # Parteien und Rollen, stage B1 (deterministic; also a step of ./build.sh)
+python3 scripts/rollen.py bericht [--json F]        # coverage: per rule, per Formular, the ambiguous register points
+python3 scripts/rollen.py stichprobe [N] [SEED]     # random settled assignments to check against the Formular text
+python3 scripts/rollen.py vorbereiten DIR [ID …|--pilot N]   # stage B2 input, one in_<id>.json per Formular
+python3 scripts/rollen.py laden DIR                 # stage B2 verdicts out_<id>.json through the gates, then B1 again;
+                                                  # a second review loads the same way (panel_review 'partei').
+                                                  # Needs pypdf (the quotes are checked in the Formular text):
+                                                  # run it with a Python that has it
+python3 scripts/rollen.py pruefen                   # the gate plus completeness, standalone
 python3 scripts/load_data_rules.py <dir> ...      # storage/processing/disclosure rules, quotes PDF-verified
 python3 scripts/init_register.py                  # derived: canonical attributes, format codes
+python3 scripts/kennungen.py                      # permanent identifiers (also a step of ./build.sh, right after
+                                                  # init_register.py): new objects get one, gone ones become
+                                                  # «entfallen», none is reused; writes nothing when nothing changed.
+                                                  # A rename keeps its identifier only on evidence a re-inserted row
+                                                  # cannot fake (same element, or same definition); refuses to mint
+                                                  # into a missing or empty table (first issue only with
+                                                  # --erstausgabe, never once data_export.json carries identifiers).
+                                                  # --abloesungen <json> applies reviewed «abgelöst durch» decisions
+                                                  # (default quellen/kennung_abloesungen.json, absent today);
+                                                  # --aufloesen <kennung> resolves one (read-only)
 python3 scripts/load_register.py <dir>            # purposes, recipients, Fristen (number must be in the quote)
 python3 scripts/load_verfahren.py <dir>           # Beilagen + Entscheide
+python3 scripts/register_katalog.py --abrufen     # network, read-only GETs: refresh quellen/register/ (unchanged texts keep their file)
+python3 scripts/register_katalog.py               # register catalogue: holder, level, content, key, eCH links — every claim quoted from a fetched source
+python3 scripts/register_map.py                   # Angabe × entity -> register, Beilage terms, access articles (after load_verfahren.py)
+python3 scripts/register_map.py --bericht         # the register figures on today's data (builds the export in memory, writes nothing)
 python3 scripts/load_rechtsmittel.py [<dir>]      # VRG general rule + sektoral provisions, PDF-gated
 python3 scripts/load_rechtsmittel_verdicts.py <dir>   # which provision governs a form; then load_rechtsmittel.py again
 python3 scripts/load_panel_reviews.py <dir>       # second opinions on basis_typ / subjekt / remedies
@@ -199,11 +259,35 @@ python3 scripts/load_currency.py <out> <dvsh-out> [--only-found]   # --only-foun
 python3 scripts/load_flows.py <flow-dir> ...      # guided flows, coverage-gated
 python3 scripts/fill_pdf.py <form_id> <answers.json>   # write flow answers into the official PDF
 
+# 7. law editions (Gesetzesstand) — loaders, not build steps; after the law chain of step 1 and
+# after load_field_legal.py / extract_quotes.py, whose article.last_checked and text_excerpt they read
+python3 scripts/gesetz_stand.py                   # per law the edition (Stand) the articles were read from:
+                                                  # article/law last_checked, law.source_note, the head of the
+                                                  # PDF the loaders read (../Gesetze, ../Gesetze/Bund), the cited
+                                                  # texts found again in that file -> gesetz_stand; needs macOS
+                                                  # PDFKit (extract_law.py); idempotent («nichts zu tun»); again
+                                                  # after every ingest_laws.py / ingest_fed.py / extract_quotes.py
+python3 scripts/check_gesetz_stand.py [--roh <dir>]   # read-only GETs: rechtsbuch.sh.ch (cantonal) and the Fedlex
+                                                  # SPARQL endpoint (federal), one per law, 1.5 s apart -> one
+                                                  # dated row per law in gesetz_stand_pruefung; lists laws whose
+                                                  # current edition is newer; a later Fedlex edition counts only
+                                                  # when it is published (an announced one without publication
+                                                  # date and text stays in details); re-reads nothing; stops when
+                                                  # gesetz_stand is incomplete or stale; --aus <dir> re-runs from
+                                                  # kept answers (rows dated as the answers, the address they
+                                                  # asked), --trocken writes nothing, --liste shows the latest
+                                                  # result per law
+# then ./build.sh (export_json.py computes the change-impact index, scripts/wirkung.py)
+
 # evidence-backed corrections (evidence under quellen/ or in the script's docstring)
 python3 scripts/migrate_2026_09_26.py             # idempotent; see its docstring
 python3 scripts/migrate_2026_09_27.py             # services that bundled several DVSH services, split or renamed
                                                   # (quellen/korrekturen/dvsh_aufteilung_2026-09-27.json); again after run_begriffe.py
 python3 scripts/migrate_2026_10_01.py             # idempotent clean-up of 2026-10-01; see its docstring
+python3 scripts/migrate_2026_10_05.py             # two article rows that are ingest artefacts (SR 831.20 «Art. 27»,
+                                                  # SR 510.10 «Art. 48»), quellen/korrekturen/artikel_artefakte_2026-10-05.json;
+                                                  # then gesetz_stand.py (their laws' evidence changed) and
+                                                  # kennungen.py (their identifiers become «entfallen»)
 python3 scripts/apply_wortwahl.py                 # «Angabe», not «Datum», where the databank means a piece of data
                                                   # (quellen/wortwahl_datum.json, reviewed per text); idempotent
 python3 scripts/load_rechtsmittel.py quellen/rechtsmittel           # SHR 822.101 § 8/§ 9 (Arbeitsinspektorat), quotes PDF-gated
@@ -237,16 +321,18 @@ be broken, so the gate `validate_db.py` checks what it can):
 7. **eSH never shadows eCH**: a draft code sits only on a unit eCH does not cover.
 8. **Gaps are gaps**: «not researched» never reads as «proven»; «assessed and open» is a different state from «never assessed» (basis_typ, rechtsmittel_status).
 9. **Generated files are never edited**; `citygov.db` changes only through loaders (staging → validate → swap) and `./build.sh` rebuilds everything from it.
-10. **One computation per figure**: labels, Handlungsbedarf, the «same datum» key, the eCH and legal-basis state of every data point, texts, the Datenstand and the verdicts of the Gestaltung are computed once (`labels.py`, `export_json.py`, `gestaltung_export.py`) and read by every surface; the look of every page (fonts, colours, tones, symbols, text sizes) is defined once in `theme.py`.
+10. **One computation per figure**: labels, Handlungsbedarf, the «same datum» key, the eCH and legal-basis state of every data point, texts, the Datenstand, the verdicts of the Gestaltung, the party of every data point, the change-impact index, the register map and the «vorbefüllbar» rule are computed once (`labels.py`, `export_json.py`, `gestaltung_export.py`, `rollen.py`, `wirkung.py`, `register_map.py` — `citygov_prefill.json` and burden.prefillable share `register_map.prefill_punkte`) and read by every surface; the look of every page (fonts, colours, tones, symbols, text sizes) is defined once in `theme.py`.
 
 ## What each script does
 
 | Script | Purpose |
 |---|---|
-| `common.py` | Paths, `connect()`, the shared normalisations (`norm_ascii`, `norm_label`, and `klartext()`, the display form `apply_wortwahl.py` compares against), `pl()`, the local-path guard `assert_no_local_paths()` the exporters run on their output, and `size_txt()` / `net_size_txt()` (the page sizes the dashboard and the start page state) |
+| `common.py` | Paths (the environment variables `CITYGOV_DB` and `CITYGOV_SCHEMA` point every script at a private copy of the database and its schema — to develop or test a layer without touching the shared files; a private database without the identifier table, or with an older one, fails the identifier gate against the published `data_export.json` unless `CITYGOV_EXPORTE` names a folder of other published files, e.g. an empty one), `connect()`, the shared normalisations (`norm_ascii`, `norm_label`, and `klartext()`, the display form `apply_wortwahl.py` compares against), `pl()`, the local-path guard `assert_no_local_paths()` the exporters run on their output, and `size_txt()` / `net_size_txt()` (the page sizes the dashboard and the start page state) |
 | `labels.py` | German labels for every enumerated value, the four status tones (who acts next), the priority tiers and the words of the contact line (`KONTAKT`: «Kontakt (laut DVSH)», «Tel.», «E-Mail», «nicht hinterlegt») — the single source for dashboard, guided forms, dossiers and exports |
 | `theme.py` | The shared look: fonts (system fonts only), colours, the four tones with their tints and symbols, the eSH violet, the six text sizes (12–28 px on screen, 9–20 pt on paper). The four page generators write their `:root` block from it (`css_root()`) and use only `var(--…)`; `python3 scripts/theme.py` prints tokens, contrast table and findings, `--check` (a step of `./build.sh`) exits 1 on a text colour below 4.5:1 on one of its backgrounds, on a colour, size or font literal left in a generator — a hex, `rgb()`/`hsl()` or named colour (also `%23…` in a data URI and `el.style.color=`), a font size in px/pt/em/rem/% (also `el.style.fontSize=`), a font family — (a literal kept on purpose carries `theme:keep` and its reason in the same line) or on tone names that differ from `labels.TON` |
-| `validate_db.py` | Integrity gate every loader runs on its staging copy (FKs, vocabularies, cross-layer invariants, schema.sql coverage of tables, columns and indices, every `form.source_file` an existing file under `formulare/` with a matching `file_type`, every `form_gestaltung` row measured on the current file and equal to its own profile) |
+| `validate_db.py` | Integrity gate every loader runs on its staging copy (FKs, vocabularies, cross-layer invariants, schema.sql coverage of tables, columns and indices, every `form.source_file` an existing file under `formulare/` with a matching `file_type`, every `form_gestaltung` row measured on the current file and equal to its own profile) and the gates of the data-model layers, each kept next to its loader: `kennungen.pruefen`, `rollen.pruefen`, `gesetz_stand.pruefen`, `register_map.pruefen` (each skipped while its tables are absent; importing them loads no network code and no pypdf) |
+| `kennungen.py` | Permanent identifiers («Kennungen») for every service, Formular, Datenfeld, Teilfeld, canonical Angabe, law, article and handling rule, in a neutral scheme (`sh:formular:<slug>:feld:<n>:teil:<m>`, `sh:angabe:<eCH-code>:<element>[:<context>]`, `sh:gesetz:sr-<SR>:art-<no>` …; the base address for resolvable URIs is the one constant `BASIS_URI`, an owner decision). Minted once from the natural key, never changed, reused or re-pointed; a renamed field or part keeps its identifier only on evidence a deleted and re-inserted row cannot fake (the same eCH element or eSH key at the same place, or for a field without one the same definition; never the row id), a gone object becomes «entfallen», «abgelöst durch» only from the reviewed `quellen/kennung_abloesungen.json`. The table `kennung` guards itself with triggers, and the registry itself is guarded: no minting into a missing or empty table without `--erstausgabe`, and `pruefen()` reports every identifier the published `data_export.json` carries that the table lacks. Every identifier that is no longer active is published with status, date, reason and successor (`kennungen` in `data_export.json`, `meta.kennungen` in `citygov_llm.json`). A step of `./build.sh` right after `init_register.py` (which renumbers `canonical_attribute`), `--pruefen` again at its end; `pruefen()` for `validate_db.py`, `anreichern()` for the exporters, `aufloesen()` the resolver |
+| `export_vertrag.py` | The contract of the seven published exports: the hook `fertigstellen()` (identifiers via `kennungen.anreichern`, then the version stamp) that `export_json.py`, `export_llm.py` and `export_ech_schema.py` call per file, `Vertrag.festschreiben()` (writes `schema/<export>.schema.json` and `exportvertrag.json` only when the structure or a count changed; deterministic), and the read-only check `python3 scripts/export_vertrag.py` at the end of `./build.sh` (version, schema checksum, the file against its schema, the recorded counts) |
 | `check_pages.mjs` | The automatic page check at the end of `./build.sh`: opens the built pages in a headless Chrome and fails with one message per finding (see «The automatic page check») |
 | `init_db.py` | Create an empty database from `schema.sql` |
 | `export_json.py` | `data_export.json` — one computation of every derived figure (divergences, Handlungsbedarf with tier and tone, the `ech_state` and `basis_state` of every data point, Dienststellen summaries, headline figures, Lebenslagen, labels, Datenstand); also writes today's snapshot to `verlauf.json`. Both files are written only after every gate passed: it stops with «ABBRUCH … nichts geschrieben» when a layer fails, a sum does not add up (`_summen_pruefen`: every figure with parts sums to its total, each Dienststelle adds up and all together equal the canton), `verlauf.json` is unreadable or a naming or basis text says «Datum» without a verdict (see `apply_wortwahl.py`). It also runs the comparison of the Gestaltung (`gestaltung_export.py`: `forms[].gestaltung` and the overview `gestaltung`), whose figures stay out of the headline figures, the open points and the Handlungsbedarf; `_summen_pruefen` checks that its Formulare per Dienststelle and its number of Formulare are those of `dienststellen_uebersicht` and `forms` |
@@ -257,9 +343,12 @@ be broken, so the gate `validate_db.py` checks what it can):
 | `build_flows.py` | `flows.html`, the guided questionnaires; inlines `quellen/ch-geo.js` for the place, postcode and country autocomplete and stops when it is missing or holds a «<». Keyboard-operable throughout (form picker, answer cards, suggestion lists, help drawer); answers stay in the reader's browser (localStorage keys `ff_profil` and `ff_draft_<form id>`), the page says so and offers «Profil und Entwürfe löschen» — a new storage key must be added to `storeKeys()` in the template; a step that throws shows a message instead of a blank screen |
 | `export_llm.py` | `citygov_llm.json` and the `citygov_*.jsonl/json` exports |
 | `export_ech_schema.py` | `citygov_ech_schemas.json` — one eCH-shaped exchange schema per Formular |
+| `rollen.py` | Parteien und Rollen — whose Angabe each data point is. The controlled role list (26 roles, «Vorschlag», each grounded in the free-text role strings of the naming layer, the Lebenslagen party words and the labels), the parties of every Formular and the assignment of every data point (Teilfeld, or Datenfeld without parts) to exactly one party or to «unklar» with a reason. Stage B1 (`ableiten`, standard library, a step of `./build.sh` after `kennungen.py`) settles what the begriff role, party words in labels and sections and the subjekt settle; stage B2 (`vorbereiten`, `laden`) loads judged verdicts per Formular through proof gates (role from the list, every point exactly once, every quote found in the Formular text, entity type equal to the field's subjekt) and second reviews (`panel_review` kind `partei`). `pruefen()` is the gate validate_db calls; `parteien_anhaengen()` the hook export_json calls |
+| `wirkung.py` | The change-impact index, computed once inside `export_json.py` (standard library only): per law and per article the citations, Datenfelder, data points (atomic units), Formulare, services and Dienststellen that cite it, other places that rest on the article (data rules, remedies, disclosures, outcomes), the edition read (`gesetz_stand`) and the latest currency check (`gesetz_stand_pruefung`), and the union of everything that cites a law with a newer edition. `pruefen()` checks every count against the databank and the export's Dienststellen and units and stops the export when one fails; `python3 scripts/wirkung.py` prints the overview, `--gesetz`, `--artikel`, `--json`, `--selbsttest` makes every invariant fire on tampered copies |
+| `register_katalog.py` / `register_map.py` | Once-only through registers («Was der Kanton schon weiss»). `register_katalog.py` holds the catalogue of 18 Swiss registers and official information systems; every holder, content, key and eCH link is a verbatim quote from a source it fetched read-only (Fedlex filestore, the Rechtsbuch interface, agency pages, ech.ch) and stored as a text snapshot under `quellen/register/`; the gate refuses a claim whose quote is not in its snapshot. `register_map.py` maps canonical Angaben (eCH element by id, or eSH key) × entity type to registers, quoted from the register's content source (an element that identifies its party — UID, EGID, E-GRID, Stammnummer, chip number — confirms by itself; a name, an address or a legal form only with a judged subjekt; a rule may demand or exclude a context: the dog database only for a dog, the GWR not for the heating or the areas a permit applies for, the IVZ no ships), names the documents a register issues (term in the quote), records ingested access articles as «kandidat» or «schranke» (never «erlaubt»; an article not yet ingested waits and is reported), and holds `pruefen()` (called by `validate_db.py`), `prefill_punkte()` (the one «vorbefüllbar» rule `export_llm.py` writes `citygov_prefill.json` with and `build_flows.py` fills the guided Formulare by: the Einwohnerregister mark — a quoted rule names the element of a natural person's field — AND the applicant's own Angabe by the party layer AND not mehrdeutig within that party), `prefill_korrigieren()` (sets the mark and burden.prefillable) and `export_register()` (levels standard / element / bestaetigt per data point, Beilagen by halter or document term, model estimate per Formular and Themengruppe; run inside `export_json.py`). Standard library only (the fetch imports urllib only when it runs); the snapshots are the evidence and belong in the repository |
 | `export_dossiers.py` | `dossiers/<slug>.html` per service + `dossiers/index.html` + `dossiers/_repo.js` (the marker a local dashboard probes); `--pdf` for local PDFs. Reads `ech_state` / `basis_state` and `services[].dossier_slug` from the export and stops, writing nothing, on an older one; the contact line reads as in the dashboard; the look comes from `theme.py`; every value written into a page passes `esc()` |
 | `build_index.py` | `index.html` — the start page of the website served by GitHub Pages (<https://jastephan63.github.io/citygov/>) — and `404.html` |
-| `build_datentresor.py` | `datentresor.db` — the synthetic storage example (`./build.sh --tresor`, before `export_json.py`) |
+| `build_datentresor.py` | `datentresor.db` — the synthetic storage example (`./build.sh --tresor`, before `export_json.py`); every stored Angabe is named by its permanent identifier (vault table `angabe`), never by `canonical_attribute.id`, and the build stops, writing nothing, when an Angabe has no identifier |
 | `extract_law.py` | Text of a law PDF (offline; macOS PDFKit via osascript), the ground truth every citation gate maps against |
 | `ingest_laws.py` / `ingest_fed.py` / `ingest_bigcode.py` / `fetch_rechtsbuch.py` / `build_gesetze_index.py` / `extract_quotes.py` | The law chain (step 1 above) |
 | `load_dvsh_harvest.py` / `load_shep.py` / `consolidate_services.py` / `apply_consolidation.py` / `link_dvsh_eforms.py` | Service universe from DVSH and SHEP (read-only harvests) |
@@ -272,10 +361,13 @@ be broken, so the gate `validate_db.py` checks what it can):
 | `load_rechtsmittel.py` / `load_rechtsmittel_verdicts.py` / `load_panel_reviews.py` | Remedies and second opinions |
 | `load_themenkatalog.py` / `run_begriffe.py` (+ `load_begriffe.py`, `load_pruefart.py`, `load_vorschlag_check.py`, `load_begriff_konsistenz.py`, `load_begriff_rollen.py`, `load_themen.py`, `load_korrekturen.py`) | Naming («Eine Angabe, ein Name») and Themengruppen |
 | `check_online.py` / `load_currency.py` | Is our copy still the current edition? |
+| `gesetz_stand.py` | Loader: per law the edition («Stand») the databank read its articles from, from evidence only — the Stand recorded when the articles were read (`article.last_checked`, `law.last_checked`, `law.source_note`), the Stand printed in the head of the PDF the loaders read (cantonal: the file of `inventory/gesetze_index.json`, as `ingest_laws.py` and `extract_quotes.py` pick it; federal: `../Gesetze/Bund/<SR>.pdf`), and how many cited article texts occur in that file. All sources agree → `belegt`; they disagree → `widerspruch`, none → `unbekannt` (Stand NULL, reason in `grund`). Writes `gesetz_stand` (idempotent; «nichts zu tun» leaves `citygov.db` untouched). Its `pruefen(conn)` is the gate `validate_db.py` runs on `gesetz_stand` and `gesetz_stand_pruefung`; a row whose `basis` no longer matches the databank is stale (shown «veraltet», renewed by the next run), never an error. Needs macOS PDFKit; `--trocken`, `--zeigen <law>`, `--pruefen` |
+| `check_gesetz_stand.py` | Loader (network, read-only GETs): asks the Schaffhauser Rechtsbuch (`rechtsbuch.sh.ch/api/de/texts_of_law/<SHR>`, the interface of `fetch_rechtsbuch.py`) and the Fedlex SPARQL endpoint (consolidations of the act under the SR number) for the edition in force, one request per law, 1.5 s apart, and writes one dated row per law into `gesetz_stand_pruefung`: aktuell, neuer_stand (with the number of newer editions), aufgehoben, stand_unbekannt, nicht_gefunden, nicht_pruefbar, fehler or unklar, plus editions already published for later. Lists the laws with a newer edition by number of citations; re-reads no article and changes no citation. `--roh <dir>` keeps every answer, `--aus <dir>` re-runs from kept answers, `--nur`, `--trocken`, `--liste` |
 | `load_flows.py` / `fill_pdf.py` | Guided flows and writing answers back into the official PDF |
 | `commit_proposal.py` / `auto_draft.py` | The retired 2026-06 auto-draft layer, kept because `ingest_new.py` imports it (it drafts the rows of a new file and copies the file into `formulare/`); `auto_draft.py` itself no longer runs as a command (a re-run would overwrite curated rows). Its field drafts are not exported, and its per-service notes reach `citygov_llm.json` only as legacy `findings` |
 | `migrate_2026_09_26.py` | One-off, idempotent corrections from the 2026-09-26 quality check |
 | `migrate_2026_09_27.py` | One-off, idempotent: one service row per DVSH service with its own file; same-file bundles named from DVSH wording; duplicate form 475 removed |
+| `migrate_2026_10_05.py` | One-off, idempotent correction of 2026-10-05: removes the two article rows that are ingest artefacts (a footnote or Amtliche-Sammlung list as «heading», no text, nothing cites them, the real article with the same number is its own row), gated on law, number, heading, the real row and every foreign key; evidence in `quellen/korrekturen/artikel_artefakte_2026-10-05.json` |
 | `migrate_2026_10_01.py` | One-off, idempotent corrections from the clean-up of 2026-10-01: `file_type` of the Word Formulare, the `ech_herkunft` column, the eCH-0147 XSD pin, the auto-draft placeholder descriptions cleared, names stored in composed Unicode (NFC), the file compacted so the cleared texts are gone from it; checks that no exported column holds a local path |
 | `apply_wortwahl.py` | Reader wording: in everyday German «Datum» is a calendar date, so the databank's own naming and basis texts say «Angabe» where they mean a piece of data. Applies the reviewed whole-text rewrites of `quellen/wortwahl_datum.json`; runs last in `run_begriffe.py`; `export_json.py` stops on a naming or basis text that says «Datum» without a verdict there |
 | `deprecated/` | Retired tools, kept for the record (see its README for what replaced each) |

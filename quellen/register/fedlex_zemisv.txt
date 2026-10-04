@@ -1,0 +1,6807 @@
+url: https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/2006/303/20261001/de/html/fedlex-data-admin-ch-eli-cc-2006-303-20261001-de-html.html
+art: html
+titel: ZEMIS-Verordnung (SR 142.513)
+abgerufen: 2026-10-04T22:17:34
+sha256: 420f7d0e34d1f1edb88c9dcf8bacd1dc7370dbec596f5c644bf2c98d1f5b6ff4
+---
+142.513
+Verordnung
+über das Zentrale Migrationsinformationssystem
+(ZEMIS-Verordnung)
+vom 12. April 2006 (Stand am 1. Oktober 2026)
+Der Schweizerische Bundesrat,
+gestützt auf das Bundesgesetz vom 20. Juni 2003 über das Informationssystem
+für den Ausländer- und den Asylbereich (BGIAA),
+verordnet:
+SR 142.51
+1. Abschnitt: Allgemeine Bestimmungen
+Art. 1 Gegenstand
+(Art. 1 BGIAA)
+Diese Verordnung regelt für das Zentrale Migrationsinformationssystem (ZEMIS), das der Bearbeitung der Personendaten aus dem Ausländer- und Asylbereich dient:
+a.
+Struktur und Inhalt;
+b.
+die Meldepflichten;
+c.
+die Zugriffsrechte;
+d.
+die Bekanntgabe der Daten;
+e.
+den Datenschutz und die Informatiksicherheit.
+Art. 2 Begriffe
+In dieser Verordnung bedeuten:
+a.
+Daten des Ausländerbereichs: Personendaten, die im Rahmen der Aufgaben nach den folgenden Erlassen oder Bestimmungen bearbeitet werden:
+1.
+Ausländer- und Integrationsgesetz vom 16. Dezember 2005 (AIG),
+2.
+Bürgerrechtsgesetz vom 20. Juni 2014 (BüG),
+3.
+Abkommen vom 21. Juni 1999 zwischen der Schweizerischen Eidgenossenschaft einerseits und der Europäischen Gemeinschaft und ihren Mitgliedstaaten andererseits über die Freizügigkeit (Freizügigkeitsabkommen EU),
+4.
+Abkommen vom 21. Juni 2001 zur Änderung des EFTA-Übereinkommens (Freizügigkeitsabkommen EFTA),
+5.
+die Schengen- und Dublin-Assoziierungsabkommen; diese Abkommen sind in Anhang 4 aufgeführt,
+6.
+Abkommen vom 25. Februar 2019 zwischen der Schweizerischen Eidgenossenschaft und dem Vereinigten Königreich von Grossbritannien und Nordirland über die Rechte der Bürgerinnen und Bürger infolge des Austritts des Vereinigten Königreichs aus der Europäischen Union und des Wegfalls des Freizügigkeitsabkommens,
+7.
+Artikel 66a und 66abis Schweizerisches Strafgesetzbuch (StGB) sowie Artikel 49a und 49abis Militärstrafgesetz vom 13. Juni 1927 (MStG);
+b.
+Daten des Asylbereichs: Personendaten, die im Rahmen der Aufgaben nach den folgenden Erlassen bearbeitet werden:
+1.
+Asylgesetz vom 26. Juni 1998 (AsylG),
+2.
+Abkommen vom 28. Juli 1951 über die Rechtsstellung der Flüchtlinge,
+3.
+Übereinkommen vom 28. September 1954 über die Rechtsstellung der Staatenlosen,
+4.
+die Dublin-Assoziierungsabkommen;
+c.
+Ausländerinnen und Ausländer: Personen aus dem Ausländer- und Asylbereich;
+d.
+Verschwinden: Personen aus dem Asylbereich, welche sich beim zuständigen Aufnahme-Kanton nicht gemeldet haben oder während eines laufenden Asylverfahrens an ihrem Aufenthaltsort nicht mehr zu erreichen sind;
+e.
+Wiederauftauchen: Personen aus dem Asylbereich, die als verschwunden galten, sich erneut bei den zuständigen Behörden melden oder während eines laufenden Asylverfahrens an ihrem Aufenthaltsort erneut erreichbar sind.
+Fassung gemäss Ziff. I der V vom 19. Okt. 2022, in Kraft seit 22. Nov. 2022 (AS 2022 647).
+Fassung gemäss Ziff. I der V vom 24. Okt. 2007, in Kraft seit 1. Jan. 2008 (AS 2007 5615).
+SR 142.20
+Der Titel wurde in Anwendung von Art. 12 Abs. 2 des Publikationsgesetzes vom 18. Juni 2004 (SR 170.512) auf den 1. Jan. 2019 angepasst. Diese Anpassung wurde im ganzen Text vorgenommen.
+Fassung gemäss Anhang Ziff. II 3 der Bürgerrechtsverordnung vom 17. Juni 2016, in Kraft seit 1. Jan. 2018 (AS 2016 2577).
+SR 141.0
+SR 0.142.112.681
+SR 0.632.31
+Eingefügt durch Ziff. I 1 der V vom 22. Okt. 2008 (Schengen und Dublin), in Kraft seit 12. Dez. 2008 (AS 2008 5421).
+Eingefügt durch Ziff. III 3 der V vom 22. März 2019, in Kraft seit 1. Jan. 2021 (AS 2020 5853).
+SR 0.142.113.672
+Eingefügt durch Ziff. I der V vom 19. Okt. 2022, in Kraft seit 22. Nov. 2022 (AS 2022 647).
+SR 311.0
+SR 321.0
+SR 142.31
+SR 0.142.30
+SR 0.142.40
+Eingefügt durch Ziff. I 1 der V vom 22. Okt. 2008 (Schengen und Dublin), in Kraft seit 12. Dez. 2008 (AS 2008 5421).
+2. Abschnitt: Struktur und Inhalt von ZEMIS
+Art. 3 Struktur von ZEMIS
+1 ZEMIS umfasst folgende Fachmodule:
+a.
+ein automatisiertes Personendossier- und Dokumentationssystem (elektronisches Dossier);
+b.
+ein System zur Verwaltung von biometrischen Daten und Ausweisdaten.
+2 Sofern die Benutzerin oder der Benutzer die Berechtigung dazu hat, kann bei der Suche nach einer Person oder vor dem Ausstellen einer Bewilligung in ZEMIS automatisch eine Abfrage in den folgenden Datenbanken stattfinden:
+a.
+im nationalen Visumsinformationssystem (ORBIS) nach der Visa-Informationssystem-Verordnung vom 18. Dezember 2013;
+b.
+im automatisierte Polizeifahndungssystem (RIPOL) nach der RIPOL-Verordnung vom 26. Oktober 2016;
+c.
+im Schengener Informationssystem (SIS) nach der N-SIS-Verordnung vom 8. März 2013;
+d.
+in der Interpol-Datenbank Automated Search Facility (ASF-Interpol) nach der Interpol-Verordnung vom 21. Juni 2013;
+e.
+im Strafregister-Informationssystem (VOSTRA) nach dem Strafregistergesetz vom 17. Juni 2016.
+3 Für die Rechnungsverwaltung verfügt ZEMIS über eine Schnittstelle zum vom Staatssekretariat für Migration (SEM) benutzten Finanzinformationssystem.
+Fassung gemäss Ziff. I der V vom 12. Juni 2026, in Kraft seit 1. Aug. 2026 (AS 2026 341).
+Fassung gemäss Anhang Ziff. 1 der V vom 15. Sept. 2023, in Kraft seit 15. Okt. 2023 (AS 2023 552).
+SR 142.512
+SR 361.0
+SR 362.0
+SR 366.1
+Eingefügt durch Anhang Ziff. 1 der V vom 15. Sept. 2023, in Kraft seit 15. Okt. 2023 (AS 2023 552).
+SR 330
+Fassung gemäss Ziff. I der V vom 10. Mai 2023, in Kraft seit 15. Juni 2023 (AS 2023 247).
+Eingefügt durch Ziff. I der V vom 22. März 2017, in Kraft seit 15. April 2017 (AS 2017 2177).
+Art. 4 Inhalt von ZEMIS
+(Art. 4 BGIAA)
+1 ZEMIS enthält zwei Teile:
+a.
+einen allgemeinen, allen zugriffsberechtigten Benutzerinnen und Benutzern zugänglichen Teil mit den Stammdaten;
+b.
+einen besonderen Teil, auf dessen Daten die Behörden oder beauftragte Dritte entsprechend ihren gesetzlichen Aufgaben (Benutzerprofile) Zugriff haben.
+2 Der allgemeine Teil mit den Stammdaten setzt sich aus Personendaten der folgenden Kategorien zusammen:
+a.
+Personalien der betroffenen Person (Namen, Vornamen, Aliasnamen, Geburtsdatum, Geschlecht, Staatsangehörigkeit, Zivilstand);
+b.
+Personennummer;
+c.
+AHV-Nummer.
+3 In Anhang 1 werden die in ZEMIS enthaltenen Daten abschliessend aufgeführt und die Berechtigungen zur Abfrage und Bearbeitung der Daten festgelegt.
+4 …
+Eingefügt durch Anhang Ziff. 1 der Registerharmonisierungsverordnung vom 21. Nov. 2007 (AS 2007 6719). Fassung gemäss Anhang Ziff. II 3 der V vom 17. Nov. 2021, in Kraft seit 1. Jan. 2022 (AS 2021 800).
+Fassung gemäss Ziff. I der V vom 19. Febr. 2020, in Kraft seit 1. April 2020 (AS 2020 933).
+Eingefügt durch Ziff. I der V vom 24. Okt. 2007 (AS 2007 5615). Aufgehoben durch Ziff. I der V vom 1. Mai 2019, mit Wirkung seit 1. Juni 2019 (AS 2019 1453).
+3. Abschnitt: Meldepflichten
+Art. 5 Meldungen der kantonalen und kommunalen Behörden
+(Art. 7 Abs. 1 und 4 BGIAA)
+1 Die kantonalen und kommunalen Ausländerbehörden, die für den Vollzug der Landesverweisung zuständigen Behörden sowie die kantonalen und kommunalen Arbeitsmarktbehörden melden unverzüglich:
+a.
+die erstmaligen Kurzaufenthalts- oder Aufenthaltsbewilligungen sowie deren Erneuerung, Verlängerung, Änderung oder Widerruf und die arbeitsmarktlichen Vorentscheide;
+b.
+die Umwandlungen von Kurzaufenthaltsbewilligungen;
+c.
+die Stellenantritte sowie die Stellen- und Berufswechsel im Kanton;
+d.
+die Austrittsmeldungen der Arbeitgeberinnen und Arbeitgeber;
+e.
+den Zu-, Um- und Wegzug von Ausländerinnen und Ausländern;
+f.
+die neu erteilten Niederlassungsbewilligungen;
+g.
+die Verlängerung der Kontrollfristen der Ausländerausweise von Niedergelassenen und die übrigen Daten in diesen Ausweisen;
+h.
+die Geburten und die Todesfälle;
+i.
+die Adoptionen;
+j.
+die ordentlichen Einbürgerungen, die Bürgerrechtsfeststellungen und die Nichtigkeitserklärungen;
+k.
+die Änderungen und die Berichtigungen der Personalien;
+l.
+die Adressen der um eine Bewilligung ersuchenden Arbeitgeberinnen und Arbeitgeber;
+m.
+die entsandten Arbeitnehmerinnen und Arbeitnehmer nach Artikel 1 des Bundesgesetzes vom 8. Oktober 1999 über die in die Schweiz entsandten Arbeitnehmerinnen und Arbeitnehmer sowie die übrigen Arbeitnehmerinnen und Arbeitnehmer und die selbständig Erwerbstätigen, die keine Kurzaufenthalts- oder Aufenthaltsbewilligung benötigen;
+n.
+das Verschwinden sowie das Wiederauftauchen von Personen im Asylbereich;
+o.
+die Wegweisungsentscheide, jede Verzögerung oder Aussetzung des Vollzugs sowie deren Aufhebung;
+p.
+die Landesverweisungen bei der Vollzugsanordnung, deren Aufschub und die Aufhebung des Aufschubs.
+2 Die kantonalen und kommunalen Sozialhilfebehörden melden das Verschwinden sowie das Wiederauftauchen von Personen im Asylbereich.
+Fassung gemäss Ziff. I der V vom 1. Mai 2019, in Kraft seit 1. Juni 2019 (AS 2019 1453).
+Fassung gemäss Ziff. I der V vom 19. Okt. 2022, in Kraft seit 22. Nov. 2022 (AS 2022 647).
+SR 823.20
+Eingefügt durch Ziff. I der V vom 19. Okt. 2022, in Kraft seit 22. Nov. 2022 (AS 2022 647).
+Eingefügt durch Ziff. I der V vom 19. Okt. 2022, in Kraft seit 22. Nov. 2022 (AS 2022 647).
+Art. 6 Meldungen weiterer Behörden
+(Art. 7 Abs. 1 und 2 BGIAA)
+1 Folgende Behörden melden folgende Daten:
+a.
+das Staatssekretariat des Eidgenössischen Departements für auswärtige Angelegenheiten (EDA), die schweizerischen Auslandvertretungen sowie die Missionen: die Personendaten nach den Weisungen des SEM im Zusammenhang mit der Erteilung von Visa, soweit diese Personendaten für die Erfüllung der Aufgaben nach dem AIG und nach den Schengen-Assoziierungsabkommen benötigt werden;
+b.
+die Grenzposten: die Personendaten über Rückweisungen und die Erteilung von Ausnahmevisa. Das SEM erlässt hierüber Weisungen;
+c.
+die zuständigen Behörden des Bundes und der Kantone: die Listen von Ausländerinnen und Ausländern, bei denen eine vertiefte Prüfung von allfälligen Einreise- oder Aufenthaltsgesuchen erforderlich ist.
+2 Das SEM kann Meldungen über Ausländerinnen und Ausländer aufnehmen, die aus der Schweiz ausgereist sind oder deren Aufenthaltsort nicht bekannt ist und die ihren öffentlich-rechtlichen Pflichten oder ihren Alimentenverpflichtungen nicht nachkommen.
+Fassung gemäss Ziff. I 1 der V vom 22. Okt. 2008 (Schengen und Dublin), in Kraft seit 12. Dez. 2008 (AS 2008 5421).
+Fassung gemäss Ziff. I 1 der V vom 22. Okt. 2008 (Schengen und Dublin), in Kraft seit 12. Dez. 2008 (AS 2008 5421).
+Fassung gemäss Ziff. I 1 der V vom 22. Okt. 2008 (Schengen und Dublin), in Kraft seit 12. Dez. 2008 (AS 2008 5421).
+Fassung gemäss Ziff. I der V vom 22. März 2017, in Kraft seit 15. April 2017 (AS 2017 2177).
+SR 142.20
+Diese Abk. sind in Anhang 4 Ziff. 1 aufgeführt.
+Die Bezeichnung der Verwaltungseinheit wurde in Anwendung von Art. 16 Abs. 3 der Publikationsverordnung vom 17. Nov. 2004 (AS 2004 4937) auf den 1. Jan. 2015 angepasst. Diese Anpassung wurde im ganzen Text vorgenommen.
+Art. 6a
+Eingefügt durch Ziff. I 1 der V vom 22. Okt. 2008 (Schengen und Dublin) (AS 2008 5421). Aufgehoben durch Ziff. I der V vom 27. Nov. 2024, mit Wirkung seit 1. Jan. 2025 (AS 2024 716).
+Art. 7 Meldeverfahren und Erfassung der Daten
+(Art. 7 Abs. 1 BGIAA)
+1 Die Personendaten können gemeldet werden:
+a.
+online über die Webanwendung;
+b.
+elektronisch über die entsprechenden Schnittstellen;
+c.
+in Papierform auf Meldeformularen.
+2 Das SEM legt fest, unter welchen Voraussetzungen die Personendaten automatisiert gemeldet werden können und wie sie bei einer Online-Meldung vor der Übermittlung zu überprüfen sind (Plausibilitätstests).
+3 Es erfasst die gemeldeten Daten unverzüglich in ZEMIS.
+Fassung gemäss Ziff. I der V vom 2. Febr. 2022, in Kraft seit 1. März 2022 (AS 2022 73).
+Fassung gemäss Ziff. I der V vom 2. Febr. 2022, in Kraft seit 1. März 2022 (AS 2022 73).
+Fassung gemäss Ziff. I der V vom 16. Nov. 2011, in Kraft seit 1. Dez. 2011 (AS 2011 5197).
+Art. 8 Daten über Beschwerden
+(Art. 8 BGIAA)
+Das Bundesverwaltungsgericht übermittelt dem SEM regelmässig in elektronischer Form die Daten über den Eingang und über die Erledigung von Beschwerden.
+Fassung gemäss Ziff. II 7 der V vom 8. Nov. 2006 über die Anpassung von Bundesratsverordnungen an die Totalrevision der Bundesrechtspflege, in Kraft seit 1. Jan. 2007 (AS 2006 4705).
+4. Abschnitt: Zugriff auf ZEMIS
+Art. 9 Daten des Ausländerbereichs
+(Art. 9 Abs. 1 BGIAA)
+Daten des Ausländerbereichs kann das SEM folgenden Behörden durch ein Abrufverfahren zugänglich machen:
+a.
+den kantonalen und kommunalen Ausländerbehörden, den kantonalen und kommunalen Polizei-, Arbeitsmarkt- und Bürgerrechtsbehörden: für ihre Aufgaben im Ausländerbereich sowie den kantonalen und kommunalen Polizeibehörden zur Personenidentifikation;
+abis.
+den Behörden, die für den Vollzug der Landesverweisung nach Artikel 66a oder 66abis StGB oder Artikel 49a oder 49abis MStG zuständig sind, um sie als Ausschreibungen zum Zweck der Rückkehr oder zur Einreiseverweigerung im nationalen Teil des Schengener Informationssystems zu erfassen;
+b.
+folgenden Stellen im Bundesamt für Polizei (fedpol):
+1.
+Verfügungen von Fernhaltemassnahmen zur Wahrung der inneren und äusseren Sicherheit der Schweiz nach dem Bundesgesetz vom 21. März 1997 über Massnahmen zur Wahrung der inneren Sicherheit (BWIS) sowie zur Prüfung von Entfernungs- und Fernhaltemassnahmen nach dem AIG,
+2.
+der für das RIPOL zuständigen Dienststelle: ausschliesslich zur Personenidentifikation im Zusammenhang mit der Kontrolle der RIPOL-Erfassungen nach der RIPOL-Verordnung vom 26. Oktober 2016,
+3.
+den Dienststellen, welche für den Interpol-Schriftverkehr zuständig sind, der Abteilung Einsatzzentrale, dem SIRENE-Büro: ausschliesslich zur Personenidentifikation in den Bereichen des interkantonalen und internationalen polizeilichen Nachrichtenaustausches, namentlich im Rahmen der Zusammenarbeit mit dem europäischen Polizeiamt (Europol), sowie zur Prüfung von Fernhaltemassnahmen zur Wahrung der inneren und äusseren Sicherheit der Schweiz,
+4.
+den zuständigen Dienststellen der Bundeskriminalpolizei: ausschliesslich:
+–
+zur Personenidentifikation im Zusammenhang mit der Amtshilfe, bei sicherheits- und gerichtspolizeilichen Ermittlungen und im Bereich des interkantonalen und internationalen polizeilichen Nachrichtenaustausches,
+–
+zur Prüfung der Eignung einer Person für ein Zeugenschutzprogramm und zur Durchführung von Gefährdungsanalysen,
+5.
+dem Dienst Ausweisschriften und Nachforschungen nach vermissten Personen: ausschliesslich für Nachforschungen im Zusammenhang mit dem Aufenthalt von Personen,
+6.
+der für die Führung des AFIS zuständigen Dienststelle: ausschliesslich zur Personenidentifikation nach Artikel 102 Absatz 1 AIG,
+7.
+dem zuständigen Dienst bei der Meldestelle Geldwäscherei: ausschliesslich zur Identifikation von Personen und zur Feststellung ihres Aufenthaltsstatus im Zusammenhang mit der gesetzlichen Aufgabe der Meldestelle im Kampf gegen Geldwäscherei, organisiertes Verbrechen und Terrorismusfinanzierung nach Artikel 23 des Geldwäschereigesetzes vom 10. Oktober 1997,
+8.
+der für die Erfüllung der Aufgaben nach dem Vorläuferstoffgesetz vom 25. September 2020 (VSG) zuständigen Dienststelle: ausschliesslich zur Personenidentifikation bei der Bearbeitung von Gesuchen um Erwerbs- und Ausnahmebewilligungen, der Überprüfung dieser Bewilligungen und der Bearbeitung von Verdachtsmeldungen;
+c.
+folgenden Stellen im Bundesamt für Justiz (BJ):
+1.
+der Abteilung Internationale Rechtshilfe im Zusammenhang mit Verfahren der Internationalen Rechtshilfe nach dem Bundesgesetz vom 20. März 1981 über internationale Rechtshilfe in Strafsachen,
+2.
+dem Direktionsbereich Privatrecht im Zusammenhang mit Verfahren nach dem Bundesgesetz vom 21. Dezember 2007 über internationale Kindesentführung und die Haager Übereinkommen zum Schutz von Kindern und Erwachsenen (BG-KKE) sowie im Zusammenhang mit internationalen Alimenteninkassoverfahren;
+d.
+dem Bundesverwaltungsgericht: für die Instruktion der Beschwerden nach dem AIG;
+e.
+den Grenzposten der kantonalen Polizeibehörden und dem Grenzwachtkorps: zur Durchführung der Personenkontrolle, zur Erteilung von Ausnahmevisa und zur Ausschreibung der Ausreise von Personen, welche den Schengen-Raum verlassen müssen;
+f.
+den schweizerischen Auslandvertretungen und Missionen: zur Prüfung der Visumgesuche und zur Erfüllung ihrer Aufgaben im Bereich des Schweizer Bürgerrechts;
+g.
+dem Staatssekretariat, der Politischen Direktion und der Konsularischen Direktion des EDA: zur Prüfung und zum Entscheid über Visumgesuche im Zuständigkeitsbereich des Departements;
+h.
+der Zentralen Ausgleichsstelle: zur Abklärung von Leistungsgesuchen sowie zur Zuteilung und Überprüfung der AHV-Nummer;
+i.
+den kantonalen Steuerbehörden: für ihre Aufgaben bei der Erhebung der Quellensteuer;
+j.
+den in Artikel 7 Absatz 1 Buchstabe b des Bundesgesetzes vom 8. Oktober 1999 über die in die Schweiz entsandten Arbeitnehmerinnen und Arbeitnehmer als Kontrollorgane vorgesehenen tripartiten Kommissionen: für deren Aufgaben nach Artikel 11 der Verordnung vom 21. Mai 2003 über die in die Schweiz entsandten Arbeitnehmerinnen und Arbeitnehmer;
+k.
+den Zivilstandsämtern, den kantonalen Aufsichtsbehörden im Zivilstandsdienst und dem Eidgenössischen Amt für das Zivilstandswesen zur Personenidentifikation im Zusammenhang mit Zivilstandsereignissen, für die Vorbereitung einer Eheschliessung oder Eintragung der Partnerschaft und zur Verhinderung der Umgehung des Ausländerrechts nach Artikel 97a Absatz 1 des Zivilgesetzbuches und Artikel 6 Absatz 2 des Partnerschaftsgesetzes vom 18. Juni 2004;
+l.
+den kantonalen Asyl- und Flüchtlingskoordinationsstellen: ausschliesslich zur Gewährleistung der Sozialhilfe nach dem AsylG;
+m.
+den für die Register nach Artikel 2 Absatz 2 des Registerharmonisierungsgesetzes vom 23. Juni 2006 zuständigen Stellen: zur Harmonisierung der Register und zur Nachführung der AHV-Nummer;
+n.
+dem Nachrichtendienst des Bundes (NDB):
+1.
+zur Personenidentifikation für das frühzeitige Erkennen und Verhindern von Bedrohungen für die innere oder äussere Sicherheit nach Artikel 6 Absatz 1 Buchstabe a des Nachrichtendienstgesetzes vom 25. September 2015 (NDG),
+2.
+zur Erfüllung seiner Aufgaben bei Überprüfungen im Zusammenhang mit der Gefährdung der inneren oder äusseren Sicherheit nach dem BüG, dem AIG und dem AsylG,
+3.
+zur Prüfung von Entfernungs- und Fernhaltemassnahmen nach dem AIG;
+o.
+der Eidgenössischen Steuerverwaltung für ihre Aufgaben:
+1.
+bei der Erhebung der Mehrwertsteuer auf den im Inland von steuerpflichtigen Personen gegen Entgelt erbrachten Leistungen (Inlandsteuer) und auf dem Bezug von Leistungen von Unternehmen mit Sitz im Ausland durch Empfängerinnen und Empfänger im Inland (Bezugsteuer) und bei der Durchführung der Verrechnungssteuer,
+2.
+bei der Durchführung von Strafverfahren sowie von Amts- und Rechtshilfeverfahren;
+p.
+dem Bundesamt für Zoll und Grenzsicherheit (BAZG) zur Erfüllung seiner Aufgaben:
+1.
+bei der Erhebung der Mehrwertsteuer auf der Einfuhr von Gegenständen (Einfuhrsteuer),
+2.
+im Bereich der Zollfahndung: zur Personenidentifikation;
+q.
+…
+r.
+dem Bundesamt für Sozialversicherungen für seine Aufgaben:
+1.
+als zuständige Behörde für Amtshilfe nach Artikel 76 Absatz 2 der Verordnung (EG) Nr. 883/2004,
+2.
+als Verbindungsstelle bei der Durchführung der Amtshilfe im Bereich der Familienleistungen nach den Artikeln 67–69 der Verordnung (EG) Nr. 883/2004;
+s.
+den kantonalen Justizvollzugsbehörden für die Fallführung sowie den Vollzug von Urteilen und Auflagen nach dem StGB;
+t.
+der Bundesanwaltschaft für die Adressennachforschung im Zusammenhang mit dem Urteilsvollzug;
+u.
+der Kontrollstelle des Eidgenössischen Finanzdepartments (EFD) zur Erfüllung ihrer Aufgaben nach den Artikeln 35–39 des Bundesgesetzes vom 26. September 2025 über die Transparenz juristischer Personen und die Identifikation der wirtschaftlich berechtigten Personen (TJPG).
+Eingefügt durch Ziff. I der V vom 19. Okt. 2022, in Kraft seit 22. Nov. 2022 (AS 2022 647).
+SR 311.0
+SR 321.0
+Fassung gemäss Ziff. I 4 der V vom 4. Mai 2022 über polizeiliche Massnahmen zur Bekämpfung von Terrorismus, in Kraft seit 1. Juni 2022 (AS 2022 301).
+SR 120
+SR 142.20
+Fassung gemäss Ziff. I der V vom 10. Mai 2023, in Kraft seit 15. Juni 2023 (AS 2023 247).
+SR 361.0
+Fassung gemäss Ziff. I der V vom 19. Okt. 2022, in Kraft seit 22. Nov. 2022 (AS 2022 647).
+Fassung gemäss Anhang Ziff. 3 der V vom 7. Nov. 2012 über den ausserprozessualen Zeugenschutz, in Kraft seit 1. Jan. 2013 (AS 2012 6731).
+Fassung gemäss Ziff. I der V vom 24. Okt. 2007, in Kraft seit 1. Jan. 2008 (AS 2007 5615).
+SR 142.20
+SR 955.0
+Eingefügt durch Anhang 2 Ziff. 1 der Vorläuferstoffverordnung vom 25. Mai 2022, in Kraft seit 1. Jan. 2023 (AS 2022 353).
+SR 941.42
+Fassung gemäss Ziff. I der V vom 16. Nov. 2011, in Kraft seit 1. Dez. 2011 (AS 2011 5197).
+Fassung gemäss Ziff. I der V vom 14. Mai 2025, in Kraft seit 15. Juni 2025 (AS 2025 344).
+SR 351.1
+Fassung gemäss Ziff. I der V vom 14. Mai 2025, in Kraft seit 15. Juni 2025 (AS 2025 344).
+Fassung gemäss Ziff. I der V vom 24. Okt. 2007, in Kraft seit 1. Jan. 2008 (AS 2007 5615).
+Fassung gemäss Ziff. I der V vom 19. Okt. 2022, in Kraft seit 22. Nov. 2022 (AS 2022 647).
+Fassung gemäss Anhang 4 der Visa-Informationssystem-Verordnung vom 18. Dez. 2013, in Kraft seit 20. Jan. 2014 (AS 2014 3).
+Ausdruck gemäss Anhang Ziff. II 3 der V vom 17. Nov. 2021, in Kraft seit 1. Jan. 2022 (AS 2021 800). Diese Änd. wurde im ganzen Erlass berücksichtigt.
+SR 823.20
+SR 823.201
+Fassung gemäss Anhang Ziff. I der V vom 4. Juni 2010, in Kraft seit 1. Jan. 2011 (AS 2010 3061).
+SR 210
+SR 211.231
+SR 142.31
+Eingefügt durch Anhang Ziff. 1 der Registerharmonisierungsverordnung vom 21. Nov. 2007, in Kraft seit 1. Jan. 2008 (AS 2007 6719).
+SR 431.02
+Eingefügt durch Anhang Ziff. 9 der V vom 12. Dez. 2008 (AS 2008 6305). Fassung gemäss Ziff. I 4 der V vom 4. Mai 2022 über polizeiliche Massnahmen zur Bekämpfung von Terrorismus, in Kraft seit 1. Juni 2022 (AS 2022 301).
+SR 121
+SR 141.0
+Eingefügt durch Ziff. I der V vom 16. Nov. 2011, in Kraft seit 1. Dez. 2011 (AS 2011 5197).
+Eingefügt durch Ziff. I der V vom 16. Nov. 2011 (AS 2011 5197). Fassung gemäss Ziff. I der V vom 21. Nov. 2018, in Kraft seit 1. Jan. 2019 (AS 2018 4569).
+Die Bezeichnung der Verwaltungseinheit wurde in Anwendung von Art. 20 Abs. 2 der Publikationsverordnung vom 7. Okt. 2015 (SR 170.512.1) auf den 1. Jan. 2022 angepasst (AS 2021 589). Diese Anpassung wurde im ganzen Text vorgenommen.
+Eingefügt durch Ziff. I der V vom 16. Nov. 2011 (AS 2011 5197). Aufgehoben durch Ziff. I der V vom 21. Nov. 2018, mit Wirkung seit 1. Jan. 2019 (AS 2018 4569).
+Eingefügt durch Ziff. I der V vom 2. Sept. 2015, in Kraft seit 1. Okt. 2015 (AS 2015 3047).
+Verordnung (EG) Nr. 883/2004 des Europäischen Parlaments und des Rates vom 29. April 2004 zur Koordinierung der Systeme der sozialen Sicherheit, ABl. L 166 vom 30.4.2004, S. 1; zuletzt geändert durch Verordnung (EU) Nr. 1372/2013, ABl. L 346 vom 20.12.2013, S. 27.
+Eingefügt durch Ziff. I der V vom 10. Mai 2023, in Kraft seit 15. Juni 2023 (AS 2023 247).
+SR 311.0
+Eingefügt durch Ziff. I der V vom 10. Mai 2023, in Kraft seit 15. Juni 2023 (AS 2023 247).
+Eingefügt durch Anhang Ziff. 1 der V vom 12. Juni 2026 über die Transparenz juristischer Personen und die Identifikation der wirtschaftlich berechtigten Personen, in Kraft seit 1. Okt. 2026 (AS 2026 364).
+SR 955.3
+Art. 10 Daten des Asylbereichs
+(Art. 9 Abs. 2 BGIAA)
+Daten des Asylbereichs kann das SEM folgenden Behörden durch ein Abrufverfahren zugänglich machen:
+a.
+den kantonalen und kommunalen Ausländerbehörden, den kantonalen und kommunalen Polizeibehörden, Asyl- und Flüchtlingskoordinationsstellen und Arbeitsmarktbehörden: für ihre Aufgaben im Asylbereich sowie den kantonalen und kommunalen Polizeibehörden zur Personenidentifikation;
+b.
+folgenden Stellen von fedpol:
+1.
+dem Rechtsdienst: ausschliesslich zum Erlass von Verfügungen von Fernhaltemassnahmen zur Wahrung der inneren und äusseren Sicherheit der Schweiz nach dem BWIS,
+2.
+der für das RIPOL zuständigen Dienststelle: ausschliesslich zur Personenidentifikation im Zusammenhang mit der Kontrolle der RIPOL-Erfassungen nach der RIPOL-Verordnung vom 26. Oktober 2016,
+3.
+den Dienststellen, welche für den Interpol-Schriftverkehr zuständig sind, der Abteilung Einsatzzentrale und dem SIRENE-Büro: ausschliesslich zur Personenidentifikation im Zusammenhang mit Aufgaben im Bereich des interkantonalen und internationalen polizeilichen Nachrichtenaustausches, namentlich im Rahmen der Zusammenarbeit mit Europol,
+4.
+den zuständigen Dienststellen der Bundeskriminalpolizei: ausschliesslich:
+–
+zur Personenidentifikation im Zusammenhang mit der Amtshilfe, bei sicherheits- und gerichtspolizeilichen Ermittlungen und im Bereich des interkantonalen und internationalen polizeilichen Nachrichtenaustausches,
+–
+zur Prüfung der Eignung einer Person für ein Zeugenschutzprogramm und zur Durchführung von Gefährdungsanalysen,
+5.
+dem Dienst Ausweisschriften und Nachforschungen nach vermissten Personen: ausschliesslich für Nachforschungen im Zusammenhang mit dem Aufenthalt von Personen,
+6.
+der für die Führung des AFIS zuständigen Dienststelle: ausschliesslich zur Personenidentifikation nach Artikel 99 AsylG,
+7.
+dem zuständigen Dienst bei der Meldestelle Geldwäscherei: ausschliesslich zur Identifikation von Personen und zur Feststellung ihres Aufenthaltsstatus im Zusammenhang mit der gesetzlichen Aufgabe der Meldestelle im Kampf gegen Geldwäscherei, organisiertes Verbrechen und Terrorismusfinanzierung nach Artikel 23 des Geldwäschereigesetzes vom 10. Oktober 1997,
+8.
+der für die Erfüllung der Aufgaben nach dem VSG zuständigen Dienststelle: ausschliesslich zur Personenidentifikation bei der Bearbeitung von Gesuchen um Erwerbs- und Ausnahmebewilligungen, der Überprüfung dieser Bewilligungen und der Bearbeitung von Verdachtsmeldungen;
+c.
+folgenden Stellen im BJ:
+1.
+der Abteilung Internationale Rechtshilfe des Bundesamtes für Justiz: im Zusammenhang mit Verfahren der Internationalen Rechtshilfe nach dem Bundesgesetz vom 20. März 1981 über internationale Rechtshilfe in Strafsachen,
+2.
+dem Direktionsbereich Privatrecht im Zusammenhang mit Verfahren nach dem BG-KKE sowie im Zusammenhang mit internationalen Alimenteninkassoverfahren;
+d.
+dem Bundesverwaltungsgericht: für die Instruktion der Beschwerden nach dem AsylG;
+e.
+den Grenzposten der kantonalen Polizeibehörden und dem Grenzwachtkorps: zur Durchführung der Personenkontrolle und zur Erteilung von Ausnahmevisa;
+f.
+der Eidgenössischen Finanzkontrolle: zur Wahrung der Finanzaufsicht;
+g.
+der Zentralen Ausgleichsstelle: zur Abklärung von Leistungsgesuchen sowie zur Zuteilung und Überprüfung der AHV-Nummer;
+h.
+den kantonalen Steuerbehörden: für ihre Aufgaben bei der Erhebung der Quellensteuer;
+i.
+den Zivilstandsämtern, den kantonalen Aufsichtsbehörden im Zivilstandsdienst und dem Eidgenössischen Amt für das Zivilstandswesen zur Personenidentifikation im Zusammenhang mit Zivilstandsereignissen, für die Vorbereitung einer Eheschliessung oder Eintragung der Partnerschaft und zur Verhinderung der Umgehung des Ausländerrechts nach Artikel 97a Absatz 1 des Zivilgesetzbuches und Artikel 6 Absatz 2 des Partnerschaftsgesetzes vom 18. Juni 2004;
+j.
+den für die Register nach Artikel 2 Absatz 2 des Registerharmonisierungsgesetzes vom 23. Juni 2006 zuständigen Stellen: zur Harmonisierung der Register und zur Nachführung der AHV-Nummer;
+k.
+dem NDB: ausschliesslich zur Personenidentifikation für das frühzeitige Erkennen und Verhindern von Bedrohungen für die innere oder äussere Sicherheit nach Artikel 6 Absatz 1 Buchstabe a des NDG sowie zur Erfüllung seiner Aufgaben bei Überprüfungen im Zusammenhang mit der Gefährdung der inneren oder äusseren Sicherheit nach dem BüG, dem AIG und dem AsylG;
+l.
+der Eidgenössischen Steuerverwaltung für ihre Aufgaben:
+1.
+bei der Erhebung der Mehrwertsteuer auf den im Inland von steuerpflichtigen Personen gegen Entgelt erbrachten Leistungen (Inlandsteuer) und auf dem Bezug von Leistungen von Unternehmen mit Sitz im Ausland durch Empfängerinnen und Empfänger im Inland (Bezugsteuer) und bei der Durchführung der Verrechnungssteuer,
+2.
+bei der Durchführung von Strafverfahren sowie von Amts- und Rechtshilfeverfahren;
+m.
+dem BAZG zur Erfüllung ihrer Aufgaben:
+1.
+bei der Erhebung der Mehrwertsteuer auf der Einfuhr von Gegenständen (Einfuhrsteuer),
+2.
+im Bereich der Zollfahndung: zur Personenidentifikation;
+n.
+…
+o.
+den schweizerischen Auslandvertretungen und Missionen: zur Überprüfung, ob eine Gesuchstellerin oder ein Gesuchsteller ein Asylverfahren durchläuft oder durchlaufen hat;
+p.
+dem Staatssekretariat, der Politischen Direktion und der Konsularischen Direktion des EDA: zur Überprüfung, ob eine Gesuchstellerin oder ein Gesuchsteller ein Asylverfahren durchläuft oder durchlaufen hat;
+q.
+den kantonalen Justizvollzugsbehörden für die Fallführung sowie den Vollzug von Urteilen und Auflagen nach dem StGB;
+r.
+der Bundesanwaltschaft für die Adressennachforschung im Zusammenhang mit dem Urteilsvollzug;
+s.
+der Kontrollstelle des EFD: zur Erfüllung seiner Aufgaben nach den Artikeln 35–39 TJPG.
+Fassung gemäss Anhang Ziff. 9 der V vom 12. Dez. 2008, in Kraft seit 1. Jan. 2009 (AS 2008 6305).
+Fassung gemäss Ziff. I der V vom 10. Mai 2023, in Kraft seit 15. Juni 2023 (AS 2023 247).
+SR 361.0
+Fassung gemäss Ziff. I der V vom 19. Okt. 2022, in Kraft seit 22. Nov. 2022 (AS 2022 647).
+Fassung gemäss Anhang Ziff. 3 der V vom 7. Nov. 2012 über den ausserprozessualen Zeugenschutz, in Kraft seit 1. Jan. 2013 (AS 2012 6731).
+SR 142.31
+SR 955.0
+Eingefügt durch Anhang 2 Ziff. 1 der Vorläuferstoffverordnung vom 25. Mai 2022, in Kraft seit 1. Jan. 2023 (AS 2022 353).
+SR 941.42
+Fassung gemäss Ziff. I der V vom 16. Nov. 2011, in Kraft seit 1. Dez. 2011 (AS 2011 5197).
+Fassung gemäss Ziff. I der V vom 14. Mai 2025, in Kraft seit 15. Juni 2025 (AS 2025 344).
+SR 351.1
+Fassung gemäss Ziff. I der V vom 14. Mai 2025, in Kraft seit 15. Juni 2025 (AS 2025 344).
+SR 211.222.32
+Fassung gemäss Ziff. II 7 der V vom 8. Nov. 2006 über die Anpassung von Bundesratsverordnungen an die Totalrevision der Bundesrechtspflege, in Kraft seit 1. Jan. 2007 (AS 2006 4705).
+Fassung gemäss Anhang Ziff. I der V vom 4. Juni 2010, in Kraft seit 1. Jan. 2011 (AS 2010 3061).
+SR 210
+SR 211.231
+Eingefügt durch Anhang Ziff. 1 der Registerharmonisierungsverordnung vom 21. Nov. 2007, in Kraft seit 1. Jan. 2008 (AS 2007 6719).
+SR 431.02
+Eingefügt durch Anhang Ziff. 9 der V vom 12. Dez. 2008 (AS 2008 6305). Fassung gemäss Ziff. I der V vom 19. Febr. 2020, in Kraft seit 1. April 2020 (AS 2020 933).
+SR 121
+SR 141.0
+SR 142.20
+Eingefügt durch Ziff. I der V vom 16. Nov. 2011, in Kraft seit 1. Dez. 2011 (AS 2011 5197).
+Eingefügt durch Ziff. I der V vom 16. Nov. 2011 (AS 2011 5197). Fassung gemäss Ziff. I der V vom 21. Nov. 2018, in Kraft seit 1. Jan. 2019 (AS 2018 4569).
+Eingefügt durch Ziff. I der V vom 16. Nov. 2011 (AS 2011 5197). Aufgehoben durch Ziff. I der V vom 21. Nov. 2018, mit Wirkung seit 1. Jan. 2019 (AS 2018 4569).
+Eingefügt durch Ziff. I der V vom 2. Sept. 2015, in Kraft seit 1. Okt. 2015 (AS 2015 3047).
+Eingefügt durch Ziff. I der V vom 2. Sept. 2015, in Kraft seit 1. Okt. 2015 (AS 2015 3047).
+Eingefügt durch Ziff. I der V vom 10. Mai 2023, in Kraft seit 15. Juni 2023 (AS 2023 247).
+SR 311.0
+Eingefügt durch Ziff. I der V vom 10. Mai 2023, in Kraft seit 15. Juni 2023 (AS 2023 247).
+Eingefügt durch Anhang Ziff. 1 der V vom 12. Juni 2026 über die Transparenz juristischer Personen und die Identifikation der wirtschaftlich berechtigten Personen, in Kraft seit 1. Okt. 2026 (AS 2026 364).
+SR 955.3
+Art. 11 Gewährung des Zugriffs an beauftragte Dritte
+(Art. 11 BGIAA)
+1 Das SEM prüft, ob die beauftragten Dritten nach Artikel 11 BGIAA die anwendbaren Datenschutz- und die Informatiksicherheitsbestimmungen einhalten.
+2 Die Prüfung erfolgt beim Verfahren zur Erteilung der Zugriffsrechte und mittels der Protokollierung der Abrufe. Die erzeugten Protokolldaten können stichprobenweise oder bei Verdachtsfällen ausgewertet werden. Das SEM kann von den beauftragten Dritten Auskünfte über ergriffene Sicherheitsmassnahmen verlangen.
+3 Das SEM legt namentlich fest:
+a.
+welche Daten der beauftragte Dritte für die Erfüllung der gesetzlichen Aufgaben benötigt;
+b.
+wie die Personendaten verwendet werden dürfen;
+c.
+wer die Personendaten bearbeiten darf;
+d.
+wie die Personendaten zu sichern sind.
+4 Es kann das Zugriffsrecht einschränken oder widerrufen, wenn der beauftragte Dritte die Datenschutz- und Informatiksicherheitsbestimmungen nicht einhält.
+Art. 12 Gewährung des Zugriffs
+(Art. 10 BGIAA)
+Das EJPD regelt das Verfahren zur Erteilung der Zugriffsrechte auf ZEMIS.
+5. Abschnitt: Bekanntgabe von Daten durch das SEM
+Art. 13 An Behörden oder Organisationen zur Erfüllung
+ihrer gesetzlichen Aufgaben
+(Art. 13 BGIAA)
+1 Das SEM kann in ZEMIS bearbeitete Personendaten den folgenden Behörden oder Organisationen zur Erfüllung ihrer gesetzlichen Aufgaben einmalig oder periodisch in Form von elektronischen Datensätzen oder Listen bekannt geben:
+a.
+den Behörden nach Artikel 9 und 10;
+b.
+den beauftragten Dritten nach Artikel 11 BGIAA;
+c.
+der Schweizerischen Flüchtlingshilfe zur Koordination der den zugelassenen Hilfswerken nach dem AsylG übertragenen Aufgaben;
+d.
+der Schweizerischen Ausgleichskasse und den kantonalen Ausgleichskassen für ihre Aufgaben im Bereich der Finanzierung und allfälligen Rückvergütung der AHV-Mindestbeiträge für nicht erwerbstätige Asylsuchende.
+2 Den Behörden und Stellen nach Absatz 1 Buchstaben c und d dürfen nur die Personendaten in Anhang 2 bekannt gegeben werden.
+3 Die Datenlieferungen im Rahmen der Bundesstatistikverordnung vom 30. April 2025 und der Registerharmonisierungsverordnung vom 21. November 2007 erfolgen über Sedex oder mittels elektronischer Datenträger.
+4 Die Daten nach Artikel 5 Absatz 2 Buchstabe a werden dem UID-Register des Bundesamtes für Statistik laufend in Form von elektronischen Datensätzen bekannt gegeben.
+SR 142.31
+SR 431.011
+SR 431.021
+Eingefügt durch Anhang Ziff. 1 der Registerharmonisierungsverordnung vom 21. Nov. 2007 (AS 2007 6719). Fassung gemäss Anhang 3 Ziff. 1 der Bundesstatistikverordnung vom 30. April 2025, in Kraft seit 1. Juni 2025 (AS 2025 318).
+Eingefügt durch Anhang Ziff. 1 der V vom 26. Jan. 2011 über die Unternehmens-Identifikationsnummer, in Kraft seit 1. April 2011 (AS 2011 533).
+Art. 14 Für planerische, wissenschaftliche und statistische Zwecke
+1 Das SEM kann anonymisierte Personendaten bekannt geben:
+a.
+schweizerischen Behörden sowie deren Planungsbeauftragten für planerische und statistische Zwecke;
+b.
+schweizerischen Hochschulen und deren Instituten für wissenschaftliche Zwecke;
+c.
+privaten Organisationen für planerische und wissenschaftliche Zwecke.
+2 …
+Aufgehoben durch Anhang 2 Ziff. II 8 der Datenschutzverordnung vom 31. Aug. 2022, mit Wirkung seit 1. Sept. 2023 (AS 2022 568).
+Art. 15 An ausländische Behörden und Private
+(Art. 14 und 15 BGIAA)
+1 Das SEM leitet Einzelfall-Anfragen ausländischer Behörden sowie privater Personen und Organisationen an die betroffene Person zur allfälligen Beantwortung weiter. Es macht sie darauf aufmerksam, dass sie nicht verpflichtet ist, die Anfrage zu beantworten und dass das SEM die gewünschte Auskunft von sich aus nicht erteilen wird.
+2 Es kann der ausländischen Behörde, der privaten Person oder Organisation ausschliesslich die Adresse und bei Personen aus dem Ausländerbereich zusätzlich die Art der Anwesenheitsbewilligung der betroffenen Person bekannt geben, wenn die anfragende Behörde, Person oder Organisation glaubhaft macht, dass die betroffene Person die Auskunft verweigert hat, um die Durchsetzung von Rechtsansprüchen oder die Wahrnehmung anderer schutzwürdiger Interessen zu verwehren. Das SEM gibt der betroffenen Person vorher Gelegenheit zur Stellungnahme, sofern dies möglich und zumutbar ist.
+Art. 15a
+Eingefügt durch Anhang Ziff. 2 der V vom 17. Dez. 2010 (AS 2011 99). Aufgehoben durch Ziff. I der V vom 19. Febr. 2020, mit Wirkung seit 1. April 2020 (AS 2020 933).
+6. Abschnitt: Datenschutz und Informatiksicherheit
+Art. 16 Datenschutz- und Informatiksicherheitsberatung
+(Art. 5 Abs. 2 BGIAA)
+1 Das SEM bezeichnet eine Datenschutz- und Informatiksicherheitsberatung. Diese überprüft die Datenrichtigkeit und die Datensicherheit in ZEMIS regelmässig.
+2 Es legt in einem Bearbeitungsreglement insbesondere die organisatorischen und technischen Massnahmen gegen unbefugtes Bearbeiten der Daten fest und regelt die automatische Protokollierung der Datenbearbeitung und der Dateneinsicht.
+Art. 17 Daten- und Informationssicherheit
+(Art. 5 Abs. 1 BGIAA)
+1 Die Datensicherheit richtet sich nach:
+a.
+der Datenschutzverordnung vom 31. August 2022 (DSV);
+b.
+der Informationssicherheitsverordnung vom 8. November 2023.
+2 Das SEM, die Behörden nach den Artikeln 9 und 10, das Bundesamt für Statistik, die Schweizerische Flüchtlingshilfe, die mit der Führung der Sicherheitskonti nach dem AsylG beauftragten Dritten, die Schweizerische Ausgleichskasse und die kantonalen Ausgleichskassen treffen in ihrem Bereich die angemessenen organisatorischen und technischen Massnahmen zur Sicherung der Personendaten.
+Fassung gemäss Anhang 2 Ziff. II 6 der Informationssicherheitsverordnung vom 8. Nov. 2023, in Kraft seit 1. Jan. 2024 (AS 2023 735).
+Fassung gemäss Anhang 2 Ziff. II 8 der Datenschutzverordnung vom 31. Aug. 2022, in Kraft seit 1. Sept. 2023 (AS 2022 568).
+SR 235.11
+Fassung gemäss Anhang 2 Ziff. II 6 der Informationssicherheitsverordnung vom 8. Nov. 2023, in Kraft seit 1. Jan. 2024 (AS 2023 735).
+SR 128.1
+Fassung gemäss Anhang Ziff. 5 der V vom 24. Febr. 2021, in Kraft seit 1. April 2021 (AS 2021 132).
+SR 142.31
+Art. 18 Archivierung und Vernichtung, Einschränkung des Zugriffs
+(Art. 17 Bst. c und d BGIAA)
+1 Daten, die nicht mehr benötigt werden, werden dem Bundesarchiv zur Archivierung angeboten. Die vom Bundesarchiv als nicht archivwürdig bezeichneten Daten werden vernichtet.
+2 Die Daten des Asylbereichs werden in jedem Fall archiviert.
+3 Daten einer in die Schweiz eingebürgerten Person sind zwei Jahre seit deren Einbürgerung ausschliesslich den zuständigen Sachbearbeiterinnen und Sachbearbeitern des SEM (Bereich Bürgerrecht) zugänglich. Alle Daten des Bereichs Bürgerrecht sind 50 Jahre nach der Einbürgerung oder der letzten Gesuchsstellung um Einbürgerung dem Bundesarchiv zur Archivierung anzubieten.
+4 Das SEM vernichtet die nicht archivwürdigen Personendaten in ZEMIS nach folgenden Regeln:
+a.
+Bei einer Adoption werden die Namen der Pflegeeltern durch die Namen des Kindes ersetzt, sobald diese bekannt sind. Spätestens einen Monat nach Erhalt der Meldung über die Adoption werden alle Daten über das Pflegekind und die Pflegeeltern vernichtet.
+b.
+Sofern für ein Pflege- oder Adoptivkind keine Anwesenheitsregelung erfolgt ist, werden die Daten des Einreiseentscheids für Pflege- und Adoptivkinder nach 26 Monaten vernichtet.
+c.
+Im Todesfall werden die Daten fünf Jahre nach dem Tod vernichtet.
+d.
+Im Falle der Beendigung der Anwesenheit in der Schweiz werden die Daten 15 Jahre nach der Beendigung vernichtet.
+e.
+Die Engagementsdaten nach den Artikeln 19 Absatz 4 Buchstabe b und 34 der Verordnung vom 24. Oktober 2007 über Zulassung, Aufenthalt und Erwerbstätigkeit werden nach zehn Jahren vernichtet.
+f.
+Verpflichtungserklärungen werden nach fünf Jahren vernichtet;
+g.
+Die biometrischen Daten zum Ausländerausweis werden bei jeder neuen Erfassung oder spätestens fünf Jahre nach der Erfassung vernichtet.
+h.
+Die Daten zu schweizerischen Reisedokumenten für Ausländerinnen und Ausländer werden 20 Jahre nach ihrer ersten Speicherung vernichtet.
+5 Bestand in einem Fall nach Absatz 4 Buchstabe d eine Entfernungs- oder Fernhaltemassnahme, so werden die Personendaten frühestens fünf Jahre nach Ablauf dieser Massnahme vernichtet.
+Ausdruck gemäss Ziff. I der V vom 19. Febr. 2020, in Kraft seit 1. April 2020 (AS 2020 933). Diese Änd. wurde im ganzen Erlass berücksichtigt.
+Fassung gemäss Ziff. I der V vom 24. Okt. 2007, in Kraft seit 1. Jan. 2008 (AS 2007 5615).
+SR 142.201
+Fassung gemäss Ziff. I der V vom 24. Okt. 2007, in Kraft seit 1. Jan. 2008 (AS 2007 5615).
+Eingefügt durch Anhang Ziff. 2 der V vom 17. Dez. 2010, in Kraft seit 24. Jan. 2011 (AS 2011 99).
+Eingefügt durch Anhang Ziff. 1 der V vom 15. Sept. 2023, in Kraft seit 15. Okt. 2023 (AS 2023 552).
+Art. 19 Rechte der Betroffenen
+(Art. 6 BGIAA)
+1 Die Rechte der Betroffenen, insbesondere das Auskunfts-, das Berichtigungs- und das Vernichtungsrecht sowie das Recht auf Information über die Beschaffung von Personendaten, richten sich nach den Bestimmungen des Datenschutzgesetzes vom 25. September 2020 (DSG) und des Verwaltungsverfahrensgesetzes vom 20. Dezember 1968.
+2 Will eine betroffene Person Rechte geltend machen, so muss sie in der Form nach Artikel 16 DSV ein Gesuch beim SEM einreichen.
+3 Unrichtige Daten sind von Amtes wegen zu berichtigen.
+SR 235.1
+SR 172.021
+Fassung gemäss Ziff. I der V vom 20. Mai 2026, in Kraft seit 12. Juni 2026 (AS 2026 268).
+SR 235.11
+Fassung gemäss Anhang 2 Ziff. II 8 der Datenschutzverordnung vom 31. Aug. 2022, in Kraft seit 1. Sept. 2023 (AS 2022 568).
+7. Abschnitt: Statistiken und Kontrollen
+Art. 20 Statistik
+1 Das SEM erstellt, soweit es zur Erfüllung seiner gesetzlichen Aufgaben erforderlich ist, in Zusammenarbeit mit dem Bundesamt für Statistik periodisch Statistiken aufgrund der in ZEMIS erfassten Daten. Diese Statistiken dürfen keine Rückschlüsse auf die betroffenen Personen zulassen.
+2 Es gibt den Behörden des Bundes, der Kantone und der Gemeinden die Statistiken ab, die sie für die Erfüllung ihrer Aufgaben nach dem AIG, AsylG, BüG, Freizügigkeitsabkommen und EFTA-Übereinkommen sowie nach den Schengen-Assoziierungsabkommen und den Dublin-Assoziierungsabkommen benötigen.
+2bis Es erstellt nach Anhang XII Teil A der Verordnung (EU) 2016/399 Statistiken zum Wegweisungsverfahren nach Artikel 64cbis AIG und gibt diese der Europäischen Kommission jährlich bekannt.
+3 Es veröffentlicht die wichtigsten Statistiken.
+4 Es kann Behörden sowie privaten Personen und Organisationen auf Anfrage für ihre Bedürfnisse ergänzende Statistiken zur Verfügung stellen. Es kann für sie besondere statistische Auswertungen vornehmen.
+5 Es wirkt bei der jährlichen eidgenössischen Erhebung für die Statistik der Bevölkerung und der Haushalte, bei der Migrationsstatistik und bei der Erwerbstätigenstatistik mit. Es liefert dem Bundesamt für Statistik zur Erfüllung seiner Aufgaben nach der Bundesstatistikverordnung vom 30. April 2025:
+a.
+regelmässig Einzeldaten über Bestand und Bewegungen der in ZEMIS aufgeführten Ausländerinnen und Ausländer;
+b.
+die für die Erstellung der Sozialhilfestatistik notwendigen Daten über Asylsuchende, vorläufig Aufgenommene und Flüchtlinge.
+6 Es kann den auf ZEMIS zugriffsberechtigten Stellen bewilligen, aufgrund ihrer eigenen Daten selbst Statistiken zu erstellen.
+SR 142.20
+SR 142.31
+SR 141.0
+SR 0.142.112.681
+SR 0.632.31
+Diese Abk. sind in Anhang 4 Ziff. 1 aufgeführt.
+Diese Abk. sind in Anhang 4 Ziff. 2 aufgeführt.
+Fassung gemäss Ziff. I 1 der V vom 22. Okt. 2008 (Schengen und Dublin), in Kraft seit 12. Dez. 2008 (AS 2008 5421).
+Verordnung (EU) 2016/399 des Europäischen Parlaments und des Rates vom 9. März 2016 über einen Gemeinschaftskodex für das Überschreiten der Grenzen durch Personen (Schengener Grenzkodex), ABl. L 77 vom 23.3.2016, S. 1; zuletzt geändert durch Verordnung (EU) 2024/1717, ABl. L, 2024/1717, 20.6.2024.
+Eingefügt durch Ziff. I der V vom 6. Mai 2026, in Kraft seit 12. Juni 2026 (AS 2026 242).
+SR 431.011
+Fassung gemäss Anhang 3 Ziff. 1 der Bundesstatistikverordnung vom 30. April 2025, in Kraft seit 1. Juni 2025 (AS 2025 318).
+Fassung gemäss Ziff. I der V vom 16. Nov. 2011, in Kraft seit 1. Dez. 2011 (AS 2011 5197).
+Art. 21 Kontrollen
+1 Das SEM führt mit Hilfe von ZEMIS periodisch Kontrollen über die erteilten Bewilligungen und über den Bestand der Ausländerinnen und Ausländer durch.
+2 Die Ausländerbehörden der Kantone und die Amtsstellen, die für die Gemeinde die Kontrolle der Ausländerinnen und Ausländer führen, wirken bei den Kontrollen mit. Das SEM liefert ihnen zum Zweck der Kontrolle Bestandeslisten über die Ausländerinnen und Ausländer sowie Listen mit den Verfalldaten ihrer Bewilligungen.
+8. Abschnitt: Gebühren
+Art. 22
+1 Private Personen und Organisationen schulden dem SEM für Anfragen nach Artikel 15 Absatz 2 eine Gebühr von 40 Franken.
+2 Eine kostendeckende Gebühr schuldet dem SEM:
+a.
+die private Person oder Organisation, wenn das SEM ihr ergänzende Statistiken zur Verfügung stellt oder für sie besondere statistische Auswertungen vornimmt (Art. 20 Abs. 4);
+b.
+die Behörde, private Person oder Organisation, wenn das SEM für sie besondere statistische Auswertungen nach den Artikeln 14 und 20 Absatz 4 vornimmt und dies mit erheblichen Kosten oder besonders grossem Arbeitsaufwand verbunden ist.
+3 Hat eine Person die unrichtige Erfassung ihrer Daten pflichtwidrig verursacht, so können ihr die Kosten für die Berichtigung in Rechnung gestellt werden.
+4 Im Übrigen sind die allgemeinen Bestimmungen der Gebührenverordnung AIG vom 24. Oktober 2007 anwendbar.
+Fassung gemäss Ziff. I der V vom 16. Nov. 2011, in Kraft seit 1. Dez. 2011 (AS 2011 5197).
+SR 142.209
+Fassung gemäss Ziff. I der V vom 24. Okt. 2007, in Kraft seit 1. Jan. 2008 (AS 2007 5615).
+9. Abschnitt: Schlussbestimmungen
+Art. 23 Aufhebung bisherigen Rechts
+Die Verordnung vom 23. November 1994 über das Zentrale Ausländerregister wird aufgehoben.
+[AS 1994 2859; 1996 194; 1999 1240; 2001 3184; 2002 1741 Art. 35 Ziff. 3; 2003 1380 Art. 18 Ziff. 1; 2004 1569 Ziff. II 3, 4813 Anhang Ziff. 4; 2005 1321]
+Art. 24 Änderung bisherigen Rechts
+Die Änderung bisherigen Rechts wird im Anhang 3 geregelt.
+Art. 25
+Aufgehoben durch Ziff. I der V vom 2. Febr. 2022, mit Wirkung seit 1. März 2022 (AS 2022 73).
+Art. 25a Übergangsbestimmungen zur Änderung vom 21. November 2007
+1 Die Änderung vom 21. November 2007 tritt gleichzeitig mit den Artikeln 6 Buchstabe a und 13 Absatz 1 sowie den Ziffern 1–3 des Anhangs des Registerharmonisierungsgesetzes vom 23. Juni 2006 in Kraft.
+2 Für die im Zeitpunkt der erstmaligen und umfassenden Zuweisung und Bekanntgabe der AHV-Nummer bereits in ZEMIS verzeichneten Personen wird die AHV-Nummer erfasst, wenn:
+a.
+es sich um eine Person des Ausländerbereichs handelt, welche über eine gültige Aufenthaltsbewilligung von mehr als vier Monaten verfügt;
+b.
+es sich um eine Person des Asylbereichs handelt, deren Einreisegeschäft in der Schweiz noch nicht abgeschlossen ist.
+3 Das Verfahren zur erstmaligen und umfassenden Bekanntgabe der AHV-Nummer an ZEMIS richtet sich nach den Artikeln 133bis und 134quater der Verordnung vom 31. Oktober 1947 über die Alters- und Hinterlassenenversicherung.
+Eingefügt durch Anhang Ziff. 1 der Registerharmonisierungsverordnung vom 21. Nov. 2007, in Kraft seit 1. Jan. 2008 (AS 2007 6719).
+SR 431.02
+SR 831.101
+Art. 26 Inkrafttreten
+1 Diese Verordnung tritt unter Vorbehalt von Absatz 2 am 29. Mai 2006 in Kraft.
+2 Folgende Datenfelder von Anhang 1 treten am 1. Januar 2007 in Kraft:
+–
+«Staatsangehörigkeit eingetragene/r Partner/in» (unter Ziff. IV., 2., a.);
+–
+«Eingetragene/r Partner/in Schweizer/in» (unter Ziff. IV., 2., a.);
+–
+«Ausländerkategorie eingetragene/r Partner/in» (unter Ziff. IV., 2., d.);
+–
+«Geburtsdatum eingetragene/r Partner/in» (unter Ziff. IV., 2., i.);
+–
+«Eingetragene/r Partner/in Schweizer/in» (unter Ziff. IV., 2., i.).
+Anhang 1
+Fassung gemäss Ziff. II der V vom 12. Juni 2026 (AS 2026 341). Bereinigt gemäss Anhang Ziff. 1 der V vom 12. Juni 2026 über die Transparenz juristischer Personen und die Identifikation der wirtschaftlich berechtigten Personen, in Kraft seit 1. Okt. 2026 (AS 2026 364).
+(Art. 4 Abs. 3)
+Zugriffsstufen und Berechtigungen zur Bearbeitung der Daten
+Zeichenerklärung
+Zugriffsstufen
+A
+Online-Abfrage
+B
+Bearbeiten
+W
+Weitergabe über eine Informatikplattform im Einzelfall
+Leer
+Kein Zugriff
+Organisationseinheiten
+AV
+Auslandvertretungen und Missionen
+BA
+Bundesanwaltschaft: Dienst Urteilsvollzug
+BAZG
+Bundesamt für Zoll und Grenzsicherheit
+BJ
+Bundesamt für Justiz
+–
+I Direktionsbereich Internationale Rechtshilfe
+–
+II Direktionsbereich Privatrecht
+BSV
+Bundesamt für Sozialversicherungen
+BüG
+Kantonale Bürgerrechtsbehörden
+BVGer
+Bundesverwaltungsgericht
+–
+I sechste Abteilung
+–
+II vierte und fünfte Abteilung
+EDA
+Eidgenössisches Departement für auswärtige Angelegenheiten: Staatssekretariat, Politische Direktion und Konsularische Direktion
+EFK
+Eidgenössische Finanzkontrolle
+ESTV
+Eidgenössische Steuerverwaltung
+EWK
+Kantonale und kommunale Einwohnerkontrollbehörden
+fedpol
+Bundesamt für Polizei
+–
+I Abteilung Recht und Massnahmen
+–
+II Bundeskriminalpolizei (BKP)
+–
+III Nationales Zentralbüro INTERPOL, Abteilung Einsatzzentrale, SIRENE-Büro, Abteilung Ausweise und Zentralstellen, Abteilung biometrische Identifikation, Meldestelle für Geldwäscherei (MROS)
+–
+IV Bereich Fahndungen RIPOL
+GREPO
+Grenzkontrollorgane des Bundes und der Kantone
+KJV
+Kantonale Justizvollzugsbehörden
+KAA
+Kantonale und kommunale Arbeitsämter
+KAPO
+Kantonale und kommunale Polizeibehörden
+KOM
+Tripartite Kommissionen nach Artikel 7 Absatz 1 Buchstabe b des Entsendegesetzes vom 8. Oktober 1999
+KS EFD
+Kontrollstelle des EFD
+KSt
+Kantonale Steuerbehörden
+MIGRA
+Kantonale, regionale und kommunale Ausländerbehörden, Ausländerbehörden des Fürstentums Liechtenstein
+NDB
+Eidgenössisches Departement für Verteidigung, Bevölkerungsschutz und Sport, Nachrichtendienst des Bundes
+SEM
+Staatssekretariat für Migration
+–
+I Planung und Ressourcen / Informatik Leistungserbringer
+–
+II Sachbearbeiter/-in Ausländerbereich, ohne Bürgerrechtsbereich
+–
+III Sachbearbeiter/-in Dokumentenmanagement
+–
+IV Sachbearbeiter/-in Asylbereich
+–
+V Sachbearbeiter/-in Bürgerrechtsbereich
+SOZ
+Asyl- und Flüchtlingskoordinationsstellen
+LV
+Vollzugsbehörden von Landesverweisungen
+ZAS
+Zentrale Ausgleichsstelle
+ZstB
+Kantonale und kommunale Zivilstandsbehörden, Eidgenössisches Amt für das Zivilstandswesen
+SR 823.20
+Datenkatalog ZEMIS
+ZEMIS-Datenfelder
+SEM
+Partner des SEM
+MIGRA
+KAA
+GREPO
+KAPO
+ZstB
+fedpol
+NDB
+BVGer
+ZAS
+AV
+EDA
+BJ
+KOM
+BüG
+EFK
+SOZ
+KSt
+EWK
+ESTV
+BAZG
+BSV
+LV
+KJV
+BA
+KS EFD
+I
+II
+III
+IV
+V
+I
+II
+III
+IV
+I
+II
+I
+II
+I. Stammdaten
+1. Personalien
+Aliasnamen
+B
+B
+B
+B
+B
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+W
+A
+A
+A
+A
+A
+A
+A
+Namen
+B
+B
+B
+B
+B
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+W
+A
+A
+A
+A
+A
+A
+A
+Vornamen
+B
+B
+B
+B
+B
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+W
+A
+A
+A
+A
+A
+A
+A
+Geburtsdatum
+B
+B
+B
+B
+B
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+W
+A
+A
+A
+A
+A
+A
+A
+Staatsangehörigkeit
+B
+B
+B
+B
+B
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+W
+A
+A
+A
+A
+A
+A
+A
+Geschlecht
+B
+B
+B
+B
+B
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+W
+A
+A
+A
+A
+A
+A
+A
+Zivilstand
+B
+B
+B
+B
+B
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+W
+A
+A
+A
+A
+A
+Telefonnummer
+B
+B
+B
+B
+B
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+W
+A
+A
+A
+A
+A
+A
+E-Mail
+B
+B
+B
+B
+B
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+W
+A
+A
+A
+A
+A
+A
+2. Personennummer
+Personen-ID ZEMIS (Nr. des elektronischen Dossiers)
+B
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+W
+A
+A
+A
+A
+Pers.-Nr. Ausländerbereich
+B
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+W
+A
+A
+A
+A
+Pers.-Nr. Asylbereich
+B
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+W
+A
+A
+A
+AHV-Versichertennummer
+B
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+W
+A
+A
+A
+A
+A
+II. Elektronisches Dossier
+1. Dossierverwaltung
+Dossierinhaber/-in
+B
+B
+B
+B
+B
+B
+B
+A
+B
+B
+In Bearbeitung bei Sachbearbeiter/-in
+B
+B
+B
+B
+B
+B
+B
+A
+B
+B
+In Bearbeitung seit dem / bis am
+B
+B
+B
+B
+B
+B
+B
+A
+B
+B
+Dossierstatus
+B
+B
+B
+B
+B
+B
+B
+A
+B
+B
+Datum Dossiereröffnung
+B
+B
+B
+B
+B
+B
+B
+A
+B
+B
+Annullierungsdatum
+B
+B
+B
+B
+B
+B
+B
+A
+B
+B
+Archivierungsklasse
+B
+B
+B
+B
+B
+B
+B
+B
+B
+2. Dokumentinformationen
+Kategorie (AIG, AsylG, BüG)
+B
+B
+B
+B
+B
+B
+B
+A
+B
+B
+B
+Bezeichnung des Dokuments
+B
+B
+B
+B
+B
+B
+B
+A
+A
+A
+A
+B
+B
+B
+A
+Datum des Dokuments
+B
+B
+B
+B
+B
+B
+B
+A
+A
+A
+A
+B
+B
+B
+A
+Zuständige/-r Sachbearbeiter/-in
+B
+B
+B
+B
+B
+B
+B
+A
+A
+A
+A
+B
+B
+A
+Herkunft (Datum / Art)
+B
+B
+B
+B
+B
+B
+B
+A
+B
+B
+B
+Annullierungsdatum
+B
+B
+B
+B
+B
+B
+B
+A
+B
+B
+III. Elektronische ausländerrechtliche Bewilligung (eARB)
+ID des Geschäfts
+B
+B
+B
+B
+B
+B
+B
+B
+B
+Geschäftsart
+B
+B
+B
+B
+B
+B
+B
+B
+B
+Fallkategorie
+B
+B
+B
+B
+B
+B
+B
+B
+B
+Bearbeitungsstatus
+B
+B
+B
+B
+B
+B
+B
+B
+B
+Mitteilungen
+B
+B
+B
+B
+B
+B
+B
+B
+B
+Benutzer/-in eARB
+B
+B
+B
+B
+B
+B
+B
+B
+B
+Datum Gesuch
+B
+B
+B
+B
+B
+B
+B
+B
+B
+Datum Vorentscheid
+B
+B
+B
+B
+B
+B
+B
+B
+B
+IV. Elektronische asylrechtliche Bewilligung (eAsyl)
+ID des Geschäfts
+B
+B
+B
+B
+B
+B
+B
+Geschäftsart
+B
+B
+B
+B
+B
+B
+B
+Fallkategorie
+B
+B
+B
+B
+B
+B
+B
+Bearbeitungsstatus
+B
+B
+B
+B
+B
+B
+B
+Mitteilungen
+B
+B
+B
+B
+B
+B
+B
+Benutzer/-in eAsyl
+B
+B
+B
+B
+B
+B
+B
+Datum Gesuch
+B
+B
+B
+B
+B
+B
+B
+Datum Vorentscheid
+B
+B
+B
+B
+B
+B
+B
+V. Ausstellung von schweizerischen Reisedokumenten und Bewilligungen zur Wiedereinreise an Ausländerinnen und Ausländer (eISR)
+Reisedokumentart
+B
+B
+A
+A
+B
+A
+A
+A
+A
+Grösse
+B
+B
+A
+A
+B
+A
+A
+A
+A
+Ausstellungsdatum
+B
+B
+A
+A
+B
+A
+A
+A
+A
+Gültigkeitsdauer
+B
+B
+A
+A
+B
+A
+A
+A
+A
+Ländercode
+B
+B
+A
+A
+B
+A
+A
+A
+A
+Reisedokumentnummer
+B
+A
+A
+A
+A
+A
+A
+A
+A
+Nationale ausstellende Behörde
+B
+B
+A
+A
+B
+A
+A
+A
+A
+Gesetzliche Vertretung von minderjährigen oder entmündigten ausländischen Personen
+B
+B
+A
+A
+B
+A
+A
+A
+A
+A
+Von der antragstellenden Person verlangte Eintragungen
+B
+B
+A
+A
+B
+A
+A
+A
+A
+Reisedauer
+B
+B
+A
+A
+B
+A
+A
+A
+A
+Aufenthaltsrechtlicher
+Status
+B
+B
+A
+A
+B
+A
+A
+A
+A
+Reisegrund
+B
+B
+A
+A
+B
+A
+A
+A
+A
+Reiseziel
+B
+B
+A
+A
+B
+A
+A
+A
+A
+Angaben zum Verlust eines Reisedokuments
+B
+B
+A
+A
+B
+A
+A
+A
+A
+Angaben zu einer Ausschreibung oder zur Revozierung einer Ausschreibung eines Reisedokuments im RIPOL
+B
+B
+A
+A
+B
+A
+A
+A
+A
+Entzug
+B
+B
+A
+A
+B
+A
+A
+A
+A
+Gesuchseingang
+B
+B
+A
+A
+B
+A
+A
+A
+A
+Gesuchsentscheid
+B
+B
+A
+A
+B
+A
+A
+A
+A
+Weitere Angaben zum Stand des Gesuchs
+B
+B
+A
+A
+B
+A
+A
+A
+A
+Weitere Angaben zum Status eines Reisedokuments
+B
+B
+A
+A
+B
+A
+A
+A
+A
+Unterschriften der gesetzlichen Vertretung von minderjährigen oder entmündigten ausländischen Personen
+B
+B
+A
+A
+B
+A
+A
+A
+A
+VI. Biometrische Daten und Ausweisdaten (Biometrie und Ausweise)
+Personalien und
+Personenidentifikatoren
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Gesichtsbild
+B
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+Fingerabdrücke
+B
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+Unterschrift
+B
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+Erfassungszentrum
+B
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+Datum Gültigkeit Biometrie
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Ausweisnummer
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+W
+A
+A
+A
+Status
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Angaben zur Ausweisaus-stellung
+A
+A
+A
+A
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+W
+A
+A
+A
+Art des Ausweises
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+W
+A
+A
+A
+A
+A
+Mitteilung aus dem Erfassungszentrum Biometrie
+A
+A
+A
+B
+A
+A
+A
+A
+A
+A
+Datengruppe 1
+Maschinenlesbare Zone
+A
+A
+Datengruppe 2 Gesichtsbild
+A
+Datengruppe 3
+Fingerabdrücke
+A
+VII. Papierdossier
+1. Dossierstandort
+Standort
+B
+B
+B
+B
+B
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+2. Dossierinformation
+Dossierkategorie
+B
+A
+B
+B
+B
+A
+A
+A
+A
+A
+Dossiernummer
+B
+A
+B
+B
+B
+A
+A
+A
+A
+A
+Bestellgrund
+B
+B
+B
+B
+B
+3. Dossierinhalt
+Bezeichnung des Dokuments
+B
+B
+B
+B
+B
+A
+A
+A
+A
+Herkunft (Sachbearbeiter/‑in, Datum)
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Eingangsdatum
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+Ausgangsdatum (z. B. heimatliche Urkunde)
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+VIII. Übrige ZEMIS-Datenfelder
+1. Referenznummern
+Referenznr.
+B
+B
+B
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Referenznr. Kanton
+B
+B
+B
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Referenznr. BüG
+B
+B
+B
+A
+B
+A
+A
+A
+A
+Gemeinde
+B
+B
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Dossier (Standort, Datum, Zeit und Gültigkeitsdauer)
+B
+B
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Token (Code)
+A
+A
+A
+B
+A
+A
+A
+A
+A
+A
+2. Ausländerbereich
+a. Personalien
+Ersterfassungsdatum
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Personenstatus (Code)
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+W
+A
+A
+A
+A
+Ausländische Sozialversicherungsnummer
+B
+A
+A
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Herkunftsland
+B
+B
+B
+A
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+W
+A
+A
+A
+A
+Herkunftsort
+B
+B
+B
+A
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+W
+A
+A
+A
+A
+Aufenthaltsstatus im Entsendestaat
+B
+A
+A
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+Staatsangehörigkeit Ehepartner/-in
+B
+B
+B
+A
+A
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Staatsangehörigkeit eingetragene/-r Partner/-in
+B
+B
+B
+A
+A
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Geburtsort
+B
+B
+B
+B
+B
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+W
+A
+A
+A
+B
+A
+A
+Geburt in der Schweiz (ja/nein)
+B
+B
+B
+A
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+W
+A
+A
+A
+A
+A
+A
+Sterbedatum
+B
+B
+A
+A
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Ehepartner/-in ist Schweizer/-in (ja/nein)
+B
+B
+B
+A
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+W
+A
+A
+A
+A
+A
+A
+Eingetragene/-r Partner/-in ist Schweizer/-in (ja/nein)
+B
+B
+B
+A
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+W
+A
+A
+A
+A
+A
+A
+Ausländerausweis der Eltern
+B
+B
+B
+A
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Elternteil ist Schweizer/-in (ja/nein)
+B
+B
+B
+A
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Namen, Vornamen der Eltern
+B
+B
+B
+B
+A
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+W
+A
+B
+A
+A
+Namen, Vornamen, Geburtsdatum der Kinder
+B
+A
+A
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+W
+A
+A
+Familie oder Gruppe (Code)
+B
+B
+B
+A
+A
+B
+A
+A
+A
+A
+A
+A
+W
+Familien- oder Gruppennummer
+B
+B
+B
+A
+A
+B
+A
+A
+A
+A
+A
+A
+Prozesskontrollnummer (PCN)
+B
+B
+A
+A
+A
+B
+A
+B
+A
+A
+A
+A
+A
+B
+A
+Ort, Datum und Uhrzeit der biometrischen Abnahme
+B
+B
+A
+A
+A
+B
+A
+B
+A
+A
+A
+A
+A
+A
+A
+b. Adressen
+Auslandadresse
+B
+B
+B
+B
+A
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Inlandadresse
+B
+B
+B
+B
+A
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+W
+A
+A
+A
+A
+A
+A
+Wohngemeinde
+B
+B
+B
+B
+A
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+W
+A
+A
+A
+A
+A
+A
+Zustelladresse
+B
+B
+B
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Adresse gültig ab dem
+B
+B
+B
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Kontaktadresse entsandter Arbeitnehmer/-innen
+B
+A
+A
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+c. Reise- oder Identitätsdokumente
+Klassifizierung (Original, Kopie usw.)
+B
+B
+B
+A
+A
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+B
+A
+A
+Art des Ausweispapiers
+B
+B
+B
+A
+A
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+B
+A
+A
+Ausstellende Behörde, Ort und Land
+B
+B
+B
+A
+A
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+B
+A
+A
+Ausstellungsdatum und Gültigkeitsdauer
+B
+B
+B
+A
+A
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+B
+A
+A
+Nummer
+B
+B
+B
+A
+A
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+B
+A
+A
+Scan der Personaldatenseite des Reisedokuments oder des Identitätsdokuments
+B
+B
+B
+A
+A
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+B
+A
+A
+d. Einreise
+Grenzland
+B
+A
+A
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Zuständige Auslandvertretung
+B
+B
+A
+B
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Einreiseentscheid gültig ab und bis zum
+B
+B
+A
+A
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Voraussichtliche Aufenthaltsdauer
+B
+B
+A
+B
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Anzahl mitreisende Angehörige
+B
+B
+A
+A
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Beruf
+B
+B
+A
+A
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Einreisebedingungen
+B
+B
+A
+A
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Beantragte Aufenthaltsdauer
+B
+B
+A
+A
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+e. Zwangsmassnahmen
+Haftart
+B
+B
+B
+A
+B
+A
+A
+A
+A
+A
+A
+A
+Haftbeginn
+B
+B
+B
+A
+B
+A
+A
+A
+A
+A
+A
+Haftende
+B
+B
+B
+A
+B
+A
+A
+A
+A
+A
+A
+Tage in Haft
+B
+B
+B
+A
+B
+A
+A
+A
+A
+A
+A
+A
+Rückführung (ja/nein)
+B
+B
+B
+A
+B
+A
+A
+A
+A
+Rechtsvertretung bei Minderjährigen (ja/nein)
+B
+B
+B
+Kindesschutzmassnahmen (ja/nein)
+B
+B
+B
+Ort der Inhaftierung
+B
+B
+B
+A
+B
+A
+A
+A
+A
+Dauer der angeordneten Haft
+B
+B
+B
+A
+B
+A
+A
+A
+A
+f. Aufenthalt und Ausreise
+Ausweisnummer
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+W
+A
+A
+A
+Status
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Angaben zur Ausweisausstellung
+A
+A
+A
+A
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+W
+A
+A
+A
+Art des Ausweises
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+W
+A
+A
+A
+A
+A
+Tatsächliches Einreisedatum
+B
+B
+A
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+W
+A
+A
+A
+A
+Anrechenbares Datum für Niederlassung
+B
+B
+A
+A
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Datum der Statusänderung
+B
+B
+A
+A
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Grund anrechenbares Datum
+B
+B
+A
+A
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+Anmeldedatum
+B
+B
+A
+A
+A
+B
+B
+A
+A
+A
+A
+A
+A
+Bewilligung gültig ab und bis zum
+B
+B
+A
+A
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Ausstellende Behörde
+A
+A
+A
+A
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Art der Zulassung (Code)
+B
+B
+A
+A
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+W
+A
+A
+A
+A
+g. Arbeitsmarktliche Vorentscheide (AVOR)
+Referenz der Arbeitsmarktstelle
+B
+B
+A
+B
+B
+A
+A
+A
+Gültigkeitsdauer der Verfügung
+B
+B
+A
+A
+B
+A
+A
+A
+A
+Kontingentsart
+A
+A
+A
+A
+A
+A
+A
+A
+Kontingentsnummer
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Kontingentsperiode
+B
+B
+A
+A
+B
+A
+A
+A
+A
+Kontingentseinheiten
+A
+A
+A
+A
+A
+A
+A
+Erfassungsdatum
+B
+B
+B
+A
+A
+A
+A
+A
+Gesuchsdatum
+B
+B
+B
+A
+A
+A
+A
+A
+A
+Artikel
+(nachgesucht/bewilligt)
+B
+B
+B
+A
+A
+A
+A
+A
+Anzahl Monate
+(mindestens/höchstens)
+B
+B
+B
+A
+A
+A
+A
+A
+Bearbeitungsstatus
+B
+B
+B
+A
+A
+A
+A
+A
+Bedingungen
+B
+B
+B
+A
+A
+A
+A
+A
+Begründung
+B
+B
+B
+A
+A
+A
+A
+A
+Referenz der Firma
+B
+B
+B
+A
+A
+A
+A
+A
+h. Erwerbstätigkeit
+Ausgeübte Tätigkeit
+B
+B
+A
+B
+A
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Stellung im Beruf
+B
+B
+A
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Aufnahme und Aufgabe der Erwerbstätigkeit
+B
+B
+A
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Arbeitsstaat
+B
+B
+A
+A
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Nebenerwerb
+B
+B
+A
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Arbeitsstunden pro Woche
+B
+B
+A
+A
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Einsatzort (Adresse, geografische Angaben oder Beschreibung)
+B
+B
+A
+B
+A
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Stand Meldeverfahren nach dem Freizügigkeitsabkommen
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Geleistete Diensttage
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+Negativentscheid für selbstständige Erwerbstätigkeit gemäss VEP
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+Lohn
+B
+B
+B
+B
+A
+A
+A
+A
+i. Betriebsdaten
+Betriebsnummer ZEMIS
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Firmenname
+B
+B
+A
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Adresse
+B
+B
+A
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Telefonnummer und E‑Mail‑Adresse
+B
+B
+A
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Zuständige Person (Telefonnummer, E‑Mail‑Adresse)
+B
+B
+A
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Kontaktperson in der Schweiz (Unternehmen, Adresse, Telefonnummer, E‑Mail-Adresse)
+B
+B
+A
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+UID
+B
+B
+A
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Benutzerkennung EasyGov
+B
+B
+A
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Agglomeration
+B
+B
+A
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+Erwerbsgruppe
+B
+B
+A
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+Arbeitsgemeinde
+B
+B
+A
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Letzte Mutation (Benutzer/‑in, Datum)
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Staat (Code)
+B
+B
+A
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+Unternehmenssammelnummer
+B
+B
+A
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+Höchstzahl Tänzer/-innen pro Betrieb
+B
+B
+B
+A
+A
+A
+A
+Arbeitgeber in der Schweiz, Arbeitgeber im Ausland oder selbstständiger Dienstleistungserbringer im Ausland
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+j. Bürgerrechtsdaten
+Dossiernummer und ‑kategorie
+B
+A
+B
+A
+B
+A
+A
+A
+A
+A
+Geschäftsart und -nummer
+B
+A
+B
+A
+B
+A
+A
+A
+Muttersprache
+B
+A
+B
+A
+B
+A
+A
+A
+Geburtsdatum Ehepartner/‑in
+B
+A
+B
+A
+B
+A
+A
+A
+A
+Geburtsdatum eingetragene/‑r Partner/-in
+B
+A
+B
+A
+B
+A
+A
+A
+A
+Geburtsort / Geburtsland
+B
+A
+B
+A
+B
+A
+A
+A
+A
+Sterbedatum
+B
+A
+B
+A
+B
+A
+A
+A
+A
+Namen und Vornamen der Eltern
+B
+A
+B
+A
+B
+A
+A
+A
+A
+Schweiz. Staatsangehörigkeit (ja/nein)
+B
+A
+B
+A
+B
+A
+A
+A
+A
+Ehepartner/-in ist Schweizer/-in (ja/nein)
+B
+A
+B
+A
+B
+A
+A
+A
+A
+Eingetragene/-r Partner/-in ist Schweizer/-in (ja/nein)
+B
+A
+B
+A
+B
+A
+A
+A
+A
+Elternteil ist Schweizer/-in (ja/nein)
+B
+A
+B
+A
+B
+A
+A
+A
+A
+Art und Dauer der Aufenthaltsbewilligung
+B
+A
+B
+A
+B
+A
+A
+A
+A
+Heimatort
+B
+A
+B
+A
+B
+A
+A
+A
+Einreise- und Ausreisedatum
+B
+A
+B
+A
+B
+A
+A
+A
+A
+Adresse im In- und Ausland
+B
+A
+B
+A
+B
+A
+A
+A
+A
+Auslandvertretung bei Gesuch aus Ausland
+B
+A
+B
+A
+B
+A
+A
+A
+Einbürgerungsart
+B
+A
+B
+A
+B
+A
+A
+A
+Einbürgerungsgemeinde
+B
+A
+B
+A
+B
+A
+A
+A
+Art des Entscheids
+B
+B
+B
+A
+A
+Datum des Entscheids
+B
+A
+B
+A
+B
+A
+A
+A
+Zuständige Person
+B
+A
+B
+A
+B
+A
+A
+A
+Bearbeitenden Person
+B
+A
+B
+A
+B
+A
+A
+A
+Datum Zustellung Entscheid
+B
+B
+B
+A
+Einbürgerungsdatum
+B
+A
+B
+A
+B
+A
+A
+A
+Datum der Rechtskraft
+B
+A
+B
+A
+B
+A
+A
+A
+A
+Getroffene Anordnungen oder Massnahmen
+B
+A
+B
+A
+B
+A
+A
+A
+Namen und Adressen von Beteiligten
+B
+A
+B
+B
+A
+A
+A
+Erledigungskontrolle
+B
+A
+B
+B
+A
+A
+A
+Rechnungsverwaltung
+B
+A
+B
+A
+B
+Datum Gesuchseingang beim Kanton
+B
+B
+A
+B
+Verfahrenssprache
+B
+B
+B
+B
+Kontaktperson (Adresse, Telefonnummer, E Mail-Adresse)
+B
+B
+B
+B
+Aufenthaltserfordernisse des Kantons und des Bundes (erfüllt/nicht erfüllt)
+B
+B
+A
+B
+Beachten der öffentlichen Sicherheit und Ordnung (erfüllt/nicht erfüllt)
+B
+B
+A
+B
+Respektierung der Werte der Bundesverfassung (erfüllt/nicht erfüllt)
+B
+B
+A
+B
+Erfüllung der Sprachkompetenzen (erfüllt/nicht erfüllt)
+B
+B
+A
+B
+Teilnahme am Wirtschaftsleben oder am Erwerb von Bildung (erfüllt/nicht erfüllt)
+B
+B
+A
+B
+Förderung / Unterstützung der Integration der Familienmitglieder (erfüllt/nicht erfüllt)
+B
+B
+A
+B
+Berücksichtigung der persönlichen Verhältnisse (erfüllt/nicht erfüllt)
+B
+B
+A
+B
+Vertrautsein mit den schweizerischen Lebensverhältnissen (erfüllt/nicht erfüllt)
+B
+B
+A
+B
+Verursacher/-in Erneuerung Einbürgerungsbewilligung des Bundes
+B
+B
+A
+B
+Begründung Erneuerung Einbürgerungsbewilligung des Bundes
+B
+B
+A
+B
+Verfahrensstatus
+B
+B
+A
+A
+Datum Änderung
+des Verfahrensstatus
+B
+B
+B
+A
+Beurteilung Einstufung Sicherheitsabfrage
+B
+B
+B
+Kommentar zur Beurteilung Einstufung Sicherheitsabfrage
+B
+B
+B
+Datum des Entscheids des jüngsten Einbürgerungsverfahrens
+B
+B
+B
+Geburtsdatum der Person, deren Bürgerrecht nichtig erklärt werden soll
+B
+B
+B
+Geburtsdatum Ehepartner/‑in oder eingetragene/-r Partner/-in
+B
+B
+B
+Datum der Eheschliessung
+B
+B
+B
+Namen und Vornamen schweizerische/-r Ehepartner/-in
+B
+B
+B
+Datum Direktbefragung Ehepartner/-in
+B
+B
+B
+Datum kantonale Befragung Ehepartner/-in
+B
+B
+B
+Trennung am
+B
+B
+B
+Anzahl Monate bis zur Trennung
+B
+B
+B
+Erklärung eheliche Gemeinschaft
+B
+B
+B
+Unterzeichnungsdatum Erklärung eheliche Gemeinschaft
+B
+B
+B
+Scheidung beantragt von
+B
+B
+B
+Scheidung beantragt am
+B
+B
+B
+Scheidungsdatum
+B
+B
+B
+k. Entfernungs- und Fernhaltemassnahmen (Rückkehrentscheide nach Art. 68a Abs. 1 Bst. a, c und d AIG und Einreiseverbot nach Art. 67 AIG) eMAP
+Zuständige Behörde
+B
+B
+A
+B
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+B
+A
+Entscheid (Art)
+B
+B
+A
+B
+A
+B
+A
+A
+A
+A
+A
+B
+A
+Datum des Entscheids
+B
+B
+A
+B
+A
+B
+A
+A
+A
+A
+A
+B
+A
+Verzicht auf die Anordnung einer obligatorischen Landesverweisung
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Grund (Rückkehrentscheid)
+B
+B
+A
+B
+A
+B
+A
+A
+A
+A
+A
+B
+A
+Nachfolgendes Einreiseverbot (ja/nein)
+B
+B
+A
+B
+A
+B
+A
+A
+A
+A
+A
+A
+A
+Gefahr für öffentliche Sicherheit und Ordnung (ja/nein)
+B
+B
+A
+B
+A
+B
+A
+A
+A
+A
+A
+A
+A
+Begangene Straftaten
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Besondere Merkmale
+B
+B
+A
+B
+A
+B
+A
+A
+A
+A
+A
+B
+A
+Eröffnungsdatum / Inkrafttretensdatum
+B
+B
+A
+A
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+B
+A
+Gültig ab und bis zum / Dauer
+B
+B
+A
+A
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+B
+A
+Aufhebung
+B
+B
+A
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+B
+A
+Grund (Einreiseverbot)
+B
+B
+A
+A
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+B
+A
+Erwerbsart
+B
+B
+A
+A
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+Antragsdatum
+B
+B
+A
+A
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+Ausreisefrist
+B
+B
+A
+B
+A
+B
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+B
+A
+Datum und Ort der Ausreise
+B
+B
+A
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+B
+A
+Staat, in den die Person zurückkehrt
+B
+B
+A
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+B
+A
+Kategorie der Ausreise
+B
+B
+A
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+B
+A
+Suspension / Sistierung / Aufschub
+B
+B
+A
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+B
+A
+Bemerkung gemäss Verfügung
+B
+B
+A
+A
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+B
+A
+Gerichtsbehörde und Aktenzeichen des Urteils
+A
+A
+A
+A
+A
+B
+A
+A
+A
+A
+A
+A
+A
+B
+A
+Familienmitglied einer Bürgerin oder eines Bürgers der EU/EFTA
+B
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+B
+A
+SIS Status
+B
+B
+B
+B
+A
+A
+A
+A
+A
+B
+A
+Numerisierte Dokumente (Entscheide, Urteile usw.)
+B
+B
+B
+B
+B
+A
+A
+A
+A
+A
+B
+A
+l. Grenzkontrollrapport
+Grenzposten-Nummer
+B
+A
+A
+A
+A
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Bezeichnung des Grenzpostens und der Beamtin oder des Beamten
+B
+A
+A
+A
+A
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Grenzübertrittsort
+B
+A
+A
+A
+A
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Datum der Einreise und der Ausreise
+B
+A
+A
+A
+A
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Transportmittel
+B
+A
+A
+A
+A
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Grund der Anhaltung
+B
+A
+A
+A
+B
+A
+A
+A
+A
+Grenzübertritt beobachtet durch / nicht beobachtet
+B
+A
+A
+A
+B
+A
+A
+A
+A
+Sachverhalt
+B
+A
+A
+A
+B
+A
+A
+A
+A
+Interne Vermerke
+B
+A
+A
+A
+B
+A
+A
+A
+A
+Fälschungsbeschreibung
+B
+A
+A
+A
+B
+A
+A
+A
+A
+Datum/Zeit der Rückweisung
+B
+A
+A
+A
+A
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Polizeirapport erstellt (ja/nein)
+B
+A
+A
+A
+A
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Rückweisungsgründe (Code)
+B
+A
+A
+A
+A
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Datum/Zeit der Übergabe an Polizei
+B
+A
+A
+A
+A
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+m. Strukturierte Bemerkungen
+Bemerkungscodes
+B
+B
+B
+A
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Bemerkungscodes gültig ab und bis zum
+B
+B
+B
+A
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Sachbearbeiter/-in
+B
+B
+B
+A
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+Benutzer/-in
+B
+B
+B
+A
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Mutationsdatum
+B
+B
+B
+A
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+n. Aufenthaltsnachforschung
+Gesuchsteller/-in (Namen/Adresse nur für Gebührenabrechnung)
+B
+B
+A
+A
+o. Gebühren
+Gebühren der Ausländerbehörden
+B
+B
+A
+A
+A
+B
+B
+Gebühren der Arbeitsmarktbehörden
+B
+B
+A
+A
+B
+B
+Gebühren der Bürgerrechtsbehörden
+B
+B
+A
+A
+B
+Saldo Kasse
+B
+B
+B
+p. Mutationsprotokoll
+Mutationsarten
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Benutzer/-in
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Mutationsdatum
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Ereignisdatum
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Ausstellungsdatum
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Ausstellende und antragstellende Behörde
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Art der Verfügung
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+3. Asylbereich
+a. Personalien
+Religion
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Muttersprache
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Ethnische Gruppe
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Staatsangehörigkeit bei Geburt
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+W
+A
+A
+A
+A
+Geburtsort
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+W
+A
+A
+A
+A
+Herkunftscode
+B
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+W
+A
+A
+A
+Vornamen und Namen der Eltern
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+W
+A
+A
+A
+A
+Eigenmittel
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+Verpflichtungserklärung
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+Adresse
+B
+A
+B
+A
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+W
+A
+A
+A
+Identitätskategorien (NINA‑Code)
+B
+A
+B
+A
+A
+A
+A
+A
+Sprachkenntnisse
+B
+B
+B
+B
+Ausbildung
+B
+B
+B
+B
+Bisherige Erwerbstätigkeit
+B
+B
+B
+B
+b. Reisedokumente oder Identitätsdokumente
+Klassifizierung (Original, Kopie usw.)
+B
+B
+B
+B
+A
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Art des Ausweispapiers
+B
+B
+B
+B
+A
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Ausstellende Behörde, Ort und Land
+B
+B
+B
+B
+A
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Ausstellungsdatum und Gültigkeitsdauer
+B
+B
+B
+B
+A
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Nummer
+B
+B
+B
+B
+A
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Scan der Personaldatenseite des Reisedokuments oder des Identitätsdokuments
+B
+B
+B
+B
+A
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+c. Verfahren
+Allgemeines
+Medizinalfall
+B
+A
+B
+B
+A
+Geschäftsart
+B
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Erledigungsart
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Datum und Uhrzeit der Gesuchseinreichung
+B
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Stand des Verfahrens
+B
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Namen und Adressen von Beteiligten
+B
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Zugewiesener Kanton
+B
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Datum Geschäftseröffnung
+B
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Datum Geschäftserledigung
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Rechtskraft
+B
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Fristen
+B
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Bemerkungscode
+B
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+Datum Beschwerdeeingang und -erledigung
+B
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Zuständige/-r Sachbearbeiter/-in
+A
+A
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Biometrische Abnahme
+Prozesskontrollnummer (PCN)
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Ort, Datum und Uhrzeit der biometrischen Abnahme
+B
+B
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Zuweisung und Verteilung
+Erledigungsdatum Zuweisungsentscheid
+B
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Mutationsgrund
+B
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Verteilkanton
+B
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Verteildatum
+B
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Anrechnung ja/nein
+B
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Kommentarzeile
+B
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Sachbearbeiter/-in
+B
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Ausweis Asylbereich
+Kategorie
+B
+A
+B
+A
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Gültig bis
+B
+A
+B
+A
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Datum Erstellung
+B
+A
+B
+A
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Erwerbstätigkeit
+B
+A
+A
+A
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Name und Adresse Arbeitgeber
+B
+A
+A
+A
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Sachbearbeiter/-in
+B
+A
+B
+A
+A
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Sonderabgabe
+Sonderabgabepflicht
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Maximalpflicht
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Restbetrag
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+Historie
+B
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+A
+d. Daten zu Herkunftsabklärungen aufgrund der Sprache (LINGUA-Daten)
+Auftrag
+Empfangsdatum (Eingang Auftrag)
+B
+B
+B
+Angegebenes Herkunftsland
+B
+B
+B
+Angegebene Herkunftsregion
+B
+B
+B
+Sprachkenntnisse
+B
+B
+B
+Getestete Sprachkenntnisse
+B
+B
+B
+Beherrschung der Sprache
+B
+B
+B
+Muttersprache
+B
+B
+B
+Auftragsstatus
+B
+B
+B
+Weitere Angaben der Gesuchstellerin oder des Gesuchstellers
+B
+B
+B
+Gesprächsdatum
+B
+B
+B
+Abschlussdatum
+B
+B
+B
+Erfasst am
+B
+B
+B
+Land
+B
+B
+B
+Aufenthaltsorte oder -region
+B
+B
+B
+Datum Beginn und Ende des Aufenthalts
+B
+B
+B
+Analysen und Berichte
+Tonaufzeichnung
+B
+B
+B
+Expertinoder Experte
+B
+B
+B
+Gespräch durch
+B
+B
+B
+Zuständige/-r Linguist/-in
+B
+B
+B
+Art des Berichts
+B
+B
+B
+Sprache des Berichts
+B
+B
+B
+Resultat
+Analysierte Bereiche
+B
+B
+B
+Kategorie
+B
+B
+B
+Land
+B
+B
+B
+Region
+B
+B
+B
+Milieu oder Sprachgemeinschaft
+B
+B
+B
+Herkunftsangabe bestätigt
+B
+B
+B
+SR 142.20
+SR 142.31
+SR 141.0
+Verordnung vom 22. Mai 2002 über den freien Personenverkehr (SR 142.203)
+Anhang 2
+Fassung gemäss Ziff. II der V vom 16. Nov. 2011, in Kraft seit 1. Dez. 2011 (AS 2011 5197).
+(Art. 13 Abs. 2)
+Daten, die nach Artikel 13 an Behörden und Organisationen bekannt gegeben werden dürfen
+Zeichenerklärung
+Bekanntgabe der Daten:
+Bk:
+erlaubt
+Leer:
+nicht erlaubt
+Organisationseinheiten:
+SFH:
+Schweizerische Flüchtlingshilfe
+SAK/KAK:
+Schweizerische Ausgleichskasse (AHV/IV) und Kantonale Ausgleichskassen
+SFH
+SAK/KAK
+Personendaten Asyl
+Name(n)
+Bk
+Bk
+Vorname(n)
+Bk
+Bk
+Name(n) und Vorname(n) der Eltern
+Bk
+Bk
+Aliasname(n)
+Bk
+Bk
+Geburtsdatum
+Bk
+Bk
+Geschlecht
+Bk
+Bk
+Staatsangehörigkeit
+Bk
+Bk
+Personennummer Asylbereich
+Bk
+Bk
+Personen-ID ZEMIS
+Bk
+Bk
+AHV-Nummer
+Bk
+Adressen
+Bk
+Bk
+Verfahren
+Geschäftsart
+Bk
+Erledigungsart
+Bk
+Stand des Verfahrens
+Bk
+Zugewiesener Kanton
+Bk
+Bk
+Datum Geschäftseröffnung
+Bk
+Anhang 3
+(Art. 24)
+Änderung bisherigen Rechts
+…
+Die Änderungen können unter AS 2006 1945 konsultiert werden.
+Anhang 4
+Eingefügt durch Ziff. I 1 der V vom 22. Okt. 2008 (Schengen und Dublin) (AS 2008 5421). Fassung gemäss Ziff. II der V vom 20. Mai 2026, in Kraft seit 12. Juni 2026 (AS 2026 268).
+(Art. 2 Bst. a Ziff. 5)
+Schengen- und Dublin-Assoziierungsabkommen
+1. Schengen-Assoziierungsabkommen
+Die Schengen-Assoziierungsabkommen umfassen:
+a.
+das Abkommen vom 26. Oktober 2004 zwischen der Schweizerischen Eidgenossenschaft, der Europäischen Union und der Europäischen Gemeinschaft über die Assoziierung dieses Staates bei der Umsetzung, Anwendung und Entwicklung des Schengen-Besitzstands;
+b.
+das Abkommen vom 26. Oktober 2004 in Form eines Briefwechsels zwischen dem Rat der Europäischen Union und der Schweizerischen Eidgenossenschaft über die Ausschüsse, die die Europäische Kommission bei der Ausübung ihrer Durchführungsbefugnisse unterstützen;
+c.
+die Vereinbarung vom 22. September 2011 zwischen der Europäischen Union sowie der Republik Island, dem Fürstentum Liechtenstein, dem Königreich Norwegen und der Schweizerischen Eidgenossenschaft über die Beteiligung dieser Staaten an der Arbeit der Ausschüsse, die die Europäische Kommission bei der Ausübung ihrer Durchführungsbefugnisse in Bezug auf die Umsetzung, Anwendung und Entwicklung des Schengen-Besitzstands unterstützen;
+d.
+das Übereinkommen vom 17. Dezember 2004 zwischen der Schweizerischen Eidgenossenschaft, der Republik Island und dem Königreich Norwegen über die Umsetzung, Anwendung und Entwicklung des Schengen-Besitzstands und über die Kriterien und Verfahren zur Bestimmung des zuständigen Staates für die Prüfung eines in der Schweiz, in Island oder in Norwegen gestellten Asylantrags;
+e.
+das Abkommen vom 28. April 2005 zwischen der Schweizerischen Eidgenossenschaft und dem Königreich Dänemark über die Umsetzung, Anwendung und Entwicklung derjenigen Teile des Schengen-Besitzstands, die auf Bestimmungen des Titels IV des Vertrags zur Gründung der Europäischen Gemeinschaft basieren;
+f.
+das Protokoll vom 28. Februar 2008 zwischen der Schweizerischen Eidgenossenschaft, der Europäischen Union, der Europäischen Gemeinschaft und dem Fürstentum Liechtenstein über den Beitritt des Fürstentums Liechtenstein zu dem Abkommen zwischen der Schweizerischen Eidgenossenschaft, der Europäischen Union und der Europäischen Gemeinschaft über die Assoziierung der Schweizerischen Eidgenossenschaft bei der Umsetzung, Anwendung und Entwicklung des Schengen-Besitzstands.
+SR 0.362.31
+SR 0.362.1
+SR 0.362.11
+SR 0.362.32
+SR 0.362.33
+SR 0.362.311
+2. Dublin-Assoziierungsabkommen
+Die Dublin-Assoziierungsabkommen umfassen:
+a.
+das Abkommen vom 26. Oktober 2004 zwischen der Schweizerischen Eidgenossenschaft und der Europäischen Gemeinschaft über die Kriterien und Verfahren zur Bestimmung des zuständigen Staates für die Prüfung eines in einem Mitgliedstaat oder in der Schweiz gestellten Asylantrags;
+b.
+das Übereinkommen vom 17. Dezember 2004 zwischen der Schweizerischen Eidgenossenschaft, der Republik Island und dem Königreich Norwegen über die Umsetzung, Anwendung und Entwicklung des Schengen-Besitzstands und über die Kriterien und Verfahren zur Bestimmung des zuständigen Staates für die Prüfung eines in der Schweiz, in Island oder in Norwegen gestellten Asylantrags;
+c.
+das Protokoll vom 28. Februar 2008 zwischen der Schweizerischen Eidgenossenschaft, der Europäischen Gemeinschaft und dem Fürstentum Liechtenstein zu dem Abkommen zwischen der Schweizerischen Eidgenossenschaft und der Europäischen Gemeinschaft über die Kriterien und Verfahren zur Bestimmung des zuständigen Staates für die Prüfung eines in einem Mitgliedstaat oder in der Schweiz gestellten Asylantrags;
+d.
+das Protokoll vom 28. Februar 2008 zwischen der Schweizerischen Eidgenossenschaft, der Europäischen Gemeinschaft und dem Fürstentum Liechtenstein über den Beitritt des Fürstentums Liechtenstein zu dem Abkommen zwischen der Schweizerischen Eidgenossenschaft und der Europäischen Gemeinschaft über die Kriterien und Verfahren zur Bestimmung des zuständigen Staates für die Prüfung eines in einem Mitgliedstaat oder in der Schweiz gestellten Asylantrags;
+e.
+das Protokoll vom 27. Juni 2019 zwischen der Schweizerischen Eidgenossenschaft, der Europäischen Union und dem Fürstentum Liechtenstein zum Abkommen zwischen der Schweizerischen Eidgenossenschaft und der Europäischen Gemeinschaft über die Kriterien und Verfahren zur Bestimmung des zuständigen Staates für die Prüfung eines in einem Mitgliedstaat oder in der Schweiz gestellten Asylantrags betreffend den Zugang zu Eurodac für Gefahrenabwehr- und Strafverfolgungszwecke.
+SR 0.142.392.68
+SR 0.362.32
+SR 0.142.393.141
+SR 0.142.395.141
+SR 0.142.392.682

@@ -1,0 +1,77 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "citygov_datarules.jsonl",
+ "description": "Struktur von citygov_datarules.jsonl, Version 1.0.0 — eine Zeile der Datei (JSON Lines). Erzeugt aus der Datei, wie der Build sie schreibt (scripts/export_vertrag.py); Änderungen und Regeln in exportvertrag.json. Nie von Hand ändern.",
+ "$ref": "#/$defs/datei",
+ "$defs": {
+  "datei": {
+   "type": "object",
+   "properties": {
+    "article_no": {
+     "type": "string"
+    },
+    "artikel_kennung": {
+     "type": "string",
+     "pattern": "^sh:gesetz:[a-z0-9][a-z0-9.-]*(?:~[0-9]+)?:(?:art|par|nr)-[a-z0-9][a-z0-9.-]*(?:~[0-9]+)?$"
+    },
+    "aspect": {
+     "type": "string"
+    },
+    "heading": {
+     "type": "string"
+    },
+    "jurisdiction": {
+     "type": "string"
+    },
+    "kennung": {
+     "type": "string",
+     "pattern": "^sh:(?:service|formular|angabe|gesetz):[A-Za-z0-9_.:~-]+$"
+    },
+    "law_short": {
+     "type": "string"
+    },
+    "law_title": {
+     "type": "string"
+    },
+    "quote": {
+     "type": "string"
+    },
+    "quote_verified": {
+     "type": "boolean"
+    },
+    "scope": {
+     "type": "string"
+    },
+    "sensitive_category": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "sr_number": {
+     "type": "string"
+    },
+    "summary": {
+     "type": "string"
+    }
+   },
+   "required": [
+    "article_no",
+    "artikel_kennung",
+    "aspect",
+    "heading",
+    "jurisdiction",
+    "kennung",
+    "law_short",
+    "law_title",
+    "quote",
+    "quote_verified",
+    "scope",
+    "sensitive_category",
+    "sr_number",
+    "summary"
+   ],
+   "additionalProperties": false
+  }
+ }
+}

@@ -34,7 +34,9 @@ forms/
 # data_export.json a generated_at stamp, verlauf.json a «hinweis» naming its
 # writer (export_json.py adds one entry per build day; past days can only be
 # rebuilt with scripts/backfill_verlauf.py); the two .jsonl files carry no
-# marker (writer: export_llm.py).
+# marker (writer: export_llm.py); schema/*.schema.json and exportvertrag.json
+# (the export contract) say in their text that the exporters write them through
+# scripts/export_vertrag.py.
 
 # local DB safety snapshots (never committed)
 citygov.db.backup-*

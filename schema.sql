@@ -581,7 +581,8 @@ CREATE TABLE IF NOT EXISTS rechtsmittel_verdikt (  -- the panel's per-form reaso
 -- ---------------------------------------------------------------------------
 -- Second opinions: every single-pass judgment layer got an adversarial review;
 -- this table records which items were reviewed and the reviewer's verdict.
--- kind = basis (basis_typ) | subjekt | rmrule | rmverdict. Loader: load_panel_reviews.py.
+-- kind = basis (basis_typ) | subjekt | rmrule | rmverdict | partei (item_id = form.id: the second
+-- review of a Formular's judged parties, loaded by scripts/rollen.py laden). Loader: load_panel_reviews.py.
 -- ---------------------------------------------------------------------------
 CREATE TABLE IF NOT EXISTS panel_review (
     kind     TEXT NOT NULL,
@@ -676,3 +677,308 @@ CREATE TABLE IF NOT EXISTS form_gestaltung (       -- how a Formular looks: meas
     profil       TEXT NOT NULL,             -- JSON, the full measured profile (keys: validate_db.py GESTALTUNG_KEYS)
     hinweise     TEXT                       -- JSON array of limitations of this measurement
 );
+
+-- ---------------------------------------------------------------------------
+-- Permanent identifiers (2026-10): one identifier per service, Formular,
+-- Datenfeld, Teilfeld, canonical Angabe, law, article and data-handling rule
+-- that never changes meaning, so that other systems (the Datentresor, the LLM
+-- agent, a peer canton) can store it. Neutral scheme without a web address
+-- (the base address for resolvable URIs is an owner decision, the constant
+-- BASIS_URI in scripts/kennungen.py):
+--   sh:service:<slug> · sh:formular:<slug> · sh:formular:<slug>:feld:<n>
+--   · sh:formular:<slug>:feld:<n>:teil:<m> · sh:angabe:<eCH-code>:<element>[:<context>]
+--   · sh:angabe:<eSH-code>:<element> · sh:gesetz:sr-<SR> | shr-<SHR> | <slug>
+--   · sh:gesetz:<…>:art-<no> | par-<no> | nr-<no> · <article>:regel:<aspect>-<scope>[-<category>]
+-- Minted once from the natural key the object has at that moment (Datenfeld and
+-- Teilfeld: a serial number per parent, in field order — a label is no stable
+-- key), never changed, reused or reassigned; a clash gets «~2». Loader:
+-- scripts/kennungen.py (runs in ./build.sh right after init_register.py, which
+-- renumbers canonical_attribute on every build); the resolver is
+-- kennungen.aufloesen(). The parent of a Datenfeld, Teilfeld, article or rule is
+-- the identifier it was minted under (its prefix; kennungen.eltern_von()). The
+-- gates live in the schema: the triggers below refuse a DELETE, any change of
+-- kennung/art/ziel_tabelle/seit, a new element for an Angabe identifier and any
+-- change to a superseded identifier; validate_db.py runs kennungen.pruefen() on
+-- every staging copy.
+-- ---------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS kennung (
+    kennung         TEXT PRIMARY KEY,              -- the permanent identifier, e.g. sh:formular:<slug>:feld:3
+    art             TEXT NOT NULL CHECK (art IN ('service','formular','feld','teilfeld',
+                                                 'angabe','gesetz','artikel','regel')),
+    ziel_tabelle    TEXT NOT NULL CHECK (ziel_tabelle IN ('service','form','data_field','data_subfield',
+                                                 'canonical_attribute','law','article','data_rule')),
+    ziel_id         INTEGER,                       -- the row the identifier names today (NULL unless aktiv);
+                                                   --  canonical_attribute ids are renumbered on every build,
+                                                   --  so this is re-resolved by the natural key each run
+    schluessel      TEXT NOT NULL,                 -- natural key it stands for: slug (service, Formular) |
+                                                   --  norm_label(name) within the parent (Datenfeld, Teilfeld) |
+                                                   --  ech|standard|element|context or esh|<eSH key> (Angabe,
+                                                   --  never changes) | sr:<SR> / shr:<SHR> / slug:<slug> (law) |
+                                                   --  article_no (article) | aspect|scope|category (rule)
+    merkmal         TEXT,                          -- checksum (12 hex of sha256) of the evidence that lets a
+                                                   --  renamed object keep its identifier: name (service) |
+                                                   --  title (Formular) | ord|data_type (Datenfeld) |
+                                                   --  ord|element (Teilfeld) | slug (law) | heading (article) |
+                                                   --  quote (rule); NULL (Angabe: a new element is a new Angabe)
+    status          TEXT NOT NULL DEFAULT 'aktiv' CHECK (status IN ('aktiv','abgeloest','entfallen')),
+                                                   -- entfallen = the object is no longer in the databank (the
+                                                   --  identifier stays; it lives again only for the identical
+                                                   --  schluessel) | abgeloest = superseded, successor named
+    abgeloest_durch TEXT REFERENCES kennung(kennung),   -- only from the reviewed decision file
+                                                   --  quellen/kennung_abloesungen.json, never guessed
+    seit            TEXT NOT NULL,                 -- date the identifier was issued (JJJJ-MM-TT)
+    bis             TEXT,                          -- date it stopped naming a current object
+    grund           TEXT,                          -- why it is no longer active
+    CHECK ((status = 'aktiv') = (ziel_id IS NOT NULL)),
+    CHECK ((status = 'aktiv') = (bis IS NULL)),
+    CHECK ((status = 'abgeloest') = (abgeloest_durch IS NOT NULL))
+) WITHOUT ROWID;                                   -- clustered on the identifier, no further index: one
+                                                   --  active identifier per (ziel_tabelle, ziel_id) and per
+                                                   --  natural key is checked by kennungen.pruefen()
+
+CREATE TABLE IF NOT EXISTS kennung_verlauf (       -- what happened to an identifier after it was issued
+    id       INTEGER PRIMARY KEY,                  --  (append-only; issuance itself is kennung.seit)
+    kennung  TEXT NOT NULL REFERENCES kennung(kennung),
+    datum    TEXT NOT NULL,
+    ereignis TEXT NOT NULL CHECK (ereignis IN ('umbenannt','entfallen','reaktiviert','abgeloest')),
+    vorher   TEXT,                                 -- schluessel before (umbenannt, entfallen)
+    nachher  TEXT                                  -- schluessel after (umbenannt, reaktiviert) or the successor
+);
+CREATE INDEX IF NOT EXISTS ix_kennung_verlauf ON kennung_verlauf(kennung);
+
+CREATE TRIGGER IF NOT EXISTS tg_kennung_nie_loeschen BEFORE DELETE ON kennung
+BEGIN SELECT RAISE(ABORT, 'GATE: eine Kennung wird nie gelöscht — sie bleibt als entfallen oder abgelöst stehen'); END;
+CREATE TRIGGER IF NOT EXISTS tg_kennung_unveraenderlich BEFORE UPDATE ON kennung
+WHEN NEW.kennung IS NOT OLD.kennung OR NEW.art IS NOT OLD.art OR NEW.ziel_tabelle IS NOT OLD.ziel_tabelle
+     OR NEW.seit IS NOT OLD.seit
+BEGIN SELECT RAISE(ABORT, 'GATE: Kennung, Art, Zieltabelle und Vergabedatum ändern sich nie'); END;
+CREATE TRIGGER IF NOT EXISTS tg_kennung_angabe_fest BEFORE UPDATE ON kennung
+WHEN OLD.art = 'angabe' AND NEW.schluessel IS NOT OLD.schluessel
+BEGIN SELECT RAISE(ABORT, 'GATE: eine Angabe-Kennung steht für genau ein eCH-Element oder einen eSH-Schlüssel'); END;
+CREATE TRIGGER IF NOT EXISTS tg_kennung_schluessel_nur_aktiv BEFORE UPDATE ON kennung
+WHEN NEW.schluessel IS NOT OLD.schluessel AND NOT (OLD.status = 'aktiv' AND NEW.status = 'aktiv')
+BEGIN SELECT RAISE(ABORT, 'GATE: nur eine aktive Kennung folgt einer Umbenennung; eine entfallene lebt nur für denselben Schlüssel wieder auf'); END;
+CREATE TRIGGER IF NOT EXISTS tg_kennung_abgeloest_endgueltig BEFORE UPDATE ON kennung
+WHEN OLD.status = 'abgeloest' AND (NEW.status IS NOT OLD.status OR NEW.abgeloest_durch IS NOT OLD.abgeloest_durch)
+BEGIN SELECT RAISE(ABORT, 'GATE: eine abgelöste Kennung bleibt abgelöst, ihr Nachfolger ändert sich nie'); END;
+CREATE TRIGGER IF NOT EXISTS tg_kennung_verlauf_u BEFORE UPDATE ON kennung_verlauf
+BEGIN SELECT RAISE(ABORT, 'GATE: der Verlauf der Kennungen ist unveränderlich'); END;
+CREATE TRIGGER IF NOT EXISTS tg_kennung_verlauf_d BEFORE DELETE ON kennung_verlauf
+BEGIN SELECT RAISE(ABORT, 'GATE: der Verlauf der Kennungen ist unveränderlich'); END;
+
+-- ---------------------------------------------------------------------------
+-- Parteien und Rollen (2026-10): whose Angabe each data point is. The finer layer
+-- above data_field.subjekt: a controlled role list, the parties of every Formular
+-- and the assignment of every data point (Teilfeld, or Datenfeld without parts) to
+-- exactly one party of its Formular, or «unklar» with a reason — never a guess.
+-- Stage B1 is derived deterministically from the databank's own words (begriff
+-- role, party words in labels and sections, subjekt) by scripts/rollen.py ableiten
+-- (standard library; the build runs it right after init_register.py); stage B2 is
+-- a judged verdict per Formular, loaded by scripts/rollen.py laden through proof
+-- gates (role from the list, every point exactly once, every evidence quote found
+-- in the Formular text) and second-reviewed (panel_review kind 'partei'). Subjekt
+-- stays consistent: an assigned point's field subjekt equals the party's entity
+-- type, or the party is 'gemischt' and the subjekt natuerliche_person,
+-- organisation or gemischt (gate: scripts/rollen.py pruefen, called by validate_db).
+-- ---------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS partei_rolle (          -- the controlled role list («Vorschlag» until the canton confirms it)
+    code       TEXT PRIMARY KEY,                   -- stable key, e.g. 'gesuchsteller'
+    label      TEXT NOT NULL UNIQUE,               -- German label shown to readers
+    entitaet   TEXT NOT NULL CHECK (entitaet IN ('natuerliche_person','organisation','sache','behoerde','offen')),
+                                                   -- offen = person or organisation, the Formular decides
+    erklaerung TEXT NOT NULL,
+    grundlage  TEXT NOT NULL,                      -- JSON: role strings, party words and labels that ground it
+    ord        INTEGER NOT NULL,
+    status     TEXT NOT NULL DEFAULT 'vorschlag' CHECK (status IN ('vorschlag','bestaetigt')));
+
+CREATE TABLE IF NOT EXISTS formular_partei (       -- the parties a Formular asks about
+    form_id     INTEGER NOT NULL REFERENCES form(id) ON DELETE CASCADE,
+    partei_nr   INTEGER NOT NULL,                  -- 1..n in the order the Formular first asks about them
+    rolle       TEXT NOT NULL REFERENCES partei_rolle(code),
+    entitaet    TEXT NOT NULL CHECK (entitaet IN ('natuerliche_person','organisation','sache','behoerde','gemischt','offen')),
+    bezeichnung TEXT NOT NULL,                     -- how the Formular names it («Kind 2», «anderer Elternteil»)
+    mehrere     INTEGER NOT NULL DEFAULT 0,        -- 1 = a list of several (Kinder, Gesellschafter/innen)
+    beleg       TEXT NOT NULL,                     -- evidence: label/section text (B1) or Formular quote (B2)
+    herkunft    TEXT NOT NULL CHECK (herkunft IN ('regel','urteil')),
+    PRIMARY KEY (form_id, partei_nr));
+
+CREATE TABLE IF NOT EXISTS datenpunkt_partei (     -- every data point -> exactly one party, or «unklar»
+    data_field_id INTEGER NOT NULL REFERENCES data_field(id) ON DELETE CASCADE,
+    teil          TEXT NOT NULL DEFAULT '',        -- norm_ascii(Teilfeld name); '' = Datenfeld without parts
+    form_id       INTEGER NOT NULL REFERENCES form(id) ON DELETE CASCADE,
+    teil_name     TEXT NOT NULL,                   -- the label when assigned (a changed label = stale row)
+    status        TEXT NOT NULL CHECK (status IN ('zugeordnet','unklar')),
+    partei_nr     INTEGER,                         -- NULL exactly when status = 'unklar'
+    regel         TEXT,                            -- B1 rule (rolle_begriff | wort_bezeichnung | wort_abschnitt | subjekt | definition)
+    grund_code    TEXT,                            -- why unklar (UNKLAR_GRUENDE)
+    grund         TEXT NOT NULL,                   -- the evidence (zugeordnet) or the reason (unklar), German
+    herkunft      TEXT NOT NULL CHECK (herkunft IN ('regel','urteil')),
+    regel_rolle   TEXT,                            -- what stage B1 derived, kept when B2 decides (calibration)
+    PRIMARY KEY (data_field_id, teil),
+    FOREIGN KEY (form_id, partei_nr) REFERENCES formular_partei(form_id, partei_nr));
+CREATE INDEX IF NOT EXISTS ix_datenpunkt_partei_form ON datenpunkt_partei(form_id);
+
+CREATE TABLE IF NOT EXISTS partei_urteil (         -- stage B2: the judged parties of one Formular (proof-gated)
+    form_id     INTEGER PRIMARY KEY REFERENCES form(id) ON DELETE CASCADE,
+    file_hash   TEXT,                              -- form.file_hash the verdict was made on (NULL for eFormulare)
+    parteien    TEXT NOT NULL,                     -- JSON array: nr, rolle, entitaet, bezeichnung, mehrere, beleg
+    punkte      TEXT NOT NULL,                     -- JSON array: key, partei | unklar, beleg
+    quelle      TEXT NOT NULL,                     -- file the verdict was loaded from
+    geladen     TEXT NOT NULL);                    -- load date (YYYY-MM-DD)
+
+-- ---------------------------------------------------------------------------
+-- Gesetzesstand (2026-10): which edition («Stand») of each law the databank read
+-- its articles from, and dated checks of that edition against the official
+-- sources. Evidence only: a value that is not evidenced is NULL with the reason
+-- in grund, never a guess. Loaders: scripts/gesetz_stand.py (gesetz_stand; reads
+-- the databank and the law PDFs next to the repository, needs macOS PDFKit like
+-- extract_law.py) and scripts/check_gesetz_stand.py (gesetz_stand_pruefung;
+-- read-only GETs to rechtsbuch.sh.ch for cantonal law and to the Fedlex SPARQL
+-- endpoint for federal law). Neither re-reads an article or changes a citation:
+-- a newer edition is listed for review. The change-impact index over both
+-- tables and the citations is computed once in scripts/wirkung.py (export). The
+-- gate is gesetz_stand.pruefen(), run by validate_db.py: vocabularies, the Stand
+-- among its own evidence, the evidence recorded at reading time against the
+-- databank (unless the row is stale: basis differs), and every check row
+-- consistent with the edition list it stores.
+-- ---------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS gesetz_stand (          -- one row per law: the edition its articles were read from
+    law_id             INTEGER PRIMARY KEY REFERENCES law(id) ON DELETE CASCADE,
+    stand              TEXT,                -- ISO date of the edition read («Stand» / «Fassung»); NULL = not evidenced
+    status             TEXT NOT NULL CHECK (status IN ('belegt','widerspruch','unbekannt')),
+                                            -- belegt = every source that names a Stand names this one;
+                                            -- widerspruch = the sources disagree (stand NULL, grund names them);
+                                            -- unbekannt = no source names one (stand NULL, grund says why)
+    stand_quelle       TEXT CHECK (stand_quelle IN ('einlesen','pdf_datei')),
+                                            -- einlesen = recorded when the articles were read (article or law
+                                            -- last_checked, law.source_note); pdf_datei = printed in the head of the
+                                            -- PDF the loaders read, not recorded at reading time; NULL with stand NULL
+    datei              TEXT,                -- that PDF relative to the law folder beside the repository:
+                                            -- '<SHR>-….de.pdf' (cantonal) or 'Bund/<SR>.pdf' (federal); NULL = none
+    datei_herkunft     TEXT CHECK (datei_herkunft IN ('gesetzessammlung','rechtsbuch_api','fedlex')),
+                                            -- the canton's PDF collection | fetched by fetch_rechtsbuch.py
+                                            -- ('-rechtsbuch.de.pdf') | a Fedlex PDF (ingest_fed.py, extract_quotes.py)
+    datei_sha256       TEXT,                -- SHA-256 of the file when the row was written
+    texte_zitiert      INTEGER,             -- cited articles (data_field_legal_basis) with a stored text_excerpt
+    texte_gefunden     INTEGER,             -- … whose text occurs in the file (at least one 40-letter window)
+    texte_vollstaendig INTEGER,             -- … whose text occurs in the file in every window
+    belege             TEXT NOT NULL,       -- JSON list, one entry per source and value: {quelle, stand, roh, …};
+                                            -- quelle artikel_vermerk | gesetz_vermerk | pdf_kopf | index_titel
+    grund              TEXT,                -- why stand is NULL; NULL when status = 'belegt'
+    basis              TEXT NOT NULL,       -- fingerprint of the databank rows the row was derived from
+                                            -- (gesetz_stand.fingerabdruck); a different value = stale row
+    erhoben_am         TEXT NOT NULL        -- ISO day the row's content last changed
+);
+
+CREATE TABLE IF NOT EXISTS gesetz_stand_pruefung ( -- one row per law and day: is the edition read still current?
+    law_id          INTEGER NOT NULL REFERENCES law(id) ON DELETE CASCADE,
+    geprueft_am     TEXT NOT NULL,              -- ISO day the official source answered
+    quelle          TEXT NOT NULL CHECK (quelle IN ('rechtsbuch','fedlex','keine')),
+                                                -- keine = the law has no official number to ask for
+    abfrage         TEXT,                       -- the GET that was sent; NULL for quelle 'keine'
+    ergebnis        TEXT NOT NULL CHECK (ergebnis IN ('aktuell','neuer_stand','aufgehoben','stand_unbekannt',
+                        'nicht_gefunden','nicht_pruefbar','fehler','unklar')),
+                                                -- aktuell = stand_gelesen is the edition in force; neuer_stand =
+                                                -- a later edition is in force; stand_unbekannt = the edition read is
+                                                -- not evidenced, so there is nothing to compare
+    stand_gelesen   TEXT,                       -- gesetz_stand.stand when the check ran
+    fassung_gelesen TEXT,                       -- the source's address of that edition; NULL = not identifiable
+                                                -- (details says why)
+    stand_aktuell   TEXT,                       -- in-force date of the current edition at the source
+    fassung_aktuell TEXT,                       -- the source's address of the current edition
+    n_neuere        INTEGER,                    -- editions in force after stand_gelesen up to geprueft_am
+    kuenftig        TEXT NOT NULL DEFAULT '[]', -- JSON list {art: fassung|aufhebung, stand, fassung}: already
+                                                -- published, in force after geprueft_am
+    details         TEXT NOT NULL DEFAULT '{}', -- JSON object: the edition list as the source gave it
+    grund           TEXT,                       -- required unless ergebnis is aktuell or neuer_stand
+    PRIMARY KEY (law_id, geprueft_am));
+
+-- ---------------------------------------------------------------------------
+-- Register (2026-10, «Was der Kanton schon weiss»): which Swiss registers already
+-- hold the data and the Beilagen the Formulare ask for. Facts only: every register,
+-- its holder, content, key, standard links, the Angaben it holds and the documents
+-- it issues carry a verbatim quote from an official source fetched with a read-only
+-- GET (Fedlex filestore, Schaffhauser Rechtsbuch interface, agency pages, ech.ch) or
+-- from an official schema file of the repository; the text snapshot lies under
+-- quellen/register/<id>.txt and the gate finds the quote in it.
+-- Loaders, in this order: scripts/register_katalog.py (--abrufen fetches the sources,
+-- without it the catalogue is loaded) and scripts/register_map.py (Angaben,
+-- documents, access articles). Gate: register_map.pruefen(), called by validate_db.py.
+-- «Ein Register hält es» never means «die Stelle darf es beziehen»: access is a
+-- second step, recorded only as an ingested and quoted article (kandidat or
+-- schranke), otherwise «Zugriff offen — rechtlich zu klären». What a Formular would
+-- save is computed once in export_json.py (register_map.export_register) and is a
+-- model estimate, never a measurement.
+-- ---------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS register_quelle (        -- one fetched source (official page, law text or repository schema)
+    id        TEXT PRIMARY KEY,                     -- e.g. 'fedlex_rhg', 'sh_gg', 'ech_0108'
+    url       TEXT NOT NULL UNIQUE,                 -- what was fetched (art 'repo': path inside the repository)
+    art       TEXT NOT NULL CHECK(art IN ('html','rechtsbuch','repo')),
+    titel     TEXT NOT NULL,
+    datei     TEXT NOT NULL,                        -- the text snapshot under quellen/register/
+    sha256    TEXT NOT NULL,                        -- of the snapshot text, a changed file fails the gate
+    abgerufen TEXT NOT NULL);                       -- fetch time (ISO), kept while the fetched text stays the same
+
+CREATE TABLE IF NOT EXISTS register (               -- one Swiss register or official information system
+    code       TEXT PRIMARY KEY,                    -- stable key: einwohnerregister, uid_register, gwr …
+    name       TEXT NOT NULL,
+    inhaber    TEXT NOT NULL,                       -- who keeps it, as the quoted sources say
+    ebene      TEXT NOT NULL CHECK(ebene IN ('bund','kanton','gemeinde')),
+    entitaet   TEXT NOT NULL CHECK(entitaet IN ('natuerliche_person','organisation','sache','gemischt')),
+    inhalt     TEXT NOT NULL,                       -- what it holds, one German sentence
+    schluessel TEXT,                                -- identifying key(s), NULL = no quoted source names one
+    stelle_sh  TEXT REFERENCES dienststelle(name),  -- the Schaffhausen office that keeps or feeds it, where a source says so
+    bemerkung  TEXT);                               -- a limit the reader must know (statistical register, only Swiss documents …)
+
+CREATE TABLE IF NOT EXISTS register_beleg (         -- the quote behind each claim about a register
+    register TEXT NOT NULL REFERENCES register(code) ON DELETE CASCADE,
+    aspekt   TEXT NOT NULL CHECK(aspekt IN ('inhaber','inhalt','schluessel','dokument')),
+    quelle   TEXT NOT NULL REFERENCES register_quelle(id),
+    zitat    TEXT NOT NULL,                         -- verbatim in the snapshot (whitespace collapsed)
+    PRIMARY KEY (register, aspekt, quelle, zitat));
+
+CREATE TABLE IF NOT EXISTS register_standard (      -- the eCH standards (present in ech_standard) a register exchanges with
+    register TEXT NOT NULL REFERENCES register(code) ON DELETE CASCADE,
+    standard TEXT NOT NULL REFERENCES ech_standard(code),
+    art      TEXT NOT NULL CHECK(art IN ('quelle','projektregel')),
+                                                    -- quelle = the standard's own ech.ch page names the register
+                                                    -- projektregel = init_register.REGISTER_STDS (Einwohnerregister only)
+    quelle   TEXT REFERENCES register_quelle(id),
+    zitat    TEXT,                                  -- NULL only for 'projektregel'
+    PRIMARY KEY (register, standard));
+
+CREATE TABLE IF NOT EXISTS register_angabe (        -- canonical Angabe × entity type -> register that holds it
+    register    TEXT NOT NULL REFERENCES register(code) ON DELETE CASCADE,
+    angabe      TEXT NOT NULL,                      -- 'ech:<ech_element.id>' or 'esh:<code>:<element>' (the canonical Angabe)
+    ech_element_id INTEGER REFERENCES ech_element(id),
+    esh_code    TEXT REFERENCES esh_standard(code),
+    esh_element TEXT,                               -- exactly one of ech_element_id / (esh_code, esh_element) is set
+    entitaet    TEXT NOT NULL CHECK(entitaet IN ('natuerliche_person','organisation','sache','jede')),
+    entitaet_aus_element INTEGER NOT NULL DEFAULT 0 CHECK(entitaet_aus_element IN (0,1)),
+                                                    -- 1 = the element IDENTIFIES its party (UID, EGID, E-GRID,
+                                                    -- Stammnummer, chip number); 0 = the field's judged subjekt must
+                                                    -- say whose Angabe it is (a name, an address, a legal form)
+    quelle      TEXT NOT NULL REFERENCES register_quelle(id),
+    zitat       TEXT NOT NULL,                      -- the source naming this Angabe as content of the register
+    kontext     TEXT,                               -- pattern the unit's context (Formular title, field and part label,
+                                                    -- folded) must contain: the dog database only for a dog
+    ohne        TEXT,                               -- pattern it must not contain: the GWR's Bauprojekt, ships in the IVZ
+    PRIMARY KEY (register, angabe, entitaet));
+CREATE INDEX IF NOT EXISTS ix_register_angabe_el ON register_angabe(ech_element_id);
+
+CREATE TABLE IF NOT EXISTS register_dokument (      -- documents a register or its office issues: the term found in a Beilage name
+    register TEXT NOT NULL REFERENCES register(code) ON DELETE CASCADE,
+    begriff  TEXT NOT NULL,                         -- e.g. 'Familienausweis', 'Fahrzeugausweis' (it occurs in the quote)
+    quelle   TEXT NOT NULL REFERENCES register_quelle(id),
+    zitat    TEXT NOT NULL,
+    PRIMARY KEY (register, begriff));
+
+CREATE TABLE IF NOT EXISTS register_zugriff (       -- ingested articles on access to a register, quoted: a candidate or a limit
+    register   TEXT NOT NULL REFERENCES register(code) ON DELETE CASCADE,
+    article_id INTEGER NOT NULL REFERENCES article(id),
+    art        TEXT NOT NULL CHECK(art IN ('kandidat','schranke')),
+                                                    -- never «erlaubt»: whether an office may fetch is for the canton's lawyers
+    adressat   TEXT NOT NULL,                       -- whom the article addresses, in its own words
+    quelle     TEXT NOT NULL REFERENCES register_quelle(id),
+    zitat      TEXT NOT NULL,                       -- verbatim in the official text of that law
+    PRIMARY KEY (register, article_id, art));

@@ -18,6 +18,7 @@ of data_export.json, like every other export of the same build.
 import json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import ROOT, DB_PATH, EXPORT_PATH, connect, assert_no_local_paths
+import export_vertrag as EV
 
 
 def _stamp():
@@ -91,11 +92,17 @@ def main():
                     "xsd_versionen": versions,
                     "quelle": "citygov.db (generated_at = Stempel von data_export.json)"},
            "formulare": out}
+    # permanent identifiers on every point and the version stamp of the export contract
+    vertrag = EV.Vertrag()
+    ck = connect(DB_PATH)
+    doc = EV.fertigstellen(vertrag, "citygov_ech_schemas.json", doc, ck, generated_at)
+    ck.close()
     path = os.path.join(ROOT, "citygov_ech_schemas.json")
     text = json.dumps(doc, ensure_ascii=False, indent=1)
     assert_no_local_paths("citygov_ech_schemas.json", text)
     with open(path, "w", encoding="utf-8") as fh:
         fh.write(text)
+    vertrag.festschreiben()             # schema/citygov_ech_schemas.schema.json + exportvertrag.json
     voll = sum(1 for f in out if f["exchange_ready"] == "voll")
     print(f"wrote citygov_ech_schemas.json: {len(out)} Formulare, {voll} voll exchange-ready")
 

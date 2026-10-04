@@ -1,0 +1,3682 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "citygov_llm.json",
+ "description": "Struktur von citygov_llm.json, Version 1.0.0. Erzeugt aus der Datei, wie der Build sie schreibt (scripts/export_vertrag.py); Änderungen und Regeln in exportvertrag.json. Nie von Hand ändern.",
+ "$ref": "#/$defs/datei",
+ "$defs": {
+  "datei": {
+   "type": "object",
+   "properties": {
+    "begriffe": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "properties": {
+       "angabe_kennung": {
+        "type": "string",
+        "pattern": "^sh:angabe:e(?:CH|SH)-[0-9]{4}:[A-Za-z0-9_.-]+(?::[A-Za-z0-9_]+)?(?:~[0-9]+)?$"
+       },
+       "begruendung": {
+        "type": "string"
+       },
+       "datentyp": {
+        "type": [
+         "string",
+         "null"
+        ]
+       },
+       "element": {
+        "type": "string"
+       },
+       "element_id": {
+        "type": "integer"
+       },
+       "herkunft": {
+        "type": "string"
+       },
+       "labels": {
+        "type": "array",
+        "items": {
+         "type": "object",
+         "properties": {
+          "formulare": {
+           "type": "array",
+           "items": {
+            "type": "integer"
+           }
+          },
+          "grund": {
+           "type": [
+            "string",
+            "null"
+           ]
+          },
+          "klasse": {
+           "type": "string"
+          },
+          "label": {
+           "type": "string"
+          },
+          "n": {
+           "type": "integer"
+          },
+          "n_formulare": {
+           "type": "integer"
+          },
+          "pruefart": {
+           "type": [
+            "string",
+            "null"
+           ]
+          },
+          "rolle": {
+           "type": [
+            "string",
+            "null"
+           ]
+          }
+         },
+         "required": [
+          "formulare",
+          "grund",
+          "klasse",
+          "label",
+          "n",
+          "n_formulare",
+          "pruefart",
+          "rolle"
+         ],
+         "additionalProperties": false
+        }
+       },
+       "standard": {
+        "type": "string"
+       },
+       "standard_titel": {
+        "type": "string"
+       },
+       "vorbehalt": {
+        "type": "boolean"
+       },
+       "vorschlag": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "angabe_kennung",
+       "begruendung",
+       "datentyp",
+       "element",
+       "element_id",
+       "herkunft",
+       "labels",
+       "standard",
+       "standard_titel",
+       "vorbehalt",
+       "vorschlag"
+      ],
+      "additionalProperties": false
+     }
+    },
+    "datenhandhabung": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "properties": {
+       "article_no": {
+        "type": "string"
+       },
+       "artikel_kennung": {
+        "type": "string",
+        "pattern": "^sh:gesetz:[a-z0-9][a-z0-9.-]*(?:~[0-9]+)?:(?:art|par|nr)-[a-z0-9][a-z0-9.-]*(?:~[0-9]+)?$"
+       },
+       "aspect": {
+        "type": "string"
+       },
+       "heading": {
+        "type": "string"
+       },
+       "jurisdiction": {
+        "type": "string"
+       },
+       "kennung": {
+        "type": "string",
+        "pattern": "^sh:(?:service|formular|angabe|gesetz):[A-Za-z0-9_.:~-]+$"
+       },
+       "law_short": {
+        "type": "string"
+       },
+       "law_title": {
+        "type": "string"
+       },
+       "quote": {
+        "type": "string"
+       },
+       "quote_verified": {
+        "type": "boolean"
+       },
+       "scope": {
+        "type": "string"
+       },
+       "sensitive_category": {
+        "type": [
+         "string",
+         "null"
+        ]
+       },
+       "sr_number": {
+        "type": "string"
+       },
+       "summary": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "article_no",
+       "artikel_kennung",
+       "aspect",
+       "heading",
+       "jurisdiction",
+       "kennung",
+       "law_short",
+       "law_title",
+       "quote",
+       "quote_verified",
+       "scope",
+       "sensitive_category",
+       "sr_number",
+       "summary"
+      ],
+      "additionalProperties": false
+     }
+    },
+    "lebenslagen": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "properties": {
+       "bereich": {
+        "type": "string"
+       },
+       "gruppe": {
+        "type": "string"
+       },
+       "id": {
+        "type": "integer"
+       },
+       "katalog": {
+        "type": "string"
+       },
+       "n_angaben": {
+        "type": "integer"
+       },
+       "n_beilagen": {
+        "type": "integer"
+       },
+       "n_beilagen_beziehbar": {
+        "type": "integer"
+       },
+       "n_container": {
+        "type": "integer"
+       },
+       "n_daten": {
+        "type": "integer"
+       },
+       "n_dienststellen": {
+        "type": "integer"
+       },
+       "n_einwohnerregister": {
+        "type": "integer"
+       },
+       "n_einwohnerregister_offen": {
+        "type": "integer"
+       },
+       "n_element_offen": {
+        "type": "integer"
+       },
+       "n_formulare": {
+        "type": "integer"
+       },
+       "n_kein_standard": {
+        "type": "integer"
+       },
+       "n_ohne_standard": {
+        "type": "integer"
+       },
+       "n_online": {
+        "type": "integer"
+       },
+       "n_partei_offen": {
+        "type": "integer"
+       },
+       "n_pflicht": {
+        "type": "integer"
+       },
+       "n_pflicht_teil": {
+        "type": "integer"
+       },
+       "n_sensibel": {
+        "type": "integer"
+       },
+       "n_services": {
+        "type": "integer"
+       },
+       "n_ueberschneidungen": {
+        "type": "integer"
+       },
+       "n_ungeprueft": {
+        "type": "integer"
+       },
+       "n_unterschrift": {
+        "type": "integer"
+       },
+       "n_wiederholt": {
+        "type": "integer"
+       },
+       "n_zuordnung_offen": {
+        "type": "integer"
+       },
+       "services": {
+        "type": "array",
+        "items": {
+         "type": "integer"
+        }
+       },
+       "services_modelliert": {
+        "type": "array",
+        "items": {
+         "type": "integer"
+        }
+       },
+       "services_ohne_daten": {
+        "type": "array",
+        "items": {
+         "type": "integer"
+        }
+       },
+       "wiederholt": {
+        "type": "array",
+        "items": {
+         "type": "object",
+         "properties": {
+          "element": {
+           "type": "string"
+          },
+          "label": {
+           "type": "string"
+          },
+          "services": {
+           "type": "array",
+           "items": {
+            "type": "integer"
+           }
+          }
+         },
+         "required": [
+          "element",
+          "label",
+          "services"
+         ],
+         "additionalProperties": false
+        }
+       }
+      },
+      "required": [
+       "bereich",
+       "gruppe",
+       "id",
+       "katalog",
+       "n_angaben",
+       "n_beilagen",
+       "n_beilagen_beziehbar",
+       "n_container",
+       "n_daten",
+       "n_dienststellen",
+       "n_einwohnerregister",
+       "n_einwohnerregister_offen",
+       "n_element_offen",
+       "n_formulare",
+       "n_kein_standard",
+       "n_ohne_standard",
+       "n_online",
+       "n_partei_offen",
+       "n_pflicht",
+       "n_pflicht_teil",
+       "n_sensibel",
+       "n_services",
+       "n_ueberschneidungen",
+       "n_ungeprueft",
+       "n_unterschrift",
+       "n_wiederholt",
+       "n_zuordnung_offen",
+       "services",
+       "services_modelliert",
+       "services_ohne_daten",
+       "wiederholt"
+      ],
+      "additionalProperties": false
+     }
+    },
+    "meta": {
+     "type": "object",
+     "properties": {
+      "about": {
+       "type": "string"
+      },
+      "datenstand": {
+       "type": "object",
+       "properties": {
+        "build": {
+         "type": "string"
+        },
+        "dvsh_stand": {
+         "type": "string"
+        },
+        "gesetzesstand_geprueft": {
+         "type": "string"
+        },
+        "online_check": {
+         "type": "object",
+         "properties": {
+          "date": {
+           "type": "string"
+          },
+          "full_date": {
+           "type": "string"
+          },
+          "n_checked": {
+           "type": "integer"
+          },
+          "n_forms": {
+           "type": "integer"
+          },
+          "n_never": {
+           "type": "integer"
+          },
+          "n_overdue": {
+           "type": "integer"
+          },
+          "n_recent": {
+           "type": "integer"
+          }
+         },
+         "required": [
+          "date",
+          "full_date",
+          "n_checked",
+          "n_forms",
+          "n_never",
+          "n_overdue",
+          "n_recent"
+         ],
+         "additionalProperties": false
+        },
+        "shep_harvest": {
+         "type": "string"
+        },
+        "xsd_sweep": {
+         "type": "object",
+         "properties": {
+          "date": {
+           "type": "string"
+          },
+          "n": {
+           "type": "integer"
+          },
+          "n_xsd": {
+           "type": "integer"
+          }
+         },
+         "required": [
+          "date",
+          "n",
+          "n_xsd"
+         ],
+         "additionalProperties": false
+        }
+       },
+       "required": [
+        "build",
+        "dvsh_stand",
+        "gesetzesstand_geprueft",
+        "online_check",
+        "shep_harvest",
+        "xsd_sweep"
+       ],
+       "additionalProperties": false
+      },
+      "generated_at": {
+       "type": "string"
+      },
+      "kennungen": {
+       "type": "object",
+       "properties": {
+        "basis_uri": {
+         "type": "null"
+        },
+        "hinweis": {
+         "type": "string"
+        },
+        "nicht_aktiv": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "properties": {
+           "abgeloest_durch": {
+            "type": "null"
+           },
+           "art": {
+            "type": "string"
+           },
+           "bis": {
+            "type": "string"
+           },
+           "grund": {
+            "type": "string"
+           },
+           "kennung": {
+            "type": "string",
+            "pattern": "^sh:(?:service|formular|angabe|gesetz):[A-Za-z0-9_.:~-]+$"
+           },
+           "status": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "abgeloest_durch",
+           "art",
+           "bis",
+           "grund",
+           "kennung",
+           "status"
+          ],
+          "additionalProperties": false
+         }
+        },
+        "schema": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "basis_uri",
+        "hinweis",
+        "nicht_aktiv",
+        "schema"
+       ],
+       "additionalProperties": false
+      },
+      "labels": {
+       "type": "object",
+       "properties": {
+        "aktion": {
+         "type": "object",
+         "properties": {
+          "begriff": {
+           "type": "string"
+          },
+          "divergenz": {
+           "type": "string"
+          },
+          "divergenz_codeliste": {
+           "type": "string"
+          },
+          "divergenz_offen": {
+           "type": "string"
+          },
+          "dsfa": {
+           "type": "string"
+          },
+          "dup": {
+           "type": "string"
+          },
+          "ech": {
+           "type": "string"
+          },
+          "kein_standard": {
+           "type": "string"
+          },
+          "offen": {
+           "type": "string"
+          },
+          "ohne": {
+           "type": "string"
+          },
+          "schutzstufe": {
+           "type": "string"
+          },
+          "sensibel_art5": {
+           "type": "string"
+          },
+          "veraltet": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "begriff",
+          "divergenz",
+          "divergenz_codeliste",
+          "divergenz_offen",
+          "dsfa",
+          "dup",
+          "ech",
+          "kein_standard",
+          "offen",
+          "ohne",
+          "schutzstufe",
+          "sensibel_art5",
+          "veraltet"
+         ],
+         "additionalProperties": false
+        },
+        "aspect": {
+         "type": "object",
+         "properties": {
+          "archivierung": {
+           "type": "string"
+          },
+          "aufbewahrung": {
+           "type": "string"
+          },
+          "bearbeitung": {
+           "type": "string"
+          },
+          "bekanntgabe": {
+           "type": "string"
+          },
+          "betroffenenrechte": {
+           "type": "string"
+          },
+          "erhebung": {
+           "type": "string"
+          },
+          "loeschung": {
+           "type": "string"
+          },
+          "sicherheit": {
+           "type": "string"
+          },
+          "speicherung": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "archivierung",
+          "aufbewahrung",
+          "bearbeitung",
+          "bekanntgabe",
+          "betroffenenrechte",
+          "erhebung",
+          "loeschung",
+          "sicherheit",
+          "speicherung"
+         ],
+         "additionalProperties": false
+        },
+        "basis_typ": {
+         "type": "object",
+         "properties": {
+          "artikel": {
+           "type": "string"
+          },
+          "aufgabe": {
+           "type": "string"
+          },
+          "offen": {
+           "type": "string"
+          },
+          "ohne": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "artikel",
+          "aufgabe",
+          "offen",
+          "ohne"
+         ],
+         "additionalProperties": false
+        },
+        "begriff_klasse": {
+         "type": "object",
+         "properties": {
+          "aufteilen": {
+           "type": "string"
+          },
+          "pruefen": {
+           "type": "string"
+          },
+          "rolle": {
+           "type": "string"
+          },
+          "variante": {
+           "type": "string"
+          },
+          "vorschlag": {
+           "type": "string"
+          },
+          "zuordnung": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "aufteilen",
+          "pruefen",
+          "rolle",
+          "variante",
+          "vorschlag",
+          "zuordnung"
+         ],
+         "additionalProperties": false
+        },
+        "cat_order": {
+         "type": "array",
+         "items": {
+          "type": "string"
+         }
+        },
+        "chan": {
+         "type": "object",
+         "properties": {
+          "online_formular": {
+           "type": "string"
+          },
+          "pdf": {
+           "type": "string"
+          },
+          "schalter": {
+           "type": "string"
+          },
+          "unbekannt": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "online_formular",
+          "pdf",
+          "schalter",
+          "unbekannt"
+         ],
+         "additionalProperties": false
+        },
+        "check": {
+         "type": "object",
+         "properties": {
+          "aktuell": {
+           "type": "string"
+          },
+          "nicht_auffindbar": {
+           "type": "string"
+          },
+          "nicht_gefunden": {
+           "type": "string"
+          },
+          "veraltet": {
+           "type": "string"
+          },
+          "veraltet_verdacht": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "aktuell",
+          "nicht_auffindbar",
+          "nicht_gefunden",
+          "veraltet",
+          "veraltet_verdacht"
+         ],
+         "additionalProperties": false
+        },
+        "dftype": {
+         "type": "object",
+         "properties": {
+          "attachment": {
+           "type": "string"
+          },
+          "boolean": {
+           "type": "string"
+          },
+          "composite": {
+           "type": "string"
+          },
+          "date": {
+           "type": "string"
+          },
+          "enum": {
+           "type": "string"
+          },
+          "money": {
+           "type": "string"
+          },
+          "multiselect": {
+           "type": "string"
+          },
+          "number": {
+           "type": "string"
+          },
+          "signature": {
+           "type": "string"
+          },
+          "text": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "attachment",
+          "boolean",
+          "composite",
+          "date",
+          "enum",
+          "money",
+          "multiselect",
+          "number",
+          "signature",
+          "text"
+         ],
+         "additionalProperties": false
+        },
+        "disposition": {
+         "type": "object",
+         "properties": {
+          "anbieten_staatsarchiv": {
+           "type": "string"
+          },
+          "anonymisieren": {
+           "type": "string"
+          },
+          "loeschen_vermerken": {
+           "type": "string"
+          },
+          "vernichten": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "anbieten_staatsarchiv",
+          "anonymisieren",
+          "loeschen_vermerken",
+          "vernichten"
+         ],
+         "additionalProperties": false
+        },
+        "div": {
+         "type": "object",
+         "properties": {
+          "codeliste": {
+           "type": "string"
+          },
+          "element_offen": {
+           "type": "string"
+          },
+          "format": {
+           "type": "string"
+          },
+          "kein_standard": {
+           "type": "string"
+          },
+          "pflicht": {
+           "type": "string"
+          },
+          "pflicht_uneinheitlich": {
+           "type": "string"
+          },
+          "standard_alt": {
+           "type": "string"
+          },
+          "standard_entwurf": {
+           "type": "string"
+          },
+          "standard_ohne_elemente": {
+           "type": "string"
+          },
+          "ungeprueft": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "codeliste",
+          "element_offen",
+          "format",
+          "kein_standard",
+          "pflicht",
+          "pflicht_uneinheitlich",
+          "standard_alt",
+          "standard_entwurf",
+          "standard_ohne_elemente",
+          "ungeprueft"
+         ],
+         "additionalProperties": false
+        },
+        "div_cls": {
+         "type": "object",
+         "properties": {
+          "codeliste": {
+           "type": "string"
+          },
+          "element_offen": {
+           "type": "string"
+          },
+          "format": {
+           "type": "string"
+          },
+          "kein_standard": {
+           "type": "string"
+          },
+          "pflicht": {
+           "type": "string"
+          },
+          "pflicht_uneinheitlich": {
+           "type": "string"
+          },
+          "standard_alt": {
+           "type": "string"
+          },
+          "standard_entwurf": {
+           "type": "string"
+          },
+          "standard_ohne_elemente": {
+           "type": "string"
+          },
+          "ungeprueft": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "codeliste",
+          "element_offen",
+          "format",
+          "kein_standard",
+          "pflicht",
+          "pflicht_uneinheitlich",
+          "standard_alt",
+          "standard_entwurf",
+          "standard_ohne_elemente",
+          "ungeprueft"
+         ],
+         "additionalProperties": false
+        },
+        "dvsh_status": {
+         "type": "object",
+         "properties": {
+          "uebergeben": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "uebergeben"
+         ],
+         "additionalProperties": false
+        },
+        "ebene": {
+         "type": "object",
+         "properties": {
+          "cantonal": {
+           "type": "string"
+          },
+          "communal": {
+           "type": "string"
+          },
+          "federal": {
+           "type": "string"
+          },
+          "interkantonal": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "cantonal",
+          "communal",
+          "federal",
+          "interkantonal"
+         ],
+         "additionalProperties": false
+        },
+        "einheit": {
+         "type": "object",
+         "properties": {
+          "begriff": {
+           "type": "array",
+           "items": {
+            "type": "string"
+           }
+          },
+          "divergenz": {
+           "type": "array",
+           "items": {
+            "type": "string"
+           }
+          },
+          "divergenz_offen": {
+           "type": "array",
+           "items": {
+            "type": "string"
+           }
+          },
+          "dup": {
+           "type": "array",
+           "items": {
+            "type": "string"
+           }
+          },
+          "ech": {
+           "type": "array",
+           "items": {
+            "type": "string"
+           }
+          },
+          "echalt": {
+           "type": "array",
+           "items": {
+            "type": "string"
+           }
+          },
+          "ermitteln": {
+           "type": "array",
+           "items": {
+            "type": "string"
+           }
+          },
+          "kein_standard": {
+           "type": "array",
+           "items": {
+            "type": "string"
+           }
+          },
+          "offen": {
+           "type": "array",
+           "items": {
+            "type": "string"
+           }
+          },
+          "ohne": {
+           "type": "array",
+           "items": {
+            "type": "string"
+           }
+          },
+          "sensibel_art5": {
+           "type": "array",
+           "items": {
+            "type": "string"
+           }
+          },
+          "zuordnung": {
+           "type": "array",
+           "items": {
+            "type": "string"
+           }
+          }
+         },
+         "required": [
+          "begriff",
+          "divergenz",
+          "divergenz_offen",
+          "dup",
+          "ech",
+          "echalt",
+          "ermitteln",
+          "kein_standard",
+          "offen",
+          "ohne",
+          "sensibel_art5",
+          "zuordnung"
+         ],
+         "additionalProperties": false
+        },
+        "endpoint": {
+         "type": "object",
+         "properties": {
+          "eformular": {
+           "type": "string"
+          },
+          "email": {
+           "type": "string"
+          },
+          "externer_link": {
+           "type": "string"
+          },
+          "formular_pdf": {
+           "type": "string"
+          },
+          "telefon": {
+           "type": "string"
+          },
+          "vor_ort": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "eformular",
+          "email",
+          "externer_link",
+          "formular_pdf",
+          "telefon",
+          "vor_ort"
+         ],
+         "additionalProperties": false
+        },
+        "esh_status": {
+         "type": "object",
+         "properties": {
+          "entwurf": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "entwurf"
+         ],
+         "additionalProperties": false
+        },
+        "halter": {
+         "type": "object",
+         "properties": {
+          "betreibungsregister": {
+           "type": "string"
+          },
+          "bund": {
+           "type": "string"
+          },
+          "einwohnerregister": {
+           "type": "string"
+          },
+          "grundbuch": {
+           "type": "string"
+          },
+          "handelsregister": {
+           "type": "string"
+          },
+          "kanton_andere": {
+           "type": "string"
+          },
+          "privat": {
+           "type": "string"
+          },
+          "steuerverwaltung": {
+           "type": "string"
+          },
+          "strafregister": {
+           "type": "string"
+          },
+          "unbekannt": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "betreibungsregister",
+          "bund",
+          "einwohnerregister",
+          "grundbuch",
+          "handelsregister",
+          "kanton_andere",
+          "privat",
+          "steuerverwaltung",
+          "strafregister",
+          "unbekannt"
+         ],
+         "additionalProperties": false
+        },
+        "jur": {
+         "type": "object",
+         "properties": {
+          "cantonal": {
+           "type": "string"
+          },
+          "communal": {
+           "type": "string"
+          },
+          "federal": {
+           "type": "string"
+          },
+          "interkantonal": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "cantonal",
+          "communal",
+          "federal",
+          "interkantonal"
+         ],
+         "additionalProperties": false
+        },
+        "kat": {
+         "type": "object",
+         "properties": {
+          "privat": {
+           "type": "string"
+          },
+          "unternehmen": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "privat",
+          "unternehmen"
+         ],
+         "additionalProperties": false
+        },
+        "kontakt": {
+         "type": "object",
+         "properties": {
+          "label": {
+           "type": "string"
+          },
+          "leer": {
+           "type": "string"
+          },
+          "mail": {
+           "type": "string"
+          },
+          "tel": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "label",
+          "leer",
+          "mail",
+          "tel"
+         ],
+         "additionalProperties": false
+        },
+        "minmax": {
+         "type": "object",
+         "properties": {
+          "exakt": {
+           "type": "string"
+          },
+          "max": {
+           "type": "string"
+          },
+          "min": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "exakt",
+          "max",
+          "min"
+         ],
+         "additionalProperties": false
+        },
+        "mode": {
+         "type": "object",
+         "properties": {
+          "auf_anfrage": {
+           "type": "string"
+          },
+          "systematisch": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "auf_anfrage",
+          "systematisch"
+         ],
+         "additionalProperties": false
+        },
+        "node_typ": {
+         "type": "object",
+         "properties": {
+          "choice": {
+           "type": "string"
+          },
+          "confirm": {
+           "type": "string"
+          },
+          "date": {
+           "type": "string"
+          },
+          "doc_scan": {
+           "type": "string"
+          },
+          "form": {
+           "type": "string"
+          },
+          "multiselect": {
+           "type": "string"
+          },
+          "note": {
+           "type": "string"
+          },
+          "number": {
+           "type": "string"
+          },
+          "roster": {
+           "type": "string"
+          },
+          "scan": {
+           "type": "string"
+          },
+          "text": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "choice",
+          "confirm",
+          "date",
+          "doc_scan",
+          "form",
+          "multiselect",
+          "note",
+          "number",
+          "roster",
+          "scan",
+          "text"
+         ],
+         "additionalProperties": false
+        },
+        "oblig": {
+         "type": "object",
+         "properties": {
+          "bedingt": {
+           "type": "string"
+          },
+          "fakultativ": {
+           "type": "string"
+          },
+          "unbekannt": {
+           "type": "string"
+          },
+          "zwingend": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "bedingt",
+          "fakultativ",
+          "unbekannt",
+          "zwingend"
+         ],
+         "additionalProperties": false
+        },
+        "outcome": {
+         "type": "object",
+         "properties": {
+          "auszahlung": {
+           "type": "string"
+          },
+          "bestaetigung": {
+           "type": "string"
+          },
+          "bewilligung": {
+           "type": "string"
+          },
+          "kein_entscheid": {
+           "type": "string"
+          },
+          "registereintrag": {
+           "type": "string"
+          },
+          "unbekannt": {
+           "type": "string"
+          },
+          "verfuegung": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "auszahlung",
+          "bestaetigung",
+          "bewilligung",
+          "kein_entscheid",
+          "registereintrag",
+          "unbekannt",
+          "verfuegung"
+         ],
+         "additionalProperties": false
+        },
+        "rm": {
+         "type": "object",
+         "properties": {
+          "beschwerde": {
+           "type": "string"
+          },
+          "einsprache": {
+           "type": "string"
+          },
+          "rekurs": {
+           "type": "string"
+          },
+          "verwaltungsgerichtsbeschwerde": {
+           "type": "string"
+          },
+          "verweis": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "beschwerde",
+          "einsprache",
+          "rekurs",
+          "verwaltungsgerichtsbeschwerde",
+          "verweis"
+         ],
+         "additionalProperties": false
+        },
+        "rm_status": {
+         "type": "object",
+         "properties": {
+          "beurteilt_offen": {
+           "type": "string"
+          },
+          "default_allgemein": {
+           "type": "string"
+          },
+          "entscheidart_offen": {
+           "type": "string"
+          },
+          "nicht_beurteilt": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "beurteilt_offen",
+          "default_allgemein",
+          "entscheidart_offen",
+          "nicht_beurteilt"
+         ],
+         "additionalProperties": false
+        },
+        "scope": {
+         "type": "object",
+         "properties": {
+          "allgemein": {
+           "type": "string"
+          },
+          "besonders_schuetzenswert": {
+           "type": "string"
+          },
+          "sektoral": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "allgemein",
+          "besonders_schuetzenswert",
+          "sektoral"
+         ],
+         "additionalProperties": false
+        },
+        "sens": {
+         "type": "object",
+         "properties": {
+          "ethnie_herkunft": {
+           "type": "string"
+          },
+          "genetik_biometrie": {
+           "type": "string"
+          },
+          "gesundheit": {
+           "type": "string"
+          },
+          "politik": {
+           "type": "string"
+          },
+          "religion_weltanschauung": {
+           "type": "string"
+          },
+          "sozialhilfe": {
+           "type": "string"
+          },
+          "strafen_verfahren": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "ethnie_herkunft",
+          "genetik_biometrie",
+          "gesundheit",
+          "politik",
+          "religion_weltanschauung",
+          "sozialhilfe",
+          "strafen_verfahren"
+         ],
+         "additionalProperties": false
+        },
+        "sig": {
+         "type": "object",
+         "properties": {
+          "handschriftlich": {
+           "type": "string"
+          },
+          "keine": {
+           "type": "string"
+          },
+          "sig_widget": {
+           "type": "string"
+          },
+          "unbekannt": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "handschriftlich",
+          "keine",
+          "sig_widget",
+          "unbekannt"
+         ],
+         "additionalProperties": false
+        },
+        "stufe_of_cat": {
+         "type": "object",
+         "properties": {
+          "begriff": {
+           "type": "integer"
+          },
+          "divergenz": {
+           "type": "integer"
+          },
+          "divergenz_offen": {
+           "type": "integer"
+          },
+          "dsfa": {
+           "type": "integer"
+          },
+          "dup": {
+           "type": "integer"
+          },
+          "ech": {
+           "type": "integer"
+          },
+          "echalt": {
+           "type": "integer"
+          },
+          "empf": {
+           "type": "integer"
+          },
+          "entscheid_art": {
+           "type": "integer"
+          },
+          "ermitteln": {
+           "type": "integer"
+          },
+          "kein_standard": {
+           "type": "integer"
+          },
+          "keine-felder": {
+           "type": "integer"
+          },
+          "offen": {
+           "type": "integer"
+          },
+          "ohne": {
+           "type": "integer"
+          },
+          "pruefung_faellig": {
+           "type": "integer"
+          },
+          "rechtsmittel": {
+           "type": "integer"
+          },
+          "rechtsmittel_default": {
+           "type": "integer"
+          },
+          "sensibel_art5": {
+           "type": "integer"
+          },
+          "veraltet": {
+           "type": "integer"
+          },
+          "zuordnung": {
+           "type": "integer"
+          },
+          "zweck": {
+           "type": "integer"
+          }
+         },
+         "required": [
+          "begriff",
+          "divergenz",
+          "divergenz_offen",
+          "dsfa",
+          "dup",
+          "ech",
+          "echalt",
+          "empf",
+          "entscheid_art",
+          "ermitteln",
+          "kein_standard",
+          "keine-felder",
+          "offen",
+          "ohne",
+          "pruefung_faellig",
+          "rechtsmittel",
+          "rechtsmittel_default",
+          "sensibel_art5",
+          "veraltet",
+          "zuordnung",
+          "zweck"
+         ],
+         "additionalProperties": false
+        },
+        "stufen": {
+         "type": "array",
+         "items": {
+          "type": "array",
+          "items": {
+           "type": [
+            "string",
+            "integer"
+           ]
+          }
+         }
+        },
+        "subjekt": {
+         "type": "object",
+         "properties": {
+          "behoerde": {
+           "type": "string"
+          },
+          "gemischt": {
+           "type": "string"
+          },
+          "natuerliche_person": {
+           "type": "string"
+          },
+          "organisation": {
+           "type": "string"
+          },
+          "sache": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "behoerde",
+          "gemischt",
+          "natuerliche_person",
+          "organisation",
+          "sache"
+         ],
+         "additionalProperties": false
+        },
+        "todo_art": {
+         "type": "object",
+         "properties": {
+          "bereinigung": {
+           "type": "string"
+          },
+          "entscheid": {
+           "type": "string"
+          },
+          "recherche": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "bereinigung",
+          "entscheid",
+          "recherche"
+         ],
+         "additionalProperties": false
+        },
+        "todo_cats": {
+         "type": "array",
+         "items": {
+          "type": "array",
+          "items": {
+           "type": "string"
+          }
+         }
+        },
+        "ton": {
+         "type": "object",
+         "properties": {
+          "act": {
+           "type": "object",
+           "properties": {
+            "bedeutung": {
+             "type": "string"
+            },
+            "farbe": {
+             "type": "string"
+            },
+            "label": {
+             "type": "string"
+            }
+           },
+           "required": [
+            "bedeutung",
+            "farbe",
+            "label"
+           ],
+           "additionalProperties": false
+          },
+          "dec": {
+           "type": "object",
+           "properties": {
+            "bedeutung": {
+             "type": "string"
+            },
+            "farbe": {
+             "type": "string"
+            },
+            "label": {
+             "type": "string"
+            }
+           },
+           "required": [
+            "bedeutung",
+            "farbe",
+            "label"
+           ],
+           "additionalProperties": false
+          },
+          "ok": {
+           "type": "object",
+           "properties": {
+            "bedeutung": {
+             "type": "string"
+            },
+            "farbe": {
+             "type": "string"
+            },
+            "label": {
+             "type": "string"
+            }
+           },
+           "required": [
+            "bedeutung",
+            "farbe",
+            "label"
+           ],
+           "additionalProperties": false
+          },
+          "open": {
+           "type": "object",
+           "properties": {
+            "bedeutung": {
+             "type": "string"
+            },
+            "farbe": {
+             "type": "string"
+            },
+            "label": {
+             "type": "string"
+            }
+           },
+           "required": [
+            "bedeutung",
+            "farbe",
+            "label"
+           ],
+           "additionalProperties": false
+          }
+         },
+         "required": [
+          "act",
+          "dec",
+          "ok",
+          "open"
+         ],
+         "additionalProperties": false
+        },
+        "ton_map": {
+         "type": "object",
+         "properties": {
+          "basis": {
+           "type": "object",
+           "properties": {
+            "art5_offen": {
+             "type": "string"
+            },
+            "artikel": {
+             "type": "string"
+            },
+            "aufgabe": {
+             "type": "string"
+            },
+            "offen": {
+             "type": "string"
+            },
+            "ohne": {
+             "type": "string"
+            },
+            "zu_ermitteln": {
+             "type": "string"
+            }
+           },
+           "required": [
+            "art5_offen",
+            "artikel",
+            "aufgabe",
+            "offen",
+            "ohne",
+            "zu_ermitteln"
+           ],
+           "additionalProperties": false
+          },
+          "begriff": {
+           "type": "object",
+           "properties": {
+            "aufteilen": {
+             "type": "string"
+            },
+            "rolle": {
+             "type": "string"
+            },
+            "variante": {
+             "type": "string"
+            },
+            "vorbehalt": {
+             "type": "string"
+            },
+            "vorschlag": {
+             "type": "string"
+            },
+            "zuordnung": {
+             "type": "string"
+            }
+           },
+           "required": [
+            "aufteilen",
+            "rolle",
+            "variante",
+            "vorbehalt",
+            "vorschlag",
+            "zuordnung"
+           ],
+           "additionalProperties": false
+          },
+          "check": {
+           "type": "object",
+           "properties": {
+            "aktuell": {
+             "type": "string"
+            },
+            "faellig": {
+             "type": "string"
+            },
+            "nicht_auffindbar": {
+             "type": "string"
+            },
+            "nicht_gefunden": {
+             "type": "string"
+            },
+            "nie": {
+             "type": "string"
+            },
+            "veraltet": {
+             "type": "string"
+            },
+            "veraltet_verdacht": {
+             "type": "string"
+            }
+           },
+           "required": [
+            "aktuell",
+            "faellig",
+            "nicht_auffindbar",
+            "nicht_gefunden",
+            "nie",
+            "veraltet",
+            "veraltet_verdacht"
+           ],
+           "additionalProperties": false
+          },
+          "div": {
+           "type": "object",
+           "properties": {
+            "codeliste": {
+             "type": "string"
+            },
+            "element_offen": {
+             "type": "string"
+            },
+            "format": {
+             "type": "string"
+            },
+            "kein_standard": {
+             "type": "string"
+            },
+            "pflicht": {
+             "type": "string"
+            },
+            "pflicht_uneinheitlich": {
+             "type": "string"
+            },
+            "standard_alt": {
+             "type": "string"
+            },
+            "standard_entwurf": {
+             "type": "string"
+            },
+            "standard_ohne_elemente": {
+             "type": "string"
+            },
+            "ungeprueft": {
+             "type": "string"
+            }
+           },
+           "required": [
+            "codeliste",
+            "element_offen",
+            "format",
+            "kein_standard",
+            "pflicht",
+            "pflicht_uneinheitlich",
+            "standard_alt",
+            "standard_entwurf",
+            "standard_ohne_elemente",
+            "ungeprueft"
+           ],
+           "additionalProperties": false
+          },
+          "dsfa": {
+           "type": "object",
+           "properties": {
+            "entschieden": {
+             "type": "string"
+            },
+            "indiziert": {
+             "type": "string"
+            },
+            "nicht_indiziert": {
+             "type": "string"
+            }
+           },
+           "required": [
+            "entschieden",
+            "indiziert",
+            "nicht_indiziert"
+           ],
+           "additionalProperties": false
+          },
+          "dup": {
+           "type": "object",
+           "properties": {
+            "entschieden": {
+             "type": "string"
+            },
+            "offen": {
+             "type": "string"
+            }
+           },
+           "required": [
+            "entschieden",
+            "offen"
+           ],
+           "additionalProperties": false
+          },
+          "ech": {
+           "type": "object",
+           "properties": {
+            "element": {
+             "type": "string"
+            },
+            "element_offen": {
+             "type": "string"
+            },
+            "kein_standard": {
+             "type": "string"
+            },
+            "standard_alt": {
+             "type": "string"
+            },
+            "standard_entwurf": {
+             "type": "string"
+            },
+            "standard_ohne_elemente": {
+             "type": "string"
+            },
+            "ungeprueft": {
+             "type": "string"
+            },
+            "zuordnung_falsch": {
+             "type": "string"
+            }
+           },
+           "required": [
+            "element",
+            "element_offen",
+            "kein_standard",
+            "standard_alt",
+            "standard_entwurf",
+            "standard_ohne_elemente",
+            "ungeprueft",
+            "zuordnung_falsch"
+           ],
+           "additionalProperties": false
+          },
+          "rechtsmittel": {
+           "type": "object",
+           "properties": {
+            "bestaetigt": {
+             "type": "string"
+            },
+            "beurteilt_offen": {
+             "type": "string"
+            },
+            "default_allgemein": {
+             "type": "string"
+            },
+            "entscheidart_offen": {
+             "type": "string"
+            },
+            "kein_entscheid": {
+             "type": "string"
+            },
+            "nicht_beurteilt": {
+             "type": "string"
+            }
+           },
+           "required": [
+            "bestaetigt",
+            "beurteilt_offen",
+            "default_allgemein",
+            "entscheidart_offen",
+            "kein_entscheid",
+            "nicht_beurteilt"
+           ],
+           "additionalProperties": false
+          },
+          "schutzstufe": {
+           "type": "object",
+           "properties": {
+            "fehlt": {
+             "type": "string"
+            },
+            "festgelegt": {
+             "type": "string"
+            }
+           },
+           "required": [
+            "fehlt",
+            "festgelegt"
+           ],
+           "additionalProperties": false
+          },
+          "verif": {
+           "type": "object",
+           "properties": {
+            "quelle_pdf": {
+             "type": "string"
+            },
+            "unverifiziert": {
+             "type": "string"
+            },
+            "verified": {
+             "type": "string"
+            }
+           },
+           "required": [
+            "quelle_pdf",
+            "unverifiziert",
+            "verified"
+           ],
+           "additionalProperties": false
+          }
+         },
+         "required": [
+          "basis",
+          "begriff",
+          "check",
+          "div",
+          "dsfa",
+          "dup",
+          "ech",
+          "rechtsmittel",
+          "schutzstufe",
+          "verif"
+         ],
+         "additionalProperties": false
+        },
+        "ton_of_art": {
+         "type": "object",
+         "properties": {
+          "bereinigung": {
+           "type": "string"
+          },
+          "entscheid": {
+           "type": "string"
+          },
+          "recherche": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "bereinigung",
+          "entscheid",
+          "recherche"
+         ],
+         "additionalProperties": false
+        },
+        "trigger": {
+         "type": "object",
+         "properties": {
+          "ablauf_mindestaufbewahrungsfrist": {
+           "type": "string"
+          },
+          "ablauf_vernichtungsfrist": {
+           "type": "string"
+          },
+          "abschluss_behandlung": {
+           "type": "string"
+          },
+          "aufhebung_oder_anordnung": {
+           "type": "string"
+          },
+          "beendigung_datenbearbeitung": {
+           "type": "string"
+          },
+          "bezeichnung_archivwuerdig": {
+           "type": "string"
+          },
+          "bezeichnung_nicht_archivwuerdig": {
+           "type": "string"
+          },
+          "ende_registraturperiode": {
+           "type": "string"
+          },
+          "letzte_bearbeitung": {
+           "type": "string"
+          },
+          "loeschung_kantonales_system": {
+           "type": "string"
+          },
+          "meldung_edoeb": {
+           "type": "string"
+          },
+          "nicht_mehr_benoetigt": {
+           "type": "string"
+          },
+          "nicht_mehr_erforderlich": {
+           "type": "string"
+          },
+          "nicht_mehr_staendig_benoetigt": {
+           "type": "string"
+          },
+          "nichtuebernahme_staatsarchiv": {
+           "type": "string"
+          },
+          "unbestimmt": {
+           "type": "string"
+          },
+          "verlangen_betroffene_person": {
+           "type": "string"
+          },
+          "vernichtung_waffe": {
+           "type": "string"
+          },
+          "vertragsende": {
+           "type": "string"
+          },
+          "wegfall_oeffentliches_interesse": {
+           "type": "string"
+          },
+          "zustimmung_bundesarchiv": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "ablauf_mindestaufbewahrungsfrist",
+          "ablauf_vernichtungsfrist",
+          "abschluss_behandlung",
+          "aufhebung_oder_anordnung",
+          "beendigung_datenbearbeitung",
+          "bezeichnung_archivwuerdig",
+          "bezeichnung_nicht_archivwuerdig",
+          "ende_registraturperiode",
+          "letzte_bearbeitung",
+          "loeschung_kantonales_system",
+          "meldung_edoeb",
+          "nicht_mehr_benoetigt",
+          "nicht_mehr_erforderlich",
+          "nicht_mehr_staendig_benoetigt",
+          "nichtuebernahme_staatsarchiv",
+          "unbestimmt",
+          "verlangen_betroffene_person",
+          "vernichtung_waffe",
+          "vertragsende",
+          "wegfall_oeffentliches_interesse",
+          "zustimmung_bundesarchiv"
+         ],
+         "additionalProperties": false
+        }
+       },
+       "required": [
+        "aktion",
+        "aspect",
+        "basis_typ",
+        "begriff_klasse",
+        "cat_order",
+        "chan",
+        "check",
+        "dftype",
+        "disposition",
+        "div",
+        "div_cls",
+        "dvsh_status",
+        "ebene",
+        "einheit",
+        "endpoint",
+        "esh_status",
+        "halter",
+        "jur",
+        "kat",
+        "kontakt",
+        "minmax",
+        "mode",
+        "node_typ",
+        "oblig",
+        "outcome",
+        "rm",
+        "rm_status",
+        "scope",
+        "sens",
+        "sig",
+        "stufe_of_cat",
+        "stufen",
+        "subjekt",
+        "todo_art",
+        "todo_cats",
+        "ton",
+        "ton_map",
+        "ton_of_art",
+        "trigger"
+       ],
+       "additionalProperties": false
+      },
+      "quelle": {
+       "type": "string"
+      },
+      "retired_layer": {
+       "type": "string"
+      },
+      "trust_rules": {
+       "type": "object",
+       "additionalProperties": {
+        "type": [
+         "object",
+         "string"
+        ],
+        "properties": {
+         "UNVERIFIED": {
+          "type": "string"
+         },
+         "_hinweis": {
+          "type": "string"
+         },
+         "cited_unverified": {
+          "type": "string"
+         },
+         "sourced_pdf": {
+          "type": "string"
+         },
+         "verified": {
+          "type": "string"
+         }
+        },
+        "required": [
+         "UNVERIFIED",
+         "_hinweis",
+         "cited_unverified",
+         "sourced_pdf",
+         "verified"
+        ],
+        "additionalProperties": false
+       }
+      },
+      "umfang": {
+       "type": "object",
+       "properties": {
+        "datenfelder": {
+         "type": "integer"
+        },
+        "datenfelder_art5_offen": {
+         "type": "integer"
+        },
+        "formulare": {
+         "type": "integer"
+        },
+        "formulare_mit_datenfeldern": {
+         "type": "integer"
+        },
+        "formulare_mit_verfahren": {
+         "type": "integer"
+        },
+        "services": {
+         "type": "integer"
+        },
+        "services_mit_dvsh": {
+         "type": "integer"
+        }
+       },
+       "required": [
+        "datenfelder",
+        "datenfelder_art5_offen",
+        "formulare",
+        "formulare_mit_datenfeldern",
+        "formulare_mit_verfahren",
+        "services",
+        "services_mit_dvsh"
+       ],
+       "additionalProperties": false
+      },
+      "vertrag": {
+       "type": "object",
+       "properties": {
+        "aenderungen": {
+         "type": "string"
+        },
+        "schema": {
+         "type": "string"
+        },
+        "version": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "aenderungen",
+        "schema",
+        "version"
+       ],
+       "additionalProperties": false
+      },
+      "zitate": {
+       "type": "object",
+       "properties": {
+        "quelle_pdf": {
+         "type": "integer"
+        },
+        "total": {
+         "type": "integer"
+        },
+        "unverifiziert": {
+         "type": "integer"
+        },
+        "verifiziert": {
+         "type": "integer"
+        }
+       },
+       "required": [
+        "quelle_pdf",
+        "total",
+        "unverifiziert",
+        "verifiziert"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "about",
+      "datenstand",
+      "generated_at",
+      "kennungen",
+      "labels",
+      "quelle",
+      "retired_layer",
+      "trust_rules",
+      "umfang",
+      "vertrag",
+      "zitate"
+     ],
+     "additionalProperties": false
+    },
+    "services": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "properties": {
+       "department": {
+        "type": "string"
+       },
+       "description": {
+        "type": [
+         "string",
+         "null"
+        ]
+       },
+       "dienststelle": {
+        "type": "string"
+       },
+       "dvsh_hinweis": {
+        "type": "string"
+       },
+       "dvsh_n": {
+        "type": "integer"
+       },
+       "dvsh_verfahren": {
+        "type": [
+         "object",
+         "null"
+        ],
+        "properties": {
+         "ablauf": {
+          "type": "array",
+          "items": {
+           "type": [
+            "object",
+            "string"
+           ],
+           "properties": {
+            "description": {
+             "type": "string"
+            },
+            "sort": {
+             "type": "integer"
+            },
+            "title": {
+             "type": "string"
+            }
+           },
+           "required": [
+            "description",
+            "sort",
+            "title"
+           ],
+           "additionalProperties": false
+          }
+         },
+         "email": {
+          "type": "string"
+         },
+         "gebuehren": {
+          "type": [
+           "string",
+           "null"
+          ]
+         },
+         "kurzbeschreibung": {
+          "type": "string"
+         },
+         "online": {
+          "type": "integer"
+         },
+         "recht_bund": {
+          "type": "array",
+          "items": {
+           "type": "object",
+           "properties": {
+            "ebene": {
+             "type": [
+              "string",
+              "null"
+             ]
+            },
+            "label": {
+             "type": "string"
+            },
+            "url": {
+             "type": [
+              "string",
+              "null"
+             ]
+            }
+           },
+           "required": [
+            "ebene",
+            "label"
+           ],
+           "additionalProperties": false
+          }
+         },
+         "recht_kantonal": {
+          "type": "array",
+          "items": {
+           "type": "object",
+           "properties": {
+            "ssr_nummer": {
+             "type": "string"
+            },
+            "titel": {
+             "type": "string"
+            },
+            "url": {
+             "type": "string"
+            }
+           },
+           "required": [
+            "ssr_nummer",
+            "titel",
+            "url"
+           ],
+           "additionalProperties": false
+          }
+         },
+         "status": {
+          "type": "string"
+         },
+         "unterlagen": {
+          "type": "array",
+          "items": {
+           "type": "object",
+           "properties": {
+            "hint": {
+             "type": "string"
+            },
+            "mandatory": {
+             "type": "boolean"
+            },
+            "title": {
+             "type": "string"
+            }
+           },
+           "required": [
+            "title"
+           ],
+           "additionalProperties": false
+          }
+         },
+         "version": {
+          "type": "string"
+         },
+         "vollzugsbehoerde": {
+          "type": "string"
+         },
+         "voraussetzungen": {
+          "type": "array",
+          "items": {
+           "type": "string"
+          }
+         }
+        },
+        "required": [
+         "ablauf",
+         "email",
+         "gebuehren",
+         "kurzbeschreibung",
+         "online",
+         "recht_bund",
+         "recht_kantonal",
+         "status",
+         "unterlagen",
+         "version",
+         "vollzugsbehoerde",
+         "voraussetzungen"
+        ],
+        "additionalProperties": false
+       },
+       "findings": {
+        "type": "array",
+        "items": {
+         "type": "object",
+         "properties": {
+          "description": {
+           "type": "string"
+          },
+          "severity": {
+           "type": "string"
+          },
+          "type": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "description",
+          "severity",
+          "type"
+         ],
+         "additionalProperties": false
+        }
+       },
+       "forms": {
+        "type": "array",
+        "items": {
+         "type": "object",
+         "properties": {
+          "aufbewahrung": {
+           "type": "object",
+           "properties": {
+            "fristen": {
+             "type": "array",
+             "items": {
+              "type": "object",
+              "properties": {
+               "article_no": {
+                "type": "string"
+               },
+               "disposition": {
+                "type": [
+                 "string",
+                 "null"
+                ]
+               },
+               "duration_unit": {
+                "type": [
+                 "string",
+                 "null"
+                ]
+               },
+               "duration_value": {
+                "type": [
+                 "integer",
+                 "null"
+                ]
+               },
+               "min_or_max": {
+                "type": [
+                 "string",
+                 "null"
+                ]
+               },
+               "short_title": {
+                "type": "string"
+               },
+               "sr_number": {
+                "type": "string"
+               },
+               "trigger_event": {
+                "type": "string"
+               }
+              },
+              "required": [
+               "article_no",
+               "disposition",
+               "duration_unit",
+               "duration_value",
+               "min_or_max",
+               "short_title",
+               "sr_number",
+               "trigger_event"
+              ],
+              "additionalProperties": false
+             }
+            },
+            "standardregime": {
+             "type": [
+              "object",
+              "null"
+             ],
+             "properties": {
+              "refs": {
+               "type": "array",
+               "items": {
+                "type": "array",
+                "items": {
+                 "type": "string"
+                }
+               }
+              },
+              "text": {
+               "type": "string"
+              }
+             },
+             "required": [
+              "refs",
+              "text"
+             ],
+             "additionalProperties": false
+            }
+           },
+           "required": [
+            "fristen",
+            "standardregime"
+           ],
+           "additionalProperties": false
+          },
+          "data_fields": {
+           "type": "array",
+           "items": {
+            "type": "object",
+            "properties": {
+             "allowed_values": {
+              "type": "array",
+              "items": {
+               "type": "string"
+              }
+             },
+             "angabe_kennung": {
+              "type": [
+               "string",
+               "null"
+              ],
+              "pattern": "^sh:angabe:e(?:CH|SH)-[0-9]{4}:[A-Za-z0-9_.-]+(?::[A-Za-z0-9_]+)?(?:~[0-9]+)?$"
+             },
+             "art5_offen": {
+              "type": "boolean"
+             },
+             "basis_begruendung": {
+              "type": [
+               "string",
+               "null"
+              ]
+             },
+             "basis_typ": {
+              "type": [
+               "string",
+               "null"
+              ]
+             },
+             "data_type": {
+              "type": "string"
+             },
+             "definition": {
+              "type": "string"
+             },
+             "ech": {
+              "type": "object",
+              "properties": {
+               "datatype": {
+                "type": [
+                 "string",
+                 "null"
+                ]
+               },
+               "element": {
+                "type": [
+                 "string",
+                 "null"
+                ]
+               },
+               "standard": {
+                "type": "string"
+               },
+               "standard_status": {
+                "type": [
+                 "string",
+                 "null"
+                ]
+               },
+               "standard_titel": {
+                "type": "string"
+               },
+               "status": {
+                "type": "string"
+               },
+               "url": {
+                "type": "string"
+               }
+              },
+              "required": [
+               "status"
+              ],
+              "additionalProperties": false
+             },
+             "esh_entwurf": {
+              "type": [
+               "object",
+               "null"
+              ],
+              "properties": {
+               "code": {
+                "type": "string"
+               },
+               "element": {
+                "type": "string"
+               },
+               "status": {
+                "type": "string"
+               },
+               "titel": {
+                "type": "string"
+               }
+              },
+              "required": [
+               "code",
+               "element",
+               "status",
+               "titel"
+              ],
+              "additionalProperties": false
+             },
+             "id": {
+              "type": "integer"
+             },
+             "kennung": {
+              "type": "string",
+              "pattern": "^sh:(?:service|formular|angabe|gesetz):[A-Za-z0-9_.:~-]+$"
+             },
+             "legal_basis": {
+              "type": "array",
+              "items": {
+               "type": "object",
+               "properties": {
+                "article_no": {
+                 "type": "string"
+                },
+                "artikel_kennung": {
+                 "type": "string",
+                 "pattern": "^sh:gesetz:[a-z0-9][a-z0-9.-]*(?:~[0-9]+)?:(?:art|par|nr)-[a-z0-9][a-z0-9.-]*(?:~[0-9]+)?$"
+                },
+                "cantonal_ref": {
+                 "type": [
+                  "string",
+                  "null"
+                 ]
+                },
+                "citation_detail": {
+                 "type": "null"
+                },
+                "jurisdiction": {
+                 "type": "string"
+                },
+                "law_short": {
+                 "type": "string"
+                },
+                "law_title": {
+                 "type": "string"
+                },
+                "sr_number": {
+                 "type": [
+                  "string",
+                  "null"
+                 ]
+                },
+                "verification": {
+                 "type": "string"
+                }
+               },
+               "required": [
+                "article_no",
+                "artikel_kennung",
+                "cantonal_ref",
+                "citation_detail",
+                "jurisdiction",
+                "law_short",
+                "law_title",
+                "sr_number",
+                "verification"
+               ],
+               "additionalProperties": false
+              }
+             },
+             "name": {
+              "type": "string"
+             },
+             "over_collection": {
+              "type": "boolean"
+             },
+             "partei": {
+              "type": [
+               "object",
+               "null"
+              ],
+              "properties": {
+               "entitaet": {
+                "type": [
+                 "string",
+                 "null"
+                ]
+               },
+               "nr": {
+                "type": [
+                 "integer",
+                 "null"
+                ]
+               },
+               "rolle": {
+                "type": [
+                 "string",
+                 "null"
+                ]
+               },
+               "status": {
+                "type": "string"
+               }
+              },
+              "required": [
+               "entitaet",
+               "nr",
+               "rolle",
+               "status"
+              ],
+              "additionalProperties": false
+             },
+             "required": {
+              "type": "boolean"
+             },
+             "sensitive": {
+              "type": "boolean"
+             },
+             "sensitive_category": {
+              "type": [
+               "string",
+               "null"
+              ]
+             },
+             "subfields": {
+              "type": "array",
+              "items": {
+               "type": "object",
+               "properties": {
+                "angabe_kennung": {
+                 "type": [
+                  "string",
+                  "null"
+                 ],
+                 "pattern": "^sh:angabe:e(?:CH|SH)-[0-9]{4}:[A-Za-z0-9_.-]+(?::[A-Za-z0-9_]+)?(?:~[0-9]+)?$"
+                },
+                "ech": {
+                 "type": "object",
+                 "properties": {
+                  "element": {
+                   "type": [
+                    "string",
+                    "null"
+                   ]
+                  },
+                  "standard": {
+                   "type": "string"
+                  },
+                  "standard_status": {
+                   "type": [
+                    "string",
+                    "null"
+                   ]
+                  },
+                  "status": {
+                   "type": "string"
+                  }
+                 },
+                 "required": [
+                  "status"
+                 ],
+                 "additionalProperties": false
+                },
+                "esh_entwurf": {
+                 "type": "object",
+                 "properties": {
+                  "code": {
+                   "type": "string"
+                  },
+                  "element": {
+                   "type": "string"
+                  },
+                  "status": {
+                   "type": "string"
+                  },
+                  "titel": {
+                   "type": "string"
+                  }
+                 },
+                 "required": [
+                  "code",
+                  "element",
+                  "status",
+                  "titel"
+                 ],
+                 "additionalProperties": false
+                },
+                "kennung": {
+                 "type": "string",
+                 "pattern": "^sh:(?:service|formular|angabe|gesetz):[A-Za-z0-9_.:~-]+$"
+                },
+                "name": {
+                 "type": "string"
+                },
+                "partei": {
+                 "type": "object",
+                 "properties": {
+                  "entitaet": {
+                   "type": [
+                    "string",
+                    "null"
+                   ]
+                  },
+                  "nr": {
+                   "type": [
+                    "integer",
+                    "null"
+                   ]
+                  },
+                  "rolle": {
+                   "type": [
+                    "string",
+                    "null"
+                   ]
+                  },
+                  "status": {
+                   "type": "string"
+                  }
+                 },
+                 "required": [
+                  "entitaet",
+                  "nr",
+                  "rolle",
+                  "status"
+                 ],
+                 "additionalProperties": false
+                }
+               },
+               "required": [
+                "angabe_kennung",
+                "ech",
+                "kennung",
+                "name",
+                "partei"
+               ],
+               "additionalProperties": false
+              }
+             },
+             "subjekt": {
+              "type": [
+               "string",
+               "null"
+              ]
+             }
+            },
+            "required": [
+             "allowed_values",
+             "angabe_kennung",
+             "art5_offen",
+             "basis_begruendung",
+             "basis_typ",
+             "data_type",
+             "definition",
+             "ech",
+             "esh_entwurf",
+             "id",
+             "kennung",
+             "legal_basis",
+             "name",
+             "over_collection",
+             "partei",
+             "required",
+             "sensitive",
+             "sensitive_category",
+             "subfields",
+             "subjekt"
+            ],
+            "additionalProperties": false
+           }
+          },
+          "empfaenger": {
+           "type": "array",
+           "items": {
+            "type": "object",
+            "properties": {
+             "article_no": {
+              "type": "string"
+             },
+             "empfaenger": {
+              "type": "string"
+             },
+             "mode": {
+              "type": "string"
+             },
+             "short_title": {
+              "type": "string"
+             }
+            },
+            "required": [
+             "article_no",
+             "empfaenger",
+             "mode",
+             "short_title"
+            ],
+            "additionalProperties": false
+           }
+          },
+          "file_type": {
+           "type": "string"
+          },
+          "id": {
+           "type": "integer"
+          },
+          "kennung": {
+           "type": "string",
+           "pattern": "^sh:(?:service|formular|angabe|gesetz):[A-Za-z0-9_.:~-]+$"
+          },
+          "source_file": {
+           "type": [
+            "string",
+            "null"
+           ]
+          },
+          "standard_divergenzen": {
+           "type": "object",
+           "properties": {
+            "angleichen": {
+             "type": "array",
+             "items": {
+              "type": "object",
+              "properties": {
+               "aktion": {
+                "type": "string"
+               },
+               "andere": {
+                "type": "string"
+               },
+               "art": {
+                "type": "string"
+               },
+               "basis": {
+                "type": "string"
+               },
+               "element": {
+                "type": "string"
+               },
+               "feld": {
+                "type": "string"
+               },
+               "hier": {
+                "type": "string"
+               },
+               "standard": {
+                "type": "string"
+               },
+               "teilfeld": {
+                "type": [
+                 "string",
+                 "null"
+                ]
+               }
+              },
+              "required": [
+               "aktion",
+               "andere",
+               "art",
+               "basis",
+               "element",
+               "feld",
+               "hier",
+               "standard",
+               "teilfeld"
+              ],
+              "additionalProperties": false
+             }
+            },
+            "bezeichnungen": {
+             "type": "array",
+             "items": {
+              "type": "object",
+              "properties": {
+               "element": {
+                "type": "string"
+               },
+               "feld": {
+                "type": "string"
+               },
+               "grund": {
+                "type": "string"
+               },
+               "hier": {
+                "type": "string"
+               },
+               "klasse": {
+                "type": "string"
+               },
+               "pruefart": {
+                "type": [
+                 "string",
+                 "null"
+                ]
+               },
+               "standard": {
+                "type": "string"
+               },
+               "teilfeld": {
+                "type": [
+                 "string",
+                 "null"
+                ]
+               },
+               "vorschlag": {
+                "type": "string"
+               }
+              },
+              "required": [
+               "element",
+               "feld",
+               "grund",
+               "hier",
+               "klasse",
+               "pruefart",
+               "standard",
+               "teilfeld",
+               "vorschlag"
+              ],
+              "additionalProperties": false
+             }
+            },
+            "fehlend": {
+             "type": "array",
+             "items": {
+              "type": "object",
+              "properties": {
+               "aktion": {
+                "type": "string"
+               },
+               "art": {
+                "type": "string"
+               },
+               "felder": {
+                "type": "array",
+                "items": {
+                 "type": "string"
+                }
+               },
+               "n": {
+                "type": "integer"
+               },
+               "sammel": {
+                "type": "boolean"
+               },
+               "standard": {
+                "type": [
+                 "string",
+                 "null"
+                ]
+               },
+               "status": {
+                "type": [
+                 "string",
+                 "null"
+                ]
+               }
+              },
+              "required": [
+               "aktion",
+               "art",
+               "felder",
+               "n",
+               "sammel",
+               "standard",
+               "status"
+              ],
+              "additionalProperties": false
+             }
+            },
+            "n_angleichen": {
+             "type": "integer"
+            },
+            "n_bezeichnungen": {
+             "type": "integer"
+            },
+            "n_fehlend": {
+             "type": "integer"
+            },
+            "n_pflicht_ungeklaert": {
+             "type": "integer"
+            }
+           },
+           "required": [
+            "angleichen",
+            "bezeichnungen",
+            "fehlend",
+            "n_angleichen",
+            "n_bezeichnungen",
+            "n_fehlend",
+            "n_pflicht_ungeklaert"
+           ],
+           "additionalProperties": false
+          },
+          "title": {
+           "type": "string"
+          },
+          "title_content_mismatch": {
+           "type": "boolean"
+          },
+          "verfahren": {
+           "type": "object",
+           "properties": {
+            "beilagen": {
+             "type": "array",
+             "items": {
+              "type": "object",
+              "properties": {
+               "bedingung": {
+                "type": [
+                 "string",
+                 "null"
+                ]
+               },
+               "bezeichnung": {
+                "type": "string"
+               },
+               "fetchable": {
+                "type": "integer"
+               },
+               "halter": {
+                "type": "string"
+               },
+               "obligatorium": {
+                "type": "string"
+               },
+               "register": {
+                "type": "array",
+                "items": {
+                 "type": "object",
+                 "properties": {
+                  "begriff": {
+                   "type": [
+                    "string",
+                    "null"
+                   ]
+                  },
+                  "grundlage": {
+                   "type": "string"
+                  },
+                  "register": {
+                   "type": "string"
+                  }
+                 },
+                 "required": [
+                  "begriff",
+                  "grundlage",
+                  "register"
+                 ],
+                 "additionalProperties": false
+                }
+               },
+               "register_ersetzt_nicht": {
+                "type": [
+                 "string",
+                 "null"
+                ]
+               },
+               "source": {
+                "type": "string"
+               }
+              },
+              "required": [
+               "bedingung",
+               "bezeichnung",
+               "fetchable",
+               "halter",
+               "obligatorium",
+               "source"
+              ],
+              "additionalProperties": false
+             }
+            },
+            "blockers": {
+             "type": "array",
+             "items": {
+              "type": "string"
+             }
+            },
+            "dsfa_status": {
+             "type": "null"
+            },
+            "exchange_pct": {
+             "type": "integer"
+            },
+            "outcome": {
+             "type": [
+              "object",
+              "null"
+             ],
+             "properties": {
+              "article_id": {
+               "type": [
+                "integer",
+                "null"
+               ]
+              },
+              "artikel_kennung": {
+               "type": "string",
+               "pattern": "^sh:gesetz:[a-z0-9][a-z0-9.-]*(?:~[0-9]+)?:(?:art|par|nr)-[a-z0-9][a-z0-9.-]*(?:~[0-9]+)?$"
+              },
+              "entscheid_art": {
+               "type": "string"
+              },
+              "ergebnis_dokument": {
+               "type": [
+                "string",
+                "null"
+               ]
+              },
+              "gesetzesebenen": {
+               "type": "array",
+               "items": {
+                "type": "string"
+               }
+              },
+              "last_checked": {
+               "type": "string"
+              },
+              "rechtsmittel": {
+               "type": "object",
+               "properties": {
+                "article_no": {
+                 "type": "string"
+                },
+                "cantonal_ref": {
+                 "type": [
+                  "string",
+                  "null"
+                 ]
+                },
+                "frist_article_no": {
+                 "type": [
+                  "string",
+                  "null"
+                 ]
+                },
+                "frist_quote": {
+                 "type": [
+                  "string",
+                  "null"
+                 ]
+                },
+                "frist_tage": {
+                 "type": [
+                  "integer",
+                  "null"
+                 ]
+                },
+                "gilt_fuer": {
+                 "type": "string"
+                },
+                "hinweis": {
+                 "type": "string"
+                },
+                "instanz": {
+                 "type": "string"
+                },
+                "jurisdiction_level": {
+                 "type": "string"
+                },
+                "last_checked": {
+                 "type": "string"
+                },
+                "law_title": {
+                 "type": "string"
+                },
+                "quote": {
+                 "type": "string"
+                },
+                "rechtsmittel_art": {
+                 "type": "string"
+                },
+                "scope": {
+                 "type": "string"
+                },
+                "short_title": {
+                 "type": "string"
+                },
+                "sr_number": {
+                 "type": [
+                  "string",
+                  "null"
+                 ]
+                }
+               },
+               "required": [
+                "article_no",
+                "cantonal_ref",
+                "frist_article_no",
+                "frist_quote",
+                "frist_tage",
+                "gilt_fuer",
+                "hinweis",
+                "instanz",
+                "jurisdiction_level",
+                "last_checked",
+                "law_title",
+                "quote",
+                "rechtsmittel_art",
+                "scope",
+                "short_title",
+                "sr_number"
+               ],
+               "additionalProperties": false
+              },
+              "rechtsmittel_art": {
+               "type": [
+                "string",
+                "null"
+               ]
+              },
+              "rechtsmittel_frist_tage": {
+               "type": [
+                "integer",
+                "null"
+               ]
+              },
+              "rechtsmittel_instanz": {
+               "type": [
+                "string",
+                "null"
+               ]
+              },
+              "rechtsmittel_kandidaten": {
+               "type": "array",
+               "items": {
+                "type": "object",
+                "properties": {
+                 "article_no": {
+                  "type": "string"
+                 },
+                 "frist_tage": {
+                  "type": [
+                   "integer",
+                   "null"
+                  ]
+                 },
+                 "gilt_fuer": {
+                  "type": "string"
+                 },
+                 "hinweis": {
+                  "type": [
+                   "string",
+                   "null"
+                  ]
+                 },
+                 "id": {
+                  "type": "integer"
+                 },
+                 "instanz": {
+                  "type": [
+                   "string",
+                   "null"
+                  ]
+                 },
+                 "law_id": {
+                  "type": "integer"
+                 },
+                 "law_title": {
+                  "type": "string"
+                 },
+                 "quote": {
+                  "type": "string"
+                 },
+                 "rechtsmittel_art": {
+                  "type": "string"
+                 },
+                 "short_title": {
+                  "type": "string"
+                 }
+                },
+                "required": [
+                 "article_no",
+                 "frist_tage",
+                 "gilt_fuer",
+                 "hinweis",
+                 "id",
+                 "instanz",
+                 "law_id",
+                 "law_title",
+                 "quote",
+                 "rechtsmittel_art",
+                 "short_title"
+                ],
+                "additionalProperties": false
+               }
+              },
+              "rechtsmittel_quelle": {
+               "type": [
+                "string",
+                "null"
+               ]
+              },
+              "rechtsmittel_regel_id": {
+               "type": [
+                "integer",
+                "null"
+               ]
+              },
+              "rechtsmittel_status": {
+               "type": "string"
+              },
+              "rechtsmittel_verdikt": {
+               "type": "string"
+              }
+             },
+             "required": [
+              "article_id",
+              "entscheid_art",
+              "ergebnis_dokument",
+              "last_checked",
+              "rechtsmittel_art",
+              "rechtsmittel_frist_tage",
+              "rechtsmittel_instanz",
+              "rechtsmittel_quelle",
+              "rechtsmittel_regel_id"
+             ],
+             "additionalProperties": false
+            },
+            "signature_requirement": {
+             "type": [
+              "string",
+              "null"
+             ]
+            },
+            "submission_channel": {
+             "type": "string"
+            }
+           },
+           "required": [
+            "beilagen",
+            "blockers",
+            "dsfa_status",
+            "exchange_pct",
+            "outcome",
+            "signature_requirement",
+            "submission_channel"
+           ],
+           "additionalProperties": false
+          },
+          "zweck": {
+           "type": [
+            "string",
+            "null"
+           ]
+          }
+         },
+         "required": [
+          "aufbewahrung",
+          "data_fields",
+          "empfaenger",
+          "file_type",
+          "id",
+          "kennung",
+          "source_file",
+          "standard_divergenzen",
+          "title",
+          "title_content_mismatch",
+          "verfahren",
+          "zweck"
+         ],
+         "additionalProperties": false
+        }
+       },
+       "id": {
+        "type": "integer"
+       },
+       "in_dvsh": {
+        "type": "boolean"
+       },
+       "kennung": {
+        "type": "string",
+        "pattern": "^sh:(?:service|formular|angabe|gesetz):[A-Za-z0-9_.:~-]+$"
+       },
+       "lebenslagen_ech0049": {
+        "type": "array",
+        "items": {
+         "type": "object",
+         "properties": {
+          "bereich": {
+           "type": "string"
+          },
+          "gruppe": {
+           "type": "string"
+          },
+          "id": {
+           "type": "integer"
+          },
+          "katalog": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "bereich",
+          "gruppe",
+          "id",
+          "katalog"
+         ],
+         "additionalProperties": false
+        }
+       },
+       "name": {
+        "type": "string"
+       },
+       "process_steps": {
+        "type": "array",
+        "items": {
+         "type": "object",
+         "properties": {
+          "description": {
+           "type": "string"
+          },
+          "mode": {
+           "type": "string"
+          },
+          "step": {
+           "type": "integer"
+          }
+         },
+         "required": [
+          "description",
+          "mode",
+          "step"
+         ],
+         "additionalProperties": false
+        }
+       },
+       "shep_publikation": {
+        "type": [
+         "object",
+         "null"
+        ],
+        "properties": {
+         "portal_url": {
+          "type": "string"
+         },
+         "stand": {
+          "type": "string"
+         }
+        },
+        "required": [
+         "portal_url",
+         "stand"
+        ],
+        "additionalProperties": false
+       },
+       "slug": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "department",
+       "description",
+       "dienststelle",
+       "dvsh_verfahren",
+       "findings",
+       "forms",
+       "id",
+       "in_dvsh",
+       "kennung",
+       "lebenslagen_ech0049",
+       "name",
+       "process_steps",
+       "shep_publikation",
+       "slug"
+      ],
+      "additionalProperties": false
+     }
+    }
+   },
+   "required": [
+    "begriffe",
+    "datenhandhabung",
+    "lebenslagen",
+    "meta",
+    "services"
+   ],
+   "additionalProperties": false
+  }
+ }
+}

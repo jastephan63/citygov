@@ -1,0 +1,256 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "citygov_prefill.json",
+ "description": "Struktur von citygov_prefill.json, Version 1.0.0. Erzeugt aus der Datei, wie der Build sie schreibt (scripts/export_vertrag.py); Änderungen und Regeln in exportvertrag.json. Nie von Hand ändern.",
+ "$ref": "#/$defs/datei",
+ "$defs": {
+  "datei": {
+   "type": "object",
+   "properties": {
+    "formulare": {
+     "type": "object",
+     "additionalProperties": {
+      "type": "array",
+      "items": {
+       "type": "object",
+       "properties": {
+        "angabe_kennung": {
+         "type": "string",
+         "pattern": "^sh:angabe:e(?:CH|SH)-[0-9]{4}:[A-Za-z0-9_.-]+(?::[A-Za-z0-9_]+)?(?:~[0-9]+)?$"
+        },
+        "einwohnerregister": {
+         "type": "boolean"
+        },
+        "element": {
+         "type": "string"
+        },
+        "feld": {
+         "type": "string"
+        },
+        "feld_parent": {
+         "type": [
+          "string",
+          "null"
+         ]
+        },
+        "kennung": {
+         "type": "string",
+         "pattern": "^sh:(?:service|formular|angabe|gesetz):[A-Za-z0-9_.:~-]+$"
+        },
+        "mehrdeutig": {
+         "type": "boolean"
+        },
+        "partei": {
+         "type": [
+          "object",
+          "null"
+         ],
+         "properties": {
+          "entitaet": {
+           "type": "string"
+          },
+          "nr": {
+           "type": "integer"
+          },
+          "rolle": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "entitaet",
+          "nr",
+          "rolle"
+         ],
+         "additionalProperties": false
+        },
+        "partei_status": {
+         "type": "string"
+        },
+        "pflicht": {
+         "type": "boolean"
+        },
+        "standard": {
+         "type": "string"
+        },
+        "subjekt": {
+         "type": [
+          "string",
+          "null"
+         ]
+        },
+        "vorbefuellbar": {
+         "type": "boolean"
+        }
+       },
+       "required": [
+        "angabe_kennung",
+        "einwohnerregister",
+        "element",
+        "feld",
+        "feld_parent",
+        "kennung",
+        "mehrdeutig",
+        "partei",
+        "partei_status",
+        "pflicht",
+        "standard",
+        "subjekt",
+        "vorbefuellbar"
+       ],
+       "additionalProperties": false
+      }
+     }
+    },
+    "meta": {
+     "type": "object",
+     "properties": {
+      "felder": {
+       "type": "object",
+       "properties": {
+        "angabe_kennung": {
+         "type": "string"
+        },
+        "einwohnerregister": {
+         "type": "string"
+        },
+        "feld": {
+         "type": "string"
+        },
+        "kennung": {
+         "type": "string"
+        },
+        "mehrdeutig": {
+         "type": "string"
+        },
+        "partei": {
+         "type": "string"
+        },
+        "partei_status": {
+         "type": "string"
+        },
+        "pflicht": {
+         "type": "string"
+        },
+        "subjekt": {
+         "type": "string"
+        },
+        "vorbefuellbar": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "angabe_kennung",
+        "einwohnerregister",
+        "feld",
+        "kennung",
+        "mehrdeutig",
+        "partei",
+        "partei_status",
+        "pflicht",
+        "subjekt",
+        "vorbefuellbar"
+       ],
+       "additionalProperties": false
+      },
+      "formular_kennung": {
+       "type": "object",
+       "additionalProperties": {
+        "type": "string"
+       }
+      },
+      "generated_at": {
+       "type": "string"
+      },
+      "hinweis": {
+       "type": "string"
+      },
+      "vertrag": {
+       "type": "object",
+       "properties": {
+        "aenderungen": {
+         "type": "string"
+        },
+        "schema": {
+         "type": "string"
+        },
+        "version": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "aenderungen",
+        "schema",
+        "version"
+       ],
+       "additionalProperties": false
+      },
+      "zaehlung": {
+       "type": "object",
+       "properties": {
+        "formulare_ohne_ech_punkt": {
+         "type": "array",
+         "items": {
+          "type": "integer"
+         }
+        },
+        "hinweis": {
+         "type": "string"
+        },
+        "n_einwohnerregister": {
+         "type": "integer"
+        },
+        "n_formulare": {
+         "type": "integer"
+        },
+        "n_formulare_gesamt": {
+         "type": "integer"
+        },
+        "n_mehrdeutig": {
+         "type": "integer"
+        },
+        "n_punkte": {
+         "type": "integer"
+        },
+        "n_vorbefuellbar": {
+         "type": "integer"
+        },
+        "partei": {
+         "type": "object",
+         "additionalProperties": {
+          "type": "integer"
+         }
+        }
+       },
+       "required": [
+        "formulare_ohne_ech_punkt",
+        "hinweis",
+        "n_einwohnerregister",
+        "n_formulare",
+        "n_formulare_gesamt",
+        "n_mehrdeutig",
+        "n_punkte",
+        "n_vorbefuellbar",
+        "partei"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "felder",
+      "formular_kennung",
+      "generated_at",
+      "hinweis",
+      "vertrag",
+      "zaehlung"
+     ],
+     "additionalProperties": false
+    }
+   },
+   "required": [
+    "formulare",
+    "meta"
+   ],
+   "additionalProperties": false
+  }
+ }
+}

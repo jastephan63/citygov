@@ -34,7 +34,11 @@ What the build corrects against citygov.db (the DB wins over the July flow JSON)
   * prose that calls a task-necessary or article-based field «freiwillig» is
     neutralised (only basis_typ 'ohne' is voluntary) — every rewrite is printed;
   * the sensitive-data note reads the documented form_disclosure rows instead
-    of promising «nur für diesen Antrag».
+    of promising «nur für diesen Antrag»;
+  * the profile prefill map (ech_map) holds only the points citygov_prefill.json marks
+    vorbefuellbar (register_map.flow_schluessel, read from data_export.json): the
+    applicant's own Angaben with the Einwohnerregister mark, never a spouse's, a
+    child's or an employee's — the player also saves answers into the profile by it.
 
     python3 scripts/build_flows.py
 """
@@ -48,6 +52,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import ROOT, DB_PATH, EXPORT_PATH, connect, assert_no_local_paths
 import labels as LABELS
 import theme as THEME
+import register_map                     # the one prefill rule (flow_schluessel), standard library only
 
 OUT = os.path.join(ROOT, "flows.html")
 # Swiss municipalities, postcodes and countries for the autocomplete (tracked
@@ -1328,6 +1333,12 @@ def main():
     c = connect(DB_PATH)
     flows = []
     log = []
+    # the exported Formulare (units with their party and prefill marks), read once
+    try:
+        with open(EXPORT_PATH, encoding="utf-8") as fh:
+            export_forms = {f["id"]: f for f in json.load(fh).get("forms") or []}
+    except (OSError, ValueError) as e:
+        sys.exit(f"ABBRUCH build_flows.py: data_export.json nicht lesbar ({e}) — zuerst scripts/export_json.py")
     import hashlib
     n_forms = c.execute("SELECT count(*) FROM form").fetchone()[0]
     try:
@@ -1357,34 +1368,19 @@ def main():
             fl["bekanntgaben"] = bekanntgaben(c, r["form_id"])
             correct_nodes(fl, r["form_id"], log)     # flags + prose (reads bekanntgaben)
             correct_notes(fl, r["form_id"], log)     # whole-form notes, after the flag pass
-            # eCH map for once-only prefill + standards export. Field level keys
-            # are the data-field name -> "eCH-XXXX·element"; subfield level keys
-            # are "Feld›Teilfeld".
-            em = {}
-            for d in fl["datenfelder"]:
-                # the player prefills from the CITIZEN's profile - a Betrieb's
-                # street or an authority's address must not be filled from it.
-                # Whitelist: a field the panel has not judged (subjekt NULL)
-                # stays out until it has been
-                if d.get("subjekt") != "natuerliche_person":
-                    continue
-                if d.get("ech") and d["ech"].get("element"):
-                    em[d["name"]] = d["ech"]["standard"] + "\u00b7" + d["ech"]["element"]
-                for sf in (d.get("teilfelder") or []):
-                    if sf.get("ech") and sf["ech"].get("element"):
-                        em[d["name"] + "\u203a" + sf["name"]] = sf["ech"]["standard"] + "\u00b7" + sf["ech"]["element"]
-            # an element that identifies MORE than one question in the same form
-            # cannot prefill either of them - the profile holds one value, and
-            # writing it into both would fill a wrong answer (e.g. two different
-            # dates both mapped to eCH-0044 dateOfBirth)
-            seen = {}
-            for k, v in em.items():
-                seen.setdefault(v, []).append(k)
-            for v, keys in seen.items():
-                if len(keys) > 1:
-                    for k in keys:
-                        em.pop(k, None)
-            fl["ech_map"] = em
+            # eCH map for once-only prefill: the player prefills from the CITIZEN's
+            # profile and saves answers back into it, keyed by element — so only the
+            # applicant's own Angaben may be in it, never a spouse's, a child's or an
+            # employee's (they would be offered later as the citizen's own). ONE rule,
+            # the one citygov_prefill.json and burden.prefillable use
+            # (register_map.prefill_punkte: Einwohnerregister mark, party Gesuchsteller/in
+            # as a natural person, not mehrdeutig within that party). Keys «Feld» or
+            # «Feld›Teilfeld» -> "eCH-XXXX·element"
+            xf = export_forms.get(r["form_id"])
+            if xf is None:
+                sys.exit(f"ABBRUCH build_flows.py: Formular {r['form_id']} fehlt in data_export.json — "
+                         "zuerst scripts/export_json.py ausführen")
+            fl["ech_map"] = register_map.flow_schluessel(xf)
             # DVSH: real process steps + contact for the done screen
             dv = c.execute("SELECT ablauf, kontakt, email, phone, address FROM dvsh_service "
                            "WHERE service_id=? LIMIT 1", [r["sid"]]).fetchone()

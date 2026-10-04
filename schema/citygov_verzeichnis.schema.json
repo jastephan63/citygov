@@ -1,0 +1,264 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "citygov_verzeichnis.json",
+ "description": "Struktur von citygov_verzeichnis.json, Version 1.0.0. Erzeugt aus der Datei, wie der Build sie schreibt (scripts/export_vertrag.py); Änderungen und Regeln in exportvertrag.json. Nie von Hand ändern.",
+ "$ref": "#/$defs/datei",
+ "$defs": {
+  "datei": {
+   "type": "object",
+   "properties": {
+    "meta": {
+     "type": "object",
+     "properties": {
+      "felder": {
+       "type": "object",
+       "additionalProperties": {
+        "type": "string"
+       }
+      },
+      "generated_at": {
+       "type": "string"
+      },
+      "hinweis": {
+       "type": "string"
+      },
+      "vertrag": {
+       "type": "object",
+       "properties": {
+        "aenderungen": {
+         "type": "string"
+        },
+        "schema": {
+         "type": "string"
+        },
+        "version": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "aenderungen",
+        "schema",
+        "version"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "felder",
+      "generated_at",
+      "hinweis",
+      "vertrag"
+     ],
+     "additionalProperties": false
+    },
+    "verzeichnis": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "properties": {
+       "aufbewahrung": {
+        "type": "object",
+        "properties": {
+         "fristen": {
+          "type": "array",
+          "items": {
+           "type": "object",
+           "properties": {
+            "article_no": {
+             "type": "string"
+            },
+            "disposition": {
+             "type": [
+              "string",
+              "null"
+             ]
+            },
+            "duration_unit": {
+             "type": [
+              "string",
+              "null"
+             ]
+            },
+            "duration_value": {
+             "type": [
+              "integer",
+              "null"
+             ]
+            },
+            "min_or_max": {
+             "type": [
+              "string",
+              "null"
+             ]
+            },
+            "short_title": {
+             "type": "string"
+            },
+            "sr_number": {
+             "type": "string"
+            },
+            "trigger_event": {
+             "type": "string"
+            }
+           },
+           "required": [
+            "article_no",
+            "disposition",
+            "duration_unit",
+            "duration_value",
+            "min_or_max",
+            "short_title",
+            "sr_number",
+            "trigger_event"
+           ],
+           "additionalProperties": false
+          }
+         },
+         "standardregime": {
+          "type": [
+           "object",
+           "null"
+          ],
+          "properties": {
+           "refs": {
+            "type": "array",
+            "items": {
+             "type": "array",
+             "items": {
+              "type": "string"
+             }
+            }
+           },
+           "text": {
+            "type": "string"
+           }
+          },
+          "required": [
+           "refs",
+           "text"
+          ],
+          "additionalProperties": false
+         }
+        },
+        "required": [
+         "fristen",
+         "standardregime"
+        ],
+        "additionalProperties": false
+       },
+       "datenkategorien": {
+        "type": "object",
+        "properties": {
+         "besonders_schuetzenswert": {
+          "type": "array",
+          "items": {
+           "type": "string"
+          }
+         },
+         "felder": {
+          "type": "integer"
+         },
+         "n_besonders_schuetzenswert": {
+          "type": "integer"
+         }
+        },
+        "required": [
+         "besonders_schuetzenswert",
+         "felder",
+         "n_besonders_schuetzenswert"
+        ],
+        "additionalProperties": false
+       },
+       "dsfa_status": {
+        "type": "string"
+       },
+       "empfaenger": {
+        "type": [
+         "array",
+         "string"
+        ],
+        "items": {
+         "type": "string"
+        }
+       },
+       "form_id": {
+        "type": "integer"
+       },
+       "formular": {
+        "type": "string"
+       },
+       "formular_kennung": {
+        "type": "string",
+        "pattern": "^sh:formular:[a-z0-9][a-z0-9.-]*(?:~[0-9]+)?$"
+       },
+       "rechtsgrundlagen": {
+        "type": "object",
+        "properties": {
+         "art5_offen": {
+          "type": "integer"
+         },
+         "artikel": {
+          "type": "integer"
+         },
+         "aufgabe": {
+          "type": "integer"
+         },
+         "n_gedeckt": {
+          "type": "integer"
+         },
+         "n_offen": {
+          "type": "integer"
+         },
+         "offen": {
+          "type": "integer"
+         },
+         "ohne": {
+          "type": "integer"
+         },
+         "zu_ermitteln": {
+          "type": "integer"
+         }
+        },
+        "required": [
+         "art5_offen",
+         "artikel",
+         "aufgabe",
+         "n_gedeckt",
+         "n_offen",
+         "offen",
+         "ohne",
+         "zu_ermitteln"
+        ],
+        "additionalProperties": false
+       },
+       "verantwortliche_stelle": {
+        "type": "string"
+       },
+       "zweck": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "aufbewahrung",
+       "datenkategorien",
+       "dsfa_status",
+       "empfaenger",
+       "form_id",
+       "formular",
+       "formular_kennung",
+       "rechtsgrundlagen",
+       "verantwortliche_stelle",
+       "zweck"
+      ],
+      "additionalProperties": false
+     }
+    }
+   },
+   "required": [
+    "meta",
+    "verzeichnis"
+   ],
+   "additionalProperties": false
+  }
+ }
+}

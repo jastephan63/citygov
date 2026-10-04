@@ -8,8 +8,11 @@ import sqlite3
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-DB_PATH        = os.path.join(ROOT, "citygov.db")
-SCHEMA_PATH    = os.path.join(ROOT, "schema.sql")
+# CITYGOV_DB / CITYGOV_SCHEMA point a loader at a private copy of the database and
+# its schema (develop or test a new layer without touching the shared files);
+# unset, they are the repository's own files.
+DB_PATH        = os.environ.get("CITYGOV_DB") or os.path.join(ROOT, "citygov.db")
+SCHEMA_PATH    = os.environ.get("CITYGOV_SCHEMA") or os.path.join(ROOT, "schema.sql")
 EXPORT_PATH    = os.path.join(ROOT, "data_export.json")
 DASHBOARD_PATH = os.path.join(ROOT, "dashboard.html")
 FORMS_DIR      = os.path.join(ROOT, "forms")

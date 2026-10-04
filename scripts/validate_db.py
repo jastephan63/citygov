@@ -39,6 +39,56 @@ Checks, in order:
                                        with exactly the keys GESTALTUNG_KEYS;
                                        the scalar columns repeat the profil
                                        values and nothing else.
+  9. Kennungen                     -> kennungen.pruefen(): the triggers of the
+                                       identifier table are present; every
+                                       identifier has the format of its art and
+                                       target table, an existing parent of the
+                                       right art, consistent status and successor;
+                                       no object and no natural key carries two
+                                       active identifiers; every identifier the
+                                       published data_export.json carries is
+                                       still in the table (a lost or restored
+                                       table is reported, also when it is
+                                       missing). Safe on a staging copy
+                                       where another loader changed data and
+                                       kennungen.py has not run yet (the full
+                                       check, every object has exactly one, is
+                                       «kennungen.py --pruefen» in ./build.sh).
+ 10. Parteien und Rollen           -> rollen.pruefen(): role list, parties, at
+                                       most one row per data point, subjekt
+                                       consistency, stage B1/B2, stored verdicts
+                                       and their second reviews (a party whose
+                                       points another loader removed is stale,
+                                       not an error).
+ 11. Gesetzesstand                 -> gesetz_stand.pruefen(): every row of
+                                       gesetz_stand names its Stand only when all
+                                       its evidence agrees, the evidence recorded
+                                       at reading time equals article/law
+                                       last_checked and source_note (unless the
+                                       row is stale: basis differs — then the
+                                       export says «veraltet»); every row of
+                                       gesetz_stand_pruefung asked the right
+                                       source for the right number, and its
+                                       ergebnis, n_neuere and edition addresses
+                                       agree with the edition list it stores; a
+                                       later Fedlex edition (kuenftig) carries
+                                       its publication date.
+ 12. Register                      -> register_map.pruefen(): every quote of the
+                                       register layer is verbatim in its fetched
+                                       source snapshot (quellen/register/, sha256
+                                       unchanged), every register has a holder and
+                                       a content quote (and a key quote when it
+                                       names a key), a holder quote names a
+                                       body, one key per Angabe, every context
+                                       pattern compiles, access articles quoted
+                                       inside their own article, never
+                                       «erlaubt»; a register's own sentences
+                                       never say who may fetch it and speak of
+                                       access only with a quoted article.
+Each of the gates 9-12 lives next to its loader and is skipped while its tables
+are absent. Importing them loads only the standard library: no network code
+(register_katalog.py imports urllib only inside its fetch function) and no pypdf
+(rollen.py imports it only where it reads a Formular text).
 
 Returns a list of error strings. Empty list == valid.
 Every loader runs this on its staging copy before swapping; also runnable
@@ -112,6 +162,22 @@ def validate(conn):
 
     errors += judgment_layer_checks(conn)
     errors += gestaltung_checks(conn)
+    errors += datenmodell_checks(conn)
+    return errors
+
+
+def datenmodell_checks(conn):
+    """The gates of the data-model layers (2026-10), each kept with its loader:
+    permanent identifiers (kennungen.py), parties and roles (rollen.py), law
+    editions (gesetz_stand.py) and registers (register_map.py). Each returns []
+    while its tables are absent."""
+    import kennungen
+    import rollen
+    import gesetz_stand
+    import register_map
+    errors = []
+    for gate in (kennungen.pruefen, rollen.pruefen, gesetz_stand.pruefen, register_map.pruefen):
+        errors += gate(conn)
     return errors
 
 
@@ -251,12 +317,13 @@ def judgment_layer_checks(conn):
     # second opinions: every reviewed item exists
     if _has(conn, "panel_review"):
         for kind, tbl, col in (("basis", "data_field", "id"), ("subjekt", "data_field", "id"),
-                               ("rmrule", "rechtsmittel_regel", "id"), ("rmverdict", "rechtsmittel_verdikt", "form_id")):
+                               ("rmrule", "rechtsmittel_regel", "id"), ("rmverdict", "rechtsmittel_verdikt", "form_id"),
+                               ("partei", "form", "id")):
             if _has(conn, tbl):
                 n = count(f"SELECT COUNT(*) FROM panel_review p WHERE p.kind=? AND NOT EXISTS "
                           f"(SELECT 1 FROM {tbl} t WHERE t.{col}=p.item_id)", kind)
                 if n: errors.append(f"{n} panel_review rows of kind '{kind}' point at a missing {tbl} row")
-        n = count("SELECT COUNT(*) FROM panel_review WHERE kind NOT IN ('basis','subjekt','rmrule','rmverdict')")
+        n = count("SELECT COUNT(*) FROM panel_review WHERE kind NOT IN ('basis','subjekt','rmrule','rmverdict','partei')")
         if n: errors.append(f"{n} panel_review rows with an unknown kind")
 
     # undeclared references (columns without a FOREIGN KEY clause)

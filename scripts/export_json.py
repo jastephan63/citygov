@@ -18,7 +18,9 @@ verlauf.json) and the script ends with one line «ABBRUCH …» and exit code 1:
   * a published total is not the sum of its parts, or a figure computed in two
     places differs (_summen_pruefen; the figure is named);
   * the export would carry a local file path, or an unreviewed «Datum» in the
-    databank's own naming/basis texts.
+    databank's own naming/basis texts;
+  * the change-impact index does not hold its invariants (wirkung.pruefen: every
+    count against the citations, the units and the Dienststellen of this export).
 
     python3 scripts/export_json.py
 """
@@ -30,6 +32,9 @@ from common import DB_PATH, EXPORT_PATH, LOGS_DIR, connect, assert_no_local_path
 from common import SKIPPED_LAYERS, _layer_skipped, dossier_slug, klartext as _klartext
 import labels as LABELS
 import gestaltung_export                # the Gestaltung of the Formulare (standard library only)
+import rollen as ROLLEN_SCHICHT         # Parteien und Rollen: whose Angabe each data point is (standard library only)
+import wirkung                          # the change-impact index per law and article (standard library only)
+import register_map                     # registers that already hold Angaben and Beilagen (standard library only)
 
 
 # «the same datum»: what may be compared across forms (Standard-Divergenzen)
@@ -741,6 +746,60 @@ def _summen_pruefen(data):
     gleich("services[].dossier_slug", len(set(slugs)), len(slugs), "Dateinamen der Dossiers eindeutig (sonst überschreibt ein Service den anderen)")
     z = data["zitate"]
     gleich("zitate.total", z["verifiziert"] + z["quelle_pdf"] + z["unverifiziert"], z["total"], "Summe der Stufen")
+    # (7) the data-model layers (2026-10): «vorbefüllbar», parties, registers
+    VB = data.get("vorbefuellung")
+    if VB is not None:
+        bu = [fm["burden"] for fm in forms if fm.get("burden")]
+        for fm in forms:
+            b = fm.get("burden")
+            if b and (b["prefillable_bisher"] - sum(b["prefillable_ausgeschlossen"].values()) + b["prefillable_hinzu"]
+                      != b["prefillable"] or b["minutes_saved"] != round(b["prefillable"] * register_map.MIN_ANGABE, 1)):
+                fehler.append(f"forms[{fm['id']}].burden: prefillable_bisher − Σ prefillable_ausgeschlossen + "
+                              f"prefillable_hinzu ≠ prefillable oder minutes_saved ≠ prefillable × {register_map.MIN_ANGABE}")
+            # the count is the vorbefuellbar mark on the units (one rule, register_map.prefill_punkte)
+            if b and b["prefillable"] != sum(1 for d in fm.get("data_fields") or [] if d.get("required")
+                                             for u in _units(d) if u.get("vorbefuellbar")):
+                fehler.append(f"forms[{fm['id']}].burden.prefillable ≠ Pflichtpunkte mit vorbefuellbar")
+        gleich("vorbefuellung.korrigiert", VB["korrigiert"], sum(b["prefillable"] for b in bu), "Summe von burden.prefillable")
+        gleich("vorbefuellung.bisher", VB["bisher"], sum(b["prefillable_bisher"] for b in bu),
+               "Summe von burden.prefillable_bisher")
+        gleich("vorbefuellung.korrigiert", VB["korrigiert"],
+               VB["bisher"] - sum(VB["ausgeschlossen"].values()) + VB["hinzu"], "bisher − Σ ausgeschlossen + hinzu")
+        gleich("vorbefuellung.minuten_korrigiert", VB["minuten_korrigiert"], round(sum(b["minutes_saved"] for b in bu), 1),
+               "Summe von burden.minutes_saved")
+    P = (data.get("parteien") or {}).get("zahlen")
+    if P is not None:
+        st = {"zugeordnet": 0, "unklar": 0, "offen": 0}
+        for fm in forms:
+            for d in fm.get("data_fields") or []:
+                for u in _units(d):
+                    st[(u.get("partei") or {}).get("status") or "offen"] += 1
+        gleich("parteien.zahlen.punkte", P["punkte"], E["von"], "Datenpunkte der Parteien-Schicht gegen kopfzahlen.standard_ech.von")
+        gleich("parteien.zahlen", {k: P[k] for k in st}, st, "zugeordnet / unklar / offen gegen u.partei nachgezählt")
+        gleich("parteien.zahlen.punkte", sum(st.values()), P["punkte"], "zugeordnet + unklar + offen gegen punkte")
+        gleich("parteien.zahlen.grund", sum(P["grund"].values()), P["unklar"], "Summe der Gründe gegen unklar")
+        gleich("parteien.zahlen.formulare_mit_partei", P["formulare_mit_partei"],
+               sum(1 for fm in forms if fm.get("parteien")), "Formulare mit mindestens einer Partei")
+    RG = data.get("register")
+    if RG is not None:
+        GS_, fr = RG["gesamt"], [fm["register"] for fm in forms if fm.get("register")]
+        gleich("register.gesamt.punkte", GS_["punkte"], E["von"], "Datenpunkte der Register-Schicht gegen kopfzahlen.standard_ech.von")
+        gleich("register.gesamt.pflicht_bestaetigt", GS_["pflicht_bestaetigt"], sum(x["pflicht_bestaetigt"] for x in fr),
+               "Summe über die Formulare")
+        gleich("register.gesamt.minuten_modell", GS_["minuten_modell"], round(sum(x["minuten_modell"] for x in fr), 1),
+               "Summe über die Formulare")
+        gleich("register.gesamt.beilagen", GS_["beilagen"], sum(len(fm.get("beilagen") or []) for fm in forms),
+               "Beilagen der Formulare")
+        gleich("register.gesamt.beilagen_register", GS_["beilagen_register"],
+               sum(1 for fm in forms for b in fm.get("beilagen") or [] if b.get("register")), "Beilagen mit Register")
+        for k in RG["katalog"]:
+            je = [x["je_register"].get(k["code"]) or {} for x in fr]
+            gleich(f"register.katalog[{k['code']}].zahlen.bestaetigt", k["zahlen"]["bestaetigt"],
+                   sum(x.get("bestaetigt", 0) for x in je), "Summe über forms[].register.je_register")
+            gleich(f"register.katalog[{k['code']}].zahlen.bestaetigt_pflicht", k["zahlen"]["bestaetigt_pflicht"],
+                   sum(x.get("pflicht", 0) for x in je), "Summe über forms[].register.je_register")
+            gleich(f"register.katalog[{k['code']}].zahlen.beilagen", k["zahlen"]["beilagen"],
+                   sum(x.get("beilagen", 0) for x in je), "Summe über forms[].register.je_register")
     # (6) the same figure from a second source
     if not SKIPPED_LAYERS:
         # this run's snapshot: the newest entry (uebersichten() has just upserted it)
@@ -811,12 +870,12 @@ def build(conn):
     ech = {}                               # eCH elements by id; read again further down
     try:
         df_lb = {}
-        for lb in rows(conn, "SELECT dflb.data_field_id did, a.article_no, a.heading, a.text_excerpt, "
+        for lb in rows(conn, "SELECT dflb.data_field_id did, a.id aid, a.article_no, a.heading, a.text_excerpt, "
                              "l.id lid, l.title, l.short_title, l.jurisdiction_level, l.sr_number, l.cantonal_ref, "
                              "a.last_checked, dflb.relation FROM data_field_legal_basis dflb "
                              "JOIN article a ON a.id=dflb.article_id JOIN law l ON l.id=a.law_id"):
             df_lb.setdefault(lb["did"], []).append({
-                "law_id": lb["lid"],
+                "law_id": lb["lid"], "article_id": lb["aid"],     # the key of wirkung.gesetze[].artikel[]
                 "jurisdiction": lb["jurisdiction_level"], "law_short": lb["short_title"],
                 "law_title": lb["title"], "sr_number": lb["sr_number"], "cantonal_ref": lb["cantonal_ref"],
                 "article_no": lb["article_no"], "article_heading": lb["heading"],
@@ -1059,23 +1118,23 @@ def build(conn):
                 e = u.get("ech")
                 if e and e.get("element"):
                     ok += 1
-                    # the Einwohnerregister already holds this datum -> once-only
-                    # candidate; marked on the unit so the field row can show it.
-                    # Only for a natural person's datum: the register knows no
-                    # business address, vehicle location or authority (subjekt
-                    # is the panel verdict per field; unset = never marked)
+                    # the figure before 2026-10-05 (prefillable_bisher): an element of the
+                    # five person and address standards on a natural person's field. The
+                    # Einwohnerregister mark itself (u.register) and the corrected count
+                    # are set by register_map.prefill_korrigieren() once the party layer is
+                    # read (below)
                     eid = conn_elem_ids.get((e.get("standard"), e.get("element")))
-                    if eid in reg_elems and d.get("subjekt") == "natuerliche_person":
-                        u["register"] = "einwohnerregister"
-                        if d.get("required"):
-                            pref += 1
+                    if eid in reg_elems and d.get("subjekt") == "natuerliche_person" and d.get("required"):
+                        pref += 1
                 if d.get("required"):
                     req += 1
         fm["exchange_pct"] = round(100 * ok / pts) if pts else None
-        # time model: ~0.4 min per required input, 5 min per enclosure (documented here)
-        fm["burden"] = ({"inputs": req, "attachments": att, "prefillable": pref,
-                         "minutes": round(req * 0.4 + att * 5, 1),
-                         "minutes_saved": round(pref * 0.4, 1)} if pts else None)
+        # time model: minutes per required input and per enclosure, defined once in
+        # register_map (MIN_ANGABE, MIN_BEILAGE); prefillable / minutes_saved are set by
+        # register_map.prefill_korrigieren() after the party layer (below)
+        fm["burden"] = ({"inputs": req, "attachments": att, "prefillable": 0, "prefillable_bisher": pref,
+                         "minutes": round(req * register_map.MIN_ANGABE + att * register_map.MIN_BEILAGE, 1),
+                         "minutes_saved": 0.0} if pts else None)
         blockers = []
         if fm.get("signature_requirement") == "handschriftlich":
             blockers.append("Unterschrift")
@@ -1308,6 +1367,30 @@ def build(conn):
     # ---- ech_state / basis_state: ONE classification per unit, read by every figure
     # below and by every page (needs the naming verdicts above)
     _zustaende_setzen(forms)
+
+    # ---- Parteien und Rollen: whose Angabe each data point is ----------------
+    # Derived by scripts/rollen.py ableiten (build.sh, right after init_register.py)
+    # and judged per Formular in stage B2; read here once: fm["parteien"] per
+    # Formular, u["partei"] per data point (compact codes), the role list, the
+    # German texts of the codes and the figures go to data["parteien"].
+    parteien = {}
+    try:
+        parteien = ROLLEN_SCHICHT.parteien_anhaengen(conn, forms)
+    except Exception as ex:
+        _layer_skipped("Parteien und Rollen", ex)
+
+    # ---- «aus dem Einwohnerregister vorbefüllbar» (register_map, one rule) -----
+    # the Einwohnerregister mark u.register = a quoted Einwohnerregister rule names the
+    # element of a natural person's field; vorbefüllbar = the mark AND the applicant's
+    # own Angabe (party layer, read just above) AND not mehrdeutig within that party —
+    # what citygov_prefill.json and the flows fill; the former figure stays as
+    # burden.prefillable_bisher, the excluded points by reason beside it
+    reg_ang, reg_std = {}, {}
+    try:
+        reg_ang, reg_std = register_map.regeln(conn)
+    except Exception as ex:
+        _layer_skipped("Register-Regeln für die Einwohnerregister-Marke", ex)
+    vorbefuellung = register_map.prefill_korrigieren(forms, reg_ang, reg_std)
 
     # ---- Standard-Divergenzen je Formular ------------------------------------
     # What keeps THIS form out of one coherent data standard. Two very different
@@ -1607,7 +1690,9 @@ def build(conn):
                     "n_dienststellen": len(dsts - {None}), "n_formulare": c["forms"],
                     "services_modelliert": modelliert, "services_ohne_daten": ohne_daten,
                     "n_angaben": c["units"], "n_pflicht": c["pflicht"], "n_pflicht_teil": c["pflicht_teil"],
-                    "n_vorbefuellbar": c["reg"], "n_vorbefuellbar_offen": c["reg_offen"],
+                    # Angaben the Einwohnerregister holds (its mark, for whoever they belong to)
+                    # — not the vorbefüllbar count, which is register.n_vorbefuellbar_korrigiert
+                    "n_einwohnerregister": c["reg"], "n_einwohnerregister_offen": c["reg_offen"],
                     "n_kein_standard": c["kein_std"], "n_element_offen": c["el_offen"], "n_ungeprueft": c["ungeprueft"],
                     "n_ohne_standard": c["kein_std"] + c["el_offen"] + c["ungeprueft"],
                     "n_zuordnung_offen": c["zuordnung"], "n_container": c["container"],
@@ -1626,6 +1711,15 @@ def build(conn):
             themenkatalog.append(g)
     except Exception as ex:
         _layer_skipped("Lebenslagen", ex)
+
+    # Register: which Swiss register holds an Angabe or a Beilage (levels standard /
+    # element / bestaetigt, Beilagen by halter or document term), per Formular and per
+    # Themengruppe a model estimate; skipped loudly when the tables are not loaded
+    register_block = None
+    try:
+        register_block = register_map.export_register(conn, forms, themenkatalog, party=PARTY)
+    except Exception as _ex:
+        _layer_skipped("Register (register, register_angabe, register_dokument, register_zugriff)", _ex)
 
     # Bürgersicht: what the Datentresor holds about three synthetic people, seen
     # from THEIR side (Auskunft, Bekanntgaben, Einwilligungen, Löschdaten). Only
@@ -1647,7 +1741,11 @@ def build(conn):
                     "GROUP BY s.id ORDER BY dst DESC, faelle DESC LIMIT 3"):
                 person = {k: p[k] for k in ("ahvn13", "name", "vorname", "geburtsdatum", "plz", "ort")}
                 person["faelle"] = []
-                for f in dt.execute("SELECT id, service_id, form_id, formular, dienststelle, "
+                # the vault names the Formular by its permanent identifier too (a vault built
+                # before 2026-10-05 lacks the column: rebuild with ./build.sh --tresor)
+                kcol = ", formular_kennung" if "formular_kennung" in {
+                    r[1] for r in dt.execute("PRAGMA table_info(fall)")} else ""
+                for f in dt.execute("SELECT id, service_id, form_id" + kcol + ", formular, dienststelle, "
                                     "eingereicht, abgeschlossen, entscheid FROM fall "
                                     "WHERE subjekt_id=? ORDER BY eingereicht", [p["id"]]):
                     fall = dict(f)
@@ -1711,6 +1809,14 @@ def build(conn):
     # page; never part of kopfzahlen, handlungsbedarf or the Dienststellen figures above
     gest, gestaltung = gestaltung_export.berechne(conn, forms, services, dienststellen_uebersicht)
     for fm in forms: fm["gestaltung"] = gest[fm["id"]]
+    # ---- Wirkung: per law and article the data points, Datenfelder, Formulare, services and
+    # Dienststellen that cite it (after uebersichten: it compares the Dienststelle of every
+    # Formular), plus the edition read and its latest currency check (scripts/wirkung.py)
+    wirkung_index = wirkung.berechne(conn, forms)
+    try:
+        wirkung.stand_anfuegen(conn, wirkung_index)
+    except Exception as _ex:
+        _layer_skipped("Gesetzesstand (gesetz_stand, gesetz_stand_pruefung)", _ex)
 
     # ---- Datenstand: when was what last read (never only the build time) -------
     datenstand = {"build": None}
@@ -1800,10 +1906,19 @@ def build(conn):
         "begriffe": begriffe, "begriffe_stats": begriffe_stats, "themenkatalog": themenkatalog,
     }
     data["gestaltung"] = gestaltung
+    data["parteien"] = parteien
+    data["wirkung"] = wirkung_index
+    # the data date of the edition layer: the day the official sources were last asked
+    datenstand["gesetzesstand_geprueft"] = (wirkung_index.get("uebersicht") or {}).get("geprueft_am")
+    data["register"] = register_block
+    data["vorbefuellung"] = vorbefuellung
     if SKIPPED_LAYERS:
         # a half-empty export says so itself (convention: skipped only when the table is missing)
         datenstand["uebersprungen"] = [f"{name} — Tabelle {table} fehlt" for name, table in SKIPPED_LAYERS]
     _summen_pruefen(data)
+    fehler = wirkung.pruefen(conn, wirkung_index, forms)
+    if fehler:
+        raise RuntimeError(f"Wirkungsindex: {len(fehler)} Widerspruch/Widersprüche — " + " | ".join(fehler[:5]))
     return data, todo
 
 
@@ -1844,8 +1959,14 @@ def _wortwahl_pruefen(data):
 
 def main():
     import kennzahlen as KZ
+    import export_vertrag as EV
     conn = connect(DB_PATH)
     data, todo = build(conn)            # layers (common._layer_skipped) and sums (_summen_pruefen)
+    # permanent identifiers on every object and the version stamp of the export
+    # contract (scripts/export_vertrag.py); written to schema/ and exportvertrag.json
+    # only after the file itself
+    vertrag = EV.Vertrag()
+    data = EV.fertigstellen(vertrag, "data_export.json", data, conn, data["generated_at"])
     conn.close()
     _wortwahl_pruefen(data)
     text = json.dumps(data, ensure_ascii=False, separators=(",", ":"))
@@ -1854,6 +1975,7 @@ def main():
     # every gate has passed — only now anything is written
     with open(EXPORT_PATH, "w", encoding="utf-8") as fh:
         fh.write(text)
+    vertrag.festschreiben()             # schema/data_export.schema.json + exportvertrag.json
     KZ.save(VERLAUF_DOC)                # today's entry in verlauf.json
     os.makedirs(LOGS_DIR, exist_ok=True)
     with open(os.path.join(LOGS_DIR, "citation_todo.txt"), "w", encoding="utf-8") as fh:
