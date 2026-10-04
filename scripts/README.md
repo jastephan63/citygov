@@ -21,8 +21,9 @@ in the official PDF.
 ## Rebuild every generated surface
 
 ```bash
-./build.sh            # init_register → export_json → build_dashboard → build_flows → export_llm
-                      # → export_ech_schema → export_dossiers → build_index → validate_db
+./build.sh            # init_register → export_json → theme --check → build_dashboard → build_flows
+                      # → export_llm → export_ech_schema → export_dossiers → build_index → validate_db
+                      # → check_pages (page check; skipped without Node or Chrome)
 ./build.sh --tresor   # + build_datentresor right after init_register, before export_json reads the
                       #   vault for the Bürgersicht (needs .venv with cryptography)
 ./build.sh --pdf      # + dossiers/*.pdf (needs Google Chrome in /Applications; local only, ignored by Git)
@@ -32,6 +33,69 @@ The build reads nothing outside the repository: `build_flows.py` inlines
 `quellen/ch-geo.js` and stops when it is missing, and `export_json.py`,
 `export_llm.py`, `export_ech_schema.py` and `build_flows.py` refuse to write
 a text that names a local path (`common.assert_no_local_paths`).
+
+Every step stops the chain rather than write something wrong (`set -e`):
+`export_json.py` ends with «ABBRUCH export_json.py — nichts geschrieben» and
+leaves `data_export.json` and `verlauf.json` untouched when a layer fails (a
+missing column, a failing helper, a wording gate), a sum does not add up or
+`verlauf.json` is unreadable — only a table that `schema.sql` declares and
+that is genuinely missing is skipped, loudly, and listed in
+`datenstand.uebersprungen`; `theme.py --check` stops on a colour pair below
+4.5:1 or a colour, size or font literal in one of the four page generators;
+`build_dashboard.py` stops with «ABORT — data_export.json fehlt, was die Seite
+ohne eigene Berechnung liest» on an export that lacks a key the page reads
+without computing it (`kopfzahlen.standard_ech.ech_ton`,
+`standard_benannt.teile`, `kein_standard`, `kategorien`, `verzeichnis.teile`,
+`labels.kontakt`, `forms[].dienststelle`, `forms[].standard` (the data-standard
+figures of one Formular on the atomic unit — its header), `data_fields[].ech_state` /
+`basis_state`, `services[].dossier_slug`); `export_dossiers.py` and
+`export_llm.py` stop the same way on an export without `ech_state` /
+`basis_state`; `build_flows.py` stops when `quellen/ch-geo.js` is missing or
+holds a «<» (it is inlined as script text and cannot be escaped). The page
+check at the end fails the build after every file has been written.
+
+## The automatic page check
+
+`scripts/check_pages.mjs` is the last step of `./build.sh`. It opens the built
+pages of the repository root in a local headless Chrome (Node, no npm package;
+the browser is driven through a pipe and cannot reach the network) and fails
+the build with one plain message per finding. Without Node or Chrome it prints
+«Seitenprüfung übersprungen: Node oder Chrome nicht gefunden» and the build
+goes on; a Chrome that is found but does not start (a crash, a sandbox refusal
+in a container) is a finding — «Seitenprüfung fehlgeschlagen: …» names the
+cause and the build stops, because no page was checked. `CHROME_FLAGS=--no-sandbox`
+is the usual cure in a container; `CHECK_PAGES=skip` builds without the check
+on purpose and says so. It takes three to ten seconds.
+
+```bash
+node scripts/check_pages.mjs                   # every check
+node scripts/check_pages.mjs --only kontrast   # one check (several: --only summen,links)
+node scripts/check_pages.mjs --verbose         # every measured value and every finding
+node scripts/check_pages.mjs --root <dir>      # the pages of another directory (a copy, an older build)
+node scripts/check_pages.mjs --breite 1024     # a window of 1024 px instead of 1280 (the dashboard
+                                               # changes its table layout at 1340 and 700 px)
+```
+
+| Check | Fails when |
+|---|---|
+| `syntax` | an inline script of `dashboard.html` or `flows.html` does not parse, the inlined data is not valid JSON, or a `</script>` is missing (file cut off) |
+| `seiten` | a page of the dashboard or another document (`index.html`, `flows.html`, `404.html`, `dossiers/index.html`, the largest and the smallest dossier) does not start, shows too little text, «Unbekannte Seite» or an error message, writes an error to the console, asks another host for anything — or the navigation offers a page that is not in the list |
+| `summen` | the segments of a bar, the numbers of its legend and the total its card states do not agree |
+| `kontrast` | a text colour has less than 4.5:1 against its background (3:1 for large text, WCAG 2.1 AA); measured on the pages marked `contrast: true`, in `flows.html` and in the largest dossier |
+| `links` | a link has no colour rule and is drawn in the browser's default blue |
+| `schrift` | visible text is smaller than 12 px (`sup`/`sub` excepted; text in an SVG counts at its drawn size) |
+| `groesse` | `dashboard.html` reaches 45 MiB (GitHub warns at 50 MiB) |
+| `tastatur` | something reacts to a click but is neither a native control nor has a `tabindex`, and holds no such element |
+
+**A new page of the dashboard must be added to the constant `PAGES` at the
+top of the file** — the check fails when the navigation offers a page that is
+not listed there; `contrast: true` also measures its colours. The limits
+(`MIN_TEXT`, `TEXT_FLOOR_PX`, `MAX_DASHBOARD_MIB`, the 1280 × 900 window) are
+constants beside it. Chrome is looked up in the usual places;
+`CHROME=/path/to/chrome` overrides. Not seen by the check: text drawn by CSS
+(`::before`), text on a picture or gradient and the colours of text inside an
+SVG (both counted, see `--verbose`), and whatever appears only after a click
+(an opened explanation, the steps of a guided form).
 
 ## Load or refresh data (in this order)
 
@@ -62,7 +126,12 @@ python3 scripts/link_dvsh_eforms.py               # eFormulare from DVSH form de
 python3 scripts/load_data_fields.py <dir>         # logical data dictionary per form (refuses to
                                                   # overwrite curated layers without --force)
 python3 scripts/init_subfields.py                 # composite parts -> data_subfield (keeps eCH+eSH)
-python3 scripts/scan_documents.py                 # PDF facts: signature, AcroForm, hash
+python3 scripts/scan_documents.py                 # PDF facts: signature, AcroForm, hash; needs pypdf
+python3 scripts/scan_gestaltung.py [--only <form_id> ...] [--dry]   # how each Formular looks: fonts, sizes, colours,
+                                                  # accessibility facts of the file, printed phone numbers, edition mark
+                                                  # -> form_gestaltung; needs pypdf; after scan_documents.py (a row is
+                                                  # tied to form.file_hash; scan_documents.py removes the row of a file
+                                                  # that changed); --dry prints the rows as JSON and writes nothing
 python3 scripts/init_verfahren.py                 # Verfahren layer DDL + channel/contact harvest
 python3 scripts/build_similarity.py               # Duplikat-Radar
 
@@ -141,25 +210,27 @@ be broken, so the gate `validate_db.py` checks what it can):
 7. **eSH never shadows eCH**: a draft code sits only on a unit eCH does not cover.
 8. **Gaps are gaps**: «not researched» never reads as «proven»; «assessed and open» is a different state from «never assessed» (basis_typ, rechtsmittel_status).
 9. **Generated files are never edited**; `citygov.db` changes only through loaders (staging → validate → swap) and `./build.sh` rebuilds everything from it.
-10. **One computation per figure**: labels, Handlungsbedarf, the «same datum» key, texts and the Datenstand are computed once (`labels.py`, `export_json.py`) and read by every surface.
+10. **One computation per figure**: labels, Handlungsbedarf, the «same datum» key, the eCH and legal-basis state of every data point, texts and the Datenstand are computed once (`labels.py`, `export_json.py`) and read by every surface; the look of every page (fonts, colours, tones, symbols, text sizes) is defined once in `theme.py`.
 
 ## What each script does
 
 | Script | Purpose |
 |---|---|
 | `common.py` | Paths, `connect()`, the shared normalisations (`norm_ascii`, `norm_label`, and `klartext()`, the display form `apply_wortwahl.py` compares against), `pl()`, the local-path guard `assert_no_local_paths()` the exporters run on their output, and `size_txt()` / `net_size_txt()` (the page sizes the dashboard and the start page state) |
-| `labels.py` | German labels for every enumerated value, the four status tones (who acts next) and the priority tiers — the single source for dashboard, dossiers and exports |
-| `validate_db.py` | Integrity gate every loader runs on its staging copy (FKs, vocabularies, cross-layer invariants, schema.sql coverage of tables, columns and indices, every `form.source_file` an existing file under `formulare/` with a matching `file_type`) |
+| `labels.py` | German labels for every enumerated value, the four status tones (who acts next), the priority tiers and the words of the contact line (`KONTAKT`: «Kontakt (laut DVSH)», «Tel.», «E-Mail», «nicht hinterlegt») — the single source for dashboard, guided forms, dossiers and exports |
+| `theme.py` | The shared look: fonts (system fonts only), colours, the four tones with their tints and symbols, the eSH violet, the six text sizes (12–28 px on screen, 9–20 pt on paper). The four page generators write their `:root` block from it (`css_root()`) and use only `var(--…)`; `python3 scripts/theme.py` prints tokens, contrast table and findings, `--check` (a step of `./build.sh`) exits 1 on a text colour below 4.5:1 on one of its backgrounds, on a colour, size or font literal left in a generator — a hex, `rgb()`/`hsl()` or named colour (also `%23…` in a data URI and `el.style.color=`), a font size in px/pt/em/rem/% (also `el.style.fontSize=`), a font family — (a literal kept on purpose carries `theme:keep` and its reason in the same line) or on tone names that differ from `labels.TON` |
+| `validate_db.py` | Integrity gate every loader runs on its staging copy (FKs, vocabularies, cross-layer invariants, schema.sql coverage of tables, columns and indices, every `form.source_file` an existing file under `formulare/` with a matching `file_type`, every `form_gestaltung` row measured on the current file and equal to its own profile) |
+| `check_pages.mjs` | The automatic page check at the end of `./build.sh`: opens the built pages in a headless Chrome and fails with one message per finding (see «The automatic page check») |
 | `init_db.py` | Create an empty database from `schema.sql` |
-| `export_json.py` | `data_export.json` — one computation of every derived figure (divergences, Handlungsbedarf with tier and tone, Dienststellen summaries, headline figures, Lebenslagen, labels, Datenstand); also writes today's snapshot to `verlauf.json` and stops on an unreviewed «Datum» (see `apply_wortwahl.py`) |
+| `export_json.py` | `data_export.json` — one computation of every derived figure (divergences, Handlungsbedarf with tier and tone, the `ech_state` and `basis_state` of every data point, Dienststellen summaries, headline figures, Lebenslagen, labels, Datenstand); also writes today's snapshot to `verlauf.json`. Both files are written only after every gate passed: it stops with «ABBRUCH … nichts geschrieben» when a layer fails, a sum does not add up (`_summen_pruefen`: every figure with parts sums to its total, each Dienststelle adds up and all together equal the canton), `verlauf.json` is unreadable or a naming or basis text says «Datum» without a verdict (see `apply_wortwahl.py`) |
 | `kennzahlen.py` | The one definition of the key figures over time (works on a `citygov.db` of any vintage) and the `verlauf.json` reader/writer |
 | `backfill_verlauf.py` | One-off: reconstructs past snapshots from the Git history of `citygov.db` (idempotent; a live build's entry of the same day wins) |
-| `build_dashboard.py` | `dashboard.html` from `data_export.json` (+ `leitfaden.py`) |
+| `build_dashboard.py` | `dashboard.html` from `data_export.json` (+ `leitfaden.py`): the page reads every figure and state from the export and computes none itself; it stops on an older export (see «Rebuild every generated surface»). One contact form on every page (`kontaktHtml`), a glossary on «Methode & Quellen» whose terms are explained on the headline cards, shares with one decimal everywhere, Back/Forward return to the remembered place; the checklist above `drawView()` names the seven places a new page must be registered |
 | `leitfaden.py` | The plain-German guide; the build refuses if a bullet cites a rule not in the databank |
-| `build_flows.py` | `flows.html`, the guided questionnaires; inlines `quellen/ch-geo.js` for the place, postcode and country autocomplete |
+| `build_flows.py` | `flows.html`, the guided questionnaires; inlines `quellen/ch-geo.js` for the place, postcode and country autocomplete and stops when it is missing or holds a «<». Keyboard-operable throughout (form picker, answer cards, suggestion lists, help drawer); answers stay in the reader's browser (localStorage keys `ff_profil` and `ff_draft_<form id>`), the page says so and offers «Profil und Entwürfe löschen» — a new storage key must be added to `storeKeys()` in the template; a step that throws shows a message instead of a blank screen |
 | `export_llm.py` | `citygov_llm.json` and the `citygov_*.jsonl/json` exports |
 | `export_ech_schema.py` | `citygov_ech_schemas.json` — one eCH-shaped exchange schema per Formular |
-| `export_dossiers.py` | `dossiers/<slug>.html` per service + `dossiers/index.html` + `dossiers/_repo.js` (the marker a local dashboard probes); `--pdf` for local PDFs |
+| `export_dossiers.py` | `dossiers/<slug>.html` per service + `dossiers/index.html` + `dossiers/_repo.js` (the marker a local dashboard probes); `--pdf` for local PDFs. Reads `ech_state` / `basis_state` and `services[].dossier_slug` from the export and stops, writing nothing, on an older one; the contact line reads as in the dashboard; the look comes from `theme.py`; every value written into a page passes `esc()` |
 | `build_index.py` | `index.html` — the start page of the website served by GitHub Pages (<https://jastephan63.github.io/citygov/>) — and `404.html` |
 | `build_datentresor.py` | `datentresor.db` — the synthetic storage example (`./build.sh --tresor`, before `export_json.py`) |
 | `extract_law.py` | Text of a law PDF (offline; macOS PDFKit via osascript), the ground truth every citation gate maps against |
@@ -167,6 +238,7 @@ be broken, so the gate `validate_db.py` checks what it can):
 | `load_dvsh_harvest.py` / `load_shep.py` / `consolidate_services.py` / `apply_consolidation.py` / `link_dvsh_eforms.py` | Service universe from DVSH and SHEP (read-only harvests) |
 | `classify.py` / `ingest_new.py` / `load_data_fields.py` / `init_subfields.py` | Formulare and their fields |
 | `scan_documents.py` / `init_verfahren.py` / `load_verfahren.py` / `build_similarity.py` | Verfahren layer and Duplikat-Radar |
+| `scan_gestaltung.py` (+ `gestaltung_pdf.py`, `gestaltung_office.py`, `gestaltung_text.py`) | Gestaltung: how each Formular with a file looks and is presented, as measured facts in `form_gestaltung` — fonts, sizes, colours, the accessibility facts the file carries, printed phone numbers and e-mail types, edition mark, page numbers, sender; what cannot be measured is NULL with the reason, no verdict is stored. The three modules measure a PDF, a Word/Excel file and the text lines (each runs its self-test when started without arguments); `scan_gestaltung.py` runs those self-tests, measures every file and writes only rows that changed. Needs pypdf and is not part of `./build.sh` (nothing in the build imports these modules) |
 | `load_ech_map.py` / `load_subfield_ech.py` / `load_ech_verdicts*.py` / `load_ech_gaps.py` / `propagate_ech_names.py` / `load_esh.py` / `sweep_ech_xsd.py` | Standards |
 | `load_field_legal.py` / `load_basis_typ.py` / `load_subjekt.py` / `load_data_rules.py` / `init_register.py` / `load_register.py` | Law layer per field, rules, register |
 | `load_rechtsmittel.py` / `load_rechtsmittel_verdicts.py` / `load_panel_reviews.py` | Remedies and second opinions |

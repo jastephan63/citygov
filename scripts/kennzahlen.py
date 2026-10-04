@@ -70,10 +70,21 @@ def db_kennzahlen(conn):
 
 
 def load():
+    """The history so far. No file yet (first build) is an empty history; a file that
+    exists but cannot be read as JSON (merge-conflict markers, a cut-off write) stops
+    the build — carrying on would replace the whole history by today's entry."""
     try:
-        return json.load(open(VERLAUF_PATH, encoding="utf-8"))
-    except (OSError, ValueError):
+        with open(VERLAUF_PATH, encoding="utf-8") as fh:
+            doc = json.load(fh)
+    except FileNotFoundError:
         return {"hinweis": None, "eintraege": []}
+    except (OSError, ValueError) as ex:
+        raise RuntimeError(f"verlauf.json ist nicht lesbar ({ex}) — der Verlauf würde durch den heutigen "
+                           "Eintrag allein ersetzt; Datei reparieren (z. B. git checkout verlauf.json)") from ex
+    if not isinstance(doc, dict) or not isinstance(doc.get("eintraege"), list):
+        raise RuntimeError("verlauf.json hat nicht die Form {hinweis, eintraege: [...]} — Datei reparieren "
+                           "(z. B. git checkout verlauf.json)")
+    return doc
 
 
 def save(doc):
@@ -82,7 +93,8 @@ def save(doc):
                       "(scripts/backfill_verlauf.py); null = in jenem Stand noch nicht erhoben. "
                       "Geschrieben von scripts/export_json.py bei jedem Build.")
     doc["eintraege"].sort(key=lambda e: e["datum"])
-    json.dump(doc, open(VERLAUF_PATH, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    with open(VERLAUF_PATH, "w", encoding="utf-8") as fh:
+        json.dump(doc, fh, ensure_ascii=False, indent=1)
 
 
 def upsert(doc, entry):

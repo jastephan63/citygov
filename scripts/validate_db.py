@@ -20,12 +20,25 @@ Checks, in order:
                                        quote it hangs on, eCH status <-> element,
                                        begriff terms that exist as labels, reviewed
                                        items that exist, schema.sql listing every
-                                       table, column and index). Each is named in
-                                       the error text.
+                                       table, column and index, formflow node ids
+                                       and keys within [A-Za-z0-9_.:-] because
+                                       flows.html writes them raw into element ids
+                                       and inline handlers). Each is named in the
+                                       error text.
   7. source files                  -> every form.source_file is NFC, names a
                                        file directly in formulare/ exactly as
                                        listed there (case, no '..');
                                        form.file_type agrees with the extension.
+  8. Gestaltung                    -> every form_gestaltung row belongs to a
+                                       Formular with a file and was measured on
+                                       the current file (file_hash =
+                                       form.file_hash; a stale row is an error,
+                                       a missing row is not: «noch nicht
+                                       gemessen»); messart agrees with
+                                       form.file_type; profil is a JSON object
+                                       with exactly the keys GESTALTUNG_KEYS;
+                                       the scalar columns repeat the profil
+                                       values and nothing else.
 
 Returns a list of error strings. Empty list == valid.
 Every loader runs this on its staging copy before swapping; also runnable
@@ -33,6 +46,7 @@ standalone:
 
     python3 scripts/validate_db.py [path-to.db]
 """
+import json
 import os
 import sys
 
@@ -97,6 +111,7 @@ def validate(conn):
                           f"(convention 7: eSH never shadows eCH)")
 
     errors += judgment_layer_checks(conn)
+    errors += gestaltung_checks(conn)
     return errors
 
 
@@ -128,6 +143,26 @@ def judgment_layer_checks(conn):
 
     def count(sql, *args):
         return conn.execute(sql, args).fetchone()[0]
+
+    # formflow: a node id, a node key and a form field's key stand raw in id="ac_<key>" and
+    # onclick="__ff.select('<id>')" of flows.html — load_flows.py rejects anything outside
+    # the character set; this keeps the invariant on the stored flows
+    if _has(conn, "formflow"):
+        import re
+        ident = re.compile(r"^[A-Za-z0-9_.:-]+$")
+        bad = []
+        for fid, fl in conn.execute("SELECT form_id, flow FROM formflow"):
+            try:
+                nodes = (json.loads(fl) or {}).get("nodes") or []
+            except ValueError:
+                bad.append(f"form {fid}: flow is not JSON"); continue
+            for n in nodes:
+                vals = [("id", n.get("id")), ("key", n.get("key"))]
+                vals += [("fields[].key", f.get("key")) for f in (n.get("fields") or []) if isinstance(f, dict)]
+                bad += [f"form {fid}: node {what} {v!r}" for what, v in vals if v is not None and not ident.match(str(v))]
+        if bad:
+            errors.append(f"{len(bad)} formflow node ids/keys outside [A-Za-z0-9_.:-] (flows.html writes them raw into "
+                          f"id= and onclick=): " + "; ".join(bad[:3]))
 
     # vocabularies
     if "basis_typ" in _cols(conn, "data_field"):
@@ -312,6 +347,94 @@ def judgment_layer_checks(conn):
                       "(SELECT 1 FROM panel_review p WHERE p.kind='rmverdict' AND p.item_id=v.form_id)")
             if n: errors.append(f"{n} remedy verdicts have no second-opinion row (panel_review rmverdict)")
 
+    return errors
+
+
+# ---- Gestaltung: how a Formular looks (scan_gestaltung.py) ---------------------
+# The top-level keys of form_gestaltung.profil, identical for every messart (a
+# value that could not be measured is null, the key stays). scan_gestaltung.py
+# checks each measured profile against this tuple before it writes the row.
+GESTALTUNG_KEYS = ("messart", "seiten", "seitenformat", "schriften", "hauptschrift", "n_schriftfamilien",
+                   "groessen", "grundgroesse", "kleinste", "anteil_unter_8", "farben", "akzent",
+                   "n_farbfamilien", "anteil_text_farbig", "barrierefrei", "telefon", "email", "elemente",
+                   "ausfuellbar", "hinweise")
+# form.file_type -> the messart values a measurement of such a file can have
+GESTALTUNG_MESSART = {"pdf": ("pdf", "pdf_bild"), "word": ("word", "nicht_messbar"),
+                      "excel": ("excel", "nicht_messbar")}
+
+
+def gestaltung_spalten(profil):
+    """The scalar columns of form_gestaltung as they follow from a profil: the
+    ONE mapping, used by scan_gestaltung.py to write a row and by the gate
+    below to check it. hinweise is NULL when the measurement names none."""
+    akzent, tags, pt = profil["akzent"], profil["barrierefrei"]["tags"], profil["grundgroesse"]
+    return {"messart": profil["messart"], "seiten": profil["seiten"],
+            "hauptschrift": profil["hauptschrift"], "grundgroesse": None if pt is None else float(pt),
+            "akzentfarbe": akzent["hex"] if akzent else None,
+            "pdf_tags": None if tags is None else int(bool(tags)),
+            "hinweise": json.dumps(profil["hinweise"], ensure_ascii=False) if profil["hinweise"] else None}
+
+
+def gestaltung_checks(conn):
+    """form_gestaltung is a set of measured facts about the file a Formular
+    points at. Skipped when the table does not exist yet."""
+    if not _has(conn, "form_gestaltung"):
+        return []
+    need = {"form_id", "file_hash", "messart", "methode", "seiten", "hauptschrift", "grundgroesse",
+            "akzentfarbe", "pdf_tags", "profil", "hinweise"}
+    if not need <= _cols(conn, "form_gestaltung"):
+        return [f"Gestaltung gate cannot run: form_gestaltung lacks {sorted(need - _cols(conn, 'form_gestaltung'))}"]
+    form_cols = _cols(conn, "form")
+    if not {"source_file", "file_type", "file_hash"} <= form_cols:
+        return ["Gestaltung gate cannot run: form lacks source_file/file_type/file_hash"]
+    errors = []
+    bad = {k: [] for k in ("form", "stale", "messart", "methode", "profil", "keys", "columns", "tags")}
+    for r in conn.execute(
+            "SELECT g.*, f.id AS f_id, f.source_file AS f_source, f.file_type AS f_type, f.file_hash AS f_hash "
+            "FROM form_gestaltung g LEFT JOIN form f ON f.id = g.form_id ORDER BY g.form_id"):
+        fid = r["form_id"]
+        if r["f_id"] is None or not r["f_source"]:
+            bad["form"].append(fid)             # no Formular, or one without a file (eFormular)
+            continue
+        if r["file_hash"] != r["f_hash"]:
+            bad["stale"].append(fid)
+        if r["messart"] not in GESTALTUNG_MESSART.get(r["f_type"], ()):
+            bad["messart"].append(fid)
+        if not (r["methode"] or "").strip():
+            bad["methode"].append(fid)
+        if r["messart"] not in ("pdf", "pdf_bild") and r["pdf_tags"] is not None:
+            bad["tags"].append(fid)
+        try:
+            profil = json.loads(r["profil"])
+            if not isinstance(profil, dict):
+                raise ValueError("not an object")
+        except (TypeError, ValueError):
+            bad["profil"].append(fid)
+            continue
+        if set(profil) != set(GESTALTUNG_KEYS):
+            bad["keys"].append(fid)
+            continue
+        try:
+            want = gestaltung_spalten(profil)
+            if not isinstance(profil["hinweise"], list):
+                raise TypeError("hinweise is not a list")
+        except (TypeError, ValueError, KeyError, AttributeError):
+            bad["profil"].append(fid)           # a nested part has the wrong shape
+            continue
+        if any(type(r[k]) is not type(v) or r[k] != v for k, v in want.items()):
+            bad["columns"].append(fid)
+    for key, text in (
+            ("form", "point at no Formular with a source_file"),
+            ("stale", "are stale: file_hash differs from form.file_hash (whoever changes form.file_hash "
+                      "removes the row, as scan_documents.py does; scan_gestaltung.py measures the new file)"),
+            ("messart", "carry a messart that disagrees with form.file_type"),
+            ("methode", "have an empty methode"),
+            ("tags", "carry pdf_tags although the file is not a PDF"),
+            ("profil", "hold a profil that is not a JSON object of the expected shape"),
+            ("keys", "hold a profil whose top-level keys differ from GESTALTUNG_KEYS"),
+            ("columns", "have scalar columns that differ from their profil")):
+        if bad[key]:
+            errors.append(f"{len(bad[key])} form_gestaltung rows {text}: form ids {bad[key][:8]}")
     return errors
 
 

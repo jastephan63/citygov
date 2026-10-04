@@ -374,11 +374,16 @@ def main():
     generated_at = X["generated_at"]
     x_forms = {f["id"]: f for f in X.get("forms", [])}
     x_svcs = {s["id"]: s for s in X.get("services", [])}
-    # art5_offen is judged once (export_json); read it per data_field id
-    art5 = {}
+    # art5_offen and the legal-basis state are judged once (export_json.py: basis_state,
+    # the keys of labels.ton_map.basis); read them per data_field id
+    art5, bstate = {}, {}
     for f in x_forms.values():
         for d in f.get("data_fields") or []:
             art5[d["id"]] = bool(d.get("art5_offen"))
+            if d.get("basis_state"):
+                bstate[d["id"]] = d["basis_state"]
+    if not bstate:
+        sys.exit("data_export.json trägt kein basis_state — Export veraltet; zuerst scripts/export_json.py ausführen")
     lawjur = _lawjur(X.get("laws", []))
     standard_ret = (X.get("texte") or {}).get("aufbewahrung_standard")
     if not standard_ret:
@@ -608,18 +613,12 @@ def main():
             "data_fields": dfs})
         # one register-extract row per form (KDSG Art. 17b structure, gaps explicit)
         if dfs:
-            # coverage by basis_typ, the dashboard's rule: artikel and aufgabe cover;
-            # art5_offen is OPEN although basis_typ says aufgabe; null = zu ermitteln
+            # coverage by the exported basis_state (one classification, export_json.py):
+            # artikel and aufgabe cover; art5_offen is OPEN although basis_typ says
+            # aufgabe; a field the export does not know counts as «zu ermitteln»
             tally = {"artikel": 0, "aufgabe": 0, "art5_offen": 0, "ohne": 0, "offen": 0, "zu_ermitteln": 0}
             for d in dfs:
-                if d["art5_offen"]:
-                    tally["art5_offen"] += 1
-                elif d["legal_basis"] or d["basis_typ"] == "artikel":
-                    tally["artikel"] += 1
-                elif d["basis_typ"] in ("aufgabe", "ohne", "offen"):
-                    tally[d["basis_typ"]] += 1
-                else:
-                    tally["zu_ermitteln"] += 1
+                tally[bstate.get(d["id"], "zu_ermitteln")] += 1
             tally["n_gedeckt"] = tally["artikel"] + tally["aufgabe"]
             tally["n_offen"] = tally["art5_offen"] + tally["offen"] + tally["zu_ermitteln"]
             sens = sorted({d["sensitive_category"] for d in dfs if d.get("sensitive_category")})

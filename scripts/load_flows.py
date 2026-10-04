@@ -9,6 +9,9 @@ A flow is only accepted when it is complete and honest:
     Teilfeld names in `field` are repaired back to their parent Datenfeld first.
   * node ids are unique; show_if uses only the simple syntax the player evaluates
     (key == 'x' | key != 'x' | key in ['a','b']) and references a defined key
+  * a node id, a node key and the key of a form field use only A-Z a-z 0-9 _ . : -
+    (flows.html writes them raw into element ids and inline handlers; validate_db.py
+    keeps the invariant)
   * review.highlight entries reference existing node ids
 Rejected flows are reported per form and NOT loaded (fix + rerun; idempotent).
 
@@ -31,6 +34,9 @@ CREATE TABLE IF NOT EXISTS formflow (
 """
 
 SHOWIF = re.compile(r"^\s*(\w+)\s*(==|!=|in)\s*(.+?)\s*$")
+# a node id or key stands raw in id="ac_<key>" and onclick="__ff.select('<id>')" of flows.html
+IDENT = re.compile(r"^[A-Za-z0-9_.:-]+$")
+IDENT_MSG = "nur A-Z a-z 0-9 _ . : - erlaubt (steht roh in id= und onclick= von flows.html)"
 
 
 def _n(x):
@@ -75,9 +81,16 @@ def check(flow, dfnames):
         nid = n.get("id")
         if not nid or nid in ids:
             probs.append(f"node-id fehlt/doppelt: {nid}")
+        elif not IDENT.match(str(nid)):
+            probs.append(f"node-id {nid!r}: {IDENT_MSG}")
         ids.add(nid)
         if n.get("key"):
             keys.add(n["key"])
+            if not IDENT.match(str(n["key"])):
+                probs.append(f"{nid}: key {n['key']!r}: {IDENT_MSG}")
+        for fld in (n.get("fields") or []):
+            if isinstance(fld, dict) and fld.get("key") is not None and not IDENT.match(str(fld["key"])):
+                probs.append(f"{nid}: field-key {fld['key']!r}: {IDENT_MSG}")
         if n.get("type") not in ("text", "date", "number", "choice", "multiselect",
                                  "form", "roster", "doc_scan", "note", "confirm"):
             probs.append(f"{nid}: unbekannter type {n.get('type')}")

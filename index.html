@@ -2,36 +2,61 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="utf-8"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23e8b100'/%3E%3C/svg%3E">
+<meta charset="utf-8"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23F2B705'/%3E%3C/svg%3E">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Compliance-Databank Kanton Schaffhausen</title>
 <meta name="description" content="Maschinenlesbare Compliance-Databank der Verwaltung des Kantons Schaffhausen: Formulare, Datenfelder, Rechtsgrundlagen, Standards, Datenhandhabung.">
 <style>
-  :root{--paper:#FAFAF6;--card:#FFFFFF;--ink:#1d1d1b;--ink-soft:#5b5b55;--line:#e3dfd2;--accent:#c8102e;--gold:#e8b100}
+/* the shared look — written from scripts/theme.py, the one place it is set */
+:root{
+  /* surfaces */
+  --paper:#FAFAF6; --card:#FFFFFF; --field:#F4F1E7; --hover:#FCFAF2;
+  /* text */
+  --ink:#16150F; --ink-soft:#5C594D; --ink-faint:#6B6455;
+  /* lines */
+  --line:#E4E1D6; --line-soft:#EEEBE1; --line-strong:#C9C5B8; --line-dark:#A9A597;
+  /* gold: fills and borders; --link is the gold for text and the focus ring */
+  --gold:#F2B705; --gold-deep:#C98E00; --link:#8F6400; --gold-tint:#FFF1B8;
+  /* tones — the colour says who acts next: ok geklärt · act Dienststelle · dec Kanton · open Databank */
+  --ton-ok:#1E8657; --ton-ok2:#8CC7A4; --ton-act:#C8372D; --ton-dec:#DB8B00; --ton-open:#8A877D;
+  /* tone tints, their borders, and the tone as text */
+  --ton-ok-bg:#E5F2EA; --ton-act-bg:#FBEAE8; --ton-dec-bg:#FCF1DC; --ton-open-bg:#EFEDE7; --ton-ok-line:#8CC7A4; --ton-act-line:#DE9A9A; --ton-dec-line:#D9AE4A; --ton-open-line:#A9A597; --ton-ok-ink:#1D5B3A; --ton-act-ink:#8E1B1B; --ton-dec-ink:#6E4A00; --ton-open-ink:#55524A;
+  /* eSH draft: violet, dashed — never a status */
+  --esh:#4A3570; --esh-bg:#F3EFFA; --esh-line:#9B84C9;
+  /* effects */
+  --shadow:rgba(22,21,15,.18); --ring:rgba(242,183,5,.28);
+  /* fonts: system fonts only */
+  --font:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif; --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  /* text sizes (12 px is the floor) */
+  --fs-xs:12px; --fs-s:13px; --fs-m:14px; --fs-l:16px; --fs-xl:22px; --fs-xxl:28px;
+}
+@media print{:root{--fs-xs:9pt;--fs-s:9pt;--fs-m:9.5pt;--fs-l:11.5pt;--fs-xl:16pt;--fs-xxl:20pt;}}
+  /* landing page: the look of the dashboard (scripts/theme.py), larger running text */
   *{box-sizing:border-box}
-  body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  body{margin:0;background:var(--paper);color:var(--ink);font:var(--fs-l)/1.55 var(--font)}
   main{max-width:880px;margin:0 auto;padding:40px 20px 64px}
-  .kicker{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);display:flex;align-items:center;gap:10px}
+  .kicker{font-size:var(--fs-xs);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);display:flex;align-items:center;gap:10px}
   .kicker i{display:inline-block;width:22px;height:22px;border-radius:5px;background:var(--gold)}
-  h1{font-size:30px;line-height:1.2;margin:10px 0 12px}
+  h1{font-size:var(--fs-xxl);line-height:1.2;margin:10px 0 12px}
   .lead{color:var(--ink-soft);margin:0 0 28px;max-width:720px}
-  .open{display:block;background:var(--ink);color:#fff;text-decoration:none;border-radius:12px;padding:22px 24px;margin:0 0 14px}
-  .open b{font-size:21px;display:block}
-  .open span{color:#d9d6cc;font-size:14px}
-  .open:hover{background:#000}
+  .open{display:block;background:var(--ink);color:var(--card);text-decoration:none;border-radius:12px;padding:22px 24px;margin:0 0 14px}
+  .open b{font-size:var(--fs-xl);display:block}
+  .open span{color:var(--line);font-size:var(--fs-m)}
+  .open:hover{background:var(--ink-soft)}
   .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:0 0 30px}
   .card{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;text-decoration:none;color:inherit}
-  .card:hover{border-color:var(--ink-soft)}
-  .card b{display:block;font-size:17px;margin-bottom:4px}
-  .card span{font-size:14px;color:var(--ink-soft)}
-  .facts{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:14px;color:var(--ink-soft);margin:0 0 30px}
-  .facts b{color:var(--ink);font-size:18px;margin-right:4px}
-  h2{font-size:18px;margin:34px 0 8px}
-  p,li{font-size:15px}
+  .card:hover{border-color:var(--gold-deep);background:var(--hover)}
+  .card b{display:block;font-size:var(--fs-l);margin-bottom:4px}
+  .card span{font-size:var(--fs-m);color:var(--ink-soft)}
+  .facts{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:var(--fs-m);color:var(--ink-soft);margin:0 0 30px}
+  .facts b{color:var(--ink);font-size:var(--fs-l);margin-right:4px}
+  .facts.stand{margin-top:-18px}
+  h2{font-size:var(--fs-xl);margin:34px 0 8px}
+  p,li{font-size:var(--fs-l)}
   ol{padding-left:22px}
-  .note{font-size:13px;color:var(--ink-soft);border-top:1px solid var(--line);margin-top:36px;padding-top:14px}
-  code{font-family:"Roboto Mono",ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:#f1eee4;padding:1px 5px;border-radius:4px}
-  a{color:var(--ink)}
+  .note{font-size:var(--fs-s);color:var(--ink-soft);border-top:1px solid var(--line);margin-top:36px;padding-top:14px}
+  code{font-family:var(--mono);font-size:var(--fs-s);background:var(--field);padding:1px 5px;border-radius:4px}
+  a{color:var(--link);text-underline-offset:2px}
 </style>
 </head>
 <body>
@@ -58,14 +83,15 @@
     <a class="card" href="dossiers/index.html"><b>Datenschutz-Dossiers</b>
       <span>491 druckbare Seiten, eine je Service — Rechtsgrundlagen, Daten, Handhabung, offene Punkte.</span></a>
     <a class="card" href="flows.html"><b>Geführte Formulare (Prototyp)</b>
-      <span>Schritt-für-Schritt-Abläufe für 57 von 473 Formularen.</span></a>
+      <span>Schritt-für-Schritt-Abläufe für 57 von 473 Formularen. Antworten bleiben nur in diesem
+      Browser gespeichert.</span></a>
     <a class="card" href="https://github.com/jastephan63/citygov"><b>Quellcode &amp; Dokumentation</b>
       <span>Das Repository auf GitHub: Datenbank, Skripte, maschinenlesbare Exporte, README (englisch).</span></a>
   </div>
 
   <div class="facts"><span><b>491</b>Services</span><span><b>473</b>Formulare</span>
-    <span><b>5'991</b>Datenfelder</span></div>
-  <p class="facts" style="margin-top:-18px">Daten exportiert 01.10.2026 · DVSH-Modell 03.09.2026 · SHEP-Portal 03.09.2026</p>
+    <span><b>5&#x27;991</b>Datenfelder</span></div>
+  <p class="facts stand">Daten exportiert 04.10.2026 · DVSH-Modell 03.09.2026 · SHEP-Portal 03.09.2026</p>
 
   <h2>Offline verwenden</h2>
   <ol>

@@ -10,20 +10,25 @@ excerpt on data-field legal bases. The retired 2026-06 auto-draft layer
 
 Also writes today's snapshot to verlauf.json (scripts/kennzahlen.py) and
 logs/citation_todo.txt (every ingested article not at level 'verified').
-Stops before writing data_export.json when it would carry a local file path
-or an unreviewed «Datum» in the databank's own naming/basis texts.
+
+Gates — when one fires, NOTHING is written (no data_export.json, no entry in
+verlauf.json) and the script ends with one line «ABBRUCH …» and exit code 1:
+  * a layer fails for another reason than a table this databank does not have
+    (common._layer_skipped; the layer is named);
+  * a published total is not the sum of its parts, or a figure computed in two
+    places differs (_summen_pruefen; the figure is named);
+  * the export would carry a local file path, or an unreviewed «Datum» in the
+    databank's own naming/basis texts.
 
     python3 scripts/export_json.py
 """
-import json, os, re, sqlite3, sys
+import json, os, re, sqlite3, sys, unicodedata
 from datetime import datetime, date
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import DB_PATH, EXPORT_PATH, LOGS_DIR, connect, assert_no_local_paths
+from common import SKIPPED_LAYERS, _layer_skipped, dossier_slug, klartext as _klartext
 import labels as LABELS
-
-
-from common import _layer_skipped, klartext as _klartext
 
 
 # «the same datum»: what may be compared across forms (Standard-Divergenzen)
@@ -62,6 +67,18 @@ def rows(conn, q, *a):
     return [dict(r) for r in conn.execute(q, a).fetchall()]
 
 
+def _tsd(n):
+    """1234 -> «1'234» (de-CH), for a number inside a sentence."""
+    return f"{int(n):,}".replace(",", "'")
+
+
+def _sortierwort(t):
+    """Sort key of a title as a German reader expects it: case and accents do not
+    count (ä next to a, ß as ss); punctuation stays, so a space sorts first."""
+    t = unicodedata.normalize("NFD", (t or "").lower().replace("ß", "ss"))
+    return "".join(ch for ch in t if not unicodedata.combining(ch))
+
+
 def handlungsbedarf(fm, today):
     """Open points of one form as [{cat, n, detail}] — cat is a key of
     labels.TODO_CATS. Mirrors what the dashboard used to compute in the browser,
@@ -71,16 +88,17 @@ def handlungsbedarf(fm, today):
     if not dfs:
         it.append({"cat": "keine-felder", "n": 1, "detail": "keine Datenfelder modelliert"})
         return it
-    nE = sum(1 for d in dfs if not d.get("basis_typ") and not d.get("legal_basis"))
+    # the legal question of a field is answered once (basis_state, _basis_state)
+    nE = sum(1 for d in dfs if d["basis_state"] == "zu_ermitteln")
     if nE:
         it.append({"cat": "ermitteln", "n": nE, "detail": LABELS.pl(nE, "Feld", "Felder") + " ohne recherchierte Grundlage"})
-    nO = [d["name"] for d in dfs if d.get("basis_typ") == "offen"]
+    nO = [d["name"] for d in dfs if d["basis_state"] == "offen"]
     if nO:
         it.append({"cat": "offen", "n": len(nO), "detail": " · ".join(nO)})
-    nX = [d["name"] for d in dfs if d.get("basis_typ") == "ohne"]
+    nX = [d["name"] for d in dfs if d["basis_state"] == "ohne"]
     if nX:
         it.append({"cat": "ohne", "n": len(nX), "detail": " · ".join(nX)})
-    a5 = [d["name"] for d in dfs if d.get("art5_offen")]
+    a5 = [d["name"] for d in dfs if d["basis_state"] == "art5_offen"]
     if a5:
         it.append({"cat": "sensibel_art5", "n": len(a5), "detail": " · ".join(a5)})
     if not fm.get("purpose"):
@@ -92,18 +110,19 @@ def handlungsbedarf(fm, today):
     fm["dsfa_indiziert"] = dsfa_ind        # the ONE triage judgment the surfaces read
     if dsfa_ind and not fm.get("dsfa_status"):
         it.append({"cat": "dsfa", "n": 1, "detail": f"{sens} von {len(dfs)} Feldern besonders schützenswert"})
-    eN = sum(1 for d in dfs if not d.get("ech_status"))
-    # an element is only «owed» where the standard has an element catalogue
-    eS = sum(1 for d in dfs if d.get("ech_status") == "standard_only" and (d.get("ech") or {}).get("n_elements"))
+    # eCH-Zuordnung offen: counted on the atomic unit from the stamped state, like every
+    # other standard figure (ungeprueft = never checked; element_offen = a standard with an
+    # element catalogue is assigned, the element is not — only there is an element «owed»)
+    eN = sum(1 for d in dfs for u in _units(d) if u["ech_state"] == "ungeprueft")
+    eS = sum(1 for d in dfs for u in _units(d) if u["ech_state"] == "element_offen")
     if eN + eS:
         it.append({"cat": "ech", "n": eN + eS,
                    "detail": ", ".join(x for x in (f"{eN} nicht geprüft" if eN else "", f"{eS} Element offen" if eS else "") if x)})
     # data points on a standard no longer in force (the same unit as every standard figure)
     alt = []
     for d in dfs:
-        subs = [x for x in (d.get("subfields") or []) if isinstance(x, dict)]
-        for u in (subs or [d]):
-            if _ech_state(u) == "standard_alt":
+        for u in _units(d):
+            if u["ech_state"] == "standard_alt":
                 alt.append(u.get("name") or d["name"])
     if alt:
         it.append({"cat": "echalt", "n": len(alt), "detail": " · ".join(alt)})
@@ -125,9 +144,8 @@ def handlungsbedarf(fm, today):
     # data points without a standard in force for them: the canton decides (eSH or an eCH request)
     ks = ke = 0
     for d in dfs:
-        subs = [x for x in (d.get("subfields") or []) if isinstance(x, dict)]
-        for u in (subs or [d]):
-            stt = _ech_state(u)
+        for u in _units(d):
+            stt = u["ech_state"]
             if stt in ("kein_standard", "standard_entwurf"):
                 ks += 1
                 ke += bool(u.get("esh"))
@@ -179,6 +197,7 @@ _PV_WORDS = [
     ("nicht unter den Kandidaten ist – aus dem Material nicht entscheidbar", "nicht unter den geprüften Normen ist — aus den ausgewerteten Rechtsgrundlagen nicht entscheidbar"),
     ("lässt sich aus den Kandidaten nicht entscheiden", "lässt sich aus den geprüften Normen nicht entscheiden"),
     ("fehlt im Material", "ist unter den ausgewerteten Rechtsgrundlagen nicht vorhanden"),
+    ("ist im Material nicht erfasst", "ist in den ausgewerteten Rechtsgrundlagen nicht erfasst"),
     ("von keiner Kandidatenbestimmung erfasst", "von keiner der geprüften Normen erfasst"),
     ("fehlt unter den Kandidaten", "fehlt unter den geprüften Normen"),
     ("Kein Kandidat erfasst", "Keine der geprüften Normen erfasst"),
@@ -219,11 +238,17 @@ def _dst_slug(name):
 
 
 def _units(d):
+    """The atomic data points of a Datenfeld — the unit of every data-standard
+    figure: its Teilfelder, or the field itself when it has none."""
     subs = [x for x in (d.get("subfields") or []) if isinstance(x, dict)]
     return subs or [d]
 
 
 def _ech_state(u):
+    """The eCH state of one Datenfeld or Teilfeld — a key of labels.TON_MAP['ech'].
+    The ONE classification: _zustaende_setzen() writes it on every field and
+    Teilfeld as `ech_state`, the figures below count that key, and the pages read
+    it instead of asking these questions again."""
     e = u.get("ech") or {}
     if e.get("element") and (u.get("begriff") or {}).get("pruefart") == "zuordnung":
         # an element is assigned, but the naming layer found the label means another
@@ -244,6 +269,47 @@ def _ech_state(u):
     return "ungeprueft"
 
 
+def _basis_state(d):
+    """The answer to the legal question of one Datenfeld — a key of
+    labels.TON_MAP['basis']: «artikel» (an article is cited), «art5_offen» (a
+    besonders schützenswerte Angabe judged task-necessary, its basis under KDSG
+    Art. 5 Abs. 1 not yet named — open, never covered), «aufgabe», «ohne», «offen»
+    (the panel's verdict) or «zu_ermitteln» (not researched; also a verdict
+    «artikel» without a citation). Written on every field as `basis_state`."""
+    if d.get("legal_basis"):
+        return "artikel"
+    if d.get("art5_offen"):
+        return "art5_offen"
+    return d["basis_typ"] if d.get("basis_typ") in ("aufgabe", "ohne", "offen") else "zu_ermitteln"
+
+
+def _zustaende_setzen(forms):
+    """Stamp the two classifications on the units the pages draw: `ech_state` on every
+    Datenfeld and every Teilfeld, `basis_state` on every Datenfeld. For a field with
+    Teilfelder, ech_state describes the field's OWN mapping (its chip); the figures
+    count its Teilfelder (_units). Runs after the Begriffe layer, whose verdict
+    «zuordnung» decides between element and zuordnung_falsch."""
+    for fm in forms:
+        for d in fm.get("data_fields") or []:
+            d["ech_state"] = _ech_state(d)
+            d["basis_state"] = _basis_state(d)
+            for u in d.get("subfields") or []:
+                if isinstance(u, dict):
+                    u["ech_state"] = _ech_state(u)
+
+
+def _ech_ton(ech):
+    """eCH states {state: n} as the four parts a bar draws, by who acts next
+    (labels.TON_MAP['ech']): ok = with an eCH element, ok2 = settled at standard
+    level (the standard has no element catalogue; light green), dec = the canton
+    decides, open = the databank maps or corrects (zuordnung_falsch included).
+    The parts sum to the number of data points."""
+    t = {"ok": 0, "ok2": 0, "dec": 0, "open": 0}
+    for st, n in ech.items():
+        t["ok2" if st == "standard_ohne_elemente" else LABELS.TON_MAP["ech"][st]] += n
+    return t
+
+
 def _standard_zahlen(fms):
     """Data-standard figures of a set of forms: atomic points, their eCH state, how
     many are demanded differently than elsewhere, how many labels to align."""
@@ -252,7 +318,7 @@ def _standard_zahlen(fms):
         for d in fm.get("data_fields") or []:
             for u in _units(d):
                 z["punkte"] += 1
-                st = _ech_state(u)
+                st = u["ech_state"]
                 z["ech"][st] = z["ech"].get(st, 0) + 1
         sd = fm.get("standard_divergenzen") or {}
         ang = sd.get("angleichen") or []
@@ -267,13 +333,156 @@ def _standard_zahlen(fms):
     # «with an eCH element» = every point with an assigned element, including the
     # ones whose mapping the databank itself flags for correction (shown apart)
     z["mit_element"] = z["ech"].get("element", 0) + z["ech"].get("zuordnung_falsch", 0)
+    z["ech_ton"] = _ech_ton(z["ech"])
     return z
+
+
+def _rechtsgrundlage_zahlen(forms):
+    """Legal basis per Datenfeld, counted on basis_state: wert = covered (an article,
+    or the task — green), teile by who acts next (labels.TON_MAP['basis']), and the
+    open kinds by name. teile sum to von by construction: each field has one state."""
+    n = {}
+    for fm in forms:
+        for d in fm.get("data_fields") or []:
+            n[d["basis_state"]] = n.get(d["basis_state"], 0) + 1
+    teile = {"ok": 0, "act": 0, "dec": 0, "open": 0}
+    for k, v in n.items():
+        teile[LABELS.TON_MAP["basis"][k]] += v
+    return {"wert": teile["ok"], "von": sum(n.values()), "teile": teile,
+            "ohne": n.get("ohne", 0), "offen": n.get("offen", 0),
+            "zu_ermitteln": n.get("zu_ermitteln", 0), "art5_offen": n.get("art5_offen", 0)}
+
+
+def _verzeichnis_zahlen(forms):
+    """Register entries per Formular with data fields, each form in exactly one part:
+    open = purpose or recipients not recorded (the databank's research — categories
+    «zweck» and «empf»), ok = purpose, evidenced recipients and an own retention term
+    (Spezialfrist or Fristentscheid), rest = only the own term is missing (the
+    standard term applies; no open point)."""
+    t = {"ok": 0, "open": 0, "rest": 0}
+    for fm in forms:
+        if not fm.get("data_fields"):
+            continue
+        if not fm.get("purpose") or not fm.get("disclosures"):
+            t["open"] += 1
+        elif fm.get("retention") or fm.get("retention_decisions"):
+            t["ok"] += 1
+        else:
+            t["rest"] += 1
+    return {"wert": t["ok"], "von": sum(t.values()), "teile": t}
+
+
+def _benannt_zahlen(forms, von):
+    """Naming verdicts on the Datenpunkte that carry an eCH element (`von`), from
+    standard_divergenzen.bezeichnungen — one verdict per Datenpunkt. teile, keyed
+    like labels.TON_MAP['begriff']: variante = rename to the uniform term, aufteilen =
+    split a field that bundles data the standard separates (both: category «begriff»,
+    the Dienststelle acts), zuordnung = the label means another datum than the
+    element (category «zuordnung», the databank corrects its mapping), rest = no
+    deviation recorded. formulare_*: how many forms carry such a point."""
+    t = {"variante": 0, "aufteilen": 0, "zuordnung": 0}
+    fs = {k: set() for k in t}
+    for fm in forms:
+        for i in (fm.get("standard_divergenzen") or {}).get("bezeichnungen") or []:
+            k = ("variante" if i.get("klasse") == "variante"
+                 else "aufteilen" if i.get("pruefart") == "aufteilen" else "zuordnung")
+            t[k] += 1
+            fs[k].add(fm["id"])
+    t["rest"] = von - sum(t.values())
+    return {"von": von, "teile": t, "formulare_begriff": len(fs["variante"] | fs["aufteilen"]),
+            "formulare_teile": {k: len(v) for k, v in fs.items()}}
+
+
+def _kein_standard_zahlen(forms):
+    """The amber part of the data standard — Datenpunkte without an eCH standard in
+    force (ech_state kein_standard or standard_entwurf; category «kein_standard») —
+    by the decision the canton faces: esh = a cantonal eSH draft exists, ohne =
+    neither an eCH standard nor an eSH draft, ech_entwurf = an eCH standard still
+    in the works. formulare: forms concerned; codes: Datenpunkte per eSH draft and
+    per eCH standard in the works."""
+    t = {"esh": 0, "ohne": 0, "ech_entwurf": 0}
+    fs = {k: set() for k in t}
+    codes = {"esh": {}, "ech_entwurf": {}}
+    for fm in forms:
+        for d in fm.get("data_fields") or []:
+            for u in _units(d):
+                if u["ech_state"] == "kein_standard":
+                    k, code = ("esh", u["esh"]["code"]) if u.get("esh") else ("ohne", None)
+                elif u["ech_state"] == "standard_entwurf":
+                    k, code = "ech_entwurf", u["ech"]["standard"]
+                else:
+                    continue
+                t[k] += 1
+                fs[k].add(fm["id"])
+                if code:
+                    codes[k][code] = codes[k].get(code, 0) + 1
+    return {"von": sum(t.values()), "teile": t, "formulare": {k: len(v) for k, v in fs.items()},
+            "codes": {k: dict(sorted(v.items())) for k, v in codes.items()}}
+
+
+def _kategorien(forms):
+    """Open points per category (labels.CAT_ORDER; every category, also with 0): n =
+    points over all forms (what n counts: labels.EINHEIT), formulare = forms
+    concerned. A duplicate pair is counted on one of its two forms; «formulare»
+    of «dup» names both."""
+    known = {fm["id"] for fm in forms}
+    k = {c: {"n": 0, "formulare": set()} for c in LABELS.CAT_ORDER}
+    for fm in forms:
+        for it in fm.get("handlungsbedarf") or []:
+            c = k[it["cat"]]
+            c["n"] += it["n"]
+            c["formulare"].add(fm["id"])
+            if it["cat"] == "dup":
+                c["formulare"].update(s_["form_id"] for s_ in fm.get("similar") or []
+                                      if not s_.get("verdict") and fm["id"] < s_["form_id"] and s_["form_id"] in known)
+    return {c: {"n": v["n"], "formulare": len(v["formulare"])} for c, v in k.items()}
+
+
+def _massnahmen(fms):
+    """What a Dienststelle can do itself: one entry per red category, summed over its
+    forms, in priority order (tier, then labels.CAT_ORDER). gross = the three
+    largest forms (by points, then title); mix (only «divergenz») = the kinds of
+    divergence, counted per entry of standard_divergenzen.angleichen (one Datenpunkt
+    can have several); aktion = the imperative of labels.AKTION — for divergences in
+    value lists only, the wording that nothing on the form has to change."""
+    order = {c: i for i, c in enumerate(LABELS.CAT_ORDER)}
+    G = {}
+    for fm in fms:
+        for it in fm.get("handlungsbedarf") or []:
+            if it["ton"] != "act":
+                continue
+            g = G.setdefault(it["cat"], {"cat": it["cat"], "stufe": it["stufe"], "n": 0, "forms": [], "mix": {}})
+            g["n"] += it["n"]
+            g["forms"].append((it["n"], fm))
+            if it["cat"] == "divergenz":
+                for x in (fm.get("standard_divergenzen") or {}).get("angleichen") or []:
+                    if x["art"] in ("pflicht", "format", "codeliste"):
+                        g["mix"][x["art"]] = g["mix"].get(x["art"], 0) + 1
+    out = []
+    for g in sorted(G.values(), key=lambda g: (g["stufe"], order.get(g["cat"], 99))):
+        fl = sorted(g["forms"], key=lambda nf: (-nf[0], _sortierwort(nf[1].get("title")), nf[1]["id"]))
+        nur_codes = g["cat"] == "divergenz" and g["mix"].get("codeliste") and not (g["mix"].get("pflicht") or g["mix"].get("format"))
+        m = {"cat": g["cat"], "stufe": g["stufe"], "n": g["n"], "formulare": len(fl),
+             "gross": [{"form_id": fm["id"], "n": n} for n, fm in fl[:3]],
+             "aktion": (LABELS.AKTION["divergenz_codeliste"] if nur_codes
+                        else LABELS.AKTION.get(g["cat"]) or LABELS.TODO_BY[g["cat"]][1])}
+        if g["cat"] == "divergenz":
+            m["mix"] = g["mix"]
+        out.append(m)
+    return out
+
+
+# verlauf.json with today's entry, as uebersichten() prepared it. main() writes it
+# only after every gate has passed — an aborted export records no figures.
+VERLAUF_DOC = None
 
 
 def uebersichten(conn, services, forms, dienststellen, begriffe_stats):
     """Per Dienststelle: services, forms, open points by tone and tier, the most
     important actions and the data-standard figures; the headline figures of the
-    home page (data standard first); and the trend snapshot (verlauf.json)."""
+    home page (data standard first); and the trend (verlauf.json with today's
+    snapshot — prepared here, written by main())."""
+    global VERLAUF_DOC
     import kennzahlen as KZ
     svc = {s["id"]: s for s in services}
     def dst_of(fm):
@@ -288,7 +497,9 @@ def uebersichten(conn, services, forms, dienststellen, begriffe_stats):
         info[d["name"]] = {"department": d.get("department"), "kontakt": [x for x in k if x and x != d["name"]]}
     by_dst = {}
     for fm in forms:
-        by_dst.setdefault(dst_of(fm), []).append(fm)
+        fm["dienststelle"] = dst_of(fm)             # whose form it is — answered once, read by the pages
+        fm["standard"] = _standard_zahlen([fm])     # its data-standard figures on the atomic unit (the header of the Formular)
+        by_dst.setdefault(fm["dienststelle"], []).append(fm)
     svc_by_dst = {}
     for s in services:
         svc_by_dst.setdefault((s.get("dienststelle") or "(ohne Dienststelle)").strip(), []).append(s["id"])
@@ -298,22 +509,13 @@ def uebersichten(conn, services, forms, dienststellen, begriffe_stats):
         fms = by_dst.get(name, [])
         cnt = {"act": 0, "dec": 0, "open": 0}
         stufen = {}
-        pairs = []                                  # (cat, form) with n — for the action list
+        pairs = []                                  # every open point of the Dienststelle with its form
         for fm in fms:
             for it in fm.get("handlungsbedarf") or []:
                 cnt[it["ton"]] += it["n"]
                 st = stufen.setdefault(str(it["stufe"]), {"act": 0, "dec": 0, "open": 0})
                 st[it["ton"]] += it["n"]
                 pairs.append((it, fm))
-        # the most important actions: what THIS Dienststelle can do itself (red),
-        # data standard first, then by size; the canton's decisions and the
-        # databank's research are listed apart on its page
-        act = sorted([p for p in pairs if p[0]["ton"] == "act"],
-                     key=lambda p: (p[0]["stufe"], order.get(p[0]["cat"], 99), -p[0]["n"]))
-        massnahmen = [{"cat": it["cat"], "stufe": it["stufe"], "n": it["n"], "form_id": fm["id"],
-                       "form": fm.get("title"), "service_id": fm.get("service_id"),
-                       "aktion": LABELS.AKTION.get(it["cat"], LABELS.TODO_BY[it["cat"]][1])}
-                      for it, fm in act[:5]]
         entscheide = {}
         for it, fm in pairs:
             if it["ton"] == "dec":
@@ -326,22 +528,18 @@ def uebersichten(conn, services, forms, dienststellen, begriffe_stats):
                                                        if svc.get(x) and svc[x].get("department")), None),
             "kontakt": i.get("kontakt", []),
             "services": sorted(svc_by_dst.get(name, [])), "formulare": sorted(fm["id"] for fm in fms),
-            "offen": cnt, "stufen": stufen, "massnahmen": massnahmen,
-            "n_massnahmen": sum(1 for p in pairs if p[0]["ton"] == "act"),
+            # the Massnahmen: what THIS Dienststelle can do itself (red), data standard
+            # first; the canton's decisions (entscheide) and the databank's research
+            # are listed apart on its page
+            "offen": cnt, "stufen": stufen, "massnahmen": _massnahmen(fms),
             "entscheide": sorted(entscheide.values(), key=lambda e: (e["stufe"], order.get(e["cat"], 99))),
             "standard": _standard_zahlen(fms)})
-    # headline figures — data standard first; each as a share of the whole
+    # headline figures — data standard first; each as a share of the whole, each
+    # with parts that sum to it (checked in _summen_pruefen)
     std = _standard_zahlen(forms)
-    nf_ = sum(len(fm.get("data_fields") or []) for fm in forms)
-    dfs = [d for fm in forms for d in (fm.get("data_fields") or [])]
-    gedeckt = sum(1 for d in dfs if d.get("legal_basis") or (d.get("basis_typ") == "aufgabe" and not d.get("art5_offen")))
-    ohne = sum(1 for d in dfs if d.get("basis_typ") == "ohne")
-    offen = sum(1 for d in dfs if d.get("basis_typ") == "offen")
-    a5 = sum(1 for d in dfs if d.get("art5_offen"))
-    ermitteln = sum(1 for d in dfs if not d.get("basis_typ") and not d.get("legal_basis"))
     mit_daten = [fm for fm in forms if fm.get("data_fields")]
-    verz = sum(1 for fm in mit_daten if fm.get("purpose") and fm.get("disclosures")
-               and (fm.get("retention") or fm.get("retention_decisions")))
+    rg = _rechtsgrundlage_zahlen(forms)
+    vz = _verzeichnis_zahlen(forms)
     tot = {"act": 0, "dec": 0, "open": 0}
     for fm in forms:
         for it in fm.get("handlungsbedarf") or []:
@@ -349,50 +547,230 @@ def uebersichten(conn, services, forms, dienststellen, begriffe_stats):
     e = std["ech"]
     kopf = {
         # «with an eCH element» stays the headline (as on every page); points whose
-        # standard has no element catalogue are settled at standard level — own segment
+        # standard has no element catalogue are settled at standard level — own segment.
+        # ech = every state with its number; ech_ton = the four parts a bar draws
+        # (grey = open + zuordnung_falsch); teile keeps the corrected mappings apart
         "standard_ech": {"wert": std["mit_element"], "von": std["punkte"],
                           "teile": {"ok": e.get("element", 0), "zuordnung_falsch": e.get("zuordnung_falsch", 0),
                                     "ok_standard": e.get("standard_ohne_elemente", 0),
                                     "dec": e.get("kein_standard", 0) + e.get("standard_entwurf", 0),
-                                    "open": e.get("element_offen", 0) + e.get("ungeprueft", 0) + e.get("standard_alt", 0)}},
+                                    "open": e.get("element_offen", 0) + e.get("ungeprueft", 0) + e.get("standard_alt", 0)},
+                          "ech": e, "ech_ton": std["ech_ton"]},
         "standard_einheitlich": {"wert": std["mit_element"] - std["div_punkte"] - std["div_offen"], "von": std["mit_element"],
                                  "teile": {"ok": std["mit_element"] - std["div_punkte"] - std["div_offen"],
                                            "act": std["div_punkte"], "dec": std["div_offen"]},
                                  "formulare_div": std["formulare_div"], "formulare": len(mit_daten)},
-        "standard_benannt": {"wert": (begriffe_stats or {}).get("n_felder_angleichen"), "formulare":
-                             (begriffe_stats or {}).get("n_formulare_angleichen"), "begriff_felder": std["begriff_felder"]},
-        "rechtsgrundlage": {"wert": gedeckt, "von": nf_, "teile": {"ok": gedeckt, "act": ohne, "dec": offen,
-                                                                     "open": ermitteln + a5},
-                            "ohne": ohne, "offen": offen, "zu_ermitteln": ermitteln, "art5_offen": a5},
-        "verzeichnis": {"wert": verz, "von": len(mit_daten)},
+        # begriff_felder: the whole category «begriff» (rename or split); von/teile: every
+        # naming verdict (teile.variante = the labels to rename, formulare_teile their forms)
+        "standard_benannt": {"begriff_felder": std["begriff_felder"], **_benannt_zahlen(forms, std["mit_element"])},
+        "rechtsgrundlage": rg,
+        "verzeichnis": vz,
         "offene_punkte": tot,
+        "kein_standard": _kein_standard_zahlen(forms),
+        "kategorien": _kategorien(forms),
     }
     # trend: today's snapshot (DB-level figures + the export-level ones), history, notes
     doc = KZ.load()
     snap = KZ.db_kennzahlen(conn) or {}
     snap.update({"div_punkte": std["div_punkte"], "div_offen": std["div_offen"],
                  "formulare_div": std["formulare_div"], "begriff_felder": std["begriff_felder"],
-                 "verzeichnis_vollstaendig": verz, "offen_act": tot["act"], "offen_dec": tot["dec"],
+                 "verzeichnis_vollstaendig": vz["wert"], "offen_act": tot["act"], "offen_dec": tot["dec"],
                  "offen_open": tot["open"]})
     KZ.upsert(doc, {"datum": date.today().isoformat(), "quelle": "build", **snap})
-    KZ.save(doc)
+    doc["eintraege"].sort(key=lambda e: e["datum"])
+    VERLAUF_DOC = doc
+    notes_path = os.path.join(os.path.dirname(DB_PATH), "quellen", "verlauf_bemerkungen.json")
     try:
-        notes = json.load(open(os.path.join(os.path.dirname(DB_PATH), "quellen", "verlauf_bemerkungen.json"), encoding="utf-8"))
-    except (OSError, ValueError):
+        with open(notes_path, encoding="utf-8") as fh:
+            notes = json.load(fh)
+    except FileNotFoundError:
         notes = {}
+    except (OSError, ValueError) as ex:
+        raise RuntimeError(f"quellen/verlauf_bemerkungen.json ist nicht lesbar ({ex}) — die Bemerkungen zum "
+                           "Verlauf gingen verloren; Datei reparieren") from ex
     verlauf = [{**e, "bemerkung": notes.get(e["datum"])} for e in doc["eintraege"]]
     return uebersicht, kopf, verlauf
 
 
-def _has_esh(conn):
-    try:
-        conn.execute("SELECT 1 FROM esh_standard LIMIT 1")
-        return True
-    except Exception:
-        return False
+def _summen_pruefen(data):
+    """Gate before anything is written: wherever the export publishes a total next to
+    its parts, the parts sum to the total; and a figure that exists in two places
+    (headline and category, canton and Dienststellen, SQL snapshot and export) is the
+    same in both. Raises RuntimeError naming every figure that does not add up.
+    The comparisons with a second source are left out when a layer was skipped
+    (a table this databank does not have): the two sources then differ by design."""
+    fehler = []
+
+    def gleich(name, ist, soll, was):
+        if ist != soll:
+            if isinstance(ist, dict) and isinstance(soll, dict):      # name only what differs
+                keys = [k for k in {**ist, **soll} if ist.get(k) != soll.get(k)]
+                ist, soll = {k: ist.get(k) for k in keys}, {k: soll.get(k) for k in keys}
+            fehler.append(f"{name}: {was} — {ist} statt {soll}")
+
+    K, forms = data["kopfzahlen"], data["forms"]
+    tones = ("act", "dec", "open")
+    # (1) every headline figure with «teile»: the parts sum to «von»
+    for k, v in K.items():
+        if isinstance(v, dict) and "teile" in v:
+            gleich(f"kopfzahlen.{k}", sum(v["teile"].values()), v.get("von"),
+                   "die teile " + json.dumps(v["teile"], ensure_ascii=False) + " summieren nicht zum Ganzen «von»")
+    E, U, N, R, V, Z, KAT = (K[k] for k in ("standard_ech", "standard_einheitlich", "standard_benannt",
+                                            "rechtsgrundlage", "verzeichnis", "kein_standard", "kategorien"))
+    # (2) the classifications on the units: stamped once, still true, with a tone
+    ech, basis, n_units = {}, {}, 0
+    for fm in forms:
+        for d in fm.get("data_fields") or []:
+            where = f"forms[{fm['id']}] «{d.get('name')}»"
+            if d.get("basis_state") != _basis_state(d) or d.get("basis_state") not in LABELS.TON_MAP["basis"]:
+                fehler.append(f"{where}: basis_state {d.get('basis_state')!r} statt {_basis_state(d)!r}")
+            basis[d.get("basis_state")] = basis.get(d.get("basis_state"), 0) + 1
+            for u in [d] + [x for x in (d.get("subfields") or []) if isinstance(x, dict)]:
+                if u.get("ech_state") != _ech_state(u) or u.get("ech_state") not in LABELS.TON_MAP["ech"]:
+                    fehler.append(f"{where}: ech_state {u.get('ech_state')!r} statt {_ech_state(u)!r}")
+            for u in _units(d):
+                n_units += 1
+                ech[u.get("ech_state")] = ech.get(u.get("ech_state"), 0) + 1
+    gleich("kopfzahlen.standard_ech.von", E["von"], n_units, "Datenpunkte der Formulare")
+    gleich("kopfzahlen.standard_ech.ech", E["ech"], ech, "eCH-Stand der Datenpunkte (ech_state) nachgezählt")
+    gleich("kopfzahlen.standard_ech.ech", sum(E["ech"].values()), E["von"], "Summe der Zustände gegen «von»")
+    gleich("kopfzahlen.standard_ech.ech_ton", sum(E["ech_ton"].values()), E["von"], "Summe der vier Balkenteile gegen «von»")
+    gleich("kopfzahlen.standard_ech.ech_ton", E["ech_ton"],
+           {"ok": E["teile"]["ok"], "ok2": E["teile"]["ok_standard"], "dec": E["teile"]["dec"],
+            "open": E["teile"]["open"] + E["teile"]["zuordnung_falsch"]}, "Balkenteile gegen teile (grau = open + zuordnung_falsch)")
+    gleich("kopfzahlen.standard_ech.wert", E["wert"], E["teile"]["ok"] + E["teile"]["zuordnung_falsch"],
+           "«mit eCH-Element» = ok + zuordnung_falsch")
+    gleich("kopfzahlen.standard_einheitlich.von", U["von"], E["wert"], "das Ganze sind die Datenpunkte mit eCH-Element")
+    gleich("kopfzahlen.standard_einheitlich.wert", U["wert"], U["teile"]["ok"], "wert = grüner Teil")
+    gleich("kopfzahlen.standard_benannt.von", N["von"], E["wert"], "das Ganze sind die Datenpunkte mit eCH-Element")
+    gleich("kopfzahlen.standard_benannt.begriff_felder", N["begriff_felder"], N["teile"]["variante"] + N["teile"]["aufteilen"],
+           "Kategorie «begriff» = variante + aufteilen")
+    gleich("kopfzahlen.standard_benannt.teile.zuordnung", N["teile"]["zuordnung"], E["teile"]["zuordnung_falsch"],
+           "Bezeichnungen mit Urteil «zuordnung» gegen ech_state zuordnung_falsch")
+    if min(N["teile"].values()) < 0:
+        fehler.append(f"kopfzahlen.standard_benannt.teile: negativer Teil {N['teile']}")
+    gleich("kopfzahlen.rechtsgrundlage.wert", R["wert"], R["teile"]["ok"], "wert = grüner Teil")
+    gleich("kopfzahlen.rechtsgrundlage.teile", (R["teile"]["act"], R["teile"]["dec"], R["teile"]["open"]),
+           (R["ohne"], R["offen"], R["zu_ermitteln"] + R["art5_offen"]), "rot/amber/grau gegen ohne/offen/zu_ermitteln+art5_offen")
+    gleich("kopfzahlen.rechtsgrundlage.von", R["von"], sum(basis.values()), "Datenfelder der Formulare")
+    gleich("kopfzahlen.verzeichnis.wert", V["wert"], V["teile"]["ok"], "wert = grüner Teil")
+    gleich("kopfzahlen.verzeichnis.von", V["von"], sum(1 for fm in forms if fm.get("data_fields")), "Formulare mit Datenfeldern")
+    gleich("kopfzahlen.kein_standard.von", Z["von"], E["teile"]["dec"], "der amber Teil von standard_ech")
+    for k in ("esh", "ech_entwurf"):
+        gleich(f"kopfzahlen.kein_standard.codes.{k}", sum(Z["codes"][k].values()), Z["teile"][k], "Summe je Code gegen den Teil")
+    # (3) Handlungsbedarf: tones, categories and the headline say the same
+    tot, cat_n = dict.fromkeys(tones, 0), {}
+    for fm in forms:
+        for it in fm.get("handlungsbedarf") or []:
+            tot[it["ton"]] += it["n"]
+            cat_n[it["cat"]] = cat_n.get(it["cat"], 0) + it["n"]
+            if it["ton"] != LABELS.TON_OF_ART[LABELS.TODO_BY[it["cat"]][3]] or it["stufe"] != LABELS.STUFE_OF_CAT[it["cat"]]:
+                fehler.append(f"forms[{fm['id']}].handlungsbedarf «{it['cat']}»: ton/stufe weichen von labels.py ab")
+    gleich("kopfzahlen.offene_punkte", K["offene_punkte"], tot, "Punkte je Ton über alle Formulare")
+    gleich("kopfzahlen.kategorien", {c: v["n"] for c, v in KAT.items() if v["n"]}, cat_n, "Punkte je Kategorie über alle Formulare")
+    gleich("kopfzahlen.kategorien", {t: sum(v["n"] for c, v in KAT.items() if LABELS.TON_OF_ART[LABELS.TODO_BY[c][3]] == t) for t in tones},
+           K["offene_punkte"], "Kategorien je Ton gegen offene_punkte")
+    for cat, ist, was in (("kein_standard", E["teile"]["dec"], "standard_ech.teile.dec"),
+                          ("echalt", E["ech"].get("standard_alt", 0), "standard_ech.ech.standard_alt"),
+                          ("zuordnung", E["teile"]["zuordnung_falsch"], "standard_ech.teile.zuordnung_falsch"),
+                          ("divergenz", U["teile"]["act"], "standard_einheitlich.teile.act"),
+                          ("divergenz_offen", U["teile"]["dec"], "standard_einheitlich.teile.dec"),
+                          ("begriff", N["begriff_felder"], "standard_benannt.begriff_felder"),
+                          ("ech", E["ech"].get("element_offen", 0) + E["ech"].get("ungeprueft", 0),
+                           "standard_ech.ech.element_offen+ungeprueft"),
+                          ("ohne", R["ohne"], "rechtsgrundlage.ohne"), ("offen", R["offen"], "rechtsgrundlage.offen"),
+                          ("ermitteln", R["zu_ermitteln"], "rechtsgrundlage.zu_ermitteln"),
+                          ("sensibel_art5", R["art5_offen"], "rechtsgrundlage.art5_offen")):
+        gleich(f"kopfzahlen.kategorien.{cat}.n", KAT[cat]["n"], ist, f"Kategorie gegen kopfzahlen.{was}")
+    # (4) the Formulare: the per-form standard figures (forms[].standard, the header of
+    # the Formular) add up to the canton
+    ech_fm, punkte_fm = {}, 0
+    for fm in forms:
+        S = fm.get("standard") or {}
+        punkte_fm += S.get("punkte", 0)
+        for st, n in (S.get("ech") or {}).items():
+            ech_fm[st] = ech_fm.get(st, 0) + n
+    gleich("forms[].standard.punkte", punkte_fm, E["von"], "Summe über die Formulare gegen kopfzahlen.standard_ech.von")
+    gleich("forms[].standard.ech", ech_fm, E["ech"], "Summe über die Formulare gegen kopfzahlen.standard_ech.ech")
+    # (5) Dienststellen: each adds up, and together they are the canton
+    fm_by_id = {fm["id"]: fm for fm in forms}
+    DU = data["dienststellen_uebersicht"]
+    for d in DU:
+        nm, S = f"dienststellen_uebersicht[{d['slug']}]", d["standard"]
+        gleich(nm + ".stufen", {t: sum(st[t] for st in d["stufen"].values()) for t in tones}, d["offen"], "Stufen je Ton gegen offen")
+        gleich(nm + ".massnahmen", sum(m["n"] for m in d["massnahmen"]), d["offen"]["act"], "Punkte der Massnahmen gegen offen.act")
+        gleich(nm + ".massnahmen[].formulare", sum(m["formulare"] for m in d["massnahmen"]),
+               sum(1 for fid in d["formulare"] for it in fm_by_id[fid].get("handlungsbedarf") or [] if it["ton"] == "act"),
+               "Formulare der Massnahmen gegen die roten Punkte (Kategorie × Formular) ihrer Formulare")
+        gleich(nm + ".entscheide", sum(x["n"] for x in d["entscheide"]), d["offen"]["dec"], "Punkte der Entscheide gegen offen.dec")
+        gleich(nm + ".standard.ech", sum(S["ech"].values()), S["punkte"], "Summe der Zustände gegen punkte")
+        gleich(nm + ".standard.ech_ton", sum(S["ech_ton"].values()), S["punkte"], "Summe der vier Balkenteile gegen punkte")
+        gleich(nm + ".standard.mit_element", S["mit_element"], S["ech"].get("element", 0) + S["ech"].get("zuordnung_falsch", 0),
+               "element + zuordnung_falsch")
+    gleich("dienststellen_uebersicht[].offen", {t: sum(d["offen"][t] for d in DU) for t in tones}, K["offene_punkte"],
+           "Summe über die Dienststellen gegen kopfzahlen.offene_punkte")
+    ech_dst = {}
+    for d in DU:
+        for st, n in d["standard"]["ech"].items():
+            ech_dst[st] = ech_dst.get(st, 0) + n
+    gleich("dienststellen_uebersicht[].standard.ech", ech_dst, E["ech"], "Summe über die Dienststellen gegen kopfzahlen.standard_ech.ech")
+    for key, soll, was in (("div_punkte", U["teile"]["act"], "standard_einheitlich.teile.act"),
+                           ("div_offen", U["teile"]["dec"], "standard_einheitlich.teile.dec"),
+                           ("formulare_div", U["formulare_div"], "standard_einheitlich.formulare_div"),
+                           ("begriff_felder", N["begriff_felder"], "standard_benannt.begriff_felder")):
+        gleich(f"dienststellen_uebersicht[].standard.{key}", sum(d["standard"][key] for d in DU), soll,
+               f"Summe über die Dienststellen gegen kopfzahlen.{was}")
+    gleich("dienststellen_uebersicht[].formulare", sorted(i for d in DU for i in d["formulare"]), sorted(fm["id"] for fm in forms),
+           "jedes Formular bei genau einer Dienststelle")
+    gleich("dienststellen_uebersicht[].services", sorted(i for d in DU for i in d["services"]), sorted(sv["id"] for sv in data["services"]),
+           "jeder Service bei genau einer Dienststelle")
+    names = {d["name"] for d in DU}
+    for fm in forms:
+        if fm.get("dienststelle") not in names:
+            fehler.append(f"forms[{fm['id']}].dienststelle {fm.get('dienststelle')!r} fehlt in dienststellen_uebersicht")
+    # (5) one dossier file per service
+    slugs = [sv.get("dossier_slug") for sv in data["services"]]
+    gleich("services[].dossier_slug", len(set(slugs)), len(slugs), "Dateinamen der Dossiers eindeutig (sonst überschreibt ein Service den anderen)")
+    z = data["zitate"]
+    gleich("zitate.total", z["verifiziert"] + z["quelle_pdf"] + z["unverifiziert"], z["total"], "Summe der Stufen")
+    # (6) the same figure from a second source
+    if not SKIPPED_LAYERS:
+        # this run's snapshot: the newest entry (uebersichten() has just upserted it)
+        heute = max(data["verlauf"], key=lambda e: e["datum"], default={})
+        for key, soll, was in (("formulare", len(forms), "forms"), ("punkte", E["von"], "kopfzahlen.standard_ech.von"),
+                               ("punkte_ech", E["wert"], "kopfzahlen.standard_ech.wert"),
+                               ("datenfelder", R["von"], "kopfzahlen.rechtsgrundlage.von"),
+                               ("felder_gedeckt", R["wert"], "kopfzahlen.rechtsgrundlage.wert"),
+                               ("felder_zitiert", basis.get("artikel", 0), "Datenfelder mit basis_state artikel"),
+                               ("felder_ohne", R["ohne"], "kopfzahlen.rechtsgrundlage.ohne"),
+                               ("felder_offen", R["offen"], "kopfzahlen.rechtsgrundlage.offen"),
+                               ("felder_zu_ermitteln", R["zu_ermitteln"], "kopfzahlen.rechtsgrundlage.zu_ermitteln"),
+                               ("felder_art5_offen", R["art5_offen"], "kopfzahlen.rechtsgrundlage.art5_offen")):
+            gleich(f"verlauf[{heute.get('datum')}].{key}", heute.get(key), soll, f"SQL-Kennzahl (kennzahlen.py) gegen {was}")
+        esh = {}
+        for fm in forms:
+            for d in fm.get("data_fields") or []:
+                for u in _units(d):
+                    if u.get("esh"):
+                        esh[u["esh"]["code"]] = esh.get(u["esh"]["code"], 0) + 1
+        gleich("esh_katalog[].n_live", {k["code"]: k["n_live"] for k in data["esh_katalog"] if k["n_live"]}, esh,
+               "SQL-Zählung je eSH-Entwurf gegen die Datenpunkte der Formulare")
+        BS = data["begriffe_stats"]
+        gleich("begriffe_stats.n_felder_angleichen", BS.get("n_felder_angleichen"), N["teile"]["variante"],
+               "Zählung der Begriffe-Schicht gegen kopfzahlen.standard_benannt.teile.variante")
+        gleich("begriffe_stats.n_formulare_angleichen", BS.get("n_formulare_angleichen"), N["formulare_teile"]["variante"],
+               "Zählung der Begriffe-Schicht gegen kopfzahlen.standard_benannt.formulare_teile.variante")
+    if fehler:
+        raise RuntimeError(f"{len(fehler)} Kennzahl(en) gehen nicht auf: " + " | ".join(fehler[:12])
+                           + (f" | … und {len(fehler) - 12} weitere" if len(fehler) > 12 else ""))
+
+
+# the tables of datentresor.db the Bürgersicht reads (scripts/build_datentresor.py)
+DT_TABLES = {"meta", "subjekt", "fall", "datenpunkt", "datenpunkt_verwendung", "beleg", "zugriff_log", "einwilligung"}
 
 
 def build(conn):
+    del SKIPPED_LAYERS[:]                  # the skips of THIS run (common._layer_skipped)
     services = rows(conn, "SELECT id,slug,name,name_alt,dienststelle,department,"
                           "COALESCE(in_dvsh,0) AS in_dvsh FROM service ORDER BY name")
     # placeholder rows of the retired auto-draft (last_checked 'zitiert
@@ -422,6 +800,7 @@ def build(conn):
 
     # logical data-field catalogue (Datenfeld-Katalog), if derived for this form
     dfs_by_form = {}
+    ech = {}                               # eCH elements by id; read again further down
     try:
         df_lb = {}
         for lb in rows(conn, "SELECT dflb.data_field_id did, a.article_no, a.heading, a.text_excerpt, "
@@ -620,8 +999,10 @@ def build(conn):
                         out_by_form[r["form_id"]]["rechtsmittel_verdikt"] = f"{r['quelle']}: {_lesbar_pruefvermerk(r['begruendung'])}"
             except Exception as _ex:
                 _layer_skipped('Rechtsmittel-Verdikt (rechtsmittel_verdikt)', _ex)
-        except Exception:
-            pass
+        except Exception as _ex:
+            # nothing in here may fail silently: without it the forms lose their remedy,
+            # the candidates and the Prüfvermerk, and open points vanish from the board
+            _layer_skipped('Rechtsmittel (rechtsmittel_regel, Kandidaten, Prüfvermerk)', _ex)
         tit = {f["id"]: f["title"] for f in forms}
         for r in rows(conn, "SELECT form_a, form_b, jaccard_names, verdict FROM form_similarity "
                             "WHERE jaccard_names>=0.5 AND (verdict IS NULL OR verdict!='ok')"):
@@ -638,16 +1019,17 @@ def build(conn):
         reg_elems = {r["id"] for r in rows(
             conn, "SELECT id FROM ech_element WHERE standard IN "
                   "('eCH-0044','eCH-0010','eCH-0011','eCH-0007','eCH-0008')")}
-        checks_due = {r["form_id"]: r["next_check_due"] for r in rows(
-            conn, "SELECT form_id, next_check_due FROM form_check")}
-    except Exception:
-        checks_due = {}
-    conn_elem_ids = {}
-    try:
-        for eid, e in ech.items():
-            conn_elem_ids[(e["standard"], e["element"])] = eid
     except Exception as _ex:
         _layer_skipped('Einwohnerregister-Elemente (ech_element)', _ex)
+    # when the online version of each form is due for its next check — without it
+    # every «Online-Prüfung fällig» point would vanish, so it never fails silently
+    checks_due = {}
+    try:
+        checks_due = {r["form_id"]: r["next_check_due"] for r in rows(
+            conn, "SELECT form_id, next_check_due FROM form_check")}
+    except Exception as _ex:
+        _layer_skipped('Wiedervorlage der Online-Prüfung (form_check.next_check_due)', _ex)
+    conn_elem_ids = {(e["standard"], e["element"]): eid for eid, e in ech.items()}
 
     # exchange readiness, citizen burden and named digitalization blockers per form
     linked_dfs = set()
@@ -774,6 +1156,7 @@ def build(conn):
     except Exception as _ex:
         _layer_skipped('SHEP-Portal (shep_service)', _ex)
     for s in services:
+        s["dossier_slug"] = dossier_slug(s)         # dossiers/<dossier_slug>.html (export_dossiers.py)
         got = dvsh_by_service.get(s["id"])
         if got:
             same = [g for g in got if (g.get("title") or "").strip().lower() == (s["name"] or "").strip().lower()]
@@ -784,15 +1167,19 @@ def build(conn):
             s["shep"] = shep_by_service[s["id"]]
 
     esh_katalog = []
-    if _has_esh(conn):
+    try:
         # n_felder is a snapshot from the eSH draft's creation; the live count
-        # is what the field layer says TODAY, and the two drift apart with every
-        # eCH assignment that replaces a draft code
+        # is what the field layer says TODAY (on the atomic unit: a composite is
+        # represented by its parts), and the two drift apart with every eCH
+        # assignment that replaces a draft code. _summen_pruefen compares n_live
+        # with the Datenpunkte of the forms — the pages read it as it is
         esh_katalog = rows(conn, "SELECT code, titel, beschreibung, themen, status, n_felder, "
                                  "(SELECT COUNT(*) FROM data_field d WHERE d.esh_code=esh_standard.code AND NOT EXISTS "
                                  " (SELECT 1 FROM data_subfield x WHERE x.data_field_id=d.id)) "
                                  "+(SELECT COUNT(*) FROM data_subfield s WHERE s.esh_code=esh_standard.code) n_live "
                                  "FROM esh_standard ORDER BY code")
+    except Exception as _ex:
+        _layer_skipped('eSH-Katalog (esh_standard)', _ex)
 
     # canonical attribute catalogue + the divergence lists for the Datenkatalog tab
     katalog, dienststellen = [], []
@@ -910,6 +1297,10 @@ def build(conn):
     except Exception as ex:
         _layer_skipped("Begriffe", ex)
 
+    # ---- ech_state / basis_state: ONE classification per unit, read by every figure
+    # below and by every page (needs the naming verdicts above)
+    _zustaende_setzen(forms)
+
     # ---- Standard-Divergenzen je Formular ------------------------------------
     # What keeps THIS form out of one coherent data standard. Two very different
     # things, kept apart: (a) the same datum demanded DIFFERENTLY than on the
@@ -972,8 +1363,11 @@ def build(conn):
                         here = bool(d.get("required"))
                         others_req, others_opt = r - mine["req"], o - mine["opt"]
                         n_oth = others_req + others_opt
-                        andere = (f"{others_req} Pflicht / {others_opt} optional auf "
-                                  f"{n_other_forms} anderen Formularen")
+                        # the first two numbers count Datenpunkte (occurrences), the last
+                        # one Formulare — said so, or «17 Pflicht / 27 optional auf 27
+                        # Formularen» reads as a contradiction (44 > 27)
+                        andere = (f"{_tsd(others_req)}× Pflicht, {_tsd(others_opt)}× optional "
+                                  f"({_tsd(n_oth)} Datenpunkte) auf {_tsd(n_other_forms)} anderen Formularen")
                         maj_req = others_req > others_opt
                         share = max(others_req, others_opt) / n_oth if n_oth else 0
                         if n_oth >= 2 and share >= 2 / 3 and here != maj_req:
@@ -1233,7 +1627,6 @@ def build(conn):
     dt_path = os.path.join(os.path.dirname(DB_PATH), "datentresor.db")
     if os.path.exists(dt_path):
         try:
-            import sqlite3
             dt = sqlite3.connect(dt_path)
             dt.row_factory = sqlite3.Row
             meta = {r["k"]: r["v"] for r in dt.execute("SELECT k, v FROM meta")}
@@ -1289,8 +1682,11 @@ def build(conn):
                     "WHERE f.subjekt_id=? AND v.wiederverwendet=1", [p["id"]]).fetchone()[0]
                 buergersicht["personen"].append(person)
             dt.close()
-        except Exception as e:
-            buergersicht["fehler"] = str(e)
+        except Exception as _ex:
+            # the vault is optional (no file: no Bürgersicht); one that is there but
+            # of an older shape is skipped loudly, anything else stops the export
+            _layer_skipped('Bürgersicht (datentresor.db)', _ex, tables=DT_TABLES)
+            buergersicht = {"personen": [], "hinweis": None}
 
     # ---- Handlungsbedarf per form: ONE computation for the board, the service
     # page, the dossiers and the CSV. Wording lives in scripts/labels.py.
@@ -1386,11 +1782,15 @@ def build(conn):
         "datenstand": datenstand, "zitate": zitate, "labels": LABELS.as_export(), "texte": texte,
         "services": services, "laws": laws, "forms": forms,
         "esh_katalog": esh_katalog, "datenhandhabung": handhabung,
-        "attribut_katalog": katalog, "dienststellen": dienststellen,
+        "attribut_katalog": katalog,
         "dienststellen_uebersicht": dienststellen_uebersicht, "kopfzahlen": kopfzahlen, "verlauf": verlauf,
         "buergersicht": buergersicht, "ech_codelists": codelists,
         "begriffe": begriffe, "begriffe_stats": begriffe_stats, "themenkatalog": themenkatalog,
     }
+    if SKIPPED_LAYERS:
+        # a half-empty export says so itself (convention: skipped only when the table is missing)
+        datenstand["uebersprungen"] = [f"{name} — Tabelle {table} fehlt" for name, table in SKIPPED_LAYERS]
+    _summen_pruefen(data)
     return data, todo
 
 
@@ -1430,15 +1830,18 @@ def _wortwahl_pruefen(data):
 
 
 def main():
+    import kennzahlen as KZ
     conn = connect(DB_PATH)
-    data, todo = build(conn)
+    data, todo = build(conn)            # layers (common._layer_skipped) and sums (_summen_pruefen)
     conn.close()
     _wortwahl_pruefen(data)
     text = json.dumps(data, ensure_ascii=False, separators=(",", ":"))
     # a published file never carries a path of the author's machine
     assert_no_local_paths("data_export.json", text)
+    # every gate has passed — only now anything is written
     with open(EXPORT_PATH, "w", encoding="utf-8") as fh:
         fh.write(text)
+    KZ.save(VERLAUF_DOC)                # today's entry in verlauf.json
     os.makedirs(LOGS_DIR, exist_ok=True)
     with open(os.path.join(LOGS_DIR, "citation_todo.txt"), "w", encoding="utf-8") as fh:
         fh.write(f"ARTICLES NOT AT LEVEL 'verified' ({len(todo)}) — status 'Gesetze-PDF …' = read from "
@@ -1449,7 +1852,19 @@ def main():
     print(f"exported {EXPORT_PATH}  ({sz:.0f} KB, generated_at {data['generated_at']})")
     print(f"  services={len(data['services'])} forms={len(data['forms'])} "
           f"not_verified_articles={len(todo)}")
+    k = data["kopfzahlen"]
+    print(f"  Summen geprüft: {sum(1 for v in k.values() if isinstance(v, dict) and 'teile' in v)} Kennzahlen mit Teilen, "
+          f"{len(data['dienststellen_uebersicht'])} Dienststellen, {k['standard_ech']['von']} Datenpunkte — alles geht auf")
+    if SKIPPED_LAYERS:
+        # said again at the very end: one stderr line among the build's output is easy to miss
+        sys.stdout.flush()
+        print(f"ACHTUNG: {len(SKIPPED_LAYERS)} Schicht(en) fehlen in diesem Export, weil ihre Tabelle in "
+              "citygov.db fehlt — die Seiten zeigen weniger, als die Databank sonst weiss: "
+              + "; ".join(f"{name} (Tabelle {table})" for name, table in SKIPPED_LAYERS), file=sys.stderr)
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except RuntimeError as ex:          # a gate fired: one line instead of a traceback
+        sys.exit(f"ABBRUCH export_json.py — nichts geschrieben: {ex}")

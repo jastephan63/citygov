@@ -648,3 +648,31 @@ CREATE TABLE IF NOT EXISTS service_thema_grund (
     service_id    INTEGER PRIMARY KEY REFERENCES service(id),
     grund         TEXT,
     zweitgeprueft INTEGER NOT NULL DEFAULT 0);
+
+-- ---------------------------------------------------------------------------
+-- Gestaltung (2026-10): how each Formular looks and is presented — fonts,
+-- sizes, colours, the accessibility facts the file carries, the phone numbers
+-- and e-mail types it prints, edition mark, page numbers, sender. Measured
+-- facts only: a value that cannot be measured is NULL with the reason in
+-- hinweise, never a guess; no verdict and no comparison across Formulare is
+-- stored here. Loader: scan_gestaltung.py (needs pypdf; the measuring code is
+-- gestaltung_pdf.py, gestaltung_office.py, gestaltung_text.py — their
+-- docstrings define every value). One row per Formular with a file; the
+-- eFormulare have none (their look is the platform's). A missing row means
+-- «noch nicht gemessen»; a row whose file_hash differs from form.file_hash is
+-- stale and fails validate_db.py, which also checks messart against
+-- form.file_type and the scalar columns against profil.
+-- ---------------------------------------------------------------------------
+CREATE TABLE IF NOT EXISTS form_gestaltung (       -- how a Formular looks: measured facts, no verdicts
+    form_id      INTEGER PRIMARY KEY REFERENCES form(id) ON DELETE CASCADE,
+    file_hash    TEXT NOT NULL,             -- sha256 of the measured file (= form.file_hash when current)
+    messart      TEXT NOT NULL CHECK (messart IN ('pdf','pdf_bild','word','excel','nicht_messbar')),
+    methode      TEXT NOT NULL,             -- version of the measuring code, e.g. 'gestaltung-1'
+    seiten       INTEGER,
+    hauptschrift TEXT,                      -- normalised family of most characters
+    grundgroesse REAL,                      -- pt, size of most characters
+    akzentfarbe  TEXT,                      -- '#rrggbb' of the accent colour (profil.akzent); NULL = none above the threshold (link colours, field colours, a logo drawn in the head of page 1 and everything inside images do not count) or not measurable — profil.farben and hinweise tell which
+    pdf_tags     INTEGER,                   -- 1/0 = marked as tagged with a structure tree that is not empty (says nothing about the quality of the tags); NULL when not a PDF
+    profil       TEXT NOT NULL,             -- JSON, the full measured profile (keys: validate_db.py GESTALTUNG_KEYS)
+    hinweise     TEXT                       -- JSON array of limitations of this measurement
+);

@@ -13,12 +13,17 @@ size are measured on dashboard.html with the same rounding the dashboard uses
 for itself (common.size_txt / net_size_txt). Also writes 404.html, which GitHub
 Pages serves for any missing path.
 
+The look (font, ink, link colour, text sizes) comes from scripts/theme.py; every
+value written into the two pages passes e() — text and attribute values alike.
+The pages carry no script and inline no data.
+
     python3 scripts/build_index.py        (run by ./build.sh)
 """
 import html, json, os, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import ROOT, EXPORT_PATH, size_txt, net_size_txt
 from labels import fmt_date
+import theme as THEME
 
 SITE = "https://jastephan63.github.io/citygov/"
 REPO = "https://github.com/jastephan63/citygov"
@@ -42,7 +47,11 @@ def main():
     n_dossiers = len([x for x in os.listdir(os.path.join(ROOT, "dossiers")) if x.endswith(".html") and x != "index.html"]) \
         if os.path.isdir(os.path.join(ROOT, "dossiers")) else 0
     dash = dash_size()
-    e = html.escape
+    fields_txt = f"{n_fields:,}".replace(",", "'")      # thousands grouped as on the dashboard: 5'991
+
+    def e(v):
+        """A value on its way into the page, as text or inside a quoted attribute."""
+        return html.escape(str(v if v is not None else ""), quote=True)
     stand = " · ".join(x for x in (
         f"Daten exportiert {fmt_date(ds.get('build'))}" if ds.get("build") else "",
         f"DVSH-Modell {fmt_date(ds.get('dvsh_stand'))}" if ds.get("dvsh_stand") else "",
@@ -52,36 +61,38 @@ def main():
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta charset="utf-8"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23e8b100'/%3E%3C/svg%3E">
+<meta charset="utf-8">{THEME.favicon()}
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Compliance-Databank Kanton Schaffhausen</title>
 <meta name="description" content="Maschinenlesbare Compliance-Databank der Verwaltung des Kantons Schaffhausen: Formulare, Datenfelder, Rechtsgrundlagen, Standards, Datenhandhabung.">
 <style>
-  :root{{--paper:#FAFAF6;--card:#FFFFFF;--ink:#1d1d1b;--ink-soft:#5b5b55;--line:#e3dfd2;--accent:#c8102e;--gold:#e8b100}}
+{THEME.css_root()}
+  /* landing page: the look of the dashboard (scripts/theme.py), larger running text */
   *{{box-sizing:border-box}}
-  body{{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}}
+  body{{margin:0;background:var(--paper);color:var(--ink);font:var(--fs-l)/1.55 var(--font)}}
   main{{max-width:880px;margin:0 auto;padding:40px 20px 64px}}
-  .kicker{{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);display:flex;align-items:center;gap:10px}}
+  .kicker{{font-size:var(--fs-xs);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);display:flex;align-items:center;gap:10px}}
   .kicker i{{display:inline-block;width:22px;height:22px;border-radius:5px;background:var(--gold)}}
-  h1{{font-size:30px;line-height:1.2;margin:10px 0 12px}}
+  h1{{font-size:var(--fs-xxl);line-height:1.2;margin:10px 0 12px}}
   .lead{{color:var(--ink-soft);margin:0 0 28px;max-width:720px}}
-  .open{{display:block;background:var(--ink);color:#fff;text-decoration:none;border-radius:12px;padding:22px 24px;margin:0 0 14px}}
-  .open b{{font-size:21px;display:block}}
-  .open span{{color:#d9d6cc;font-size:14px}}
-  .open:hover{{background:#000}}
+  .open{{display:block;background:var(--ink);color:var(--card);text-decoration:none;border-radius:12px;padding:22px 24px;margin:0 0 14px}}
+  .open b{{font-size:var(--fs-xl);display:block}}
+  .open span{{color:var(--line);font-size:var(--fs-m)}}
+  .open:hover{{background:var(--ink-soft)}}
   .grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:0 0 30px}}
   .card{{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;text-decoration:none;color:inherit}}
-  .card:hover{{border-color:var(--ink-soft)}}
-  .card b{{display:block;font-size:17px;margin-bottom:4px}}
-  .card span{{font-size:14px;color:var(--ink-soft)}}
-  .facts{{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:14px;color:var(--ink-soft);margin:0 0 30px}}
-  .facts b{{color:var(--ink);font-size:18px;margin-right:4px}}
-  h2{{font-size:18px;margin:34px 0 8px}}
-  p,li{{font-size:15px}}
+  .card:hover{{border-color:var(--gold-deep);background:var(--hover)}}
+  .card b{{display:block;font-size:var(--fs-l);margin-bottom:4px}}
+  .card span{{font-size:var(--fs-m);color:var(--ink-soft)}}
+  .facts{{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:var(--fs-m);color:var(--ink-soft);margin:0 0 30px}}
+  .facts b{{color:var(--ink);font-size:var(--fs-l);margin-right:4px}}
+  .facts.stand{{margin-top:-18px}}
+  h2{{font-size:var(--fs-xl);margin:34px 0 8px}}
+  p,li{{font-size:var(--fs-l)}}
   ol{{padding-left:22px}}
-  .note{{font-size:13px;color:var(--ink-soft);border-top:1px solid var(--line);margin-top:36px;padding-top:14px}}
-  code{{font-family:"Roboto Mono",ui-monospace,Menlo,Consolas,monospace;font-size:13px;background:#f1eee4;padding:1px 5px;border-radius:4px}}
-  a{{color:var(--ink)}}
+  .note{{font-size:var(--fs-s);color:var(--ink-soft);border-top:1px solid var(--line);margin-top:36px;padding-top:14px}}
+  code{{font-family:var(--mono);font-size:var(--fs-s);background:var(--field);padding:1px 5px;border-radius:4px}}
+  a{{color:var(--link);text-underline-offset:2px}}
 </style>
 </head>
 <body>
@@ -94,7 +105,7 @@ def main():
   Weitergeben und Löschen — und was noch fehlt. Lücken stehen als Lücken da.</p>
 
   <a class="open" href="dashboard.html"><b>▶ Dashboard öffnen</b>
-    <span>Eine Seite mit allen Daten ({dash}) — beim ersten Öffnen dauert das Laden je nach Verbindung und Gerät einige Sekunden.</span></a>
+    <span>Eine Seite mit allen Daten ({e(dash)}) — beim ersten Öffnen dauert das Laden je nach Verbindung und Gerät einige Sekunden.</span></a>
 
   <div class="grid">
     <a class="card" href="dashboard.html#dienststellen"><b>Für Dienststellen</b>
@@ -106,16 +117,17 @@ def main():
   </div>
   <div class="grid">
     <a class="card" href="dossiers/index.html"><b>Datenschutz-Dossiers</b>
-      <span>{n_dossiers} druckbare Seiten, eine je Service — Rechtsgrundlagen, Daten, Handhabung, offene Punkte.</span></a>
+      <span>{e(n_dossiers)} druckbare Seiten, eine je Service — Rechtsgrundlagen, Daten, Handhabung, offene Punkte.</span></a>
     <a class="card" href="flows.html"><b>Geführte Formulare (Prototyp)</b>
-      <span>Schritt-für-Schritt-Abläufe für {n_flows} von {n_forms} Formularen.</span></a>
-    <a class="card" href="{REPO}"><b>Quellcode &amp; Dokumentation</b>
+      <span>Schritt-für-Schritt-Abläufe für {e(n_flows)} von {e(n_forms)} Formularen. Antworten bleiben nur in diesem
+      Browser gespeichert.</span></a>
+    <a class="card" href="{e(REPO)}"><b>Quellcode &amp; Dokumentation</b>
       <span>Das Repository auf GitHub: Datenbank, Skripte, maschinenlesbare Exporte, README (englisch).</span></a>
   </div>
 
-  <div class="facts"><span><b>{n_services}</b>Services</span><span><b>{n_forms}</b>Formulare</span>
-    <span><b>{str(f'{n_fields:,}').replace(',', chr(39))}</b>Datenfelder</span></div>
-  <p class="facts" style="margin-top:-18px">{e(stand)}</p>
+  <div class="facts"><span><b>{e(n_services)}</b>Services</span><span><b>{e(n_forms)}</b>Formulare</span>
+    <span><b>{e(fields_txt)}</b>Datenfelder</span></div>
+  <p class="facts stand">{e(stand)}</p>
 
   <h2>Offline verwenden</h2>
   <ol>
@@ -129,7 +141,7 @@ def main():
   danach <code>index.html</code> öffnen).</p>
 
   <p class="note">German-language compliance databank of the Canton of Schaffhausen, built for peers working on
-  similar databanks. Documentation in English: <a href="{REPO}#readme">README on GitHub</a>.
+  similar databanks. Documentation in English: <a href="{e(REPO)}#readme">README on GitHub</a>.
   Alle Personendaten in den Beispielen sind frei erfunden (synthetisch).</p>
 </main>
 </body>
@@ -142,17 +154,20 @@ def main():
     open(os.path.join(ROOT, "404.html"), "w", encoding="utf-8").write(f"""<!-- GENERATED by scripts/build_index.py — do not edit; run ./build.sh -->
 <!DOCTYPE html>
 <html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23e8b100'/%3E%3C/svg%3E">
+{THEME.favicon()}
 <title>Seite nicht gefunden · Compliance-Databank Kanton Schaffhausen</title>
-<style>body{{margin:0;background:#FAFAF6;color:#1d1d1b;font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}}
-main{{max-width:680px;margin:0 auto;padding:56px 20px}} h1{{font-size:26px;margin:0 0 10px}} p{{color:#5b5b55}}
-a.b{{display:inline-block;margin:10px 10px 0 0;padding:12px 18px;border-radius:10px;background:#1d1d1b;color:#fff;text-decoration:none}}
-a.s{{display:inline-block;margin:10px 10px 0 0;color:#1d1d1b}}</style></head>
+<style>
+{THEME.css_root(compact=True)}
+body{{margin:0;background:var(--paper);color:var(--ink);font:var(--fs-l)/1.55 var(--font)}}
+main{{max-width:680px;margin:0 auto;padding:56px 20px}} h1{{font-size:var(--fs-xxl);margin:0 0 10px}} p{{color:var(--ink-soft)}}
+a.b{{display:inline-block;margin:10px 10px 0 0;padding:12px 18px;border-radius:10px;background:var(--ink);color:var(--card);text-decoration:none}}
+a.b:hover{{background:var(--ink-soft)}}
+a.s{{display:inline-block;margin:10px 10px 0 0;color:var(--link)}}</style></head>
 <body><main><h1>Seite nicht gefunden</h1>
 <p>Diese Adresse gibt es auf der Website der Compliance-Databank nicht (mehr) — vielleicht ein veralteter oder
 vertippter Link. Gross- und Kleinschreibung zählen.</p>
-<a class="b" href="{SITE}">Zur Startseite</a><a class="b" href="{SITE}dashboard.html">Dashboard öffnen</a><br>
-<a class="s" href="{SITE}dossiers/index.html">Datenschutz-Dossiers</a> · <a class="s" href="{REPO}">Repository auf GitHub</a>
+<a class="b" href="{e(SITE)}">Zur Startseite</a><a class="b" href="{e(SITE)}dashboard.html">Dashboard öffnen</a><br>
+<a class="s" href="{e(SITE)}dossiers/index.html">Datenschutz-Dossiers</a> · <a class="s" href="{e(REPO)}">Repository auf GitHub</a>
 </main></body></html>
 """)
     print(f"wrote {out}  ({n_services} Services, {n_forms} Formulare, {n_dossiers} Dossiers, {n_flows} Flows)")

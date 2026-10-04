@@ -59,15 +59,59 @@ def pl(n, singular, plural):
     return f"{n} {singular if n == 1 else plural}"
 
 
-def _layer_skipped(name, ex):
-    """Exporters: a layer whose table/column does not exist yet is skipped LOUDLY
-    (stderr); anything else aborts the export — a half-empty export with a green
-    build was the worst failure mode."""
+class LayerError(RuntimeError):
+    """An export layer failed for another reason than a table the databank does not
+    have (yet). It stops the export and names the layer; it is never caught as a skip."""
+
+
+# the layers the running export skipped, as (layer, missing table) — the exporter
+# repeats them at the end of its output, where a line among 190 others is not lost
+SKIPPED_LAYERS = []
+_SCHEMA_TABLES = None
+
+
+def schema_tables():
+    """The tables schema.sql declares (read once). A table is «genuinely missing»
+    only when it is one of these and the database does not have it."""
+    global _SCHEMA_TABLES
+    if _SCHEMA_TABLES is None:
+        try:
+            scratch = sqlite3.connect(":memory:")
+            with open(SCHEMA_PATH, encoding="utf-8") as fh:
+                scratch.executescript(fh.read())
+            _SCHEMA_TABLES = {r[0] for r in scratch.execute("SELECT name FROM sqlite_master WHERE type='table'")}
+            scratch.close()
+        except (OSError, sqlite3.Error):
+            _SCHEMA_TABLES = set()          # no readable schema: nothing counts as known, every miss is fatal
+    return _SCHEMA_TABLES
+
+
+def _layer_skipped(name, ex, tables=None):
+    """Exporters call this in the except branch of a layer. A layer is skipped — LOUDLY
+    (stderr, and listed in SKIPPED_LAYERS) — only when its table is genuinely missing:
+    SQLite says «no such table: T» and T is a table of schema.sql (or of `tables`, for a
+    second database such as datentresor.db) that this database does not have. Everything
+    else stops the export with a LayerError that names the layer: a missing column, a
+    table name schema.sql does not know (a typo), a failing helper, a wording gate. A
+    half-empty export with a green build was the worst failure mode."""
     import sys
-    if isinstance(ex, sqlite3.OperationalError) and ("no such table" in str(ex) or "no such column" in str(ex)):
-        print(f"  LAYER SKIPPED {name}: {ex}", file=sys.stderr)
+    if isinstance(ex, LayerError):
+        raise ex                            # an inner layer already said what failed
+    m = _re.match(r"no such table: (?:main\.)?(\w+)", str(ex)) if isinstance(ex, sqlite3.OperationalError) else None
+    if m and m.group(1) in (schema_tables() if tables is None else tables):
+        if (name, m.group(1)) not in SKIPPED_LAYERS:
+            SKIPPED_LAYERS.append((name, m.group(1)))
+            print(f"  LAYER SKIPPED {name}: Tabelle {m.group(1)} fehlt in dieser Databank", file=sys.stderr)
         return
-    raise RuntimeError(f"export layer '{name}' failed: {ex}") from ex
+    raise LayerError(f"export layer '{name}' failed: {type(ex).__name__}: {ex}") from ex
+
+
+def dossier_slug(service):
+    """File name (without .html) of a service's dossier under dossiers/ — ONE rule for
+    export_dossiers.py (writes the file) and export_json.py (services[].dossier_slug,
+    which the dashboard links to)."""
+    return (_re.sub(r"[^a-z0-9]+", "-", (service.get("slug") or service["name"]).lower()).strip("-")[:80]
+            or f"service-{service['id']}")
 
 
 # Paths of the author's machine that must never reach a published file: the

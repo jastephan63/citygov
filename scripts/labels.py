@@ -127,7 +127,8 @@ EBENE = {"federal": "Bundesrecht", "cantonal": "kantonales Recht", "communal": "
 
 # Handlungsbedarf: category -> (label, badge class, kind, meaning). The RULES that
 # emit an item live in export_json.py (fm['handlungsbedarf']); this is only the wording.
-TON_OF_ART_EARLY = {"bereinigung": "act", "entscheid": "dec", "recherche": "open"}
+# the kind of a category says who acts next (the tone, see TON below) — ONE dict
+TON_OF_ART = {"bereinigung": "act", "entscheid": "dec", "recherche": "open"}
 TODO_ART = {"recherche": "Recherche (Databank)", "entscheid": "Entscheid (Kanton)",
             "bereinigung": "Bereinigung (Dienststelle)"}
 TODO_CATS = [
@@ -203,7 +204,7 @@ TODO_CATS = [
      "nicht belegen — bis das feststeht, ist auch die Rechtsmittelfrage nicht erreicht."),
 ]
 # the badge class of a category follows its tone (who acts next), never a colour of its own
-TODO_CATS = [(c[0], c[1], "st-" + TON_OF_ART_EARLY[c[3]], c[3], c[4]) for c in TODO_CATS]
+TODO_CATS = [(c[0], c[1], "st-" + TON_OF_ART[c[3]], c[3], c[4]) for c in TODO_CATS]
 TODO_BY = {c[0]: c for c in TODO_CATS}
 # what n counts, per category (singular, plural)
 EINHEIT = {
@@ -229,7 +230,6 @@ TON = {
     "open": {"label": "Databank recherchiert", "farbe": "grau",
              "bedeutung": "Noch nicht recherchiert oder belegt — eine Hausaufgabe der Databank, kein Befund über die Verwaltung."},
 }
-TON_OF_ART = {"bereinigung": "act", "entscheid": "dec", "recherche": "open"}
 
 # per domain: code -> tone. A code missing here is shown grey (not yet settled).
 TON_MAP = {
@@ -305,6 +305,18 @@ AKTION = {
                    "Beweistauglichkeit)",
 }
 
+# The contact of a Dienststelle or a service as the DVSH model stores it, written the
+# same way on every surface — dashboard (kontaktHtml), guided forms (kontaktHtml) and
+# dossier (kontakt_html): «Kontakt (laut DVSH): Adresse · Tel. … · E-Mail …». The stored
+# values are never rewritten; only the target of a tel: link is normalised. The three
+# renderers read these words here (as_export -> DATA.labels.kontakt / LABELS.kontakt).
+KONTAKT = {
+    "label": "Kontakt (laut DVSH)",   # the label, written before the colon
+    "tel": "Tel.",                    # before a telephone number
+    "mail": "E-Mail",                 # before an e-mail address
+    "leer": "nicht hinterlegt",       # a Dienststelle without a contact in the DVSH
+}
+
 
 def pl(n, singular, plural):
     """'1 Regel' / '2 Regeln' — never «1 Regeln»."""
@@ -335,4 +347,4 @@ def as_export():
             "begriff_klasse": BEGRIFF_KLASSE, "esh_status": ESH_STATUS, "ebene": EBENE, "node_typ": NODE_TYP,
             "todo_art": TODO_ART, "ton": TON, "ton_of_art": TON_OF_ART, "ton_map": TON_MAP,
             "stufen": [list(x) for x in STUFEN], "stufe_of_cat": STUFE_OF_CAT, "cat_order": CAT_ORDER, "aktion": AKTION, "einheit": EINHEIT,
-            "todo_cats": [list(c) for c in TODO_CATS]}
+            "todo_cats": [list(c) for c in TODO_CATS], "kontakt": KONTAKT}

@@ -15,7 +15,13 @@
 #                          Bürgersicht; it reads citygov.db only
 #   export_json.py         data_export.json (base data every surface reads, one
 #                          generated_at stamp for the whole build) + today's
-#                          entry in verlauf.json
+#                          entry in verlauf.json; stops with «ABBRUCH …» and
+#                          writes nothing when a layer fails, a sum does not
+#                          add up or verlauf.json is unreadable
+#   theme.py --check       the shared look (fonts, colours, tones, symbols, text
+#                          sizes): every text colour reaches 4.5:1 on its
+#                          backgrounds and no colour, size or font literal is
+#                          left in the four page generators; reads only
 #   build_dashboard.py     dashboard.html
 #   build_flows.py         flows.html (inlines quellen/ch-geo.js)
 #   export_llm.py          citygov_llm.json, citygov_datafields.jsonl,
@@ -28,6 +34,13 @@
 #   build_index.py         index.html — the landing page (GitHub Pages serves it at
 #                          https://jastephan63.github.io/citygov/) + 404.html
 #   validate_db.py         final integrity check of the database
+#   check_pages.mjs        opens the built pages in a headless Chrome: scripts parse,
+#                          every page starts without an error, bars add up, contrast,
+#                          link colour, text size, file size, keyboard; needs Node and
+#                          a local Chrome and is skipped without them; a Chrome that is
+#                          found but does not start fails the build (CHROME_FLAGS=
+#                          --no-sandbox in a container, CHECK_PAGES=skip to build
+#                          without the check on purpose) — scripts/README.md
 #
 #   ./build.sh             everything above except datentresor.db and the PDFs
 #   ./build.sh --tresor    additionally rebuild datentresor.db
@@ -47,6 +60,7 @@ $PY scripts/init_register.py
 # before export_json.py reads it for the Bürgersicht
 if [[ " $* " == *" --tresor "* ]]; then $PY scripts/build_datentresor.py; fi
 $PY scripts/export_json.py
+$PY scripts/theme.py --check
 $PY scripts/build_dashboard.py
 $PY scripts/build_flows.py
 $PY scripts/export_llm.py
@@ -55,4 +69,8 @@ if [[ " $* " == *" --pdf "* ]]; then $PY scripts/export_dossiers.py --pdf; else 
 $PY scripts/build_index.py
 $PY scripts/validate_db.py
 ls -lh dashboard.html flows.html data_export.json citygov_llm.json | awk '{print "  " $5 "\t" $9}'
+# the built pages, opened in a headless Chrome: a finding fails the build here,
+# after every file has been written
+if command -v node >/dev/null 2>&1; then node scripts/check_pages.mjs
+else echo "Seitenprüfung übersprungen: Node oder Chrome nicht gefunden"; fi
 echo "done — open dashboard.html in a browser (or: python3 -m http.server 8917)"
