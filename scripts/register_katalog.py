@@ -147,7 +147,7 @@ QUELLEN = {
     "ech_0278": (ECH + "0278", "html", "eCH-0278"),
     "ech_0309": (ECH + "0309", "html", "eCH-0309"),
     # official schema file already in the repository
-    "xsd_ech_0129": ("ech_xsd/eCH-0129/eCH-0129-6-0.xsd", "repo", "eCH-0129 V6.0 XML-Schema (ech_xsd)"),
+    "xsd_ech_0129": ("ech_xsd/eCH-0129/eCH-0129-6-0.xsd", "repo", "eCH-0129 V6.0, XML-Schema (Kopie in der Databank)"),
 }
 
 
@@ -168,8 +168,8 @@ REGISTER = [
      "stelle_sh": "Amt für Justiz und Gemeinden",
      # no access statement without a quoted, ingested article: § 6 VEWR is not ingested
      # (register_map.ZUGRIFF waits for it), so the access stays open here
-     "bemerkung": "Zugriff offen — § 6 der Verordnung über das Einwohnerregister ist noch nicht ingestiert; "
-                  "rechtlich zu klären.",
+     "bemerkung": "Zugriff offen — § 6 der Verordnung über das Einwohnerregister ist noch nicht in der Databank "
+                  "erfasst; rechtlich zu klären.",
      "belege": [
          ("inhaber", "sh_gg", "Die Gemeinden führen das Einwohnerregister in elektronischer Form."),
          ("inhaber", "sh_vewr", "Das Amt für Justiz und Gemeinden ist die gemäss Art. 9 des Registerharmonisierungsgesetzes (RHG) zuständige kantonale Koordinationsstelle."),

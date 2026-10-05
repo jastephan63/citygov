@@ -1,0 +1,1401 @@
+{
+ "hinweis": "Titel und Kurztitel kantonaler Gesetze, wie der Titelblock der amtlichen PDF-Datei sie druckt (die Datei, aus der die Databank die Artikel gelesen hat: gesetz_stand.datei, gleiche SHA-256). Korrigiert ist nur ein Name, der mitten im Titel abbricht, die Fussnotenmarke «*» oder die Zeile «Vom … (Stand …)» trägt, sowie ein Kurztitel aus den ersten 40 Zeichen oder nur der Art des Erlasses. Geschrieben von scripts/load_gesetz_titel.py --lesen.",
+ "anwenden": "python3 scripts/load_gesetz_titel.py",
+ "eintraege": [
+  {
+   "law_id": 246,
+   "nummer": "SHR 730.100",
+   "datei": "730.100-1-1.de.pdf",
+   "sha256": "458d51908708805c2f3bba24868f517f512d50420dd477adb7f63396fefee9a5",
+   "titelblock": [
+    "Energiegesetz"
+   ],
+   "titel_bisher": "Energiegesetz Vom 16. Dezember 2024 (Stand 1. Januar 2026)",
+   "titel": "Energiegesetz",
+   "grund_titel": [
+    "der Name trägt die Zeile mit Erlassdatum und Stand («Vom … (Stand …)»)"
+   ],
+   "kurz_bisher": "Energiegesetz",
+   "kurz": "Energiegesetz",
+   "grund_kurz": []
+  },
+  {
+   "law_id": 248,
+   "nummer": "SHR 455.200",
+   "datei": "455.200-1-2.de.pdf",
+   "sha256": "724772dcdf1e179606196b32dafdb826be99548fd9956f3ba031d86cdb0ef229",
+   "titelblock": [
+    "Gesetz",
+    "über das Halten von Hunden"
+   ],
+   "titel_bisher": "Gesetz über das Halten von Hunden",
+   "titel": "Gesetz über das Halten von Hunden",
+   "grund_titel": [],
+   "kurz_bisher": "Gesetz",
+   "kurz": "Gesetz über das Halten von Hunden",
+   "grund_kurz": [
+    "der Kurztitel ist nur die Art des Erlasses («Gesetz», «Verordnung»)"
+   ]
+  },
+  {
+   "law_id": 249,
+   "nummer": "SHR 814.100",
+   "datei": "814.100-2-1.de.pdf",
+   "sha256": "766ec71dde47c116d72b4142b5430ac7e34bce965837cd20a1f93ea118f3a963",
+   "titelblock": [
+    "Gesetz",
+    "über die Einführung des Bundesgesetzes",
+    "über den Umweltschutz",
+    "(Einführungsgesetz zum USG)"
+   ],
+   "titel_bisher": "Gesetz über die Einführung des Bundesgesetzes",
+   "titel": "Gesetz über die Einführung des Bundesgesetzes über den Umweltschutz (Einführungsgesetz zum USG)",
+   "grund_titel": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen"
+   ],
+   "kurz_bisher": "Gesetz",
+   "kurz": "Einführungsgesetz zum USG",
+   "grund_kurz": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen",
+    "der Kurztitel ist nur die Art des Erlasses («Gesetz», «Verordnung»)"
+   ]
+  },
+  {
+   "law_id": 250,
+   "nummer": "SHR 611.100",
+   "datei": "611.100-3-2.de.pdf",
+   "sha256": "06812a00a69527da68c16bb3c9ca15091f2d9912c3d1ff2b813e588e3b236298",
+   "titelblock": [
+    "Finanzhaushaltsgesetz"
+   ],
+   "titel_bisher": "Finanzhaushaltsgesetz Vom 20. Februar 2017 (Stand 1. Januar 2026)",
+   "titel": "Finanzhaushaltsgesetz",
+   "grund_titel": [
+    "der Name trägt die Zeile mit Erlassdatum und Stand («Vom … (Stand …)»)"
+   ],
+   "kurz_bisher": "Finanzhaushaltsgesetz",
+   "kurz": "Finanzhaushaltsgesetz",
+   "grund_kurz": []
+  },
+  {
+   "law_id": 251,
+   "nummer": "SHR 141.100",
+   "datei": "141.100-1-2.de.pdf",
+   "sha256": "f7444ec14d2c941e32fca2bed75266682199bf74244273289333430249f19865",
+   "titelblock": [
+    "Bürgerrechtsgesetz"
+   ],
+   "titel_bisher": "Bürgerrechtsgesetz Vom 23. September 1991 (Stand 1. Januar 2023)",
+   "titel": "Bürgerrechtsgesetz",
+   "grund_titel": [
+    "der Name trägt die Zeile mit Erlassdatum und Stand («Vom … (Stand …)»)"
+   ],
+   "kurz_bisher": "Bürgerrechtsgesetz",
+   "kurz": "Bürgerrechtsgesetz",
+   "grund_kurz": []
+  },
+  {
+   "law_id": 255,
+   "nummer": "SHR 550.100",
+   "datei": "550.100-1-2.de.pdf",
+   "sha256": "46f3334cd51a45ac2276fed6272b53bb20af3728bfb94115acd83a3af407d680",
+   "titelblock": [
+    "Gesetz",
+    "über den Brandschutz und die Feuerwehr",
+    "(Brandschutzgesetz, BSG)"
+   ],
+   "titel_bisher": "Gesetz über den Brandschutz und die Feuerwehr",
+   "titel": "Gesetz über den Brandschutz und die Feuerwehr",
+   "grund_titel": [],
+   "kurz_bisher": "Gesetz über den Brandschutz und die Feue",
+   "kurz": "BSG",
+   "grund_kurz": [
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 258,
+   "nummer": "SHR 641.111",
+   "datei": "641.111-4-1.de.pdf",
+   "sha256": "fcaf54c791130529766fb9332f85707bbed49de1ee1b1d66fe7f6150122a8fa3",
+   "titelblock": [
+    "Verordnung über die direkten Steuern"
+   ],
+   "titel_bisher": "Verordnung über die direkten Steuern Vom 26. Januar 2001 (Stand 1. Januar 2026)",
+   "titel": "Verordnung über die direkten Steuern",
+   "grund_titel": [
+    "der Name trägt die Zeile mit Erlassdatum und Stand («Vom … (Stand …)»)"
+   ],
+   "kurz_bisher": "Verordnung über die direkten Steuern Vom",
+   "kurz": "Verordnung über die direkten Steuern",
+   "grund_kurz": [
+    "der Kurztitel sind die ersten 40 Zeichen des Titels",
+    "der Name trägt die Zeile mit Erlassdatum und Stand («Vom … (Stand …)»)"
+   ]
+  },
+  {
+   "law_id": 261,
+   "nummer": "SHR 700.100",
+   "datei": "700.100-3-2.de.pdf",
+   "sha256": "3aece9ce7b49d5e2eebd029d7bf815c40c52c7a26abad656824bc974201330c6",
+   "titelblock": [
+    "Gesetz",
+    "über die Raumplanung und das öffentliche",
+    "Baurecht",
+    "(Baugesetz)"
+   ],
+   "titel_bisher": "Gesetz über die Raumplanung und das öffentliche",
+   "titel": "Gesetz über die Raumplanung und das öffentliche Baurecht (Baugesetz)",
+   "grund_titel": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen"
+   ],
+   "kurz_bisher": "Gesetz über die Raumplanung und das öffe",
+   "kurz": "Baugesetz",
+   "grund_kurz": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen",
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 263,
+   "nummer": "SHR 721.100",
+   "datei": "721.100-1-2.de.pdf",
+   "sha256": "333bc5148c402c132000c78418e4deab3e5d4fe6bbb6ca84c1cfdf68c1159bc1",
+   "titelblock": [
+    "Wasserwirtschaftsgesetz"
+   ],
+   "titel_bisher": "Wasserwirtschaftsgesetz Vom 18. Mai 1998 (Stand 1. Oktober 2022)",
+   "titel": "Wasserwirtschaftsgesetz",
+   "grund_titel": [
+    "der Name trägt die Zeile mit Erlassdatum und Stand («Vom … (Stand …)»)"
+   ],
+   "kurz_bisher": "Wasserwirtschaftsgesetz Vom 18. Mai 1998",
+   "kurz": "Wasserwirtschaftsgesetz",
+   "grund_kurz": [
+    "der Kurztitel sind die ersten 40 Zeichen des Titels",
+    "der Name trägt die Zeile mit Erlassdatum und Stand («Vom … (Stand …)»)"
+   ]
+  },
+  {
+   "law_id": 264,
+   "nummer": "SHR 850.100",
+   "datei": "850.100-1-2.de.pdf",
+   "sha256": "6f2308f6124fe1edbeda880526cb6b14b190327d94fb6970410dfa4180ffbc34",
+   "titelblock": [
+    "Gesetz",
+    "über die öffentliche Sozialhilfe und soziale",
+    "Einrichtungen",
+    "(SHEG)"
+   ],
+   "titel_bisher": "Gesetz über die öffentliche Sozialhilfe und soziale",
+   "titel": "Gesetz über die öffentliche Sozialhilfe und soziale Einrichtungen (SHEG)",
+   "grund_titel": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen"
+   ],
+   "kurz_bisher": "Gesetz über die öffentliche Sozialhilfe ",
+   "kurz": "SHEG",
+   "grund_kurz": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen",
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 266,
+   "nummer": "SHR 730.101",
+   "datei": "730.101-2-2.de.pdf",
+   "sha256": "b8eb4111b76231fe21f20b2fbcaa28fc82484eea2c9c6c1fc4e5f3215e9947b2",
+   "titelblock": [
+    "Energieverordnung *",
+    "(Energieverordnung, EnerV)"
+   ],
+   "titel_bisher": "Energieverordnung *",
+   "titel": "Energieverordnung (Energieverordnung, EnerV)",
+   "grund_titel": [
+    "der Name trägt die Fussnotenmarke «*» des Rechtsbuchs"
+   ],
+   "kurz_bisher": "Energieverordnung *",
+   "kurz": "EnerV",
+   "grund_kurz": [
+    "der Name trägt die Fussnotenmarke «*» des Rechtsbuchs"
+   ]
+  },
+  {
+   "law_id": 267,
+   "nummer": "SHR 741.100",
+   "datei": "741.100-1-2.de.pdf",
+   "sha256": "2b298bb5688b513d53d491a3b8b71c2853f77abde9102f352d4d1711ebe8e1ed",
+   "titelblock": [
+    "Einführungsgesetz zum Bundesgesetz über",
+    "den Strassenverkehr"
+   ],
+   "titel_bisher": "Einführungsgesetz zum Bundesgesetz über den Strassenverkehr",
+   "titel": "Einführungsgesetz zum Bundesgesetz über den Strassenverkehr",
+   "grund_titel": [],
+   "kurz_bisher": "Einführungsgesetz zum Bundesgesetz über ",
+   "kurz": "Einführungsgesetz zum Bundesgesetz über den Strassenverkehr",
+   "grund_kurz": [
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 268,
+   "nummer": "SHR 741.011",
+   "datei": "741.011-2-1.de.pdf",
+   "sha256": "45e201c9fe8d5ce7e2eb13332587f4e8394f86292e33315367d15a1af81f39c9",
+   "titelblock": [
+    "Verordnung zum Bundesgesetz über den",
+    "Strassenverkehr",
+    "(Kantonale Strassenverkehrsverordnung)"
+   ],
+   "titel_bisher": "Verordnung zum Bundesgesetz über den Strassenverkehr",
+   "titel": "Verordnung zum Bundesgesetz über den Strassenverkehr",
+   "grund_titel": [],
+   "kurz_bisher": "Verordnung zum Bundesgesetz über den Str",
+   "kurz": "Kantonale Strassenverkehrsverordnung",
+   "grund_kurz": [
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 277,
+   "nummer": "SHR 354.100",
+   "datei": "354.100-2-1.de.pdf",
+   "sha256": "037b90e43c49f1e6824691743c2c4376942152610b7f07e5da5e172ee3a17b85",
+   "titelblock": [
+    "Polizeigesetz *"
+   ],
+   "titel_bisher": "Polizeigesetz *",
+   "titel": "Polizeigesetz",
+   "grund_titel": [
+    "der Name trägt die Fussnotenmarke «*» des Rechtsbuchs"
+   ],
+   "kurz_bisher": "Polizeigesetz *",
+   "kurz": "Polizeigesetz",
+   "grund_kurz": [
+    "der Name trägt die Fussnotenmarke «*» des Rechtsbuchs"
+   ]
+  },
+  {
+   "law_id": 280,
+   "nummer": "SHR 141.111",
+   "datei": "141.111-1-2.de.pdf",
+   "sha256": "3d9786c3adb10fb0bbfd0c2c8a9bbb0dd22f7784e5bc29585caa9033a598adab",
+   "titelblock": [
+    "Verordnung zum Bürgerrechtsgesetz"
+   ],
+   "titel_bisher": "Verordnung zum Bürgerrechtsgesetz Vom 29. August 2017 (Stand 1. Januar 2018)",
+   "titel": "Verordnung zum Bürgerrechtsgesetz",
+   "grund_titel": [
+    "der Name trägt die Zeile mit Erlassdatum und Stand («Vom … (Stand …)»)"
+   ],
+   "kurz_bisher": "Verordnung zum Bürgerrechtsgesetz Vom 29",
+   "kurz": "Verordnung zum Bürgerrechtsgesetz",
+   "grund_kurz": [
+    "der Kurztitel sind die ersten 40 Zeichen des Titels",
+    "der Name trägt die Zeile mit Erlassdatum und Stand («Vom … (Stand …)»)"
+   ]
+  },
+  {
+   "law_id": 281,
+   "nummer": "SHR 500.101",
+   "datei": "500.101-2-1.de.pdf",
+   "sha256": "598b7bb981d2333837bd7d738a5e9f170d8be7e61623a904eeca12ad3e80d747",
+   "titelblock": [
+    "Kantonale Bevölkerungsschutzverordnung *",
+    "(KBevSV)"
+   ],
+   "titel_bisher": "Kantonale Bevölkerungsschutzverordnung (KBevSV)",
+   "titel": "Kantonale Bevölkerungsschutzverordnung (KBevSV)",
+   "grund_titel": [],
+   "kurz_bisher": "Kantonale Bevölkerungsschutzverordnung (",
+   "kurz": "KBevSV",
+   "grund_kurz": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen",
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 293,
+   "nummer": "SHR 451.100",
+   "datei": "451.100-1-2.de.pdf",
+   "sha256": "9beaed5ace2542f3518fc108882413cf555f2d6b2773219daf14fc70219d4ba0",
+   "titelblock": [
+    "Gesetz",
+    "über den Natur- und Heimatschutz im Kanton",
+    "Schaffhausen"
+   ],
+   "titel_bisher": "Gesetz über den Natur- und Heimatschutz im Kanton",
+   "titel": "Gesetz über den Natur- und Heimatschutz im Kanton Schaffhausen",
+   "grund_titel": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen"
+   ],
+   "kurz_bisher": "Gesetz über den Natur- und Heimatschutz ",
+   "kurz": "Gesetz über den Natur- und Heimatschutz im Kanton Schaffhausen",
+   "grund_kurz": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen",
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 297,
+   "nummer": "SHR 210.100",
+   "datei": "210.100-2-1.de.pdf",
+   "sha256": "fef88765abf128f0716a70b95eb651e694de8c5ad8c331c67c36a7e85e026f0c",
+   "titelblock": [
+    "Gesetz",
+    "über die Einführung des Schweizerischen",
+    "Zivilgesetzbuches"
+   ],
+   "titel_bisher": "Gesetz über die Einführung des Schweizerischen",
+   "titel": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
+   "grund_titel": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen"
+   ],
+   "kurz_bisher": "Gesetz über die Einführung des Schweizer",
+   "kurz": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
+   "grund_kurz": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen",
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 298,
+   "nummer": "SHR 172.500",
+   "datei": "172.500-1-2.de.pdf",
+   "sha256": "d4903d7baaf1330ce7cec0af23fae7b26b8c85553cfcaa861a65a229ba906c33",
+   "titelblock": [
+    "Einführungsgesetz zum Bundesgesetz über",
+    "den Binnenmarkt (BGBM)"
+   ],
+   "titel_bisher": "Einführungsgesetz zum Bundesgesetz über den Binnenmarkt (BGBM)",
+   "titel": "Einführungsgesetz zum Bundesgesetz über den Binnenmarkt (BGBM)",
+   "grund_titel": [],
+   "kurz_bisher": "Einführungsgesetz zum Bundesgesetz über ",
+   "kurz": "BGBM",
+   "grund_kurz": [
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 299,
+   "nummer": "SHR 172.610",
+   "datei": "172.610-1-2.de.pdf",
+   "sha256": "9e11e9b5fe46a7052901f428b87522c59d7be45277ac77e1677bee45ee8e1c0b",
+   "titelblock": [
+    "Interkantonale Vereinbarung",
+    "über das öffentliche Beschaffungswesen",
+    "(IVöB)"
+   ],
+   "titel_bisher": "Interkantonale Vereinbarung über das öffentliche Beschaffungswesen",
+   "titel": "Interkantonale Vereinbarung über das öffentliche Beschaffungswesen",
+   "grund_titel": [],
+   "kurz_bisher": "Interkantonale Vereinbarung über das öff",
+   "kurz": "IVöB",
+   "grund_kurz": [
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 300,
+   "nummer": "SHR 817.101",
+   "datei": "817.101-1-2.de.pdf",
+   "sha256": "44189063bc2fceea45e6da1c7ce74f9fbae58db15136d065ba867d0d8e8789a2",
+   "titelblock": [
+    "Verordnung zum Einführungsgesetz zum",
+    "Lebensmittelgesetz",
+    "(Kantonale Lebensmittelverordnung, LMV)"
+   ],
+   "titel_bisher": "Verordnung zum Einführungsgesetz zum Lebensmittelgesetz",
+   "titel": "Verordnung zum Einführungsgesetz zum Lebensmittelgesetz",
+   "grund_titel": [],
+   "kurz_bisher": "Verordnung zum Einführungsgesetz zum Leb",
+   "kurz": "LMV",
+   "grund_kurz": [
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 301,
+   "nummer": "SHR 817.100",
+   "datei": "817.100-1-2.de.pdf",
+   "sha256": "57d8296edf783fe70f83c018080557c9be2219af42635a5f1567acd3316995f3",
+   "titelblock": [
+    "Gesetz",
+    "über die Einführung des Bundesgesetzes",
+    "über Lebensmittel und",
+    "Gebrauchsgegenstände",
+    "(Einführungsgesetz zum Lebensmittelgesetz,",
+    "EG LMG)"
+   ],
+   "titel_bisher": "Gesetz über die Einführung des Bundesgesetzes",
+   "titel": "Gesetz über die Einführung des Bundesgesetzes über Lebensmittel und Gebrauchsgegenstände (Einführungsgesetz zum Lebensmittelgesetz, EG LMG)",
+   "grund_titel": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen"
+   ],
+   "kurz_bisher": "Gesetz über die Einführung des Bundesges",
+   "kurz": "Einführungsgesetz zum Lebensmittelgesetz",
+   "grund_kurz": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen",
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 303,
+   "nummer": "SHR 451.101",
+   "datei": "451.101-1-2.de.pdf",
+   "sha256": "c12f10c4eff8c5f37b7d1e5601b86f04a3d9d572b1b0e5bdd693e1636d17ed1c",
+   "titelblock": [
+    "Verordnung über den Naturschutz",
+    "(Naturschutzverordnung)"
+   ],
+   "titel_bisher": "Verordnung über den Naturschutz (Naturschutzverordnung)",
+   "titel": "Verordnung über den Naturschutz (Naturschutzverordnung)",
+   "grund_titel": [],
+   "kurz_bisher": "Verordnung über den Naturschutz (Natursc",
+   "kurz": "Naturschutzverordnung",
+   "grund_kurz": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen",
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 304,
+   "nummer": "SHR 185.100",
+   "datei": "185.100-1-2.de.pdf",
+   "sha256": "762ef9bf58aa79252ddde728123b74b747d5207b8a5fec03c0bb8d4074216ea0",
+   "titelblock": [
+    "Pensionskassengesetz"
+   ],
+   "titel_bisher": "Pensionskassengesetz Vom 10. Juni 2013 (Stand 1. Juli 2016)",
+   "titel": "Pensionskassengesetz",
+   "grund_titel": [
+    "der Name trägt die Zeile mit Erlassdatum und Stand («Vom … (Stand …)»)"
+   ],
+   "kurz_bisher": "Pensionskassengesetz",
+   "kurz": "Pensionskassengesetz",
+   "grund_kurz": []
+  },
+  {
+   "law_id": 305,
+   "nummer": "SHR 180.100",
+   "datei": "180.100-2-1.de.pdf",
+   "sha256": "9de949faa9edd25458c0e42f15faa4a15e6904942d449db73c372e70146d1665",
+   "titelblock": [
+    "Gesetz",
+    "über das Arbeitsverhältnis des",
+    "Staatspersonals",
+    "(Personalgesetz)"
+   ],
+   "titel_bisher": "Gesetz über das Arbeitsverhältnis des",
+   "titel": "Gesetz über das Arbeitsverhältnis des Staatspersonals (Personalgesetz)",
+   "grund_titel": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen"
+   ],
+   "kurz_bisher": "Gesetz über das Arbeitsverhältnis des",
+   "kurz": "Personalgesetz",
+   "grund_kurz": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen"
+   ]
+  },
+  {
+   "law_id": 307,
+   "nummer": "SHR 441.100",
+   "datei": "441.100-1-2.de.pdf",
+   "sha256": "c37f844ff67ea9b4fac71dc2d4d784538cab3eb078fcf44e44cba165ab5a2818",
+   "titelblock": [
+    "Kulturgesetz"
+   ],
+   "titel_bisher": "Kulturgesetz Vom 9. Januar 2006 (Stand 1. Juli 2006)",
+   "titel": "Kulturgesetz",
+   "grund_titel": [
+    "der Name trägt die Zeile mit Erlassdatum und Stand («Vom … (Stand …)»)"
+   ],
+   "kurz_bisher": "Kulturgesetz Vom 9. Januar 2006 (Stand 1",
+   "kurz": "Kulturgesetz",
+   "grund_kurz": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen",
+    "der Kurztitel sind die ersten 40 Zeichen des Titels",
+    "der Name trägt die Zeile mit Erlassdatum und Stand («Vom … (Stand …)»)"
+   ]
+  },
+  {
+   "law_id": 308,
+   "nummer": "SHR 441.101",
+   "datei": "441.101-1-2.de.pdf",
+   "sha256": "9a55ef6cfc496acf5b8bf9ad0738b5a26daa008fffb87fb127c560feb8fa8232",
+   "titelblock": [
+    "Verordnung zum Kulturgesetz"
+   ],
+   "titel_bisher": "Verordnung zum Kulturgesetz Vom 12. Dezember 2006 (Stand 1. Januar 2007)",
+   "titel": "Verordnung zum Kulturgesetz",
+   "grund_titel": [
+    "der Name trägt die Zeile mit Erlassdatum und Stand («Vom … (Stand …)»)"
+   ],
+   "kurz_bisher": "Verordnung zum Kulturgesetz Vom 12. Deze",
+   "kurz": "Verordnung zum Kulturgesetz",
+   "grund_kurz": [
+    "der Kurztitel sind die ersten 40 Zeichen des Titels",
+    "der Name trägt die Zeile mit Erlassdatum und Stand («Vom … (Stand …)»)"
+   ]
+  },
+  {
+   "law_id": 319,
+   "nummer": "SHR 813.500",
+   "datei": "813.500-1-2.de.pdf",
+   "sha256": "62a6d9a6bfc79a302de4b779cff9714a00824bead419e862a7cf01991e38fb5d",
+   "titelblock": [
+    "Altersbetreuungs- und Pflegegesetz *",
+    "(AbPG)"
+   ],
+   "titel_bisher": "Altersbetreuungs- und Pflegegesetz *",
+   "titel": "Altersbetreuungs- und Pflegegesetz (AbPG)",
+   "grund_titel": [
+    "der Name trägt die Fussnotenmarke «*» des Rechtsbuchs"
+   ],
+   "kurz_bisher": "Altersbetreuungs- und Pflegegesetz *",
+   "kurz": "AbPG",
+   "grund_kurz": [
+    "der Name trägt die Fussnotenmarke «*» des Rechtsbuchs"
+   ]
+  },
+  {
+   "law_id": 320,
+   "nummer": "SHR 813.501",
+   "datei": "813.501-4-1.de.pdf",
+   "sha256": "00576b3ddc4a5692b8e771e38fcf0155e9f4349e69c79d73bd3bf78d7817556e",
+   "titelblock": [
+    "Verordnung zum Altersbetreuungs- und",
+    "Pflegegesetz",
+    "(AbPV)"
+   ],
+   "titel_bisher": "Verordnung zum Altersbetreuungs- und Pflegegesetz",
+   "titel": "Verordnung zum Altersbetreuungs- und Pflegegesetz",
+   "grund_titel": [],
+   "kurz_bisher": "Verordnung zum Altersbetreuungs- und Pfl",
+   "kurz": "AbPV",
+   "grund_kurz": [
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 321,
+   "nummer": "SHR 831.100",
+   "datei": "831.100-1-2.de.pdf",
+   "sha256": "0d78be3b21b78051ffc02389ec06c0a590c313fa1c2fc387ba138f1c67e98664",
+   "titelblock": [
+    "Einführungsgesetz zu den Bundesgesetzen",
+    "über die Alters- und",
+    "Hinterlassenenversicherung und über die",
+    "Invalidenversicherung"
+   ],
+   "titel_bisher": "Einführungsgesetz zu den Bundesgesetzen über die Alters- und",
+   "titel": "Einführungsgesetz zu den Bundesgesetzen über die Alters- und Hinterlassenenversicherung und über die Invalidenversicherung",
+   "grund_titel": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen"
+   ],
+   "kurz_bisher": "Einführungsgesetz zu den Bundesgesetzen ",
+   "kurz": "Einführungsgesetz zu den Bundesgesetzen über die Alters- und Hinterlassenenversicherung und über die Invalidenversicherung",
+   "grund_kurz": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen",
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 322,
+   "nummer": "SHR 645.101",
+   "datei": "645.101-1-2.de.pdf",
+   "sha256": "54ab15542d646d82f9a41b0fdf2c703e54f586fb1f2f5e62123114c045c3dc20",
+   "titelblock": [
+    "Verordnung über die",
+    "Strassenverkehrssteuern"
+   ],
+   "titel_bisher": "Verordnung über die Strassenverkehrssteuern",
+   "titel": "Verordnung über die Strassenverkehrssteuern",
+   "grund_titel": [],
+   "kurz_bisher": "Verordnung über die Strassenverkehrssteu",
+   "kurz": "Verordnung über die Strassenverkehrssteuern",
+   "grund_kurz": [
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 327,
+   "nummer": "SHR 741.012",
+   "datei": "741.012-1-2.de.pdf",
+   "sha256": "9c6c29c824e51ed8060a318196e8ce3b2d85f7b1f5036adc8330b9b33e8cc264",
+   "titelblock": [
+    "Verordnung über die Gebühren im",
+    "Strassenverkehr"
+   ],
+   "titel_bisher": "Verordnung über die Gebühren im Strassenverkehr",
+   "titel": "Verordnung über die Gebühren im Strassenverkehr",
+   "grund_titel": [],
+   "kurz_bisher": "Verordnung über die Gebühren im Strassen",
+   "kurz": "Verordnung über die Gebühren im Strassenverkehr",
+   "grund_kurz": [
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 329,
+   "nummer": "SHR 455.101",
+   "datei": "455.101-1-2.de.pdf",
+   "sha256": "d8c6f171c3da9c9744e53cb6946247718ebbb58fd486ba85c3d4deb98e8bd8e8",
+   "titelblock": [
+    "Vollzugsverordnung zum Tierschutzgesetz"
+   ],
+   "titel_bisher": "Vollzugsverordnung zum Tierschutzgesetz Vom 18. November 2008 (Stand 1. Januar 2009)",
+   "titel": "Vollzugsverordnung zum Tierschutzgesetz",
+   "grund_titel": [
+    "der Name trägt die Zeile mit Erlassdatum und Stand («Vom … (Stand …)»)"
+   ],
+   "kurz_bisher": "Vollzugsverordnung zum Tierschutzgesetz ",
+   "kurz": "Vollzugsverordnung zum Tierschutzgesetz",
+   "grund_kurz": [
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 332,
+   "nummer": "SHR 221.101",
+   "datei": "221.101-rechtsbuch.de.pdf",
+   "sha256": "d64dca7a605095a21fa0a53b93a60034a1561fff65a87cf08141f56698fd9f80",
+   "titelblock": [
+    "Verordnung über die Gebühren für öffentliche",
+    "Beurkundungen *",
+    "(Notariatsgebührenverordnung)"
+   ],
+   "titel_bisher": "Verordnung über die Gebühren für öffentliche Beurkundungen",
+   "titel": "Verordnung über die Gebühren für öffentliche Beurkundungen",
+   "grund_titel": [],
+   "kurz_bisher": "Verordnung über die Gebühren für öffentl",
+   "kurz": "Notariatsgebührenverordnung",
+   "grund_kurz": [
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 333,
+   "nummer": "SHR 410.613",
+   "datei": "410.613-1-2.de.pdf",
+   "sha256": "54ac3f3c699251f1fc1cc5e76d9e5e905ca38641892c2e1461fed551cac9d48c",
+   "titelblock": [
+    "Taxordnung für die Schul- und Impfärzte des",
+    "Kantons Schaffhausen"
+   ],
+   "titel_bisher": "Taxordnung für die Schul- und Impfärzte des Kantons Schaffhausen",
+   "titel": "Taxordnung für die Schul- und Impfärzte des Kantons Schaffhausen",
+   "grund_titel": [],
+   "kurz_bisher": "Taxordnung für die Schul- und Impfärzte ",
+   "kurz": "Taxordnung für die Schul- und Impfärzte des Kantons Schaffhausen",
+   "grund_kurz": [
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 334,
+   "nummer": "SHR 180.112",
+   "datei": "180.112-1-2.de.pdf",
+   "sha256": "99a991d4f72a7a071332fab27f2319a28825fde3040a07dac192f8041247e746",
+   "titelblock": [
+    "Verordnung über die Spesenvergütungen",
+    "beim Kanton Schaffhausen",
+    "(Spesenverordnung)"
+   ],
+   "titel_bisher": "Verordnung über die Spesenvergütungen (Spesenverordnung)",
+   "titel": "Verordnung über die Spesenvergütungen beim Kanton Schaffhausen (Spesenverordnung)",
+   "grund_titel": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen"
+   ],
+   "kurz_bisher": "Verordnung über die Spesenvergütungen (S",
+   "kurz": "Spesenverordnung",
+   "grund_kurz": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen",
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 336,
+   "nummer": "SHR 916.431",
+   "datei": "916.431-rechtsbuch.de.pdf",
+   "sha256": "80dde411ef83fc98d8b89ae65330530323c48ca8340a59d98c0956fb538dd34e",
+   "titelblock": [
+    "Verordnung zum Bundesgesetz über die",
+    "Bekämpfung von Tierseuchen",
+    "(Kantonale Tierseuchenverordnung)"
+   ],
+   "titel_bisher": "Verordnung zum Bundesgesetz über die Bekämpfung von Tierseuchen",
+   "titel": "Verordnung zum Bundesgesetz über die Bekämpfung von Tierseuchen",
+   "grund_titel": [],
+   "kurz_bisher": "Verordnung zum Bundesgesetz über die Bek",
+   "kurz": "Kantonale Tierseuchenverordnung",
+   "grund_kurz": [
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 337,
+   "nummer": "SHR 922.101",
+   "datei": "922.101-rechtsbuch.de.pdf",
+   "sha256": "47b98e4749cb053f889b469a56efa1d6d11afae5ec377830ed00df04ed093090",
+   "titelblock": [
+    "Verordnung über die Jagd und den Schutz",
+    "wildlebender Säugetiere und Vögel"
+   ],
+   "titel_bisher": "Verordnung über die Jagd und den Schutz wildlebender Säugetiere und Vögel",
+   "titel": "Verordnung über die Jagd und den Schutz wildlebender Säugetiere und Vögel",
+   "grund_titel": [],
+   "kurz_bisher": "Verordnung über die Jagd und den Schutz ",
+   "kurz": "Verordnung über die Jagd und den Schutz wildlebender Säugetiere und Vögel",
+   "grund_kurz": [
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 338,
+   "nummer": "SHR 922.100",
+   "datei": "922.100-rechtsbuch.de.pdf",
+   "sha256": "02fd78e9bcfb37d441f07188cd0f54edde2b609dd08dfa23e088beeb00d0337b",
+   "titelblock": [
+    "Gesetz",
+    "über die Jagd und den Schutz wildlebender",
+    "Säugetiere und Vögel",
+    "(Kantonales Jagdgesetz)"
+   ],
+   "titel_bisher": "Gesetz über die Jagd und den Schutz wildlebender Säugetiere und Vögel",
+   "titel": "Gesetz über die Jagd und den Schutz wildlebender Säugetiere und Vögel",
+   "grund_titel": [],
+   "kurz_bisher": "Gesetz über die Jagd und den Schutz wild",
+   "kurz": "Kantonales Jagdgesetz",
+   "grund_kurz": [
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 339,
+   "nummer": "SHR 641.301",
+   "datei": "641.301-1-2.de.pdf",
+   "sha256": "7df0bdaa992ec32f941b8b33611e8f8d8142bc87e2d0c1ca00326760b139323f",
+   "titelblock": [
+    "Verordnung über die Bewertung der",
+    "Grundstücke"
+   ],
+   "titel_bisher": "Verordnung über die Bewertung der Grundstücke",
+   "titel": "Verordnung über die Bewertung der Grundstücke",
+   "grund_titel": [],
+   "kurz_bisher": "Verordnung über die Bewertung der Grunds",
+   "kurz": "Verordnung über die Bewertung der Grundstücke",
+   "grund_kurz": [
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 341,
+   "nummer": "SHR 411.222",
+   "datei": "411.222-1-2.de.pdf",
+   "sha256": "4080691d645aeccd1df127a72fc3761d6c49df3e7763e80bdce5cb34de51f035",
+   "titelblock": [
+    "Verordnung des Erziehungsrates über die",
+    "Sonderschulung *",
+    "(Sonderschulverordnung)"
+   ],
+   "titel_bisher": "Verordnung des Erziehungsrates über die Sonderschulung",
+   "titel": "Verordnung des Erziehungsrates über die Sonderschulung",
+   "grund_titel": [],
+   "kurz_bisher": "Verordnung des Erziehungsrates über die ",
+   "kurz": "Sonderschulverordnung",
+   "grund_kurz": [
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 342,
+   "nummer": "SHR 410.240",
+   "datei": "410.240-1-2.de.pdf",
+   "sha256": "cefde4716cbb1d2a848b4ee0a84efe61fc1ee236936cb0dfb8388006ba47adfe",
+   "titelblock": [
+    "Interkantonale Vereinbarung",
+    "über die Zusammenarbeit im Bereich der",
+    "Sonderpädagogik"
+   ],
+   "titel_bisher": "Interkantonale Vereinbarung über die Zusammenarbeit im Bereich der",
+   "titel": "Interkantonale Vereinbarung über die Zusammenarbeit im Bereich der Sonderpädagogik",
+   "grund_titel": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen"
+   ],
+   "kurz_bisher": "Interkantonale Vereinbarung über die Zus",
+   "kurz": "Interkantonale Vereinbarung über die Zusammenarbeit im Bereich der Sonderpädagogik",
+   "grund_kurz": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen",
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 343,
+   "nummer": "SHR 411.225",
+   "datei": "411.225-1-2.de.pdf",
+   "sha256": "32af75d87229b302b59a1261b6e5a4b78fca3480fef9676cac4f84210b3b20f6",
+   "titelblock": [
+    "Verordnung über die Beiträge des Kantons an",
+    "die Sonderschulung"
+   ],
+   "titel_bisher": "Verordnung über die Beiträge des Kantons an die Sonderschulung",
+   "titel": "Verordnung über die Beiträge des Kantons an die Sonderschulung",
+   "grund_titel": [],
+   "kurz_bisher": "Verordnung über die Beiträge des Kantons",
+   "kurz": "Verordnung über die Beiträge des Kantons an die Sonderschulung",
+   "grund_kurz": [
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 345,
+   "nummer": "SHR 910.100",
+   "datei": "910.100-rechtsbuch.de.pdf",
+   "sha256": "34e72b3baa1ad3c28e585933b575d730a042c28d6e44cf50ff94779beddaad74",
+   "titelblock": [
+    "Gesetz",
+    "über die Förderung der Landwirtschaft *",
+    "(Kantonales Landwirtschaftsgesetz, LwG)"
+   ],
+   "titel_bisher": "Gesetz über die Förderung der Landwirtschaft",
+   "titel": "Gesetz über die Förderung der Landwirtschaft",
+   "grund_titel": [],
+   "kurz_bisher": "Gesetz über die Förderung der Landwirtsc",
+   "kurz": "LwG",
+   "grund_kurz": [
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 346,
+   "nummer": "SHR 914.110",
+   "datei": "914.110-rechtsbuch.de.pdf",
+   "sha256": "51c4d28def4c161fd5d335e6364e05a3f77fb3ac04427a355ae3639f97555ca3",
+   "titelblock": [
+    "Dekret über Investitionskredite und",
+    "Betriebshilfe in der Landwirtschaft"
+   ],
+   "titel_bisher": "Dekret über Investitionskredite und Betriebshilfe in der Landwirtschaft",
+   "titel": "Dekret über Investitionskredite und Betriebshilfe in der Landwirtschaft",
+   "grund_titel": [],
+   "kurz_bisher": "Dekret über Investitionskredite und Betr",
+   "kurz": "Dekret über Investitionskredite und Betriebshilfe in der Landwirtschaft",
+   "grund_kurz": [
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 348,
+   "nummer": "SHR 747.201",
+   "datei": "747.201-1-2.de.pdf",
+   "sha256": "99b9efed5517e9e1870f691a9fa55ccf3ba8329da0859a53e6f44d9679644e4d",
+   "titelblock": [
+    "Verordnung über den Vollzug des",
+    "Schifffahrtsrechts im Kanton Schaffhausen",
+    "(Schifffahrtsverordnung)"
+   ],
+   "titel_bisher": "Verordnung über den Vollzug des (Schifffahrtsverordnung)",
+   "titel": "Verordnung über den Vollzug des Schifffahrtsrechts im Kanton Schaffhausen (Schifffahrtsverordnung)",
+   "grund_titel": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen"
+   ],
+   "kurz_bisher": "Verordnung über den Vollzug des (Schifff",
+   "kurz": "Schifffahrtsverordnung",
+   "grund_kurz": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen",
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 349,
+   "nummer": "SHR 672.111",
+   "datei": "672.111-1-2.de.pdf",
+   "sha256": "038dbb9edb282269aa25e00653eb029234b23f34755b9c4d9e136dfd129bef22",
+   "titelblock": [
+    "Verordnung über die Anrechnung",
+    "ausländischer Quellensteuern *"
+   ],
+   "titel_bisher": "Verordnung über die Anrechnung ausländischer Quellensteuern",
+   "titel": "Verordnung über die Anrechnung ausländischer Quellensteuern",
+   "grund_titel": [],
+   "kurz_bisher": "Verordnung über die Anrechnung ausländis",
+   "kurz": "Verordnung über die Anrechnung ausländischer Quellensteuern",
+   "grund_kurz": [
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 355,
+   "nummer": "SHR 172.201",
+   "datei": "172.201-1-2.de.pdf",
+   "sha256": "2bf6f8785858f6f31276f06fea938a761343cc11528f1aa075cbb1e5a5787693",
+   "titelblock": [
+    "Verordnung über die Gebühren im kantonalen",
+    "Verwaltungsverfahren",
+    "(Verwaltungsgebührenverordnung)"
+   ],
+   "titel_bisher": "Verordnung über die Gebühren im kantonalen Verwaltungsverfahren",
+   "titel": "Verordnung über die Gebühren im kantonalen Verwaltungsverfahren",
+   "grund_titel": [],
+   "kurz_bisher": "Verordnung über die Gebühren im kantonal",
+   "kurz": "Verwaltungsgebührenverordnung",
+   "grund_kurz": [
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 356,
+   "nummer": "SHR 831.300",
+   "datei": "831.300-1-2.de.pdf",
+   "sha256": "4d6410f6b523d5c74f9c8834533e7ea01dbf41aee6144eee31e3542a26a83948",
+   "titelblock": [
+    "Gesetz",
+    "über Ergänzungsleistungen zur AHV und IV"
+   ],
+   "titel_bisher": "Gesetz über Ergänzungsleistungen zur AHV und IV",
+   "titel": "Gesetz über Ergänzungsleistungen zur AHV und IV",
+   "grund_titel": [],
+   "kurz_bisher": "Gesetz über Ergänzungsleistungen zur AHV",
+   "kurz": "Gesetz über Ergänzungsleistungen zur AHV und IV",
+   "grund_kurz": [
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 357,
+   "nummer": "SHR 831.301",
+   "datei": "831.301-2-1.de.pdf",
+   "sha256": "f2dc45bff88fd094321a5f0f0019abbc159a69bfa0e411305dabbc7dfa0deaea",
+   "titelblock": [
+    "Verordnung über Ergänzungsleistungen zur",
+    "AHV und IV"
+   ],
+   "titel_bisher": "Verordnung über Ergänzungsleistungen zur AHV und IV",
+   "titel": "Verordnung über Ergänzungsleistungen zur AHV und IV",
+   "grund_titel": [],
+   "kurz_bisher": "Verordnung über Ergänzungsleistungen zur",
+   "kurz": "Verordnung über Ergänzungsleistungen zur AHV und IV",
+   "grund_kurz": [
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 358,
+   "nummer": "SHR 832.100",
+   "datei": "832.100-1-2.de.pdf",
+   "sha256": "a3505c7a7fe8d5f56c535a41aa2529bc470d8efe9b8aaf29cc6fe5485a84b7e3",
+   "titelblock": [
+    "Krankenversicherungsgesetz"
+   ],
+   "titel_bisher": "Krankenversicherungsgesetz Vom 19. Dezember 1994 (Stand 1. Januar 2014)",
+   "titel": "Krankenversicherungsgesetz",
+   "grund_titel": [
+    "der Name trägt die Zeile mit Erlassdatum und Stand («Vom … (Stand …)»)"
+   ],
+   "kurz_bisher": "Krankenversicherungsgesetz Vom 19. Dezem",
+   "kurz": "Krankenversicherungsgesetz",
+   "grund_kurz": [
+    "der Kurztitel sind die ersten 40 Zeichen des Titels",
+    "der Name trägt die Zeile mit Erlassdatum und Stand («Vom … (Stand …)»)"
+   ]
+  },
+  {
+   "law_id": 359,
+   "nummer": "SHR 832.111",
+   "datei": "832.111-3-1.de.pdf",
+   "sha256": "cd06b55c6d8c71690314c09bac8f668ed6ce920d3a27ab6f47560f458d097fc5",
+   "titelblock": [
+    "Verordnung über den Vollzug des",
+    "Krankenversicherungsgesetzes"
+   ],
+   "titel_bisher": "Verordnung über den Vollzug des Krankenversicherungsgesetzes",
+   "titel": "Verordnung über den Vollzug des Krankenversicherungsgesetzes",
+   "grund_titel": [],
+   "kurz_bisher": "Verordnung über den Vollzug des Krankenv",
+   "kurz": "Verordnung über den Vollzug des Krankenversicherungsgesetzes",
+   "grund_kurz": [
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 360,
+   "nummer": "SHR 721.103",
+   "datei": "721.103-1-2.de.pdf",
+   "sha256": "daf51b52fd402ff303f449568bc3a256d20e3fe397818daa4be3a6581981d5b2",
+   "titelblock": [
+    "Verordnung zum Wasserwirtschaftsgesetz *"
+   ],
+   "titel_bisher": "Verordnung zum Wasserwirtschaftsgesetz *",
+   "titel": "Verordnung zum Wasserwirtschaftsgesetz",
+   "grund_titel": [
+    "der Name trägt die Fussnotenmarke «*» des Rechtsbuchs"
+   ],
+   "kurz_bisher": "Verordnung zum Wasserwirtschaftsgesetz *",
+   "kurz": "Verordnung zum Wasserwirtschaftsgesetz",
+   "grund_kurz": [
+    "der Name trägt die Fussnotenmarke «*» des Rechtsbuchs"
+   ]
+  },
+  {
+   "law_id": 361,
+   "nummer": "SHR 814.200",
+   "datei": "814.200-1-2.de.pdf",
+   "sha256": "fe789d0630ba15be08de392403e3b70a3489a614abc38ca44702fb3366f2b151",
+   "titelblock": [
+    "Einführungsgesetz zum",
+    "Gewässerschutzgesetz"
+   ],
+   "titel_bisher": "Einführungsgesetz zum Gewässerschutzgesetz",
+   "titel": "Einführungsgesetz zum Gewässerschutzgesetz",
+   "grund_titel": [],
+   "kurz_bisher": "Einführungsgesetz zum Gewässerschutzgese",
+   "kurz": "Einführungsgesetz zum Gewässerschutzgesetz",
+   "grund_kurz": [
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 362,
+   "nummer": "SHR 814.201",
+   "datei": "814.201-1-2.de.pdf",
+   "sha256": "322d5a87894f9dadb60bdb3dc47f374a7156556f8af755173c8103fdcc25e99f",
+   "titelblock": [
+    "Vollziehungsverordnung zum",
+    "Einführungsgesetz zum",
+    "Gewässerschutzgesetz",
+    "(Kantonale Gewässerschutzverordnung,",
+    "GSchVV)"
+   ],
+   "titel_bisher": "Vollziehungsverordnung zum Einführungsgesetz zum",
+   "titel": "Vollziehungsverordnung zum Einführungsgesetz zum Gewässerschutzgesetz (Kantonale Gewässerschutzverordnung, GSchVV)",
+   "grund_titel": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen"
+   ],
+   "kurz_bisher": "Vollziehungsverordnung zum Einführungsge",
+   "kurz": "GSchVV",
+   "grund_kurz": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen",
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 363,
+   "nummer": "SHR 142.201",
+   "datei": "142.201-2-1.de.pdf",
+   "sha256": "5729cb6b3f534483cd2af7d80f45e891596b8e3170153b261b8e05e64b36def6",
+   "titelblock": [
+    "Vollziehungsverordnung zum Bundesgesetz",
+    "über die Ausländerinnen und Ausländer und",
+    "über die Integration vom 16. Dezember 2005",
+    "und dem Abkommen zwischen der",
+    "Europäischen Gemeinschaft und ihren",
+    "Mitgliedstaaten einerseits und der",
+    "Schweizerischen Eidgenossenschaft",
+    "andererseits über die Freizügigkeit vom",
+    "21. Juni 1999 *",
+    "(Vollziehungsverordnung-AIG)"
+   ],
+   "titel_bisher": "Vollziehungsverordnung zum Bundesgesetz über die Ausländerinnen und Ausländer und",
+   "titel": "Vollziehungsverordnung zum Bundesgesetz über die Ausländerinnen und Ausländer und über die Integration vom 16. Dezember 2005 und dem Abkommen zwischen der Europäischen Gemeinschaft und ihren Mitgliedstaaten einerseits und der Schweizerischen Eidgenossenschaft andererseits über die Freizügigkeit vom 21. Juni 1999 (Vollziehungsverordnung-AIG)",
+   "grund_titel": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen"
+   ],
+   "kurz_bisher": "Vollziehungsverordnung zum Bundesgesetz ",
+   "kurz": "Vollziehungsverordnung-AIG",
+   "grund_kurz": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen",
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 364,
+   "nummer": "SHR 643.100",
+   "datei": "643.100-1-2.de.pdf",
+   "sha256": "b9cfc04f74720e001a9e1bdb99ffb548dff3daf3f685cf3a6d73064637a69c20",
+   "titelblock": [
+    "Gesetz",
+    "über die Erbschafts- und Schenkungssteuer"
+   ],
+   "titel_bisher": "Gesetz über die Erbschafts- und Schenkungssteuer",
+   "titel": "Gesetz über die Erbschafts- und Schenkungssteuer",
+   "grund_titel": [],
+   "kurz_bisher": "Gesetz über die Erbschafts- und Schenkun",
+   "kurz": "Gesetz über die Erbschafts- und Schenkungssteuer",
+   "grund_kurz": [
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 365,
+   "nummer": "SHR 643.111",
+   "datei": "643.111-1-2.de.pdf",
+   "sha256": "9f48d677a4f63166f1e8641240df9c2c3ef0626e2f9cc935612e054c197010f3",
+   "titelblock": [
+    "Verordnung zum Gesetz über die Erbschafts-",
+    "und Schenkungssteuer"
+   ],
+   "titel_bisher": "Verordnung zum Gesetz über die Erbschafts- und Schenkungssteuer",
+   "titel": "Verordnung zum Gesetz über die Erbschafts- und Schenkungssteuer",
+   "grund_titel": [],
+   "kurz_bisher": "Verordnung zum Gesetz über die Erbschaft",
+   "kurz": "Verordnung zum Gesetz über die Erbschafts- und Schenkungssteuer",
+   "grund_kurz": [
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 367,
+   "nummer": "SHR 935.901",
+   "datei": "935.901-rechtsbuch.de.pdf",
+   "sha256": "746700cfceccb8256b4d4b5a0760070fbb837fb6c3e4b744ea1f3311c9f028ca",
+   "titelblock": [
+    "Vollzugsverordnung zum Bundesgesetz über",
+    "das Bergführerwesen und Anbieten weiterer",
+    "Risikoaktivitäten"
+   ],
+   "titel_bisher": "Vollzugsverordnung zum Bundesgesetz über das Bergführerwesen und Anbieten weiterer Risikoaktivitäten",
+   "titel": "Vollzugsverordnung zum Bundesgesetz über das Bergführerwesen und Anbieten weiterer Risikoaktivitäten",
+   "grund_titel": [],
+   "kurz_bisher": "Vollzugsverordnung zum Bundesgesetz über",
+   "kurz": "Vollzugsverordnung zum Bundesgesetz über das Bergführerwesen und Anbieten weiterer Risikoaktivitäten",
+   "grund_kurz": [
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 369,
+   "nummer": "SHR 510.101",
+   "datei": "510.101-2-1.de.pdf",
+   "sha256": "1c704d03730fc29d31bb2bee55551e48ff711710f249a782e917450b3f785049",
+   "titelblock": [
+    "Kantonale Militärverordnung"
+   ],
+   "titel_bisher": "Kantonale Militärverordnung Vom 22. März 2016 (Stand 1. Juli 2025)",
+   "titel": "Kantonale Militärverordnung",
+   "grund_titel": [
+    "der Name trägt die Zeile mit Erlassdatum und Stand («Vom … (Stand …)»)"
+   ],
+   "kurz_bisher": "Kantonale Militärverordnung Vom 22. März",
+   "kurz": "Kantonale Militärverordnung",
+   "grund_kurz": [
+    "der Kurztitel sind die ersten 40 Zeichen des Titels",
+    "der Name trägt die Zeile mit Erlassdatum und Stand («Vom … (Stand …)»)"
+   ]
+  },
+  {
+   "law_id": 370,
+   "nummer": "SHR 642.111",
+   "datei": "642.111-1-2.de.pdf",
+   "sha256": "7d9ddd40f98e68300db4d52635a24aced8a33e9b400134abc4946d6869e4a667",
+   "titelblock": [
+    "Verordnung zum Bundesgesetz über die",
+    "direkte Bundessteuer"
+   ],
+   "titel_bisher": "Verordnung zum Bundesgesetz über die direkte Bundessteuer",
+   "titel": "Verordnung zum Bundesgesetz über die direkte Bundessteuer",
+   "grund_titel": [],
+   "kurz_bisher": "Verordnung zum Bundesgesetz über die dir",
+   "kurz": "Verordnung zum Bundesgesetz über die direkte Bundessteuer",
+   "grund_kurz": [
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 372,
+   "nummer": "SHR 837.101",
+   "datei": "837.101-1-2.de.pdf",
+   "sha256": "b63141cc2b6dfe06b528469f4ac1f92c113098c9353f004f6eae2b1af2524f32",
+   "titelblock": [
+    "Verordnung zum Arbeitslosenhilfegesetz"
+   ],
+   "titel_bisher": "Verordnung zum Arbeitslosenhilfegesetz Vom 7. Oktober 1997 (Stand 1. August 2011)",
+   "titel": "Verordnung zum Arbeitslosenhilfegesetz",
+   "grund_titel": [
+    "der Name trägt die Zeile mit Erlassdatum und Stand («Vom … (Stand …)»)"
+   ],
+   "kurz_bisher": "Verordnung zum Arbeitslosenhilfegesetz V",
+   "kurz": "Verordnung zum Arbeitslosenhilfegesetz",
+   "grund_kurz": [
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 373,
+   "nummer": "SHR 837.103",
+   "datei": "837.103-1-2.de.pdf",
+   "sha256": "eef69bb245820bc3a2d860a3e53b6dc1532670c29fe7dc7e1ee995e9c95b07b6",
+   "titelblock": [
+    "Vertrag zwischen dem Kanton Schaffhausen",
+    "und der Gemeinde Büsingen (D) betreffend",
+    "die Anwendbarkeit der Leistungen des",
+    "Arbeitslosenhilfegesetzes (AHG) auf",
+    "Arbeitslose mit Wohnsitz in Büsingen",
+    "gemäss Art. 25 AHG"
+   ],
+   "titel_bisher": "und der Gemeinde Büsingen (D) betreffend die Anwendbarkeit der Leistungen des",
+   "titel": "Vertrag zwischen dem Kanton Schaffhausen und der Gemeinde Büsingen (D) betreffend die Anwendbarkeit der Leistungen des Arbeitslosenhilfegesetzes (AHG) auf Arbeitslose mit Wohnsitz in Büsingen gemäss Art. 25 AHG",
+   "grund_titel": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen"
+   ],
+   "kurz_bisher": "und der Gemeinde Büsingen (D) betreffend",
+   "kurz": "Vertrag zwischen dem Kanton Schaffhausen und der Gemeinde Büsingen (D) betreffend die Anwendbarkeit der Leistungen des Arbeitslosenhilfegesetzes (AHG) auf Arbeitslose mit Wohnsitz in Büsingen gemäss Art. 25 AHG",
+   "grund_kurz": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen",
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 374,
+   "nummer": "SHR 811.100",
+   "datei": "811.100-1-1.de.pdf",
+   "sha256": "f1a8167a0c8da4493c1c7477017753cf655da4ecbafdc2d7381e674315575f15",
+   "titelblock": [
+    "Einführungsgesetz zum Bundesgesetz über",
+    "die Förderung der Ausbildung im Bereich der",
+    "Pflege",
+    "(EG FAP)"
+   ],
+   "titel_bisher": "Einführungsgesetz zum Bundesgesetz über die Förderung der Ausbildung im Bereich der",
+   "titel": "Einführungsgesetz zum Bundesgesetz über die Förderung der Ausbildung im Bereich der Pflege (EG FAP)",
+   "grund_titel": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen"
+   ],
+   "kurz_bisher": "Einführungsgesetz zum Bundesgesetz über ",
+   "kurz": "EG FAP",
+   "grund_kurz": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen",
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 375,
+   "nummer": "SHR 811.111",
+   "datei": "811.111-2-1.de.pdf",
+   "sha256": "2a623c7ee0bb3cfc9f2139bfb29243d10762b36e1cf0788b24e788483b0f40ce",
+   "titelblock": [
+    "Verordnung zum Einführungsgesetz zum",
+    "Bundesgesetz über die Förderung der",
+    "Ausbildung im Bereich der Pflege",
+    "(VEG FAP)"
+   ],
+   "titel_bisher": "Verordnung zum Einführungsgesetz zum Bundesgesetz über die Förderung der",
+   "titel": "Verordnung zum Einführungsgesetz zum Bundesgesetz über die Förderung der Ausbildung im Bereich der Pflege (VEG FAP)",
+   "grund_titel": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen"
+   ],
+   "kurz_bisher": "Verordnung zum Einführungsgesetz zum Bun",
+   "kurz": "VEG FAP",
+   "grund_kurz": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen",
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 376,
+   "nummer": "SHR 413.106",
+   "datei": "413.106-1-2.de.pdf",
+   "sha256": "f9ac0fbbf2629b7caf84f1a34678c218e43ea9e3c51131778db73a57ad6fa472",
+   "titelblock": [
+    "Verordnung betreffend die Schulgelder an",
+    "gymnasialen Mittelschulen und",
+    "Fachmittelschulen"
+   ],
+   "titel_bisher": "Verordnung betreffend die Schulgelder an gymnasialen Mittelschulen und",
+   "titel": "Verordnung betreffend die Schulgelder an gymnasialen Mittelschulen und Fachmittelschulen",
+   "grund_titel": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen"
+   ],
+   "kurz_bisher": "Verordnung betreffend die Schulgelder an",
+   "kurz": "Verordnung betreffend die Schulgelder an gymnasialen Mittelschulen und Fachmittelschulen",
+   "grund_kurz": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen",
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 377,
+   "nummer": "SHR 412.103",
+   "datei": "412.103-1-2.de.pdf",
+   "sha256": "d060d63ec84ec81b6666f02a086aa20fcaa7981f3cebc394460bc3fce16e0f29",
+   "titelblock": [
+    "Verordnung über die Beiträge an das Schul-",
+    "bzw. Studiengeld für den Besuch",
+    "ausserkantonaler Schulen und Kurse im",
+    "Bereich der Berufsbildung",
+    "(Schulgeldbeitragsverordnung)"
+   ],
+   "titel_bisher": "Verordnung über die Beiträge an das Schul- bzw. Studiengeld für den Besuch",
+   "titel": "Verordnung über die Beiträge an das Schul- bzw. Studiengeld für den Besuch ausserkantonaler Schulen und Kurse im Bereich der Berufsbildung (Schulgeldbeitragsverordnung)",
+   "grund_titel": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen"
+   ],
+   "kurz_bisher": "Verordnung über die Beiträge an das Schu",
+   "kurz": "Schulgeldbeitragsverordnung",
+   "grund_kurz": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen",
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 378,
+   "nummer": "SHR 412.104",
+   "datei": "412.104-1-2.de.pdf",
+   "sha256": "707ad67902f60a569e250b55d826aeb1618ad36ef67afe24452af3df9092a006",
+   "titelblock": [
+    "Interkantonale Vereinbarung",
+    "über die Beiträge an die Ausbildungskosten",
+    "in der beruflichen Grundbildung",
+    "(Berufsfachschulvereinbarung, BFSV)"
+   ],
+   "titel_bisher": "Interkantonale Vereinbarung über die Beiträge an die Ausbildungskosten",
+   "titel": "Interkantonale Vereinbarung über die Beiträge an die Ausbildungskosten in der beruflichen Grundbildung (Berufsfachschulvereinbarung, BFSV)",
+   "grund_titel": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen"
+   ],
+   "kurz_bisher": "Interkantonale Vereinbarung über die Bei",
+   "kurz": "BFSV",
+   "grund_kurz": [
+    "der Name bricht mitten im Titel ab — die Folgezeile(n) des Titels fehlen",
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 380,
+   "nummer": "SHR 850.130",
+   "datei": "850.130-1-2.de.pdf",
+   "sha256": "83cb1f08a3fa13f5425313be22e0e4bfcb3b6555606277e3334525caea9e6d94",
+   "titelblock": [
+    "Interkantonale Vereinbarung",
+    "für soziale Einrichtungen",
+    "(IVSE)"
+   ],
+   "titel_bisher": "Interkantonale Vereinbarung für soziale Einrichtungen",
+   "titel": "Interkantonale Vereinbarung für soziale Einrichtungen",
+   "grund_titel": [],
+   "kurz_bisher": "Interkantonale Vereinbarung für soziale ",
+   "kurz": "IVSE",
+   "grund_kurz": [
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  },
+  {
+   "law_id": 381,
+   "nummer": "SHR 415.201",
+   "datei": "415.201-1-2.de.pdf",
+   "sha256": "8ac1baa4b6394e5d9ec3973fb987bdc888b416563493ef21709129febe355cdb",
+   "titelblock": [
+    "Verordnung über Turnen und Sport in der",
+    "Schule"
+   ],
+   "titel_bisher": "Verordnung über Turnen und Sport in der Schule",
+   "titel": "Verordnung über Turnen und Sport in der Schule",
+   "grund_titel": [],
+   "kurz_bisher": "Verordnung über Turnen und Sport in der ",
+   "kurz": "Verordnung über Turnen und Sport in der Schule",
+   "grund_kurz": [
+    "der Kurztitel sind die ersten 40 Zeichen des Titels"
+   ]
+  }
+ ]
+}

@@ -978,7 +978,7 @@ CREATE TABLE IF NOT EXISTS register_zugriff (       -- ingested articles on acce
     article_id INTEGER NOT NULL REFERENCES article(id),
     art        TEXT NOT NULL CHECK(art IN ('kandidat','schranke')),
                                                     -- never «erlaubt»: whether an office may fetch is for the canton's lawyers
-    adressat   TEXT NOT NULL,                       -- whom the article addresses, in its own words
+    adressat   TEXT NOT NULL,                       -- whom the article addresses, in its own words; '' = it names nobody
     quelle     TEXT NOT NULL REFERENCES register_quelle(id),
     zitat      TEXT NOT NULL,                       -- verbatim in the official text of that law
     PRIMARY KEY (register, article_id, art));

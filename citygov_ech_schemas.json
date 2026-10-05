@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generated_at": "2026-10-05T06:06:57",
+  "generated_at": "2026-10-05T21:11:36",
   "datenstand": {
    "build": "2026-10-05",
    "xsd_sweep": {
@@ -96,7 +96,7 @@
   },
   "quelle": "citygov.db (generated_at = Stempel von data_export.json)",
   "vertrag": {
-   "version": "1.0.0",
+   "version": "1.0.1",
    "schema": "schema/citygov_ech_schemas.schema.json",
    "aenderungen": "exportvertrag.json"
   }
@@ -15536,7 +15536,7 @@
    "titel": "Choix du système d'assurance-maladie",
    "dienststelle": "SVA Schaffhausen",
    "exchange_ready": "teilweise",
-   "abdeckung_pct": 85,
+   "abdeckung_pct": 81,
    "ech": {
     "eCH-0044": {
      "personIdentificationLightType": [
@@ -15630,13 +15630,6 @@
        "datatype": "generalDateType",
        "feld": "Datum der Wohnsitznahme in Frankreich",
        "kennung": "sh:formular:sva-schaffhausen-choix-du-syst-me-d-assurance-ma-form:feld:4:teil:5",
-       "angabe_kennung": "sh:angabe:eCH-0011:arrivalDate:otherResidenceType"
-      },
-      {
-       "element": "arrivalDate",
-       "datatype": "generalDateType",
-       "feld": "Datum der Wohnsitznahme in Frankreich",
-       "kennung": "sh:formular:sva-schaffhausen-choix-du-syst-me-d-assurance-ma-form:feld:6:teil:2",
        "angabe_kennung": "sh:angabe:eCH-0011:arrivalDate:otherResidenceType"
       }
      ]
@@ -15746,6 +15739,11 @@
     {
      "feld": "Datum der Rentengewährung",
      "kennung": "sh:formular:sva-schaffhausen-choix-du-syst-me-d-assurance-ma-form:feld:6:teil:1",
+     "format": ""
+    },
+    {
+     "feld": "Datum der Wohnsitznahme in Frankreich",
+     "kennung": "sh:formular:sva-schaffhausen-choix-du-syst-me-d-assurance-ma-form:feld:6:teil:2",
      "format": ""
     },
     {
@@ -16418,7 +16416,7 @@
    "titel": "Antrag auf Arbeitslosenentschädigung",
    "dienststelle": "SVA Schaffhausen",
    "exchange_ready": "teilweise",
-   "abdeckung_pct": 63,
+   "abdeckung_pct": 62,
    "ech": {
     "eCH-0044": {
      "personIdentificationLightType": [
@@ -16478,15 +16476,6 @@
        "feld": "Zivilstand",
        "kennung": "sh:formular:sva-schaffhausen-antrag-auf-arbeitslosenentschae-form:feld:2",
        "angabe_kennung": "sh:angabe:eCH-0011:maritalStatus:maritalDataRestrictedDivorceType"
-      }
-     ],
-     "reportedPersonType": [
-      {
-       "element": "hasMainResidence",
-       "datatype": "mainResidenceType",
-       "feld": "Wohnsitz in der Schweiz beim Eintritt des Ereignisses",
-       "kennung": "sh:formular:sva-schaffhausen-antrag-auf-arbeitslosenentschae-form:feld:45",
-       "angabe_kennung": "sh:angabe:eCH-0011:hasMainResidence:reportedPersonType"
       }
      ]
     },
@@ -17091,6 +17080,11 @@
      "feld": "Datum des ausserordentlichen Ereignisses",
      "kennung": "sh:formular:sva-schaffhausen-antrag-auf-arbeitslosenentschae-form:feld:44",
      "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Wohnsitz in der Schweiz beim Eintritt des Ereignisses",
+     "kennung": "sh:formular:sva-schaffhausen-antrag-auf-arbeitslosenentschae-form:feld:45",
+     "format": ""
     },
     {
      "feld": "Allgemeine Bemerkungen",
@@ -18411,7 +18405,7 @@
    "titel": "Anmeldung für TeilhaberInnen von Gesellschaften und für Erben (TH)",
    "dienststelle": "SVA Schaffhausen",
    "exchange_ready": "teilweise",
-   "abdeckung_pct": 94,
+   "abdeckung_pct": 92,
    "ech": {
     "eCH-0098": {
      "organisationIdentificationType": [
@@ -18572,16 +18566,27 @@
       }
      ]
     },
-    "eCH-0011": {
-     "otherResidenceType": [
+    "eCH-0046": {
+     "phoneType": [
       {
-       "element": "arrivalDate",
-       "datatype": "generalDateType",
-       "feld": "Zivilrechtlicher Wohnsitz in der Schweiz seit",
-       "kennung": "sh:formular:sva-schaffhausen-bei03-form:feld:5:teil:7",
-       "angabe_kennung": "sh:angabe:eCH-0011:arrivalDate:otherResidenceType"
+       "element": "phoneNumber",
+       "datatype": "phoneNumberType",
+       "feld": "Telefon",
+       "kennung": "sh:formular:sva-schaffhausen-bei03-form:feld:5:teil:8",
+       "angabe_kennung": "sh:angabe:eCH-0046:phoneNumber:phoneType"
       }
      ],
+     "emailType": [
+      {
+       "element": "emailAddress",
+       "datatype": "emailAddressType",
+       "feld": "E-Mail",
+       "kennung": "sh:formular:sva-schaffhausen-bei03-form:feld:5:teil:9",
+       "angabe_kennung": "sh:angabe:eCH-0046:emailAddress:emailType"
+      }
+     ]
+    },
+    "eCH-0011": {
      "personType": [
       {
        "element": "nationalityData",
@@ -18614,26 +18619,6 @@
        "feld": "Zustelladresse",
        "kennung": "sh:formular:sva-schaffhausen-bei03-form:feld:10",
        "angabe_kennung": "sh:angabe:eCH-0011:contactAddress:contactDataType"
-      }
-     ]
-    },
-    "eCH-0046": {
-     "phoneType": [
-      {
-       "element": "phoneNumber",
-       "datatype": "phoneNumberType",
-       "feld": "Telefon",
-       "kennung": "sh:formular:sva-schaffhausen-bei03-form:feld:5:teil:8",
-       "angabe_kennung": "sh:angabe:eCH-0046:phoneNumber:phoneType"
-      }
-     ],
-     "emailType": [
-      {
-       "element": "emailAddress",
-       "datatype": "emailAddressType",
-       "feld": "E-Mail",
-       "kennung": "sh:formular:sva-schaffhausen-bei03-form:feld:5:teil:9",
-       "angabe_kennung": "sh:angabe:eCH-0046:emailAddress:emailType"
       }
      ]
     },
@@ -18722,6 +18707,11 @@
    },
    "ohne_standard": [
     {
+     "feld": "Zivilrechtlicher Wohnsitz in der Schweiz seit",
+     "kennung": "sh:formular:sva-schaffhausen-bei03-form:feld:5:teil:7",
+     "format": ""
+    },
+    {
      "feld": "Berufsverband",
      "kennung": "sh:formular:sva-schaffhausen-bei03-form:feld:16",
      "format": ""
@@ -18739,7 +18729,7 @@
    "titel": "Anmeldung für Hausdienstarbeitgebende (HD)",
    "dienststelle": "SVA Schaffhausen",
    "exchange_ready": "teilweise",
-   "abdeckung_pct": 85,
+   "abdeckung_pct": 81,
    "ech": {
     "eCH-0044": {
      "personIdentificationLightType": [
@@ -18830,15 +18820,6 @@
      ]
     },
     "eCH-0011": {
-     "otherResidenceType": [
-      {
-       "element": "arrivalDate",
-       "datatype": "generalDateType",
-       "feld": "Zivilrechtlicher Wohnsitz in der Schweiz seit",
-       "kennung": "sh:formular:sva-schaffhausen-bei04-form:feld:3",
-       "angabe_kennung": "sh:angabe:eCH-0011:arrivalDate:otherResidenceType"
-      }
-     ],
      "maritalDataRestrictedDivorceType": [
       {
        "element": "maritalStatus",
@@ -18955,6 +18936,11 @@
    },
    "ohne_standard": [
     {
+     "feld": "Zivilrechtlicher Wohnsitz in der Schweiz seit",
+     "kennung": "sh:formular:sva-schaffhausen-bei04-form:feld:3",
+     "format": "TT.MM.JJJJ"
+    },
+    {
      "feld": "Haben alle Mitarbeitende eine AHV-Nummer?",
      "kennung": "sh:formular:sva-schaffhausen-bei04-form:feld:12",
      "format": ""
@@ -18982,7 +18968,7 @@
    "titel": "Anmeldung für Nichterwerbstätige (NE)",
    "dienststelle": "SVA Schaffhausen",
    "exchange_ready": "teilweise",
-   "abdeckung_pct": 87,
+   "abdeckung_pct": 84,
    "ech": {
     "eCH-0044": {
      "personIdentificationLightType": [
@@ -19098,56 +19084,6 @@
       }
      ]
     },
-    "eCH-0011": {
-     "otherResidenceType": [
-      {
-       "element": "arrivalDate",
-       "datatype": "generalDateType",
-       "feld": "Zivilrechtlicher Wohnsitz in der Schweiz seit",
-       "kennung": "sh:formular:sva-schaffhausen-bei05-form:feld:1:teil:7",
-       "angabe_kennung": "sh:angabe:eCH-0011:arrivalDate:otherResidenceType"
-      },
-      {
-       "element": "arrivalDate",
-       "datatype": "generalDateType",
-       "feld": "Zivilrechtlicher Wohnsitz in der Schweiz seit",
-       "kennung": "sh:formular:sva-schaffhausen-bei05-form:feld:4:teil:6",
-       "angabe_kennung": "sh:angabe:eCH-0011:arrivalDate:otherResidenceType"
-      }
-     ],
-     "personType": [
-      {
-       "element": "nationalityData",
-       "datatype": "nationalityDataType",
-       "feld": "Nationalität",
-       "kennung": "sh:formular:sva-schaffhausen-bei05-form:feld:1:teil:10",
-       "angabe_kennung": "sh:angabe:eCH-0011:nationalityData:personType"
-      },
-      {
-       "element": "nationalityData",
-       "datatype": "nationalityDataType",
-       "feld": "Nationalität",
-       "kennung": "sh:formular:sva-schaffhausen-bei05-form:feld:4:teil:9",
-       "angabe_kennung": "sh:angabe:eCH-0011:nationalityData:personType"
-      }
-     ],
-     "maritalDataRestrictedDivorceType": [
-      {
-       "element": "maritalStatus",
-       "datatype": null,
-       "feld": "Zivilstand GesuchstellerIn",
-       "kennung": "sh:formular:sva-schaffhausen-bei05-form:feld:2",
-       "angabe_kennung": "sh:angabe:eCH-0011:maritalStatus:maritalDataRestrictedDivorceType"
-      },
-      {
-       "element": "dateOfMaritalStatus",
-       "datatype": "generalDateType",
-       "feld": "Zivilstand seit",
-       "kennung": "sh:formular:sva-schaffhausen-bei05-form:feld:4:teil:10",
-       "angabe_kennung": "sh:angabe:eCH-0011:dateOfMaritalStatus:maritalDataRestrictedDivorceType"
-      }
-     ]
-    },
     "eCH-0046": {
      "phoneType": [
       {
@@ -19179,6 +19115,40 @@
        "feld": "E-Mail",
        "kennung": "sh:formular:sva-schaffhausen-bei05-form:feld:4:teil:8",
        "angabe_kennung": "sh:angabe:eCH-0046:emailAddress:emailType"
+      }
+     ]
+    },
+    "eCH-0011": {
+     "personType": [
+      {
+       "element": "nationalityData",
+       "datatype": "nationalityDataType",
+       "feld": "Nationalität",
+       "kennung": "sh:formular:sva-schaffhausen-bei05-form:feld:1:teil:10",
+       "angabe_kennung": "sh:angabe:eCH-0011:nationalityData:personType"
+      },
+      {
+       "element": "nationalityData",
+       "datatype": "nationalityDataType",
+       "feld": "Nationalität",
+       "kennung": "sh:formular:sva-schaffhausen-bei05-form:feld:4:teil:9",
+       "angabe_kennung": "sh:angabe:eCH-0011:nationalityData:personType"
+      }
+     ],
+     "maritalDataRestrictedDivorceType": [
+      {
+       "element": "maritalStatus",
+       "datatype": null,
+       "feld": "Zivilstand GesuchstellerIn",
+       "kennung": "sh:formular:sva-schaffhausen-bei05-form:feld:2",
+       "angabe_kennung": "sh:angabe:eCH-0011:maritalStatus:maritalDataRestrictedDivorceType"
+      },
+      {
+       "element": "dateOfMaritalStatus",
+       "datatype": "generalDateType",
+       "feld": "Zivilstand seit",
+       "kennung": "sh:formular:sva-schaffhausen-bei05-form:feld:4:teil:10",
+       "angabe_kennung": "sh:angabe:eCH-0011:dateOfMaritalStatus:maritalDataRestrictedDivorceType"
       }
      ]
     },
@@ -19473,6 +19443,16 @@
     }
    },
    "ohne_standard": [
+    {
+     "feld": "Zivilrechtlicher Wohnsitz in der Schweiz seit",
+     "kennung": "sh:formular:sva-schaffhausen-bei05-form:feld:1:teil:7",
+     "format": ""
+    },
+    {
+     "feld": "Zivilrechtlicher Wohnsitz in der Schweiz seit",
+     "kennung": "sh:formular:sva-schaffhausen-bei05-form:feld:4:teil:6",
+     "format": ""
+    },
     {
      "feld": "Grund für die NE-Abklärung",
      "kennung": "sh:formular:sva-schaffhausen-bei05-form:feld:10",
@@ -20967,7 +20947,7 @@
    "titel": "Anmeldung für Hauswartarbeitgeber",
    "dienststelle": "SVA Schaffhausen",
    "exchange_ready": "teilweise",
-   "abdeckung_pct": 88,
+   "abdeckung_pct": 83,
    "ech": {
     "eCH-0010": {
      "addressInformationType": [
@@ -21074,15 +21054,6 @@
        "angabe_kennung": "sh:angabe:eCH-0011:nationalityData:personType"
       }
      ],
-     "otherResidenceType": [
-      {
-       "element": "arrivalDate",
-       "datatype": "generalDateType",
-       "feld": "Zivilrechtlicher Wohnsitz in der Schweiz seit",
-       "kennung": "sh:formular:sva-schaffhausen-bei16-form:feld:4",
-       "angabe_kennung": "sh:angabe:eCH-0011:arrivalDate:otherResidenceType"
-      }
-     ],
      "maritalDataRestrictedDivorceType": [
       {
        "element": "dateOfMaritalStatus",
@@ -21166,6 +21137,11 @@
     }
    },
    "ohne_standard": [
+    {
+     "feld": "Zivilrechtlicher Wohnsitz in der Schweiz seit",
+     "kennung": "sh:formular:sva-schaffhausen-bei16-form:feld:4",
+     "format": ""
+    },
     {
      "feld": "Alle Mitarbeitenden mit AHV-Ausweis",
      "kennung": "sh:formular:sva-schaffhausen-bei16-form:feld:10",
@@ -25465,7 +25441,7 @@
    "titel": "Antrag für Erwerbsersatzleistungen für alleinerziehende Eltern",
    "dienststelle": "SVA Schaffhausen",
    "exchange_ready": "teilweise",
-   "abdeckung_pct": 91,
+   "abdeckung_pct": 88,
    "ech": {
     "eCH-0044": {
      "personIdentificationLightType": [
@@ -25652,22 +25628,6 @@
      ]
     },
     "eCH-0011": {
-     "otherResidenceType": [
-      {
-       "element": "arrivalDate",
-       "datatype": "generalDateType",
-       "feld": "Zivilrechtlicher Wohnsitz in der Schweiz seit",
-       "kennung": "sh:formular:sva-schaffhausen-zul07-form:feld:2",
-       "angabe_kennung": "sh:angabe:eCH-0011:arrivalDate:otherResidenceType"
-      },
-      {
-       "element": "arrivalDate",
-       "datatype": "generalDateType",
-       "feld": "Zivilrechtlicher Wohnsitz im Kanton Schaffhausen seit",
-       "kennung": "sh:formular:sva-schaffhausen-zul07-form:feld:3",
-       "angabe_kennung": "sh:angabe:eCH-0011:arrivalDate:otherResidenceType"
-      }
-     ],
      "maritalDataRestrictedDivorceType": [
       {
        "element": "maritalStatus",
@@ -26012,6 +25972,16 @@
     }
    },
    "ohne_standard": [
+    {
+     "feld": "Zivilrechtlicher Wohnsitz in der Schweiz seit",
+     "kennung": "sh:formular:sva-schaffhausen-zul07-form:feld:2",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Zivilrechtlicher Wohnsitz im Kanton Schaffhausen seit",
+     "kennung": "sh:formular:sva-schaffhausen-zul07-form:feld:3",
+     "format": "TT.MM.JJJJ"
+    },
     {
      "feld": "Anzahl Personen über 18 Jahre im Haushalt",
      "kennung": "sh:formular:sva-schaffhausen-zul07-form:feld:7",
@@ -27921,7 +27891,7 @@
    "titel": "Familienzulagen Anmeldung für Differenzzahlungen",
    "dienststelle": "SVA Schaffhausen",
    "exchange_ready": "teilweise",
-   "abdeckung_pct": 97,
+   "abdeckung_pct": 93,
    "ech": {
     "eCH-0044": {
      "personIdentificationLightType": [
@@ -28297,29 +28267,6 @@
        "kennung": "sh:formular:sva-schaffhausen-zul16-form:feld:4",
        "angabe_kennung": "sh:angabe:eCH-0011:nationalityData:personType"
       }
-     ],
-     "mainResidenceType": [
-      {
-       "element": "mainResidence",
-       "datatype": "residenceRegisterDataType",
-       "feld": "Wohnsitz Kind 1",
-       "kennung": "sh:formular:sva-schaffhausen-zul16-form:feld:12",
-       "angabe_kennung": "sh:angabe:eCH-0011:mainResidence:mainResidenceType"
-      },
-      {
-       "element": "mainResidence",
-       "datatype": "residenceRegisterDataType",
-       "feld": "Wohnsitz Kind 2",
-       "kennung": "sh:formular:sva-schaffhausen-zul16-form:feld:15",
-       "angabe_kennung": "sh:angabe:eCH-0011:mainResidence:mainResidenceType"
-      },
-      {
-       "element": "mainResidence",
-       "datatype": "residenceRegisterDataType",
-       "feld": "Wohnsitz Kind 3",
-       "kennung": "sh:formular:sva-schaffhausen-zul16-form:feld:18",
-       "angabe_kennung": "sh:angabe:eCH-0011:mainResidence:mainResidenceType"
-      }
      ]
     },
     "eCH-0006": {
@@ -28488,6 +28435,21 @@
      "feld": "Ab wann beantragen Sie die Differenzzahlungen?",
      "kennung": "sh:formular:sva-schaffhausen-zul16-form:feld:7",
      "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Wohnsitz Kind 1",
+     "kennung": "sh:formular:sva-schaffhausen-zul16-form:feld:12",
+     "format": ""
+    },
+    {
+     "feld": "Wohnsitz Kind 2",
+     "kennung": "sh:formular:sva-schaffhausen-zul16-form:feld:15",
+     "format": ""
+    },
+    {
+     "feld": "Wohnsitz Kind 3",
+     "kennung": "sh:formular:sva-schaffhausen-zul16-form:feld:18",
+     "format": ""
     },
     {
      "feld": "Beilagen",
@@ -28789,13 +28751,6 @@
        "feld": "Datum",
        "kennung": "sh:formular:sva-schaffhausen-zul19-form:feld:11:teil:1",
        "angabe_kennung": "sh:angabe:eCH-0011:departureDate:otherResidenceType"
-      },
-      {
-       "element": "departureDate",
-       "datatype": "generalDateType",
-       "feld": "Datum",
-       "kennung": "sh:formular:sva-schaffhausen-zul19-form:feld:15:teil:2",
-       "angabe_kennung": "sh:angabe:eCH-0011:departureDate:otherResidenceType"
       }
      ],
      "destinationType": [
@@ -28814,6 +28769,13 @@
        "feld": "Zivilstand neu",
        "kennung": "sh:formular:sva-schaffhausen-zul19-form:feld:15:teil:1",
        "angabe_kennung": "sh:angabe:eCH-0011:maritalStatus:maritalDataRestrictedDivorceType"
+      },
+      {
+       "element": "dateOfMaritalStatus",
+       "datatype": "generalDateType",
+       "feld": "Datum",
+       "kennung": "sh:formular:sva-schaffhausen-zul19-form:feld:15:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0011:dateOfMaritalStatus:maritalDataRestrictedDivorceType"
       }
      ]
     },
@@ -29705,22 +29667,15 @@
    "formular_kennung": "sh:formular:sozialamt-fragebogen-zur-kl-rung-der-rtlichen-zu-form",
    "titel": "Fragebogen zur Klärung der örtlichen Zuständigkeit bei unklaren Zuständigkeitsfällen",
    "dienststelle": "Sozialamt",
-   "exchange_ready": "teilweise",
-   "abdeckung_pct": 50,
-   "ech": {
-    "eCH-0011": {
-     "dwellingAddressType": [
-      {
-       "element": "typeOfHousehold",
-       "datatype": "typeOfHouseholdType",
-       "feld": "Wohnumstände / Unterkunft in Privathaushalt",
-       "kennung": "sh:formular:sozialamt-fragebogen-zur-kl-rung-der-rtlichen-zu-form:feld:1",
-       "angabe_kennung": "sh:angabe:eCH-0011:typeOfHousehold:dwellingAddressType"
-      }
-     ]
-    }
-   },
+   "exchange_ready": "nein",
+   "abdeckung_pct": 0,
+   "ech": {},
    "ohne_standard": [
+    {
+     "feld": "Wohnumstände / Unterkunft in Privathaushalt",
+     "kennung": "sh:formular:sozialamt-fragebogen-zur-kl-rung-der-rtlichen-zu-form:feld:1",
+     "format": "Freitext"
+    },
     {
      "feld": "Beilage",
      "kennung": "sh:formular:sozialamt-fragebogen-zur-kl-rung-der-rtlichen-zu-form:feld:2",
@@ -32617,7 +32572,7 @@
    "titel": "Förderbeiträge (Vergabe 2026) – Anmeldeblatt",
    "dienststelle": "Fachstelle Kultur",
    "exchange_ready": "teilweise",
-   "abdeckung_pct": 75,
+   "abdeckung_pct": 69,
    "ech": {
     "eCH-0044": {
      "personIdentificationLightType": [
@@ -32678,15 +32633,6 @@
        "angabe_kennung": "sh:angabe:eCH-0011:contactAddress:contactDataType"
       }
      ],
-     "otherResidenceType": [
-      {
-       "element": "arrivalDate",
-       "datatype": "generalDateType",
-       "feld": "Im Kanton Schaffhausen wohnhaft seit (Jahr) oder Atelier im Kanton Schaffhausen seit (Jahr)",
-       "kennung": "sh:formular:fachstelle-kultur-formular-f-rderbeitr-ge-2026-form:feld:4:teil:1",
-       "angabe_kennung": "sh:angabe:eCH-0011:arrivalDate:otherResidenceType"
-      }
-     ],
      "personType": [
       {
        "element": "placeOfOrigin",
@@ -32739,6 +32685,11 @@
     }
    },
    "ohne_standard": [
+    {
+     "feld": "Im Kanton Schaffhausen wohnhaft seit (Jahr) oder Atelier im Kanton Schaffhausen seit (Jahr)",
+     "kennung": "sh:formular:fachstelle-kultur-formular-f-rderbeitr-ge-2026-form:feld:4:teil:1",
+     "format": ""
+    },
     {
      "feld": "Lebenslauf",
      "kennung": "sh:formular:fachstelle-kultur-formular-f-rderbeitr-ge-2026-form:feld:5",
@@ -56937,7 +56888,7 @@
    "titel": "Gesuch um erleichterte Einbürgerung Art. 21 Abs. 1 BüG",
    "dienststelle": "Amt für Justiz und Gemeinden",
    "exchange_ready": "teilweise",
-   "abdeckung_pct": 91,
+   "abdeckung_pct": 87,
    "ech": {
     "eCH-0135": {
      "placeOfOriginType": [
@@ -57153,20 +57104,6 @@
        "feld": "Wohnadresse",
        "kennung": "sh:formular:amt-fuer-justiz-und-gemeinden-gesuchsformular-ar-form:feld:3:teil:8",
        "angabe_kennung": "sh:angabe:eCH-0011:dwellingAddress:otherResidenceType"
-      },
-      {
-       "element": "arrivalDate",
-       "datatype": "generalDateType",
-       "feld": "Dauer (jeweils von wann bis wann)",
-       "kennung": "sh:formular:amt-fuer-justiz-und-gemeinden-gesuchsformular-ar-form:feld:10:teil:2",
-       "angabe_kennung": "sh:angabe:eCH-0011:arrivalDate:otherResidenceType"
-      },
-      {
-       "element": "arrivalDate",
-       "datatype": "generalDateType",
-       "feld": "Dauer (jeweils von wann bis wann)",
-       "kennung": "sh:formular:amt-fuer-justiz-und-gemeinden-gesuchsformular-ar-form:feld:11:teil:2",
-       "angabe_kennung": "sh:angabe:eCH-0011:arrivalDate:otherResidenceType"
       }
      ],
      "swissMunicipalityWithoutBFS": [
@@ -57298,6 +57235,16 @@
      "feld": "Anderes (bitte präzisieren)",
      "kennung": "sh:formular:amt-fuer-justiz-und-gemeinden-gesuchsformular-ar-form:feld:9:teil:3",
      "format": ""
+    },
+    {
+     "feld": "Dauer (jeweils von wann bis wann)",
+     "kennung": "sh:formular:amt-fuer-justiz-und-gemeinden-gesuchsformular-ar-form:feld:10:teil:2",
+     "format": "wiederholbare Tabellenzeilen"
+    },
+    {
+     "feld": "Dauer (jeweils von wann bis wann)",
+     "kennung": "sh:formular:amt-fuer-justiz-und-gemeinden-gesuchsformular-ar-form:feld:11:teil:2",
+     "format": "wiederholbare Tabellenzeilen"
     },
     {
      "feld": "Anderes (bitte präzisieren)",
@@ -78866,7 +78813,7 @@
    "titel": "Gesuch um Adoption meines minderjährigen Stiefkindes",
    "dienststelle": "Amt für Justiz und Gemeinden",
    "exchange_ready": "teilweise",
-   "abdeckung_pct": 96,
+   "abdeckung_pct": 88,
    "ech": {
     "eCH-0044": {
      "personIdentificationLightType": [
@@ -78969,22 +78916,6 @@
        "kennung": "sh:formular:amt-fuer-justiz-und-gemeinden-gesuch-um-adoption-form-2:feld:4",
        "angabe_kennung": "sh:angabe:eCH-0011:dateOfMaritalStatus:maritalDataRestrictedDivorceType"
       }
-     ],
-     "dwellingAddressType": [
-      {
-       "element": "movingDate",
-       "datatype": "generalDateType",
-       "feld": "Gemeinsamer Haushalt der Ehegatten bzw. Partnerinnen/Partner seit",
-       "kennung": "sh:formular:amt-fuer-justiz-und-gemeinden-gesuch-um-adoption-form-2:feld:5",
-       "angabe_kennung": "sh:angabe:eCH-0011:movingDate:dwellingAddressType"
-      },
-      {
-       "element": "movingDate",
-       "datatype": "generalDateType",
-       "feld": "Gemeinsamer Haushalt mit dem Kind seit",
-       "kennung": "sh:formular:amt-fuer-justiz-und-gemeinden-gesuch-um-adoption-form-2:feld:6",
-       "angabe_kennung": "sh:angabe:eCH-0011:movingDate:dwellingAddressType"
-      }
      ]
     },
     "eCH-0021": {
@@ -79082,6 +79013,16 @@
    },
    "ohne_standard": [
     {
+     "feld": "Gemeinsamer Haushalt der Ehegatten bzw. Partnerinnen/Partner seit",
+     "kennung": "sh:formular:amt-fuer-justiz-und-gemeinden-gesuch-um-adoption-form-2:feld:5",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Gemeinsamer Haushalt mit dem Kind seit",
+     "kennung": "sh:formular:amt-fuer-justiz-und-gemeinden-gesuch-um-adoption-form-2:feld:6",
+     "format": "TT.MM.JJJJ"
+    },
+    {
      "feld": "Kenntnisnahme der Rechtswirkungen der Adoption",
      "kennung": "sh:formular:amt-fuer-justiz-und-gemeinden-gesuch-um-adoption-form-2:feld:10",
      "format": ""
@@ -79094,7 +79035,7 @@
    "titel": "Gesuch um gemeinschaftliche Adoption unseres minderjährigen Pflegekindes",
    "dienststelle": "Amt für Justiz und Gemeinden",
    "exchange_ready": "teilweise",
-   "abdeckung_pct": 97,
+   "abdeckung_pct": 91,
    "ech": {
     "eCH-0044": {
      "personIdentificationLightType": [
@@ -79232,22 +79173,6 @@
        "kennung": "sh:formular:amt-fuer-justiz-und-gemeinden-gesuch-um-gemeinsc-form-2:feld:7",
        "angabe_kennung": "sh:angabe:eCH-0011:dateOfMaritalStatus:maritalDataRestrictedDivorceType"
       }
-     ],
-     "dwellingAddressType": [
-      {
-       "element": "movingDate",
-       "datatype": "generalDateType",
-       "feld": "Gemeinsamer Haushalt der Ehegatten seit",
-       "kennung": "sh:formular:amt-fuer-justiz-und-gemeinden-gesuch-um-gemeinsc-form-2:feld:8",
-       "angabe_kennung": "sh:angabe:eCH-0011:movingDate:dwellingAddressType"
-      },
-      {
-       "element": "movingDate",
-       "datatype": "generalDateType",
-       "feld": "Gemeinsamer Haushalt mit dem Kind seit",
-       "kennung": "sh:formular:amt-fuer-justiz-und-gemeinden-gesuch-um-gemeinsc-form-2:feld:9",
-       "angabe_kennung": "sh:angabe:eCH-0011:movingDate:dwellingAddressType"
-      }
      ]
     },
     "eCH-0021": {
@@ -79362,6 +79287,16 @@
     }
    },
    "ohne_standard": [
+    {
+     "feld": "Gemeinsamer Haushalt der Ehegatten seit",
+     "kennung": "sh:formular:amt-fuer-justiz-und-gemeinden-gesuch-um-gemeinsc-form-2:feld:8",
+     "format": "TT.MM.JJJJ"
+    },
+    {
+     "feld": "Gemeinsamer Haushalt mit dem Kind seit",
+     "kennung": "sh:formular:amt-fuer-justiz-und-gemeinden-gesuch-um-gemeinsc-form-2:feld:9",
+     "format": "TT.MM.JJJJ"
+    },
     {
      "feld": "Kenntnisnahme der Rechtswirkungen der Adoption",
      "kennung": "sh:formular:amt-fuer-justiz-und-gemeinden-gesuch-um-gemeinsc-form-2:feld:12",
@@ -81567,7 +81502,7 @@
    "titel": "Gesuch zur Erteilung einer Aufnahmebewilligung für ein Pflegekind",
    "dienststelle": "Sozialamt",
    "exchange_ready": "teilweise",
-   "abdeckung_pct": 86,
+   "abdeckung_pct": 83,
    "ech": {
     "eCH-0021": {
      "nameOfParentType": [
@@ -81924,13 +81859,6 @@
      ],
      "personType": [
       {
-       "element": "religionData",
-       "datatype": "religionDataType",
-       "feld": "Praktizierend, wenn ja in welchem Umfang",
-       "kennung": "sh:formular:sozialamt-pffa-gesuch-aufnahmebewilligung-pflege-form:feld:4",
-       "angabe_kennung": "sh:angabe:eCH-0011:religionData:personType"
-      },
-      {
        "element": "languageOfCorrespondance",
        "datatype": "languageType",
        "feld": "Sprache",
@@ -81952,13 +81880,6 @@
        "feld": "wohnhaft",
        "kennung": "sh:formular:sozialamt-pffa-gesuch-aufnahmebewilligung-pflege-form:feld:16:teil:2",
        "angabe_kennung": "sh:angabe:eCH-0011:dwellingAddress:otherResidenceType"
-      },
-      {
-       "element": "arrivalDate",
-       "datatype": "generalDateType",
-       "feld": "Von / bis",
-       "kennung": "sh:formular:sozialamt-pffa-gesuch-aufnahmebewilligung-pflege-form:feld:29:teil:2",
-       "angabe_kennung": "sh:angabe:eCH-0011:arrivalDate:otherResidenceType"
       }
      ],
      "mainResidenceType": [
@@ -82053,6 +81974,11 @@
    },
    "ohne_standard": [
     {
+     "feld": "Praktizierend, wenn ja in welchem Umfang",
+     "kennung": "sh:formular:sozialamt-pffa-gesuch-aufnahmebewilligung-pflege-form:feld:4",
+     "format": ""
+    },
+    {
      "feld": "Schule / Ausbildung",
      "kennung": "sh:formular:sozialamt-pffa-gesuch-aufnahmebewilligung-pflege-form:feld:6",
      "format": ""
@@ -82095,6 +82021,11 @@
     {
      "feld": "Pflegevertrag abgeschlossen",
      "kennung": "sh:formular:sozialamt-pffa-gesuch-aufnahmebewilligung-pflege-form:feld:28",
+     "format": ""
+    },
+    {
+     "feld": "Von / bis",
+     "kennung": "sh:formular:sozialamt-pffa-gesuch-aufnahmebewilligung-pflege-form:feld:29:teil:2",
      "format": ""
     },
     {
@@ -90076,7 +90007,7 @@
    "titel": "Verlängerungsgesuch Ausländerausweis",
    "dienststelle": "Migrationsamt und Passbüro",
    "exchange_ready": "teilweise",
-   "abdeckung_pct": 52,
+   "abdeckung_pct": 50,
    "ech": {
     "eCH-0044": {
      "personIdentificationLightType": [
@@ -90127,15 +90058,6 @@
        "feld": "Adresse",
        "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:3",
        "angabe_kennung": "sh:angabe:eCH-0010:addressInformation:mailAddressType"
-      }
-     ],
-     "countryType": [
-      {
-       "element": "personMailAddress",
-       "datatype": "personMailAddressType",
-       "feld": "Schüler(in)",
-       "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:22",
-       "angabe_kennung": "sh:angabe:eCH-0010:personMailAddress:countryType"
       }
      ]
     },
@@ -90288,6 +90210,11 @@
     {
      "feld": "Anstellungsdauer unbefristet",
      "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:19",
+     "format": ""
+    },
+    {
+     "feld": "Schüler(in)",
+     "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:22",
      "format": ""
     },
     {

@@ -1,0 +1,1097 @@
+{
+ "hinweis": "Stichprobe zur Parteien-Schicht (Stufe B2, aus dem Formulartext beurteilt): je Datenpunkt das Ergebnis der Prüfung am Text des Formulars (PDF-Textschicht, Word/Excel-Inhalt oder DVSH-Formulardefinition). scripts/export_json.py liest die Datei, vergleicht jeden Punkt mit der heutigen Zuordnung und zählt das Ergebnis (data_export.json: datenmodell.parteien.methode.stichprobe). Nie von Hand ändern, ohne die Prüfung zu wiederholen.",
+ "stand": "2026-10-05",
+ "ziehung": {
+  "grundgesamtheit": "alle Datenpunkte mit Herkunft Stufe B2 (aus dem Formulartext beurteilt)",
+  "startwert": 20261005,
+  "verfahren": "Zufallsauswahl mit festem Startwert über die Datenpunkte in der Reihenfolge (Datenfeld, Teilfeld), getrennt in drei Schichten",
+  "schichten": {
+   "gesuchsteller": {
+    "gezogen": 40,
+    "bestand": 3377,
+    "text": "zugeordnet zur Gesuchsteller/in"
+   },
+   "andere": {
+    "gezogen": 30,
+    "bestand": 5968,
+    "text": "zugeordnet zu einer anderen Partei"
+   },
+   "unklar": {
+    "gezogen": 30,
+    "bestand": 2315,
+    "text": "«unklar» mit Grund"
+   }
+  }
+ },
+ "urteile": {
+  "richtig": "die Zuordnung stimmt mit dem Formulartext überein",
+  "falsch": "die Zuordnung widerspricht dem Formulartext",
+  "klaerbar": "«unklar», obwohl der Formulartext die Partei nennt",
+  "grenzfall": "«unklar»; eine Partei oder ein Gegenstand ist denkbar, der Text entscheidet es nicht",
+  "offen": "«unklar» zu Recht: der Formulartext sagt nicht, wessen Angabe es ist"
+ },
+ "punkte": [
+  {
+   "form_id": 307,
+   "data_field_id": 2906,
+   "teil": "",
+   "bezeichnung": "Statuten",
+   "schicht": "unklar",
+   "urteil": "offen",
+   "rollen": []
+  },
+  {
+   "form_id": 515,
+   "data_field_id": 6126,
+   "teil": "",
+   "bezeichnung": "Gemeinde",
+   "schicht": "unklar",
+   "urteil": "grenzfall",
+   "rollen": null,
+   "beleg": "Gemeinde der Aufgrabungsstelle: ein Gegenstand «Aufgrabungsstelle» wäre möglich, das Formular führt ihn nicht."
+  },
+  {
+   "form_id": 332,
+   "data_field_id": 3106,
+   "teil": "november",
+   "bezeichnung": "Anzahl Waschungen pro Monat nach Kultur › November",
+   "schicht": "unklar",
+   "urteil": "grenzfall",
+   "rollen": null,
+   "beleg": "Steht unter «Berechnung der Anlage»: der Gegenstand «Anlage» ist möglich."
+  },
+  {
+   "form_id": 373,
+   "data_field_id": 4378,
+   "teil": "sonstige zusatzdokumente freitext",
+   "bezeichnung": "Zusatzdokumente › sonstige Zusatzdokumente (Freitext)",
+   "schicht": "unklar",
+   "urteil": "offen",
+   "rollen": []
+  },
+  {
+   "form_id": 209,
+   "data_field_id": 1660,
+   "teil": "telefonnummer",
+   "bezeichnung": "Referenzen › Telefonnummer",
+   "schicht": "unklar",
+   "urteil": "klaerbar",
+   "rollen": [
+    "dritte"
+   ],
+   "beleg": "Abschnitt «Referenzen» mit den Spalten «Name Vorname Telefonnummer Verhältnis priv. / berufl.»: die Nummer ist die der genannten Referenzperson. Die Zuordnung hielt nur das als «gemischt» beurteilte Subjekt des Felds auf."
+  },
+  {
+   "form_id": 156,
+   "data_field_id": 1000,
+   "teil": "",
+   "bezeichnung": "Weitere Unterlagen oder Angaben zu Medikamentenversuchen",
+   "schicht": "unklar",
+   "urteil": "offen",
+   "rollen": []
+  },
+  {
+   "form_id": 528,
+   "data_field_id": 6307,
+   "teil": "",
+   "bezeichnung": "Ist die Zustelladresse gleich der des Gesuchstellers/der Gesuchstellerin?",
+   "schicht": "unklar",
+   "urteil": "grenzfall",
+   "rollen": null,
+   "beleg": "Ja/Nein zur Zustelladresse: eine Wahl der einreichenden Person oder eine Angabe zu einer anderen Adresse."
+  },
+  {
+   "form_id": 493,
+   "data_field_id": 5762,
+   "teil": "kundigung auf den",
+   "bezeichnung": "Beendigung der Anstellung › Kündigung auf den",
+   "schicht": "unklar",
+   "urteil": "offen",
+   "rollen": []
+  },
+  {
+   "form_id": 120,
+   "data_field_id": 393,
+   "teil": "e mail",
+   "bezeichnung": "Personalien Kontaktperson › E-Mail",
+   "schicht": "unklar",
+   "urteil": "klaerbar",
+   "rollen": [
+    "kontaktperson"
+   ],
+   "beleg": "Block «Personalien / Kontaktperson / Telefon-Nr. / E-Mail» (Feldnamen Kontaktperson, TelefonNr, EMail): die E-Mail-Adresse der Kontaktperson. Die Rolle Kontaktperson (natürliche Person) widersprach dem als «gemischt» beurteilten Subjekt."
+  },
+  {
+   "form_id": 153,
+   "data_field_id": 978,
+   "teil": "verbunden mit hausratversicherung",
+   "bezeichnung": "Weitere Versicherung › Verbunden mit Hausratversicherung",
+   "schicht": "unklar",
+   "urteil": "offen",
+   "rollen": []
+  },
+  {
+   "form_id": 18,
+   "data_field_id": 1184,
+   "teil": "kursort",
+   "bezeichnung": "Angaben zum Kurs › Kursort",
+   "schicht": "unklar",
+   "urteil": "offen",
+   "rollen": []
+  },
+  {
+   "form_id": 316,
+   "data_field_id": 3013,
+   "teil": "telefon",
+   "bezeichnung": "Obligatorische Kontaktangaben › Telefon",
+   "schicht": "unklar",
+   "urteil": "offen",
+   "rollen": []
+  },
+  {
+   "form_id": 504,
+   "data_field_id": 5918,
+   "teil": "",
+   "bezeichnung": "Vorname",
+   "schicht": "unklar",
+   "urteil": "offen",
+   "rollen": []
+  },
+  {
+   "form_id": 311,
+   "data_field_id": 2980,
+   "teil": "",
+   "bezeichnung": "Belege",
+   "schicht": "unklar",
+   "urteil": "offen",
+   "rollen": []
+  },
+  {
+   "form_id": 412,
+   "data_field_id": 4861,
+   "teil": "",
+   "bezeichnung": "Beilagen",
+   "schicht": "unklar",
+   "urteil": "offen",
+   "rollen": []
+  },
+  {
+   "form_id": 388,
+   "data_field_id": 4559,
+   "teil": "vorname",
+   "bezeichnung": "Anmeldende Logopädin › Vorname",
+   "schicht": "unklar",
+   "urteil": "klaerbar",
+   "rollen": [
+    "gesuchsteller",
+    "fachperson"
+   ],
+   "beleg": "Überschrift «Anmeldende Logopädin» mit Name, Vorname, Adresse, Telefon und E-Mail (Feldnamen therapeutin_name, therapeutin_vorname …): die Person, die anmeldet und unterschreibt. Das Formular nennt ausser dem Kind keine weitere Partei."
+  },
+  {
+   "form_id": 175,
+   "data_field_id": 4114,
+   "teil": "",
+   "bezeichnung": "Weitere Bemerkungen",
+   "schicht": "unklar",
+   "urteil": "offen",
+   "rollen": []
+  },
+  {
+   "form_id": 259,
+   "data_field_id": 2316,
+   "teil": "name und adresse des vorbesitzers oder erwerbers kaufpreis",
+   "bezeichnung": "Liegenschaftskäufe/-verkäufe › Name und Adresse des Vorbesitzers oder Erwerbers; Kaufpreis",
+   "schicht": "unklar",
+   "urteil": "grenzfall",
+   "rollen": null,
+   "beleg": "Bündelt Name und Adresse der Gegenpartei mit dem Kaufpreis."
+  },
+  {
+   "form_id": 115,
+   "data_field_id": 245,
+   "teil": "",
+   "bezeichnung": "Gesellschaftsform",
+   "schicht": "unklar",
+   "urteil": "offen",
+   "rollen": []
+  },
+  {
+   "form_id": 204,
+   "data_field_id": 1576,
+   "teil": "",
+   "bezeichnung": "Besondere Bemerkungen (Ausbildungszentrum)",
+   "schicht": "unklar",
+   "urteil": "offen",
+   "rollen": []
+  },
+  {
+   "form_id": 96,
+   "data_field_id": 4047,
+   "teil": "name vorname",
+   "bezeichnung": "Personalien › Name, Vorname",
+   "schicht": "unklar",
+   "urteil": "klaerbar",
+   "rollen": [
+    "gesuchsteller"
+   ],
+   "beleg": "«Angaben zur Person / Name, Vorname / Adresse der Institution / Kontaktdaten», «Art der Tätigkeit: Institutionsleitung», «Mit meiner Unterschrift bestätige ich die oben gemachten Angaben»: der Name der erklärenden Person. Die Zuordnung hält das als «gemischt» beurteilte Subjekt des Felds auf."
+  },
+  {
+   "form_id": 376,
+   "data_field_id": 4417,
+   "teil": "",
+   "bezeichnung": "Anzahl Tiere",
+   "schicht": "unklar",
+   "urteil": "offen",
+   "rollen": []
+  },
+  {
+   "form_id": 97,
+   "data_field_id": 4060,
+   "teil": "",
+   "bezeichnung": "Bemerkung je Anwendungsfall",
+   "schicht": "unklar",
+   "urteil": "grenzfall",
+   "rollen": null,
+   "beleg": "Bemerkung in einer Selbstdeklaration mit einer einzigen Partei (der Firma)."
+  },
+  {
+   "form_id": 332,
+   "data_field_id": 3106,
+   "teil": "anzahl waschungen",
+   "bezeichnung": "Anzahl Waschungen pro Monat nach Kultur › Anzahl Waschungen",
+   "schicht": "unklar",
+   "urteil": "grenzfall",
+   "rollen": null,
+   "beleg": "Steht unter «Berechnung der Anlage»: der Gegenstand «Anlage» ist möglich."
+  },
+  {
+   "form_id": 173,
+   "data_field_id": 4101,
+   "teil": "telefon",
+   "bezeichnung": "Kontaktperson bei Fragen › Telefon",
+   "schicht": "unklar",
+   "urteil": "klaerbar",
+   "rollen": [
+    "kontaktperson"
+   ],
+   "beleg": "Formulartext «Kontaktperson bei Fragen (Vorname und Name, Telefon, E-Mail)»: die Telefonnummer der Kontaktperson."
+  },
+  {
+   "form_id": 298,
+   "data_field_id": 2811,
+   "teil": "von",
+   "bezeichnung": "Nachtzeitraum › Von",
+   "schicht": "unklar",
+   "urteil": "offen",
+   "rollen": []
+  },
+  {
+   "form_id": 206,
+   "data_field_id": 1597,
+   "teil": "",
+   "bezeichnung": "Auftrag",
+   "schicht": "unklar",
+   "urteil": "grenzfall",
+   "rollen": null,
+   "beleg": "Der Auftrag des Trupps: eine Angabe zum Einsatz, nicht sicher einer Partei."
+  },
+  {
+   "form_id": 132,
+   "data_field_id": 608,
+   "teil": "betrag 5",
+   "bezeichnung": "Kapitalbezüge Säule 3a - Beträge und Bezugsjahre › Betrag 5",
+   "schicht": "unklar",
+   "urteil": "offen",
+   "rollen": []
+  },
+  {
+   "form_id": 254,
+   "data_field_id": 2241,
+   "teil": "andere ausgaben",
+   "bezeichnung": "Unumgängliche Monatsausgaben › Andere Ausgaben",
+   "schicht": "unklar",
+   "urteil": "offen",
+   "rollen": []
+  },
+  {
+   "form_id": 211,
+   "data_field_id": 1688,
+   "teil": "",
+   "bezeichnung": "Beilagen",
+   "schicht": "unklar",
+   "urteil": "offen",
+   "rollen": []
+  },
+  {
+   "form_id": 231,
+   "data_field_id": 1879,
+   "teil": "bis",
+   "bezeichnung": "Verrechnungszeitraum und Betrag › bis",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 258,
+   "data_field_id": 2280,
+   "teil": "wert jungwein lt",
+   "bezeichnung": "Lagerbestand Jahresende › Wert Jungwein Lt",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 380,
+   "data_field_id": 4463,
+   "teil": "anzahl ex kloster allerheiligen fr 30",
+   "bezeichnung": "Bestellung Publikationen › Anzahl Ex. Kloster Allerheiligen (Fr. 30.-)",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 485,
+   "data_field_id": 5675,
+   "teil": "vorname",
+   "bezeichnung": "Antragstellende Person/en › Vorname",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 511,
+   "data_field_id": 6043,
+   "teil": "",
+   "bezeichnung": "ZEMIS-Nummer",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 84,
+   "data_field_id": 3946,
+   "teil": "",
+   "bezeichnung": "Berufsausübungsbewilligung vorhanden",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 484,
+   "data_field_id": 5662,
+   "teil": "",
+   "bezeichnung": "Schuljahre",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 512,
+   "data_field_id": 6066,
+   "teil": "",
+   "bezeichnung": "Zivilstand",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 71,
+   "data_field_id": 3814,
+   "teil": "geburtsdatum",
+   "bezeichnung": "Personalien der gesuchstellenden Person › Geburtsdatum",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 216,
+   "data_field_id": 1723,
+   "teil": "",
+   "bezeichnung": "Welche Gründe (Strafverfahren)",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 108,
+   "data_field_id": 121,
+   "teil": "",
+   "bezeichnung": "Art der Zulagen",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 505,
+   "data_field_id": 5938,
+   "teil": "",
+   "bezeichnung": "Postleitzahl (Lieferadresse)",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 498,
+   "data_field_id": 5841,
+   "teil": "",
+   "bezeichnung": "Bisheriger Lebensunterhalt",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 179,
+   "data_field_id": 1176,
+   "teil": "plz ort",
+   "bezeichnung": "Personalien › PLZ/Ort",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 84,
+   "data_field_id": 3943,
+   "teil": "strasse",
+   "bezeichnung": "Wohnadresse (Privatadresse) › Strasse",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 44,
+   "data_field_id": 3480,
+   "teil": "",
+   "bezeichnung": "Neues Gesamtgewicht",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 407,
+   "data_field_id": 4783,
+   "teil": "adresse",
+   "bezeichnung": "Antragssteller › Adresse",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 147,
+   "data_field_id": 890,
+   "teil": "versicherten nr",
+   "bezeichnung": "Personalien GesuchstellerIn › Versicherten-Nr.",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 331,
+   "data_field_id": 3080,
+   "teil": "name",
+   "bezeichnung": "Personalien Bewirtschafter/in › Name",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 515,
+   "data_field_id": 6129,
+   "teil": "",
+   "bezeichnung": "Zweck der Aufgrabung",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 171,
+   "data_field_id": 4091,
+   "teil": "adresse",
+   "bezeichnung": "Personalien › Adresse",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 259,
+   "data_field_id": 2297,
+   "teil": "steuern",
+   "bezeichnung": "Aufrechnungen › Steuern",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 260,
+   "data_field_id": 2376,
+   "teil": "dunger saatgut pflanzenschutz",
+   "bezeichnung": "Kosten des Pflanzenbaus › Dünger, Saatgut, Pflanzenschutz",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 225,
+   "data_field_id": 1802,
+   "teil": "land",
+   "bezeichnung": "Personalien Sicherheitsangestellte/-r › Land",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 229,
+   "data_field_id": 1854,
+   "teil": "gesuchsteller in",
+   "bezeichnung": "Total Vermögenswerte › Gesuchsteller/in",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 119,
+   "data_field_id": 366,
+   "teil": "",
+   "bezeichnung": "Betrag Tantiemen in CHF",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 375,
+   "data_field_id": 4400,
+   "teil": "",
+   "bezeichnung": "Ende der Tätigkeit",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 111,
+   "data_field_id": 147,
+   "teil": "vorname",
+   "bezeichnung": "Personalien der antragstellenden Person › Vorname",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 439,
+   "data_field_id": 4995,
+   "teil": "",
+   "bezeichnung": "Patientenbeteiligung",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 117,
+   "data_field_id": 302,
+   "teil": "",
+   "bezeichnung": "Zivilrechtlicher Wohnsitz in der Schweiz seit",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 333,
+   "data_field_id": 3115,
+   "teil": "tvd nummer",
+   "bezeichnung": "Zulassungs- oder Registrierungsnummer Antragsteller › TVD-Nummer",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 128,
+   "data_field_id": 482,
+   "teil": "name oder firma",
+   "bezeichnung": "Eigentümer der Liegenschaft › Name oder Firma",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 117,
+   "data_field_id": 313,
+   "teil": "",
+   "bezeichnung": "E-Mailadresse für AHVeasy",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 540,
+   "data_field_id": 6512,
+   "teil": "",
+   "bezeichnung": "Strasse",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 439,
+   "data_field_id": 4996,
+   "teil": "anzahl extern",
+   "bezeichnung": "Anzahl Klienten total (Haushilfe + Pflege) › Anzahl extern",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 332,
+   "data_field_id": 3096,
+   "teil": "plz wohnort",
+   "bezeichnung": "Personalien Gesuchsteller/in › PLZ, Wohnort",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 131,
+   "data_field_id": 547,
+   "teil": "ahv nummer versichertennummer",
+   "bezeichnung": "Personalien GesuchstellerIn › AHV-Nummer / Versichertennummer",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 461,
+   "data_field_id": 5253,
+   "teil": "",
+   "bezeichnung": "Absender",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 181,
+   "data_field_id": 1217,
+   "teil": "",
+   "bezeichnung": "Angemeldete Prüfungen",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 72,
+   "data_field_id": 4188,
+   "teil": "kurskosten total",
+   "bezeichnung": "Effektive Kosten in CHF › Kurskosten total",
+   "schicht": "gesuchsteller",
+   "urteil": "richtig",
+   "rollen": [
+    "gesuchsteller"
+   ]
+  },
+  {
+   "form_id": 84,
+   "data_field_id": 3945,
+   "teil": "name der praxis institution",
+   "bezeichnung": "Praxisadresse im Kanton Schaffhausen › Name der Praxis (Institution)",
+   "schicht": "andere",
+   "urteil": "richtig",
+   "rollen": [
+    "betrieb"
+   ]
+  },
+  {
+   "form_id": 365,
+   "data_field_id": 4292,
+   "teil": "",
+   "bezeichnung": "Volle Arbeitsfähigkeit",
+   "schicht": "andere",
+   "urteil": "richtig",
+   "rollen": [
+    "betroffene_person"
+   ]
+  },
+  {
+   "form_id": 131,
+   "data_field_id": 550,
+   "teil": "name",
+   "bezeichnung": "Personalien EhepartnerIn › Name",
+   "schicht": "andere",
+   "urteil": "richtig",
+   "rollen": [
+    "ehepartner"
+   ]
+  },
+  {
+   "form_id": 198,
+   "data_field_id": 1425,
+   "teil": "fernvisus ohne korrektur links",
+   "bezeichnung": "Status Augen › Fernvisus ohne Korrektur links",
+   "schicht": "andere",
+   "urteil": "richtig",
+   "rollen": [
+    "betroffene_person"
+   ]
+  },
+  {
+   "form_id": 101,
+   "data_field_id": 28,
+   "teil": "vorname",
+   "bezeichnung": "Personalien Schütze › Vorname",
+   "schicht": "andere",
+   "urteil": "richtig",
+   "rollen": [
+    "betroffene_person"
+   ]
+  },
+  {
+   "form_id": 394,
+   "data_field_id": 4652,
+   "teil": "e mail",
+   "bezeichnung": "Personalien des Vaters › E-Mail",
+   "schicht": "andere",
+   "urteil": "richtig",
+   "rollen": [
+    "elternteil"
+   ]
+  },
+  {
+   "form_id": 260,
+   "data_field_id": 2391,
+   "teil": "adresse kaufer",
+   "bezeichnung": "Liegenschaftskäufe und -verkäufe › Adresse Käufer",
+   "schicht": "andere",
+   "urteil": "richtig",
+   "rollen": [
+    "vertragspartei"
+   ]
+  },
+  {
+   "form_id": 269,
+   "data_field_id": 2497,
+   "teil": "andere betrag",
+   "bezeichnung": "Gehaltsnebenleistungen › Andere (Betrag)",
+   "schicht": "andere",
+   "urteil": "richtig",
+   "rollen": [
+    "betroffene_person"
+   ]
+  },
+  {
+   "form_id": 405,
+   "data_field_id": 4753,
+   "teil": "geschlecht",
+   "bezeichnung": "Angaben zum Kind › Geschlecht",
+   "schicht": "andere",
+   "urteil": "richtig",
+   "rollen": [
+    "kind"
+   ]
+  },
+  {
+   "form_id": 262,
+   "data_field_id": 2415,
+   "teil": "name",
+   "bezeichnung": "Kontaktangaben Arbeitgeber › Name",
+   "schicht": "andere",
+   "urteil": "richtig",
+   "rollen": [
+    "arbeitgeber"
+   ]
+  },
+  {
+   "form_id": 247,
+   "data_field_id": 2128,
+   "teil": "",
+   "bezeichnung": "Arbeitgeber UID-Nr.",
+   "schicht": "andere",
+   "urteil": "richtig",
+   "rollen": [
+    "arbeitgeber"
+   ]
+  },
+  {
+   "form_id": 26,
+   "data_field_id": 2341,
+   "teil": "motorik koordination romberg reflexe",
+   "bezeichnung": "Nervensystem › Motorik (Koordination, Romberg, Reflexe)",
+   "schicht": "andere",
+   "urteil": "richtig",
+   "rollen": [
+    "betroffene_person"
+   ]
+  },
+  {
+   "form_id": 191,
+   "data_field_id": 1337,
+   "teil": "e mail",
+   "bezeichnung": "Projektverfasser/in › E-Mail",
+   "schicht": "andere",
+   "urteil": "richtig",
+   "rollen": [
+    "fachperson"
+   ]
+  },
+  {
+   "form_id": 108,
+   "data_field_id": 109,
+   "teil": "nummer",
+   "bezeichnung": "Name und Adresse des Arbeitgebers › Nummer",
+   "schicht": "andere",
+   "urteil": "richtig",
+   "rollen": [
+    "arbeitgeber"
+   ]
+  },
+  {
+   "form_id": 111,
+   "data_field_id": 185,
+   "teil": "nummer",
+   "bezeichnung": "Finanzielle Beteiligung an einem anderen Betrieb › Nummer",
+   "schicht": "andere",
+   "urteil": "richtig",
+   "rollen": [
+    "betrieb"
+   ]
+  },
+  {
+   "form_id": 250,
+   "data_field_id": 2182,
+   "teil": "strasse nr",
+   "bezeichnung": "Vertreteradresse in der Schweiz › Strasse / Nr.",
+   "schicht": "andere",
+   "urteil": "richtig",
+   "rollen": [
+    "vertretung"
+   ]
+  },
+  {
+   "form_id": 367,
+   "data_field_id": 4303,
+   "teil": "geburtsdatum",
+   "bezeichnung": "Personalien der verstorbenen Person › Geburtsdatum",
+   "schicht": "andere",
+   "urteil": "richtig",
+   "rollen": [
+    "verstorbene"
+   ]
+  },
+  {
+   "form_id": 308,
+   "data_field_id": 2928,
+   "teil": "familienname",
+   "bezeichnung": "Eingetragene Personen neu oder mutierend › Familienname",
+   "schicht": "andere",
+   "urteil": "richtig",
+   "rollen": [
+    "organ"
+   ]
+  },
+  {
+   "form_id": 105,
+   "data_field_id": 77,
+   "teil": "mahlzeiten fr pro monat",
+   "bezeichnung": "Naturalleistungen (nicht in Ziff. 16/17 enthalten) › Mahlzeiten (Fr. pro Monat)",
+   "schicht": "andere",
+   "urteil": "richtig",
+   "rollen": [
+    "arbeitnehmer"
+   ]
+  },
+  {
+   "form_id": 248,
+   "data_field_id": 2156,
+   "teil": "vorname",
+   "bezeichnung": "Personalien Ehepartner/in bzw. eingetragene/r Partner/in › Vorname",
+   "schicht": "andere",
+   "urteil": "richtig",
+   "rollen": [
+    "ehepartner"
+   ]
+  },
+  {
+   "form_id": 198,
+   "data_field_id": 1422,
+   "teil": "pulsstatus",
+   "bezeichnung": "Status Herz, Kreislauf › Pulsstatus",
+   "schicht": "andere",
+   "urteil": "richtig",
+   "rollen": [
+    "betroffene_person"
+   ]
+  },
+  {
+   "form_id": 307,
+   "data_field_id": 2910,
+   "teil": "ort",
+   "bezeichnung": "Einzahlungsbescheinigung › Ort",
+   "schicht": "andere",
+   "urteil": "richtig",
+   "rollen": [
+    "dritte"
+   ]
+  },
+  {
+   "form_id": 116,
+   "data_field_id": 282,
+   "teil": "",
+   "bezeichnung": "Abrechnungsnummer",
+   "schicht": "andere",
+   "urteil": "richtig",
+   "rollen": [
+    "betrieb"
+   ]
+  },
+  {
+   "form_id": 239,
+   "data_field_id": 2026,
+   "teil": "zivilstand",
+   "bezeichnung": "Steuerpflichtige Personen › Zivilstand",
+   "schicht": "andere",
+   "urteil": "richtig",
+   "rollen": [
+    "betroffene_person"
+   ]
+  },
+  {
+   "form_id": 541,
+   "data_field_id": 6524,
+   "teil": "",
+   "bezeichnung": "PLZ",
+   "schicht": "andere",
+   "urteil": "richtig",
+   "rollen": [
+    "betrieb"
+   ]
+  },
+  {
+   "form_id": 52,
+   "data_field_id": 3570,
+   "teil": "adresse",
+   "bezeichnung": "Bauherrschaft › Adresse",
+   "schicht": "andere",
+   "urteil": "richtig",
+   "rollen": [
+    "bauherrschaft"
+   ]
+  },
+  {
+   "form_id": 235,
+   "data_field_id": 1958,
+   "teil": "",
+   "bezeichnung": "Tätigkeit 1 - Ende bei befristetem Arbeitsvertrag",
+   "schicht": "andere",
+   "urteil": "richtig",
+   "rollen": [
+    "betroffene_person"
+   ]
+  },
+  {
+   "form_id": 223,
+   "data_field_id": 1787,
+   "teil": "anzahl vollzeitangestellte kanton sh",
+   "bezeichnung": "Personalbestand › Anzahl Vollzeitangestellte Kanton SH",
+   "schicht": "andere",
+   "urteil": "richtig",
+   "rollen": [
+    "betrieb"
+   ]
+  },
+  {
+   "form_id": 240,
+   "data_field_id": 2053,
+   "teil": "e mail",
+   "bezeichnung": "Schuldner der steuerbaren Leistung › E-Mail",
+   "schicht": "andere",
+   "urteil": "falsch",
+   "rollen": [],
+   "beleg": "Die Datei hat eine Spalte: «Firma», «Adresse», «PLZ / Ort / Kanton», «Kontaktperson», «Telefon», «E-Mail»; Telefon und E-Mail folgen direkt auf die Kontaktperson. Das gleich aufgebaute Formular 239 lässt Telefon und E-Mail «unklar». Ob die E-Mail-Adresse der Firma oder der Kontaktperson gehört, sagt das Formular nicht; richtig ist «unklar»."
+  },
+  {
+   "form_id": 302,
+   "data_field_id": 2857,
+   "teil": "",
+   "bezeichnung": "Vorliegende Gefährdungen bei gefährlichen und beschwerlichen Arbeiten",
+   "schicht": "andere",
+   "urteil": "richtig",
+   "rollen": [
+    "betrieb"
+   ]
+  }
+ ]
+}

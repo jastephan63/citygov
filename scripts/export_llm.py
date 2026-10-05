@@ -237,7 +237,7 @@ META = {
                        "standards whose subjekt is not judged or whose mapping is flagged pruefart "
                        "zuordnung — not claimed; register.n_vorbefuellbar_korrigiert = the "
                        "required points that are vorbefüllbar (the applicant's own, not "
-                       "mehrdeutig — citygov_prefill.json); n_kein_standard / n_element_offen / n_ungeprueft "
+                       "mehrdeutig, not zeitbezug — citygov_prefill.json); n_kein_standard / n_element_offen / n_ungeprueft "
                        "and their sum n_ohne_standard = points without a citable element, counted "
                        "apart and never matched as «the same datum»; n_zuordnung_offen = points "
                        "whose label means another datum than the mapped element (pruefart "
@@ -564,8 +564,13 @@ def main():
     # whose Angabe it is; within ONE party an element that identifies MORE than one
     # point is 'mehrdeutig' and prefills none of them (the profile holds one value), a
     # composite parent's own element counting as a partner of its Teilfelder;
-    # 'vorbefuellbar' = the mark AND the applicant's own Angabe AND not mehrdeutig. A
-    # composite whose parts carry their own elements is not counted next to its parts.
+    # 'zeitbezug' = the label asks for a value of another time than the register's
+    # current entry (früher, neu, Änderung, seit …) and the element does not name it
+    # (register_map.zeitbezug, the time rule); such points are never prefilled and not
+    # compared for 'mehrdeutig';
+    # 'vorbefuellbar' = the mark AND the applicant's own Angabe AND not mehrdeutig AND
+    # not zeitbezug. A composite whose parts carry their own elements is not counted
+    # next to its parts.
     # the party of every point straight from citygov.db (datenpunkt_partei + formular_partei),
     # independent of the export's own reading: the gate below compares the two
     db_partei = {}
@@ -604,6 +609,7 @@ def main():
         sys.exit(f"ABBRUCH export_llm.py: {len(fremd)} vorbefüllbare Punkte gehören laut citygov.db nicht der "
                  f"einreichenden Person (natürliche Person), z. B. {fremd[:3]} — nichts geschrieben")
     n_mehrdeutig = sum(1 for v in prefill.values() for p in v if p["mehrdeutig"])
+    n_zeitbezug = sum(1 for v in prefill.values() for p in v if p["zeitbezug"])
     n_vorbefuellbar = sum(1 for v in prefill.values() for p in v if p["vorbefuellbar"])
     n_partei = {}
     for v in prefill.values():
@@ -834,18 +840,24 @@ def main():
                                           "Element eines zusammengesetzten Felds, dessen Teilfelder dieser Partei hier "
                                           "als Punkte erscheinen (das Feld selbst ist kein Punkt) — ein so markierter "
                                           "Punkt kann darum ohne sichtbaren Zwilling stehen. Punkte ohne geklärte "
-                                          "Partei werden untereinander verglichen.",
+                                          "Partei werden untereinander verglichen; Punkte mit zeitbezug zählen nicht "
+                                          "mit (sie fragen nach einem anderen Wert).",
+                            "zeitbezug": "true, wenn die Bezeichnung nach einem Wert einer anderen Zeit fragt (früher, "
+                                         "bisherig, letzte zwei Jahre, während, neu, geplant, Änderung, Zuzug, Wegzug, "
+                                         "seit, bis, Dauer …) und das Element diesen Wert nicht selbst nennt (Zeitregel, "
+                                         "scripts/register_map.py zeitbezug): der Registereintrag hält den heutigen "
+                                         "Wert, nicht diesen. Das Todesdatum gilt immer als zeitbezogen.",
                             "vorbefuellbar": "true = einwohnerregister UND partei_status gesuchsteller UND nicht "
-                                             "mehrdeutig: nur diese Punkte füllt ein Profil der einreichenden Person "
-                                             "vor (dieselbe Regel in flows.html; Zählung des Dashboards = "
-                                             "Pflichtpunkte davon). Angaben anderer Personen erst, wenn der Kanton "
-                                             "bestätigt, dass Beziehungen geliefert werden dürfen.",
+                                             "mehrdeutig UND nicht zeitbezug: nur diese Punkte füllt ein Profil der "
+                                             "einreichenden Person vor (dieselbe Regel in flows.html; Zählung des "
+                                             "Dashboards = Pflichtpunkte davon). Angaben anderer Personen erst, wenn "
+                                             "der Kanton bestätigt, dass Beziehungen geliefert werden dürfen.",
                         },
                         "zaehlung": {
                             "n_formulare": len(prefill), "n_formulare_gesamt": len(x_forms),
                             "formulare_ohne_ech_punkt": sorted(int(fid) for fid in x_forms if fid not in prefill),
                             "n_punkte": n_pts, "n_einwohnerregister": n_reg,
-                            "n_mehrdeutig": n_mehrdeutig, "n_vorbefuellbar": n_vorbefuellbar,
+                            "n_mehrdeutig": n_mehrdeutig, "n_zeitbezug": n_zeitbezug, "n_vorbefuellbar": n_vorbefuellbar,
                             "partei": dict(sorted(n_partei.items())),
                             "hinweis": "n_punkte zählt alle eCH-Punkte (Pflicht und optional, alle Subjekte und Parteien); "
                                        "die Kennzahl «vorbefüllbar» des Dashboards (burden.prefillable) zählt nur "
@@ -874,7 +886,7 @@ def main():
           f"citygov_datarules.jsonl ({len(datarules)} Regeln) + "
           f"citygov_verzeichnis.json ({len(verzeichnis)} Formulare) + "
           f"citygov_prefill.json ({n_pts} Prefill-Punkte, {n_reg} Einwohnerregister, {n_vorbefuellbar} vorbefüllbar, "
-          f"{n_mehrdeutig} mehrdeutig)")
+          f"{n_mehrdeutig} mehrdeutig, {n_zeitbezug} mit Zeitbezug)")
     print(f"{RETIRED_FILE}: " + ("entfernt — " if removed else "wird nicht mehr geschrieben — ")
           + "die Auto-Entwurf-Schicht (form_field/field_mapping) wird nicht mehr exportiert; massgeblich ist data_fields")
 

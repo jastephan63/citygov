@@ -1,7 +1,7 @@
 {
  "$schema": "https://json-schema.org/draft/2020-12/schema",
  "title": "data_export.json",
- "description": "Struktur von data_export.json, Version 1.1.1. Erzeugt aus der Datei, wie der Build sie schreibt (scripts/export_vertrag.py); Änderungen und Regeln in exportvertrag.json. Nie von Hand ändern.",
+ "description": "Struktur von data_export.json, Version 1.3.0. Erzeugt aus der Datei, wie der Build sie schreibt (scripts/export_vertrag.py); Änderungen und Regeln in exportvertrag.json. Nie von Hand ändern.",
  "$ref": "#/$defs/datei",
  "$defs": {
   "datei": {
@@ -626,6 +626,735 @@
       "additionalProperties": false
      }
     },
+    "datenmodell": {
+     "type": "object",
+     "properties": {
+      "beilagen": {
+       "type": "object",
+       "properties": {
+        "ersetzbar": {
+         "type": "integer"
+        },
+        "je_register": {
+         "type": "object",
+         "additionalProperties": {
+          "type": "array",
+          "items": {
+           "type": "object",
+           "properties": {
+            "bezeichnung": {
+             "type": "string"
+            },
+            "ersetzt_nicht": {
+             "type": "object",
+             "additionalProperties": {
+              "type": "integer"
+             }
+            },
+            "formulare": {
+             "type": "array",
+             "items": {
+              "type": "integer"
+             }
+            },
+            "n": {
+             "type": "integer"
+            }
+           },
+           "required": [
+            "bezeichnung",
+            "ersetzt_nicht",
+            "formulare",
+            "n"
+           ],
+           "additionalProperties": false
+          }
+         }
+        },
+        "register": {
+         "type": "integer"
+        }
+       },
+       "required": [
+        "ersetzbar",
+        "je_register",
+        "register"
+       ],
+       "additionalProperties": false
+      },
+      "dienststellen": {
+       "type": "object",
+       "additionalProperties": {
+        "type": "object",
+        "properties": {
+         "beilagen_register": {
+          "type": "integer"
+         },
+         "formulare": {
+          "type": "integer"
+         },
+         "formulare_mit_partei": {
+          "type": "integer"
+         },
+         "formulare_vorbefuellbar": {
+          "type": "integer"
+         },
+         "minuten_modell": {
+          "type": "number"
+         },
+         "minuten_vorbefuellt": {
+          "type": "number"
+         },
+         "offen": {
+          "type": "integer"
+         },
+         "parteien": {
+          "type": "integer"
+         },
+         "punkte": {
+          "type": "integer"
+         },
+         "register_pflicht": {
+          "type": "integer"
+         },
+         "unklar": {
+          "type": "integer"
+         },
+         "vorbefuellbar": {
+          "type": "integer"
+         },
+         "zugeordnet": {
+          "type": "integer"
+         }
+        },
+        "required": [
+         "beilagen_register",
+         "formulare",
+         "formulare_mit_partei",
+         "formulare_vorbefuellbar",
+         "minuten_modell",
+         "minuten_vorbefuellt",
+         "offen",
+         "parteien",
+         "punkte",
+         "register_pflicht",
+         "unklar",
+         "vorbefuellbar",
+         "zugeordnet"
+        ],
+        "additionalProperties": false
+       }
+      },
+      "einwohnerregister_andere": {
+       "type": "object",
+       "properties": {
+        "familie": {
+         "type": "object",
+         "properties": {
+          "formulare": {
+           "type": "integer"
+          },
+          "label": {
+           "type": "string"
+          },
+          "pflicht": {
+           "type": "integer"
+          },
+          "punkte": {
+           "type": "integer"
+          },
+          "rollen": {
+           "type": "array",
+           "items": {
+            "type": "string"
+           }
+          }
+         },
+         "required": [
+          "formulare",
+          "label",
+          "pflicht",
+          "punkte",
+          "rollen"
+         ],
+         "additionalProperties": false
+        },
+        "je_rolle": {
+         "type": "object",
+         "additionalProperties": {
+          "type": "integer"
+         }
+        },
+        "punkte": {
+         "type": "integer"
+        }
+       },
+       "required": [
+        "familie",
+        "je_rolle",
+        "punkte"
+       ],
+       "additionalProperties": false
+      },
+      "kennungen": {
+       "type": "object",
+       "properties": {
+        "aktiv": {
+         "type": "object",
+         "additionalProperties": {
+          "type": "integer"
+         }
+        },
+        "n_aktiv": {
+         "type": "integer"
+        },
+        "nicht_aktiv": {
+         "type": "object",
+         "additionalProperties": {
+          "type": "integer"
+         }
+        }
+       },
+       "required": [
+        "aktiv",
+        "n_aktiv",
+        "nicht_aktiv"
+       ],
+       "additionalProperties": false
+      },
+      "labels": {
+       "type": "object",
+       "properties": {
+        "entitaet": {
+         "type": "object",
+         "additionalProperties": {
+          "type": "string"
+         }
+        },
+        "entitaet_rolle": {
+         "type": "object",
+         "additionalProperties": {
+          "type": "string"
+         }
+        },
+        "ersetzt_nicht": {
+         "type": "object",
+         "additionalProperties": {
+          "type": "string"
+         }
+        },
+        "herkunft": {
+         "type": "object",
+         "additionalProperties": {
+          "type": "string"
+         }
+        },
+        "kennung_art": {
+         "type": "object",
+         "additionalProperties": {
+          "type": "string"
+         }
+        },
+        "kennung_status": {
+         "type": "object",
+         "additionalProperties": {
+          "type": "string"
+         }
+        },
+        "register_ebene": {
+         "type": "object",
+         "additionalProperties": {
+          "type": "string"
+         }
+        },
+        "zugriff_art": {
+         "type": "object",
+         "additionalProperties": {
+          "type": "string"
+         }
+        },
+        "zugriff_status": {
+         "type": "object",
+         "additionalProperties": {
+          "type": "string"
+         }
+        }
+       },
+       "required": [
+        "entitaet",
+        "entitaet_rolle",
+        "ersetzt_nicht",
+        "herkunft",
+        "kennung_art",
+        "kennung_status",
+        "register_ebene",
+        "zugriff_art",
+        "zugriff_status"
+       ],
+       "additionalProperties": false
+      },
+      "modell": {
+       "type": "object",
+       "properties": {
+        "beilagen": {
+         "type": "integer"
+        },
+        "minuten": {
+         "type": "number"
+        },
+        "pflicht": {
+         "type": "integer"
+        }
+       },
+       "required": [
+        "beilagen",
+        "minuten",
+        "pflicht"
+       ],
+       "additionalProperties": false
+      },
+      "parteien": {
+       "type": "object",
+       "properties": {
+        "methode": {
+         "type": "object",
+         "properties": {
+          "formulare": {
+           "type": "integer"
+          },
+          "formulare_beurteilt": {
+           "type": "integer"
+          },
+          "formulare_mit_partei": {
+           "type": "integer"
+          },
+          "formulare_nur_regel": {
+           "type": "integer"
+          },
+          "formulare_nur_regel_ohne_partei": {
+           "type": "integer"
+          },
+          "punkte_regel": {
+           "type": "object",
+           "properties": {
+            "unklar": {
+             "type": "integer"
+            },
+            "zugeordnet": {
+             "type": "integer"
+            }
+           },
+           "required": [
+            "unklar",
+            "zugeordnet"
+           ],
+           "additionalProperties": false
+          },
+          "punkte_urteil": {
+           "type": "object",
+           "properties": {
+            "unklar": {
+             "type": "integer"
+            },
+            "zugeordnet": {
+             "type": "integer"
+            }
+           },
+           "required": [
+            "unklar",
+            "zugeordnet"
+           ],
+           "additionalProperties": false
+          },
+          "stichprobe": {
+           "type": "object",
+           "properties": {
+            "damals": {
+             "type": "object",
+             "additionalProperties": {
+              "type": "object",
+              "additionalProperties": {
+               "type": "integer"
+              }
+             }
+            },
+            "damals_gesamt": {
+             "type": "object",
+             "properties": {
+              "falsch": {
+               "type": "integer"
+              },
+              "grenzfall": {
+               "type": "integer"
+              },
+              "klaerbar": {
+               "type": "integer"
+              },
+              "offen": {
+               "type": "integer"
+              },
+              "richtig": {
+               "type": "integer"
+              },
+              "unklar": {
+               "type": "integer"
+              },
+              "zugeordnet": {
+               "type": "integer"
+              }
+             },
+             "required": [
+              "falsch",
+              "grenzfall",
+              "klaerbar",
+              "offen",
+              "richtig",
+              "unklar",
+              "zugeordnet"
+             ],
+             "additionalProperties": false
+            },
+            "grundgesamtheit": {
+             "type": "string"
+            },
+            "heute": {
+             "type": "object",
+             "properties": {
+              "fehlt": {
+               "type": "integer"
+              },
+              "unklar": {
+               "type": "integer"
+              },
+              "unklar_grenzfall": {
+               "type": "integer"
+              },
+              "unklar_klaerbar": {
+               "type": "integer"
+              },
+              "unklar_statt_zuordnung": {
+               "type": "integer"
+              },
+              "unklar_wie_pruefung": {
+               "type": "integer"
+              },
+              "zugeordnet": {
+               "type": "integer"
+              },
+              "zugeordnet_anders": {
+               "type": "integer"
+              },
+              "zugeordnet_wie_pruefung": {
+               "type": "integer"
+              }
+             },
+             "required": [
+              "fehlt",
+              "unklar",
+              "unklar_grenzfall",
+              "unklar_klaerbar",
+              "unklar_statt_zuordnung",
+              "unklar_wie_pruefung",
+              "zugeordnet",
+              "zugeordnet_anders",
+              "zugeordnet_wie_pruefung"
+             ],
+             "additionalProperties": false
+            },
+            "n": {
+             "type": "integer"
+            },
+            "quelle": {
+             "type": "string"
+            },
+            "schichten": {
+             "type": "object",
+             "additionalProperties": {
+              "type": "object",
+              "properties": {
+               "bestand": {
+                "type": "integer"
+               },
+               "gezogen": {
+                "type": "integer"
+               },
+               "text": {
+                "type": "string"
+               }
+              },
+              "required": [
+               "bestand",
+               "gezogen",
+               "text"
+              ],
+              "additionalProperties": false
+             }
+            },
+            "stand": {
+             "type": "string"
+            },
+            "startwert": {
+             "type": "integer"
+            },
+            "urteile": {
+             "type": "object",
+             "additionalProperties": {
+              "type": "string"
+             }
+            }
+           },
+           "required": [
+            "damals",
+            "damals_gesamt",
+            "grundgesamtheit",
+            "heute",
+            "n",
+            "quelle",
+            "schichten",
+            "stand",
+            "startwert",
+            "urteile"
+           ],
+           "additionalProperties": false
+          },
+          "stufen": {
+           "type": "object",
+           "properties": {
+            "regel": {
+             "type": "string"
+            },
+            "urteil": {
+             "type": "string"
+            }
+           },
+           "required": [
+            "regel",
+            "urteil"
+           ],
+           "additionalProperties": false
+          },
+          "zweitpruefung": {
+           "type": "object",
+           "properties": {
+            "bestaetigt": {
+             "type": "integer"
+            },
+            "geaendert": {
+             "type": "integer"
+            },
+            "ohne": {
+             "type": "integer"
+            }
+           },
+           "required": [
+            "bestaetigt",
+            "geaendert",
+            "ohne"
+           ],
+           "additionalProperties": false
+          }
+         },
+         "required": [
+          "formulare",
+          "formulare_beurteilt",
+          "formulare_mit_partei",
+          "formulare_nur_regel",
+          "formulare_nur_regel_ohne_partei",
+          "punkte_regel",
+          "punkte_urteil",
+          "stichprobe",
+          "stufen",
+          "zweitpruefung"
+         ],
+         "additionalProperties": false
+        },
+        "n_parteien": {
+         "type": "integer"
+        },
+        "rollen": {
+         "type": "object",
+         "additionalProperties": {
+          "type": "object",
+          "properties": {
+           "formulare": {
+            "type": "integer"
+           },
+           "parteien": {
+            "type": "integer"
+           },
+           "punkte": {
+            "type": "integer"
+           }
+          },
+          "required": [
+           "formulare",
+           "parteien",
+           "punkte"
+          ],
+          "additionalProperties": false
+         }
+        },
+        "verteilung": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "properties": {
+           "bis": {
+            "type": [
+             "integer",
+             "null"
+            ]
+           },
+           "formulare": {
+            "type": "integer"
+           },
+           "label": {
+            "type": "string"
+           },
+           "von": {
+            "type": "integer"
+           }
+          },
+          "required": [
+           "bis",
+           "formulare",
+           "label",
+           "von"
+          ],
+          "additionalProperties": false
+         }
+        }
+       },
+       "required": [
+        "methode",
+        "n_parteien",
+        "rollen",
+        "verteilung"
+       ],
+       "additionalProperties": false
+      },
+      "register_gruppen": {
+       "type": "array",
+       "items": {
+        "type": "object",
+        "properties": {
+         "beilagen": {
+          "type": "integer"
+         },
+         "beilagen_ersetzbar": {
+          "type": "integer"
+         },
+         "formulare": {
+          "type": "integer"
+         },
+         "formulare_beilagen": {
+          "type": "integer"
+         },
+         "frage": {
+          "type": "string"
+         },
+         "key": {
+          "type": "string"
+         },
+         "label": {
+          "type": "string"
+         },
+         "partei": {
+          "type": "object",
+          "properties": {
+           "andere": {
+            "type": "integer"
+           },
+           "art_offen": {
+            "type": "integer"
+           },
+           "eigene": {
+            "type": "integer"
+           },
+           "unklar": {
+            "type": "integer"
+           }
+          },
+          "required": [
+           "andere",
+           "art_offen",
+           "eigene",
+           "unklar"
+          ],
+          "additionalProperties": false
+         },
+         "pflicht": {
+          "type": "integer"
+         },
+         "punkte": {
+          "type": "integer"
+         },
+         "register": {
+          "type": "array",
+          "items": {
+           "type": "string"
+          }
+         },
+         "vorbefuellbar": {
+          "type": "object",
+          "properties": {
+           "alle": {
+            "type": "integer"
+           },
+           "formulare": {
+            "type": "integer"
+           },
+           "minuten": {
+            "type": "number"
+           },
+           "pflicht": {
+            "type": "integer"
+           }
+          },
+          "required": [
+           "alle",
+           "formulare",
+           "minuten",
+           "pflicht"
+          ],
+          "additionalProperties": false
+         }
+        },
+        "required": [
+         "beilagen",
+         "beilagen_ersetzbar",
+         "formulare",
+         "formulare_beilagen",
+         "frage",
+         "key",
+         "label",
+         "pflicht",
+         "punkte",
+         "register"
+        ],
+        "additionalProperties": false
+       }
+      },
+      "zugriff": {
+       "type": "object",
+       "additionalProperties": {
+        "type": "integer"
+       }
+      }
+     },
+     "required": [
+      "beilagen",
+      "dienststellen",
+      "einwohnerregister_andere",
+      "kennungen",
+      "labels",
+      "modell",
+      "parteien",
+      "register_gruppen",
+      "zugriff"
+     ],
+     "additionalProperties": false
+    },
     "datenstand": {
      "type": "object",
      "properties": {
@@ -1134,13 +1863,17 @@
            },
            "partei_offen": {
             "type": "integer"
+           },
+           "zeitbezug": {
+            "type": "integer"
            }
           },
           "required": [
            "andere_partei",
            "mehrdeutig",
            "ohne_registerquelle",
-           "partei_offen"
+           "partei_offen",
+           "zeitbezug"
           ],
           "additionalProperties": false
          },
@@ -1788,6 +2521,9 @@
              },
              "vorbefuellbar": {
               "type": "boolean"
+             },
+             "zeitbezug": {
+              "type": "boolean"
              }
             },
             "required": [
@@ -1809,6 +2545,9 @@
            ]
           },
           "vorbefuellbar": {
+           "type": "boolean"
+          },
+          "zeitbezug": {
            "type": "boolean"
           }
          },
@@ -2022,6 +2761,89 @@
        "kennung": {
         "type": "string",
         "pattern": "^sh:(?:service|formular|angabe|gesetz):[A-Za-z0-9_.:~-]+$"
+       },
+       "konzepte": {
+        "type": "object",
+        "properties": {
+         "abweichungen": {
+          "type": "array",
+          "items": {
+           "type": "object",
+           "properties": {
+            "element": {
+             "type": "string"
+            },
+            "entitaet": {
+             "type": "string"
+            },
+            "feld": {
+             "type": "integer"
+            },
+            "konzept": {
+             "type": "string"
+            },
+            "rolle": {
+             "type": "string"
+            },
+            "teil": {
+             "type": [
+              "string",
+              "null"
+             ]
+            },
+            "vorschlag": {
+             "type": "string"
+            }
+           },
+           "required": [
+            "element",
+            "entitaet",
+            "feld",
+            "konzept",
+            "rolle",
+            "teil",
+            "vorschlag"
+           ],
+           "additionalProperties": false
+          }
+         },
+         "n_abweichend": {
+          "type": "integer"
+         },
+         "n_andere_entitaet": {
+          "type": "integer"
+         },
+         "n_mit_vorschlag": {
+          "type": "integer"
+         },
+         "n_ohne_rolle": {
+          "type": "integer"
+         },
+         "n_ohne_vorschlag": {
+          "type": "integer"
+         },
+         "n_punkte": {
+          "type": "integer"
+         },
+         "n_vorschlag": {
+          "type": "integer"
+         },
+         "n_zuordnung_falsch": {
+          "type": "integer"
+         }
+        },
+        "required": [
+         "abweichungen",
+         "n_abweichend",
+         "n_andere_entitaet",
+         "n_mit_vorschlag",
+         "n_ohne_rolle",
+         "n_ohne_vorschlag",
+         "n_punkte",
+         "n_vorschlag",
+         "n_zuordnung_falsch"
+        ],
+        "additionalProperties": false
        },
        "mismatch_note": {
         "type": "null"
@@ -2273,6 +3095,30 @@
          "null"
         ]
        },
+       "partei_zahlen": {
+        "type": "object",
+        "properties": {
+         "offen": {
+          "type": "integer"
+         },
+         "punkte": {
+          "type": "integer"
+         },
+         "unklar": {
+          "type": "integer"
+         },
+         "zugeordnet": {
+          "type": "integer"
+         }
+        },
+        "required": [
+         "offen",
+         "punkte",
+         "unklar",
+         "zugeordnet"
+        ],
+        "additionalProperties": false
+       },
        "parteien": {
         "type": "array",
         "items": {
@@ -2293,6 +3139,9 @@
           "mehrere": {
            "type": "boolean"
           },
+          "n_punkte": {
+           "type": "integer"
+          },
           "nr": {
            "type": "integer"
           },
@@ -2306,6 +3155,7 @@
           "entitaet",
           "herkunft",
           "mehrere",
+          "n_punkte",
           "nr",
           "rolle"
          ],
@@ -2755,10 +3605,12 @@
        "has_flow",
        "id",
        "kennung",
+       "konzepte",
        "mismatch_note",
        "next_check_due",
        "outcome",
        "parse_error",
+       "partei_zahlen",
        "parteien",
        "publisher_dienststelle",
        "purpose",
@@ -4099,6 +4951,834 @@
       "hinweis",
       "nicht_aktiv",
       "schema"
+     ],
+     "additionalProperties": false
+    },
+    "konzepte": {
+     "type": "object",
+     "properties": {
+      "konzepte": {
+       "type": "array",
+       "items": {
+        "type": "object",
+        "properties": {
+         "andere_entitaet": {
+          "type": "object",
+          "properties": {
+           "elemente": {
+            "type": "array",
+            "items": {
+             "type": "object",
+             "properties": {
+              "anteil": {
+               "type": "integer"
+              },
+              "element": {
+               "type": "string"
+              },
+              "formulare": {
+               "type": "array",
+               "items": {
+                "type": "integer"
+               }
+              },
+              "n": {
+               "type": "integer"
+              },
+              "n_formulare": {
+               "type": "integer"
+              },
+              "standard": {
+               "type": "string"
+              }
+             },
+             "required": [
+              "anteil",
+              "element",
+              "formulare",
+              "n",
+              "n_formulare",
+              "standard"
+             ],
+             "additionalProperties": false
+            }
+           },
+           "n": {
+            "type": "integer"
+           }
+          },
+          "required": [
+           "elemente",
+           "n"
+          ],
+          "additionalProperties": false
+         },
+         "ausserhalb": {
+          "type": "array",
+          "items": {
+           "type": "object",
+           "properties": {
+            "angabe_kennung": {
+             "type": "string",
+             "pattern": "^sh:angabe:e(?:CH|SH)-[0-9]{4}:[A-Za-z0-9_.-]+(?::[A-Za-z0-9_]+)?(?:~[0-9]+)?$"
+            },
+            "begriffe": {
+             "type": "array",
+             "items": {
+              "type": "string"
+             }
+            },
+            "bezeichnung": {
+             "type": "string"
+            },
+            "context": {
+             "type": "string"
+            },
+            "datentyp": {
+             "type": "string"
+            },
+            "element": {
+             "type": "string"
+            },
+            "element_ids": {
+             "type": "array",
+             "items": {
+              "type": "integer"
+             }
+            },
+            "grund": {
+             "type": "string"
+            },
+            "n": {
+             "type": "integer"
+            },
+            "n_formulare": {
+             "type": "integer"
+            },
+            "n_zuordnung_falsch": {
+             "type": "integer"
+            },
+            "standard": {
+             "type": "string"
+            }
+           },
+           "required": [
+            "angabe_kennung",
+            "begriffe",
+            "bezeichnung",
+            "context",
+            "datentyp",
+            "element",
+            "element_ids",
+            "grund",
+            "n",
+            "n_formulare",
+            "n_zuordnung_falsch",
+            "standard"
+           ],
+           "additionalProperties": false
+          }
+         },
+         "code": {
+          "type": "string"
+         },
+         "entitaeten": {
+          "type": "array",
+          "items": {
+           "type": "string"
+          }
+         },
+         "erklaerung": {
+          "type": "string"
+         },
+         "gesperrt": {
+          "type": "array",
+          "items": {}
+         },
+         "grund": {
+          "type": "string"
+         },
+         "gruppe": {
+          "type": "string"
+         },
+         "label": {
+          "type": "string"
+         },
+         "mitglieder": {
+          "type": "array",
+          "items": {
+           "type": "object",
+           "properties": {
+            "angabe_kennung": {
+             "type": "string",
+             "pattern": "^sh:angabe:e(?:CH|SH)-[0-9]{4}:[A-Za-z0-9_.-]+(?::[A-Za-z0-9_]+)?(?:~[0-9]+)?$"
+            },
+            "begriffe": {
+             "type": "array",
+             "items": {
+              "type": "string"
+             }
+            },
+            "bezeichnung": {
+             "type": "string"
+            },
+            "context": {
+             "type": [
+              "string",
+              "null"
+             ]
+            },
+            "datentyp": {
+             "type": [
+              "string",
+              "null"
+             ]
+            },
+            "element": {
+             "type": "string"
+            },
+            "element_ids": {
+             "type": "array",
+             "items": {
+              "type": "integer"
+             }
+            },
+            "n": {
+             "type": "integer"
+            },
+            "n_formulare": {
+             "type": "integer"
+            },
+            "n_zuordnung_falsch": {
+             "type": "integer"
+            },
+            "standard": {
+             "type": "string"
+            }
+           },
+           "required": [
+            "angabe_kennung",
+            "begriffe",
+            "bezeichnung",
+            "context",
+            "datentyp",
+            "element",
+            "element_ids",
+            "n",
+            "n_formulare",
+            "n_zuordnung_falsch",
+            "standard"
+           ],
+           "additionalProperties": false
+          }
+         },
+         "n_abweichend": {
+          "type": "integer"
+         },
+         "n_abweichend_formulare": {
+          "type": "integer"
+         },
+         "n_formulare": {
+          "type": "integer"
+         },
+         "n_punkte": {
+          "type": "integer"
+         },
+         "n_zellen_vorschlag": {
+          "type": "integer"
+         },
+         "nicht_beurteilt": {
+          "type": "array",
+          "items": {}
+         },
+         "ohne_rolle": {
+          "type": "object",
+          "properties": {
+           "elemente": {
+            "type": "array",
+            "items": {
+             "type": "object",
+             "properties": {
+              "anteil": {
+               "type": "integer"
+              },
+              "element": {
+               "type": "string"
+              },
+              "formulare": {
+               "type": "array",
+               "items": {
+                "type": "integer"
+               }
+              },
+              "n": {
+               "type": "integer"
+              },
+              "n_formulare": {
+               "type": "integer"
+              },
+              "standard": {
+               "type": "string"
+              }
+             },
+             "required": [
+              "anteil",
+              "element",
+              "formulare",
+              "n",
+              "n_formulare",
+              "standard"
+             ],
+             "additionalProperties": false
+            }
+           },
+           "n": {
+            "type": "integer"
+           }
+          },
+          "required": [
+           "elemente",
+           "n"
+          ],
+          "additionalProperties": false
+         },
+         "zellen": {
+          "type": "array",
+          "items": {
+           "type": "object",
+           "properties": {
+            "abweichend": {
+             "type": "array",
+             "items": {
+              "type": "object",
+              "properties": {
+               "element": {
+                "type": "string"
+               },
+               "form_id": {
+                "type": "integer"
+               },
+               "n": {
+                "type": "integer"
+               }
+              },
+              "required": [
+               "element",
+               "form_id",
+               "n"
+              ],
+              "additionalProperties": false
+             }
+            },
+            "elemente": {
+             "type": "array",
+             "items": {
+              "type": "object",
+              "properties": {
+               "anteil": {
+                "type": "integer"
+               },
+               "element": {
+                "type": "string"
+               },
+               "formulare": {
+                "type": "array",
+                "items": {
+                 "type": "integer"
+                }
+               },
+               "n": {
+                "type": "integer"
+               },
+               "n_formulare": {
+                "type": "integer"
+               },
+               "standard": {
+                "type": "string"
+               }
+              },
+              "required": [
+               "anteil",
+               "element",
+               "formulare",
+               "n",
+               "n_formulare",
+               "standard"
+              ],
+              "additionalProperties": false
+             }
+            },
+            "entitaet": {
+             "type": "string"
+            },
+            "grund": {
+             "type": [
+              "string",
+              "null"
+             ]
+            },
+            "n": {
+             "type": "integer"
+            },
+            "n_abweichend": {
+             "type": "integer"
+            },
+            "n_abweichend_formulare": {
+             "type": "integer"
+            },
+            "n_formulare": {
+             "type": "integer"
+            },
+            "rolle": {
+             "type": "string"
+            },
+            "status": {
+             "type": "string"
+            },
+            "vorschlag": {
+             "type": [
+              "object",
+              "null"
+             ],
+             "properties": {
+              "anteil": {
+               "type": "integer"
+              },
+              "element": {
+               "type": "string"
+              },
+              "n": {
+               "type": "integer"
+              },
+              "standard": {
+               "type": "string"
+              }
+             },
+             "required": [
+              "anteil",
+              "element",
+              "n",
+              "standard"
+             ],
+             "additionalProperties": false
+            }
+           },
+           "required": [
+            "abweichend",
+            "elemente",
+            "entitaet",
+            "grund",
+            "n",
+            "n_abweichend",
+            "n_abweichend_formulare",
+            "n_formulare",
+            "rolle",
+            "status",
+            "vorschlag"
+           ],
+           "additionalProperties": false
+          }
+         },
+         "zuordnung_falsch": {
+          "type": "object",
+          "properties": {
+           "elemente": {
+            "type": "array",
+            "items": {
+             "type": "object",
+             "properties": {
+              "anteil": {
+               "type": "integer"
+              },
+              "element": {
+               "type": "string"
+              },
+              "formulare": {
+               "type": "array",
+               "items": {
+                "type": "integer"
+               }
+              },
+              "n": {
+               "type": "integer"
+              },
+              "n_formulare": {
+               "type": "integer"
+              },
+              "standard": {
+               "type": "string"
+              }
+             },
+             "required": [
+              "anteil",
+              "element",
+              "formulare",
+              "n",
+              "n_formulare",
+              "standard"
+             ],
+             "additionalProperties": false
+            }
+           },
+           "n": {
+            "type": "integer"
+           }
+          },
+          "required": [
+           "elemente",
+           "n"
+          ],
+          "additionalProperties": false
+         }
+        },
+        "required": [
+         "andere_entitaet",
+         "ausserhalb",
+         "code",
+         "entitaeten",
+         "erklaerung",
+         "gesperrt",
+         "grund",
+         "gruppe",
+         "label",
+         "mitglieder",
+         "n_abweichend",
+         "n_abweichend_formulare",
+         "n_formulare",
+         "n_punkte",
+         "n_zellen_vorschlag",
+         "nicht_beurteilt",
+         "ohne_rolle",
+         "zellen",
+         "zuordnung_falsch"
+        ],
+        "additionalProperties": false
+       }
+      },
+      "labels": {
+       "type": "object",
+       "properties": {
+        "andere_entitaet": {
+         "type": "string"
+        },
+        "ausserhalb": {
+         "type": "string"
+        },
+        "entitaet": {
+         "type": "object",
+         "properties": {
+          "behoerde": {
+           "type": "string"
+          },
+          "gemischt": {
+           "type": "string"
+          },
+          "natuerliche_person": {
+           "type": "string"
+          },
+          "offen": {
+           "type": "string"
+          },
+          "organisation": {
+           "type": "string"
+          },
+          "sache": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "behoerde",
+          "gemischt",
+          "natuerliche_person",
+          "offen",
+          "organisation",
+          "sache"
+         ],
+         "additionalProperties": false
+        },
+        "grund": {
+         "type": "object",
+         "properties": {
+          "keine_mehrheit": {
+           "type": "string"
+          },
+          "zu_wenige": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "keine_mehrheit",
+          "zu_wenige"
+         ],
+         "additionalProperties": false
+        },
+        "nicht_beurteilt": {
+         "type": "string"
+        },
+        "ohne_rolle": {
+         "type": "string"
+        },
+        "sperre": {
+         "type": "object",
+         "properties": {
+          "begriff": {
+           "type": "string"
+          },
+          "bezeichnung": {
+           "type": "string"
+          },
+          "element_fehlt": {
+           "type": "string"
+          },
+          "typ": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "begriff",
+          "bezeichnung",
+          "element_fehlt",
+          "typ"
+         ],
+         "additionalProperties": false
+        },
+        "status": {
+         "type": "object",
+         "properties": {
+          "kanton": {
+           "type": "string"
+          },
+          "vorschlag": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "kanton",
+          "vorschlag"
+         ],
+         "additionalProperties": false
+        },
+        "zuordnung_falsch": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "andere_entitaet",
+        "ausserhalb",
+        "entitaet",
+        "grund",
+        "nicht_beurteilt",
+        "ohne_rolle",
+        "sperre",
+        "status",
+        "zuordnung_falsch"
+       ],
+       "additionalProperties": false
+      },
+      "pruefung": {
+       "type": "object",
+       "properties": {
+        "erstellt": {
+         "type": "string"
+        },
+        "verfahren": {
+         "type": "string"
+        },
+        "zweitpruefung": {
+         "type": "object",
+         "properties": {
+          "aenderungen": {
+           "type": "array",
+           "items": {
+            "type": "string"
+           }
+          },
+          "datum": {
+           "type": "string"
+          },
+          "ergebnis": {
+           "type": "string"
+          },
+          "verfahren": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "aenderungen",
+          "datum",
+          "ergebnis",
+          "verfahren"
+         ],
+         "additionalProperties": false
+        }
+       },
+       "required": [
+        "erstellt",
+        "verfahren",
+        "zweitpruefung"
+       ],
+       "additionalProperties": false
+      },
+      "regel": {
+       "type": "object",
+       "properties": {
+        "anteil_nenner": {
+         "type": "integer"
+        },
+        "anteil_zaehler": {
+         "type": "integer"
+        },
+        "mindestens": {
+         "type": "integer"
+        },
+        "text": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "anteil_nenner",
+        "anteil_zaehler",
+        "mindestens",
+        "text"
+       ],
+       "additionalProperties": false
+      },
+      "stand": {
+       "type": "string"
+      },
+      "summen": {
+       "type": "object",
+       "properties": {
+        "n_abweichend": {
+         "type": "integer"
+        },
+        "n_abweichend_formulare": {
+         "type": "integer"
+        },
+        "n_andere_entitaet": {
+         "type": "integer"
+        },
+        "n_ausserhalb": {
+         "type": "integer"
+        },
+        "n_formulare": {
+         "type": "integer"
+        },
+        "n_gesperrt": {
+         "type": "integer"
+        },
+        "n_konzepte": {
+         "type": "integer"
+        },
+        "n_konzepte_mit_abweichung": {
+         "type": "integer"
+        },
+        "n_konzepte_uneinheitlich": {
+         "type": "integer"
+        },
+        "n_mitglieder": {
+         "type": "integer"
+        },
+        "n_nicht_beurteilt": {
+         "type": "integer"
+        },
+        "n_ohne_rolle": {
+         "type": "integer"
+        },
+        "n_punkte": {
+         "type": "integer"
+        },
+        "n_punkte_in_kanton_zellen": {
+         "type": "integer"
+        },
+        "n_punkte_in_vorschlag_zellen": {
+         "type": "integer"
+        },
+        "n_punkte_in_zellen": {
+         "type": "integer"
+        },
+        "n_punkte_kanton_ein_element": {
+         "type": "integer"
+        },
+        "n_punkte_vorschlag": {
+         "type": "integer"
+        },
+        "n_zellen": {
+         "type": "integer"
+        },
+        "n_zellen_kanton": {
+         "type": "integer"
+        },
+        "n_zellen_kanton_ein_element": {
+         "type": "integer"
+        },
+        "n_zellen_kanton_keine_mehrheit": {
+         "type": "integer"
+        },
+        "n_zellen_kanton_zu_wenige": {
+         "type": "integer"
+        },
+        "n_zellen_vorschlag": {
+         "type": "integer"
+        },
+        "n_zuordnung_falsch": {
+         "type": "integer"
+        }
+       },
+       "required": [
+        "n_abweichend",
+        "n_abweichend_formulare",
+        "n_andere_entitaet",
+        "n_ausserhalb",
+        "n_formulare",
+        "n_gesperrt",
+        "n_konzepte",
+        "n_konzepte_mit_abweichung",
+        "n_konzepte_uneinheitlich",
+        "n_mitglieder",
+        "n_nicht_beurteilt",
+        "n_ohne_rolle",
+        "n_punkte",
+        "n_punkte_in_kanton_zellen",
+        "n_punkte_in_vorschlag_zellen",
+        "n_punkte_in_zellen",
+        "n_punkte_kanton_ein_element",
+        "n_punkte_vorschlag",
+        "n_zellen",
+        "n_zellen_kanton",
+        "n_zellen_kanton_ein_element",
+        "n_zellen_kanton_keine_mehrheit",
+        "n_zellen_kanton_zu_wenige",
+        "n_zellen_vorschlag",
+        "n_zuordnung_falsch"
+       ],
+       "additionalProperties": false
+      },
+      "ton": {
+       "type": "object",
+       "properties": {
+        "kanton": {
+         "type": "string"
+        },
+        "vorschlag": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "kanton",
+        "vorschlag"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "konzepte",
+      "labels",
+      "pruefung",
+      "regel",
+      "stand",
+      "summen",
+      "ton"
      ],
      "additionalProperties": false
     },
@@ -6794,6 +8474,9 @@
         "beilagen": {
          "type": "string"
         },
+        "beilagen_leser": {
+         "type": "string"
+        },
         "formular": {
          "type": "string"
         },
@@ -6805,14 +8488,19 @@
         },
         "vorbefuellbar": {
          "type": "string"
+        },
+        "zeit": {
+         "type": "string"
         }
        },
        "required": [
         "beilagen",
+        "beilagen_leser",
         "formular",
         "partei",
         "themengruppe",
-        "vorbefuellbar"
+        "vorbefuellbar",
+        "zeit"
        ],
        "additionalProperties": false
       },
@@ -6911,6 +8599,9 @@
            "bestaetigt_pflicht": {
             "type": "integer"
            },
+           "eigene_partei": {
+            "type": "integer"
+           },
            "element": {
             "type": "integer"
            },
@@ -6929,6 +8620,9 @@
            "obergrenze_pflicht": {
             "type": "integer"
            },
+           "partei_art_offen": {
+            "type": "integer"
+           },
            "partei_offen": {
             "type": "integer"
            },
@@ -6943,12 +8637,14 @@
            "beilagen_rueckgabe",
            "bestaetigt",
            "bestaetigt_pflicht",
+           "eigene_partei",
            "element",
            "formulare_beilagen",
            "formulare_bestaetigt",
            "formulare_obergrenze",
            "obergrenze",
            "obergrenze_pflicht",
+           "partei_art_offen",
            "partei_offen",
            "partei_unklar"
           ],
@@ -8227,13 +9923,17 @@
         },
         "partei_offen": {
          "type": "integer"
+        },
+        "zeitbezug": {
+         "type": "integer"
         }
        },
        "required": [
         "andere_partei",
         "mehrdeutig",
         "ohne_registerquelle",
-        "partei_offen"
+        "partei_offen",
+        "zeitbezug"
        ],
        "additionalProperties": false
       },
@@ -8242,6 +9942,34 @@
       },
       "formulare_zu_hoch": {
        "type": "integer"
+      },
+      "gruende": {
+       "type": "object",
+       "properties": {
+        "andere_partei": {
+         "type": "string"
+        },
+        "mehrdeutig": {
+         "type": "string"
+        },
+        "ohne_registerquelle": {
+         "type": "string"
+        },
+        "partei_offen": {
+         "type": "string"
+        },
+        "zeitbezug": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "andere_partei",
+        "mehrdeutig",
+        "ohne_registerquelle",
+        "partei_offen",
+        "zeitbezug"
+       ],
+       "additionalProperties": false
       },
       "hinzu": {
        "type": "integer"
@@ -8255,19 +9983,61 @@
       "minuten_korrigiert": {
        "type": "number"
       },
+      "n_ausgeschlossen": {
+       "type": "integer"
+      },
       "regel": {
        "type": "string"
+      },
+      "zeitbezug": {
+       "type": "object",
+       "properties": {
+        "formulare_geaendert": {
+         "type": "integer"
+        },
+        "formulare_mit_zeitbezug": {
+         "type": "integer"
+        },
+        "mehr": {
+         "type": "integer"
+        },
+        "mehr_pflicht": {
+         "type": "integer"
+        },
+        "punkte_mit_marke": {
+         "type": "integer"
+        },
+        "weniger": {
+         "type": "integer"
+        },
+        "weniger_pflicht": {
+         "type": "integer"
+        }
+       },
+       "required": [
+        "formulare_geaendert",
+        "formulare_mit_zeitbezug",
+        "mehr",
+        "mehr_pflicht",
+        "punkte_mit_marke",
+        "weniger",
+        "weniger_pflicht"
+       ],
+       "additionalProperties": false
       }
      },
      "required": [
       "ausgeschlossen",
       "bisher",
       "formulare_zu_hoch",
+      "gruende",
       "hinzu",
       "korrigiert",
       "minuten_bisher",
       "minuten_korrigiert",
-      "regel"
+      "n_ausgeschlossen",
+      "regel",
+      "zeitbezug"
      ],
      "additionalProperties": false
     },
@@ -9071,6 +10841,7 @@
     "begriffe_stats",
     "buergersicht",
     "datenhandhabung",
+    "datenmodell",
     "datenstand",
     "dienststellen_uebersicht",
     "ech_codelists",
@@ -9079,6 +10850,7 @@
     "generated_at",
     "gestaltung",
     "kennungen",
+    "konzepte",
     "kopfzahlen",
     "labels",
     "laws",

@@ -1,0 +1,563 @@
+{
+  "hinweis": "Konzepte über den kanonischen Angaben: welche eCH-Elemente dieselbe Angabe aus der wirklichen Welt bezeichnen (Vorname, Geburtsdatum, Strasse …). Gelesen von scripts/konzepte.py; die Datenbank ändert diese Datei nicht. Eine kanonische Angabe ist ein eCH-Element mit Standard, Name und XML-Kontext. Sie gehört nur dann zu einem Konzept, wenn sie hier unter «elemente» steht UND die drei Prüfungen besteht: ihr Datentyp steht in «typen» (aus dem eCH-Katalog ech_element), der Begriff aus der Prüfung der Bezeichnungen (begriff_vorschlag, sonst der eines Elements mit gleichem Standard und Namen) steht in «begriffe» — fehlt ein Begriff, muss die kanonische Bezeichnung (canonical_attribute.label) dem Muster «bezeichnung» entsprechen. Jedes genutzte Element mit einem Namen aus «namen» oder einem Begriff aus «begriffe», das nicht Mitglied ist, steht unter «ausserhalb» mit Grund; was neu dazukommt und noch nicht beurteilt ist, nennt der Export «nicht beurteilt» und zählt es nicht mit. Der XML-Kontext eines Elements, der nur sagt, wessen Angabe es ist (Elternteil, Partner/in, Kontaktperson einer Organisation, verstorbene Person), gehört zur Rolle der Partei, nicht zum Konzept. «entitaeten» nennt die Entitäten der Partei, deren eigene Angabe das Konzept ist (ein Vorname ist die Angabe einer natürlichen Person; der Name eines Vereins im Block einer natürlichen Person ist nicht deren eigener Name); Datenpunkte anderer Parteien zählt der Export als «andere Entität» und in keiner Zelle. Was Unterschiedliches bedeuten kann, bleibt ausserhalb.",
+  "stand": "2026-10-05",
+  "regel": {
+    "anteil_zaehler": 2,
+    "anteil_nenner": 3,
+    "mindestens": 10,
+    "text": "Je Konzept und Rolle der Partei mit der Art der Partei (Gesuchsteller/in als natürliche Person und als «Person oder Organisation» sind zwei Zellen) ist das Element, das mindestens zwei Drittel der Datenpunkte nutzen, der «Vorschlag» — sofern die Zelle mindestens 10 Datenpunkte hat. Sonst legt der Kanton das Element fest. Gezählt wird je Standard und Elementname; der XML-Kontext sagt nur, in welcher Struktur dasselbe Element steht. Der Vorschlag beschreibt die Praxis der Formulare; bestätigt wird er vom Kanton."
+  },
+  "pruefung": {
+    "erstellt": "2026-10-05",
+    "verfahren": "Je Konzept alle genutzten Elemente mit gleichem Elementnamen oder gleichem Begriff aus der Prüfung der Bezeichnungen aufgelistet, mit Datentyp, Begriff, kanonischer Bezeichnung, den Bezeichnungen der Datenpunkte und den Typdefinitionen der XSD-Dateien unter ech_xsd/; aufgenommen nur, was dieselbe Angabe bezeichnet.",
+    "zweitpruefung": {
+      "datum": "2026-10-05",
+      "verfahren": "Zweiter, eigener Durchgang über alle 27 Konzepte: jede Mitglieds- und Ausschlussangabe in der XSD-Datei ihres Standards nachgeschlagen (Elementdeklaration, Typ, Dokumentation des umgebenden Typs); je Element alle Bezeichnungen der Datenpunkte mit ihrer Partei gelesen; zwei Suchen nach fehlenden Mitgliedern: alle genutzten Elemente mit einem Datentyp eines Konzepts, und alle Datenpunkte, deren Bezeichnung dem Muster eines Konzepts entspricht, deren Element aber nicht Mitglied ist; danach 20 Abweichungen, gezogen je Konzept, Rolle und Element (Zufallsauswahl mit festem Startwert), am Text des Formulars geprüft.",
+      "ergebnis": "bestätigt mit den Änderungen unter «aenderungen»",
+      "aenderungen": [
+        "AHV-Nummer: eCH-0278 vnEmployer aufgenommen (Typ vnType; die AHV-Nummer der Arbeitgeberin oder des Arbeitgebers als natürliche Person).",
+        "Telefonnummer: eCH-0119 phoneNumberPrivate und phoneNumberBusiness aufgenommen (Typ phoneNumberType aus eCH-0046; die Formulare bilden «Telefon privat» und «Telefon Geschäft» auch auf eCH-0046 phoneNumber ab); Begriff «Telefon Geschäft» ergänzt.",
+        "Name der Organisation: eCH-0260 companyName aufgenommen (laut Standard «Name des Unternehmens», Typ unitNameType aus eCH-0108).",
+        "Alle Konzepte: «entitaeten» ergänzt und die Zelle je Rolle MIT Entität gebildet. Anlass: im Block natürlicher Personen stehen Namen anderer Organisationen («Feuerwehr» eines Kursteilnehmers, «Verein», «ausgestellt durch»), und Namen von Organisationen (Ausgleichskasse, Arbeitgeber) sind auf Personennamen abgebildet; eine Partei «Person oder Organisation» fragt «Name» für beides.",
+        "Vorname, ausserhalb eCH-0011 firstName (foreignerNameType): Grund um die heute darauf abgebildeten Datenpunkte ergänzt."
+      ]
+    }
+  },
+  "konzepte": [
+    {
+      "code": "vorname",
+      "label": "Vorname",
+      "gruppe": "Person",
+      "erklaerung": "Der Vorname oder die Vornamen einer natürlichen Person.",
+      "entitaeten": ["natuerliche_person", "gemischt"],
+      "namen": ["firstName"],
+      "begriffe": ["Vorname"],
+      "bezeichnung": "vorname",
+      "typen": ["baseNameType", "firstNameType", "officialFirstNameType"],
+      "elemente": [
+        ["eCH-0044", "firstName", "personIdentificationLightType"],
+        ["eCH-0044", "firstName", "personIdentificationType"],
+        ["eCH-0010", "firstName", "organisationMailAddressInfoType"],
+        ["eCH-0119", "firstName", "concernedPersonType"],
+        ["eCH-0021", "firstName", "nameOfParentType"],
+        ["eCH-0261", "firstName", "personType"],
+        ["eCH-0278", "firstName", "alimonyIncomeType"],
+        ["eCH-0108", "firstName", "soleProprietorshipPersonType"]
+      ],
+      "ausserhalb": [
+        {"element": ["eCH-0011", "firstName", "foreignerNameType"],
+         "grund": "Vorname im ausländischen Pass oder erklärter ausländischer Name (eCH-0011 nameOnForeignPassport, declaredForeignName); eCH-0011 führt ihn neben dem amtlichen Vornamen (nameDataType) als eigene Angabe. Die Datenpunkte, die heute auf dieses Element abgebildet sind, fragen nach dem Vornamen ohne Bezug zu einem ausländischen Pass (z. B. «Vorname(n)» in den Personalien von Gesellschafterinnen und Gesellschaftern); ob sie zum amtlichen Vornamen gehören, ist eine Frage der eCH-Zuordnung, nicht des Konzepts."}
+      ],
+      "grund": "Alle Mitglieder bezeichnen den Vornamen einer Person (Typen baseNameType und officialFirstNameType aus eCH-0044, firstNameType aus eCH-0010, den eCH-0261 übernimmt, und der gleichnamige Typ von eCH-0108). Der umgebende Typ sagt nur, wessen Vorname es ist: der eines Elternteils (nameOfParentType), einer Partnerin oder eines Partners, der Kontaktperson einer Organisation (organisationMailAddressInfoType) — das ist die Rolle der Partei."
+    },
+    {
+      "code": "familienname",
+      "label": "Familienname",
+      "gruppe": "Person",
+      "erklaerung": "Der Familienname (Nachname, amtlicher Name) einer natürlichen Person.",
+      "entitaeten": ["natuerliche_person", "gemischt"],
+      "namen": ["officialName", "lastName", "officialNameDecedent"],
+      "begriffe": ["Familienname"],
+      "bezeichnung": "\\bname|nachname|familienname",
+      "typen": ["baseNameType", "lastNameType"],
+      "elemente": [
+        ["eCH-0044", "officialName", "personIdentificationLightType"],
+        ["eCH-0044", "officialName", "personIdentificationType"],
+        ["eCH-0011", "officialName", "nameDataType"],
+        ["eCH-0119", "officialName", "concernedPersonType"],
+        ["eCH-0021", "officialName", "nameOfParentType"],
+        ["eCH-0278", "officialName", "alimonyIncomeType"],
+        ["eCH-0260", "officialName", "apprenticeContractFormType"],
+        ["eCH-0112", "officialName", "personType"],
+        ["eCH-0278", "officialNameDecedent", "privateAssetsType"],
+        ["eCH-0010", "lastName", "organisationMailAddressInfoType"],
+        ["eCH-0261", "lastName", "personType"],
+        ["eCH-0108", "lastName", "soleProprietorshipPersonType"]
+      ],
+      "ausserhalb": [
+        {"element": ["eCH-0278", "officialName", "inheritanceAndGiftsType"],
+         "grund": "Die Prüfung der Bezeichnungen hat das Element nicht benannt, und die Formulare fragen damit «An wen?» (Empfänger einer Schenkung): ob das ein Familienname einer Person ist, sagt die Bezeichnung nicht."}
+      ],
+      "grund": "officialName (eCH-0044, eCH-0011 und die Standards, die dessen baseNameType übernehmen) ist der amtliche Name einer Person, lastName (eCH-0010, eCH-0108, eCH-0261) ihr Nachname in einer Adresse oder einem Register; die Prüfung der Bezeichnungen benennt beide als «Familienname». officialNameDecedent (eCH-0278) ist der amtliche Name der verstorbenen Person — dass sie verstorben ist, ist die Rolle der Partei."
+    },
+    {
+      "code": "ledigname",
+      "label": "Ledigname",
+      "gruppe": "Person",
+      "erklaerung": "Der Name einer Person vor der ersten Eheschliessung oder Begründung einer eingetragenen Partnerschaft (Geburtsname).",
+      "entitaeten": ["natuerliche_person", "gemischt"],
+      "namen": ["originalName"],
+      "begriffe": ["Lediger Name"],
+      "bezeichnung": "ledig|geburtsname",
+      "typen": ["baseNameType"],
+      "elemente": [
+        ["eCH-0044", "originalName", "personIdentificationLightType"],
+        ["eCH-0011", "originalName", "nameDataType"]
+      ],
+      "ausserhalb": [],
+      "grund": "Beide Elemente heissen originalName, haben den Typ baseNameType aus eCH-0044 und bezeichnen den ledigen Namen; eCH-0011 nameDataType führt dasselbe Element wie eCH-0044."
+    },
+    {
+      "code": "geburtsdatum",
+      "label": "Geburtsdatum",
+      "gruppe": "Person",
+      "erklaerung": "Das Geburtsdatum einer natürlichen Person.",
+      "entitaeten": ["natuerliche_person", "gemischt"],
+      "namen": ["dateOfBirth", "birthDate"],
+      "begriffe": ["Geburtsdatum"],
+      "bezeichnung": "geburtsdatum|geboren",
+      "typen": ["datePartiallyKnownType", "date"],
+      "elemente": [
+        ["eCH-0044", "dateOfBirth", "personIdentificationLightType"],
+        ["eCH-0044", "dateOfBirth", "personIdentificationType"],
+        ["eCH-0011", "dateOfBirth", "birthDataType"],
+        ["eCH-0278", "dateOfBirth", "childType"],
+        ["eCH-0261", "dateOfBirth", "personType"],
+        ["eCH-0119", "dateOfBirth", "partnerPersonIdentificationType"],
+        ["eCH-0260", "dateOfBirth", "apprenticeContractFormType"],
+        ["eCH-0108", "birthDate", "soleProprietorshipPersonType"]
+      ],
+      "ausserhalb": [
+        {"element": ["eCH-0185", "birthDate", "dogDataType"],
+         "grund": "Geburtsdatum (Wurfdatum) eines Hundes — die Angabe eines Tiers, nicht einer Person."}
+      ],
+      "grund": "Alle Mitglieder sind das Geburtsdatum einer Person, fast alle im Typ datePartiallyKnownType aus eCH-0044 (eCH-0260 als xs:date). Kind (childType), Partner/in (partnerPersonIdentificationType) und Inhaber/in einer Einzelfirma (soleProprietorshipPersonType) sind Rollen."
+    },
+    {
+      "code": "geschlecht",
+      "label": "Geschlecht",
+      "gruppe": "Person",
+      "erklaerung": "Das Geschlecht einer natürlichen Person.",
+      "entitaeten": ["natuerliche_person", "gemischt"],
+      "namen": ["sex"],
+      "begriffe": ["Geschlecht"],
+      "bezeichnung": "geschlecht",
+      "typen": ["sexType"],
+      "elemente": [
+        ["eCH-0044", "sex", "personIdentificationLightType"],
+        ["eCH-0011", "sex", "birthDataType"],
+        ["eCH-0119", "sex", "partnerPersonIdentificationType"]
+      ],
+      "ausserhalb": [
+        {"element": ["eCH-0185", "sex", "dogDataType"],
+         "grund": "Geschlecht eines Hundes (eCH-0185 Hundedaten) — die Angabe eines Tiers, nicht einer Person."}
+      ],
+      "grund": "Alle Mitglieder haben den Typ sexType mit derselben Codeliste und bezeichnen das Geschlecht einer Person; eCH-0011 birthDataType führt es als Geburtsangabe, eCH-0119 für die Partnerin oder den Partner."
+    },
+    {
+      "code": "ahv_nummer",
+      "label": "AHV-Nummer",
+      "gruppe": "Person",
+      "erklaerung": "Die 13-stellige AHV-Nummer (Sozialversicherungsnummer) einer natürlichen Person.",
+      "entitaeten": ["natuerliche_person", "gemischt"],
+      "namen": ["vn", "vnEmployer"],
+      "begriffe": ["AHV-Nummer"],
+      "bezeichnung": "ahv|sv-nummer|sozialversicherungsnummer|versicherten",
+      "typen": ["vnType"],
+      "elemente": [
+        ["eCH-0044", "vn", "personIdentificationKeyOnlyType"],
+        ["eCH-0044", "vn", "personIdentificationLightType"],
+        ["eCH-0044", "vn", "personIdentificationType"],
+        ["eCH-0119", "vn", "partnerPersonIdentificationType"],
+        ["eCH-0278", "vnEmployer", "dependentEmploymentType"]
+      ],
+      "ausserhalb": [],
+      "grund": "Alle Mitglieder haben den Typ vnType aus eCH-0044 (AHVN13); sie unterscheiden sich nur im umgebenden Personentyp. eCH-0278 vnEmployer (Typ vnType) ist die AHV-Nummer der Arbeitgeberin oder des Arbeitgebers, wenn das eine natürliche Person ist — dass es die Arbeitgeberin oder der Arbeitgeber ist, ist die Rolle der Partei."
+    },
+    {
+      "code": "staatsangehoerigkeit",
+      "label": "Staatsangehörigkeit",
+      "gruppe": "Person",
+      "erklaerung": "Die Staatsangehörigkeit (Nationalität) einer natürlichen Person.",
+      "entitaeten": ["natuerliche_person", "gemischt"],
+      "namen": ["nationalityData", "country"],
+      "begriffe": ["Nationalität"],
+      "bezeichnung": "nationalit|staatsangeh",
+      "typen": ["nationalityDataType", "countryType"],
+      "elemente": [
+        ["eCH-0011", "nationalityData", "personType"],
+        ["eCH-0011", "country", "countryInfoType"]
+      ],
+      "ausserhalb": [
+        {"element": ["eCH-0010", "country", "addressInformationType"],
+         "grund": "Das Land einer Adresse, nicht die Staatsangehörigkeit."},
+        {"element": ["eCH-0008", "country", "countryShortType"],
+         "grund": "Ein Staat im Allgemeinen (Ziel-, Einsatz- oder Leistungsland), nicht die Staatsangehörigkeit einer Person."}
+      ],
+      "grund": "nationalityData (eCH-0011) hält die Staatsangehörigkeiten einer Person; countryInfoType/country ist darin der Staat einer Staatsangehörigkeit. Die Prüfung der Bezeichnungen benennt beide als «Nationalität»; die Formulare bilden dieselbe Frage einmal auf das ganze Element, einmal auf seinen Teil ab."
+    },
+    {
+      "code": "heimatort",
+      "label": "Heimatort",
+      "gruppe": "Person",
+      "erklaerung": "Der Heimatort (Bürgerort) einer Person mit Schweizer Bürgerrecht.",
+      "entitaeten": ["natuerliche_person", "gemischt"],
+      "namen": ["originName", "placeOfOrigin", "placeOfOriginName"],
+      "begriffe": ["Heimatort"],
+      "bezeichnung": "heimat|buergerort",
+      "typen": ["placeOfOriginNameType", "placeOfOriginType"],
+      "elemente": [
+        ["eCH-0011", "originName", "placeOfOriginType"],
+        ["eCH-0011", "placeOfOrigin", "personType"],
+        ["eCH-0135", "placeOfOriginName", "placeOfOriginType"]
+      ],
+      "ausserhalb": [],
+      "grund": "placeOfOrigin (eCH-0011) ist der Heimatort aus Name und Kanton, originName darin sein Name; eCH-0135 (Heimatorte) führt denselben Namen als placeOfOriginName. Die Prüfung der Bezeichnungen benennt alle drei als «Heimatort»."
+    },
+    {
+      "code": "zivilstand",
+      "label": "Zivilstand",
+      "gruppe": "Person",
+      "erklaerung": "Der Zivilstand einer natürlichen Person (ledig, verheiratet, verwitwet …).",
+      "entitaeten": ["natuerliche_person", "gemischt"],
+      "namen": ["maritalStatus", "maritalData"],
+      "begriffe": ["Zivilstand"],
+      "bezeichnung": "zivilstand",
+      "typen": [""],
+      "elemente": [
+        ["eCH-0011", "maritalStatus", "maritalDataRestrictedDivorceType"]
+      ],
+      "ausserhalb": [
+        {"element": ["eCH-0011", "maritalData", "personType"],
+         "grund": "Das ganze Zivilstandselement mit Zivilstand, Datum des Zivilstands und weiteren Angaben; die Prüfung der Bezeichnungen hat es nicht benannt, und das eine Formular fragt damit nach einer «Änderung Zivilstand»."}
+      ],
+      "grund": "Ein Element (eCH-0011 maritalStatus, Codeliste des Zivilstands); das Konzept zeigt, ob alle Formulare und Rollen es nutzen."
+    },
+    {
+      "code": "bewilligungsart",
+      "label": "Ausländerausweis (Bewilligungsart)",
+      "gruppe": "Person",
+      "erklaerung": "Die Art der ausländerrechtlichen Bewilligung einer Person (Ausweis B, C, L …).",
+      "entitaeten": ["natuerliche_person", "gemischt"],
+      "namen": ["residencePermit"],
+      "begriffe": ["Bewilligungsart"],
+      "bezeichnung": "bewilligung|auslaenderausweis",
+      "typen": ["residencePermitType", "residencePermitDataType"],
+      "elemente": [
+        ["eCH-0006", "residencePermit", null],
+        ["eCH-0011", "residencePermit", "residencePermitDataType"],
+        ["eCH-0011", "residencePermit", "personType"]
+      ],
+      "ausserhalb": [],
+      "grund": "eCH-0006 residencePermit ist die Codeliste der Bewilligungsarten; eCH-0011 übernimmt sie in residencePermitDataType und führt sie in personType mit den Gültigkeitsangaben. Die Prüfung der Bezeichnungen benennt alle drei als «Bewilligungsart»."
+    },
+    {
+      "code": "todesdatum",
+      "label": "Todesdatum",
+      "gruppe": "Person",
+      "erklaerung": "Das Datum des Todes einer Person.",
+      "entitaeten": ["natuerliche_person", "gemischt"],
+      "namen": ["deathDate", "decedentDateOfDeath", "dateOfDeath"],
+      "begriffe": ["Todestag"],
+      "bezeichnung": "todes|gestorben|verstorben",
+      "typen": ["generalDateType", "date"],
+      "elemente": [
+        ["eCH-0011", "deathDate", "deathDataType"],
+        ["eCH-0278", "decedentDateOfDeath", "privateAssetsType"]
+      ],
+      "ausserhalb": [],
+      "grund": "Beide bezeichnen den Todestag einer Person (eCH-0011 im Personenregister, eCH-0278 in der Steuererklärung für die verstorbene Person); die Prüfung der Bezeichnungen benennt beide als «Todestag»."
+    },
+    {
+      "code": "beruf",
+      "label": "Beruf",
+      "gruppe": "Person",
+      "erklaerung": "Der Beruf einer Person.",
+      "entitaeten": ["natuerliche_person", "gemischt"],
+      "namen": ["jobTitle", "occupation"],
+      "begriffe": ["Beruf"],
+      "bezeichnung": "beruf",
+      "typen": [""],
+      "elemente": [
+        ["eCH-0021", "jobTitle", "jobDataType"],
+        ["eCH-0260", "occupation", "otherProfessionDetailsType"]
+      ],
+      "ausserhalb": [],
+      "grund": "eCH-0021 jobTitle ist die Berufsbezeichnung einer Person, eCH-0260 occupation laut Standard der Beruf der Berufsbildnerin oder des Berufsbildners (otherProfessionDetailsType) — wessen Beruf es ist, ist die Rolle der Partei; die Prüfung der Bezeichnungen benennt beide als «Beruf»."
+    },
+    {
+      "code": "arbeitgeber_name",
+      "label": "Name des Arbeitgebers",
+      "gruppe": "Person",
+      "erklaerung": "Der Name der Arbeitgeberin oder des Arbeitgebers einer erwerbstätigen Person.",
+      "entitaeten": ["natuerliche_person", "gemischt", "organisation", "behoerde", "offen"],
+      "namen": ["employer"],
+      "begriffe": ["Name des Arbeitgebers"],
+      "bezeichnung": "arbeitgeber",
+      "typen": ["", "string", "employerNameType"],
+      "elemente": [
+        ["eCH-0021", "employer", "occupationDataType"],
+        ["eCH-0278", "employer", "dependentEmploymentType"],
+        ["eCH-0119", "employer", "personDataPartner1Type"]
+      ],
+      "ausserhalb": [],
+      "grund": "Alle drei bezeichnen den Namen des Arbeitgebers in den Erwerbsangaben einer Person (eCH-0021 Beruf und Erwerb, eCH-0278 und eCH-0119 Steuer). Das Konzept «Name der Organisation» bleibt davon getrennt, weil die Prüfung der Bezeichnungen die beiden verschieden benennt."
+    },
+    {
+      "code": "strasse",
+      "label": "Strasse",
+      "gruppe": "Adresse",
+      "erklaerung": "Die Strasse einer Adresse.",
+      "entitaeten": ["natuerliche_person", "gemischt", "organisation", "behoerde", "sache", "offen"],
+      "namen": ["street"],
+      "begriffe": ["Strasse"],
+      "bezeichnung": "strasse|adresse",
+      "typen": ["streetType"],
+      "elemente": [
+        ["eCH-0010", "street", "addressInformationType"],
+        ["eCH-0129", "street", "buildingIdentificationType"],
+        ["eCH-0108", "street", "foreignLocationAddressDetailType"]
+      ],
+      "ausserhalb": [],
+      "grund": "Alle Mitglieder haben den Typ streetType aus eCH-0010; eCH-0129 (Identifikation eines Gebäudes über seine Adresse) und eCH-0108 (Adressangaben eines Standorts) übernehmen ihn. Wessen Adresse es ist — Person, Betrieb, Gebäude —, ist die Rolle der Partei."
+    },
+    {
+      "code": "hausnummer",
+      "label": "Hausnummer",
+      "gruppe": "Adresse",
+      "erklaerung": "Die Hausnummer einer Adresse.",
+      "entitaeten": ["natuerliche_person", "gemischt", "organisation", "behoerde", "sache", "offen"],
+      "namen": ["houseNumber"],
+      "begriffe": ["Hausnummer"],
+      "bezeichnung": "hausnummer|nummer|\\bnr\\b",
+      "typen": ["houseNumberType"],
+      "elemente": [
+        ["eCH-0010", "houseNumber", "addressInformationType"]
+      ],
+      "ausserhalb": [],
+      "grund": "Ein Element (eCH-0010 houseNumber). Viele Formulare fragen Strasse und Nummer in einem Feld («Strasse, Nr.»); dann steht der Datenpunkt unter «Strasse»."
+    },
+    {
+      "code": "postleitzahl",
+      "label": "Postleitzahl",
+      "gruppe": "Adresse",
+      "erklaerung": "Die Schweizer Postleitzahl einer Adresse.",
+      "entitaeten": ["natuerliche_person", "gemischt", "organisation", "behoerde", "sache", "offen"],
+      "namen": ["swissZipCode", "foreignZipCode"],
+      "begriffe": ["Postleitzahl"],
+      "bezeichnung": "plz|postleitzahl",
+      "typen": ["swissZipCodeType"],
+      "elemente": [
+        ["eCH-0010", "swissZipCode", "addressInformationType"],
+        ["eCH-0108", "swissZipCode", "zipCodeType"],
+        ["eCH-0129", "swissZipCode", "buildingAddressLightType"],
+        ["eCH-0260", "swissZipCode", "apprenticeContractFormType"]
+      ],
+      "ausserhalb": [
+        {"element": ["eCH-0010", "foreignZipCode", "addressInformationType"],
+         "grund": "Die ausländische Postleitzahl: eCH-0010 führt sie neben der Schweizer Postleitzahl als eigene Angabe für Adressen im Ausland."}
+      ],
+      "grund": "Alle Mitglieder haben den Typ swissZipCodeType aus eCH-0010 (vierstellige Schweizer Postleitzahl)."
+    },
+    {
+      "code": "ort",
+      "label": "Ort",
+      "gruppe": "Adresse",
+      "erklaerung": "Der Ort (die Ortschaft) einer Adresse.",
+      "entitaeten": ["natuerliche_person", "gemischt", "organisation", "behoerde", "sache", "offen"],
+      "namen": ["town"],
+      "begriffe": ["Ort"],
+      "bezeichnung": "\\bort\\b|ortschaft|wohnort",
+      "typen": ["townType"],
+      "elemente": [
+        ["eCH-0010", "town", "addressInformationType"],
+        ["eCH-0108", "town", "additionalPostOfficeBoxAddressType"],
+        ["eCH-0260", "town", "apprenticeContractFormType"]
+      ],
+      "ausserhalb": [
+        {"element": ["eCH-0011", "town", "generalPlaceType"],
+         "grund": "Ein Ort im Ausland als Geburts- oder früherer Wohnort (eCH-0011 generalPlaceType), nicht der Ort einer Adresse; das Formular fragt damit nach einem «früheren Wohnort»."}
+      ],
+      "grund": "Alle Mitglieder haben den Typ townType aus eCH-0010 und bezeichnen den Ort einer Adresse (Wohn-, Geschäfts- oder Postfachadresse)."
+    },
+    {
+      "code": "telefon",
+      "label": "Telefonnummer",
+      "gruppe": "Kontakt",
+      "erklaerung": "Eine Telefonnummer (Festnetz oder Mobile) einer Person oder Organisation.",
+      "entitaeten": ["natuerliche_person", "gemischt", "organisation", "behoerde", "offen"],
+      "namen": ["phoneNumber", "phone", "phoneNumberPrivate", "phoneNumberBusiness"],
+      "begriffe": ["Telefonnummer", "Telefon", "Telefon Geschäft"],
+      "bezeichnung": "telefon|\\btel\\b|mobile|natel|handy",
+      "typen": ["phoneNumberType"],
+      "elemente": [
+        ["eCH-0046", "phoneNumber", "phoneType"],
+        ["eCH-0098", "phoneNumber", "organisationType"],
+        ["eCH-0119", "phoneNumber", "representativePersonType"],
+        ["eCH-0260", "phoneNumber", "apprenticeContractFormType"],
+        ["eCH-0261", "phone", "personType"],
+        ["eCH-0258", "phone", "individualPersonType"],
+        ["eCH-0119", "phoneNumberPrivate", "personDataPartner1Type"],
+        ["eCH-0119", "phoneNumberBusiness", "personDataPartner1Type"]
+      ],
+      "ausserhalb": [],
+      "grund": "Alle Mitglieder haben einen Typ phoneNumberType (eCH-0046 und die Standards, die ihn übernehmen, eCH-0098 mit eigenem gleichnamigem Typ). eCH-0046 phoneType führt neben der Nummer eine Kategorie (phoneCategory), und die Formulare bilden «Telefon privat», «Telefon Geschäft», «Mobile» und auch «Fax» auf dasselbe Element phoneNumber ab. Deshalb gehören auch eCH-0119 phoneNumberPrivate und phoneNumberBusiness (personDataPartner1Type, beide vom Typ phoneNumberType aus eCH-0046) zum Konzept. Die Faxnummer als eigenes Element (eCH-0129 faxNumber) bleibt ausserhalb; eine Faxnummer, die ein Formular auf eCH-0046 phoneNumber abbildet, zählt mit, weil das Konzept über das Element bestimmt wird."
+    },
+    {
+      "code": "email",
+      "label": "E-Mail-Adresse",
+      "gruppe": "Kontakt",
+      "erklaerung": "Eine E-Mail-Adresse einer Person oder Organisation.",
+      "entitaeten": ["natuerliche_person", "gemischt", "organisation", "behoerde", "offen"],
+      "namen": ["emailAddress", "email"],
+      "begriffe": ["E-Mail-Adresse", "E-Mail"],
+      "bezeichnung": "e-?mail",
+      "typen": ["emailAddressType", "emailType", "emailContactType"],
+      "elemente": [
+        ["eCH-0046", "emailAddress", "emailType"],
+        ["eCH-0098", "emailAddress", "organisationType"],
+        ["eCH-0260", "emailAddress", "VETtrainerType"],
+        ["eCH-0278", "emailAddress", "taxDeclarationInformationType"],
+        ["eCH-0261", "email", "personIdentifierType"],
+        ["eCH-0108", "email", "legalUnitAdditionalDataType"],
+        ["eCH-0258", "email", "individualPersonType"]
+      ],
+      "ausserhalb": [],
+      "grund": "Alle Mitglieder bezeichnen eine E-Mail-Adresse: eCH-0046 emailAddressType (von eCH-0261 und eCH-0258 übernommen), eCH-0108 emailType (von eCH-0098 übernommen), eCH-0278 mit der Struktur emailType aus eCH-0046 (Kategorie und Adresse), eCH-0260 mit dem eigenen emailContactType."
+    },
+    {
+      "code": "internetadresse",
+      "label": "Internetadresse",
+      "gruppe": "Kontakt",
+      "erklaerung": "Die Adresse einer Website.",
+      "entitaeten": ["natuerliche_person", "gemischt", "organisation", "behoerde", "offen"],
+      "namen": ["internetAddress", "website"],
+      "begriffe": ["Internetadresse"],
+      "bezeichnung": "internet|homepage|website|webseite",
+      "typen": ["internetAddressType", "websiteType"],
+      "elemente": [
+        ["eCH-0046", "internetAddress", "internetType"],
+        ["eCH-0098", "website", "organisationType"],
+        ["eCH-0108", "website", "legalUnitAdditionalDataType"]
+      ],
+      "ausserhalb": [],
+      "grund": "Alle Mitglieder bezeichnen die Adresse einer Website (eCH-0046 internetAddressType, eCH-0108 websiteType, den eCH-0098 übernimmt); die Prüfung der Bezeichnungen benennt sie als «Internetadresse»."
+    },
+    {
+      "code": "organisationsname",
+      "label": "Name der Organisation",
+      "gruppe": "Organisation",
+      "erklaerung": "Der Name einer Organisation (Firma, Betrieb, Institution, Behörde).",
+      "entitaeten": ["gemischt", "organisation", "behoerde", "offen"],
+      "namen": ["organisationName", "companyName"],
+      "begriffe": ["Name der Organisation"],
+      "bezeichnung": "firma|name|organisation|betrieb",
+      "typen": ["unitNameType", "organisationNameType"],
+      "elemente": [
+        ["eCH-0098", "organisationName", "organisationIdentificationType"],
+        ["eCH-0010", "organisationName", "organisationMailAddressInfoType"],
+        ["eCH-0260", "organisationName", "hostCompanyType"],
+        ["eCH-0108", "name", "foreignOrganisationInformationType"],
+        ["eCH-0260", "companyName", "applicationContactType"]
+      ],
+      "ausserhalb": [],
+      "grund": "eCH-0098 und eCH-0108 führen den Namen einer Einheit im Typ unitNameType, eCH-0010 und eCH-0260 im Typ organisationNameType einer Adresse; die Prüfung der Bezeichnungen benennt alle als «Name der Organisation». eCH-0260 companyName ist laut Standard der «Name des Unternehmens» (Typ unitNameType aus eCH-0108). Zusätze und Übersetzungen des Namens (organisationNameAddOn1, organisationAdditionalName, translatedName) sind eigene Angaben und bleiben ausserhalb."
+    },
+    {
+      "code": "uid",
+      "label": "UID (Unternehmens-Identifikationsnummer)",
+      "gruppe": "Organisation",
+      "erklaerung": "Die Unternehmens-Identifikationsnummer (CHE-…) einer Organisation.",
+      "entitaeten": ["gemischt", "organisation", "behoerde", "offen"],
+      "namen": ["uid", "uidOrganisationId", "UID"],
+      "begriffe": ["UID-Nummer", "Unternehmensidentifikationsnummer (UID)"],
+      "bezeichnung": "\\buid\\b",
+      "typen": ["uidType", "uidStructureType", "uidOrganisationIdType"],
+      "elemente": [
+        ["eCH-0098", "uid", "organisationIdentificationType"],
+        ["eCH-0116", "uid", "eventRequestDeregistration"],
+        ["eCH-0021", "uidOrganisationId", "uidStructureType"],
+        ["eCH-0021", "UID", "occupationDataType"],
+        ["eCH-0265", "responsibleEnterprise", "areaType"]
+      ],
+      "ausserhalb": [],
+      "grund": "Alle Mitglieder tragen eine UID (Typ uidType aus eCH-0108, uidStructureType aus eCH-0097 bzw. der gleichnamige Typ von eCH-0021); eCH-0021 uidOrganisationId ist deren Nummer ohne die Kategorie CHE. eCH-0265 responsibleEnterprise ist laut Standard die UID des verantwortlichen Unternehmens («Unter Verantwortung von (Unternehmen/Betrieb)»)."
+    },
+    {
+      "code": "rechtsform",
+      "label": "Rechtsform",
+      "gruppe": "Organisation",
+      "erklaerung": "Die Rechtsform einer Organisation (AG, GmbH, Verein …).",
+      "entitaeten": ["gemischt", "organisation", "behoerde", "offen"],
+      "namen": ["legalForm"],
+      "begriffe": ["Rechtsform"],
+      "bezeichnung": "rechtsform|gesellschaftsform",
+      "typen": ["legalFormType"],
+      "elemente": [
+        ["eCH-0098", "legalForm", "organisationIdentificationType"],
+        ["eCH-0108", "legalForm", "legalUnitMasterDataType"]
+      ],
+      "ausserhalb": [],
+      "grund": "Beide Elemente haben den Typ legalFormType (Codeliste der Rechtsformen) und bezeichnen die Rechtsform einer Einheit."
+    },
+    {
+      "code": "iban",
+      "label": "IBAN",
+      "gruppe": "Zahlung",
+      "erklaerung": "Die IBAN eines Bank- oder Postkontos.",
+      "entitaeten": ["natuerliche_person", "gemischt", "organisation", "behoerde", "offen"],
+      "namen": ["ibanNumber", "refundAccountIBAN", "iban"],
+      "begriffe": ["IBAN"],
+      "bezeichnung": "iban",
+      "typen": ["string", "ibanType"],
+      "elemente": [
+        ["eCH-0119", "ibanNumber", "bankAccountType"],
+        ["eCH-0278", "refundAccountIBAN", "taxDeclarationInformationType"],
+        ["eCH-0276", "iban", "bankDetailsForRefundType"]
+      ],
+      "ausserhalb": [],
+      "grund": "Alle Mitglieder bezeichnen die IBAN eines Kontos; dass das Konto der Rückerstattung dient (eCH-0278, eCH-0276), ist der Zweck, nicht eine andere Angabe."
+    },
+    {
+      "code": "bankname",
+      "label": "Name der Bank",
+      "gruppe": "Zahlung",
+      "erklaerung": "Der Name der Bank oder Post, bei der ein Konto geführt wird.",
+      "entitaeten": ["natuerliche_person", "gemischt", "organisation", "behoerde", "offen"],
+      "namen": ["bankName", "refundAccountBankName"],
+      "begriffe": ["Bankname"],
+      "bezeichnung": "bank",
+      "typen": ["", "string"],
+      "elemente": [
+        ["eCH-0119", "bankName", "bankAccountType"],
+        ["eCH-0278", "refundAccountBankName", "taxDeclarationInformationType"]
+      ],
+      "ausserhalb": [],
+      "grund": "Beide bezeichnen den Namen der kontoführenden Bank; die Prüfung der Bezeichnungen benennt beide als «Bankname»."
+    },
+    {
+      "code": "grundstuecknummer",
+      "label": "Grundstücknummer",
+      "gruppe": "Grundstück und Gebäude",
+      "erklaerung": "Die Nummer eines Grundstücks im Grundbuch (Parzellen- oder Grundbuchnummer).",
+      "entitaeten": ["sache"],
+      "namen": ["realEstateNumber"],
+      "begriffe": ["Grundbuchnummer"],
+      "bezeichnung": "grundbuch|parzell|grundstueck",
+      "typen": ["", "GrundstueckNummerDef"],
+      "elemente": [
+        ["eCH-0129", "number", "buildingIdentificationType"],
+        ["eCH-0134", "realEstateNumber", "baseMessageType"]
+      ],
+      "ausserhalb": [],
+      "grund": "eCH-0129 führt in buildingIdentificationType die Grundstücknummer (number, zusammen mit der Nummer des Grundbuchkreises), eCH-0134 die Grundstücknummer als realEstateNumber; die Prüfung der Bezeichnungen benennt beide als «Grundbuchnummer»."
+    },
+    {
+      "code": "gebaeudeversicherungsnummer",
+      "label": "Gebäudeversicherungsnummer",
+      "gruppe": "Grundstück und Gebäude",
+      "erklaerung": "Die Nummer eines Gebäudes bei der Gebäudeversicherung.",
+      "entitaeten": ["sache"],
+      "namen": ["insuranceNumber"],
+      "begriffe": ["Gebäudeversicherungsnummer"],
+      "bezeichnung": "versicherung",
+      "typen": ["buildingInsuranceNumberType"],
+      "elemente": [
+        ["eCH-0129", "insuranceNumber", "insuranceObjectOnlyType"],
+        ["eCH-0211", "insuranceNumber", "solarInstallationType"]
+      ],
+      "ausserhalb": [],
+      "grund": "Beide haben den Typ buildingInsuranceNumberType aus eCH-0129 (Nummer der Gebäudeversicherung)."
+    }
+  ]
+}

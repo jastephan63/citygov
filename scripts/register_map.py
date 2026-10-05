@@ -44,11 +44,49 @@ unit when a quoted Einwohnerregister rule names its element for a natural person
 vorbefuellbar, the flows) only the required points that carry the mark AND belong to
 the applicant (party role Gesuchsteller/in, entity natural person — the spouse's or a
 child's Angaben only once the canton confirms that relations can be delivered: not by
-default) AND are not «mehrdeutig» within that party. The former figure stays as
-prefillable_bisher, the excluded ones by reason in prefillable_ausgeschlossen. The
-model estimate uses the existing burden model of export_json (MIN_ANGABE minutes per
-required input, MIN_BEILAGE per Beilage); case numbers per service are canton data
-that the databank does not have.
+default) AND are not «mehrdeutig» within that party AND ask for the register's
+CURRENT value (the time rule below). The former figure stays as prefillable_bisher,
+the excluded ones by reason in prefillable_ausgeschlossen. The model estimate uses the
+existing burden model of export_json (MIN_ANGABE minutes per required input,
+MIN_BEILAGE per Beilage); case numbers per service are canton data that the databank
+does not have.
+
+The time rule (2026-10-05, zeitbezug()): the register's entry holds the CURRENT value.
+A point whose label (field name, for a Teilfeld «Feld | Teilfeld», folded) carries a
+qualifier of another time is never filled from it, whatever its element:
+  kuenftig  a later, new or planned value (neu, künftig, geplant, voraussichtlich,
+            beabsichtigt, beantragt, nach dem Umzug …) — never filled;
+  andere    an earlier value or another moment (früher, bisherig, ehemalig, vorherig,
+            alte, letzte … Jahre, während, zuletzt, ursprünglich, beim Eintritt, zum
+            Zeitpunkt, bei Abwesenheit, bei Realisierung, ledig, Geburtsname);
+  wechsel   a change, an event or a period (Änderung, Wechsel, Mutation, Zuzug, Wegzug,
+            Umzug, Ausreise, Einreise, Abmeldung, Heirat, Scheidung, Trennung,
+            Einbürgerung, Dauer, Zeitraum, Aufenthalte, Wohnorte) or only a bare time
+            preposition (seit, bis, ab).
+The one exception: the element itself names that past value in the register's own
+entry (ZEIT_EREIGNIS — Zuzug date and origin, Umzug date, Wegzug date and destination,
+the date of the civil status, of the nationality, of the permit, of the health
+insurance and the fire service duty, the name before marriage). It applies when the
+label names the same event (the element's pattern), or carries only a bare preposition,
+and never when the label names a conflicting circumstance (Zivilrechtlicher Wohnsitz IN
+DER SCHWEIZ seit is not the Zuzug into the Gemeinde; a Trennung is not a civil status)
+or a later value. A time word that qualifies a PERSON (neue Zeichnungsberechtigte,
+Bewirtschafter neu, verantwortliche Person (bisher)) names which person, not which
+value — that person's current data are meant (whose Angabe it is, the party layer
+decides), so the phrase is not read as a time qualifier (ZEIT_PERSON). The death date
+(ZEIT_NIE) is never filled from the submitting person's own profile. A point excluded
+by the rule does not compete with the current value of its party either: «mehrdeutig»
+compares only the points without time reference. Counted in
+prefillable_ausgeschlossen.zeitbezug (the points the rule alone keeps out) and
+vorbefuellung.zeitbezug; stamped as u.zeitbezug on the units that carry the
+Einwohnerregister mark; citygov_prefill.json carries zeitbezug per point. The gate
+(zeit_pruefen, part of pruefen): the patterns, the exception elements (each must be
+named by a quoted Einwohnerregister rule), a fixed set of labelled examples
+(ZEIT_BEISPIELE), and the reviewed eCH corrections of the same sweep
+(quellen/korrekturen/prefill_inhalt_2026-10-05/: every entry with its old element,
+reason, quote from the Formular text and second review; a correction is either pending
+— every target still carries the old element — or applied, never half or overwritten;
+a name-keyed verdict must name exactly the reviewed fields).
 
 Commands
     python3 scripts/register_map.py              gate + load (staging -> validate -> swap);
@@ -58,7 +96,14 @@ Commands
                                                  the figures on today's data (builds the
                                                  export in memory with export_json.build,
                                                  writes nothing but PATH)
-Standard library only; imported by validate_db.py (pruefen) and export_json.py.
+    python3 scripts/register_map.py --korrekturen
+                                                 every quote of the correction files found
+                                                 again in its Formular text and the state of
+                                                 each correction (pending / applied); needs
+                                                 pypdf for PDF Formulare (run it with a Python
+                                                 that has it); writes nothing
+Standard library only (--korrekturen reads the Formular files through rollen.py, which
+imports pypdf only then); imported by validate_db.py (pruefen) and export_json.py.
 """
 import json
 import os
@@ -354,6 +399,11 @@ RUECKGABE = re.compile(r"umtausch|ausser\s*verkehr|verzicht|loeschung|\balle\b[^
 IDENTITAET = re.compile(r"\bpass\b|\bid\b|identitaetskarte")
 # a Beilage that is a Formular, a Merkblatt or a guide is no document a register holds
 KEIN_DOKUMENT = re.compile(r"formular|merkblatt|wegleitung|anleitung")
+# not a document at all, whatever the judged holder (beilage.halter) says: a number is an Angabe
+# («Steuerregister-Nummer (PID-Nummer)»), a figure about the Gemeinde is no document about a party
+# («Einwohnerzahl der Gemeinde»), and a creditor's copy of the own claim is the creditor's paper
+# («Kopie der Forderung an das Konkursamt …») — the review of 2026-10-05 found these four Beilagen
+KEINE_URKUNDE = re.compile(r"register-?nummer|\(pid\b|\beinwohnerzahl|\bkopie der forderung")
 # the applicant's own return or a plan the applicant annotates: no register holds it,
 # even where the judged holder (beilage.halter) names the office
 EIGENE_ANGABE = re.compile(r"steuererklaerung|selbstdeklaration|mit\s+(?:genauer\s+)?(?:bezeichnung|eintrag\w*|"
@@ -368,7 +418,8 @@ ZUGRIFF = [
      "Steuerbehörden und anderen Behörden des Bundes, der Kantone und der Gemeinden die Daten, die sie zur Erfüllung ihrer gesetzlichen Aufgaben benötigen",
      "fedlex_gbv",
      "Die Kantone können vorsehen, dass die Daten des Hauptbuchs, des Tagebuchs und der Hilfsregister den folgenden Personen und Behörden ohne Interessennachweis im Einzelfall elektronisch zugänglich gemacht werden:"),
-    ("handelsregister", "221.411", "Art. 11", "kandidat", "Auf Verlangen", "fedlex_hregv",
+    # the article names no addressee — «Auf Verlangen» says how, not who: adressat '' (the page says so)
+    ("handelsregister", "221.411", "Art. 11", "kandidat", "", "fedlex_hregv",
      "Auf Verlangen gewähren die Handelsregisterämter Einsicht in das Hauptregister, in die Anmeldung und in die Belege"),
     ("steuerregister", "641.100", "Art. 127", "schranke", "Dritten", "sh_stg",
      "Wer mit dem Vollzug dieses Gesetzes betraut ist oder dazu beigezogen wird, muss über Tatsachen, die ihm bzw. ihr in Ausübung des Amtes bekannt werden, und über die Verhandlungen in den Behörden Stillschweigen bewahren und Dritten den Einblick in amtliche Akten verweigern."),
@@ -665,6 +716,7 @@ def pruefen(conn, nur_katalog=False):
                     fehler.append(f"register_zugriff {key}: Zitat oder Adressat nicht in diesem Artikel")
             else:
                 zitat_ok("register_zugriff", key, r["quelle"], r["zitat"])
+    fehler += zeit_pruefen(conn)
     return fehler
 
 
@@ -747,8 +799,9 @@ def kontext_text(fm, d, u, subs):
 PARTEI_STATUS = {
     "gesuchsteller": "Angabe der einreichenden Person (Rolle Gesuchsteller/in, natürliche Person)",
     "andere_partei": "Angabe einer Partei mit einer anderen Rolle als Gesuchsteller/in (Ehepartner/in, Kind, "
-                     "Arbeitnehmer/in, Organ …; auch Bauherrschaft oder Halter/in, solange Stufe B2 sie nicht als "
-                     "einreichende Person bestätigt) — nicht vorbefüllbar; Angaben zu Beziehungen erst nach dem "
+                     "Arbeitnehmer/in, Organ …; auch Bauherrschaft oder Halter/in, solange die Beurteilung aus dem "
+                     "Formulartext sie nicht als einreichende Person bestätigt) — nicht vorbefüllbar; Angaben zu "
+                     "Beziehungen erst nach dem "
                      "Entscheid des Kantons, ob das Register sie liefern darf",
     "partei_offen": "wessen Angabe es ist, ist nicht geklärt (Partei unklar, noch nicht abgeleitet, oder die "
                     "Gesuchsteller/in ist nicht als natürliche Person geklärt); nicht vorbefüllbar",
@@ -770,6 +823,305 @@ def partei_von(fm, u):
     return info, ("gesuchsteller" if p["entitaet"] == "natuerliche_person" else "partei_offen")
 
 
+# ---------------------------------------------------------------------------
+# the time rule of the prefill (see the module docstring): the register's CURRENT
+# value fills a point only when the point asks for the current value
+# ---------------------------------------------------------------------------
+ZEIT_KUENFTIG = re.compile(
+    r"\bneue?[nrs]?\b|\bkuenftig|\bzukuenftig|\bgeplant|\bvoraussichtlich|\bbeabsichtigt|\bbeantragt|"
+    r"\bnach (?:dem|der) (?:umzug|zuzug|wegzug|heirat|scheidung|einbuergerung|adoption)")
+ZEIT_ANDERE = re.compile(
+    r"\bfrueher|\bbisherig|\bbisher\b|\bvorherig|\bvorig|\behemalig|\bvormalig|\bvormals\b|\bdamals\b|\bdamalig|"
+    r"\burspruenglich|\bzuletzt\b|\bletzte[nrs]?\b|\bwaehrend\b|\balte[ns]?\b|\bbeim eintritt|\bzum zeitpunkt|"
+    r"\bim zeitpunkt|\bzur zeit de[rs]\b|abwesenheit|\bbei realisierung|\bledig|geburtsname|\bbei der geburt")
+ZEIT_WECHSEL = re.compile(
+    r"aenderung|wechsel|\bmutation|\bmutierend|\bzuzug|\bzugezogen|\bwegzug|\bweggezogen|\bumzug|\bausreise|"
+    r"\beinreise|\babmeld|\bdauer\b|\bzeitraum|\bperiode\b|\baufenthalte\b|\baufenthaltsorte|\bwohnorte\b|"
+    r"\bheirat|\beheschliess|\bscheidung|\btrennung|\bverwitwung|\beinbuergerung")
+ZEIT_PRAEPOSITION = re.compile(r"\bseit\b|\bbis\b|\bab\b")
+# a time word that qualifies a PERSON (neue Zeichnungsberechtigte, Bewirtschafter neu, verantwortliche
+# Person (bisher)) says which person, not which value: that person's current data are meant, and
+# whose Angabe it is the party layer decides — the phrase is taken out before the time words are read
+_ZEIT_WORT = r"(?:neue?[nrs]?|bisherige?[nrs]?|bisher|fruehere?[nrs]?|ehemalige?[nrs]?|kuenftige?[nrs]?)(?:\([a-z]\))?"
+_PERSON_WORT = (r"(?:zeichnungsberechtigt\w*|bewirtschafter\w*|verantwortliche?[nrs]?\s+person\w*|person(?:en)?\b|"
+                r"inhaber\w*|halter\w*|paechter\w*|eigentuemer\w*|geschaeftsfuehr\w*|mitglied\w*|"
+                r"gesellschafter\w*|liquidator\w*|vertreter\w*|arbeitgeber\w*|mieter\w*|vermieter\w*|organ\w*)")
+ZEIT_PERSON = re.compile(rf"\b{_ZEIT_WORT}\s*{_PERSON_WORT}|{_PERSON_WORT}\s*\(?\s*{_ZEIT_WORT}\b\)?:?")
+# (standard, element) -> (pattern the label must carry unless it has only a bare
+# preposition, pattern the label must not carry): elements whose value IS the date or
+# place of that event in the register's own entry (the quoted rules of RHG Art. 6 and
+# Gemeindegesetz Art. 88 Abs. 2 in ANGABEN) — each must be named by a quoted
+# Einwohnerregister rule (zeit_pruefen)
+ZEIT_EREIGNIS = {
+    ("eCH-0011", "arrivalDate"): (r"\bzuzug|\bzugezogen|\bgemeinde\b|\bwohnort\b|\bwohnhaft\b|\bangemeldet|"
+                                  r"\banmeldung|\bankunft|\beingezogen",
+                                  r"schweiz|\bkanton|ausland|frankreich|\bstaat\b|\bland\b|aufenthalte\b|\bdauer\b|"
+                                  r"\bbis\b|\bvon\b"),
+    ("eCH-0011", "comesFrom"): (r"\bzuzug|\bzugezogen|herkunft|\bvorherig|\bvorig", r"aufenthalte\b|wohnorte\b|\bdauer\b"),
+    ("eCH-0011", "movingDate"): (r"\bumzug|\bumgezogen", r"haushalt"),
+    ("eCH-0011", "dwellingAddressValidFrom"): (r"\badresse|\bwohnung|\bwohnhaft|\bwohnsitz", None),
+    ("eCH-0011", "departureDate"): (r"\bwegzug|\bweggezogen|\bausreise|\babmeld|\babreise", r"frueher|zivilstand"),
+    ("eCH-0011", "goesTo"): (r"\bwegzug|\bweggezogen|\bausreise|\babmeld|\bzielort", None),
+    ("eCH-0011", "dateOfMaritalStatus"): (r"zivilstand|verheiratet|\bheirat|eheschliess|partnerschaft|geschieden|"
+                                          r"scheidung|verwitw", r"trenn|getrennt"),
+    ("eCH-0011", "nationalityValidFrom"): (r"staatsangehoerig|nationalitaet|schweizer|buergerrecht|einbuergerung|"
+                                           r"eingebuergert", None),
+    ("eCH-0011", "residencePermitValidFrom"): (r"bewilligung|ausweis", None),
+    ("eCH-0011", "residencePermitValidTill"): (r"bewilligung|ausweis", None),
+    ("eCH-0021", "healthInsuranceValidFrom"): (r"kranken|versicher", None),
+    ("eCH-0021", "fireServiceValidFrom"): (r"feuerwehr", None),
+    ("eCH-0044", "originalName"): (r"\bledig|geburtsname|bei der geburt", None),
+    ("eCH-0011", "originalName"): (r"\bledig|geburtsname|bei der geburt", None),
+}
+# the death date: never from the submitting person's own profile
+ZEIT_NIE = {("eCH-0011", "deathDate")}
+# the labelled examples of the gate (label as the export builds it, element, expected
+# zeitbezug): the cases of the 2026-10-05 sweep and the exceptions that must stay open
+ZEIT_BEISPIELE = [
+    ("Frühere Wohnorte | Ort", "eCH-0010", "town", True),
+    ("Personalien | Adresse(n) während der letzten zwei Jahre", "eCH-0010", "addressInformation", True),
+    ("Adressen der letzten zwei Jahre", "eCH-0010", "addressInformation", True),
+    ("Aufenthalte im Ausland | Wohnort / Land", "eCH-0010", "town", True),
+    ("Aufenthalte in der Schweiz | Wohnort / Kanton", "eCH-0011", "municipalityName", True),
+    ("Änderung Zivilstand | Datum", "eCH-0011", "departureDate", True),
+    ("Änderung Zivilstand | Zivilstand neu", "eCH-0011", "maritalStatus", True),
+    ("Datum Verstorben", "eCH-0011", "deathDate", True),
+    ("Früherer Wohnort | bis", "eCH-0011", "departureDate", True),
+    ("Personalien | Neue Adresse gültig ab", "eCH-0011", "dwellingAddressValidFrom", True),
+    ("Personalien | Neue Adresse bei Um-/Wegzug", "eCH-0011", "goesTo", True),
+    ("Zivilrechtlicher Wohnsitz in der Schweiz seit", "eCH-0011", "arrivalDate", True),
+    ("Zivilrechtlicher Wohnsitz im Kanton Schaffhausen seit", "eCH-0011", "arrivalDate", True),
+    ("Trennung/Scheidung seit", "eCH-0011", "dateOfMaritalStatus", True),
+    ("Wohnsitz in der Schweiz beim Eintritt des Ereignisses", "eCH-0011", "hasMainResidence", True),
+    ("Personalien | Kontaktadresse/Telefon (bei Abwesenheit)", "eCH-0011", "contactAddress", True),
+    ("Änderung Personalien der Geschäftsinhaberin/des Geschäftsinhabers | Privatadresse", "eCH-0010",
+     "personMailAddress", True),
+    ("Gemeinsamer Haushalt der Ehegatten seit", "eCH-0011", "movingDate", True),
+    ("Zivilstand seit", "eCH-0011", "dateOfMaritalStatus", False),
+    ("Datum Änderung Zivilstand", "eCH-0011", "dateOfMaritalStatus", False),
+    ("Personalien GesuchstellerIn | seit", "eCH-0011", "dateOfMaritalStatus", False),
+    ("Personalien GesuchstellerIn | Wohnsitz in der Gemeinde seit", "eCH-0011", "arrivalDate", False),
+    ("Personalien | Wohnort seit", "eCH-0011", "arrivalDate", False),
+    ("Wegzug aus dieser Gemeinde seit", "eCH-0011", "departureDate", False),
+    ("Aufenthaltsbewilligung gültig bis", "eCH-0011", "residencePermitValidTill", False),
+    ("Personalien | lediger Name", "eCH-0044", "originalName", False),
+    ("Personalien | Name", "eCH-0044", "officialName", False),
+    ("Personalien | Geburtsdatum", "eCH-0044", "dateOfBirth", False),
+    ("Zivilstand", "eCH-0011", "maritalStatus", False),
+    ("Personalien Gesuchsteller/in | Aufenthaltsbewilligung", "eCH-0011", "residencePermit", False),
+    ("Personalien der verstorbenen Person | Geburtsdatum", "eCH-0011", "dateOfBirth", False),
+    ("Neue Zeichnungsberechtigte | Privatadresse", "eCH-0011", "dwellingAddress", False),
+    ("Bewirtschafter neu: Personalien | Strasse", "eCH-0010", "street", False),
+    ("Personalien bisherige(r) Bewirtschafter/in | PLZ, Ort", "eCH-0010", "swissZipCode", False),
+    ("Verantwortliche Person (neu) | Name", "eCH-0044", "officialName", False),
+    ("Neue AHV-Nummer", "eCH-0044", "vn", True),
+    ("Eingetragene Personen neu oder mutierend | Privatadresse", "eCH-0010", "personMailAddress", True),
+]
+
+
+def zeit_label(d, u, subs):
+    """The label the time rule reads: the field name, for a Teilfeld «Feld | Teilfeld»."""
+    return " | ".join(x for x in (d.get("name"), u.get("name") if subs else None) if x)
+
+
+def zeitbezug(label, standard, element):
+    """True when the label asks for a value of another time than the register's current
+    entry and the element does not itself name that value (module docstring)."""
+    if (standard, element) in ZEIT_NIE:
+        return True
+    t = ZEIT_PERSON.sub(" ", falten(label))
+    kuenftig, andere, wechsel = ZEIT_KUENFTIG.search(t), ZEIT_ANDERE.search(t), ZEIT_WECHSEL.search(t)
+    if kuenftig:
+        return True
+    if not (andere or wechsel or ZEIT_PRAEPOSITION.search(t)):
+        return False
+    ereignis = ZEIT_EREIGNIS.get((standard, element))
+    if ereignis is None:
+        return True
+    muss, nie = ereignis
+    if nie and re.search(nie, t):
+        return True
+    if (andere or wechsel) and not re.search(muss, t):
+        return True
+    return False
+
+
+def zeit_pruefen(conn):
+    """The gate of the time rule ([] when it holds): every exception element is named by
+    a quoted Einwohnerregister rule (register_angabe) and exists in the eCH catalogue,
+    every pattern compiles, every labelled example classifies as recorded, and the
+    reviewed eCH corrections of the sweep (KORREKTUR_DIR) are well formed and either
+    pending or applied (korrekturen_pruefen)."""
+    fehler = []
+    for (s, n), (muss, nie) in ZEIT_EREIGNIS.items():
+        for x in (muss, nie):
+            if x and not _rx_ok(x):
+                fehler.append(f"Zeitregel {s}·{n}: kein gültiges Muster «{x}»")
+    if _has(conn, "register_angabe"):
+        ewr = {(r[0], r[1]) for r in conn.execute(
+            "SELECT e.standard, e.name FROM register_angabe a JOIN ech_element e ON e.id=a.ech_element_id "
+            "WHERE a.register='einwohnerregister'")}
+        for k in sorted(set(ZEIT_EREIGNIS) | ZEIT_NIE):
+            if k not in ewr:
+                fehler.append(f"Zeitregel: {k[0]}·{k[1]} nennt keine zitierte Regel des Einwohnerregisters — die "
+                              f"Ausnahme darf nur Angaben betreffen, die das Register führt")
+    for label, s, n, soll in ZEIT_BEISPIELE:
+        if zeitbezug(label, s, n) != soll:
+            fehler.append(f"Zeitregel: «{label}» ({s}·{n}) ergibt zeitbezug={not soll}, erwartet {soll}")
+    fehler += korrekturen_pruefen(conn)
+    return fehler
+
+
+# ---------------------------------------------------------------------------
+# the reviewed eCH corrections of the 2026-10-05 sweep (applied by the existing eCH
+# loaders; this module only checks them)
+# ---------------------------------------------------------------------------
+KORREKTUR_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "quellen", "korrekturen",
+                             "prefill_inhalt_2026-10-05")
+KLASSEN = {
+    "anderes_ereignis": "das Element nennt ein anderes Ereignis als die Angabe (anderes Datum, anderer Ort)",
+    "anderer_zeitraum": "die Angabe ist ein Zeitraum oder eine Liste früherer Aufenthalte, das Element ein einzelner "
+                        "Wert des heutigen Eintrags",
+    "ja_nein": "eine Ja/Nein-Frage oder ein Ankreuzfeld auf einem Element, das einen Wert hält",
+    "andere_angabe": "das Element nennt eine andere Angabe als das Formular erfragt",
+}
+ZWEITPRUEFUNG = ("bestaetigt", "geaendert")
+
+
+def _korrektur_dateien(wurzel=None):
+    wurzel = wurzel or KORREKTUR_DIR
+    out = []
+    for dp, _, fs in os.walk(wurzel):
+        for f in sorted(fs):
+            if f.endswith(".json"):
+                out.append(os.path.join(dp, f))
+    return sorted(out)
+
+
+def _el_key(conn, s, n, kontext=None):
+    """The ech_element id of (standard, name[, context]) as the loaders resolve it: with a
+    context exactly that row, without one the first row of the catalogue."""
+    if kontext:
+        r = conn.execute("SELECT id FROM ech_element WHERE standard=? AND name=? AND context=?", [s, n, kontext]).fetchone()
+    else:
+        r = conn.execute("SELECT id FROM ech_element WHERE standard=? AND name=? ORDER BY id", [s, n]).fetchone()
+    return r[0] if r else None
+
+
+def korrekturen_lesen(conn, wurzel=None):
+    """[(datei, art, eintrag, ziele, alt, neu)] for every correction entry: art 'teilfeld'
+    (id-keyed, scripts/load_subfield_ech.py) or 'feld' (name-keyed verdict,
+    scripts/load_ech_verdicts.py, or load_ech_verdicts_new.py --from=<ab_formular>);
+    ziele = [(table, row id)], alt / neu = ('element', id) | ('kein_standard', None).
+    Also returns the structural errors."""
+    from common import norm_ascii
+    out, fehler = [], []
+    for pfad in _korrektur_dateien(wurzel):
+        name = os.path.relpath(pfad, os.path.dirname(KORREKTUR_DIR))
+        try:
+            d = json.load(open(pfad, encoding="utf-8"))
+        except ValueError as ex:
+            fehler.append(f"Korrektur {name}: kein JSON ({ex})")
+            continue
+        if not isinstance(d, dict) or not d.get("hinweis") or not d.get("anwenden"):
+            fehler.append(f"Korrektur {name}: ohne hinweis oder anwenden")
+            continue
+        ab = d.get("ab_formular")
+        eintraege = [("teilfeld", z) for z in d.get("zuordnungen") or []] + \
+                    [("feld", z) for z in d.get("urteile") or []]
+        if not eintraege:
+            fehler.append(f"Korrektur {name}: keine Einträge")
+        for art, z in eintraege:
+            tag = f"Korrektur {name} {z.get('subfield_id') or z.get('feld')}"
+            for k in ("grund", "klasse", "bisher", "zweitpruefung"):
+                if not z.get(k):
+                    fehler.append(f"{tag}: ohne {k}")
+            zitate = z.get("zitate") or ([{"form_id": z.get("form_id"), "zitat": z.get("zitat")}]
+                                         if z.get("zitat") else [])
+            if not zitate or any(not (x.get("zitat") or "").strip() or not x.get("form_id") for x in zitate):
+                fehler.append(f"{tag}: ohne Zitat aus dem Formulartext")
+            if z.get("klasse") and z["klasse"] not in KLASSEN:
+                fehler.append(f"{tag}: Klasse {z['klasse']!r} nicht in {sorted(KLASSEN)}")
+            zp = z.get("zweitpruefung") or {}
+            if zp and (zp.get("urteil") not in ZWEITPRUEFUNG or not zp.get("grund")):
+                fehler.append(f"{tag}: Zweitprüfung ohne Urteil {ZWEITPRUEFUNG} oder ohne Grund")
+            b = z.get("bisher") or {}
+            alt_id = _el_key(conn, b.get("standard"), b.get("element"), b.get("kontext")) if b else None
+            if b and not alt_id:
+                fehler.append(f"{tag}: das bisherige Element {b} steht nicht im Katalog")
+            if z.get("kein_standard") or z.get("urteil") == "kein_standard":
+                neu = ("kein_standard", None)
+            else:
+                nid = _el_key(conn, z.get("standard"), z.get("element"), z.get("kontext"))
+                if not nid:
+                    fehler.append(f"{tag}: das neue Element {z.get('standard')}·{z.get('element')} steht nicht im Katalog")
+                    continue
+                neu = ("element", nid)
+            if art == "feld" and z.get("urteil") not in ("kein_standard", "besser"):
+                fehler.append(f"{tag}: urteil muss kein_standard oder besser sein")
+            if art == "teilfeld":
+                r = conn.execute("SELECT s.name, d.name, d.form_id FROM data_subfield s JOIN data_field d "
+                                 "ON d.id=s.data_field_id WHERE s.id=?", [z.get("subfield_id")]).fetchone()
+                if not r:
+                    fehler.append(f"{tag}: Teilfeld fehlt")
+                    continue
+                if (r[0], r[1], r[2]) != (z.get("teilfeld"), z.get("elternfeld"), z.get("form_id")):
+                    fehler.append(f"{tag}: Teilfeld heisst heute «{r[1]} › {r[0]}» (Formular {r[2]}), die Korrektur "
+                                  f"nennt «{z.get('elternfeld')} › {z.get('teilfeld')}» (Formular {z.get('form_id')})")
+                ziele = [("data_subfield", z["subfield_id"])]
+            else:
+                k = norm_ascii(z.get("feld"))
+                ids = sorted(r[0] for r in conn.execute("SELECT id, name, form_id FROM data_field").fetchall()
+                             if norm_ascii(r[1]) == k and (ab is None or r[2] >= ab))
+                if ids != sorted(z.get("field_ids") or []):
+                    fehler.append(f"{tag}: der Name trifft die Felder {ids}, geprüft sind {sorted(z.get('field_ids') or [])}"
+                                  f" — ein namensbasiertes Urteil darf nur geprüfte Felder treffen")
+                ziele = [("data_field", i) for i in ids]
+            out.append((name, art, z, ziele, ("element", alt_id), neu))
+    return out, fehler
+
+
+def _stand(conn, table, rid):
+    r = conn.execute(f"SELECT ech_element_id, ech_status FROM {table} WHERE id=?", [rid]).fetchone()
+    if not r:
+        return None
+    if r[0] is not None:
+        return ("element", r[0])
+    return ("kein_standard", None) if r[1] == "kein_standard" else ("sonst", r[1])
+
+
+def korrekturen_stand(conn, wurzel=None):
+    """({datei: 'ausstehend' | 'angewendet' | 'gemischt'}, errors): a correction file is
+    pending while every target still carries its old element, applied when every target
+    carries the corrected verdict; a target with neither, or a file that is half applied,
+    is an error (a later loader overwrote the reviewed verdict)."""
+    rows, fehler = korrekturen_lesen(conn, wurzel)
+    stand = {}
+    for datei, art, z, ziele, alt, neu in rows:
+        for t, rid in ziele:
+            s = _stand(conn, t, rid)
+            if s == neu:
+                stand.setdefault(datei, set()).add("angewendet")
+            elif s == alt:
+                stand.setdefault(datei, set()).add("ausstehend")
+            else:
+                fehler.append(f"Korrektur {datei}: {t} {rid} trägt weder das bisherige noch das korrigierte "
+                              f"Element ({s}) — eine spätere Zuordnung hat das geprüfte Urteil überschrieben")
+    out = {}
+    for datei, s in stand.items():
+        out[datei] = s.pop() if len(s) == 1 else "gemischt"
+        if out[datei] == "gemischt":
+            fehler.append(f"Korrektur {datei}: zum Teil angewendet — eine Korrekturdatei wird ganz oder gar nicht "
+                          f"angewendet (Befehl in ihrem Feld «anwenden»)")
+    return out, fehler
+
+
+def korrekturen_pruefen(conn, wurzel=None):
+    if not os.path.isdir(wurzel or KORREKTUR_DIR) or not _has(conn, "data_subfield"):
+        return []
+    return korrekturen_stand(conn, wurzel)[1]
+
+
 def ewr_marke(fm, d, u, ang, std):
     """The Einwohnerregister mark of one unit: a quoted Einwohnerregister rule names its
     element and the field is judged a natural person's Angabe (level «bestaetigt»)."""
@@ -777,24 +1129,30 @@ def ewr_marke(fm, d, u, ang, std):
     return stufen(d, u, ang, std, kontext_text(fm, d, u, subs)).get("einwohnerregister") == "bestaetigt"
 
 
-def prefill_punkte(fm):
+def prefill_punkte(fm, zeitregel=True):
     """The points of one exported Formular as citygov_prefill.json lists them — the
     ONE rule: export_llm.py writes the file with it, prefill_korrigieren() counts
     burden.prefillable with it and build_flows.py fills the guided Formulare by it
     (flow_schluessel): every atomic point with an eCH element; einwohnerregister = the
     mark prefill_korrigieren put on the unit (a quoted Einwohnerregister rule names the
     element, subjekt natürliche Person); partei / partei_status = whose Angabe it is
-    (party layer); mehrdeutig = the element (standard·name) names more than one
-    natural-person point OF THE SAME PARTY on this Formular, the parent's own element
-    of a composite counting as a virtual partner of every party that owns one of its
-    parts (points without a party are compared among themselves); vorbefuellbar =
-    einwohnerregister AND partei_status «gesuchsteller» AND not mehrdeutig. Each point
-    keeps its unit under «_u» (the caller drops it before writing)."""
+    (party layer); zeitbezug = the label asks for a value of another time than the
+    register's current entry and the element does not name it (zeitbezug(), the time
+    rule); mehrdeutig = the element (standard·name) names more than one natural-person
+    point OF THE SAME PARTY on this Formular among the points without zeitbezug, the
+    parent's own element of a composite counting as a virtual partner of every party
+    that owns one of its parts unless the parent's own label has zeitbezug (points
+    without a party are compared among themselves); vorbefuellbar = einwohnerregister
+    AND partei_status «gesuchsteller» AND not mehrdeutig AND not zeitbezug. Each point
+    keeps its unit under «_u» (the caller drops it before writing). zeitregel=False
+    gives the outcome without the time rule (prefill_korrigieren counts the rule's
+    effect with it)."""
     pts, virt = [], []
     for d in fm.get("data_fields") or []:
         subs, units = _units(d)
         pe = d.get("ech") or {}
-        if subs and d.get("subjekt") == "natuerliche_person" and pe.get("element"):
+        if subs and d.get("subjekt") == "natuerliche_person" and pe.get("element") and not (
+                zeitregel and zeitbezug(d.get("name") or "", pe.get("standard"), pe.get("element"))):
             nrs = {(s.get("partei") or {}).get("nr") if (s.get("partei") or {}).get("status") == "zugeordnet"
                    else None for s in subs}
             virt.append(((pe.get("standard"), pe.get("element")), nrs))
@@ -803,16 +1161,17 @@ def prefill_punkte(fm):
             if not e.get("element"):
                 continue
             partei, status = partei_von(fm, u)
+            zb = bool(zeitregel and zeitbezug(zeit_label(d, u, subs), e.get("standard"), e.get("element")))
             pts.append({"feld": d["name"] + ("›" + u["name"] if subs else ""),
                         "feld_parent": d["name"] if subs else None,
                         "standard": e.get("standard"), "element": e.get("element"),
                         "pflicht": bool(d.get("required")), "subjekt": d.get("subjekt"),
                         "einwohnerregister": u.get("register") == "einwohnerregister",
-                        "partei": partei, "partei_status": status,
+                        "partei": partei, "partei_status": status, "zeitbezug": zb,
                         "mehrdeutig": False, "vorbefuellbar": False, "_u": u})
     seen = {}
     for p in pts:
-        if p["subjekt"] == "natuerliche_person":
+        if p["subjekt"] == "natuerliche_person" and not p["zeitbezug"]:
             seen.setdefault((p["partei"]["nr"] if p["partei"] else None, p["standard"], p["element"]), []).append(p)
     for k, nrs in virt:
         for nr in nrs:
@@ -823,7 +1182,8 @@ def prefill_punkte(fm):
                 if p is not None:
                     p["mehrdeutig"] = True
     for p in pts:
-        p["vorbefuellbar"] = p["einwohnerregister"] and p["partei_status"] == "gesuchsteller" and not p["mehrdeutig"]
+        p["vorbefuellbar"] = (p["einwohnerregister"] and p["partei_status"] == "gesuchsteller" and not p["mehrdeutig"]
+                              and not p["zeitbezug"])
     return pts
 
 
@@ -834,7 +1194,18 @@ def flow_schluessel(fm):
     return {p["feld"]: f"{p['standard']}·{p['element']}" for p in prefill_punkte(fm) if p["vorbefuellbar"]}
 
 
-AUSGESCHLOSSEN = ("ohne_registerquelle", "andere_partei", "partei_offen", "mehrdeutig")
+AUSGESCHLOSSEN = ("ohne_registerquelle", "andere_partei", "partei_offen", "mehrdeutig", "zeitbezug")
+# the German text of each reason (exported once as vorbefuellung.gruende; the pages only draw)
+AUSGESCHLOSSEN_TEXT = {
+    "ohne_registerquelle": "keine zitierte Regel des Einwohnerregisters nennt das Element (die frühere Zählung nahm "
+                           "jede Angabe der Personen- und Adressstandards)",
+    "andere_partei": "Angabe einer anderen Partei als der einreichenden Person (Ehepartner/in, Kind, "
+                     "Arbeitnehmer/in, Organ …)",
+    "partei_offen": "wessen Angabe es ist, ist nicht geklärt",
+    "mehrdeutig": "dasselbe Element bezeichnet auf diesem Formular mehr als eine Angabe derselben Partei",
+    "zeitbezug": "die Bezeichnung fragt nach einem Wert einer anderen Zeit (früher, neu, Änderung, seit …); der "
+                 "Registereintrag hält den heutigen Wert",
+}
 
 
 def alte_marke(p):
@@ -844,17 +1215,24 @@ def alte_marke(p):
 
 
 def prefill_korrigieren(forms, ang, std):
-    """Sets the Einwohnerregister mark u.register (ewr_marke) and u.vorbefuellbar, and
-    counts per Formular the required points that are vorbefüllbar (prefill_punkte):
-    burden.prefillable. The figure of the standard-based mark before 2026-10-05 stays as
-    prefillable_bisher (export_json counts it in its burden loop); every point it counted
-    that the rule leaves out is in prefillable_ausgeschlossen by its first reason (no
-    quoted register rule, another party, the party open, mehrdeutig), and
-    prefillable_hinzu counts the vorbefüllbar points it did not count (an element a quoted
-    rule names outside the five standards, e.g. eCH-0021): bisher − Σ ausgeschlossen +
-    hinzu = prefillable. Returns the totals. Idempotent."""
+    """Sets the Einwohnerregister mark u.register (ewr_marke), u.vorbefuellbar and, on a
+    marked unit the time rule keeps out, u.zeitbezug, and counts per Formular the
+    required points that are vorbefüllbar (prefill_punkte): burden.prefillable. The
+    figure of the standard-based mark before 2026-10-05 stays as prefillable_bisher
+    (export_json counts it in its burden loop); every point it counted that the rule
+    leaves out is in prefillable_ausgeschlossen by its first reason (no quoted register
+    rule, another party, the party open, mehrdeutig, zeitbezug — the last one counts what
+    the time rule alone keeps out), and prefillable_hinzu counts the vorbefüllbar points
+    it did not count (an element a quoted rule names outside the five standards, e.g.
+    eCH-0021): bisher − Σ ausgeschlossen + hinzu = prefillable. vorbefuellung.zeitbezug
+    holds the effect of the time rule against the same points without it (weniger: kept
+    out, mehr: no longer mehrdeutig because their twin asks for another time). Returns
+    the totals, with the German text of each reason (gruende, AUSGESCHLOSSEN_TEXT).
+    Idempotent."""
     tot = {"bisher": 0, "korrigiert": 0, "ausgeschlossen": {k: 0 for k in AUSGESCHLOSSEN}, "hinzu": 0,
            "formulare_zu_hoch": 0, "minuten_bisher": 0.0, "minuten_korrigiert": 0.0}
+    zb = {"punkte_mit_marke": 0, "weniger": 0, "weniger_pflicht": 0, "mehr": 0, "mehr_pflicht": 0,
+          "formulare_geaendert": 0, "formulare_mit_zeitbezug": 0}
     for fm in forms:
         for d in fm.get("data_fields") or []:
             for u in _units(d)[1]:
@@ -863,11 +1241,28 @@ def prefill_korrigieren(forms, ang, std):
                     u["register"] = "einwohnerregister"
         bu = fm.get("burden")
         pts = prefill_punkte(fm)
-        for p in pts:
+        ohne = prefill_punkte(fm, zeitregel=False)
+        geaendert = False
+        for p, q in zip(pts, ohne):
             if p["vorbefuellbar"]:
                 p["_u"]["vorbefuellbar"] = True
             else:
                 p["_u"].pop("vorbefuellbar", None)
+            if p["zeitbezug"] and p["einwohnerregister"]:
+                p["_u"]["zeitbezug"] = True
+                zb["punkte_mit_marke"] += 1
+            else:
+                p["_u"].pop("zeitbezug", None)
+            if q["vorbefuellbar"] and not p["vorbefuellbar"]:
+                zb["weniger"] += 1
+                zb["weniger_pflicht"] += p["pflicht"]
+                geaendert |= p["pflicht"]
+            elif p["vorbefuellbar"] and not q["vorbefuellbar"]:
+                zb["mehr"] += 1
+                zb["mehr_pflicht"] += p["pflicht"]
+                geaendert |= p["pflicht"]
+        zb["formulare_geaendert"] += geaendert
+        zb["formulare_mit_zeitbezug"] += any(p["zeitbezug"] and p["einwohnerregister"] for p in pts)
         if not bu:
             continue
         bisher = bu["prefillable_bisher"]
@@ -883,7 +1278,8 @@ def prefill_korrigieren(forms, ang, std):
                 continue
             grund = ("ohne_registerquelle" if not p["einwohnerregister"] else
                      "andere_partei" if p["partei_status"] == "andere_partei" else
-                     "partei_offen" if p["partei_status"] == "partei_offen" else "mehrdeutig")
+                     "partei_offen" if p["partei_status"] == "partei_offen" else
+                     "mehrdeutig" if p["mehrdeutig"] else "zeitbezug")
             aus[grund] += 1
         bu["prefillable"] = korr
         bu["prefillable_ausgeschlossen"] = aus
@@ -899,9 +1295,16 @@ def prefill_korrigieren(forms, ang, std):
         tot["minuten_korrigiert"] += round(korr * MIN_ANGABE, 1)
     tot["minuten_bisher"] = round(tot["minuten_bisher"], 1)
     tot["minuten_korrigiert"] = round(tot["minuten_korrigiert"], 1)
+    tot["n_ausgeschlossen"] = sum(tot["ausgeschlossen"].values())
+    tot["zeitbezug"] = zb
+    tot["gruende"] = {k: AUSGESCHLOSSEN_TEXT[k] for k in AUSGESCHLOSSEN}
     tot["regel"] = ("vorbefüllbar = Pflichtangabe mit Einwohnerregister-Marke (eine zitierte Regel des "
                     "Einwohnerregisters nennt das Element, Subjekt natürliche Person) UND Angabe der einreichenden "
-                    "Person (Partei Gesuchsteller/in, natürliche Person) UND innerhalb dieser Partei nicht mehrdeutig; "
+                    "Person (Partei Gesuchsteller/in, natürliche Person) UND innerhalb dieser Partei nicht mehrdeutig "
+                    "UND die Angabe fragt nach dem heutigen Wert des Registers (Zeitregel: eine Bezeichnung mit einem "
+                    "Zeitbezug — früher, bisherig, letzte zwei Jahre, während, neu, geplant, Änderung, Zuzug, Wegzug, "
+                    "seit, bis, Dauer — wird nie aus dem heutigen Eintrag gefüllt, ausser das Element nennt "
+                    "selbst diesen Wert, etwa das Zuzugsdatum oder das Datum des Zivilstands; das Todesdatum nie); "
                     "Angaben des Ehepartners, eines Kindes oder anderer Personen erst, wenn der Kanton bestätigt, "
                     "dass Beziehungen geliefert werden dürfen")
     return tot
@@ -964,12 +1367,13 @@ def stufen(d, u, ang, std, kontext=""):
 
 def beilage_register(bez, halter, dokumente, titel=""):
     """[(register, grundlage, begriff)] for one Beilage; [] for a foreign document, a
-    Formular or Merkblatt (or the Formular itself), and no halter mapping for the
+    Formular or Merkblatt (or the Formular itself), a number, a figure or the own claim
+    (KEINE_URKUNDE), and no halter mapping for the
     applicant's own return or a plan the applicant annotates; no IVZ for a ship."""
     if AUSLAND.search(bez or ""):
         return []
     f = falten(bez)
-    if KEIN_DOKUMENT.search(f) or (titel and f == falten(titel)):
+    if KEIN_DOKUMENT.search(f) or KEINE_URKUNDE.search(f) or (titel and f == falten(titel)):
         return []
     out = {}
     if halter in HALTER and not EIGENE_ANGABE.search(f):
@@ -1024,7 +1428,8 @@ def export_register(conn, forms, themenkatalog=None, party=None):
     # about persons or organisations; for a building or a vehicle it says nothing
     partei_relevant = {r["code"] for r in kat if r["entitaet"] in ("natuerliche_person", "organisation")}
     zahl = {c: {"obergrenze": 0, "obergrenze_pflicht": 0, "element": 0, "bestaetigt": 0, "bestaetigt_pflicht": 0,
-                "partei_offen": 0, "andere_partei": 0, "partei_unklar": 0, "formulare_obergrenze": set(),
+                "partei_offen": 0, "andere_partei": 0, "partei_unklar": 0, "eigene_partei": 0,
+                "partei_art_offen": 0, "formulare_obergrenze": set(),
                 "formulare_bestaetigt": set(), "beilagen": 0, "formulare_beilagen": set(), "beilagen_original": 0,
                 "beilagen_rueckgabe": 0} for c in codes}
     gesamt = {"punkte": 0, "ausgeschlossen": 0, "mit_register_obergrenze": 0, "mit_register_bestaetigt": 0,
@@ -1051,7 +1456,7 @@ def export_register(conn, forms, themenkatalog=None, party=None):
                 if bezug:
                     u["register_bezug"] = bezug
                 gesamt["mit_register_obergrenze"] += 1
-                _, pstatus = partei_von(fm, u)
+                pinfo, pstatus = partei_von(fm, u)
                 if any(s == "bestaetigt" for s in st.values()):
                     gesamt["mit_register_bestaetigt"] += 1
                     if d.get("required"):
@@ -1072,9 +1477,15 @@ def export_register(conn, forms, themenkatalog=None, party=None):
                         if c in partei_relevant:
                             # whose Angabe: the party layer (a Gesuchsteller/in that is not settled as
                             # a natural person counts as unklar, like an open party)
-                            z["andere_partei"] += pstatus == "andere_partei"
-                            z["partei_unklar"] += pstatus == "partei_offen" and \
-                                ((u.get("partei") or {}).get("status") != "zugeordnet")
+                            # (the four parts sum to «bestaetigt»): the submitting party — a person or,
+                            # for the registers of organisations, the organisation itself —, the same
+                            # party settled only as «Person oder Organisation», another party, or none
+                            if pstatus == "andere_partei":
+                                z["andere_partei"] += 1
+                            elif pinfo and pinfo["rolle"] == "gesuchsteller":
+                                z["partei_art_offen" if pinfo["entitaet"] == "gemischt" else "eigene_partei"] += 1
+                            else:
+                                z["partei_unklar"] += 1
                         pr = per_reg.setdefault(c, {"bestaetigt": 0, "pflicht": 0, "beilagen": 0})
                         pr["bestaetigt"] += 1
                         pr["pflicht"] += bool(d.get("required"))
@@ -1166,8 +1577,8 @@ def export_register(conn, forms, themenkatalog=None, party=None):
                                 "Modellschätzung ohne Fallzahlen.",
                 "vorbefuellbar": "burden.prefillable zählt die Pflichtangaben, die citygov_prefill.json und die "
                                  "geführten Formulare mit der Einwohnerregister-Marke vorbefüllen würden: Angaben der "
-                                 "einreichenden Person (Partei Gesuchsteller/in, natürliche Person), nicht mehrdeutig "
-                                 "(vorbefuellbar = true). Befüllt wird aus dem Profil der Person; der Bezug aus dem "
+                                 "einreichenden Person (Partei Gesuchsteller/in, natürliche Person), nicht mehrdeutig, "
+                                 "und nach dem heutigen Wert gefragt (Zeitregel; vorbefuellbar = true). Befüllt wird aus dem Profil der Person; der Bezug aus dem "
                                  "Register selbst ist rechtlich offen. prefillable_bisher ist die frühere Zählung, "
                                  "prefillable_ausgeschlossen nennt je Grund, was sie mehr zählte, prefillable_hinzu "
                                  "die Angaben, die erst eine zitierte Regel des Einwohnerregisters belegt.",
@@ -1178,13 +1589,25 @@ def export_register(conn, forms, themenkatalog=None, party=None):
                             "Original wird verlangt), rueckgabe (das Dokument wird abgegeben, umgetauscht oder geändert), "
                             "identitaet (Ausweiskopie als Identitätsnachweis) — solche Beilagen zählen im Modell nicht.",
                 "partei": "andere_partei = bestätigte Angaben einer anderen genannten Partei als der einreichenden "
-                          "Person (Parteien-Schicht); partei_unklar = bestätigte Angaben, deren Partei nicht geklärt "
-                          "ist; partei_offen = Angaben auf Stufe «element» (wessen Angabe es ist, ist nicht beurteilt)."},
+                          "Person (Parteien-Schicht); eigene_partei = bestätigte Angaben der einreichenden Partei "
+                          "(Gesuchsteller/in als natürliche Person oder Organisation); partei_unklar = bestätigte "
+                          "Angaben, deren Partei nicht geklärt ist; partei_art_offen = bestätigte Angaben der "
+                          "einreichenden Partei, deren Art «Person oder Organisation» bleibt; die vier ergeben bei den "
+                          "Registern über Personen und Organisationen «bestaetigt». partei_offen = Angaben auf Stufe «element» (wessen Angabe es "
+                          "ist, ist nicht beurteilt).",
+                "beilagen_leser": "Eine Beilage zählt, wenn ihre Bezeichnung ein Dokument nennt, das eine zitierte "
+                                  "Quelle dem Register zuschreibt, oder wenn die beurteilte Stelle, die das Dokument "
+                                  "hält, ein Register führt — nie ein Formular oder Merkblatt, nie eine Nummer oder "
+                                  "eine eigene Angabe wie die Steuererklärung, nie ein Dokument eines anderen Staats.",
+                "zeit": "«Hält» zählt das Element: auch eine Angabe, die nach einem früheren, künftigen oder "
+                        "geänderten Wert fragt, zählt hier, obwohl der Registereintrag den heutigen Wert hält. Die "
+                        "Zeitregel gilt nur für die Vorbefüllung."},
             "stufen": {"standard": "Obergrenze: der eCH-Standard der Angabe ist einer, mit dem das Register Daten austauscht",
                        "element": "das Register führt diese Angabe laut Quelle; wessen Angabe es ist, ist offen",
-                       "bestaetigt": "das Register führt diese Angabe laut Quelle, und die Partei passt"},
+                       "bestaetigt": "das Register führt diese Angabe laut Quelle, und die Art der Partei passt "
+                                     "(natürliche Person bzw. Organisation)"},
             "zugriff": "Ein Register hält die Angabe; ob die Dienststelle sie beziehen darf, ist offen — rechtlich zu "
-                       "klären, ausser ein ingestierter Artikel ist als Kandidat zitiert (auch dann prüfen die "
+                       "klären, ausser ein Artikel in der Databank ist als Kandidat zitiert (auch dann prüfen die "
                        "Juristinnen und Juristen des Kantons)."}
 
 
@@ -1236,8 +1659,48 @@ def bericht():
     return out, data
 
 
+def korrekturen_bericht():
+    """--korrekturen: every quote of the correction files found again in its Formular
+    text (rollen.formular_text — pypdf for a PDF Formular, imported only here), every
+    Formular a name-keyed verdict reaches backed by a quote, and the state of each file
+    (ausstehend / angewendet). Writes nothing; exit 1 on a finding."""
+    import rollen
+    conn = connect(DB_PATH)
+    rows, fehler = korrekturen_lesen(conn)
+    texte, n = {}, 0
+    for datei, art, z, ziele, alt, neu in rows:
+        zitate = z.get("zitate") or [{"form_id": z.get("form_id"), "zitat": z.get("zitat")}]
+        for x in zitate:
+            fid = x.get("form_id")
+            if fid not in texte:
+                t, quelle = rollen.formular_text(conn, fid)
+                texte[fid] = (rollen.zitat_norm(t), quelle)
+            n += 1
+            if not rollen.zitat_im_text(x.get("zitat") or "", texte[fid][0]):
+                fehler.append(f"Korrektur {datei} {z.get('subfield_id') or z.get('feld')}: Zitat «{x.get('zitat')}» "
+                              f"steht nicht im Formulartext von Formular {fid} ({texte[fid][1]})")
+        if art == "feld":
+            formulare = {conn.execute("SELECT form_id FROM data_field WHERE id=?", [rid]).fetchone()[0] for _, rid in ziele}
+            ohne = sorted(formulare - {x.get("form_id") for x in zitate})
+            if ohne:
+                fehler.append(f"Korrektur {datei} {z.get('feld')}: ohne Zitat für Formular {ohne}")
+    stand, f2 = korrekturen_stand(conn)
+    fehler += f2
+    print(f"Korrekturen: {len(rows)} Einträge, {sum(len(r[3]) for r in rows)} Datenpunkte, {n} Zitate geprüft")
+    for datei in sorted(stand):
+        print(f"  {datei}: {stand[datei]}")
+    if fehler:
+        print(f"BEFUNDE ({len(fehler)}):")
+        for f in fehler:
+            print("  -", f)
+        sys.exit(1)
+    print("alle Zitate gefunden, kein Befund.")
+
+
 if __name__ == "__main__":
-    if "--bericht" in sys.argv:
+    if "--korrekturen" in sys.argv:
+        korrekturen_bericht()
+    elif "--bericht" in sys.argv:
         bericht()
     else:
         main_laden(pruefen_nur="--pruefen" in sys.argv)

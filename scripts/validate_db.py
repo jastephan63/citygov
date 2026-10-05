@@ -84,9 +84,32 @@ Checks, in order:
                                        inside their own article, never
                                        «erlaubt»; a register's own sentences
                                        never say who may fetch it and speak of
-                                       access only with a quoted article.
+                                       access only with a quoted article; the
+                                       time rule of the prefill (zeit_pruefen:
+                                       its patterns against labelled examples,
+                                       every exception element named by a quoted
+                                       Einwohnerregister rule) and the reviewed
+                                       eCH corrections under quellen/korrekturen/
+                                       prefill_inhalt_2026-10-05/ (structure, and
+                                       each file either pending or applied as a
+                                       whole — never half-applied or overwritten).
+ 13. Konzepte                      -> konzepte.datei_pruefen(): the curated
+                                       quellen/konzepte.json is readable and
+                                       well-formed (the rule 2/3 with at least
+                                       10, one code per concept, every element
+                                       listed once, «ausserhalb» with a reason,
+                                       no «ß», no risk word). The full check of
+                                       the concept layer needs the export's data
+                                       points and runs in export_json.py
+                                       (konzepte.pruefen).
+ 14. Gesetzestitel                 -> load_gesetz_titel.pruefen(): the title
+                                       corrections of quellen/korrekturen/
+                                       gesetz_titel_2026-10-05.json are each
+                                       pending or applied (never overwritten),
+                                       and no law title carries the edition line
+                                       («Vom … (Stand …)») or the footnote marker «*».
 Each of the gates 9-12 lives next to its loader and is skipped while its tables
-are absent. Importing them loads only the standard library: no network code
+are absent; gate 13 reads only the curated file. Importing them loads only the standard library: no network code
 (register_katalog.py imports urllib only inside its fetch function) and no pypdf
 (rollen.py imports it only where it reads a Formular text).
 
@@ -169,15 +192,30 @@ def validate(conn):
 def datenmodell_checks(conn):
     """The gates of the data-model layers (2026-10), each kept with its loader:
     permanent identifiers (kennungen.py), parties and roles (rollen.py), law
-    editions (gesetz_stand.py) and registers (register_map.py). Each returns []
-    while its tables are absent."""
+    editions (gesetz_stand.py) and registers with the prefill rule (register_map.py).
+    Each returns [] while its tables are absent. Plus the structure of the curated
+    concept file (konzepte.py), which the export reads."""
     import kennungen
     import rollen
     import gesetz_stand
     import register_map
+    import konzepte
     errors = []
     for gate in (kennungen.pruefen, rollen.pruefen, gesetz_stand.pruefen, register_map.pruefen):
         errors += gate(conn)
+    try:
+        errors += konzepte.datei_pruefen(konzepte.lade())
+    except (OSError, ValueError) as ex:
+        errors.append(f"quellen/konzepte.json is not readable: {type(ex).__name__}: {ex}")
+    # law titles as the official PDF prints them (load_gesetz_titel.py)
+    import re
+    import load_gesetz_titel
+    errors += load_gesetz_titel.pruefen(conn)
+    for lid, t, k in conn.execute("SELECT id, title, short_title FROM law"):
+        for x in (t, k):
+            if x and (re.search(r"\sVom\s+\d", x) or re.search(r"\s\*\s*$", x)):
+                errors.append(f"law {lid}: «{x}» carries the edition line or the footnote marker «*» — "
+                              "scripts/load_gesetz_titel.py --lesen, then apply")
     return errors
 
 

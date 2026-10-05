@@ -13,6 +13,18 @@ in the six groups of the sidebar:
     tiers, all key figures, the Verlauf table)
   * Datenstandard — Datenkatalog (#katalog) · Begriffe (#begriffe) ·
     eSH-Katalog (#esh, marked «Entwurf»)
+  * Datenmodell & Once-Only — Datenmodell (#datenmodell, + /all/parteien · konzepte ·
+    kennungen · gesetzesstand · wirkung, a concept /all/k-<code>, the change-impact explorer at
+    a law /all/g-<law id> or an article /all/a-<article id>: whose Angabe each data point is and
+    how that was made and checked, one element per Angabe and role, the permanent identifiers
+    and the export contract, the edition of every cited law, what a change of a law or article
+    affects) · Was Register schon wissen (#onceonly, + /all/register · g-<group> · r-<register>
+    · beilagen · zeit · offen: the registers and what they hold according to a cited source, the
+    Beilagen they issue, the model estimate of the time saved, the canton's open decisions).
+    Read from DATA.parteien, konzepte, wirkung, register, vorbefuellung, kennungen and
+    datenmodell (export_json.py) and the export contract (exportvertrag.json, read when the page
+    is built); every law and article elsewhere carries its edition chip and a link «betrifft N
+    Datenpunkte in M Formularen ›» to the explorer
   * Erscheinungsbild — Gestaltung der Formulare (#gestaltung, + /all/<gruppe> and
     /all/m-<merkmal>, /all/e-<merkmal>, /all/kanton, /all/dienststellen, /all/grenzen as
     shareable section addresses: how the Formulare look — Schrift, Farben, Mindestmerkmale
@@ -29,8 +41,9 @@ in the six groups of the sidebar:
     Geführte Formulare (link to flows.html)
 plus the Service-Seite (#fields/<service id>: the per-Service hub with
 Datenfelder & Handhabung, Gesetze, Beilagen, Digitalisierungs-Hürden,
-Duplikat-Radar, a folded panel «Gestaltung» and a Formular-Ansicht per Formular
-(#fields/<id>/form-<id>~gest opens it at that panel)), the sidebar list of
+Duplikat-Radar, the folded panels «Parteien», «Was Register schon wissen» and «Gestaltung» and
+a Formular-Ansicht per Formular with its permanent identifier (#fields/<id>/form-<id>~part,
+~reg, ~gest open it at that panel)), the sidebar list of
 Formulare & Services, and the header search (#search/all/<query>).
 The page draws, it does not compute: every figure and every classification comes from
 data_export.json (kopfzahlen, dienststellen_uebersicht, the stamped ech_state /
@@ -698,6 +711,67 @@ window.addEventListener('load',function(){setTimeout(function(){__cgFail('Die Se
   ul.gfd{margin:3px 0 0;padding-left:18px;color:var(--ink-soft)}
   .gfoot{margin-top:10px;font-size:var(--fs-xs);color:var(--ink-soft)}
   @media (max-width:1100px){.gcols{grid-template-columns:minmax(0,1fr)} ul.gdist{max-width:720px}}
+  /* Datenmodell & Once-Only — the pages #datenmodell and #onceonly and the panels «Parteien» and
+     «Was Register schon wissen» of a Formular, built on the blocks of the Gestaltung page (cards,
+     sections, folded lists). Numbers and lists are neutral; a tone only on a decision or a finding */
+  h5.dmh{margin:18px 0 6px;font-size:var(--fs-m);font-weight:700}
+  ul.dmgr{font-size:var(--fs-s);gap:4px}
+  ul.dmgr li>b{min-width:56px}
+  ul.dmgr.dmcols{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:3px 18px}
+  ol.dmwie{margin:0;padding-left:22px;font-size:var(--fs-s);line-height:1.55;max-width:920px}
+  ol.dmwie>li{padding:7px 0 7px 2px;border-top:1px dashed var(--line)}
+  ol.dmwie>li:first-child{border-top:none;padding-top:0}
+  details.dmk{padding:10px 16px;margin-bottom:8px}
+  details.dmk>summary{cursor:pointer;line-height:1.5}
+  .dmkn{font-weight:700;font-size:var(--fs-m);margin-right:10px}
+  .dmks{font-size:var(--fs-s);color:var(--ink-soft)}
+  .dmks b{color:var(--ink);font-weight:600}
+  ul.dmlist{margin:4px 0 8px;padding-left:18px;line-height:1.5}
+  table.dmz td,table.dmgs td,table.dmwl td,table.dmwa td,table.dmrol td,table.dmzg td{vertical-align:top}
+  table.dmz td .badge{white-space:normal}
+  code.kennc{font-family:var(--mono);font-size:var(--fs-xs);background:var(--field);border:1px solid var(--line);border-radius:5px;
+    padding:0 5px;overflow-wrap:anywhere;user-select:all}
+  code.kennmini{margin-left:6px;color:var(--ink-soft);font-weight:400}
+  .kenn{display:inline-flex;flex-wrap:wrap;gap:4px 8px;align-items:baseline}
+  .kennl{font-size:var(--fs-xs);text-transform:uppercase;letter-spacing:.5px;color:var(--ink-faint);font-weight:700}
+  .copybtn{font:inherit;font-size:var(--fs-xs);font-weight:600;color:var(--link);background:var(--card);border:1px solid var(--line);
+    border-radius:6px;padding:2px 9px;cursor:pointer}
+  .copybtn:hover{border-color:var(--link)}
+  .lawimp{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center;margin-top:6px;font-size:var(--fs-xs)}
+  .dfrg .lawimp{justify-content:flex-end}
+  .nomono{font-family:var(--font)}
+  tr.sel>td{background:var(--hover)}
+  .dwdet{border-left:3px solid var(--gold-deep)}
+  dl.dmfacts{margin:6px 0 8px;font-size:var(--fs-s);line-height:1.5}
+  dl.dmfacts>div{display:grid;grid-template-columns:150px minmax(0,1fr);gap:2px 12px;padding:3px 0;border-top:1px dashed var(--line)}
+  dl.dmfacts>div:first-child{border-top:none}
+  dl.dmfacts dt{font-weight:600;color:var(--ink-soft)}
+  dl.dmfacts dd{margin:0;overflow-wrap:anywhere}
+  .dmzr{display:flex;flex-direction:column;gap:3px;font-size:var(--fs-s);line-height:1.45;padding:7px 0;border-top:1px solid var(--line-soft)}
+  .dmvb{margin:8px 0;padding:8px 12px;background:var(--field);border-radius:8px;font-size:var(--fs-s);line-height:1.5}
+  .dmvb .gcap{margin-top:6px}
+  .oovorb{margin-bottom:16px}
+  caption.gcap{text-align:left;caption-side:top;padding:0 0 6px}
+  .ppanel .quote{margin:4px 0}
+  .dml{display:none}
+  /* a group of the register catalogue: a row header (th scope=rowgroup) that reads like the group's name */
+  table.dmreg tr.gdep th{color:var(--ink);font-size:var(--fs-s);font-weight:700;text-transform:none;letter-spacing:0;padding-top:12px}
+  @media (max-width:700px){dl.dmfacts>div{grid-template-columns:minmax(0,1fr)}}
+  /* on a phone the tables of the two pages stack: one block per row, each number with its label
+     (.dml), a long cell (.dmw) across the block; the column heads stay for a screen reader */
+  @media screen and (max-width:700px){
+    table.dmstack{min-width:0}
+    table.dmstack thead{position:absolute;left:0;top:0;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+    table.dmstack,table.dmstack tbody{display:block}
+    table.dmstack tr{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:4px 14px;padding:9px 0;border-bottom:1px solid var(--line)}
+    table.dmstack td{display:block;border:0;padding:0;text-align:left}
+    table.dmstack td:first-child,table.dmstack td.dmw,table.dmstack tr.gdep td,table.dmstack tr.gdep th{grid-column:1/-1}
+    table.dmstack tr.gdep th{display:block;border:0;padding:4px 0 0}
+    table.dmstack .dml{display:inline;margin-right:6px;font-size:var(--fs-xs);font-weight:600;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.4px}
+    table.dmstack td.nowrap{white-space:normal}
+    table.dmstack caption{display:block;width:auto}
+    table.dmstack td.dmw .badge{white-space:normal}
+  }
   /* the table per Dienststelle: up to 1340 px «Häufigste Abweichungen und Lücken» stands under the name (.wd/.nw);
      up to 1100 px (a narrow content column beside the sidebar, or a phone) each Dienststelle is
      a block of labelled numbers */
@@ -1052,7 +1126,7 @@ window.addEventListener('load',function(){setTimeout(function(){__cgFail('Die Se
   <div class="htxt"><div class="sub">Kanton Schaffhausen</div>
     <h1>Compliance-Databank · Datenstandards, Formulare &amp; Recht</h1></div>
   <button class="navbtn" type="button" aria-controls="sidenav" aria-expanded="false" onclick="var o=document.querySelector('.layout').classList.toggle('nav-open');this.setAttribute('aria-expanded',String(o));if(o)window.scrollTo(0,0);" title="Navigation ein-/ausblenden">☰ Navigation</button>
-  <input id="gsearch" class="gsearch" type="search" placeholder="Suche: Gesetz, Artikel, Datenfeld, Teilfeld, Regel, Empfänger, Dienststelle …" title="Suche über Services, Formulare, Datenfelder (inkl. Teilfelder), Gesetze, Regeln, Empfänger, Beilagen, Themengruppen (Lebenslagen), Begriffe, eCH-Standards, eSH-Entwürfe, Dienststellen und die Gestaltung der Formulare — Enter oder kurz warten">
+  <input id="gsearch" class="gsearch" type="search" placeholder="Suche: Gesetz, Artikel, Datenfeld, Teilfeld, Regel, Empfänger, Dienststelle …" title="Suche über Services, Formulare, Datenfelder (inkl. Teilfelder), Gesetze, Regeln, Empfänger, Beilagen, Themengruppen (Lebenslagen), Begriffe, eCH-Standards, eSH-Entwürfe, Dienststellen, die Gestaltung der Formulare, Rollen, Konzepte und Register — Enter oder kurz warten">
   <span class="warn" id="warn"></span>
   <span class="stamp" id="stamp"></span>
 </header>
@@ -1067,6 +1141,9 @@ window.addEventListener('load',function(){setTimeout(function(){__cgFail('Die Se
     <button class="tab" data-tab="katalog">Datenkatalog<span class="tabsub">Jede Angabe einmal: eCH-Element, Einheitlichkeit, Once-Only</span></button>
     <button class="tab" data-tab="begriffe">Begriffe<span class="tabsub">Eine Angabe, ein Name</span></button>
     <button class="tab" data-tab="esh">eSH-Katalog (Entwurf)<span class="tabsub">Entwurf des Kantons, wo kein eCH-Standard besteht</span></button>
+    <h2>Datenmodell &amp; Once-Only</h2>
+    <button class="tab" data-tab="datenmodell">Datenmodell<span class="tabsub">Wessen Angabe, ein Element je Angabe, Kennungen, Gesetzesstand, Wirkung einer Änderung</span></button>
+    <button class="tab" data-tab="onceonly">Was Register schon wissen<span class="tabsub">Welche Angaben und Beilagen ein Register hält — und was das sparen könnte</span></button>
     <h2>Erscheinungsbild</h2>
     <button class="tab" data-tab="gestaltung">Gestaltung der Formulare<span class="tabsub">Schrift, Farben, Barrierefreiheit, Kontaktangaben, Aufbau</span></button>
     <h2>Arbeitslisten</h2>
@@ -1098,6 +1175,8 @@ window.addEventListener('load',function(){setTimeout(function(){__cgFail('Die Se
 <script>
 const DATA = JSON.parse(document.getElementById('data').textContent);
 const GUIDE = /*GUIDE*/;
+// the export contract as exportvertrag.json holds it when this page is built (versions, JSON Schemas)
+const VERTRAG = /*VERTRAG*/;
 const state = {service:'all', tab:'home', sub:'felder', tree:'list', filter:'', open:{}, navmode:'services', begq:''};
 // scrolling to a target glides — unless the reader's system asks for reduced motion
 const MOTION=(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)?'auto':'smooth';
@@ -1507,10 +1586,10 @@ function renderLegend(){
       open:['unverifiziert','Rechtsgrundlage zu ermitteln'].join(' · ')},
     fields: svcAll?{ok:'Datenfeld mit belegter Norm oder für die Aufgabe nötig',act:'Datenfeld ohne Grundlage',
         dec:'Aufgabenbedarf offen',open:'Rechtsgrundlage noch zu ermitteln · ⛨ Grundlage nach KDSG Art. 5 offen'}
-      :{ok:'eCH-Element · Standard ohne Elementkatalog · keine Standard-Divergenz · Zitat verifiziert oder aus dem SHR-PDF · aufgabennotwendig · Formular aktuell · Rechtsmittel geklärt · Duplikat entschieden',
+      :{ok:'eCH-Element · Standard ohne Elementkatalog · keine Standard-Divergenz · Zitat verifiziert oder aus dem SHR-PDF · aufgabennotwendig · Formular aktuell · Rechtsmittel geklärt · Duplikat entschieden · Gesetz in der gelesenen Fassung in Kraft',
       act:'⇄ Standard-Divergenz anzugleichen · ✎ Bezeichnung angleichen oder Feld aufteilen · Feld ohne Grundlage · neuere Fassung online',
       dec:'kein eCH-Standard (eSH) · eCH-Standard erst im Entwurf · ⇄ Pflicht uneinheitlich · Begriff unter Vorbehalt · Aufgabenbedarf offen · Duplikat unentschieden',
-      open:['eCH-Element offen','eCH noch nicht geprüft','eCH-Standard nicht mehr in Kraft','eCH-Zuordnung wird korrigiert (✎? Zuordnung prüfen)','Rechtsgrundlage zu ermitteln','⛨ Grundlage nach KDSG Art. 5 offen','Rechtsmittel noch ohne Prüfvermerk','Online-Prüfung fällig',unvEx].filter(Boolean).join(' · ')},
+      open:['eCH-Element offen','eCH noch nicht geprüft','eCH-Standard nicht mehr in Kraft','eCH-Zuordnung wird korrigiert (✎? Zuordnung prüfen)','Rechtsgrundlage zu ermitteln','⛨ Grundlage nach KDSG Art. 5 offen','Rechtsmittel noch ohne Prüfvermerk','Online-Prüfung fällig','neuere Fassung eines zitierten Gesetzes (die Databank liest nach)',unvEx].filter(Boolean).join(' · ')},
     register: {ok:'Zweck erfasst',act:'Felder ohne Grundlage',dec:'DSFA indiziert — Entscheid des Kantons offen',
       open:'fehlt (Zweck, Empfänger) · ⛨ Grundlage nach KDSG Art. 5 offen · noch nicht recherchiert'},
     todo: {act:'Punkte, die eine Dienststelle an ihrem Formular ändert',dec:'Punkte, die auf einen Entscheid des Kantons warten',
@@ -1524,7 +1603,10 @@ function renderLegend(){
     begriffe: {ok:'einheitlicher Begriff (Vorschlag) · Rolle — in Ordnung',act:'Bezeichnung angleichen · Feld aufteilen',
       dec:'Vorschlag unter Vorbehalt',open:'eCH-Zuordnung korrigieren'},
     katalog: {ok:'Formulare voll eCH-zugeordnet',act:'Divergenz anzugleichen · Klartext statt der offiziellen Codes',dec:'Pflicht uneinheitlich'},
-    rules: {open:'Zitat unverifiziert'},
+    rules: {ok:'Gesetz in der gelesenen Fassung in Kraft',open:'Zitat unverifiziert · neuere Fassung des Gesetzes — die Databank liest die Artikel nach'},
+    datenmodell: {ok:'Gesetz in der gelesenen Fassung in Kraft',dec:'Rollenliste und Vorschlag eines Elements: der Kanton bestätigt · ohne klare Praxis legt der Kanton das Element fest',
+      open:'neuere Fassung des Gesetzes — die Databank liest die zitierten Artikel nach'},
+    onceonly: {dec:'Zugriff je Register und Angaben von Familienangehörigen: der Kanton entscheidet · Rollenliste: der Kanton bestätigt'},
   };
   const tx=TONEX[state.tab]||{};
   // on #gestaltung the tones speak the layer's words (DATA.gestaltung.labels: the findings of a tone
@@ -1943,7 +2025,12 @@ const notesBetween=(from,to)=>VERLAUF.filter(e=>e.bemerkung&&e.datum>from&&e.dat
 // moved, otherwise a correction reads as a setback (an unchanged figure has no jump
 // to explain, so a note about another figure does not land on it); unit: a sentence
 // naming the series' unit where it differs from the card's headline
-function trendLine(get, what, unit){
+// on the start page a note stands in full under the FIRST card where its figure moved; a later card
+// names it by its number and the card that carries it (_bemSeen, reset by viewHome) — the same note
+// three times would push the doors far down
+let _bemSeen=null;
+const bemNr=e=>VERLAUF.filter(x=>x.bemerkung).indexOf(e)+1;
+function trendLine(get, what, unit, card){
   const L=VERLAUF.map(e=>({e,r:get(e)})).filter(x=>x.r&&x.r.n!=null);
   if(!L.length) return '';
   const c=L[L.length-1], p=L[L.length-2];
@@ -1963,7 +2050,10 @@ function trendLine(get, what, unit){
   const notes=d==='unverändert'?[]:notesBetween(p.e.datum,c.e.datum);
   return `<div class="kztrend"><b>${d}</b> gegenüber ${fmtDate(p.e.datum)}${isGit(p.e)?' (Stand aus der Git-Historie rekonstruiert)':''}: ${cnt}.${
     unit?` ${unit}`:''}${
-    notes.map(e=>`<span class="bem">Anmerkung zum Stand ${fmtDate(e.datum)}: ${esc(e.bemerkung)}</span>`).join('')}</div>`;
+    notes.map(e=>{
+      if(_bemSeen&&_bemSeen.has(e.datum)) return `<span class="bem">Anmerkung ${bemNr(e)} zum Stand ${fmtDate(e.datum)}: siehe «${esc(_bemSeen.get(e.datum))}» und den Verlauf unten.</span>`;
+      if(_bemSeen&&card) _bemSeen.set(e.datum,card);
+      return `<span class="bem">Anmerkung ${bemNr(e)} zum Stand ${fmtDate(e.datum)}: ${esc(e.bemerkung)}</span>`;}).join('')}</div>`;
 }
 // compact trend line over all stands: x follows time and is shared by every
 // sparkline on the page (stands a day apart are pushed at least SPARK_GAP px apart,
@@ -2050,7 +2140,14 @@ const GLOSSAR=(()=>{
     kdsg&&['kdsg','KDSG',`${kdsg.title}${kdsg.sr_number?' (SHR '+kdsg.sr_number+')':''} — das Datenschutzgesetz des Kantons; es gilt für die Organe des Kantons.`],
     ['besonders-schuetzenswert','Besonders schützenswert (⛨)','Besonders schützenswerte Personendaten nach KDSG Art. 2 Abs. 1 lit. d. Für sie genügt «aufgabennotwendig» nicht: die Grundlage nach KDSG Art. 5 Abs. 1 muss benannt sein.'],
     ['dsfa','DSFA','Datenschutz-Folgenabschätzung (KDSG Art. 14b). Die Databank berechnet nur einen Anhaltspunkt aus der Zahl der besonders schützenswerten Felder; ob eine DSFA nötig ist, ist ein Entscheid, kein Rechenergebnis.'],
-    ['once-only','Once-Only (↺)','Eine Angabe nur einmal erheben: das Einwohnerregister führt sie bereits, sie kann vorbefüllt statt neu erhoben werden. Die Marke gilt nur für Daten natürlicher Personen.'],
+    ['once-only','Once-Only (↺)','Eine Angabe nur einmal erheben. Die Marke ↺ zeigt, dass das Einwohnerregister die Angabe führt — bei der einreichenden Person wie bei anderen Personen des Formulars; sie gilt nur für Daten natürlicher Personen. Ob der Kanton die Angabe aus dem Register beziehen darf, ist rechtlich offen.'
+      +(DATA.register?' Welche Angaben und Beilagen weitere Register halten, zeigt die Seite «Was Register schon wissen».':'')],
+    DATA.parteien&&['partei','Partei','Wem eine Angabe gehört: der Person oder Organisation, die das Formular einreicht, einem Familienmitglied, einer Vertretung, einem Arbeitgeber — oder einer Sache wie einem Grundstück. Jede Partei eines Formulars trägt eine Rolle und eine Art (natürliche Person, Organisation, Sache, Behörde); jeder Datenpunkt gehört genau einer Partei oder ist «unklar», mit einem Grund.'],
+    DATA.parteien&&['rolle','Rolle','Was eine Partei im Verfahren ist — Gesuchsteller/in, Ehepartner/in, Kind, Vertreter/in, Arbeitgeber/in, Gegenstand und so weiter. Die Liste der Rollen ist ein Vorschlag der Databank, gebildet aus den Rollenwörtern der Formulare; der Kanton bestätigt sie.'],
+    DATA.kennungen&&['kennung','Kennung','Ein dauerhafter Name für ein Objekt der Databank — Service, Formular, Datenfeld, Teilfeld, Angabe, Gesetz, Artikel, Regel —, auf den andere Systeme verweisen können, zum Beispiel «sh:formular:…». Eine Kennung bezeichnet immer dasselbe Objekt und wird nie neu vergeben.'],
+    DATA.wirkung&&['gesetzesstand','Gesetzesstand','Die Fassung eines Gesetzes, aus der die Databank die zitierten Artikel gelesen hat — benannt nach dem Tag, ab dem sie gilt —, verglichen mit der Fassung, die bei der amtlichen Quelle heute in Kraft ist. Bei einer neueren Fassung liest die Databank die zitierten Artikel nach.'],
+    DATA.register&&['register','Register','Ein amtliches Verzeichnis, das eine Behörde führt — das Einwohnerregister, das Handelsregister, das Grundbuch. Die Databank hält je Register Inhaber, Inhalt, Schlüssel und Quelle und zählt die Angaben und Beilagen der Formulare, die es laut Quelle hält; ob eine Dienststelle sie beziehen darf, ist eine eigene Rechtsfrage.'],
+    DATA.vorbefuellung&&['vorbefuellung','Vorbefüllung','Vorbefüllbar heisst: die geführten Formulare (Prototyp) würden die Angabe aus dem Profil der Person einsetzen. Das gilt nur für eine Angabe mit der Marke ↺, die der einreichenden Person (natürliche Person) gehört, nach dem heutigen Wert fragt und nicht mehrdeutig ist; Angaben von Familienangehörigen erst nach einem Entscheid des Kantons. Die Zahl beschreibt, was sich vorbefüllen liesse, nicht, was eine Dienststelle heute vorbefüllt; ob der Kanton die Angabe aus dem Register beziehen darf, ist offen.'],
     GEST&&['gestaltung','Gestaltung der Formulare','Wie ein Formular aussieht und aufgebaut ist — Schrift, Farben, die Mindestmerkmale der Barrierefreiheit, Kontaktangaben und Aufbau —, gemessen an den veröffentlichten Dateien und mit den übrigen Formularen verglichen. Ein eigener Teil des Dashboards: Er beschreibt, was sich unterscheidet; seine Zahlen gehören nicht zu den offenen Punkten des Datenstandards.'],
     GEST&&['praxis','Praxis (Gestaltung)',`Der Wert, den mindestens zwei Drittel der gemessenen Formulare in einem Merkmal teilen${GM.schrift&&GM.schrift.praxis?' — zum Beispiel die Schrift '+GM.schrift.praxis.w:''}. Er ist der Massstab, weil der Databank kein Corporate-Design-Handbuch des Kantons vorliegt: «weicht von der Praxis ab» heisst nicht, dass eine Vorgabe verletzt ist. Erreicht kein Wert zwei Drittel, gibt es keine klare Praxis, und der Kanton legt fest.`],
     GEST&&['mindestmerkmale','Mindestmerkmale (Barrierefreiheit)',`Was sich an einer Datei maschinell prüfen lässt und worauf sich ein Screenreader (Vorleseprogramm) stützt: ${(GEST.merkmale||[]).filter(m=>m.gruppe==='barrierefrei').map(m=>m.label).join(', ')}. Ein fehlendes Merkmal ist eine Lücke; ein vorhandenes ist kein Nachweis der Barrierefreiheit — kein Test nach eCH-0059, WCAG oder PDF/UA.`],
@@ -2062,6 +2159,7 @@ const term=(id,txt)=>{const g=GLOSS_BY[id]; return g?`<span title="${esc(g.wort+
 function viewHome(){
   const m=document.getElementById('main');
   const K=DATA.kopfzahlen||{};
+  _bemSeen=new Map();          // a note in full under its first card, by number under the next ones
   const S1=(LAB.stufen||[]).find(s=>Number(s[0])===1);
   const card=o=>`<div class="kz"><div class="kzl">${o.label}</div><div class="kzv">${o.value}</div>${o.sub?`<div class="kzsub">${o.sub}</div>`:''}${o.body||''}${o.ziel?`<div class="kzziel">${o.ziel}</div>`:''}${o.trend||''}${o.link?`<div class="kzfoot">${o.link}</div>`:''}</div>`;
   // (a) exchangeable: data points with a citable eCH element. The bar draws the four parts
@@ -2076,7 +2174,7 @@ function viewHome(){
       {t:'dec',n:EB.dec||0,label:KS_LABEL(),link:EB.dec?goLink('kanton','kein_standard','Für den Kanton ›','inl'):''},
       {t:'open',n:EB.open||0,label:stdOpenLabel(EA),link:EB.open?goLink('recherche',ZF?'zuordnung':EA.standard_alt?'echalt':'ech','Recherche der Databank ›','inl'):''}],'Datenpunkte nach eCH-Stand'),
     ziel:ZIEL_STD,
-    trend:trendLine(e=>e.punkte_ech!=null&&e.punkte?{n:e.punkte_ech,von:e.punkte}:null),
+    trend:trendLine(e=>e.punkte_ech!=null&&e.punkte?{n:e.punkte_ech,von:e.punkte}:null,null,null,'Datenpunkte mit eCH-Element'),
     link:goLink('katalog','','Zum Datenkatalog ›')}):'';
   // (b) demanded the same way everywhere
   const U=K.standard_einheitlich, UT=(U&&U.teile)||{};
@@ -2090,7 +2188,7 @@ function viewHome(){
         (CAT_N.divergenz||0)===(UT.act||0)&&(CAT_N.divergenz_offen||0)===(UT.dec||0)?' Der Handlungsbedarf zählt genauso.'
         :` Der Handlungsbedarf zählt ${catUnit('divergenz',CAT_N.divergenz||0)} anders verlangt und ${catUnit('divergenz_offen',CAT_N.divergenz_offen||0)} «${esc(todoCat('divergenz_offen')[1])}», weil er jeden Eintrag je Formular zählt.`}</div>`,
     trend:trendLine(e=>e.punkte_ech!=null&&e.div_punkte!=null&&e.div_offen!=null&&e.punkte_ech>0
-      ?{n:e.punkte_ech-e.div_punkte-e.div_offen,von:e.punkte_ech}:null),
+      ?{n:e.punkte_ech-e.div_punkte-e.div_offen,von:e.punkte_ech}:null,null,null,'Einheitlich verlangt'),
     link:goLink('todo','divergenz',`${nf(U.formulare_div)} von ${pl(U.formulare,'Formular','Formularen')} ${plw(U.formulare_div,'weicht','weichen')} ab ›`)}):'';
   // (c) named differently — title and number point the same way: how many of the Datenpunkte
   // with an eCH element carry a label that deviates. The number is the whole category
@@ -2107,7 +2205,7 @@ function viewHome(){
       {t:tonOf('begriff','zuordnung'),n:NT.zuordnung||0,label:'die Bezeichnung meint eine andere Angabe — die Databank korrigiert die eCH-Zuordnung',
         link:NT.zuordnung?goLink('recherche','zuordnung','Recherche der Databank ›','inl'):''},
       {t:'rest',n:NT.rest||0,label:'keine abweichende Bezeichnung festgestellt'}],'Datenpunkte mit eCH-Element nach Bezeichnung'),
-    trend:trendLine(e=>e.begriff_felder!=null?{n:e.begriff_felder,von:null}:null,catUnitOf('begriff')),
+    trend:trendLine(e=>e.begriff_felder!=null?{n:e.begriff_felder,von:null}:null,catUnitOf('begriff'),null,'Abweichend benannt'),
     link:goLink('begriffe','','Zu den Begriffen ›')}):'';
   // further gaps
   const R=K.rechtsgrundlage, RT=(R&&R.teile)||{};
@@ -2118,7 +2216,7 @@ function viewHome(){
       {t:'dec',n:RT.dec||0,label:'Aufgabenbedarf offen'},
       {t:'open',n:RT.open||0,label:`noch zu ermitteln${R.art5_offen?` (davon ${nf(R.art5_offen)} ⛨: Grundlage nach KDSG Art. 5 zu benennen)`:''}`}],'Datenfelder nach Rechtsgrundlage'),
     ziel:'Ziel: jedes Datenfeld mit Grundlage (KDSG Art. 4)',
-    trend:trendLine(e=>e.felder_gedeckt!=null&&e.datenfelder?{n:e.felder_gedeckt,von:e.datenfelder}:null),
+    trend:trendLine(e=>e.felder_gedeckt!=null&&e.datenfelder?{n:e.felder_gedeckt,von:e.datenfelder}:null,null,null,'Rechtsgrundlage je Datenfeld'),
     link:goLink('register','','Grundlagen je Service im Verzeichnis ›')}):'';
   // every Formular in exactly one part (kopfzahlen.verzeichnis.teile): the forms whose purpose
   // or recipients are not yet recorded are the databank's research (grey, as on «Recherche
@@ -2149,6 +2247,7 @@ function viewHome(){
   const key=`<div class="tonkey"><span>Die Farbe sagt, wer als Nächstes handelt:</span>${
     [['ok','grün','geklärt'],['act','rot','Dienststelle'],['dec','amber','Kanton'],['open','grau','Databank']].map(([t,f,w])=>
       `<span class="tk" title="${esc(tonLabel(t)+' — '+tonTip(t))}"><i class="sw t-${t}"></i>${esc((TON[t]&&TON[t].farbe)||f)} ${w}</span>`).join('<span class="sep">·</span>')}</div>`;
+  _bemSeen=null;
   const notes=VERLAUF.filter(e=>e.bemerkung), noteNo={}; notes.forEach((e,i)=>{noteNo[e.datum]=i+1;});
   const anyGit=VERLAUF.some(isGit);
   m.innerHTML=`<h3 class="view">Compliance-Databank Kanton Schaffhausen</h3>
@@ -2167,7 +2266,10 @@ function viewHome(){
     ${door('dienststellen','Für Dienststellen','Was muss ich an meinen Formularen ändern?',O?`${nf(O.act)} Punkte, die ${nDst===1?'eine Dienststelle':nf(nDst)+' Dienststellen'} selbst lösen ${plw(nDst,'kann','können')}`:'')}
     ${door('kanton','Für den Kanton','Was muss entschieden werden?',O?`${nf(O.dec)} offene Punkte, meist Datenpunkte ohne Standard, warten auf einen Entscheid des Kantons`:'')}
     ${door('methode','Für Fachleute','Wie ist die Databank gebaut?','Belege, Verifikationsstufen, Quellen und der Verlauf aller Kennzahlen')}
-  </div>${GEST?`<p class="glinkline">Auch: ${goLink('gestaltung','','Gestaltung der Formulare — Schrift, Farben, Barrierefreiheit ›','inl')}</p>`:''}</section>
+  </div>${(()=>{const L=[GEST&&goLink('gestaltung','','Gestaltung der Formulare — Schrift, Farben, Barrierefreiheit ›','inl'),
+      (PAR||WIRK||KONZ)&&goLink('datenmodell','','Datenmodell — wessen Angabe, Kennungen, Wirkung einer Änderung ›','inl'),
+      REG&&goLink('onceonly','','Was Register schon wissen ›','inl')].filter(Boolean);
+    return L.length?`<p class="glinkline">Auch: ${L.join(' · ')}</p>`:'';})()}</section>
   <section class="hsec"><h4>Verlauf</h4>
     <div class="vlgrid">
       <div class="kz"><div class="kzl">Datenpunkte mit eCH-Element</div>${sparkline(e=>e.punkte_ech!=null&&e.punkte?{n:e.punkte_ech,von:e.punkte}:null,'Anteil der Datenpunkte mit eCH-Element',noteNo)}</div>
@@ -2258,9 +2360,9 @@ function viewMethode(){
       ${stBadge(tonOf('basis','zu_ermitteln'),'zu ermitteln','noch nicht recherchiert')} (noch nicht recherchiert) — die letzten beiden sind Lücken, die eine wartet auf eine Beurteilung, die andere auf die Recherche der Databank. Für ⛨-Felder genügt
       «aufgabennotwendig» nicht: die Grundlage nach KDSG Art. 5 Abs. 1 muss benannt sein; sonst bleibt das Feld offen
       (${stBadge(tonOf('basis','art5_offen'),'⛨ Grundlage nach KDSG Art. 5 offen','aufgabennotwendig, aber die Grundlage nach KDSG Art. 5 Abs. 1 ist noch nicht benannt')} — Recherche der Databank, nicht «Aufgabenbedarf offen»).</div>
-      <div>• <b>↺ Once-Only:</b> das Einwohnerregister führt die Angabe bereits — vorbefüllen statt neu erheben. Die Marke gilt nur für
+      <div>• <b>↺ Once-Only:</b> das Einwohnerregister führt die Angabe bereits; vorbefüllbar ist davon nur, was der einreichenden Person gehört und nach dem heutigen Wert fragt (Glossar: Vorbefüllung). Die Marke gilt nur für
       Daten natürlicher Personen, nie für Betriebs-, Behörden- oder Objektadressen. Sie ist eine Einordnung der Databank, kein
-      Rechtsanspruch: ob eine Dienststelle das Register abfragen darf, braucht eine eigene Grundlage (KDSG Art. 8 Abs. 1 lit. a/b).</div>
+      Rechtsanspruch: ob eine Dienststelle das Register abfragen darf, richtet sich nach dem Recht des Registers — bei kantonalen Stellen nach KDSG Art. 8 Abs. 1 (gesetzliche Grundlage oder Bedarf für die gesetzlichen Aufgaben des Empfängers), bei Registern des Bundes nach Bundesrecht.</div>
       <div>• <b>Fünf Begriffsebenen</b>, die hier nie vermischt werden: Formularfeld, Datenfeld, Teilfeld, Datenpunkt und Attribut — jede im Glossar unten erklärt.</div>
       <div>• <b>Lücke = Lücke:</b> Fehlendes steht als «fehlt», «kein Standard», «zu ermitteln» offen da. Eine
       geschönte Anzeige von 100&nbsp;% wäre hier ein Defekt.</div>
@@ -2271,6 +2373,12 @@ function viewMethode(){
       zwei Drittel, legt der Kanton fest. Was in Bildern und Logos steht, ist nicht gemessen; die eFormulare der Plattform haben kein eigenes
       Erscheinungsbild. Die Seite beschreibt, was sich unterscheidet, und verlangt von keiner Dienststelle, ein Formular zu ändern; ihre Zahlen
       gehören nicht zu den offenen Punkten und nicht zu den Kennzahlen des Datenstandards. ${goLink('gestaltung','','Zur Gestaltung der Formulare ›','inl')}</div>`:''}
+      ${(()=>{const Z=PAR&&PAR.zahlen, MT=(DM.parteien||{}).methode, KS=KONZ&&KONZ.summen, KN=DM.kennungen, WU=WIRK&&WIRK.uebersicht, WS=WIRK&&WIRK.summen, VF=(REG_GRP.find(g=>g.key==='einwohner')||{}).vorbefuellbar;
+        return [Z?`<div id="m-parteien">• <b>Parteien und Rollen</b> — wessen Angabe ein Datenpunkt ist: ${nf(Z.zugeordnet)} von ${nf(Z.punkte)} Datenpunkten sind einer Partei des Formulars zugeordnet, die übrigen «unklar» mit einem Grund. Zuerst leitet die Databank ab, was ihre Hinweise eindeutig sagen (Rolle aus der Prüfung der Bezeichnungen, Wort für die Partei in Bezeichnung oder Abschnitt, Subjekt des Felds)${MT?`; dann beurteilt sie ${pl(MT.formulare_beurteilt,'Formular','Formulare')} aus ihrem Text, jede Partei und jede Zuordnung mit einem Zitat, das im Formulartext stehen muss; eine Zweitprüfung bestätigt ${nf(MT.zweitpruefung.bestaetigt)} und ändert ${nf(MT.zweitpruefung.geaendert)}; eine Stichprobe von ${nf(MT.stichprobe?MT.stichprobe.n:0)} Datenpunkten prüft das Ergebnis am Formulartext`:''}. Die Art der Partei passt zum beurteilten Subjekt des Felds. Die Rollen sind ein Vorschlag der Databank, den der Kanton bestätigt. ${goLink('datenmodell','parteien','Zu den Parteien ›','inl')}</div>`:'',
+          KS?`<div id="m-konzepte">• <b>Konzepte</b> — ${pl(KS.n_konzepte,'Konzept fasst','Konzepte fassen')} die eCH-Elemente zusammen, die dieselbe Angabe bezeichnen (Vorname, Strasse, AHV-Nummer …); die Liste ist geprüft und liegt in quellen/konzepte.json. Je Konzept und Rolle der Partei ist das Element, das mindestens zwei Drittel von mindestens ${nf((KONZ.regel||{}).mindestens||10)} Datenpunkten nutzen, der «Vorschlag», den der Kanton bestätigt; sonst legt der Kanton fest. Ein Befund zum Datenstandard ausserhalb der Kennzahlen und der offenen Punkte. ${goLink('datenmodell','konzepte','Zu den Konzepten ›','inl')}</div>`:'',
+          KN?`<div id="m-kennungen">• <b>Kennungen und Exportvertrag</b> — ${pl(KN.n_aktiv,'dauerhafte Kennung','dauerhafte Kennungen')} für Services, Formulare, Datenfelder, Teilfelder, Angaben, Gesetze, Artikel und Regeln; keine wird gelöscht oder neu vergeben. Jeder veröffentlichte Export trägt eine Version, ein JSON Schema unter schema/ und seine Änderungen in exportvertrag.json. ${goLink('datenmodell','kennungen','Zu den Kennungen ›','inl')}</div>`:'',
+          WU?`<div id="m-gesetzesstand">• <b>Gesetzesstand und Wirkung einer Änderung</b> — je Gesetz die Fassung, aus der die Artikel gelesen sind, und ob sie bei der amtlichen Quelle noch in Kraft ist (geprüft ${pruefTage(WU)}); eine neuere Fassung liest die Databank nach, sie ändert die Zitate nicht von selbst. Je Gesetz und Artikel die Datenpunkte, Formulare, Services und Dienststellen, die ihn zitieren (${pl(WS.n_zitate,'Zitat','Zitate')}). ${goLink('datenmodell','wirkung','Zur Wirkung einer Änderung ›','inl')}</div>`:'',
+          REG?`<div id="m-register">• <b>Register und Once-Only</b> — ${pl(Object.keys(REG_BY).length,'Register','Register')} mit Inhaber, Inhalt, Schlüssel und amtlicher Quelle. Eine Angabe zählt als vom Register gehalten, wenn eine zitierte Quelle das sagt und die Art der Partei passt (natürliche Person bzw. Organisation) — gezählt wird das Element, auch bei Angaben anderer Personen des Formulars und bei einer Frage nach einem früheren Wert; die obere Grenze nimmt jede Angabe eines Standards, mit dem das Register austauscht. Vorbefüllbar${VF?` (${pl(VF.pflicht,'Pflichtangabe','Pflichtangaben')})`:''} ist nur eine Angabe der einreichenden Person, nach ihrem heutigen Wert gefragt und nicht mehrdeutig; die gesparte Zeit ist eine Modellschätzung ohne Fallzahlen. Ob eine Dienststelle beziehen darf, was ein Register hält, ist rechtlich offen. ${goLink('onceonly','','Zu den Registern ›','inl')}</div>`:''].join('');})()}
       <div>• <b>Quellen:</b> <b>DVSH</b> — das Dienstleistungsmodell des Kantons (amtliches Modellierungswerkzeug; massgebliche Quelle für Verfahren
       und Rechtsgrundlage, nur lesend übernommen) · <b>SHEP</b> — das publizierte Service-Portal des Kantons (Bürgersicht,
       shep.meetfrida.agency) · die amtlichen Formulare selbst ·
@@ -2604,6 +2712,538 @@ function gestBrief(d){
   return body+`<div class="kznote dsnote">Ein eigener Teil des Dashboards: Er beschreibt, wie die Formulare aussehen und wo sie von der Praxis der übrigen abweichen — keine Massnahme und keine Aufforderung, ein Formular zu ändern; nicht in den offenen Punkten dieses Briefings gezählt.</div>
     <div class="small noprint" style="margin-top:6px">${goLink('gestaltung','dienststellen','Zur Gestaltung der Formulare ›','inl')}</div>`;
 }
+// ---------- Datenmodell & Once-Only: the layers the two pages and the panels draw ----------
+// Computed once in scripts/export_json.py and only drawn here: the parties of every data point
+// (DATA.parteien, scripts/rollen.py), one preferred element per Angabe and role (DATA.konzepte,
+// scripts/konzepte.py), the change-impact index with the edition of every law (DATA.wirkung,
+// scripts/wirkung.py), the registers and the prefill rule (DATA.register, DATA.vorbefuellung,
+// scripts/register_map.py), the permanent identifiers (DATA.kennungen, scripts/kennungen.py) and
+// the figures of the two pages (DATA.datenmodell, export_json._datenmodell). None of them enters
+// the headline figures, the open points or the Handlungsbedarf. A Vorschlag the canton confirms and
+// a decision it takes are amber; an edition in force green, a newer one grey (the databank re-reads
+// the articles); everything else is neutral.
+const PAR=DATA.parteien&&(DATA.parteien.rollen||[]).length?DATA.parteien:null;
+const KONZ=DATA.konzepte||null, WIRK=DATA.wirkung||null, REG=DATA.register||null, VORB=DATA.vorbefuellung||null;
+const DM=DATA.datenmodell||{}, DML=DM.labels||{}, KENN=DATA.kennungen||null;
+const ROLLE=Object.fromEntries(((PAR&&PAR.rollen)||[]).map(r=>[r.code,r]));
+const rolleLabel=c=>(ROLLE[c]&&ROLLE[c].label)||('⟨'+c+'⟩');
+const entLabel=c=>lab(DML.entitaet,c);
+const W_LAW={}, W_ART={};
+((WIRK&&WIRK.gesetze)||[]).forEach(g=>{W_LAW[g.id]=g; (g.artikel||[]).forEach(a=>{W_ART[a.id]={g,a};});});
+const REG_BY=Object.fromEntries(((REG&&REG.katalog)||[]).map(k=>[k.code,k]));
+const regName=c=>(REG_BY[c]&&REG_BY[c].name)||('⟨'+c+'⟩');
+const REG_GRP=DM.register_gruppen||[];
+// a law by the number readers know it by («SHR 641.100», «SR 831.10»)
+const lawNr=g=>g?(g.nummer||''):'';
+// an abbreviation («FamZG», «AHVV») names a law; a generic or cut short title («Gesetz») does not
+const isAbk=k=>/^[A-ZÄÖÜ][A-Za-zÄÖÜäöü0-9-]{1,14}$/.test(k||'')&&((String(k).match(/[A-ZÄÖÜ]/g)||[]).length>=2);
+const lawName=g=>g?(isAbk(g.kurz)?g.kurz:g.titel):'';
+const lawSub=g=>g?lawNr(g)+(isAbk(g.kurz)?' · '+g.titel:''):'';
+const entRolle=c=>lab(DML.entitaet_rolle||DML.entitaet,c);
+// the days of the latest currency check of the cited laws (wirkung.uebersicht.geprueft_von … _am):
+// one day, or a range when the laws were last asked on different days
+function pruefTage(WU){
+  const a=(WU||{}).geprueft_von, b=(WU||{}).geprueft_am;
+  if(!b) return '—'; if(!a||a===b) return fmtDate(b);
+  const A=fmtDate(a), B=fmtDate(b);
+  return A.slice(3)===B.slice(3)?`${A.slice(0,3)}–${B}`:`${A} bis ${B}`;
+}
+// the edition of a law as the latest currency check found it (wirkung.gesetze[].pruefung): in force
+// green, a newer edition grey — the databank re-reads the cited articles (wirkung.ton)
+function standChip(lawId){
+  const g=W_LAW[lawId]; if(!g||!WIRK) return '';
+  const p=g.pruefung||{}, L=WIRK.labels||{}, e=p.ergebnis||'nicht_geprueft', t=(WIRK.ton||{})[e]||'open';
+  const lbl=e==='aktuell'?'aktuell':e==='neuer_stand'?(p.stand_aktuell?'neuerer Stand seit '+fmtDate(p.stand_aktuell):'neuerer Stand')
+    :(e==='stand_unbekannt'||e==='nicht_geprueft'||!p.stand_gelesen)?'Stand unbekannt':lab(L.ergebnis,e);
+  const tip=[`Gesetzesstand: Artikel gelesen in der Fassung vom ${p.stand_gelesen?fmtDate(p.stand_gelesen):'— (unbekannt)'}`,
+    p.stand_aktuell?`in Kraft: Fassung vom ${fmtDate(p.stand_aktuell)}`:'',
+    `${lab(L.ergebnis,e)} — geprüft ${fmtDate(p.geprueft_am)} bei der Quelle «${lab(L.pruef_quelle,p.quelle)}»`,
+    e==='neuer_stand'?'Die Databank liest die zitierten Artikel nicht von selbst neu; sie stehen zur Durchsicht an.':''].filter(Boolean).join('\n');
+  return stBadge(t,esc(lbl),tip,'stchip');
+}
+// «betrifft N Datenpunkte in M Formularen ›» — the change-impact explorer at this law or article
+function wirkLink(lawId,artId){
+  const A=artId!=null?W_ART[artId]:null, x=A?A.a:W_LAW[lawId];
+  if(!x||!x.n_datenpunkte) return '';
+  return goLink('datenmodell',A?'a-'+artId:'g-'+lawId,`betrifft ${pl(x.n_datenpunkte,'Datenpunkt','Datenpunkte')} in ${pl(x.n_formulare,'Formular','Formularen')} ›`,'inl wlink');
+}
+// a list of Formulare, each a link to its Formular-Ansicht (sec opens a panel there); the first
+// DMCAP are drawn, «weitere N anzeigen» draws the rest (Back/Forward draws it again)
+const DMCAP=24; let _dmN=0; const _dmRest={};
+function dmFormItem(x,sec){
+  const f=formById[x.id]; if(!f) return `<li>Formular ${esc(x.id)}</li>`;
+  const datei=String(f.source_file||'').split('/').pop();
+  const wer=x.dup?` · Nr. ${esc(f.id)}${datei?`, Datei «${esc(datei)}»`:f.file_type==='eformular'?', eFormular':''}`:'';
+  return `<li>${formLink(f.service_id,f.id,esc(f.title),'dlink lt',sec)} <span class="small muted">· ${esc(f.dienststelle||'')}${wer}${x.extra?' · '+x.extra:''}</span></li>`;
+}
+function dmFormList(items,sec){
+  const L=(items||[]).map(x=>typeof x==='object'?Object.assign({},x):{id:x}).filter(x=>formById[x.id])
+    .sort((a,b)=>(b.rang||0)-(a.rang||0)||String(formById[a.id].title).localeCompare(String(formById[b.id].title),'de')||a.id-b.id);
+  // two Formulare of one Dienststelle with the same title cannot be told apart by it: they say which they are
+  const nT={}; L.forEach(x=>{const f=formById[x.id], k=f.title+'|'+(f.dienststelle||''); nT[k]=(nT[k]||0)+1;});
+  L.forEach(x=>{const f=formById[x.id]; if(nT[f.title+'|'+(f.dienststelle||'')]>1) x.dup=true;});
+  const id='dl'+(_dmN++), rest=L.slice(DMCAP);
+  if(rest.length) _dmRest[id]={items:rest,sec};
+  return `<ul class="gfll" id="${id}">${L.slice(0,DMCAP).map(x=>dmFormItem(x,sec)).join('')}</ul>${
+    rest.length?`<button type="button" class="gmorebtn" data-showmore="${id}">weitere ${nf(rest.length)} anzeigen</button>`:''}`;
+}
+function dmWire(root){
+  root.querySelectorAll('button.gmorebtn[data-showmore]').forEach(b=>{if(!_dmRest[b.dataset.showmore]) return; b.onclick=()=>{
+    const id=b.dataset.showmore, r=_dmRest[id], ul=document.getElementById(id); if(!r||!ul) return;
+    const had=document.activeElement===b, n0=ul.children.length;
+    ul.insertAdjacentHTML('beforeend',r.items.map(x=>dmFormItem(x,r.sec)).join(''));
+    ul.setAttribute('data-shown',id); b.remove(); wireGo(ul);
+    if(had){const a=ul.children[n0]&&ul.children[n0].querySelector('a'); if(a) a.focus({preventScroll:true});}};});
+  root.querySelectorAll('button.copybtn[data-copy]').forEach(b=>b.onclick=()=>copyText(b.dataset.copy,b));
+}
+// a permanent identifier, copyable: the text itself selects as a whole, the button copies it
+function copyText(t,btn){
+  const done=()=>{const l=document.getElementById('tiplive'); if(l) l.textContent='Kennung kopiert: '+t;
+    if(btn){btn.textContent='kopiert'; setTimeout(()=>{btn.textContent='kopieren';},1400);}};
+  // the fallback: execCommand answers false (or throws) when nothing was copied — then the identifier
+  // stays selected in its own text for copying by hand, and the live region says so
+  const fb=()=>{const ta=document.createElement('textarea'); ta.value=t; ta.setAttribute('readonly',''); ta.className='vh';
+    document.body.appendChild(ta); ta.select(); let ok=false; try{ok=document.execCommand('copy');}catch(e){ok=false;} ta.remove();
+    if(ok){done(); return;}
+    const l=document.getElementById('tiplive'); if(l) l.textContent='Kennung nicht kopiert — sie ist markiert und lässt sich von Hand kopieren: '+t;
+    const c=btn&&btn.parentElement&&btn.parentElement.querySelector('code.kennc');
+    if(c){const r=document.createRange(); r.selectNodeContents(c); const sl=window.getSelection(); sl.removeAllRanges(); sl.addRange(r);}};
+  try{if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(done,fb); else fb();}catch(e){fb();}
+}
+// the label of a table cell on a phone, where the table stacks (.dmstack): hidden on a wider screen
+const ML=t=>`<span class="dml" aria-hidden="true">${t}</span>`;
+const kennTag=(k,was)=>k?`<span class="kenn"><span class="kennl">${esc(was||'Kennung')}</span> <code class="kennc">${esc(k)}</code> <button type="button" class="copybtn" data-copy="${esc(k)}" title="Die Kennung ${esc(k)} in die Zwischenablage kopieren">kopieren</button></span>`:'';
+// a section of the two pages, its address #<page>/all/<key>
+const dmSec=(pre,id,title,body)=>`<section class="gstsec" id="${pre}-${esc(id)}"><h4>${title}</h4>${body}</section>`;
+// a «Wo anfangen?» card: one question, one figure of the export
+const dmDoor=(tab,sub,k,q,f)=>`<a class="door" href="#${tab}/all/${esc(sub)}" data-go="${tab}" data-sub="${esc(sub)}"><span class="dk">${k}</span><span class="dq">${q}</span>${f?`<span class="dz"><b>${f[0]}</b> ${f[1]}</span>`:''}</a>`;
+// a section, a law or a concept named in the address: open it, bring it into view, focus it
+function dmFocus(m,id,open){
+  if(!id||comingBack()) return;
+  setTimeout(()=>{const t=document.getElementById(id); if(!t||!m.contains(t)) return;
+    if(t.tagName==='DETAILS') t.open=true;
+    (open||[]).forEach(x=>{const d=document.getElementById(x); if(d&&d.tagName==='DETAILS') d.open=true;});
+    t.scrollIntoView({behavior:MOTION}); focusIn(t); t.classList.add('flash'); setTimeout(()=>t.classList.remove('flash'),1600);},0);
+}
+// the data points of a Formular, each with its label («Personalien › Name») and its Datenfeld
+function unitsOf(fm){
+  const out=[];
+  (fm.data_fields||[]).forEach(d=>{const subs=(d.subfields||[]).filter(s=>s&&typeof s==='object');
+    (subs.length?subs:[d]).forEach(u=>out.push({d,u,name:subs.length?d.name+' › '+u.name:d.name}));});
+  return out;
+}
+
+// ---------- Datenmodell (#datenmodell): whose Angabe, one element, identifiers, editions, impact ----------
+// Opens like the start page — one question, five cards with one figure each —, then one section per
+// card. Section addresses: #datenmodell/all/parteien · konzepte · kennungen · gesetzesstand · wirkung,
+// a concept k-<code>, the explorer at a law g-<law id> or an article a-<article id>.
+const DM_SEC=['parteien','konzepte','kennungen','gesetzesstand','wirkung'];
+function viewDatenmodell(){
+  const m=document.getElementById('main');
+  if(!PAR&&!WIRK&&!KONZ){m.innerHTML=pageHead('Datenmodell','Dieser Export enthält weder die Parteien noch die Konzepte noch den Wirkungsindex.')
+    +`<div class="nores">${goLink('home','','Zur Übersicht ›','inl')}</div>`; wireGo(m); return;}
+  _dmN=0; Object.keys(_dmRest).forEach(k=>{delete _dmRest[k];});
+  const sub=(state.sub&&state.sub!=='felder')?state.sub:null;
+  let selLaw=null, selArt=null, selK=null;
+  if(sub&&/^g-\d+$/.test(sub)) selLaw=W_LAW[+sub.slice(2)]||null;
+  if(sub&&/^a-\d+$/.test(sub)&&W_ART[+sub.slice(2)]){selArt=W_ART[+sub.slice(2)].a; selLaw=W_ART[+sub.slice(2)].g;}
+  if(sub&&/^k-/.test(sub)) selK=((KONZ&&KONZ.konzepte)||[]).find(k=>k.code===sub.slice(2))||null;
+  const bad=sub&&!DM_SEC.includes(sub)&&!selLaw&&!selK; if(bad) state.sub='felder';
+  const Z=PAR?PAR.zahlen:null, DP=DM.parteien||null, KS=KONZ?KONZ.summen:null, KN=DM.kennungen||null,
+    WU=WIRK?WIRK.uebersicht||{}:null, WS=WIRK?WIRK.summen||{}:null, PZ=WU?WU.pruefung_zitiert||{}:{};
+  const sec=(id,t,b)=>dmSec('dm',id,t,b);
+  const doors=[
+    PAR&&dmDoor('datenmodell','parteien','Wessen Angabe?','Welcher Partei gehört jede Angabe — der einreichenden Person, ihrer Familie, einer Vertretung, einem Betrieb?',
+      [pctTxt(Z.zugeordnet,Z.punkte),`der ${nf(Z.punkte)} Datenpunkte sind einer Partei zugeordnet; die ${nf(PAR.rollen.length)} Rollen sind ein Vorschlag der Databank, den der Kanton bestätigt`]),
+    KONZ&&dmDoor('datenmodell','konzepte','Eine Angabe — ein Element','Nutzen die Formulare für dieselbe Angabe derselben Partei dasselbe eCH-Element?',
+      [nf(KS.n_abweichend),`Datenpunkte in ${pl(KS.n_abweichend_formulare,'Formular','Formularen')} nutzen ein anderes Element als den Vorschlag — in ${nf(KS.n_konzepte_mit_abweichung)} der ${nf(KS.n_konzepte)} Konzepte${(()=>{
+        const t=(KONZ.konzepte||[]).filter(k=>k.n_abweichend).sort((a,b)=>b.n_abweichend-a.n_abweichend||a.label.localeCompare(b.label,'de')).slice(0,3).map(k=>k.label);
+        return t.length?', am häufigsten '+t.join(', '):'';})()}`]),
+    KN&&dmDoor('datenmodell','kennungen','Dauerhafte Kennungen','Wie verweisen andere Systeme auf ein Formular, ein Feld, eine Angabe oder einen Artikel?',
+      [nf(KN.n_aktiv),'aktive Kennungen nach einem Schema ohne Webadresse — die Basisadresse ist offen']),
+    WIRK&&dmDoor('datenmodell','gesetzesstand','Gesetzesstand','Stammen die zitierten Artikel aus der Fassung, die heute in Kraft ist?',
+      [nf(PZ.neuer_stand||0),`von ${pl(WS.n_gesetze_zitiert,'zitiertem Gesetz','zitierten Gesetzen')} haben eine neuere Fassung — ${pl((WU.betroffen||{}).n_formulare||0,'Formular zitiert','Formulare zitieren')} eines davon`]),
+    WIRK&&dmDoor('datenmodell','wirkung','Wirkung einer Änderung','Ein Gesetz oder ein Artikel ändert sich — welche Formulare, Daten und Dienststellen betrifft es?',
+      [nf(WS.n_artikel),`zitierte Artikel in ${pl(WS.n_gesetze_zitiert,'Gesetz','Gesetzen')} — ein Gesetz wählen, dann seine Artikel`]),
+  ].filter(Boolean).join('');
+
+  // ---- (1) parties and roles
+  let sP='';
+  if(PAR){
+    const R=(DP&&DP.rollen)||{}, MT=(DP&&DP.methode)||null;
+    const rows=PAR.rollen.map(r=>{const x=R[r.code]||{parteien:0,formulare:0,punkte:0};
+      return `<tr id="dr-${esc(r.code)}"><td><b>${esc(r.label)}</b> <span class="small muted">· ${esc(entRolle(r.entitaet))}</span><div class="small muted">${esc(r.erklaerung)}</div></td>
+        <td class="num">${ML('Parteien')}<b class="sumn" data-s="pa">${nf(x.parteien)}</b></td><td class="num">${ML('Formulare')}${nf(x.formulare)}</td><td class="num">${ML('Datenpunkte')}<b class="sumn" data-s="pu">${nf(x.punkte)}</b></td></tr>`;}).join('');
+    const tab=`<div class="card tscroll sumbox"><table class="ft dmrol dmstack"><thead><tr><th>Rolle · Art der Partei</th><th class="num">Parteien</th><th class="num">Formulare</th><th class="num">Datenpunkte zugeordnet</th></tr></thead><tbody>
+      <tr class="dgrp"><td>Alle Rollen</td><td class="num">${ML('Parteien')}<b class="sumtot" data-s="pa">${nf(DP?DP.n_parteien:0)}</b></td><td class="num">${ML('Formulare')}${nf(Z.formulare_mit_partei)}</td><td class="num">${ML('Datenpunkte')}<b class="sumtot" data-s="pu">${nf(Z.zugeordnet)}</b></td></tr>${rows}</tbody></table></div>`;
+    const vert=((DP&&DP.verteilung)||[]).map(v=>({w:v.label,n:v.formulare}));
+    const nForms=MT?MT.formulare:DATA.forms.length;
+    const verteil=vert.length?`<div class="card gm"><div class="sumbox"><div class="gcap">Parteien je Formular: <b class="sumtot">${nf(nForms)}</b> Formulare</div><ul class="gdist">${vert.map(v=>
+      `<li><span class="gdl">${esc(v.w)}</span><span class="gdb" aria-hidden="true"><i style="width:${nForms?(100*v.n/nForms).toFixed(1):0}%"></i></span><b class="gdn sumn">${nf(v.n)}</b></li>`).join('')}</ul></div></div>`:'';
+    // the reasons of «unklar»: the codes of the rules, and the reasons written per point in the judgement
+    const GR=Z.grund||{}, gk=Object.keys(GR).sort((a,b)=>(a==='urteil')-(b==='urteil')||GR[b]-GR[a]);
+    const gl=gk.map(k=>`<li><b class="sumn">${nf(GR[k])}</b><span>${k==='urteil'?`${esc(lab(DML.herkunft,'urteil'))} — der Grund steht je Datenpunkt im Abschnitt «Parteien» der Formular-Ansicht; zum Beispiel gilt eine Zeile beiden Ehepartnern, betrifft eine Liste von Beilagen mehrere Parteien oder nennt das Formular die Person nicht`:esc(lab(PAR.gruende,k))}</span></li>`).join('');
+    const unklar=`<div class="card gm sumbox"><div class="gcap">«unklar» — <b class="sumtot">${nf(Z.unklar)}</b> Datenpunkte, jeder mit einem Grund</div><ul class="tleg dmgr">${gl}</ul></div>`;
+    // how the layer was made and checked: rules, judgement from the Formular text, second review, sample
+    let wie='';
+    if(MT){
+      const SP=MT.stichprobe, D=SP?SP.damals:null, H=SP?SP.heute:null, SCH=SP?SP.schichten||{}:{};
+      const DG=SP?SP.damals_gesamt||{}:{};
+      wie=`<ol class="dmwie">
+        <li><b>Aus Hinweisen abgeleitet.</b> ${esc(MT.stufen.regel)}. So sind ${pl(MT.punkte_regel.zugeordnet,'Datenpunkt','Datenpunkte')} zugeordnet und ${nf(MT.punkte_regel.unklar)} «unklar» mit einem Grund aus der Liste oben; ${pl(MT.formulare_nur_regel,'Formular steht','Formulare stehen')} nur auf dieser Stufe${MT.formulare_nur_regel_ohne_partei?` (${nf(MT.formulare_nur_regel_ohne_partei)} davon ohne Partei)`:''}.</li>
+        <li><b>Aus dem Formulartext beurteilt.</b> ${pl(MT.formulare_beurteilt,'Formular','Formulare')}: ${pl(MT.punkte_urteil.zugeordnet,'Datenpunkt','Datenpunkte')} zugeordnet, ${nf(MT.punkte_urteil.unklar)} «unklar». ${esc(MT.stufen.urteil)}. Eine Zuordnung gilt nur, wenn die Art der Partei zum beurteilten Subjekt des Datenfelds passt; sonst bleibt der Datenpunkt «unklar».</li>
+        <li><b>Zweitprüfung.</b> Jedes beurteilte Formular ist ein zweites Mal gegen seinen Text geprüft: ${pl(MT.zweitpruefung.bestaetigt,'Formular','Formulare')} bestätigt, ${nf(MT.zweitpruefung.geaendert)} geändert${MT.zweitpruefung.ohne?`, ${nf(MT.zweitpruefung.ohne)} noch ohne Zweitprüfung`:''}.</li>
+        ${SP?`<li><b>Stichprobe.</b> ${pl(SP.n,'Datenpunkt','Datenpunkte')}, zufällig gezogen (fester Startwert ${esc(String(SP.startwert))}) und je am Formulartext geprüft, in drei Schichten: ${Object.values(SCH).map(s=>`${nf(s.gezogen)} von ${nf(s.bestand)} <span class="muted">(${esc(s.text)})</span>`).join(', ')}.
+          <br>Ergebnis der Prüfung: ${nf(DG.richtig)} von ${pl(DG.zugeordnet,'Zuordnung','Zuordnungen')} richtig${DG.falsch?`, ${nf(DG.falsch)} falsch (seither korrigiert)`:''}; von ${nf(DG.unklar)} «unklar» ${nf(DG.offen)} zu Recht offen, ${nf(DG.grenzfall)} ${plw(DG.grenzfall,'Grenzfall','Grenzfälle')}, ${nf(DG.klaerbar)} aus dem Formulartext klärbar.
+          <br><b>Heute</b> sind ${nf(H.zugeordnet)} der gezogenen Datenpunkte zugeordnet, ${nf(H.zugeordnet_wie_pruefung)} davon der Partei, die die Prüfung festhielt${H.zugeordnet_anders?`, ${nf(H.zugeordnet_anders)} einer anderen`:''}; ${nf(H.unklar)} sind «unklar»: ${nf(H.unklar_wie_pruefung)} wie in der Prüfung, ${nf(H.unklar_grenzfall)} ${plw(H.unklar_grenzfall,'Grenzfall','Grenzfälle')}${H.unklar_klaerbar?`, ${nf(H.unklar_klaerbar)} laut Prüfung klärbar (das Subjekt des Felds lässt die Zuordnung nicht zu)`:''}${H.unklar_statt_zuordnung?`, ${nf(H.unklar_statt_zuordnung)} seither «unklar» statt zugeordnet`:''}${H.fehlt?` · ${nf(H.fehlt)} gibt es nicht mehr`:''}.
+          <br><span class="muted">Zuordnungen, die erst nach der Stichprobe geändert wurden, gehören nicht zu ihr. Beleg: ${esc(SP.quelle)}</span></li>`:''}
+      </ol>`;
+    }
+    sP=sec('parteien','Wessen Angabe? — Parteien und Rollen',
+      `<p class="gfrage">Jede Angabe gehört einer Partei: der Person oder Organisation, die das Formular einreicht, ihrer Familie, einer Vertretung, einem Arbeitgeber — oder einer Sache wie einem Grundstück oder einem Fahrzeug.
+        ${nf(Z.zugeordnet)} von ${nf(Z.punkte)} Datenpunkten (${pctTxt(Z.zugeordnet,Z.punkte)}) sind einer Partei zugeordnet, ${nf(Z.unklar)} sind «unklar», jeder mit einem Grund; ${pl(DP?DP.n_parteien:0,'Partei','Parteien')} in ${pl(Z.formulare_mit_partei,'Formular','Formularen')}.</p>
+      <p class="gvorb">${stBadge('dec','Vorschlag der Databank','Die Rollenliste ist ein Vorschlag der Databank, gebildet aus den Rollenwörtern der Formulare; der Kanton bestätigt sie.')} Die ${nf(PAR.rollen.length)} Rollen sind aus den Rollenwörtern der Formulare gebildet; der Kanton bestätigt die Liste. Wessen Angabe ein Datenpunkt ist, entscheidet auch, ob ein Register sie vorbefüllen könnte: nur Angaben der einreichenden Person — ${goLink('onceonly','','Was Register schon wissen ›','inl')}</p>
+      <h5 class="dmh">Die Rollen</h5>${tab}
+      <div class="gcols"><div><h5 class="dmh">Parteien je Formular</h5>${verteil}</div><div><h5 class="dmh">Warum «unklar»</h5>${unklar}</div></div>
+      ${wie?`<h5 class="dmh">Wie die Zuordnung entstand und geprüft ist</h5><div class="card gm">${wie}</div>`:''}`);
+  }
+
+  // ---- (2) concepts: one element per Angabe and role
+  let sK='';
+  if(KONZ){
+    const L=KONZ.labels||{}, ton=k=>(KONZ.ton||{})[k]||'dec', el=e=>`${esc(e.standard)}·${esc(e.element)}`;
+    const zelle=(k,z)=>{
+      const st=z.status==='vorschlag'
+        ?stBadge(ton('vorschlag'),`Vorschlag: ${el(z.vorschlag)} (${nf(z.vorschlag.anteil)} %)`,`${nf(z.vorschlag.n)} von ${nf(z.n)} Datenpunkten (${nf(z.vorschlag.anteil)} %) nutzen dieses Element — die Praxis der Formulare; der Kanton bestätigt den Vorschlag`)
+        :stBadge(ton('kanton'),esc(lab(L.status,'kanton')),lab(L.grund,z.grund)+((z.elemente||[]).length===1?' — alle nutzen dasselbe Element, für einen Vorschlag sind es zu wenige':'')+'; der Kanton legt das Element fest');
+      const els=(z.elemente||[]).map(e=>`<span class="nowrap">${el(e)} ${nf(e.n)}</span>`).join(' · ');
+      const ab=(z.abweichend||[]).length?gFolded(`${pl(z.n_abweichend,'Datenpunkt','Datenpunkte')} in ${pl(z.n_abweichend_formulare,'Formular','Formularen')} mit einem anderen Element`,
+        dmFormList(z.abweichend.map(a=>({id:a.form_id,extra:esc(a.element.replace(':','·'))+(a.n>1?' ('+nf(a.n)+')':'')}))),false):'';
+      return `<tr><td><b>${esc(rolleLabel(z.rolle))}</b><div class="small muted">${esc(entLabel(z.entitaet))}</div></td><td class="num">${ML('Datenpunkte')}${nf(z.n)}<div class="small muted">${pl(z.n_formulare,'Formular','Formulare')}</div></td>
+        <td class="dmw">${st}${z.status!=='vorschlag'?` <span class="small muted">${esc(lab(L.grund,z.grund))}</span>`:''}<div class="small">${els}</div>${ab}</td></tr>`;};
+    const kCard=k=>{
+      const mem=(k.mitglieder||[]).map(e=>`<li><span class="mono">${el(e)}</span>${e.context?` <span class="small muted">in ${esc(e.context)}</span>`:''} — ${pl(e.n,'Datenpunkt','Datenpunkte')}${e.n_zuordnung_falsch?` (${nf(e.n_zuordnung_falsch)} laut Prüfung der Bezeichnungen falsch zugeordnet, nicht gezählt)`:''}</li>`).join('');
+      const aus=(k.ausserhalb||[]).map(e=>`<li><span class="mono">${el(e)}</span>${e.context?` <span class="small muted">in ${esc(e.context)}</span>`:''} — ${esc(e.grund||'')}</li>`).join('');
+      const nab=k.n_abweichend||0;
+      return `<details class="card gm dmk" id="dk-${esc(k.code)}"${selK&&selK.code===k.code?' open':''}><summary><span class="dmkn">${esc(k.label)}</span>
+        <span class="dmks"><b class="sumn" data-s="kp">${nf(k.n_punkte)}</b> ${plw(k.n_punkte,'Datenpunkt','Datenpunkte')} in ${pl(k.n_formulare,'Formular','Formularen')} · ${pl((k.zellen||[]).length,'Zelle','Zellen')}, ${nf(k.n_zellen_vorschlag)} mit Vorschlag · <b class="sumn" data-s="ka">${nf(nab)}</b> ${plw(nab,'weicht','weichen')} vom Vorschlag ab</span></summary>
+        <p class="gmq">${esc(k.erklaerung||'')}</p>
+        <div class="small"><b>Elemente dieses Konzepts:</b><ul class="dmlist">${mem}</ul>${aus?`<b>Ähnlich, aber eine andere Angabe — nicht gezählt:</b><ul class="dmlist">${aus}</ul>`:''}</div>
+        <details class="gwie"><summary>Warum diese Elemente zusammengehören</summary><p>${esc(k.grund||'')}</p></details>
+        ${(()=>{const Z=k.zellen||[], gross=Z.filter(z=>z.grund!=='zu_wenige'), klein=Z.filter(z=>z.grund==='zu_wenige');
+          const hd='<thead><tr><th>Rolle der Partei</th><th class="num">Datenpunkte</th><th>Element</th></tr></thead>';
+          return (gross.length?`<div class="tscroll"><table class="ft dmz dmstack">${hd}<tbody>${gross.map(z=>zelle(k,z)).join('')}</tbody></table></div>`:'')
+            +(klein.length?gFolded(`${pl(klein.length,'Rolle','Rollen')} mit weniger als ${nf((KONZ.regel||{}).mindestens||10)} Datenpunkten — ohne Vorschlag, ${nf(klein.filter(z=>(z.elemente||[]).length===1).length)} davon mit durchgehend demselben Element`,
+                `<div class="tscroll"><table class="ft dmz dmstack">${hd}<tbody>${klein.map(z=>zelle(k,z)).join('')}</tbody></table></div>`):'');})()}
+        ${k.ohne_rolle&&k.ohne_rolle.n?`<p class="small muted">${pl(k.ohne_rolle.n,'Datenpunkt','Datenpunkte')} ohne geklärte Partei — in keiner Zelle.</p>`:''}${k.andere_entitaet&&k.andere_entitaet.n?`<p class="small muted">${pl(k.andere_entitaet.n,'Datenpunkt','Datenpunkte')} einer Partei, deren eigene Angabe das Konzept nicht ist — in keiner Zelle.</p>`:''}</details>`;};
+    const grp={}; (KONZ.konzepte||[]).forEach(k=>{(grp[k.gruppe]=grp[k.gruppe]||[]).push(k);});
+    const S=KS;
+    const parts=[[S.n_punkte_vorschlag,'nutzen das vorgeschlagene Element'],[S.n_abweichend,'nutzen ein anderes Element als den Vorschlag'],
+      [S.n_punkte_in_kanton_zellen,`stehen in Zellen ohne Vorschlag (keine Mehrheit von zwei Dritteln oder weniger als ${nf((KONZ.regel||{}).mindestens||10)} Datenpunkte) — der Kanton legt das Element fest`],[S.n_ohne_rolle,esc(L.ohne_rolle||'ohne geklärte Partei')],[S.n_andere_entitaet,esc(L.andere_entitaet||'')]];
+    sK=sec('konzepte','Eine Angabe — ein Element',
+      `<p class="gfrage">Ein Konzept fasst die eCH-Elemente zusammen, die dieselbe Angabe bezeichnen${(()=>{
+        // the example: the standards of the concept «Vorname», as its members name them (most points first)
+        const v=(KONZ.konzepte||[]).find(k=>k.code==='vorname'); if(!v) return '';
+        const st=[]; (v.mitglieder||[]).slice().sort((a,b)=>b.n-a.n).forEach(e=>{if(!st.includes(e.standard)) st.push(e.standard);});
+        return st.length>1?` — der Vorname steht zum Beispiel in ${st.slice(0,3).join(', ').replace(/, ([^,]*)$/,' und $1')}`:'';})()}. Je Konzept und Rolle der Partei zeigt die Seite, welches Element die Formulare nutzen und welche Formulare ein anderes nutzen.</p>
+      <p class="gmq">${esc(KONZ.regel&&KONZ.regel.text||'')}</p>
+      <p class="gvorb">Ein Befund zum Datenstandard: er geht nicht in die Kennzahlen der Startseite und nicht in die offenen Punkte ein. Beides wartet auf den Kanton: einen ${stBadge(ton('vorschlag'),esc(lab(L.status,'vorschlag')),'Die Praxis der Formulare; der Kanton bestätigt den Vorschlag')} bestätigt er; ${stBadge(ton('kanton'),esc(lab(L.status,'kanton')),'Ohne Vorschlag legt der Kanton das Element fest')} steht, wo es keinen Vorschlag gibt. Zusammen ${pl(S.n_konzepte,'Konzept','Konzepte')} mit ${pl(S.n_mitglieder,'Element','Elementen')} und ${pl(S.n_zellen,'Zelle','Zellen')} (Rolle × Art der Partei): ${nf(S.n_zellen_vorschlag)} mit Vorschlag, ${nf(S.n_zellen_kanton)} ohne Vorschlag — ${nf(S.n_zellen_kanton_keine_mehrheit)} ohne Mehrheit von zwei Dritteln, ${nf(S.n_zellen_kanton_zu_wenige)} mit weniger als ${nf((KONZ.regel||{}).mindestens||10)} Datenpunkten${S.n_zellen_kanton_ein_element!=null?` (${nf(S.n_zellen_kanton_ein_element)} der Zellen ohne Vorschlag nutzen durchgehend dasselbe Element, zusammen ${pl(S.n_punkte_kanton_ein_element,'Datenpunkt','Datenpunkte')})`:''}.</p>
+      <div class="card gm sumbox"><div class="gcap"><b class="sumtot">${nf(S.n_punkte)}</b> Datenpunkte in ${pl(S.n_formulare,'Formular','Formularen')} gehören zu einem Konzept${S.n_zuordnung_falsch?` (dazu ${nf(S.n_zuordnung_falsch)}, deren eCH-Zuordnung laut Prüfung der Bezeichnungen falsch ist — nicht gezählt)`:''}:</div>
+        <ul class="tleg dmgr">${parts.filter(p=>p[1]).map(p=>`<li><b class="sumn">${nf(p[0])}</b><span>${p[1]}</span></li>`).join('')}</ul></div>
+      <div class="sumbox"><div class="gcap">Die ${nf(S.n_konzepte)} Konzepte mit <b class="sumtot" data-s="kp">${nf(S.n_punkte)}</b> Datenpunkten, davon <b class="sumtot" data-s="ka">${nf(S.n_abweichend)}</b> mit einem anderen Element als dem Vorschlag — ein Konzept aufklappen für seine Elemente, Rollen und Formulare.</div>
+      ${Object.keys(grp).map(g=>`<div class="gfgrp">${esc(g)}</div>${grp[g].map(kCard).join('')}`).join('')}</div>`);
+  }
+
+  // ---- (3) permanent identifiers and the export contract
+  let sI='';
+  if(KN){
+    const ART=DML.kennung_art||{}, A=KN.aktiv||{};
+    // one Formular as the example: the first with a Teilfeld that carries an Angabe and a cited article
+    let ex=null;
+    for(const f of DATA.forms){for(const d of (f.data_fields||[])){
+      const s=(d.subfields||[]).find(x=>x&&x.kennung&&x.angabe_kennung), lb=(d.legal_basis||[]).find(b=>b.artikel_kennung&&W_LAW[b.law_id]);
+      if(s&&lb&&d.kennung&&f.kennung){ex={f,d,s,lb}; break;}} if(ex) break;}
+    const exRow=(art,k,was)=>k?`<tr><td class="nowrap">${esc(lab(ART,art))}</td><td class="small dmw">${esc(was||'')}</td><td class="dmw"><code class="kennc">${esc(k)}</code></td></tr>`:'';
+    const exTab=ex?`<div class="tscroll"><table class="ft dmkex dmstack"><thead><tr><th>Art</th><th>Objekt</th><th>Kennung</th></tr></thead><tbody>
+      ${exRow('service',(svcById[ex.f.service_id]||{}).kennung,(svcById[ex.f.service_id]||{}).name)}
+      ${exRow('formular',ex.f.kennung,ex.f.title)}${exRow('feld',ex.d.kennung,ex.d.name)}${exRow('teilfeld',ex.s.kennung,ex.d.name+' › '+ex.s.name)}
+      ${exRow('angabe',ex.s.angabe_kennung,ex.s.ech?ex.s.ech.standard+' '+ex.s.ech.element:'')}
+      ${exRow('gesetz',W_LAW[ex.lb.law_id].kennung,lawName(W_LAW[ex.lb.law_id]))}${exRow('artikel',ex.lb.artikel_kennung,artLabel(ex.lb.article_no)+' '+(ex.lb.law_short||''))}
+      ${(DATA.datenhandhabung||[])[0]?exRow('regel',DATA.datenhandhabung[0].kennung,DATA.datenhandhabung[0].summary):''}</tbody></table></div>`:'';
+    const nicht=(KENN&&KENN.nicht_aktiv)||[];
+    const V=VERTRAG.exporte||{}, vk=Object.keys(V).sort((a,b)=>(a!=='data_export.json')-(b!=='data_export.json')||a.localeCompare(b));
+    sI=sec('kennungen','Dauerhafte Kennungen',
+      `<p class="gfrage">Jedes Objekt der Databank trägt eine dauerhafte Kennung, auf die andere Systeme verweisen können: ${['service','formular','feld','teilfeld','angabe','gesetz','artikel','regel'].map(a=>esc(lab(ART,a))).join(', ')}. Eine Kennung bezeichnet immer dasselbe Objekt: keine wird gelöscht, neu vergeben oder auf ein anderes Objekt umgehängt; eine Kennung, deren Objekt wegfällt, bleibt als «entfallen» stehen. Sie entsteht einmal aus dem, was das Objekt bei der Vergabe ausmacht — dem Kurznamen des Formulars, dem eCH-Element einer Angabe, der Nummer eines Gesetzes und eines Artikels; Datenfelder und Teilfelder erhalten eine Nummer, die je Formular einmal vergeben und nie wieder verwendet wird. Keine hängt an einer Zeilennummer der Datenbank.</p>
+      <p class="gvorb">Schema: <code class="kennc">${esc((KENN&&KENN.schema)||'sh:…')}</code>. Die Basisadresse, unter der eine Kennung als Webadresse aufgelöst würde, ist ${KENN&&KENN.basis_uri?`<code>${esc(KENN.basis_uri)}</code>`:'noch nicht festgelegt — ein offener Entscheid; bis dahin sind die Kennungen Namen ohne Webadresse'}.</p>
+      <div class="card gm sumbox"><div class="gcap"><b class="sumtot">${nf(KN.n_aktiv)}</b> aktive Kennungen${Object.keys(KN.nicht_aktiv||{}).length?` · nicht mehr aktiv: ${Object.entries(KN.nicht_aktiv).map(([k,n])=>`${nf(n)} ${esc(k)}`).join(', ')}`:''}</div>
+          <ul class="tleg dmgr dmcols">${['service','formular','feld','teilfeld','angabe','gesetz','artikel','regel'].map(a=>`<li><b class="sumn">${nf(A[a]||0)}</b><span>${esc(lab(ART,a))}</span></li>`).join('')}</ul></div>
+      ${exTab?`<h5 class="dmh">Beispiel: ein Formular und was dazugehört</h5><div class="card gm">${exTab}</div>`:''}
+      ${nicht.length?gFolded(`${pl(nicht.length,'Kennung ist','Kennungen sind')} nicht mehr aktiv — anzeigen`,`<ul class="dmlist small">${nicht.map(x=>`<li><code class="kennc">${esc(x.kennung)}</code> — ${esc(lab(DML.kennung_status,x.status))} seit ${fmtDate(x.bis)}${x.abgeloest_durch?` · Nachfolger <code class="kennc">${esc(x.abgeloest_durch)}</code>`:''}${x.grund&&x.status==='abgeloest'?` · ${esc(x.grund)}`:''}</li>`).join('')}</ul>`):''}
+      <h5 class="dmh">Der Exportvertrag</h5>
+      <p class="gmq">Jede veröffentlichte Datei trägt eine Version nach Semantic Versioning und ein JSON Schema im Ordner schema/; jede Änderung der Struktur oder einer Anzahl steht mit ihrem Stand in exportvertrag.json. Diese Seite liest data_export.json in der Version ${esc((DATA.vertrag||{}).version||'—')}.</p>
+      ${vk.length?`<div class="card tscroll"><table class="ft dmvt dmstack"><thead><tr><th>Datei</th><th>Version</th><th>JSON Schema</th><th>Version seit</th></tr></thead><tbody>${vk.map(n=>`<tr><td><code>${esc(n)}</code></td><td>${ML('Version')}<b>${esc(V[n].version)}</b></td><td class="dmw">${ML('JSON Schema')}<code>${esc(V[n].schema||'—')}</code></td><td>${ML('seit')}${fmtDate(V[n].seit)}</td></tr>`).join('')}</tbody></table></div>
+      ${VERTRAG.regeln?`<details class="gwie"><summary>Wann sich welche Stelle der Version ändert</summary><p>${Object.entries(VERTRAG.regeln).map(([k,t])=>`<b>${esc(k)}</b>: ${esc(t)}`).join('<br>')}</p></details>`:''}`:''}`);
+  }
+
+  // ---- (4) law editions
+  let sG='', sW='';
+  if(WIRK){
+    const G=(WIRK.gesetze||[]), zit=G.filter(g=>g.n_zitate), ohne=G.filter(g=>!g.n_zitate);
+    const rank=g=>({neuer_stand:0,aktuell:2}[(g.pruefung||{}).ergebnis]??1);
+    const gRow=g=>{const p=g.pruefung||{};
+      return `<tr><td>${goLink('datenmodell','g-'+g.id,esc(lawName(g)),'dlink')}<div class="small muted">${esc(lawSub(g))}</div></td>
+        <td class="nowrap">${ML('gelesen')}${p.stand_gelesen?fmtDate(p.stand_gelesen):'—'}</td><td class="nowrap">${ML('in Kraft')}${p.stand_aktuell?fmtDate(p.stand_aktuell):'—'}</td>
+        <td class="dmw">${standChip(g.id)}</td><td class="num">${ML('Zitate')}${nf(g.n_zitate)}</td><td class="num">${ML('Formulare')}${nf(g.n_formulare)}</td></tr>`;};
+    const ze=zit.slice().sort((a,b)=>rank(a)-rank(b)||b.n_formulare-a.n_formulare||lawName(a).localeCompare(lawName(b),'de'));
+    const gHead='<thead><tr><th>Gesetz</th><th>Fassung gelesen</th><th>Fassung in Kraft</th><th>Stand</th><th class="num">Zitate</th><th class="num">Formulare</th></tr></thead>';
+    const B=WU.betroffen||{}, PZT=Object.keys(PZ);
+    sG=sec('gesetzesstand','Gesetzesstand',
+      `<p class="gfrage">Für jedes Gesetz, aus dem die Databank Artikel zitiert, hält sie fest, aus welcher Fassung sie die Artikel gelesen hat, und fragt bei der amtlichen Quelle (Schaffhauser Rechtsbuch, Fedlex) nach, ob diese Fassung noch in Kraft ist — zuletzt geprüft ${pruefTage(WU)}.
+        ${pl(B.n_formulare||0,'Formular zitiert','Formulare zitieren')} mit ${pl(B.n_datenpunkte||0,'Datenpunkt','Datenpunkten')} ein Gesetz mit einer neueren Fassung${WU.n_kuenftig?`; für ${nf(WU.n_kuenftig)} der ${pl(WS.n_gesetze,'Gesetz','Gesetze')} dieser Seite ist zudem eine künftige Fassung veröffentlicht`:''}.</p>
+      <p class="gvorb">Eine neuere Fassung heisst nicht, dass sich die zitierten Artikel geändert haben. Die Databank liest sie nicht von selbst neu; sie stehen zur Durchsicht an (grau: die Databank handelt).</p>
+      <div class="card gm sumbox"><div class="gcap"><b class="sumtot">${nf(WS.n_gesetze_zitiert)}</b> zitierte Gesetze</div><ul class="tleg dmgr">${PZT.map(k=>`<li>${SW((WIRK.ton||{})[k]||'open')}<b class="sumn">${nf(PZ[k])}</b><span>${esc(lab((WIRK.labels||{}).ergebnis,k))}</span></li>`).join('')}</ul></div>
+      <div class="card tscroll"><table class="ft dmgs dmstack">${gHead}<tbody>${ze.map(gRow).join('')}</tbody></table></div>
+      ${ohne.length?gFolded(`${pl(ohne.length,'Gesetz','Gesetze')} ohne zitierten Artikel in einem Datenfeld — Regeln der Datenhandhabung, Rechtsmittel, Register`,`<div class="tscroll"><table class="ft dmgs dmstack">${gHead}<tbody>${ohne.map(gRow).join('')}</tbody></table></div>`):''}`);
+
+    // ---- (5) change impact: a law list, a law with its articles, an article with its Formulare
+    let det='';
+    if(selLaw){
+      const g=selLaw, W=g.weitere||{};
+      const arts=(g.artikel||[]).filter(a=>a.n_zitate).sort((a,b)=>b.n_datenpunkte-a.n_datenpunkte||String(a.nr).localeCompare(String(b.nr),'de',{numeric:true}));
+      const nOhne=(g.n_artikel_gesamt||0)-(g.n_artikel||0);
+      const aRow=a=>{const sel=selArt&&selArt.id===a.id;
+        return `<tr id="dwa-${a.id}"${sel?' class="sel"':''}><td><b>${esc(artLabel(a.nr))}</b> ${esc(a.titel||'')}</td>
+          <td class="num">${ML('Zitate')}<b class="sumn" data-s="wz">${nf(a.n_zitate)}</b></td><td class="num">${ML('Datenpunkte')}${nf(a.n_datenpunkte)}</td>
+          <td class="dmw">${gFolded(`${pl(a.n_formulare,'Formular','Formulare')} · ${pl(a.n_services,'Service','Services')} · ${pl(a.n_dienststellen,'Dienststelle','Dienststellen')}`,
+            `<div class="small muted">${(a.dienststellen||[]).map(n=>dstLink(n,'dlink lt')).join(' · ')}</div>${dmFormList(a.formulare)}`,sel)}</td></tr>`;};
+      det=`<div class="card gm dwdet sumbox" id="dw-detail"><div class="gmhd"><h5>${esc(g.titel)}</h5> ${standChip(g.id)}</div>
+        <p class="gmq">${esc(lawNr(g))} · ${esc(lab(JUR_DE,g.ebene))} · Kennung <code class="kennc">${esc(g.kennung||'')}</code></p>
+        <div class="regstats"><span class="rstat">Artikel zitiert <b>${nf(g.n_artikel)}</b></span>
+          <span class="rstat">Zitate <b class="sumtot" data-s="wz">${nf(g.n_zitate)}</b></span><span class="rstat">Datenfelder <b>${nf(g.n_felder)}</b></span>
+          <span class="rstat">Datenpunkte <b>${nf(g.n_datenpunkte)}</b></span><span class="rstat">Formulare <b>${nf(g.n_formulare)}</b></span>
+          <span class="rstat">Services <b>${nf(g.n_services)}</b></span><span class="rstat">Dienststellen <b>${nf(g.n_dienststellen)}</b></span></div>
+        <p class="small">Dienststellen: ${(g.dienststellen||[]).map(n=>dstLink(n,'dlink lt')).join(' · ')||'—'}</p>
+        ${(W.regeln||(W.rechtsmittel_formulare||[]).length||(W.bekanntgabe_formulare||[]).length)?`<p class="small muted">Ausserdem: ${[W.regeln?pl(W.regeln,'Regel der Datenhandhabung','Regeln der Datenhandhabung'):'',(W.rechtsmittel_formulare||[]).length?`Rechtsmittelnorm für ${pl(W.rechtsmittel_formulare.length,'Formular','Formulare')}`:'',(W.bekanntgabe_formulare||[]).length?`Bekanntgaben aus ${pl(W.bekanntgabe_formulare.length,'Formular','Formularen')}`:''].filter(Boolean).join(' · ')}</p>`:''}
+        ${arts.length?`<div class="tscroll"><table class="ft dmwa dmstack"><thead><tr><th>Artikel</th><th class="num">Zitate</th><th class="num">Datenpunkte</th><th>Formulare, Services, Dienststellen</th></tr></thead><tbody>${arts.map(aRow).join('')}</tbody></table></div>`
+          :'<p class="dsnone">Kein Datenfeld zitiert einen Artikel dieses Gesetzes.</p>'}
+        ${nOhne?`<p class="small muted">${pl(nOhne,'weiterer Artikel','weitere Artikel')} dieses Gesetzes ${plw(nOhne,'steht','stehen')} in einer Regel der Datenhandhabung, einer Rechtsmittelnorm oder einer Bekanntgabe, nicht in einem Datenfeld.</p>`:''}
+        <div class="gmlink">${goLink('datenmodell','wirkung','Zurück zur Liste der Gesetze ›','inl')}</div></div>`;
+    }
+    const lRow=g=>`<tr${selLaw&&selLaw.id===g.id?' class="sel"':''}><td>${goLink('datenmodell','g-'+g.id,esc(lawName(g)),'dlink')}<div class="small muted">${esc(lawSub(g))}</div></td>
+      <td class="num">${ML('Artikel')}${nf(g.n_artikel)}</td><td class="num">${ML('Zitate')}<b class="sumn" data-s="lz">${nf(g.n_zitate)}</b></td><td class="num">${ML('Datenpunkte')}${nf(g.n_datenpunkte)}</td><td class="num">${ML('Formulare')}${nf(g.n_formulare)}</td><td class="num">${ML('Dienststellen')}${nf(g.n_dienststellen)}</td><td class="dmw">${standChip(g.id)}</td></tr>`;
+    const zl=zit.slice().sort((a,b)=>b.n_datenpunkte-a.n_datenpunkte||lawName(a).localeCompare(lawName(b),'de'));
+    sW=sec('wirkung','Wirkung einer Änderung',
+      `<p class="gfrage">Ändert sich ein Gesetz oder ein Artikel, betrifft das die Datenfelder, die ihn zitieren — und ihre Formulare, Services und Dienststellen. ${pl(WS.n_zitate,'Zitat','Zitate')} auf ${pl(WS.n_artikel,'Artikel','Artikel')} in ${pl(WS.n_gesetze_zitiert,'Gesetz','Gesetzen')} verbinden ${pl(WS.n_datenpunkte,'Datenpunkt','Datenpunkte')} in ${pl(WS.n_formulare,'Formular','Formularen')} von ${pl(WS.n_dienststellen,'Dienststelle','Dienststellen')} mit dem Recht. Ein Gesetz wählen: die Seite zeigt seine zitierten Artikel und je Artikel die Formulare.</p>
+      ${det}
+      <div class="card tscroll sumbox"><table class="ft dmwl dmstack"><caption class="gcap">Die ${nf(zit.length)} zitierten Gesetze, nach Datenpunkten — zusammen <b class="sumtot" data-s="lz">${nf(WS.n_zitate)}</b> Zitate</caption><thead><tr><th>Gesetz</th><th class="num">Artikel</th><th class="num">Zitate</th><th class="num">Datenpunkte</th><th class="num">Formulare</th><th class="num">Dienst&shy;stellen</th><th>Stand</th></tr></thead><tbody>${zl.map(lRow).join('')}</tbody></table></div>`);
+  }
+
+  const B=(DATA.datenstand||{});
+  m.innerHTML=pageHead('Datenmodell',
+    'Wem jede Angabe gehört, welches Element eine Angabe tragen könnte, wie andere Systeme auf die Objekte verweisen — und was eine Änderung eines Gesetzes betrifft.',
+    'Die Parteien und Rollen jedes Formulars und wie sie entstanden sind; je Angabe und Rolle das eCH-Element, das die Formulare meist nutzen; die dauerhaften Kennungen und den Exportvertrag; den Stand der zitierten Gesetze; und je Gesetz und Artikel die Formulare, Daten und Dienststellen, die ihn zitieren.',
+    'Alles aus derselben Databank: die Parteien aus den Hinweisen der Databank und dem Text der Formulare (mit Zitat, zweitgeprüft, Stichprobe), die Konzepte aus dem eCH-Katalog und einer geprüften Liste (quellen/konzepte.json), der Gesetzesstand aus den amtlichen Quellen. Die Zahlen dieser Seite gehören nicht zu den Kennzahlen der Startseite und nicht zu den offenen Punkten.',
+    'Farbe nur bei einem Entscheid oder Befund: amber, was der Kanton bestätigt oder festlegt (Rollenliste, Vorschlag eines Elements); grün eine Fassung in Kraft, grau eine neuere Fassung, deren Artikel die Databank nachliest. Zahlen und Listen sind neutral.')
+    +(bad?`<div class="nores">Den Abschnitt «${esc(sub)}» gibt es auf dieser Seite nicht — gezeigt wird die ganze Seite.</div>`:'')
+    +`<section class="hsec"><h4>Wo anfangen?</h4><div class="doors gdoors">${doors}</div></section>`
+    +sP+sK+sI+sG+sW
+    +`<div class="datenstand"><b>Datenstand</b> — Gesetzesstand geprüft ${pruefTage(WU)} · Konzepte Stand ${fmtDate(KONZ&&KONZ.stand)} · erstellt ${fmtDate(B.build||DATA.generated_at||'')}</div>`;
+  dmWire(m); wireGo(m);
+  if(!bad&&sub) dmFocus(m,selArt?'dwa-'+selArt.id:selLaw?'dw-detail':selK?'dk-'+selK.code:'dm-'+sub);
+}
+
+// ---------- Was Register schon wissen (#onceonly): registers and the once-only potential ----------
+// Opens like the start page — one card per group of registers, then the Beilagen, the time a register
+// could save and the open legal questions —, then the catalogue, one section per group with a card per
+// register, the Beilagen, the model estimate per Lebenslage and the canton's open decisions. The
+// figures say what a register HOLDS according to a cited source — never that the canton may fetch it.
+// Section addresses: #onceonly/all/register · g-<group> · r-<register> · beilagen · zeit · offen.
+function viewOnceonly(){
+  const m=document.getElementById('main');
+  if(!REG){m.innerHTML=pageHead('Was Register schon wissen','Dieser Export enthält keine Register.')
+    +`<div class="nores">${goLink('home','','Zur Übersicht ›','inl')}</div>`; wireGo(m); return;}
+  _dmN=0; Object.keys(_dmRest).forEach(k=>{delete _dmRest[k];});
+  const sub=(state.sub&&state.sub!=='felder')?state.sub:null;
+  const known=new Set(['register','beilagen','zeit','offen',...REG_GRP.map(g=>'g-'+g.key),...Object.keys(REG_BY).map(c=>'r-'+c)]);
+  const bad=sub&&!known.has(sub); if(bad) state.sub='felder';
+  const GS=REG.gesamt||{}, MO=REG.modell||{}, HI=REG.hinweise||{}, ST=REG.stufen||{}, VB=VORB, ZG=DM.zugriff||{}, EA=DM.einwohnerregister_andere||null;
+  const sec=(id,t,b)=>dmSec('oo',id,t,b);
+  const ew=REG_GRP.find(g=>g.key==='einwohner'), VF=ew&&ew.vorbefuellbar;
+  const BZ=DM.beilagen||{register:GS.beilagen_register,ersetzbar:0}, MD=DM.modell||null, nReg=Object.keys(REG_BY).length;
+  const doors=REG_GRP.map(g=>dmDoor('onceonly','g-'+g.key,esc(g.label),esc(g.frage),
+      g.key==='einwohner'&&VF?[nf(VF.pflicht),`Pflichtangaben in ${pl(VF.formulare,'Formular','Formularen')} wären vorbefüllbar — Angaben der einreichenden Person, nach ihrem heutigen Wert; insgesamt hält das Register ${pl(g.punkte,'Angabe','Angaben')} der Personen dieser Formulare`]
+      :g.punkte?[nf(g.punkte),`Angaben in ${pl(g.formulare,'Formular','Formularen')} hält ein Register dieser Gruppe laut Quelle`]
+      :[nf(g.beilagen),`${plw(g.beilagen,'Beilage','Beilagen')} in ${pl(g.formulare_beilagen,'Formular','Formularen')} stellt ein Register dieser Gruppe aus`])).join('')
+    +dmDoor('onceonly','beilagen','Beilagen, die ein Register ausstellt','Welche verlangten Unterlagen stellt ein Register selbst aus oder hält es?',[nf(GS.beilagen_register),`von ${pl(GS.beilagen,'Beilage','Beilagen')} der Formulare — ${nf(BZ.ersetzbar)} davon könnte ein Abruf beim Register ersetzen`])
+    +dmDoor('onceonly','zeit','Gesparte Zeit (Modellschätzung)','Wie viel Zeit liesse sich sparen, wo ein Register die Angabe schon hält?',[nf1(GS.minuten_modell)+' Min.',`obere Grenze für je einen Durchgang durch jedes Formular, mit Angaben anderer Parteien und Registern mit offenem Zugriff${VB?`; nach der Regel der Vorbefüllung ${nf1(VB.minuten_korrigiert)} Min.`:''} — Fallzahlen liegen nicht vor`])
+    +dmDoor('onceonly','offen','Offene Rechtsfragen','Darf eine Dienststelle beziehen, was ein Register hält?',[nf(nReg),`von ${pl(nReg,'Register','Registern')}: Zugriff rechtlich offen${ZG.kandidat?` — für ${nf(ZG.kandidat)} zitiert die Databank mögliche Kandidat-Artikel`:''}${EA?`; dazu ${pl(EA.familie.punkte,'Angabe','Angaben')} von Familienangehörigen und weiteren Personen im Haushalt`:''}`]);
+  // (1) the catalogue, in groups
+  const kat=REG_GRP.map(g=>`<tbody><tr class="gdep"><th colspan="5" scope="rowgroup">${esc(g.label)}</th></tr>`+(g.register||[]).map(c=>{const k=REG_BY[c]; if(!k) return '';
+    const z=k.zahlen||{};
+    return `<tr><td>${goLink('onceonly','r-'+c,esc(k.name),'dlink')}</td><td>${ML('Ebene')}${esc(lab(DML.register_ebene,k.ebene))}</td><td class="small dmw">${esc(k.inhaber||'')}</td>
+      <td class="num">${ML('Angaben')}${nf(z.bestaetigt)}<div class="small muted">${pl(z.formulare_bestaetigt,'Formular','Formulare')}</div></td><td class="num">${ML('Beilagen')}${nf(z.beilagen)}</td></tr>`;}).join('')+'</tbody>').join('');
+  const sKat=sec('register','Die Register',
+    `<p class="gfrage">${pl(Object.keys(REG_BY).length,'Register','Register')} des Bundes, des Kantons und der Gemeinden, je mit Inhaber, Inhalt, Schlüssel und den eCH-Standards, mit denen es Daten austauscht — jede Angabe mit einer amtlichen Quelle, die die Databank gelesen hat. Ein Name öffnet die Karte des Registers.</p>
+     <div class="card tscroll"><table class="ft dmreg dmstack"><thead><tr><th>Register</th><th>Ebene</th><th>Inhaber</th><th class="num">Angaben bestätigt</th><th class="num">Beilagen</th></tr></thead>${kat}</table></div>`);
+  // (2) per group, a card per register
+  const fact=(k,v)=>v?`<div><dt>${k}</dt><dd>${v}</dd></div>`:'';
+  // whose Angaben the confirmed ones are (registers about persons and organisations; the four parts
+  // of the export sum to «bestätigt»): the applicant, other parties, open (unklar or of open kind)
+  const parteiTeile=z=>{const e=z.eigene_partei||0, a=z.andere_partei||0, u=z.partei_unklar||0, o=z.partei_art_offen||0;
+    if(!(a||u||o)) return '';
+    return [`${nf(e)} der einreichenden Partei`,`${nf(a)} einer anderen Partei`,
+      `${nf(u+o)} mit ungeklärter Partei${o?` (${nf(u)} «unklar», ${nf(o)} der einreichenden Partei, deren Art «Person oder Organisation» offen bleibt)`:''}`].join(', ');};
+  const regCard=c=>{const k=REG_BY[c]; if(!k) return ''; const z=k.zahlen||{};
+    const urls=[]; (k.belege||[]).forEach(b=>{if(b.url&&!urls.some(u=>u.url===b.url)) urls.push(b);});
+    // an official source opens in a new tab; a file of this repository (an eCH schema under ech_xsd/) is
+    // named as a copy in the databank, without a link out; anything else is not drawn as a link
+    const quelle=b=>/^https:\/\//.test(b.url)?`<a class="inl" href="${esc(b.url)}" target="_blank" rel="noreferrer" title="${esc(b.zitat||'')}">${esc(b.quelle||b.url)} ↗</a>`
+      :/^ech_xsd\/[\w./-]+$/.test(b.url)?`<span title="${esc(b.zitat||'')}">${esc(b.quelle||b.url)}</span>`:esc(b.quelle||'');
+    const fms=DATA.forms.filter(f=>f.register&&f.register.je_register&&f.register.je_register[c])
+      .map(f=>{const r=f.register.je_register[c]; return {id:f.id,rang:r.bestaetigt*1000+r.beilagen,
+        extra:[r.bestaetigt?pl(r.bestaetigt,'Angabe','Angaben')+(r.pflicht?` (${nf(r.pflicht)} Pflicht)`:''):'',r.beilagen?pl(r.beilagen,'Beilage','Beilagen'):''].filter(Boolean).join(', ')};});
+    const ew_=c==='einwohnerregister'&&VF&&VB?`<div class="dmvb"><b>Vorbefüllbar:</b> ${pl(VF.pflicht,'Pflichtangabe','Pflichtangaben')} (${nf(VF.alle)} mit den freiwilligen) in ${pl(VF.formulare,'Formular','Formularen')} — die Angaben, die die geführten Formulare (Prototyp) vorbefüllen: Angaben der einreichenden Person (Gesuchsteller/in, natürliche Person), nicht mehrdeutig und nach dem heutigen Wert gefragt.
+        <div class="sumbox"><div class="gcap">Nach der früheren Regel heute: ${nf(VB.bisher)} — davon ausgeschlossen <b class="sumtot">${nf(VB.n_ausgeschlossen)}</b>, hinzu ${nf(VB.hinzu)} = ${nf(VB.korrigiert)}:</div>
+        <ul class="tleg dmgr">${Object.entries(VB.ausgeschlossen||{}).map(([r,n])=>`<li><b class="sumn">${nf(n)}</b><span>${esc(lab(VB.gruende,r))}</span></li>`).join('')}</ul></div>
+        ${VB.zeitbezug?`<p class="small muted">${pl(VB.zeitbezug.punkte_mit_marke,'Datenpunkt','Datenpunkte')} mit ↺ (Einwohnerregister) in ${pl(VB.zeitbezug.formulare_mit_zeitbezug,'Formular','Formularen')} fragen nach einem Wert einer anderen Zeit («früher», «neu», «Änderung», «seit» …) und werden nicht vorbefüllt. ${esc(HI.zeit||'')}</p>`:''}</div>`:'';
+    return `<div class="card gm dmrc" id="or-${esc(c)}"><div class="gmhd"><h5>${esc(k.name)}</h5> ${stBadge('dec',esc(lab(DML.zugriff_status,k.zugriff_status)),k.bemerkung||lab(DML.zugriff_status,k.zugriff_status))}</div>
+      <dl class="dmfacts">${fact('Inhaber',esc(k.inhaber||''))}${fact('Ebene',esc(lab(DML.register_ebene,k.ebene)))}${fact('Hält',esc(k.inhalt||''))}${fact('Schlüssel',esc(k.schluessel||''))}
+        ${fact('eCH-Standards',(k.standards||[]).map(esc).join(', ')||'<span class="muted">keiner erfasst</span>')}${fact('Stelle im Kanton',esc(k.stelle_sh||''))}
+        ${fact('Quellen',urls.map(quelle).join('<br>'))}</dl>
+      <div class="dmzr"><span><b>${nf(z.bestaetigt)}</b> ${plw(z.bestaetigt,'Angabe','Angaben')} <span class="small muted">(${nf(z.bestaetigt_pflicht)} Pflicht, in ${pl(z.formulare_bestaetigt,'Formular','Formularen')}) — ${esc(ST.bestaetigt||'')}</span></span>
+        ${z.obergrenze!==z.bestaetigt?`<span><b>${nf(z.obergrenze)}</b> ${plw(z.obergrenze,'Angabe','Angaben')} <span class="small muted">(${nf(z.obergrenze_pflicht)} Pflicht, in ${pl(z.formulare_obergrenze,'Formular','Formularen')}) — ${(k.standards||[]).length?esc(ST.standard||''):'Obergrenze (kein eCH-Standard erfasst, darum auf der Stufe des Elements): jede Angabe, deren Element eine zitierte Regel des Registers nennt — auch wo die Art der Partei offen ist'}</span></span>`:''}
+        ${z.partei_offen?`<span><b>${nf(z.partei_offen)}</b> ${plw(z.partei_offen,'Angabe','Angaben')} <span class="small muted">— ${esc(ST.element||'')}</span></span>`:''}
+        ${parteiTeile(z)?`<span class="small muted">Unter den bestätigten: ${parteiTeile(z)}</span>`:''}
+        ${z.beilagen?`<span><b>${nf(z.beilagen)}</b> ${plw(z.beilagen,'Beilage','Beilagen')} in ${pl(z.formulare_beilagen,'Formular','Formularen')}${z.beilagen_original||z.beilagen_rueckgabe?` <span class="small muted">(${[z.beilagen_original?nf(z.beilagen_original)+' im Original verlangt':'',z.beilagen_rueckgabe?nf(z.beilagen_rueckgabe)+' abgegeben oder umgetauscht':''].filter(Boolean).join(', ')})</span>`:''}</span>`:''}</div>
+      ${ew_}
+      ${fms.length?gFolded(`${pl(fms.length,'Formular','Formulare')} anzeigen, deren Angaben oder Beilagen es hält`,dmFormList(fms,'reg')):''}</div>`;};
+  const gTeile=g=>{const t=g.partei; if(!t) return '';
+    return ` — davon ${nf(t.eigene)} der einreichenden Partei, ${nf(t.andere)} anderer Parteien, ${nf(t.unklar+t.art_offen)} mit ungeklärter Partei`;};
+  const sGr=REG_GRP.map(g=>sec('g-'+g.key,esc(g.label),`<p class="gfrage">${esc(g.frage)} ${g.punkte?`${pl(g.punkte,'Angabe','Angaben')} (${nf(g.pflicht)} Pflicht) in ${pl(g.formulare,'Formular','Formularen')} hält ein Register dieser Gruppe laut Quelle, und die Art der Partei passt${gTeile(g)}`:'Keine Angabe der Formulare ist einem Register dieser Gruppe mit einer Quelle zugeordnet'}${g.beilagen?`; dazu ${pl(g.beilagen,'Beilage','Beilagen')} in ${pl(g.formulare_beilagen,'Formular','Formularen')}`:''}.${(g.register||[]).length>1?' Eine Angabe kann in mehreren Registern stehen; die Gruppe zählt sie einmal.':''}</p>`
+    +(g.register||[]).map(regCard).join(''))).join('');
+  // (3) Beilagen
+  const byReg=(DM.beilagen||{}).je_register||{};
+  const sBei=sec('beilagen','Beilagen, die ein Register ausstellt',
+    `<p class="gfrage">Von ${pl(GS.beilagen,'Beilage','Beilagen')}, die die Formulare verlangen, nennt die Bezeichnung von ${nf(GS.beilagen_register)} ein Dokument, das ein Register ausstellt oder hält — einen Fahrzeugausweis, einen Handelsregisterauszug, eine Wohnsitzbestätigung. ${esc(HI.beilagen_leser||'')}</p>
+     <p class="gvorb">Nicht ersetzbar, auch wenn das Register das Dokument hält: ${nf(GS.beilagen_original)} im Original verlangt, ${nf(GS.beilagen_rueckgabe)} abgegeben oder umgetauscht, ${nf(GS.beilagen_identitaet)} als Identitätsnachweis${GS.beilagen_ausland?`; ${pl(GS.beilagen_ausland,'Beilage stammt','Beilagen stammen')} aus einem anderen Staat und zählen nicht`:''}.</p>
+     <div class="card gm sumbox"><div class="gcap"><b class="sumtot">${nf(GS.beilagen_register)}</b> Beilagen nach Register</div>${Object.keys(byReg).sort((a,b)=>(((REG_BY[b]||{}).zahlen||{}).beilagen||0)-(((REG_BY[a]||{}).zahlen||{}).beilagen||0)||regName(a).localeCompare(regName(b),'de')).map(c=>{
+       const L=byReg[c]||[], n=((REG_BY[c]||{}).zahlen||{}).beilagen||0;
+       return `<div class="gfr"><div><b class="sumn">${nf(n)}</b> ${goLink('onceonly','r-'+c,esc(regName(c)),'dlink lt')}</div><div>${L.map(x=>{
+         const W=Object.entries(x.ersetzt_nicht||{});
+         return `«${esc(x.bezeichnung)}»${x.n>1?' '+nf(x.n)+'×':''}${W.length?` <span class="small muted">(${W.map(([w,k])=>`${x.n>1?(k===x.n?'alle':nf(k)+' davon')+': ':''}${esc(lab(DML.ersetzt_nicht,w))}`).join('; ')})</span>`:''}`;}).join(' · ')}</div></div>`;}).join('')}</div>`);
+  // (4) model estimate
+  const TK=(DATA.themenkatalog||[]).filter(t=>t.register&&(t.register.minuten_modell||t.register.n_vorbefuellbar_korrigiert)).sort((a,b)=>b.register.minuten_modell-a.register.minuten_modell||a.gruppe.localeCompare(b.gruppe,'de'));
+  const tRow=t=>{const r=t.register; return `<tr><td><a class="dlink lt" href="#lebenslagen/all/g-${encodeURIComponent(t.id)}" data-go="lebenslagen" data-sub="g-${esc(t.id)}">${esc(t.gruppe)}</a><div class="small muted">${esc(lab(KAT_DE,t.katalog))} · ${pl(t.n_formulare,'Formular','Formulare')}</div></td>
+    <td class="num">${ML('Pflichtangaben')}${nf(r.n_pflicht_register)}</td><td class="num">${ML('Beilagen')}${nf(r.n_beilagen_register)}</td><td class="num">${ML('Minuten')}<b>${nf1(r.minuten_modell)}</b></td><td class="num">${ML('vorbefüllbar')}${nf(r.n_vorbefuellbar_korrigiert)}<div class="small muted">${nf1(r.minuten_vorbefuellt)} Min.</div></td></tr>`;};
+  const tHead='<thead><tr><th>Themengruppe (Lebenslage)</th><th class="num">Pflichtangaben im Register</th><th class="num">Beilagen</th><th class="num">Minuten (Modell)</th><th class="num">davon vorbefüllbar (Einwohnerregister)</th></tr></thead>';
+  const sZeit=sec('zeit','Gesparte Zeit (Modellschätzung)',
+    `<p class="gfrage">${esc(MO.hinweis||'')} Das Modell rechnet ${nf1(MO.min_angabe)} Minuten je Pflichtangabe und ${nf1(MO.min_beilage)} Minuten je Beilage.</p>
+     <div class="regstats"><span class="rstat">obere Grenze, alle Register <b>${nf1(GS.minuten_modell)} Min.</b> ${MD?`<span class="small muted">— ${pl(MD.pflicht,'Pflichtangabe','Pflichtangaben')} und ${pl(MD.beilagen,'Beilage','Beilagen')}, die ein Register hält: auch Angaben anderer Parteien und Fragen nach einem anderen Zeitpunkt, und bei jedem Register ist offen, ob die Dienststelle beziehen darf (Beilagen, die das Original verlangen oder abgegeben werden, zählen nicht)</span>`:''}</span>
+       ${VB?`<span class="rstat">davon nach der Regel der Vorbefüllung (Einwohnerregister) <b>${nf1(VB.minuten_korrigiert)} Min.</b> <span class="small muted">— ${pl(VB.korrigiert,'Pflichtangabe','Pflichtangaben')} der einreichenden Person; nach der früheren Regel heute ${nf1(VB.minuten_bisher)} Min.</span></span>`:''}</div>
+     <p class="gvorb">${esc(HI.themengruppe||'')} Je Themengruppe (eCH-0049) die Formulare ihrer Services; eine Gruppe mit mehreren Services fasst Angebote zusammen, die sich ausschliessen können.</p>
+     ${TK.length?`<div class="card tscroll"><table class="ft dmtk dmstack">${tHead}<tbody>${TK.slice(0,15).map(tRow).join('')}</tbody></table>
+       ${TK.length>15?gFolded(`alle ${nf(TK.length)} Themengruppen anzeigen`,`<table class="ft dmtk dmstack">${tHead}<tbody>${TK.slice(15).map(tRow).join('')}</tbody></table>`):''}</div>`:''}`);
+  // (5) the canton's open decisions
+  const zRows=Object.values(REG_BY).slice().sort((a,b)=>(a.zugriff_status==='offen')-(b.zugriff_status==='offen')||a.name.localeCompare(b.name,'de')).map(k=>
+    `<tr><td>${goLink('onceonly','r-'+k.code,esc(k.name),'dlink lt')}</td><td>${stBadge('dec',esc(lab(DML.zugriff_status,k.zugriff_status)),'Ob die Dienststelle beziehen darf, was das Register hält, klären die Juristinnen und Juristen des Kantons')}</td>
+      <td class="small dmw">${(k.zugriff||[]).length?(k.zugriff||[]).map(z=>`<details class="qd"><summary>${esc(lab(DML.zugriff_art,z.art))}: ${esc(z.artikel)}</summary><blockquote class="quote">«${esc(z.zitat)}»</blockquote><div class="small muted">${z.adressat?`Adressat laut Text: ${esc(z.adressat)}`:'Adressat: im Artikel nicht genannt'}</div></details>`).join(''):`<span class="muted">${esc(k.bemerkung||'kein Artikel als Kandidat in der Databank')}</span>`}</td></tr>`).join('');
+  const sOffen=sec('offen','Offene Rechtsfragen — für den Kanton',
+    `<p class="gfrage">Die Zahlen dieser Seite sagen, was ein Register hält. Ob eine Dienststelle es beziehen darf, richtet sich nach dem Recht des Registers — bei kantonalen Stellen nach KDSG Art. 8 Abs. 1, bei Registern des Bundes nach Bundesrecht; das klären die Juristinnen und Juristen des Kantons. Drei Entscheide stehen offen.</p>
+     <h5 class="dmh">1 · Zugriff je Register</h5>
+     <div class="card tscroll sumbox"><table class="ft dmzg dmstack"><caption class="gcap">${Object.entries(ZG).map(([k,n])=>`<b class="sumn">${nf(n)}</b> ${esc(lab(DML.zugriff_status,k))}`).join(' · ')} — zusammen <b class="sumtot">${nf(nReg)}</b> Register</caption><thead><tr><th>Register</th><th>Zugriff</th><th>Artikel in der Databank — möglicher Kandidat oder Schranke</th></tr></thead><tbody>${zRows}</tbody></table></div>
+     ${EA?`<h5 class="dmh">2 · ${esc(EA.familie.label||'Familienangehörige')}</h5>
+     <p class="gmq">${stBadge('dec','Entscheid des Kantons','Ob das Einwohnerregister Angaben von Familienangehörigen und weiteren Personen im Haushalt für ein Formular liefern darf, entscheidet der Kanton')} ${pl(EA.familie.punkte,'Angabe','Angaben')} (${nf(EA.familie.pflicht)} Pflicht) in ${pl(EA.familie.formulare,'Formular','Formularen')} gehören ${EA.familie.rollen.map(r=>esc(rolleLabel(r))).join(', ')} der einreichenden Person und tragen die Marke des Einwohnerregisters. Vorbefüllt wird keine davon, bis der Kanton entscheidet, ob das Register solche Angaben liefern darf. Mit allen übrigen Parteien sind es ${pl(EA.punkte,'Angabe','Angaben')}:</p>
+     <div class="card gm sumbox"><div class="gcap"><b class="sumtot">${nf(EA.punkte)}</b> Angaben mit der Marke des Einwohnerregisters, die einer anderen Partei als der einreichenden Person gehören</div><ul class="tleg dmgr dmcols">${Object.entries(EA.je_rolle||{}).map(([r,n])=>`<li><b class="sumn">${nf(n)}</b><span>${esc(rolleLabel(r))}</span></li>`).join('')}</ul></div>`:''}
+     ${PAR?`<h5 class="dmh">3 · Die Rollenliste</h5><p class="gmq">${stBadge('dec','Vorschlag der Databank','Der Kanton bestätigt die Rollenliste')} Wessen Angabe ein Datenpunkt ist, beruht auf ${pl(PAR.rollen.length,'Rolle','Rollen')}, die die Databank vorschlägt; der Kanton bestätigt sie. ${goLink('datenmodell','parteien','Zur Rollenliste ›','inl')}</p>`:''}`);
+  m.innerHTML=pageHead('Was Register schon wissen',
+    'Welche Angaben und Beilagen der Formulare ein Register schon hält — und wie viel Zeit das sparen könnte. Die Zahlen sagen, was ein Register hält, nicht, dass der Kanton es beziehen darf.',
+    'Die Register der Schweiz und des Kantons mit Inhaber, Inhalt, Schlüssel und Quelle; je Register die Angaben der Formulare, die es laut Quelle hält, und die Formulare dazu; die Beilagen, die ein Register ausstellt; die Zeit, die das sparen könnte (Modellschätzung); und die Fragen, die der Kanton entscheidet.',
+    `Register, Inhalt und Schlüssel aus amtlichen Quellen, die die Databank gelesen hat (Gesetze, Verordnungen, Seiten der Bundesämter). Eine Angabe zählt als «bestätigt», wenn eine zitierte Quelle sagt, dass das Register sie führt, und die Art der Partei passt (natürliche Person bzw. Organisation) — wessen Angabe es ist, sagt die Karte jedes Registers; die «obere Grenze» nimmt jede Angabe eines eCH-Standards, mit dem das Register Daten austauscht. ${esc(HI.formular||'')}`,
+    'Amber, was der Kanton entscheidet: der Zugriff je Register und die Angaben von Familienangehörigen. Alle Zahlen sind neutral; eine Zahl ist kein Auftrag.')
+    +(bad?`<div class="nores">Den Abschnitt «${esc(sub)}» gibt es auf dieser Seite nicht — gezeigt wird die ganze Seite.</div>`:'')
+    +`<p class="gvorb oovorb">Ein Register hält eine Angabe — das heisst nicht, dass eine Dienststelle sie beziehen darf. Ob sie es darf, richtet sich nach dem Recht des Registers: bei kantonalen Stellen nach KDSG Art. 8 Abs. 1 (eine gesetzliche Grundlage, lit. a, oder der Bedarf für die gesetzlichen Aufgaben des Empfängers, lit. b; besonders schützenswerte Personendaten nach Art. 5, Art. 8 Abs. 3), bei Registern des Bundes nach Bundesrecht. Das klären die Juristinnen und Juristen des Kantons, auch wo die Databank einen Artikel als möglichen Kandidaten zitiert.</p>`
+    +`<section class="hsec"><h4>Wo anfangen?</h4><div class="doors gdoors">${doors}</div></section>`
+    +sKat+sGr+sBei+sZeit+sOffen
+    +`<div class="datenstand"><b>Datenstand</b> — ${esc(datenstandText())}</div>`;
+  dmWire(m); wireGo(m);
+  if(!bad&&sub) dmFocus(m,sub.startsWith('r-')?'or-'+sub.slice(2):'oo-'+sub);
+}
+
+// ---------- the panels of a Formular: «Parteien» and «Was Register schon wissen» ----------
+// Folded, one line of summary; open: each party with its role, its kind, how the Formular names it,
+// the quote and its data points; the «unklar» points with their reason. The second panel: per
+// register the Angaben and Beilagen it holds, the vorbefüllbar ones marked, and the model estimate.
+function parteiPanel(fm,open){
+  if(!PAR||!(fm.data_fields||[]).length) return '';
+  const U=unitsOf(fm), P=fm.parteien||[], HK=DML.herkunft||{};
+  const by={}, unk=[], off=[];
+  U.forEach(x=>{const pa=x.u.partei||{}; if(pa.status==='zugeordnet') (by[pa.nr]=by[pa.nr]||[]).push(x); else if(pa.status==='unklar') unk.push(x); else off.push(x);});
+  const PZ=fm.partei_zahlen||{};
+  const sum=[`${pl(P.length,'Partei','Parteien')}`,`${nf(PZ.zugeordnet)} von ${pl(PZ.punkte,'Datenpunkt','Datenpunkten')} zugeordnet`,PZ.unklar?`${nf(PZ.unklar)} «unklar»`:'',PZ.offen?`${nf(PZ.offen)} noch nicht abgeleitet`:''].filter(Boolean).join(' · ');
+  const names=L=>{const a=L.map(x=>esc(x.name)); return a.length>14?a.slice(0,14).join(' · ')+gFolded(`weitere ${nf(a.length-14)} anzeigen`,a.slice(14).join(' · ')):a.join(' · ');};
+  const rows=P.map(p=>{const L=by[p.nr]||[];
+    return `<div class="gfr"><div><b>${esc(rolleLabel(p.rolle))}</b><div class="small muted">${esc(entLabel(p.entitaet))}${p.mehrere?' · mehrere':''}</div></div>
+      <div>«${esc(p.bezeichnung)}» <span class="small muted">· ${esc(lab(HK,p.herkunft))}</span>${p.beleg?`<div class="small muted pbeleg">Beleg im Formular: <span data-wortlaut>«${esc(p.beleg)}»</span></div>`:''}
+        <div class="small">${p.n_punkte?`<b>${pl(p.n_punkte,'Datenpunkt','Datenpunkte')}:</b> ${names(L)}`:'<span class="muted">kein Datenpunkt zugeordnet</span>'}</div></div></div>`;}).join('');
+  const why=x=>{const pa=x.u.partei||{}; return pa.code==='urteil'?String(pa.grund||''):lab(PAR.gruende,pa.code);};
+  const unkRows=unk.length?`<div class="gfgrp">«unklar» — ${pl(unk.length,'Datenpunkt','Datenpunkte')}, jeder mit einem Grund</div>${unk.map(x=>`<div class="gfr"><div>${esc(x.name)}</div><div class="small" data-wortlaut>${esc(why(x))}</div></div>`).join('')}`:'';
+  const offRows=off.length?`<div class="gfgrp">Noch nicht abgeleitet</div><div class="gfr gfr1"><div class="small">${names(off)}</div></div>`:'';
+  return `<details class="card gpanel ppanel" id="part-${esc(fm.id)}"${open?' open':''}><summary><span class="dvsub">Parteien</span> <span class="gsumm">${sum}</span></summary>
+    ${P.length?rows:'<p class="dsnone">Das Formular nennt keine Partei, die die Databank belegen könnte.</p>'}${unkRows}${offRows}
+    <div class="gfoot">Wessen Angabe: ${esc(lab(HK,'urteil'))} (mit Zitat, zweitgeprüft) oder ${esc(lab(HK,'regel'))}; die Rollen sind ein Vorschlag der Databank, den der Kanton bestätigt — ${goLink('datenmodell','parteien','Datenmodell: Parteien und Rollen ›','inl')}</div></details>`;
+}
+function registerPanel(fm,open){
+  if(!REG) return '';
+  const R=fm.register||{}, JE=R.je_register||{}, codes=Object.keys(JE), b=fm.burden||{};
+  const bei=(fm.beilagen||[]).filter(x=>(x.register||[]).length);
+  if(!codes.length&&!bei.length&&!b.prefillable&&!b.prefillable_bisher) return '';
+  const U=unitsOf(fm);
+  const sum=[codes.length?`${pl(codes.length,'Register','Register')} ${plw(codes.length,'hält','halten')} Angaben dieses Formulars`:'',
+    b.prefillable?`${nf(b.prefillable)} ${plw(b.prefillable,'Pflichtangabe','Pflichtangaben')} vorbefüllbar (~${nf1(b.minutes_saved||0)} Min.)`:'',
+    bei.length?pl(bei.length,'Beilage','Beilagen')+' aus einem Register':'',
+    R.minuten_modell?`obere Grenze ~${nf1(R.minuten_modell)} Min. für ${[R.pflicht_bestaetigt?pl(R.pflicht_bestaetigt,'Pflichtangabe','Pflichtangaben'):'',R.beilagen?pl(R.beilagen,'Beilage','Beilagen'):''].filter(Boolean).join(' und ')}, die ein Register hält (Modellschätzung)`:''].filter(Boolean).join(' · ');
+  const rows=codes.sort((a,c)=>(JE[c].bestaetigt-JE[a].bestaetigt)||a.localeCompare(c)).map(c=>{const z=JE[c];
+    const L=U.filter(x=>((x.u.register_bezug||{}).bestaetigt||[]).includes(c));
+    const it=L.map(x=>`${esc(x.name)}${x.d.required?' <span class="req">✱ Pflicht</span>':''}${c==='einwohnerregister'&&x.u.vorbefuellbar?' <span class="regc" title="Vorbefüllbar aus dem Einwohnerregister: eine Angabe der einreichenden Person, nach dem heutigen Wert gefragt">↺ vorbefüllbar</span>':''}${c==='einwohnerregister'&&x.u.zeitbezug?' <span class="small muted">(fragt nach einem Wert einer anderen Zeit — nicht vorbefüllt)</span>':''}`);
+    const BL=bei.filter(x=>x.register.some(r=>r.register===c));
+    return `<div class="gfr"><div>${goLink('onceonly','r-'+c,esc(regName(c)),'dlink lt')}<div class="small muted">${[z.bestaetigt?pl(z.bestaetigt,'Angabe','Angaben')+` (${nf(z.pflicht)} Pflicht)`:'',z.beilagen?pl(z.beilagen,'Beilage','Beilagen'):''].filter(Boolean).join(' · ')}</div></div>
+      <div class="small">${it.join(' · ')}${BL.length?`<div>${BL.map(x=>`Beilage «${esc(x.bezeichnung)}»${x.register_ersetzt_nicht?` <span class="muted">(${esc(lab(DML.ersetzt_nicht,x.register_ersetzt_nicht))} — zählt im Modell nicht)</span>`:''}`).join(' · ')}</div>`:''}</div></div>`;}).join('');
+  const AG=b.prefillable_ausgeschlossen||{}, ag=Object.entries(AG).filter(([,n])=>n);
+  const vb=(b.prefillable||b.prefillable_bisher)?`<div class="gfgrp">Vorbefüllung aus dem Einwohnerregister</div><div class="gfr gfr1"><div class="small">${pl(b.prefillable||0,'Pflichtangabe','Pflichtangaben')} vorbefüllbar (~${nf1(b.minutes_saved||0)} Min.)${b.prefillable_bisher!==b.prefillable?` — nach der früheren Regel ${nf(b.prefillable_bisher)}${ag.length?`; nicht mehr gezählt: ${ag.map(([k,n])=>`${nf(n)} ${esc(lab((VORB||{}).gruende,k))}`).join('; ')}`:''}${b.prefillable_hinzu?`; hinzu ${nf(b.prefillable_hinzu)}`:''}`:''}.</div></div>`:'';
+  return `<details class="card gpanel rpanel" id="reg-${esc(fm.id)}"${open?' open':''}><summary><span class="dvsub">Was Register schon wissen</span> <span class="gsumm">${sum||'kein Register hält eine Angabe dieses Formulars laut Quelle'}</span></summary>
+    <p class="small muted">${esc((REG.hinweise||{}).formular||'')} ${esc((REG.hinweise||{}).zeit||'')}</p>${rows}${vb}
+    <div class="gfoot">Ein Register hält die Angabe — ob die Dienststelle sie beziehen darf, ist offen. ${goLink('onceonly','','Was Register schon wissen ›','inl')}</div></details>`;
+}
+// the panel «Eine Angabe — ein Element» of a Formular (forms[].konzepte, konzepte.py): its data points
+// that use another eCH element than the Vorschlag for the same Angabe of the same party role — each
+// with its field, concept, role, element and the Vorschlag; drawn only where there is one
+function konzeptPanel(fm){
+  const K=fm.konzepte; if(!KONZ||!K||!K.n_abweichend) return '';
+  const byK=Object.fromEntries((KONZ.konzepte||[]).map(k=>[k.code,k]));
+  const feld=Object.fromEntries((fm.data_fields||[]).map(d=>[d.id,d.name]));
+  const el=e=>`<span class="mono">${esc(String(e||'').replace(':','·'))}</span>`;
+  const rows=(K.abweichungen||[]).map(a=>{const k=byK[a.konzept];
+    return `<div class="gfr"><div>${esc(feld[a.feld]||'')}${a.teil?' › '+esc(a.teil):''}<div class="small muted">${k?goLink('datenmodell','k-'+a.konzept,esc(k.label),'dlink lt'):esc(a.konzept)} · ${esc(rolleLabel(a.rolle))}, ${esc(entLabel(a.entitaet))}</div></div>
+      <div class="small">${el(a.element)} — Vorschlag: ${el(a.vorschlag)}</div></div>`;}).join('');
+  const sum=`${pl(K.n_abweichend,'Datenpunkt nutzt','Datenpunkte nutzen')} ein anderes Element als der Vorschlag · ${pl(K.n_punkte,'Datenpunkt','Datenpunkte')} in einem Konzept`;
+  return `<details class="card gpanel kpanel" id="konz-${esc(fm.id)}"><summary><span class="dvsub">Eine Angabe — ein Element</span> <span class="gsumm">${sum}</span></summary>
+    <p class="small muted">Für dieselbe Angabe derselben Partei nutzen über alle Formulare mindestens zwei Drittel der Datenpunkte das Element des Vorschlags; dieses Formular nutzt ein anderes. Der Vorschlag beschreibt die Praxis der Formulare und wartet auf die Bestätigung des Kantons — ein Befund zum Datenstandard, nicht in den offenen Punkten gezählt.</p>${rows}
+    <div class="gfoot">${goLink('datenmodell','konzepte','Datenmodell: Eine Angabe — ein Element ›','inl')}</div></details>`;
+}
+// the Formular-Ansicht opened at one of its panels (#…/form-<id>~part, ~reg): open, in view, focused
+function focusPanel(id){
+  if(comingBack()) return;
+  setTimeout(()=>{const t=document.getElementById(id); if(!t) return; if(t.tagName==='DETAILS') t.open=true;
+    t.scrollIntoView({behavior:MOTION}); focusIn(t); t.classList.add('flash'); setTimeout(()=>t.classList.remove('flash'),1600);},0);
+}
+// the section «Datenmodell und Register» of a Dienststelle's briefing (datenmodell.dienststellen)
+function dmBrief(d){
+  const z=(DM.dienststellen||{})[d.slug]; if(!z||!z.formulare) return '';
+  return `<div class="dsline"><span><b>${nf(z.zugeordnet)}</b> von ${pl(z.punkte,'Datenpunkt','Datenpunkten')} einer Partei zugeordnet (${pctTxt(z.zugeordnet,z.punkte)})${z.unklar?`, ${nf(z.unklar)} «unklar» mit einem Grund`:''} · ${pl(z.parteien,'Partei','Parteien')} in ${pl(z.formulare_mit_partei!=null?z.formulare_mit_partei:z.formulare,'Formular','Formularen')}</span></div>
+    <div class="dsline"><span><b>${nf(z.vorbefuellbar)}</b> ${plw(z.vorbefuellbar,'Pflichtangabe','Pflichtangaben')} aus dem Einwohnerregister vorbefüllbar${z.vorbefuellbar?` in ${pl(z.formulare_vorbefuellbar,'Formular','Formularen')} (~${nf1(z.minuten_vorbefuellt)} Min.)`:''} · ${pl(z.register_pflicht,'Pflichtangabe','Pflichtangaben')}, die ein Register hält, und ${pl(z.beilagen_register,'Beilage','Beilagen')}, die ein Registerabruf ersetzen könnte (obere Grenze ~${nf1(z.minuten_modell)} Min., Modellschätzung)</span></div>
+    <div class="kznote dsnote">Ein eigener Teil des Dashboards, nicht in den offenen Punkten dieses Briefings gezählt: wessen Angabe ein Datenpunkt ist und was ein Register schon hält. Ein Register hält eine Angabe — ob die Dienststelle sie beziehen darf, ist offen und rechtlich zu klären.</div>
+    <div class="small noprint" style="margin-top:6px">${goLink('datenmodell','','Datenmodell ›','inl')} · ${goLink('onceonly','','Was Register schon wissen ›','inl')}</div>`;
+}
 // ---------- Für Dienststellen: every Dienststelle in one table, then one briefing each ----------
 // DVSH groupings of services that are not an office with a leadership of their own — their
 // contact is another office (checked against the DVSH harvest; the DVSH data stays as it is)
@@ -2761,7 +3401,7 @@ function viewDienststelle(slug){
       ||b.its.reduce((x,i)=>x+i.n,0)-a.its.reduce((x,i)=>x+i.n,0));
     return `<div class="dsstufe"><div class="dsshd"><b>${esc(stufeLabel(st.n))}</b>${tonNums(c)}</div><p class="stufetx">${esc(st.text)}</p>
       ${L.length?`<details class="dsdet"><summary>${pl(L.length,'Formular','Formulare')} mit Punkten dieser Stufe</summary>
-        <table class="ft dsptab"><tbody>${L.map(({f,its})=>`<tr><td>${formLink(f.service_id,f.id,esc(f.title),'',its.some(i=>DIV_SEC(i.cat))?'div':'')}</td>
+        <table class="ft dsptab"><thead><tr><th>Formular</th><th>Offene Punkte dieser Stufe</th></tr></thead><tbody>${L.map(({f,its})=>`<tr><td>${formLink(f.service_id,f.id,esc(f.title),'',its.some(i=>DIV_SEC(i.cat))?'div':'')}</td>
           <td><ul class="pline">${its.map(i=>{const t=itemTon(i); return `<li>${tonChip(t,esc(todoCat(i.cat)[1]),chipN(i),`${tonLabel(t)} · ${catUnit(i.cat,i.n)} — ${todoCat(i.cat)[4]}`)}<span class="clipd">${clip(i.detail,160)}</span></li>`;}).join('')}</ul></td></tr>`).join('')}</tbody></table></details>`
         :'<div class="small muted">Keine offenen Punkte in dieser Stufe.</div>'}</div>`;}).join('')
     :'<p class="dsnone">Keine Formulare, keine offenen Punkte.</p>';
@@ -2804,6 +3444,7 @@ function viewDienststelle(slug){
     +sec('Offene Punkte nach Priorität',s4)
     +sec('Recherche der Databank',s5)
     +(gestBrief(d)?sec('Gestaltung ihrer Formulare',gestBrief(d)):'')
+    +(dmBrief(d)?sec('Datenmodell und Register',dmBrief(d)):'')
     +sec('Services und Formulare',`<div class="card">${s6}</div>`+s6print,false,'dssvcsec'+(longList?' long':''))
     +`<div class="datenstand"><b>Datenstand</b> — ${esc(datenstandKurz(fms))}</div>`;
   const pb=document.getElementById('dsprint'); if(pb) pb.onclick=()=>window.print();
@@ -2958,12 +3599,12 @@ function sensTip(cat){
 }
 // why a chip with an eCH element is grey: the state «zuordnung_falsch» of the export
 const ZF_TIP='Ein eCH-Element ist zugeordnet, aber die Bezeichnung meint eine andere Angabe — die Databank korrigiert diese Zuordnung; bis dahin gilt der Datenpunkt nicht als geklärt';
-function viewDataFields(forms){
+function viewDataFields(forms,ohneKennung){
   let h='';
   forms.forEach(fm=>{
     const dfs=fm.data_fields||[]; if(!dfs.length) return;
     const DIX=divIndex(fm);
-    h+=`<div class="card"><div class="dfhdr"><b>${esc(fm.title)}</b>
+    h+=`<div class="card"><div class="dfhdr"><b>${esc(fm.title)}</b>${fm.kennung&&!ohneKennung?` <code class="kennc kennmini" title="Dauerhafte Kennung dieses Formulars">${esc(fm.kennung)}</code>`:''}
       <span class="muted small">— ${pl(dfs.length,'Datenfeld','Datenfelder')}${(()=>{
         // every count is the exported state of the atomic data point (forms[].standard.ech,
         // counted once in export_json: the Teilfelder where a Datenfeld has them) — the same
@@ -3018,7 +3659,7 @@ function viewDataFields(forms){
                   const ver=d.ech.xsd_version?` (XSD ${esc(d.ech.xsd_version)})`:'';
                   const codes=cl?`\nOffizielle Codeliste (${pl(cl.length,'Wert','Werte')}): `+cl.slice(0,12).map(c=>c.value+(c.doc?' = '+c.doc:'')).join(' · ')+(cl.length>12?' …':''):'';
                   return `<span class="edt${cl?' cl':''}" title="Datentyp gemäss dem offiziellen ${esc(d.ech.standard)}-XSD${ver} — in diesem Typ ist die Angabe zu speichern und auszutauschen${esc(codes)}">⟨${esc(d.ech.datatype)}⟩${cl?'<span style="font-size:var(--fs-xs);margin-left:2px">☰</span>':''}</span>`;})():'')
-              +(d.register?`<span class="regc" title="Once-Only: diese Angabe (eCH-Element ${esc(e||'')}) führt das Einwohnerregister für Einwohnerinnen und Einwohner bereits (zitierte Quelle) — statt neu zu erheben: eigene Daten vorbefüllen, Daten Dritter abgleichen (Verhältnismässigkeit, KDSG Art. 4 Abs. 2) — Einordnung der Databank; der Registerzugriff der Dienststelle braucht eine eigene Grundlage (KDSG Art. 8 Abs. 1 lit. a/b). Gilt nur für Daten natürlicher Personen; Betriebs-, Behörden- und Objektadressen tragen die Marke nicht.${d.vorbefuellbar?' Vorbefüllbar: eine Angabe der einreichenden Person.':' Nicht vorbefüllbar: die Angabe gehört nicht sicher der einreichenden Person (andere Partei, Partei offen oder mehrdeutig).'}">↺ ${d.vorbefuellbar?'vorbefüllbar · ':''}Einwohnerregister</span>`:'')
+              +(d.register?`<span class="regc" title="Once-Only: diese Angabe (eCH-Element ${esc(e||'')}) führt das Einwohnerregister für Einwohnerinnen und Einwohner bereits (zitierte Quelle) — Einordnung der Databank: statt die Angabe neu zu erheben, liessen sich eigene Daten vorbefüllen und Daten Dritter abgleichen (Verhältnismässigkeit, KDSG Art. 4 Abs. 2); ob die Dienststelle das Register abfragen darf, richtet sich nach dem Recht des Registers (bei kantonalen Stellen KDSG Art. 8 Abs. 1). Gilt nur für Daten natürlicher Personen; Betriebs-, Behörden- und Objektadressen tragen die Marke nicht.${d.vorbefuellbar?' Vorbefüllbar: eine Angabe der einreichenden Person.':d.zeitbezug?' Nicht vorbefüllbar: die Bezeichnung fragt nach einem Wert einer anderen Zeit (früher, neu, Änderung, seit …); der Registereintrag hält den heutigen Wert.':' Nicht vorbefüllbar: die Angabe gehört nicht sicher der einreichenden Person (andere Partei, Partei offen oder mehrdeutig).'}">↺ ${d.vorbefuellbar?'vorbefüllbar · ':''}Einwohnerregister</span>`:'')
               // a standard that is not in force: still in the works — the canton decides
               // meanwhile (amber); sistiert, aufgehoben or abgelöst — the databank replaces the
               // mapping by the successor (grey, the tone of the worklists' «nicht in Kraft» point)
@@ -3047,16 +3688,17 @@ function viewDataFields(forms){
                 :e.status==='In Arbeit'?'Standard noch nicht in Kraft (in Arbeit) — bis eCH ihn verabschiedet, legt der Kanton fest'
                 :'Standard-Status «'+e.status+'» ohne Ton — nicht geklärt')+'\n'+tonWords(t2))}">${SW(t2)}${esc(e.status)}</span>`;})():'';
             const dvs=DIX[d.name+'|'+nmv];
-            if(e&&e.element) return `<span class="chip sub${dvs?' dvs':''}"${dvs?` title="${esc(dvs.map(i=>lab(DIV_DE,i.art)+': hier '+i.hier+' — '+i.andere+' '+tonWords(tonOf('div',i.art))).join('\n'))}"`:''}><b>${esc(nmv)}</b>${dvs?`<span class="divc mini st-${divTon(dvs)}">⇄</span>`:''}<a class="sfe st-${t}" href="${esc(e.url)}" target="_blank" rel="noreferrer" title="${esc(zfs+(e.standard_titel||'')+' — '+e.standard+' '+e.element+(e.datatype?' · wird geführt als '+e.datatype:'')+(e.status?' · Status: '+e.status:' · Status nicht erhoben')+'\n'+tonWords(t))}">${esc(e.standard)}·${esc(e.element)}</a>${dr}${begChip(s.begriff,true)}${s.register?`<span class="regc" title="Once-Only: dieses Teilfeld führt das Einwohnerregister bereits (${esc(e.standard)} ${esc(e.element)}, zitierte Quelle)${s.vorbefuellbar?' — vorbefüllbar, eine Angabe der einreichenden Person':' — nicht vorbefüllbar: die Angabe gehört nicht sicher der einreichenden Person (andere Partei, Partei offen oder mehrdeutig)'}. Einordnung der Databank: der Zugriff der Stelle auf das Register braucht eine eigene Grundlage (KDSG Art. 8 Abs. 1 lit. a/b)">↺</span>`:''}</span>`;
+            if(e&&e.element) return `<span class="chip sub${dvs?' dvs':''}"${dvs?` title="${esc(dvs.map(i=>lab(DIV_DE,i.art)+': hier '+i.hier+' — '+i.andere+' '+tonWords(tonOf('div',i.art))).join('\n'))}"`:''}><b>${esc(nmv)}</b>${dvs?`<span class="divc mini st-${divTon(dvs)}">⇄</span>`:''}<a class="sfe st-${t}" href="${esc(e.url)}" target="_blank" rel="noreferrer" title="${esc(zfs+(e.standard_titel||'')+' — '+e.standard+' '+e.element+(e.datatype?' · wird geführt als '+e.datatype:'')+(e.status?' · Status: '+e.status:' · Status nicht erhoben')+'\n'+tonWords(t))}">${esc(e.standard)}·${esc(e.element)}</a>${dr}${begChip(s.begriff,true)}${s.register?`<span class="regc" title="Once-Only: dieses Teilfeld führt das Einwohnerregister bereits (${esc(e.standard)} ${esc(e.element)}, zitierte Quelle)${s.vorbefuellbar?' — vorbefüllbar, eine Angabe der einreichenden Person':s.zeitbezug?' — nicht vorbefüllbar: die Bezeichnung fragt nach einem Wert einer anderen Zeit (früher, neu, Änderung, seit …); der Registereintrag hält den heutigen Wert':' — nicht vorbefüllbar: die Angabe gehört nicht sicher der einreichenden Person (andere Partei, Partei offen oder mehrdeutig)'}. Einordnung der Databank: ob die Stelle das Register abfragen darf, richtet sich nach dem Recht des Registers (bei kantonalen Stellen KDSG Art. 8 Abs. 1)">↺</span>`:''}</span>`;
             if(e){const nx=e.n_elements>0;
               return `<span class="chip sub"><b>${esc(nmv)}</b><a class="sfe st-${t}" href="${esc(e.url)}" target="_blank" rel="noreferrer" title="${esc((e.standard_titel||'')+(nx?' — Element noch nicht bestimmt':' — Standard ohne XSD: kein zitierbares Element')+'\n'+tonWords(t))}">${esc(e.standard)}${nx?'·Element offen':'·nur Standard'}</a>${dr}</span>`;}
             if(s&&s.ech_status==='kein_standard') return `<span class="chip sub"><b>${esc(nmv)}</b><span class="sfe st-${t}" title="${esc('kein eCH-Standard — der Kanton legt fest, wie die Angabe verlangt wird (eSH-Entwurf)\n'+tonWords(t))}">kein Std.</span>${s.esh?`<span class="sfe esh" title="eSH-Entwurf des Kantons, nicht offiziell: ${esc(s.esh.titel)}">${esc(s.esh.code)}·${esc(s.esh.element||'')}<span class="ent">Entwurf</span></span>`:''}</span>`;
             return `<span class="chip sub"><b>${esc(nmv)}</b></span>`;}).join('')}</div>`
           :(vals.length?`<div class="dfchips"><span class="muted small">Werte:</span> ${vals.slice(0,24).map(v=>`<span class="chip">${esc(String(v))}</span>`).join('')}</div>`:'')}
         ${(d.source_widgets||[]).length?`<div class="dfprov">↩ erfasst durch: ${d.source_widgets.slice(0,8).map(w=>esc(String(w))).join(' · ')}</div>`:''}
-      </div><div class="dfrg">${(d.legal_basis&&d.legal_basis.length)?d.legal_basis.map(b=>
-          b.quote?`<details class="qd"><summary>${citeStr(b)}</summary><blockquote class="quote">«${esc(b.quote)}»</blockquote></details>`
-                 :citeStr(b)).join('<br>'):basisBadge(d)}</div></div>`;
+      </div><div class="dfrg">${(d.legal_basis&&d.legal_basis.length)?d.legal_basis.map(b=>{
+          const imp=W_LAW[b.law_id]?`<div class="lawimp">${standChip(b.law_id)} ${wirkLink(b.law_id,b.article_id)}</div>`:'';
+          return b.quote||imp?`<details class="qd"><summary>${citeStr(b)}</summary>${b.quote?`<blockquote class="quote">«${esc(b.quote)}»</blockquote>`:''}${imp}</details>`
+                 :citeStr(b);}).join('<br>'):basisBadge(d)}</div></div>`;
     });
     h+=`</div>`;
   });
@@ -3431,9 +4073,12 @@ function formSection(s,fm,single,sec){
     <div class="card" style="padding:9px 16px 7px">
       ${single?'':`<div style="float:right"><button class="fmopen srcbtn" data-fid="${fm.id}" title="dieses Formular als eigene Seite öffnen">▣ Formular-Ansicht</button></div>`}
       ${formFacts(fm)}${hasDF?handlingStrip(s,fm):''}</div>`;
-  h+= hasDF? viewDataFields([fm]) : noFieldsCard(fm);
+  h+= hasDF? viewDataFields([fm],single) : noFieldsCard(fm);
   h+= beilagenPanel([fm]);
   h+= divergencePanel(fm);
+  h+= parteiPanel(fm,single&&sec==='part');
+  h+= konzeptPanel(fm);
+  h+= registerPanel(fm,single&&sec==='reg');
   h+= gestPanel(fm,single&&sec==='gest');
   const extras=blockerPanel([fm])+handlingPanel(s,[fm])+similarPanel([fm]);
   h+=`<details class="hgen" style="margin:0 0 4px" ${single?'open':''}><summary class="dvsub" style="cursor:pointer">Details zu diesem Formular — Digitalisierungs-Hürden, volles Datenhandhabungs-Profil, Duplikat-Radar</summary>${extras}</details>`;
@@ -3471,9 +4116,10 @@ function viewFields(){
     const fm=forms.find(f=>f.id===fid);
     if(fm){
       // a section the page does not know falls back to the plain Formular-Ansicht
-      if(sec&&sec!=='div'&&sec!=='gest') state.sub='form-'+fid;
+      if(sec&&!['div','gest','part','reg'].includes(sec)) state.sub='form-'+fid;
       m.innerHTML=`<h3 class="view" tabindex="-1">${esc(fm.title)}</h3>
         <p class="hint">Formular-Ansicht · gehört zum Service <a class="simlink" id="backsvc" href="#fields/${encodeURIComponent(s.id)}">${esc(s.name)}</a> · ${esc(s.dienststelle||'')}</p>
+        ${fm.kennung?`<p class="hint kennline">${kennTag(fm.kennung,'Dauerhafte Kennung')}</p>`:''}
         ${formSection(s,fm,true,sec)}`;
       document.getElementById('backsvc').onclick=e=>{if(e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||e.button) return; e.preventDefault(); state.sub='felder';render();};
       m.querySelectorAll('.simlink[data-sid]').forEach(a=>a.onclick=()=>{
@@ -3482,6 +4128,9 @@ function viewFields(){
       wireDivChips(m); wireGo(m);
       if(sec==='div') focusDiv(fid);
       if(sec==='gest') focusGest(fid);
+      if(sec==='part') focusPanel('part-'+fid);
+      if(sec==='reg') focusPanel('reg-'+fid);
+      dmWire(m);
       return;
     }
     fBad=`Formular «${esc(fidS)}» gehört nicht zu diesem Service — gezeigt wird die Service-Seite.`; state.sub='felder';
@@ -3540,7 +4189,7 @@ function viewFields(){
     state.service=a.dataset.sid;state.sub='felder';render();});
   // a ⛨ badge explains itself; its box leads to the Leitfaden section on sensitive data
   m.querySelectorAll('.senslink').forEach(b=>b.onclick=goSensGuide);
-  wireDivChips(m); wireGo(m);
+  wireDivChips(m); wireGo(m); dmWire(m);
 }
 // the ⇄ / ✎ chips of a Formular jump to its block «Standard-Divergenzen» on the same page
 // (their href opens the Formular-Ansicht there, for a new tab or a copied link)
@@ -3696,6 +4345,7 @@ function viewRules(){
         <b>${esc(r0.short_title||r0.law_title)}</b>
         <span class="muted small">${esc(r0.law_title!==r0.short_title?r0.law_title:'')}</span>
         <span class="muted small" style="margin-left:auto">${jur(r0.jurisdiction_level)} ${esc(refNo(r0.jurisdiction_level,r0.sr_number,r0.cantonal_ref))} · ${pl(rs.length,'Regel','Regeln')}</span></div>
+        ${W_LAW[r0.law_id]?`<div class="lawimp">${standChip(r0.law_id)} ${wirkLink(r0.law_id)}</div>`:''}
         ${rulesByAspect(rs)}
         ${fms.length?`<details class="lawforms"><summary>gilt für ${pl(fms.length,'Formular','Formulare')} →</summary>
           ${fms.slice(0,40).map(f=>`<div class="small">• <a class="simlink" data-sid="${f.service_id}">${esc(f.title)}</a></div>`).join('')}</details>`:''}</div>`;
@@ -3704,6 +4354,7 @@ function viewRules(){
   m.innerHTML=h;
   m.querySelectorAll('.simlink[data-sid]').forEach(a=>a.onclick=()=>{
     state.service=a.dataset.sid;state.tab='fields';state.sub='felder';render();});
+  wireGo(m);
 }
 // ---------- Leitfaden (plain-language guide over the verified rules) ----------
 function guideChip(ref){
@@ -3763,9 +4414,9 @@ function treeModel(){
   sids.forEach(sid=>(formsByService[sid]||[]).forEach(fm=>(fm.data_fields||[]).forEach(d=>{
     (d.legal_basis||[]).forEach(lb=>{
       const lk=(lb.law_short||lb.law_title||'?');
-      const L=laws[lk]||(laws[lk]={id:lk,title:lb.law_title,short:lb.law_short,jur:lb.jurisdiction,sr:lb.sr_number,cref:lb.cantonal_ref,arts:{}});
+      const L=laws[lk]||(laws[lk]={id:lk,lid:lb.law_id,title:lb.law_title,short:lb.law_short,jur:lb.jurisdiction,sr:lb.sr_number,cref:lb.cantonal_ref,arts:{}});
       const ak=lb.article_no||'?';
-      const A=L.arts[ak]||(L.arts[ak]={id:ak,no:lb.article_no,heading:lb.article_heading,lc:lb.last_checked,reqs:{}});
+      const A=L.arts[ak]||(L.arts[ak]={id:ak,aid:lb.article_id,lid:lb.law_id,no:lb.article_no,heading:lb.article_heading,lc:lb.last_checked,reqs:{}});
       const st=(lb.last_checked==='verified')?'match':(String(lb.last_checked||'').startsWith('Gesetze')?'sourced':'proposed');
       A.reqs[d.name]={dp:d.name,status:st,type:d.data_type};
     });
@@ -3789,6 +4440,7 @@ function viewTree(into){
   m.querySelectorAll('.seg button').forEach(b=>b.onclick=()=>{state.tree=b.dataset.t;render();});
   m.querySelectorAll('.ttog').forEach(t=>t.onclick=()=>t.closest('.tgrp').classList.toggle('collapsed'));
   m.querySelectorAll('.dgbox').forEach(b=>b.onclick=(e)=>{e.stopPropagation();b.closest('.dgnode').classList.toggle('collapsed')});
+  wireGo(m);
 }
 // verification level of a citation in its tone (ton_map.verif); an unknown level is grey
 const TREE_VERIF={match:'verified',sourced:'quelle_pdf',proposed:'unverifiziert'};
@@ -3796,16 +4448,16 @@ const treeTon=s=>tonOf('verif',TREE_VERIF[s]||s);
 function statusBadge(s){return stBadge(treeTon(s),esc(({match:'verifiziert',sourced:'Quelle SHR-PDF',proposed:'unverifiziert'}[s]||s)),'Verifikationsstufe der Zitation');}
 function listLaw(L){
   const nr=refNo(L.jur,L.sr,L.cref);
-  return `<div class="tgrp"><div class="tline"><span class="ttog">▾</span> ${jur(L.jur)} <b>${esc(L.short||L.title)}</b> <span class="muted small">${esc(L.title)}</span>${nr?' <span class="mono small">'+esc(nr)+'</span>':''}</div>
+  return `<div class="tgrp"><div class="tline"><span class="ttog">▾</span> ${jur(L.jur)} <b>${esc(L.short||L.title)}</b> <span class="muted small">${esc(L.title)}</span>${nr?' <span class="mono small">'+esc(nr)+'</span>':''} ${standChip(L.lid)} <span class="small">${wirkLink(L.lid)}</span></div>
     <div class="tnode">${L.arts.map(listArt).join('')}</div></div>`;
 }
 function listArt(A){
-  return `<div class="tgrp"><div class="tline"><span class="ttog">▾</span> <span class="mono">${esc(artLabel(A.no))}</span> ${esc(A.heading||'')}${unver(A.lc)}</div>
+  return `<div class="tgrp"><div class="tline"><span class="ttog">▾</span> <span class="mono">${esc(artLabel(A.no))}</span> ${esc(A.heading||'')}${unver(A.lc)} <span class="small">${wirkLink(A.lid,A.aid)}</span></div>
     <div class="tnode">${A.reqs.map(r=>`<div class="tline">• ${esc(r.dp)} ${statusBadge(r.status)} <span class="muted small">${esc(lab(DFTYPE,r.type))}</span></div>`).join('')}</div></div>`;
 }
 function dgLaw(L){
   const nr=refNo(L.jur,L.sr,L.cref);
-  return `<div class="dgnode"><div class="dgbox" style="border-left-color:var(--line)"><span class="ttl">${esc(L.short||L.title)}</span> ${jur(L.jur)}<div class="sub">${esc(L.title)}${nr?' · '+esc(nr):''}</div></div>
+  return `<div class="dgnode"><div class="dgbox" style="border-left-color:var(--line)"><span class="ttl">${esc(L.short||L.title)}</span> ${jur(L.jur)} ${standChip(L.lid)}<div class="sub">${esc(L.title)}${nr?' · '+esc(nr):''}</div></div>
     <div class="dgchildren">${L.arts.map(dgArt).join('')}</div></div>`;
 }
 function dgArt(A){
@@ -3833,11 +4485,11 @@ function viewInfo(into){
   const laws=Object.values(byLaw);
   if(!laws.length){m.innerHTML=h+'<div class="nores">Keine Daten für die Auswahl.</div>';return;}
   laws.forEach(({lb,rows})=>{
-    h+=`<div class="card"><div style="margin-bottom:10px">${jur(lb.jurisdiction)} <b>${esc(lb.law_title)}</b> ${(n=>n?'<span class="mono small">'+esc(n)+'</span>':'')(refNo(lb.jurisdiction,lb.sr_number,lb.cantonal_ref))}${unver(lb.last_checked)}</div>
+    h+=`<div class="card"><div style="margin-bottom:10px">${jur(lb.jurisdiction)} <b>${esc(lb.law_title)}</b> ${(n=>n?'<span class="mono small">'+esc(n)+'</span>':'')(refNo(lb.jurisdiction,lb.sr_number,lb.cantonal_ref))}${unver(lb.last_checked)} ${standChip(lb.law_id)} <span class="small">${wirkLink(lb.law_id)}</span></div>
       <table><thead><tr><th>Datenfeld</th><th>Artikel</th><th>Typ</th><th>Pflicht</th><th>Formular</th></tr></thead><tbody>
       ${rows.map(({req,lb,cap})=>`<tr>
         <td><b>${esc(req.data_point)}</b><div class="small muted">${esc(req.label||'')}</div></td>
-        <td class="mono small">${esc(artLabel(lb.article_no))}${lb.citation_detail?' '+esc(lb.citation_detail):''}${unver(lb.last_checked)}</td>
+        <td class="mono small">${esc(artLabel(lb.article_no))}${lb.citation_detail?' '+esc(lb.citation_detail):''}${unver(lb.last_checked)}<div class="nomono">${wirkLink(lb.law_id,lb.article_id)}</div></td>
         <td class="small">${esc(lab(DFTYPE,req.data_type))}</td>
         <td class="small">${esc(req.condition||'—')}</td>
         <td>${cap.length?cap.map(c=>`«${esc(c.label)}»`).join('<br>'):'—'}</td>
@@ -3845,6 +4497,7 @@ function viewInfo(into){
       </tbody></table></div>`;
   });
   m.innerHTML=h;
+  wireGo(m);
 }
 
 
@@ -4253,7 +4906,7 @@ function searchIndex(){
   const recip={}, beil={}, ech={};
   DATA.forms.forEach(f=>{
     const svc=svcById[f.service_id];
-    ix.push({t:'Formular',label:f.title,sub:svc?svc.name:'',key:lc(f.title+' '+(f.purpose||'')),go:fmLink(f)});
+    ix.push({t:'Formular',label:f.title,sub:svc?svc.name:'',key:lc(f.title+' '+(f.purpose||'')+' '+(f.kennung||'')),go:fmLink(f)});
     (f.data_fields||[]).forEach(d=>{
       // the key covers the Teilfelder and the eSH codes too: what the sidebar
       // filter finds, the global search must find as well; the hit lands on
@@ -4322,6 +4975,29 @@ function searchIndex(){
     (GEST.entscheide||[]).forEach(e=>ix.push({t:'Gestaltung',label:e.label,sub:'Gestaltung der Formulare · ohne klare Praxis oder Regel — der Kanton legt fest',
       key:lc('Gestaltung Festlegung Kanton Praxis '+e.label),go:gg('e-'+e.key)}));
   }
+  // Datenmodell & Once-Only: the pages and their sections, the roles, the concepts, the registers
+  const dmg=(tab,sub)=>({tab,service:'all',sub:sub||'felder'});
+  if(PAR||KONZ||WIRK){
+    ix.push({t:'Datenmodell',label:'Datenmodell',sub:'Wessen Angabe · Eine Angabe — ein Element · Dauerhafte Kennungen · Gesetzesstand · Wirkung einer Änderung',
+      key:lc('Datenmodell Parteien Rollen Konzepte Kennungen Exportvertrag JSON Schema Gesetzesstand Fassung Wirkung Änderung'),go:dmg('datenmodell')});
+    [['parteien','Wessen Angabe? — Parteien und Rollen','Partei Rolle unklar Stichprobe Zweitprüfung'],['konzepte','Eine Angabe — ein Element','Konzept Vorschlag Element Praxis'],
+     ['kennungen','Dauerhafte Kennungen','Kennung Exportvertrag Version JSON Schema'],['gesetzesstand','Gesetzesstand','Fassung Stand neuere Fassung in Kraft'],
+     ['wirkung','Wirkung einer Änderung','Gesetz Artikel betrifft Formulare Datenpunkte']].forEach(([k,l,w])=>{
+      if((k==='parteien'&&!PAR)||(k==='konzepte'&&!KONZ)||((k==='gesetzesstand'||k==='wirkung')&&!WIRK)) return;
+      ix.push({t:'Datenmodell',label:l,sub:'Seite «Datenmodell»',key:lc(l+' '+w),go:dmg('datenmodell',k)});});
+  }
+  (PAR?PAR.rollen:[]).forEach(r=>{const x=((DM.parteien||{}).rollen||{})[r.code]||{};
+    ix.push({t:'Rolle',label:r.label,sub:`${entRolle(r.entitaet)} · ${pl(x.parteien||0,'Partei','Parteien')} in ${pl(x.formulare||0,'Formular','Formularen')} · Vorschlag der Databank — ${r.erklaerung}`,
+      key:lc('Rolle Partei '+r.label+' '+r.erklaerung),go:dmg('datenmodell','parteien')});});
+  ((KONZ&&KONZ.konzepte)||[]).forEach(k=>ix.push({t:'Konzept',label:k.label,
+    sub:`${k.gruppe} · ${pl(k.n_punkte,'Datenpunkt','Datenpunkte')} in ${pl(k.n_formulare,'Formular','Formularen')} · ${(k.mitglieder||[]).slice(0,4).map(e=>e.standard+' '+e.element).join(', ')}${(k.mitglieder||[]).length>4?' …':''}`,
+    key:lc('Konzept '+k.label+' '+k.gruppe+' '+(k.mitglieder||[]).map(e=>e.standard+' '+e.element).join(' ')),go:dmg('datenmodell','k-'+k.code)}));
+  if(REG){
+    ix.push({t:'Register',label:'Was Register schon wissen',sub:'Register, Beilagen, gesparte Zeit (Modellschätzung), offene Rechtsfragen',
+      key:lc('Was Register schon wissen Once-Only Register Vorbefüllung vorbefüllbar Beilagen Zeit Zugriff'),go:dmg('onceonly')});
+    Object.values(REG_BY).forEach(k=>ix.push({t:'Register',label:k.name,sub:`${lab(DML.register_ebene,k.ebene)} · ${k.inhaber||''} · ${pl((k.zahlen||{}).bestaetigt||0,'Angabe','Angaben')} der Formulare`,
+      key:lc('Register '+k.name+' '+(k.inhaber||'')+' '+(k.inhalt||'')+' '+(k.schluessel||'')),go:dmg('onceonly','r-'+k.code)}));
+  }
   // the glossary of «Methode & Quellen»: a term is found by its word and by its explanation
   GLOSSAR.forEach(g=>ix.push({t:'Glossar',label:g.wort,sub:g.text,key:lc(g.wort+' '+g.text),
     go:{tab:'methode',service:'all',sub:'felder',anchor:'gl-'+g.id}}));
@@ -4365,7 +5041,7 @@ function viewSearch(){
   let h=pageHead('Suche · Services, Formulare, Datenfelder, Recht, Standards, Dienststellen',
     q?'Treffer für «'+esc(q)+'» — alle Wörter müssen vorkommen, Reihenfolge und Gross-/Kleinschreibung egal.'
      :'Ein Suchfeld über Services, Formulare, Datenfelder, Gesetze, Regeln, Standards und Dienststellen.',
-    'Ein Suchfeld über Services, Formulare, Datenfelder (inkl. Teilfelder), Gesetze und Artikel, Datenhandhabungs-Regeln, Empfänger, Beilagen, Themengruppen (Tab «Lebenslagen»), Begriffe, eCH-Standards, eSH-Entwürfe, Dienststellen und die Begriffe des Glossars.',
+    'Ein Suchfeld über Services, Formulare (auch nach ihrer Kennung), Datenfelder (inkl. Teilfelder), Gesetze und Artikel, Datenhandhabungs-Regeln, Empfänger, Beilagen, Themengruppen (Tab «Lebenslagen»), Begriffe, eCH-Standards, eSH-Entwürfe, Dienststellen, die Rollen, Konzepte und Register und die Begriffe des Glossars.',
     'Durchsucht wird der Export der Databank, wie er in dieser Seite steckt — nichts Externes. Alle Wörter müssen vorkommen (Reihenfolge egal, Gross/Klein egal). Der Datenkatalog (1 Zeile je Attribut) ist nicht separat indexiert; seine Daten sind über die Datenfelder und eCH-Standards erreichbar.',
     'Ein Treffer mit Ziel springt an die Stelle, an der das Objekt in der Databank lebt: Service-Seite (Formular-Abschnitt), Formular-Ansicht, Regel-Karte, Begriffs-Karte, eSH-Karte oder die Seite der Dienststelle; Einträge ohne Ziel sagen es.');
   if(!toks.length){m.innerHTML=h+'<div class="nores">Mindestens ein Wort mit zwei Zeichen eingeben — z. B. «AHV-Nummer», «Art. 17b», «Steuerverwaltung», «Strafregisterauszug», «eCH-0044», «eSH-0001».</div>';return;}
@@ -4374,7 +5050,7 @@ function viewSearch(){
   const hits=searchIndex().filter(e=>toks.every(t=>e.key.includes(t)))
     .map(e=>{const L=e.label.toLowerCase();return {e,sc:(L.startsWith(toks[0])?2:0)+(toks.every(t=>L.includes(t))?1:0)+(toks.every(t=>wb(e.key,t))?3:0)};})
     .sort((a,b)=>b.sc-a.sc);
-  const order=['Glossar','Themengruppe','Service','Formular','Datenfeld','Begriff','Gesetz','Artikel','Regel','Empfänger','Beilage','eCH-Standard','eSH-Entwurf','Dienststelle','Gestaltung'];
+  const order=['Glossar','Themengruppe','Service','Formular','Datenfeld','Begriff','Gesetz','Artikel','Regel','Empfänger','Beilage','eCH-Standard','eSH-Entwurf','Dienststelle','Gestaltung','Datenmodell','Rolle','Konzept','Register'];
   const byT={}; hits.forEach(x=>(byT[x.e.t]=byT[x.e.t]||[]).push(x.e));
   h+=`<div class="regstats">${order.filter(t=>byT[t]).map(t=>`<span class="rstat">${esc(t)} <b>${byT[t].length}</b></span>`).join('')}${hits.length?'':'<span class="rstat">keine Treffer</span>'}</div>`;
   if(!hits.length&&toks.length>1) h+=`<div class="nores">Alle Wörter müssen im selben Eintrag vorkommen. Mit einem einzelnen Begriff suchen (${toks.map(t=>`<a class="simlink" data-q="${esc(t)}">${esc(t)}</a>`).join(' · ')}) oder die Schreibweise des Gesetzestexts verwenden — Fristen stehen dort meist als Zahlwort («zehn Jahre»), nicht als Ziffer.</div>`;
@@ -4825,6 +5501,8 @@ try{const mo=new MutationObserver(()=>{const mn=document.getElementById('main');
 //                   with words of its own speaks them there instead (Gestaltung: the branch
 //                   `gst` on #gestaltung and the block of the panel .gpanel, which lights no
 //                   tone of the data standard — DATA.gestaltung.labels)
+//                   (Datenmodell & Once-Only: TONEX datenmodell / onceonly — amber the canton's
+//                   confirmation or decision, green / grey the edition of a law)
 //  6. page check    its route in PAGES of scripts/check_pages.mjs (the check fails when the
 //                   navigation offers a page that is not listed there); a bar (.tbar, .minibar)
 //                   is summed as it is, a list that states its total is put into a .sumbox —
@@ -4857,6 +5535,8 @@ function drawView(){
   else if(state.tab==='katalog') viewKatalog();
   else if(state.tab==='esh') viewEsh();
   else if(state.tab==='gestaltung') viewGestaltung();
+  else if(state.tab==='datenmodell') viewDatenmodell();
+  else if(state.tab==='onceonly') viewOnceonly();
   else if(state.tab==='fields') viewFields();
   else viewUnknown();
 }
@@ -4996,7 +5676,8 @@ def gap_wording(text):
 # older one — the page would draw empty cards as if nothing were open, so the build stops.
 REQUIRED = {
     "": ("labels", "kopfzahlen", "dienststellen_uebersicht", "forms", "services", "laws",
-         "zitate", "datenstand", "verlauf", "gestaltung"),
+         "zitate", "datenstand", "verlauf", "gestaltung", "parteien", "konzepte", "wirkung", "register",
+         "vorbefuellung", "kennungen", "vertrag", "datenmodell"),
     "labels": ("ton", "ton_map", "kontakt"),
     "kopfzahlen": ("standard_ech", "standard_einheitlich", "standard_benannt", "rechtsgrundlage",
                    "verzeichnis", "offene_punkte", "kein_standard", "kategorien"),
@@ -5040,6 +5721,30 @@ def missing_keys(export):
     return out
 
 
+# the export contract (exportvertrag.json at the root of the repository): build.sh builds this page
+# after every export has stamped its version, so the versions the page shows are the published ones
+VERTRAG_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "exportvertrag.json")
+
+
+def vertrag_kurz():
+    """The export contract as the page «Datenmodell» shows it: per published export its version,
+    its JSON Schema and since when the version holds, and the rules of the version numbers. Read
+    from exportvertrag.json, which build.sh has written before this step (every export stamps its
+    version first): a missing or unreadable file stops the build — a page without the contract
+    table must not pass as complete."""
+    try:
+        with open(VERTRAG_PATH, encoding="utf-8") as fh:
+            doc = json.load(fh)
+    except (OSError, ValueError) as ex:
+        raise SystemExit(f"ABBRUCH build_dashboard.py: exportvertrag.json fehlt oder ist nicht lesbar ({ex}) — "
+                         "erst die Exporte bauen (./build.sh), die ihn schreiben")
+    if not isinstance(doc, dict) or not doc.get("exporte"):
+        raise SystemExit("ABBRUCH build_dashboard.py: exportvertrag.json nennt keinen Export")
+    ex = {n: {"version": v.get("version"), "schema": v.get("schema"), "seit": v.get("seit")}
+          for n, v in (doc.get("exporte") or {}).items()}
+    return embed(json.dumps({"exporte": ex, "regeln": doc.get("regeln") or {}}, ensure_ascii=False))
+
+
 def embed(text):
     """JSON text for a <script> block: every «<» is written as \\u003c, so no harvested
     text — an HTML comment, a script tag — can end or swallow the block. JSON.parse (and
@@ -5069,7 +5774,8 @@ def main():
     # JavaScript literal — both with every «<» escaped (embed)
     safe = embed(data)
     guide = embed(gap_wording(json.dumps(LEITFADEN, ensure_ascii=False)))
-    fill = lambda tpl: tpl.replace("/*DATA*/", safe).replace("/*GUIDE*/", guide)
+    vertrag = vertrag_kurz()
+    fill = lambda tpl: tpl.replace("/*DATA*/", safe).replace("/*GUIDE*/", guide).replace("/*VERTRAG*/", vertrag)
     # the page names its own size: measured on the page itself (the two size
     # words change it by a few bytes only, far below the rounding)
     raw = fill(TEMPLATE).encode("utf-8")

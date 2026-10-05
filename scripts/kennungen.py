@@ -494,7 +494,7 @@ def _abgleichen(c, art, objs, datum, stat):
         if a["status"] != "aktiv":
             continue
         c.execute("UPDATE kennung SET status='entfallen', ziel_id=NULL, bis=?, grund=? WHERE kennung=?",
-                  [datum, f"Objekt nicht mehr in der Databank (Lauf {datum})", a["kennung"]])
+                  [datum, ENTFALLEN_GRUND, a["kennung"]])
         c.execute("INSERT INTO kennung_verlauf(kennung, datum, ereignis, vorher, nachher) VALUES(?,?,?,?,?)",
                   [a["kennung"], datum, "entfallen", a["schluessel"], None])
         stat["entfallen"] += 1
@@ -586,12 +586,21 @@ def _ddl_stand(c):
     return sorted(r[0] or "" for r in c.execute("SELECT sql FROM sqlite_master WHERE name LIKE '%kennung%'"))
 
 
+# the reason of an identifier whose object is gone (the day stands in «bis»); the first
+# issue wrote «Objekt nicht mehr in der Databank (Lauf <ISO day>)» — abgleich() words those
+# rows like every later one (only the text: status, day and key stay)
+ENTFALLEN_GRUND = "das Objekt steht nicht mehr in der Databank"
+ENTFALLEN_ALT = "Objekt nicht mehr in der Databank (Lauf %)"
+
+
 def abgleich(c, datum, abloesungen=ABLOESUNGEN):
     """Bring the identifiers in line with the database (in a transaction on c)."""
     vorher = _ddl_stand(c)
     c.executescript(DDL)
     stat = {k: 0 for k in ("neu", "entfallen", "umbenannt", "reaktiviert", "umgehaengt", "merkmal", "abgeloest",
-                           "schema")}
+                           "schema", "grund")}
+    stat["grund"] = c.execute("UPDATE kennung SET grund=? WHERE status='entfallen' AND grund LIKE ?",
+                              [ENTFALLEN_GRUND, ENTFALLEN_ALT]).rowcount
     stat["schema"] = int(_ddl_stand(c) != vorher)
     karten = {}
     for art in REIHENFOLGE:
@@ -1015,8 +1024,9 @@ def anreichern(name, doc, conn):
     Teilfeld, law, article, rule and canonical attribute, and in data_export.json
     also on every law and article of the change-impact index (wirkung);
     formular_kennung, artikel_kennung (citations, rules, the article a decision
-    rests on) and angabe_kennung next to every reference. Every reference is
-    resolved exactly or the export stops."""
+    rests on) and angabe_kennung next to every reference (in data_export.json also
+    on every Angabe the concept layer names). Every reference is resolved exactly
+    or the export stops."""
     ix = _Index(conn)
     if name == "data_export.json":
         for s in doc.get("services") or []:
@@ -1058,6 +1068,14 @@ def anreichern(name, doc, conn):
         for b in doc.get("begriffe") or []:
             e = ix.element.get(b.get("element_id"))
             _setzen(b, "angabe_kennung", ix.angabe.get(angabe_schluessel_ech(*e)) if e else None, nach="element_id")
+        # the concept layer (scripts/konzepte.py): every Angabe it names — member, blocked,
+        # judged outside or not yet judged; one a Formular uses must resolve, one no
+        # Formular uses has an identifier only while it is in the catalogue of Angaben
+        for kz in (doc.get("konzepte") or {}).get("konzepte") or []:
+            for a in kz["mitglieder"] + kz["gesperrt"] + kz["ausserhalb"] + kz["nicht_beurteilt"]:
+                key = angabe_schluessel_ech(a["standard"], a["element"], a["context"])
+                k = ix.angabe_kennung(key) if a.get("n") or a.get("n_zuordnung_falsch") else ix.angabe.get(key)
+                _setzen(a, "angabe_kennung", k, nach="element_ids")
         doc["kennungen"] = kennungen_block(conn)
     elif name == "citygov_llm.json":
         for s in doc.get("services") or []:

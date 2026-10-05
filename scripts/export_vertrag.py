@@ -83,7 +83,23 @@ KARTEN = {
                          # state -> count: a state that reaches zero is a moved count, not a removed key
                          "$.forms[].standard.ech", "$.dienststellen_uebersicht[].standard.ech",
                          "$.kopfzahlen.standard_ech.ech", "$.gestaltung.merkmale[].urteile",
-                         "$.dienststellen_uebersicht[].massnahmen[].mix"},
+                         "$.dienststellen_uebersicht[].massnahmen[].mix",
+                         # the pages «Datenmodell» and «Was Register schon wissen» (export_json._datenmodell):
+                         # role code, Dienststelle slug, kind, status -> figures; code -> German text
+                         "$.datenmodell.parteien.rollen", "$.datenmodell.dienststellen",
+                         "$.datenmodell.einwohnerregister_andere.je_rolle", "$.datenmodell.zugriff",
+                         "$.datenmodell.beilagen.je_register",                   # register code -> Beilagen
+                         "$.datenmodell.beilagen.je_register.*[].ersetzt_nicht",  # reason -> Beilagen
+                         "$.datenmodell.kennungen.aktiv", "$.datenmodell.kennungen.nicht_aktiv",
+                         "$.datenmodell.parteien.methode.stichprobe.schichten",
+                         "$.datenmodell.parteien.methode.stichprobe.urteile",
+                         "$.datenmodell.parteien.methode.stichprobe.damals",
+                         "$.datenmodell.parteien.methode.stichprobe.damals.*",
+                         "$.datenmodell.labels.entitaet", "$.datenmodell.labels.entitaet_rolle",
+                         "$.datenmodell.labels.herkunft", "$.datenmodell.labels.register_ebene",
+                         "$.datenmodell.labels.zugriff_status", "$.datenmodell.labels.zugriff_art",
+                         "$.datenmodell.labels.ersetzt_nicht", "$.datenmodell.labels.kennung_art",
+                         "$.datenmodell.labels.kennung_status"},
     "citygov_prefill.json": {"$.meta.zaehlung.partei"},              # party status -> points
 }
 # append-only histories: their length is not a count of the data (one entry per build day)
@@ -116,7 +132,7 @@ REGELN = {
     "minor": "ein Schlüsselpfad kommt hinzu, ein optionaler fällt weg, darf neu null sein oder nicht mehr, "
              "oder wird optional bzw. Pflicht",
     "patch": "gleiche Struktur, aber eine Anzahl hat sich bewegt (Einträge, Zeilen; ohne den Verlauf, der je "
-             "Build-Tag einen Eintrag erhält), oder nur die Beschreibung des Schemas hat sich geändert",
+             "Tag einen Eintrag erhält), oder nur die Beschreibung des Schemas hat sich geändert",
 }
 
 

@@ -1,0 +1,333 @@
+{
+ "hinweis": "Korrekturen der eCH-Zuordnung aus der Durchsicht vom 2026-10-05 (Datenmodell, Stufe 3, Teil 1: falscher Inhalt der Vorbefüllung). Durchgesehen wurden alle Punkte, die aus dem Einwohnerregister vorbefüllbar sind oder eine Register-Stufe tragen, auf Bezeichnungen mit Zeitbezug (früher, bisherig, letzte Jahre, während, Änderung, Zuzug, Wegzug, seit, bis, neu, geplant), eine andere Person, ein Ja/Nein auf einem Wert-Element und den Wert eines früheren Ereignisses; zu jedem Kandidaten wurde der Formulartext gelesen. Hier stehen nur die Punkte, deren Element eine ANDERE Angabe nennt; jeder mit dem bisherigen Element, der Klasse, dem Grund, einem wörtlichen Zitat aus dem Formulartext und der Zweitprüfung (Gegenprobe gegen den Katalog und den Formulartext). Punkte, deren Element stimmt, die aber nach einem früheren oder künftigen Wert fragen, behalten ihr Element; sie hält die Zeitregel von scripts/register_map.py von der Vorbefüllung fern (liste «geprueft_belassen» in teilfelder.json). Geprüft von scripts/register_map.py (zeit_pruefen: Aufbau, Katalog, Stand ausstehend oder angewendet; --korrekturen: jedes Zitat im Formulartext).",
+ "anwenden": "python3 scripts/load_ech_verdicts.py quellen/korrekturen/prefill_inhalt_2026-10-05",
+ "urteile": [
+  {
+   "feld": "Zivilrechtlicher Wohnsitz in der Schweiz seit",
+   "urteil": "kein_standard",
+   "field_ids": [
+    302,
+    484,
+    735
+   ],
+   "form_ids": [
+    117,
+    128,
+    141
+   ],
+   "bisher": {
+    "standard": "eCH-0011",
+    "element": "arrivalDate",
+    "kontext": "otherResidenceType"
+   },
+   "klasse": "anderes_ereignis",
+   "grund": "Die Angabe erfragt, seit wann die Person ihren zivilrechtlichen Wohnsitz in der Schweiz hat. eCH-0011 arrivalDate ist das Zuzugsdatum in der meldenden Gemeinde; wer innerhalb der Schweiz umgezogen ist, hat dort ein späteres Zuzugsdatum als den Beginn des Wohnsitzes in der Schweiz — eine andere Angabe. eCH-0011 entryDate gilt nur für die Aufenthaltsbewilligung von Ausländerinnen und Ausländern. Kein Element eines Standards mit Elementkatalog nennt den Beginn des Wohnsitzes in der Schweiz für alle Personen.",
+   "zitate": [
+    {
+     "form_id": 117,
+     "zitat": "Zivilrechtlicher Wohnsitz in der Schweiz seit"
+    },
+    {
+     "form_id": 128,
+     "zitat": "Zivilrechtlicher Wohnsitz in der Schweiz seit"
+    },
+    {
+     "form_id": 141,
+     "zitat": "Zivilrechtlicher Wohnsitz in der Schweiz seit"
+    }
+   ],
+   "zweitpruefung": {
+    "urteil": "bestaetigt",
+    "grund": "Gegenprobe: alle Kontexte von arrivalDate im Katalog (eCH-0011, -0020, -0093, -0098, -0148, -0194, -0201, -0223, -0278) gelten dem Zuzug in eine Gemeinde oder einem Meldeereignis; entryDate (residencePermitDataType) nur Personen mit Bewilligung. Kein Katalogelement nennt den Wohnsitzbeginn in der Schweiz; kein_standard bestätigt. Der Formulartext nennt die Angabe wörtlich."
+   }
+  },
+  {
+   "feld": "Zivilrechtlicher Wohnsitz im Kanton Schaffhausen seit",
+   "urteil": "kein_standard",
+   "field_ids": [
+    736
+   ],
+   "form_ids": [
+    141
+   ],
+   "bisher": {
+    "standard": "eCH-0011",
+    "element": "arrivalDate",
+    "kontext": "otherResidenceType"
+   },
+   "klasse": "anderes_ereignis",
+   "grund": "Die Angabe erfragt, seit wann die Person ihren zivilrechtlichen Wohnsitz im Kanton Schaffhausen hat. eCH-0011 arrivalDate ist das Zuzugsdatum in der meldenden Gemeinde; wer innerhalb des Kantons umgezogen ist, hat dort ein späteres Zuzugsdatum — eine andere Angabe. Kein Element nennt den Beginn des Wohnsitzes im Kanton.",
+   "zitate": [
+    {
+     "form_id": 141,
+     "zitat": "Zivilrechtlicher Wohnsitz im Kanton Schaffhausen seit"
+    }
+   ],
+   "zweitpruefung": {
+    "urteil": "bestaetigt",
+    "grund": "Gegenprobe: alle Kontexte von arrivalDate im Katalog (eCH-0011, -0020, -0093, -0098, -0148, -0194, -0201, -0223, -0278) gelten dem Zuzug in eine Gemeinde oder einem Meldeereignis; entryDate (residencePermitDataType) nur Personen mit Bewilligung. Kein Katalogelement nennt den Wohnsitzbeginn im Kanton; kein_standard bestätigt. Der Formulartext nennt die Angabe wörtlich."
+   }
+  },
+  {
+   "feld": "Wohnsitz in der Schweiz beim Eintritt des Ereignisses",
+   "urteil": "kein_standard",
+   "field_ids": [
+    191
+   ],
+   "form_ids": [
+    111
+   ],
+   "bisher": {
+    "standard": "eCH-0011",
+    "element": "hasMainResidence",
+    "kontext": "reportedPersonType"
+   },
+   "klasse": "ja_nein",
+   "grund": "Ja/Nein-Frage, ob die Person beim Eintritt des Ereignisses (einem früheren Zeitpunkt) ihren Wohnsitz in der Schweiz hatte. eCH-0011 hasMainResidence hält die heutige Hauptwohnsitz-Gemeinde des Eintrags — einen Wert, keinen Ja/Nein-Stand zu einem früheren Zeitpunkt; kein Element nennt diese Angabe.",
+   "zitate": [
+    {
+     "form_id": 111,
+     "zitat": "Hatten Sie beim Eintritt des Ereignisses den Wohnsitz in der Schweiz?"
+    }
+   ],
+   "zweitpruefung": {
+    "urteil": "bestaetigt",
+    "grund": "Gegenprobe: das Formular fragt «nein / ja» und verlangt bei Ja eine Wohnsitzbescheinigung; die Frage gilt dem Zeitpunkt des Ereignisses (Datum des Ereignisses daneben), nicht dem heutigen Hauptwohnsitz. kein_standard bestätigt."
+   }
+  },
+  {
+   "feld": "Wohnumstände / Unterkunft in Privathaushalt",
+   "urteil": "kein_standard",
+   "field_ids": [
+    981
+   ],
+   "form_ids": [
+    154
+   ],
+   "bisher": {
+    "standard": "eCH-0011",
+    "element": "typeOfHousehold",
+    "kontext": "dwellingAddressType"
+   },
+   "klasse": "andere_angabe",
+   "grund": "Freitext zu den Wohnumständen bei einer Unterkunft in einem Privathaushalt (eigenes Zimmer, Gästebett, Untermietvertrag). eCH-0011 typeOfHousehold ist der Code der Haushaltsart des Eintrags (Privathaushalt, Kollektivhaushalt, Sammelhaushalt) — eine andere Angabe; kein Element nennt die Wohnumstände.",
+   "zitate": [
+    {
+     "form_id": 154,
+     "zitat": "Bei Unterkunft in Privathaushalt: Wie sahen die Wohnumstände aus: eigenes Zimmer?"
+    }
+   ],
+   "zweitpruefung": {
+    "urteil": "bestaetigt",
+    "grund": "Gegenprobe: die Codeliste typeOfHouseholdType (0 bis 3) kennt nur die Haushaltsart; das Formular fragt beschreibend und in der Vergangenheit («Wie sahen … aus»). kein_standard bestätigt."
+   }
+  },
+  {
+   "feld": "Gemeinsamer Haushalt der Ehegatten bzw. Partnerinnen/Partner seit",
+   "urteil": "kein_standard",
+   "field_ids": [
+    5104
+   ],
+   "form_ids": [
+    450
+   ],
+   "bisher": {
+    "standard": "eCH-0011",
+    "element": "movingDate",
+    "kontext": "dwellingAddressType"
+   },
+   "klasse": "anderes_ereignis",
+   "grund": "Die Angabe erfragt, seit wann die Ehegatten bzw. Partnerinnen oder Partner ununterbrochen in gemeinsamem Haushalt leben. eCH-0011 movingDate ist das Datum des Umzugs in die heutige Wohnung innerhalb der Gemeinde; ein gemeinsamer Haushalt kann früher begonnen haben (in einer anderen Wohnung oder Gemeinde) — eine andere Angabe; kein Element nennt den Beginn des gemeinsamen Haushalts.",
+   "zitate": [
+    {
+     "form_id": 450,
+     "zitat": "Ehegatten bzw. Partnerinnen/Partner ununterbrochen in gemeinsamem Haushalt lebend seit"
+    }
+   ],
+   "zweitpruefung": {
+    "urteil": "bestaetigt",
+    "grund": "Gegenprobe: «ununterbrochen» bezieht sich auf die Dauer des gemeinsamen Haushalts über Umzüge hinweg; movingDate und householdID des Eintrags sagen nur, seit wann und mit wem in der heutigen Wohnung. kein_standard bestätigt."
+   }
+  },
+  {
+   "feld": "Gemeinsamer Haushalt der Ehegatten seit",
+   "urteil": "kein_standard",
+   "field_ids": [
+    5117
+   ],
+   "form_ids": [
+    451
+   ],
+   "bisher": {
+    "standard": "eCH-0011",
+    "element": "movingDate",
+    "kontext": "dwellingAddressType"
+   },
+   "klasse": "anderes_ereignis",
+   "grund": "Die Angabe erfragt, seit wann die Ehegatten ununterbrochen in gemeinsamem Haushalt leben. eCH-0011 movingDate ist das Datum des Umzugs in die heutige Wohnung innerhalb der Gemeinde — eine andere Angabe; kein Element nennt den Beginn des gemeinsamen Haushalts.",
+   "zitate": [
+    {
+     "form_id": 451,
+     "zitat": "Ehegatten ununterbrochen in gemeinsamem Haushalt lebend seit"
+    }
+   ],
+   "zweitpruefung": {
+    "urteil": "bestaetigt",
+    "grund": "Gegenprobe wie beim Stiefkind-Formular 450: «ununterbrochen» umfasst frühere Wohnungen; kein_standard bestätigt."
+   }
+  },
+  {
+   "feld": "Gemeinsamer Haushalt mit dem Kind seit",
+   "urteil": "kein_standard",
+   "field_ids": [
+    5105,
+    5118
+   ],
+   "form_ids": [
+    450,
+    451
+   ],
+   "bisher": {
+    "standard": "eCH-0011",
+    "element": "movingDate",
+    "kontext": "dwellingAddressType"
+   },
+   "klasse": "anderes_ereignis",
+   "grund": "Die Angabe erfragt, seit wann die gesuchstellende(n) Person(en) mit dem Kind in gemeinsamem Haushalt leben. eCH-0011 movingDate ist das Datum des Umzugs in die heutige Wohnung innerhalb der Gemeinde — eine andere Angabe; kein Element nennt den Beginn des gemeinsamen Haushalts mit dem Kind.",
+   "zitate": [
+    {
+     "form_id": 450,
+     "zitat": "Gesuchstellerin/Gesuchsteller in gemeinsamem Haushalt mit dem Kind lebend seit"
+    },
+    {
+     "form_id": 451,
+     "zitat": "Mit Kind in gemeinsamem Haushalt lebend seit"
+    }
+   ],
+   "zweitpruefung": {
+    "urteil": "bestaetigt",
+    "grund": "Gegenprobe: beide Formulare (Stiefkind- und Pflegekind-Adoption) fragen nach der Dauer des Zusammenlebens mit dem Kind, nicht nach einem Umzug. kein_standard bestätigt."
+   }
+  },
+  {
+   "feld": "Wohnsitz Kind 1",
+   "urteil": "kein_standard",
+   "field_ids": [
+    901
+   ],
+   "form_ids": [
+    147
+   ],
+   "bisher": {
+    "standard": "eCH-0011",
+    "element": "mainResidence",
+    "kontext": "mainResidenceType"
+   },
+   "klasse": "andere_angabe",
+   "grund": "Auswahl, in wessen Haushalt das Kind lebt: im Haushalt des Antragstellers, im Haushalt des Bezügers der Erstzulagen oder an einem anderen Ort. eCH-0011 mainResidence nennt die Gemeinde des Hauptwohnsitzes — keine dieser Auswahlen; kein Element nennt sie.",
+   "zitate": [
+    {
+     "form_id": 147,
+     "zitat": "Wohnsitz des Kindes?"
+    },
+    {
+     "form_id": 147,
+     "zitat": "im Haushalt des Bezügers der Erstzulagen"
+    }
+   ],
+   "zweitpruefung": {
+    "urteil": "bestaetigt",
+    "grund": "Gegenprobe: eCH-0021 care / typeOfRelationship beschreiben Sorge und Verwandtschaft, nicht den Haushalt; householdID ist eine Kennung. Ort und Staat fragt das Formular separat («bei wem», «Strasse», «PLZ, Ort», «Wohnstaat»). kein_standard bestätigt."
+   }
+  },
+  {
+   "feld": "Wohnsitz Kind 2",
+   "urteil": "kein_standard",
+   "field_ids": [
+    904
+   ],
+   "form_ids": [
+    147
+   ],
+   "bisher": {
+    "standard": "eCH-0011",
+    "element": "mainResidence",
+    "kontext": "mainResidenceType"
+   },
+   "klasse": "andere_angabe",
+   "grund": "Auswahl, in wessen Haushalt das Kind lebt: im Haushalt des Antragstellers, im Haushalt des Bezügers der Erstzulagen oder an einem anderen Ort. eCH-0011 mainResidence nennt die Gemeinde des Hauptwohnsitzes — keine dieser Auswahlen; kein Element nennt sie.",
+   "zitate": [
+    {
+     "form_id": 147,
+     "zitat": "Wohnsitz des Kindes?"
+    },
+    {
+     "form_id": 147,
+     "zitat": "im Haushalt des Bezügers der Erstzulagen"
+    }
+   ],
+   "zweitpruefung": {
+    "urteil": "bestaetigt",
+    "grund": "Gegenprobe: eCH-0021 care / typeOfRelationship beschreiben Sorge und Verwandtschaft, nicht den Haushalt; householdID ist eine Kennung. Ort und Staat fragt das Formular separat («bei wem», «Strasse», «PLZ, Ort», «Wohnstaat»). kein_standard bestätigt."
+   }
+  },
+  {
+   "feld": "Wohnsitz Kind 3",
+   "urteil": "kein_standard",
+   "field_ids": [
+    907
+   ],
+   "form_ids": [
+    147
+   ],
+   "bisher": {
+    "standard": "eCH-0011",
+    "element": "mainResidence",
+    "kontext": "mainResidenceType"
+   },
+   "klasse": "andere_angabe",
+   "grund": "Auswahl, in wessen Haushalt das Kind lebt: im Haushalt des Antragstellers, im Haushalt des Bezügers der Erstzulagen oder an einem anderen Ort. eCH-0011 mainResidence nennt die Gemeinde des Hauptwohnsitzes — keine dieser Auswahlen; kein Element nennt sie.",
+   "zitate": [
+    {
+     "form_id": 147,
+     "zitat": "Wohnsitz des Kindes?"
+    },
+    {
+     "form_id": 147,
+     "zitat": "im Haushalt des Bezügers der Erstzulagen"
+    }
+   ],
+   "zweitpruefung": {
+    "urteil": "bestaetigt",
+    "grund": "Gegenprobe: eCH-0021 care / typeOfRelationship beschreiben Sorge und Verwandtschaft, nicht den Haushalt; householdID ist eine Kennung. Ort und Staat fragt das Formular separat («bei wem», «Strasse», «PLZ, Ort», «Wohnstaat»). kein_standard bestätigt."
+   }
+  },
+  {
+   "feld": "Praktizierend, wenn ja in welchem Umfang",
+   "urteil": "kein_standard",
+   "field_ids": [
+    5304
+   ],
+   "form_ids": [
+    467
+   ],
+   "bisher": {
+    "standard": "eCH-0011",
+    "element": "religionData",
+    "kontext": "personType"
+   },
+   "klasse": "ja_nein",
+   "grund": "Frage, ob das Pflegekind seine Religion praktiziert und in welchem Umfang. eCH-0011 religionData hält die Zugehörigkeit zu einer Religionsgemeinschaft — eine andere Angabe (die Zugehörigkeit fragt das Formular davor: «Konfession / Religionsgemeinschaft»); kein Element nennt die Praxis.",
+   "zitate": [
+    {
+     "form_id": 467,
+     "zitat": "Konfession / Religionsgemeinschaft: Praktizierend, wenn ja in welchem Umfang:"
+    }
+   ],
+   "zweitpruefung": {
+    "urteil": "bestaetigt",
+    "grund": "Gegenprobe: religionData besteht aus religion und religionValidFrom; die Praxis ist darin nicht vorgesehen. kein_standard bestätigt."
+   }
+  }
+ ]
+}

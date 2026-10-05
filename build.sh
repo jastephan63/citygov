@@ -31,8 +31,10 @@
 #                          writes nothing when a layer fails, a sum does not
 #                          add up or verlauf.json is unreadable. It computes the
 #                          parties per data point (rollen.py), the change-impact
-#                          index (wirkung.py) and the register map with the
-#                          corrected prefill count (register_map.py) once, puts
+#                          index (wirkung.py), the concepts (konzepte.py: one
+#                          preferred element per Angabe and role) and the register
+#                          map with the corrected prefill count and the time rule
+#                          (register_map.py) once, puts
 #                          the permanent identifiers on every object and stamps
 #                          the export contract (export_vertrag.py: version,
 #                          schema/*.schema.json, exportvertrag.json — rewritten
@@ -41,7 +43,6 @@
 #                          sizes): every text colour reaches 4.5:1 on its
 #                          backgrounds and no colour, size or font literal is
 #                          left in the four page generators; reads only
-#   build_dashboard.py     dashboard.html
 #   build_flows.py         flows.html (inlines quellen/ch-geo.js; the profile prefill
 #                          map is the vorbefuellbar rule of data_export.json)
 #   export_llm.py          citygov_llm.json, citygov_datafields.jsonl,
@@ -49,6 +50,9 @@
 #                          citygov_prefill.json (identifiers and contract stamp
 #                          as export_json.py)
 #   export_ech_schema.py   citygov_ech_schemas.json (identifiers, contract stamp)
+#   build_dashboard.py     dashboard.html — after the exports above, because its page
+#                          «Datenmodell» shows the version of every export as
+#                          exportvertrag.json holds it once all of them are stamped
 #   export_vertrag.py      checks the export contract (read-only): every published
 #                          export carries the version exportvertrag.json records,
 #                          matches its JSON Schema under schema/ and its counts
@@ -98,10 +102,11 @@ $PY scripts/rollen.py ableiten
 if [[ " $* " == *" --tresor "* ]]; then $PY scripts/build_datentresor.py; fi
 $PY scripts/export_json.py
 $PY scripts/theme.py --check
-$PY scripts/build_dashboard.py
 $PY scripts/build_flows.py
 $PY scripts/export_llm.py
 $PY scripts/export_ech_schema.py
+# after every export has stamped its version: the page «Datenmodell» shows the export contract
+$PY scripts/build_dashboard.py
 $PY scripts/export_vertrag.py
 $PY scripts/kennungen.py --pruefen
 if [[ " $* " == *" --pdf "* ]]; then $PY scripts/export_dossiers.py --pdf; else $PY scripts/export_dossiers.py; fi

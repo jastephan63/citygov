@@ -16,7 +16,8 @@
 // The checks (the name is what --only takes):
 //   syntax    every inline script of dashboard.html and flows.html parses; inlined JSON is valid
 //   seiten    every page in PAGES and every document in DOCUMENTS opens: enough text, no start-up
-//             error, no «Unbekannte Seite», no error in the console, no request to another host;
+//             error, no «Unbekannte Seite», no error in the console, no request to another host,
+//             no data table without a column head (th), also where it is folded;
 //             every page the navigation offers is listed in PAGES
 //   summen    every bar adds up: segments = legend = the total its card states; every list that
 //             states its total (.sumbox: the numbers .sumn and the one .sumtot) adds up to it —
@@ -69,8 +70,16 @@ const PAGES = [
   { route: 'katalog' },
   { route: 'begriffe' },
   { route: 'esh' },
+  { route: 'datenmodell', contrast: true, open: true },                  // Datenmodell, all of it unfolded (roles, concepts, identifiers, editions)
+  { route: 'datenmodell/all/g-270', contrast: true },                    // the change-impact explorer at one law (FamZG, a newer edition in force)
+  { route: 'datenmodell/all/a-447', contrast: true },                    // the explorer at one article (its row selected, its Formulare open)
+  { route: 'datenmodell/all/k-vorname', contrast: true },                // one concept, opened at its address
+  { route: 'onceonly', contrast: true, open: true },                     // Was Register schon wissen, all of it unfolded
   { route: 'gestaltung', contrast: true, open: true },                   // Gestaltung der Formulare, all of it unfolded
   { route: 'gestaltung/all/grenzen', contrast: true },                   // a section address (opens the folded limits)
+  // one register at its address: it draws the whole page «Was Register schon wissen» and brings the
+  // register into view, so it stands apart from that page (the check compares a page with the one before)
+  { route: 'onceonly/all/r-einwohnerregister', contrast: true },
   { route: 'lebenslagen' },
   { route: 'register' },
   { route: 'rules' },
@@ -80,6 +89,8 @@ const PAGES = [
   { route: 'fields' },
   { route: 'fields/296', contrast: true },                               // one service page
   { route: 'fields/116/form-116~gest', contrast: true, open: true },     // one Formular-Ansicht, its panel «Gestaltung» open
+  { route: 'fields/115/form-115~part', contrast: true, open: true },     // a Formular with many parties: its panels «Parteien» and «Was Register schon wissen»
+  { route: 'fields/238/form-238~reg', contrast: true },                  // a Formular opened at its panel «Was Register schon wissen»
   { route: 'search/all/zivilstand' },                                    // one search
 ];
 
@@ -537,6 +548,10 @@ function pageLib() {
       boot: clean(boot ? boot.innerText : failed ? failed[0] : '').slice(0, 300), loading: !!document.getElementById('bootmsg'),
       unknown: /Unbekannte Seite/.test(t), nores: [...m.querySelectorAll('.nores')].map(e => clean(e.innerText).slice(0, 140)),
       word: word ? clean(tw.slice(Math.max(0, word.index - 30), word.index + 40)) : '',
+      // a data table (two rows or more) without any header cell: no column has a name for a screen
+      // reader — folded tables count too (a closed <details> keeps its table in the page)
+      nohead: [...m.querySelectorAll('table')].filter(x => x.rows.length >= 2 && !x.querySelector('th') && x.getAttribute('role') !== 'presentation')
+        .map(x => clean(((x.className || '') + ' · ' + (x.rows[0] ? x.rows[0].textContent : ''))).slice(0, 90)),
       tabs: [...document.querySelectorAll('aside [data-tab]')].map(b => b.getAttribute('data-tab')) };
   };
 
@@ -722,6 +737,7 @@ function checkPage(doc, where, info, minText, errors, requests) {
   for (const t of info.nores) if (/unbekannt|nicht gefunden|nicht dargestellt/i.test(t) && !/Unbekannte Seite/.test(t)) why.push(`meldet: ${cut(t, 110)}`);
   if (info.chars < minText) why.push(`zeigt nur ${nf(info.chars)} Zeichen Text (mindestens ${nf(minText)})`);
   if (info.word) why.push(`im Text steht ein Programmwort: «${cut(info.word, 70)}»`);
+  for (const t of (info.nohead || []).slice(0, 3)) why.push(`eine Tabelle ohne Spaltenkopf (th): «${cut(t, 90)}»`);
   for (const e of [...new Set(errors)].slice(0, 3)) why.push(`Fehler in der Konsole: ${cut(e, 220)}`);
   if (errors.length > 3) why.push(`… und ${errors.length - 3} weitere Fehler in der Konsole`);
   for (const u of [...new Set(requests)].slice(0, 3)) why.push(`Anfrage an einen fremden Server: ${u}`);

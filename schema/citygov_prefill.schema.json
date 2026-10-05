@@ -1,7 +1,7 @@
 {
  "$schema": "https://json-schema.org/draft/2020-12/schema",
  "title": "citygov_prefill.json",
- "description": "Struktur von citygov_prefill.json, Version 1.0.0. Erzeugt aus der Datei, wie der Build sie schreibt (scripts/export_vertrag.py); Änderungen und Regeln in exportvertrag.json. Nie von Hand ändern.",
+ "description": "Struktur von citygov_prefill.json, Version 1.1.0. Erzeugt aus der Datei, wie der Build sie schreibt (scripts/export_vertrag.py); Änderungen und Regeln in exportvertrag.json. Nie von Hand ändern.",
  "$ref": "#/$defs/datei",
  "$defs": {
   "datei": {
@@ -80,6 +80,9 @@
         },
         "vorbefuellbar": {
          "type": "boolean"
+        },
+        "zeitbezug": {
+         "type": "boolean"
         }
        },
        "required": [
@@ -95,7 +98,8 @@
         "pflicht",
         "standard",
         "subjekt",
-        "vorbefuellbar"
+        "vorbefuellbar",
+        "zeitbezug"
        ],
        "additionalProperties": false
       }
@@ -136,6 +140,9 @@
         },
         "vorbefuellbar": {
          "type": "string"
+        },
+        "zeitbezug": {
+         "type": "string"
         }
        },
        "required": [
@@ -148,7 +155,8 @@
         "partei_status",
         "pflicht",
         "subjekt",
-        "vorbefuellbar"
+        "vorbefuellbar",
+        "zeitbezug"
        ],
        "additionalProperties": false
       },
@@ -214,6 +222,9 @@
         "n_vorbefuellbar": {
          "type": "integer"
         },
+        "n_zeitbezug": {
+         "type": "integer"
+        },
         "partei": {
          "type": "object",
          "additionalProperties": {
@@ -230,6 +241,7 @@
         "n_mehrdeutig",
         "n_punkte",
         "n_vorbefuellbar",
+        "n_zeitbezug",
         "partei"
        ],
        "additionalProperties": false

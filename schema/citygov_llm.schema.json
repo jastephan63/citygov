@@ -1,7 +1,7 @@
 {
  "$schema": "https://json-schema.org/draft/2020-12/schema",
  "title": "citygov_llm.json",
- "description": "Struktur von citygov_llm.json, Version 1.0.1. Erzeugt aus der Datei, wie der Build sie schreibt (scripts/export_vertrag.py); Änderungen und Regeln in exportvertrag.json. Nie von Hand ändern.",
+ "description": "Struktur von citygov_llm.json, Version 1.0.2. Erzeugt aus der Datei, wie der Build sie schreibt (scripts/export_vertrag.py); Änderungen und Regeln in exportvertrag.json. Nie von Hand ändern.",
  "$ref": "#/$defs/datei",
  "$defs": {
   "datei": {

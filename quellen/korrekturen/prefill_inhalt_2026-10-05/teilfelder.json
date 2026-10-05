@@ -1,0 +1,345 @@
+{
+ "hinweis": "Korrekturen der eCH-Zuordnung aus der Durchsicht vom 2026-10-05 (Datenmodell, Stufe 3, Teil 1: falscher Inhalt der Vorbefüllung). Durchgesehen wurden alle Punkte, die aus dem Einwohnerregister vorbefüllbar sind oder eine Register-Stufe tragen, auf Bezeichnungen mit Zeitbezug (früher, bisherig, letzte Jahre, während, Änderung, Zuzug, Wegzug, seit, bis, neu, geplant), eine andere Person, ein Ja/Nein auf einem Wert-Element und den Wert eines früheren Ereignisses; zu jedem Kandidaten wurde der Formulartext gelesen. Hier stehen nur die Punkte, deren Element eine ANDERE Angabe nennt; jeder mit dem bisherigen Element, der Klasse, dem Grund, einem wörtlichen Zitat aus dem Formulartext und der Zweitprüfung (Gegenprobe gegen den Katalog und den Formulartext). Punkte, deren Element stimmt, die aber nach einem früheren oder künftigen Wert fragen, behalten ihr Element; sie hält die Zeitregel von scripts/register_map.py von der Vorbefüllung fern (liste «geprueft_belassen» in teilfelder.json). Geprüft von scripts/register_map.py (zeit_pruefen: Aufbau, Katalog, Stand ausstehend oder angewendet; --korrekturen: jedes Zitat im Formulartext).",
+ "anwenden": "python3 scripts/load_subfield_ech.py quellen/korrekturen/prefill_inhalt_2026-10-05",
+ "zuordnungen": [
+  {
+   "subfield_id": 1387,
+   "form_id": 149,
+   "field_id": 928,
+   "elternfeld": "Änderung Zivilstand",
+   "teilfeld": "Datum",
+   "bisher": {
+    "standard": "eCH-0011",
+    "element": "departureDate",
+    "kontext": "otherResidenceType"
+   },
+   "standard": "eCH-0011",
+   "element": "dateOfMaritalStatus",
+   "kontext": "maritalDataRestrictedDivorceType",
+   "klasse": "anderes_ereignis",
+   "grund": "Das Teil steht im Block «Änderung Zivilstand» neben «Zivilstand neu» und erfragt das Datum der Zivilstandsänderung (Definition des Felds: «Neuer Zivilstand und Datum der Zivilstandsänderung»). eCH-0011 departureDate ist das Wegzugsdatum aus der meldenden Gemeinde — ein anderes Ereignis. eCH-0011 dateOfMaritalStatus nennt das Datum des Zivilstands; gewählt im selben Kontext (maritalDataRestrictedDivorceType) wie das Nachbarteil «Zivilstand neu» und die Angaben «Zivilstand seit» der übrigen Formulare.",
+   "zitate": [
+    {
+     "form_id": 149,
+     "zitat": "Änderung Zivilstand Zivilstand neu\nDatum"
+    }
+   ],
+   "zweitpruefung": {
+    "urteil": "bestaetigt",
+    "grund": "Gegenprobe: das Teil sitzt im Abschnitt «Mutation der Bezügerdaten» unter «Änderung Zivilstand», das Feld nebenan ist «Zivilstand neu»; ein Wegzug kommt dort nicht vor. dateOfMaritalStatus (Kontext 126, wie 28 weitere Punkte der Databank) ist das Element des Zivilstandsdatums. Umhängen bestätigt."
+   }
+  },
+  {
+   "subfield_id": 135,
+   "form_id": 107,
+   "field_id": 102,
+   "elternfeld": "Angaben zur Rente",
+   "teilfeld": "Datum der Wohnsitznahme in Frankreich",
+   "bisher": {
+    "standard": "eCH-0011",
+    "element": "arrivalDate",
+    "kontext": "otherResidenceType"
+   },
+   "kein_standard": true,
+   "klasse": "anderes_ereignis",
+   "grund": "Das Teil erfragt das Datum, an dem die Person in Frankreich Wohnsitz genommen hat. eCH-0011 arrivalDate ist das Zuzugsdatum in einer Schweizer meldenden Gemeinde — ein anderes Ereignis; kein Element eines Standards mit Elementkatalog nennt den Wohnsitzbeginn im Ausland.",
+   "zitate": [
+    {
+     "form_id": 107,
+     "zitat": "Date de domiciliation en France"
+    }
+   ],
+   "zweitpruefung": {
+    "urteil": "bestaetigt",
+    "grund": "Gegenprobe: das Formular richtet sich an Personen «résidant en France»; der Wohnsitzbeginn in Frankreich ist kein Eintrag eines Schweizer Einwohnerregisters, und goesTo / departureDate wären der Wegzug aus einer Schweizer Gemeinde, nicht dieselbe Angabe. kein_standard bestätigt."
+   }
+  },
+  {
+   "subfield_id": 5596,
+   "form_id": 289,
+   "field_id": 4124,
+   "elternfeld": "Aufenthalte in der Schweiz",
+   "teilfeld": "Dauer (jeweils von wann bis wann)",
+   "bisher": {
+    "standard": "eCH-0011",
+    "element": "arrivalDate",
+    "kontext": "otherResidenceType"
+   },
+   "kein_standard": true,
+   "klasse": "anderer_zeitraum",
+   "grund": "Das Teil erfragt je früheren Aufenthalt den Zeitraum von wann bis wann. eCH-0011 arrivalDate ist ein einzelnes Datum, das Zuzugsdatum des heutigen Eintrags in der meldenden Gemeinde — ein anderer Wert. Für einen Zeitraum aus Beginn und Ende in einem Teil gibt es kein Element; eCH-0010 validity (dateFrom, dateTo) ist die Gültigkeit einer Postadresse, nicht der Aufenthalt an einem Wohnort, und führt Beginn und Ende als zwei Elemente.",
+   "zitate": [
+    {
+     "form_id": 289,
+     "zitat": "Aufenthalte in der Schweiz / Séjours en Suisse"
+    },
+    {
+     "form_id": 289,
+     "zitat": "Dauer (jeweils von wann bis wann)"
+    }
+   ],
+   "zweitpruefung": {
+    "urteil": "bestaetigt",
+    "grund": "Gegenprobe: die Databank bildet «von / bis» früherer Adressen (Formular 209) auf eCH-0010 dateFrom ab; für einen Aufenthalt an einem Wohnort ohne Postadresse trägt das nicht, und ein Teil mit Beginn und Ende bleibt ein Bündel. arrivalDate ist sicher falsch, ein passendes Element gibt es nicht: kein_standard bestätigt."
+   }
+  },
+  {
+   "subfield_id": 5598,
+   "form_id": 289,
+   "field_id": 4125,
+   "elternfeld": "Aufenthalte im Ausland",
+   "teilfeld": "Dauer (jeweils von wann bis wann)",
+   "bisher": {
+    "standard": "eCH-0011",
+    "element": "arrivalDate",
+    "kontext": "otherResidenceType"
+   },
+   "kein_standard": true,
+   "klasse": "anderer_zeitraum",
+   "grund": "Das Teil erfragt je früheren Aufenthalt den Zeitraum von wann bis wann. eCH-0011 arrivalDate ist ein einzelnes Datum, das Zuzugsdatum des heutigen Eintrags in der meldenden Gemeinde — ein anderer Wert. Für einen Zeitraum aus Beginn und Ende in einem Teil gibt es kein Element; eCH-0010 validity (dateFrom, dateTo) ist die Gültigkeit einer Postadresse, nicht der Aufenthalt an einem Wohnort, und führt Beginn und Ende als zwei Elemente.",
+   "zitate": [
+    {
+     "form_id": 289,
+     "zitat": "Aufenthalte im Ausland / Séjours à l'étranger"
+    },
+    {
+     "form_id": 289,
+     "zitat": "Dauer (jeweils von wann bis wann)"
+    }
+   ],
+   "zweitpruefung": {
+    "urteil": "bestaetigt",
+    "grund": "Gegenprobe: die Databank bildet «von / bis» früherer Adressen (Formular 209) auf eCH-0010 dateFrom ab; für einen Aufenthalt an einem Wohnort ohne Postadresse trägt das nicht, und ein Teil mit Beginn und Ende bleibt ein Bündel. arrivalDate ist sicher falsch, ein passendes Element gibt es nicht: kein_standard bestätigt."
+   }
+  },
+  {
+   "subfield_id": 6969,
+   "form_id": 467,
+   "field_id": 5329,
+   "elternfeld": "Früherer Wohnort (Eltern, Pflegefamilie, Institution) des Pflegekindes",
+   "teilfeld": "Von / bis",
+   "bisher": {
+    "standard": "eCH-0011",
+    "element": "arrivalDate",
+    "kontext": "otherResidenceType"
+   },
+   "kein_standard": true,
+   "klasse": "anderer_zeitraum",
+   "grund": "Das Teil erfragt den Zeitraum, in dem das Pflegekind am früheren Wohnort (bei den Eltern, einer Pflegefamilie oder in einer Institution) lebte. eCH-0011 arrivalDate ist ein einzelnes Datum, das Zuzugsdatum des heutigen Eintrags in der meldenden Gemeinde — ein anderer Wert; für einen Zeitraum aus Beginn und Ende in einem Teil gibt es kein Element.",
+   "zitate": [
+    {
+     "form_id": 467,
+     "zitat": "Früherer Wohnort (Eltern, Pflegefamilie, Institution) des Pflegekindes Von / bis"
+    }
+   ],
+   "zweitpruefung": {
+    "urteil": "bestaetigt",
+    "grund": "Gegenprobe: die Databank bildet «von / bis» früherer Adressen (Formular 209) auf eCH-0010 dateFrom ab; für einen Aufenthalt an einem Wohnort ohne Postadresse trägt das nicht, und ein Teil mit Beginn und Ende bleibt ein Bündel. arrivalDate ist sicher falsch, ein passendes Element gibt es nicht: kein_standard bestätigt."
+   }
+  },
+  {
+   "subfield_id": 425,
+   "form_id": 116,
+   "field_id": 285,
+   "elternfeld": "Personalien",
+   "teilfeld": "Zivilrechtlicher Wohnsitz in der Schweiz seit",
+   "bisher": {
+    "standard": "eCH-0011",
+    "element": "arrivalDate",
+    "kontext": "otherResidenceType"
+   },
+   "kein_standard": true,
+   "klasse": "anderes_ereignis",
+   "grund": "Die Angabe erfragt, seit wann die Person ihren zivilrechtlichen Wohnsitz in der Schweiz hat. eCH-0011 arrivalDate ist das Zuzugsdatum in der meldenden Gemeinde; wer innerhalb der Schweiz umgezogen ist, hat dort ein späteres Zuzugsdatum als den Beginn des Wohnsitzes in der Schweiz — eine andere Angabe. eCH-0011 entryDate gilt nur für die Aufenthaltsbewilligung von Ausländerinnen und Ausländern. Kein Element eines Standards mit Elementkatalog nennt den Beginn des Wohnsitzes in der Schweiz für alle Personen.",
+   "zitate": [
+    {
+     "form_id": 116,
+     "zitat": "Zivilrechtlicher Wohnsitz in der Schweiz seit"
+    }
+   ],
+   "zweitpruefung": {
+    "urteil": "bestaetigt",
+    "grund": "Gegenprobe: alle Kontexte von arrivalDate im Katalog (eCH-0011, -0020, -0093, -0098, -0148, -0194, -0201, -0223, -0278) gelten dem Zuzug in eine Gemeinde oder einem Meldeereignis; entryDate (residencePermitDataType) nur Personen mit Bewilligung. Kein Katalogelement nennt den Wohnsitzbeginn in der Schweiz; kein_standard bestätigt. Der Formulartext nennt die Angabe wörtlich."
+   }
+  },
+  {
+   "subfield_id": 455,
+   "form_id": 118,
+   "field_id": 321,
+   "elternfeld": "Personalien GesuchstellerIn",
+   "teilfeld": "Zivilrechtlicher Wohnsitz in der Schweiz seit",
+   "bisher": {
+    "standard": "eCH-0011",
+    "element": "arrivalDate",
+    "kontext": "otherResidenceType"
+   },
+   "kein_standard": true,
+   "klasse": "anderes_ereignis",
+   "grund": "Die Angabe erfragt, seit wann die Person ihren zivilrechtlichen Wohnsitz in der Schweiz hat. eCH-0011 arrivalDate ist das Zuzugsdatum in der meldenden Gemeinde; wer innerhalb der Schweiz umgezogen ist, hat dort ein späteres Zuzugsdatum als den Beginn des Wohnsitzes in der Schweiz — eine andere Angabe. eCH-0011 entryDate gilt nur für die Aufenthaltsbewilligung von Ausländerinnen und Ausländern. Kein Element eines Standards mit Elementkatalog nennt den Beginn des Wohnsitzes in der Schweiz für alle Personen.",
+   "zitate": [
+    {
+     "form_id": 118,
+     "zitat": "Zivilrechtlicher Wohnsitz in der Schweiz seit"
+    }
+   ],
+   "zweitpruefung": {
+    "urteil": "bestaetigt",
+    "grund": "Gegenprobe: alle Kontexte von arrivalDate im Katalog (eCH-0011, -0020, -0093, -0098, -0148, -0194, -0201, -0223, -0278) gelten dem Zuzug in eine Gemeinde oder einem Meldeereignis; entryDate (residencePermitDataType) nur Personen mit Bewilligung. Kein Katalogelement nennt den Wohnsitzbeginn in der Schweiz; kein_standard bestätigt. Der Formulartext nennt die Angabe wörtlich."
+   }
+  },
+  {
+   "subfield_id": 464,
+   "form_id": 118,
+   "field_id": 324,
+   "elternfeld": "Personalien EhepartnerIn",
+   "teilfeld": "Zivilrechtlicher Wohnsitz in der Schweiz seit",
+   "bisher": {
+    "standard": "eCH-0011",
+    "element": "arrivalDate",
+    "kontext": "otherResidenceType"
+   },
+   "kein_standard": true,
+   "klasse": "anderes_ereignis",
+   "grund": "Die Angabe erfragt, seit wann die Person ihren zivilrechtlichen Wohnsitz in der Schweiz hat. eCH-0011 arrivalDate ist das Zuzugsdatum in der meldenden Gemeinde; wer innerhalb der Schweiz umgezogen ist, hat dort ein späteres Zuzugsdatum als den Beginn des Wohnsitzes in der Schweiz — eine andere Angabe. eCH-0011 entryDate gilt nur für die Aufenthaltsbewilligung von Ausländerinnen und Ausländern. Kein Element eines Standards mit Elementkatalog nennt den Beginn des Wohnsitzes in der Schweiz für alle Personen.",
+   "zitate": [
+    {
+     "form_id": 118,
+     "zitat": "Zivilrechtlicher Wohnsitz in der Schweiz seit"
+    }
+   ],
+   "zweitpruefung": {
+    "urteil": "bestaetigt",
+    "grund": "Gegenprobe: alle Kontexte von arrivalDate im Katalog (eCH-0011, -0020, -0093, -0098, -0148, -0194, -0201, -0223, -0278) gelten dem Zuzug in eine Gemeinde oder einem Meldeereignis; entryDate (residencePermitDataType) nur Personen mit Bewilligung. Kein Katalogelement nennt den Wohnsitzbeginn in der Schweiz; kein_standard bestätigt. Der Formulartext nennt die Angabe wörtlich."
+   }
+  },
+  {
+   "subfield_id": 5549,
+   "form_id": 171,
+   "field_id": 4094,
+   "elternfeld": "Bezug zu Schaffhausen",
+   "teilfeld": "Im Kanton Schaffhausen wohnhaft seit (Jahr) oder Atelier im Kanton Schaffhausen seit (Jahr)",
+   "bisher": {
+    "standard": "eCH-0011",
+    "element": "arrivalDate",
+    "kontext": "otherResidenceType"
+   },
+   "kein_standard": true,
+   "klasse": "anderes_ereignis",
+   "grund": "Das Teil erfragt ein Jahr: seit wann die Person im Kanton Schaffhausen wohnt oder seit wann sie dort ein Atelier hat — zwei Angaben in einem Teil. eCH-0011 arrivalDate ist das Zuzugsdatum in der meldenden Gemeinde, weder der Beginn des Wohnsitzes im Kanton noch der eines Ateliers; kein Element nennt diese Angabe.",
+   "zitate": [
+    {
+     "form_id": 171,
+     "zitat": "Im Kanton Schaffhausen wohnhaft seit (Jahr) oder Atelier im Kanton Schaffhausen seit (Jahr)"
+    }
+   ],
+   "zweitpruefung": {
+    "urteil": "bestaetigt",
+    "grund": "Gegenprobe: ein Zuzug innerhalb des Kantons verschiebt das Zuzugsdatum der Gemeinde, nicht den Beginn des Wohnsitzes im Kanton; das Atelier ist kein Eintrag des Einwohnerregisters. kein_standard bestätigt."
+   }
+  }
+ ],
+ "geprueft_belassen": [
+  {
+   "form_id": 209,
+   "punkt": "Frühere Wohnorte › PLZ / Ort / Strasse",
+   "element": "eCH-0010 swissZipCode / town / street",
+   "grund": "Element stimmt; die Zeitregel von scripts/register_map.py hält den Punkt von der Vorbefüllung fern (eCH-0010 beschreibt jede Postadresse, auch eine frühere; das Formular fragt «Frühere Wohnorte (bis 10 Jahre zurück)»)."
+  },
+  {
+   "form_id": 214,
+   "punkt": "Personalien › Adresse(n) während der letzten zwei Jahre (ebenso 215, 216, 220, 228)",
+   "element": "eCH-0010 addressInformation",
+   "grund": "Element stimmt; die Zeitregel von scripts/register_map.py hält den Punkt von der Vorbefüllung fern (eine oder mehrere Postadressen eines Zeitraums)."
+  },
+  {
+   "form_id": 289,
+   "punkt": "Aufenthalte in der Schweiz › Wohnort / Kanton; Aufenthalte im Ausland › Wohnort / Land",
+   "element": "eCH-0011 municipalityName (swissMunicipalityWithoutBFS) / eCH-0010 town",
+   "grund": "Element stimmt; die Zeitregel von scripts/register_map.py hält den Punkt von der Vorbefüllung fern (Name eines Orts)."
+  },
+  {
+   "form_id": 34,
+   "punkt": "Früherer Wohnort › bis (Datum) (ebenso 37, 464)",
+   "element": "eCH-0011 departureDate",
+   "grund": "Element stimmt; die Zeitregel von scripts/register_map.py hält den Punkt von der Vorbefüllung fern (Wegzugsdatum aus dem früheren Wohnort; der heutige Eintrag hält es nicht)."
+  },
+  {
+   "form_id": 238,
+   "punkt": "Personalien › Neue Adresse bei Um-/Wegzug; Neue Adresse gültig ab",
+   "element": "eCH-0011 goesTo / dwellingAddressValidFrom",
+   "grund": "Element stimmt; die Zeitregel von scripts/register_map.py hält den Punkt von der Vorbefüllung fern (ein künftiger Wert)."
+  },
+  {
+   "form_id": 149,
+   "punkt": "Änderung Zivilstand › Zivilstand neu",
+   "element": "eCH-0011 maritalStatus",
+   "grund": "Element stimmt; die Zeitregel von scripts/register_map.py hält den Punkt von der Vorbefüllung fern (ein Wert nach der Änderung)."
+  },
+  {
+   "form_id": 362,
+   "punkt": "Änderung Personalien der Geschäftsinhaberin/des Geschäftsinhabers › Privatadresse, Heimatort / Land",
+   "element": "eCH-0010 personMailAddress / eCH-0011 originName",
+   "grund": "Element stimmt; die Zeitregel von scripts/register_map.py hält den Punkt von der Vorbefüllung fern (Werte nach der Änderung)."
+  },
+  {
+   "form_id": 171,
+   "punkt": "Personalien › Kontaktadresse/Telefon (bei Abwesenheit)",
+   "element": "eCH-0011 contactAddress",
+   "grund": "Element stimmt; die Zeitregel von scripts/register_map.py hält den Punkt von der Vorbefüllung fern (Adresse für die Zeit einer Abwesenheit)."
+  },
+  {
+   "form_id": 510,
+   "punkt": "Trennung/Scheidung seit",
+   "element": "eCH-0011 dateOfMaritalStatus",
+   "grund": "Element stimmt; die Zeitregel von scripts/register_map.py hält den Punkt von der Vorbefüllung fern (eine Trennung ändert den Zivilstand nicht; für Geschiedene stimmt das Element)."
+  },
+  {
+   "form_id": 146,
+   "punkt": "Datum Verstorben (Mutation der Bezügerdaten)",
+   "element": "eCH-0011 deathDate",
+   "grund": "Element stimmt (Todesdatum der beziehenden Person); das Todesdatum füllt die Zeitregel nie aus dem Profil der einreichenden Person."
+  },
+  {
+   "form_id": 512,
+   "punkt": "Seit (nur wenn geschieden, gerichtlich getrennt, verwitwet oder Partnerschaft aufgelöst)",
+   "element": "eCH-0011 dateOfMaritalStatus",
+   "grund": "Element stimmt für Geschiedene, Verwitwete und aufgelöste Partnerschaften; die Bezeichnung trägt nur «seit» — vorbefüllbar bleibt der Punkt nach der Zeitregel."
+  },
+  {
+   "form_id": 238,
+   "punkt": "Lebensmittelpunkt",
+   "element": "eCH-0011 mainResidence",
+   "grund": "Belassen: das RHG umschreibt die Niederlassungsgemeinde als Gemeinde, in der sich eine Person aufhält, «um dort den Mittelpunkt ihres Lebens zu begründen» (Art. 3 lit. b, quellen/register/fedlex_rhg.txt); ob die Frage des Fragebogens zum internationalen Wochenaufenthalt dieselbe Angabe meint, ist offen."
+  },
+  {
+   "form_id": 115,
+   "punkt": "Personalien › Zivilrechtlicher Wohnsitz in der Schweiz",
+   "element": "eCH-0011 hasMainResidence",
+   "grund": "Belassen: ohne «seit» fragt das Teil nach dem Wohnsitz selbst (Ort), den hasMainResidence hält."
+  },
+  {
+   "form_id": 497,
+   "punkt": "Dauer des Aufenthaltes › von / bis",
+   "element": "eCH-0011 residencePermitValidFrom / ValidTill",
+   "grund": "Belassen: im Gesuch um eine Bewilligung ist die beabsichtigte Dauer die Gültigkeit der beantragten Bewilligung; die Zeitregel lässt den Punkt nicht vorbefüllen (Dauer)."
+  },
+  {
+   "form_id": 153,
+   "punkt": "Personen im Haushalt",
+   "element": "eCH-0011 householdID",
+   "grund": "Belassen: die Definition nennt die Personen im Haushalt «gemäss Einwohnerkontrolle» (Haushaltszugehörigkeit)."
+  },
+  {
+   "form_id": 182,
+   "punkt": "Datum der Ausreise",
+   "element": "eCH-0011 departureDate",
+   "grund": "Belassen und vorbefüllbar: das Element nennt das Wegzugs- bzw. Ausreisedatum; der Eintrag hält es erst nach der Abmeldung, sonst bleibt das Feld leer."
+  },
+  {
+   "form_id": 498,
+   "punkt": "Wegzug aus dieser Gemeinde seit",
+   "element": "eCH-0011 departureDate",
+   "grund": "Belassen und vorbefüllbar: das Element nennt das Wegzugsdatum aus der Gemeinde."
+  }
+ ]
+}

@@ -234,7 +234,7 @@ ROLLEN = [
     ("betroffene_person", "betroffene Person", "natuerliche_person", False,
      "Die Person, um die es im Formular geht, wenn das Formular sie nicht als einreichende Person bezeichnet: "
      "versicherte Person, Patient/in, Schüler/in, untersuchte Person, Opfer. Sie kann zugleich die einreichende "
-     "Person sein; das klärt Stufe B2."),
+     "Person sein; ob sie es ist, steht je Formular."),
     ("verstorbene", "verstorbene Person", "natuerliche_person", True,
      "Eine verstorbene Person (Erblasser/in)."),
     ("dritte", "weitere beteiligte Person", "offen", False,
@@ -242,7 +242,7 @@ ROLLEN = [
      "Begleitperson, Drittperson, Erbin/Erbe, Täter/in, Finder/in."),
     ("versicherung", "Versicherung oder Kasse", "offen", False,
      "Eine Versicherung oder Kasse: Ausgleichskasse, IV-Stelle, Krankenversicherer, Unfallversicherer, "
-     "Vorsorgeeinrichtung, Arbeitslosenkasse. Ihre Entität folgt dem Subjekt des Felds (eine Ausgleichskasse "
+     "Vorsorgeeinrichtung, Arbeitslosenkasse. Ihre Art (Organisation oder Behörde) folgt dem Subjekt des Felds (eine Ausgleichskasse "
      "ist eine öffentliche Stelle)."),
     ("behoerde", "Behörde/Amt", "behoerde", True,
      "Eine Behörde, ein Amt, eine Gemeinde oder eine andere öffentliche Stelle, nach der das Formular fragt."),
@@ -277,13 +277,15 @@ ATTRIBUT_ROLLEN = {"arbeitgeber", "versicherung", "betrieb", "behoerde"}
 
 REGELN = ("rolle_begriff", "wort_bezeichnung", "wort_abschnitt", "subjekt", "definition")
 REGEL_LABEL = {
-    "rolle_begriff": "Die Namensprüfung (Begriffe) liest die Bezeichnung als Rolle",
+    "rolle_begriff": "Die Prüfung der Bezeichnungen (Begriffe) liest die Bezeichnung als Rolle",
     "wort_bezeichnung": "Die Bezeichnung nennt die Partei",
     "wort_abschnitt": "Der Abschnitt nennt die Partei",
     "subjekt": "Das Feld ist als Angabe einer Behörde beurteilt (Subjekt)",
     "definition": "Die Definition der Ja/Nein-Angabe nennt die einreichende Person",
 }
 REGEL_TEXT = {k: v + ": «{w}»" for k, v in REGEL_LABEL.items()}
+# the code «urteil»: the reason is the one written per point when the Formular text was judged
+URTEIL_LABEL = "aus dem Formulartext beurteilt — der Grund steht je Datenpunkt"
 UNKLAR_GRUENDE = {
     "kein_hinweis": "Weder Bezeichnung noch Abschnitt noch Rolle nennen eine Partei",
     "personalien_ohne_rolle": "Personenangabe ohne Rollenwort: sie kann der einreichenden Person oder einer "
@@ -298,13 +300,13 @@ UNKLAR_GRUENDE = {
     "nicht_parteiangabe": "Die Angabe steht im Abschnitt einer Partei, ist aber keine Personen-, Adress- oder "
                           "Kontaktangabe dieser Partei",
     "entitaet": "Die Rolle passt nicht zur Art der Angabe (Person, Organisation, Sache)",
-    "subjekt": "Die Rolle widerspricht dem beurteilten Subjekt des Felds (Kandidat für die Zweitprüfung des Subjekts)",
+    "subjekt": "Die Rolle widerspricht dem beurteilten Subjekt des Felds",
     "kontext": "Das Wort braucht einen Bezug, den das Formular nicht nennt (z. B. Gläubiger/in: einreichende "
                "Partei eines Begehrens oder Gegenpartei)",
     "sache_ohne_gegenstand": "Angabe zu einer Sache oder einem Ort ohne Wort für einen Gegenstand",
     "arbeitsort": "Adress- oder Kontaktangabe im Abschnitt zu Erwerb oder Ausbildung: sie kann der Person oder "
                   "ihrem Arbeitgeber bzw. ihrer Schule gehören",
-    "urteil": "Stufe B2: {w}",
+    "urteil": "{w}",            # the reason written per point in the judgement from the Formular text
 }
 
 # ---------------------------------------------------------------------------
@@ -1328,6 +1330,24 @@ def _punkt_key(p):
     return f"{p['data_field_id']}" + (f"|{p['teil']}" if p["teil"] else "")
 
 
+# the reason of an «unklar» point as the reader sees it: the judged verdict (partei_urteil, kept as
+# loaded) sometimes names the next step of the review («Kandidat für die Zweitprüfung des Subjekts»,
+# «das Subjekt zuerst in der Zweitprüfung prüfen») or says «Entität»; the derived reason describes
+# the contradiction only — the subjekt question itself is counted and listed elsewhere
+LESER_WORTLAUT = (
+    (r"\s*—\s*Kandidat für die Zweitprüfung des Subjekts", ""),
+    (r"\s*—\s*das Subjekt zuerst in der Zweitprüfung prüfen\.?", "."),
+    (r",\s*darum zuerst das Subjekt in der Zweitprüfung klären", ""),
+    (r"\bdie Entität passt nicht\b", "die Art der Partei passt nicht dazu"),
+)
+
+
+def leser_grund(t):
+    for muster, ersatz in LESER_WORTLAUT:
+        t = re.sub(muster, ersatz, t)
+    return re.sub(r"\.\.+$", ".", t).strip()
+
+
 def urteil_anwenden(urteil, ps):
     """A loaded B2 verdict for the current points of its Formular, or None when
     it no longer covers exactly these points (then B1 applies and the verdict
@@ -1343,10 +1363,10 @@ def urteil_anwenden(urteil, ps):
         x = punkte_u[_punkt_key(p)]
         if x.get("partei") is not None:
             res.append({"status": "zugeordnet", "partei_nr": x["partei"],
-                        "grund": "Stufe B2: " + (x.get("beleg") or "Zuordnung aus dem Formulartext")})
+                        "grund": "Aus dem Formulartext: " + (x.get("beleg") or "Zuordnung aus dem Formulartext")})
         else:
             res.append({"status": "unklar", "partei_nr": None, "grund_code": "urteil",
-                        "grund": UNKLAR_GRUENDE["urteil"].format(w=x["unklar"])})
+                        "grund": UNKLAR_GRUENDE["urteil"].format(w=leser_grund(x["unklar"]))})
     return parteien, res
 
 
@@ -1678,7 +1698,7 @@ def parteien_anhaengen(conn, forms):
                     z["grund"][a["grund_code"]] = z["grund"].get(a["grund_code"], 0) + 1
     return {"rollen": x["rollen"], "zahlen": z,
             "regeln": dict(REGEL_LABEL),
-            "gruende": {k: v.split(":")[0] if k == "urteil" else v for k, v in UNKLAR_GRUENDE.items()}}
+            "gruende": {k: URTEIL_LABEL if k == "urteil" else v for k, v in UNKLAR_GRUENDE.items()}}
 
 
 # ---------------------------------------------------------------------------

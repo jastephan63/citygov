@@ -20,7 +20,15 @@ verlauf.json) and the script ends with one line «ABBRUCH …» and exit code 1:
   * the export would carry a local file path, or an unreviewed «Datum» in the
     databank's own naming/basis texts;
   * the change-impact index does not hold its invariants (wirkung.pruefen: every
-    count against the citations, the units and the Dienststellen of this export).
+    count against the citations, the units and the Dienststellen of this export);
+  * the concept layer does not hold its invariants (konzepte.pruefen: the curated
+    quellen/konzepte.json, the members against the eCH catalogue, every cell and
+    every Formular against the units of this export and the parties read a second
+    way from the databank), or quellen/konzepte.json is malformed;
+  * the figures of the pages «Datenmodell» and «Was Register schon wissen» do not add
+    up (_datenmodell: per role, per Dienststelle, the register groups against the
+    catalogue, vorbefüllbar against vorbefuellung), a register has no group, or the
+    audit sample quellen/parteien_stichprobe_2026-10-05.json is malformed.
 
     python3 scripts/export_json.py
 """
@@ -35,6 +43,7 @@ import gestaltung_export                # the Gestaltung of the Formulare (stand
 import rollen as ROLLEN_SCHICHT         # Parteien und Rollen: whose Angabe each data point is (standard library only)
 import wirkung                          # the change-impact index per law and article (standard library only)
 import register_map                     # registers that already hold Angaben and Beilagen (standard library only)
+import konzepte                         # one preferred element per Angabe and role (standard library only)
 
 
 # «the same datum»: what may be compared across forms (Standard-Divergenzen)
@@ -765,6 +774,10 @@ def _summen_pruefen(data):
                "Summe von burden.prefillable_bisher")
         gleich("vorbefuellung.korrigiert", VB["korrigiert"],
                VB["bisher"] - sum(VB["ausgeschlossen"].values()) + VB["hinzu"], "bisher − Σ ausgeschlossen + hinzu")
+        gleich("vorbefuellung.n_ausgeschlossen", VB.get("n_ausgeschlossen"), sum(VB["ausgeschlossen"].values()),
+               "Σ ausgeschlossen")
+        gleich("vorbefuellung.gruende", sorted(VB.get("gruende") or {}), sorted(VB["ausgeschlossen"]),
+               "ein deutscher Text je Grund von ausgeschlossen")
         gleich("vorbefuellung.minuten_korrigiert", VB["minuten_korrigiert"], round(sum(b["minutes_saved"] for b in bu), 1),
                "Summe von burden.minutes_saved")
     P = (data.get("parteien") or {}).get("zahlen")
@@ -800,6 +813,25 @@ def _summen_pruefen(data):
                    sum(x.get("pflicht", 0) for x in je), "Summe über forms[].register.je_register")
             gleich(f"register.katalog[{k['code']}].zahlen.beilagen", k["zahlen"]["beilagen"],
                    sum(x.get("beilagen", 0) for x in je), "Summe über forms[].register.je_register")
+    # the concept layer (konzepte.pruefen holds its own invariants): its totals are the
+    # sums over the Formulare, and it counts only data points with a checked eCH element
+    KZ_ = data.get("konzepte")
+    if KZ_ is not None:
+        S_ = KZ_["summen"]
+        fk = [fm.get("konzepte") or {} for fm in forms]
+        for key, teil in (("n_punkte", "n_punkte"), ("n_punkte_in_vorschlag_zellen", "n_mit_vorschlag"),
+                          ("n_punkte_vorschlag", "n_vorschlag"), ("n_abweichend", "n_abweichend"),
+                          ("n_punkte_in_kanton_zellen", "n_ohne_vorschlag"), ("n_ohne_rolle", "n_ohne_rolle"),
+                          ("n_andere_entitaet", "n_andere_entitaet"), ("n_zuordnung_falsch", "n_zuordnung_falsch")):
+            gleich(f"konzepte.summen.{key}", S_[key], sum(x.get(teil, 0) for x in fk), f"Summe von forms[].konzepte.{teil}")
+        gleich("konzepte.summen.n_formulare", S_["n_formulare"], sum(1 for x in fk if x.get("n_punkte")),
+               "Formulare mit Datenpunkten in einem Konzept")
+        gleich("konzepte.summen.n_abweichend_formulare", S_["n_abweichend_formulare"],
+               sum(1 for x in fk if x.get("n_abweichend")), "Formulare mit Abweichung")
+        if S_["n_punkte"] > E["ech"].get("element", 0) or S_["n_zuordnung_falsch"] > E["teile"]["zuordnung_falsch"]:
+            fehler.append(f"konzepte.summen: {S_['n_punkte']} Datenpunkte / {S_['n_zuordnung_falsch']} falsch "
+                          f"zugeordnete über kopfzahlen.standard_ech ({E['ech'].get('element', 0)} / "
+                          f"{E['teile']['zuordnung_falsch']})")
     # (6) the same figure from a second source
     if not SKIPPED_LAYERS:
         # this run's snapshot: the newest entry (uebersichten() has just upserted it)
@@ -830,6 +862,385 @@ def _summen_pruefen(data):
     if fehler:
         raise RuntimeError(f"{len(fehler)} Kennzahl(en) gehen nicht auf: " + " | ".join(fehler[:12])
                            + (f" | … und {len(fehler) - 12} weitere" if len(fehler) > 12 else ""))
+
+
+# ---- Datenmodell & Once-Only: the figures of the pages #datenmodell and #onceonly -----------
+# The two pages, the panels «Parteien» and «Was Register schon wissen» of a Formular and the
+# section of a Dienststelle's briefing only draw. What they show beyond the blocks of the layers
+# (parteien, konzepte, wirkung, register, vorbefuellung) is counted here, once, from the units of
+# this export, and checked before anything is written. Nothing here enters kopfzahlen, the
+# Handlungsbedarf or the Dienststellen figures of the data standard.
+STICHPROBE_DATEI = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                                "quellen", "parteien_stichprobe_2026-10-05.json")
+# the register catalogue in groups of the page #onceonly (one door each); every register of the
+# catalogue stands in exactly one group — a new register stops the export until it has one
+REGISTER_GRUPPEN = (
+    ("einwohner", "Einwohnerregister", "Was führt das Einwohnerregister über die Personen eines Formulars?",
+     ("einwohnerregister",)),
+    ("unternehmen", "Unternehmen", "Was halten UID-Register, Handelsregister und BUR über ein Unternehmen?",
+     ("uid_register", "handelsregister", "bur")),
+    ("gebaeude", "Gebäude und Grundstücke",
+     "Was halten Gebäude- und Wohnungsregister, Grundbuch, amtliche Vermessung und Gebäudeversicherung?",
+     ("gwr", "grundbuch", "amtliche_vermessung", "gebaeudeversicherung")),
+    ("steuern", "Steuern", "Was hält das Steuerregister des Kantons?", ("steuerregister",)),
+    ("fahrzeuge", "Fahrzeuge", "Was hält das Informationssystem Verkehrszulassung über Fahrzeuge und ihre Halter?",
+     ("ivz",)),
+    ("zivilstand", "Zivilstand", "Was hält das Standesregister Infostar über Geburt, Ehe, Kindesverhältnis und Tod?",
+     ("infostar",)),
+    ("weitere", "Weitere Register",
+     "Was halten AHV-Register, Migrationssystem, Strafregister, Betreibungsregister und die Register zu "
+     "Landwirtschaft und Tieren?",
+     ("ahv_versichertenregister", "zemis", "vostra", "betreibungsregister", "agis", "tvd", "hundedatenbank")),
+)
+# the roles of the applicant's family and household: their Angaben carry the Einwohnerregister
+# mark like the applicant's own, but are not prefilled until the canton decides (spec part B);
+# «haushalt» is a flatmate, not a relative — the group is named for both
+FAMILIE_ROLLEN = ("ehepartner", "kind", "elternteil", "angehoerige", "haushalt")
+FAMILIE_LABEL = "Familienangehörige und weitere Personen im Haushalt"
+# parties per Formular, in classes (the distribution of the page)
+PARTEI_KLASSEN = ((0, 0, "keine Partei"), (1, 1, "1 Partei"), (2, 2, "2 Parteien"), (3, 3, "3 Parteien"),
+                  (4, 4, "4 Parteien"), (5, 5, "5 Parteien"), (6, 9, "6 bis 9 Parteien"),
+                  (10, None, "10 und mehr Parteien"))
+KENNUNG_ARTEN = ("service", "formular", "feld", "teilfeld", "angabe", "gesetz", "artikel", "regel")
+
+
+def _stichprobe(forms, rollen_codes):
+    """The audit sample of the party layer (quellen/parteien_stichprobe_2026-10-05.json): each
+    sampled data point against today's assignment. «wie_pruefung» = assigned today to a role
+    the audit holds correct; a point that changed since the audit is counted apart, never as
+    correct. Raises RuntimeError on a malformed file."""
+    from common import norm_ascii
+    with open(STICHPROBE_DATEI, encoding="utf-8") as fh:
+        doc = json.load(fh)
+    urteile, schichten = doc.get("urteile") or {}, (doc.get("ziehung") or {}).get("schichten") or {}
+    unit = {}
+    for fm in forms:
+        for d in fm.get("data_fields") or []:
+            subs = [x for x in (d.get("subfields") or []) if isinstance(x, dict)]
+            for u in (subs or [d]):
+                unit[(d["id"], norm_ascii(u.get("name")) if subs else "")] = (fm, u)
+    damals = {k: {u: 0 for u in urteile} for k in schichten}
+    heute = {"zugeordnet": 0, "zugeordnet_wie_pruefung": 0, "zugeordnet_anders": 0, "unklar": 0,
+             "unklar_wie_pruefung": 0, "unklar_klaerbar": 0, "unklar_grenzfall": 0, "unklar_statt_zuordnung": 0,
+             "fehlt": 0}
+    fehler = []
+    for p in doc.get("punkte") or []:
+        sch, urt, rollen = p.get("schicht"), p.get("urteil"), p.get("rollen")
+        if sch not in schichten or urt not in urteile:
+            fehler.append(f"Punkt {p.get('data_field_id')}|{p.get('teil')}: Schicht oder Urteil unbekannt")
+            continue
+        if rollen is not None and (not isinstance(rollen, list) or any(r not in rollen_codes for r in rollen)):
+            fehler.append(f"Punkt {p.get('data_field_id')}|{p.get('teil')}: Rolle nicht in der Rollenliste")
+            continue
+        damals[sch][urt] += 1
+        hit = unit.get((p.get("data_field_id"), p.get("teil") or ""))
+        if not hit or hit[0]["id"] != p.get("form_id"):
+            heute["fehlt"] += 1
+            continue
+        fm, u = hit
+        pa = u.get("partei") or {}
+        if pa.get("status") == "zugeordnet":
+            heute["zugeordnet"] += 1
+            rolle = next((x.get("rolle") for x in fm.get("parteien") or [] if x.get("nr") == pa.get("nr")), None)
+            heute["zugeordnet_wie_pruefung" if rollen and rolle in rollen else "zugeordnet_anders"] += 1
+        else:
+            heute["unklar"] += 1
+            heute[{"offen": "unklar_wie_pruefung", "falsch": "unklar_wie_pruefung", "klaerbar": "unklar_klaerbar",
+                   "grenzfall": "unklar_grenzfall"}.get(urt, "unklar_statt_zuordnung")] += 1
+    n = len(doc.get("punkte") or [])
+    if sum(sum(v.values()) for v in damals.values()) != n or sum(v["gezogen"] for v in schichten.values()) != n:
+        fehler.append(f"{n} Punkte, aber die Schichten nennen {sum(v['gezogen'] for v in schichten.values())}")
+    if fehler:
+        raise RuntimeError("Stichprobe der Parteien (quellen/parteien_stichprobe_2026-10-05.json): " + " | ".join(fehler[:5]))
+    gesamt = {u: sum(v[u] for v in damals.values()) for u in urteile}
+    gesamt["zugeordnet"] = sum(sum(v.values()) for k, v in damals.items() if k != "unklar")
+    gesamt["unklar"] = sum(damals["unklar"].values()) if "unklar" in damals else 0
+    return {"stand": doc.get("stand"), "startwert": (doc.get("ziehung") or {}).get("startwert"),
+            "grundgesamtheit": (doc.get("ziehung") or {}).get("grundgesamtheit"), "n": n,
+            "schichten": {k: {"gezogen": v["gezogen"], "bestand": v["bestand"], "text": v.get("text")}
+                          for k, v in schichten.items()},
+            "urteile": urteile, "damals": damals, "damals_gesamt": gesamt, "heute": heute,
+            "quelle": "quellen/" + os.path.basename(STICHPROBE_DATEI)}
+
+
+def _datenmodell(conn, data):
+    """data["datenmodell"]: per role, parties per Formular, how the party layer was made and
+    checked, the permanent identifiers per kind, the register groups of #onceonly, the
+    Einwohnerregister Angaben of other parties (the canton's open decision), access per
+    register, and per Dienststelle the figures of its briefing. Every figure is checked
+    against its layer before it is returned (RuntimeError names the one that is off)."""
+    forms, P, RG, VB = data["forms"], data.get("parteien") or {}, data.get("register"), data.get("vorbefuellung") or {}
+    fehler = []
+
+    def units(fm):
+        for d in fm.get("data_fields") or []:
+            for u in _units(d):
+                yield d, u
+
+    def partei(fm, u):
+        pa = u.get("partei") or {}
+        if pa.get("status") != "zugeordnet":
+            return None
+        return next((x for x in fm.get("parteien") or [] if x.get("nr") == pa.get("nr")), None)
+
+    out = {}
+    # (1) parties: per role, per Formular, and how the layer was made and checked
+    if P.get("rollen"):
+        Z = P["zahlen"]
+        je = {r["code"]: {"parteien": 0, "formulare": set(), "punkte": 0} for r in P["rollen"]}
+        for fm in forms:
+            for p in fm.get("parteien") or []:
+                if p.get("rolle") not in je:
+                    fehler.append(f"Formular {fm['id']}: Rolle {p.get('rolle')} nicht in der Rollenliste")
+                    continue
+                je[p["rolle"]]["parteien"] += 1
+                je[p["rolle"]]["formulare"].add(fm["id"])
+            for d, u in units(fm):
+                p = partei(fm, u)
+                if p and p.get("rolle") in je:
+                    je[p["rolle"]]["punkte"] += 1
+        rollen = {c: {"parteien": z["parteien"], "formulare": len(z["formulare"]), "punkte": z["punkte"]}
+                  for c, z in je.items()}
+        if sum(z["punkte"] for z in rollen.values()) != Z["zugeordnet"]:
+            fehler.append(f"Punkte je Rolle {sum(z['punkte'] for z in rollen.values())} statt {Z['zugeordnet']} zugeordnet")
+        n_par = [len(fm.get("parteien") or []) for fm in forms]
+        verteilung = [{"von": a, "bis": b, "label": t,
+                       "formulare": sum(1 for n in n_par if n >= a and (b is None or n <= b))}
+                      for a, b, t in PARTEI_KLASSEN]
+        if sum(v["formulare"] for v in verteilung) != len(forms):
+            fehler.append("Verteilung der Parteien je Formular summiert nicht zu den Formularen")
+        beurteilt = {r[0] for r in conn.execute("SELECT form_id FROM partei_urteil")}
+        zp = {}
+        for urteil, fid in conn.execute("SELECT urteil, item_id FROM panel_review WHERE kind='partei'"):
+            if fid in beurteilt:
+                zp[urteil] = zp.get(urteil, 0) + 1
+        mit = {fm["id"] for fm in forms if fm.get("parteien")}
+        # the Formulare with data points that were never judged from their text keep stage B1 alone
+        # (with or without a party: a Formular whose one point stays «unklar» has none)
+        mit_punkten = {fm["id"] for fm in forms if any(True for _ in units(fm))}
+        n_urteil_unklar = Z["grund"].get("urteil", 0)
+        methode = {
+            "formulare": len(forms), "formulare_mit_partei": len(mit), "formulare_beurteilt": len(beurteilt & mit),
+            "formulare_nur_regel": len(mit_punkten - beurteilt),
+            "formulare_nur_regel_ohne_partei": len(mit_punkten - beurteilt - mit),
+            "zweitpruefung": {"bestaetigt": zp.get("bestaetigt", 0), "geaendert": zp.get("geaendert", 0),
+                              "ohne": len(beurteilt & mit) - sum(zp.values())},
+            "punkte_regel": {"zugeordnet": sum(Z["regel"].values()), "unklar": Z["unklar"] - n_urteil_unklar},
+            "punkte_urteil": {"zugeordnet": Z["aus_urteil"] - n_urteil_unklar, "unklar": n_urteil_unklar},
+            "stufen": {"regel": "Übernommen wird, was die Hinweise der Databank eindeutig sagen: die Rolle aus der "
+                                "Prüfung der Bezeichnungen, ein Wort für die Partei in der Bezeichnung oder im "
+                                "Abschnitt, das beurteilte Subjekt des Felds",
+                       "urteil": "Je Formular trägt jede Partei und jede Zuordnung ein wörtliches Zitat, das im Text "
+                                 "des Formulars stehen muss (PDF-Textschicht, Word- oder Excel-Inhalt, "
+                                 "DVSH-Formulardefinition)"},
+            "stichprobe": _stichprobe(forms, set(je)),
+        }
+        if methode["punkte_regel"]["zugeordnet"] + methode["punkte_urteil"]["zugeordnet"] != Z["zugeordnet"]:
+            fehler.append("Methode: zugeordnet aus Regel + aus Urteil ≠ zugeordnet")
+        out["parteien"] = {"rollen": rollen, "verteilung": verteilung, "methode": methode,
+                           "n_parteien": sum(n_par)}
+    # per Formular: its data points by party status (the summary of its panel «Parteien») and per
+    # party (n_punkte on each fm.parteien entry): the parties' points sum to «zugeordnet»
+    for fm in forms:
+        z = {"punkte": 0, "zugeordnet": 0, "unklar": 0, "offen": 0}
+        je_nr = {p.get("nr"): 0 for p in fm.get("parteien") or []}
+        for d, u in units(fm):
+            z["punkte"] += 1
+            pa = u.get("partei") or {}
+            z[pa.get("status") or "offen"] += 1
+            if pa.get("status") == "zugeordnet" and pa.get("nr") in je_nr:
+                je_nr[pa["nr"]] += 1
+        for p in fm.get("parteien") or []:
+            p["n_punkte"] = je_nr.get(p.get("nr"), 0)
+        if sum(je_nr.values()) != z["zugeordnet"]:
+            fehler.append(f"Formular {fm['id']}: die Datenpunkte je Partei ergeben {sum(je_nr.values())}, "
+                          f"zugeordnet sind {z['zugeordnet']}")
+        fm["partei_zahlen"] = z
+    # (2) permanent identifiers: active ones per kind, and how many are no longer active
+    kn = {a: 0 for a in KENNUNG_ARTEN}
+    nicht_aktiv = {}
+    for art, status, n in conn.execute("SELECT art, status, COUNT(*) FROM kennung GROUP BY art, status"):
+        if status == "aktiv":
+            kn[art] = kn.get(art, 0) + n
+        else:
+            nicht_aktiv[status] = nicht_aktiv.get(status, 0) + n
+    out["kennungen"] = {"aktiv": kn, "n_aktiv": sum(kn.values()), "nicht_aktiv": nicht_aktiv}
+    # (3) register groups, the Angaben of other parties, access per register
+    if RG is not None:
+        codes = [k["code"] for k in RG["katalog"]]
+        in_gruppen = [c for g in REGISTER_GRUPPEN for c in g[3]]
+        if sorted(in_gruppen) != sorted(codes):
+            raise RuntimeError("Register-Gruppen (export_json.REGISTER_GRUPPEN) decken den Katalog nicht genau: "
+                               f"ohne Gruppe {sorted(set(codes) - set(in_gruppen))}, "
+                               f"nicht im Katalog {sorted(set(in_gruppen) - set(codes))}")
+        kat = {k["code"]: k for k in RG["katalog"]}
+        gruppen = []
+        for key, label, frage, cs in REGISTER_GRUPPEN:
+            cs_ = set(cs)
+            z = {"punkte": 0, "pflicht": 0, "formulare": set(), "beilagen": 0, "beilagen_ersetzbar": 0,
+                 "formulare_beilagen": set()}
+            for fm in forms:
+                for d, u in units(fm):
+                    if cs_ & set((u.get("register_bezug") or {}).get("bestaetigt") or []):
+                        z["punkte"] += 1
+                        z["pflicht"] += bool(d.get("required"))
+                        z["formulare"].add(fm["id"])
+                for b in fm.get("beilagen") or []:
+                    if cs_ & {r.get("register") for r in b.get("register") or []}:
+                        z["beilagen"] += 1
+                        z["beilagen_ersetzbar"] += not b.get("register_ersetzt_nicht")
+                        z["formulare_beilagen"].add(fm["id"])
+            g = {"key": key, "label": label, "frage": frage, "register": list(cs),
+                 **{k: (len(v) if isinstance(v, set) else v) for k, v in z.items()}}
+            if len(cs) == 1 and g["punkte"] != kat[cs[0]]["zahlen"]["bestaetigt"]:
+                fehler.append(f"Register-Gruppe {key}: {g['punkte']} statt {kat[cs[0]]['zahlen']['bestaetigt']} bestätigt")
+            if len(cs) == 1:
+                # whose Angaben the confirmed ones are (registers about persons and organisations):
+                # the applicant, another party, open (unklar, or the applicant as «Person oder Organisation»)
+                zz = kat[cs[0]]["zahlen"]
+                tz = {"eigene": zz.get("eigene_partei", 0), "andere": zz.get("andere_partei", 0),
+                      "unklar": zz.get("partei_unklar", 0), "art_offen": zz.get("partei_art_offen", 0)}
+                if any(tz.values()):
+                    g["partei"] = tz
+                    if sum(tz.values()) != g["punkte"]:
+                        fehler.append(f"Register-Gruppe {key}: eigene + andere + unklar + Art offen = "
+                                      f"{sum(tz.values())} statt {g['punkte']} bestätigt")
+            if key == "einwohner":
+                vf = {"pflicht": 0, "alle": 0, "formulare": set()}
+                for fm in forms:
+                    for d, u in units(fm):
+                        if u.get("vorbefuellbar"):
+                            vf["alle"] += 1
+                            if d.get("required"):
+                                vf["pflicht"] += 1
+                                vf["formulare"].add(fm["id"])
+                g["vorbefuellbar"] = {"pflicht": vf["pflicht"], "alle": vf["alle"], "formulare": len(vf["formulare"]),
+                                      "minuten": VB.get("minuten_korrigiert")}
+                if VB and vf["pflicht"] != VB.get("korrigiert"):
+                    fehler.append(f"vorbefüllbar {vf['pflicht']} statt vorbefuellung.korrigiert {VB.get('korrigiert')}")
+            gruppen.append(g)
+        out["register_gruppen"] = gruppen
+        # Einwohnerregister Angaben of a named party other than the applicant: the canton decides
+        # whether the register may deliver them (family members first)
+        je_r, fam = {}, {"punkte": 0, "pflicht": 0, "formulare": set()}
+        for fm in forms:
+            for d, u in units(fm):
+                if not u.get("register"):
+                    continue
+                p = partei(fm, u)
+                if not p or p.get("rolle") == "gesuchsteller":
+                    continue
+                je_r[p["rolle"]] = je_r.get(p["rolle"], 0) + 1
+                if p["rolle"] in FAMILIE_ROLLEN:
+                    fam["punkte"] += 1
+                    fam["pflicht"] += bool(d.get("required"))
+                    fam["formulare"].add(fm["id"])
+        out["einwohnerregister_andere"] = {
+            "je_rolle": dict(sorted(je_r.items(), key=lambda x: (-x[1], x[0]))), "punkte": sum(je_r.values()),
+            "familie": {"label": FAMILIE_LABEL, "rollen": list(FAMILIE_ROLLEN), "punkte": fam["punkte"],
+                        "pflicht": fam["pflicht"], "formulare": len(fam["formulare"])}}
+        GS = RG["gesamt"]
+        fr = [fm.get("register") or {} for fm in forms]
+        out["modell"] = {"pflicht": sum(x.get("pflicht_bestaetigt", 0) for x in fr),
+                         "beilagen": sum(x.get("beilagen", 0) for x in fr), "minuten": GS["minuten_modell"]}
+        out["beilagen"] = {"register": GS["beilagen_register"],
+                           "ersetzbar": sum(1 for fm in forms for b in fm.get("beilagen") or []
+                                            if b.get("register") and not b.get("register_ersetzt_nicht"))}
+        # the Beilagen per register, grouped by their wording: how often, on which Formulare, and
+        # per reason how many of them a fetch would not replace (a flag of one is never shown for all)
+        je = {}
+        for fm in forms:
+            for b in fm.get("beilagen") or []:
+                for r in b.get("register") or []:
+                    x = je.setdefault(r["register"], {}).setdefault(
+                        b.get("bezeichnung") or "", {"bezeichnung": b.get("bezeichnung") or "", "n": 0,
+                                                     "formulare": [], "ersetzt_nicht": {}})
+                    x["n"] += 1
+                    x["formulare"].append(fm["id"])
+                    w = b.get("register_ersetzt_nicht")
+                    if w:
+                        x["ersetzt_nicht"][w] = x["ersetzt_nicht"].get(w, 0) + 1
+        out["beilagen"]["je_register"] = {
+            c: sorted(v.values(), key=lambda x: (-x["n"], x["bezeichnung"])) for c, v in sorted(je.items())}
+        for c, L in out["beilagen"]["je_register"].items():
+            if sum(x["n"] for x in L) != kat[c]["zahlen"]["beilagen"]:
+                fehler.append(f"Beilagen je Register {c}: {sum(x['n'] for x in L)} statt {kat[c]['zahlen']['beilagen']}")
+            if any(sum(x["ersetzt_nicht"].values()) > x["n"] for x in L):
+                fehler.append(f"Beilagen je Register {c}: mehr Gründe als Beilagen")
+        mo = RG.get("modell") or {}
+        if abs(out["modell"]["pflicht"] * mo.get("min_angabe", 0) + out["modell"]["beilagen"] * mo.get("min_beilage", 0)
+               - out["modell"]["minuten"]) > 0.05:
+            fehler.append("Modell: Pflichtangaben × Minuten + Beilagen × Minuten ≠ register.gesamt.minuten_modell")
+        if out["modell"]["beilagen"] != out["beilagen"]["ersetzbar"]:
+            fehler.append(f"Beilagen im Modell {out['modell']['beilagen']} ≠ ersetzbare Beilagen {out['beilagen']['ersetzbar']}")
+        zs = {}
+        for k in RG["katalog"]:
+            zs[k.get("zugriff_status") or "offen"] = zs.get(k.get("zugriff_status") or "offen", 0) + 1
+        out["zugriff"] = zs
+    # (4) per Dienststelle: the section «Datenmodell und Register» of its briefing
+    dst = {}
+    by_id = {fm["id"]: fm for fm in forms}
+    for d0 in data.get("dienststellen_uebersicht") or []:
+        z = {"punkte": 0, "zugeordnet": 0, "unklar": 0, "offen": 0, "parteien": 0, "formulare": 0,
+             "formulare_mit_partei": 0,
+             "vorbefuellbar": 0, "formulare_vorbefuellbar": 0, "minuten_vorbefuellt": 0.0,
+             "register_pflicht": 0, "beilagen_register": 0, "minuten_modell": 0.0}
+        for fid in d0.get("formulare") or []:
+            fm = by_id.get(fid)
+            if not fm:
+                continue
+            z["formulare"] += 1
+            z["parteien"] += len(fm.get("parteien") or [])
+            z["formulare_mit_partei"] += bool(fm.get("parteien"))
+            for k in ("punkte", "zugeordnet", "unklar", "offen"):
+                z[k] += fm["partei_zahlen"][k]
+            b, r = fm.get("burden") or {}, fm.get("register") or {}
+            z["vorbefuellbar"] += b.get("prefillable") or 0
+            z["formulare_vorbefuellbar"] += bool(b.get("prefillable"))
+            z["minuten_vorbefuellt"] += b.get("minutes_saved") or 0
+            z["register_pflicht"] += r.get("pflicht_bestaetigt") or 0
+            z["beilagen_register"] += r.get("beilagen") or 0
+            z["minuten_modell"] += r.get("minuten_modell") or 0
+        z["minuten_vorbefuellt"] = round(z["minuten_vorbefuellt"], 1)
+        z["minuten_modell"] = round(z["minuten_modell"], 1)
+        dst[d0["slug"]] = z
+    if P.get("zahlen") and dst:
+        for k in ("punkte", "zugeordnet", "unklar"):
+            if sum(z[k] for z in dst.values()) != P["zahlen"][k]:
+                fehler.append(f"Dienststellen: Summe {k} {sum(z[k] for z in dst.values())} statt {P['zahlen'][k]}")
+    if VB and dst and sum(z["vorbefuellbar"] for z in dst.values()) != VB.get("korrigiert"):
+        fehler.append("Dienststellen: Summe vorbefüllbar ≠ vorbefuellung.korrigiert")
+    out["dienststellen"] = dst
+    # the German words of the codes the two pages and the panels show (one source)
+    out["labels"] = {
+        "entitaet": {"natuerliche_person": "natürliche Person", "organisation": "Organisation", "sache": "Sache",
+                     "behoerde": "Behörde", "gemischt": "Person oder Organisation", "offen": "Art offen"},
+        # a role of the list: «offen» = a person or an organisation, the Formular decides
+        "entitaet_rolle": {"natuerliche_person": "natürliche Person", "organisation": "Organisation",
+                           "sache": "Sache", "behoerde": "Behörde",
+                           "offen": "Person oder Organisation, je nach Formular"},
+        "herkunft": {"regel": "aus Hinweisen abgeleitet", "urteil": "aus dem Formulartext beurteilt"},
+        "kennung_art": {"service": "Service", "formular": "Formular", "feld": "Datenfeld", "teilfeld": "Teilfeld",
+                        "angabe": "Angabe (eCH-Element oder eSH-Schlüssel)", "gesetz": "Gesetz", "artikel": "Artikel",
+                        "regel": "Regel der Datenhandhabung"},
+        "kennung_status": {"entfallen": "entfallen — das Objekt gibt es nicht mehr",
+                           "abgeloest": "abgelöst — ein anderes Objekt tritt an seine Stelle"},
+        "register_ebene": {"bund": "Bund", "kanton": "Kanton", "gemeinde": "Gemeinde"},
+        "zugriff_status": {"offen": "Zugriff offen — rechtlich zu klären",
+                           "kandidat": "Kandidat-Artikel zitiert — rechtlich zu prüfen"},
+        "zugriff_art": {"kandidat": "Kandidat", "schranke": "Schranke"},
+        "ersetzt_nicht": {"original": "das Original wird verlangt",
+                          "rueckgabe": "das Dokument wird abgegeben, umgetauscht oder geändert",
+                          "identitaet": "Ausweiskopie als Identitätsnachweis"},
+    }
+    if RG is not None:
+        bad = sorted({k.get("ebene") for k in RG["katalog"]} - set(out["labels"]["register_ebene"])) \
+            + sorted({k.get("zugriff_status") for k in RG["katalog"]} - set(out["labels"]["zugriff_status"]))
+        if bad:
+            fehler.append(f"Register: Code ohne deutschen Text {bad}")
+    if fehler:
+        raise RuntimeError("Datenmodell: " + " | ".join(fehler[:8]))
+    return out
 
 
 # the tables of datentresor.db the Bürgersicht reads (scripts/build_datentresor.py)
@@ -1392,6 +1803,18 @@ def build(conn):
         _layer_skipped("Register-Regeln für die Einwohnerregister-Marke", ex)
     vorbefuellung = register_map.prefill_korrigieren(forms, reg_ang, reg_std)
 
+    # ---- Konzepte: one preferred element per Angabe and party role ------------------
+    # (scripts/konzepte.py, members curated in quellen/konzepte.json): needs ech_state
+    # (_zustaende_setzen) and u.partei (party layer, above); sets fm["konzepte"] on every
+    # Formular. A data-standard finding of its own: it enters no headline figure, no
+    # Handlungsbedarf and no Dienststellen figure. A malformed konzepte.json stops the
+    # export (LayerError); a missing party table skips the layer loudly
+    konzepte_block = None
+    try:
+        konzepte_block = konzepte.berechne(conn, forms)
+    except Exception as ex:
+        _layer_skipped("Konzepte (quellen/konzepte.json, partei_rolle, formular_partei)", ex)
+
     # ---- Standard-Divergenzen je Formular ------------------------------------
     # What keeps THIS form out of one coherent data standard. Two very different
     # things, kept apart: (a) the same datum demanded DIFFERENTLY than on the
@@ -1912,6 +2335,14 @@ def build(conn):
     datenstand["gesetzesstand_geprueft"] = (wirkung_index.get("uebersicht") or {}).get("geprueft_am")
     data["register"] = register_block
     data["vorbefuellung"] = vorbefuellung
+    data["konzepte"] = konzepte_block
+    # the figures of the pages #datenmodell and #onceonly (after every layer above); its own
+    # sums are checked inside, a malformed audit file stops the export
+    data["datenmodell"] = None
+    try:
+        data["datenmodell"] = _datenmodell(conn, data)
+    except sqlite3.OperationalError as _ex:
+        _layer_skipped("Datenmodell & Once-Only (partei_urteil, panel_review, kennung)", _ex)
     if SKIPPED_LAYERS:
         # a half-empty export says so itself (convention: skipped only when the table is missing)
         datenstand["uebersprungen"] = [f"{name} — Tabelle {table} fehlt" for name, table in SKIPPED_LAYERS]
@@ -1919,6 +2350,10 @@ def build(conn):
     fehler = wirkung.pruefen(conn, wirkung_index, forms)
     if fehler:
         raise RuntimeError(f"Wirkungsindex: {len(fehler)} Widerspruch/Widersprüche — " + " | ".join(fehler[:5]))
+    if konzepte_block is not None:
+        fehler = konzepte.pruefen(conn, konzepte_block, forms)
+        if fehler:
+            raise RuntimeError(f"Konzepte: {len(fehler)} Widerspruch/Widersprüche — " + " | ".join(fehler[:5]))
     return data, todo
 
 
