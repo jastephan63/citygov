@@ -1003,20 +1003,3 @@ for the edition in force (one request per law), and
 The Handlungsbedarf board and «Recherche der Databank» together list every
 open point by Dienststelle (the CSV export holds all of them); the dashboard
 shows each one where it occurs.
-
-## Licence
-
-Not decided yet. Until the rights holder chooses a licence, all rights to the
-scripts, the schema, the database and the generated files are reserved — ask
-before republishing. Independently of that choice: `formulare/` reproduces the
-canton's official Formulare from sh.ch, and `ech_xsd/` and `quellen/ech-0049/`
-reproduce eCH's schemas and catalogues from ech.ch (with their copyright
-headers intact); `quellen/register/` keeps the text of the official sources
-the register layer quotes — 15 federal law texts from Fedlex, 6 texts of
-the Schaffhauser Rechtsbuch, 9 pages of federal offices and 19 of ech.ch,
-fetched read-only on 2026-10-04, and one eCH schema copied from
-`ech_xsd/` —, each with its address, fetch time and checksum in its
-header; `quellen/ch-geo.js` compiles third-party reference data
-(OpenPLZ API, williambelle/switzerland-postal-codes, umpirsky/country-list,
-named in its header), and `flows.html` inlines icons from Tabler Icons
-(MIT). Those files stay under their publishers' own terms.
