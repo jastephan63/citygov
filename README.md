@@ -185,13 +185,6 @@ and open `http://localhost:8917/`. Any other static file server works too.
 - **Prototypes** (the synthetic Datentresor view, the guided forms) sit in a
   separate «Werkstatt» section; the eSH standard is marked as a draft wherever
   it appears.
-- **Wording.** German readers take «Datum» as a calendar date, so the
-  databank's own German texts say «Datum» only for dates, «Angabe» for a
-  single piece of information and «Daten» for data in general. Quotes from
-  forms, laws, eCH, DVSH and SHEP stay verbatim. The reviewed rewrites of the
-  databank's texts are kept in `quellen/wortwahl_datum.json` and applied by
-  `scripts/apply_wortwahl.py`; the build stops on a new naming or basis text
-  that says «Datum» without a verdict there.
 
 ## What the data covers
 
