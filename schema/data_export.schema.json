@@ -1,7 +1,7 @@
 {
  "$schema": "https://json-schema.org/draft/2020-12/schema",
  "title": "data_export.json",
- "description": "Struktur von data_export.json, Version 1.0.0. Erzeugt aus der Datei, wie der Build sie schreibt (scripts/export_vertrag.py); Änderungen und Regeln in exportvertrag.json. Nie von Hand ändern.",
+ "description": "Struktur von data_export.json, Version 1.1.1. Erzeugt aus der Datei, wie der Build sie schreibt (scripts/export_vertrag.py); Änderungen und Regeln in exportvertrag.json. Nie von Hand ändern.",
  "$ref": "#/$defs/datei",
  "$defs": {
   "datei": {
@@ -1515,7 +1515,10 @@
              "type": "string"
             },
             "grund": {
-             "type": "null"
+             "type": [
+              "string",
+              "null"
+             ]
             },
             "nr": {
              "type": [
@@ -1738,7 +1741,10 @@
                 "type": "string"
                },
                "grund": {
-                "type": "null"
+                "type": [
+                 "string",
+                 "null"
+                ]
                },
                "nr": {
                 "type": [

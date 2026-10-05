@@ -43,11 +43,11 @@
    }
   },
   "citygov_llm.json": {
-   "version": "1.0.0",
+   "version": "1.0.1",
    "schema": "schema/citygov_llm.schema.json",
-   "schema_sha256": "e6e555df80bbfae54cec2a3e8cd20480f3b35c5a9109d6548be48087028b537f",
+   "schema_sha256": "4e680fc164dad10d8d045db3e350183e0f48396caad335816488cb681069a079",
    "version_steht": "meta.vertrag.version",
-   "seit": "2026-10-05T01:48:20",
+   "seit": "2026-10-05T06:06:57",
    "zaehlungen": {
     "$.begriffe[]": 470,
     "$.begriffe[].labels[]": 3037,
@@ -56,7 +56,7 @@
     "$.lebenslagen[].services[]": 855,
     "$.lebenslagen[].services_modelliert[]": 745,
     "$.lebenslagen[].services_ohne_daten[]": 110,
-    "$.lebenslagen[].wiederholt[]": 1217,
+    "$.lebenslagen[].wiederholt[]": 1263,
     "$.meta.kennungen.nicht_aktiv[]": 2,
     "$.meta.labels.cat_order[]": 21,
     "$.meta.labels.einheit.begriff[]": 2,
@@ -118,11 +118,11 @@
    }
   },
   "data_export.json": {
-   "version": "1.0.0",
+   "version": "1.1.1",
    "schema": "schema/data_export.schema.json",
-   "schema_sha256": "5870895ef2cd91a10158ed6c404c73211bad3a2b9505d061c62a7d9f72d29361",
+   "schema_sha256": "f8d06f2a3a991ca82e403e94dce0f5b9b1e24347026e2aeb7e39ef89c061d5fa",
    "version_steht": "vertrag.version",
-   "seit": "2026-10-05T01:48:20",
+   "seit": "2026-10-05T06:06:57",
    "zaehlungen": {
     "$.attribut_katalog[]": 2767,
     "$.begriffe[]": 470,
@@ -136,7 +136,7 @@
     "$.dienststellen_uebersicht[].entscheide[]": 125,
     "$.dienststellen_uebersicht[].formulare[]": 473,
     "$.dienststellen_uebersicht[].kontakt[]": 133,
-    "$.dienststellen_uebersicht[].massnahmen[]": 110,
+    "$.dienststellen_uebersicht[].massnahmen[]": 111,
     "$.dienststellen_uebersicht[].services[]": 491,
     "$.dienststellen_uebersicht[].standard.ech.*": 183,
     "$.dienststellen_uebersicht[].stufen.*": 176,
@@ -149,16 +149,16 @@
     "$.forms[].data_fields[]": 5991,
     "$.forms[].disclosures[]": 387,
     "$.forms[].gestaltung.merkmale[]": 5696,
-    "$.forms[].handlungsbedarf[]": 2530,
+    "$.forms[].handlungsbedarf[]": 2533,
     "$.forms[].outcome.gesetzesebenen[]": 30,
     "$.forms[].outcome.rechtsmittel_kandidaten[]": 409,
-    "$.forms[].parteien[]": 1032,
-    "$.forms[].register.je_register.*": 1037,
+    "$.forms[].parteien[]": 1502,
+    "$.forms[].register.je_register.*": 1099,
     "$.forms[].retention[]": 109,
     "$.forms[].retention_decisions[]": 0,
     "$.forms[].similar[]": 40,
     "$.forms[].standard.ech.*": 1235,
-    "$.forms[].standard_divergenzen.angleichen[]": 1508,
+    "$.forms[].standard_divergenzen.angleichen[]": 1523,
     "$.forms[].standard_divergenzen.bezeichnungen[]": 4130,
     "$.forms[].standard_divergenzen.fehlend[]": 888,
     "$.gestaltung.dienststellen[]": 52,
@@ -205,8 +205,8 @@
     "$.parteien.gruende.*": 15,
     "$.parteien.regeln.*": 5,
     "$.parteien.rollen[]": 26,
-    "$.parteien.zahlen.grund.*": 14,
-    "$.parteien.zahlen.regel.*": 5,
+    "$.parteien.zahlen.grund.*": 11,
+    "$.parteien.zahlen.regel.*": 3,
     "$.register.katalog[]": 18,
     "$.register.katalog[].belege[]": 85,
     "$.register.katalog[].standards[]": 28,
@@ -239,7 +239,7 @@
     "$.themenkatalog[].services[]": 855,
     "$.themenkatalog[].services_modelliert[]": 745,
     "$.themenkatalog[].services_ohne_daten[]": 110,
-    "$.themenkatalog[].wiederholt[]": 1217,
+    "$.themenkatalog[].wiederholt[]": 1263,
     "$.wirkung.gesetze[]": 90,
     "$.wirkung.gesetze[].artikel[]": 922,
     "$.wirkung.gesetze[].dienststellen[]": 107,
@@ -1081,6 +1081,105 @@
     {
      "pfad": "$.meta.xsd_versionen.*",
      "nachher": 82
+    }
+   ]
+  },
+  {
+   "export": "data_export.json",
+   "version": "1.1.0",
+   "vorher": "1.0.0",
+   "stufe": "minor",
+   "stand": "2026-10-05T05:09:06",
+   "null_geaendert": [
+    {
+     "pfad": "$.forms[].data_fields[].partei.grund",
+     "vorher": [
+      "null"
+     ],
+     "nachher": [
+      "string",
+      "null"
+     ]
+    },
+    {
+     "pfad": "$.forms[].data_fields[].subfields[].partei.grund",
+     "vorher": [
+      "null"
+     ],
+     "nachher": [
+      "string",
+      "null"
+     ]
+    }
+   ],
+   "zaehlungen": [
+    {
+     "pfad": "$.forms[].parteien[]",
+     "vorher": 1032,
+     "nachher": 1463
+    },
+    {
+     "pfad": "$.parteien.zahlen.grund.*",
+     "vorher": 14,
+     "nachher": 11
+    },
+    {
+     "pfad": "$.parteien.zahlen.regel.*",
+     "vorher": 5,
+     "nachher": 3
+    }
+   ]
+  },
+  {
+   "export": "data_export.json",
+   "version": "1.1.1",
+   "vorher": "1.1.0",
+   "stufe": "patch",
+   "stand": "2026-10-05T06:06:57",
+   "zaehlungen": [
+    {
+     "pfad": "$.dienststellen_uebersicht[].massnahmen[]",
+     "vorher": 110,
+     "nachher": 111
+    },
+    {
+     "pfad": "$.forms[].handlungsbedarf[]",
+     "vorher": 2530,
+     "nachher": 2533
+    },
+    {
+     "pfad": "$.forms[].parteien[]",
+     "vorher": 1463,
+     "nachher": 1502
+    },
+    {
+     "pfad": "$.forms[].register.je_register.*",
+     "vorher": 1037,
+     "nachher": 1099
+    },
+    {
+     "pfad": "$.forms[].standard_divergenzen.angleichen[]",
+     "vorher": 1508,
+     "nachher": 1523
+    },
+    {
+     "pfad": "$.themenkatalog[].wiederholt[]",
+     "vorher": 1217,
+     "nachher": 1263
+    }
+   ]
+  },
+  {
+   "export": "citygov_llm.json",
+   "version": "1.0.1",
+   "vorher": "1.0.0",
+   "stufe": "patch",
+   "stand": "2026-10-05T06:06:57",
+   "zaehlungen": [
+    {
+     "pfad": "$.lebenslagen[].wiederholt[]",
+     "vorher": 1217,
+     "nachher": 1263
     }
    ]
   }
