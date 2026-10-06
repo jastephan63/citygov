@@ -384,6 +384,28 @@ be broken, so the gate `validate_db.py` checks what it can):
 
 ## What each script does
 
+The code lives in the package `citygov/` at the repository root, in six layers
+(see `citygov/__init__.py`), each module under its old name:
+
+| Layer | Modules |
+|---|---|
+| `citygov/core/` | `common`, `labels`, `theme`, `kennzahlen`, `kennungen` |
+| `citygov/checks/` | `validate_db` |
+| `citygov/domain/` | `rollen`, `register_katalog`, `register_map`, `wirkung`, `konzepte`, `gesetz_stand`, `gestaltung_export`, `gestaltung_text`, `gestaltung_pdf`, `gestaltung_office` |
+| `citygov/load/` | every `load_*`, `ingest_*`, `init_*`, `migrate_*` and `apply_*`, `run_begriffe`, `scan_documents`, `scan_gestaltung`, `sweep_ech_xsd`, `build_similarity`, `consolidate_services`, `link_dvsh_eforms`, `propagate_ech_names`, `check_gesetz_stand`, `check_online`, `fetch_rechtsbuch`, `build_gesetze_index`, `extract_law`, `extract_quotes`, `classify`, `commit_proposal`, `auto_draft` |
+| `citygov/export/` | `export_json`, `export_llm`, `export_ech_schema`, `export_vertrag`, `build_datentresor`, `backfill_verlauf` |
+| `citygov/present/` | `build_dashboard`, `leitfaden`, `build_flows`, `export_dossiers`, `build_index`, `fill_pdf` |
+
+The file of the same name here is a thin wrapper: every command below
+(`python3 scripts/kennungen.py --pruefen`, `python3 scripts/validate_db.py`,
+`python3 scripts/run_begriffe.py <dir>` …) takes the same arguments and gives the same
+output and exit code; a script that starts another one (`run_begriffe.py`, the ingests,
+`scan_gestaltung.py`) still starts it here; and `import common` in a script here
+(`deprecated/` included) gets the package module.
+Only a traceback names the new place: its frames show the file under `citygov/`, and an
+export that stops on a failed layer (`export_json.py`, `export_llm.py`) now ends with
+`citygov.core.common.LayerError: …` instead of `common.LayerError: …`.
+
 | Script | Purpose |
 |---|---|
 | `common.py` | Paths (the environment variables `CITYGOV_DB` and `CITYGOV_SCHEMA` move only the database and its schema, `DB_PATH` and `SCHEMA_PATH`, to a private copy — enough to develop or test a loader without touching the shared database. Every other path stays at the repository root: `data_export.json`, `dashboard.html` and `logs/` here, `verlauf.json` (`kennzahlen.py`), `schema/` and `exportvertrag.json` (`export_vertrag.py`), the `citygov_*` exports, `flows.html` and `dossiers/`, so an exporter run against a private database still overwrites the shared generated files. Two inputs of `export_json.py` are looked up next to `CITYGOV_DB` instead: `quellen/verlauf_bemerkungen.json` (missing there, the trend notes vanish without a warning) and `datentresor.db` (missing there, the Bürgersicht stays empty). A private database without the identifier table, or with an older one, fails the identifier gate against the published `data_export.json` unless `CITYGOV_EXPORTE`, read by `kennungen.py`, names a folder of other published files, e.g. an empty one), `connect()`, the shared normalisations (`norm_ascii`, `norm_label`, and `klartext()`, the display form `apply_wortwahl.py` compares against), `pl()`, the local-path guard `assert_no_local_paths()` the exporters run on their output, and `size_txt()` / `net_size_txt()` (the page sizes the dashboard and the start page state) |
