@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Moved to citygov/domain/register_map.py — this wrapper keeps the old name working.
+"""Moved to citygov/domain/register_map.py, its command line to citygov/export/register_map_cli.py —
+this wrapper keeps the old name working.
 
-`python3 scripts/register_map.py …` runs that module as before (same arguments, same output,
-same exit code), and `import register_map` in a script under scripts/ gets that very module.
+`python3 scripts/register_map.py …` runs that command line as before (same arguments, same output,
+same exit code), and `import register_map` in a script under scripts/ gets citygov.domain.register_map.
 """
 import os
 import sys
@@ -13,7 +14,7 @@ if _ROOT not in sys.path:
 
 if __name__ == "__main__":
     import runpy
-    runpy.run_module("citygov.domain.register_map", run_name="__main__")
+    runpy.run_module("citygov.export.register_map_cli", run_name="__main__")
 else:
     import importlib
     sys.modules[__name__] = importlib.import_module("citygov.domain.register_map")

@@ -5,8 +5,9 @@ labels.py says what a code is called; this module says what a page looks like:
 fonts, colours, the four tones, the status symbols, the eSH violet and the text
 sizes. The four generators (build_dashboard.py, build_flows.py,
 export_dossiers.py, build_index.py) write their colour and type block from
-here — css_root() — and use var(--…) in their own rules, so a colour or a size
-is changed in this file and nowhere else.
+here — css_root() — and use var(--…) in their own rules (in the generator or in
+the page's files under citygov/present/assets/), so a colour or a size is
+changed in this file and nowhere else.
 
 Rules the values follow (owner's decisions, do not change them here in passing):
   * colour = who acts next: green geklärt · red Dienststelle · amber Kanton ·
@@ -21,7 +22,8 @@ Rules the values follow (owner's decisions, do not change them here in passing):
 Every text colour reaches a contrast of 4.5:1 (WCAG 2.1 AA) on every surface it
 is used on; CONTRAST_PAIRS lists the pairs and check() computes them.
 
-loose() finds what a generator still writes by hand: a hex, rgb()/hsl() or named
+loose() finds what a generator or one of its files under citygov/present/assets/
+(HTML template, stylesheet, script) still writes by hand: a hex, rgb()/hsl() or named
 colour (in CSS, in an attribute, as %23… in a data URI, in el.style.color=…), a
 font size in px/pt/em/rem/% (also el.style.fontSize=…) and a font family. A
 literal kept on purpose carries «theme:keep» and its reason in the same line.
@@ -258,8 +260,8 @@ def loose(path):
 
 def problems():
     """Everything that breaks the one-definition rule, as a list of plain sentences:
-    a text colour below 4.5:1, a literal left in a generator, a tone that labels.py
-    does not know (or the other way round)."""
+    a text colour below 4.5:1, a literal left in a generator or in a file of its page
+    (citygov/present/assets/), a tone that labels.py does not know (or the other way round)."""
     t = tokens()
     out = [f"contrast {r:.2f}:1 below 4.5:1 — --{fg} {t[fg]} on --{bg} {t[bg]}"
            for fg, bg, r, ok in check() if not ok]
@@ -269,6 +271,13 @@ def problems():
         if os.path.exists(p):
             out += [f"{g} line {no}: {kind} literal {txt} — use a var(--…) from theme.py"
                     for no, kind, txt in loose(p)]
+    # and the files their pages are made of (HTML templates, stylesheets, scripts)
+    for dp, _, fns in sorted(os.walk(os.path.join(here, "assets"))):   # folder by folder, by path
+        for f in sorted(fns):
+            if f.endswith((".html", ".css", ".js")):
+                g = os.path.relpath(os.path.join(dp, f), here)
+                out += [f"{g} line {no}: {kind} literal {txt} — use a var(--…) from theme.py"
+                        for no, kind, txt in loose(os.path.join(dp, f))]
     try:
         from citygov.core import labels
         if set(labels.TON) != set(TON):

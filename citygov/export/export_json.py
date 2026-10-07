@@ -43,6 +43,7 @@ from citygov.domain import rollen as ROLLEN_SCHICHT         # Parteien und Rolle
 from citygov.domain import wirkung                          # the change-impact index per law and article (standard library only)
 from citygov.domain import register_map                     # registers that already hold Angaben and Beilagen (standard library only)
 from citygov.domain import konzepte                         # one preferred element per Angabe and role (standard library only)
+from citygov.domain.parteiwoerter import PARTY              # the party words of the Lebenslagen key (one definition)
 
 
 # «the same datum»: what may be compared across forms (Standard-Divergenzen)
@@ -50,10 +51,7 @@ from citygov.domain import konzepte                         # one preferred elem
 # person/address data, same named role — conservative: when unsure, apart.
 CONTAINER = {"document", "attachment", "comment"}
 REG_STD = {"eCH-0044", "eCH-0010", "eCH-0011", "eCH-0007", "eCH-0008", "eCH-0046"}
-PARTY = re.compile(r"ehe(gatt|partner|frau|mann)|partner|kind|tochter|sohn|vater|mutter|eltern|"
-                   r"arbeitgeb|vertret|bevollm|verstorb|erblass|eigentüm|vermiet|mieter|pächter|"
-                   r"verpächt|käufer|verkäufer|halter|begleit|zeug|gläubig|schuldn|bürge|"
-                   r"teilhaber|gesellschafter|geschäftsführ|kontaktperson|ansprechperson", re.I)
+# PARTY, the party words, is imported above (citygov/domain/parteiwoerter.py, its one definition)
 
 
 def datum_key(d, u, subs):
@@ -1436,7 +1434,7 @@ def build(conn):
                                 "FROM rechtsmittel_regel rr JOIN article a ON a.id=rr.article_id JOIN law l ON l.id=rr.law_id "
                                 "WHERE rr.scope='sektoral' AND rr.gestrichen=0 ORDER BY rr.law_id, a.id"):
                 cand_by_law.setdefault(r["law_id"], []).append(r)
-            from citygov.load.load_rechtsmittel import cited_laws      # fields + DVSH-named laws
+            from citygov.domain.rechtsmittel import cited_laws         # fields + DVSH-named laws
             laws_of_form = {fid: list(d.keys()) for fid, d in cited_laws(conn).items()}
             lvl_of_law = {l["id"]: l["jurisdiction_level"] for l in laws}
             reviewed = set()
@@ -2361,7 +2359,7 @@ def _wortwahl_pruefen(data):
     (scripts/apply_wortwahl.py applies the reviewed rewrites). A new text without
     a verdict stops the export; field definitions only warn, because they are
     almost always about real dates."""
-    from citygov.load import apply_wortwahl as W
+    from citygov.domain import wortwahl as W
     _, behalten = W.lade()
     streng, def_ = set(), set()
     def fld(d):

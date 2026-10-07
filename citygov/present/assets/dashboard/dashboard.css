@@ -1,0 +1,977 @@
+  /* Kanton Schaffhausen paper theme — one look for dashboard, guided forms, dossiers and
+     landing page: colours, fonts and text sizes are written from scripts/theme.py.
+     Use var(--…) below; a new colour or size belongs in theme.py, not here.
+     tones — the colour says who acts next (DATA.labels.ton): green geklärt · red
+     Dienststelle handelt · amber Kanton entscheidet · grey Databank recherchiert */
+/*THEME*/
+  /* aliases kept for the JS template strings */
+  :root{
+    --bg:var(--paper); --panel:var(--card); --panel2:var(--field);
+    --bd:var(--line); --bd2:var(--line-soft); --tx:var(--ink);
+    --mut:var(--ink-soft); --mut2:var(--ink-faint);
+  }
+  *{box-sizing:border-box}
+  /* every link without a class of its own (tel:, mailto:, links in texts); the keyboard
+     focus of a link is the ring of the page, not the browser's own */
+  a{color:var(--link);text-underline-offset:2px}
+  a:focus-visible{outline:2px solid var(--link);outline-offset:1px;border-radius:4px}
+  /* the same ring on every native control (sidebar tabs, filter chips, search fields), not
+     the browser's own blue — one focus look on the page */
+  button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{
+    outline:2px solid var(--link);outline-offset:1px}
+  body{margin:0;font:var(--fs-m)/1.5 var(--font);
+       background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased}
+  code,.mono{font-family:var(--mono);font-size:var(--fs-xs)}
+  sup{font-size:var(--fs-xs);line-height:0}
+  header{padding:13px 20px;background:var(--card);border-bottom:1px solid var(--line);
+         display:flex;align-items:center;gap:13px;flex-wrap:wrap}
+  .crest{width:26px;height:30px;flex:none;border-radius:3px;background:var(--gold);position:relative;
+         overflow:hidden;box-shadow:inset 0 0 0 1px var(--shadow)}
+  .crest::after{content:"";position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);
+         width:14px;height:11px;background:var(--ink);
+         clip-path:polygon(50% 0,100% 38%,82% 100%,18% 100%,0 38%);opacity:.85}
+  header .htxt .sub{font-size:var(--fs-xs);color:var(--ink-faint);font-weight:600;letter-spacing:.4px;text-transform:uppercase}
+  header h1{font-size:var(--fs-l);margin:0;font-weight:700;letter-spacing:-.2px}
+  header .stamp{margin-left:auto;color:var(--ink-faint);font-size:var(--fs-xs);text-align:right}
+  /* header chip: unverified citations are the databank's own homework — grey tone (st-open) */
+  .warn{border:1px solid transparent;padding:5px 12px;border-radius:8px;font-size:var(--fs-xs);font-weight:500}
+  .layout{display:flex;min-height:calc(100vh - 57px)}
+  /* the sidebar stays in view while the page scrolls and scrolls on its own (the drawer
+     of narrow windows and the print layout reset it) */
+  aside{width:290px;flex:0 0 290px;background:var(--card);border-right:1px solid var(--line);
+        padding:16px;overflow:auto;position:sticky;top:0;align-self:flex-start;max-height:100vh}
+  aside h2{font-size:var(--fs-xs);text-transform:uppercase;letter-spacing:.7px;color:var(--ink-faint);margin:18px 0 8px}
+  aside h2:first-child{margin-top:0}
+  .svc{padding:8px 10px;border-radius:8px;cursor:pointer;color:var(--ink-soft);margin-bottom:3px;
+       border:1.5px solid transparent;font-size:var(--fs-s);line-height:1.35;overflow-wrap:anywhere}
+  .svc .svname{white-space:normal}
+  .svc:hover{background:var(--field);color:var(--ink)}
+  .svc.active{background:var(--hover);color:var(--ink);border-color:var(--gold-deep)}
+  .svc .meta{display:block;font-size:var(--fs-xs);color:var(--ink-faint)}
+  /* sidebar grouping: Departement > Dienststelle > Formulare, both levels collapsible */
+  .dept{margin-bottom:4px}
+  .dephd{padding:7px 9px;border-radius:8px;cursor:pointer;color:var(--ink);font-weight:700;
+         font-size:var(--fs-s);display:flex;align-items:center;gap:6px;background:var(--field)}
+  .dephd:hover{background:var(--line-soft)}
+  .dephd .tg{color:var(--ink-faint);width:10px;display:inline-block}
+  .dephd .ct{margin-left:auto;font-weight:500;font-size:var(--fs-xs);color:var(--ink-faint)}
+  .office{margin:2px 0 2px 8px}
+  .offhd{padding:5px 8px;border-radius:6px;color:var(--ink-soft);font-size:var(--fs-xs);
+         font-weight:600;display:flex;gap:6px;align-items:baseline}
+  .offtg{display:inline-flex;gap:6px;cursor:pointer}
+  .offhd:hover{color:var(--ink)}
+  .offhd .ct{margin-left:auto;font-size:var(--fs-xs);color:var(--ink-faint)}
+  .dept.collapsed .office,.office.collapsed .svc{display:none}
+  .tab{display:block;width:100%;text-align:left;padding:9px 11px;border-radius:8px;cursor:pointer;
+       background:none;border:1.5px solid transparent;color:var(--ink-soft);font:inherit;font-size:var(--fs-s);
+       font-weight:500;margin-bottom:3px}
+  .tab:hover{background:var(--field);color:var(--ink)}
+  .tab.active{background:var(--hover);color:var(--ink);border-color:var(--gold-deep);font-weight:600}
+  main{flex:1;padding:22px 26px;overflow:auto;max-width:1300px}
+  h3.view{font-size:var(--fs-xl);line-height:1.25;margin:0 0 6px;font-weight:700;letter-spacing:-.3px}
+  /* the page title takes the focus after a change of page (screen readers read it); no ring */
+  h3.view:focus,main:focus{outline:none}
+  /* skip link: the first stop of the Tab key, visible only while focused */
+  .skip{position:absolute;left:8px;top:8px;z-index:2000;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);
+    white-space:nowrap;border:0;padding:0;font:inherit;font-size:var(--fs-s);font-weight:600;background:var(--card);color:var(--ink);cursor:pointer}
+  .skip:focus{width:auto;height:auto;clip:auto;overflow:visible;padding:8px 14px;border-radius:8px;
+    outline:2px solid var(--link);outline-offset:1px;box-shadow:0 2px 10px var(--shadow)}
+  /* print-only lines (a URL instead of a long link list) */
+  .printonly{display:none}
+  .hint{color:var(--ink-soft);font-size:var(--fs-xs);margin:0 0 18px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:16px}
+  .badge{display:inline-block;padding:1px 8px;border-radius:20px;font-size:var(--fs-xs);font-weight:600;
+         vertical-align:middle;white-space:nowrap;border:1px solid transparent}
+  /* Kennzeichen — they mark a fact (level of the law, ⛨, source DVSH/SHEP, Once-Only,
+     channel, obligation), they never judge: outlined and neutral, never in one of the
+     four tone colours. Every STATUS is drawn with the tone classes st-* further down. */
+  .mk{background:var(--card);border-color:var(--line-strong);color:var(--ink-soft)}
+  .mk.mk-open{border-style:dashed}
+  table{border-collapse:collapse;width:100%;font-size:var(--fs-s)}
+  th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line-soft);vertical-align:top}
+  th{color:var(--ink-faint);font-weight:600;font-size:var(--fs-xs);text-transform:uppercase;letter-spacing:.4px}
+  tr:hover td{background:var(--hover)}
+  /* a status badge stays on one line (symbol and word never part); only the list of
+     ⛨ categories is long enough to need a second line */
+  td .badge.b-sens{white-space:normal}
+  /* a table wider than its card scrolls inside the card, not the whole content area */
+  .card:has(table){overflow-x:auto}
+  .summary{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:6px}
+  .gauge{font-size:var(--fs-xxl);font-weight:700}
+  .pill{padding:6px 12px;border-radius:10px;background:var(--field);border:1px solid var(--line);min-width:96px}
+  .pill .n{font-size:var(--fs-xl);font-weight:700;display:block}
+  .pill .l{font-size:var(--fs-xs);color:var(--ink-faint);text-transform:uppercase;letter-spacing:.4px}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .colhead{font-size:var(--fs-xs);color:var(--ink-faint);text-transform:uppercase;letter-spacing:.6px;margin:0 0 8px}
+  .cite{color:var(--ink-soft);font-size:var(--fs-xs);margin-top:4px}
+  /* law tree (list) */
+  .tree{font-size:var(--fs-s)}
+  .tnode{margin-left:18px;border-left:1px dashed var(--line);padding-left:14px}
+  .tline{padding:3px 0}
+  .ttog{cursor:pointer;user-select:none;color:var(--ink-faint);display:inline-block;width:14px}
+  .collapsed > .tnode{display:none}
+  /* law tree (diagram) */
+  .dg{padding:6px 0}
+  .dgnode{margin:6px 0}
+  .dgbox{display:inline-block;border:1px solid var(--line);border-left-width:4px;border-radius:9px;
+         padding:6px 11px;background:var(--card);cursor:pointer}
+  .dgbox .ttl{font-weight:600}
+  .dgbox .sub{color:var(--ink-soft);font-size:var(--fs-xs)}
+  .dgchildren{margin-left:26px;border-left:2px solid var(--line-soft);padding-left:18px;margin-top:2px}
+  .dgnode.collapsed > .dgchildren{display:none}
+  .muted{color:var(--ink-soft)} .small{font-size:var(--fs-xs)}
+  /* a table cell or a block that is read, not scanned, takes the next step of the scale
+     (theme.SIZE_USE: xs is for labels, chips, badges, table heads and notes) */
+  td.small,.dsmob{font-size:var(--fs-s)}
+  .ft td b{font-weight:600}
+  .dfhdr{display:flex;align-items:center;gap:8px;margin-bottom:6px;padding-bottom:8px;border-bottom:1px solid var(--line-soft)}
+  .dfrow{display:grid;grid-template-columns:1fr auto;gap:14px;padding:12px 2px;border-bottom:1px solid var(--line-soft)}
+  .dfrow:last-child{border-bottom:none}
+  .tp{display:inline-block;font-size:var(--fs-xs);padding:2px 8px;border-radius:6px;background:var(--field);
+      color:var(--ink-soft);border:1px solid var(--line);vertical-align:middle}
+  .dfname{font-weight:600;font-size:var(--fs-m);color:var(--ink)}
+  .req{font-size:var(--fs-xs);color:var(--link);margin-left:6px;font-weight:600}
+  .dfdef{font-size:var(--fs-m);color:var(--ink-soft);margin-top:5px;line-height:1.45}
+  .dfchips{margin-top:7px} .chip{display:inline-block;font-size:var(--fs-xs);background:var(--field);
+      border:1px solid var(--line);border-radius:7px;padding:2px 8px;margin:2px 3px 0 0}
+  .dfprov{font-size:var(--fs-s);color:var(--ink-faint);margin-top:6px}
+  .dfrg{min-width:150px;max-width:340px;text-align:right}
+  /* ⛨ is a Kennzeichen (the category of the datum), not a verdict: neutral, outlined */
+  .b-sens{background:var(--card);color:var(--ink-soft);border:1px solid var(--line-strong);font-size:var(--fs-xs);padding:1px 8px;
+      border-radius:6px;margin-left:6px;font-weight:600}
+  /* eCH chips: the tone (st-*) says the state — element ok · element open grey ·
+     no standard / not in force amber; the label says it in words */
+  .echb{display:inline-block;margin-left:6px;font-size:var(--fs-xs);padding:1px 7px;border-radius:6px;
+    border:1px solid var(--line);text-decoration:none;vertical-align:middle;color:var(--ink);
+    font-family:var(--mono)}
+  .echb:hover{text-decoration:underline}
+  .echn{display:inline-block;margin-left:6px;font-size:var(--fs-xs);padding:1px 7px;border-radius:6px;
+    border:1px solid var(--line);vertical-align:middle;color:var(--ink)}
+  .echb .sw,.echn .sw,.echdraft .sw,.fcheck .sw,.divc .sw,.begc .sw,.hubdiv .sw{width:7px;height:7px;margin-right:4px;vertical-align:0}
+  .eshb{display:inline-block;margin-left:6px;font-size:var(--fs-xs);padding:1px 7px;border-radius:6px;
+    background:var(--esh-bg);color:var(--esh);border:1px dashed var(--esh-line);vertical-align:middle;
+    font-family:var(--mono)}
+  .eshb .ent,.sfe.esh .ent{font-size:var(--fs-xs);margin-left:4px;font-family:var(--font)}
+  .chip.sub{display:inline-flex;align-items:center;gap:5px;padding-right:3px}
+  .sfe{font-size:var(--fs-xs);font-family:var(--mono);padding:0 5px;border-radius:4px;
+    border:1px solid var(--line);color:var(--ink);text-decoration:none;white-space:nowrap}
+  a.sfe:hover{text-decoration:underline}
+  /* the eSH code is a Kennzeichen (a draft of the canton, never official eCH): violet, dashed */
+  .sfe.esh{background:var(--esh-bg);color:var(--esh);border:1px dashed var(--esh-line)}
+  .echdraft{display:inline-block;margin-left:5px;font-size:var(--fs-xs);padding:1px 6px;border-radius:6px;
+    border:1px solid var(--line);vertical-align:middle;color:var(--ink)}
+  .fcheck{display:inline-block;font-size:var(--fs-xs);font-weight:600;border-radius:6px;padding:1px 8px;
+    margin-left:8px;vertical-align:middle;border:1px solid var(--line)}
+  .flinks{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:11px 16px}
+  .flabel{font-size:var(--fs-xs);text-transform:uppercase;letter-spacing:.5px;color:var(--ink-faint)}
+  .flink,.srcbtn{display:inline-block;padding:5px 11px;border-radius:8px;border:1px solid var(--line);
+    background:var(--card);color:var(--link);font-size:var(--fs-xs);font-weight:600;text-decoration:none}
+  .flink:hover,.srcbtn:hover{border-color:var(--gold-deep)}
+  .qd summary{cursor:pointer;color:var(--link);font-weight:600}
+  .quote{font-size:var(--fs-xs);color:var(--ink-soft);background:var(--field);border-left:3px solid var(--gold);
+    padding:8px 12px;border-radius:0 8px 8px 0;margin:6px 0 0}
+  /* Datenhandhabung: one rule = aspect chip + duty + verbatim law quote */
+  .hrule{display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-top:1px dashed var(--line)}
+  .hrule:first-child{border-top:none}
+  .hasp{flex:0 0 auto;font-size:var(--fs-xs);padding:2px 8px;border-radius:999px;margin-top:1px;
+    background:var(--field);border:1px solid var(--line-strong);color:var(--ink-soft);font-weight:600;white-space:nowrap}
+  .hbody{font-size:var(--fs-s);line-height:1.45}
+  .hbody .small{margin-top:2px}
+  .hgrp{margin-top:10px}
+  .hgen{margin-top:10px;border-top:1px solid var(--line);padding-top:8px}
+  .hscope{font-size:var(--fs-m);color:var(--ink-soft);margin:18px 2px 8px;text-transform:uppercase;letter-spacing:.4px}
+  /* card sub-headings and the DVSH Verfahren block */
+  .dvsub{font-size:var(--fs-xs);font-weight:600;color:var(--ink-soft);margin:0 0 6px}
+  .dvl{font-size:var(--fs-s);line-height:1.5;margin:2px 0}
+  .dvdesc{font-size:var(--fs-m);color:var(--ink-soft);margin:6px 0 10px}
+  .dvgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px 20px}
+  .dvmeta{margin-top:8px;font-size:var(--fs-s)}
+  .dvm{margin:2px 0} .dvk{font-weight:600;color:var(--ink-soft);margin-right:4px}
+  /* Leitfaden: question -> plain answer -> grounded bullets with rule chips */
+  .gsec{max-width:860px}
+  .gq{font-size:var(--fs-l);margin:2px 0 10px;color:var(--ink)}
+  .gkurz{background:var(--field);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;
+    padding:10px 14px;font-size:var(--fs-m);line-height:1.55;margin-bottom:6px}
+  .gklabel,.gplabel{display:block;font-size:var(--fs-xs);text-transform:uppercase;letter-spacing:.6px;
+    color:var(--link);font-weight:700;margin-bottom:3px}
+  .gpt{padding:9px 2px 2px;border-top:1px dashed var(--line);font-size:var(--fs-s);line-height:1.5}
+  .gpt:first-of-type{border-top:none}
+  .gchips{margin-top:5px}
+  .gchip{display:inline-block;font-size:var(--fs-xs);padding:1px 8px;margin:2px 4px 0 0;border-radius:999px;
+    background:var(--field);border:1px solid var(--gold);color:var(--ink-soft);font-weight:600;cursor:pointer}
+  .gchip:hover{border-color:var(--gold-deep);background:var(--hover)}
+  /* «Einordnung»: the databank's own reading, not the wording of the law — it wears the
+     violet of the draft (not official), solid instead of dashed */
+  .gprax{margin-top:10px;background:var(--esh-bg);border:1px solid var(--esh-line);border-radius:10px;
+    padding:10px 14px;font-size:var(--fs-s);line-height:1.5;color:var(--esh)}
+  .gprax .gplabel{color:var(--esh)}
+  /* per-Formular Datenhandhabung profile */
+  .pfstrip{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+  /* profile chips are Kennzeichen (⛨ category, special laws, retention regime) — neutral;
+     only the «ohne Grundlage» chip is a status and wears its tone (st-act) */
+  .pfc{font-size:var(--fs-xs);padding:3px 10px;border-radius:999px;font-weight:600;border:1px solid var(--line-strong);background:var(--card);color:var(--ink-soft)}
+  .pfc.frist{border-style:solid;color:var(--ink)}
+  .pfc .sw{width:8px;height:8px;margin-right:5px;vertical-align:0}
+  .hstd{font-size:var(--fs-s);line-height:1.55;color:var(--ink-soft);padding:4px 0}
+  .hstd.over{color:var(--ink);border-top:1px dashed var(--line);margin-top:8px;padding-top:8px}
+  .hstd .gchip{cursor:default}
+  .hcat{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;padding:3px 0}
+  /* redesigned navigation: grouped tabs with question subtitles */
+  .tabsub{display:block;font-size:var(--fs-xs);font-weight:400;color:var(--ink-faint);margin-top:1px;line-height:1.3}
+  .tab.active .tabsub{color:var(--ink-soft)}
+  .legsub{font-size:var(--fs-xs);font-weight:400;text-transform:none;letter-spacing:0}
+  /* consistent page header: what / source / how-to-read */
+  .pagehead{background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:11px 16px;margin-bottom:14px;font-size:var(--fs-s);line-height:1.55}
+  .pagehead>div{margin:3px 0}
+  .phl{display:inline-block;min-width:164px;font-size:var(--fs-xs);text-transform:uppercase;
+    letter-spacing:.5px;color:var(--link);font-weight:700;vertical-align:top}
+  /* landing page */
+  .methodbox{background:var(--field);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;
+    padding:10px 14px;font-size:var(--fs-s);line-height:1.6}
+  .methodbox>div{margin:4px 0}
+  .hometiles{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+  .hometile{flex:1 1 130px;background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:10px 8px;cursor:pointer;text-align:center}
+  .hometile:hover{border-color:var(--gold-deep)}
+  .htn{display:block;font-size:var(--fs-xl);font-weight:700;color:var(--link)}
+  .htl{display:block;font-size:var(--fs-xs);color:var(--ink-soft);margin-top:2px}
+  /* form-page hub head */
+  .hubhead{padding:10px 16px}
+  .hubrow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:var(--fs-xs)}
+  .hubchan{font-weight:600;color:var(--ink-soft)}
+  /* signature and digitalisation blockers are facts about the Formular, not a tone */
+  .hubsig{color:var(--ink-soft);font-weight:600}
+  .hubmeta{color:var(--ink-faint)}
+  .hubout{margin-top:7px;font-size:var(--fs-s)}
+  .hubburden{margin-top:5px;font-size:var(--fs-s);color:var(--ink-soft)}
+  /* Beilagen */
+  .beirow{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;padding:4px 0;
+    border-top:1px dashed var(--line);font-size:var(--fs-s)}
+  .beirow:first-of-type{border-top:none}
+  /* obligation and holder of a Beilage are Kennzeichen: neutral (zwingend solid, bedingt dashed) */
+  .beiob{font-size:var(--fs-xs);padding:1px 7px;border-radius:999px;font-weight:700;border:1px solid var(--line);color:var(--ink-soft);background:var(--card)}
+  .beiob.zwingend{border-color:var(--line-dark);color:var(--ink)}
+  .beiob.bedingt{border-style:dashed;border-color:var(--line-dark)}
+  .beih{margin-left:auto;font-size:var(--fs-xs);color:var(--ink-faint)}
+  .beih.f{color:var(--ink-soft);font-weight:600}
+  .simlink{color:var(--link);cursor:pointer;text-decoration:none;font-weight:600}
+  .simlink:hover{text-decoration:underline}
+  .lawforms summary{cursor:pointer;font-size:var(--fs-xs);color:var(--link);font-weight:600;margin-top:6px}
+  .flash{outline:2px solid var(--link);outline-offset:2px}
+  .katrow[aria-expanded]{cursor:pointer}
+  .katforms td{background:var(--field);font-size:var(--fs-xs);line-height:1.7}
+  /* Service-Dossier */
+  .svclaws{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 12px;
+    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:9px 14px}
+  .lawchip{font-size:var(--fs-xs);padding:2px 9px;border-radius:999px;border:1px solid var(--gold);
+    background:var(--hover);color:var(--ink);text-decoration:none;font-weight:600;display:inline-block}
+  a.lawchip:hover{border-color:var(--gold-deep)}
+  .lawchip.nolink{border-style:dashed;color:var(--ink-soft)}
+  .lawchip .lawabbr{font-weight:500;color:var(--ink-soft)}
+  .hsl{font-size:var(--fs-xs);text-transform:uppercase;letter-spacing:.5px;color:var(--link);
+    font-weight:700;margin-right:6px}
+  .verf summary{cursor:pointer;padding:2px 0}
+  .verf>summary b{font-size:var(--fs-m)}
+  .hstrip{display:flex;flex-wrap:wrap;gap:14px;border-top:1px dashed var(--line);
+    margin-top:7px;padding-top:7px;font-size:var(--fs-xs);align-items:baseline}
+  .hs{display:inline-flex;align-items:baseline;gap:4px;flex-wrap:wrap}
+  .formsec{border-left:3px solid var(--gold);padding-left:12px;margin:0 0 22px}
+  /* per-field Handhabung line: standard datatype, retention, stricter ⛨ rules */
+  .dfhb{font-size:var(--fs-xs);color:var(--ink-soft);margin:2px 0 1px;display:flex;gap:5px;
+    align-items:baseline;flex-wrap:wrap}
+  .edt{font-family:var(--mono);font-size:var(--fs-xs);background:var(--field);
+    border:1px solid var(--line);border-radius:6px;padding:0 6px}
+  /* Handlungsbedarf board + global search */
+  .gsearch{margin-left:auto;min-width:240px;max-width:420px;flex:1;border:1px solid var(--line);border-radius:8px;
+    padding:6px 10px;font:inherit;font-size:var(--fs-s);background:var(--field)}
+  .todocats{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 12px;align-items:center}
+  .tcat{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;
+    padding:3px 10px;font-size:var(--fs-xs);cursor:pointer;background:var(--card)}
+  .tcat.on{border-color:currentColor;box-shadow:0 0 0 1px currentColor inset}
+  .tcat b{font-variant-numeric:tabular-nums}
+  .todoexpl summary{cursor:pointer}
+  .todoexpl td{vertical-align:top;font-size:var(--fs-s)}
+  @media (max-width:1060px){.todoexpl td.nowrap{white-space:normal}}
+  .dsthead{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;margin-bottom:4px}
+  .dsthead h4{margin:0;font-size:var(--fs-l)}
+  .dstkontakt{font-size:var(--fs-xs);color:var(--ink-soft);margin-bottom:4px}
+  /* a contact, the same on every page (kontaktHtml): «Kontakt (laut DVSH): Adresse · Tel. … ·
+     E-Mail …»; telephone and e-mail are links in the link style of the page (a.inl) */
+  .klbl{font-weight:600}
+  .kontakt .kp{white-space:nowrap}
+  .hubk{color:var(--ink-soft)}
+  .tchip{cursor:pointer;margin:2px 4px 2px 0;display:inline-block}
+  .tchip b{font-variant-numeric:tabular-nums}
+  .sres .srow{display:flex;gap:10px;align-items:baseline;padding:6px 0;border-bottom:1px solid var(--line)}
+  .sres .srow:last-of-type{border-bottom:0}
+  .stype{font-size:var(--fs-xs);text-transform:uppercase;letter-spacing:.04em;color:var(--ink-soft);min-width:106px}
+  a.slink{color:inherit;text-decoration:none;cursor:pointer;display:block}
+  .slink:hover{text-decoration:underline}
+  mark.hl{background:var(--gold-tint);color:inherit;padding:0 1px;border-radius:2px}
+  /* Lebenslagen */
+  .llgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px;margin:4px 0 10px}
+  .lltile{text-align:left;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:9px 11px;
+    cursor:pointer;display:flex;flex-direction:column;gap:3px;font:inherit}
+  .lltile:hover{border-color:var(--gold)}
+  .lln{font-weight:700;font-size:var(--fs-m)}
+  .lls{font-size:var(--fs-xs);color:var(--ink-soft)}
+  /* an overlap across the offer is a count, not a status: neutral */
+  .llrep{color:var(--ink);font-weight:600}
+  .llsum{font-size:var(--fs-m);line-height:1.6}
+  .llnum{display:inline-block;font-size:var(--fs-m);color:var(--ink-soft)}
+  .rstat .sw{width:8px;height:8px;margin:0 3px 0 6px;vertical-align:0}
+  .rstat .sw:first-child{margin-left:0}
+  .crumbs{margin:0 0 6px;font-size:var(--fs-s)}
+  /* Begriffe */
+  .bgcard{padding:10px 14px}
+  .bghead{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+  .bgvor{font-weight:700;font-size:var(--fs-l)}
+  .bgrow{display:flex;flex-wrap:wrap;gap:5px;align-items:baseline;margin-top:6px}
+  .bglab{font-size:var(--fs-xs);text-transform:uppercase;letter-spacing:.04em;min-width:170px;font-weight:700;color:var(--ink)}
+  .bglab .sw{width:8px;height:8px;margin-right:5px;vertical-align:0}
+  .bgl{font-size:var(--fs-xs);border:1px solid var(--line);border-radius:6px;padding:1px 7px;background:var(--card)}
+  .begc{font-size:var(--fs-xs);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:0 6px;white-space:nowrap}
+  .svthemen{display:flex;flex-wrap:wrap;gap:5px;align-items:baseline;margin-top:6px;font-size:var(--fs-xs)}
+  .svthemen a{cursor:pointer}
+  /* Standard divergence markers */
+  /* ⇄ divergence marker: red where the Dienststelle aligns, amber where the canton decides */
+  .divc{font-size:var(--fs-xs);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:0 6px;white-space:nowrap}
+  .divc.mini{padding:0 3px;margin-left:3px}
+  .hubdiv{font-size:var(--fs-xs);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:1px 9px}
+  a.hubdiv{text-decoration:none} a.hubdiv:hover{text-decoration:underline}
+  .dvval{display:inline-block;white-space:normal;border:1px solid var(--line);border-radius:6px;padding:1px 6px;color:var(--ink)}
+  table.dvt{table-layout:fixed}
+  table.dvt td{vertical-align:top;overflow-wrap:anywhere}
+  table.dvt th{overflow-wrap:anywhere;hyphens:auto}
+  table.dvt th:nth-child(1),table.dvt td:nth-child(1){width:32%}
+  table.dvt th:nth-child(2),table.dvt td:nth-child(2){width:22%}
+  table.dvt th:nth-child(3),table.dvt td:nth-child(3){width:28%}
+  table.dvt th:nth-child(4),table.dvt td:nth-child(4){width:18%}
+  tr.dvact td{border-bottom:1px solid var(--line);color:var(--ink-soft);padding-top:0}
+  /* Rechtsmittel line under the Verfahrens-Ergebnis */
+  .hubout.rm{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:baseline}
+  .rmlbl{font-weight:600}
+  .hubout.rm details.qd summary{font-size:var(--fs-xs)}
+  .rmcand{margin:2px 0 8px 14px}
+  .rmcand summary{font-size:var(--fs-xs);color:var(--ink-soft);cursor:pointer}
+  .rmc{margin:6px 0 0 8px}
+  .rmc blockquote.quote{margin:2px 0 0}
+  /* Datenfluss diagram + Bürgersicht */
+  /* the labels are sized in units of the drawing (980 wide): it never shrinks below the
+     width at which they are 12 px; a narrow window scrolls the card sideways instead */
+  .flowsvg{width:100%;min-width:906px;height:auto;display:block;font-size:var(--fs-s)}
+  .card:has(>.flowsvg){overflow-x:auto;padding-left:12px;padding-right:12px}
+  .flowsvg .flowhd{font-size:var(--fs-s);font-weight:700;fill:var(--ink-soft);text-transform:uppercase;letter-spacing:.04em}
+  .flowsvg .fn{cursor:pointer;fill:var(--ink)}
+  .flowsvg .fn:hover{text-decoration:underline}
+  /* the mode of a disclosure is a Kennzeichen: solid = systematisch, dashed = auf Anfrage,
+     both neutral ink — never a tone */
+  .flowsvg .fe{stroke:var(--ink-soft);stroke-opacity:.5;transition:stroke-opacity .15s;cursor:pointer}
+  @media (prefers-reduced-motion:reduce){.flowsvg .fe{transition:none}}
+  .flowsvg .fe.auf_anfrage{stroke-dasharray:5 4}
+  .flowsvg .fe:hover{stroke-opacity:1}
+  .flowsvg .fe.dim{stroke-opacity:.08}
+  .flowleg{display:flex;gap:16px;align-items:center;font-size:var(--fs-xs);margin-bottom:6px}
+  .flowleg .fl{display:inline-block;width:26px;height:0;border-top:2px solid var(--ink-soft);vertical-align:middle;margin-right:4px}
+  .flowleg .fl.anf{border-top:2px dashed var(--ink-soft)}
+  .lkrow{display:flex;align-items:center;gap:10px;margin:3px 0}
+  .lky{font-variant-numeric:tabular-nums;min-width:40px;font-size:var(--fs-s)}
+  /* once-only: the Einwohnerregister already holds this datum */
+  .regc{font-size:var(--fs-xs);color:var(--ink-soft);background:var(--card);border:1px solid var(--line-strong);
+    border-radius:6px;padding:0 6px;white-space:nowrap;font-weight:600}
+  .chip.sub .regc{margin-left:4px;padding:0 4px}
+  /* navigation redesign: browse modes, breadcrumb, Formular quick-jump */
+  .navmodes{display:flex;gap:6px;margin:0 0 8px}
+  .navmodes button{flex:1;padding:5px 8px;border-radius:8px;border:1px solid var(--line);
+    background:var(--card);color:var(--ink-soft);font-size:var(--fs-xs);cursor:pointer;font-weight:600}
+  .navmodes button.active{border-color:var(--gold-deep);color:var(--ink);background:var(--hover)}
+  .fnav .meta{display:block;font-size:var(--fs-xs);color:var(--ink-faint)}
+  .bcrumb{display:flex;gap:8px;align-items:center;font-size:var(--fs-xs);color:var(--ink-faint);margin:0 0 4px}
+  .bcrumb a{color:var(--link);cursor:pointer;font-weight:600}
+  .bcrumb a:hover{text-decoration:underline}
+  .fjump{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 10px}
+  .fjc{font-size:var(--fs-xs);padding:3px 10px;border-radius:999px;border:1px solid var(--gold);
+    background:var(--hover);cursor:pointer;color:var(--ink)}
+  .fjc:hover{border-color:var(--gold-deep)}
+  /* Verzeichnis + Datenkatalog */
+  .regstats{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+  .rstat{font-size:var(--fs-xs);padding:6px 12px;border-radius:10px;background:var(--card);border:1px solid var(--line)}
+  .rstat b{color:var(--link)}
+  /* recipients, channel and source are Kennzeichen: neutral, outlined */
+  .empchip{display:inline-block;font-size:var(--fs-xs);padding:2px 9px;margin:2px 4px 0 0;border-radius:999px;
+    background:var(--card);border:1px solid var(--line-strong);color:var(--ink);font-weight:600}
+  .zweckline{font-size:var(--fs-s);color:var(--ink-soft);margin:-4px 0 10px;font-style:italic}
+  .nodv{color:var(--ink-faint);margin-right:4px}
+  .esvc{display:inline-block;font-size:var(--fs-xs);background:var(--card);color:var(--ink-soft);border:1px solid var(--line-strong);
+    border-radius:6px;padding:0 6px;margin-left:6px;font-weight:600}
+  .b-nodv{background:var(--card);color:var(--ink-soft);border:1px dashed var(--line-dark);font-size:var(--fs-xs);padding:2px 8px;
+    border-radius:6px;white-space:nowrap;font-weight:600}
+  .b-dvsh{background:var(--card);color:var(--ink-soft);border:1px solid var(--line-strong);font-size:var(--fs-xs);padding:2px 8px;
+    border-radius:6px;font-weight:700}
+  .seg{display:inline-flex;border:1.5px solid var(--line);border-radius:8px;overflow:hidden;margin-bottom:14px}
+  .seg button{border:none;background:var(--card);color:var(--ink-soft);font:inherit;font-size:var(--fs-s);
+    font-weight:600;padding:6px 14px;cursor:pointer}
+  .seg button.active{background:var(--field);color:var(--ink)}
+  .pbar{height:8px;border-radius:5px;background:var(--field);border:1px solid var(--line);
+    overflow:hidden;flex:1;min-width:140px;max-width:280px}
+  /* the filled part of a progress bar is what is settled (tone ok); a bar that only
+     counts (Löschkalender) is neutral (.nt) */
+  .pbar > i{display:block;height:100%;background:var(--ton-ok)}
+  .pbar.nt > i{background:var(--ink-faint)}
+  .nores{color:var(--ink-faint);padding:30px 0;text-align:center}
+  .legend{font-size:var(--fs-s);color:var(--ink-soft);line-height:1.45}
+  .legblk{margin:0 0 12px}
+  .leghd{font-size:var(--fs-xs);font-weight:700;color:var(--ink);margin:0 0 5px}
+  .legend .tleg{font-size:var(--fs-s);gap:5px}
+  .legend .tleg li{align-items:flex-start}
+  .legend .tleg li .sw{transform:translateY(3px)}
+  .legend .tleg.mkl li{display:block}
+  .legend .tleg.mkl li>.badge,.legend .tleg.mkl li>.regc,.legend .tleg.mkl li>.eshb,.legend .tleg.mkl li>.edt,.legend .tleg.mkl li>.llnum{margin:0 5px 0 0;vertical-align:1px}
+  .legend .tleg.mkl li>.mkline{margin:0 4px 3px 0;vertical-align:middle}
+  .legex{display:block;color:var(--ink-faint);font-size:var(--fs-xs);line-height:1.4}
+  .mkline{display:inline-block;width:22px;height:0;border-top:2px solid var(--ink-soft);vertical-align:middle}
+  .mkline.dash{border-top-style:dashed}
+  input#svcfilter{width:100%;padding:8px 10px;margin-bottom:8px;background:var(--card);
+    border:1.5px solid var(--line);border-radius:8px;color:var(--ink);font:inherit;font-size:var(--fs-s)}
+  input#svcfilter:focus-visible{border-color:var(--link)}
+  .tab.ext{text-decoration:none;color:var(--ink-soft);display:block}
+  .datenstand{font-size:var(--fs-xs);color:var(--ink-soft);margin-top:8px;padding-top:8px;border-top:1px dashed var(--line)}
+  /* page head: one visible sentence, the rest folded away */
+  .phkurz{margin:0;font-size:var(--fs-m);line-height:1.5;color:var(--ink)}
+  details.phmore{margin-top:6px}
+  details.phmore>summary{cursor:pointer;font-size:var(--fs-xs);font-weight:600;color:var(--link);width:max-content}
+  details.phmore[open]>summary{margin-bottom:4px}
+  details.phmore>div{margin:3px 0}
+  /* tones — the colour says who acts next: segments, swatches (chips follow in the
+     status-language pass); text never wears the tone colour, it sits beside it */
+  .t-ok{background:var(--ton-ok)} .t-ok2{background:var(--ton-ok2)} .t-act{background:var(--ton-act)}
+  .t-dec{background:var(--ton-dec)} .t-open{background:var(--ton-open)} .t-rest{background:var(--line)}
+  .tbar{display:flex;gap:2px;height:10px;border-radius:4px;overflow:hidden;margin:2px 0 0}
+  .tbar>i{display:block;flex:1 1 0;min-width:3px}
+  .sw{display:inline-block;width:10px;height:10px;border-radius:3px;flex:none;vertical-align:-1px;margin-right:5px}
+  .tleg{list-style:none;margin:0;padding:0;font-size:var(--fs-xs);color:var(--ink-soft);display:flex;flex-direction:column;gap:3px}
+  .tleg li{display:flex;gap:6px;align-items:baseline}
+  .tleg li .sw{margin-right:0;transform:translateY(1px)}
+  .tleg li>b{color:var(--ink);font-variant-numeric:tabular-nums;min-width:48px;text-align:right;font-weight:600}
+  /* an entry that counts nothing here steps back in soft ink — never by transparency,
+     which would take the text below the contrast minimum */
+  .tleg li.zero,.tleg li.zero b{color:var(--ink-soft);font-weight:400}
+  .tleg li.zero .sw{opacity:.45}
+  .tleg .tw{color:var(--ink-faint)}
+  .tleg a.inl{margin-left:2px}
+  .tonlist li{font-size:var(--fs-s);line-height:1.5}
+  /* home: data standard first */
+  .lead{font-size:var(--fs-m);line-height:1.6;margin:0 0 12px;max-width:880px;color:var(--ink)}
+  .tonkey{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center;font-size:var(--fs-s);color:var(--ink-soft);
+    margin:0 0 18px;padding:7px 12px;background:var(--card);border:1px solid var(--line);border-radius:10px;width:max-content;max-width:100%}
+  .tonkey .tk{display:inline-flex;align-items:center;white-space:nowrap}
+  .tonkey .sep{color:var(--ink-faint)}
+  .hsec{margin:0 0 22px}
+  .hsec>h4{font-size:var(--fs-xs);text-transform:uppercase;letter-spacing:.6px;color:var(--ink-soft);margin:0 0 4px}
+  .hsec.core>h4{font-size:var(--fs-l);text-transform:none;letter-spacing:-.1px;color:var(--ink)}
+  .hsec.core{border-left:3px solid var(--gold);padding-left:14px}
+  .hsub{font-size:var(--fs-s);color:var(--ink-soft);margin:0 0 10px;max-width:880px;line-height:1.5}
+  .kzgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:12px}
+  .kz{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;
+    flex-direction:column;gap:8px;min-width:0}
+  .kzl{font-size:var(--fs-s);font-weight:700;color:var(--ink)}
+  .kzv{font-size:var(--fs-xxl);font-weight:700;line-height:1.05;letter-spacing:-.5px;color:var(--ink)}
+  .kzv .kzvon{font-size:var(--fs-l);font-weight:600;color:var(--ink-soft);letter-spacing:0}
+  .kzsub{font-size:var(--fs-s);color:var(--ink-soft);line-height:1.45;margin-top:-4px}
+  .kzziel{font-size:var(--fs-xs);color:var(--ink);border-left:2px solid var(--gold);padding:1px 0 1px 8px}
+  .kznote{font-size:var(--fs-xs);color:var(--ink-faint);line-height:1.45}
+  .kznote.dsnote{margin-top:6px}
+  .kztrend{font-size:var(--fs-xs);color:var(--ink-soft);line-height:1.45}
+  .kztrend>b{color:var(--ink);font-weight:600}
+  .kztrend .bem{display:block;margin-top:3px;padding-left:8px;border-left:2px solid var(--line)}
+  .kzfoot{margin-top:auto;padding-top:2px}
+  .kzlink{font-size:var(--fs-xs);font-weight:600;color:var(--link);text-decoration:none}
+  /* small links get a 24 px target without moving the layout */
+  .kzlink,.offlink,a.inl{display:inline-block;padding:4px 2px;margin:-4px 0}
+  .kzlink:hover,a.inl:hover{text-decoration:underline}
+  a.inl{color:var(--link);font-weight:600;text-decoration:none;white-space:nowrap}
+  .doors{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+  .door{display:flex;flex-direction:column;gap:4px;background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:14px 16px;text-decoration:none;color:var(--ink)}
+  .door:hover{border-color:var(--gold-deep);background:var(--hover)}
+  .door .dk{font-size:var(--fs-xs);text-transform:uppercase;letter-spacing:.6px;color:var(--link);font-weight:700}
+  .door .dq{font-size:var(--fs-l);font-weight:700;line-height:1.3}
+  .door .dn{font-size:var(--fs-xs);color:var(--ink-soft)}
+  /* Gestaltung der Formulare — the page #gestaltung, the panel of a Formular, a section of the
+     briefing. What the Formulare show is drawn neutral (ink and grey); only a verdict wears a tone */
+  .glinkline{margin:12px 0 0;font-size:var(--fs-s);color:var(--ink-soft)}
+  .gdoors .door .dq{font-size:var(--fs-m);font-weight:600;line-height:1.4}
+  .gdoors .door .dz{padding-top:6px;font-size:var(--fs-s);color:var(--ink-soft);line-height:1.4}
+  .gdoors .door .dz b{display:block;font-size:var(--fs-xl);color:var(--ink);line-height:1.15}
+  .gstsec{margin:24px 0 0}
+  .gstsec>h4{margin:0 0 6px;padding-bottom:4px;border-bottom:2px solid var(--gold);font-size:var(--fs-l)}
+  .gfrage{margin:0 0 6px;max-width:880px;font-size:var(--fs-m);line-height:1.5}
+  .gvorb{margin:0 0 12px;max-width:880px;padding:1px 0 1px 9px;border-left:2px solid var(--line-strong);
+    font-size:var(--fs-s);color:var(--ink-soft);line-height:1.45}
+  .gm{padding:14px 18px 12px}
+  /* the heading and the badge of its kind flow as text («Schrift Vergleich mit der Praxis»), so that
+     a reader that copies or reads them aloud hears a space between them */
+  .gmhd{line-height:1.6}
+  .gmhd h5{display:inline;margin:0 6px 0 0;font-size:var(--fs-l);font-weight:700}
+  .gmhd .badge{vertical-align:2px}
+  .gzue{margin:0 0 10px;font-size:var(--fs-s);line-height:1.5}
+  .gzue .hsl{margin-right:2px}
+  [data-jump]:focus{outline:none}
+  .gmq{margin:2px 0 10px;font-size:var(--fs-s);color:var(--ink-soft);line-height:1.45}
+  .gpr{margin:0 0 10px;font-size:var(--fs-s);line-height:1.6}
+  .gcols{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:12px 28px;align-items:start}
+  .gcap{margin:0 0 5px;font-size:var(--fs-xs);color:var(--ink-soft);line-height:1.4}
+  .gcap b{color:var(--ink)}
+  ul.gdist{list-style:none;margin:0;padding:0;font-size:var(--fs-s)}
+  ul.gdist>li{display:grid;grid-template-columns:minmax(0,15em) minmax(40px,1fr) 3.4em;gap:10px;align-items:center;
+    padding:1px 0;line-height:1.35}
+  ul.gdist>li[hidden]{display:none}
+  .gdl{overflow-wrap:anywhere}
+  .gdb{height:8px;border-radius:3px;background:var(--line-soft);overflow:hidden}
+  .gdb>i{display:block;height:100%;min-width:2px;background:var(--ink-faint)}
+  .gdn{text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+  ul.gdist>li.gp .gdl{font-weight:700}
+  ul.gdist>li.gp .gdb>i{background:var(--ink-soft)}
+  .gpm{margin-left:2px;padding:0 5px;border:1px solid var(--line-strong);border-radius:6px;font-size:var(--fs-xs);
+    font-weight:600;color:var(--ink-soft);white-space:nowrap}
+  .gdbx{display:inline-block;width:22px;height:8px;border-radius:3px;background:var(--ink-faint);vertical-align:middle}
+  .gurt{display:flex;flex-wrap:wrap;gap:5px}
+  .gfr .tchip{margin:0 2px 0 0}
+  .gurt .tchip{margin:0}
+  .gm .tchip:not([data-tip]),.gpanel .tchip:not([data-tip]){cursor:default}
+  .gmorebtn{display:inline-block;margin-top:3px;padding:4px 0;border:0;background:none;cursor:pointer;font:inherit;
+    font-size:var(--fs-xs);font-weight:600;color:var(--link)}
+  .gmorebtn:hover{text-decoration:underline}
+  .gzus{margin-top:10px;padding-top:8px;border-top:1px dashed var(--line);font-size:var(--fs-s);color:var(--ink-soft);line-height:1.5}
+  .gzus b{color:var(--ink);font-weight:600}
+  details.gfl,details.gwie{margin-top:8px}
+  details.gfl>summary,details.gwie>summary{cursor:pointer;font-size:var(--fs-xs);font-weight:600;color:var(--link)}
+  ul.gfll{margin:6px 0 0;padding-left:18px;font-size:var(--fs-s);line-height:1.5;columns:2 24em;column-gap:28px;overflow-wrap:anywhere}
+  ul.gfll>li{break-inside:avoid;padding:1px 0}
+  .gvw{margin:10px 0 0;font-size:var(--fs-s)}
+  details.gwie>p{margin:6px 0 0;max-width:880px;font-size:var(--fs-s);color:var(--ink-soft);line-height:1.5}
+  .gmlink{margin-top:8px;font-size:var(--fs-xs)}
+  ul.ggrenz{margin:8px 0 0;padding-left:20px;max-width:900px;font-size:var(--fs-s);color:var(--ink-soft);line-height:1.5}
+  ul.ggrenz>li{margin:0 0 6px}
+  table.gdst{min-width:880px}
+  table.gdst td{vertical-align:baseline}
+  .gpanel{padding:10px 16px}
+  details.gpanel>summary{cursor:pointer;font-size:var(--fs-s);line-height:1.5}
+  .gpanel .dvsub{display:inline;margin:0 4px 0 0;color:var(--ink)}
+  .gsumm{color:var(--ink-soft)}
+  .gsumm .sw{vertical-align:-1px}
+  .gfgrp{margin:12px 0 2px;font-size:var(--fs-xs);font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--ink-faint)}
+  .gfr{display:grid;grid-template-columns:minmax(0,190px) minmax(0,1fr);gap:2px 14px;padding:6px 0;
+    border-top:1px dashed var(--line);font-size:var(--fs-s);line-height:1.5}
+  .gfgrp+.gfr{border-top:none}
+  .gfr.gfr1{grid-template-columns:minmax(0,1fr)}
+  ul.gfd{margin:3px 0 0;padding-left:18px;color:var(--ink-soft)}
+  .gfoot{margin-top:10px;font-size:var(--fs-xs);color:var(--ink-soft)}
+  @media (max-width:1100px){.gcols{grid-template-columns:minmax(0,1fr)} ul.gdist{max-width:720px}}
+  /* Datenmodell & Once-Only — the pages #datenmodell and #onceonly and the panels «Parteien» and
+     «Was Register schon wissen» of a Formular, built on the blocks of the Gestaltung page (cards,
+     sections, folded lists). Numbers and lists are neutral; a tone only on a decision or a finding */
+  h5.dmh{margin:18px 0 6px;font-size:var(--fs-m);font-weight:700}
+  ul.dmgr{font-size:var(--fs-s);gap:4px}
+  ul.dmgr li>b{min-width:56px}
+  ul.dmgr.dmcols{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:3px 18px}
+  ol.dmwie{margin:0;padding-left:22px;font-size:var(--fs-s);line-height:1.55;max-width:920px}
+  ol.dmwie>li{padding:7px 0 7px 2px;border-top:1px dashed var(--line)}
+  ol.dmwie>li:first-child{border-top:none;padding-top:0}
+  details.dmk{padding:10px 16px;margin-bottom:8px}
+  details.dmk>summary{cursor:pointer;line-height:1.5}
+  .dmkn{font-weight:700;font-size:var(--fs-m);margin-right:10px}
+  .dmks{font-size:var(--fs-s);color:var(--ink-soft)}
+  .dmks b{color:var(--ink);font-weight:600}
+  ul.dmlist{margin:4px 0 8px;padding-left:18px;line-height:1.5}
+  table.dmz td,table.dmgs td,table.dmwl td,table.dmwa td,table.dmrol td,table.dmzg td{vertical-align:top}
+  table.dmz td .badge{white-space:normal}
+  code.kennc{font-family:var(--mono);font-size:var(--fs-xs);background:var(--field);border:1px solid var(--line);border-radius:5px;
+    padding:0 5px;overflow-wrap:anywhere;user-select:all}
+  code.kennmini{margin-left:6px;color:var(--ink-soft);font-weight:400}
+  .kenn{display:inline-flex;flex-wrap:wrap;gap:4px 8px;align-items:baseline}
+  .kennl{font-size:var(--fs-xs);text-transform:uppercase;letter-spacing:.5px;color:var(--ink-faint);font-weight:700}
+  .copybtn{font:inherit;font-size:var(--fs-xs);font-weight:600;color:var(--link);background:var(--card);border:1px solid var(--line);
+    border-radius:6px;padding:2px 9px;cursor:pointer}
+  .copybtn:hover{border-color:var(--link)}
+  .lawimp{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center;margin-top:6px;font-size:var(--fs-xs)}
+  .dfrg .lawimp{justify-content:flex-end}
+  .nomono{font-family:var(--font)}
+  tr.sel>td{background:var(--hover)}
+  .dwdet{border-left:3px solid var(--gold-deep)}
+  dl.dmfacts{margin:6px 0 8px;font-size:var(--fs-s);line-height:1.5}
+  dl.dmfacts>div{display:grid;grid-template-columns:150px minmax(0,1fr);gap:2px 12px;padding:3px 0;border-top:1px dashed var(--line)}
+  dl.dmfacts>div:first-child{border-top:none}
+  dl.dmfacts dt{font-weight:600;color:var(--ink-soft)}
+  dl.dmfacts dd{margin:0;overflow-wrap:anywhere}
+  .dmzr{display:flex;flex-direction:column;gap:3px;font-size:var(--fs-s);line-height:1.45;padding:7px 0;border-top:1px solid var(--line-soft)}
+  .dmvb{margin:8px 0;padding:8px 12px;background:var(--field);border-radius:8px;font-size:var(--fs-s);line-height:1.5}
+  .dmvb .gcap{margin-top:6px}
+  .oovorb{margin-bottom:16px}
+  caption.gcap{text-align:left;caption-side:top;padding:0 0 6px}
+  .ppanel .quote{margin:4px 0}
+  .dml{display:none}
+  /* a group of the register catalogue: a row header (th scope=rowgroup) that reads like the group's name */
+  table.dmreg tr.gdep th{color:var(--ink);font-size:var(--fs-s);font-weight:700;text-transform:none;letter-spacing:0;padding-top:12px}
+  @media (max-width:700px){dl.dmfacts>div{grid-template-columns:minmax(0,1fr)}}
+  /* on a phone the tables of the two pages stack: one block per row, each number with its label
+     (.dml), a long cell (.dmw) across the block; the column heads stay for a screen reader */
+  @media screen and (max-width:700px){
+    table.dmstack{min-width:0}
+    table.dmstack thead{position:absolute;left:0;top:0;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+    table.dmstack,table.dmstack tbody{display:block}
+    table.dmstack tr{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:4px 14px;padding:9px 0;border-bottom:1px solid var(--line)}
+    table.dmstack td{display:block;border:0;padding:0;text-align:left}
+    table.dmstack td:first-child,table.dmstack td.dmw,table.dmstack tr.gdep td,table.dmstack tr.gdep th{grid-column:1/-1}
+    table.dmstack tr.gdep th{display:block;border:0;padding:4px 0 0}
+    table.dmstack .dml{display:inline;margin-right:6px;font-size:var(--fs-xs);font-weight:600;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.4px}
+    table.dmstack td.nowrap{white-space:normal}
+    table.dmstack caption{display:block;width:auto}
+    table.dmstack td.dmw .badge{white-space:normal}
+  }
+  /* the table per Dienststelle: up to 1340 px «Häufigste Abweichungen und Lücken» stands under the name (.wd/.nw);
+     up to 1100 px (a narrow content column beside the sidebar, or a phone) each Dienststelle is
+     a block of labelled numbers */
+  table.gdst{min-width:600px}
+  @media screen and (min-width:1341px){table.gdst{min-width:880px} table.gdst th.wd{width:24%}}
+  .gtop{white-space:nowrap}
+  table.gdst td.wd .gtop{white-space:normal}
+  .gml{display:none}
+  table.gdst tr.gdep td{padding-top:12px;font-size:var(--fs-s)}
+  /* up to 1100 px each Dienststelle is a block; each number stands on one line with its label
+     («ABWEICHUNGEN 3»), so the numbers of a block line up. The column headers stay for a screen
+     reader (hidden from view only); the labels in the cells are for the eye only */
+  @media screen and (max-width:1100px){
+    table.gdst{min-width:0}
+    table.gdst thead{position:absolute;left:0;top:0;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+    table.gdst,table.gdst tbody{display:block}
+    table.gdst tr{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:4px 14px;padding:8px 0;border-bottom:1px solid var(--line)}
+    table.gdst tr.dgrp{background:var(--field);padding:8px 6px}
+    table.gdst td{display:block;border:0;padding:0;text-align:left}
+    table.gdst td:first-child{grid-column:1/-1}
+    table.gdst td:empty,table.gdst td.wd{display:none}
+    table.gdst tr.dgrp td,table.gdst tr.gdep td{border:0;background:none}
+    table.gdst tr.gdep{padding:12px 0 2px}
+    table.gdst .gml{display:inline;margin-right:6px;font-size:var(--fs-xs);font-weight:600;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.4px}
+    .gtop{white-space:normal}
+  }
+  @media (max-width:600px){
+    ul.gdist>li{grid-template-columns:minmax(0,9.5em) minmax(32px,1fr) 3em;gap:8px}
+    .gfr{grid-template-columns:minmax(0,1fr)}
+    ul.gfll{columns:1}
+    .gm{padding:12px 14px}
+  }
+  /* Verlauf: compact trend lines */
+  /* a sparkline is 320 units wide and its labels are sized in those units: the card is
+     never narrower than the drawing, so the labels stay at 12 px or more */
+  .vlgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,356px),1fr));gap:12px}
+  .spark{width:100%;min-width:320px;max-width:360px;height:auto;display:block;overflow:visible}
+  .spark .sg{stroke:var(--line);stroke-width:1}
+  .spark .sl{font-size:var(--fs-xs);fill:var(--ink-faint)}
+  .spark .sp{fill:none;stroke:var(--ink-soft);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+  .spark .hit{fill:transparent}
+  .spark .pt{fill:var(--ink-soft);stroke:var(--card);stroke-width:2}
+  .spark .pt.cur{fill:var(--ink)}
+  .spark .pt.git{fill:var(--card);stroke:var(--ink-soft);stroke-width:2}
+  .spark .nn{font-size:var(--fs-xs);font-weight:700;fill:var(--ink)}
+  .spark g[data-tip]:focus{outline:none}
+  .spark g[data-tip]:focus .pt,.spark g[aria-expanded="true"] .pt{stroke:var(--link);stroke-width:3}
+  .vlrow{font-size:var(--fs-xs);color:var(--ink-soft);font-variant-numeric:tabular-nums;line-height:1.5}
+  .vlrow b{color:var(--ink);font-weight:600}
+  .vlnotes{font-size:var(--fs-xs);color:var(--ink-soft);margin:10px 0 0;padding-left:20px;line-height:1.5}
+  .vlnote{font-size:var(--fs-xs);color:var(--ink-faint);margin-top:6px}
+  /* Methode & Quellen */
+  .stufen{margin:0;padding-left:0;list-style:none;font-size:var(--fs-s);line-height:1.5}
+  .stufen li{padding:5px 0;border-top:1px dashed var(--line)}
+  .stufen li:first-child{border-top:none}
+  .stcats{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px}
+  .stcats .tchip.zero{color:var(--ink-soft);border-style:dashed}
+  .stcats .tchip.zero b{font-weight:400}
+  .stcats .tchip.zero .sw{opacity:.45}
+  /* a wide table scrolls inside this block, never the whole content area: either the card
+     itself (.card.tscroll) or a block inside a card, which then has no padding of its own */
+  .tscroll{overflow-x:auto;padding:6px 10px}
+  .card .tscroll,details .tscroll{padding:0}
+  /* reference tables that must fit a laptop window (class «fit»: Datenkatalog, Verzeichnis,
+     Datenfluss, Bürgersicht, the Rechtsgrundlage overview): long words hyphenate, an element
+     code breaks after its standard (codeBrk), other identifiers anywhere (.brk), marks wrap;
+     up to 1340 px a column of the wide layout (.wd) gives way to a line under the first
+     cell (.nw). What still does not fit scrolls inside .tscroll */
+  table.fit td:first-child,table.fit td.hy{hyphens:auto}
+  table.fit td.mono,table.fit td .mono{hyphens:manual}
+  .brk,table.fit td .edt{overflow-wrap:anywhere}
+  table.fit td .eshb{white-space:normal;overflow-wrap:anywhere}
+  table.fit td .stdcell{white-space:normal;flex-wrap:wrap;gap:2px 0}
+  .nw{display:none}
+  @media screen and (max-width:1340px){
+    .wd{display:none}
+    div.nw{display:block} span.nw{display:inline}
+  }
+  /* Glossar (Methode & Quellen): the term, then one or two plain sentences */
+  dl.gloss{margin:0;font-size:var(--fs-s);line-height:1.5}
+  dl.gloss>div{display:grid;grid-template-columns:200px minmax(0,1fr);gap:2px 14px;padding:6px 0;border-top:1px dashed var(--line)}
+  dl.gloss>div:first-child{border-top:none;padding-top:0}
+  dl.gloss dt{font-weight:700;color:var(--ink)}
+  dl.gloss dd{margin:0;color:var(--ink-soft)}
+  @media (max-width:700px){dl.gloss>div{grid-template-columns:1fr}}
+  table.vltab{min-width:720px}
+  table.vltab td .nowrap{white-space:normal}
+  table.vltab tr.hasbem td{border-bottom:none;padding-bottom:2px}
+  table.vltab tr.vlbemrow td{padding-top:0;color:var(--ink-soft)}
+  table.vltab td{line-height:1.55}
+  .nowrap{white-space:nowrap}
+  /* prototypes and drafts carry a band nobody can overlook */
+  .band{border-radius:10px;padding:10px 14px;margin:0 0 12px;font-size:var(--fs-s);line-height:1.5}
+  .band>b{display:block;font-size:var(--fs-xs);text-transform:uppercase;letter-spacing:.7px;margin-bottom:2px}
+  .band .small{display:block;margin-top:3px}
+  .band.werk{background:var(--ink);color:var(--paper)}
+  .band.werk .small{color:var(--line)}
+  .band.entwurf{background:var(--esh-bg);color:var(--esh);border:2px dashed var(--esh-line)}
+  /* status classes: the tone of a chip or badge (DATA.labels.ton) — tinted surface,
+     tone-coloured border, ink text; a swatch inside names the tone, so the colour
+     never carries the statement alone */
+  .st-ok{background:var(--ton-ok-bg);border-color:var(--ton-ok-line);color:var(--ink)}
+  .st-act{background:var(--ton-act-bg);border-color:var(--ton-act-line);color:var(--ink)}
+  .st-dec{background:var(--ton-dec-bg);border-color:var(--ton-dec-line);color:var(--ink)}
+  .st-open{background:var(--ton-open-bg);border-color:var(--ton-open-line);color:var(--ink)}
+  /* the same four classes as a solid fill where the element IS the colour: bar
+     segments, swatches, markers (the .t-* fills of the page head and bars are the same tones) */
+  .tbar>i.st-ok,.minibar>i.st-ok,.pbar>i.st-ok,.sw.st-ok{background:var(--ton-ok)}
+  .tbar>i.st-act,.minibar>i.st-act,.pbar>i.st-act,.sw.st-act{background:var(--ton-act)}
+  .tbar>i.st-dec,.minibar>i.st-dec,.pbar>i.st-dec,.sw.st-dec{background:var(--ton-dec)}
+  .tbar>i.st-open,.minibar>i.st-open,.pbar>i.st-open,.sw.st-open{background:var(--ton-open)}
+  /* the swatch carries the symbol of its tone — check · dot · diamond · ring, the dossier's
+     ✓ ● ◆ ○ (theme.TON_SYM) — so a tone never rests on colour alone */
+/*THEME_SWATCH*/
+  .badge.st-ok,.badge.st-act,.badge.st-dec,.badge.st-open{font-weight:600}
+  .badge>.sw{width:7px;height:7px;margin-right:4px;vertical-align:0}
+  .tchip.badge{font-weight:500;white-space:normal}
+  .tchip .sw,.tcat .sw{width:8px;height:8px;margin-right:5px;vertical-align:0}
+  /* explanations without a mouse: an element with a title can be focused and opened
+     (click, tap, Enter, Space) — a small box shows the title text; subtle cue only */
+  [data-tip]{cursor:help}
+  span[data-tip]:not([class]),.tnum>span[data-tip],td[data-tip],b[data-tip],div[data-tip]:not([class]),sup[data-tip],li[data-tip]>span{
+    text-decoration:underline dotted var(--line-dark);text-underline-offset:2px}
+  [data-tip]:focus-visible{outline:2px solid var(--link);outline-offset:1px;border-radius:4px}
+  [data-tip][aria-expanded="true"]{outline:2px solid var(--link);outline-offset:1px;border-radius:4px}
+  #tipbox{position:absolute;z-index:1000;left:0;top:0;max-width:min(380px,calc(100vw - 24px));background:var(--card);
+    color:var(--ink);border:1px solid var(--line);border-radius:10px;box-shadow:0 6px 24px var(--shadow);
+    padding:9px 32px 9px 12px;font-size:var(--fs-s);line-height:1.5;white-space:pre-line;overflow-wrap:anywhere;text-align:left}
+  #tipbox[hidden]{display:none}
+  /* a long explanation scrolls inside the box; the box itself always fits the window */
+  #tipbox .tipt{max-height:calc(100vh - 96px);overflow-y:auto}
+  #tipbox .tipx{position:absolute;top:4px;right:4px;border:0;background:none;font:inherit;font-size:var(--fs-l);line-height:1;
+    padding:3px 7px;cursor:pointer;color:var(--ink-soft);border-radius:6px}
+  #tipbox .tipx:hover,#tipbox .tipx:focus-visible{background:var(--field);color:var(--ink)}
+  #tipbox .tipx:focus-visible,#tipbox .tipgo:focus-visible{outline:2px solid var(--link);outline-offset:1px}
+  /* the box offers the action of a chip that has one (⛨ → Leitfaden, a rule → Datenhandhabung) */
+  #tipbox .tipgo{display:block;margin-top:7px;padding:4px 10px;border-radius:8px;border:1px solid var(--line);background:var(--card);
+    color:var(--link);font:inherit;font-size:var(--fs-xs);font-weight:600;cursor:pointer;white-space:normal;text-align:left}
+  #tipbox .tipgo[hidden]{display:none}
+  #tipbox .tipgo:hover,#tipbox .tipgo:focus-visible{border-color:var(--link)}
+  /* rows, toggles and links without an address that act on a click are reachable by keyboard */
+  [data-act]:focus-visible{outline:2px solid var(--link);outline-offset:1px;border-radius:4px}
+  tr[data-act]:focus-visible{outline-offset:-2px}
+  tr[data-act]:focus-visible>td{background:var(--hover)}
+  .svc a.svname{color:inherit;text-decoration:none}
+  .svc a.svname:hover{text-decoration:underline}
+  .svc a.svname:focus-visible{outline:2px solid var(--link);outline-offset:1px;border-radius:4px}
+  .vh{position:absolute;left:0;top:0;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  /* worklists: who acts next, priority tier */
+  .tnum{display:inline-flex;gap:12px;font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:600}
+  .tnum>span{display:inline-flex;align-items:center;position:relative}
+  .tnum>span.z{color:var(--ink-faint);font-weight:400}
+  .filt{margin:6px 0 14px}
+  .filtrow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:0 0 7px}
+  .filtrow .fl{font-size:var(--fs-xs);text-transform:uppercase;letter-spacing:.5px;color:var(--ink-faint);font-weight:700;min-width:100px}
+  button.tcat,a.tcat{font:inherit;font-size:var(--fs-xs);color:var(--ink);text-decoration:none}
+  .tcat.zero{color:var(--ink-soft)}
+  .tcat.zero b{font-weight:400}
+  .tcat.zero .sw{opacity:.45}
+  .tcat.out{border-style:dashed}
+  .filtrow.top{align-items:flex-start}
+  .filtrow.top .fl{padding-top:6px}
+  .stgs{display:flex;flex-direction:column;gap:5px;flex:1 1 400px;min-width:0}
+  .stg{display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+  .stgl{font-size:var(--fs-xs);color:var(--ink-soft);font-weight:700;white-space:nowrap;min-width:168px}
+  a.dlink{color:var(--ink);font-weight:600;text-decoration:none;border-bottom:1px solid var(--line)}
+  a.dlink:hover{border-bottom-color:var(--gold-deep);color:var(--link)}
+  a.dlink.lt{font-weight:500}
+  .stufehd{font-size:var(--fs-xs);text-transform:uppercase;letter-spacing:.6px;color:var(--ink-soft);font-weight:700;margin:20px 0 4px}
+  .stufetx{font-size:var(--fs-s);color:var(--ink-soft);margin:0 0 8px;max-width:880px}
+  .catblk{padding:12px 16px}
+  .cathd{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline}
+  .cathd .tchip{font-size:var(--fs-xs);font-weight:600}
+  .catn{font-size:var(--fs-s);color:var(--ink-soft)}
+  .catn b{color:var(--ink)}
+  .catx{font-size:var(--fs-s);line-height:1.5;color:var(--ink-soft);margin-top:5px;max-width:900px}
+  .catx .hsl{display:inline-block;min-width:118px}
+  details.catdet{margin-top:8px}
+  details.catdet>summary,details.dsdet>summary,details.dsov>summary{cursor:pointer;font-size:var(--fs-xs);font-weight:600;color:var(--link)}
+  details.catdet table,details.dsdet table{margin-top:6px}
+  tr.dgrp td{background:var(--field);font-weight:600;border-bottom:1px solid var(--line)}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+  .clipd{font-size:var(--fs-xs);color:var(--ink-soft);line-height:1.45}
+  /* Für Dienststellen: overview table */
+  table.dsttab td{vertical-align:middle}
+  table.dsttab td:last-child{overflow-wrap:anywhere}
+  table.dsttab tr.dstrow{cursor:pointer}
+  table.dsttab tr.deprow td{background:var(--field);border-bottom:1px solid var(--line);font-size:var(--fs-xs)}
+  table.dsttab tr.deprow td b{font-size:var(--fs-s)}
+  .minibar{display:inline-flex;gap:1px;height:8px;width:84px;border-radius:3px;overflow:hidden;vertical-align:middle;background:var(--line-soft);margin-right:6px}
+  .minibar>i{display:block;height:100%;flex:1 1 0;min-width:2px}
+  .stdcell{display:inline-flex;align-items:center;white-space:nowrap}
+  details.dsov{margin:4px 0 16px}
+  details.dsov>summary{font-size:var(--fs-s);padding:4px 0}
+  /* one Dienststelle: the briefing */
+  .dshead{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;padding:11px 16px}
+  .dshead .dsmeta{display:flex;flex-direction:column;gap:3px;font-size:var(--fs-s);flex:1 1 320px}
+  /* in the head of a briefing the contact label stands in the label column, like «Departement» */
+  .dshead .hsl,.dshead .klbl{display:inline-block;min-width:164px}
+  .dshead .kontakt{display:flex;align-items:baseline}
+  .dshead .klbl{flex:none;font-size:var(--fs-xs);text-transform:uppercase;letter-spacing:.5px;color:var(--link);font-weight:700;margin-right:6px}
+  .dshead .klbl .kc{display:none}
+  .dssec{margin:0 0 18px}
+  .dssec>h4{font-size:var(--fs-m);margin:0 0 8px;padding-bottom:4px;border-bottom:2px solid var(--gold)}
+  .dssec .card{margin-bottom:10px}
+  .dsnone{margin:0;font-size:var(--fs-s);color:var(--ink-soft)}
+  ol.massn{margin:0;padding-left:24px;font-size:var(--fs-s);line-height:1.5}
+  ol.massn>li{padding:6px 0 6px 2px;border-top:1px dashed var(--line)}
+  ol.massn>li:first-child{border-top:none;padding-top:0}
+  ol.massn .sw{vertical-align:0}
+  .dsline{display:flex;gap:6px;align-items:baseline;font-size:var(--fs-s);line-height:1.5;margin:6px 0 0}
+  .dsline .sw{transform:translateY(1px)}
+  .dsstdv{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline;margin-bottom:6px}
+  .dsstdv .kzv{font-size:var(--fs-xxl)}
+  .dsstufe{padding:8px 0;border-top:1px dashed var(--line)}
+  .dsstufe:first-child{border-top:none;padding-top:0}
+  .dsshd{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline;font-size:var(--fs-s)}
+  ul.pline{list-style:none;margin:0;padding:0}
+  ul.pline>li{padding:2px 0;display:flex;flex-wrap:wrap;gap:2px 8px;align-items:baseline}
+  table.dsptab td:first-child{width:36%}
+  ul.dssvc{margin:0;padding-left:18px;font-size:var(--fs-s);line-height:1.55}
+  ul.dssvc a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+  ul.dssvc a:hover{border-bottom-color:var(--gold-deep)}
+  .dsfc{display:none}
+  .dsmob,.dsmobl{display:none}
+  /* a DVSH grouping that is not an office of its own */
+  .sammel{font-size:var(--fs-xs);font-weight:600;color:var(--ink-soft);border:1px dashed var(--line-dark);border-radius:6px;padding:0 6px;margin-left:4px;display:inline-block}
+  .mzmix{font-size:var(--fs-xs);color:var(--ink-soft);margin-top:2px}
+  .offlink{font-size:var(--fs-xs);font-weight:600;color:var(--link);text-decoration:none;white-space:nowrap;margin-left:2px}
+  .offlink:hover{text-decoration:underline}
+  .offhd.active{color:var(--ink);background:var(--hover);box-shadow:inset 0 0 0 1px var(--gold-deep)}
+  /* narrow viewports: the sidebar becomes a drawer behind a ☰ button — it is
+     ~38'000 px tall at phone width, so stacking it above the content would
+     push every page off screen */
+  .navbtn{display:none;font:inherit;font-size:var(--fs-s);padding:6px 10px;border:1px solid var(--line);
+    border-radius:8px;background:var(--field);cursor:pointer;color:var(--ink)}
+  @media (max-width:900px){
+    .layout{flex-direction:column}
+    aside{display:none;position:static;align-self:auto;width:auto;flex:none;max-height:60vh;border-right:0;border-bottom:1px solid var(--line)}
+    .layout.nav-open aside{display:block}
+    main{padding:14px 16px;max-width:none;min-width:0}
+    header{padding:10px 14px}
+    header .gsearch{min-width:0;flex:1 1 100%;margin-left:0}
+    header .stamp{margin-left:0;text-align:left;flex:1 1 100%}
+    header .htxt{flex:1 1 0;min-width:0}
+    #warn.stamp,#stamp{display:none}
+    .navbtn{display:inline-block;position:fixed;right:12px;bottom:12px;z-index:60;box-shadow:0 2px 8px var(--shadow)}
+    main{padding-bottom:64px}
+    .cols{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+    .hometiles .hometile{flex:1 1 140px}
+    .dfrow{grid-template-columns:1fr}
+    .dfrg{text-align:left;max-width:none}
+    .dvgrid{grid-template-columns:1fr}
+    .card{overflow-x:auto}
+  }
+  /* a phone: the head of a Formular card, its counts and chips, and the contact line of a
+     briefing wrap instead of scrolling inside their card */
+  @media (max-width:600px){
+    .dfhdr{flex-wrap:wrap}
+    .dfhdr .nowrap,.chip.sub,.kontakt .kp,a.inl,.dfrg .badge,.eshb,.dfname{white-space:normal}
+    .eshb,.chip.sub{overflow-wrap:anywhere}
+    .chip.sub{flex-wrap:wrap}
+    .dshead .kontakt{flex-wrap:wrap}
+    .dshead .hsl,.dshead .klbl{min-width:0;margin-right:6px}
+  }
+  /* up to 1340 px the six columns do not fit side by side: a Dienststelle becomes a block of
+     two lines — its name (Services and Formulare below it), its data standard and its open
+     points under the column heads, then its most important measure across the full width */
+  @media screen and (max-width:1340px){
+    table.dsttab,table.dsttab thead,table.dsttab tbody{display:block;width:100%}
+    table.dsttab tr{display:grid;grid-template-columns:minmax(0,1fr) 176px 200px;gap:3px 16px;align-items:center;
+      padding:8px 0;border-bottom:1px solid var(--line)}
+    table.dsttab thead tr{padding:2px 0 6px}
+    table.dsttab tr.deprow{background:var(--field);padding:8px 6px}
+    table.dsttab th,table.dsttab td{display:block;border:0;padding:0}
+    table.dsttab th:nth-child(2),table.dsttab th:nth-child(3),table.dsttab th:nth-child(6),
+    table.dsttab td:nth-child(2),table.dsttab td:nth-child(3),table.dsttab tr.deprow td:nth-child(6){display:none}
+    table.dsttab td:nth-child(6){grid-column:1/-1}
+    table.dsttab .dsmob{display:block}
+    table.dsttab .dsmobl{display:inline-block;margin-right:8px;font-size:var(--fs-xs);color:var(--ink-faint);
+      text-transform:uppercase;letter-spacing:.4px;font-weight:600}
+    table.dsttab .dsmobl.ph{display:none}
+  }
+  /* a phone: no column heads, the open points on a line of their own, labelled */
+  @media screen and (max-width:700px){
+    table.dsttab thead{display:none}
+    table.dsttab tr{grid-template-columns:minmax(0,1fr) auto;gap:2px 10px}
+    table.dsttab td:nth-child(5){grid-column:1/-1}
+    table.dsttab .tnum{white-space:normal;flex-wrap:wrap;gap:4px 12px}
+    table.dsttab .dsmobl.ph{display:inline-block}
+  }
+  .offnote{background:var(--gold-tint);border-bottom:1px solid var(--gold);padding:8px 16px;font-size:var(--fs-s);line-height:1.45}
+  .offnote a{color:inherit}
+  .bootmsg{max-width:720px;margin:48px auto;padding:20px 24px;border:1px solid var(--line);border-radius:10px;
+    background:var(--card);display:flex;flex-direction:column;gap:8px;font-size:var(--fs-m);line-height:1.5}
+  .bootmsg b{font-size:var(--fs-l)}
+  .bootmsg.err{border-color:var(--ton-act)}
+  .bootmsg a{color:inherit}
+  /* print: the content only — no sidebar, no header bar, no controls; colours kept,
+     small blocks never split across pages. The text sizes need no rule here: theme.py
+     switches the six sizes to pt on paper (9 to 9.5 pt for the briefing, two to three pages) */
+  @media print{
+    header,aside,.navbtn,.offnote,.noprint,details.phmore,#bootmsg,#tipbox{display:none !important}
+    [data-tip],li[data-tip]>span{text-decoration:none !important;outline:none !important}
+    body{background:var(--card)}
+    .layout{display:block;min-height:0}
+    main{padding:0;max-width:none;overflow:visible}
+    main *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .card,.pagehead{box-shadow:none;border-color:var(--line-strong)}
+    h3.view,h4,.dvsub,.stufehd,.dsshd{break-after:avoid;page-break-after:avoid}
+    tr,li,.kz,.dsstufe,.dshead,.pagehead,.catblk{break-inside:avoid;page-break-inside:avoid}
+    .dssec{break-inside:auto}
+    a,a.dlink,a.inl{color:inherit;text-decoration:none;border-bottom:none}
+    ul.dssvc{columns:2;column-gap:24px;line-height:1.35}
+    .card{padding:8px 12px;margin-bottom:8px}
+    .pagehead{padding:6px 12px;margin-bottom:8px}
+    .dssec{margin:0 0 6px}
+    .dssec>h4{margin:0 0 5px;padding-bottom:2px}
+    .dssec .card{margin-bottom:4px;padding:6px 12px}
+    ol.massn{line-height:1.4}
+    ol.massn>li{padding:3px 0 3px 2px}
+    .tleg{gap:1px}
+    .dsstufe{padding:3px 0}
+    .dshead{padding:6px 12px}
+    table.ft th,table.ft td{padding:4px 8px}
+    .kznote.dsnote{line-height:1.3;margin-top:3px}
+    ul.dssvc>li{break-inside:avoid}
+    .dsfl{display:none}
+    .dsfc{display:inline}
+    details.dsdet{display:none}
+    .card,.card:has(table),.card:has(>.flowsvg){overflow:visible}
+    .printonly{display:block}
+    .dssvcsec.long .card{display:none}
+    .dsstufe .tnum{gap:10px;white-space:normal;flex-wrap:wrap}
+    .dsstufe .tnum .vh{position:static;width:auto;height:auto;overflow:visible;clip:auto;white-space:nowrap;font-weight:400;margin-right:3px}
+    .tonkey{padding:3px 8px;margin:0 0 6px}
+    .stufetx{margin:1px 0 3px;line-height:1.35}
+    .dsline{margin:4px 0 0}
+    .dshead .dsmeta{gap:1px}
+    /* on paper a label is only as wide as its words: the contact stays on one line where it can */
+    .dshead .hsl,.dshead .klbl{min-width:0}
+    /* printed, the Formular's own title stays: two forms of one service must stay distinguishable */
+    .tscroll{overflow:visible}
+    @page{margin:14mm 12mm}
+  }

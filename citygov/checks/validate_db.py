@@ -102,14 +102,22 @@ Checks, in order:
                                        the concept layer needs the export's data
                                        points and runs in export_json.py
                                        (konzepte.pruefen).
- 14. Gesetzestitel                 -> load_gesetz_titel.pruefen(): the title
+ 14. Gesetzestitel                 -> gesetz_titel.pruefen(): the title
                                        corrections of quellen/korrekturen/
                                        gesetz_titel_2026-10-05.json are each
                                        pending or applied (never overwritten),
                                        and no law title carries the edition line
                                        («Vom … (Stand …)») or the footnote marker «*».
 Each of the gates 9-12 lives next to its loader and is skipped while its tables
-are absent; gate 13 reads only the curated file. Importing them loads only the standard library: no network code
+are absent; gate 13 reads only the curated file. The gates 9-14 run from
+citygov/domain/gates.py. Of domain, this module imports only the package
+citygov.domain, once (`import citygov.domain` inside datenmodell_checks: the
+registry trigger, the one exception to the layer order), and no other domain
+module: importing the package loads domain/gates.py, which adds the gates to
+citygov.checks.registry, and datenmodell_checks() runs what the registry holds
+(gate 14 lives in domain/gesetz_titel.py, the loader in
+load/load_gesetz_titel.py).
+Importing them loads only the standard library: no network code
 (register_katalog.py imports urllib only inside its fetch function) and no pypdf
 (rollen.py imports it only where it reads a Formular text).
 
@@ -124,6 +132,7 @@ import os
 import sys
 
 from citygov.core.common import DB_PATH, ROOT, connect
+from citygov.checks import registry
 
 
 def validate(conn):
@@ -189,32 +198,22 @@ def validate(conn):
 
 
 def datenmodell_checks(conn):
-    """The gates of the data-model layers (2026-10), each kept with its loader:
-    permanent identifiers (kennungen.py), parties and roles (rollen.py), law
-    editions (gesetz_stand.py) and registers with the prefill rule (register_map.py).
-    Each returns [] while its tables are absent. Plus the structure of the curated
-    concept file (konzepte.py), which the export reads."""
-    from citygov.core import kennungen
-    from citygov.domain import rollen
-    from citygov.domain import gesetz_stand
-    from citygov.domain import register_map
-    from citygov.domain import konzepte
+    """The gates of the data-model layers (2026-10): permanent identifiers (kennungen),
+    parties and roles (rollen), law editions (gesetz_stand), registers with the prefill
+    rule (register_map), the structure of the curated concept file (konzepte) and the
+    law titles (gesetz_titel) — citygov/domain/gates.py runs them, in this order. Of domain,
+    checks imports only the package citygov.domain, here and once (the registry trigger, the
+    one exception to the layer order), and no other domain module: the package's __init__ loads
+    domain/gates.py, which adds that gate to citygov.checks.registry, and every gate added
+    there runs here, in the order added."""
+    import citygov.domain               # noqa: F401  (citygov/domain/__init__.py adds the domain gates)
+    gates = registry.gates()
+    if not gates:
+        return ["data-model gates cannot run: none is registered (citygov/domain/__init__.py "
+                "must import citygov.domain.gates)"]
     errors = []
-    for gate in (kennungen.pruefen, rollen.pruefen, gesetz_stand.pruefen, register_map.pruefen):
+    for gate in gates:
         errors += gate(conn)
-    try:
-        errors += konzepte.datei_pruefen(konzepte.lade())
-    except (OSError, ValueError) as ex:
-        errors.append(f"quellen/konzepte.json is not readable: {type(ex).__name__}: {ex}")
-    # law titles as the official PDF prints them (load_gesetz_titel.py)
-    import re
-    from citygov.load import load_gesetz_titel
-    errors += load_gesetz_titel.pruefen(conn)
-    for lid, t, k in conn.execute("SELECT id, title, short_title FROM law"):
-        for x in (t, k):
-            if x and (re.search(r"\sVom\s+\d", x) or re.search(r"\s\*\s*$", x)):
-                errors.append(f"law {lid}: «{x}» carries the edition line or the footnote marker «*» — "
-                              "scripts/load_gesetz_titel.py --lesen, then apply")
     return errors
 
 

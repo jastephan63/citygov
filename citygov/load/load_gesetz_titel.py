@@ -31,6 +31,8 @@ or the new one (applied) — never a third, which would mean a later loader rewr
 The new short title is the name in the closing parenthesis of the title block
 («(Baugesetz)»; of «(Brandschutzgesetz, BSG)» the abbreviation when it is one),
 otherwise the full title of the block. Not a build step (the --lesen step needs pypdf and the law folder).
+The evidence file, its reading (zeilen) and the gate (pruefen) live in citygov/domain/gesetz_titel.py,
+because the integrity gate runs them; this module reads the PDFs and applies the entries.
 """
 import json
 import os
@@ -39,12 +41,11 @@ import shutil
 import sys
 
 from citygov.core.common import DB_PATH, ROOT, connect
+from citygov.domain.gesetz_titel import DATEI, MAX_ZEILEN, kurztitel, titel_aus_block, zeilen
 
 GESETZE_DIR = os.path.normpath(os.path.join(ROOT, "..", "Gesetze"))
-DATEI = os.path.join(ROOT, "quellen", "korrekturen", "gesetz_titel_2026-10-05.json")
 KOPF = re.compile(r"^Kanton Schaffhausen\s+\d{3}\.\d{3}\s*$")
 VOM = re.compile(r"^[Vv]om \d")
-MAX_ZEILEN = 12
 
 # what makes an old title or short title defective (the reason recorded per entry)
 GRUND = {
@@ -56,41 +57,11 @@ GRUND = {
 }
 
 
-def titel_aus_block(zeilen):
-    """The title as one line: a break after «-» before a lower-case word that is not
-    «und/oder/bzw.» is a word break; the footnote marker «*» is dropped."""
-    out = ""
-    for z in zeilen:
-        z = z.strip()
-        if not z:
-            continue
-        if out.endswith("-") and re.match(r"[a-zäöü]", z) and not re.match(r"(?:und|oder)\b|bzw\.", z):
-            out = out[:-1] + z
-        else:
-            out = (out + " " + z) if out else z
-    out = re.sub(r"\s*\*(?=\s|$|\))", "", out)
-    return re.sub(r"\s+", " ", out).strip()
-
-
 def _kern(t):
     """A title without its closing parenthesis, the edition line and the footnote marker."""
     t = re.sub(r"\s+Vom\s+\d.*$", "", t or "")
     t = re.sub(r"\s*\*(?=\s|$)", "", t)
     return re.sub(r"\s*\([^()]*\)\s*$", "", t).strip()
-
-
-def kurztitel(titel):
-    """The short title of a corrected title: the closing parenthesis («Baugesetz»), of a
-    pair («Brandschutzgesetz, BSG») the abbreviation when it is one, else the full title."""
-    m = re.search(r"\(([^()]+)\)\s*$", titel)
-    if not m:
-        return titel
-    teile = [p.strip() for p in m.group(1).split(",") if p.strip()]
-    letzt = teile[-1]
-    if len(teile) > 1 and re.fullmatch(r"[A-ZÄÖÜ][A-Za-zÄÖÜäöü0-9-]*", letzt) and \
-            len(re.findall(r"[A-ZÄÖÜ]", letzt)) >= 2:
-        return letzt
-    return teile[0]
 
 
 def defekt_titel(titel, pdf_titel):
@@ -180,55 +151,6 @@ def lesen():
     print(f"{len(eintraege)} Gesetze mit fehlerhaftem Titel oder Kurztitel -> {os.path.relpath(DATEI, ROOT)}")
     for x in ohne:
         print("  ohne Titelblock:", x)
-
-
-def zeilen(conn):
-    """([(law_id, titel, kurz)], [(law_id, titel_bisher, kurz_bisher)], errors) from the evidence file."""
-    try:
-        doc = json.load(open(DATEI, encoding="utf-8"))
-    except (OSError, ValueError) as ex:
-        return [], [], [f"{os.path.relpath(DATEI, ROOT)}: nicht lesbar ({ex})"]
-    neu, alt, fehler = [], [], []
-    for e in doc.get("eintraege") or []:
-        tag = f"Gesetz {e.get('law_id')}"
-        g = conn.execute("SELECT datei, datei_sha256 FROM gesetz_stand WHERE law_id=?", [e.get("law_id")]).fetchone()
-        if not g or (g["datei"], g["datei_sha256"]) != (e.get("datei"), e.get("sha256")):
-            fehler.append(f"{tag}: gelesen wurde nicht {e.get('datei')} mit dieser SHA-256")
-            continue
-        block = e.get("titelblock") or []
-        if not block or len(block) > MAX_ZEILEN:
-            fehler.append(f"{tag}: ohne Titelblock")
-            continue
-        soll = titel_aus_block(block)
-        if e.get("grund_titel") and e.get("titel") != soll:
-            fehler.append(f"{tag}: der Titel «{e.get('titel')}» ist nicht der Titelblock «{soll}»")
-        if not e.get("grund_titel") and e.get("titel") != e.get("titel_bisher"):
-            fehler.append(f"{tag}: Titel geändert ohne Grund")
-        if e.get("grund_kurz") and e.get("kurz") != kurztitel(soll):
-            fehler.append(f"{tag}: der Kurztitel «{e.get('kurz')}» folgt nicht aus dem Titelblock")
-        if not e.get("grund_kurz") and e.get("kurz") != e.get("kurz_bisher"):
-            fehler.append(f"{tag}: Kurztitel geändert ohne Grund")
-        for t in (e.get("titel"), e.get("kurz")):
-            if t and (re.search(r"\s+Vom\s+\d", t) or "*" in t or "ß" in t):
-                fehler.append(f"{tag}: «{t}» trägt noch Stand, Fussnote oder «ß»")
-        neu.append((e["law_id"], e["titel"], e["kurz"]))
-        alt.append((e["law_id"], e["titel_bisher"], e["kurz_bisher"]))
-    for (lid, t, k), (_, ta, ka) in zip(neu, alt):
-        r = conn.execute("SELECT title, short_title FROM law WHERE id=?", [lid]).fetchone()
-        if not r:
-            fehler.append(f"Gesetz {lid}: fehlt")
-        elif (r["title"], r["short_title"]) not in ((t, k), (ta, ka)):
-            fehler.append(f"Gesetz {lid}: trägt weder den bisherigen noch den korrigierten Namen "
-                          f"(«{r['title']}» / «{r['short_title']}») — ein anderer Lader hat ihn geändert")
-    return neu, alt, fehler
-
-
-def pruefen(conn):
-    """The gate for validate_db: every entry of the evidence file is either pending or
-    applied (errors only; [] without the law layer)."""
-    if not os.path.exists(DATEI):
-        return []
-    return zeilen(conn)[2]
 
 
 def main():

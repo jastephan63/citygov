@@ -21,18 +21,15 @@ the naming texts). Idempotent. Staging -> validate -> swap.
 The naming chain (scripts/run_begriffe.py) rebuilds those texts from the
 panel outputs and therefore runs this script as its last step. export_json.py
 refuses to export a naming or basis text that still says «Datum» without a
-verdict here, so a new text cannot slip through unreviewed.
+verdict here, so a new text cannot slip through unreviewed. Both read the
+verdicts through citygov/domain/wortwahl.py (lade, offen).
 
     python3 scripts/apply_wortwahl.py
 """
-import json, os, re, shutil, sys
+import json, os, shutil, sys
 from citygov.core.common import DB_PATH, connect, klartext
-from citygov.core import common
 from citygov.checks.validate_db import validate
-
-ROOT = common.ROOT                     # the repository root
-SRC = os.path.join(ROOT, "quellen", "wortwahl_datum.json")
-DATUM = re.compile(r"\bDatums?\b")
+from citygov.domain.wortwahl import SRC, lade
 
 # (table, text column, shown through klartext?)
 SPALTEN = [
@@ -44,26 +41,6 @@ SPALTEN = [
     ("data_field", "definition", False),
     ("data_field", "basis_begruendung", False),
 ]
-
-
-def lade():
-    K = json.load(open(SRC, encoding="utf-8"))
-    ersetzen = {e["alt"]: e["neu"] for e in K["ersetzen"]}
-    behalten = set(K["behalten"])
-    for a, n in ersetzen.items():
-        if a == n or not n.strip():
-            sys.exit(f"ABBRUCH: leere oder unveränderte Ersetzung: {a[:80]}")
-        if "ß" in n:
-            sys.exit(f"ABBRUCH: «ß» in der Ersetzung: {n[:80]}")
-    doppelt = behalten & set(ersetzen)
-    if doppelt:
-        sys.exit(f"ABBRUCH: sowohl behalten als auch ersetzt: {sorted(doppelt)[:3]}")
-    return ersetzen, behalten
-
-
-def offen(texte, behalten):
-    """Texts that still say «Datum» without a verdict (as the website shows them)."""
-    return sorted({t for t in texte if t and DATUM.search(t) and t not in behalten})
 
 
 def main():

@@ -18,7 +18,7 @@ Tables (schema.sql, «Register-Katalog»):
   register_standard  the eCH standards (present in ech_standard) the register
                      exchanges with — each with a quote from the standard's own
                      ech.ch page that names the register, or the project rule
-                     init_register.REGISTER_STDS for the Einwohnerregister
+                     REGISTER_STDS (below) for the Einwohnerregister
 
 Sources (QUELLEN) come in three kinds:
   html        an official web page or Fedlex filestore text (footnote markers are
@@ -148,6 +148,11 @@ QUELLEN = {
     # official schema file already in the repository
     "xsd_ech_0129": ("ech_xsd/eCH-0129/eCH-0129-6-0.xsd", "repo", "eCH-0129 V6.0, XML-Schema (Kopie in der Databank)"),
 }
+
+
+# the five eCH register standards whose data the Einwohnerregister already holds — the project
+# rule «projektregel»; init_register.py (canonical_attribute.register_source) reads it here
+REGISTER_STDS = {"eCH-0044", "eCH-0010", "eCH-0011", "eCH-0007", "eCH-0008"}
 
 
 # ---------------------------------------------------------------------------
@@ -591,8 +596,7 @@ def abrufen(qdir):
 # ---------------------------------------------------------------------------
 def projektregel():
     """The five standards the export treats as Einwohnerregister data (one rule)."""
-    from citygov.load import init_register
-    return set(init_register.REGISTER_STDS)
+    return set(REGISTER_STDS)
 
 
 def zeilen(qdir, conn):

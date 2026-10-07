@@ -12,7 +12,10 @@ every `./build.sh` and must not move or be renamed: `verlauf_bemerkungen.json`,
 `parteien_stichprobe_2026-10-05.json`; so is the folder `register/`, whose
 snapshots the gate of `scripts/validate_db.py` reads on every run. The correction files are named in the
 scripts or in the `scripts/README.md` commands that apply them, so they keep
-their names too (the naming corrections are picked by their keys).
+their names too (the naming corrections are picked by their keys). Each
+`scripts/<name>.py` named here is a command of the package `citygov/` and
+stays valid as written; `python3 -m citygov load <name> …` starts the same
+command.
 
 | File | What it is | Read by | When | `./build.sh` needs it |
 |---|---|---|---|---|

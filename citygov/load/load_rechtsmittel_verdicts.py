@@ -46,7 +46,7 @@ def main():
     cands = {}
     # a provision the second review struck is not a remedy and may not be named;
     # the candidate laws are the ones load_rechtsmittel.py uses (fields + DVSH)
-    from citygov.load.load_rechtsmittel import cited_laws
+    from citygov.domain.rechtsmittel import cited_laws
     rules_by_law = {}
     for r in c.execute("SELECT id, law_id, article_id, rechtsmittel_art FROM rechtsmittel_regel "
                        "WHERE scope='sektoral' AND COALESCE(gestrichen,0)=0"):

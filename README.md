@@ -37,8 +37,9 @@ wrong.
 | `.nojekyll` | Tells GitHub Pages to serve the files exactly as they are (no Jekyll processing) — without it Pages would drop `dossiers/_repo.js` (names starting with «_»), the marker a locally opened dashboard looks for to know the whole repository is next to it. |
 | `.gitattributes` | Marks the generated pages and exports (dashboard, flows, index, 404, `data_export.json`, the `citygov_*` exports, their contract `schema/` and `exportvertrag.json`, `dossiers/`) and the third-party `quellen/ch-geo.js`, so GitHub leaves them out of the language statistics and collapses the generated files' diffs. |
 | `requirements.txt` | The three third-party Python packages the loaders and the Datentresor need. |
-| `citygov/` | The code, as one Python package in six layers (`citygov/__init__.py` names them): `core` (paths and the database connection, the two shared definitions every page is built from — `labels.py`, what a code is called, and `theme.py`, what a page looks like: fonts, colours, tones, text sizes —, the key figures and the permanent identifiers), `checks` (the integrity gate `validate_db.py`), `domain` (what the loaders and the exports share: parties, registers, change-impact index, concepts, law editions, the Gestaltung of the Formulare), `load` (every loader, harvester, ingest, scan, sweep and migration), `export` (the exports, the Datentresor, the past days of the trend) and `present` (dashboard, flows, dossiers, start page). |
+| `citygov/` | The code, as one Python package in six layers (`citygov/__init__.py` names them), with one entry point, `python3 -m citygov` (see «Building»): `core` (paths and the database connection, the two shared definitions every page is built from — `labels.py`, what a code is called, and `theme.py`, what a page looks like: fonts, colours, tones, text sizes —, the key figures and the permanent identifiers), `checks` (the integrity gate `validate_db.py`), `domain` (what the loaders and the exports share: parties, registers, change-impact index, concepts, law editions and titles, remedies, the «Datum» verdicts, the Gestaltung of the Formulare, and the data-model gates the integrity gate runs), `load` (every loader, harvester, ingest, scan, sweep and migration), `export` (the exports, the Datentresor, the past days of the trend) and `present` (dashboard, flows, dossiers, start page; the pages' HTML templates, stylesheets and scripts are real files under `citygov/present/assets/`, inlined at build time). An import goes only towards `core`, also inside a function, with one exception, the registry trigger: `validate_db.datenmodell_checks` runs `import citygov.domain` (once; that package's `__init__` loads `citygov/domain/gates.py`, which adds the data-model gates to `citygov.checks.registry`), and `checks` imports no other `domain` module. A command line that needs a higher layer than its module lives there as `<module>_cli`. |
 | `scripts/` | The commands: `python3 scripts/<name>.py` for every module of `citygov/`, with the same name, arguments, output and exit code as before the code moved (each file is a thin wrapper), and `check_pages.mjs`, the automatic page check at the end of the build. The measurement of how the Formulare look (`scan_gestaltung.py` with `gestaltung_pdf.py`, `gestaltung_office.py` and `gestaltung_text.py`) writes the table `form_gestaltung`; it is a loader, not a step of the build. `scripts/README.md` says what each script does and in which order the loaders run. Retired tools are kept for the record in `scripts/deprecated/`, whose README says what replaced each. |
+| `tests/` | The tests (`python3 -m unittest`, standard library only; a step of the build, see «Building»): the layer order, every gate on the real data and on a tampered copy, the wrappers, the contrast of the shared look, the page scripts and the entry point. |
 | `formulare/` | The original Formular files (431 files: 348 PDF, 62 Word, 21 Excel; about 150 MB), tracked so the «Quelldatei» links work online and offline. Every `form.source_file` in the database resolves here; the remaining 42 Formulare are eFormulare built from DVSH form definitions and have no file. File names are kept exactly as published (case, spacing, numbering), because `form.source_file` and shared links point at them; `git ls-files` shows non-ASCII names quoted unless `core.quotepath=off`. The Gestaltung is measured on these files; they are only read, never changed. |
 | `ech_xsd/` | The official eCH XML schemas the element catalogue and code lists were read from: 104 files — the 82 main schemas that `ech_standard.xsd_file` points to (so these file names must not change), 12 French versions, 6 further files of the same standards and 4 schemas of other origin found on the pages of eCH-0033, eCH-0118 and eCH-0165. |
 | `quellen/` | Official source PDFs (the eCH-0049 Themenkatalog annexes); the evidence-backed single corrections applied to the database, each with its reason (`korrekturen/`, `rechtsmittel/`); and five files every build reads: `verlauf_bemerkungen.json`, `wortwahl_datum.json` (the reviewed reader wording, see below), `ch-geo.js` (the Swiss municipalities, postcodes and countries the guided forms offer as autocomplete), `konzepte.json` (the reviewed concepts, see «What the data covers») and `parteien_stichprobe_2026-10-05.json` (the audit of the party layer, see «How the data is verified»); plus `register/`, the text of every official source the register layer quotes, which `validate_db.py` checks every quote against. Every build also reads two of the correction sets, when they are present — `korrekturen/gesetz_titel_2026-10-05.json` and the three files under `korrekturen/prefill_inhalt_2026-10-05/` — because `validate_db.py` checks that each is pending or applied; without them that check is skipped. `quellen/README.md` lists every file, the script that reads it and when. |
@@ -684,6 +685,7 @@ including the metadata the files carry.
 ./build.sh            # every generated surface from citygov.db
 ./build.sh --tresor   # additionally rebuild datentresor.db
 ./build.sh --pdf      # additionally write dossiers/*.pdf (local only)
+python3 -m citygov build   # the same build (./build.sh runs it); python3 -m citygov list shows the steps
 ```
 
 One command rebuilds everything in dependency order: `init_register.py`
@@ -730,10 +732,11 @@ exactly one active identifier, and each names its object) →
 `404.html`) → `validate_db.py` (with the gates of the identifiers, parties,
 law editions and registers — the register gate includes the time rule of
 the prefill and the eCH correction files of 2026-10-05 and reads
-`quellen/register/` —, of the concept file and of the law titles) → `check_pages.mjs`, the
-automatic page check. The build reads nothing outside the repository. It prints the sizes of
-`dashboard.html`, `flows.html`, `data_export.json` and `citygov_llm.json`,
-then the result of the page check, and writes `logs/citation_todo.txt`
+`quellen/register/` —, of the concept file and of the law titles) → the tests
+(`python3 -m unittest`, see «The tests» below; a failing test fails the build) →
+`check_pages.mjs`, the automatic page check. The build reads nothing outside the repository.
+It prints the sizes of `dashboard.html`, `flows.html`, `data_export.json` and `citygov_llm.json`,
+then the result of the tests and of the page check, and writes `logs/citation_todo.txt`
 (every ingested law article not at level `verified`) locally; `logs/` is not
 tracked. A `--pdf` build adds a PDF column to `dossiers/index.html`; run a
 plain `./build.sh` before committing, so the published index does not link
@@ -760,6 +763,28 @@ succeeds; a Chrome that is found but does not start fails the build with the
 cause («Seitenprüfung fehlgeschlagen: …» — in a container set
 `CHROME_FLAGS=--no-sandbox`; `CHECK_PAGES=skip` builds without the check on
 purpose). `scripts/README.md` lists every check and what clears it.
+
+**One entry point.** `python3 -m citygov <command>`, from the repository
+root (no install; standard library only): `build [--tresor] [--pdf]` (what
+`./build.sh` runs), `validate [db]` (`scripts/validate_db.py`), `load <name>
+[args …]` (runs `python3 scripts/<name>.py [args …]` — every name under
+`scripts/`, with the same output and exit code), `list` (every command with
+its purpose, by layer, and the build steps), `check-pages` (`node
+scripts/check_pages.mjs`) and `test`. Every documented command —
+`./build.sh`, `python3 scripts/<name>.py …` — stays valid.
+
+**The tests.** `python3 -m unittest` (or `python3 -m citygov test`) runs
+`tests/` (standard library only, about 45 seconds): the layer order of the
+package (a static scan of every import), every gate on the real data and on a
+tampered copy (each family of checks of `validate_db.py`, the sum gate of
+`export_json.py`, the gates of parties, registers, identifiers, law editions and
+law titles, and the self-tests of the concepts, the change-impact index and
+the Gestaltung), the wrappers under `scripts/`, the contrast of the shared look
+(`theme.py`), that the page scripts under `citygov/present/assets/` parse
+(`node --check`; skipped without Node) and the entry point itself. No test
+writes the shared database: they read a read-only copy in a temporary folder
+(through `CITYGOV_DB` / `CITYGOV_SCHEMA`) and tamper only with copies in
+memory. `./build.sh` runs them before the page check.
 
 Loading new data is a different job. The loaders under `scripts/`
 (`load_*.py`, `ingest_*.py`, `sweep_ech_xsd.py`, `run_begriffe.py`,

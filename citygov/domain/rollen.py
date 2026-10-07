@@ -1226,7 +1226,7 @@ def _grund_text(r):
 # ---------------------------------------------------------------------------
 # Grounding of the role list (computed from the databank's own words)
 # ---------------------------------------------------------------------------
-# The party words of the Lebenslagen key (export_json.PARTY) and what each says here.
+# The party words of the Lebenslagen key (PARTY, citygov/domain/parteiwoerter.py) and what each says here.
 LEBENSLAGEN_WOERTER = {
     "ehe(gatt|partner|frau|mann)": "ehepartner", "partner": "ehepartner (allein zu breit: auch Ansprechpartner)",
     "kind": "kind", "tochter": "kind (allein zu breit: auch Tochtergesellschaft)", "sohn": "kind",
@@ -1244,11 +1244,11 @@ LEBENSLAGEN_WOERTER = {
 
 
 def lebenslagen_abgleich():
-    """The party words of the Lebenslagen key (export_json.PARTY, read from the
+    """The party words of the Lebenslagen key (parteiwoerter.PARTY, read from the
     source text, never imported) against LEBENSLAGEN_WOERTER: every word must
     say what it means here. Returns (missing, extra)."""
     import ast
-    pfad = os.path.join(ROOT, "citygov", "export", "export_json.py")   # export_json's own file
+    pfad = os.path.join(ROOT, "citygov", "domain", "parteiwoerter.py")   # the one definition of PARTY
     try:
         baum = ast.parse(open(pfad, encoding="utf-8").read())
     except OSError:

@@ -27,7 +27,9 @@ fields cite most (a 'verweis' to the VRG resolves to the general rule); with
 no sektoral rule, decisions of the kinds bewilligung/verfuegung/bestaetigung/
 auszahlung get the general VRG rule, marked quelle='allgemein'. A
 registereintrag without a sektoral rule stays open (federal register law has
-its own remedies; guessing would be wrong), kein_entscheid gets none.
+its own remedies; guessing would be wrong), kein_entscheid gets none. The laws
+a form cites (cited_laws) live in citygov/domain/rechtsmittel.py: the export
+lists the candidate provisions with the same function.
 
     python3 scripts/load_rechtsmittel.py <dir-with-out_*.json>   (dir optional)
 """
@@ -35,6 +37,7 @@ import glob, json, os, re, shutil, sys
 from citygov.core.common import DB_PATH, connect
 from citygov.checks.validate_db import validate
 from citygov.load.load_data_rules import law_pdf, pdf_text, normtext
+from citygov.domain.rechtsmittel import cited_laws
 
 VOCAB = {"einsprache", "rekurs", "beschwerde", "verwaltungsgerichtsbeschwerde", "verweis"}
 WORDS = {3: ["drei"], 5: ["fünf", "fuenf"], 10: ["zehn"], 14: ["vierzehn"], 15: ["fünfzehn"],
@@ -99,39 +102,6 @@ def frist_ok(days, quote):
 
 def art_key(no):
     return re.sub(r"\s+", "", (no or "").lower().replace("art.", "").replace("§", ""))
-
-
-
-def cited_laws(c):
-    """form_id -> {law_id: weight}: the laws a form's fields cite (weight = number
-    of citing fields) plus the cantonal laws the DVSH model names as the
-    service's Rechtsgrundlage (weight 1, only where not already cited). The
-    DVSH model is authoritative for legal bases, so a remedy provision of a law
-    it names is a candidate even before the field-level legal pass reached the
-    form. Federal DVSH references carry Fedlex URLs without SR numbers and are
-    not resolved here."""
-    cited = {}
-    for r in c.execute("SELECT d.form_id, a.law_id, COUNT(*) n FROM data_field_legal_basis lb "
-                       "JOIN data_field d ON d.id=lb.data_field_id JOIN article a ON a.id=lb.article_id "
-                       "GROUP BY d.form_id, a.law_id"):
-        cited.setdefault(r["form_id"], {})[r["law_id"]] = r["n"]
-    if not c.execute("SELECT 1 FROM sqlite_master WHERE name='dvsh_service'").fetchone():
-        return cited
-    by_ref = {r["cantonal_ref"]: r["id"] for r in c.execute("SELECT id, cantonal_ref FROM law WHERE cantonal_ref IS NOT NULL")}
-    for r in c.execute("SELECT f.id form_id, v.recht_kantonal FROM form f JOIN dvsh_service v ON v.service_id=f.service_id "
-                       "WHERE v.recht_kantonal IS NOT NULL"):
-        try:
-            refs = json.loads(r["recht_kantonal"])
-            if isinstance(refs, str):
-                refs = json.loads(refs)
-        except Exception:
-            continue
-        for ref in refs if isinstance(refs, list) else []:
-            nr = (ref or {}).get("ssr_nummer") if isinstance(ref, dict) else None
-            lid = by_ref.get("SHR " + str(nr).strip()) if nr else None
-            if lid:
-                cited.setdefault(r["form_id"], {}).setdefault(lid, 1)
-    return cited
 
 
 def find_or_add_article(c, law_id, article_no, heading, quote, nr):

@@ -59,6 +59,7 @@ from citygov.core.labels import fmt_date, pl, render_label
 # the dashboard's wording pass over texts from the export (plain words instead of
 # «Over-collection», «Korpus»; counts with their unit) — one list for both surfaces
 from citygov.present.build_dashboard import gap_wording
+from citygov.present import asset
 
 ROOT = common.ROOT                     # the repository root
 OUT = os.path.join(ROOT, "dossiers")
@@ -119,8 +120,8 @@ def code_name(s):
 # telephone, then e-mail, each named; without a contact «nicht hinterlegt». The parts
 # are printed as the DVSH stores them — a number or an address is never rewritten;
 # telephone and e-mail are links, and only the TARGET of a tel: link is put into the
-# international form. Tests and order are the dashboard's (build_dashboard.py,
-# kontaktHtml) and the guided forms' (build_flows.py); the words («Kontakt (laut
+# international form. Tests and order are the dashboard's (assets/dashboard/dashboard.js,
+# kontaktHtml) and the guided forms' (assets/flows/flows.js); the words («Kontakt (laut
 # DVSH)», «Tel.», «E-Mail», «nicht hinterlegt») are labels.KONTAKT, read by all three.
 KONTAKT_LABEL = LABELS.KONTAKT["label"] + ":"
 KONTAKT_LEER = LABELS.KONTAKT["leer"]
@@ -272,66 +273,16 @@ def ton_key_html():
     return (f"<div class='key'><b>Die Farbe sagt, wer als Nächstes handelt:</b> {parts} — grau ist eine "
             "Hausaufgabe der Databank, kein Befund über die Verwaltung.</div>")
 # gesetzesebenen -> wording of the Rechtsmittel line; mirrors the inline literal in
-# build_dashboard.py (rechtsmittelLine) and belongs in labels.py with the other maps —
+# assets/dashboard/dashboard.js (rechtsmittelLine) and belongs in labels.py with the other maps —
 # labels.JUR says «Bund/Kanton/Gemeinde», which is not the same sentence, so it is
 # kept here until labels.py carries it for both surfaces
 EBENE = LABELS.EBENE          # level of law, sentence form — shared with the dashboard
 
 # The look comes from scripts/theme.py (THEME.css_root(): colours, the system font, the six
 # text sizes — px on screen, pt on paper). The dossier keeps its white page and its compact
-# print layout; it only stops using values of its own.
-CSS = THEME.css_root(compact=True) + """
-@page{size:A4;margin:14mm 14mm 16mm}
-*{box-sizing:border-box}
-:root{color-scheme:light only}
-/* overflow-wrap: a word longer than the line («Sicherheitsbeleuchtung/Sicherheitsstromversorgungen»
-   on a phone) breaks instead of making the page scroll sideways */
-body{font:var(--fs-m)/1.35 var(--font);color:var(--ink);background:var(--card);margin:0;padding:18px 22px;max-width:900px;overflow-wrap:break-word}
-h1{font-size:var(--fs-xl);line-height:1.2;margin:0 0 2px}h2{font-size:var(--fs-l);margin:14px 0 4px;border-bottom:1px solid var(--line-strong);padding-bottom:2px}
-h3{font-size:var(--fs-m);margin:10px 0 3px}
-.sub{color:var(--ink-faint);font-size:var(--fs-s)}.muted{color:var(--ink-faint)}.small{font-size:var(--fs-s)}
-a{color:var(--link);text-underline-offset:2px}a:hover{text-decoration:none}a.b{text-decoration:none}
-table{border-collapse:collapse;width:100%;font-size:var(--fs-s)}th,td{text-align:left;vertical-align:top;padding:2px 5px;border-bottom:1px solid var(--line)}
-th{font-weight:600;color:var(--ink-faint);font-size:var(--fs-xs);text-transform:uppercase;letter-spacing:.03em}
-/* a badge is one box; a long one may wrap inside it, so no table is pushed wider than the page */
-.b{display:inline-block;border:1px solid var(--line-strong);border-radius:4px;padding:0 4px;font-size:var(--fs-xs)}
-.b{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-/* status badge: tint, border and the tone as text from the theme; the border style
-   (solid · solid · double · dashed) and the symbol keep the tones apart without colour */
-.b.st-ok{color:var(--ton-ok-ink);background:var(--ton-ok-bg);border-color:var(--ton-ok-line)}
-.b.st-act{color:var(--ton-act-ink);background:var(--ton-act-bg);border-color:var(--ton-act-line)}
-.b.st-dec{color:var(--ton-dec-ink);background:var(--ton-dec-bg);border-color:var(--ton-dec-line);border-style:double;border-width:3px;padding:0 3px}
-.b.st-open{color:var(--ton-open-ink);background:var(--ton-open-bg);border-color:var(--ton-open-line);border-style:dashed}
-.b.mk{color:var(--ink);background:var(--card);border-color:var(--line-dark)}
-/* the eSH code is a draft of the canton, never official eCH: violet, dashed — as in the dashboard */
-.b.esh{color:var(--esh);background:var(--esh-bg);border:1px dashed var(--esh-line)}
-.key{font-size:var(--fs-xs);color:var(--ink-faint);margin:3px 0}
-.prio th{width:30%;text-transform:none;letter-spacing:0;font-size:var(--fs-s);color:var(--ink);white-space:nowrap}
-.prio td .b{margin:1px 0}
-.nw,.nw .b{white-space:nowrap}
-/* the list of all dossiers has six columns: a wider page than the A4-shaped dossier */
-body.idx{max-width:1080px}
-.tier{font-weight:600;font-size:var(--fs-xs);color:var(--ink-faint);margin:5px 0 1px}
-.mono{font-family:var(--mono);font-size:var(--fs-xs)}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px}
-.box{border:1px solid var(--line-strong);border-radius:6px;padding:6px 9px;margin:6px 0}
-.print{position:fixed;right:14px;top:10px;border:1px solid var(--line-strong);background:var(--card);color:var(--ink);border-radius:6px;padding:5px 10px;font:inherit;cursor:pointer}
-.nav{font-size:var(--fs-s);margin:0 0 8px}.nav a{margin-right:12px}
-.todo,.gap2{margin:2px 0}.gap4{margin-top:4px}.gap6{margin:6px 0}
-/* the word of a count chip (index): read out, not drawn — the legend above the table shows it.
-   The chip is its containing block, so the hidden word scrolls with the table on a phone */
-.nw .b{position:relative}
-.vh{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
-.legend{margin-top:12px;font-size:var(--fs-xs);color:var(--ink-faint);border-top:1px dashed var(--line-strong);padding-top:4px}
-.foot{margin-top:10px;font-size:var(--fs-xs);color:var(--ink-faint);border-top:1px solid var(--line-strong);padding-top:4px}
-input.filter{font:inherit;color:var(--ink);padding:4px 8px;border:1px solid var(--line-strong);border-radius:6px;margin:8px 0;width:360px;max-width:100%}
-input.filter:focus-visible{outline:2px solid var(--link);outline-offset:1px}
-/* a phone or a narrow window: the page keeps its width, a wide table scrolls on its own */
-@media screen and (max-width:700px){body{padding:12px 14px}.print{position:static;margin:0 0 8px}.grid{grid-template-columns:1fr}
-table{display:block;overflow-x:auto}.prio th{white-space:normal;width:auto}}
-@media print{.print,.nav,input.filter{display:none}.prio tr{break-inside:avoid}body{padding:0}h2,h3{break-after:avoid}tr{break-inside:avoid}thead{display:table-header-group}
-a{color:inherit;text-decoration:none}a[href^=http]::after{content:' (' attr(href) ')';font-size:var(--fs-xs);color:var(--ink-faint)}}
-"""
+# print layout; it only stops using values of its own. Its rules are a real file:
+# citygov/present/assets/dossiers/dossiers.css (an empty line separates them from the :root block).
+CSS = THEME.css_root(compact=True) + "\n" + asset("dossiers", "dossiers.css")
 # the tone symbol before every status badge — from THEME.TON_SYM, the one place it is
 # set; with the border (solid · solid · double · dashed) it keeps the four tones
 # apart in a black-and-white print
@@ -851,7 +802,7 @@ def dossier(s, forms, kontakt):
                (forms[0].get("outcome") if forms else None)) or {}
     rm_html = rechtsmittel_html(out)
     if s.get("dvsh") is None:
-        # the dashboard's two states (build_dashboard.py, nodvbox): linked in the
+        # the dashboard's two states (assets/dashboard/dashboard.js, nodvbox): linked in the
         # DVSH but the row is absent from the harvest, vs. not modelled at all
         dv_txt = ("DVSH-Modellierung nicht in der Databank (im DVSH verknüpft, beim letzten Abzug nicht mitgeliefert)"
                   if s.get("in_dvsh") else "nicht modelliert")

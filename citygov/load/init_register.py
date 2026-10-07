@@ -27,6 +27,7 @@ import json, os, re, shutil, sys
 from collections import Counter
 from citygov.core.common import DB_PATH, connect
 from citygov.checks.validate_db import validate
+from citygov.domain.register_katalog import REGISTER_STDS
 
 DDL = """
 CREATE TABLE IF NOT EXISTS format_pattern (
@@ -114,9 +115,6 @@ PROSE_MAP = [
     ("kg", "number"), ("stunden", "number"), ("m²", "number"), ("mwh", "number"),
     ("anzahl", "number"), ("liter", "number"), ("aren", "number"), ("minuten", "number"),
 ]
-
-# the five eCH register standards whose data the Einwohnerregister already holds
-REGISTER_STDS = {"eCH-0044", "eCH-0010", "eCH-0011", "eCH-0007", "eCH-0008"}
 
 
 def main():

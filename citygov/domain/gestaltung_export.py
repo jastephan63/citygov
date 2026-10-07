@@ -13,6 +13,7 @@ writes nothing.
     python3 scripts/gestaltung_export.py --form 37    # one Formular, every Merkmal
     python3 scripts/gestaltung_export.py --json       # both results as JSON
     python3 scripts/gestaltung_export.py --selbsttest # every invariant fires on tampered copies
+    (the entry point is citygov/export/gestaltung_export_cli.py: it builds the export in memory)
 
 Standard library only, and nothing here imports pypdf, directly or through
 another module: gestaltung_text.py (standard library only) is the one
@@ -248,7 +249,6 @@ Invariants (pruefen(); each raises RuntimeError and names the Merkmal)
     count it names as its source: a verdict of a Merkmal of that group, or a
     kennzahl.
 """
-import argparse
 import copy
 import json
 import os
@@ -258,7 +258,7 @@ import sys
 from collections import Counter
 from fractions import Fraction
 
-from citygov.core.common import DB_PATH, LOCAL_PATH      # noqa: E402
+from citygov.core.common import LOCAL_PATH      # noqa: E402
 from citygov.domain import gestaltung_text as GT                # noqa: E402  (standard library only)
 
 __all__ = ["berechne", "pruefen", "URTEIL", "TON", "ART", "GRUPPEN", "MERKMALE", "MESSART", "ENTSCHEID", "KENNZAHL",
@@ -1822,20 +1822,8 @@ def berechne(conn, forms, services, dienststellen):
 
 
 # ================================================================ command line
-
-def _eingabe(db):
-    """(conn, forms, services, dienststellen_uebersicht) exactly as export_json.py holds
-    them at the hook: the export is built in memory, nothing is written."""
-    import contextlib
-    import io
-    import pathlib
-    from citygov.export import export_json as EJ
-    conn = sqlite3.connect(pathlib.Path(db).resolve().as_uri() + "?mode=ro", uri=True)
-    conn.row_factory = sqlite3.Row
-    with contextlib.redirect_stdout(io.StringIO()):
-        data, _todo = EJ.build(conn)
-    return conn, data["forms"], data["services"], data["dienststellen_uebersicht"]
-
+# the printing helpers and the self-test; the entry point (main, _eingabe) is
+# citygov/export/gestaltung_export_cli.py, because it builds the export in memory
 
 def _bytes(per_form, overview):
     """Bytes the two results add to data_export.json (its separators, UTF-8)."""
@@ -2140,33 +2128,3 @@ def _selbsttest(conn, forms, services, dienststellen):
             d=["Titel der Datei: " + _zitat(profile[f_name]["barrierefrei"]["titel"])]),
         "bf_titel", f"Formular {f_name}", "Person", name="9 Titel, der wie ein Personenname aussieht, zitiert")
     print(f"gestaltung_export: {n[0]} Prüfungen feuern auf veränderten Kopien; die echten Daten gehen auf")
-
-
-def main():
-    ap = argparse.ArgumentParser(description="Gestaltung der Formulare: Vergleich je Merkmal (liest citygov.db, "
-                                             "schreibt nichts).")
-    ap.add_argument("--form", type=int, metavar="FORM_ID", help="ein Formular mit jedem Merkmal")
-    ap.add_argument("--json", action="store_true", help="beide Ergebnisse als JSON ausgeben")
-    ap.add_argument("--selbsttest", action="store_true", help="jede Prüfung auf veränderten Kopien auslösen")
-    ap.add_argument("--db", default=DB_PATH, help="andere Databank-Datei (Vorgabe: citygov.db)")
-    args = ap.parse_args()
-    try:
-        conn, forms, services, dienststellen = _eingabe(args.db)
-        if args.selbsttest:
-            _selbsttest(conn, forms, services, dienststellen)
-            return
-        per_form, overview, tab = _berechnen(conn, forms, dienststellen)
-    except RuntimeError as e:
-        sys.exit(f"ABBRUCH gestaltung_export.py: {e}")
-    if args.json:
-        json.dump({"forms": {str(fid): g for fid, g in per_form.items()}, "gestaltung": overview}, sys.stdout,
-                  ensure_ascii=False, indent=1)
-        sys.stdout.write("\n")
-    elif args.form is not None:
-        _drucke_formular(args.form, forms, services, dienststellen, per_form, overview, tab)
-    else:
-        _drucke_uebersicht(per_form, overview)
-
-
-if __name__ == "__main__":
-    main()
