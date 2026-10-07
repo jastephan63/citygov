@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
-"""Moved to citygov/load/check_online.py — this wrapper keeps the old name working.
+"""Runs citygov/load/check_online.py under the command name scripts/check_online.py.
 
-`python3 scripts/check_online.py …` runs that module as before (same arguments, same output,
-same exit code), and `import check_online` in a script under scripts/ gets that very module.
+`python3 scripts/check_online.py …` runs that module as __main__ with the arguments untouched
+(its output, its exit code), and `import check_online` in a script under scripts/ gets that
+very module. Every command under scripts/ is this same thin file; the code lives in the package
+(scripts/README.md, «Adding a loader, a gate or a command»).
 """
 import os
 import sys

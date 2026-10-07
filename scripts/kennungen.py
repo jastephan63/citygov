@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
-"""Moved to citygov/core/kennungen.py, its command line to citygov/load/kennungen_cli.py —
-this wrapper keeps the old name working.
+"""Runs citygov/load/kennungen_cli.py, the command line of citygov/core/kennungen.py, under the
+command name scripts/kennungen.py.
 
-`python3 scripts/kennungen.py …` runs that command line as before (same arguments, same output,
-same exit code), and `import kennungen` in a script under scripts/ gets citygov.core.kennungen.
+`python3 scripts/kennungen.py …` runs that command line as __main__ with the arguments
+untouched (its output, its exit code), and `import kennungen` in a script under scripts/ gets
+citygov.core.kennungen. Every command under scripts/ is this same thin file; the code lives in
+the package (scripts/README.md, «Adding a loader, a gate or a command»).
 """
 import os
 import sys

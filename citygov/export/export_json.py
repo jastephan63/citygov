@@ -591,7 +591,8 @@ def uebersichten(conn, services, forms, dienststellen, begriffe_stats):
     KZ.upsert(doc, {"datum": date.today().isoformat(), "quelle": "build", **snap})
     doc["eintraege"].sort(key=lambda e: e["datum"])
     VERLAUF_DOC = doc
-    notes_path = os.path.join(os.path.dirname(DB_PATH), "quellen", "verlauf_bemerkungen.json")
+    # quellen/ is in the repository root, also when CITYGOV_DB names a private copy elsewhere
+    notes_path = os.path.join(ROOT, "quellen", "verlauf_bemerkungen.json")
     try:
         with open(notes_path, encoding="utf-8") as fh:
             notes = json.load(fh)
@@ -2145,7 +2146,9 @@ def build(conn):
     # the persons with the most offices involved are exported, so the dashboard
     # stays small; every value is synthetic by construction of datentresor.db
     buergersicht = {"personen": [], "hinweis": None}
-    dt_path = os.path.join(os.path.dirname(DB_PATH), "datentresor.db")
+    # the vault build_datentresor.py writes: ROOT/datentresor.db, also when CITYGOV_DB names a
+    # private copy elsewhere (where nothing writes a vault)
+    dt_path = os.path.join(ROOT, "datentresor.db")
     if os.path.exists(dt_path):
         try:
             dt = sqlite3.connect(dt_path)

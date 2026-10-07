@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
-"""Moved to citygov/export/build_datentresor.py — this wrapper keeps the old name working.
+"""Runs citygov/export/build_datentresor.py under the command name scripts/build_datentresor.py.
 
-`python3 scripts/build_datentresor.py …` runs that module as before (same arguments, same output,
-same exit code), and `import build_datentresor` in a script under scripts/ gets that very module.
+`python3 scripts/build_datentresor.py …` runs that module as __main__ with the arguments
+untouched (its output, its exit code), and `import build_datentresor` in a script under
+scripts/ gets that very module. Every command under scripts/ is this same thin file; the code
+lives in the package (scripts/README.md, «Adding a loader, a gate or a command»).
 """
 import os
 import sys

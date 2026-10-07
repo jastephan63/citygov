@@ -42,7 +42,6 @@ Edition layer (stand_anfuegen; needs gesetz_stand and gesetz_stand_pruefung):
 import argparse
 import copy
 import json
-import os
 import sqlite3
 import sys
 

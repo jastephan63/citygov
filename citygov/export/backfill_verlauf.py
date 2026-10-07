@@ -9,7 +9,7 @@ build is kept (the live build is the more complete measurement). Idempotent.
 
     python3 scripts/backfill_verlauf.py
 """
-import os, sqlite3, subprocess, sys, tempfile
+import os, sqlite3, subprocess, tempfile
 from citygov.core.common import ROOT
 from citygov.core import kennzahlen
 

@@ -1,7 +1,9 @@
 """The wrappers: every scripts/<name>.py is the same thin file, resolves to its module of the
 package, runs it as __main__ with the arguments untouched, and hands `import <name>` the module
 itself — so every documented command `python3 scripts/<name>.py …` and every subprocess call of
-the loaders keeps its arguments, output and exit code.
+the loaders keeps its arguments, output and exit code. And every wrapper a module of the package
+starts as a subprocess (run_begriffe, the ingests, scan_gestaltung …) exists: those calls are
+not imports, so the layer test cannot see them.
 """
 import ast
 import importlib
@@ -11,13 +13,14 @@ import re
 import runpy
 import subprocess
 import sys
-import unittest
 from unittest import mock
 
 from tests import ROOT, TestCase
+from tests.test_layers import package_sources
+
+from citygov.cli import LAYERS
 
 SCRIPTS = os.path.join(ROOT, "scripts")
-LAYERS = ("core", "checks", "domain", "load", "export", "present")
 
 
 def wrappers():
@@ -125,5 +128,35 @@ class Wrappers(TestCase):
         self.assertEqual((alt.returncode, alt.stdout, alt.stderr), (neu.returncode, neu.stdout, neu.stderr))
 
 
-if __name__ == "__main__":
-    unittest.main()
+
+def started_scripts(sources):
+    """{module: [file names]}: in every module that names the folder scripts/ (a variable set to
+    os.path.join(…, "scripts")), the plain file names «<name>.py» it holds as string constants
+    (docstrings left out) — the commands it starts through their wrappers."""
+    out = {}
+    for rel, src in sorted(sources.items()):
+        tree = ast.parse(src, filename=rel)
+        folder = any(isinstance(n, ast.Assign) and isinstance(n.value, ast.Call)
+                     and any(isinstance(a, ast.Constant) and a.value == "scripts" for a in n.value.args)
+                     for n in ast.walk(tree))
+        if not folder:
+            continue
+        docs = {id(n.body[0].value) for n in ast.walk(tree)
+                if isinstance(n, (ast.Module, ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef))
+                and n.body and isinstance(n.body[0], ast.Expr) and isinstance(n.body[0].value, ast.Constant)}
+        names = sorted({n.value for n in ast.walk(tree) if isinstance(n, ast.Constant) and isinstance(n.value, str)
+                        and id(n) not in docs and re.fullmatch(r"[a-z0-9_]+\.py", n.value)})
+        if names:
+            out[rel] = names
+    return out
+
+
+class Callers(TestCase):
+    def test_every_command_a_module_starts_exists(self):
+        found = started_scripts(package_sources())
+        for rel in ("citygov/load/run_begriffe.py", "citygov/load/scan_gestaltung.py", "citygov/load/ingest_laws.py"):
+            self.assertIn(rel, found)
+        for rel, names in found.items():
+            for name in names:
+                with self.subTest(module=rel, script=name):
+                    self.assertTrue(os.path.isfile(os.path.join(SCRIPTS, name)), f"scripts/{name} is missing")

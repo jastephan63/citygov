@@ -108,15 +108,19 @@ Checks, in order:
                                        pending or applied (never overwritten),
                                        and no law title carries the edition line
                                        («Vom … (Stand …)») or the footnote marker «*».
-Each of the gates 9-12 lives next to its loader and is skipped while its tables
-are absent; gate 13 reads only the curated file. The gates 9-14 run from
-citygov/domain/gates.py. Of domain, this module imports only the package
-citygov.domain, once (`import citygov.domain` inside datenmodell_checks: the
-registry trigger, the one exception to the layer order), and no other domain
-module: importing the package loads domain/gates.py, which adds the gates to
-citygov.checks.registry, and datenmodell_checks() runs what the registry holds
-(gate 14 lives in domain/gesetz_titel.py, the loader in
-load/load_gesetz_titel.py).
+Each of the gates 9-14 is a pruefen() in the module of its layer — core for the
+identifiers (kennungen), domain for the others (rollen, gesetz_stand,
+register_map, konzepte, gesetz_titel) —, never in load/: the loader imports it
+from there (load/load_gesetz_titel.py imports domain/gesetz_titel.py). The
+gates 9-12 are skipped while their tables are absent; gate 13 reads only the
+curated file. They run from citygov/domain/gates.py (datenmodell_gates). Of
+domain, this module imports only the package citygov.domain, once (`import
+citygov.domain` inside datenmodell_checks: the registry trigger, the one
+exception to the layer order), and no other domain module: importing the
+package loads domain/gates.py, which adds the gates to citygov.checks.registry,
+and datenmodell_checks() runs what the registry holds. A new gate is
+registered in citygov/domain/gates.py and nowhere else (its docstring says
+how); registry.add() in another module is never seen here.
 Importing them loads only the standard library: no network code
 (register_katalog.py imports urllib only inside its fetch function) and no pypdf
 (rollen.py imports it only where it reads a Formular text).
@@ -201,11 +205,11 @@ def datenmodell_checks(conn):
     """The gates of the data-model layers (2026-10): permanent identifiers (kennungen),
     parties and roles (rollen), law editions (gesetz_stand), registers with the prefill
     rule (register_map), the structure of the curated concept file (konzepte) and the
-    law titles (gesetz_titel) — citygov/domain/gates.py runs them, in this order. Of domain,
-    checks imports only the package citygov.domain, here and once (the registry trigger, the
-    one exception to the layer order), and no other domain module: the package's __init__ loads
-    domain/gates.py, which adds that gate to citygov.checks.registry, and every gate added
-    there runs here, in the order added."""
+    law titles (gesetz_titel) — citygov/domain/gates.py runs them (datenmodell_gates), in this
+    order. Of domain, checks imports only the package citygov.domain, here and once (the
+    registry trigger, the one exception to the layer order), and no other domain module: the
+    package's __init__ loads domain/gates.py, which adds its gates to citygov.checks.registry,
+    and every gate added there runs here, in the order added."""
     import citygov.domain               # noqa: F401  (citygov/domain/__init__.py adds the domain gates)
     gates = registry.gates()
     if not gates:

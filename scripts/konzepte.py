@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
-"""Moved to citygov/domain/konzepte.py, its command line to citygov/export/konzepte_cli.py —
-this wrapper keeps the old name working.
+"""Runs citygov/export/konzepte_cli.py, the command line of citygov/domain/konzepte.py, under the
+command name scripts/konzepte.py.
 
-`python3 scripts/konzepte.py …` runs that command line as before (same arguments, same output,
-same exit code), and `import konzepte` in a script under scripts/ gets citygov.domain.konzepte.
+`python3 scripts/konzepte.py …` runs that command line as __main__ with the arguments untouched
+(its output, its exit code), and `import konzepte` in a script under scripts/ gets
+citygov.domain.konzepte. Every command under scripts/ is this same thin file; the code lives in
+the package (scripts/README.md, «Adding a loader, a gate or a command»).
 """
 import os
 import sys

@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
-"""Moved to citygov/domain/register_map.py, its command line to citygov/export/register_map_cli.py —
-this wrapper keeps the old name working.
+"""Runs citygov/export/register_map_cli.py, the command line of citygov/domain/register_map.py,
+under the command name scripts/register_map.py.
 
-`python3 scripts/register_map.py …` runs that command line as before (same arguments, same output,
-same exit code), and `import register_map` in a script under scripts/ gets citygov.domain.register_map.
+`python3 scripts/register_map.py …` runs that command line as __main__ with the arguments
+untouched (its output, its exit code), and `import register_map` in a script under scripts/
+gets citygov.domain.register_map. Every command under scripts/ is this same thin file; the code
+lives in the package (scripts/README.md, «Adding a loader, a gate or a command»).
 """
 import os
 import sys

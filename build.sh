@@ -11,10 +11,10 @@
 # steps, in their order, and what each one does are listed in citygov/cli.py
 # (BUILD); `python3 -m citygov list` prints them: init_register.py, kennungen.py
 # and rollen.py ableiten rewrite the derived data inside citygov.db (the only steps
-# that write to it), then the exports, the theme check, the pages, the contract and
-# identifier checks, validate_db.py, the sizes of the largest files, the tests
-# (python3 -m unittest, tests/) and last the page check (node
-# scripts/check_pages.mjs). The first step that fails stops the build with its exit
+# that write to it), then the exports and the pages with the theme, contract and
+# identifier checks between them (the exact order is BUILD), validate_db.py, the
+# sizes of the largest files, the tests (python3 -m unittest, tests/) and last the
+# page check (node scripts/check_pages.mjs). The first step that fails stops the build with its exit
 # code. The steps run with .venv/bin/python3 when it exists.
 #
 # Loading NEW data is a different job: the loaders under scripts/ (load_*.py,

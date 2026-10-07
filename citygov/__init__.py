@@ -32,6 +32,26 @@ name: scripts/<name>.py is a thin wrapper that runs the module (or its
 and `import <name>` in a script under scripts/ gets the module itself.
 Importing the package loads nothing but this file.
 
+The package __init__ files stay light, and that is a rule, not only a habit:
+`python3 -m unittest` (discovery from the repository root) imports this file and
+the __init__ of every layer before tests/__init__.py points CITYGOV_DB at a
+private copy, and citygov.core.common reads CITYGOV_DB once, when it is first
+imported. So no __init__ here, and nothing one of them imports at module level
+(today only domain/gates.py and checks/registry.py), may import
+citygov.core.common; tests/test_layers.py holds it.
+
+Not every dependency is an import, so the layer test cannot see these:
+  - core/theme.py reads the files of present by path (the four page generators
+    and assets/) for `theme.py --check`;
+  - some loaders start other commands through their wrappers under scripts/, as
+    before the move: run_begriffe (its chain of load_* steps and
+    apply_wortwahl), ingest_laws, ingest_fed, load_data_rules and
+    load_themenkatalog (extract_law.py), scan_gestaltung (the self-tests of
+    gestaltung_text, gestaltung_pdf, gestaltung_office) — so those wrappers
+    carry load (tests/test_wrappers.py checks that every one they name exists);
+  - domain/rollen.py reads the source text of domain/parteiwoerter.py (PARTY)
+    by path instead of importing it.
+
 The package root holds the one entry point, `python3 -m citygov <command>`
 (__main__.py, cli.py: build, validate, load <name>, list, check-pages, test);
 it imports no layer and starts every command through its wrapper under

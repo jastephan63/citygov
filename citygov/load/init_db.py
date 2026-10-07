@@ -8,7 +8,6 @@ data. Pass --force to delete and recreate an empty database.
 """
 import argparse
 import os
-import sys
 
 from citygov.core.common import DB_PATH, SCHEMA_PATH, connect
 

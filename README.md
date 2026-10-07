@@ -37,8 +37,8 @@ wrong.
 | `.nojekyll` | Tells GitHub Pages to serve the files exactly as they are (no Jekyll processing) — without it Pages would drop `dossiers/_repo.js` (names starting with «_»), the marker a locally opened dashboard looks for to know the whole repository is next to it. |
 | `.gitattributes` | Marks the generated pages and exports (dashboard, flows, index, 404, `data_export.json`, the `citygov_*` exports, their contract `schema/` and `exportvertrag.json`, `dossiers/`) and the third-party `quellen/ch-geo.js`, so GitHub leaves them out of the language statistics and collapses the generated files' diffs. |
 | `requirements.txt` | The three third-party Python packages the loaders and the Datentresor need. |
-| `citygov/` | The code, as one Python package in six layers (`citygov/__init__.py` names them), with one entry point, `python3 -m citygov` (see «Building»): `core` (paths and the database connection, the two shared definitions every page is built from — `labels.py`, what a code is called, and `theme.py`, what a page looks like: fonts, colours, tones, text sizes —, the key figures and the permanent identifiers), `checks` (the integrity gate `validate_db.py`), `domain` (what the loaders and the exports share: parties, registers, change-impact index, concepts, law editions and titles, remedies, the «Datum» verdicts, the Gestaltung of the Formulare, and the data-model gates the integrity gate runs), `load` (every loader, harvester, ingest, scan, sweep and migration), `export` (the exports, the Datentresor, the past days of the trend) and `present` (dashboard, flows, dossiers, start page; the pages' HTML templates, stylesheets and scripts are real files under `citygov/present/assets/`, inlined at build time). An import goes only towards `core`, also inside a function, with one exception, the registry trigger: `validate_db.datenmodell_checks` runs `import citygov.domain` (once; that package's `__init__` loads `citygov/domain/gates.py`, which adds the data-model gates to `citygov.checks.registry`), and `checks` imports no other `domain` module. A command line that needs a higher layer than its module lives there as `<module>_cli`. |
-| `scripts/` | The commands: `python3 scripts/<name>.py` for every module of `citygov/`, with the same name, arguments, output and exit code as before the code moved (each file is a thin wrapper), and `check_pages.mjs`, the automatic page check at the end of the build. The measurement of how the Formulare look (`scan_gestaltung.py` with `gestaltung_pdf.py`, `gestaltung_office.py` and `gestaltung_text.py`) writes the table `form_gestaltung`; it is a loader, not a step of the build. `scripts/README.md` says what each script does and in which order the loaders run. Retired tools are kept for the record in `scripts/deprecated/`, whose README says what replaced each. |
+| `citygov/` | The code, as one Python package in six layers (`citygov/__init__.py` names them), with one entry point, `python3 -m citygov` (see «Building»): `core` (paths and the database connection, the two shared definitions every page is built from — `labels.py`, what a code is called, and `theme.py`, what a page looks like: fonts, colours, tones, text sizes —, the key figures and the permanent identifiers), `checks` (the integrity gate `validate_db.py`), `domain` (what the loaders and the exports share: parties, registers, change-impact index, concepts, law editions and titles, remedies, the «Datum» verdicts, the Gestaltung of the Formulare, and the data-model gates the integrity gate runs), `load` (the loaders, harvesters, ingests, scans, sweeps and migrations — all but three whose write side still shares its module with its gate and its export logic and so lives in `domain`: `rollen` (`ableiten`, `laden`), `register_katalog` and the writing run of `register_map`), `export` (the exports, the Datentresor, the past days of the trend) and `present` (dashboard, flows, dossiers, start page; the pages' HTML templates, stylesheets and scripts are real files under `citygov/present/assets/`, inlined at build time). An import goes only towards `core`, also inside a function, with one exception, the registry trigger: `validate_db.datenmodell_checks` runs `import citygov.domain` (once; that package's `__init__` loads `citygov/domain/gates.py`, which adds the data-model gates to `citygov.checks.registry`), and `checks` imports no other `domain` module; a new gate is registered in `citygov/domain/gates.py` and nowhere else (`scripts/README.md`, «Adding a loader, a gate or a command»). A command line that needs a higher layer than its module lives there as `<module>_cli`. |
+| `scripts/` | The commands: `python3 scripts/<name>.py` for every command — the 88 former scripts, under the same names, with the same arguments, output and exit code as before the code moved (each file is a thin wrapper; for `kennungen`, `gesetz_stand`, `konzepte`, `gestaltung_export` and `register_map` it runs the module's `<module>_cli`). Helper modules such as `registry`, `gates`, `gesetz_titel`, `parteiwoerter`, `rechtsmittel` and `wortwahl` have none, and a new command needs one (`scripts/README.md`, «Adding a loader, a gate or a command»). Also `check_pages.mjs`, the automatic page check at the end of the build. The measurement of how the Formulare look (`scan_gestaltung.py` with `gestaltung_pdf.py`, `gestaltung_office.py` and `gestaltung_text.py`) writes the table `form_gestaltung`; it is a loader, not a step of the build. `scripts/README.md` says what each script does and in which order the loaders run. Retired tools are kept for the record in `scripts/deprecated/`, whose README says what replaced each. |
 | `tests/` | The tests (`python3 -m unittest`, standard library only; a step of the build, see «Building»): the layer order, every gate on the real data and on a tampered copy, the wrappers, the contrast of the shared look, the page scripts and the entry point. |
 | `formulare/` | The original Formular files (431 files: 348 PDF, 62 Word, 21 Excel; about 150 MB), tracked so the «Quelldatei» links work online and offline. Every `form.source_file` in the database resolves here; the remaining 42 Formulare are eFormulare built from DVSH form definitions and have no file. File names are kept exactly as published (case, spacing, numbering), because `form.source_file` and shared links point at them; `git ls-files` shows non-ASCII names quoted unless `core.quotepath=off`. The Gestaltung is measured on these files; they are only read, never changed. |
 | `ech_xsd/` | The official eCH XML schemas the element catalogue and code lists were read from: 104 files — the 82 main schemas that `ech_standard.xsd_file` points to (so these file names must not change), 12 French versions, 6 further files of the same standards and 4 schemas of other origin found on the pages of eCH-0033, eCH-0118 and eCH-0165. |
@@ -180,7 +180,7 @@ and open `http://localhost:8917/`. Any other static file server works too.
   forms: «Kontakt (laut DVSH): Adresse · Tel. … · E-Mail …», the stored
   values verbatim, telephone and e-mail as links.
 - **One look.** Fonts, colours, the four tones and the six text sizes are
-  defined once (`scripts/theme.py`) and used by the dashboard, the start page,
+  defined once (`citygov/core/theme.py`) and used by the dashboard, the start page,
   the dossiers and the guided forms; every text colour reaches a contrast of
   4.5:1 and no text is smaller than 12 px — the page check at the end of the
   build measures both.
@@ -332,7 +332,7 @@ and open `http://localhost:8917/`. Any other static file server works too.
   identifiers, and every export its version under the export contract
   (`exportvertrag.json`, a JSON Schema per export under `schema/`; see
   «What is in here»). The base address for resolvable links is still to be chosen
-  (the constant `BASIS_URI` in `scripts/kennungen.py`).
+  (the constant `BASIS_URI` in `citygov/core/kennungen.py`).
 - **Whose Angabe each data point is (Parteien und Rollen).** Finer than the
   field's subjekt: a list of 26 party roles (Gesuchsteller/in, Ehepartner/in
   bzw. eingetragene/r Partner/in, Kind, Vertreter/in (bevollmächtigt),
@@ -714,7 +714,8 @@ figures, the concepts, the figures of the two pages and the change-impact
 index add up, every identifier resolves, no layer failed silently —
 otherwise it ends with «ABBRUCH … nichts geschrieben») → `theme.py
 --check` (the shared look: every text colour reaches 4.5:1 on its
-backgrounds, no colour, size or font literal is left in a page generator)
+backgrounds, no colour, size or font literal is left in a page generator
+or in its files under `citygov/present/assets/`)
 → `build_flows.py` (`flows.html`; its profile prefill holds only the
 applicant's own answers, the rule of `citygov_prefill.json`) →
 `export_llm.py` (the `citygov_*` exports; stops when its prefill map and
@@ -771,20 +772,39 @@ root (no install; standard library only): `build [--tresor] [--pdf]` (what
 `scripts/`, with the same output and exit code), `list` (every command with
 its purpose, by layer, and the build steps), `check-pages` (`node
 scripts/check_pages.mjs`) and `test`. Every documented command —
-`./build.sh`, `python3 scripts/<name>.py …` — stays valid.
+`./build.sh`, `python3 scripts/<name>.py …` — stays valid. `load` takes every
+name under `scripts/`, exporters, page builders and checks included
+(`python3 -m citygov load build_dashboard` builds the page); there is no
+separate `export` or `present` command. `list` groups a command by the layer
+of the code it runs (a `<module>_cli` sits one layer above its module). `build`
+runs its steps with `.venv/bin/python3` when it exists; `load`, `validate` and
+`test` run with the Python that starts them, so a loader that needs pypdf is
+started as `.venv/bin/python3 -m citygov load <name> …` (once pypdf is
+installed there, see «Requirements»).
 
 **The tests.** `python3 -m unittest` (or `python3 -m citygov test`) runs
-`tests/` (standard library only, about 45 seconds): the layer order of the
-package (a static scan of every import), every gate on the real data and on a
+`tests/` (standard library only, about 45 seconds to two minutes depending on
+the machine; one file: `python3 -m unittest tests.test_gates`): the layer order
+of the package (a static scan of every import) and that no package `__init__`
+loads the database paths on import, the registry of the data-model gates,
+every gate on the real data and on a
 tampered copy (each family of checks of `validate_db.py`, the sum gate of
 `export_json.py`, the gates of parties, registers, identifiers, law editions and
 law titles, and the self-tests of the concepts, the change-impact index and
 the Gestaltung), the wrappers under `scripts/`, the contrast of the shared look
-(`theme.py`), that the page scripts under `citygov/present/assets/` parse
-(`node --check`; skipped without Node) and the entry point itself. No test
-writes the shared database: they read a read-only copy in a temporary folder
-(through `CITYGOV_DB` / `CITYGOV_SCHEMA`) and tamper only with copies in
+(`theme.py`), the files under `citygov/present/assets/` (their byte rules,
+the helpers that inline them, and that the page scripts parse — `node
+--check`, skipped without Node) and the entry point itself. No test writes the
+shared database: they read a read-only copy of `citygov.db` in a temporary
+folder (through `CITYGOV_DB` / `CITYGOV_SCHEMA`) and tamper only with copies in
 memory. `./build.sh` runs them before the page check.
+
+**Adding code.** `scripts/README.md` has the two recipes: «Adding a loader, a
+gate or a command» (the module, its wrapper under `scripts/`, the table in
+`schema.sql`, where a gate lives and where it is registered, its test, and
+how to try it on a private copy of the database) and «Adding a dashboard page»
+(the eight places a page is registered, which of them the page check
+enforces, and a quick loop for editing the page code).
 
 Loading new data is a different job. The loaders under `scripts/`
 (`load_*.py`, `ingest_*.py`, `sweep_ech_xsd.py`, `run_begriffe.py`,
@@ -833,7 +853,8 @@ python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 ```
 
 `build.sh` uses `.venv/bin/python3` when it exists; run the loaders with it
-too.
+too (`.venv/bin/python3 scripts/<name>.py …`, or `.venv/bin/python3 -m citygov
+load <name> …`: the entry point runs a loader with the Python that starts it).
 
 The loaders need two more things that are not in this repository. First,
 macOS: they read law PDFs through `scripts/extract_law.py`, which uses

@@ -94,7 +94,8 @@ of the Gestaltung's own invariants fails (`gestaltung_export.pruefen()`) or
 `verlauf.json` is unreadable — only a table that `schema.sql` declares and
 that is genuinely missing is skipped, loudly, and listed in
 `datenstand.uebersprungen`; `theme.py --check` stops on a colour pair below
-4.5:1 or a colour, size or font literal in one of the four page generators;
+4.5:1 or a colour, size or font literal in one of the four page generators or
+in their files under `citygov/present/assets/`;
 `export_json.py` also stops when a figure of the data-model layers does not
 add up (the corrected «vorbefüllbar» against its parts, the parties counted
 again on the data points, the register figures against the Formulare) or
@@ -107,8 +108,8 @@ on an export whose version, schema file or counts differ from
 `kennungen.py --pruefen` stops when an object has no active identifier or an
 identifier no longer names its object; `build_dashboard.py` stops with «ABORT — data_export.json fehlt, was die Seite
 ohne eigene Berechnung liest» on an export that lacks a key the page reads
-without computing it — the full list is `REQUIRED` and `missing_keys()` in the
-script: the top-level blocks `labels`, `kopfzahlen`, `dienststellen_uebersicht`,
+without computing it — the full list is `REQUIRED` and `missing_keys()` in
+`citygov/present/build_dashboard.py`: the top-level blocks `labels`, `kopfzahlen`, `dienststellen_uebersicht`,
 `forms`, `services`, `laws`, `zitate`, `datenstand`, `verlauf`, `gestaltung`
 and the data-model blocks `parteien`, `konzepte`, `wirkung`, `register`,
 `vorbefuellung`, `kennungen`, `vertrag` and `datenmodell`; inside them, among
@@ -161,7 +162,8 @@ node scripts/check_pages.mjs --breite 1024     # a window of 1024 px instead of 
 | `tastatur` | something reacts to a click but is neither a native control nor has a `tabindex`, and holds no such element |
 
 **A new page of the dashboard must be added to the constant `PAGES` at the
-top of the file** — the check fails when the navigation offers a page that is
+top of the file** (the other places a new page is registered: «Adding a
+dashboard page» below) — the check fails when the navigation offers a page that is
 not listed there; `contrast: true` also measures its colours, and `open: true`
 opens every folded part of the page and presses every «weitere …» / «alle …
 zeigen» button first, so that text a reader can unfold is measured too. A
@@ -325,7 +327,8 @@ python3 scripts/check_gesetz_stand.py [--roh <dir>]   # read-only GETs: rechtsbu
                                                   # result per law
 # then ./build.sh (export_json.py computes the change-impact index, scripts/wirkung.py)
 
-# evidence-backed corrections (evidence under quellen/ or in the script's docstring)
+# evidence-backed corrections (evidence under quellen/ or in the docstring of the module,
+# citygov/load/migrate_*.py; `python3 -m citygov list` shows where each command's code lives)
 python3 scripts/migrate_2026_09_26.py             # idempotent; see its docstring
 python3 scripts/migrate_2026_09_27.py             # services that bundled several DVSH services, split or renamed
                                                   # (quellen/korrekturen/dvsh_aufteilung_2026-09-27.json); again after run_begriffe.py
@@ -369,6 +372,113 @@ inspectable in the DB (`data_field.derived_by`, `*.last_checked`, `panel_review`
 `quellen/korrekturen/` (applied by the loaders named beside them;
 `quellen/README.md` lists which script reads which file).
 
+## Adding a loader, a gate or a command
+
+A new command is a module of the package and a wrapper of the same name here; a new layer
+of data adds a table, a loader with its proof gate, and an integrity gate. Each step is needed;
+where a test or the build catches a missing one, the step says so.
+
+1. **The module** — `citygov/load/<name>.py` for a loader (an export in `citygov/export/`, a
+   page in `citygov/present/`). It imports only its own layer and the layers below it
+   (`tests/test_layers.py` fails otherwise). Its docstring starts with one sentence that says
+   what it does (`python3 -m citygov list` prints it) and shows its command line. A loader works
+   like every loader: copy `DB_PATH` to `DB_PATH + ".staging"`, write there, run
+   `citygov.checks.validate_db.validate()` on the staging copy and replace the database
+   (`os.replace`) only when it returns no error; otherwise remove the copy, print «ABORT: …» and
+   exit 1. There is no shared helper for this; `citygov/load/load_subjekt.py` (62 lines) is the
+   reference, with a proof gate that rejects every input row it cannot back and counts it as
+   REJECTED.
+2. **The wrapper** — `scripts/<name>.py`, a copy of `scripts/common.py` with the two module
+   names (`runpy.run_module(…)`, `importlib.import_module(…)`) and the docstring changed.
+   `tests/test_wrappers.py` holds every wrapper to that template (the docstring aside). Without
+   it the command does not exist: `python3 -m citygov list` and `load` find the commands through
+   the wrappers only, and the build starts every step through its wrapper.
+3. **The table** — every table, column and index in `schema.sql` (`validate_db` fails with
+   «tables are not documented in schema.sql» otherwise). The export skips a missing table
+   loudly only when `schema.sql` declares it.
+4. **The gate** — a `pruefen(conn)` in the domain module of its layer (core for the
+   identifiers), never in `load/`: the loader imports it from there, as
+   `citygov/load/load_gesetz_titel.py` imports `citygov/domain/gesetz_titel.py`. It returns a
+   list of error strings, `[]` when the data is valid and `[]` while its tables are absent. It is
+   registered in `citygov/domain/gates.py` and nowhere else: one more line in
+   `datenmodell_gates()`, or a function of its own there that imports the gate's module inside
+   its body and is passed to `registry.add()` at the end of `gates.py` (then add it to
+   `REGISTERED` in `tests/test_gates.py`). A `registry.add()` in the gate's own module is never
+   seen — when `validate_db` runs as a script or inside a loader nothing imports that module —
+   and `tests/test_gates.py` fails on it.
+5. **The test** — a tampered case in `tests/test_gates.py`: a row of `VALIDATE_DB` (SQL that
+   breaks the gate on an in-memory copy, and a text its error carries), or a class of its own
+   with `test_real_data_passes` and `test_fires_on_a_tampered_copy`.
+6. **The documentation** — the gate in the numbered list at the top of
+   `citygov/checks/validate_db.py`; the command in «Load or refresh data (in this order)» above
+   and in «What each script does» below; a new file under `quellen/` in `quellen/README.md`. A
+   command that becomes a build step is a line of `BUILD` in `citygov/cli.py` (with its comment)
+   and of the expected steps in `tests/test_cli.py`.
+
+Develop and try a loader on a private copy of the database, never on the shared one
+(`<dir>` is any folder outside the repository):
+
+```bash
+cp citygov.db schema.sql <dir>/
+CITYGOV_DB=<dir>/citygov.db CITYGOV_SCHEMA=<dir>/schema.sql python3 scripts/<name>.py …
+CITYGOV_DB=<dir>/citygov.db CITYGOV_SCHEMA=<dir>/schema.sql python3 -m citygov validate <dir>/citygov.db
+```
+
+Only the database and its schema move: an exporter or a page builder started this way still
+writes the shared generated files at the repository root (see `common.py` in the table below),
+so try those in a copy of the whole repository instead. A loader that needs pypdf is started
+with a Python that has it (`.venv/bin/python3 scripts/<name>.py …` once `pip install -r
+requirements.txt` ran there): `python3 -m citygov load` runs with the Python that starts it.
+
+## Adding a dashboard page
+
+The checklist above `drawView()` in `citygov/present/assets/dashboard/dashboard.js` names the
+places a new page is registered. That comment is inlined into `dashboard.html`, so its pointers
+that went out of date when the code moved into the package (the `<aside>` «HTML above», «the
+docstring of scripts/build_dashboard.py», `scripts/export_json.py`, `scripts/theme.py`) are
+corrected here until a step that may change the pages corrects them there. The places, with
+today's paths:
+
+1. **sidebar** — a `<button class="tab" data-tab="<name>">` in the `<aside>` of
+   `citygov/present/assets/dashboard/page.html`, with the question it answers as
+   `<span class="tabsub">`.
+2. **view function** — `function view<Name>()` in `dashboard.js`, starting with
+   `pageHead(title, one sentence, was, quelle, lesen)` (one visible sentence, the rest folded); a
+   wide table inside `<div class="tscroll">`; handlers set through `.onclick`; a contact through
+   `kontaktHtml()`; a new term through `GLOSSAR` + `term()`; no scroll call
+   (`placeAfterRender`).
+3. **render dispatch** — one line in `drawView()`; the name in `NO_SUB` when the page reads no
+   sub-segment, in `DEFAULT_SUB` when its default filter has a name, in `pageKey()` when a
+   sub-segment opens a page of its own.
+4. **search index** — its entries in `searchIndex()` (type, label, key, go) and the type in
+   the `order` list of `viewSearch()`.
+5. **legend** — what the four tones mark on the page: `TONEX` in `renderLegend()`.
+6. **page check** — its route in `PAGES` of `scripts/check_pages.mjs` (`contrast: true`,
+   `open: true`; a list that states its total in a `.sumbox`, see «The automatic page check»).
+7. **documents** — the list of views in the docstring of `citygov/present/build_dashboard.py`.
+8. **data** — a figure the page shows is computed in `citygov/export/export_json.py`, never in
+   the page, and checked by `_summen_pruefen()` when it has parts; its key goes into `REQUIRED`
+   (a key every object carries: `missing_keys()`) in `citygov/present/build_dashboard.py`, so
+   the page refuses an older export. A new key changes the contract of `data_export.json`: the
+   next build raises its minor version and rewrites `schema/data_export.schema.json` and
+   `exportvertrag.json` — commit both with the page. Colours and text sizes come from
+   `citygov/core/theme.py` only.
+
+What catches a missing step: the page check fails when the sidebar offers a page that `PAGES`
+lacks (steps 1 and 6), and on a listed page that does not draw — «Unbekannte Seite», or less
+than `MIN_TEXT` (400) characters of text — (step 3); `build_dashboard.py` stops on a key of
+`REQUIRED` the export lacks, and `export_json.py` on a sum that does not add up (step 8). Nothing
+catches a missing step 4, 5 or 7.
+
+The quick loop while editing the page code, from the repository root (it rewrites
+`dashboard.html` from the current `data_export.json`; run `./build.sh` before committing):
+
+```bash
+python3 -m citygov load build_dashboard   # dashboard.html, a few seconds
+python3 -m citygov load theme --check     # no colour, size or font literal left
+python3 -m citygov check-pages            # the page check, about 20 seconds (--only <check>)
+```
+
 ## Conventions
 
 The ten working rules every loader enforces (the DB is the only place they can
@@ -385,6 +495,25 @@ be broken, so the gate `validate_db.py` checks what it can):
 9. **Generated files are never edited**; `citygov.db` changes only through loaders (staging → validate → swap) and `./build.sh` rebuilds everything from it.
 10. **One computation per figure**: labels, Handlungsbedarf, the «same datum» key, the eCH and legal-basis state of every data point, texts, the Datenstand, the verdicts of the Gestaltung, the party of every data point, the change-impact index, the register map, the «vorbefüllbar» rule with its time rule and the concepts are computed once (`labels.py`, `export_json.py`, `gestaltung_export.py`, `rollen.py`, `wirkung.py`, `register_map.py`, `konzepte.py` — `citygov_prefill.json` and burden.prefillable share `register_map.prefill_punkte`) and read by every surface; the look of every page (fonts, colours, tones, symbols, text sizes) is defined once in `theme.py`.
 
+**Kinds of gate.** The word names four contracts:
+- *Integrity gates* — `validate_db.py` and the data-model gates it runs: `gate(conn)` returns a
+  list of error strings, `[]` when the data is valid (and `[]` while its tables are absent);
+  every loader runs them on its staging copy and swaps only on an empty list. They live in
+  `citygov/checks/` and, for a data-model layer, in the module of its layer, registered in
+  `citygov/domain/gates.py`. Tests: `VALIDATE_DB` and the class per layer in
+  `tests/test_gates.py`.
+- *Proof gates* of a loader: they reject an input row they cannot back (an article that is not
+  ingested, an element not in the swept catalogue, a quote not verbatim in the PDF) and count it
+  as REJECTED; the rows that pass are loaded. They live in the loader under `citygov/load/`; a
+  test of one goes in a file of its own under `tests/`.
+- *Export gates* — `export_json._summen_pruefen`, `wirkung.pruefen`, `konzepte.pruefen`,
+  `gestaltung_export.pruefen` and the wording gate: they raise (or return errors the export
+  raises), and the export stops with «ABBRUCH … nichts geschrieben». Tests: `ExportSums` and
+  `SelbsttestsDerSchichten` in `tests/test_gates.py`.
+- *Build checks* — `theme.py --check`, `export_vertrag.py`, `kennungen.py --pruefen`,
+  `validate_db.py` as the last step, the tests and the page check: a command that exits 1 and
+  stops the build. Tests: `tests/test_theme.py`, `tests/test_cli.py` and the classes above.
+
 ## What each script does
 
 The code lives in the package `citygov/` at the repository root, in six layers
@@ -395,7 +524,7 @@ The code lives in the package `citygov/` at the repository root, in six layers
 | `citygov/core/` | `common`, `labels`, `theme`, `kennzahlen`, `kennungen` |
 | `citygov/checks/` | `validate_db`, `registry` (the gates the higher layers add) |
 | `citygov/domain/` | `rollen`, `parteiwoerter`, `register_katalog`, `register_map`, `wirkung`, `konzepte`, `gesetz_stand`, `gesetz_titel`, `rechtsmittel`, `wortwahl`, `gestaltung_export`, `gestaltung_text`, `gestaltung_pdf`, `gestaltung_office`, `gates` (the data-model gates `validate_db` runs) |
-| `citygov/load/` | every `load_*`, `ingest_*`, `init_*`, `migrate_*` and `apply_*`, `run_begriffe`, `scan_documents`, `scan_gestaltung`, `sweep_ech_xsd`, `build_similarity`, `consolidate_services`, `link_dvsh_eforms`, `propagate_ech_names`, `check_gesetz_stand`, `check_online`, `fetch_rechtsbuch`, `build_gesetze_index`, `extract_law`, `extract_quotes`, `classify`, `commit_proposal`, `auto_draft`, and the command lines `kennungen_cli`, `gesetz_stand_cli` |
+| `citygov/load/` | every `load_*`, `ingest_*`, `init_*`, `migrate_*` and `apply_*`, `run_begriffe`, `scan_documents`, `scan_gestaltung`, `sweep_ech_xsd`, `build_similarity`, `consolidate_services`, `link_dvsh_eforms`, `propagate_ech_names`, `check_gesetz_stand`, `check_online`, `fetch_rechtsbuch`, `build_gesetze_index`, `extract_law`, `extract_quotes`, `classify`, `commit_proposal`, `auto_draft`, and the command lines `kennungen_cli`, `gesetz_stand_cli` — every loader except three whose write side still shares its module with its gate and its export logic and so lives in domain: `rollen` (`ableiten`, `laden`), `register_katalog` (writes the register tables; `--abrufen` fetches) and the writing run of `register_map` (`main_laden`) |
 | `citygov/export/` | `export_json`, `export_llm`, `export_ech_schema`, `export_vertrag`, `build_datentresor`, `backfill_verlauf`, and the command lines `konzepte_cli`, `gestaltung_export_cli`, `register_map_cli` |
 | `citygov/present/` | `build_dashboard`, `leitfaden`, `build_flows`, `export_dossiers`, `build_index`, `fill_pdf`, and `assets/` (below) |
 
@@ -412,18 +541,36 @@ read as LF, also from a CRLF checkout), so editing the CSS or the JavaScript mea
 files. Each is a plain text file that ends with one line end; the two page edges that differ are set
 by their generator (`build_flows.py` drops the final line end, `flows.html` ends at `</html>`;
 `export_dossiers.py` puts an empty line before `dossiers.css`). `theme.py --check` reads them along
-with the generators.
+with the generators. These files are edited by hand: the banner a built page opens with
+(«<!-- GENERATED by scripts/<generator>.py … — do not edit …») is about the page and is written by
+its generator, never by a template. Their text, comments included, reaches the built page
+unchanged, so correcting a comment changes the page: the out-of-date pointers in the checklist of
+`dashboard.js` are corrected in «Adding a dashboard page» until a step that may change the pages
+corrects them there. `tests/test_assets.py` holds the byte rules (UTF-8 without a byte order mark,
+no CR, one final line end, no blank first line), `template()` and `fill()`.
+
+A code comment or a docstring that names `scripts/<name>.py` as the place of some code means the
+module `citygov/<layer>/<name>.py` (`python3 -m citygov list` shows the layer); as a command,
+`python3 scripts/<name>.py …` stays valid everywhere it is written.
 
 An import goes only to the left of the order core ← checks ← domain ← load / export ←
 present, at module level and inside functions, with one exception (the registry trigger,
 below); export and present never import load, load never imports export or present. Two
 consequences for where code sits:
-- The gates `validate_db.py` runs for the data-model layers live in domain
-  (`citygov/domain/gates.py`). Importing the package `citygov.domain` adds them to
-  `citygov.checks.registry`, and `validate_db` imports that package once and runs what the
-  registry holds, in the same order as before. That one statement, `import citygov.domain`
-  inside `validate_db.datenmodell_checks`, is the registry trigger, the one import against
-  the order; checks imports no other domain module.
+- The gates `validate_db.py` runs for the data-model layers live in domain (the identifiers'
+  in core): each is a `pruefen(conn)` in the module of its layer, never in `load/`, and
+  `citygov/domain/gates.py` runs them (`datenmodell_gates()`). Importing the package
+  `citygov.domain` adds that function to `citygov.checks.registry`, and `validate_db` imports
+  that package once and runs what the registry holds, in the same order as before. That one
+  statement, `import citygov.domain` inside `validate_db.datenmodell_checks`, is the registry
+  trigger, the one import against the order; checks imports no other domain module. The rule
+  for a new gate: it is registered in `citygov/domain/gates.py` and nowhere else — one more line
+  in `datenmodell_gates()`, or a function of its own there that imports the gate's module inside
+  its body and is passed to `registry.add()` at the end of `gates.py`. A `registry.add()` in the
+  gate's own module is never seen: when `validate_db` runs as a script or inside a loader,
+  nothing imports that module, so its gate would not run and bad data would pass as valid
+  (`tests/test_gates.py` fails on such a call). The contract: `gate(conn)` returns a list of
+  error strings, `[]` when valid, and `[]` while its tables are absent.
 - What a loader and an export share lives in domain: `cited_laws` (`rechtsmittel`, from
   `load_rechtsmittel.py`), `lade`/`offen` (`wortwahl`, from `apply_wortwahl.py`), the title gate
   (`gesetz_titel`, from `load_gesetz_titel.py`), the party words `PARTY` (`parteiwoerter`, from
@@ -438,8 +585,10 @@ The file of the same name here is a thin wrapper: every command below
 (`python3 scripts/kennungen.py --pruefen`, `python3 scripts/validate_db.py`,
 `python3 scripts/run_begriffe.py <dir>` …) takes the same arguments and gives the same
 output and exit code; a script that starts another one (`run_begriffe.py`, the ingests,
-`scan_gestaltung.py`) still starts it here; and `import common` in a script here
-(`deprecated/` included) gets the package module. For the five commands whose command
+`scan_gestaltung.py`) still starts it here; and `import common` in a script here gets the
+package module (a retired script from `deprecated/` too, once moved back here as its README
+says: in `deprecated/` it puts its own folder on `sys.path` and finds no `common`). For the five
+commands whose command
 line moved up a layer, the wrapper runs `<module>_cli` and an import still gets the module
 itself (`import konzepte` gets `citygov.domain.konzepte`).
 Only a traceback names the new place: its frames show the file under `citygov/`, and an
@@ -453,34 +602,52 @@ which `./build.sh` runs), `validate [db]`, `load <name> [args …]` (exactly
 command with the first sentence of its docstring, by layer, and the build steps),
 `check-pages [args …]` (`node scripts/check_pages.mjs`) and `test [args …]`
 (`python3 -m unittest` in the repository root). The package root imports no layer: every
-command runs in a process of its own, through its wrapper here. The tests live in `tests/`
-(`python3 -m unittest`, standard library only; `./build.sh` runs them before the page check):
-the layer order (a static scan of every import, also inside functions), every gate on the real
+command runs in a process of its own, through its wrapper here. `list` groups a command by
+the layer of the code it runs: a `<module>_cli` sits one layer above its module, so `list`
+shows `kennungen` under load and `konzepte`, `gestaltung_export` and `register_map` under
+export, while the table above names the layer of the module. `build` runs its steps with
+`.venv/bin/python3` when it exists; `load`, `validate` and `test` run with the Python that
+starts them, so a loader that needs pypdf is started with a Python that has it
+(`.venv/bin/python3 -m citygov load scan_gestaltung`, once `pip install -r requirements.txt`
+ran there). The plan of the package named the commands `export` and `present` as well; they
+were not made: `load` starts every name under `scripts/` — loaders, exporters, page builders
+and checks alike (`python3 -m citygov load build_dashboard` builds the page, it loads
+nothing) —, and a command of its own per layer would only be a second name for the same
+call. The tests live in `tests/`
+(`python3 -m unittest`, standard library only, about 45 seconds to two minutes depending on
+the machine; one file: `python3 -m unittest tests.test_gates`; `./build.sh` runs them before
+the page check):
+the layer order (a static scan of every import, also inside functions) and that no package
+`__init__` loads `citygov.core.common` on import, every gate on the real
 data and on a tampered copy (`validate_db` family by family, `export_json._summen_pruefen`,
 `rollen`, `register_map`, `kennungen`, `gesetz_stand`, `gesetz_titel`, and the self-tests of
 `konzepte`, `wirkung`, `gestaltung_export`, `gestaltung_text`, `gestaltung_office`,
-`gestaltung_pdf`), the wrappers (one template; each resolves to its module, runs it as
-`__main__` with the arguments untouched, and an import gets the module), `theme.check()`
-and `theme.problems()`, `node --check` on the scripts under `citygov/present/assets/`
-(skipped without Node) and the entry point. They copy `citygov.db`, `schema.sql` and
-`datentresor.db` into a temporary folder, read-only, and point `CITYGOV_DB` /
-`CITYGOV_SCHEMA` there before anything imports the package; a test tampers only with an
-in-memory copy, so no test writes the shared database.
+`gestaltung_pdf`), the registry of the data-model gates (every `registry.add()` in
+`citygov/domain/gates.py`, and a fresh interpreter finds exactly the gates of `REGISTERED`),
+that the export reads the vault and the trend notes from the repository root, the wrappers
+(one template; each resolves to its module, runs it as `__main__` with the arguments untouched,
+and an import gets the module; every wrapper a loader starts as a subprocess exists),
+`theme.check()` and `theme.problems()`, the files under `citygov/present/assets/` (the byte
+rules, `template()`, `fill()`, and `node --check` on the scripts, skipped without Node) and
+the entry point. They copy `citygov.db` and `schema.sql` into a temporary folder, read-only,
+and point `CITYGOV_DB` / `CITYGOV_SCHEMA` there before anything imports `citygov.core.common`
+(every other input is read from the repository root); a test tampers only with an in-memory
+copy, so no test writes the shared database.
 
 | Script | Purpose |
 |---|---|
-| `common.py` | Paths (the environment variables `CITYGOV_DB` and `CITYGOV_SCHEMA` move only the database and its schema, `DB_PATH` and `SCHEMA_PATH`, to a private copy — enough to develop or test a loader without touching the shared database. Every other path stays at the repository root: `data_export.json`, `dashboard.html` and `logs/` here, `verlauf.json` (`kennzahlen.py`), `schema/` and `exportvertrag.json` (`export_vertrag.py`), the `citygov_*` exports, `flows.html` and `dossiers/`, so an exporter run against a private database still overwrites the shared generated files. Two inputs of `export_json.py` are looked up next to `CITYGOV_DB` instead: `quellen/verlauf_bemerkungen.json` (missing there, the trend notes vanish without a warning) and `datentresor.db` (missing there, the Bürgersicht stays empty). A private database without the identifier table, or with an older one, fails the identifier gate against the published `data_export.json` unless `CITYGOV_EXPORTE`, read by `kennungen.py`, names a folder of other published files, e.g. an empty one), `connect()`, the shared normalisations (`norm_ascii`, `norm_label`, and `klartext()`, the display form `apply_wortwahl.py` compares against), `pl()`, the local-path guard `assert_no_local_paths()` the exporters run on their output, and `size_txt()` / `net_size_txt()` (the page sizes the dashboard and the start page state) |
+| `common.py` | Paths (the environment variables `CITYGOV_DB` and `CITYGOV_SCHEMA` move only the database and its schema, `DB_PATH` and `SCHEMA_PATH`, to a private copy — enough to develop or test a loader without touching the shared database. Every other path stays at the repository root: `data_export.json`, `dashboard.html` and `logs/` here, `verlauf.json` (`kennzahlen.py`), `schema/` and `exportvertrag.json` (`export_vertrag.py`), the `citygov_*` exports, `flows.html` and `dossiers/`, so an exporter run against a private database still overwrites the shared generated files. The inputs stay there too: `export_json.py` reads `quellen/verlauf_bemerkungen.json` and `datentresor.db` (the vault `build_datentresor.py` writes) from the repository root, never from the folder of `CITYGOV_DB` (until 2026-10-07 it looked for them next to the database file, so a private copy elsewhere lost the trend notes and the Bürgersicht without a warning). A private database without the identifier table, or with an older one, fails the identifier gate against the published `data_export.json` unless `CITYGOV_EXPORTE`, read by `kennungen.py`, names a folder of other published files, e.g. an empty one), `connect()`, the shared normalisations (`norm_ascii`, `norm_label`, and `klartext()`, the display form `apply_wortwahl.py` compares against), `pl()`, the local-path guard `assert_no_local_paths()` the exporters run on their output, and `size_txt()` / `net_size_txt()` (the page sizes the dashboard and the start page state) |
 | `labels.py` | German labels for every enumerated value, the four status tones (who acts next), the priority tiers and the words of the contact line (`KONTAKT`: «Kontakt (laut DVSH)», «Tel.», «E-Mail», «nicht hinterlegt») — the single source for dashboard, guided forms, dossiers and exports |
 | `theme.py` | The shared look: fonts (system fonts only), colours, the four tones with their tints and symbols, the eSH violet, the six text sizes (12–28 px on screen, 9–20 pt on paper). The four page generators write their `:root` block from it (`css_root()`) and use only `var(--…)`; `python3 scripts/theme.py` prints tokens, contrast table and findings, `--check` (a step of `./build.sh`) exits 1 on a text colour below 4.5:1 on one of its backgrounds, on a colour, size or font literal left in a generator or in its files under `citygov/present/assets/` — a hex, `rgb()`/`hsl()` or named colour (also `%23…` in a data URI and `el.style.color=`), a font size in px/pt/em/rem/% (also `el.style.fontSize=`), a font family — (a literal kept on purpose carries `theme:keep` and its reason in the same line) or on tone names that differ from `labels.TON` |
-| `validate_db.py` | Integrity gate every loader runs on its staging copy (FKs, vocabularies, cross-layer invariants, schema.sql coverage of tables, columns and indices, every `form.source_file` an existing file under `formulare/` with a matching `file_type`, every `form_gestaltung` row measured on the current file and equal to its own profile) and the gates of the data-model layers, each kept next to its loader: `kennungen.pruefen`, `rollen.pruefen`, `gesetz_stand.pruefen`, `register_map.pruefen` (each skipped while its tables are absent; importing them loads no network code and no pypdf), `konzepte.datei_pruefen` (the curated concept file) and `gesetz_titel.pruefen` (the title corrections of `load_gesetz_titel.py` pending or applied, and no law title with the edition line or the footnote marker «*»); since the layer split they run from `citygov/domain/gates.py` through `citygov.checks.registry` |
-| `kennungen.py` | Permanent identifiers («Kennungen») for every service, Formular, Datenfeld, Teilfeld, canonical Angabe, law, article and handling rule, in a neutral scheme (`sh:formular:<slug>:feld:<n>:teil:<m>`, `sh:angabe:<eCH-code>:<element>[:<context>]`, `sh:gesetz:sr-<SR>:art-<no>` …; the base address for resolvable URIs is the one constant `BASIS_URI`, an owner decision). Minted once from the natural key, never changed, reused or re-pointed; a renamed field or part keeps its identifier only on evidence a deleted and re-inserted row cannot fake (the same eCH element or eSH key at the same place, or for a field without one the same definition; never the row id), a gone object becomes «entfallen», «abgelöst durch» only from the reviewed `quellen/kennung_abloesungen.json`. The table `kennung` guards itself with triggers, and the registry itself is guarded: no minting into a missing or empty table without `--erstausgabe`, and `pruefen()` reports every identifier the published `data_export.json` carries that the table lacks. Every identifier that is no longer active is published with status, date, reason and successor (`kennungen` in `data_export.json`, `meta.kennungen` in `citygov_llm.json`). A step of `./build.sh` right after `init_register.py` (which renumbers `canonical_attribute`), `--pruefen` again at its end; `pruefen()` for `validate_db.py`, `anreichern()` for the exporters, `aufloesen()` the resolver |
+| `validate_db.py` | Integrity gate every loader runs on its staging copy (FKs, vocabularies, cross-layer invariants, schema.sql coverage of tables, columns and indices, every `form.source_file` an existing file under `formulare/` with a matching `file_type`, every `form_gestaltung` row measured on the current file and equal to its own profile) and the gates of the data-model layers — each `pruefen()` lives in the module of its layer (core for the identifiers, domain for the others), never in `load/`, and the loader imports it from there (as `load/load_gesetz_titel.py` imports `domain/gesetz_titel.py`): `kennungen.pruefen`, `rollen.pruefen`, `gesetz_stand.pruefen`, `register_map.pruefen` (each skipped while its tables are absent; importing them loads no network code and no pypdf), `konzepte.datei_pruefen` (the curated concept file) and `gesetz_titel.pruefen` (the title corrections of `load_gesetz_titel.py` pending or applied, and no law title with the edition line or the footnote marker «*»); since the layer split they run from `citygov/domain/gates.py` (`datenmodell_gates`) through `citygov.checks.registry`, and a new gate is registered there and nowhere else (see «Adding a loader, a gate or a command») |
+| `kennungen.py` | Permanent identifiers («Kennungen») for every service, Formular, Datenfeld, Teilfeld, canonical Angabe, law, article and handling rule, in a neutral scheme (`sh:formular:<slug>:feld:<n>:teil:<m>`, `sh:angabe:<eCH-code>:<element>[:<context>]`, `sh:gesetz:sr-<SR>:art-<no>` …; the base address for resolvable URIs is the one constant `BASIS_URI` in `citygov/core/kennungen.py`, an owner decision). Minted once from the natural key, never changed, reused or re-pointed; a renamed field or part keeps its identifier only on evidence a deleted and re-inserted row cannot fake (the same eCH element or eSH key at the same place, or for a field without one the same definition; never the row id), a gone object becomes «entfallen», «abgelöst durch» only from the reviewed `quellen/kennung_abloesungen.json`. The table `kennung` guards itself with triggers, and the registry itself is guarded: no minting into a missing or empty table without `--erstausgabe`, and `pruefen()` reports every identifier the published `data_export.json` carries that the table lacks. Every identifier that is no longer active is published with status, date, reason and successor (`kennungen` in `data_export.json`, `meta.kennungen` in `citygov_llm.json`). A step of `./build.sh` right after `init_register.py` (which renumbers `canonical_attribute`), `--pruefen` again at its end; `pruefen()` for `validate_db.py`, `anreichern()` for the exporters, `aufloesen()` the resolver |
 | `export_vertrag.py` | The contract of the seven published exports: the hook `fertigstellen()` (identifiers via `kennungen.anreichern`, then the version stamp) that `export_json.py`, `export_llm.py` and `export_ech_schema.py` call per file, `Vertrag.festschreiben()` (writes `schema/<export>.schema.json` and `exportvertrag.json` only when the structure or a count changed; deterministic), and the read-only check `python3 scripts/export_vertrag.py` at the end of `./build.sh` (version, schema checksum, the file against its schema, the recorded counts) |
 | `check_pages.mjs` | The automatic page check at the end of `./build.sh`: opens the built pages in a headless Chrome and fails with one message per finding (see «The automatic page check») |
 | `init_db.py` | Create an empty database from `schema.sql` |
 | `export_json.py` | `data_export.json` — one computation of every derived figure (divergences, Handlungsbedarf with tier and tone, the `ech_state` and `basis_state` of every data point, Dienststellen summaries, headline figures, Lebenslagen, labels, Datenstand); also writes today's snapshot to `verlauf.json`. Both files are written only after every gate passed: it stops with «ABBRUCH … nichts geschrieben» when a layer fails, a sum does not add up (`_summen_pruefen`: every figure with parts sums to its total, each Dienststelle adds up and all together equal the canton), `verlauf.json` is unreadable or a naming or basis text says «Datum» without a verdict (see `apply_wortwahl.py`). It also runs the comparison of the Gestaltung (`gestaltung_export.py`: `forms[].gestaltung` and the overview `gestaltung`), whose figures stay out of the headline figures, the open points and the Handlungsbedarf; `_summen_pruefen` checks that its Formulare per Dienststelle and its number of Formulare are those of `dienststellen_uebersicht` and `forms`. The data-model layers (parties, change impact, register map and «vorbefüllbar», concepts, identifiers) and the figures of the two pages (`_datenmodell`, with the audit sample counted by `_stichprobe`) are computed here as well, see above; none of them enters the headline figures, the Handlungsbedarf or the data-standard figures of a Dienststelle — the corrected «vorbefüllbar» count (`burden.prefillable`) only replaces the former count wherever that was shown |
 | `kennzahlen.py` | The one definition of the key figures over time (works on a `citygov.db` of any vintage) and the `verlauf.json` reader/writer |
 | `backfill_verlauf.py` | One-off: reconstructs past snapshots from the Git history of `citygov.db` (idempotent; a live build's entry of the same day wins) |
-| `build_dashboard.py` | `dashboard.html` from `data_export.json` (+ `leitfaden.py`): the page reads every figure and state from the export and computes none itself; it stops on an older export (see «Rebuild every generated surface»). One contact form on every page (`kontaktHtml`), a glossary on «Methode & Quellen» whose terms are explained on the headline cards, shares with one decimal everywhere, Back/Forward return to the remembered place; the checklist above `drawView()` names the seven places a new page must be registered (the page code is in `citygov/present/assets/dashboard/`). The page «Gestaltung der Formulare» (`#gestaltung`, with shareable section addresses `#gestaltung/all/<gruppe>`, `m-<merkmal>`, `e-<merkmal>`, `kanton`, `dienststellen`, `grenzen`), the panel «Gestaltung» of each Formular and the section in the Dienststelle brief draw only what `gestaltung_export.py` computed, with the layer's own tone texts. The sidebar group «Datenmodell & Once-Only» holds the pages «Datenmodell» (`#datenmodell`, sections `parteien`, `konzepte`, `kennungen`, `gesetzesstand`, `wirkung`, a concept `k-<code>`, the change-impact explorer at a law `g-<law id>` or an article `a-<article id>`) and «Was Register schon wissen» (`#onceonly`, sections `register`, `g-<group>`, `r-<register>`, `beilagen`, `zeit`, `offen`); each Formular has the panels «Parteien» and «Was Register schon wissen» (and «Eine Angabe — ein Element» where it deviates), each Dienststelle brief a section «Datenmodell und Register», every law and article its edition chip and a link to the explorer — all drawn from `datenmodell`, `parteien`, `konzepte`, `kennungen`, `wirkung`, `register` and `vorbefuellung` of the export. It runs after the exports, because the page shows the version `exportvertrag.json` records for each |
+| `build_dashboard.py` | `dashboard.html` from `data_export.json` (+ `leitfaden.py`): the page reads every figure and state from the export and computes none itself; it stops on an older export (see «Rebuild every generated surface»). One contact form on every page (`kontaktHtml`), a glossary on «Methode & Quellen» whose terms are explained on the headline cards, shares with one decimal everywhere, Back/Forward return to the remembered place; the checklist above `drawView()` names the seven places a new page must be registered (the page code is in `citygov/present/assets/dashboard/`; «Adding a dashboard page» repeats them with today's file paths and adds the data). The page «Gestaltung der Formulare» (`#gestaltung`, with shareable section addresses `#gestaltung/all/<gruppe>`, `m-<merkmal>`, `e-<merkmal>`, `kanton`, `dienststellen`, `grenzen`), the panel «Gestaltung» of each Formular and the section in the Dienststelle brief draw only what `gestaltung_export.py` computed, with the layer's own tone texts. The sidebar group «Datenmodell & Once-Only» holds the pages «Datenmodell» (`#datenmodell`, sections `parteien`, `konzepte`, `kennungen`, `gesetzesstand`, `wirkung`, a concept `k-<code>`, the change-impact explorer at a law `g-<law id>` or an article `a-<article id>`) and «Was Register schon wissen» (`#onceonly`, sections `register`, `g-<group>`, `r-<register>`, `beilagen`, `zeit`, `offen`); each Formular has the panels «Parteien» and «Was Register schon wissen» (and «Eine Angabe — ein Element» where it deviates), each Dienststelle brief a section «Datenmodell und Register», every law and article its edition chip and a link to the explorer — all drawn from `datenmodell`, `parteien`, `konzepte`, `kennungen`, `wirkung`, `register` and `vorbefuellung` of the export. It runs after the exports, because the page shows the version `exportvertrag.json` records for each |
 | `leitfaden.py` | The plain-German guide; the build refuses if a bullet cites a rule not in the databank |
 | `build_flows.py` | `flows.html`, the guided questionnaires; inlines `quellen/ch-geo.js` for the place, postcode and country autocomplete and stops when it is missing or holds a «<». Keyboard-operable throughout (form picker, answer cards, suggestion lists, help drawer); answers stay in the reader's browser (localStorage keys `ff_profil` and `ff_draft_<form id>`), the page says so and offers «Profil und Entwürfe löschen» — a new storage key must be added to `storeKeys()` in `citygov/present/assets/flows/flows.js`; a step that throws shows a message instead of a blank screen |
 | `export_llm.py` | `citygov_llm.json` and the `citygov_*.jsonl/json` exports |

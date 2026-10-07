@@ -3,7 +3,6 @@ runs without arguments, and what scan_gestaltung.py runs before it measures): as
 built-in example lines and on small files built in memory. gestaltung_pdf checks its PDF part
 only with pypdf; without it the rest still runs, as on the command line.
 """
-import unittest
 
 from tests import TestCase, still
 
@@ -25,6 +24,3 @@ class Gestaltung(TestCase):
             gestaltung_pdf._selbsttest()
         self.assertIn("checks passed", out.getvalue())
 
-
-if __name__ == "__main__":
-    unittest.main()

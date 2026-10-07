@@ -5,7 +5,6 @@ and both checks fire when a colour or a literal is wrong.
 """
 import os
 import tempfile
-import unittest
 from unittest import mock
 
 from tests import TestCase
@@ -49,6 +48,3 @@ class Literals(TestCase):
             kinds = [k for _no, k, _t in theme.loose(p)]
         self.assertEqual(sorted(kinds), ["colour", "font", "size"])
 
-
-if __name__ == "__main__":
-    unittest.main()

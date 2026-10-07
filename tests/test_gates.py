@@ -5,14 +5,30 @@ gate of export_json (_summen_pruefen, on the export built in memory), and the ga
 data-model layers (rollen, register_map, kennungen, gesetz_stand, gesetz_titel, konzepte,
 wirkung). Where a module has a self-test that tampers with copies itself (konzepte, wirkung,
 gestaltung_export), the test calls it, as `--selbsttest` does.
+
+The registry of the data-model gates (citygov.checks.registry): every registry.add() call is in
+citygov/domain/gates.py, and a fresh interpreter that runs validate_db finds exactly the gates of
+REGISTERED. A new gate is registered in gates.py (its docstring says how), added to REGISTERED
+when it is a function of its own there, and gets its tampered case below (VALIDATE_DB, or a
+class of its own).
 """
+import ast
 import copy
-import unittest
+import json
+import os
+import subprocess
+import sys
 from unittest import mock
 
-from tests import TestCase, export_daten, kopie, lesen, still
+from tests import ROOT, TestCase, export_daten, kopie, lesen, still
+from tests.test_layers import package_sources
 
 from citygov.checks.validate_db import validate
+
+# the gates validate_db runs through citygov.checks.registry, in the order added, as a fresh
+# interpreter finds them (module.function); every one is added in citygov/domain/gates.py
+REGISTERED = ["citygov.domain.gates.datenmodell_gates"]
+GATES_PY = "citygov/domain/gates.py"
 
 # (gate, SQL that breaks it on an in-memory copy, a text its error carries)
 VALIDATE_DB = (
@@ -100,6 +116,80 @@ class ValidateDb(TestCase):
         with mock.patch.object(konzepte, "lade", return_value=k):
             fehler = _fehler(validate)
         self.assertTrue(any("grund missing" in f for f in fehler), fehler[:5])
+
+
+def registrierungen(sources):
+    """[(file, line)] of every call of citygov.checks.registry.add in {relative path: source}:
+    registry.add(…), citygov.checks.registry.add(…), or add(…) imported from the registry."""
+    out = []
+    for rel, src in sorted(sources.items()):
+        tree = ast.parse(src, filename=rel)
+        names = {a.asname or a.name for n in ast.walk(tree)
+                 if isinstance(n, ast.ImportFrom) and (n.module or "").split(".")[-1] == "registry"
+                 for a in n.names if a.name == "add"}
+        for n in ast.walk(tree):
+            if not isinstance(n, ast.Call):
+                continue
+            f = n.func
+            if (isinstance(f, ast.Attribute) and f.attr == "add" and ast.unparse(f.value).split(".")[-1] == "registry") \
+                    or (isinstance(f, ast.Name) and f.id in names):
+                out.append((rel, n.lineno))
+    return out
+
+
+# run in a fresh interpreter: what validate_db finds when it runs as a script or inside a loader
+FRISCH = """
+import json, pathlib, sqlite3, sys
+from citygov.checks import registry, validate_db
+from citygov.core.common import DB_PATH
+vorher = ["citygov.domain" in sys.modules, [g.__name__ for g in registry.gates()]]
+conn = sqlite3.connect(pathlib.Path(DB_PATH).as_uri() + "?mode=ro", uri=True)
+conn.row_factory = sqlite3.Row
+fehler = validate_db.datenmodell_checks(conn)
+print(json.dumps({"vorher": vorher, "gates": [g.__module__ + "." + g.__name__ for g in registry.gates()],
+                  "fehler": fehler}))
+"""
+
+
+class Registry(TestCase):
+    def test_every_gate_is_added_in_gates_py(self):
+        """A gate added anywhere else would not run when validate_db runs as a script or inside a
+        loader (nothing imports that module there), and bad data would pass as valid."""
+        calls = registrierungen(package_sources())
+        self.assertGreaterEqual(len(calls), 1)
+        self.assertEqual([c for c in calls if c[0] != GATES_PY], [],
+                         "registry.add() outside citygov/domain/gates.py — see the docstring of gates.py")
+        # the scan itself finds each way of calling it
+        for src in ("from citygov.checks import registry\nregistry.add(f)",
+                    "import citygov.checks.registry\ncitygov.checks.registry.add(f)",
+                    "from citygov.checks.registry import add as dazu\ndazu(f)"):
+            with self.subTest(src=src):
+                self.assertEqual(registrierungen({"citygov/domain/x.py": src}), [("citygov/domain/x.py", 2)])
+
+    def test_a_fresh_interpreter_runs_the_registered_gates(self):
+        """The registry trigger: validate_db alone (no test has imported citygov.domain in that
+        process) fills the registry with exactly REGISTERED, and the real data passes them."""
+        r = subprocess.run([sys.executable, "-c", FRISCH], cwd=ROOT, capture_output=True, text=True, timeout=300)
+        self.assertEqual(r.returncode, 0, r.stderr[-600:])
+        lauf = json.loads(r.stdout.strip().splitlines()[-1])
+        self.assertEqual(lauf["vorher"], [False, []], "the registry was filled before validate_db ran its trigger")
+        self.assertEqual(lauf["gates"], REGISTERED)
+        self.assertEqual(lauf["fehler"], [])
+
+
+class Export(TestCase):
+    def test_reads_the_vault_and_the_notes_from_the_repository_root(self):
+        """export_json reads datentresor.db and quellen/verlauf_bemerkungen.json from the repository
+        root, also when CITYGOV_DB names a copy in another folder (as here: the tests' copy)."""
+        _conn, data = export_daten()
+        if os.path.exists(os.path.join(ROOT, "datentresor.db")):
+            self.assertGreater(len(data["buergersicht"]["personen"]), 0)
+        with open(os.path.join(ROOT, "quellen", "verlauf_bemerkungen.json"), encoding="utf-8") as fh:
+            notes = json.load(fh)
+        tage = [e["datum"] for e in data["verlauf"] if e["datum"] in notes]
+        self.assertTrue(tage, "no day of the trend has a note in quellen/verlauf_bemerkungen.json")
+        for e in data["verlauf"]:
+            self.assertEqual(e.get("bemerkung"), notes.get(e["datum"]), e["datum"])
 
 
 class ExportSums(TestCase):
@@ -241,6 +331,3 @@ class SelbsttestsDerSchichten(TestCase):
                 self.fail(f"{ende} — {out.getvalue()[-600:]}")
         self.assertIn("die echten Daten gehen auf", out.getvalue())
 
-
-if __name__ == "__main__":
-    unittest.main()

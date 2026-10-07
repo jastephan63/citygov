@@ -14,14 +14,17 @@ One import of a higher layer is part of the design, the registry trigger: valida
 runs gates that live in domain; domain adds them to citygov.checks.registry when the PACKAGE
 citygov.domain is imported, and validate_db imports that package once (`import citygov.domain`,
 nothing from it). Exactly that statement, exactly once in checks, is accepted.
+
+And the package __init__ files stay light: unittest discovery imports every one of them before
+tests/__init__.py points CITYGOV_DB at a private copy, so no __init__ under citygov/, and nothing
+it imports at module level (followed module by module), may import citygov.core.common.
 """
 import ast
 import os
-import unittest
 
 from tests import ROOT, TestCase
 
-LAYERS = ("core", "checks", "domain", "load", "export", "present")
+from citygov.cli import LAYERS
 ALLOWED = {"core": {"core"},
            "checks": {"core", "checks"},
            "domain": {"core", "checks", "domain"},
@@ -107,6 +110,53 @@ def package_sources():
     return out
 
 
+def _module_level(stmts):
+    """The import statements that run when a module is imported: at module level, also inside
+    if / try / with / for / while there, never inside a function or a class."""
+    for n in stmts:
+        if isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
+            continue
+        if isinstance(n, (ast.Import, ast.ImportFrom)):
+            yield n
+            continue
+        for feld in ("body", "orelse", "finalbody"):
+            yield from _module_level(getattr(n, feld, []) or [])
+        for h in getattr(n, "handlers", []) or []:
+            yield from _module_level(h.body)
+
+
+def loaded_on_import(sources, start):
+    """The modules of the package that importing each module of `start` loads, following the
+    module-level imports from module to module (a module also loads its parent packages)."""
+    files = {}
+    for rel in sources:
+        parts = rel[:-3].split("/")
+        files[".".join(parts[:-1] if parts[-1] == "__init__" else parts)] = rel
+
+    def with_parents(name):
+        parts = name.split(".")
+        return {".".join(parts[:i]) for i in range(1, len(parts) + 1)} & set(files)
+
+    seen, todo = set(), set()
+    for m in start:
+        todo |= with_parents(m)
+    while todo:
+        m = todo.pop()
+        if m in seen:
+            continue
+        seen.add(m)
+        rel = files[m]
+        is_pkg = rel.endswith("/__init__.py")
+        for node in _module_level(ast.parse(sources[rel], filename=rel).body):
+            for mod, _kind in _targets(node, m, is_pkg):
+                todo |= with_parents(mod) - seen
+    return seen
+
+
+def package_inits(sources):
+    return sorted(".".join(rel.split("/")[:-1]) for rel in sources if rel.endswith("/__init__.py"))
+
+
 class LayerOrder(TestCase):
     def test_no_import_goes_against_the_order(self):
         sources = package_sources()
@@ -143,5 +193,25 @@ class LayerOrder(TestCase):
         self.assertEqual(len(violations), 2, "a second registry trigger")
 
 
-if __name__ == "__main__":
-    unittest.main()
+class LightInits(TestCase):
+    def test_no_package_init_loads_common(self):
+        """What unittest discovery loads before tests/__init__.py runs: every package __init__
+        and what they import at module level — today domain/gates.py and checks/registry.py."""
+        sources = package_sources()
+        inits = package_inits(sources)
+        self.assertEqual(len(inits), 1 + len(LAYERS))
+        loaded = loaded_on_import(sources, inits)
+        self.assertIn("citygov.domain.gates", loaded)           # the walk follows the imports
+        self.assertIn("citygov.checks.registry", loaded)
+        self.assertNotIn("citygov.core.common", loaded,
+                         "a package __init__ (or a module it imports) imports citygov.core.common: "
+                         + ", ".join(sorted(loaded)))
+
+    def test_the_walk_fires(self):
+        sources = {"citygov/__init__.py": "", "citygov/core/__init__.py": "", "citygov/core/common.py": "",
+                   "citygov/present/__init__.py": "def f():\n    from citygov.core import common\n",
+                   "citygov/domain/__init__.py": "from citygov.domain import gates\n",
+                   "citygov/domain/gates.py": "try:\n    from ..core.common import ROOT\nexcept ImportError:\n    pass\n"}
+        self.assertNotIn("citygov.core.common", loaded_on_import(sources, ["citygov.present"]))
+        self.assertIn("citygov.core.common", loaded_on_import(sources, ["citygov.domain"]))
+

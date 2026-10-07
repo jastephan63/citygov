@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
-"""Moved to citygov/checks/validate_db.py — this wrapper keeps the old name working.
+"""Runs citygov/checks/validate_db.py under the command name scripts/validate_db.py.
 
-`python3 scripts/validate_db.py …` runs that module as before (same arguments, same output,
-same exit code), and `import validate_db` in a script under scripts/ gets that very module.
+`python3 scripts/validate_db.py …` runs that module as __main__ with the arguments untouched
+(its output, its exit code), and `import validate_db` in a script under scripts/ gets that very
+module. Every command under scripts/ is this same thin file; the code lives in the package
+(scripts/README.md, «Adding a loader, a gate or a command»).
 """
 import os
 import sys

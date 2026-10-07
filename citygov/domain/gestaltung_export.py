@@ -251,7 +251,6 @@ Invariants (pruefen(); each raises RuntimeError and names the Merkmal)
 """
 import copy
 import json
-import os
 import re
 import sqlite3
 import sys

@@ -5,7 +5,6 @@ under scripts/, `list` names every command, `load` and `validate` run exactly th
 import os
 import subprocess
 import sys
-import unittest
 from unittest import mock
 
 from tests import ROOT, TestCase, still
@@ -107,6 +106,3 @@ class Commands(TestCase):
         self.assertEqual(citygov().returncode, 2)
         self.assertEqual(citygov("--help").returncode, 0)
 
-
-if __name__ == "__main__":
-    unittest.main()
