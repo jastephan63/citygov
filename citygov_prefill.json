@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generated_at": "2026-10-05T21:11:36",
+  "generated_at": "2026-10-07T05:09:11",
   "hinweis": "Datenpunkt→eCH-Element-Map je Formular (Schlüssel = Formular-id) für Once-Only-Prefill: ein nach eCH-Element gekeytes Profil der einreichenden Person füllt damit die Punkte vor, die vorbefuellbar = true tragen — nur diese, nie alle Punkte, nie die Angaben einer anderen Person (Ehepartner/in, Kind, Arbeitnehmer/in …).",
   "felder": {
    "kennung": "dauerhafte Kennung des Punkts (Datenfeld oder Teilfeld, scripts/kennungen.py): ändert nie ihre Bedeutung und wird nie neu vergeben — ein Profil oder ein Abgleich speichert sie, nie die laufende Formular-id oder den Pfad «feld». meta.formular_kennung nennt die Kennung jedes Formulars (Schlüssel = Formular-id).",

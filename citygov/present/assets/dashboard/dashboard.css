@@ -1,5 +1,5 @@
   /* Kanton Schaffhausen paper theme — one look for dashboard, guided forms, dossiers and
-     landing page: colours, fonts and text sizes are written from scripts/theme.py.
+     landing page: colours, fonts and text sizes are written from citygov/core/theme.py.
      Use var(--…) below; a new colour or size belongs in theme.py, not here.
      tones — the colour says who acts next (DATA.labels.ton): green geklärt · red
      Dienststelle handelt · amber Kanton entscheidet · grey Databank recherchiert */

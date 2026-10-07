@@ -1,7 +1,7 @@
 const state = {service:'all', tab:'home', sub:'felder', tree:'list', filter:'', open:{}, navmode:'services', begq:''};
 // scrolling to a target glides — unless the reader's system asks for reduced motion
 const MOTION=(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)?'auto':'smooth';
-// ---- German labels: ONE source (scripts/labels.py -> data_export.json -> DATA.labels) ----
+// ---- German labels: ONE source (citygov/core/labels.py -> data_export.json -> DATA.labels) ----
 // A code that has no label renders visibly as ⟨code⟩ — never raw, never silently.
 const LAB=DATA.labels||{};
 const lab=(m,c)=>(c==null||c==='')?'':(((m||{})[c])||('⟨'+c+'⟩'));
@@ -924,7 +924,7 @@ function sparkline(get, name, noteNo){
     +(P[0].e!==VERLAUF[0]?`<div class="vlrow">erhoben ab ${fmtDate(P[0].e.datum)}; frühere Stände kannten diese Kennzahl noch nicht</div>`:'');
 }
 // ---------- Gestaltung der Formulare: the layer's data and words ----------
-// Computed once in scripts/gestaltung_export.py — per Formular form.gestaltung, the overview
+// Computed once in citygov/domain/gestaltung_export.py — per Formular form.gestaltung, the overview
 // DATA.gestaltung — and only drawn here. Its vocabulary is its own (DATA.gestaltung.labels): a
 // verdict and its tone (urteil) and what each tone means in this layer (ton) — never the generic
 // «Die Dienststelle muss ihr Formular ändern». Its figures never enter the counts of the data
@@ -1534,11 +1534,11 @@ function gestBrief(d){
     <div class="small noprint" style="margin-top:6px">${goLink('gestaltung','dienststellen','Zur Gestaltung der Formulare ›','inl')}</div>`;
 }
 // ---------- Datenmodell & Once-Only: the layers the two pages and the panels draw ----------
-// Computed once in scripts/export_json.py and only drawn here: the parties of every data point
-// (DATA.parteien, scripts/rollen.py), one preferred element per Angabe and role (DATA.konzepte,
-// scripts/konzepte.py), the change-impact index with the edition of every law (DATA.wirkung,
-// scripts/wirkung.py), the registers and the prefill rule (DATA.register, DATA.vorbefuellung,
-// scripts/register_map.py), the permanent identifiers (DATA.kennungen, scripts/kennungen.py) and
+// Computed once in citygov/export/export_json.py and only drawn here: the parties of every data point
+// (DATA.parteien, citygov/domain/rollen.py), one preferred element per Angabe and role (DATA.konzepte,
+// citygov/domain/konzepte.py), the change-impact index with the edition of every law (DATA.wirkung,
+// citygov/domain/wirkung.py), the registers and the prefill rule (DATA.register, DATA.vorbefuellung,
+// citygov/domain/register_map.py), the permanent identifiers (DATA.kennungen, citygov/core/kennungen.py) and
 // the figures of the two pages (DATA.datenmodell, export_json._datenmodell). None of them enters
 // the headline figures, the open points or the Handlungsbedarf. A Vorschlag the canton confirms and
 // a decision it takes are amber; an edition in force green, a newer one grey (the databank re-reads
@@ -4306,7 +4306,7 @@ window.addEventListener('resize',()=>{if(_tipEl) tipClose(false);});
 try{const mo=new MutationObserver(()=>{const mn=document.getElementById('main'); enhanceTips(mn); enhanceActs(mn); renderLegend();});
   const mn=document.getElementById('main'); if(mn) mo.observe(mn,{childList:true,subtree:true});}catch(e){}
 // ==== A NEW PAGE — the places where it must be registered ==============================
-//  1. sidebar       a <button class="tab" data-tab="<name>"> in <aside> (HTML above), with the
+//  1. sidebar       a <button class="tab" data-tab="<name>"> in <aside> of assets/dashboard/page.html, with the
 //                   question it answers as <span class="tabsub">
 //  2. view function function view<Name>(): starts with pageHead(title, one sentence, was,
 //                   quelle, lesen) — one visible sentence, the rest folded; a wide table
@@ -4330,9 +4330,9 @@ try{const mo=new MutationObserver(()=>{const mn=document.getElementById('main');
 //                   its numbers (.sumn) must add up to its .sumtot (several columns of one
 //                   table: each pair .sumn/.sumtot carries the same data-s); `open: true` there
 //                   when the page folds much of its text (details, «weitere …»)
-//  7. documents     the list of views in the docstring of scripts/build_dashboard.py
-// Figures of the page are computed in scripts/export_json.py (with their sum check) and
-// only drawn here; colours and text sizes come from scripts/theme.py.
+//  7. documents     the list of views in the docstring of citygov/present/build_dashboard.py
+// Figures of the page are computed in citygov/export/export_json.py (with their sum check) and
+// only drawn here; colours and text sizes come from citygov/core/theme.py.
 // ========================================================================================
 // tabs that read no sub-segment: an unknown one is dropped and said at the top of the page
 const NO_SUB=new Set(['home','methode','katalog','esh','register','datenfluss','rules','guide']);

@@ -1,4 +1,4 @@
-/* colours, fonts and text sizes are written from scripts/theme.py — the same look as the
+/* colours, fonts and text sizes are written from citygov/core/theme.py — the same look as the
    dashboard; use var(--…) below. A confirmation wears the tone «geklärt» (--ton-ok…), a
    hint to check or an error the tone «handeln» (--ton-act…); as TEXT they use …-ink. */
 /*THEME*/
