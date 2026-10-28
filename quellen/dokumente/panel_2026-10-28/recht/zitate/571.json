@@ -1,0 +1,64 @@
+{
+ "form_id": 571,
+ "mappings": [
+  {
+   "data_field": "Firma",
+   "cites": [
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 62",
+     "beleg": "Aktiengesellschaften, die weder eine ordentliche noch eine eingeschränkte Revision durchführen, müssen dem Handelsregisteramt mit der Anmeldung zur Eintragung des Verzichts eine Erklärung einreichen, dass ... sämtliche Aktionärinnen und Aktionäre auf eine eingeschränkte Revision verzichtet haben ... d. die Verzichtserklärungen der Aktionärinnen und Aktionäre"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Geschäftsjahr, ab welchem der Verzicht gelten soll",
+   "cites": [
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 62",
+     "beleg": "Die Erklärung muss das Datum des Beginns des Geschäftsjahres enthalten, ab welchem der Verzicht gilt"
+    },
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 727a",
+     "beleg": "Der Verzicht gilt nur für künftige Geschäftsjahre und muss vor Beginn des Geschäftsjahres beim Handelsregisteramt angemeldet werden."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Sämtliche Aktionäre der Aktiengesellschaft",
+   "cites": [
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 727a",
+     "beleg": "Mit der Zustimmung sämtlicher Aktionäre kann auf die eingeschränkte Revision verzichtet werden"
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 62",
+     "beleg": "sämtliche Aktionärinnen und Aktionäre auf eine eingeschränkte Revision verzichtet haben ... d. die Verzichtserklärungen der Aktionärinnen und Aktionäre oder das massgebliche Protokoll der Generalversammlung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Unterschrift",
+   "cites": [
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 20",
+     "beleg": "Die Belege müssen rechtskonform unterzeichnet sein."
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 62",
+     "beleg": "Folgende Dokumente oder Kopien davon müssen der Erklärung beigelegt werden: ... d. die Verzichtserklärungen der Aktionärinnen und Aktionäre"
+    }
+   ],
+   "over_collection": false
+  }
+ ]
+}

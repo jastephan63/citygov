@@ -1,0 +1,287 @@
+{
+ "hinweis": "eCH-Urteile Formular 575, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/575 --nur-offene=575",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Bestätigt. Das Feld ist ein Composite aus Name/Firma, Adresse sowie PLZ und Ort einer Person ODER Firma. Dazu passt der eCH-0010-Container mailAddress (id 80, Auswahl Person/Organisation; Element im XSD eCH-0010-8-0 vorhanden). Gleich wie das Schwesterformular 491 und die SchKG-Formulare 483, 489 und 490.",
+   "feld": "Schuldner"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Bestätigt. Gemeint ist die Anschrift einer Behörde. Das passende Element ist eCH-0010 organisationMailAdress; die Schreibweise steht so im XSD (eCH-0010-8-0.xsd Zeile 227) und im Katalog (id 79). Gleich wie auf Formular 491.",
+   "feld": "Adresse des Betreibungsamtes"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Geburtsdatum des Schuldners, wenn dieser eine natürliche Person ist: eCH-0044 dateOfBirth. Der Typ datePartiallyKnownType passt zu «falls bekannt». Korpuspraxis: Geburtsdatum → dateOfBirth 22x, u. a. SchKG-Formular 482. Das Feld war bisher ohne Zuordnung.",
+   "feld": "Geburtsdatum (falls bekannt)",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Bestätigt. Composite aus Name/Firma, Adresse sowie PLZ und Ort einer Person oder Firma: Container eCH-0010 mailAddress, gleich wie auf den Formularen 491, 483, 489 und 490.",
+   "feld": "Gläubiger"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Hier ist das Feld nur eine Auswahl zwischen zwei Kästchen («des Gläubigers»/«des Vertreters»): Sie sagt, wem das Konto gehört. Es ist keine Ja/Nein-Box. Die Bankangabe selbst steht im eigenen Feld IBAN. Der übernommene eCH-0278 bankAccountInformation ist ein Container für das ganze Rückerstattungskonto der Steuererklärung (Bank, IBAN, BIC, Name, Adresse) und passt deshalb nicht zu dieser Auswahl. Die Angabe ist die Kontoinhaberschaft: eCH-0119 accountOwner (bankAccountType, id 2056, im XSD vorhanden). Das ist derselbe Typ wie IBAN → ibanNumber. Im Korpus belegt mit «Kontoinhaber-Art» (Auswahl eigenes/fremdes Konto) auf Formular 156 → accountOwner.",
+   "feld": "Zahlungsverbindung",
+   "standard": "eCH-0119",
+   "element": "accountOwner"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Bestätigt. IBAN des angekreuzten Kontos: eCH-0119 ibanNumber (bankAccountType, id 2051). Gleiche Korpuspraxis wie bei SchKG-Formular 482.",
+   "feld": "IBAN"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Composite aus Name/Firma, Adresse sowie PLZ und Ort des Vertreters (Person oder Firma): Container eCH-0010 mailAddress. Gleich wie «Vertretung des Gläubigers» auf Formular 491 und die Vertreterfelder auf 483, 489 und 490. Das Feld war bisher ohne Zuordnung.",
+   "feld": "vertreten durch",
+   "standard": "eCH-0010",
+   "element": "mailAddress"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ein einziges Textfeld «Telefon oder E-Mail», keine getrennten Teile. Weil Telefonnummer und E-Mail-Adresse hier nicht getrennt sind, passt der Container eCH-0046 contact (id 923). Gleich wie «Kontakt für Rückfragen» auf Formular 491.",
+   "feld": "Für Rückfragen",
+   "standard": "eCH-0046",
+   "element": "contact"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Auswahl der SchKG-Grundlage (Zahlungsbefehl/Verlustschein/Pfandausfallschein). Durchsucht wurden alle 290 Standardtitel nach Betreibung/SchKG/Konkurs/Forderung/Schuld/Inkasso/Justiz: kein Fachstandard. eCH-0051 (Polizei und Justiz) hat keine Elemente. Geprüft und verworfen: eCH-0039 documentKind. Laut XSD ist das die «fachliche Beschreibung» eines übermittelten Dokuments, nicht der verfahrensrechtliche Grund der Fortsetzung; der Zahlungsbefehl wird meist gar nicht beigelegt. Gleich wie «Grundlage des Begehrens» auf Formular 483.",
+   "feld": "Es wird die Fortsetzung auf folgender Grundlage verlangt"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Vergangenes Datum: die Zustellung der Betreibungsurkunde. Gesucht nach Elementen zu delivery/notification/dispatch/receipt/issue/opening. eCH-0058/0039 messageDate, initialMessageDate und eventDate betreffen elektronische Meldungen. eCH-0039 openingDate ist laut XSD die Zuordnung im GEVER bzw. die Eröffnung eines Dossiers. eCH-0020 baseDeliveryValidFrom betrifft Registerlieferungen. Keines davon ist die Zustellung einer SchKG-Urkunde. Gleich wie «Zahlungsbefehl zugestellt am» auf Formular 491.",
+   "feld": "zugestellt am"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Korrigiert gegenüber dem Erstentscheid kein_standard: Der Erstreviewer hat caseId nicht geprüft. Die Betreibungsnummer identifiziert das Betreibungsverfahren. Vergeben wird sie vom Betreibungsamt, das das Verfahren führt. Laut XSD ist eCH-0039 referenceType/caseId die «Identifikation des Geschäftsfalls (wird von der federführenden Stelle vergeben)». Dass die Nummer von einem anderen oder früheren Amt stammen kann, spricht nur gegen your-/ourBusinessReferenceId und caseReferenceLocalId (Referenzen von Absender oder Empfänger). Gegen caseId spricht es nicht: Das ist die Fall-ID der federführenden Stelle, egal welches Amt das ist. Korpus: SchKG-Formulare 525/527 «Konkurs-Nr.» → eCH-0039 caseId, und im Panel vom 2026-10-28 bestätigt mit «Fragebogen Erlassgesuch Nr.» (233) → caseId. Die abweichenden kein_standard-Entscheide bei «Betreibung Nr.» auf 489 und 491 sollten angeglichen werden.",
+   "feld": "in Betreibung Nr.",
+   "standard": "eCH-0039",
+   "element": "caseId"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Composite aus Forderungsgrund, Betrag, Zins und Zinsbeginn einer SchKG-Forderung. Einen Container für die Forderung eines Gläubigers gibt es nicht. Titel durchsucht (Betreibung/SchKG/Forderung: keiner; eCH-0069 E-Invoicing ohne Elemente). Elemente durchsucht (claim/debt/interest/amount). eCH-0119 privateLiabilities und eCH-0278 debtInterests betreffen die eigenen Schulden der steuerpflichtigen Person. Kein Teil hat einen Standard. Gleich wie die Forderungsfelder auf den Formularen 482, 483, 490 und 527.",
+   "feld": "Forderung"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Zeilen 2–10 mit derselben Struktur wie Forderung (weitere Haupt- oder Nebenforderungen). Im Katalog gibt es keinen Container für eine SchKG-Forderung, und kein Teil hat einen Standard (Suche wie bei Forderung).",
+   "feld": "Weitere Forderungen"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Bestätigt. Freiwillige Bemerkungen des Gläubigers. Der übernommene Entscheid kein_standard entspricht der Korpuspraxis: 99x kein_standard gegenüber 6x eCH-0058 comment, auch auf SchKG-Formular 491.",
+   "feld": "Bemerkungen"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Gemeint ist die eigene Fallreferenz der einreichenden Person (Gläubiger oder Vertreter), also des Absenders des Begehrens. «Ihre» spricht aus der Sicht des Amtes. eCH-0058 headerType ourBusinessReferenceId ist die Geschäftsreferenz des Absenders (id 933). Von der Betreibungsnummer (caseId) ist sie getrennt. Korpus: «Referenz-Nr. (interne Fall-Nr.)» (246) → ourBusinessReferenceId.",
+   "feld": "Ihre Fallreferenz (falls vorhanden)",
+   "standard": "eCH-0058",
+   "element": "ourBusinessReferenceId"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Datum, an dem das Begehren unterzeichnet bzw. eingereicht wird (Zeile «Datum und Unterschrift»). Für ein alleinstehendes «Datum» in diesem Sinn gilt die geprüfte Korpuspraxis eCH-0058 messageDate (9x: 477–479, 492–498, 539). Die 2x kein_standard (196, 206) meinen eine andere Angabe, nämlich das Datum einer Übung bzw. eines Einsatzes. Das Feld war bisher ohne Zuordnung.",
+   "feld": "Datum",
+   "standard": "eCH-0058",
+   "element": "messageDate"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Bestätigt. Handschriftliche Unterschrift; kein Element im Katalog bildet sie ab (eCH-0039 signer ist nur ein Name-Token, eCH-0260 signatures ist an den Lehrvertrag gebunden). Der übernommene Entscheid kein_standard entspricht der Korpuspraxis (33x).",
+   "feld": "Unterschrift"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Beizulegendes Dokument (Beilage laut Rückseite). Die neuere geprüfte Praxis ab Formular 470 ordnet Beilagen eCH-0058 headerType attachment zu (12x gegenüber 4x eCH-0039 document), auch beim SchKG-Formular 483. Das Feld war bisher ohne Zuordnung.",
+   "feld": "Doppel des Zahlungsbefehls im Original",
+   "standard": "eCH-0058",
+   "element": "attachment"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Beizulegende Originalurkunde (Beilage): eCH-0058 attachment, wie in der geprüften Beilagen-Praxis bei SchKG-Formular 483 und den Formularen 471–498.",
+   "feld": "Verlustschein oder Pfandausfallschein im Original",
+   "standard": "eCH-0058",
+   "element": "attachment"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Beizulegender Entscheid (Beilage): eCH-0058 attachment, wie in der geprüften Beilagen-Praxis bei SchKG-Formular 483.",
+   "feld": "Ein mit Rechtskraftbescheinigung versehener Entscheid",
+   "standard": "eCH-0058",
+   "element": "attachment"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Beizulegender Kostenausweis (Beilage): eCH-0058 attachment, wie in der geprüften Beilagen-Praxis bei SchKG-Formular 483.",
+   "feld": "Ausweis über die Kosten des Rechtsöffnungsverfahrens",
+   "standard": "eCH-0058",
+   "element": "attachment"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Beizulegender Nachweis (Beilage): eCH-0058 attachment, wie in der geprüften Beilagen-Praxis bei SchKG-Formular 483.",
+   "feld": "Nachweis, dass eine Aberkennungsklage nicht erhoben, zurückgezogen oder rechtskräftig abgewiesen worden ist",
+   "standard": "eCH-0058",
+   "element": "attachment"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Bestätigt. Name des Schuldners: eCH-0044 officialName (id 800), gleich wie auf Formular 491 und in der Korpuspraxis für «Name und Vorname bzw. Firma» (7x).",
+   "elternfeld": "Schuldner",
+   "teilfeld": "Name und Vorname bzw. Firma"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Bestätigt. Strassenadresse des Schuldners: eCH-0010 street (addressInformationType). Korpuspraxis für «Adresse» 200x, auch auf Formular 491.",
+   "elternfeld": "Schuldner",
+   "teilfeld": "Adresse"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Bestätigt. Bei PLZ und Ort des Schuldners gilt eCH-0010 town, gleich wie auf dem geprüften Schwesterformular 491 (gleiche BJ-Formularfamilie). Laut Hinweisen kann der Schuldner im Ausland wohnen; dann ist der Ort allgemeingültiger als swissZipCode.",
+   "elternfeld": "Schuldner",
+   "teilfeld": "PLZ Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Bestätigt. Name des Gläubigers: eCH-0044 officialName, gleich wie auf Formular 491.",
+   "elternfeld": "Gläubiger",
+   "teilfeld": "Name und Vorname bzw. Firma"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Bestätigt. Strassenadresse des Gläubigers: eCH-0010 street, gleich wie auf Formular 491.",
+   "elternfeld": "Gläubiger",
+   "teilfeld": "Adresse"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Bestätigt. PLZ und Ort des Gläubigers: eCH-0010 town, gleich wie auf dem Schwesterformular 491.",
+   "elternfeld": "Gläubiger",
+   "teilfeld": "PLZ Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name oder Firma des Vertreters: eCH-0044 officialName, wie «Vertretung des Gläubigers / Name und Vorname bzw. Firma» auf Formular 491. Bisher ohne Zuordnung.",
+   "elternfeld": "vertreten durch",
+   "teilfeld": "Name und Vorname bzw. Firma",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Strassenadresse des Vertreters: eCH-0010 street, wie auf Formular 491. Bisher ohne Zuordnung.",
+   "elternfeld": "vertreten durch",
+   "teilfeld": "Adresse",
+   "standard": "eCH-0010",
+   "element": "street"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "PLZ und Ort des Vertreters: eCH-0010 town. Das ist einheitlich mit Schuldner und Gläubiger auf diesem Formular und mit Formular 491. Bisher ohne Zuordnung.",
+   "elternfeld": "vertreten durch",
+   "teilfeld": "PLZ Ort",
+   "standard": "eCH-0010",
+   "element": "town"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Freitext zum Grund bzw. zur Urkunde der Betreibungsforderung. Gesucht nach reason/claim/debt/description. Nicht passend: eCH-0119 paymentReason (Codeliste AHV/Freizügigkeit), eCH-0278 reason (Liegenschaftsertrag), eCH-0119 assetPassiveListType description (Steuer-Schuldenverzeichnis). Kein SchKG-Standard. Gleich wie «Forderungsurkunde und Grund der Forderung» auf Formular 490 und «Forderungsgrund» auf 527.",
+   "elternfeld": "Forderung",
+   "teilfeld": "Forderungsurkunde mit Datum oder Angabe des Forderungsgrundes"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Betrag der betriebenen Forderung. Geprüft und verworfen: eCH-0209 amountDue (Steuerveranlagung bei Grundbuchgeschäften) und die amount-Elemente von eCH-0119/0278 (Steuererklärung). Sie meinen eine andere Angabe in einem anderen Fachgebiet. Gleich wie die Forderungsbeträge auf den Formularen 482, 483, 490 und 527.",
+   "elternfeld": "Forderung",
+   "teilfeld": "Betrag (CHF)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Verzugszinssatz der Betreibungsforderung. eCH-0278 interestRate (debtInterestsType) ist der Zinssatz der eigenen Schulden der steuerpflichtigen Person für den Schuldzinsenabzug. eCH-0276 interestRate gehört zur Steuerbilanz. Gleich wie «Zinssatz in %» auf 490 und 527: kein_standard. Die Ausnahme auf 483 wird nicht übernommen.",
+   "elternfeld": "Forderung",
+   "teilfeld": "Zins %"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Beginn des Zinslaufs, also der Anfang einer Periode. Geprüft und verworfen: eCH-0209 interestDate (Steuerveranlagung Grundbuch) sowie validFrom/dateFrom (Gültigkeit von Register- und Kontaktdaten). Gleich wie «seit (Datum)» auf 483 und «Zins seit (Datum)» auf 490.",
+   "elternfeld": "Forderung",
+   "teilfeld": "seit (Datum)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Freitext zum Grund weiterer Haupt- oder Nebenforderungen (max. 80 Zeichen). Kein SchKG-Standard im Katalog; die Suche wie bei Forderung (reason/claim/debt/description) ergab kein passendes Element.",
+   "elternfeld": "Weitere Forderungen",
+   "teilfeld": "Forderungsurkunde mit Datum oder Angabe des Forderungsgrundes"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Betrag einer weiteren Forderungsposition (z. B. Mahngebühren, Spesen). Kein SchKG-Standard. eCH-0209 amountDue und die Steuer-amount-Elemente meinen eine andere Angabe.",
+   "elternfeld": "Weitere Forderungen",
+   "teilfeld": "Betrag (CHF)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Zinssatz einer weiteren Hauptforderung. eCH-0278 und eCH-0276 interestRate betreffen Schuldzinsen in der Steuererklärung bzw. der Bilanz, nicht die betriebene Forderung. Kein SchKG-Standard im Katalog.",
+   "elternfeld": "Weitere Forderungen",
+   "teilfeld": "Zins %"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Beginn des Zinslaufs einer weiteren Forderung, also der Anfang einer Periode. Kein Element bildet den Zinsbeginn einer Forderung ab; eCH-0209 interestDate gehört zur Steuerveranlagung im Grundbuch. Gleich wie bei Forderung.",
+   "elternfeld": "Weitere Forderungen",
+   "teilfeld": "seit (Datum)"
+  }
+ ]
+}

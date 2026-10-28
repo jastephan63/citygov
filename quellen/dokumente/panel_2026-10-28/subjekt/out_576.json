@@ -1,0 +1,24 @@
+{
+ "verdicts": [
+  {
+   "id": 7113,
+   "subjekt": "behoerde",
+   "grund": "Bezeichnet das adressierte Betreibungsamt der Gemeinde, also die Behörde selbst, nicht eine Person."
+  },
+  {
+   "id": 7114,
+   "subjekt": "gemischt",
+   "grund": "Schuldner einer Betreibung kann eine natürliche oder juristische Person sein (z. B. Pfand- oder Grundpfandbetreibung gegen Firmen); trotz «Name, Vorname» nicht sicher eine Einzelperson."
+  },
+  {
+   "id": 7115,
+   "subjekt": "gemischt",
+   "grund": "Gläubiger ist häufig eine Firma (Bank, Inkasso, Vermieter-AG) oder eine Privatperson; das Formular lässt beides zu, inkl. Zahlungsverbindung."
+  },
+  {
+   "id": 7116,
+   "subjekt": "gemischt",
+   "grund": "Vertreter des Gläubigers ist oft ein Inkassobüro oder eine Anwaltskanzlei, kann aber auch eine Einzelperson sein; nicht sicher natürliche Person."
+  }
+ ]
+}

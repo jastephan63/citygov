@@ -1,0 +1,65 @@
+{
+ "form_id": 370,
+ "mappings": [
+  {
+   "data_field": "Personalien",
+   "cites": [
+    {
+     "cref": "SR 923.0",
+     "article_no": "Art. 3"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Rheinuferstrecken",
+   "cites": [
+    {
+     "cref": "SR 923.0",
+     "article_no": "Art. 3"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Dauer",
+   "cites": [
+    {
+     "cref": "SR 923.0",
+     "article_no": "Art. 3"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Saisonkarte (Beilage bei Verlängerung)",
+   "cites": [
+    {
+     "cref": "SR 923.0",
+     "article_no": "Art. 3"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Angelfischer- oder Sportfischer-Brevet",
+   "cites": [
+    {
+     "cref": "SR 923.0",
+     "article_no": "Art. 3"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Ort und Datum",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Unterschrift",
+   "cites": [],
+   "over_collection": true
+  }
+ ]
+}

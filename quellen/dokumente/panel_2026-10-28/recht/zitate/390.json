@@ -1,0 +1,371 @@
+{
+ "form_id": 390,
+ "mappings": [
+  {
+   "data_field": "Personalien des Opfers",
+   "cites": [
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 17"
+    },
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 18"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Alter des Opfers",
+   "cites": [
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 17"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Geschlecht des Opfers",
+   "cites": [
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 17"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Anzeige bei der Polizei erstattet",
+   "cites": [
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 18"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Datum und Zeit des Vorfalls",
+   "cites": [
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 17"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Vorfall im öffentlichen Bereich",
+   "cites": [
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 17"
+    },
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 18"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Vorfall beim Hund zuhause",
+   "cites": [
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 17"
+    },
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 18"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Adresse / Kanton des Vorfallorts",
+   "cites": [
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 17"
+    },
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 18"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Besitzverhältnisse",
+   "cites": [
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 17"
+    },
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 18"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Angaben zum Vorfall",
+   "cites": [
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 17",
+     "beleg": "Die gemäss eidgenössischer Tierschutzverordnung bestehende Meldepflicht bei erheblichen Verletzungen und Anzeichen eines übermässigen Aggressionsverhaltens gilt über die dort genannten Personenkreise hinaus"
+    },
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 18",
+     "beleg": "Bei Meldungen nimmt die zuständige kantonale Behörde: a) die Überprüfung des Sachverhalts vor"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Anzahl Bisse",
+   "cites": [
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 17"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Typ der Verletzung",
+   "cites": [
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 17"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Lokalisation der Verletzung",
+   "cites": [
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 17"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Hospitalisation",
+   "cites": [
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 17"
+    },
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 18"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Behandlung",
+   "cites": [
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 17",
+     "beleg": "Die gemäss eidgenössischer Tierschutzverordnung bestehende Meldepflicht bei erheblichen Verletzungen"
+    },
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 18",
+     "beleg": "Bei Meldungen nimmt die zuständige kantonale Behörde: a) die Überprüfung des Sachverhalts vor"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Schweregrad der Verletzung",
+   "cites": [
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 17",
+     "beleg": "Die gemäss eidgenössischer Tierschutzverordnung bestehende Meldepflicht bei erheblichen Verletzungen"
+    },
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 18",
+     "beleg": "Bei Meldungen nimmt die zuständige kantonale Behörde: a) die Überprüfung des Sachverhalts vor"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Personalien des Hundehalters / der Hundehalterin",
+   "cites": [
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 17"
+    },
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 18"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Chip-Nr.",
+   "cites": [
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 21",
+     "beleg": "Hundehalterinnen und Hundehalter haben ihre Hunde gemäss den einschlägigen Vorschriften der eidgenössischen Tierseuchengesetzgebung ... kennzeichnen und registrieren zu lassen."
+    },
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 18",
+     "beleg": "Bei Meldungen nimmt die zuständige kantonale Behörde: ... b) die notwendigen Abklärungen über die Hundehalterin oder den Hundehalter vor"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Rassengruppe",
+   "cites": [
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 9",
+     "beleg": "Wer einen Hund halten will, der einem Rassentyp mit erhöhtem Gefährdungspotenzial angehört, benötigt für jeden dieser Hunde eine Bewilligung."
+    },
+    {
+     "cref": "SHR 455.201",
+     "article_no": "§ 3",
+     "beleg": "Als Hunde mit erhöhtem Gefährdungspotential gelten reinrassige Hunde und Mischlingshunde der folgenden Rassentypen"
+    },
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 18",
+     "beleg": "Die Hundehalterin oder der Hundehalter ist auskunftspflichtig, insbesondere über: a) die Voraussetzungen für das Halten von Hunden gemäss Art. 7–9"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Rasse",
+   "cites": [
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 17"
+    },
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 18"
+    },
+    {
+     "cref": "SHR 455.201",
+     "article_no": "§ 3"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Stammbaum vorhanden",
+   "cites": [
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 18"
+    },
+    {
+     "cref": "SHR 455.201",
+     "article_no": "§ 3"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Geschlecht des Hundes",
+   "cites": [
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 18"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Kastriert",
+   "cites": [
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 18"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Farbe des Hundes",
+   "cites": [
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 18"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Grösse des Hundes",
+   "cites": [
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 18"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Fell",
+   "cites": [
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 18"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Diensthund",
+   "cites": [
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 15",
+     "beleg": "Von den im Abschnitt III. auferlegten Pflichten und Verboten ausgenommen sind der pflichtgemässe Einsatz von Hunden im öffentlichen Dienst"
+    },
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 18",
+     "beleg": "Bei Meldungen nimmt die zuständige kantonale Behörde: a) die Überprüfung des Sachverhalts vor"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Beschreibung stammt vom Opfer",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Datum, Stempel und Unterschrift der Ärztin / des Arztes",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Weitere Bemerkungen zum Vorfall, zur Verletzung oder zu Merkmalen des Hundes",
+   "cites": [],
+   "over_collection": true
+  }
+ ]
+}

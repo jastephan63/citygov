@@ -1,0 +1,242 @@
+{
+ "form_id": 579,
+ "data_fields": [
+  {
+   "name": "Angaben zur Person, welche die Meldung erstattet",
+   "definition": "Personalien, Kontaktangaben und Beziehung zum Kind der Person, welche die Gefährdungsmeldung bei der KESB erstattet.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Vorname und Name",
+    "Firma/Organisation/Funktion",
+    "Adresse (Str./Nr./PLZ/Ort)",
+    "Tel. Nr./ E-Mail",
+    "Erreichbarkeit für Rückfragen (wann)",
+    "Beziehung zum betroffenen Kind/Jugendl."
+   ],
+   "format": ""
+  },
+  {
+   "name": "Angaben zum betroffenen Kind/Jugendlichen",
+   "definition": "Vorname und Name, Geschlecht und Geburtsdatum des Kindes oder Jugendlichen, dessen Gefährdung gemeldet wird.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Vorname und Name",
+    "Geschlecht",
+    "Geburtsdatum"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Volljährig?",
+   "definition": "Angabe, ob die betroffene Person bereits volljährig ist, wobei auch «weiss nicht» angekreuzt werden kann.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "Ja",
+    "Nein",
+    "weiss nicht"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Name, Adresse und Zivilstand beider Eltern",
+   "definition": "Name, Adresse und Zivilstand von Mutter und Vater des betroffenen Kindes oder Jugendlichen, erfragt in einem einzigen mehrzeiligen Freitextfeld.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Sorgerechtsinhaber/in",
+   "definition": "Person oder Personen, welche die elterliche Sorge für das betroffene Kind oder den Jugendlichen innehaben.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Aktuelle Wohnadresse (Str./Nr./PLZ/Ort)",
+   "definition": "Aktuelle Wohnadresse des betroffenen Kindes oder Jugendlichen mit Strasse, Hausnummer, Postleitzahl und Ort in einem einzigen Freitextfeld.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Erreichbarkeit (Tel.Nr./E-Mail) (wann)",
+   "definition": "Telefonnummer bzw. E-Mail-Adresse, unter denen das betroffene Kind oder der Jugendliche erreichbar ist, samt den Zeiten der Erreichbarkeit.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Schule/Kindergarten/Kinderkrippe und Name der hauptsächlichen Lehr-/Betreuungs-person/Schulleitung",
+   "definition": "Besuchte Schule, besuchter Kindergarten oder besuchte Kinderkrippe sowie Name der hauptsächlichen Lehr- oder Betreuungsperson bzw. der Schulleitung.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Hausarzt",
+   "definition": "Hausärztin oder Hausarzt des betroffenen Kindes oder Jugendlichen.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Was ist der Anlass, aus welchem Sie diese Meldung bei uns einreichen?",
+   "definition": "Freitextbeschreibung des Anlasses der Meldung mit möglichst konkreten eigenen Beobachtungen, Zeitangaben sowie Dauer und Häufigkeit des Schwächezustands, wobei Vermutungen und Hörensagen als solche zu kennzeichnen sind.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Gibt es wichtige Bezugspersonen des Kindes/Jugendlichen?",
+   "definition": "Freitextangabe zu allfälligen wichtigen Bezugspersonen des betroffenen Kindes oder Jugendlichen (Rubrik «Wichtige Bezugspersonen»).",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Wissen die Kindeseltern bzw. das Kind oder der Jugendliche von dieser Gefährdungsmeldung?",
+   "definition": "Angabe, ob die Eltern bzw. das Kind oder der Jugendliche von der Gefährdungsmeldung wissen.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "Ja",
+    "Nein"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Falls Ja, wie haben sie darauf reagiert?",
+   "definition": "Beschreibung der Reaktion der Eltern bzw. des Kindes oder Jugendlichen auf die Meldung, auszufüllen nur wenn diese davon wissen.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Wurde bisher bereits etwas unternommen?",
+   "definition": "Angabe, ob wegen der gemeldeten Gefährdung bereits etwas unternommen wurde.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "Ja",
+    "Nein",
+    "weiss nicht"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Wenn ja, was und von wem?",
+   "definition": "Bereits unternommene Schritte und die Person oder Stelle, die sie unternommen hat, auszufüllen nur wenn bereits etwas unternommen wurde.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Was",
+    "Von wem"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Kann mit ihr/ihm eine Unterhaltung auf Deutsch geführt werden?",
+   "definition": "Angabe, ob mit dem Kind oder Jugendlichen ein Gespräch auf Deutsch möglich ist, gefragt in der Rubrik «Kommunikation» für den Fall einer fremden Muttersprache.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "Ja",
+    "Nein"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Muttersprache",
+   "definition": "Muttersprache des Kindes oder Jugendlichen, auszufüllen falls kein Gespräch auf Deutsch möglich ist.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Kenntnisse andere Fremdsprache",
+   "definition": "Weitere Fremdsprachen, in denen sich das Kind oder der Jugendliche verständigen kann, auszufüllen falls kein Gespräch auf Deutsch möglich ist.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Weitere relevante Informationen",
+   "definition": "Freitext für weitere Informationen, welche die meldende Person für die Abklärung als relevant erachtet.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Wie schätzen Sie die Gefährdungssituation ein?",
+   "definition": "Einschätzung der meldenden Person zur Schutzbedürftigkeit und Dringlichkeit der Gefährdungssituation (Rubrik «Einschätzung Schutzbedürftigkeit / Dringlichkeit»).",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "sehr niedrig",
+    "niedrig",
+    "mittel",
+    "hoch",
+    "sehr hoch",
+    "weiss nicht"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ort/Datum",
+   "definition": "Ort und Datum der Unterzeichnung der Gefährdungsmeldung.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Ort",
+    "Datum"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Unterschrift",
+   "definition": "Unterschrift der Person, welche die Meldung erstattet.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  }
+ ],
+ "hinweis": "Korrekturen (Prüfung gegen die Tabellen- und Checkbox-Struktur der DOCX-Datei, nicht nur gegen den Textauszug): (1) «Name, Adresse und Zivilstand beider Eltern»: In der Definition stand «auf einer einzigen Freitextzeile». Die Antwortzelle hat aber drei Absätze und ist damit mehrzeilig. Die Definition lautet jetzt «in einem einzigen mehrzeiligen Freitextfeld». (2) «Aktuelle Wohnadresse (Str./Nr./PLZ/Ort)»: «auf einer Zeile» ersetzt durch «in einem einzigen Freitextfeld», weil die Zelle zwei Absätze hat. (3) «Erreichbarkeit (Tel.Nr./E-Mail) (wann)»: Das erfundene «bzw. sein Haushalt» ist gestrichen. «Telefonnummer und E-Mail-Adresse» heisst jetzt «Telefonnummer bzw. E-Mail-Adresse», entsprechend dem Schrägstrich im Formular. Alle anderen Felder sind unverändert übernommen. Die Vollständigkeit ist geprüft: Alle 6 Zeilen des Melder-Blocks und alle 10 Zeilen des Kind-Blocks sind vorhanden, darunter die 3 Checkboxen «Volljährig?» in der Zeile «Geburtsdatum». Ebenfalls vorhanden sind alle 4 Checkbox-Gruppen (2× Ja/Nein, 1× Ja/Nein/weiss nicht, 1× sechsstufige Einschätzung), die zweispaltige Tabelle «Was:»/«Von wem:», die beiden Zeilen unter «Falls nein:» sowie Ort/Datum (zwei punktierte Linien) und eine einzige Unterschrift. Es gibt keine zweite unterzeichnende Person, keine Beilagen-Checkliste und kein Amtsfeld. Einzeilig gedruckte Bezeichnungen («Vorname und Name», «Adresse (Str./Nr./PLZ/Ort)», «Tel. Nr./ E-Mail», «Name, Adresse und Zivilstand beider Eltern») wurden bewusst nicht aufgeteilt, weil das Formular dafür nur ein Eingabefeld druckt. Bedingte Folgefelder («Falls Ja, …», «Wenn ja, …», «Muttersprache», «Kenntnisse andere Fremdsprache» unter «Falls nein:») bleiben required=true, weil sie bedingt, aber nicht als freiwillig markiert sind. «Weitere relevante Informationen» bleibt required=false, weil es sich um ein Feld nach Art von «Bemerkungen» handelt. Diese Texte sind keine Angaben der Person: der Ausfüllhinweis unter der Anlass-Frage (konkrete Beobachtungen, Hörensagen kennzeichnen), der Hinweis, dass Kind und Eltern in der Regel erfahren, wer die Meldung erstattet hat, die Einreichungsadresse (KESB des Kantons Schaffhausen, Mühlentalstrasse 65A, 8200 Schaffhausen, kesb@sh.ch), die Kopfzeile der KESB und eine nicht beschriftete Zahlenfolge im Fussbereich (63119011430000)."
+}

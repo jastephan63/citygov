@@ -1,0 +1,196 @@
+{
+ "form_id": 550,
+ "data_fields": [
+  {
+   "name": "Absender (Zahlungsauftrag)",
+   "definition": "Name und Adresse der Beistandsperson als Absenderin des Zahlungsauftrags an das Finanzinstitut.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Vorname",
+    "Name",
+    "Strasse",
+    "PLZ",
+    "Ort"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Adresse Finanzinstitut",
+   "definition": "Name und Adresse des Finanzinstituts, das die Zahlung ausführen soll.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name",
+    "Strasse",
+    "PLZ",
+    "Ort"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Ort und Datum (Zahlungsauftrag)",
+   "definition": "Ort und Datum der Ausstellung des Zahlungsauftrags an das Finanzinstitut.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Ort",
+    "Datum"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Gutschrift auf Konto / IBAN",
+   "definition": "Konto bzw. IBAN, dem der Betrag gutgeschrieben werden soll, mit der Angabe, auf wen dieses Konto lautet.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Konto / IBAN",
+    "lautend auf"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Belastung vom Konto / IBAN",
+   "definition": "Konto bzw. IBAN, das für die Zahlung belastet werden soll (Lastschriftkonto), mit der Angabe, auf wen dieses Konto lautet.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Konto / IBAN",
+    "lautend auf"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Betrag",
+   "definition": "Zu überweisender Betrag in Franken.",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "Fr."
+  },
+  {
+   "name": "Ausführung per sofort / Datum",
+   "definition": "Gewünschtes Ausführungsdatum der Zahlung, sofern sie nicht per sofort ausgeführt werden soll.",
+   "data_type": "date",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Unterschrift Beistandsperson (Zahlungsauftrag)",
+   "definition": "Unterschrift der Beistandsperson auf dem Zahlungsauftrag an das Finanzinstitut.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Beistandsperson",
+   "definition": "Name der Beistandsperson, die den Zahlungsauftrag unterzeichnet.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Absender (Antrag auf Kontoübertrag)",
+   "definition": "Name und Adresse der Beistandsperson als Absenderin des Antrags auf Kontoübertrag an die Kindes- und Erwachsenenschutzbehörde.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Vorname",
+    "Name",
+    "Strasse",
+    "PLZ",
+    "Ort"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Ort und Datum (Antrag auf Kontoübertrag)",
+   "definition": "Ort und Datum der Ausstellung des Antrags auf Kontoübertrag an die Kindes- und Erwachsenenschutzbehörde.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Ort",
+    "Datum"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Daten der verbeiständeten Person",
+   "definition": "Personalien und Adresse der verbeiständeten Person, für welche die Beistandsperson den Kontoübertrag beantragt.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Vorname",
+    "Name",
+    "Geburtsdatum",
+    "Adresse"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Begründung",
+   "definition": "Grund für den beantragten Kontoübertrag, auszuwählen aus den vorgedruckten Möglichkeiten.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "geringer Kontostand aufgrund Vermögensverzehr",
+    "Andere Begründung"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Andere Begründung",
+   "definition": "Freitextliche Begründung des Kontoübertrags, falls nicht ein geringer Kontostand aufgrund Vermögensverzehr der Grund ist.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Unterschrift Beistandsperson (Antrag auf Kontoübertrag)",
+   "definition": "Unterschrift der Beistandsperson unter dem Antrag auf Kontoübertrag an die Kindes- und Erwachsenenschutzbehörde.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "aktueller Kontostand vom Lastschriftkonto",
+   "definition": "Beizulegender Nachweis des aktuellen Kontostands des Kontos, das belastet werden soll.",
+   "data_type": "attachment",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "aktueller Kontostand vom Gutschriftskonto",
+   "definition": "Beizulegender Nachweis des aktuellen Kontostands des Kontos, dem der Betrag gutgeschrieben werden soll.",
+   "data_type": "attachment",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  }
+ ],
+ "hinweis": "Korrekturen: keine. Ich habe den Entwurf mit dem Originalformular (docx-XML) Zeile für Zeile abgeglichen. Alle 17 Felder habe ich unverändert übernommen. Prüfergebnisse: (1) Die beiden Absender-Blöcke und «Adresse Finanzinstitut» tragen keine gedruckten Unterfeld-Bezeichnungen. Die Unterfelder sind aus der Anordnung der Eingabefelder abgeleitet: beim Absender 2/1/2 (Vorname Name / Strasse / PLZ Ort), beim Finanzinstitut 1/1/2 (Name / Strasse / PLZ Ort). Der zweite Absender-Block verwendet dieselben internen Feldnamen (Text28–Text32) wie der erste. Logisch ist es dieselbe Angabe zweimal, also ein Kandidat für Once-Only. (2) «Ort und Datum» ist im Formular je ein einziges Eingabefeld mit dem Vorgabetext «Ort und Datum». Die Aufteilung in Ort und Datum folgt der Konvention der Datenbank. (3) Bei den Beilagen handelt es sich um eine Aufzählung mit Symbol-Spiegelstrichen und nicht um Kontrollkästchen. Beide Beilagen sind deshalb zu Recht je ein Feld vom Typ attachment. (4) Bei der «Begründung» gibt es zwei Wingdings-Kästchen mit dem Hinweis «bitte auswählen». Es ist eine Auswahl unter Alternativen, also enum. «Andere Begründung» ist nur bedingt auszufüllen und deshalb required=false, wie bei den anderen «Andere …»-Feldern in der Datenbank. (5) «Ausführung per sofort / Datum» ist nur auszufüllen, wenn die Zahlung nicht sofort erfolgen soll, deshalb required=false. Keine Felder der ausfüllenden Person sind: die beiden Unterschriftslinien der Kindes- und Erwachsenenschutzbehörde auf dem Zahlungsauftrag («Unten stehend die entsprechenden Unterschriften der Behörde») und die vorgedruckte KESB-Adresse (Mühlentalstrasse 65A, 8200 Schaffhausen). Ebenfalls keine Felder sind die DocProperty-Platzhalter der KLIB-Vorlage (KLIB_ADRESSEDRITTE, KLIB_ADRNAME…, KLIB_BENUTZER_NACHNAME…, KLIB_BENUTZER_ABTEILUNG, KLIB_SB17…), die das System automatisch füllt. Dazu kommen das Feld «Beilagen», das nur als Überschrift dient, sowie die Anweisungen («Hier bitte folgende Daten der verbeiständeten Person erfassen …», «Ich bitte Sie, den beiliegenden Zahlungsauftrag … zu unterzeichnen …»). Der im Antrag erwähnte «beiliegende Zahlungsauftrag» ist Teil desselben Formulars und deshalb keine eigene Beilage."
+}

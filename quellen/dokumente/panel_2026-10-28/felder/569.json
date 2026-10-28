@@ -1,0 +1,201 @@
+{
+ "form_id": 569,
+ "data_fields": [
+  {
+   "name": "Generalversammlung",
+   "definition": "Art der protokollierten Generalversammlung, gewählt aus den im Titel gedruckten Varianten «ordentliche / ausserordentliche».",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "ordentliche",
+    "ausserordentliche"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Firma",
+   "definition": "Firma der Gesellschaft, deren Generalversammlung protokolliert wird (Platzhalter [Firma] im Titel).",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Sitz",
+   "definition": "Sitz der Gesellschaft gemäss Handelsregister (Platzhalter [Sitz] im Titel).",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ort",
+   "definition": "Ort, an dem die Generalversammlung abgehalten wird.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Datum",
+   "definition": "Kalenderdatum, an dem die Generalversammlung stattfindet.",
+   "data_type": "date",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Beginn",
+   "definition": "Uhrzeit, zu der die Generalversammlung beginnt.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "Uhr"
+  },
+  {
+   "name": "Traktandum",
+   "definition": "Nummer des Traktandums «Wahlen / Abwahlen» in der Traktandenliste (Platzhalter [X], im Kopf und in Abschnitt II dieselbe Angabe).",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Der/Die Vorsitzende",
+   "definition": "Personalien des Mitglieds des Verwaltungsrates, das die Versammlung eröffnet, den Vorsitz übernimmt und als Protokollführer/in amtet.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Herr/Frau",
+    "Vorname",
+    "Name",
+    "Heimatort",
+    "PLZ",
+    "Ort",
+    "Strasse",
+    "Nr."
+   ],
+   "format": ""
+  },
+  {
+   "name": "Der/Die Vorsitzende stellt fest",
+   "definition": "Feststellung zur Anwesenheit des Verwaltungsrates: entweder sind alle Mitglieder anwesend oder die nicht anwesenden Mitglieder haben auf Teilnahme und Antragsrecht verzichtet.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "alle Mitglieder des Verwaltungsrates sind anwesend",
+    "das nicht anwesende Mitglied/die nicht anwesenden Mitglieder des Verwaltungsrates hat/haben auf sein/ihr Recht verzichtet, an der Versammlung teilzunehmen und Anträge zu stellen"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Aktienkapital",
+   "definition": "Betrag des gesamten Aktienkapitals in CHF, das an der Universalversammlung anwesend oder vertreten ist.",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "CHF"
+  },
+  {
+   "name": "Neues Mitglied des Verwaltungsrates",
+   "definition": "Person, welche die Generalversammlung als neues Mitglied des Verwaltungsrates wählt (Satz bleibt nur stehen, wenn eine Wahl stattfindet).",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Als Verwaltungsrat abberufen",
+   "definition": "Person, die von der Generalversammlung als Verwaltungsrat abberufen wird und deren Zeichnungsberechtigung erlischt (Satz bleibt nur stehen, wenn eine Abberufung stattfindet).",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Rücktritt als Mitglied des Verwaltungsrates",
+   "definition": "Person, die als Mitglied des Verwaltungsrates zurücktritt und deren Rücktritt die Generalversammlung zur Kenntnis nimmt (Satz bleibt nur stehen, wenn ein Rücktritt vorliegt).",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ende der Sitzung",
+   "definition": "Uhrzeit, zu der die Generalversammlung geschlossen wird.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "Uhr"
+  },
+  {
+   "name": "Ort und Datum",
+   "definition": "Ort und Kalenderdatum der Unterzeichnung des Protokolls.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Ort",
+    "Datum"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Unterschrift Vorsitzender",
+   "definition": "Eigenhändige Unterschrift des oder der Vorsitzenden der Generalversammlung.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Vorsitzender",
+   "definition": "Name und Vorname des oder der Vorsitzenden, unter der Unterschriftslinie gedruckt.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "NAME",
+    "Vorname"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Unterschrift Protokollführer",
+   "definition": "Eigenhändige Unterschrift des Protokollführers oder der Protokollführerin der Generalversammlung.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Protokollführer",
+   "definition": "Name und Vorname des Protokollführers oder der Protokollführerin, unter der Unterschriftslinie gedruckt.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "NAME",
+    "Vorname"
+   ],
+   "format": ""
+  }
+ ],
+ "hinweis": "Korrekturen: keine. Geprüft am Original-DOCX (document.xml: 8 FORMTEXT-Felder, gelb markierte Platzhalter, keine Kontrollkästchen, keine Beilagen-Checkliste; Kopf- und Fusszeilen leer). Alle 8 FORMTEXT-Felder (Ort, Datum, Beginn, Aktienkapital CHF, drei Personen in Abschnitt II, Ende der Sitzung) und alle gelben Platzhalter ([Firma], [Sitz], [X], Herr/Frau [Vorname] [Name], [Heimatort], [PLZ Ort], [Strasse Nr.], [Ort], [Datum], zweimal [NAME, Vorname]) sind abgedeckt. Beide Unterschriftslinien (Vorsitzender, Protokollführer) sind vorhanden. Begründungen: Die ersten beiden Feststellungen in Abschnitt I schliessen sich gegenseitig aus (alle anwesend oder Verzicht der Abwesenden), deshalb bleibt die Auswahl als enum. Die erste Zeile trägt im Original ein wörtliches «-» statt eines Aufzählungszeichens, das ist bloss Formatierung. Die übrigen drei Feststellungen (keine Stimmrechtsvertreter nach Art. 689d/689e OR, Universalversammlung beschlussfähig, keine Einwände) sind fester Text und keine Angaben. Die drei Sätze in Abschnitt II stehen unter «[bitte nicht Zutreffendes entfernen]» und sind deshalb required=false. Die zusammengefassten Platzhalter [PLZ Ort], [Strasse Nr.] und [NAME, Vorname] sind in ihre gedruckten Wörter zerlegt. Dabei kommt kein Teil hinzu, der nicht gedruckt ist. Keine Angaben der Person: die geschlechtsbezogenen Varianten (Der/Die, Protokollführer/in, Seine/Ihre, seinem/ihrem), die gedruckte Überschrift «Wahlen / Abwahlen», der Text von Abschnitt III (Anmeldepflicht des Verwaltungsrates beim Handelsregister) sowie die grün markierten Ausfüllhinweise «[bitte nicht Zutreffendes entfernen]» und «[Zu entfernender Hinweis: Nötigenfalls ist zusätzlich eine Verwaltungsratssitzung … abzuhalten.]». Zur Beachtung: Laut Abschnitt I amtet der/die Vorsitzende zugleich als Protokollführer/in. Das Formular druckt trotzdem zwei Unterschriftsblöcke, deshalb bleiben beide als eigene Felder erhalten. Vergleichbare Protokoll-Formulare (553, 557, 558, 560) haben noch keine Felder in der DB, ein Abgleich war daher nicht möglich."
+}

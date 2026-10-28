@@ -1,0 +1,75 @@
+{
+ "hinweis": "eCH-Urteile Formular 571, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/571 --nur-offene=571",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "«Firma» is the commercial-register name of the Aktiengesellschaft that waives its audit. eCH-0098 (Genehmigt) has organisationName verbatim in organisationIdentificationType, and the databank maps «Firma» this way in 23 rows. The other candidate, eCH-0010 organisationName, is a postal-address part (3 rows) and fits less well.",
+   "feld": "Firma",
+   "standard": "eCH-0098",
+   "element": "organisationName"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Read to the end, the label asks for the first business year in which the waiver of the limited audit (opting-out, OR 727a) takes effect, so it is a validity start for that waiver. I searched every non-repealed standard of the catalogue (290) for audit, revision, waiv, optingOut, fiscalYear, businessYear, financialYear, period, Year/gYear, validFrom, effective, start and Begin. eCH-0229 auditor only identifies the audit firm. eCH-0229 taxPeriod/periodFrom and eCH-0119 taxPeriod give the period a tax return covers. eCH-0276 business-year elements are balance values. eCH-0098, eCH-0108, eCH-0116 and eCH-0148 have no audit or opting-out data. Every validFrom (eCH-0011/0020/0021/0129/0135/0148) belongs to another subject.",
+   "feld": "Geschäftsjahr, ab welchem der Verzicht gelten soll"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "This composite is the list of all shareholders: Vorname, Name, Anzahl Aktien, then Ort, Datum and Unterschrift. eCH-0276 (Genehmigt) has detailsShareholdersAssociates verbatim in shareholdersAssociatesType, and its type holds name, givenName and amount for each shareholder, so it is the container for this list. Form 361 «Gesellschafter/innen» uses the same container.",
+   "feld": "Sämtliche Aktionäre der Aktiengesellschaft",
+   "standard": "eCH-0276",
+   "element": "detailsShareholdersAssociates"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "This is the shareholder's given name. Because the column «Vorname» exists, the shareholders are natural persons. The atomic rule maps Vorname to eCH-0044 personIdentificationType/firstName (Genehmigt, element exists verbatim).",
+   "elternfeld": "Sämtliche Aktionäre der Aktiengesellschaft",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "This is the shareholder's surname, since it stands beside «Vorname». The atomic rule maps Name to eCH-0044 personIdentificationType/officialName (Genehmigt, element exists verbatim).",
+   "elternfeld": "Sämtliche Aktionäre der Aktiengesellschaft",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "This is the number of shares the shareholder holds. eCH-0276 shareholdersOrAssociatesType/numberOfSharesUnits (integer, Genehmigt) is the explicit share-count element, its name is unique in the standard, and forms 307, 317 and 359 map «Anzahl Aktien/Stammanteile» to it. detailsShareholdersAssociatesType/amount means the same, but the name «amount» also occurs in freeInputFieldType, so it is ambiguous.",
+   "elternfeld": "Sämtliche Aktionäre der Aktiengesellschaft",
+   "teilfeld": "Anzahl Aktien",
+   "standard": "eCH-0276",
+   "element": "numberOfSharesUnits"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "On the Formular this part comes from the column «Ort, Datum» beside «Unterschrift», so it is the place where the shareholder signed, not where they live. I searched the whole catalogue for sign, signature, signing, place, location and locationAnd. eCH-0119 locationAndDate is one combined string inside the attached forms of the natural-person tax return. eCH-0010 town is a part of a postal address. eCH-0039 documentType has only signer, and eCH-0260 signaturesType holds confirmation booleans. The precedent for Ort in «Ort und Datum» is kein_standard.",
+   "elternfeld": "Sämtliche Aktionäre der Aktiengesellschaft",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "This is the calendar date on which the shareholder signed (from the column «Ort, Datum» beside «Unterschrift»). I searched the whole catalogue for sign, signature, declarationDate, documentDate, signatureDate, dateOfSign and issueDate. Only eCH-0119 locationAndDate came up, and it is combined and specific to tax returns. eCH-0039 has no signing date, and eCH-0260 signatures are booleans. No element holds the date of signing. The precedent for Datum in «Ort und Datum» is kein_standard.",
+   "elternfeld": "Sämtliche Aktionäre der Aktiengesellschaft",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "This confirms the propagated kein_standard (ech_herkunft «propagiert (Name 15x geprüft)»). A handwritten signature has no data element. eCH-0039 signer only names who signed, and eCH-0260 signatures are confirmation booleans for apprenticeship contracts. eCH-0091, 0220, 0230, 0250, 0274 and 0282 cover electronic-signature technique and have no elements.",
+   "feld": "Unterschrift"
+  }
+ ]
+}

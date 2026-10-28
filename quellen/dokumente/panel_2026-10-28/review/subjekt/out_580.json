@@ -1,0 +1,16 @@
+{
+ "urteile": [
+  {
+   "id": 7188,
+   "urteil": "bestaetigt",
+   "subjekt": "gemischt",
+   "grund": "Meldende Person kann eine Privatperson (Angehörige, Nachbarin) oder eine Fachperson sein, die für eine Firma oder Organisation meldet. Darauf weist das Unterfeld «Firma/Organisation/Funktion» hin. Adresse und Tel./E-Mail können dann die der Organisation sein. Die Angaben sind also nicht sicher die eigenen einer Privatperson, darum gemischt."
+  },
+  {
+   "id": 7189,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Der Abschnitt «Angaben zur betroffenen Person» betrifft genau eine erwachsene natürliche Person mit Name, Geschlecht, Geburtsdatum und aktueller Wohnadresse. Auch Arbeitgeber/Arbeitsort und Hausarzt sind Angaben dieser einen Person und gehören keiner Organisation als eigene Daten."
+  }
+ ]
+}

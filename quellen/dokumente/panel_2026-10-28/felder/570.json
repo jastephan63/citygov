@@ -1,0 +1,81 @@
+{
+ "form_id": 570,
+ "data_fields": [
+  {
+   "name": "Name",
+   "definition": "Name des Vereins, unter dem er gemäss Art. 60 ff. ZGB auf unbestimmte Dauer besteht.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Sitz",
+   "definition": "Politische Gemeinde, in welcher der Verein seinen Sitz hat.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Zweck",
+   "definition": "Umschreibung des Vereinszwecks; wird ausnahmsweise ein kaufmännisches Gewerbe als Nebenzweck betrieben, muss der Hauptzweck ideeller Natur sein.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Allfällige weitere Mittel",
+   "definition": "Weitere Finanzierungsquellen des Vereins neben den vorgedruckten Mitteln (Mitgliederbeiträge, Spenden und Sponsoring, Erträge aus dem Vereinsvermögen, allfällige staatliche Beiträge), sofern vorhanden.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Datum (Genehmigung und Inkrafttreten)",
+   "definition": "Kalenderdatum, an dem die Vereinsversammlung die Statuten genehmigt hat und ab dem sie in Kraft treten.",
+   "data_type": "date",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ort, Datum",
+   "definition": "Ort und Kalenderdatum der Unterzeichnung der Statuten namens der ausserordentlichen Vereinsversammlung.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Ort",
+    "Datum"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Vorsitzende",
+   "definition": "Unterschrift der vorsitzenden Person, welche die Statuten namens der ausserordentlichen Vereinsversammlung unterzeichnet.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Protokollführerin",
+   "definition": "Unterschrift der protokollführenden Person, welche die Statuten namens der ausserordentlichen Vereinsversammlung mitunterzeichnet.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  }
+ ],
+ "hinweis": "Korrekturen: keine. Ich habe das Original-DOCX (formulare/71__21a884d837cd.docx) gegen den Textauszug geprüft, inklusive Kopf- und Fusszeilen, Fussnoten und Endnoten. Das DOCX enthält keine Formularfelder, keine Kontrollkästchen, keine Inhaltssteuerelemente und keine Hervorhebungen. Auszufüllen sind nur die vier eckigen Platzhalter [Name, [politische Gemeinde], [Zweck des Vereins …] und [allfällige weitere Mittel nennen] sowie [Datum] im Artikel «Genehmigung und Inkrafttreten». Dazu kommen die Zeile «Ort: …, Datum: …» und die zwei Unterschriftslinien «Vorsitzende» und «Protokollführerin» unter «Namens der a.o. Vereinsversammlung». Alle diese Stellen sind im Wörterbuch in der Reihenfolge der Vorlage enthalten. Nichts ist erfunden. Die Bezeichnung «Datum (Genehmigung und Inkrafttreten)» trägt die Überschrift des Artikels als Zusatz, weil «Datum» auch im Block «Ort, Datum» vorkommt. «Allfällige weitere Mittel» ist zu Recht freiwillig, weil die Vorlage «allfällige» druckt. Keine Angaben, sondern vorgegebener Statutentext sind die Artikel zu Mitgliederbeiträgen, Mitgliedschaft, Organisation, Protokollen, Vereinsversammlung, Vorstand und Kontrollstelle, ebenso der als optional gekennzeichnete Artikel «allfällige gesetzliche Revisionspflicht» und die Schlussbestimmungen. Die Aufzählung «Das Protokoll enthält mindestens: … das Datum der Sitzung …» betrifft künftige Protokolle und nicht diese Vorlage. Die Vorlage hat keine Beilagen-Checkliste und keine Felder, die das Amt ausfüllt. In der Datenbank sind für die vergleichbaren Statuten-Vorlagen (Formulare 563 bis 567) keine Felder erfasst, mit denen ich die Bezeichnungen hätte abgleichen können."
+}

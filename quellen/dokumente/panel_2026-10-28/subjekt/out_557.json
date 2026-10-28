@@ -1,0 +1,54 @@
+{
+ "verdicts": [
+  {
+   "id": 6725,
+   "subjekt": "natuerliche_person",
+   "grund": "Name der Person, die die Gesellschafterversammlung leitet; der Vorsitz wird stets von einer natürlichen Person geführt."
+  },
+  {
+   "id": 6726,
+   "subjekt": "natuerliche_person",
+   "grund": "Name der Person, die das Protokoll führt; Protokollführung ist zwingend eine natürliche Person."
+  },
+  {
+   "id": 6733,
+   "subjekt": "natuerliche_person",
+   "grund": "Neu gewählte Geschäftsführer/innen mit Name, Heimatort (von), Wohnort (in); nach OR 809 Abs. 2 nur natürliche Personen."
+  },
+  {
+   "id": 6734,
+   "subjekt": "natuerliche_person",
+   "grund": "Neu gewählte Person für den Vorsitz der Geschäftsführung mit Name, Heimatort und Wohnort; Geschäftsführer sind nach OR 809 Abs. 2 nur natürliche Personen."
+  },
+  {
+   "id": 6735,
+   "subjekt": "natuerliche_person",
+   "grund": "Abberufene Geschäftsführerin bzw. abberufener Geschäftsführer mit Name, Heimatort, Wohnort; Geschäftsführer sind stets natürliche Personen."
+  },
+  {
+   "id": 6736,
+   "subjekt": "natuerliche_person",
+   "grund": "Zurückgetretener Geschäftsführer mit Name, Heimatort, Wohnort und Zeichnungsart; Geschäftsführer sind stets natürliche Personen."
+  },
+  {
+   "id": 6738,
+   "subjekt": "gemischt",
+   "grund": "Veräusserer von Stammanteilen ist ein Gesellschafter; nach OR 772 kann das auch eine juristische Person oder Handelsgesellschaft sein. Die Vorlage (von/in) ist nur ein anpassbares Muster."
+  },
+  {
+   "id": 6739,
+   "subjekt": "gemischt",
+   "grund": "Erwerber der Stammanteile wird neuer Gesellschafter; nach OR 772 kann das auch eine Firma (z. B. Holding) sein. Das Schema von/in ist nur ein anpassbares Muster, daher kein sicherer Personenbezug."
+  },
+  {
+   "id": 6742,
+   "subjekt": "natuerliche_person",
+   "grund": "Unterschrift und Name (NAME, Vorname) des Vorsitzenden der Versammlung, also einer natürlichen Person."
+  },
+  {
+   "id": 6743,
+   "subjekt": "natuerliche_person",
+   "grund": "Unterschrift und Name (NAME, Vorname) des Protokollführers, also einer natürlichen Person."
+  }
+ ]
+}

@@ -1,0 +1,828 @@
+{
+ "form_id": 452,
+ "mappings": [
+  {
+   "data_field": "Gemeinde",
+   "cites": [
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 8"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    },
+    {
+     "cref": "SHR 814.200",
+     "article_no": "Art. 17"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Standort der Anlage",
+   "cites": [
+    {
+     "cref": "SHR 814.200",
+     "article_no": "Art. 15"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 13"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Gebäudeeigentümer/in, Bauherr/in oder Vertreter/in",
+   "cites": [
+    {
+     "cref": "SHR 814.200",
+     "article_no": "Art. 15"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 13"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Installationsfirma",
+   "cites": [
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 12"
+    },
+    {
+     "cref": "SHR 550.100",
+     "article_no": "Art. 13"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Gebäudenutzung",
+   "cites": [
+    {
+     "cref": "SHR 550.100",
+     "article_no": "Art. 6"
+    },
+    {
+     "cref": "SHR 550.101",
+     "article_no": "§ 8"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Gebäudenutzung andere",
+   "cites": [
+    {
+     "cref": "SHR 550.100",
+     "article_no": "Art. 6"
+    },
+    {
+     "cref": "SHR 550.101",
+     "article_no": "§ 8"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Installationsart",
+   "cites": [
+    {
+     "cref": "SHR 814.200",
+     "article_no": "Art. 15"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Tankraum Änderungsart",
+   "cites": [
+    {
+     "cref": "SHR 814.200",
+     "article_no": "Art. 15"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    },
+    {
+     "cref": "SHR 550.100",
+     "article_no": "Art. 6"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Tankraum Standort/Geschoss",
+   "cites": [
+    {
+     "cref": "SHR 550.100",
+     "article_no": "Art. 6"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Tank im Heizraum",
+   "cites": [
+    {
+     "cref": "SHR 550.101",
+     "article_no": "§ 5"
+    },
+    {
+     "cref": "SHR 550.100",
+     "article_no": "Art. 6"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Bauart der Decke",
+   "cites": [
+    {
+     "cref": "SHR 550.100",
+     "article_no": "Art. 6"
+    },
+    {
+     "cref": "SHR 550.101",
+     "article_no": "§ 8"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Bauart der Wände",
+   "cites": [
+    {
+     "cref": "SHR 550.100",
+     "article_no": "Art. 6"
+    },
+    {
+     "cref": "SHR 550.101",
+     "article_no": "§ 8"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Feuerwiderstand der Tankraumtüre",
+   "cites": [
+    {
+     "cref": "SHR 550.100",
+     "article_no": "Art. 6"
+    },
+    {
+     "cref": "SHR 550.101",
+     "article_no": "§ 8"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Gewässerschutz Änderungsart",
+   "cites": [
+    {
+     "cref": "SHR 814.200",
+     "article_no": "Art. 15"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Tank Anzahl",
+   "cites": [
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 13"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Tankgrösse",
+   "cites": [
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 13"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Stückzahl je Tankgrösse",
+   "cites": [
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 13"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Nennvolumen je Tankgrösse",
+   "cites": [
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 13"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Tankform",
+   "cites": [
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 13"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Stückzahl je Tankform",
+   "cites": [
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 13"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Nennvolumen je Tankform",
+   "cites": [
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 13"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Werkstoff Tank",
+   "cites": [
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 13"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Zulassungs-Nr. (KVU)",
+   "cites": [
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 12"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 13"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Tankinhalt",
+   "cites": [
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 13"
+    },
+    {
+     "cref": "SHR 814.200",
+     "article_no": "Art. 15"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Tankinhalt andere",
+   "cites": [
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 13"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Flammpunkt",
+   "cites": [
+    {
+     "cref": "SHR 550.100",
+     "article_no": "Art. 6"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Angaben erdverlegte Anlage",
+   "cites": [
+    {
+     "cref": "SHR 814.200",
+     "article_no": "Art. 15"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 12"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Anderer Lagerort",
+   "cites": [
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 13"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Werkstoff Auffangwanne",
+   "cites": [
+    {
+     "cref": "SHR 814.200",
+     "article_no": "Art. 15"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Werkstoff Auffangwanne andere",
+   "cites": [
+    {
+     "cref": "SHR 814.200",
+     "article_no": "Art. 15"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Auffangvermögen Auffangwanne",
+   "cites": [
+    {
+     "cref": "SHR 814.200",
+     "article_no": "Art. 15"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Einzelwanne",
+   "cites": [
+    {
+     "cref": "SHR 814.200",
+     "article_no": "Art. 15"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Anzahl Einzelwannen",
+   "cites": [
+    {
+     "cref": "SHR 814.200",
+     "article_no": "Art. 15"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Betonwanne ohne Auskleidung",
+   "cites": [
+    {
+     "cref": "SHR 814.200",
+     "article_no": "Art. 15"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Auffangvermögen Betonwanne",
+   "cites": [
+    {
+     "cref": "SHR 814.200",
+     "article_no": "Art. 15"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Material Schutzbauwerk",
+   "cites": [
+    {
+     "cref": "SHR 814.200",
+     "article_no": "Art. 15"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Stärke Schutzbauwerk",
+   "cites": [
+    {
+     "cref": "SHR 814.200",
+     "article_no": "Art. 15"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Auffangvermögen Schutzbauwerk",
+   "cites": [
+    {
+     "cref": "SHR 814.200",
+     "article_no": "Art. 15"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Auskleidung Schutzbauwerk",
+   "cites": [
+    {
+     "cref": "SHR 814.200",
+     "article_no": "Art. 15"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Zulassungs-Nr. Auskleidung",
+   "cites": [
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 12"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Tankentlüftung / Dimension",
+   "cites": [
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 12"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Tankentlüftung andere Dimension",
+   "cites": [
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 12"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Abfüllsicherung / Fabrikat",
+   "cites": [
+    {
+     "cref": "SHR 814.200",
+     "article_no": "Art. 15"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 12"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Messstab mit Litereinteilung",
+   "cites": [
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 12"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Produkteleitungen",
+   "cites": [
+    {
+     "cref": "SHR 814.200",
+     "article_no": "Art. 15"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 12"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Abfüllvorrichtung Art der Anlage",
+   "cites": [
+    {
+     "cref": "SHR 814.200",
+     "article_no": "Art. 15"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Abfüllvorrichtung Typ",
+   "cites": [
+    {
+     "cref": "SHR 814.200",
+     "article_no": "Art. 15"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Abfüllvorrichtung andere",
+   "cites": [
+    {
+     "cref": "SHR 814.200",
+     "article_no": "Art. 15"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Wandstation",
+   "cites": [
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Führung Entnahmeleitung",
+   "cites": [
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 12"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Bemerkungen/Beilagen",
+   "cites": [
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Datum der Ausführung",
+   "cites": [
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 12"
+    },
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Zusätzliche Planbeilagen",
+   "cites": [
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    },
+    {
+     "cref": "SHR 814.200",
+     "article_no": "Art. 17"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Ort/Datum",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Unterschrift Eigentümer/in oder dessen Stellvertreter/in",
+   "cites": [
+    {
+     "cref": "SHR 700.100",
+     "article_no": "Art. 58",
+     "beleg": "Das Baugesuch hat ... die zur Beurteilung des Gesuchs erforderlichen, von der Bauherrschaft oder ihrer bevollmächtigten Vertretung unterzeichneten Unterlagen zu enthalten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Name, Vorname (Blockschrift) Eigentümer/in oder dessen Stellvertreter/in",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Unterschrift Gesuchsteller/in (Firmenstempel)",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Name, Vorname (Blockschrift) Gesuchsteller/in",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Notwendige Unterlagen",
+   "cites": [
+    {
+     "cref": "SHR 814.201",
+     "article_no": "§ 7"
+    },
+    {
+     "cref": "SHR 814.200",
+     "article_no": "Art. 17"
+    },
+    {
+     "cref": "SHR 550.100",
+     "article_no": "Art. 6"
+    }
+   ],
+   "over_collection": false
+  }
+ ]
+}

@@ -1,0 +1,440 @@
+{
+ "form_id": 403,
+ "mappings": [
+  {
+   "data_field": "IVSE-Bereich",
+   "cites": [
+    {
+     "cref": "SHR 850.130",
+     "article_no": "Art. 2",
+     "beleg": "Die IVSE bezieht sich auf Einrichtungen der folgenden Bereiche: Bereich A: Stationäre Einrichtungen ... Bereich D: Einrichtungen der externen Sonderschulung"
+    },
+    {
+     "cref": "SHR 850.111",
+     "article_no": "§ 72",
+     "beleg": "In den Bereichen A, B und C prüft das kantonale Sozialamt als Fachstelle die Vollständigkeit und Richtigkeit des Gesuchs. In den Bereichen A (Stationäre Einrichtungen der Sonderschulung) und D ist das Erziehungsdepartement zuständig."
+    },
+    {
+     "cref": "SHR 850.130",
+     "article_no": "Art. 31",
+     "beleg": "Der Standortkanton bezeichnet die Einrichtungen in seiner Zuständigkeit, welche er der IVSE zu unterstellen beabsichtigt, teilt sie im Sinne des Art. 2 Abs. 1 den entsprechenden Bereichen zu"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Angaben zur Einrichtung",
+   "cites": [
+    {
+     "cref": "SHR 850.111",
+     "article_no": "§ 72",
+     "beleg": "Die aufnehmende Einrichtung reicht der kantonalen Verbindungsstelle in der Regel vor der Unterbringung das Gesuch um Kostenübernahmegarantie ein."
+    },
+    {
+     "cref": "SHR 850.130",
+     "article_no": "Art. 19",
+     "beleg": "Der Wohnkanton sichert der Einrichtung des Standortkantons mittels der Kostenübernahmegarantie die Leistungsabgeltung zu Gunsten der Person für die zu garantierende Periode zu."
+    },
+    {
+     "cref": "SHR 850.130",
+     "article_no": "Art. 31",
+     "beleg": "Fallen nicht alle Abteilungen einer Einrichtung unter die IVSE, so bezeichnet der Standortkanton ausdrücklich jene Abteilungen, auf welche die IVSE Anwendung finden soll."
+    },
+    {
+     "cref": "SHR 850.130",
+     "article_no": "Art. 4",
+     "beleg": "Standortkanton: Standortkanton ist der Kanton, in dem die Einrichtung ihren Standort hat."
+    },
+    {
+     "cref": "SHR 850.100",
+     "article_no": "Art. 56",
+     "beleg": "Beiträge nach der Interkantonalen Vereinbarung für soziale Einrichtungen IVSE erhalten: ... b) Heime und Einrichtungen im Kanton Schaffhausen für ausserkantonale Betreuungsbedürftige im Umfang der Vergütungen anderer Kantone"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Angaben zur Person",
+   "cites": [
+    {
+     "cref": "SHR 850.130",
+     "article_no": "Art. 19",
+     "beleg": "Der Wohnkanton sichert der Einrichtung des Standortkantons mittels der Kostenübernahmegarantie die Leistungsabgeltung zu Gunsten der Person für die zu garantierende Periode zu."
+    },
+    {
+     "cref": "SHR 850.130",
+     "article_no": "Art. 2",
+     "beleg": "Stationäre Einrichtungen, die ... Personen bis zum vollendeten 20. Altersjahr, längstens jedoch bis nach Abschluss der Erstausbildung beherbergen, sofern sie vor Erreichen der Volljährigkeit in eine Einrichtung eingetreten oder dort untergebracht worden sind"
+    },
+    {
+     "cref": "SR 831.10",
+     "article_no": "Art. 153c",
+     "beleg": "Nur folgende Behörden, Organisationen und Personen sind berechtigt, die AHV-Nummer systematisch zu verwenden: a. soweit sie zur Erfüllung ihrer gesetzlichen Aufgaben erforderlich ist: ... 3. die Einheiten der Kantons- und Gemeindeverwaltungen"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Zivilrechtlicher Wohnsitz",
+   "cites": [
+    {
+     "cref": "SHR 850.130",
+     "article_no": "Art. 4",
+     "beleg": "Wohnkanton: Der Wohnkanton ist derjenige Kanton, in dem die Person, welche die Leistungen beansprucht, ihren zivilrechtlichen Wohnsitz hat"
+    },
+    {
+     "cref": "SHR 850.130",
+     "article_no": "Art. 26",
+     "beleg": "Die Verbindungsstelle des Standortkantons holt vor der Unterbringung oder vor dem Eintritt der Person bei der Verbindungsstelle des Wohnkantons die Kostenübernahmegarantie ein."
+    },
+    {
+     "cref": "SHR 850.130",
+     "article_no": "Art. 5",
+     "beleg": "Begründet eine Person mit dem Aufenthalt oder während des Aufenthaltes in einer Einrichtung gemäss Art. 2 Abs. 1 Bereich A ihren zivilrechtlichen Wohnsitz am Standort der Einrichtung, ist der Kanton des letzten von den Eltern oder eines Elternteils abgeleiteten zivilrechtlichen Wohnsitzes für das Leisten der Kostenübernahmegarantie zuständig."
+    },
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 23",
+     "beleg": "der Aufenthalt zum Zweck der Ausbildung oder die Unterbringung einer Person in einer Erziehungs- oder Pflegeeinrichtung, einem Spital oder einer Strafanstalt begründet für sich allein keinen Wohnsitz"
+    },
+    {
+     "cref": "SHR 850.100",
+     "article_no": "Art. 56",
+     "beleg": "b) Heime und Einrichtungen im Kanton Schaffhausen für ausserkantonale Betreuungsbedürftige im Umfang der Vergütungen anderer Kantone"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Aufenthaltsort (bei externer Sonderschulung)",
+   "cites": [
+    {
+     "cref": "SHR 850.130",
+     "article_no": "Art. 5",
+     "beleg": "Für Vergütungen von Leistungen der externen Sonderschulung hat derjenige Kanton die Kostenübernahmegarantie zu leisten, in dem sich der Schüler oder die Schülerin aufhält."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Kindesschutz-/Erwachsenenschutzmassnahme",
+   "cites": [
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 25",
+     "beleg": "Bevormundete Kinder haben ihren Wohnsitz am Sitz der Kindesschutzbehörde."
+    },
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 26",
+     "beleg": "Volljährige unter umfassender Beistandschaft haben ihren Wohnsitz am Sitz der Erwachsenenschutzbehörde."
+    },
+    {
+     "cref": "SHR 850.130",
+     "article_no": "Art. 4",
+     "beleg": "Der Wohnkanton ist derjenige Kanton, in dem die Person, welche die Leistungen beansprucht, ihren zivilrechtlichen Wohnsitz hat"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Vormund / Vormundin, Beistand / Beiständin",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Name und Adresse Vater",
+   "cites": [
+    {
+     "cref": "SHR 850.130",
+     "article_no": "Art. 5",
+     "beleg": "ist der Kanton des letzten von den Eltern oder eines Elternteils abgeleiteten zivilrechtlichen Wohnsitzes für das Leisten der Kostenübernahmegarantie zuständig"
+    },
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 25",
+     "beleg": "Als Wohnsitz des Kindes unter elterlicher Sorge gilt der Wohnsitz der Eltern oder, wenn die Eltern keinen gemeinsamen Wohnsitz haben, der Wohnsitz des Elternteils, unter dessen Obhut das Kind steht"
+    },
+    {
+     "cref": "SHR 850.130",
+     "article_no": "Art. 22",
+     "beleg": "Die Höhe der Beiträge der Unterhaltspflichtigen im Rahmen der IVSE entspricht den mittleren Tagesaufwendungen für Kost und Logis"
+    },
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 276",
+     "beleg": "Die Eltern sorgen gemeinsam, ein jeder Elternteil nach seinen Kräften, für den gebührenden Unterhalt des Kindes und tragen insbesondere die Kosten von Betreuung, Erziehung, Ausbildung und Kindesschutzmassnahmen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Sorgeberechtigter Elternteil (Vater)",
+   "cites": [
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 25",
+     "beleg": "Als Wohnsitz des Kindes unter elterlicher Sorge gilt der Wohnsitz der Eltern"
+    },
+    {
+     "cref": "SHR 850.130",
+     "article_no": "Art. 5",
+     "beleg": "Kanton des letzten von den Eltern oder eines Elternteils abgeleiteten zivilrechtlichen Wohnsitzes"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Entzug Aufenthaltsbestimmungsrecht/Obhut (Vater)",
+   "cites": [
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 310",
+     "beleg": "Kann der Gefährdung des Kindes nicht anders begegnet werden, so hat die Kindesschutzbehörde es den Eltern ... wegzunehmen und in angemessener Weise unterzubringen."
+    },
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 25",
+     "beleg": "der Wohnsitz des Elternteils, unter dessen Obhut das Kind steht; in den übrigen Fällen gilt sein Aufenthaltsort als Wohnsitz"
+    },
+    {
+     "cref": "SHR 850.130",
+     "article_no": "Art. 5",
+     "beleg": "Kanton des letzten von den Eltern oder eines Elternteils abgeleiteten zivilrechtlichen Wohnsitzes"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Name und Adresse Mutter",
+   "cites": [
+    {
+     "cref": "SHR 850.130",
+     "article_no": "Art. 5",
+     "beleg": "ist der Kanton des letzten von den Eltern oder eines Elternteils abgeleiteten zivilrechtlichen Wohnsitzes für das Leisten der Kostenübernahmegarantie zuständig"
+    },
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 25",
+     "beleg": "Als Wohnsitz des Kindes unter elterlicher Sorge gilt der Wohnsitz der Eltern oder, wenn die Eltern keinen gemeinsamen Wohnsitz haben, der Wohnsitz des Elternteils, unter dessen Obhut das Kind steht"
+    },
+    {
+     "cref": "SHR 850.130",
+     "article_no": "Art. 22",
+     "beleg": "Die Höhe der Beiträge der Unterhaltspflichtigen im Rahmen der IVSE entspricht den mittleren Tagesaufwendungen für Kost und Logis"
+    },
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 276",
+     "beleg": "Die Eltern sorgen gemeinsam, ein jeder Elternteil nach seinen Kräften, für den gebührenden Unterhalt des Kindes und tragen insbesondere die Kosten von Betreuung, Erziehung, Ausbildung und Kindesschutzmassnahmen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Sorgeberechtigter Elternteil (Mutter)",
+   "cites": [
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 25",
+     "beleg": "Als Wohnsitz des Kindes unter elterlicher Sorge gilt der Wohnsitz der Eltern"
+    },
+    {
+     "cref": "SHR 850.130",
+     "article_no": "Art. 5",
+     "beleg": "Kanton des letzten von den Eltern oder eines Elternteils abgeleiteten zivilrechtlichen Wohnsitzes"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Entzug Aufenthaltsbestimmungsrecht/Obhut (Mutter)",
+   "cites": [
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 310",
+     "beleg": "Kann der Gefährdung des Kindes nicht anders begegnet werden, so hat die Kindesschutzbehörde es den Eltern ... wegzunehmen und in angemessener Weise unterzubringen."
+    },
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 25",
+     "beleg": "der Wohnsitz des Elternteils, unter dessen Obhut das Kind steht; in den übrigen Fällen gilt sein Aufenthaltsort als Wohnsitz"
+    },
+    {
+     "cref": "SHR 850.130",
+     "article_no": "Art. 5",
+     "beleg": "Kanton des letzten von den Eltern oder eines Elternteils abgeleiteten zivilrechtlichen Wohnsitzes"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Name und Adresse der zuweisenden Behörde",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Datum des Eintritts",
+   "cites": [
+    {
+     "cref": "SHR 850.130",
+     "article_no": "Art. 26",
+     "beleg": "holt vor der Unterbringung oder vor dem Eintritt der Person bei der Verbindungsstelle des Wohnkantons die Kostenübernahmegarantie ein"
+    },
+    {
+     "cref": "SHR 850.130",
+     "article_no": "Art. 2",
+     "beleg": "sofern sie vor Erreichen der Volljährigkeit in eine Einrichtung eingetreten oder dort untergebracht worden sind"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Aufenthalt geplant bis",
+   "cites": [
+    {
+     "cref": "SHR 850.130",
+     "article_no": "Art. 27",
+     "beleg": "Die Kostenübernahmegarantie kann befristet und mit Auflagen versehen sein."
+    },
+    {
+     "cref": "SHR 850.130",
+     "article_no": "Art. 19",
+     "beleg": "die Leistungsabgeltung zu Gunsten der Person für die zu garantierende Periode"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "unbefristet",
+   "cites": [
+    {
+     "cref": "SHR 850.130",
+     "article_no": "Art. 27",
+     "beleg": "Unbefristete Kostenübernahmegarantien können mit einer Frist von 6 Monaten gekündigt werden."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "intern / extern",
+   "cites": [
+    {
+     "cref": "SHR 850.130",
+     "article_no": "Art. 2",
+     "beleg": "Bereich A: Stationäre Einrichtungen ... Bereich D: Einrichtungen der externen Sonderschulung"
+    },
+    {
+     "cref": "SHR 850.130",
+     "article_no": "Art. 5",
+     "beleg": "Für Vergütungen von Leistungen der externen Sonderschulung hat derjenige Kanton die Kostenübernahmegarantie zu leisten, in dem sich der Schüler oder die Schülerin aufhält."
+    },
+    {
+     "cref": "SHR 850.130",
+     "article_no": "Art. 24",
+     "beleg": "Für Leistungen, die von Sonderschulen ausserhalb der Einrichtung erbracht werden ... gilt die Unterrichts-, Therapie- oder Beratungsstunde als Verrechnungseinheit."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Beginn der KÜG",
+   "cites": [
+    {
+     "cref": "SHR 850.130",
+     "article_no": "Art. 19",
+     "beleg": "sichert ... die Leistungsabgeltung zu Gunsten der Person für die zu garantierende Periode zu"
+    },
+    {
+     "cref": "SHR 850.130",
+     "article_no": "Art. 26",
+     "beleg": "Kann das Gesuch um die Kostenübernahmegarantie wegen zeitlicher Dringlichkeit nicht vor Beginn der Unterbringung oder des Eintritts der Person in die Einrichtung gestellt werden, so ist es so rasch als möglich nachzuholen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Jugendstrafrechtliche Massnahme",
+   "cites": [
+    {
+     "cref": "SHR 850.130",
+     "article_no": "Art. 2",
+     "beleg": "Im Fall von Massnahmen gemäss dem Bundesgesetz über das Jugendstrafrecht liegt die Altersgrenze unabhängig vom Eintrittsalter beim vollendeten 25. Altersjahr"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Methode P (Pauschale)",
+   "cites": [
+    {
+     "cref": "SHR 850.130",
+     "article_no": "Art. 23",
+     "beleg": "Die Leistungsabgeltung kann sowohl durch Methode D (Defizitdeckung) als auch Methode P (Pauschalen) erfolgen."
+    },
+    {
+     "cref": "SHR 850.130",
+     "article_no": "Art. 24",
+     "beleg": "Bei der Methode P kann von den Verrechnungseinheiten gemäss Abs. 1, 1bis, 1ter und 1quater abgewichen werden."
+    },
+    {
+     "cref": "SHR 850.130",
+     "article_no": "Art. 31",
+     "beleg": "bezeichnet die von der Einrichtung angewandte Methode der Leistungsabgeltung gemäss Art. 23"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Angaben zu den Leistungen und zur Leistungsabgeltung",
+   "cites": [
+    {
+     "cref": "SHR 850.130",
+     "article_no": "Art. 20",
+     "beleg": "Die Leistungsabgeltung berechnet sich aus dem anrechenbaren Nettoaufwand abzüglich der Bau- und Betriebsbeiträge des Bundes. Der verbleibende Betrag wird auf die Person pro Verrechnungseinheit umgerechnet."
+    },
+    {
+     "cref": "SHR 850.130",
+     "article_no": "Art. 21",
+     "beleg": "Als anrechenbarer Aufwand gelten die für die Leistung erforderlichen Personal- und Sach- inkl. Kapitalkosten und Abschreibungen."
+    },
+    {
+     "cref": "SHR 850.130",
+     "article_no": "Art. 24",
+     "beleg": "Als Verrechnungseinheit gilt der Kalendertag. ... Für Leistungen, die von Sonderschulen ausserhalb der Einrichtung erbracht werden sowie für Leistungen von Sonderschuleinrichtungen gemäss Art. 2 Abs. 1 Bereich D lit. b und c gilt die Unterrichts-, Therapie- oder Beratungsstunde als Verrechnungseinheit."
+    },
+    {
+     "cref": "SHR 850.130",
+     "article_no": "Art. 2",
+     "beleg": "Bereich D: Einrichtungen der externen Sonderschulung: ... b) Früherziehungsdienste für Kinder mit Behinderungen und von Behinderung bedrohte Kinder c) Pädagogisch-therapeutische Dienste für Logopädie oder Psychomotoriktherapie"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Ort und Datum",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Einrichtung",
+   "cites": [
+    {
+     "cref": "SHR 850.100",
+     "article_no": "Art. 56"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Name, Vorname",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Unterschrift",
+   "cites": [],
+   "over_collection": true
+  }
+ ]
+}

@@ -14,9 +14,15 @@ Gates:
 
 Idempotent (retention terms, and the form_disclosure rows whose last_checked
 starts with 'agent', are replaced wholesale; purposes are overwritten).
+--nur <id,id,…> scopes a run to these Formulare (new ones): purposes only for them;
+retention terms (they belong to a rule, not to a Formular) are left as they are; their
+recipients are fanned out from the recipients the databank already holds per
+sectoral rule (the agent rows of form_disclosure, which name the rule's article) to
+these Formulare where their fields cite the rule's law — what a full run would give
+them — plus any rules in disclosures.json. Nothing of another Formular changes.
 Staging -> validate -> swap.
 
-    python3 scripts/load_register.py <out-dir>
+    python3 scripts/load_register.py <out-dir> [--nur 700,701]
 """
 import glob, json, os, re, shutil, sys
 from citygov.core.common import DB_PATH, connect
@@ -44,6 +50,8 @@ def duration_in_text(value, text):
 
 def main():
     src = sys.argv[1]
+    nur = {int(x) for x in sys.argv[sys.argv.index("--nur") + 1].split(",") if x.strip()} \
+        if "--nur" in sys.argv else None
     st = DB_PATH + ".staging"
     if os.path.exists(st):
         os.remove(st)
@@ -61,6 +69,8 @@ def main():
             rejected.append(f"{os.path.basename(jf)}: unlesbar"); continue
         for p in d.get("purposes", []):
             fid, zweck = p.get("form_id"), (p.get("zweck") or "").strip()
+            if nur is not None and fid not in nur:
+                rejected.append(f"Zweck: #{fid} ausserhalb --nur"); continue
             if fid not in titles:
                 rejected.append(f"Zweck: Formular #{fid} fehlt"); continue
             if not 30 <= len(zweck) <= 250 or norm(zweck) == norm(titles[fid]):
@@ -72,10 +82,11 @@ def main():
     rules = {r["id"]: r for r in c.execute(
         "SELECT id, aspect, summary, quote FROM data_rule "
         "WHERE aspect IN ('aufbewahrung','loeschung','archivierung')")}
-    c.execute("DELETE FROM retention_term")
     nt = 0
     tf = os.path.join(src, "retention_terms.json")
-    if os.path.exists(tf):
+    if nur is None:
+        c.execute("DELETE FROM retention_term")
+    if nur is None and os.path.exists(tf):
         for t in json.load(open(tf, encoding="utf-8")).get("terms", []):
             rid = t.get("data_rule_id")
             r = rules.get(rid)
@@ -103,17 +114,33 @@ def main():
                        "JOIN data_field d ON d.id=lb.data_field_id "
                        "JOIN article a ON a.id=lb.article_id"):
         forms_by_law.setdefault(r["law_id"], set()).add(r["form_id"])
-    c.execute("DELETE FROM form_disclosure WHERE last_checked LIKE 'agent%'")
+    if nur is None:
+        c.execute("DELETE FROM form_disclosure WHERE last_checked LIKE 'agent%'")
+        regeln = []
+    else:
+        ids = ",".join(map(str, sorted(nur))) or "NULL"
+        c.execute(f"DELETE FROM form_disclosure WHERE last_checked LIKE 'agent%' AND form_id IN ({ids})")
+        # the recipients the databank holds per sectoral rule (by the rule's article)
+        held = {}
+        for r in c.execute(f"SELECT empfaenger, mode, article_id FROM form_disclosure "
+                           f"WHERE last_checked LIKE 'agent%' AND form_id NOT IN ({ids})"):
+            held.setdefault(r["article_id"], {})[r["empfaenger"]] = r["mode"]
+        regeln = [{"data_rule_id": rid, "mode": None, "empfaenger_mode": held[r["article_id"]]}
+                  for rid, r in brules.items() if r["article_id"] in held]
+        forms_by_law = {law: fids & nur for law, fids in forms_by_law.items()}
     nd = 0
     df = os.path.join(src, "disclosures.json")
-    if os.path.exists(df):
-        for e in json.load(open(df, encoding="utf-8")).get("rules", []):
+    eingabe = json.load(open(df, encoding="utf-8")).get("rules", []) if os.path.exists(df) else []
+    if regeln or eingabe:
+        for e in regeln + eingabe:
             r = brules.get(e.get("data_rule_id"))
             if not r:
                 rejected.append(f"Empfänger: Regel #{e.get('data_rule_id')} ist keine "
                                 "sektorale Bekanntgabe-Regel"); continue
             mode = e.get("mode") if e.get("mode") in ("systematisch", "auf_anfrage") else None
-            for emp in e.get("empfaenger", []):
+            for emp in e.get("empfaenger") or list(e.get("empfaenger_mode") or {}):
+                if e.get("empfaenger_mode"):
+                    mode = e["empfaenger_mode"][emp]
                 emp = (emp or "").strip()
                 if not 3 <= len(emp) <= 120:
                     rejected.append(f"Empfänger untauglich an Regel #{r['id']}"); continue

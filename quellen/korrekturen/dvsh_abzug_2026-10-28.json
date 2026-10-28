@@ -1,0 +1,387 @@
+{
+ "hinweis": "Folgen der Abzüge aus DVSH und SHEP vom 28.10.2026 auf der Ebene der Services. Angewendet von scripts/migrate_2026_10_28.py (idempotent).",
+ "abzug": "2026-10-28",
+ "vorher": "2026-09-03",
+ "entfernte_services": [
+  {
+   "service_id": 636,
+   "dvsh_id": 377,
+   "titel": "Services der DVSH - Digitalen Verwaltung Schaffhausen",
+   "slug": "testservice",
+   "grund": "Im DVSH-Abzug vom 28.10.2026 nicht mehr enthalten: der Service liegt im Papierkorb des Modellierungswerkzeugs (gelöscht am 28.09.2026). Es ist der Test-Service der DVSH («testservice»), keine Leistung der Verwaltung; die SHEP-Seite ist ebenfalls entfernt. Die Databank hielt dazu kein Formular und keine Daten."
+  }
+ ],
+ "zusammenfuehren": [
+  {
+   "new_service_id": 673,
+   "existing_service_id": 394,
+   "evidence": "Same Formular, byte-identical: DVSH 403 «Regelung des Kindesunterhalts» names submission_endpoint {\"typ\": \"formular_pdf\", \"datei\": \"Formular_Regelung_Kindesunterhalt.pdf\", \"titel\": \"Antrag stellen\", \"sha256\": \"bec4229dd8a4c4b274370e9a91d2ecc557d9f6aad1b1bca8379c574ca080226b\"}, and the same sha256 also appears in its documents[] as both rolle endpunkt and rolle info. That hash equals form 394's file_hash, bec4229dd8a4c4b274370e9a91d2ecc557d9f6aad1b1bca8379c574ca080226b (source_file formulare/Formular_Regelung_Kindesunterhalt.pdf, title «Antragsformular und Absichtserklärung für die Regelung oder Abänderung des Kindesunterhalts»). Same office: both rows have dienststelle «Kindes- und Erwachsenenschutzbehörde» and department «Departement des Innern». Same procedure: the existing row is named «Regelung oder Abänderung des Kindesunterhalts», and DVSH's kurzbeschreibung says «Einvernehmliche Regelung oder Änderung des Kindesunterhalts durch die Kindes- und Erwachsenenschutzbehörde (KESB). Beide Elternteile müssen sich einig sein und ein Formular mit Begleitdokumenten einreichen.» Form 394's fields fit this: Mutter and Vater data, «Grund bei Änderung eines Unterhaltvertrags», «Datum Unterschrift Mutter»/«Datum Unterschrift Vater», and checkboxes for income documents. Existing row 394 has in_dvsh=0 (notes «auto_draft; Datei: Formular_Regelung_Kindesunterhalt.pdf»), so it is the ours-only row that DVSH has now modelled.",
+   "dvsh_titel": "Regelung des Kindesunterhalts",
+   "dvsh_id": 403
+  }
+ ],
+ "duplikatpruefung": {
+  "geprueft": 28,
+  "zusammengefuehrt": 1
+ },
+ "themen": [
+  {
+   "service_id": 650,
+   "themen": [
+    70,
+    10
+   ],
+   "grund": "Private Personen und Fachleute in amtlicher Tätigkeit melden der KESB, wenn das Wohl eines Kindes oder einer erwachsenen Person gefährdet erscheint; das gehört zum Kindes- und Erwachsenenschutz (Vormundschaft) und für Kinder zu «Kinder und Jugendliche».",
+   "dvsh_vergleich": "Teilweise: Vormundschaft (70) liegt in P08 Staat und Recht; Kinder und Jugendliche (10) liegt in P01 Persönliches, gleich wie bei den bestehenden KESB-Leistungen 369 und 394. P02 Gesundheit und Soziales nicht verwendet, weil keine Gruppe dort (AHV/IV, Krankenversicherung, Soziale Sicherheit usw.) den Kindes- und Erwachsenenschutz abbildet.",
+   "zweitgeprueft": 1,
+   "zweitpruefung": "Einverstanden. Wer eine Gefährdungsmeldung erstattet, sucht sie beim Kindes- und Erwachsenenschutz. Im Katalog heisst diese Gruppe Vormundschaft (70). Sie ist die spezifischste Gruppe, weil sie Kinder und Erwachsene abdeckt. Kinder und Jugendliche (10) kommt dazu, weil die Meldung meist ein Kind betrifft. Die bestehenden KESB-Leistungen 369 und 394 sind gleich eingeordnet. Für das DVSH-Thema P02 passt keine Gruppe sauber: Soziale Sicherheit, Behinderung und Sucht und Drogen träfen nur Einzelfälle. Eine Gruppe aus dem Unternehmenskatalog gehört nicht dazu: Melden müssen Personen in amtlicher Tätigkeit, keine Unternehmen."
+  },
+  {
+   "service_id": 651,
+   "themen": [
+    2,
+    129
+   ],
+   "grund": "Privatpersonen lassen Unterschriften, Kopien und Auszüge amtlich beglaubigen, und Unternehmen brauchen beglaubigte Unterschriften vor allem für Anmeldungen beim Handelsregister.",
+   "dvsh_vergleich": "Teilweise: Ausweise und Bescheinigungen (2) liegt in P01 Persönliches. Statt U07 Internationales (Arbeitsbewilligung, Grenzgänger, Auslandschweizer, Import/Export, Währung, Zoll – keine Gruppe beschreibt eine Beglaubigung) Handelsregister (129, U06), weil Unternehmen die Beglaubigung dort tatsächlich brauchen.",
+   "zweitgeprueft": 1,
+   "zweitpruefung": "Einverstanden. Für Privatpersonen ist die beglaubigte Unterschrift, Kopie oder der beglaubigte Auszug eine amtliche Bescheinigung (2, P01 wie bei DVSH). Bei Unternehmen ist der häufigste Grund belegt: Unterschriften auf Handelsregister-Anmeldungen und Unterschriftenmuster müssen beglaubigt sein. Das gilt nach Art. 18 der Handelsregisterverordnung (HRegV). Handelsregister (129) ist darum spezifischer als U07 Internationales. Dort beschreibt keine Gruppe eine Beglaubigung: Import und Export oder Zoll beträfen nur eine Beglaubigung für das Ausland, und diese ist im Leistungstext nicht erwähnt. Die Beurkundungen beim Handelsregisteramt (318, 406, 646) stehen ebenfalls in 129."
+  },
+  {
+   "service_id": 652,
+   "themen": [
+    10,
+    5
+   ],
+   "grund": "Nicht verheiratete Eltern begründen mit einer gemeinsamen Erklärung die gemeinsame elterliche Sorge für ihr minderjähriges Kind, oft zusammen mit der Vaterschaftsanerkennung rund um die Geburt.",
+   "dvsh_vergleich": "Teilweise: beide Gruppen liegen in P01 Persönliches. P02 Gesundheit und Soziales nicht verwendet, weil nur die freiwillige Vereinbarung über Erziehungsgutschriften (AHV) dorthin weist, ein Nebenaspekt; Vormundschaft (70) bewusst weggelassen, weil die KESB hier nur die Erklärung entgegennimmt und keine Schutzmassnahme betroffen ist.",
+   "zweitgeprueft": 1,
+   "zweitpruefung": "Einverstanden. Nicht verheiratete Eltern suchen die gemeinsame elterliche Sorge unter Kinder und Jugendliche (10). Häufig geht es um die Zeit der Geburt: Die Erklärung wird oft zusammen mit der Vaterschaftsanerkennung abgegeben (5). Beide Gruppen liegen in P01 wie bei DVSH. Vormundschaft (70) ist zu Recht weggelassen: Die KESB nimmt hier nur die Erklärung entgegen, eine Schutzmassnahme gibt es nicht. Eine Einordnung unter 70 wäre die Sicht des Amtes. Bei P02 betrifft nur die freiwillige Vereinbarung über Erziehungsgutschriften (AHV/IV, 15) die Leistung. Das ist ein Nebenpunkt."
+  },
+  {
+   "service_id": 653,
+   "themen": [
+    124,
+    82,
+    26
+   ],
+   "grund": "Im Anwaltsregister eingetragene, unabhängig tätige Anwältinnen und Anwälte bestellen das Disziplinarzeugnis als Nachweis zu ihrer Berufsausübung unter der Aufsicht über das Anwaltswesen.",
+   "dvsh_vergleich": "Teilweise: Berufliche Selbständigkeit (82) liegt in U01 Arbeit und Soziales. Arbeit und Beruf (124, U06) wie bei anderen Leistungen der Berufsaufsicht (62, 161, 166); 26 liegt in P03 Arbeit. P08 Staat und Recht nicht verwendet, weil das Disziplinarzeugnis weder Strafregister/Strafverfahren noch Zivilverfahren betrifft.",
+   "zweitgeprueft": 1,
+   "zweitpruefung": "Einverstanden. Wer das Disziplinarzeugnis bestellt, ist eine im Anwaltsregister eingetragene Anwältin oder ein eingetragener Anwalt, meist für einen Registerwechsel oder einen Nachweis der Berufsausübung. Am spezifischsten ist darum die Gruppe zu Bewilligungen und Aufsicht über einen Beruf, Arbeit und Beruf (124), wie bei 62, 161 und 166. Dazu kommt Berufliche Selbständigkeit: 82 im Unternehmenskatalog liegt in U01 wie bei DVSH, 26 ist die Gruppe für Private. Die doppelte Einordnung privat und Unternehmen ist bei 316 genauso. Für P08 Staat und Recht passt keine Gruppe: Das Disziplinarzeugnis ist weder ein Strafregisterauszug (68 und 87) noch Teil eines Zivilverfahrens."
+  },
+  {
+   "service_id": 654,
+   "themen": [
+    124,
+    23
+   ],
+   "grund": "Anwaltspraktikantinnen und -praktikanten brauchen die Venia, um im Büro einer eingetragenen Anwältin oder eines Anwalts zu Ausbildungszwecken Prozesse vor Schaffhauser Gerichten zu führen.",
+   "dvsh_vergleich": "Teilweise: Arbeitnehmende (23) liegt in P03 Arbeit. Statt einer U01-Gruppe (keine passt: Stellenvermittlung, Selbständigkeit, Sozialversicherung usw.) Arbeit und Beruf (124, U06), gleich wie bei der vergleichbaren persönlichen Berufsbewilligung für Angestellte von Sicherheitsunternehmen (211).",
+   "zweitgeprueft": 1,
+   "zweitpruefung": "Einverstanden. Die Venia ist eine persönliche, befristete Bewilligung, damit jemand den Beruf ausüben darf. Die Anwaltspraktikantin oder der -praktikant ist im Büro einer eingetragenen Anwältin oder eines Anwalts angestellt. Darum gehört die Leistung zu Arbeit und Beruf (124) und zu Arbeitnehmende (23, P03 wie bei DVSH). Bei 211 und 225 ist es genauso. Berufsbildung (99) und Berufliche Grundbildung (34) gelten für Lehrbetriebe und die Lehre, nicht für das Anwaltspraktikum nach dem Studium. Für U01 passt keine Gruppe."
+  },
+  {
+   "service_id": 655,
+   "themen": [
+    67,
+    89,
+    8
+   ],
+   "grund": "Private und Unternehmen bestellen einen Betreibungsregisterauszug über sich selbst, etwa als Nachweis bei einer Wohnungsbewerbung, bei Krediten oder bei Ausschreibungen.",
+   "dvsh_vergleich": "Ja: Betreibung und Konkurs privat (67) liegt in P08 Staat und Recht, Betreibung und Konkurs Unternehmen (89) in U02 Geld und Förderung, wie bei allen bestehenden Leistungen des Betreibungsamts. Zusätzlich Wohnen und Umziehen (8, P01), weil Private den Auszug häufig für eine Wohnungsbewerbung brauchen.",
+   "zweitgeprueft": 1,
+   "zweitpruefung": "Einverstanden. Betreibung und Konkurs für Private (67, P08) und für Unternehmen (89, U02) stimmen mit DVSH überein. Alle bestehenden Leistungen des Betreibungsamts sind gleich eingeordnet. Unternehmen brauchen den Auszug über sich selbst tatsächlich, etwa für Ausschreibungen. Wohnen und Umziehen (8) ist aus Sicht der Privatperson gut begründet: Der eigene Betreibungsregisterauszug wird bei einer Wohnungsbewerbung regelmässig verlangt. Öffentliche Ausschreibungen (148) wäre weniger spezifisch als 89. Mit drei Gruppen ist das Maximum erreicht."
+  },
+  {
+   "service_id": 656,
+   "themen": [
+    89,
+    67
+   ],
+   "grund": "Die Gruppen stimmen, aber die Begründung widerspricht sich. Sie nennt Vermieter als typische Besteller. Der DVSH-Vergleich sagt dagegen zu Recht, dass Mietinteressenten ihren eigenen Auszug mitbringen (Selbstauskunft, 655). Einen Auszug über eine dritte Person erhält nur, wer ein Interesse glaubhaft macht. Das gilt vor allem, wenn das Gesuch unmittelbar mit dem Abschluss oder der Abwicklung eines Vertrags zusammenhängt (Art. 8a SchKG). Darum bestellen ihn vor allem Unternehmen wie Kreditgeber, Lieferanten, Leasing- und Inkassofirmen, aber auch Privatpersonen mit einer Forderung. Beide suchen den Dienst unter «Betreibung und Konkurs». Unternehmen stehen zuerst (89, DVSH U02), Privatpersonen folgen (67, DVSH P08), wie beim Eigentumsvorbehalt (664). Wohnen und Umziehen (8) und Immobilien (117) sind nicht gesetzt.",
+   "erstpanel": {
+    "service_id": 656,
+    "themen": [
+     89,
+     67
+    ],
+    "grund": "Einen Betreibungsregisterauszug über eine dritte Person bestellt, wer ein berechtigtes Interesse nachweist. Das sind vor allem Unternehmen wie Vermieter, Lieferanten oder Kreditgeber vor einem Vertragsabschluss oder als Gläubiger, aber auch Privatpersonen mit einer Forderung. Beide suchen den Dienst unter «Betreibung und Konkurs». Unternehmen stehen zuerst, weil sie diese Fremdauskunft am häufigsten bestellen.",
+    "dvsh_vergleich": "Ja: 89 liegt in U02 (Geld und Förderung), 67 in P08 (Staat und Recht), genau wie die DVSH-Themen und wie alle bestehenden Leistungen des Betreibungsamts (583 bis 586, 655, 658). Anders als bei der Selbstauskunft (655) ist Wohnen und Umziehen (8) nicht gesetzt: Bei einer Wohnungsbewerbung bringen Mietinteressenten ihren eigenen Auszug mit, und der Vermieter bestellt keinen Auszug über Dritte."
+   },
+   "zweitgeprueft": 1
+  },
+  {
+   "service_id": 657,
+   "themen": [],
+   "grund": "Nur Behörden bestellen über diesen Dienst Betreibungsregisterauszüge über natürliche und juristische Personen für ein laufendes Verfahren, also rein behördenintern; Privatpersonen und Unternehmen bestellen ihre Auszüge über die eigenen Dienste Selbstauskunft (655) und Auskunft über Dritte (656).",
+   "dvsh_vergleich": "Nein. DVSH taggt nach dem Sachgebiet P08/U02, was 67/89 entspräche. Leistungsbezüger sind laut DVSH-Ablauf aber ausschliesslich Behörden («Behörden bestellen Auskünfte über natürliche und juristische Personen»). Für sie hat keiner der beiden eCH-0049-Kataloge (privat/unternehmen) eine Gruppe. Darum bleibt der Dienst ohne Gruppe, wie die übrigen rein behördeninternen Leistungen der Datenbank (z. B. 275, 558).",
+   "zweitgeprueft": 1,
+   "zweitpruefung": "Einverstanden. Laut DVSH-Ablauf («Behörden bestellen Auskünfte über natürliche und juristische Personen») und den Voraussetzungen (aktuelles Verfahren, Angabe der gesetzlichen Grundlage) bestellen ausschliesslich Behörden diesen Auszug. Privatpersonen und Unternehmen haben dafür eigene Dienste: Selbstauskunft (655) und Auskunft über Dritte (656). Der Dienst ist damit rein behördenintern und bleibt wie 275, 280, 451 und 558 ohne Gruppe. Die DVSH-Themen P08/U02 beschreiben das Sachgebiet, nicht die Leistungsbezüger, deshalb ist die Abweichung begründet."
+  },
+  {
+   "service_id": 658,
+   "themen": [
+    67,
+    89
+   ],
+   "grund": "Gläubiger, Unternehmen wie Private, leiten mit dem Betreibungsbegehren die Schuldbetreibung gegen einen Schuldner ein und suchen den Dienst unter Betreibung und Konkurs.",
+   "dvsh_vergleich": "Ja: 67 liegt in P08 (privat/Staat und Recht), 89 in U02 (unternehmen/Geld und Förderung). Gleiche Einordnung wie die bestehenden Betreibungsleistungen (z. B. 585 Arrestgesuch, 583 Vollmacht im Betreibungsverfahren).",
+   "zweitgeprueft": 1,
+   "zweitpruefung": "Einverstanden. Mit dem Betreibungsbegehren leiten Gläubiger, Private wie Unternehmen, die Schuldbetreibung ein. 67 (P08) und 89 (U02) sind die spezifischsten Gruppen und entsprechen genau den DVSH-Themen. Die Einordnung stimmt mit den bestehenden Betreibungsleistungen überein (583, 585, 586). Die Gruppe 96 «Schulden» passt nicht, weil sie die Sicht des Schuldners abbildet, nicht die des Gläubigers."
+  },
+  {
+   "service_id": 659,
+   "themen": [
+    67,
+    89
+   ],
+   "grund": "Gläubiger, Unternehmen wie Private, verlangen gestützt auf Zahlungsbefehl, Verlustschein oder Pfandausfallschein die Fortsetzung ihrer Betreibung und suchen den Dienst unter Betreibung und Konkurs.",
+   "dvsh_vergleich": "Teilweise: 89 liegt in U02. 67 (P08) ist bei diesem Dienst nicht getaggt, doch auch Privatpersonen sind Gläubiger, und DVSH taggt die Schwesterleistungen Betreibungs- und Verwertungsbegehren mit P08. U06 (Bewilligungen und Meldepflichten) enthält keine passende Gruppe, weil ein Fortsetzungsbegehren weder Bewilligung noch Meldepflicht ist.",
+   "zweitgeprueft": 1,
+   "zweitpruefung": "Einverstanden. Das Fortsetzungsbegehren stellen Gläubiger, Private wie Unternehmen. 89 liegt in U02. Die Abweichung von U06 ist begründet: U06 enthält keine passende Gruppe, weil ein Fortsetzungsbegehren weder eine Bewilligung noch eine Meldepflicht ist. 67 (P08) ist zusätzlich gerechtfertigt, weil auch Privatpersonen Gläubiger sind und DVSH die Schwesterleistungen Betreibungsbegehren (658) und Verwertungsbegehren (661) mit P08 taggt."
+  },
+  {
+   "service_id": 660,
+   "themen": [
+    67,
+    89,
+    69
+   ],
+   "grund": "Gläubiger, Unternehmen wie Private, deren Zahlungsbefehl mit Rechtsvorschlag beantwortet wurde, verlangen die Beseitigung des Rechtsvorschlags; das ist ein Betreibungsschritt, über den im summarischen Zivilverfahren entschieden wird.",
+   "dvsh_vergleich": "Ja: 67 und 69 liegen in P08, 89 in U02. Hinweis: Die DVSH-Beschreibung («Überprüfung von Betreibungsmassnahmen») passt eher auf eine Beschwerde. Über Rechtsöffnung entscheidet nach Art. 84 SchKG das Gericht auf Gesuch des Gläubigers, deshalb ist 69 Zivilverfahren als dritte Gruppe gesetzt.",
+   "zweitgeprueft": 1,
+   "zweitpruefung": "Einverstanden. Ein Gläubiger, dessen Zahlungsbefehl mit Rechtsvorschlag beantwortet wurde, sucht die Rechtsöffnung zuerst unter Betreibung und Konkurs (67/89, deckungsgleich mit P08/U02). Über die Rechtsöffnung entscheidet nach Art. 84 SchKG das Gericht im summarischen Verfahren (Art. 251 lit. a ZPO), deshalb ist 69 Zivilverfahren als dritte Gruppe in P08 sachlich richtig. Die DVSH-Beschreibung, wonach das Betreibungsamt entscheide, ändert die Einordnung aus Sicht der Leistungsbezüger nicht. 150 ist wegen der Obergrenze von drei Gruppen zu Recht nicht gesetzt."
+  },
+  {
+   "service_id": 661,
+   "themen": [
+    67,
+    89
+   ],
+   "grund": "Gläubiger, Unternehmen wie Private, verlangen nach erfolgter Pfändung die Verwertung der gepfändeten Vermögenswerte und suchen den Dienst unter Betreibung und Konkurs.",
+   "dvsh_vergleich": "Ja: 67 liegt in P08, 89 in U02. Gleiche Einordnung wie die übrigen Betreibungsleistungen.",
+   "zweitgeprueft": 1,
+   "zweitpruefung": "Einverstanden. Das Verwertungsbegehren stellen Gläubiger, Private wie Unternehmen, nach erfolgter Pfändung. 67 (P08) und 89 (U02) sind die spezifischsten Gruppen, entsprechen den DVSH-Themen und folgen derselben Einordnung wie die übrigen Betreibungsleistungen (508, 572, 574, 585)."
+  },
+  {
+   "service_id": 662,
+   "themen": [
+    69,
+    150
+   ],
+   "grund": "Privatpersonen und Unternehmen machen mit der Zivilklage ihre Ansprüche gegen eine Gegenpartei vor Gericht geltend.",
+   "dvsh_vergleich": "Teilweise: 69 liegt in P08. 150 (unternehmen/Information und Statistik/Recht und Gerichte) liegt ausserhalb von U06, doch U06 (Bewilligungen und Meldepflichten) hat keine Gruppe für Gerichtsverfahren, weil eine Klage weder Bewilligung noch Meldepflicht ist. 150 ist die einzige Gerichtsgruppe im Unternehmen-Katalog und entspricht der Einordnung von Schlichtungsgesuch (587) und Friedensrichteramt-Rechtsschrift (512).",
+   "zweitgeprueft": 1,
+   "zweitpruefung": "Einverstanden. Privatpersonen und Unternehmen machen mit der Zivilklage ihre Ansprüche gerichtlich geltend. 69 Zivilverfahren liegt in P08. Für Unternehmen ist 150 «Recht und Gerichte» die einzige Gerichtsgruppe im Unternehmen-Katalog. Die Abweichung von U06 ist begründet, weil eine Klage weder eine Bewilligung noch eine Meldepflicht ist. Die Einordnung entspricht dem Schlichtungsgesuch (587) und der Rechtsschrift ans Friedensrichteramt (512)."
+  },
+  {
+   "service_id": 663,
+   "themen": [
+    89,
+    67
+   ],
+   "grund": "Beim Verkauf unter Eigentumsvorbehalt mit Konsumkredit melden gewerbsmässige Verkäufer und Kreditgeber die Eintragung zusammen mit der Käuferin oder dem Käufer, also einer Privatperson, beim Betreibungsamt an. Damit sichern sie die Kaufpreisforderung. Gesucht wird das Register unter «Betreibung und Konkurs», gleich wie beim Eigentumsvorbehalt ohne Konsumkredit (664) und beim Retentionsverzeichnis (584).",
+   "dvsh_vergleich": "Teilweise: 89 liegt in U02 wie bei DVSH. U06 (Bewilligungen und Meldepflichten) ist nicht übernommen, wie bei 664: Die Eintragung ist ein freiwilliges Sicherungsrecht und keine Bewilligung oder Meldepflicht. Finanzwirtschaft (127) meint die Bewilligung für Kreditgeber, nicht diese Eintragung. 67 (P08) kommt dazu, weil die Käuferin oder der Käufer beim Konsumkredit immer eine Privatperson ist und das Formular mitunterzeichnet. Konsumentenschutz (21) ist nicht gesetzt, weil die Bestätigung nach Art. 16 KKG nur eine Formvoraussetzung ist. Eigentum (46) und Grundbuch (45) passen ebenfalls nicht: Der Eigentumsvorbehalt nach Art. 715 ZGB gilt nur für bewegliche Sachen. Die Erwähnung von Grundbuchamt und Grundpfandrechten in der DVSH-Beschreibung passt nicht zu dieser Leistung.",
+   "zweitgeprueft": 1,
+   "zweitpruefung": "Einverstanden. Beim Konsumkredit ist der Verkäufer immer ein gewerbsmässiger Kreditgeber (Art. 2 KKG), und die Käuferin oder der Käufer ist immer eine Privatperson. Diese wirkt an der Anmeldung mit und bestätigt, dass sie den Vertrag nicht nach Art. 16 KKG widerrufen hat. Darum steht 89 vor 67, wie bei 664. U06 und Finanzwirtschaft (127) passen nicht, denn die Eintragung ist ein freiwilliges Sicherungsrecht und keine Bewilligung (127 trägt die Konsumkredit-Bewilligung 593). Grundbuch und Eigentum (45, 46) entfallen, weil beim Grundstückkauf kein Eigentumsvorbehalt eingetragen werden kann (Art. 217 Abs. 2 OR) und Art. 715 ZGB nur für bewegliche Sachen gilt. Die Hinweise auf Grundbuchamt und Grundpfandrechte in der DVSH-Beschreibung sind daher fehl am Platz."
+  },
+  {
+   "service_id": 664,
+   "themen": [
+    89,
+    67
+   ],
+   "grund": "Den Eigentumsvorbehalt ohne Konsumkredit lassen vor allem Unternehmen, die Waren wie Maschinen oder Fahrzeuge auf Abzahlung verkaufen, aber auch private Verkäufer beim Betreibungsamt eintragen, um ihre Kaufpreisforderung zu sichern. Sie suchen das wie das vergleichbare Retentionsverzeichnis unter «Betreibung und Konkurs».",
+   "dvsh_vergleich": "89 liegt in U02 (Geld und Förderung) und stimmt damit mit DVSH überein. U06 (Bewilligungen und Meldepflichten) wird nicht übernommen: Die Eintragung ist ein freiwilliges Sicherungsrecht im Register des Betreibungsamts und keine Bewilligung oder Meldepflicht; passende Gruppen wie «Finanzwirtschaft» (127) meinen Bewilligungen für Finanzbetriebe. 67 (privat/Staat und Recht) steht neu als privates Gegenstück dabei, wie beim Retentionsverzeichnis (584).",
+   "zweitgeprueft": 1,
+   "zweitpruefung": "Einverstanden. Das Formular unterschreiben Veräusserer und Erwerber gemeinsam. Ohne Konsumkredit sind das vor allem Unternehmen, die Maschinen oder Fahrzeuge unter Eigentumsvorbehalt verkaufen oder kaufen, aber auch Privatpersonen, etwa beim Verkauf eines Autos auf Raten unter Privaten. Beide suchen das Sicherungsrecht im Register des Betreibungsamts unter «Betreibung und Konkurs», gleich wie das Retentionsverzeichnis (584). U06 wurde zu Recht nicht übernommen, denn die Eintragung ist weder eine Bewilligung noch eine Meldepflicht. 46 (Eigentum) passt nicht, weil sich der Eigentumsvorbehalt nur auf bewegliche Sachen bezieht und diese Gruppe das Grundeigentum meint."
+  },
+  {
+   "service_id": 665,
+   "themen": [
+    4,
+    69
+   ],
+   "grund": "Eingetragene Partner, die ihre Partnerschaft gemeinsam auflösen wollen, suchen diese Leistung beim Zivilstand; zugleich ist sie ein gerichtliches Zivilverfahren beim Kantonsgericht.",
+   "dvsh_vergleich": "4 (Zivilstand) liegt in P01 (Persönliches) wie bei DVSH. 69 (Zivilverfahren, P08) kommt hinzu, obwohl DVSH hier nur P01 vergibt: Die Auflösung ist ein Gerichtsverfahren nach ZPO. Bei der gleichartigen Ehescheidung auf gemeinsames Begehren vergibt DVSH selbst P01 und P08.",
+   "zweitgeprueft": 1,
+   "zweitpruefung": "Einverstanden, nur die Begründung sollte genauer formuliert sein: Eingetragene Partner, die ihre Partnerschaft gemeinsam auflösen wollen, suchen das unter «Zivilstand» und nicht «beim Zivilstand(samt)». Zuständig ist das Kantonsgericht, nicht das Zivilstandsamt. Weil die Auflösung ein gerichtliches Verfahren ist (Formular «Gemeinsames Begehren auf Auflösung der eingetragenen Partnerschaft» des Kantonsgerichts), kommt 69 (Zivilverfahren) dazu. Das ist begründet, obwohl DVSH nur P01 vergibt, denn bei der gleichartigen Scheidung auf gemeinsames Begehren (666) vergibt DVSH selbst P01 und P08."
+  },
+  {
+   "service_id": 666,
+   "themen": [
+    4,
+    69
+   ],
+   "grund": "Ehepaare, die sich einvernehmlich scheiden lassen wollen, suchen diese Leistung beim Zivilstand; das gemeinsame Begehren wird als Zivilverfahren beim Kantonsgericht behandelt.",
+   "dvsh_vergleich": "Entspricht DVSH: 4 (Zivilstand) liegt in P01 (Persönliches), 69 (Zivilverfahren) in P08 (Staat und Recht).",
+   "zweitgeprueft": 1,
+   "zweitpruefung": "Einverstanden, das entspricht den DVSH-Themen P01 und P08. Ehegatten, die sich einvernehmlich scheiden lassen wollen, suchen das unter «Zivilstand», und das gemeinsame Begehren ist ein Zivilverfahren vor dem Kantonsgericht. In der Begründung sollte «unter «Zivilstand»» statt «beim Zivilstand» stehen, weil das Zivilstandsamt nicht zuständig ist. Die Kinderbelange und die Folgeschritte nach der Scheidung (Name, AHV) sind Teil oder Folge des Verfahrens und brauchen keine eigene Gruppe."
+  },
+  {
+   "service_id": 667,
+   "themen": [
+    69,
+    68,
+    150
+   ],
+   "grund": "Privatpersonen, Anwältinnen und Anwälte sowie Unternehmen, die eine Rechtsschrift elektronisch beim Kantonsgericht einreichen, suchen das in ihrem Zivil- oder Strafverfahren. Unternehmen finden es unter «Recht und Gerichte», gleich wie die elektronische Eingabe ans Friedensrichteramt (512).",
+   "dvsh_vergleich": "69 und 68 liegen in P08 (Staat und Recht) wie bei DVSH; 68 kommt dazu, weil das Kantonsgericht auch erstinstanzliches Strafgericht ist. Statt U06 (Bewilligungen und Meldepflichten) steht 150 (unternehmen/Information und Statistik/Recht und Gerichte): Eine Rechtsschrift ist keine Bewilligung oder Meldepflicht, und die vergleichbare Leistung 512 ist ebenfalls so eingeordnet.",
+   "zweitgeprueft": 1,
+   "zweitpruefung": "Einverstanden. Das Kantonsgericht ist erstinstanzliches Zivil- und Strafgericht, und elektronische Eingaben stützen sich auf ZPO und StPO. Parteien suchen das deshalb in ihrem Zivil- oder Strafverfahren (69, 68). Auch eine Berufungsanmeldung im Strafverfahren geht ans Kantonsgericht. Für Unternehmen und Anwaltskanzleien steht 150 (Recht und Gerichte) statt U06, gleich wie beim Friedensrichteramt (512) und beim Schlichtungsgesuch (587). Eine Rechtsschrift ist keine Bewilligung oder Meldepflicht. Hinweis: Die DVSH-Beschreibung nennt «Verwaltungsgerichtsbeschwerde» und die 20-tägige Rekursfrist. Das betrifft das Obergericht als Verwaltungsgericht und ändert an der Einordnung nichts."
+  },
+  {
+   "service_id": 668,
+   "themen": [
+    4,
+    69
+   ],
+   "grund": "Wer sich gegen den Willen des anderen Ehegatten scheiden lassen will, sucht die Scheidungsklage beim Zivilstand; sie wird als streitiges Zivilverfahren beim Kantonsgericht geführt.",
+   "dvsh_vergleich": "Entspricht DVSH: 4 (Zivilstand) liegt in P01 (Persönliches), 69 (Zivilverfahren) in P08 (Staat und Recht). Die Kinderbelange (elterliche Sorge, Unterhalt) sind Teil des Scheidungsverfahrens und erhalten wie bei der Scheidung auf gemeinsames Begehren keine eigene Gruppe.",
+   "zweitgeprueft": 1,
+   "zweitpruefung": "Einverstanden, das entspricht den DVSH-Themen P01 und P08. Wer sich gegen den Willen des anderen Ehegatten scheiden lassen will, sucht das unter «Zivilstand», und die Klage wird als streitiges Zivilverfahren vor dem Kantonsgericht geführt. In der Begründung sollte «unter «Zivilstand»» statt «beim Zivilstand» stehen. Die Kinderbelange (Sorge, Besuchsrecht, Unterhalt) sind Teil des Scheidungsverfahrens und brauchen wie bei 666 keine eigene Gruppe."
+  },
+  {
+   "service_id": 669,
+   "themen": [
+    4,
+    69,
+    17
+   ],
+   "grund": "Die Themen bleiben gleich, aber die Begründung muss berichtigt werden. Laut Formular und Merkblatt «Eheschutz» des Kantonsgerichts regelt der Eheschutz vor allem das Getrenntleben: Unterhalt, Familienwohnung und Hausrat, Kinderbelange, Gütertrennung und Sicherung des ehelichen Vermögens (Art. 175 ff. ZGB). Dazu kommen Anordnungen während des Zusammenlebens (Art. 173 f. ZGB). Schutz vor Gewalt ist nur ein Nebenpunkt (Art. 172 Abs. 3 ZGB). Die DVSH-Beschreibung, die nur von Gewaltschutz spricht, gibt die Leistung also unvollständig wieder. Ehegatten, die ihre Trennung regeln wollen, suchen das unter «Zivilstand» und als gerichtliches Zivilverfahren (4, 69). 17 (Soziale Sicherheit, DVSH P02) passt, weil der Eheschutz den Unterhalt festsetzt und dessen Eintreibung sichert, ähnlich wie das Alimenteninkasso (633), und weil er bei häuslicher Gewalt schützen kann. Der Verweis auf die Opferhilfe (155) trägt dagegen nicht: Die Schaffhauser Opferhilfe-Richtlinien schliessen Eheschutzverfahren ohne Straftat ausdrücklich aus. 4 kommt hinzu, obwohl DVSH P01 nicht vergibt, weil die Massnahmen die Ehe selbst regeln.",
+   "erstpanel": {
+    "service_id": 669,
+    "themen": [
+     4,
+     69,
+     17
+    ],
+    "grund": "Ehegatten, die das Getrenntleben regeln lassen oder sich vor Gewalt, Drohung oder Belästigung in der Ehe schützen wollen, suchen den Eheschutz bei Ehe und Zivilstand und als gerichtliches Zivilverfahren. Wer Gewalt erlebt, sucht ihn auch unter «Soziale Sicherheit», wo auch die Opferhilfe (155) eingeordnet ist.",
+    "dvsh_vergleich": "69 liegt in P08 (Staat und Recht) und 17 in P02 (Gesundheit und Soziales), beides wie bei DVSH. 4 (Zivilstand, P01) kommt hinzu, obwohl DVSH P01 nicht vergibt: Eheschutzmassnahmen nach ZGB betreffen die Ehe selbst (Getrenntleben, Unterhalt, Wohnungszuweisung). Wer seine Ehe regelt, sucht dort, auch wenn sich der Zivilstand nicht ändert."
+   },
+   "zweitgeprueft": 1
+  },
+  {
+   "service_id": 670,
+   "themen": [
+    70,
+    11
+   ],
+   "grund": "Die Gruppen stimmen, die Begründung ist aber rechtlich ungenau. Ein Vorsorgeauftrag wird erst wirksam, wenn die Person urteilsunfähig wird (Art. 360 ZGB), nicht schon bei Pflegebedürftigkeit. Wer pflegebedürftig, aber urteilsfähig ist, entscheidet weiterhin selbst. Der Vorsorgeauftrag ersetzt auch keine Beistandschaft. Er macht sie entbehrlich, soweit er die Aufgaben abdeckt. Richtig ist: Wer für eine künftige Urteilsunfähigkeit vorsorgen will, etwa für den Fall einer Demenz oder eines Unfalls, lässt den Vorsorgeauftrag bei der KESB öffentlich beurkunden, wenn er nicht ganz von Hand geschrieben ist (Art. 361 ZGB). Er ist die eigene Vorsorge im Erwachsenenschutzrecht (Art. 360 ff. ZGB). Dafür steht im Katalog die Gruppe Vormundschaft (70). Pflege (11, DVSH P01) kommt dazu, weil die beauftragte Person bei Urteilsunfähigkeit die Personensorge übernimmt und bei medizinischen Massnahmen vertretungsberechtigt ist (Art. 378 Abs. 1 Ziff. 1 ZGB). Sie entscheidet also über Betreuung, Pflege und Wohnform. Todesfall (7) ist nicht gesetzt, weil der Vorsorgeauftrag nur zu Lebzeiten gilt. Aus P02 passt keine Gruppe.",
+   "erstpanel": {
+    "service_id": 670,
+    "themen": [
+     70,
+     11
+    ],
+    "grund": "Wer für eine künftige Urteilsunfähigkeit vorsorgen will, etwa für den Fall einer Demenz oder eines Unfalls, lässt bei der KESB seinen Vorsorgeauftrag beurkunden. Der Vorsorgeauftrag ist die selbstbestimmte Vorsorge im Erwachsenenschutzrecht nach Art. 360 ff. ZGB und ersetzt eine behördliche Beistandschaft; dazu gehört die Gruppe Vormundschaft. Er regelt Personensorge und Vermögenssorge im Fall von Pflegebedürftigkeit, darum kommt Pflege dazu.",
+    "dvsh_vergleich": "Teilweise: Pflege (11) liegt in P01 (Persönliches) wie bei DVSH. Vormundschaft (70) liegt in P08 und steht zuerst. Sie ist nach der Sache gesetzt, nicht nach dem Amt, denn der Vorsorgeauftrag ist ein Instrument des Erwachsenenschutzrechts. Anders ist es bei der gemeinsamen elterlichen Sorge (652): Dort nimmt die KESB nur eine Erklärung entgegen. P02 (Gesundheit und Soziales) ist nicht verwendet, weil dort keine Gruppe passt. AHV/IV, Krankenversicherung, Soziale Sicherheit, Behinderung und Prävention bilden die rechtliche Vorsorge nicht ab. Todesfall (7) ist trotz der vergleichbaren Beurkundungen von Testament (552) und Erbvertrag (515) nicht gesetzt: Der Vorsorgeauftrag gilt zu Lebzeiten und erlischt mit dem Tod."
+   },
+   "zweitgeprueft": 1
+  },
+  {
+   "service_id": 671,
+   "themen": [
+    70
+   ],
+   "grund": "Beistandspersonen beantragen bei der KESB die Genehmigung von Zahlungen und Kontoüberträgen für die von ihnen verbeiständete Person; das gehört zur Vermögensverwaltung im Rahmen einer Beistandschaft oder Vormundschaft und damit unter Vormundschaft.",
+   "dvsh_vergleich": "Abweichung: DVSH taggt P02 (Gesundheit und Soziales) und U02 (Geld und Förderung). In P02 passt keine Gruppe, denn es geht um keine Sozialleistung, Versicherung oder Gesundheitsfrage, sondern um eine Genehmigung im Kindes- und Erwachsenenschutz. Dafür ist im eCH-0049 Staat und Recht/Vormundschaft vorgesehen, und dort stehen auch die bestehenden KESB-Dienste (369, 394). U02 entfällt, weil Unternehmen diesen Dienst nicht nutzen; die Gesuche stellen Beistandspersonen.",
+   "zweitgeprueft": 1,
+   "zweitpruefung": "Einverstanden. Die Gesuche stellen Beistandspersonen, die für eine verbeiständete Person Zahlungen auslösen wollen. Sie suchen den Dienst beim Kindes- und Erwachsenenschutz, und dafür steht im eCH-0049 Staat und Recht/Vormundschaft (70). Aus P02 passt keine Gruppe: Es geht nicht um eine Sozialleistung, eine Versicherung oder eine Behinderung, sondern um die Genehmigung einer Vermögensverfügung. U02 entfällt zu Recht. Berufsbeistandschaften sind Verwaltungsstellen, private Mandatsträger sind natürliche Personen, und kein Unternehmen nutzt den Dienst."
+  },
+  {
+   "service_id": 672,
+   "themen": [
+    10
+   ],
+   "grund": "Korrektur: Vormundschaft (70) streichen, nur Kinder und Jugendliche (10). Melden müssen Pflegeeltern mit Eignungsbescheinigung, die platzierende Behörde oder die Familienplatzierungsorganisation. Die Meldepflicht stammt aus der Pflegekinderaufsicht (Art. 316 ZGB, PAVO) und setzt keine Beistandschaft oder Vormundschaft voraus. Timeout- und Ferienplatzierungen werden oft privat vereinbart. Die Begründung «als Kindesschutzsache der KESB zugleich eine Vormundschaftssache» stellt auf die zuständige Stelle ab, nicht auf die Leistungsbezüger. Eine Pflegefamilie sucht die Meldung unter Kinder und Jugendliche. Das entspricht auch dem inhaltlich nächsten Dienst 619 «Aufnahmebewilligung für ein Pflegekind». Dieser stützt sich auf dieselbe Grundlage und ist nur unter 10 eingeordnet. Eine andere Einordnung nur weil hier die KESB statt des Sozialamts zuständig ist, wäre die Sicht der Amtsstelle. Vergleich mit DVSH: 10 liegt in P01. Aus P02 passt keine Gruppe, weil es keine Sozialleistung ist. Eine Unternehmensgruppe für Familienplatzierungsorganisationen trifft die Pflegekinderaufsicht nicht genau und wird von DVSH nicht getaggt.",
+   "erstpanel": {
+    "service_id": 672,
+    "themen": [
+     10,
+     70
+    ],
+    "grund": "Pflegeeltern mit Eignungsbescheinigung, die platzierende Behörde oder eine Familienplatzierungsorganisation melden der KESB eine kurzfristige Aufnahme eines Kindes (Timeout, Ferien, Krisenintervention); das betrifft Kinder und Jugendliche und ist als Kindesschutzsache der KESB zugleich eine Vormundschaftssache.",
+    "dvsh_vergleich": "Teilweise: 10 Kinder und Jugendliche liegt in P01 (Persönliches), wie bei der verwandten Aufnahmebewilligung für ein Pflegekind (619). 70 Vormundschaft liegt ausserhalb der DVSH-Themen (P08); die Gruppe wurde gewählt, weil Krisen- und Fremdplatzierungen Kindesschutzmassnahmen der KESB sind, und so wurden auch die bestehenden KESB-Dienste eingeordnet. P02 wurde nicht übernommen, weil keine Gruppe aus Gesundheit und Soziales passt (keine Sozialleistung). Familienplatzierungsorganisationen melden zwar ebenfalls, aber DVSH taggt kein U-Thema und keine Unternehmensgruppe trifft die Pflegekinderaufsicht genau."
+   },
+   "zweitgeprueft": 1
+  },
+  {
+   "service_id": 673,
+   "themen": [
+    10,
+    70
+   ],
+   "grund": "Eltern, die sich über den Unterhalt ihres Kindes einig sind, lassen ihn von der KESB regeln oder abändern; das gehört zu Kinder und Jugendliche und als KESB-Kindesschutzsache zu Vormundschaft.",
+   "dvsh_vergleich": "Teilweise: 10 liegt in P01 (Persönliches). 70 Vormundschaft (P08) ist übernommen, damit die Zuordnung gleich bleibt wie beim bestehenden, inhaltlich gleichen Dienst 394 «Regelung oder Abänderung des Kindesunterhalts», der möglicherweise eine Dublette ist. Aus P02 wurde keine Gruppe übernommen (etwa 17 Soziale Sicherheit): Die in den Voraussetzungen genannte Alimentenbevorschussung ist ein eigener Dienst der Wohnsitzgemeinde, nicht der KESB.",
+   "zweitgeprueft": 1,
+   "zweitpruefung": "Einverstanden. Der Dienst ist inhaltlich gleich wie der bestehende Dienst 394 «Regelung oder Abänderung des Kindesunterhalts» (10, 70) und wird gleich eingeordnet. Die Eltern suchen ihn unter Kinder und Jugendliche. Dass die KESB den Unterhaltsvertrag genehmigt (Art. 287 ZGB), gehört zum Kindesschutzrecht und damit zu Vormundschaft. Soziale Sicherheit (17) aus P02 wird zu Recht nicht übernommen. Die in der Beschreibung erwähnte Alimentenbevorschussung ist ein eigener Dienst der Wohnsitzgemeinde und nicht Gegenstand dieses Gesuchs. Die mögliche Dublette mit 394 sollte separat geprüft werden."
+  },
+  {
+   "service_id": 674,
+   "themen": [
+    69,
+    68,
+    150
+   ],
+   "grund": "Private Parteien und Unternehmen oder ihre Anwältinnen und Anwälte reichen Rechtsschriften, etwa Berufungen und Beschwerden in Zivil- oder Strafsachen, elektronisch beim Obergericht ein; deshalb gehört der Dienst zu Zivilverfahren und Strafverfahren sowie für Unternehmen zu Recht und Gerichte.",
+   "dvsh_vergleich": "Teilweise: 69 und 68 liegen in P08 (Staat und Recht). Anstelle von U06 (Bewilligungen und Meldepflichten) ist für Unternehmen 150 Information und Statistik/Recht und Gerichte gewählt, weil eine Rechtsschrift weder eine Bewilligung noch eine Meldepflicht ist. Das entspricht dem vergleichbaren Dienst 512, der elektronischen Rechtsschrift ans Friedensrichteramt (69 und 150).",
+   "zweitgeprueft": 1,
+   "zweitpruefung": "Einverstanden. Rechtsschriften ans Obergericht reichen vor allem Parteien in Zivil- und Strafverfahren ein, also Berufungen und Beschwerden, meist über Anwältinnen und Anwälte. Darum passen Zivilverfahren (69) und Strafregister und Strafverfahren (68) aus P08. Für Unternehmen als Verfahrensparteien ist Recht und Gerichte (150) treffender als eine Gruppe aus U06, denn eine Rechtsschrift ist weder eine Bewilligung noch eine Meldepflicht. Das stimmt mit dem gleichartigen Dienst 512 überein, der elektronischen Rechtsschrift ans Friedensrichteramt (69, 150). Verwaltungsgerichtliche Beschwerden ans Obergericht sind ebenfalls durch 150 abgedeckt. Für Privatpersonen gibt es dafür keine eigene Gruppe."
+  },
+  {
+   "service_id": 675,
+   "themen": [
+    56,
+    150
+   ],
+   "grund": "Angestellte oder freie Journalistinnen und Journalisten und die Medienunternehmen, für die sie arbeiten, lassen sich beim Obergericht akkreditieren, um über Gerichtsverhandlungen zu berichten und Zugang zu Anklageschriften und Entscheiden zu erhalten; das gehört zu Medien und für Medienunternehmen zu Recht und Gerichte.",
+   "dvsh_vergleich": "Teilweise: 56 Medien liegt in P07 (Kultur und Medien). Aus P08 (Staat und Recht) wurde keine Gruppe übernommen: Zivilverfahren und Strafverfahren richten sich an Verfahrensparteien, Berichterstattende sind aber keine Partei. Stattdessen ist 150 Information und Statistik/Recht und Gerichte gewählt, weil laut Beschreibung ausdrücklich auch Medienunternehmen den Dienst nutzen. Diese Unternehmensgruppe kommt in den DVSH-Themen nicht vor.",
+   "zweitgeprueft": 1,
+   "zweitpruefung": "Einverstanden. Journalistinnen und Journalisten, angestellt oder frei, suchen die Akkreditierung unter Kultur und Medien/Medien (56). Laut Kurzbeschreibung können sich ausdrücklich auch Medienunternehmen akkreditieren lassen. Darum ist Recht und Gerichte (150) als Unternehmensgruppe vertretbar. Dass aus P08 keine Gruppe übernommen wird, ist richtig begründet: Zivilverfahren und Strafverfahren richten sich an Verfahrensparteien, und Berichterstattende sind keine Partei."
+  },
+  {
+   "service_id": 676,
+   "themen": [
+    61,
+    83,
+    25
+   ],
+   "grund": "Erwerbstätige, die sich im Arbeitsleben wegen ihres Geschlechts diskriminiert fühlen, und die betroffenen Arbeitgebenden reichen ihre Rechtsschrift elektronisch bei der Schlichtungsstelle nach Gleichstellungsgesetz ein; das gehört zu Gleichstellung von Frau und Mann, für Unternehmen zu Gleichstellung und für Arbeitnehmende auch zu Arbeitskonflikt.",
+   "dvsh_vergleich": "Weitgehend: 61 Gleichstellung von Frau und Mann liegt in P08 (Staat und Recht), 83 Gleichstellung in U01 (Arbeit und Soziales). Dazu kommt 25 Arbeit/Arbeitskonflikt (P03), das DVSH nicht taggt. Dort suchen Arbeitnehmende bei einem Streit am Arbeitsplatz, und dort steht auch das bestehende arbeitsrechtliche Schlichtungsgesuch (588).",
+   "zweitgeprueft": 1,
+   "zweitpruefung": "Einverstanden. Die Schlichtungsstelle ist für Diskriminierungen aufgrund des Geschlechts im Erwerbsleben nach dem Gleichstellungsgesetz zuständig. Gleichstellung von Frau und Mann (61, P08) ist die spezifischste Gruppe, für Arbeitgebende als Gegenpartei passt Gleichstellung (83, U01). Beide entsprechen den DVSH-Themen. Arbeitskonflikt (25, P03) statt Zivilverfahren (69, P08) weicht von DVSH ab, ist aber aus Sicht der Leistungsbezüger gut begründet. Wer am Arbeitsplatz diskriminiert wird, sucht unter Arbeitskonflikt, und dort steht auch das arbeitsrechtliche Schlichtungsgesuch 588. Wegen der Obergrenze von drei Gruppen ist 25 der allgemeineren Gruppe 69 vorzuziehen."
+  },
+  {
+   "service_id": 677,
+   "themen": [
+    8,
+    69,
+    117
+   ],
+   "grund": "Mieterinnen und Mieter sowie Vermieter und Liegenschaftsverwaltungen reichen in einer Mietstreitigkeit eine Rechtsschrift elektronisch bei der Schlichtungsstelle für Mietsachen ein, zum Beispiel wegen einer Kündigung oder einer Mietzinserhöhung. Sie suchen das zuerst beim Thema Wohnen und dann im Zivilverfahren. Vermietende Unternehmen und Immobilienverwaltungen nutzen den elektronischen Weg mit qualifizierter Signatur besonders häufig; sie finden die Leistung unter Immobilien.",
+   "dvsh_vergleich": "Teilweise: Zivilverfahren (69) liegt in P08 wie bei DVSH. Statt P05 (Umwelt und Bauen) steht Wohnen und Umziehen (8, P01). Die P05-Gruppen Eigentum, Grundbuch und Baubewilligungen meinen das Grundeigentum und nicht die Miete. Die bestehenden Mietrecht-Leistungen 291 (Mietzinserhöhung) und 611 (Kündigung) sind ebenfalls in 8 und 117 eingeordnet. Für Unternehmen steht Immobilien (117) und nicht Recht und Gerichte (150, wie bei 512 und 587). Damit folgt die Einordnung dem Muster des arbeitsrechtlichen Schlichtungsgesuchs (588): zuerst das Sachthema, dann das Zivilverfahren, dann die Gruppe für Unternehmen.",
+   "zweitgeprueft": 1,
+   "zweitpruefung": "Einverstanden. Mieterinnen, Mieter und Vermieter suchen die Eingabe an die Schlichtungsstelle für Mietsachen zuerst beim Sachthema Wohnen und Umziehen (8), wie die Mietrecht-Leistungen 291 und 611. Das Schlichtungsverfahren ist ein Zivilverfahren nach ZPO (69, DVSH P08). Für vermietende Unternehmen und Verwaltungen passt Immobilien (117) besser als Recht und Gerichte (150). Das folgt dem Muster von 588: zuerst das Sachthema, dann das Verfahren, dann die Gruppe für Unternehmen. Weil eine qualifizierte elektronische Signatur nötig ist, nutzen vor allem professionelle Parteien diesen Weg, das stützt 117. Die P05-Gruppen Eigentum, Grundbuch und Baubewilligungen betreffen das Grundeigentum und nicht die Miete. Darum ist die Abweichung von DVSH begründet."
+  },
+  {
+   "service_id": 38,
+   "themen": [
+    48,
+    54
+   ],
+   "grund": "Das Formular ist ein Gesuch an das Strassenverkehrs- und Schifffahrtsamt (Sonderbewilligungen) um eine verkehrsrechtliche Ausnahmebewilligung: Zugfahrzeug und Anhänger mit SH-Kontrollschild, Fahrstrecke, Hin- und Rückfahrt, Personenbeförderung auf dem Anhänger und ab 9 Personen ein Versicherungsnachweis nach Art. 61 Abs. 5 VRV. Kern ist also das Befahren öffentlicher Strassen. Darum steht 48 «Strasse» an erster Stelle, wie bei den übrigen Fahrzeuggesuchen dieses Amts. Der Anlass ist der Fasnachtsumzug, ein bewilligungspflichtiger Anlass. Wer das Gesuch stellt, sind Fasnachtsgesellschaften, Cliquen, Vereine und Private. Das passt zu 54 «Bewilligungspflichtige Veranstaltungen», ähnlich wie beim Gesuch für rad- oder motorsportliche Veranstaltungen, das ebenfalls unter 54 eingeordnet ist. Eine Unternehmen-Gruppe (z. B. 112 oder 126) vergebe ich nicht. Das Feld «Firma» ist nur Teil des üblichen Kopfs mit Gesuchstellerangaben, und mit einem Fasnachtswagen übt man kein Gewerbe aus. Anders ist es bei den gewerblichen Fahrten mit Landwirtschaftsfahrzeugen oder beim werkinternen Verkehr.",
+   "zweitgeprueft": 1,
+   "zweitpruefung": "Einverstanden. Das Formular (Version 2024.10.29) ist ein Gesuch an das Strassenverkehrs- und Schifffahrtsamt, Bereich Sonderbewilligungen. Gefragt wird nach dem Gesuchsteller, der Art und dem Grund der Ausnahmebewilligung, der Fahrstrecke oder dem Gebiet, der Gültigkeit mit Tag, Zeit, Hin- und Rückfahrt sowie nach Zugfahrzeug und Anhänger mit SH-Kontrollschild, Marke, letzter Prüfung und Versicherung. Weiter verlangt es Fotos jedes Fahrzeugs, die Anzahl Personen auf dem Anhänger und ab 9 Personen einen Versicherungsnachweis «gemäss Art. 61, Abs. 5 VRV». Im Kern geht es also um das Befahren öffentlicher Strassen. Darum steht 48 «Strasse» an erster Stelle. 54 «Bewilligungspflichtige Veranstaltungen» passt als zweite Gruppe: Die Bewilligung gilt nur für einen Fasnachtswagen und damit nur für einen Fasnachtsanlass. Wer das Formular sucht, sucht es über den Anlass. Dasselbe gilt für Leistung 24 (rad- oder motorsportliche Veranstaltung, 14/54/126). Zwei Punkte der Begründung stehen nicht im Formular und sind abgeleitet: das Wort «Umzug» und die Aufzählung von Cliquen und Vereinen als Gesuchsteller. Für die Einordnung braucht es sie nicht. Eine Unternehmen-Gruppe (112 oder 126) gehört nicht dazu. «Name/Vorname/Firma» ist der übliche Kopf mit den Angaben zum Gesuchsteller. Auch Leistung 33 hat einen Kopf «Name/Firma» und steht nur unter 48. Der Zweck ist keine gewerbliche Fahrt, anders als bei den Leistungen 39 und 49."
+  }
+ ],
+ "aufteilen": [
+  {
+   "service_id": 38,
+   "dvsh_id": 37,
+   "name": "Gesuch um Erteilung einer Ausnahmebewilligung für Fasnachtswagen",
+   "grund": "Die Zeile 38 trägt die DVSH-Leistung 37 «Gesuch um Erteilung einer nautischen Bewilligung», hält aber das Formular «Gesuch um Erteilung einer Ausnahmebewilligung für Fasnachtswagen» (formulare/gesuch-fasnachtswagen-25-p.pdf); Slug und name_alt der Zeile stammen von diesem Formular. Das DVSH-Modell 37 nennt als Einreichung eine andere Datei (sha256 75fd37d47898…), den nautischen Bewilligungsantrag — Inhaltsurteil ersetzt_falsch_zugeordnetes, zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json). Nach der Regel vom 27.09.2026 behält die Zeile die Identität, die Slug, name_alt und Formular zeigen; die DVSH-Leistung erhält eine eigene Zeile und nimmt DVSH-Verknüpfung, SHEP-Seite und Themengruppen (Schifffahrt) mit."
+  }
+ ]
+}

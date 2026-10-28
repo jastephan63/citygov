@@ -27,6 +27,7 @@ verdict actually covered them.
 Idempotent. Staging -> validate -> swap.
 
     python3 scripts/load_ech_verdicts_new.py <dir-with-out_*.json> [--from=468]
+    python3 scripts/load_ech_verdicts_new.py <dir> --nur-offene=44,164   # only never-judged or name-copied rows of these
 """
 import glob, json, os, re, shutil, sys
 from citygov.core.common import DB_PATH, connect, norm_ascii as norm
@@ -108,13 +109,23 @@ def main():
         else:
             c.execute(f"UPDATE {table} SET ech_element_id=NULL, ech_standard_code=NULL, ech_status='kein_standard' WHERE id=?", [rid])
 
+    # --nur-offene=<ids>: rows of these Formulare that were never judged or only copied by
+    # name (a ported edition's new Angaben) — every judged row stays as it is
+    nur = next((a.split("=", 1)[1] for a in sys.argv if a.startswith("--nur-offene=")), None)
+    if nur:
+        ids = ",".join(str(int(x)) for x in nur.split(",") if x.strip())
+        f_where = f"form_id IN ({ids}) AND (ech_status IS NULL OR ech_herkunft LIKE 'propagiert%')"
+        s_where = (f"d.form_id IN ({ids}) AND (s.ech_status IS NULL OR s.ech_herkunft LIKE 'propagiert%')")
+        f_args = s_args = []
+    else:
+        f_where, s_where, f_args, s_args = "form_id>=?", "d.form_id>=?", [from_form], [from_form]
     nf = ns = 0
-    for r in c.execute("SELECT id, name FROM data_field WHERE form_id>=?", [from_form]).fetchall():
+    for r in c.execute(f"SELECT id, name FROM data_field WHERE {f_where}", f_args).fetchall():
         v = fld.get(norm(r["name"]))
         if v:
             apply("data_field", r["id"], v); nf += 1
     for r in c.execute("SELECT s.id, d.name p, s.name n FROM data_subfield s JOIN data_field d ON d.id=s.data_field_id "
-                       "WHERE d.form_id>=?", [from_form]).fetchall():
+                       f"WHERE {s_where}", s_args).fetchall():
         v = sub.get((norm(r["p"]), norm(r["n"])))
         if v:
             apply("data_subfield", r["id"], v); ns += 1
@@ -124,7 +135,8 @@ def main():
     if errs:
         os.remove(st); print("ABORT:", *errs[:3], sep="\n  "); sys.exit(1)
     os.replace(st, DB_PATH)
-    print(f"Urteile (Formulare ab #{from_form}): {ok} korrekt, {len(fld)} Feldnamen und {len(sub)} Teilfeld-Paare "
+    scope = f"offene Zeilen der Formulare {nur}" if nur else f"Formulare ab #{from_form}"
+    print(f"Urteile ({scope}): {ok} korrekt, {len(fld)} Feldnamen und {len(sub)} Teilfeld-Paare "
           f"geändert -> {nf} Felder, {ns} Teilfelder; {rejected} REJECTED")
 
 

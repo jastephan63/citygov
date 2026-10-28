@@ -1,0 +1,235 @@
+{
+ "hinweis": "eCH-Urteile Formular 580, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/580 --nur-offene=580",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Block der meldenden Person: Name, Firma/Organisation/Funktion, Adresse, Tel./E-Mail, aber kein Geschlecht und kein Geburtsdatum. Die Person kann privat oder für eine Organisation melden. eCH-0010 mailAddress (genehmigt, Element im Katalog vorhanden) ist der Container, der personMailAddress und organisationMailAdress umfasst. Gleich gelöst wurden «Personalien der meldenden Person/Organisation», «Absender» und «Einsender/Amtlicher Tierarzt/Fleischkontrolle».",
+   "feld": "Angaben zur Person, welche die Meldung erstattet",
+   "standard": "eCH-0010",
+   "element": "mailAddress"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name der meldenden Person. Nach der Regel geht Name auf eCH-0044 officialName (im Katalog vorhanden, personIdentificationType/LightType), wie bei «Name, Vorname» und «Name und Vorname» in vielen Formularen. Der Vorname-Anteil wäre firstName.",
+   "elternfeld": "Angaben zur Person, welche die Meldung erstattet",
+   "teilfeld": "Vorname und Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Zuerst wird die Firma oder Organisation verlangt, für die die meldende Person handelt. Das ist eCH-0010 organisationName (organisationMailAddressInfoType) und passt zum Container mailAddress. Gleich gelöst wurden «Firma / Name» und «Gemeinde/Organisation/Firma». Der Anteil «Funktion» wäre eCH-0021 jobTitle.",
+   "elternfeld": "Angaben zur Person, welche die Meldung erstattet",
+   "teilfeld": "Firma/Organisation/Funktion",
+   "standard": "eCH-0010",
+   "element": "organisationName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Das Teil verlangt ausdrücklich Strasse, Nummer, PLZ und Ort. eCH-0010 addressInformation (in mailAddressType, personMailAddressType und organisationMailAddressType) enthält genau street, houseNumber, swissZipCode und town und gehört zum Container mailAddress. street allein deckte nur den Strassennamen ab.",
+   "elternfeld": "Angaben zur Person, welche die Meldung erstattet",
+   "teilfeld": "Adresse (Str./Nr./PLZ /Ort)",
+   "standard": "eCH-0010",
+   "element": "addressInformation"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Nach der Regel geht Telefon auf eCH-0046 phoneNumber (phoneType). Das ist auch die häufigste Lösung für «Tel., E-Mail», «Tel/E-Mail» und «Telefon/E-Mail». Der E-Mail-Anteil wäre eCH-0046 emailAddress.",
+   "elternfeld": "Angaben zur Person, welche die Meldung erstattet",
+   "teilfeld": "Tel.Nr./E-Mail",
+   "standard": "eCH-0046",
+   "element": "phoneNumber"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Gefragt ist ein Zeitfenster für Rückfragen, nicht die Nummer, denn Tel./E-Mail ist ein eigenes Teil. Den ganzen Katalog nach availab, reachab, openingHour, officeHour, timeslot, contactTime, hours, callback und Erreich durchsucht. Gefunden wurden nur eCH-0235 attachmentAvailable/notAvailableValue und eCH-0260 hoursPerWeek/workhours, die alle etwas anderes bedeuten. Ein Element für die Erreichbarkeitszeit gibt es nicht.",
+   "elternfeld": "Angaben zur Person, welche die Meldung erstattet",
+   "teilfeld": "Erreichbarkeit für Rückfragen (wann)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Gefragt ist eine beliebige Beziehung der meldenden Person zur betroffenen Person (Nachbar, Ärztin, Angehörige, Arbeitgeber). Alle *relation*-Elemente geprüft. eCH-0021/0020 typeOfRelationship kennt nur Ehe-, Eltern- und Vormund-/Beistandscodes. eCH-0211 relationshipToPerson gilt für Baugesuchsrollen, eCH-0260 typeOfRelationship für Vertreter in der Lehre, eCH-0278 relationship für Steuern und eCH-0119 relation für Renten. Vergleichsfälle «Beziehung zur Unterkunft gebenden Person» und «In welcher Beziehung steht die beschwerdemeldende Person …» sind ebenfalls kein_standard.",
+   "elternfeld": "Angaben zur Person, welche die Meldung erstattet",
+   "teilfeld": "Beziehung zur betroffenen Person"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Personalien der betroffenen erwachsenen Person mit Name, Geschlecht und Geburtsdatum, also den Kernangaben von eCH-0044 personIdentification (im Katalog vorhanden). So werden Personalien-Blöcke üblicherweise gelöst, etwa «Personalien Patient» und «Personalien des/der Minderjährigen».",
+   "feld": "Angaben zur betroffenen Person",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name der betroffenen Person. Nach der Regel geht Name auf eCH-0044 officialName, innerhalb des Containers personIdentification. Der Vorname-Anteil wäre firstName.",
+   "elternfeld": "Angaben zur betroffenen Person",
+   "teilfeld": "Vorname und Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Geschlecht der betroffenen Person geht auf eCH-0044 sex (personIdentificationType), im Katalog wörtlich vorhanden.",
+   "elternfeld": "Angaben zur betroffenen Person",
+   "teilfeld": "Geschlecht",
+   "standard": "eCH-0044",
+   "element": "sex"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Nach der Regel geht das Geburtsdatum auf eCH-0044 dateOfBirth (personIdentificationType), im Katalog wörtlich vorhanden.",
+   "elternfeld": "Angaben zur betroffenen Person",
+   "teilfeld": "Geburtsdatum",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Gefragt ist die aktuelle Wohnadresse, also ein gegenwärtiger Wert und keine frühere Adresse. Es geht um die Wohnadresse der Person und nicht um eine reine Postadresse. Dafür steht eCH-0011 dwellingAddress (residenceDataType u. a.), das die Adresse mit Str./Nr./PLZ/Ort enthält. Bisherige Fälle «Wohnadresse» wurden ebenfalls auf eCH-0011 dwellingAddress gelegt.",
+   "elternfeld": "Angaben zur betroffenen Person",
+   "teilfeld": "Aktuelle Wohnadresse (Str./Nr. /PLZ /Ort)",
+   "standard": "eCH-0011",
+   "element": "dwellingAddress"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Kern des Teils sind Telefonnummer und E-Mail der betroffenen Person. Das geht auf eCH-0046 phoneNumber, wie bei «Telefon (beste Erreichbarkeit)», «Erreichbarkeit (Tel/Natel)» und «Erreichbarkeit (Telefon, Fax, E-Mail, Webseite)». Der E-Mail-Anteil wäre emailAddress. Für den Zusatz «(wann)» gibt es kein Element.",
+   "elternfeld": "Angaben zur betroffenen Person",
+   "teilfeld": "Erreichbarkeit (Tel.Nr./E-Mail) (wann)",
+   "standard": "eCH-0046",
+   "element": "phoneNumber"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Gefragt ist der Arbeitgeber bzw. die Ausbildungsstätte der betroffenen Person. Das ist eCH-0021 employer (occupationDataType), wie bei «Name, Adresse und Telefonnummer des Arbeitgebers oder der Ausbildungsstätte» und «Arbeitgeber und Funktion». Der Anteil «Arbeitsort» wäre eCH-0021 placeOfWork.",
+   "elternfeld": "Angaben zur betroffenen Person",
+   "teilfeld": "Ausbildungsstätte/Arbeitgeber/Arbeitsort",
+   "standard": "eCH-0021",
+   "element": "employer"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Eingetragen wird der Name des Hausarztes bzw. der Hausärztin, also einer natürlichen Person. Das geht auf eCH-0044 officialName, wie bei «Verordnender Arzt/-in», «Verantwortliche/r Ärztin/Arzt» und «Name Heimarzt/Heimärztin». Für die Rolle Hausarzt gibt es kein eigenes Element. Nach doctor, physician, medic, practitioner und gln gesucht: eCH-0235 gln bezeichnet nur den Autor einer Meldung, eCH-0119 expenseDoctor ist ein Geldbetrag.",
+   "elternfeld": "Angaben zur betroffenen Person",
+   "teilfeld": "Hausarzt",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freie Schilderung der Beobachtungen mit Zeitangabe, Dauer und Häufigkeit. Nach reason, occasion, comment und eventDate gesucht: eCH-0235 reason betrifft Leistungsfälle im Gesundheitswesen, eCH-0216 reason Gebäude-Mutationen, eCH-0039/0147 comments allgemeine Dossier- und Dokumentkommentare. Unter den 290 Standards gibt es keinen für Erwachsenenschutz oder KESB, also auch kein Element für den Anlass einer Gefährdungsmeldung.",
+   "feld": "Was ist der Anlass, aus welchem Sie diese Meldung bei uns einreichen?"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ja/Nein-Kästchen. Ein Ja/Nein-Feld erhält kein Wert-Element. Nach informed und aware gesucht: Im Katalog gibt es kein boolesches Element «über die Meldung informiert».",
+   "feld": "Weiss die betroffene Person von dieser Gefährdungsmeldung?"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freitext zur Reaktion der betroffenen Person. Im Katalog gibt es dafür kein Element und auch keinen Standard für Erwachsenenschutz (eCH-0020/0058/0235 betreffen Personenregister, Meldungsrahmen und Gesundheitsleistungen).",
+   "feld": "Falls Ja, wie hat sie darauf reagiert?"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Auswahl Ja/Nein/weiss nicht. Ein solches Auswahlfeld erhält kein Wert-Element. eCH-0020 guardianMeasure und eCH-0021 guardianMeasureInfo betreffen von der KESB angeordnete Massnahmen im Register, keine informellen Vorkehren.",
+   "feld": "Wurde bisher bereits etwas unternommen?"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Container für bereits ergriffene Vorkehren und ihre Urheber. Im Katalog gibt es keinen Container dafür: eCH-0020 eventGuardianMeasure/guardianMeasure und eCH-0021 guardianRelationship betreffen nur behördlich angeordnete Massnahmen.",
+   "feld": "Wenn ja, was und von wem?"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Freitext zur Art der bisherigen Vorkehr. Nach measure gesucht: Ausserhalb der Registerereignisse von eCH-0020/0021 zu Massnahmen gibt es kein Element. Vergleichsfall: «Was» unter «Sport» ist ebenfalls kein_standard.",
+   "elternfeld": "Wenn ja, was und von wem?",
+   "teilfeld": "Was"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Freie Angabe einer Stelle oder Person, die gehandelt hat (z. B. Spitex, Hausarzt, Sozialdienst, Angehörige). officialName gilt nur für natürliche Personen, organisationName nur für Organisationen, und ein Akteur- oder Rollen-Element für den Urheber einer Vorkehr gibt es im Katalog nicht.",
+   "elternfeld": "Wenn ja, was und von wem?",
+   "teilfeld": "Von wem"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ja/Nein-Kästchen. Ein Ja/Nein-Feld erhält kein Wert-Element. Alle *language*-Elemente durchsucht, darunter languageOfCorrespondance (eCH-0011/0021/0098/0258/0260), nativeLanguage/firstLanguage (eCH-0260) und preferredCorrespondenceLanguage (eCH-0261). Das sind Sprachwerte, keine Angabe «Verständigung auf Deutsch möglich».",
+   "feld": "Kann mit ihr eine Unterhaltung auf Deutsch geführt werden?"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Bestätigt den übernommenen Wert. eCH-0260 nativeLanguage (genehmigt, im Katalog wörtlich vorhanden) bedeutet genau Muttersprache. Alle *language*-Elemente geprüft: languageOfCorrespondance und preferredCorrespondenceLanguage sind Korrespondenzsprachen. Ein allgemeineres Element für die Muttersprache gibt es nicht.",
+   "feld": "Muttersprache"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Gefragt sind weitere Sprachen, in denen sich die Person verständigen kann. Alle *language*-Elemente geprüft: languageOfCorrespondance ist die gewählte Korrespondenzsprache, nativeLanguage/firstLanguage die Erstsprache, und schoolLanguage, examLanguage und language (apprenticeshipType) gehören zur Berufsbildung. Ein Element für Sprachkenntnisse gibt es nicht.",
+   "feld": "Kenntnisse andere Fremdsprache"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Allgemeiner Freitext zur Gefährdung. eCH-0039/0147 comments und eCH-0258 commentType sind Kommentare zu Dossier, Dokument oder Leistung, keine inhaltlichen Angaben einer Meldung. «Bemerkungen» und «Weitere relevante Kompetenzen …» sind ebenfalls kein_standard.",
+   "feld": "Weitere relevante Informationen"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Einschätzung auf der Skala sehr niedrig bis sehr hoch / weiss nicht. Nach risk, urgency, priority, assessment, danger und protection gesucht: eCH-0211 riskDesignation/natureRisk betreffen Naturgefahren beim Bauen, eCH-0039/0258 priority die Priorität einer Weisung oder Leistung, eCH-0260 assessmentType Prüfungen. Ein Element für die Gefährdungseinschätzung im Erwachsenenschutz gibt es nicht. «Gefährdung» und «Gefährdungsart» sind ebenfalls kein_standard.",
+   "feld": "Wie schätzen Sie die Gefährdungssituation ein?"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Bestätigt den übernommenen Wert. eCH-0119 locationAndDate (genehmigt, im Katalog wörtlich vorhanden) ist das einzige Katalog-Element für die zusammengesetzte Angabe «Ort und Datum» der Unterzeichnung. Es gehört als Container auf das Elternfeld. eCH-0039/0147 messageDate, eventDate und openingDate sind Meldungs- und Dossierdaten und damit keine Alternative.",
+   "feld": "Ort/Datum"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Ort der Unterzeichnung. Ein eigenes atomares Element gibt es nicht: eCH-0119 locationAndDate fasst Ort und Datum zusammen und liegt bereits auf dem Elternfeld. eCH-0010 town ist der Ort einer Postadresse, nicht der Unterzeichnungsort. Nach place, location und sign gesucht. Bei allen bisherigen Teilen «Ort» unter «Ort und Datum» bzw. «Ort / Datum» ist das Urteil ebenfalls kein_standard.",
+   "elternfeld": "Ort/Datum",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Datum der Unterzeichnung. Ein eigenes atomares Element gibt es nicht: locationAndDate (eCH-0119) ist kombiniert und liegt auf dem Elternfeld. messageDate und eventDate (eCH-0039/0058/0147) sind Daten der elektronischen Meldung, openingDate ist die Eröffnung eines Dossiers. Bei allen bisherigen Teilen «Datum» unter «Ort und Datum» ist das Urteil ebenfalls kein_standard.",
+   "elternfeld": "Ort/Datum",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Bestätigt den übernommenen Wert kein_standard. Nach sign, signature und unterschrift gesucht: eCH-0039 signer ist nur ein Token für den Unterzeichner eines elektronischen Dokuments, eCH-0260 *SignatureConfirmation sind Ja/Nein-Bestätigungen im Lehrvertrag. Für die handschriftliche Unterschrift gibt es kein Element.",
+   "feld": "Unterschrift"
+  }
+ ]
+}

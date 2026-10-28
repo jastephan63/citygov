@@ -1,0 +1,132 @@
+{
+ "hinweis": "eCH-Urteile Formular 565, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/565 --nur-offene=565",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Firma der AG (Titel und Art. 1, «… AG») ist der Name der juristischen Person: eCH-0098 organisationIdentificationType/organisationName. Gleich wie die übrigen 27 «Firma»-Felder, u.a. die Gründungsanmeldung AG (Formular 307). eCH-0098 organisationAdditionalName und eCH-0108 name passen weniger gut.",
+   "feld": "Firma",
+   "standard": "eCH-0098",
+   "element": "organisationName"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Der propagierte Wert stimmt. Der statutarische Sitz «mit Sitz in [politische Gemeinde, Kantonskürzel …]» ist eCH-0098 swissHeadquarterType/headquarterMunicipality vom Typ eCH-0007 swissMunicipalityType. Dieser Typ umfasst beide Teile.",
+   "feld": "Sitz"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Der propagierte Wert stimmt. Art. 2 «Die Gesellschaft bezweckt […]» enthält den Gesellschaftszweck, also eCH-0098 organisationType/activityDescription. Alle «Zweck»-Felder der Statuten und HR-Formulare sind gleich abgebildet (308, 310, 316, 359–363, 563–570). eCH-0229 purpose gehört in den Kontext der Steuererklärung für juristische Personen (contactAndAdministrationType).",
+   "feld": "Zweck"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Das Feld ist aus Art. 3 zusammengesetzt (Kapital, Anzahl Aktien, Nennwert, Liberierung). Kein eCH-Container umfasst alle vier Teile: eCH-0276 totalShareholdersAssociatesType enthält nur Anzahl und Nennwertsumme, companyType beschreibt eine Beteiligungsgesellschaft. Das Feld erhält deshalb den Standard eCH-0276 mit dem Leitelement Aktienkapital. Gewählt ist equityType/shareCapitalShareholderCapitalAssociationCapitalFoundationCapital, die ordentliche Bilanzposition «Aktien-/Stammkapital». So ist auch das Stammkapital in 310, 317 und 557 abgebildet. Das bisher vorgeschlagene shareCapital liegt nur in equityAndLiabilitiesChfType/ForeignCurrencyType. Das ist die Tabelle zur Umrechnung des Eigenkapitals aus einer funktionalen Fremdwährung, mit Wertepaar laufende/vorherige Periode (amountCurrentPreviousPeriodType). Dieser Kontext passt nicht.",
+   "feld": "Aktienkapital und Aktien",
+   "standard": "eCH-0276",
+   "element": "shareCapitalShareholderCapitalAssociationCapitalFoundationCapital"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Kalenderdatum der Unterzeichnung nach dem vorgedruckten «Schaffhausen,». Geprüft und verworfen wurden: eCH-0098 foundationDate und eCH-0229 foundationDate/incorporationDate, weil das Formular auch für Statutenrevisionen durch die a.o. GV dient. eCH-0039 openingDate ist das Eröffnungsdatum eines Dokuments im Dossier. eCH-0119 locationAndDate ist ein Ort+Datum-Paar aus dem Steuerkontext. Nach der Praxis der Datenbank gilt deshalb eCH-0058 headerType/messageDate, wie bei den übrigen 9 Unterzeichnungs-«Datum»-Feldern.",
+   "feld": "Datum",
+   "standard": "eCH-0058",
+   "element": "messageDate"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Die Klammer über der Unterschriftslinie ist eine Auswahl: In welcher Eigenschaft wird unterzeichnet (Gründer/in oder Vorsitz der a.o. GV)? Im ganzen Katalog gesucht nach role/function/founder/chair/president/capacity/signer/assembly/meeting. Treffer und warum sie nicht passen: eCH-0229 memberOfAdministrativeBodyType/role ist nur die Funktion im Verwaltungsrat. eCH-0276 beneficiaryType/role betrifft Leistungsempfänger, titleType/chairmanOfTheBoardOfDirectors ist der Name des VR-Präsidenten. eCH-0039 documentType/signer ist die unterzeichnende Person, nicht ihre Eigenschaft. eCH-0211 relationshipToPersonType/role betrifft Baugesuche. eCH-0155/eCH-0165 role betreffen politische Rechte bzw. SIARD. eCH-0098/0108 haben keine Gründer- oder Organrolle. Kein Element bildet die Eigenschaft als Gründer oder GV-Vorsitz ab.",
+   "feld": "Der Gründer / Die Gründerin oder Der / Die Vorsitzende der a.o. Generalversammlung"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Der propagierte kein_standard stimmt. Eine eigenhändige Unterschrift ist keine strukturierte Angabe. Die Signatur-Elemente im Katalog passen nicht: eCH-0260 apprentice-/hostCompany-/representativeSignatureConfirmation sind Ja/Nein-Bestätigungen zum Lehrvertrag. eCH-0039 documentType/signer bezeichnet die unterzeichnende Person, und diese ist bereits mit «Vorname(n) Name» erfasst.",
+   "feld": "Unterschrift"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Das Feld setzt sich aus Vorname(n) und Name der unterzeichnenden natürlichen Person zusammen. Der Container ist eCH-0044 personIdentification (personIdentificationType mit firstName/officialName), wie bei den übrigen Namens-Composites in der Datenbank. eCH-0039 signer ist nur ein einzelnes Token ohne Gliederung in Vorname und Name.",
+   "feld": "Vorname(n) Name",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Laut Platzhalter ist der Sitz die politische Gemeinde. headquarterMunicipality hat den Typ eCH-0007 swissMunicipalityType, und dessen Gemeindename ist municipalityName. eCH-0098 enthält kein eigenes Element für den Gemeindenamen.",
+   "elternfeld": "Sitz",
+   "teilfeld": "politische Gemeinde",
+   "standard": "eCH-0007",
+   "element": "municipalityName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Das Kantonskürzel kommt nur hinzu, wenn der Gemeindename mehrdeutig ist. Es ist der Teil cantonAbbreviation von eCH-0007 swissMunicipalityType, dem Typ von headquarterMunicipality.",
+   "elternfeld": "Sitz",
+   "teilfeld": "Kantonskürzel",
+   "standard": "eCH-0007",
+   "element": "cantonAbbreviation"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Höhe des Aktienkapitals in CHF nach Art. 3, ein einzelner Betrag der Gesellschaft. Er entspricht eCH-0276 equityType/shareCapitalShareholderCapitalAssociationCapitalFoundationCapital (long), der Bilanzposition Aktien-/Stammkapital. So ist auch «Höhe Stammkapital (CHF)» in 317 abgebildet. Nicht gewählt wurde shareCapital (equityAndLiabilitiesChfType), weil es nur in der Umrechnungstabelle aus der funktionalen Fremdwährung vorkommt und ein Wertepaar laufende/vorherige Periode ist. eCH-0098 und eCH-0108 haben kein Kapitalelement.",
+   "elternfeld": "Aktienkapital und Aktien",
+   "teilfeld": "Aktienkapital (CHF)",
+   "standard": "eCH-0276",
+   "element": "shareCapitalShareholderCapitalAssociationCapitalFoundationCapital"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Gemeint ist die Gesamtzahl der Aktien, in die das Aktienkapital eingeteilt ist, also eine Angabe auf Ebene der Gesellschaft. Dafür passt eCH-0276 totalShareholdersAssociatesType/totalShareholdersAssociatesAmount (integer, Total der Anzahl Aktien/Anteile aller Beteiligten in den Beteiligungsverhältnissen). Nicht gewählt: shareholdersOrAssociatesType/numberOfSharesUnits ist die Aktienzahl eines einzelnen Leistungsempfängers (attestation/beneficiary). companyType/numberOfSecurities betrifft eine gehaltene Beteiligung.",
+   "elternfeld": "Aktienkapital und Aktien",
+   "teilfeld": "Anzahl Namenaktien",
+   "standard": "eCH-0276",
+   "element": "totalShareholdersAssociatesAmount"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Nennwert einer Aktie in CHF. Das einzige Element im Katalog für den Nennwert pro Aktie ist eCH-0276 shareholdersOrAssociatesType/nominalValuePerShare. Der Wert ist eine Eigenschaft der Aktie und für alle Inhaber gleich. Gleich abgebildet wie «Nennwert CHF» in 307 und «Nennwert je Stammanteil (CHF)» in 317.",
+   "elternfeld": "Aktienkapital und Aktien",
+   "teilfeld": "Nennwert je Namenaktie (CHF)",
+   "standard": "eCH-0276",
+   "element": "nominalValuePerShare"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Gefragt ist der Liberierungsgrad in Prozent. Im ganzen Katalog gesucht nach paid/liber/capital/share/percent/rate. Treffer und warum sie nicht passen: eCH-0276 und eCH-0229 paidInCapitalOrNetAsset sowie eCH-0276 unpaidShareCapital sind CHF-Beträge, keine Prozentsätze. eCH-0229 percentageOfPaidInCapital ist die Dividende in % des einbezahlten Kapitals. eCH-0276 sharesInPercentage, totalShareholdersAssociatesPercentage und shareOfCapitalInPercentThatBenefitsFromReduction sind Beteiligungs- bzw. Ermässigungsquoten. eCH-0098/0108 enthalten kein Kapitalelement. Kein Element bildet den Liberierungsgrad in % ab.",
+   "elternfeld": "Aktienkapital und Aktien",
+   "teilfeld": "Liberierung (%)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname(n) der unterzeichnenden natürlichen Person: eCH-0044 personIdentificationType/firstName, nach der Regel Vorname → firstName.",
+   "elternfeld": "Vorname(n) Name",
+   "teilfeld": "Vorname(n)",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Familienname der unterzeichnenden natürlichen Person: eCH-0044 personIdentificationType/officialName, nach der Regel Name → officialName.",
+   "elternfeld": "Vorname(n) Name",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  }
+ ]
+}

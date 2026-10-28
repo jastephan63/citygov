@@ -1,0 +1,60 @@
+{
+ "hinweis": "eCH-Urteile Formular 554, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/554 --nur-offene=554",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "This composite names the company (AG, GmbH or Genossenschaft) by its Firma and Sitz. Its container element is eCH-0098 organisation (organisationType, id 1396), and eCH-0098 is Genehmigt. The databank already copied this value onto the row ('propagiert (Name 2x geprüft)'). It matches practice: all 4 «Firma und Sitz» fields carry eCH-0098 organisation. Confirmed.",
+   "feld": "Firma und Sitz"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Firma is the registered legal name of the company. That is eCH-0098 organisationName (organisationIdentificationType, unitNameType, id 1334), and the element exists verbatim. It is the dominant practice for Firma (21 times). eCH-0010 organisationName is a postal-address variant and does not fit here, because this is the company's identity, not a mail address. Propagated value confirmed.",
+   "elternfeld": "Firma und Sitz",
+   "teilfeld": "Firma"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Sitz is the company's statutory seat municipality. That is eCH-0098 headquarterMunicipality (swissHeadquarterType, swissMunicipalityType, id 1374), and the element exists verbatim. This matches practice for Sitz (8 times). It is a current value, not a past or changed seat. Propagated value confirmed.",
+   "elternfeld": "Firma und Sitz",
+   "teilfeld": "Sitz"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "The form says «bitte ankreuzen und Kopien beilegen», so each ticked option names a supporting document whose copy is attached: Jahresrechnungen, Verzichtserklärungen, Protokoll der Universalversammlung (Art. 62 Abs. 2 HRegV). The multiselect therefore holds the set of attached documents. That is eCH-0039 document (contentType, documentType, id 772; Genehmigt), and the chosen option is its documentKind. Practice for comparable multiselects agrees: form 394 «Eingereichte Unterlagen Mutter/Vater» use eCH-0039 document. I also checked eCH-0058 attachment (headerType, anyType; used for the «Beilagen» multiselect in forms 492/493). It is only an untyped message-header slot, so eCH-0039 document is the more precise choice. eCH-0211 document is specific to building-permit reports and does not fit. Searching for audit, revision, waiver, annualAccount, financialStatement and minutes found no Handelsregister-specific element (eCH-0229 auditor is tax-declaration data). The row currently has nothing.",
+   "feld": "Diese Erklärungen stützen sich kumulativ auf",
+   "standard": "eCH-0039",
+   "element": "document"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "This is the place and date of signing the KMU declaration. I searched the whole catalogue for names containing sign, signature, place, declarationDate, confirmationDate and dateOfDecl. The only hits are eCH-0039 signer (who signed), the eCH-0260 *SignatureConfirmation booleans (apprenticeship contracts), and place elements for death, marriage, work, voting and real estate. None is a signing place or date. eCH-0058 messageDate/eventDate and eCH-0039 openingDate are dates of a message or a document, not of a signature. This matches practice (31 times kein_standard, eSH-0001 placeAndDate). The propagated kein_standard is confirmed.",
+   "feld": "Ort und Datum"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Read with its parent, Ort is the place where the declaration was signed. It is not a postal town, a residence or the company seat, so eCH-0010 town, eCH-0011 generalPlaceType places and eCH-0098 headquarterMunicipality do not fit. A catalogue-wide search for sign, place and declaration found no signing-place element. This matches practice (15 times kein_standard; eSH-0001 signaturePlace).",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Read with its parent, Datum is the date the declaration was signed. eCH-0039 openingDate (a document or dossier was opened) and eCH-0058 messageDate/eventDate (dates of a message) have different meanings. A catalogue-wide search for sign, dateOf, declarationDate and confirmationDate found no signing-date element. This matches practice (15 times kein_standard; eSH-0001 signatureDate).",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "This is the handwritten signature of at least one member of the governing body. Searching the catalogue for sign, signature and Unterschrift found only eCH-0039 signer (a token naming the signer, not the signature) and the eCH-0260 hostCompany/apprentice/representativeSignatureConfirmation booleans (apprenticeship contracts). Neither is the signature itself. The signature-related standards eCH-0091, eCH-0220, eCH-0230, eCH-0250, eCH-0274 and eCH-0282 are technical rules for electronic signatures, define no data element and have no Genehmigt status. They do not define the datum. This matches practice: all 88 judged signature fields are kein_standard.",
+   "feld": "Unterschrift/en mindestens eines Mitglieds des obersten Leitungs- oder Verwaltungsorgans"
+  }
+ ]
+}

@@ -1,0 +1,2235 @@
+{
+ "hinweis": "Panel 2026-10-28 (Zweitprüfung angewendet): Beilagen je neues Formular",
+ "beilagen": [
+  {
+   "form_id": 542,
+   "bezeichnung": "Planskizze mit Standort / Route",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 542,
+   "bezeichnung": "Sicherheitsdispositiv das über die Risiken und Sicherheitsmassnahmen der Veranstaltung Auskunft gibt",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 542,
+   "bezeichnung": "Versicherungsnachweis oder Deckungsbestätigung gemäss Art. 155 BSV (SR 747.201.1)",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 542,
+   "bezeichnung": "Sicherheitszertifikat",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "falls vorhanden",
+   "halter": "unbekannt",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 543,
+   "bezeichnung": "Schriftliche Meldung an das Arbeitsamt",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 543,
+   "bezeichnung": "Kopie der Mitteilung an die Arbeitnehmerschaft",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 543,
+   "bezeichnung": "Sozialplan (falls erforderlich)",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich für Arbeitgeber ab 250 Arbeitnehmenden bei Kündigung von mindestens 30 Arbeitnehmenden",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 544,
+   "bezeichnung": "Lebenslauf",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "beide"
+  },
+  {
+   "form_id": 544,
+   "bezeichnung": "Dokumentation der bisherigen kulturellen/künstlerischen Tätigkeit",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "beide"
+  },
+  {
+   "form_id": 544,
+   "bezeichnung": "Konkreter Antrag und Darstellung des Vorhabens, das Sie während des Stipendiums in Berlin bearbeiten möchten",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "beide"
+  },
+  {
+   "form_id": 544,
+   "bezeichnung": "Beschreibung des Nutzens des Stipendiums",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 545,
+   "bezeichnung": "Kopie oder Fotografie des Jungfischer-Brevets oder SaNa-Ausweises",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Nur bei der ersten Bestellung erforderlich",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "beide"
+  },
+  {
+   "form_id": 545,
+   "bezeichnung": "Saisonkarte",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Bei Wahl «Verlängerung Saisonkarte 1. Oktober bis 31. Dezember» («Bitte unbedingt Saisonkarte mitschicken!»)",
+   "halter": "kanton_andere",
+   "fetchable": true,
+   "source": "formular"
+  },
+  {
+   "form_id": 546,
+   "bezeichnung": "Vaterschaftsanerkennung (falls gleichzeitig abgegeben)",
+   "data_field_id": null,
+   "obligatorium": "fakultativ",
+   "bedingung": null,
+   "halter": "kanton_andere",
+   "fetchable": true,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 546,
+   "bezeichnung": "Unterhaltsvereinbarung",
+   "data_field_id": null,
+   "obligatorium": "fakultativ",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 547,
+   "bezeichnung": "die gleichen wie auf dem «Merkblatt Ehescheidung auf gemeinsames Begehren» aufgeführten Unterlagen",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "unbekannt",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 548,
+   "bezeichnung": "Familienausweis im Original",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Falls ein Ehegatte schweizerischer Nationalität ist; aktuell, nicht älter als drei Monate (Zivilstandsamt der Heimatgemeinde)",
+   "halter": "kanton_andere",
+   "fetchable": true,
+   "source": "formular"
+  },
+  {
+   "form_id": 548,
+   "bezeichnung": "Wohnsitzbescheinigungen im Original beider Ehegatten",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Falls beide Ehegatten ausländischer Nationalität sind; nicht älter als drei Monate (Einwohnerkontrollen der Wohnsitzgemeinden)",
+   "halter": "einwohnerregister",
+   "fetchable": true,
+   "source": "formular"
+  },
+  {
+   "form_id": 548,
+   "bezeichnung": "Amtliche Dokumente (ev. mit Übersetzung)",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Falls beide Ehegatten ausländischer Nationalität sind; müssen Ort und Datum der Heirat sowie Anzahl, Name und Geburtsdatum der Kinder bzw. die Bestätigung ohne Kinder belegen",
+   "halter": "unbekannt",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 548,
+   "bezeichnung": "Scheidungsvereinbarung bzw. Teilvereinbarung über die Folgen der Ehescheidung",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 548,
+   "bezeichnung": "Angaben darüber, in welchen Punkten man sich nicht einig ist",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Bei Teilvereinbarung (Variante b des Merkblatts)",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 548,
+   "bezeichnung": "Aufstellungen der beruflichen Vorsorgeeinrichtungen",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Bei vollständiger Vereinbarung stets; bei Teilvereinbarung nur, soweit die berufliche Vorsorge nicht umstritten ist (Variante b)",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 548,
+   "bezeichnung": "aktuelle Rentenbescheinigung",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Im Vorsorgefall; bei Teilvereinbarung nur, soweit die berufliche Vorsorge nicht umstritten ist (Variante b)",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 548,
+   "bezeichnung": "Durchführbarkeitserklärung",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Wenn die Vereinbarung eine Regelung zur Aufteilung der BVG-Guthaben trifft (Bestätigung der Vorsorgeeinrichtungen)",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 548,
+   "bezeichnung": "Letzter Jahreslohnausweis",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Bei unselbständiger Erwerbstätigkeit (sonst Ausweise über Renteneinkommen bzw. Geschäftsabschlüsse); im Doppel; bei Teilvereinbarung nur zu den nicht umstrittenen Punkten",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 548,
+   "bezeichnung": "Lohnabrechnungen für die letzten drei Monate",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Bei unselbständiger Erwerbstätigkeit; im Doppel; bei Teilvereinbarung nur zu den nicht umstrittenen Punkten",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 548,
+   "bezeichnung": "Ausweise über Renteneinkommen",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Anstelle von Lohnausweis und Lohnabrechnungen bei Renteneinkommen; im Doppel; bei Teilvereinbarung nur zu den nicht umstrittenen Punkten",
+   "halter": "unbekannt",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 548,
+   "bezeichnung": "die beiden letzten Geschäftsabschlüsse, Bilanz und Erfolgsrechnung",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Bei selbständiger Erwerbstätigkeit; im Doppel; bei Teilvereinbarung nur zu den nicht umstrittenen Punkten",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 548,
+   "bezeichnung": "lückenlose Aufstellung über Privatbezüge im laufenden Jahr",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Bei selbständiger Erwerbstätigkeit; im Doppel; bei Teilvereinbarung nur zu den nicht umstrittenen Punkten",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 548,
+   "bezeichnung": "Letzte Steuererklärung",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Im Doppel; bei vollständiger Vereinbarung stets, bei Teilvereinbarung nur zu den nicht umstrittenen Punkten",
+   "halter": "steuerverwaltung",
+   "fetchable": true,
+   "source": "formular"
+  },
+  {
+   "form_id": 548,
+   "bezeichnung": "letzte Steuerrechnung",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Im Doppel; bei vollständiger Vereinbarung stets, bei Teilvereinbarung nur zu den nicht umstrittenen Punkten",
+   "halter": "steuerverwaltung",
+   "fetchable": true,
+   "source": "formular"
+  },
+  {
+   "form_id": 548,
+   "bezeichnung": "letzte Steuerveranlagungsmitteilung",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Im Doppel; bei vollständiger Vereinbarung stets, bei Teilvereinbarung nur zu den nicht umstrittenen Punkten",
+   "halter": "steuerverwaltung",
+   "fetchable": true,
+   "source": "formular"
+  },
+  {
+   "form_id": 548,
+   "bezeichnung": "Belege über feste Ausgaben für den Lebensbedarf",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Alternativ zur von beiden Parteien unterzeichneten detaillierten Aufstellung der monatlichen Ausgaben; im Doppel; bei Teilvereinbarung nur zu den nicht umstrittenen Punkten",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 548,
+   "bezeichnung": "von beiden Parteien unterzeichnete detaillierte Aufstellung der monatlichen Ausgaben",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Statt der Belege über feste Ausgaben; Kosten der Kinder separat auszuweisen; im Doppel; bei Teilvereinbarung nur zu den nicht umstrittenen Punkten",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 549,
+   "bezeichnung": "Lohnausweis über Ihre Lohnbezüge der letzten 2 Jahre",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 549,
+   "bezeichnung": "Lohnabrechnungen der letzten 3 Monate",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 549,
+   "bezeichnung": "Arbeitsvertrag",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 549,
+   "bezeichnung": "Spesenreglement",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "ev. (falls ein Spesenreglement besteht)",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 549,
+   "bezeichnung": "Lohnabrechnung und Lohnausweis Kind (Lehrlingslohn)",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Ev. (falls ein Kind einen Lehrlingslohn bezieht)",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 549,
+   "bezeichnung": "Rentenabrechnungen der letzten 3 Monate",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "gegebenenfalls (bei Bezug einer Rente)",
+   "halter": "unbekannt",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 549,
+   "bezeichnung": "Abrechnungen der Arbeitslosenkasse der letzten 3 Monate",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "gegebenenfalls (bei Bezug von Arbeitslosenentschädigung)",
+   "halter": "kanton_andere",
+   "fetchable": true,
+   "source": "formular"
+  },
+  {
+   "form_id": 549,
+   "bezeichnung": "definitive Steuerveranlagungen des letzten Steuerjahres (Kantons- und Bundessteuern)",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "steuerverwaltung",
+   "fetchable": true,
+   "source": "formular"
+  },
+  {
+   "form_id": 549,
+   "bezeichnung": "provisorische Steuerveranlagung des laufenden Jahres (Kantons- und Bundessteuern)",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "steuerverwaltung",
+   "fetchable": true,
+   "source": "formular"
+  },
+  {
+   "form_id": 549,
+   "bezeichnung": "Mietvertrag bzw. aktuelle Mietzinserhöhungen",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 549,
+   "bezeichnung": "Krankenkassenpolicen für Sie und Ihre Familie",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 549,
+   "bezeichnung": "weitere Versicherungen wie Privathaftpflicht, Motorfahrzeug- oder Hausratsversicherung",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 549,
+   "bezeichnung": "Bankkontoauszüge",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 549,
+   "bezeichnung": "Unterlagen über die grösseren Schuldenpositionen (Kredit-, Steuer- und Unterhaltsschulden)",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "unbekannt",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 549,
+   "bezeichnung": "weitere Angaben über Ihre Vermögenssituation",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "allenfalls (bei weiterem Vermögen)",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 549,
+   "bezeichnung": "Identitätsnachweis",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "bund",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 549,
+   "bezeichnung": "Eheurkunde",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "kanton_andere",
+   "fetchable": true,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 549,
+   "bezeichnung": "Geburtsurkunden der Kinder",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Falls gemeinsame Kinder vorhanden sind",
+   "halter": "kanton_andere",
+   "fetchable": true,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 550,
+   "bezeichnung": "aktueller Kontostand vom Lastschriftkonto",
+   "data_field_id": null,
+   "obligatorium": "unbekannt",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 550,
+   "bezeichnung": "aktueller Kontostand vom Gutschriftskonto",
+   "data_field_id": null,
+   "obligatorium": "unbekannt",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 550,
+   "bezeichnung": "Inventarunterlagen",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Müssen nach Errichtung der Beistandschaft eingereicht werden zur Prüfung durch die KESB",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 550,
+   "bezeichnung": "Budget",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Von der Beistandsperson eingereicht zur Berechnung der Vermögensausscheidung durch die KESB (bei Vermögen über Fr. 100'000.– oder mit Liegenschaften/Wertschriften)",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 550,
+   "bezeichnung": "Bankbelege und Dokumente",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Müssen mit dem periodischen Rechenschaftsbericht eingereicht werden zur Überprüfung der Vermögenshandlungen",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 550,
+   "bezeichnung": "Periodischer Rechenschaftsbericht",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Wird regelmässig eingereicht und von der KESB genehmigt",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 550,
+   "bezeichnung": "Antrag gemäss Art. 8 Abs. 3 VBVV",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich, falls die Beistandsperson auf eine Umschichtung verzichten möchte oder in weitergehende Finanzinstrumente investieren möchte",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 550,
+   "bezeichnung": "Darlegung der Einkommens- und Vermögensverhältnisse",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 551,
+   "bezeichnung": "Anmeldeformular (Neueintragung AG)",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 551,
+   "bezeichnung": "Öffentliche Urkunde und Statuten",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 551,
+   "bezeichnung": "Öffentliche Urkunde oder Unterschriftsbeglaubigung zur Identifikation natürlicher Personen.",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 551,
+   "bezeichnung": "Kopie eines gültigen Ausweisdokuments (Pass, ID, ausländischer Pass / Personalausweis oder Ausländerausweis)",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Für die betreffenden Personen, deren Identität nachzuweisen ist (Ablauf Schritt 5: «Zudem ist eine gültige Ausweiskopie der betreffenden Personen einzureichen»).",
+   "halter": "bund",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 551,
+   "bezeichnung": "Domizilerklärung",
+   "data_field_id": null,
+   "obligatorium": "unbekannt",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 551,
+   "bezeichnung": "Eigene Geschäftsräume sind mittels Einreichung weiterer Unterlagen zu belegen",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Im Falle eigener Geschäftsräume (Ablauf Schritt 6; Art. 117 Abs. 4 HRegV laut DVSH-Hinweis zur Domizilerklärung).",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 551,
+   "bezeichnung": "Domizilhaltererklärung (bei c/o-Domizil)",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich, wenn die AG ein c/o-Domizil hat und die Domizilerklärung nicht vom Domizilhalter unterzeichnet ist.",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 551,
+   "bezeichnung": "Wahlannahmeerklärung der Mitglieder des Verwaltungsrats",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Einzureichen, sofern die Wahlannahme nicht in der öffentlichen Urkunde festgehalten wurde.",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 551,
+   "bezeichnung": "Wahlannahme der Revisionsstelle",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Einzureichen, sofern eine Revisionsstelle gewählt wurde.",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 551,
+   "bezeichnung": "VR-Protokoll betr. Konstituierung",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich, wenn nicht alle Verwaltungsratsmitglieder die Handelsregisteranmeldung unterzeichnen.",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 552,
+   "bezeichnung": "Erklärung wonach:  a. die Gesellschaft die Voraussetzungen für die Pflicht zur ordentlichen Revision nicht erfüllt;",
+   "data_field_id": null,
+   "obligatorium": "unbekannt",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 552,
+   "bezeichnung": "Kopie der von der Generalversammlung genehmigte Jahresrechnung des letzten abgelaufenen Geschäftsjahres",
+   "data_field_id": null,
+   "obligatorium": "unbekannt",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 552,
+   "bezeichnung": "Kopie des Protokolls betreffend die Genehmigung der Jahresrechnung oder eines Auszugs davon",
+   "data_field_id": null,
+   "obligatorium": "unbekannt",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 552,
+   "bezeichnung": "Gegebenenfalls Kopie des Revisionsberichts betreffend das letzte abgelaufene Geschäftsjahr",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "falls für das letzte abgelaufene Geschäftsjahr ein Revisionsbericht vorliegt (DVSH: «Gegebenenfalls»)",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 553,
+   "bezeichnung": "Erklärung wonach:  a. die Gesellschaft die Voraussetzungen für die Pflicht zur ordentlichen Revision nicht erfüllt;",
+   "data_field_id": null,
+   "obligatorium": "unbekannt",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 553,
+   "bezeichnung": "Kopie der von der Generalversammlung genehmigte Jahresrechnung des letzten abgelaufenen Geschäftsjahres",
+   "data_field_id": null,
+   "obligatorium": "unbekannt",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 553,
+   "bezeichnung": "Kopie des Protokolls betreffend die Genehmigung der Jahresrechnung oder eines Auszugs davon",
+   "data_field_id": null,
+   "obligatorium": "unbekannt",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 553,
+   "bezeichnung": "Gegebenenfalls Kopie des Revisionsberichts betreffend das letzte abgelaufene Geschäftsjahr",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Gegebenenfalls, d. h. sofern für das letzte abgelaufene Geschäftsjahr ein Revisionsbericht vorliegt",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 554,
+   "bezeichnung": "Jahresrechnungen der vergangenen zwei Jahre inklusive Anhang",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "beide"
+  },
+  {
+   "form_id": 554,
+   "bezeichnung": "Verzichtserklärungen sämtlicher Gesellschafterinnen und Gesellschafter",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Alternativ zum Protokoll der Universalversammlung (Formular: «… oder»); eines von beiden ist als Kopie beizulegen",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "beide"
+  },
+  {
+   "form_id": 554,
+   "bezeichnung": "Protokoll der Universalversammlung",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Alternativ zu den Verzichtserklärungen; das Protokoll muss die Verzichtserklärungen sämtlicher Gesellschafterinnen und Gesellschafter enthalten",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "beide"
+  },
+  {
+   "form_id": 554,
+   "bezeichnung": "Kopie des Protokolls betreffend die Genehmigung der Jahresrechnung oder eines Auszugs davon",
+   "data_field_id": null,
+   "obligatorium": "unbekannt",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 554,
+   "bezeichnung": "Gegebenenfalls Kopie des Revisionsberichts betreffend das letzte abgelaufene Geschäftsjahr",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "DVSH sagt nur «Gegebenenfalls» und nennt keine Bedingung; sinngemäss, wenn für das letzte abgelaufene Geschäftsjahr ein Revisionsbericht besteht",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 555,
+   "bezeichnung": "Öffentliche Urkunde",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "unbekannt",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 555,
+   "bezeichnung": "Handelsregisteranmeldung",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 555,
+   "bezeichnung": "Wahlannahmeerklärungen der Liquidatoren",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Sofern erforderlich (Ablauf Schritt 8: «allenfalls»)",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 555,
+   "bezeichnung": "Domizilhaltererklärung",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Nur erforderlich, sofern als Liquidationsadresse ein c/o-Domizil angemeldet wird",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 555,
+   "bezeichnung": "Unterzeichnetes Beurkundungsgesuch",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 555,
+   "bezeichnung": "Passkopien sämtlicher Urkundsparteien",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "unbekannt",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 555,
+   "bezeichnung": "Gültiger amtlicher Ausweis",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "unbekannt",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 556,
+   "bezeichnung": "Anmeldeformular für Änderungen bei einer GmbH",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 556,
+   "bezeichnung": "Gesellschafterprotokoll",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich bei Änderungen, die einer Gesellschafterversammlung bedürfen (z.B. Abtretung von Stammanteilen); bei einer Abtretung müssen die bisherigen Gesellschafter zustimmen, und das Protokoll muss dies zeigen",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 556,
+   "bezeichnung": "Geschäftsführerprotokoll",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich bei Änderungen der Zeichnungsberechtigung",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 556,
+   "bezeichnung": "Domizilhaltererklärung",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich bei Änderung des Rechtsdomizils oder des Domizilhalters",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 556,
+   "bezeichnung": "Erklärung betreffend Domizil",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich bei Domiziländerungen; muss von den anmeldungspflichtigen Personen unterzeichnet werden",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 556,
+   "bezeichnung": "Kopie des Ausweisdokuments",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Für neue natürliche Personen (mit oder ohne Zeichnungsberechtigung)",
+   "halter": "bund",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 556,
+   "bezeichnung": "Ausländischer Handelsregisterauszug",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Bei einer neuen Gesellschafterin, bei der es sich um eine juristische Person mit Sitz im Ausland handelt",
+   "halter": "unbekannt",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 556,
+   "bezeichnung": "Öffentliche Urkunde mit beglaubigten Statuten",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Gegebenenfalls (DVSH-Ablauf Schritt 9), d.h. bei Änderungen, die eine öffentliche Beurkundung erfordern (z.B. Statutenänderungen); in der DVSH-Unterlagenliste als obligatorisch markiert",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 556,
+   "bezeichnung": "Unterschriftsbegalubigung",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Für neue natürliche Personen; muss die Angaben nach Art. 24b HRegV enthalten",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 556,
+   "bezeichnung": "Rücktrittserklärung",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich bei Rücktritt von Geschäftsführern oder zeichnungsberechtigten Personen",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 557,
+   "bezeichnung": "Anmeldeformular für Änderungen bei einer GmbH",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 557,
+   "bezeichnung": "Abtretungsvertrag für Stammanteile",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich bei Abtretung von Stammanteilen",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 557,
+   "bezeichnung": "Geschäftsführerprotokoll",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich bei Änderungen der Zeichnungsberechtigung",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 557,
+   "bezeichnung": "Domizilhaltererklärung",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich bei Änderung des Rechtsdomizils oder des Domizilhalters",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 557,
+   "bezeichnung": "Erklärung betreffend Domizil",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich bei Domiziländerungen; muss von den anmeldungspflichtigen Personen unterzeichnet werden",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 557,
+   "bezeichnung": "Kopie des Ausweisdokuments",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Für neue natürliche Personen (mit oder ohne Zeichnungsberechtigung)",
+   "halter": "bund",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 557,
+   "bezeichnung": "Ausländischer Handelsregisterauszug",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Bei einer neuen Gesellschafterin, bei der es sich um eine juristische Person mit Sitz im Ausland handelt",
+   "halter": "unbekannt",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 557,
+   "bezeichnung": "Öffentliche Urkunde mit beglaubigten Statuten",
+   "data_field_id": null,
+   "obligatorium": "unbekannt",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 557,
+   "bezeichnung": "Unterschriftsbegalubigung",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Für neue natürliche Personen; muss die Angaben nach Art. 24b HRegV enthalten",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 557,
+   "bezeichnung": "Rücktrittserklärung",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich bei Rücktritt von Geschäftsführern oder zeichnungsberechtigten Personen",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 558,
+   "bezeichnung": "Anmeldeformular für Änderungen bei einer GmbH",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 558,
+   "bezeichnung": "Kopie des Ausweisdokuments",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Für neue natürliche Personen (mit oder ohne Zeichnungsberechtigung)",
+   "halter": "bund",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 558,
+   "bezeichnung": "Unterschriftsbegalubigung",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Für neue natürliche Personen; muss die Angaben nach Art. 24b HRegV enthalten",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 558,
+   "bezeichnung": "Rücktrittserklärung",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich bei Rücktritt von Geschäftsführern oder zeichnungsberechtigten Personen",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 558,
+   "bezeichnung": "Gesellschafterprotokoll",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich bei Änderungen, die einer Gesellschafterversammlung bedürfen (z.B. Abtretung von Stammanteilen)",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 558,
+   "bezeichnung": "Abtretungsvertrag für Stammanteile",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich bei Abtretung von Stammanteilen",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 558,
+   "bezeichnung": "Domizilhaltererklärung",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich bei Änderung des Rechtsdomizils oder des Domizilhalters",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 558,
+   "bezeichnung": "Erklärung betreffend Domizil",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich bei Domiziländerungen",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 558,
+   "bezeichnung": "Ausländischer Handelsregisterauszug",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Bei einer neuen Gesellschafterin, bei der es sich um eine juristische Person mit Sitz im Ausland handelt",
+   "halter": "unbekannt",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 558,
+   "bezeichnung": "Öffentliche Urkunde mit beglaubigten Statuten",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "gegebenenfalls (DVSH-Ablauf Schritt 9); die DVSH-Unterlagenliste führt sie als obligatorisch",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 559,
+   "bezeichnung": "Kostenrechnung in CSV-Format",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "nur für Spitexbetriebe mit eigener Kostenrechnung (Formular D2: «Bitte zusätzlich Kostenrechnung in CSV-Format beilegen/zustellen.»); nach Formular D1 ist die eigene Kostenrechnung teils ab Rechnungsjahr 2027 Pflicht",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "beide"
+  },
+  {
+   "form_id": 559,
+   "bezeichnung": "Jahresrechnung (Bilanz und Erfolgsrechnung der Gesamtunternehmung)",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "nur für Spitex-Organisationen, nicht für selbständige Pflegefachpersonen (DVSH-Hinweis: «Erforderlich für alle Spitex-Organisationen»)",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 559,
+   "bezeichnung": "Leistungsstatistik",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 559,
+   "bezeichnung": "Revisionsbericht",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "nur auf Anfrage des Gesundheitsamtes (DVSH-Hinweis: «Erforderlich auf Anfrage des Gesundheitsamtes»)",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 560,
+   "bezeichnung": "Anmeldungsformular für Personalmutationen",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 560,
+   "bezeichnung": "Gültige Ausweisdokumente oder Unterschriftsbeglaubigungen",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "bund",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 563,
+   "bezeichnung": "Verbindliches Gesuch um Beurkundung: Gründung einer AG (ausgefüllt und unterzeichnet)",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 563,
+   "bezeichnung": "Ausweiskopien sämtlicher Gründer / Verwaltungsräte u. zeichnungsberechtigter Personen",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "bund",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 563,
+   "bezeichnung": "Gültiger amtlicher Ausweis (Pass, Identitätskarte, ausländischer Pass oder Personalausweis)",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "bund",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 563,
+   "bezeichnung": "Einzahlungsbescheinigung gemäss Artikel 633 OR",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Bei einer Gründung in bar (Einzahlung auf ein Sperrkonto zwecks Liberierung der Aktien)",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 563,
+   "bezeichnung": "Erklärung betreffend Domizil (ausgefüllt und unterzeichnet)",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 563,
+   "bezeichnung": "Domizilhaltererklärung",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Bei einem c/o-Domizil, sofern der Domizilhalter ein Dritter ist (gegebenenfalls zusätzlich, im Original)",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 563,
+   "bezeichnung": "Sacheinlagevertrag (falls zutreffend)",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Falls zutreffend (Gründung mit Sacheinlage); bei Einlage eines Grundstücks öffentlich beurkundet",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 563,
+   "bezeichnung": "Bilanz/Inventar (bei Sacheinlage)",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Bei Sacheinlage",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 563,
+   "bezeichnung": "Gründungsbericht (bei Sacheinlage)",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Bei Sacheinlage",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 563,
+   "bezeichnung": "Prüfungsbestätigung (bei Sacheinlage)",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Bei Sacheinlage",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 563,
+   "bezeichnung": "Lex-Koller-Erklärung",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Im Falle einer Immobiliengesellschaft",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 563,
+   "bezeichnung": "Wahlannahmeerklärung von Mitgliedern des Verwaltungsrats",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Sofern die Wahlannahme nicht an anderer Stelle erfolgt",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 563,
+   "bezeichnung": "Wahlannahmeerklärung der Revisionsstelle",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Falls eine Revisionsstelle gewählt wird",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 565,
+   "bezeichnung": "Verbindliches Gesuch um Beurkundung: Gründung einer AG (ausgefüllt und unterzeichnet)",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 565,
+   "bezeichnung": "Ausweiskopien sämtlicher Gründer / Verwaltungsräte u. zeichnungsberechtigter Personen",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "bund",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 565,
+   "bezeichnung": "Gültiger amtlicher Ausweis (Pass, Identitätskarte, ausländischer Pass oder Personalausweis)",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "bund",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 565,
+   "bezeichnung": "Einzahlungsbescheinigung gemäss Artikel 633 OR",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Bei einer Gründung in bar (Original bei der öffentlichen Beurkundung, vorab spätestens zwei Arbeitstage vorher)",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 565,
+   "bezeichnung": "Erklärung betreffend Domizil (ausgefüllt und unterzeichnet)",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 565,
+   "bezeichnung": "Domizilhaltererklärung",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Bei c/o-Domizil, sofern der Domizilhalter ein Dritter ist (im Original)",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 565,
+   "bezeichnung": "Sacheinlagevertrag (falls zutreffend)",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Bei Gründung mit Sacheinlage; bei Einlage eines Grundstücks öffentlich beurkundet",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 565,
+   "bezeichnung": "Bilanz/Inventar (bei Sacheinlage)",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Bei Sacheinlage",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 565,
+   "bezeichnung": "Gründungsbericht (bei Sacheinlage)",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Bei Sacheinlage",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 565,
+   "bezeichnung": "Prüfungsbestätigung (bei Sacheinlage)",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Bei Sacheinlage",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 565,
+   "bezeichnung": "Lex-Koller-Erklärung",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Im Falle einer Immobiliengesellschaft",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 565,
+   "bezeichnung": "Wahlannahmeerklärung von Mitgliedern des Verwaltungsrats",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Sofern die Wahlannahme nicht an anderer Stelle erfolgt",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 565,
+   "bezeichnung": "Wahlannahmeerklärung der Revisionsstelle",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Falls eine Revisionsstelle gewählt wird",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 566,
+   "bezeichnung": "Verbindliches Gesuch um Beurkundung (Formular)",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 566,
+   "bezeichnung": "Ausweiskopie aller Gründer",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "bund",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 566,
+   "bezeichnung": "Ausweiskopien aller zeichnungsberechtigten Personen",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "bund",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 566,
+   "bezeichnung": "Einzahlungsbescheinigung der Bank im Original",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 566,
+   "bezeichnung": "Domizilerklärung",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 566,
+   "bezeichnung": "Revisionsstellen-Wahlannahmeerklärung",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich, wenn eine Revisionsstelle gewählt wird",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 566,
+   "bezeichnung": "Sacheinlagevertrag",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich bei Sacheinlagen (bei Übertragung von Grundstücken öffentlich beurkundet)",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 566,
+   "bezeichnung": "Bilanz / Inventar",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich bei Sacheinlagen (nicht älter als sechs Monate ab Bilanzstichtag)",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 566,
+   "bezeichnung": "Gründungsbericht",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich bei Sacheinlagen",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 566,
+   "bezeichnung": "Prüfungsbestätigung",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich bei Sacheinlagen",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 566,
+   "bezeichnung": "Erklärung zum Erwerb von Grundstücken durch Personen im Ausland (Lex Koller-Erklärung), im Original",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich bei Immobiliengesellschaften",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 566,
+   "bezeichnung": "Bewilligung beim Grundbuchamt des Kantons Schaffhausen",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Bei Immobiliengesellschaften mit ausländischen Gründern (Personen im Ausland im Sinne der Lex Koller), vor der öffentlichen Beurkundung einzuholen und vorzulegen",
+   "halter": "grundbuch",
+   "fetchable": true,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 566,
+   "bezeichnung": "Vollmacht",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich, wenn ein Bevollmächtigter das Beurkundungsgesuch einreicht (bei Wohnsitz im Ausland beglaubigt, ggf. mit Apostille)",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 567,
+   "bezeichnung": "Verbindliches Gesuch um Beurkundung (ausgefüllt und unterzeichnet)",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 567,
+   "bezeichnung": "Passkopien sämtlicher Urkundsparteien",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "bund",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 567,
+   "bezeichnung": "Kapitalerhöhungsbericht",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Nur erforderlich bei Kapitalerhöhungen",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 567,
+   "bezeichnung": "Prüfungsbestätigung",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Nur erforderlich bei Kapitalerhöhung, welche nicht ausschliesslich mittels Bargeld liberiert wurden und bei denen das Bezugsrecht eingeschränkt wurde",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 567,
+   "bezeichnung": "Sacheinlagevertrag",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Nur erforderlich bei Sacheinlagen.",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 567,
+   "bezeichnung": "Bilanz",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Nur erforderlich in bestimmten Fällen (nicht älter als 6 Monate)",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 567,
+   "bezeichnung": "Umwandlungsplan, analoger Gründungsbericht mit Prüfungsbestätigung",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Nur erforderlich bei Umwandlungen, die von den KMU-Erleichterungen Gebrauch machen.",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 567,
+   "bezeichnung": "Domizilhaltererklärung",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich, wenn ein c/o-Domizil bei einer Drittperson besteht (Art. 117 HRegV)",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 567,
+   "bezeichnung": "Vollmacht mit Substitutionsbefugnis",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich, wenn kein Mitglied des obersten Leitungsorgans persönlich erscheinen kann oder nicht genügend gut Deutsch sprechen kann.",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 568,
+   "bezeichnung": "Erklärung wonach:  a. die Gesellschaft die Voraussetzungen für die Pflicht zur ordentlichen Revision nicht erfüllt",
+   "data_field_id": null,
+   "obligatorium": "unbekannt",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 568,
+   "bezeichnung": "Kopie der von der Generalversammlung genehmigte Jahresrechnung des letzten abgelaufenen Geschäftsjahres",
+   "data_field_id": null,
+   "obligatorium": "unbekannt",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 568,
+   "bezeichnung": "Kopie des Protokolls betreffend die Genehmigung der Jahresrechnung oder eines Auszugs davon",
+   "data_field_id": null,
+   "obligatorium": "unbekannt",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 568,
+   "bezeichnung": "Gegebenenfalls Kopie des Revisionsberichts betreffend das letzte abgelaufene Geschäftsjahr",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Gegebenenfalls (sofern ein Revisionsbericht zum letzten abgelaufenen Geschäftsjahr vorliegt)",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 569,
+   "bezeichnung": "Anmeldeformular für allgemeine Änderungen",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Wenn mit den Wahlen/Abwahlen weitere Änderungen angemeldet werden; für reine Personalmutationen steht laut DVSH-Ablauf (Schritt 1) ein separates Formular zur Verfügung. Ausgefüllt und unterzeichnet im Original.",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 569,
+   "bezeichnung": "Öffentliche Urkunde oder Unterschriftsbeglaubigung bei Personenmutationen",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 569,
+   "bezeichnung": "Ausweiskopie bei unvollständigen Angaben",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich, wenn die Unterschriftsbeglaubigung/Urkunde zu wenige Angaben enthält oder wenn die Urkundsperson kein Ausweisdokument vorlegen lassen hat",
+   "halter": "bund",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 569,
+   "bezeichnung": "Wahlannahmeerklärung",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich für neu gewählte Personen (Verwaltungsratsmitglieder, Geschäftsführer, Zeichnungsberechtigte, Vorstandsmitglieder, Stiftungsratsmitglieder)",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 569,
+   "bezeichnung": "Rücktrittserklärung",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich für ausscheidende Personen mit Zeichnungsberechtigung",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 569,
+   "bezeichnung": "Domizilhaltererklärung",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich bei c/o-Domizil mit Domizilhalterin/Domizilhalter",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 569,
+   "bezeichnung": "Erklärung betreffend Domizil",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich bei Domiziländerung",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 569,
+   "bezeichnung": "Verzichtserklärung auf Revisionsstelle",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich bei Verzicht auf Revision (z.B. Genossenschaft)",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 569,
+   "bezeichnung": "Statutenänderungen",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich bei Änderung des Vereinszwecks oder anderer Statutenbestimmungen",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 570,
+   "bezeichnung": "Anmeldeformular für allgemeine Änderungen",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 570,
+   "bezeichnung": "Öffentliche Urkunde oder Unterschriftsbeglaubigung bei Personenmutationen",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Bei Personenmutationen; muss die Angaben nach Art. 24b HRegV enthalten",
+   "halter": "unbekannt",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 570,
+   "bezeichnung": "Ausweiskopie bei unvollständigen Angaben",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich, wenn die Unterschriftsbeglaubigung/Urkunde zu wenige Angaben enthält oder wenn die Urkundsperson kein Ausweisdokument vorlegen lassen hat",
+   "halter": "bund",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 570,
+   "bezeichnung": "Wahlannahmeerklärung",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich für neu gewählte Personen (Verwaltungsratsmitglieder, Geschäftsführer, Zeichnungsberechtigte, Vorstandsmitglieder, Stiftungsratsmitglieder)",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 570,
+   "bezeichnung": "Rücktrittserklärung",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich für ausscheidende Personen mit Zeichnungsberechtigung",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 570,
+   "bezeichnung": "Domizilhaltererklärung",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich bei c/o-Domizil mit Domizilhalterin/Domizilhalter",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 570,
+   "bezeichnung": "Erklärung betreffend Domizil",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich bei Domiziländerung",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 570,
+   "bezeichnung": "Verzichtserklärung auf Revisionsstelle",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Erforderlich bei Verzicht auf Revision (z.B. Genossenschaft)",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 570,
+   "bezeichnung": "Protokoll Generalversammlung",
+   "data_field_id": null,
+   "obligatorium": "unbekannt",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 571,
+   "bezeichnung": "Erklärung wonach:  a. die Gesellschaft die Voraussetzungen für die Pflicht zur ordentlichen Revision nicht erfüllt;",
+   "data_field_id": null,
+   "obligatorium": "unbekannt",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 571,
+   "bezeichnung": "Kopie der von der Generalversammlung genehmigte Jahresrechnung des letzten abgelaufenen Geschäftsjahres",
+   "data_field_id": null,
+   "obligatorium": "unbekannt",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 571,
+   "bezeichnung": "Kopie des Protokolls betreffend die Genehmigung der Jahresrechnung oder eines Auszugs davon",
+   "data_field_id": null,
+   "obligatorium": "unbekannt",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 571,
+   "bezeichnung": "Gegebenenfalls Kopie des Revisionsberichts betreffend das letzte abgelaufene Geschäftsjahr",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Gegebenenfalls, d.h. wenn für das letzte abgelaufene Geschäftsjahr ein Revisionsbericht vorliegt",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 572,
+   "bezeichnung": "Detailbeschrieb mit Skizzen von Grundriss und Schnitt",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Bei Erstellen eines Schutzbauwerks oder Auffangwanne (Schutzbauwerk -> armierter Beton)",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 572,
+   "bezeichnung": "Grundriss- und Schnittplan",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 572,
+   "bezeichnung": "Situationsplan der Liegenschaft",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 572,
+   "bezeichnung": "Bei Neu- und Umbauten gemäss Baugesetz vorgeschriebenen Pläne",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Bei Neu- und Umbauten",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 573,
+   "bezeichnung": "Pflegeplan 1:5'000 mit Farbbalken für 4 Jahre Planung",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 573,
+   "bezeichnung": "Tabelle mit voraussichtlichen Unterhaltskosten pro Bach",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "beide"
+  },
+  {
+   "form_id": 573,
+   "bezeichnung": "Kostenverteiler",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Falls Dritte beteiligt sind",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 573,
+   "bezeichnung": "Betriebskonzept",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "bei Geschiebeentnahmen und -rückgaben, sofern kein bewilligtes Konzept vorliegt",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 573,
+   "bezeichnung": "Schlussabrechnung mit Auflistung der ausgeführten Arbeiten",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 573,
+   "bezeichnung": "Auflistung der benötigten Maschinen, Geräte und des Personals",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 573,
+   "bezeichnung": "Rechnungsbeilagen",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 574,
+   "bezeichnung": "Wechsel oder Check",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Nur wenn der Gläubiger die Wechselbetreibung verlangt (in den Bemerkungen zu erwähnen)",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 575,
+   "bezeichnung": "Doppel des Zahlungsbefehls im Original",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "sofern sich das Fortsetzungsbegehren auf einen von einem andern Betreibungsamt erlassenen Zahlungsbefehl oder auf eine in einem anderen Betreibungskreis eingeleitete Arrestbetreibung stützt",
+   "halter": "betreibungsregister",
+   "fetchable": true,
+   "source": "beide"
+  },
+  {
+   "form_id": 575,
+   "bezeichnung": "Verlustschein oder Pfandausfallschein",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "sofern dieser die Grundlage der Fortsetzung bildet; laut Formular im Original einzureichen",
+   "halter": "betreibungsregister",
+   "fetchable": true,
+   "source": "beide"
+  },
+  {
+   "form_id": 575,
+   "bezeichnung": "Ein mit Rechtskraftbescheinigung versehener Entscheid, durch den ein allfälliger Rechtsvorschlag beseitigt worden ist",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "falls ein Rechtsvorschlag erhoben und durch Entscheid beseitigt worden ist",
+   "halter": "kanton_andere",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 575,
+   "bezeichnung": "Ausweis über die Kosten des Rechtsöffnungsverfahrens",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "zusätzlich zum Rechtsöffnungsentscheid, falls der Gläubiger für dieselben Ersatz beanspruchen kann",
+   "halter": "kanton_andere",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 575,
+   "bezeichnung": "Nachweis, dass eine Aberkennungsklage nicht erhoben, zurückgezogen oder rechtskräftig abgewiesen worden ist",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "sollte lediglich provisorische Rechtsöffnung erteilt worden sein",
+   "halter": "kanton_andere",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 575,
+   "bezeichnung": "Forderungsurkunde(n) oder Nachweis des Forderungsgrundes",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 576,
+   "bezeichnung": "Bescheinigung des zuständigen Gerichts",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Gläubiger mit provisorischer Pfändung: Bescheinigung, dass eine Aberkennungsklage nicht angestellt oder zurückgezogen oder rechtskräftig abgewiesen worden ist (Erläuterung 4 des Formulars)",
+   "halter": "kanton_andere",
+   "fetchable": true,
+   "source": "formular"
+  },
+  {
+   "form_id": 577,
+   "bezeichnung": "Inventar",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Wenn ein Inventar der Gegenstände besteht: «Ein allfälliges Inventar muss detailliert aufgeführt und von den Parteien im Original unterzeichnet sein. Bei der Anmeldung muss dies beiliegen» und auf der Anmeldung darauf hingewiesen werden.",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 577,
+   "bezeichnung": "Schriftliche Zustimmung des gesetzlichen Vertreters",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "Nur bei minderjährigem Erwerber, wenn bei «Ist die Zustimmung im Kaufvertrag enthalten?» die Option «Die Zustimmung ist auf einem beiliegenden separaten Dokument enthalten.» gewählt wird.",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 581,
+   "bezeichnung": "Trainingsplan",
+   "data_field_id": null,
+   "obligatorium": "unbekannt",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 581,
+   "bezeichnung": "Antrag Kostengutsprache Leistungssport",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  }
+ ]
+}

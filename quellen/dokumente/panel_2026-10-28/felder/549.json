@@ -1,0 +1,155 @@
+{
+ "form_id": 549,
+ "data_fields": [
+  {
+   "name": "Ehefrau – Gesuchstellerin / Gesuchsgegnerin",
+   "definition": "Ankreuzfeld in der Kopfzeile des Ehefrau-Blocks, das angibt, ob die Ehefrau im Verfahren die gesuchstellende oder die gesuchsgegnerische Partei ist.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "Gesuchstellerin",
+    "Gesuchsgegnerin"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ehefrau",
+   "definition": "Personalien und Wohnadresse der Ehefrau, wie sie im Block «Ehefrau» Zeile für Zeile verlangt werden.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name",
+    "Vorname",
+    "Name vor der Heirat",
+    "Mädchenname",
+    "Geburtsdatum",
+    "Beruf",
+    "Heimatort/-land",
+    "Wohnadresse",
+    "Ort",
+    "Telefon"
+   ],
+   "format": ""
+  },
+  {
+   "name": "falls Dolmetscher/in erforderlich, welche Sprache (Ehefrau)",
+   "definition": "Sprache, in die für die Ehefrau gedolmetscht werden muss, nur anzugeben, falls eine Dolmetscherin oder ein Dolmetscher erforderlich ist.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ehemann – Gesuchsteller / Gesuchsgegner",
+   "definition": "Ankreuzfeld in der Kopfzeile des Ehemann-Blocks, das angibt, ob der Ehemann im Verfahren die gesuchstellende oder die gesuchsgegnerische Partei ist.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "Gesuchsteller",
+    "Gesuchsgegner"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ehemann",
+   "definition": "Personalien und Wohnadresse des Ehemanns, wie sie im Block «Ehemann» Zeile für Zeile verlangt werden.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name",
+    "Vorname",
+    "Geburtsdatum",
+    "Beruf",
+    "Heimatort/-land",
+    "Wohnadresse",
+    "Ort",
+    "Telefon"
+   ],
+   "format": ""
+  },
+  {
+   "name": "falls Dolmetscher/in erforderlich, welche Sprache (Ehemann)",
+   "definition": "Sprache, in die für den Ehemann gedolmetscht werden muss, nur anzugeben, falls eine Dolmetscherin oder ein Dolmetscher erforderlich ist.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Datum der Eheschliessung",
+   "definition": "Kalendertag, an dem die Ehe der beiden Parteien geschlossen wurde.",
+   "data_type": "date",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ort der Eheschliessung",
+   "definition": "Ort, an dem die Ehe der beiden Parteien geschlossen wurde.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Gemeinsame Kinder",
+   "definition": "Ankreuzfeld, ob die Ehegatten gemeinsame Kinder haben.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "nein",
+    "ja"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Gemeinsame Kinder – Vorname, geb.",
+   "definition": "Je gemeinsames Kind der Vorname und das Geburtsdatum («geb.»), auszufüllen, falls bei «Gemeinsame Kinder» «ja» angekreuzt ist.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Vorname",
+    "geb."
+   ],
+   "format": "3 Zeilen"
+  },
+  {
+   "name": "Datum",
+   "definition": "Kalendertag der Unterzeichnung des Gesuchs.",
+   "data_type": "date",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Unterschrift",
+   "definition": "Unterschrift der gesuchstellenden Partei auf der einzigen vorgedruckten Unterschriftslinie.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Unterlagen",
+   "definition": "Die auf dem Merkblatt «Eheschutz» aufgeführten Unterlagen, die mit der Einreichung des Gesuchs im Doppel beizulegen sind: Lohnausweis über die Lohnbezüge der letzten 2 Jahre, Lohnabrechnungen der letzten 3 Monate, Arbeitsvertrag (ev. Spesenreglement), ev. Lohnabrechnung und Lohnausweis Kind (Lehrlingslohn), gegebenenfalls Rentenabrechnungen bzw. Abrechnungen der Arbeitslosenkasse der letzten 3 Monate, definitive Steuerveranlagungen des letzten Steuerjahres und provisorische Steuerveranlagung des laufenden Jahres (Kantons- und Bundessteuern), Mietvertrag bzw. aktuelle Mietzinserhöhungen, Krankenkassenpolicen für die gesuchstellende Person und ihre Familie, weitere Versicherungen (Privathaftpflicht, Motorfahrzeug- oder Hausratsversicherung), Bankkontoauszüge, Unterlagen über die grösseren Schuldenpositionen (Kredit-, Steuer- und Unterhaltsschulden) sowie allenfalls weitere Angaben über die Vermögenssituation.",
+   "data_type": "attachment",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "im Doppel"
+  }
+ ],
+ "hinweis": "Geprüft gegen Seite 1 des PDF (Layout-Text und Textpositionen; die Ankreuzfelder «Gesuchstellerin/Gesuchsgegnerin», «Gesuchsteller/Gesuchsgegner» und «nein/ja» sind als Wingdings-Kästchen gedruckt, die Kinderzeilen sind dreimal «Vorname: … geb.»). Seiten 2–3 sind das Merkblatt «Eheschutz», das nur Informationen enthält. Korrekturen: (1) Bei «Unterlagen» die Definition wortgetreu an die Liste im Merkblatt angeglichen. Ergänzt wurden «Lohnbezüge», «des letzten Steuerjahres» / «des laufenden Jahres», «für Sie und Ihre Familie» und «(Kredit-, Steuer- und Unterhaltsschulden)». Typ, Name und Format bleiben gleich. Die Liste ist mit Gedankenstrichen gesetzt und hat keine Ankreuzfelder, deshalb bleibt sie ein attachment und wird keine multiselect. Sonst keine Korrekturen: Alle Felder, Teilfelder (Reihenfolge und Wortlaut wie gedruckt, «Heimatort/-land» ohne den Trennstrich vom Zeilenumbruch), Typen und Pflichtangaben stimmen mit dem Formular überein. Gedruckt sind keine zweite Unterschriftslinie, keine Ort-Zeile neben «Datum» und keine Beilagen-Checkliste. Nicht als Felder aufgenommen, aber offen zu beachten: (a) Der Hinweis «Bitte beachten Sie: Eine Partei mit Wohnsitz im Ausland muss einen Zustellungsbevollmächtigten in der Schweiz angeben» verlangt eine Angabe nur für Parteien im Ausland. Das Formular druckt dafür aber keine Zeile, deshalb wurde kein Feld erfunden. Der Orchestrator sollte entscheiden, ob dafür ein eigenes Feld geführt werden soll. (b) Laut Merkblatt sind «die vollständigen Personalien und Adressen der Ehegatten und der unmündigen Kinder sowie Angaben darüber, was geregelt werden soll» nötig. Das Formular fragt aber weder nach den Rechtsbegehren noch nach Adressen oder Nachnamen der Kinder. Das ist eine Abweichung zwischen Merkblatt und Formular und kein Feld. Keine Angaben der Person sind die Kopfzeile des Kantonsgerichts (Adresse, Telefon, Web), der Hinweis «WICHTIG» zu den Unterlagen und die Rechts- und Verfahrenstexte des Merkblatts (Art. 173 f., 175 ff. ZGB; Art. 252 i.V.m. Art. 271 ZPO). Ein Amtsfeld gibt es nicht."
+}

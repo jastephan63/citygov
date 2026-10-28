@@ -1,0 +1,70 @@
+{
+ "hinweis": "eCH-Urteile Formular 185, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/185 --nur-offene=185",
+ "urteile": [
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "This is the name of the stage-fireworks event, not of a building, so eCH-0129 nameOfBuilding/name does not fit. I searched all 290 standard titles for Veranstalt, Anlass, Event, Feuer, Pyro, Spreng, Bewilligung, Brand, Sicherheit, Polizei and Feuerwehr. I also searched the element names catalogue-wide for event*. One hit names an event: eCH-0102 eventName (eventInformationType). The first reviewer missed it, but it does not apply: eCH-0102 is the eVoting message frame, its status is Abgelöst, and the element names a voting event. All other event* elements (eCH-0020/0039/0058/0078/0116/0132/0147/0211/0223) are register or message events. eCH-0179 is Sistiert with no elements. No standard in force defines the name of a public event. The sibling Abbrenndatum and Personenbelegung are kein_standard too.",
+   "elternfeld": "Angaben zur Veranstaltung",
+   "teilfeld": "Bezeichnung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "This is the Grundbuch number of the parcel where the event takes place (footnote 1 points to the geoportal). eCH-0129 Objektwesen V6.0.0 (Genehmigt) has the element 'number' verbatim in realestateIdentificationType (id 2439) and in buildingIdentificationType (id 2315). For a 'Grundstück', realestateIdentificationType is the more precise context. Corpus practice agrees: 'Grundstück GB Nr.' (8 fields), 'GB-Nr.' (8 parts) and 'Grundbuchnr. (GB-Nr.)' all map to eCH-0129 number.",
+   "elternfeld": "Angaben zur Veranstaltung",
+   "teilfeld": "Grundstück GB-Nr.",
+   "standard": "eCH-0129",
+   "element": "number"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "VS-Nr. is the building-insurance number of the building where the event takes place (footnote 1, geoportal). eCH-0129 (Genehmigt) has insuranceNumber verbatim (buildingInsuranceNumberType) in insuranceObjectOnlyType (id 2494) and in insuranceObjectType. This matches the 8 held 'Gebäude VS-Nr.' fields and 'Versicherungsnr. (VS-Nr.)'.",
+   "elternfeld": "Angaben zur Veranstaltung",
+   "teilfeld": "Gebäude VS-Nr.",
+   "standard": "eCH-0129",
+   "element": "insuranceNumber"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "This is the organiser's company name within an address block. The block can be ticked as Versand- und Rechnungsadresse, and the parent field is mapped to eCH-0010 mailAddress. eCH-0010 V8.1.0 (Genehmigt) has organisationName verbatim in organisationMailAddressInfoType (id 43). This is identical to the sibling 'Firma' under 'Angaben zum Pyrotechniker' (row 1736). It also matches the other parts of this block, which are already mapped to eCH-0010 (Vorname Name, Strasse Nr., PLZ Ort).",
+   "elternfeld": "Angaben zum Veranstalter",
+   "teilfeld": "Firma",
+   "standard": "eCH-0010",
+   "element": "organisationName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "This is the pyrotechnician's telephone number, a contact detail. eCH-0046 Kontakt V6.0.0 (Genehmigt) has phoneNumber verbatim in phoneType (id 914, phoneNumberType). This follows the rule Telefon → eCH-0046 phoneNumber. It goes with the sibling 'E-Mail', which is already mapped to eCH-0046 emailAddress.",
+   "elternfeld": "Angaben zum Pyrotechniker",
+   "teilfeld": "Tel-Nr.",
+   "standard": "eCH-0046",
+   "element": "phoneNumber"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "This is the CE conformity/registration number of a pyrotechnic article, a product identifier. I searched the standard titles for Produkt, Waren, Konformit, Chemi, Gefahr, Spreng, Pyro and Polizei. I searched the elements catalogue-wide for product*, article*, approval*, registrationNumber, conformit* and certific*. The only hits concern agricultural products (eCH-0262/0263 product, organicRegulationConformity, approvalDate of plant-protection products), software products (eCH-0058/0165) and tax certificates, so none applies. eCH-0051 (Polizei/Justiz) has no elements. No eCH standard defines a product conformity number. The sibling columns Pos., Artikelbezeichnung, Anzahl, Effektdauer and Effekthöhe are kein_standard too.",
+   "elternfeld": "Verzeichnis der pyrotechnischen Gegenstände",
+   "teilfeld": "CE-Nr."
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "This is the lateral safety distance in metres that one pyrotechnic article needs. I searched the elements catalogue-wide for distance, safety, clearance, occupan* and capacity, and the standard titles for Sicherheit, Brand, Feuer, Pyro, Spreng, Mass and Einheit. The only distance elements are eCH-0119 distance/distancePerYear/amountPerDistance (car expenses for tax), which do not apply. eCH-0043/0251/0301 (security) are documents without elements. eCH-0051 has no elements. No standard defines pyrotechnic safety distances. The sibling Effekthöhe [m] is kein_standard too.",
+   "elternfeld": "Verzeichnis der pyrotechnischen Gegenstände",
+   "teilfeld": "Sicherheitsabstand seitlich [m]"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "This is the safety distance in the direction of the effect, in metres, for one pyrotechnic article. I ran the same catalogue-wide search as for the lateral distance: distance, safety and clearance in the element names, and Sicherheit, Brand, Feuer, Pyro, Spreng and Mass in the titles. The only distance elements are eCH-0119 tax travel distances, which do not apply. No eCH standard models pyrotechnic safety distances.",
+   "elternfeld": "Verzeichnis der pyrotechnischen Gegenstände",
+   "teilfeld": "Sicherheitsabstand in Effektrichtung [m]"
+  }
+ ]
+}

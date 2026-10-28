@@ -1,0 +1,77 @@
+{
+ "hinweis": "eCH-Urteile Formular 568, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/568 --nur-offene=568",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Confirmed. «Firma: ……» is the cooperative's name as entered in the Handelsregister. eCH-0098 (Unternehmensdaten V6.1.0, Genehmigt) has organisationName in organisationIdentificationType (unitNameType), the element for an organisation's name. The databank maps «Firma» to this element on more than 20 forms (e.g. 307, 310, 317, 363, 435). The eCH-0010 organisationName in organisationMailAddressInfoType is only the address-line form of the name, so it fits worse.",
+   "feld": "Firma",
+   "standard": "eCH-0098",
+   "element": "organisationName"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Confirmed after a sceptical check. Read to the end («ab welchem … gelten soll»), the label asks for the business year in which the waiver starts, which is the start of a period, not a current value. For legal entities the tax period is the business year (Art. 79 DBG). eCH-0276 (E-Bilanz und E-Tax JP, Genehmigt) titleType taxPeriodFrom (date) is the start of that period, and the databank already maps «Abschlussdatum» (form 259) to the matching end element taxPeriodTo. I checked these alternatives: eCH-0229 taxPeriod (headerType, gYear) only labels the declaration's year and does not express «ab»; eCH-0229 periodFrom and eCH-0119 periodFrom/taxPeriod belong to the declaration header (eCH-0119 is for natural persons); eCH-0217 reportingPeriodFrom is a VAT reporting period. A catalogue search for audit, opting, revision, waiv, businessYear, financialYear, fiscalYear and effective found no element for when an opting-out takes effect. eCH-0229 auditor is the auditor party, not a date.",
+   "feld": "Geschäftsjahr, ab welchem der Verzicht gelten soll",
+   "standard": "eCH-0276",
+   "element": "taxPeriodFrom"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Confirmed. This composite is the table of all members of the cooperative, each with first name, name, number of Anteile, place/date and signature. eCH-0276 contentType shareholdersAssociates (shareholdersAssociatesType) is the container for a legal entity's list of shareholders and associates. Its record type detailsShareholdersAssociatesType holds name, givenName and amount. The databank uses the same container for the comparable lists on forms 11 («Beteiligungsverhältnisse») and 115 («TeilhaberInnen»). A search of eCH-0098, eCH-0108 and eCH-0229 for shareholder, associate, member, cooperative and partner found no better container. The parts are judged one by one below.",
+   "feld": "Sämtliche Genossenschafter/innen der Genossenschaft",
+   "standard": "eCH-0276",
+   "element": "shareholdersAssociates"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "The propagated kein_standard is confirmed («propagiert (Name 15x geprüft)»). The field is each member's handwritten signature in the table. No element in the catalogue defines a signature as data. A search for sign in names and contexts found only eCH-0039 signer, a token in a dossier documentType, and eCH-0260 signatures, which are boolean confirmation flags. The signature standards (eCH-0091, 0220, 0230, 0250, 0274, 0282) have no elements.",
+   "feld": "Unterschrift"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Confirmed. This is the first name of a natural person, here a member of the cooperative. The house rule is Vorname → eCH-0044 (Genehmigt) firstName, which exists verbatim in personIdentificationType. The HR forms 308, 311 and 359 map it the same way. eCH-0276 detailsShareholdersAssociatesType givenName was considered but not chosen, because the house rule binds the atomic person name to eCH-0044.",
+   "elternfeld": "Sämtliche Genossenschafter/innen der Genossenschaft",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Confirmed. This is the family name of a natural person (a member of the cooperative), next to «Vorname». The house rule is Name → eCH-0044 (Genehmigt) officialName, which exists verbatim in personIdentificationType, as on HR forms 308, 311 and 359. eCH-0276 detailsShareholdersAssociatesType name was considered, but the house rule wins.",
+   "elternfeld": "Sämtliche Genossenschafter/innen der Genossenschaft",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Confirmed. This is the number of cooperative shares (Anteile) a member holds, an integer count. eCH-0276 numberOfSharesUnits (shareholdersOrAssociatesType, integer) is exactly the number of shares or units held by a shareholder or associate. The databank uses it for share counts on HR forms 307, 317 and 359. I also checked eCH-0276 detailsShareholdersAssociatesType amount (integer), which sits in the same list context as the parent. Its bare name «amount» is ambiguous: eCH-0276 has a second «amount» in freeInputFieldType, and the databank already used it wrongly for «Betrag» on form 258. numberOfSharesUnits is the unambiguous element.",
+   "elternfeld": "Sämtliche Genossenschafter/innen der Genossenschaft",
+   "teilfeld": "Anzahl Genossenschaftsanteile",
+   "standard": "eCH-0276",
+   "element": "numberOfSharesUnits"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Confirmed. In the Formular this part is the «Ort, Datum» column beside each member's «Unterschrift», so it is the place of signing, not an address part, and eCH-0010 town does not fit. I searched the whole catalogue (non-repealed standards) for names containing sign, placeOf, locationAndDate, declarationDate and consent, and for contexts containing sign. The only candidate is eCH-0119 locationAndDate (attachedFormsType/listOfSecuritiesType), a combined place-and-date string from the natural-person tax return. It is not atomic and belongs to another domain. The placeOf… elements in eCH-0011, 0020, 0021 and 0135 are origin, birth, death, marriage and work places. eCH-0039 signer is a token and eCH-0260 signatures are booleans. This matches the earlier kein_standard verdicts for «Ort und Datum» parts (forms 472, 476, 482, 483, 499).",
+   "elternfeld": "Sämtliche Genossenschafter/innen der Genossenschaft",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Confirmed. This is the date on which each member signs, from the «Ort, Datum» column beside the «Unterschrift». I searched the catalogue for a signing or declaration date (dateOfSign, signingDate, declarationDate, names and contexts with sign) and found none. messageDate (eCH-0058/0039/0090 etc.) is the date of an electronic message, not each signer's own date. eCH-0119 locationAndDate is a combined string from the natural-person tax domain. dateFrom and validFrom mark validity ranges, and eCH-0276 acquisitionDuringTheTaxPeriodDateOfAcquisition is a purchase date. This matches the earlier kein_standard verdicts for «Ort und Datum» parts (forms 472, 476, 482, 483, 499).",
+   "elternfeld": "Sämtliche Genossenschafter/innen der Genossenschaft",
+   "teilfeld": "Datum"
+  }
+ ]
+}

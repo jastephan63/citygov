@@ -1,0 +1,368 @@
+{
+ "hinweis": "eCH-Urteile Formular 577, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/577 --nur-offene=577",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Composite with the seller's personal details (Name, Vorname [ausgeschrieben], Beruf, genaue Wohnadresse), so the form asks for a natural person. The container is eCH-0044 personIdentification, as for the other person composites in the corpus. eCH-0133 ownerOrBeneficiary (form 263) belongs to real-estate tax and does not fit movable goods. The parts carry their own elements. Element checked verbatim in eCH-0044 (Genehmigt).",
+   "feld": "Veräusserer",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "The seller's surname is eCH-0044 officialName. Corpus practice is 243 Name parts.",
+   "elternfeld": "Veräusserer",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "The seller's first name «[ausgeschrieben]» is eCH-0044 firstName.",
+   "elternfeld": "Veräusserer",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "The seller's occupation is eCH-0021 jobTitle (jobDataType), as for the 22 assigned Beruf parts in the corpus.",
+   "elternfeld": "Veräusserer",
+   "teilfeld": "Beruf",
+   "standard": "eCH-0021",
+   "element": "jobTitle"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«genaue Wohnadresse» is the complete residential address in one part, not split into street, postcode and town, so eCH-0010 street (the street name only) would be too narrow. A person's residential address is eCH-0011 dwellingAddress, whose type contains the address. This matches the Wohnadresse parts in forms 289, 307 and 317 and the field «Wohnadresse der Drittperson» (306).",
+   "elternfeld": "Veräusserer",
+   "teilfeld": "genaue Wohnadresse",
+   "standard": "eCH-0011",
+   "element": "dwellingAddress"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Composite with the buyer's (consumer's) personal details: Name, Vorname, Beruf, genaue Wohnadresse. The container is eCH-0044 personIdentification, as for the other natural-person composites. The parts carry their own elements.",
+   "feld": "Erwerber",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "The buyer's surname is eCH-0044 officialName.",
+   "elternfeld": "Erwerber",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "The buyer's first name is eCH-0044 firstName.",
+   "elternfeld": "Erwerber",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "The buyer's occupation is eCH-0021 jobTitle.",
+   "elternfeld": "Erwerber",
+   "teilfeld": "Beruf",
+   "standard": "eCH-0021",
+   "element": "jobTitle"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "The buyer's complete residential address in one part is eCH-0011 dwellingAddress. eCH-0010 street would cover only the street name.",
+   "elternfeld": "Erwerber",
+   "teilfeld": "genaue Wohnadresse",
+   "standard": "eCH-0011",
+   "element": "dwellingAddress"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Composite identifying the minor buyer: Name, Vorname, genaue Wohnadresse, Geburtsdatum. eCH-0044 personIdentification is the container and includes officialName, firstName and dateOfBirth.",
+   "feld": "Minderjähriger Erwerber",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "The minor buyer's surname is eCH-0044 officialName.",
+   "elternfeld": "Minderjähriger Erwerber",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "The minor buyer's first name is eCH-0044 firstName.",
+   "elternfeld": "Minderjähriger Erwerber",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "The minor's complete residential address in one part is eCH-0011 dwellingAddress, the same as for the other parties on this form.",
+   "elternfeld": "Minderjähriger Erwerber",
+   "teilfeld": "genaue Wohnadresse",
+   "standard": "eCH-0011",
+   "element": "dwellingAddress"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "The minor's date of birth is eCH-0044 dateOfBirth. Corpus practice is 226 Geburtsdatum parts.",
+   "elternfeld": "Minderjähriger Erwerber",
+   "teilfeld": "Geburtsdatum",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "The composite holds the personal details of the minor buyer's legal representative (KKG Art. 13), not the consent itself (the databank definition says so). The datum is the person who acts as legal representative: eCH-0021 guardianRelationship, which contains personIdentification and address. Its basedOnLaw codes include 327-a (Vormundschaft over minors). Every generic «gesetzliche Vertretung» composite in the corpus is mapped this way (forms 34, 37, 131, 230, 288, 465). parentalRelationship would apply only if the form named the parents, and it does not.",
+   "feld": "Schriftliche Zustimmung des gesetzlichen Vertreters",
+   "standard": "eCH-0021",
+   "element": "guardianRelationship"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "The legal representative's surname is eCH-0044 officialName, the personIdentification inside guardianRelationship, as in forms 34, 131, 230 and 465.",
+   "elternfeld": "Schriftliche Zustimmung des gesetzlichen Vertreters",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "The legal representative's first name is eCH-0044 firstName, as in form 230.",
+   "elternfeld": "Schriftliche Zustimmung des gesetzlichen Vertreters",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "The legal representative's occupation is eCH-0021 jobTitle.",
+   "elternfeld": "Schriftliche Zustimmung des gesetzlichen Vertreters",
+   "teilfeld": "Beruf",
+   "standard": "eCH-0021",
+   "element": "jobTitle"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "In this pair the part is the legal representative's address. eCH-0021 guardianRelationshipType has its own slot for it, address (mailAddressType with the eCH-0010 structure). This matches form 34 («Adresse des gesetzlichen Vertreters») and the container chosen for this composite.",
+   "elternfeld": "Schriftliche Zustimmung des gesetzlichen Vertreters",
+   "teilfeld": "genaue Wohnadresse",
+   "standard": "eCH-0021",
+   "element": "address"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Radio choice Ja / Nein / separates Dokument on whether the consent is inside the purchase contract. A yes/no choice never takes a value element. I searched the whole catalogue for consent, approv, agree, permission and contract. The hits are eCH-0209 transactionApproval (land register), eCH-0130 constructionProjectApproval, eCH-0112 contract (rental) and eCH-0260 contract* (apprenticeship), and eCH-0034 Digitale Verträge has no elements. No standard models whether a consent is part of a contract.",
+   "feld": "Ist die Zustimmung im Kaufvertrag enthalten?"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "The databank models this row as the enclosed document itself (data_type attachment), not as the radio option. That option is already one of the allowed values of «Ist die Zustimmung im Kaufvertrag enthalten?». The generic container for an enclosure in an eCH message is eCH-0058 attachment (headerType), used for attachments in forms 471–498, 519 and 581. No standard defines a «consent of the legal representative» document type.",
+   "feld": "Zustimmung auf beiliegendem separatem Dokument",
+   "standard": "eCH-0058",
+   "element": "attachment"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "The calendar date on which the legal representative consented to the consumer credit contract. I searched the whole catalogue for consent and date elements. eCH-0021 guardianMeasure validity dates concern a KESB measure, not a consent. eCH-0039 and eCH-0058 dates are document and message dates, eCH-0112 beginOfContract is a rental contract and eCH-0178 dateDocumentedLegalAct is a land-register act. No element for a consent date.",
+   "feld": "Datum der Zustimmung"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Composite with the assignee's personal details: Name, Vorname, Beruf, genaue Wohnadresse. The form asks for a natural person, so the container is eCH-0044 personIdentification. No eCH standard has a cession or assignee role (searched cession, assign, assignee, creditor, claim). The parts carry their own elements.",
+   "feld": "Allfälliger Zessionar",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "The assignee's surname is eCH-0044 officialName.",
+   "elternfeld": "Allfälliger Zessionar",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "The assignee's first name is eCH-0044 firstName.",
+   "elternfeld": "Allfälliger Zessionar",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "The assignee's occupation is eCH-0021 jobTitle.",
+   "elternfeld": "Allfälliger Zessionar",
+   "teilfeld": "Beruf",
+   "standard": "eCH-0021",
+   "element": "jobTitle"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "The assignee's complete residential address in one part is eCH-0011 dwellingAddress, the same as for seller and buyer on this form.",
+   "elternfeld": "Allfälliger Zessionar",
+   "teilfeld": "genaue Wohnadresse",
+   "standard": "eCH-0011",
+   "element": "dwellingAddress"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Free text on what was assigned (OR Art. 164 ff.). I searched the whole catalogue for cession, assign, claim, debt, creditor and debtor. The only hits are tax elements (eCH-0278 privateClaims and creditor, eCH-0276 debts and receivables) and eCH-0129 accessionDate, eCH-0134 concession and eCH-0178 dateOfAccessionByOperationOfLaw (real estate). None is a cession. No standard models the content of an assignment.",
+   "feld": "Inhalt der Zession"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "The date on which the assignment was agreed. No standard models a cession (see Inhalt der Zession). The date elements found (eCH-0178 dateDocumentedLegalAct for notarised land-register acts, eCH-0039 and eCH-0058 document and message dates) mean something else.",
+   "feld": "Datum der Zession"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "A single free-text line naming who applies for the registration: seller, buyer or assignee, often a company. The propagated eCH-0010 mailAddress (verbatim in the catalogue, eCH-0010 Genehmigt) is the postal-address container for a person or organisation (person/organisation + addressInformation). It fits a party designation of unknown legal form and matches forms 333 (Antragsteller) and 468 (Antragsteller / Löschberechtigter).",
+   "feld": "Antragsteller"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Description of the movable goods under retention of title (ZGB Art. 715). I searched the whole catalogue for goods, movable, inventory, object, ownership and retention. eCH-0129, eCH-0133 and eCH-0134 cover real estate and buildings. eCH-0119 movableProperty* and eCH-0278 movableHouseholdAssets are tax assets. eCH-0149 (Fundgegenstände) has no elements and covers lost property. eCH-0298 Waffenregister is In Arbeit with no elements. No standard describes goods in the retention-of-title register.",
+   "feld": "Bezeichnung der Gegenstände"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "The detailed inventory signed by the parties must be enclosed with the application (data_type attachment), so it is a Beilage. Its container in an eCH message is eCH-0058 attachment (headerType), as for the comparable enclosures in forms 471–498, 519 and 581. No standard defines the inventory's content.",
+   "feld": "Inventar",
+   "standard": "eCH-0058",
+   "element": "attachment"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "The place where the goods are kept is an address entered as one free text. eCH-0010 addressInformation is the address block, as for «Standort des Fahrzeugs» in forms 33 and 45. eCH-0129 constructionLocalisation and eCH-0211 realestateInformation apply only to buildings and land.",
+   "feld": "Standort der Gegenstände",
+   "standard": "eCH-0010",
+   "element": "addressInformation"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "The date on which seller and buyer agreed the retention of title. I searched the whole catalogue for date, agree and contract elements. eCH-0112 beginOfContract is the start of a rental contract (Drittmeldepflicht), eCH-0178 dateDocumentedLegalAct is a notarised land-register act and eCH-0260 contract* are apprenticeship contracts. None defines the agreement date of a retention of title or a consumer credit contract.",
+   "feld": "Datum der Vereinbarung"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "The outstanding claim from the consumer credit contract in CHF. I searched the catalogue for amount, claim, debt, creditor, loan and payment. All hits are tax data (eCH-0119, eCH-0276, eCH-0278 privateClaims and creditor) or land-register prices (eCH-0178). No standard covers debt enforcement or consumer credit, and none has an element for the remaining claim from a credit contract.",
+   "feld": "Forderungsbetrag (restlich)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Due dates of the remaining claim, possibly with the single instalments. I searched the catalogue for instal, dueDate, rate and payment. The instal* hits are eCH-0211 solarInstallation, eCH-0119 paymentDate is a tax payment and eCH-0178 taxPaymentDateDeferral is a land-gains tax deferral. No standard has a repayment schedule.",
+   "feld": "Verfalltermine"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Place and date of signing the application. The propagated verdict kein_standard is correct: no eCH standard has an element for the place and date of signing. eCH-0039 signer is the signer's name, eCH-0039 and eCH-0058 dates are document and message dates, and the signature standards have no elements. This matches the 16 Ort and Datum parts of «Ort und Datum» already judged kein_standard.",
+   "feld": "Ort und Datum"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "The place of signing is not an address and not the place of residence. No element exists for it (searched place*, town and locality: the hits are places of birth, origin, marriage, work and address parts). Matches the 16 Ort parts of «Ort und Datum» judged kein_standard.",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "The date of signing. No eCH element defines it: eCH-0039 openingDate and eCH-0058 messageDate and eventDate are GEVER and message dates. Matches the 16 Datum parts of «Ort und Datum» judged kein_standard.",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Handwritten signature of the seller. The signature standards (eCH-0091, 0220, 0230, 0250, 0274, 0282) have no elements and concern electronic signature procedures, and eCH-0039 signer is only the signer's name. Matches the 88 signature fields judged kein_standard in the corpus.",
+   "feld": "Unterschrift des Veräusserers / Verkäufers"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Handwritten signature of the buyer. Same finding as for the seller's signature: no eCH element for a signature.",
+   "feld": "Unterschrift des Erwerbers / Käufers"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Handwritten signature of the assignee. No eCH element for a signature (searched as for the seller's signature).",
+   "feld": "Unterschrift des Zessionars"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Place and date at which the buyer certifies receipt of the contract copy at least 14 days earlier and no withdrawal (KKG Art. 16). Like «Ort und Datum», these are the place and date of signing. No eCH element exists (searched signer, openingDate, messageDate and the signature standards, which have no elements).",
+   "feld": "Ort und Datum (Bescheinigung nach Art. 16 KKG)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "The place where the KKG certificate is signed. It is not an address, and no element exists for it (as for «Ort und Datum»/Ort).",
+   "elternfeld": "Ort und Datum (Bescheinigung nach Art. 16 KKG)",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "The date the KKG certificate is signed. No eCH element exists for a signing or certification date (as for «Ort und Datum»/Datum).",
+   "elternfeld": "Ort und Datum (Bescheinigung nach Art. 16 KKG)",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "The buyer's handwritten signature under the KKG Art. 16 certificate. No eCH element for a signature (searched as for the other signatures).",
+   "feld": "Unterschrift des Erwerbers / Käufers (Bescheinigung nach Art. 16 KKG)"
+  }
+ ]
+}

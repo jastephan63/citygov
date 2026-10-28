@@ -1,0 +1,67 @@
+{
+ "form_id": 544,
+ "mappings": [
+  {
+   "data_field": "Personalien",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Bank-/Postverbindung",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Beruf/gegenwärtige Tätigkeit",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Im Kanton Schaffhausen wohnhaft seit (Jahr) oder Atelier im Kanton Schaffhausen seit (Jahr)",
+   "cites": [
+    {
+     "cref": "SHR 441.100",
+     "article_no": "Art. 11",
+     "beleg": "Beitragsleistungen an Kulturschaffende, Werke oder Kulturstätten ausserhalb des Kantons können ausgerichtet werden, wenn die Projekte eine der folgenden Voraussetzungen erfüllen"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Bürgerort oder anderer Bezug zum Kanton Schaffhausen",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Begründung des Nutzens eines Aufenthalts in Berlin",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Angabe zu den möglichen Aufenthaltsperioden",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Erforderliche Dokumente für den Antrag",
+   "cites": [
+    {
+     "cref": "SHR 441.100",
+     "article_no": "Art. 10",
+     "beleg": "Finanzielle Beiträge und Leistungen werden auf Gesuch hin ausgerichtet."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Ort und Datum",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Unterschrift",
+   "cites": [],
+   "over_collection": true
+  }
+ ]
+}

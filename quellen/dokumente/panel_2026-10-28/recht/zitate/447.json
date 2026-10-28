@@ -1,0 +1,200 @@
+{
+ "form_id": 447,
+ "mappings": [
+  {
+   "data_field": "Fahrzeugart",
+   "cites": [
+    {
+     "cref": "SHR 741.100",
+     "article_no": "Art. 2"
+    },
+    {
+     "cref": "SHR 741.011",
+     "article_no": "§ 2"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Marke / Typ",
+   "cites": [
+    {
+     "cref": "SHR 741.100",
+     "article_no": "Art. 2"
+    },
+    {
+     "cref": "SHR 741.011",
+     "article_no": "§ 2"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Stammnummer",
+   "cites": [
+    {
+     "cref": "SHR 741.100",
+     "article_no": "Art. 2"
+    },
+    {
+     "cref": "SHR 741.011",
+     "article_no": "§ 2"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Fahrgestellnummer",
+   "cites": [
+    {
+     "cref": "SHR 741.100",
+     "article_no": "Art. 2"
+    },
+    {
+     "cref": "SHR 741.011",
+     "article_no": "§ 2"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Verwendung nur für private Zwecke",
+   "cites": [
+    {
+     "cref": "SHR 741.011",
+     "article_no": "§ 2"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Jährliche Fahrkilometer",
+   "cites": [
+    {
+     "cref": "SHR 741.011",
+     "article_no": "§ 2"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Ort und Datum",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Personalien Fahrzeughalter/In",
+   "cites": [
+    {
+     "cref": "SHR 741.100",
+     "article_no": "Art. 2"
+    },
+    {
+     "cref": "SHR 741.011",
+     "article_no": "§ 2"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Unterschrift Fahrzeughalter/In",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Erste Inverkehrsetzung",
+   "cites": [
+    {
+     "cref": "SHR 741.011",
+     "article_no": "§ 2"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Ist technisch in einwandfreiem Zustand",
+   "cites": [
+    {
+     "cref": "SHR 741.011",
+     "article_no": "§ 2"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Entscheid Zulassung als Veteranenfahrzeug",
+   "cites": [
+    {
+     "cref": "SHR 741.011",
+     "article_no": "§ 2"
+    },
+    {
+     "cref": "SHR 741.100",
+     "article_no": "Art. 2"
+    },
+    {
+     "cref": "SHR 741.100",
+     "article_no": "Art. 9"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Beanstandungen Fahrgestell/Unterbau",
+   "cites": [
+    {
+     "cref": "SHR 741.011",
+     "article_no": "§ 2"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Beanstandungen Karosserie/Lackierung",
+   "cites": [
+    {
+     "cref": "SHR 741.011",
+     "article_no": "§ 2"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Technisch nicht einwandfrei",
+   "cites": [
+    {
+     "cref": "SR 741.01",
+     "article_no": "Art. 13",
+     "beleg": "Das Fahrzeug kann jederzeit kontrolliert werden; es ist neu zu prüfen, wenn wesentliche Änderungen daran vorgenommen wurden oder Zweifel an seiner Betriebssicherheit bestehen. / Der Bundesrat schreibt regelmässige Nachprüfungen für Fahrzeuge vor."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Melde- und prüfpflichtige Änderungen, welche noch nicht gemeldet und noch nicht eingetragen sind",
+   "cites": [
+    {
+     "cref": "SR 741.01",
+     "article_no": "Art. 13",
+     "beleg": "es ist neu zu prüfen, wenn wesentliche Änderungen daran vorgenommen wurden"
+    },
+    {
+     "cref": "SR 741.51",
+     "article_no": "Art. 74",
+     "beleg": "Die Inhaber haben unter Vorlage des Fahrzeugausweises der Behörde innert 14 Tagen jede Tatsache zu melden, die eine Änderung oder Ersetzung des Ausweises erfordert."
+    },
+    {
+     "cref": "SR 741.51",
+     "article_no": "Art. 75",
+     "beleg": "Für die Meldung technischer Änderungen (Art. 34 Abs. 2 VTS) ist ein besonderer Prüfungsbericht (Form. 13.20 B) erforderlich."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Diverses/Bemerkungen",
+   "cites": [],
+   "over_collection": true
+  }
+ ]
+}

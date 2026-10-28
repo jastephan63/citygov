@@ -1,0 +1,24 @@
+{
+ "verdicts": [
+  {
+   "id": 6647,
+   "subjekt": "gemischt",
+   "grund": "Absender ist die Beistandsperson; die KLIB-Vorlage (Benutzer/Abteilung) zeigt Nutzung durch Berufsbeistände mit Büroadresse der Berufsbeistandschaft, private Mandatsträger geben ihre Wohnadresse an – Wohnadresse aus dem Register wäre nicht sicher richtig."
+  },
+  {
+   "id": 6648,
+   "subjekt": "organisation",
+   "grund": "Name und Adresse des Finanzinstituts (Bank), das die Zahlung ausführt – eine juristische Person, keine Privatperson."
+  },
+  {
+   "id": 6656,
+   "subjekt": "gemischt",
+   "grund": "Gleicher Absenderblock der Beistandsperson wie im Zahlungsauftrag: je nach Mandat private Wohnadresse oder Büroadresse der Berufsbeistandschaft, daher nicht sicher eine Privatperson."
+  },
+  {
+   "id": 6658,
+   "subjekt": "natuerliche_person",
+   "grund": "Vorname, Name, Geburtsdatum und Adresse der verbeiständeten Person – eindeutig die eigenen Personalien einer natürlichen Person."
+  }
+ ]
+}

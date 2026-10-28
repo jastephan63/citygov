@@ -1,0 +1,149 @@
+{
+ "form_id": 558,
+ "data_fields": [
+  {
+   "name": "GmbH",
+   "definition": "Firma der Gesellschaft mit beschränkter Haftung, deren Geschäftsführung tagt, und ihr Sitz, wie in der Kopfzeile «der … GmbH, mit Sitz in …» einzusetzen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Firma",
+    "Sitz"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Datum und Zeit",
+   "definition": "Kalenderdatum und Uhrzeit der Sitzung der Geschäftsführung.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Datum",
+    "Zeit"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Ort",
+   "definition": "Ort, an dem die Sitzung der Geschäftsführung stattfindet.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Vorsitz",
+   "definition": "Name der Person, welche die Sitzung eröffnet und den Vorsitz übernimmt; dieselbe Angabe wird im Eröffnungssatz wiederholt.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Protokoll",
+   "definition": "Name der Person, die vom Vorsitz als Protokollführer bezeichnet wird; dieselbe Angabe wird im Eröffnungssatz wiederholt.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Neben ihm/ihr sind anwesend",
+   "definition": "Namen der weiteren an der Sitzung anwesenden Mitglieder der Geschäftsführung neben der vorsitzenden Person.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Erteilung einer Zeichnungsberechtigung",
+   "definition": "Art der Zeichnungsberechtigung, die unter Traktandum 1 erteilt wird; das Formular druckt beide Varianten in eckigen Klammern «[Einzelunterschrift / Kollektivunterschrift zu zweien]», die zutreffende ist auszuwählen.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "Einzelunterschrift",
+    "Kollektivunterschrift zu zweien"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Folgender Person (Erteilung einer Zeichnungsberechtigung)",
+   "definition": "Name der Person, der die Zeichnungsberechtigung erteilt wird, mit den Angaben «von» (nach Handelsregisterpraxis Heimatort bzw. Staatsangehörigkeit) und «in» (Wohnort).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name",
+    "von",
+    "in"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Entziehung einer Zeichnungsberechtigung",
+   "definition": "Art der Zeichnungsberechtigung, die unter Traktandum 2 entzogen wird; das Formular druckt beide Varianten in eckigen Klammern «[Einzelunterschrift / Kollektivunterschrift zu zweien]», die zutreffende ist auszuwählen.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "Einzelunterschrift",
+    "Kollektivunterschrift zu zweien"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Folgender Person (Entziehung einer Zeichnungsberechtigung)",
+   "definition": "Name der Person, der die Zeichnungsberechtigung entzogen wird, mit den Angaben «von» (nach Handelsregisterpraxis Heimatort bzw. Staatsangehörigkeit) und «in» (Wohnort).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name",
+    "von",
+    "in"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Verschiedenes",
+   "definition": "Freitext zu weiteren unter dem Traktandum «Verschiedenes» besprochenen Punkten.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Vorsitzender",
+   "definition": "Eigenhändige Unterschrift der vorsitzenden Person mit Name und Vorname in Klarschrift (Platzhalter «[NAME, Vorname]») unter der Unterschriftslinie.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "NAME",
+    "Vorname"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Protokollführer",
+   "definition": "Eigenhändige Unterschrift der protokollführenden Person mit Name und Vorname in Klarschrift (Platzhalter «[NAME, Vorname]») unter der Unterschriftslinie.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "NAME",
+    "Vorname"
+   ],
+   "format": ""
+  }
+ ],
+ "hinweis": "Korrekturen: (1) und (2) Definitionen von «Erteilung einer Zeichnungsberechtigung» und «Entziehung einer Zeichnungsberechtigung» präzisiert. Die Wendung «gelb markierter Platzhalter, Zutreffendes stehen lassen» stand so nicht auf dem Formular. Das Formular druckt nur die Auswahl in eckigen Klammern «[Einzelunterschrift / Kollektivunterschrift zu zweien]». Gelb markiert sind auf diesem Formular alle Ausfüllstellen. Sonst gibt es keine Korrekturen. Ich habe das Original (docx, 16 Textfelder, keine Kontrollkästchen, keine Tabelle, keine Kopf- oder Fusszeile, keine Fussnoten) Zeile für Zeile geprüft. Alle Feldnamen, Typen, Teilfelder und Pflichtangaben stimmen. Es fehlt keine Angabe: Es gibt keine Beilagen-Liste, keine dritte Unterschrift und keine Ort/Datum-Zeile bei den Unterschriften. Zusammengeführte Ausfüllstellen: Die beiden leeren Stellen im Eröffnungssatz («… eröffnet die Sitzung, … bezeichnet … als Protokollführer») sind dieselben Angaben wie «Vorsitz» und «Protokoll». Ebenso betreffen die Klarschrift-Platzhalter «[NAME, Vorname]» unter den Unterschriftslinien dieselben Personen. Die Angaben sind deshalb nicht doppelt erfasst. «Verschiedenes» bleibt freiwillig, weil es wie «Bemerkungen» ein freier Sammelpunkt ist. Keine Felder der ausfüllenden Person: der fest gedruckte Titel und die Traktandenliste (1. Erteilung, 2. Entziehung einer Zeichnungsberechtigung, 3. Verschiedenes), die festen Sätze zur ordnungsgemässen Einladung und zur Beschlussfähigkeit sowie die gelb markierten Pronomen «Er/Sie» und «ihm/ihr». Die Pronomen sind nur sprachlich an die vorsitzende Person anzupassen und keine eigene Angabe. Unstimmigkeiten im Formular (nur gemeldet, Formular nicht geändert): (a) Die Traktandenliste nummeriert «3. Verschiedenes», im Protokolltext steht «4. Verschiedenes», und ein Traktandum 3 fehlt dort. (b) Der Text verwendet «Er/Sie» und «ihm/ihr», die Unterschriftszeilen und der Eröffnungssatz aber nur die männlichen Formen «Vorsitzender», «Protokollführer» und «als Protokollführer». (c) Ein Textfeld wird für zwei Angaben verwendet: Ein einziges Feld nimmt «Datum und Zeit» auf."
+}

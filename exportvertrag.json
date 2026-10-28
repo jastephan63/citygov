@@ -7,16 +7,16 @@
  },
  "exporte": {
   "citygov_datafields.jsonl": {
-   "version": "1.0.0",
+   "version": "1.0.1",
    "schema": "schema/citygov_datafields.schema.json",
-   "schema_sha256": "fa07a744fbff2b97f932b92ed0a0dec38f3f8a1ffa264233cd544bb6309f2062",
+   "schema_sha256": "f62a71691f739fe1c154b5b18b70c1fe2ecd953eef507b244afea5802270b407",
    "version_steht": "nur hier: eine JSON-Zeilen-Datei hat keine Kopfzeile",
-   "seit": "2026-10-05T01:48:20",
+   "seit": "2026-10-28T20:09:36",
    "zaehlungen": {
-    "$": 5991,
-    "$.allowed_values[]": 4881,
-    "$.legal_basis[]": 6334,
-    "$.subfields[]": 7676
+    "$": 6700,
+    "$.allowed_values[]": 5095,
+    "$.legal_basis[]": 7309,
+    "$.subfields[]": 8652
    }
   },
   "citygov_datarules.jsonl": {
@@ -30,34 +30,34 @@
    }
   },
   "citygov_ech_schemas.json": {
-   "version": "1.0.1",
+   "version": "1.0.2",
    "schema": "schema/citygov_ech_schemas.schema.json",
-   "schema_sha256": "8e2e9e3c2307e5db48ea9c2a93494a9efa65bc5935422eb5c36f2a84d2fc3c28",
+   "schema_sha256": "d06d2bfe588b81c8a83df7ef12e7ac56c75d7aef1a56a81e9e11fb2e98825ca2",
    "version_steht": "meta.vertrag.version",
-   "seit": "2026-10-05T09:54:43",
+   "seit": "2026-10-28T20:09:36",
    "zaehlungen": {
-    "$.formulare[]": 473,
-    "$.formulare[].ech.*": 2380,
-    "$.formulare[].ohne_standard[]": 3770,
+    "$.formulare[]": 513,
+    "$.formulare[].ech.*": 2568,
+    "$.formulare[].ohne_standard[]": 4575,
     "$.meta.xsd_versionen.*": 82
    }
   },
   "citygov_llm.json": {
-   "version": "1.0.2",
+   "version": "1.1.0",
    "schema": "schema/citygov_llm.schema.json",
-   "schema_sha256": "0a8d62ade54c51ff620845960a834b0985e039044090d86401400a5e9859e49f",
+   "schema_sha256": "cff1c06d9117a0cb4768ef998e13c50d095de7bd0cc5da74ab116e7236c1fcce",
    "version_steht": "meta.vertrag.version",
-   "seit": "2026-10-05T09:54:43",
+   "seit": "2026-10-28T20:09:36",
    "zaehlungen": {
     "$.begriffe[]": 470,
     "$.begriffe[].labels[]": 3037,
     "$.datenhandhabung[]": 248,
-    "$.lebenslagen[]": 110,
-    "$.lebenslagen[].services[]": 855,
-    "$.lebenslagen[].services_modelliert[]": 745,
-    "$.lebenslagen[].services_ohne_daten[]": 110,
-    "$.lebenslagen[].wiederholt[]": 1261,
-    "$.meta.kennungen.nicht_aktiv[]": 3,
+    "$.lebenslagen[]": 113,
+    "$.lebenslagen[].services[]": 915,
+    "$.lebenslagen[].services_modelliert[]": 772,
+    "$.lebenslagen[].services_ohne_daten[]": 143,
+    "$.lebenslagen[].wiederholt[]": 1346,
+    "$.meta.kennungen.nicht_aktiv[]": 216,
     "$.meta.labels.cat_order[]": 21,
     "$.meta.labels.einheit.begriff[]": 2,
     "$.meta.labels.einheit.divergenz[]": 2,
@@ -76,65 +76,65 @@
     "$.meta.labels.todo_cats[]": 21,
     "$.meta.labels.todo_cats[][]": 105,
     "$.meta.trust_rules.*": 20,
-    "$.services[]": 491,
-    "$.services[].dvsh_verfahren.ablauf[]": 1819,
-    "$.services[].dvsh_verfahren.recht_bund[]": 660,
-    "$.services[].dvsh_verfahren.recht_kantonal[]": 343,
-    "$.services[].dvsh_verfahren.unterlagen[]": 949,
-    "$.services[].dvsh_verfahren.voraussetzungen[]": 1346,
+    "$.services[]": 518,
+    "$.services[].dvsh_verfahren.ablauf[]": 2000,
+    "$.services[].dvsh_verfahren.recht_bund[]": 693,
+    "$.services[].dvsh_verfahren.recht_kantonal[]": 389,
+    "$.services[].dvsh_verfahren.unterlagen[]": 1004,
+    "$.services[].dvsh_verfahren.voraussetzungen[]": 1466,
     "$.services[].findings[]": 388,
-    "$.services[].forms[]": 473,
-    "$.services[].lebenslagen_ech0049[]": 855,
+    "$.services[].forms[]": 513,
+    "$.services[].lebenslagen_ech0049[]": 915,
     "$.services[].process_steps[]": 1458
    }
   },
   "citygov_prefill.json": {
-   "version": "1.1.0",
+   "version": "1.1.1",
    "schema": "schema/citygov_prefill.schema.json",
-   "schema_sha256": "a2be99310312f6942804abaec18d1f06e423e69c9ec93d2eebd571f42429ba1d",
+   "schema_sha256": "1f7045647d766f1c984ac16fc3710d32a053f94cec8709915c203f00873e7a75",
    "version_steht": "meta.vertrag.version",
-   "seit": "2026-10-05T09:54:43",
+   "seit": "2026-10-28T20:09:36",
    "zaehlungen": {
-    "$.formulare.*": 467,
-    "$.formulare.*[]": 8144,
-    "$.meta.formular_kennung.*": 467,
+    "$.formulare.*": 507,
+    "$.formulare.*[]": 8718,
+    "$.meta.formular_kennung.*": 507,
     "$.meta.zaehlung.formulare_ohne_ech_punkt[]": 6,
     "$.meta.zaehlung.partei.*": 3
    }
   },
   "citygov_verzeichnis.json": {
-   "version": "1.0.0",
+   "version": "1.0.1",
    "schema": "schema/citygov_verzeichnis.schema.json",
-   "schema_sha256": "8d8edd762314765b094e1708d194c57b237492048aa8e1f9c9683911dfa5c33d",
+   "schema_sha256": "0f15967cfe48cdf1b0a51e79e8f7dcc3e48abbb0e474d2ad66ec80ef9219e082",
    "version_steht": "meta.vertrag.version",
-   "seit": "2026-10-05T01:48:20",
+   "seit": "2026-10-28T20:09:36",
    "zaehlungen": {
     "$.meta.felder.*": 5,
-    "$.verzeichnis[]": 473,
+    "$.verzeichnis[]": 513,
     "$.verzeichnis[].aufbewahrung.fristen[]": 109,
-    "$.verzeichnis[].aufbewahrung.standardregime.refs[]": 1672,
-    "$.verzeichnis[].datenkategorien.besonders_schuetzenswert[]": 71,
-    "$.verzeichnis[].empfaenger[]": 387
+    "$.verzeichnis[].aufbewahrung.standardregime.refs[]": 1832,
+    "$.verzeichnis[].datenkategorien.besonders_schuetzenswert[]": 80,
+    "$.verzeichnis[].empfaenger[]": 397
    }
   },
   "data_export.json": {
-   "version": "1.3.0",
+   "version": "1.5.0",
    "schema": "schema/data_export.schema.json",
-   "schema_sha256": "4e8e50bf7601c944e8557af23704e0ff83dbb1f41c226056d876150716428f3c",
+   "schema_sha256": "a2f13177fecae82bfda44efb1748653e59196085fdf791b5cca77dea8d2a7040",
    "version_steht": "vertrag.version",
-   "seit": "2026-10-05T14:24:42",
+   "seit": "2026-10-28T20:12:30",
    "zaehlungen": {
-    "$.attribut_katalog[]": 2766,
+    "$.attribut_katalog[]": 2762,
     "$.begriffe[]": 470,
     "$.begriffe[].labels[]": 3037,
     "$.buergersicht.personen[]": 3,
-    "$.buergersicht.personen[].einwilligungen[]": 1,
-    "$.buergersicht.personen[].faelle[]": 49,
-    "$.buergersicht.personen[].loeschkalender[]": 13,
+    "$.buergersicht.personen[].einwilligungen[]": 7,
+    "$.buergersicht.personen[].faelle[]": 50,
+    "$.buergersicht.personen[].loeschkalender[]": 11,
     "$.datenhandhabung[]": 248,
     "$.datenmodell.beilagen.je_register.*": 9,
-    "$.datenmodell.beilagen.je_register.*[]": 70,
-    "$.datenmodell.dienststellen.*": 52,
+    "$.datenmodell.beilagen.je_register.*[]": 77,
+    "$.datenmodell.dienststellen.*": 56,
     "$.datenmodell.einwohnerregister_andere.familie.rollen[]": 5,
     "$.datenmodell.einwohnerregister_andere.je_rolle.*": 19,
     "$.datenmodell.kennungen.aktiv.*": 8,
@@ -157,64 +157,64 @@
     "$.datenmodell.register_gruppen[]": 7,
     "$.datenmodell.register_gruppen[].register[]": 18,
     "$.datenmodell.zugriff.*": 2,
-    "$.dienststellen_uebersicht[]": 52,
-    "$.dienststellen_uebersicht[].entscheide[]": 125,
-    "$.dienststellen_uebersicht[].formulare[]": 473,
-    "$.dienststellen_uebersicht[].kontakt[]": 133,
-    "$.dienststellen_uebersicht[].massnahmen[]": 111,
-    "$.dienststellen_uebersicht[].services[]": 491,
-    "$.dienststellen_uebersicht[].standard.ech.*": 182,
-    "$.dienststellen_uebersicht[].stufen.*": 176,
+    "$.dienststellen_uebersicht[]": 56,
+    "$.dienststellen_uebersicht[].entscheide[]": 132,
+    "$.dienststellen_uebersicht[].formulare[]": 513,
+    "$.dienststellen_uebersicht[].kontakt[]": 136,
+    "$.dienststellen_uebersicht[].massnahmen[]": 112,
+    "$.dienststellen_uebersicht[].services[]": 518,
+    "$.dienststellen_uebersicht[].standard.ech.*": 187,
+    "$.dienststellen_uebersicht[].stufen.*": 183,
     "$.ech_codelists.*": 49,
     "$.ech_codelists.*[]": 2090,
     "$.esh_katalog[]": 25,
-    "$.forms[]": 473,
-    "$.forms[].beilagen[]": 1190,
-    "$.forms[].blockers[]": 964,
-    "$.forms[].data_fields[]": 5991,
-    "$.forms[].disclosures[]": 387,
-    "$.forms[].gestaltung.merkmale[]": 5696,
-    "$.forms[].handlungsbedarf[]": 2532,
-    "$.forms[].konzepte.abweichungen[]": 230,
-    "$.forms[].outcome.gesetzesebenen[]": 30,
-    "$.forms[].outcome.rechtsmittel_kandidaten[]": 409,
-    "$.forms[].parteien[]": 1502,
-    "$.forms[].register.je_register.*": 1094,
+    "$.forms[]": 513,
+    "$.forms[].beilagen[]": 1380,
+    "$.forms[].blockers[]": 1041,
+    "$.forms[].data_fields[]": 6700,
+    "$.forms[].disclosures[]": 397,
+    "$.forms[].gestaltung.merkmale[]": 6135,
+    "$.forms[].handlungsbedarf[]": 2783,
+    "$.forms[].konzepte.abweichungen[]": 241,
+    "$.forms[].outcome.gesetzesebenen[]": 41,
+    "$.forms[].outcome.rechtsmittel_kandidaten[]": 577,
+    "$.forms[].parteien[]": 1567,
+    "$.forms[].register.je_register.*": 1170,
     "$.forms[].retention[]": 109,
     "$.forms[].retention_decisions[]": 0,
-    "$.forms[].similar[]": 40,
-    "$.forms[].standard.ech.*": 1233,
-    "$.forms[].standard_divergenzen.angleichen[]": 1519,
-    "$.forms[].standard_divergenzen.bezeichnungen[]": 4125,
-    "$.forms[].standard_divergenzen.fehlend[]": 902,
-    "$.gestaltung.dienststellen[]": 52,
-    "$.gestaltung.dienststellen[].top[]": 135,
+    "$.forms[].similar[]": 100,
+    "$.forms[].standard.ech.*": 1319,
+    "$.forms[].standard_divergenzen.angleichen[]": 1646,
+    "$.forms[].standard_divergenzen.bezeichnungen[]": 4271,
+    "$.forms[].standard_divergenzen.fehlend[]": 982,
+    "$.gestaltung.dienststellen[]": 56,
+    "$.gestaltung.dienststellen[].top[]": 137,
     "$.gestaltung.entscheide[]": 5,
-    "$.gestaltung.entscheide[].verteilung[]": 25,
+    "$.gestaltung.entscheide[].verteilung[]": 26,
     "$.gestaltung.grenzen[]": 18,
     "$.gestaltung.gruppen[]": 5,
     "$.gestaltung.merkmale[]": 21,
-    "$.gestaltung.merkmale[].formulare.betroffen[]": 101,
-    "$.gestaltung.merkmale[].formulare.hinweis[]": 163,
-    "$.gestaltung.merkmale[].formulare.luecke[]": 1042,
-    "$.gestaltung.merkmale[].formulare.nicht_messbar[]": 103,
-    "$.gestaltung.merkmale[].formulare.weicht_ab[]": 220,
+    "$.gestaltung.merkmale[].formulare.betroffen[]": 108,
+    "$.gestaltung.merkmale[].formulare.hinweis[]": 176,
+    "$.gestaltung.merkmale[].formulare.luecke[]": 1100,
+    "$.gestaltung.merkmale[].formulare.nicht_messbar[]": 117,
+    "$.gestaltung.merkmale[].formulare.weicht_ab[]": 239,
     "$.gestaltung.merkmale[].urteile.*": 81,
-    "$.gestaltung.merkmale[].verteilung[]": 95,
+    "$.gestaltung.merkmale[].verteilung[]": 96,
     "$.gestaltung.merkmale[].zusatz.dienststellen[]": 3,
     "$.gestaltung.merkmale[].zusatz.muster[]": 10,
     "$.gestaltung.merkmale[].zusatz.nummern[]": 9,
     "$.gestaltung.merkmale[].zusatz.schreibweisen[]": 12,
-    "$.kennungen.nicht_aktiv[]": 3,
+    "$.kennungen.nicht_aktiv[]": 216,
     "$.konzepte.konzepte[]": 27,
     "$.konzepte.konzepte[].andere_entitaet.elemente[]": 5,
     "$.konzepte.konzepte[].ausserhalb[]": 9,
     "$.konzepte.konzepte[].entitaeten[]": 92,
     "$.konzepte.konzepte[].gesperrt[]": 0,
     "$.konzepte.konzepte[].mitglieder[]": 104,
-    "$.konzepte.konzepte[].nicht_beurteilt[]": 0,
-    "$.konzepte.konzepte[].ohne_rolle.elemente[]": 39,
-    "$.konzepte.konzepte[].zellen[]": 347,
+    "$.konzepte.konzepte[].nicht_beurteilt[]": 1,
+    "$.konzepte.konzepte[].ohne_rolle.elemente[]": 44,
+    "$.konzepte.konzepte[].zellen[]": 360,
     "$.konzepte.konzepte[].zuordnung_falsch.elemente[]": 16,
     "$.konzepte.pruefung.zweitpruefung.aenderungen[]": 5,
     "$.kopfzahlen.kein_standard.codes.ech_entwurf.*": 12,
@@ -237,61 +237,67 @@
     "$.labels.stufen[][]": 12,
     "$.labels.todo_cats[]": 21,
     "$.labels.todo_cats[][]": 105,
-    "$.laws[]": 150,
-    "$.laws[].articles[]": 8849,
+    "$.laws[]": 169,
+    "$.laws[].articles[]": 9442,
     "$.parteien.gruende.*": 15,
     "$.parteien.regeln.*": 5,
     "$.parteien.rollen[]": 26,
-    "$.parteien.zahlen.grund.*": 11,
-    "$.parteien.zahlen.regel.*": 3,
+    "$.parteien.zahlen.grund.*": 13,
+    "$.parteien.zahlen.regel.*": 4,
+    "$.quellenabgleich.quellen.DVSH.aenderungen[]": 90,
+    "$.quellenabgleich.quellen.DVSH.aenderungen[].felder[]": 195,
+    "$.quellenabgleich.quellen.SHEP.aenderungen[]": 136,
+    "$.quellenabgleich.quellen.SHEP.aenderungen[].felder[]": 182,
     "$.register.katalog[]": 18,
     "$.register.katalog[].belege[]": 85,
     "$.register.katalog[].standards[]": 28,
     "$.register.katalog[].zugriff[]": 6,
-    "$.services[]": 491,
-    "$.services[].dvsh.abgabe[]": 648,
-    "$.services[].dvsh.ablauf[]": 1819,
-    "$.services[].dvsh.completeness.missingRequired[]": 195,
-    "$.services[].dvsh.documents[]": 481,
+    "$.services[]": 518,
+    "$.services[].aenderungen[]": 224,
+    "$.services[].dokumente[]": 517,
+    "$.services[].dvsh.abgabe[]": 702,
+    "$.services[].dvsh.ablauf[]": 2000,
+    "$.services[].dvsh.completeness.missingRequired[]": 201,
+    "$.services[].dvsh.documents[]": 516,
     "$.services[].dvsh.dvsh_text_glitch[]": 3,
-    "$.services[].dvsh.externe_links[]": 854,
-    "$.services[].dvsh.form_definitions[]": 322,
-    "$.services[].dvsh.kontakt[]": 324,
-    "$.services[].dvsh.opening_hours.blocks[]": 442,
+    "$.services[].dvsh.externe_links[]": 921,
+    "$.services[].dvsh.form_definitions[]": 348,
+    "$.services[].dvsh.kontakt[]": 349,
+    "$.services[].dvsh.opening_hours.blocks[]": 486,
     "$.services[].dvsh.opening_hours[]": 0,
-    "$.services[].dvsh.recht_bund[]": 660,
-    "$.services[].dvsh.recht_kantonal[]": 343,
+    "$.services[].dvsh.recht_bund[]": 693,
+    "$.services[].dvsh.recht_kantonal[]": 389,
     "$.services[].dvsh.sources[]": 1021,
-    "$.services[].dvsh.unterlagen[]": 949,
-    "$.services[].dvsh.voraussetzungen[]": 1346,
-    "$.services[].shep.ablauf[]": 567,
-    "$.services[].shep.dokumente[]": 0,
-    "$.services[].shep.links[]": 441,
-    "$.services[].shep.unterlagen[]": 326,
-    "$.services[].shep.voraussetzungen[]": 437,
-    "$.services[].themen[]": 855,
+    "$.services[].dvsh.unterlagen[]": 1004,
+    "$.services[].dvsh.voraussetzungen[]": 1466,
+    "$.services[].shep.ablauf[]": 628,
+    "$.services[].shep.dokumente[]": 94,
+    "$.services[].shep.links[]": 457,
+    "$.services[].shep.unterlagen[]": 350,
+    "$.services[].shep.voraussetzungen[]": 475,
+    "$.services[].themen[]": 915,
     "$.texte.aufbewahrung_standard.refs[]": 4,
     "$.texte.aufbewahrung_standard.refs[][]": 12,
     "$.themenkatalog[]": 153,
-    "$.themenkatalog[].services[]": 855,
-    "$.themenkatalog[].services_modelliert[]": 745,
-    "$.themenkatalog[].services_ohne_daten[]": 110,
-    "$.themenkatalog[].wiederholt[]": 1261,
-    "$.wirkung.gesetze[]": 90,
-    "$.wirkung.gesetze[].artikel[]": 922,
-    "$.wirkung.gesetze[].dienststellen[]": 107,
-    "$.wirkung.gesetze[].formulare[]": 528,
+    "$.themenkatalog[].services[]": 915,
+    "$.themenkatalog[].services_modelliert[]": 772,
+    "$.themenkatalog[].services_ohne_daten[]": 143,
+    "$.themenkatalog[].wiederholt[]": 1346,
+    "$.wirkung.gesetze[]": 102,
+    "$.wirkung.gesetze[].artikel[]": 1060,
+    "$.wirkung.gesetze[].dienststellen[]": 132,
+    "$.wirkung.gesetze[].formulare[]": 606,
     "$.wirkung.gesetze[].pruefung.kuenftig[]": 20,
-    "$.wirkung.gesetze[].services[]": 473,
-    "$.wirkung.gesetze[].weitere.bekanntgabe_formulare[]": 205,
-    "$.wirkung.gesetze[].weitere.entscheid_formulare[]": 104,
-    "$.wirkung.gesetze[].weitere.rechtsmittel_formulare[]": 104,
-    "$.wirkung.uebersicht.betroffen.dienststellen[]": 21,
-    "$.wirkung.uebersicht.betroffen.formulare[]": 193,
-    "$.wirkung.uebersicht.betroffen.gesetze[]": 36,
-    "$.wirkung.uebersicht.betroffen.services[]": 170,
-    "$.wirkung.uebersicht.pruefung.*": 2,
-    "$.wirkung.uebersicht.pruefung_zitiert.*": 2,
+    "$.wirkung.gesetze[].services[]": 515,
+    "$.wirkung.gesetze[].weitere.bekanntgabe_formulare[]": 206,
+    "$.wirkung.gesetze[].weitere.entscheid_formulare[]": 128,
+    "$.wirkung.gesetze[].weitere.rechtsmittel_formulare[]": 128,
+    "$.wirkung.uebersicht.betroffen.dienststellen[]": 24,
+    "$.wirkung.uebersicht.betroffen.formulare[]": 223,
+    "$.wirkung.uebersicht.betroffen.gesetze[]": 37,
+    "$.wirkung.uebersicht.betroffen.services[]": 181,
+    "$.wirkung.uebersicht.pruefung.*": 3,
+    "$.wirkung.uebersicht.pruefung_zitiert.*": 3,
     "$.wirkung.uebersicht.stand.*": 2,
     "$.wirkung.uebersicht.stand_zitiert.*": 2
    }
@@ -1942,6 +1948,989 @@
      "pfad": "$.forms[].register.je_register.*",
      "vorher": 1098,
      "nachher": 1094
+    }
+   ]
+  },
+  {
+   "export": "data_export.json",
+   "version": "1.4.0",
+   "vorher": "1.3.0",
+   "stufe": "minor",
+   "stand": "2026-10-28T20:09:36",
+   "schluessel_neu": [
+    "$.buergersicht.personen[].faelle[].wiederverwendet[].attribut",
+    "$.buergersicht.personen[].faelle[].wiederverwendet[].erhoben_am",
+    "$.buergersicht.personen[].faelle[].wiederverwendet[].herkunft",
+    "$.buergersicht.personen[].faelle[].wiederverwendet[].herkunft_dst",
+    "$.forms[].data_fields[].ech_herkunft",
+    "$.konzepte.konzepte[].nicht_beurteilt[].angabe_kennung",
+    "$.konzepte.konzepte[].nicht_beurteilt[].begriffe",
+    "$.konzepte.konzepte[].nicht_beurteilt[].begriffe[]",
+    "$.konzepte.konzepte[].nicht_beurteilt[].bezeichnung",
+    "$.konzepte.konzepte[].nicht_beurteilt[].context",
+    "$.konzepte.konzepte[].nicht_beurteilt[].datentyp",
+    "$.konzepte.konzepte[].nicht_beurteilt[].element",
+    "$.konzepte.konzepte[].nicht_beurteilt[].element_ids",
+    "$.konzepte.konzepte[].nicht_beurteilt[].element_ids[]",
+    "$.konzepte.konzepte[].nicht_beurteilt[].n",
+    "$.konzepte.konzepte[].nicht_beurteilt[].n_formulare",
+    "$.konzepte.konzepte[].nicht_beurteilt[].n_zuordnung_falsch",
+    "$.konzepte.konzepte[].nicht_beurteilt[].standard",
+    "$.labels.aenderung",
+    "$.labels.aenderung.entfernt",
+    "$.labels.aenderung.geaendert",
+    "$.labels.aenderung.neu",
+    "$.labels.dok_art",
+    "$.labels.dok_art.anderes",
+    "$.labels.dok_art.brief",
+    "$.labels.dok_art.formular",
+    "$.labels.dok_art.gesetz",
+    "$.labels.dok_art.liste",
+    "$.labels.dok_art.merkblatt",
+    "$.labels.dok_art.uebersetzung",
+    "$.labels.dok_art.wegleitung",
+    "$.labels.dok_rolle",
+    "$.labels.dok_rolle.begleitend",
+    "$.labels.dok_rolle.einreichung",
+    "$.labels.dok_stand",
+    "$.labels.dok_stand.aeltere_ausgabe",
+    "$.labels.dok_stand.begleitdokument",
+    "$.labels.dok_stand.erfasst",
+    "$.labels.dok_stand.gleicher_inhalt",
+    "$.labels.dok_stand.nicht_lesbar",
+    "$.labels.dok_stand.offen",
+    "$.labels.dok_stand.ungeprueft",
+    "$.labels.feld_quelle",
+    "$.labels.feld_quelle.ablauf",
+    "$.labels.feld_quelle.address",
+    "$.labels.feld_quelle.bearbeitungsdauer",
+    "$.labels.feld_quelle.beschreibung",
+    "$.labels.feld_quelle.documents",
+    "$.labels.feld_quelle.email",
+    "$.labels.feld_quelle.endpoint_typ",
+    "$.labels.feld_quelle.externe_links",
+    "$.labels.feld_quelle.form_definitions",
+    "$.labels.feld_quelle.formular_url",
+    "$.labels.feld_quelle.fristen",
+    "$.labels.feld_quelle.gebuehren",
+    "$.labels.feld_quelle.kontakt_adresse",
+    "$.labels.feld_quelle.kontakt_einheit",
+    "$.labels.feld_quelle.kontakt_email",
+    "$.labels.feld_quelle.kurzbeschreibung",
+    "$.labels.feld_quelle.online",
+    "$.labels.feld_quelle.opening_hours",
+    "$.labels.feld_quelle.phone",
+    "$.labels.feld_quelle.recht_bund",
+    "$.labels.feld_quelle.recht_kantonal",
+    "$.labels.feld_quelle.status",
+    "$.labels.feld_quelle.submission_endpoint",
+    "$.labels.feld_quelle.title",
+    "$.labels.feld_quelle.unterlagen",
+    "$.labels.feld_quelle.vollzugsbehoerde",
+    "$.labels.feld_quelle.voraussetzungen",
+    "$.labels.ton_map.dok",
+    "$.labels.ton_map.dok.aeltere_ausgabe",
+    "$.labels.ton_map.dok.begleitdokument",
+    "$.labels.ton_map.dok.erfasst",
+    "$.labels.ton_map.dok.gleicher_inhalt",
+    "$.labels.ton_map.dok.nicht_lesbar",
+    "$.labels.ton_map.dok.offen",
+    "$.labels.ton_map.dok.ungeprueft",
+    "$.quellenabgleich",
+    "$.quellenabgleich.dokumente",
+    "$.quellenabgleich.dokumente.aeltere_ausgabe",
+    "$.quellenabgleich.dokumente.begleitdokument",
+    "$.quellenabgleich.dokumente.erfasst",
+    "$.quellenabgleich.dokumente.gleicher_inhalt",
+    "$.quellenabgleich.dokumente.nicht_lesbar",
+    "$.quellenabgleich.dokumente.offen",
+    "$.quellenabgleich.dokumente.ungeprueft",
+    "$.quellenabgleich.dvsh_ohne_service",
+    "$.quellenabgleich.dvsh_services",
+    "$.quellenabgleich.entfernte_ohne_zeile",
+    "$.quellenabgleich.n_dokumente",
+    "$.quellenabgleich.quellen",
+    "$.quellenabgleich.quellen.DVSH",
+    "$.quellenabgleich.quellen.DVSH.abzug",
+    "$.quellenabgleich.quellen.DVSH.aenderungen",
+    "$.quellenabgleich.quellen.DVSH.aenderungen[]",
+    "$.quellenabgleich.quellen.DVSH.aenderungen[].art",
+    "$.quellenabgleich.quellen.DVSH.aenderungen[].felder",
+    "$.quellenabgleich.quellen.DVSH.aenderungen[].felder[]",
+    "$.quellenabgleich.quellen.DVSH.aenderungen[].quelle",
+    "$.quellenabgleich.quellen.DVSH.aenderungen[].schluessel",
+    "$.quellenabgleich.quellen.DVSH.aenderungen[].service_id",
+    "$.quellenabgleich.quellen.DVSH.aenderungen[].titel",
+    "$.quellenabgleich.quellen.DVSH.anzahl",
+    "$.quellenabgleich.quellen.DVSH.datei",
+    "$.quellenabgleich.quellen.DVSH.n",
+    "$.quellenabgleich.quellen.DVSH.n.entfernt",
+    "$.quellenabgleich.quellen.DVSH.n.geaendert",
+    "$.quellenabgleich.quellen.DVSH.n.neu",
+    "$.quellenabgleich.quellen.DVSH.vorher",
+    "$.quellenabgleich.quellen.DVSH.vorher_anzahl",
+    "$.quellenabgleich.quellen.SHEP",
+    "$.quellenabgleich.quellen.SHEP.abzug",
+    "$.quellenabgleich.quellen.SHEP.aenderungen",
+    "$.quellenabgleich.quellen.SHEP.aenderungen[]",
+    "$.quellenabgleich.quellen.SHEP.aenderungen[].art",
+    "$.quellenabgleich.quellen.SHEP.aenderungen[].felder",
+    "$.quellenabgleich.quellen.SHEP.aenderungen[].felder[]",
+    "$.quellenabgleich.quellen.SHEP.aenderungen[].quelle",
+    "$.quellenabgleich.quellen.SHEP.aenderungen[].schluessel",
+    "$.quellenabgleich.quellen.SHEP.aenderungen[].service_id",
+    "$.quellenabgleich.quellen.SHEP.aenderungen[].titel",
+    "$.quellenabgleich.quellen.SHEP.anzahl",
+    "$.quellenabgleich.quellen.SHEP.datei",
+    "$.quellenabgleich.quellen.SHEP.n",
+    "$.quellenabgleich.quellen.SHEP.n.entfernt",
+    "$.quellenabgleich.quellen.SHEP.n.geaendert",
+    "$.quellenabgleich.quellen.SHEP.n.neu",
+    "$.quellenabgleich.quellen.SHEP.vorher",
+    "$.quellenabgleich.quellen.SHEP.vorher_anzahl",
+    "$.quellenabgleich.shep_ohne_service",
+    "$.quellenabgleich.shep_seiten",
+    "$.services[].aenderungen",
+    "$.services[].aenderungen[]",
+    "$.services[].aenderungen[].abzug",
+    "$.services[].aenderungen[].art",
+    "$.services[].aenderungen[].felder",
+    "$.services[].aenderungen[].felder[]",
+    "$.services[].aenderungen[].quelle",
+    "$.services[].aenderungen[].vorher",
+    "$.services[].dokumente",
+    "$.services[].dokumente[]",
+    "$.services[].dokumente[].art",
+    "$.services[].dokumente[].datei",
+    "$.services[].dokumente[].form_id",
+    "$.services[].dokumente[].quellen",
+    "$.services[].dokumente[].quellen[]",
+    "$.services[].dokumente[].rolle",
+    "$.services[].dokumente[].sha256",
+    "$.services[].dokumente[].stand",
+    "$.services[].dokumente[].titel",
+    "$.services[].dokumente[].titel_gedruckt",
+    "$.services[].dokumente[].url",
+    "$.services[].dokumente[].zweitgeprueft",
+    "$.services[].shep.dokumente[].label",
+    "$.services[].shep.dokumente[].sha256",
+    "$.services[].shep.dokumente[].url"
+   ],
+   "null_geaendert": [
+    {
+     "pfad": "$.services[].dvsh.address",
+     "vorher": [
+      "string"
+     ],
+     "nachher": [
+      "string",
+      "null"
+     ]
+    },
+    {
+     "pfad": "$.services[].dvsh.email",
+     "vorher": [
+      "string"
+     ],
+     "nachher": [
+      "string",
+      "null"
+     ]
+    },
+    {
+     "pfad": "$.services[].dvsh.phone",
+     "vorher": [
+      "string"
+     ],
+     "nachher": [
+      "string",
+      "null"
+     ]
+    },
+    {
+     "pfad": "$.services[].dvsh.vollzugsbehoerde",
+     "vorher": [
+      "string"
+     ],
+     "nachher": [
+      "string",
+      "null"
+     ]
+    },
+    {
+     "pfad": "$.services[].shep.kontakt_email",
+     "vorher": [
+      "string"
+     ],
+     "nachher": [
+      "string",
+      "null"
+     ]
+    },
+    {
+     "pfad": "$.services[].shep.teaser",
+     "vorher": [
+      "string",
+      "null"
+     ],
+     "nachher": [
+      "string"
+     ]
+    },
+    {
+     "pfad": "$.wirkung.gesetze[].pruefung",
+     "vorher": [
+      "object"
+     ],
+     "nachher": [
+      "object",
+      "null"
+     ]
+    }
+   ],
+   "zaehlungen": [
+    {
+     "pfad": "$.attribut_katalog[]",
+     "vorher": 2766,
+     "nachher": 2762
+    },
+    {
+     "pfad": "$.buergersicht.personen[].einwilligungen[]",
+     "vorher": 1,
+     "nachher": 7
+    },
+    {
+     "pfad": "$.buergersicht.personen[].faelle[]",
+     "vorher": 49,
+     "nachher": 50
+    },
+    {
+     "pfad": "$.buergersicht.personen[].loeschkalender[]",
+     "vorher": 13,
+     "nachher": 11
+    },
+    {
+     "pfad": "$.datenmodell.beilagen.je_register.*[]",
+     "vorher": 70,
+     "nachher": 77
+    },
+    {
+     "pfad": "$.datenmodell.dienststellen.*",
+     "vorher": 52,
+     "nachher": 56
+    },
+    {
+     "pfad": "$.dienststellen_uebersicht[]",
+     "vorher": 52,
+     "nachher": 56
+    },
+    {
+     "pfad": "$.dienststellen_uebersicht[].entscheide[]",
+     "vorher": 125,
+     "nachher": 132
+    },
+    {
+     "pfad": "$.dienststellen_uebersicht[].formulare[]",
+     "vorher": 473,
+     "nachher": 513
+    },
+    {
+     "pfad": "$.dienststellen_uebersicht[].kontakt[]",
+     "vorher": 133,
+     "nachher": 136
+    },
+    {
+     "pfad": "$.dienststellen_uebersicht[].massnahmen[]",
+     "vorher": 111,
+     "nachher": 112
+    },
+    {
+     "pfad": "$.dienststellen_uebersicht[].services[]",
+     "vorher": 491,
+     "nachher": 518
+    },
+    {
+     "pfad": "$.dienststellen_uebersicht[].standard.ech.*",
+     "vorher": 182,
+     "nachher": 187
+    },
+    {
+     "pfad": "$.dienststellen_uebersicht[].stufen.*",
+     "vorher": 176,
+     "nachher": 183
+    },
+    {
+     "pfad": "$.forms[]",
+     "vorher": 473,
+     "nachher": 513
+    },
+    {
+     "pfad": "$.forms[].beilagen[]",
+     "vorher": 1190,
+     "nachher": 1380
+    },
+    {
+     "pfad": "$.forms[].blockers[]",
+     "vorher": 964,
+     "nachher": 1041
+    },
+    {
+     "pfad": "$.forms[].data_fields[]",
+     "vorher": 5991,
+     "nachher": 6700
+    },
+    {
+     "pfad": "$.forms[].disclosures[]",
+     "vorher": 387,
+     "nachher": 397
+    },
+    {
+     "pfad": "$.forms[].gestaltung.merkmale[]",
+     "vorher": 5696,
+     "nachher": 6135
+    },
+    {
+     "pfad": "$.forms[].handlungsbedarf[]",
+     "vorher": 2532,
+     "nachher": 2783
+    },
+    {
+     "pfad": "$.forms[].konzepte.abweichungen[]",
+     "vorher": 230,
+     "nachher": 241
+    },
+    {
+     "pfad": "$.forms[].outcome.gesetzesebenen[]",
+     "vorher": 30,
+     "nachher": 41
+    },
+    {
+     "pfad": "$.forms[].outcome.rechtsmittel_kandidaten[]",
+     "vorher": 409,
+     "nachher": 577
+    },
+    {
+     "pfad": "$.forms[].parteien[]",
+     "vorher": 1502,
+     "nachher": 1567
+    },
+    {
+     "pfad": "$.forms[].register.je_register.*",
+     "vorher": 1094,
+     "nachher": 1170
+    },
+    {
+     "pfad": "$.forms[].similar[]",
+     "vorher": 40,
+     "nachher": 100
+    },
+    {
+     "pfad": "$.forms[].standard.ech.*",
+     "vorher": 1233,
+     "nachher": 1319
+    },
+    {
+     "pfad": "$.forms[].standard_divergenzen.angleichen[]",
+     "vorher": 1519,
+     "nachher": 1646
+    },
+    {
+     "pfad": "$.forms[].standard_divergenzen.bezeichnungen[]",
+     "vorher": 4125,
+     "nachher": 4271
+    },
+    {
+     "pfad": "$.forms[].standard_divergenzen.fehlend[]",
+     "vorher": 902,
+     "nachher": 982
+    },
+    {
+     "pfad": "$.gestaltung.dienststellen[]",
+     "vorher": 52,
+     "nachher": 56
+    },
+    {
+     "pfad": "$.gestaltung.dienststellen[].top[]",
+     "vorher": 135,
+     "nachher": 137
+    },
+    {
+     "pfad": "$.gestaltung.entscheide[].verteilung[]",
+     "vorher": 25,
+     "nachher": 26
+    },
+    {
+     "pfad": "$.gestaltung.merkmale[].formulare.betroffen[]",
+     "vorher": 101,
+     "nachher": 108
+    },
+    {
+     "pfad": "$.gestaltung.merkmale[].formulare.hinweis[]",
+     "vorher": 163,
+     "nachher": 176
+    },
+    {
+     "pfad": "$.gestaltung.merkmale[].formulare.luecke[]",
+     "vorher": 1042,
+     "nachher": 1100
+    },
+    {
+     "pfad": "$.gestaltung.merkmale[].formulare.nicht_messbar[]",
+     "vorher": 103,
+     "nachher": 117
+    },
+    {
+     "pfad": "$.gestaltung.merkmale[].formulare.weicht_ab[]",
+     "vorher": 220,
+     "nachher": 239
+    },
+    {
+     "pfad": "$.gestaltung.merkmale[].verteilung[]",
+     "vorher": 95,
+     "nachher": 96
+    },
+    {
+     "pfad": "$.kennungen.nicht_aktiv[]",
+     "vorher": 3,
+     "nachher": 216
+    },
+    {
+     "pfad": "$.konzepte.konzepte[].nicht_beurteilt[]",
+     "vorher": 0,
+     "nachher": 1
+    },
+    {
+     "pfad": "$.konzepte.konzepte[].ohne_rolle.elemente[]",
+     "vorher": 39,
+     "nachher": 44
+    },
+    {
+     "pfad": "$.konzepte.konzepte[].zellen[]",
+     "vorher": 347,
+     "nachher": 360
+    },
+    {
+     "pfad": "$.laws[]",
+     "vorher": 150,
+     "nachher": 169
+    },
+    {
+     "pfad": "$.laws[].articles[]",
+     "vorher": 8849,
+     "nachher": 9442
+    },
+    {
+     "pfad": "$.parteien.zahlen.grund.*",
+     "vorher": 11,
+     "nachher": 13
+    },
+    {
+     "pfad": "$.parteien.zahlen.regel.*",
+     "vorher": 3,
+     "nachher": 4
+    },
+    {
+     "pfad": "$.quellenabgleich.quellen.DVSH.aenderungen[]",
+     "vorher": null,
+     "nachher": 90
+    },
+    {
+     "pfad": "$.quellenabgleich.quellen.DVSH.aenderungen[].felder[]",
+     "vorher": null,
+     "nachher": 195
+    },
+    {
+     "pfad": "$.quellenabgleich.quellen.SHEP.aenderungen[]",
+     "vorher": null,
+     "nachher": 136
+    },
+    {
+     "pfad": "$.quellenabgleich.quellen.SHEP.aenderungen[].felder[]",
+     "vorher": null,
+     "nachher": 182
+    },
+    {
+     "pfad": "$.services[]",
+     "vorher": 491,
+     "nachher": 518
+    },
+    {
+     "pfad": "$.services[].aenderungen[]",
+     "vorher": null,
+     "nachher": 224
+    },
+    {
+     "pfad": "$.services[].dokumente[]",
+     "vorher": null,
+     "nachher": 517
+    },
+    {
+     "pfad": "$.services[].dvsh.abgabe[]",
+     "vorher": 648,
+     "nachher": 702
+    },
+    {
+     "pfad": "$.services[].dvsh.ablauf[]",
+     "vorher": 1819,
+     "nachher": 2000
+    },
+    {
+     "pfad": "$.services[].dvsh.completeness.missingRequired[]",
+     "vorher": 195,
+     "nachher": 201
+    },
+    {
+     "pfad": "$.services[].dvsh.documents[]",
+     "vorher": 481,
+     "nachher": 516
+    },
+    {
+     "pfad": "$.services[].dvsh.externe_links[]",
+     "vorher": 854,
+     "nachher": 921
+    },
+    {
+     "pfad": "$.services[].dvsh.form_definitions[]",
+     "vorher": 322,
+     "nachher": 348
+    },
+    {
+     "pfad": "$.services[].dvsh.kontakt[]",
+     "vorher": 324,
+     "nachher": 349
+    },
+    {
+     "pfad": "$.services[].dvsh.opening_hours.blocks[]",
+     "vorher": 442,
+     "nachher": 486
+    },
+    {
+     "pfad": "$.services[].dvsh.recht_bund[]",
+     "vorher": 660,
+     "nachher": 693
+    },
+    {
+     "pfad": "$.services[].dvsh.recht_kantonal[]",
+     "vorher": 343,
+     "nachher": 389
+    },
+    {
+     "pfad": "$.services[].dvsh.unterlagen[]",
+     "vorher": 949,
+     "nachher": 1004
+    },
+    {
+     "pfad": "$.services[].dvsh.voraussetzungen[]",
+     "vorher": 1346,
+     "nachher": 1466
+    },
+    {
+     "pfad": "$.services[].shep.ablauf[]",
+     "vorher": 567,
+     "nachher": 628
+    },
+    {
+     "pfad": "$.services[].shep.dokumente[]",
+     "vorher": 0,
+     "nachher": 94
+    },
+    {
+     "pfad": "$.services[].shep.links[]",
+     "vorher": 441,
+     "nachher": 457
+    },
+    {
+     "pfad": "$.services[].shep.unterlagen[]",
+     "vorher": 326,
+     "nachher": 350
+    },
+    {
+     "pfad": "$.services[].shep.voraussetzungen[]",
+     "vorher": 437,
+     "nachher": 475
+    },
+    {
+     "pfad": "$.services[].themen[]",
+     "vorher": 855,
+     "nachher": 915
+    },
+    {
+     "pfad": "$.themenkatalog[].services[]",
+     "vorher": 855,
+     "nachher": 915
+    },
+    {
+     "pfad": "$.themenkatalog[].services_modelliert[]",
+     "vorher": 745,
+     "nachher": 772
+    },
+    {
+     "pfad": "$.themenkatalog[].services_ohne_daten[]",
+     "vorher": 110,
+     "nachher": 143
+    },
+    {
+     "pfad": "$.themenkatalog[].wiederholt[]",
+     "vorher": 1261,
+     "nachher": 1346
+    },
+    {
+     "pfad": "$.wirkung.gesetze[]",
+     "vorher": 90,
+     "nachher": 102
+    },
+    {
+     "pfad": "$.wirkung.gesetze[].artikel[]",
+     "vorher": 922,
+     "nachher": 1060
+    },
+    {
+     "pfad": "$.wirkung.gesetze[].dienststellen[]",
+     "vorher": 107,
+     "nachher": 132
+    },
+    {
+     "pfad": "$.wirkung.gesetze[].formulare[]",
+     "vorher": 528,
+     "nachher": 606
+    },
+    {
+     "pfad": "$.wirkung.gesetze[].services[]",
+     "vorher": 473,
+     "nachher": 515
+    },
+    {
+     "pfad": "$.wirkung.gesetze[].weitere.bekanntgabe_formulare[]",
+     "vorher": 205,
+     "nachher": 206
+    },
+    {
+     "pfad": "$.wirkung.gesetze[].weitere.entscheid_formulare[]",
+     "vorher": 104,
+     "nachher": 128
+    },
+    {
+     "pfad": "$.wirkung.gesetze[].weitere.rechtsmittel_formulare[]",
+     "vorher": 104,
+     "nachher": 128
+    },
+    {
+     "pfad": "$.wirkung.uebersicht.betroffen.dienststellen[]",
+     "vorher": 21,
+     "nachher": 24
+    },
+    {
+     "pfad": "$.wirkung.uebersicht.betroffen.formulare[]",
+     "vorher": 193,
+     "nachher": 223
+    },
+    {
+     "pfad": "$.wirkung.uebersicht.betroffen.gesetze[]",
+     "vorher": 36,
+     "nachher": 37
+    },
+    {
+     "pfad": "$.wirkung.uebersicht.betroffen.services[]",
+     "vorher": 170,
+     "nachher": 181
+    },
+    {
+     "pfad": "$.wirkung.uebersicht.pruefung.*",
+     "vorher": 2,
+     "nachher": 3
+    },
+    {
+     "pfad": "$.wirkung.uebersicht.pruefung_zitiert.*",
+     "vorher": 2,
+     "nachher": 3
+    }
+   ]
+  },
+  {
+   "export": "citygov_datafields.jsonl",
+   "version": "1.0.1",
+   "vorher": "1.0.0",
+   "stufe": "patch",
+   "stand": "2026-10-28T20:09:36",
+   "zaehlungen": [
+    {
+     "pfad": "$",
+     "vorher": 5991,
+     "nachher": 6700
+    },
+    {
+     "pfad": "$.allowed_values[]",
+     "vorher": 4881,
+     "nachher": 5095
+    },
+    {
+     "pfad": "$.legal_basis[]",
+     "vorher": 6334,
+     "nachher": 7309
+    },
+    {
+     "pfad": "$.subfields[]",
+     "vorher": 7676,
+     "nachher": 8652
+    }
+   ]
+  },
+  {
+   "export": "citygov_llm.json",
+   "version": "1.1.0",
+   "vorher": "1.0.2",
+   "stufe": "minor",
+   "stand": "2026-10-28T20:09:36",
+   "schluessel_neu": [
+    "$.meta.labels.aenderung",
+    "$.meta.labels.aenderung.entfernt",
+    "$.meta.labels.aenderung.geaendert",
+    "$.meta.labels.aenderung.neu",
+    "$.meta.labels.dok_art",
+    "$.meta.labels.dok_art.anderes",
+    "$.meta.labels.dok_art.brief",
+    "$.meta.labels.dok_art.formular",
+    "$.meta.labels.dok_art.gesetz",
+    "$.meta.labels.dok_art.liste",
+    "$.meta.labels.dok_art.merkblatt",
+    "$.meta.labels.dok_art.uebersetzung",
+    "$.meta.labels.dok_art.wegleitung",
+    "$.meta.labels.dok_rolle",
+    "$.meta.labels.dok_rolle.begleitend",
+    "$.meta.labels.dok_rolle.einreichung",
+    "$.meta.labels.dok_stand",
+    "$.meta.labels.dok_stand.aeltere_ausgabe",
+    "$.meta.labels.dok_stand.begleitdokument",
+    "$.meta.labels.dok_stand.erfasst",
+    "$.meta.labels.dok_stand.gleicher_inhalt",
+    "$.meta.labels.dok_stand.nicht_lesbar",
+    "$.meta.labels.dok_stand.offen",
+    "$.meta.labels.dok_stand.ungeprueft",
+    "$.meta.labels.feld_quelle",
+    "$.meta.labels.feld_quelle.ablauf",
+    "$.meta.labels.feld_quelle.address",
+    "$.meta.labels.feld_quelle.bearbeitungsdauer",
+    "$.meta.labels.feld_quelle.beschreibung",
+    "$.meta.labels.feld_quelle.documents",
+    "$.meta.labels.feld_quelle.email",
+    "$.meta.labels.feld_quelle.endpoint_typ",
+    "$.meta.labels.feld_quelle.externe_links",
+    "$.meta.labels.feld_quelle.form_definitions",
+    "$.meta.labels.feld_quelle.formular_url",
+    "$.meta.labels.feld_quelle.fristen",
+    "$.meta.labels.feld_quelle.gebuehren",
+    "$.meta.labels.feld_quelle.kontakt_adresse",
+    "$.meta.labels.feld_quelle.kontakt_einheit",
+    "$.meta.labels.feld_quelle.kontakt_email",
+    "$.meta.labels.feld_quelle.kurzbeschreibung",
+    "$.meta.labels.feld_quelle.online",
+    "$.meta.labels.feld_quelle.opening_hours",
+    "$.meta.labels.feld_quelle.phone",
+    "$.meta.labels.feld_quelle.recht_bund",
+    "$.meta.labels.feld_quelle.recht_kantonal",
+    "$.meta.labels.feld_quelle.status",
+    "$.meta.labels.feld_quelle.submission_endpoint",
+    "$.meta.labels.feld_quelle.title",
+    "$.meta.labels.feld_quelle.unterlagen",
+    "$.meta.labels.feld_quelle.vollzugsbehoerde",
+    "$.meta.labels.feld_quelle.voraussetzungen",
+    "$.meta.labels.ton_map.dok",
+    "$.meta.labels.ton_map.dok.aeltere_ausgabe",
+    "$.meta.labels.ton_map.dok.begleitdokument",
+    "$.meta.labels.ton_map.dok.erfasst",
+    "$.meta.labels.ton_map.dok.gleicher_inhalt",
+    "$.meta.labels.ton_map.dok.nicht_lesbar",
+    "$.meta.labels.ton_map.dok.offen",
+    "$.meta.labels.ton_map.dok.ungeprueft"
+   ],
+   "null_geaendert": [
+    {
+     "pfad": "$.services[].dvsh_verfahren.email",
+     "vorher": [
+      "string"
+     ],
+     "nachher": [
+      "string",
+      "null"
+     ]
+    },
+    {
+     "pfad": "$.services[].dvsh_verfahren.vollzugsbehoerde",
+     "vorher": [
+      "string"
+     ],
+     "nachher": [
+      "string",
+      "null"
+     ]
+    }
+   ],
+   "zaehlungen": [
+    {
+     "pfad": "$.lebenslagen[]",
+     "vorher": 110,
+     "nachher": 113
+    },
+    {
+     "pfad": "$.lebenslagen[].services[]",
+     "vorher": 855,
+     "nachher": 915
+    },
+    {
+     "pfad": "$.lebenslagen[].services_modelliert[]",
+     "vorher": 745,
+     "nachher": 772
+    },
+    {
+     "pfad": "$.lebenslagen[].services_ohne_daten[]",
+     "vorher": 110,
+     "nachher": 143
+    },
+    {
+     "pfad": "$.lebenslagen[].wiederholt[]",
+     "vorher": 1261,
+     "nachher": 1346
+    },
+    {
+     "pfad": "$.meta.kennungen.nicht_aktiv[]",
+     "vorher": 3,
+     "nachher": 216
+    },
+    {
+     "pfad": "$.services[]",
+     "vorher": 491,
+     "nachher": 518
+    },
+    {
+     "pfad": "$.services[].dvsh_verfahren.ablauf[]",
+     "vorher": 1819,
+     "nachher": 2000
+    },
+    {
+     "pfad": "$.services[].dvsh_verfahren.recht_bund[]",
+     "vorher": 660,
+     "nachher": 693
+    },
+    {
+     "pfad": "$.services[].dvsh_verfahren.recht_kantonal[]",
+     "vorher": 343,
+     "nachher": 389
+    },
+    {
+     "pfad": "$.services[].dvsh_verfahren.unterlagen[]",
+     "vorher": 949,
+     "nachher": 1004
+    },
+    {
+     "pfad": "$.services[].dvsh_verfahren.voraussetzungen[]",
+     "vorher": 1346,
+     "nachher": 1466
+    },
+    {
+     "pfad": "$.services[].forms[]",
+     "vorher": 473,
+     "nachher": 513
+    },
+    {
+     "pfad": "$.services[].lebenslagen_ech0049[]",
+     "vorher": 855,
+     "nachher": 915
+    }
+   ]
+  },
+  {
+   "export": "citygov_prefill.json",
+   "version": "1.1.1",
+   "vorher": "1.1.0",
+   "stufe": "patch",
+   "stand": "2026-10-28T20:09:36",
+   "zaehlungen": [
+    {
+     "pfad": "$.formulare.*",
+     "vorher": 467,
+     "nachher": 507
+    },
+    {
+     "pfad": "$.formulare.*[]",
+     "vorher": 8144,
+     "nachher": 8718
+    },
+    {
+     "pfad": "$.meta.formular_kennung.*",
+     "vorher": 467,
+     "nachher": 507
+    }
+   ]
+  },
+  {
+   "export": "citygov_verzeichnis.json",
+   "version": "1.0.1",
+   "vorher": "1.0.0",
+   "stufe": "patch",
+   "stand": "2026-10-28T20:09:36",
+   "zaehlungen": [
+    {
+     "pfad": "$.verzeichnis[]",
+     "vorher": 473,
+     "nachher": 513
+    },
+    {
+     "pfad": "$.verzeichnis[].aufbewahrung.standardregime.refs[]",
+     "vorher": 1672,
+     "nachher": 1832
+    },
+    {
+     "pfad": "$.verzeichnis[].datenkategorien.besonders_schuetzenswert[]",
+     "vorher": 71,
+     "nachher": 80
+    },
+    {
+     "pfad": "$.verzeichnis[].empfaenger[]",
+     "vorher": 387,
+     "nachher": 397
+    }
+   ]
+  },
+  {
+   "export": "citygov_ech_schemas.json",
+   "version": "1.0.2",
+   "vorher": "1.0.1",
+   "stufe": "patch",
+   "stand": "2026-10-28T20:09:36",
+   "zaehlungen": [
+    {
+     "pfad": "$.formulare[]",
+     "vorher": 473,
+     "nachher": 513
+    },
+    {
+     "pfad": "$.formulare[].ech.*",
+     "vorher": 2380,
+     "nachher": 2568
+    },
+    {
+     "pfad": "$.formulare[].ohne_standard[]",
+     "vorher": 3770,
+     "nachher": 4575
+    }
+   ]
+  },
+  {
+   "export": "data_export.json",
+   "version": "1.5.0",
+   "vorher": "1.4.0",
+   "stufe": "minor",
+   "stand": "2026-10-28T20:12:30",
+   "null_geaendert": [
+    {
+     "pfad": "$.services[].dokumente[].art",
+     "vorher": [
+      "string",
+      "null"
+     ],
+     "nachher": [
+      "string"
+     ]
     }
    ]
   }

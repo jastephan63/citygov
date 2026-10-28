@@ -1,0 +1,29 @@
+{
+ "verdicts": [
+  {
+   "id": 7088,
+   "subjekt": "gemischt",
+   "grund": "Schuldner laut Formular «Name und Vorname bzw. Firma» – natürliche Person oder Unternehmen möglich"
+  },
+  {
+   "id": 7089,
+   "subjekt": "behoerde",
+   "grund": "Anschrift des zuständigen Betreibungsamtes – eigene Angabe der Behörde, vom Gläubiger nur eingesetzt"
+  },
+  {
+   "id": 7090,
+   "subjekt": "natuerliche_person",
+   "grund": "Geburtsdatum des Schuldners – nur eine natürliche Person hat ein Geburtsdatum, Angabe betrifft genau diese eine Person"
+  },
+  {
+   "id": 7091,
+   "subjekt": "gemischt",
+   "grund": "Gläubiger laut Formular «Name und Vorname bzw. Firma» – Privatperson oder Firma möglich"
+  },
+  {
+   "id": 7094,
+   "subjekt": "gemischt",
+   "grund": "Vertreter laut Formular «Name und Vorname bzw. Firma» – Person oder Firma (z.B. Inkassobüro, Anwaltskanzlei) möglich"
+  }
+ ]
+}

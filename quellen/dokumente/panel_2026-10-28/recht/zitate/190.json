@@ -1,0 +1,90 @@
+{
+ "form_id": 190,
+ "mappings": [
+  {
+   "data_field": "Gebäudeversicherungsnummer",
+   "cites": [
+    {
+     "cref": "SHR 550.100",
+     "article_no": "Art. 13"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Grundbuchnummer",
+   "cites": [
+    {
+     "cref": "SHR 550.100",
+     "article_no": "Art. 13"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Gebäudeadresse",
+   "cites": [
+    {
+     "cref": "SHR 550.100",
+     "article_no": "Art. 6"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Gebäudeeigentümer/-in",
+   "cites": [
+    {
+     "cref": "SHR 550.100",
+     "article_no": "Art. 13"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Vertretung Gebäudeeigentümer/-in",
+   "cites": [
+    {
+     "cref": "SHR 550.100",
+     "article_no": "Art. 13"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Vertretung Feuerwehr",
+   "cites": [
+    {
+     "cref": "SHR 550.100",
+     "article_no": "Art. 13"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Erreichbarkeit mittels Funk im gesamten Gebäude",
+   "cites": [
+    {
+     "cref": "SHR 550.100",
+     "article_no": "Art. 6"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Ort und Datum",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Unterschrift Vertretung Gebäudeeigentümer/in",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Unterschrift Vertretung Feuerwehrkommando",
+   "cites": [],
+   "over_collection": true
+  }
+ ]
+}

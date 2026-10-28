@@ -1,0 +1,498 @@
+{
+ "hinweis": "Übernahme der Formulare, die DVSH und SHEP am 28.10.2026 anbieten und die die Databank nicht hielt: neue Formulare und neuere Ausgaben gehaltener Formulare. Geplant aus den Inhaltsurteilen (urteile_2026-10-28.json) von einem Panel, zweitgeprüft. Angewendet von scripts/load_uebernahme.py.",
+ "abzug": "2026-10-28",
+ "neue_formulare": [
+  {
+   "sha256": "75fd37d478989558350d7ae565d7c0f3f94687009a37eb78f577c28762dd6f58",
+   "dvsh_id": 37,
+   "titel": "Gesuch um Erteilung einer nautischen Bewilligung",
+   "datei": "37__Gesuchsformular nautische Bewilligung_V1-p.pdf",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 37 «Gesuch um Erteilung einer nautischen Bewilligung» nennt diese Datei als Einreichung (sha256 75fd37d47898…); Inhaltsurteil «ersetzt ein falsch zugeordnetes Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "DVSH 37 lists it as its Einreichung (endpunkt). DVSH 37 now has its own row (service 678, match_kind aufgeteilt-2026-10-28), and that row holds no Formular. Form 38 (Fasnachtswagen) is a different Formular and stays where it is. The title is as printed."
+  },
+  {
+   "sha256": "4f5b1fc024ba1ad5ff3e55d15a449c0a95bf9680f55b1d978679d211721ef040",
+   "dvsh_id": 293,
+   "titel": "Erfassung der effektiv ausgesprochenen Kündigungen bei Betriebsschliessungen und Entlassungen gemäss OR 335g und AVV Art. 53",
+   "datei": "293__Erfassungsblatt Massenentlassungen.xls",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 293 «Meldung Massenentlassung» nennt diese Datei als Einreichung (sha256 4f5b1fc024ba…); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "Chosen over 2376296d…: xlrd shows identical cell text in both (one edition; re-checked in review), and this file is DVSH 293's endpunkt (Einreichung), last saved 2025-04-01. Service 562 holds no Formular. The title is as printed in the sheet, with the cell line-break hyphen in «Betriebs-schliessungen» joined."
+  },
+  {
+   "sha256": "a074c54cb90ad739e29c62413a5025a25b5d1afb755a841846e80877a4d5f1b9",
+   "dvsh_id": 206,
+   "titel": "Atelierstipendien in Berlin – Anmeldeblatt",
+   "datei": "206__Formular Atelier 2027.docx",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 206 «Atelierstipendien des Kantons Schaffhausen in Berlin» nennt diese Datei als Einreichung (sha256 a074c54cb90a…); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "DVSH 206 lists it as its Einreichung, and service 640 holds no Formular. The printed heading «Atelierstipendien in Berlin (Vergabe 2026 für 2027)» loses its edition mark. «ANMELDEBLATT» is the printed name of the fill-in part (Personalien, IBAN, signature)."
+  },
+  {
+   "sha256": "e9e5b0ebf08d8ef35aed2e23d2f1526ce60efb3994f26e6326a503901e241d16",
+   "dvsh_id": 122,
+   "titel": "Bestellung Angelfischer-Patent für Jugendliche (10–16 Jahre)",
+   "datei": "122__Bestellung Angelfischer Patent Jugendliche (14).pdf",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 122 «Angelfischer-Patent für Jugendliche bestellen» nennt diese Datei als Einreichung (sha256 e9e5b0ebf08d…); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "DVSH 122 lists it as its Einreichung, and service 647 holds no Formular. It is not form 370, which is the adult order form with different fees and signatory. «(10–16 Jahre)» is printed and names the audience; it is not an edition mark."
+  },
+  {
+   "sha256": "c534e01ef0f4440d460dda635d4f1c47aa1ff04b2797a3d48e3e4d675265f874",
+   "dvsh_id": 382,
+   "titel": "Erklärung über die gemeinsame elterliche Sorge (Art. 298a ZGB) / Vereinbarung über die Anrechnung von Erziehungsgutschriften",
+   "datei": "382__Formular_Erkaerung_ueber_die_gmeinsame_elterliche_Sorge.pdf",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 382 «Antrag gemeinsame elterliche Sorge» nennt diese Datei als Einreichung (sha256 c534e01ef0f4…); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "DVSH 382 lists it as its Einreichung, and service 652 holds no Formular. The title takes the German parts of the trilingual print: page 1 «Erklärung über die gemeinsame elterliche Sorge (Art. 298a CC/ZGB)», with only the German abbreviation kept, and page 2 «Vereinbarung über die Anrechnung von Erziehungsgutschriften»."
+  },
+  {
+   "sha256": "abb7ffeddb9f2901b9aae67921fcf1ca5a4bee91bb05598b7164d2e1d6c5d755",
+   "dvsh_id": 395,
+   "titel": "Gemeinsames Begehren auf Auflösung der eingetragenen Partnerschaft",
+   "datei": "395__Formular_Aufloesung_Partnerschaft_gemBegehr.pdf",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 395 «Auflösung einer Partnerschaft auf gemeinsames Begehren» nennt diese Datei als Einreichung (sha256 abb7ffeddb9f…); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "DVSH 395 lists it as its Einreichung, and service 665 holds no Formular. The printed heading is «Gemeinsames Begehren auf: Auflösung der eingetragenen Partnerschaft»; only the colon was dropped."
+  },
+  {
+   "sha256": "4524e20c131ce4f48e7756b8f2ac45210dd6abb79f3a872b27da26ec5afe2a40",
+   "dvsh_id": 396,
+   "titel": "Gemeinsames Begehren auf Ehescheidung",
+   "datei": "396__Formular_Ehescheidung_gem_Begehren_mitMB.pdf",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 396 «Ehescheidung auf gemeinsames Begehren» nennt diese Datei als Einreichung (sha256 4524e20c131c…); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "DVSH 396 lists it as its Einreichung, and service 666 holds no Formular. Page 1 is the fill-in form; the attached Merkblatt is part of the same file. The title is as printed."
+  },
+  {
+   "sha256": "7ac7a36ac984347c79c867b8a2813321244874665a6d731cd375e48f154668ed",
+   "dvsh_id": 399,
+   "titel": "Gesuch um eheschutzrichterliche Massnahmen",
+   "datei": "399__Formular eheschutzrichterliche Massnahmen mit Merkblatt.pdf",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 399 «Gesuch um eheschutzrichterliche Massnahmen» nennt diese Datei als Einreichung (sha256 7ac7a36ac984…); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "DVSH 399 lists it as its Einreichung (and also as info, for the same file). Service 669 holds no Formular. The title is as printed."
+  },
+  {
+   "sha256": "4609aee454b84c011e2a1a9becdc3bc07e48cecb7bf4e8d6caf7a0848702b601",
+   "dvsh_id": 401,
+   "titel": "Zahlungsauftrag / Antrag auf Kontoübertrag",
+   "datei": "401__Zahlungsauftrag und Antrag an KESB.docx",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 401 «Zahlungsauftrag / Kontoübertrag KESB» nennt diese Datei als Einreichung (sha256 4609aee454b8…); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "DVSH 401 lists it as its Einreichung, and service 671 holds no Formular. The document prints two parts, «Zahlungsauftrag» and «Antrag auf Kontoübertrag», so the title joins both."
+  },
+  {
+   "sha256": "64ca78599f62ad20f802c816f5d44f02619e6769459ce7031daa9c4e9fd23f43",
+   "dvsh_id": 75,
+   "titel": "Erklärung zum Erwerb von Grundstücken durch Personen im Ausland (BewG)",
+   "datei": "75__64ca78599f62.docx",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 75 «Anmeldung Neueintragung AG (Beurkundung hat bereits stattgefunden)» nennt diese Datei als Begleitdokument (sha256 64ca78599f62…); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "Begleitdokument of DVSH 75, 77, 82 and 83. It is signed by «Personen, welche die Handelsregisteranmeldung unterzeichnen» and concerns the «angemeldeten Eintragungsgeschäft», so it serves a Handelsregisteranmeldung. Its wording is generic («Gesellschaft»; Gründung, Kapitalerhöhung, Fusion, Kapitalherabsetzung), so it goes with DVSH 75 (service 313). The generic HR declaration form 315 «Erklärung betreffend Domizil», which ten HR services list, already sits there, and DVSH 75's Unterlagen name this declaration in exactly this wording. No title is printed (body and header checked in the docx XML). The title is DVSH 75's own Unterlagen wording; it matches the document's sentence «…über den Erwerb von Grundstücken durch Personen im Ausland erklären die Unterzeichnenden» and the printed abbreviation BewG."
+  },
+  {
+   "sha256": "e3b5d324dbd87a7b1cf5d3447b3967dc2da669bd647e25558f84b46a22df1e05",
+   "dvsh_id": 78,
+   "titel": "Verzichtserklärung auf Revisionsstelle (GmbH)",
+   "datei": "78__e3b5d324dbd8.docx",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 78 «Anmeldung Opting-Out / Revisionsstellenverzicht» nennt diese Datei als Begleitdokument (sha256 e3b5d324dbd8…); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "Begleitdokument of DVSH 78 and 83. Its only purpose is the Eintragung des Verzichts («beauftragen die Geschäftsführung, die notwendigen Schritte zur Eintragung des Verzichts…»). That is DVSH 78's Opting-out procedure, and 78 asks for «Kopie der Verzichtserklärungen»; form 413 on the same service lists «Verzichtserklärungen» as Beilage. The text is identical to 66e8bb7c… (same edition), neither file is the Einreichung and both are docx, so the later save was kept (2018-07-31, title property set). «(GmbH)» is printed under the title."
+  },
+  {
+   "sha256": "ef7038f4f360874f234553516239962f5ce7ed0e60375c28ed1c8ef7b2025484",
+   "dvsh_id": 78,
+   "titel": "Protokoll über die ausserordentliche Generalversammlung (Verzicht auf eine Revisionsstelle)",
+   "datei": "78__ef7038f4f360.docx",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 78 «Anmeldung Opting-Out / Revisionsstellenverzicht» nennt diese Datei als Begleitdokument (sha256 ef7038f4f360…); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "Only DVSH 78 lists it (file «Protokoll Generalversammlung Opting-Out (AG).docx»); form 413 on the same service names «Protokoll der Generalversammlung über den Verzicht durch alle Aktionäre» as Beilage. The words in brackets are the printed resolution («Verzicht auf eine Revisionsstelle ab dem Geschäftsjahr …»; the agenda line prints «Revisionstelle»). They tell it apart from the Wahlen/Abwahlen GV protocol a1b6a7ba…. The placeholders [Firma], [Sitz] were removed."
+  },
+  {
+   "sha256": "052c3a9c9ee769075ae70cbea9e19b3f7c86100c01397afce88f25a54b0f57df",
+   "dvsh_id": 78,
+   "titel": "KMU-Erklärung betreffend Verzicht auf eine Revisionsstelle",
+   "datei": "78__052c3a9c9ee7.docx",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 78 «Anmeldung Opting-Out / Revisionsstellenverzicht» nennt diese Datei als Begleitdokument (sha256 052c3a9c9ee7…); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "Only DVSH 78 lists it. It is the newer of the two KMU-Erklärung files (created 2018-11-20, modified 2019-07-02); c8f725d4… is the 2013 edition. It is not form 413. Form 413 is the board's Handelsregisteranmeldung «Verzicht auf Revision» (DVSH 78 endpunkt) and only contains a short «2. KMU-Erklärung» section. This file is the stand-alone declaration under Art. 62 HRegV, with its own Belege checklist and signature. Its three declarations overlap with 413; record that overlap, but do not merge the two. The title is as printed."
+  },
+  {
+   "sha256": "b6a4cfeb51fc86fd77913fa0a24867c35c4e9b0becd67e242385974fee454071",
+   "dvsh_id": 79,
+   "titel": "Vollmacht zur Auflösung einer Aktiengesellschaft",
+   "datei": "79__b6a4cfeb51fc.docx",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 79 «Auflösen einer AG: Beurkundung beim Handelsregisteramt» nennt diese Datei als Begleitdokument (sha256 b6a4cfeb51fc…); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "Only DVSH 79 (service 356) lists it. It differs from the held Vollmachten 320 and 419, which cover Gründung and a generic case. The title is as printed."
+  },
+  {
+   "sha256": "4ccf08dd57dbd5548593fd9a1b78c0a4274e73e799713dc05c7846ba239254f3",
+   "dvsh_id": 80,
+   "titel": "Abtretungsvertrag: Übertragung von Stammanteilen der GmbH (Verpflichtungs- und Verfügungsgeschäft)",
+   "datei": "80__4ccf08dd57db.docx",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 80 «Anmeldung: Allgemeine Änderungen bei einer GmbH  (insb. Abtretung von Stammanteilen)» nennt diese Datei als Begleitdokument (sha256 4ccf08dd57db…); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "Only DVSH 80 lists it, and its Unterlagen require «Abtretungsvertrag für Stammanteile … Mustervorlage verfügbar». The title is as printed, without the blank Firma/Sitz fields and the footnote asterisk."
+  },
+  {
+   "sha256": "42727b133043b4462271daef899a3ed4a9eac99493005c86efa5551a0cb69b9e",
+   "dvsh_id": 80,
+   "titel": "Protokoll der ordentlichen / ausserordentlichen Gesellschafterversammlung der GmbH",
+   "datei": "80__42727b133043.docx",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 80 «Anmeldung: Allgemeine Änderungen bei einer GmbH  (insb. Abtretung von Stammanteilen)» nennt diese Datei als Begleitdokument (sha256 42727b133043…); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "Begleitdokument of DVSH 80 and 157. DVSH 80 is the GmbH-specific procedure and names it in its Unterlagen («Gesellschafterprotokoll … z.B. Abtretung von Stammanteilen; Mustervorlage verfügbar»). The template's third agenda item is «Übertragung Stammanteile», which only DVSH 80 covers. DVSH 157's Unterlagen name only the Anmeldeformular and ID papers. The title is as printed, without the blank Firma/Sitz fields."
+  },
+  {
+   "sha256": "3aa6ac4ba3eb58483723d1bcadaa531f6be82dfe9d37a1e35ef4ee6579ecc733",
+   "dvsh_id": 80,
+   "titel": "Geschäftsführerprotokoll der GmbH",
+   "datei": "80__3aa6ac4ba3eb.docx",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 80 «Anmeldung: Allgemeine Änderungen bei einer GmbH  (insb. Abtretung von Stammanteilen)» nennt diese Datei als Begleitdokument (sha256 3aa6ac4ba3eb…); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "Begleitdokument of DVSH 80 and 157. Its agenda (Erteilung/Entziehung einer Zeichnungsberechtigung) fits both. DVSH 80, the GmbH-specific procedure, names it explicitly («Geschäftsführerprotokoll :: Erforderlich bei Änderungen der Zeichnungsberechtigung; Mustervorlage verfügbar»); DVSH 157's Unterlagen do not mention it. It stays next to the GmbH Gesellschafterprotokoll 42727b13…. The title is as printed, without the blank Firma/Sitz fields."
+  },
+  {
+   "sha256": "09ab874fec452e0a3abfd6ae60801f6731ba4cc3c92abcfcdcc5566896b88462",
+   "dvsh_id": 202,
+   "titel": "Spitex-Kennzahlenset",
+   "datei": "202__Spitex Kennzahlenset 2025 V2.xlsx",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 202 «Kantonale Spitex-Erhebung Kanton Schaffhausen» nennt diese Datei als Begleitdokument (sha256 09ab874fec45…); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "Only DVSH 202 «Kantonale Spitex-Erhebung» lists it; DVSH 202 maps to service 513, the bundle row for DVSH 202 and 203. The bundle still fits: DVSH 203's Unterlagen also require the «Kantonales Kennzahlenset» for selbständige Pflegefachpersonen with KLV-Stunden. It is a different Formular from form 439, the Pflegefachpersonen survey. The title «Spitex-Kennzahlenset» is printed on the sheets; the mark «Version 2025/2» was dropped."
+  },
+  {
+   "sha256": "1cb37dffa3e8e443da1109a1f320cfa626bc43b918c6214a86fe9538f79e74a3",
+   "dvsh_id": 157,
+   "titel": "Protokoll über die Versammlung des Verwaltungsrates",
+   "datei": "157__1cb37dffa3e8.docx",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 157 «Anmeldung von Personenmutationen im Handelsregister» nennt diese Datei als Begleitdokument (sha256 1cb37dffa3e8…); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "Only DVSH 157 (service 324) lists it. The title is as printed, without the [FIRMA] in [SITZ] placeholders."
+  },
+  {
+   "sha256": "4a4e73b62cabddf9056a41734065c801480f60ae5ccb147cf8c4ce98bb1d58fa",
+   "dvsh_id": 163,
+   "titel": "Beschreibung zur Art und Umstände, wie der Hund gehalten werden wird",
+   "datei": "163__Art und Umstände, wie der Hund gehalten wird 26-09-22 form.pdf",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 163 «Gesuch für das Halten von Hunden mit erhöhtem Gefährdungspotential» nennt diese Datei als Begleitdokument (sha256 4a4e73b62cab…); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "Only DVSH 163 (service 164) lists it. It is a separate 26-09-22 Formular. It adds Wohnverhältnisse and Einverständnis des Eigentümers, and takes over questions 2–6 of the old form 168 (Ausbildung, Hundeschulen, Alltagsbeschäftigung, Betreuungsperson, Rassenwahl). It has its own signature. The title is as printed (sic)."
+  },
+  {
+   "sha256": "5549b586a429f0745516ee851906d19cb48a80047bc2eee5a812aaadd77e5b0e",
+   "dvsh_id": 163,
+   "titel": "Bestätigung kynologische Fachkenntnisse",
+   "datei": "163__Bestätigung Fachperson kynologische Fachkenntnisse zu Gesuch Listenhund 26-09-22 form.pdf",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 163 «Gesuch für das Halten von Hunden mit erhöhtem Gefährdungspotential» nennt diese Datei als Begleitdokument (sha256 5549b586a429…); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "Only DVSH 163 (service 164) lists it. A third person fills it in and signs it. In the held 23-02 file of form 168 it was page 2. It is now its own file, next to the new edition of form 168 (ba2d3f59…), so it is its own Formular. The title is as printed."
+  },
+  {
+   "sha256": "b4f5a4030c6c221e38e35a85b7c74adeb24eba857fad75007e274a4434a273a6",
+   "dvsh_id": 82,
+   "titel": "Statuten der AG (lange Statuten)",
+   "datei": "82__b4f5a4030c6c.docx",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 82 «Gründung einer Aktiengesellschaft: Beurkundung beim Handelsregisteramt» nennt diese Datei als Begleitdokument (sha256 b4f5a4030c6c…); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "Begleitdokument of DVSH 70 (Statutenänderung AG/GmbH/Genossenschaft) and 82 (Gründung AG). Both require it, and both Gesuch Formulare (406 on DVSH 70, 307 on DVSH 82) print «ausgefüllte lange Statuten HRA». It goes to 82, the AG-specific procedure in which the Statuten are first adopted. The signature block names «Der Gründer / Die Gründerin» first, and the Beglaubigung says «[heute gegründeten]». DVSH 70 uses the template only for a Total-/Teilrevision. The printed title «STATUTEN der [ AG» is identical to the short version 1a6713af…, and the file prints no kurz/lang. «lange Statuten» is the HRA's own name for this template: form 307 prints «ausgefüllte lange Statuten HRA», and the DVSH file is named «AG Musterstatuten (lang).docx». The structure confirms it: numbered sections «I. Grundlage», «II. Kapital», 27 Artikel."
+  },
+  {
+   "sha256": "0b090cde0ad4df148de37f268500e05dfcf546528bc73a5a40afba85d9737f05",
+   "dvsh_id": 83,
+   "titel": "Statuten der GmbH (lange Statuten)",
+   "datei": "83__0b090cde0ad4.docx",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 83 «Gründung einer GmbH: Beurkundung beim Handelsregisteramt» nennt diese Datei als Begleitdokument (sha256 0b090cde0ad4…); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "Begleitdokument of DVSH 70 and 83. It goes to 83 (Gründung GmbH) for the same reason as the AG Statuten: 83 is the GmbH-specific founding procedure, the signature block names «Der Gründer/Die Gründerin» first, and 83 requires «Statuten (Kurzstatuten oder lange Statuten)». The printed title is the same as the short version, so «lange Statuten» is added. Form 317 of the same service prints «ausgefüllte lange Statuten HRA», and the DVSH file is named «GmbH Musterstatuten (lang) 2025.docx». The year mark 2025 from the file name was dropped."
+  },
+  {
+   "sha256": "1a6713af1835f6cac6978f850f298b28379f6b2eee34ba022e1d928945f011e1",
+   "dvsh_id": 82,
+   "titel": "Statuten der AG (Kurzstatuten)",
+   "datei": "82__1a6713af1835.docx",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 82 «Gründung einer Aktiengesellschaft: Beurkundung beim Handelsregisteramt» nennt diese Datei als Begleitdokument (sha256 1a6713af1835…); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "Begleitdokument of DVSH 70 and 82. It goes to 82 (Gründung AG), for the same reason as the long AG Statuten. The printed title is identical to the long version, and the file prints no kurz/lang. «Kurzstatuten» is the HRA's name for this template: form 307 prints «ausgefüllte Kurzstatuten HRA», and the DVSH file is named «AG Musterstatuten (kurz).docx». The structure confirms it: Artikel 1–11 with no sections."
+  },
+  {
+   "sha256": "0ce6591d710d0d7a3ebb5461fdd31cc307ce8c3b6f650b9ad8a0ca5e901e9429",
+   "dvsh_id": 83,
+   "titel": "Statuten der GmbH (Kurzstatuten)",
+   "datei": "83__0ce6591d710d.docx",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 83 «Gründung einer GmbH: Beurkundung beim Handelsregisteramt» nennt diese Datei als Begleitdokument (sha256 0ce6591d710d…); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "Begleitdokument of DVSH 70 and 83. It goes to 83 (Gründung GmbH), for the same reason as the long GmbH Statuten. The printed title is identical to the long version, so «Kurzstatuten» is added; form 317 prints that name, and the DVSH file is named «GmbH Musterstatuten (kurz) 2025.docx». It has Artikel 1–8. The year mark 2025 from the file name was dropped."
+  },
+  {
+   "sha256": "3997f7ce82c9185865abaa42405add0f0b8aa63b8f741f65776684a085456a40",
+   "dvsh_id": 70,
+   "titel": "Statuten der Genossenschaft",
+   "datei": "70__Musteratuten Genossenschaft.docx",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 70 «Statutenänderung bei einer AG, GmbH oder Genossenschaft: Beurkundung beim Handelsregisteramt» nennt diese Datei als Begleitdokument (sha256 3997f7ce82c9…); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "Only DVSH 70 (service 406) lists it. The printed title is «STATUTEN der … Genossenschaft mit Sitz in …», with the placeholders removed. «Genossenschaft» tells it apart from the AG, GmbH and Verein Statuten."
+  },
+  {
+   "sha256": "3b16f41c346c9b653bbecf8bb909034ed125078d0aeb4eb74fb3e17d31172e37",
+   "dvsh_id": 78,
+   "titel": "Verzichtserklärung auf Revisionsstelle (Genossenschaft)",
+   "datei": "78__3b16f41c346c.docx",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 78 «Anmeldung Opting-Out / Revisionsstellenverzicht» nennt diese Datei als Begleitdokument (sha256 3b16f41c346c…); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "Begleitdokument of DVSH 71 and 78. It goes to 78 because the declaration only serves the Eintragung des Verzichts, which is the Opting-out procedure. DVSH 78's description covers AG, GmbH and Genossenschaften and asks for the Verzichtserklärungen. DVSH 71 lists it only for that case («bei Verzicht auf Revision»). «(Genossenschaft)» is printed."
+  },
+  {
+   "sha256": "a1b6a7ba266e8a55538f57359256c93d50510aa67951d38984f1e868091bb276",
+   "dvsh_id": 71,
+   "titel": "Protokoll über die ordentliche / ausserordentliche Generalversammlung (Wahlen / Abwahlen)",
+   "datei": "71__a1b6a7ba266e.docx",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 71 «Anmeldung Änderungen AG / Genossenschaft / Stiftung / Verein» nennt diese Datei als Begleitdokument (sha256 a1b6a7ba266e…); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "Begleitdokument of DVSH 71 and 157. It goes to 71 for three reasons. First, 71 is the AG procedure: its eForm is HRA_Persmut_AG, and the template speaks of Aktienkapital and Verwaltungsrat (DVSH file name «Protokoll Generalversammlung (AG).docx»). Second, 71's Unterlagen name «Protokoll Generalversammlung». Third, the other AG documents that both 71 and 157 list (Wahlannahmeerklärung AG, Rücktrittserklärung) are already held on service 322 (forms 322 and 319). DVSH 157's Unterlagen do not mention protocols. «Wahlen / Abwahlen» is the printed agenda item; it tells this protocol apart from the Opting-out GV protocol ef7038f4…."
+  },
+  {
+   "sha256": "21a884d837cd5938b9b9cf92e908012b1ef767a1763f184eb5dd192c89d40e5c",
+   "dvsh_id": 71,
+   "titel": "Statuten des Vereins",
+   "datei": "71__21a884d837cd.docx",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 71 «Anmeldung Änderungen AG / Genossenschaft / Stiftung / Verein» nennt diese Datei als Begleitdokument (sha256 21a884d837cd…); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "Only DVSH 71 (service 322) lists it. The print says only «STATUTEN». «des Vereins» uses the document's own words («ein Verein gemäss Art. 60 ff.», «Mitglieder des Vereins») to tell it apart from the AG, GmbH and Genossenschaft Statuten. The year mark 2023 from the file name was dropped."
+  },
+  {
+   "sha256": "5b1f3c061d6922b584aa460cd37d3b633fd803c8fe35c0e3060849ae953f7208",
+   "dvsh_id": 78,
+   "titel": "Verzichtserklärung auf Revisionsstelle (Aktiengesellschaft)",
+   "datei": "78__5b1f3c061d69.docx",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 78 «Anmeldung Opting-Out / Revisionsstellenverzicht» nennt diese Datei als Begleitdokument (sha256 5b1f3c061d69…); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "Begleitdokument of DVSH 75, 78 and 82. It goes to 78, the Opting-out procedure. The declaration «beauftragen den Verwaltungsrat, die notwendigen Schritte zur Eintragung des Verzichts…» serves exactly that. 78 asks for «Kopie der Verzichtserklärungen der Aktionärinnen und Aktionäre», and form 413 on the same service lists «Verzichtserklärungen aller Aktionäre» as Beilage. «(Aktiengesellschaft)» is printed."
+  },
+  {
+   "sha256": "760cf21ba4f99d36f78f8d41bc52ff9d5eca3c98b631f712f8b5f42be426cf18",
+   "dvsh_id": 228,
+   "titel": "Gesuch für die Anpassung einer bestehenden Tankanlage (Gesuchsformular 131)",
+   "datei": "228__131_Gesuch_Anpassung_bestehend_Tankanlage.pdf",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 228 «Gesuch zum Bau, Umbau oder die Erweiterung einer Tankanlage oder eines Fasslagers» nennt diese Datei als Begleitdokument (sha256 760cf21ba4f9…); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "Only DVSH 228 (service 604) lists it, as info. It is its own numbered Formular 131 with 123 fields and a signature, so it is not an edition of form 452 (Gesuchsformular 130). The title is as printed; «Ausgabe September 2018» was dropped."
+  },
+  {
+   "sha256": "b94e4aed0e279a6f6d354a6d3a3517329395f75fddbcd9df3c46620bc1dd9b58",
+   "dvsh_id": 219,
+   "titel": "Richtlinie „Anforderungen an einen ökologischen Bachunterhalt für den Erhalt von Kantonsbeiträgen“",
+   "datei": "219__b94e4aed0e27.pdf",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 219 «Beitragsgesuch mit Kostenschätzung für den ökologischen Unterhalt» nennt diese Datei als Begleitdokument (sha256 b94e4aed0e27…); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "Only DVSH 219 (service 544) lists it, as info. It has header lines to fill in (Gemeinde, Verantwortliche/r, Bach, Kosten, Datum) and tick boxes for the optional measures, and it is «einzureichen». It is different from form 477, the Kostenschätzung xlsx. The title is as printed and keeps the printed „…“ quotation marks, as form 433 does; «Dezember 2024» was dropped."
+  },
+  {
+   "sha256": "6b4a2f16faf2e714be51b1ea3430f8d2c1adb24d4e9705b188e2f5b7a681478c",
+   "dvsh_id": 388,
+   "titel": "Betreibungsbegehren",
+   "datei": "388__Betreibungsbegehren.pdf",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 388 «Betreibungsbegehren» nennt diese Datei als Begleitdokument (sha256 6b4a2f16faf2…); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "Only DVSH 388 (service 658) lists it. It is the federal fill-in form with 49 fields. The title is as printed; the mark «Form 1 BJ/OASchKG BB 2016 d» was dropped."
+  },
+  {
+   "sha256": "34775d634d3df6d2a738cd84c5b1db7bb5e03fd2a8ddfac446fbbc14fb9c0e4a",
+   "dvsh_id": 389,
+   "titel": "Fortsetzungsbegehren",
+   "datei": "389__Fortsetzungsbegehren.pdf",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 389 «Fortsetzungsbegehren» nennt diese Datei als Begleitdokument (sha256 34775d634d3d…); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "Only DVSH 389 (service 659) lists it, and it has 54 fields. The title is as printed; «Form 4 BJ/OASchKG FB 2016 d» was dropped."
+  },
+  {
+   "sha256": "fe21d2f0a0b99f01dd30397587c3a7d8ff43a1494c6520b145d1a61f96008942",
+   "dvsh_id": 391,
+   "titel": "Verwertungsbegehren",
+   "datei": "391__Verwertungsbegehren.pdf",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 391 «Verwertungsbegehren» nennt diese Datei als Begleitdokument (sha256 fe21d2f0a0b9…); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "Only DVSH 391 (service 661) lists it, and it has 31 fields. The title is as printed; «Form. 6001» was dropped."
+  },
+  {
+   "sha256": "21f089da8435d2071d76324521081018ad2cfb389026c4d1bffa04177f5177c2",
+   "dvsh_id": 393,
+   "titel": "Anmeldung zur Eintragung eines Eigentumsvorbehalts für einen Konsumkreditvertrag gemäss Art. 1 ff. des Bundesgesetzes über den Konsumkredit (KKG)",
+   "datei": "393__EVR-AntragKonsumkredit.pdf",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 393 «Anmeldung zur Eintragung eines Eigentumsvorbehalts» nennt diese Datei als Begleitdokument (sha256 21f089da8435…); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "Only DVSH 393 (service 663) lists it. It is a fill-in registration with three signature lines. The title is as printed; «Form. 8203» was dropped."
+  },
+  {
+   "sha256": "75ce89e5893cdf72ea71b557738c4d3f9e5bc3b7def921ce5fc148610c606d13",
+   "dvsh_id": 372,
+   "titel": "Entsendebestätigung",
+   "datei": "372__2607_P Entsendebestätigung deutsch.pdf",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 372 «Gesuch Arbeitsbewilligung» nennt diese Datei als Begleitdokument (sha256 75ce89e5893c…); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "Only DVSH 372 (service 631) lists it. It is signed by the employer and the employee and is a different Formular from form 497 (A1). This German version (2019-08-07) is kept; the English «Letter of assignment» c1ca0088… (2016-12-08) is the same Formular. The title is as printed."
+  },
+  {
+   "sha256": "9ae9f5851ae2bb767e7d5221199f68194ebcea7345b4fec00a130e6d3e79d44c",
+   "dvsh_id": 380,
+   "titel": "Gefährdungsmeldung Kinder/Jugendliche",
+   "datei": "380__Gefährdungsmeldung Kinder.docx",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 380 «Gefährdungsmeldung» nennt diese Datei als Begleitdokument (sha256 9ae9f5851ae2…); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "Only DVSH 380 (service 650) lists it. Its fields (Eltern, Sorgerechtsinhaber/in, Schule) differ from the Erwachsene report, so the two are separate Formulare. The title is as printed."
+  },
+  {
+   "sha256": "30a9d6d6d82f421a6fd4f52a50d7804de5872788720809ad954ddb27174e3fa9",
+   "dvsh_id": 380,
+   "titel": "Gefährdungsmeldung Erwachsene",
+   "datei": "380__Gefährdungsmeldung Erwachsene.docx",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 380 «Gefährdungsmeldung» nennt diese Datei als Begleitdokument (sha256 30a9d6d6d82f…); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "Only DVSH 380 (service 650) lists it. Its fields (Ausbildungsstätte/Arbeitgeber, «Weiss die betroffene Person…») differ from the Kinder/Jugendliche report. The title is as printed."
+  },
+  {
+   "sha256": "3022f7754c92db9aa95517223bb0b781fb9118f3b9d8a3f28c6088a803a03a37",
+   "dvsh_id": 339,
+   "titel": "Leistungssport und Schule – Sportliche Biografie",
+   "datei": "339__Biografie_Kostengutsprache Leistungssport_Schutz.docx",
+   "beleg": "zuordnung (DVSH-Abzug 2026-10-28): DVSH 339 «Antrag für eine Kostengutsprache für Hochbegabte » nennt diese Datei als Begleitdokument (sha256 3022f7754c92…); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-10-28.json)",
+   "begruendung": "DVSH 339 nennt die Datei als Begleitdokument; sie ist ein ausfüllbares Formular (Formularfelder, Kontrollkästchen), zweitgeprüft. Service 577 hält bisher nur den schriftlichen Antrag (Formular 485)."
+  }
+ ],
+ "neue_ausgaben": [
+  {
+   "sha256": "e550c8447f337c1c790ea3b48c5dcba86411a9a0b0f30ab260236ae402c60fab",
+   "form_id": 272,
+   "titel": null,
+   "datei": "303__Vertretungsvollmacht_SH-ohne-Rechnung.pdf",
+   "begruendung": "Same title and fields as form 272. It is newer by PDF metadata (2026-06-23 vs 2026-02-26), and only the scope clause changed. DVSH 303's endpunkt."
+  },
+  {
+   "sha256": "4f4e38894491fcb151b47045491ef2be21b102ca276d6b9e061cf275e26143d2",
+   "form_id": 312,
+   "titel": null,
+   "datei": "75__Anmeldeformular Neueintragung AG - Stand Juni 2022.pdf",
+   "begruendung": "«Stand Juni 2022» (footer 2022-01) replaces the 2018-10-31 file of form 312. It is DVSH 75's endpunkt. The title changed only from «zur Neueintragung einer Aktiengesellschaft» to «: Neueintragung einer Aktiengesellschaft (AG)»."
+  },
+  {
+   "sha256": "005e5b8236ae208c777ae8353566f23f142f9091538d19a48c5a3c7439427f92",
+   "form_id": 370,
+   "titel": null,
+   "datei": "121__Bestellung Angelfischer Patent Erwachsene (22).pdf",
+   "begruendung": "Same title, Strecken and fees as form 370. It is newer: PDF dated 2023-04-21 vs 2015, fax line dropped, @sh.ch address. DVSH 121's endpunkt."
+  },
+  {
+   "sha256": "036182acb2443b292adea9b76531cf1589176b9af4905b4ddfce86e4927e8ffd",
+   "form_id": 164,
+   "titel": null,
+   "datei": "163__Gesuch Listenhund KT SH 26-09-22_formular.pdf",
+   "begruendung": "Same heading and sections A–E as form 164; the 26-09-22 file replaces 23-02 and adds Geburtsdatum. The printed title «Gesuch für die Haltung eines Hundes (gemäss § 4 der Kantonalen Hundeverordnung)» is the same in both editions, so the edition did not change the title."
+  },
+  {
+   "sha256": "b752fb16c83631d984cfea8e6ca9db1f795f7cb45f65dc4153ab1b3d02da8f4e",
+   "form_id": 185,
+   "titel": null,
+   "datei": "210__20260826_Gesuch_mit_Zusatzblatt_Buehnenfeuewerk_Indoor-Pyrotechnik.pdf",
+   "begruendung": "Same title, intro and Zusatzblatt as form 185. The footer is dated 20260826 vs 31.03.2025. DVSH 210's endpunkt."
+  },
+  {
+   "sha256": "65aff08b022c6b4964bb01792a0556b110b5a4edfd768b9f9ff651468c57dc71",
+   "form_id": 186,
+   "titel": null,
+   "datei": "208__20260826_Gesuch_mit_Zusatzblatt_Offenes_Feuer_Raum_mit_grosser_Personenbelegung.pdf",
+   "begruendung": "Same title and Zusatzblatt as form 186. The footer is dated 20260826 vs 31.03.2025. DVSH 208's endpunkt."
+  },
+  {
+   "sha256": "f93048989aa1e57024a65811ff03eb6cbfda6e9c8749f619328d09dd8deaf0cf",
+   "form_id": 390,
+   "titel": null,
+   "datei": "134__2021-Formular Hundebissmeldung Opfer Mensch aktiv.pdf",
+   "begruendung": "Same title and legal basis as form 390, the only Mensch edition held. The 2021/2022 file replaces 18-06 and adds Schweregrad, Chip-Nr. and Rassengruppe. DVSH 134's endpunkt."
+  },
+  {
+   "sha256": "2baa9b85cb3397b538d4b2de9c68ed9496f1a3df87300c60d48f4c236cfc058b",
+   "form_id": 402,
+   "titel": null,
+   "datei": "220__GN_Erhebungsblatt_Heiz&Kuehlwasser.xlsx",
+   "begruendung": "Chosen over the PDF 457744af…, which is also a newer edition of 402. This xlsx is the newer of the two: modified 2021-11-29, address juerg.sturzenegger@sh.ch. The PDF dates from 2018-12-13 and still shows @ktsh.ch. The held 402 PDF is from 2014-03-28 (Tiefbauamt, with fax). The xlsx is also DVSH 220's endpunkt. Its fields are the same as form 402."
+  },
+  {
+   "sha256": "ba482dc70b3842b6bfa6f9710983b3395859648f73e0ac29e998cb3c76b43996",
+   "form_id": 403,
+   "titel": null,
+   "datei": "351__Gesuch KUEG IVSE A_D.pdf",
+   "begruendung": "Chosen over the docx 6d2079cb…. Both are later than form 403 (docx modified 2024-10-21), and DVSH 351 lists both as Einreichung, but they are two separate revisions of 403. The docx (modified 2025-03-05) only updates the Verbindungsstelle details (Mühlentalstrasse 88A, 052 632 76 85 Zentrale). This PDF (Print To PDF, 2026-10-14) removes Methode D and names the Dienststelle Primar- u. Sekundarstufe I, Aufsicht Sonderschulung und Therapien as Innerkantonal zuständige Stelle (new contact). It still prints the old Verbindungsstelle address «Postfach 313». The PDF is the later file and DVSH 351's current submission_endpoint, set the same day (dvsh_updated_at 2026-10-14), so DVSH's choice decides. It stays on form 403 (IVSE A/D); form 151 is the Bereich B Formular. It is a flat print without form fields (dropdowns print as «* Bitte auswählen»), filled in by hand."
+  },
+  {
+   "sha256": "81da53cb8b53501d4a5d35e0e687b2f63651003f847211c7ee88aeb36f22fe03",
+   "form_id": 405,
+   "titel": null,
+   "datei": "119__Gesuch Transportkosten Sosch Kt SH 2026_ausserkant_mSchutz.docx",
+   "begruendung": "Same fields as form 405; only the office address changed. The header «Formular Juli 2026» replaces «September 2023». DVSH 119's endpunkt."
+  },
+  {
+   "sha256": "2d5acf35293b7ff239e6c4a30c291cb05a6fb8ece30b81d62ad82bf68bbfb22f",
+   "form_id": 44,
+   "titel": null,
+   "datei": "54__Antrag Gewichtsänderung - 2026-07-V2.pdf",
+   "begruendung": "«Version: 2026.08.24» replaces «Version: 2022.11.02» of form 44. DVSH 54's endpunkt. The title changed only from «Antrag für» to «Antrag auf Gewichtsänderung», which is not material."
+  },
+  {
+   "sha256": "0abfd45cd752a3c00b33843592b148f17e98f3b3ddad61ea55ffea111fa7228f",
+   "form_id": 480,
+   "titel": null,
+   "datei": "322__Einwilligung Eltern 6. Klasse-2.pdf",
+   "begruendung": "Same 13 Angaben as form 480. It is newer: PDF dated 2026-09-21 vs 2025-09-02, with labels changed to «sorgeberechtigte». DVSH 322's endpunkt."
+  },
+  {
+   "sha256": "ab17255d2083563b07dd523984241bad1361131d5545640ed37f1a426b0de628",
+   "form_id": 481,
+   "titel": null,
+   "datei": "323__Einwilligung Eltern Oberstufe-2.pdf",
+   "begruendung": "Same 13 Angaben as form 481. It is newer: PDF dated 2026-09-21 vs 2025-09-02, with the same revisions as the 6. Klasse form. DVSH 323's endpunkt."
+  },
+  {
+   "sha256": "d1f6ca4983fa17bcef55fe8807a62331655c1ad4caffab350d55b29b3f3cfd76",
+   "form_id": 447,
+   "titel": "Antrag für die Zulassung als Veteranenfahrzeug",
+   "datei": "40__veteranenfahrzeuge-26-p.pdf",
+   "begruendung": "«Version: 2026.08.14» replaces 2021.06.18. Form 447 is the only Formular on service 599 (DVSH 40, whose endpunkt this file is). A title is set because form 447 is stored as «Anhang zum Fahrzeugausweis Forst Traktor», which is materially wrong. The held file and this edition both print «Antrag für die Zulassung als Veteranenfahrzeug» (re-checked in review)."
+  },
+  {
+   "sha256": "e9f04726bea56aa2121ef5b445c83d6ca55ca0753f3ad364f183444eebdc005f",
+   "form_id": 452,
+   "titel": null,
+   "datei": "228__130 Gesuch Tankanlagen_2018_inkl_Meldepflicht.pdf",
+   "begruendung": "Same Gesuchsformular 130 and field grid as form 452. «Ausgabe:12.10.2018» replaces «Neuausgabe: 01.04.2010». DVSH 228's endpunkt."
+  },
+  {
+   "sha256": "069c5df4f0f6622d1196dc011b75f58fe0fd37f0da5f26146e2a2c61d27c3c10",
+   "form_id": 190,
+   "titel": null,
+   "datei": "312__Inhouse Funkversorgung für Einsatzkräfte.pdf",
+   "begruendung": "It is the same 8-page Merkblatt as form 190, with the Prüfformular on p. 8. The title page reads «23. Januar 2024» instead of «1. Juli 2023», and the fields are unchanged. The printed title is the same."
+  },
+  {
+   "sha256": "518bb64b73f407e25c3f8508fde39cae1202df5a1060e14ea9a46f4102668427",
+   "form_id": 233,
+   "titel": null,
+   "datei": "215__Fragebogen Erlasswesen.pdf",
+   "begruendung": "It has the same DVSH 215 endpunkt file name as form 233 and the same Finanzdepartement letterhead. It is newer: PDF dated 2026-08-17 vs 2018, and the questionnaire was rebuilt. The printed title moved from «Fragebogen Erlasswesen» to «Fragebogen Erlassgesuch Nr. ___». That is not material, and adopting it would blur form 233 with form 254 «Erlassgesuch» (Steuerverwaltung, DVSH 97), so the title is kept."
+  },
+  {
+   "sha256": "ba2d3f59ede2e53840096a66d230a809714ca6329cd1789f5aee55d66e8954ad",
+   "form_id": 168,
+   "titel": null,
+   "datei": "163__Nachweis kynologische Fachkenntnisse zu Gesuch Listenhund 26-09-22_formular.pdf",
+   "begruendung": "Same file stem as form 168 («…zu Gesuch Listenhund»); 26-09-22 replaces 23-02. The core question 1 is kept. The other parts moved to the new files 4a4e73b6… (questions 2–6) and 5549b586… (the former page 2). «Nachweise zu den kynologischen Fachkenntnissen» vs «Formular für den Nachweis über kynologische Fachkenntnisse» is not a material title change."
+  }
+ ],
+ "duplikate": [
+  {
+   "sha256": "6d2079cba234dd20ea0ee53a3d9cc848cbfd358171fd9b231c2a546d6e8a9af6",
+   "gleich_wie_sha256": "ba482dc70b3842b6bfa6f9710983b3395859648f73e0ac29e998cb3c76b43996",
+   "gleich_wie_form_id": 403,
+   "urteil": "aeltere_ausgabe",
+   "begruendung": "It is the same IVSE A/D KÜG Formular as ba482dc7…, and both are later than form 403. This docx (modified 2025-03-05) is the older file; it updates only the Verbindungsstelle address and phone. The 2026-10-14 PDF, now DVSH 351's submission_endpoint, drops Methode D and changes the Innerkantonal zuständige Stelle, but it still prints the old «Postfach 313» address. The chosen edition is therefore inconsistent: this docx already prints the newer Verbindungsstelle address."
+  },
+  {
+   "sha256": "66e8bb7c93192bdfb508d4792c2a4c5b0c0d323e239b85315af4955acbdd480f",
+   "gleich_wie_sha256": "e3b5d324dbd87a7b1cf5d3447b3967dc2da669bd647e25558f84b46a22df1e05",
+   "gleich_wie_form_id": null,
+   "urteil": "gleiche_ausgabe",
+   "begruendung": "The extracted text is identical to e3b5d324… (Verzichtserklärung auf Revisionsstelle (GmbH)). This is the 2014-10-17 original save; e3b5d324… is the 2018-07-31 re-save of the same edition. DVSH 78 and 83 list both."
+  },
+  {
+   "sha256": "c8f725d4f1f1aaaaeefc02725913c7a53d253d8bad543c2df61d3567e5ab971a",
+   "gleich_wie_sha256": "052c3a9c9ee769075ae70cbea9e19b3f7c86100c01397afce88f25a54b0f57df",
+   "gleich_wie_form_id": null,
+   "urteil": "aeltere_ausgabe",
+   "begruendung": "It is the same KMU-Erklärung as 052c3a9c…, and the texts differ in only one Beleg line («Bilanzen … und Erfolgsrechnungen» vs «Jahresrechnungen … inklusive Anhang»). This docx dates from 2013-06-10; 052c3a9c… dates from 2018/2019. DVSH 75, 78, 82 and 83 list this older copy; only 78 lists the newer one."
+  },
+  {
+   "sha256": "457744af1f273cfb637808682c15940d152ccd743f8027bf5ad2a2ac030805ae",
+   "gleich_wie_sha256": "2baa9b85cb3397b538d4b2de9c68ed9496f1a3df87300c60d48f4c236cfc058b",
+   "gleich_wie_form_id": 402,
+   "urteil": "aeltere_ausgabe",
+   "begruendung": "It is the same Wasserbezug Formular as form 402, and newer than the held 2014 PDF. It is older than the xlsx 2baa9b85…: PDF dated 2018-12-13 with the address juerg.sturzenegger@ktsh.ch, while the xlsx was modified 2021-11-29 and uses @sh.ch. DVSH 265 (service 56) lists it only as info; DVSH 220 lists the xlsx as its endpunkt."
+  },
+  {
+   "sha256": "2376296d20abfd50c8e15737d4c3ac8bb742287a70f9704d8f8c18e6413d649d",
+   "gleich_wie_sha256": "4f5b1fc024ba1ad5ff3e55d15a449c0a95bf9680f55b1d978679d211721ef040",
+   "gleich_wie_form_id": null,
+   "urteil": "gleiche_ausgabe",
+   "begruendung": "Read with xlrd, the cell text of sheet «Erfassungsblatt» is identical to 4f5b1fc0… (re-checked in review). It is only a re-save: same author and creation date (2016-07-01), last saved 2026-08-18 by another user. DVSH 293 lists this copy as info and 4f5b1fc0… as its endpunkt."
+  },
+  {
+   "sha256": "c1ca00884b9dd9e4a4584a566114cf9040e3e1958cd39c37258a901d829ba6bf",
+   "gleich_wie_sha256": "75ce89e5893cdf72ea71b557738c4d3f9e5bc3b7def921ce5fc148610c606d13",
+   "gleich_wie_form_id": null,
+   "urteil": "gleiche_ausgabe",
+   "begruendung": "«Letter of assignment» is the English version of the Entsendebestätigung 75ce89e5…. It has the same letterhead and the same fields line for line, and it is from the same 2607_P set listed by DVSH 372. It is the same Formular in another language; the databank holds the German version."
+  }
+ ]
+}

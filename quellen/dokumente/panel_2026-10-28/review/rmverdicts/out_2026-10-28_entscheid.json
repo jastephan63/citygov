@@ -1,0 +1,202 @@
+{
+ "urteile": [
+  {
+   "form_id": 542,
+   "refuted": false,
+   "besser": null,
+   "grund": "Das Urteil passt. Das Formular ist an das SVSA gerichtet. Die Schifffahrtsverordnung § 3 Abs. 2 lit. d macht das Schifffahrtsamt, eine Stelle unter dem Baudepartement, für Veranstaltungen zuständig. Der Entscheid ist eine Bewilligung, also eine Anordnung einer unteren Verwaltungsbehörde. Dafür gilt VRG Art. 16: Rekurs an den Regierungsrat, 20 Tage. Es gibt keine sektorale Kandidatin, und die Verordnung (§ 1–9) enthält keine Rechtsmittelnorm. BSV Art. 72 und BSO 11.05 regeln nur die Zuständigkeit für die Bewilligung, nicht den Rechtsweg. Für «offen» fehlt deshalb nichts."
+  },
+  {
+   "form_id": 544,
+   "refuted": false,
+   "besser": null,
+   "grund": "Das Kulturgesetz enthält keine Kandidaten, sektoral scheidet also aus. Entscheiden soll das Fachkuratorium, das laut Formular endgültig und ohne Rechtsmittel befindet. Art. 16 VRG greift nur bei Anordnungen einer unteren Verwaltungsbehörde oder eines Departements und nur ohne ausdrücklichen Ausschluss. Ob ein Erlass den Ausschluss deckt (Reglement für die Atelierstipendien, KulturV § 5, LGF-VO) und ob das Kuratorium verfügt, fehlt im Material. Daher ist «offen» richtig."
+  },
+  {
+   "form_id": 545,
+   "refuted": false,
+   "besser": null,
+   "grund": "Das Verdikt passt zum Entscheid und zur Behörde. form_outcome nennt eine Bewilligung (Patent mit Rechnung). Nach § 22 Abs. 1/4 SHR 923.101 gibt das Sekretariat DI das Patent ab, also eine untere Verwaltungsbehörde. Damit greift VRG Art. 16: Rekurs an den Regierungsrat. Die Verordnung beruht direkt auf dem BGF (Ingress) und enthält keine Rechtsmittelnorm; § 49 betrifft nur den Entzug. Kein ZGB-Kandidat betrifft diesen Entscheid oder diese Behörde."
+  },
+  {
+   "form_id": 548,
+   "refuted": false,
+   "besser": null,
+   "grund": "Bestätigt. Laut Formularkopf entscheidet das Kantonsgericht Schaffhausen, und das Verfahren endet mit einem Scheidungsurteil. Das ist ein Zivilentscheid eines Gerichts, keine Verfügung einer Verwaltungsbehörde. Der Eintrag entscheid_art='verfuegung' passt deshalb nicht, doch das Verdikt ordnet den Entscheid richtig ein. Kein ZGB-Kandidat trifft zu: 439/445/450/450b betreffen den Erwachsenenschutz, 268abis/268ater die Adoption, 314a die Kindesschutzbehörde und 956a/b das Grundbuchamt. Der VRG-Rekurs gilt nicht für Zivilurteile. Das massgebende Recht ist die ZPO, und sie fehlt unter den Kandidaten. Darum ist «offen» richtig."
+  },
+  {
+   "form_id": 549,
+   "refuted": false,
+   "besser": null,
+   "grund": "Hält. Laut Formular entscheidet der Eheschutzrichter am Kantonsgericht im summarischen Verfahren (Art. 252 i.V.m. 271 ZPO). Das ist ein Zivilgerichtsentscheid, also gilt der VRG-Rekurs nicht («allgemein» passt nicht). Keine ZGB-Kandidatin erfasst ihn: 439/445/450/450b betreffen FU/KESB, 268abis/268ater/314a die Kindesanhörung, 956a/b das Grundbuchamt. Die ZPO (SR 272) ist nicht in der Databank. Kleiner Hinweis: entscheid_art «verfuegung» passt nicht genau zu einem Gerichtsentscheid, am Verdikt ändert das nichts."
+  },
+  {
+   "form_id": 550,
+   "refuted": false,
+   "besser": null,
+   "grund": "Das Verdikt passt zum Entscheid. Die Beistandsperson beantragt bei der KESB die Zustimmung zum Bezug vom Sperrkonto. Die KESB bewilligt, indem sie den Zahlungsauftrag unterzeichnet (entscheid_art «bewilligung»). Das ist ein Entscheid der Erwachsenenschutzbehörde; für Kinder gilt Art. 450 über Art. 314 Abs. 1 ZGB sinngemäss. Die Beistandsperson ist am Verfahren beteiligt. Art. 450 (Regel 78) erfasst diesen Entscheid, die Frist folgt aus Art. 450b. Art. 439/445 (FU, vorsorgliche Massnahmen), 268abis/268ater/314a (Kind) und 956a/b (Grundbuchamt) betreffen andere Entscheide."
+  },
+  {
+   "form_id": 551,
+   "refuted": false,
+   "besser": null,
+   "grund": "Passt zum Entscheid: form_outcome = registereintrag. Laut Formular entscheidet der kantonale Handelsregisterführer. Er setzt das Verfahren aus und verweist an das Volkswirtschaftsdepartement. Regel 14 (Art. 33 Abs. 4 HRegV) betrifft nur die Verweigerung durch das EHRA, also eine andere Behörde und einen anderen Akt. Der massgebende Rechtsweg nach BewG (Art. 18/20) und OR Art. 942 fehlt unter den Kandidaten. Darum ist «offen» richtig, wie bei den HR-Formularen 310/316/360/362."
+  },
+  {
+   "form_id": 552,
+   "refuted": false,
+   "besser": null,
+   "grund": "Das Urteil «sektoral, Regel 125» passt zum Entscheid. form_outcome hält «registereintrag» fest. Die Erklärung beauftragt die Geschäftsführung mit der Eintragung des Verzichts im Handelsregister. Darüber verfügt das kantonale Handelsregisteramt, und solche Verfügungen erfasst Art. 942 OR («Verfügungen der Handelsregisterämter»). Das OR ist zitiert (Art. 727a, 791), bei Formular 413 nicht. Regel 14 betrifft nur das EHRA. Gleich beurteilt wurden die Formulare 356 und 411."
+  },
+  {
+   "form_id": 553,
+   "refuted": false,
+   "besser": null,
+   "grund": "Das Urteil passt zum Entscheid. Das Verfahren endet mit einem Registereintrag (form_outcome: registereintrag): Das kantonale Handelsregisteramt SH prüft den Universalversammlungsbeschluss und trägt den Verzicht und die Löschung der Revisionsstelle ein oder weist die Anmeldung ab. Das ist eine Verfügung eines Handelsregisteramts im Sinn von Art. 942 OR (Regel 125; OR ist zitiert). Regel 14 betrifft nur eine EHRA-Verweigerung. Gleich entschieden wie Formulare 356 und 411."
+  },
+  {
+   "form_id": 554,
+   "refuted": false,
+   "besser": null,
+   "grund": "Aus Sicht «entscheid» hält das Verdikt. Formular 554 ist eine Anmeldung zum Opting-out nach Art. 727a OR und Art. 62 HRegV, form_outcome = registereintrag. Über Eintragung oder Abweisung entscheidet das kantonale Handelsregisteramt. Diese Verfügung erfasst Art. 942 OR (Regel 125) dem Wortlaut nach. Regel 14 betrifft nur die Genehmigungsverweigerung des EHRA. Das deckt sich mit den Verdikten zu 356 und 411; auch beide Hälften der Zweitprüfung von 413 stützen Art. 942 OR."
+  },
+  {
+   "form_id": 555,
+   "refuted": false,
+   "besser": null,
+   "grund": "Das Verfahren endet laut form_outcome mit einem Registereintrag (Auflösung der AG im Handelsregister). Darüber entscheidet das kantonale Handelsregisteramt, und solche Verfügungen der Handelsregisterämter erfasst OR Art. 942 (Regel 125, OR 317 wird zitiert). Regel 14 betrifft nur die Verweigerung durch das EHRA. Die Beurkundung ist nicht der erfasste Entscheid. Das Verdikt stimmt mit F356 und F411 überein."
+  },
+  {
+   "form_id": 556,
+   "refuted": false,
+   "besser": null,
+   "grund": "Verdikt passt zu Entscheid und Behörde: form_outcome = registereintrag (HR-Eintrag, SHAB). Der Vertrag ist laut Fussnote als Beleg beim HRA einzureichen; die Geschäftsführung meldet an (Ziff. IV), und das kantonale HRA verfügt. OR (Gesetz 317) ist zitiert, Regel 125 ist also Kandidat; anders bei 314/324, wo nur die HRegV zitiert war. Regel 14 betrifft nur die Verweigerung durch das EHRA. Gleich entschieden wie bei 356 und 411."
+  },
+  {
+   "form_id": 557,
+   "refuted": false,
+   "besser": null,
+   "grund": "Laut form_outcome endet das Verfahren mit einem Registereintrag: Das kantonale Handelsregisteramt trägt die Änderungen ein und publiziert sie im SHAB. Das Protokoll ist nur ein Beleg dafür. Eintrag oder Abweisung ist eine Verfügung des Handelsregisteramts, und genau diese erfasst OR Art. 942 (Regel 125). OR ist hier zitiert, daher ist Regel 125 Kandidat. HRegV Art. 33 (Regel 14) betrifft nur die Verweigerung durch das EHRA. Gleich beurteilt wie Formular 356 und 411."
+  },
+  {
+   "form_id": 558,
+   "refuted": false,
+   "besser": null,
+   "grund": "Ergebnis laut form_outcome: Registereintrag der Änderung (Zeichnungsberechtigung) mit SHAB-Publikation. Darüber verfügt das kantonale Handelsregisteramt. Das Geschäftsführerprotokoll ist dafür nur Beleg. Regel 125 (Art. 942 OR, Verfügungen der Handelsregisterämter, 30 Tage, oberes kantonales Gericht) trifft damit genau Entscheidart und Behörde. Regel 14 betrifft nur die Verweigerung durch das EHRA. Das deckt sich mit den Verdikten zu 356 und 411. Bei 314 und 324 hiess es «offen», weil OR dort nicht zitiert war."
+  },
+  {
+   "form_id": 560,
+   "refuted": false,
+   "besser": null,
+   "grund": "Das Urteil passt zum Entscheid. form_outcome nennt «registereintrag»: Das kantonale Handelsregisteramt trägt die Personenmutationen ein (Erteilung oder Entzug einer Zeichnungsberechtigung) und publiziert sie im SHAB. Das VR-Protokoll ist nur der private Beleg dazu, ein Entscheid einer Behörde ist es nicht. Art. 942 OR (Regel 125) deckt genau die Verfügungen der Handelsregisterämter, also Eintrag oder Abweisung. Das OR gehört zu den zitierten Gesetzen. Regel 14 betrifft nur das EHRA. Das deckt sich mit den Formularen 356 und 411."
+  },
+  {
+   "form_id": 561,
+   "refuted": false,
+   "besser": null,
+   "grund": "Entscheid passt: form_outcome = bewilligung/Haltungsbewilligung; das Formular ist eine Beilage des Gesuchs Listenhund des Veterinäramts. Art. 9 Abs. 4–6 HundeG und § 5 Abs. 3 HundV lassen das Veterinäramt über Erteilung oder Verweigerung entscheiden. Das ist eine untere kantonale Verwaltungsbehörde, also gilt Art. 16 VRG (Rekurs an den Regierungsrat, 20 Tage). Es gibt keine aktive sektorale Regel zu SHR 455.200/455.201. Das passt zu den Veterinäramt-Verdikten 372–376."
+  },
+  {
+   "form_id": 562,
+   "refuted": false,
+   "besser": null,
+   "grund": "Das Urteil passt zum Entscheid. Die Fachperson stellt mit dem Formular nur einen Nachweis zum Gesuch aus. Entschieden wird über die Haltungsbewilligung (form_outcome: bewilligung), und zwar durch das Veterinäramt, also eine untere Verwaltungsbehörde (HundeV § 4–5). Für HundeG und HundeV gibt es keine sektorale Kandidatenregel. Der Volltext beider Erlasse enthält kein Wort zu Rekurs, Einsprache oder Beschwerde. VRG Art. 16 (Regel 1) erfasst «Anordnungen einer unteren Verwaltungsbehörde», also Rekurs an den Regierungsrat innert 20 Tagen. Die vergleichbaren Bewilligungen des Veterinäramts (Formulare 372–376) wurden ebenso als «allgemein» beurteilt."
+  },
+  {
+   "form_id": 563,
+   "refuted": false,
+   "besser": null,
+   "grund": "Laut form_outcome ist der Entscheid ein «registereintrag»: Das kantonale HRA Schaffhausen trägt die AG ein oder weist die Anmeldung ab. Das ist eine Verfügung eines Handelsregisteramts, also gilt Art. 942 OR (Regel 125, OR ist zitiert). Regel 14 betrifft nur die Verweigerung durch das EHRA. Die Beglaubigung durch die Urkundsperson ist ein notarieller Teilakt und nicht der Entscheid. Gleich beurteilt wurden 356/411."
+  },
+  {
+   "form_id": 564,
+   "refuted": false,
+   "besser": null,
+   "grund": "Das Verdikt hält. Laut form_outcome endet das Verfahren mit einem Registereintrag: der Neueintragung der GmbH, mit den beglaubigten Statuten als Beleg. Darüber entscheidet das kantonale Handelsregisteramt (DVSH 83). Regel 125 (OR Art. 942) erfasst genau die Verfügungen der Handelsregisterämter. Regel 14 (HRegV Art. 33) betrifft nur das EHRA. Die Beglaubigung durch das Amt ist nur ein Beleg zum Eintrag. Das Verdikt stimmt mit 356 (Regel 125) überein. Bei 314 und 324 fehlte Art. 942 unter den Kandidaten."
+  },
+  {
+   "form_id": 565,
+   "refuted": false,
+   "besser": null,
+   "grund": "Das Urteil passt zum Entscheid. form_outcome ist «registereintrag», der Entscheid lautet auf Eintragung der AG im Handelsregister. Zuständig ist das kantonale Handelsregisteramt Schaffhausen, denn die Beglaubigung erfolgt dort (DVSH 82 «Beurkundung beim Handelsregisteramt»). Art. 942 OR (Regel 125, Kandidat über das zitierte OR) erfasst genau die Verfügungen der Handelsregisterämter. Regel 14 betrifft nur die Verweigerung durch das EHRA. Das deckt sich mit Formular 356 und 411."
+  },
+  {
+   "form_id": 566,
+   "refuted": false,
+   "besser": null,
+   "grund": "Passt. form_outcome nennt entscheid_art=registereintrag, und das Ergebnis ist die Neueintragung der GmbH. Entscheidende Behörde ist das kantonale Handelsregisteramt Schaffhausen. Art. 942 OR (Regel 125) erfasst genau dessen Verfügungen. Die Beglaubigung durch die Urkundsperson desselben Amts ist eine Beurkundung und keine anfechtbare Registerverfügung. Regel 14 betrifft nur das EHRA. Bei den Vergleichsformularen lautete das Verdikt nur deshalb «offen», weil das OR dort nicht unter den Kandidaten war."
+  },
+  {
+   "form_id": 567,
+   "refuted": false,
+   "besser": null,
+   "grund": "Entscheid und Instanz passen zusammen. form_outcome 567 ist ein Registereintrag, und das Muster stammt vom Handelsregisteramt Schaffhausen. Über die Eintragung oder deren Verweigerung verfügt also das kantonale Handelsregisteramt. Regel 125 (OR Art. 942) erfasst genau die «Verfügungen der Handelsregisterämter»: Beschwerde innert 30 Tagen an das obere kantonale Gericht. Regel 14 (HRegV Art. 33) betrifft nur die Verweigerung durch das EHRA. Das Ergebnis deckt sich mit den Verdikten 356 und 411."
+  },
+  {
+   "form_id": 568,
+   "refuted": false,
+   "besser": null,
+   "grund": "Das Verfahren endet mit einem Registereintrag (form_outcome: registereintrag). Über den Eintrag des Opting-out entscheidet das kantonale Handelsregisteramt, und die Erklärung der Genossenschafter ist nur ein Beleg zur Anmeldung der Verwaltung. Ein Eintrag oder eine Abweisung ist eine Verfügung eines Handelsregisteramts im Sinn von OR Art. 942 (Regel 125): 30 Tage, oberes kantonales Gericht. Regel 14 betrifft nur die Verweigerung durch das EHRA. Das passt zu 356 und 411."
+  },
+  {
+   "form_id": 569,
+   "refuted": false,
+   "besser": null,
+   "grund": "Das Urteil passt zum Entscheid. Das Verfahren endet mit «registereintrag». Das GV-Protokoll ist ein Beleg zur Anmeldung von Änderungen nach DVSH 71 für eine AG. Es entscheidet das kantonale Handelsregisteramt mit Eintragung oder Abweisung. OR Art. 942 (Regel 125) gilt für «Verfügungen der Handelsregisterämter»: Beschwerde innert 30 Tagen an das obere kantonale Gericht. Regel 14 (HRegV Art. 33) betrifft nur die Verweigerung durch das EHRA, also eine andere Behörde. Gleich beurteilt wurden die Formulare 356 und 411."
+  },
+  {
+   "form_id": 570,
+   "refuted": false,
+   "besser": null,
+   "grund": "Entscheid (registereintrag, SHAB) fällt das kantonale HR-Amt. Regel 14 erfasst nur die Verweigerung durch das EHRA; Regeln 73–81 betreffen KESB, Gericht (FU) und Grundbuchamt. Keine dieser Regeln betrifft den Entscheid oder die entscheidende Stelle. Die VRG-Regel greift nicht, da der Registerakt dem Bundesrecht untersteht (OR 942). Das OR wird nicht zitiert, deshalb «offen». Das deckt sich mit 310, 316, 360 und 362. Das Formular dient der Neueintragung wie auch Änderungen; das ändert nichts."
+  },
+  {
+   "form_id": 571,
+   "refuted": false,
+   "besser": null,
+   "grund": "Das Urteil passt zum Entscheid. Laut form_outcome endet das Verfahren mit einem registereintrag: Das kantonale Handelsregisteramt trägt den Opting-out ein oder weist die Anmeldung ab. Das ist eine Verfügung eines Handelsregisteramts im Sinne von Art. 942 OR (Regel 125: 30 Tage, oberes kantonales Gericht). Die Erklärung der Aktionäre ist nur ein Beleg zur Anmeldung, die der Verwaltungsrat einreicht; sie trägt keinen eigenen Entscheid. Regel 14 (HRegV Art. 33) betrifft nur eine Verweigerung durch das EHRA. Das deckt sich mit den Formularen 356 und 411."
+  },
+  {
+   "form_id": 572,
+   "refuted": false,
+   "besser": null,
+   "grund": "Entscheid passt: Formularteil «Bewilligung» (mit Auflagen), erteilt von der Kantonalen Feuerpolizei, Bereich Wassergefährdende Flüssigkeiten. Rechtlich zuständig ist nach § 5 GSchVV die Gebäudeversicherung, der die Feuerpolizei angegliedert ist (Art. 31 BSG). Regel 128 betrifft nur Gemeinderatsbeschlüsse, und Regel 127 verweist bloss auf das VRG. Formular 452 desselben Service 604 erhielt Art. 41 BSG (Regel 26). Das BSG wird hier nicht zitiert und fehlt auch bei DVSH. Damit ist «offen» folgerichtig."
+  },
+  {
+   "form_id": 573,
+   "refuted": false,
+   "besser": null,
+   "grund": "Das Urteil passt zu Entscheidart und Behörde. Das Verfahren endet mit der definitiven Beitragszusicherung (auszahlung). Nach dem Beleg zu § 26c VWWG teilt das Baudepartement sie mit; das Formular stammt vom Tiefbauamt, Abt. Gewässer. Damit liegt eine kantonale Departementsverfügung an die Gemeinde vor. Es gibt keinen sektoralen Kandidaten. WWG Art. 34 (Regeln 28/138) erfasst nur Konzessionsentscheide. Also gilt der VRG-Rekurs an den Regierungsrat (20 Tage)."
+  },
+  {
+   "form_id": 574,
+   "refuted": false,
+   "besser": null,
+   "grund": "Das Urteil passt aus Sicht des Entscheids. form_outcome nennt eine Verfügung. Gemeint ist die Einleitung der Betreibung (Zahlungsbefehl) oder deren Ablehnung durch das Betreibungsamt, also ein Vollstreckungsakt nach SchKG (SR 281.1), wie es das Formular nennt. Zu SHR 281.101 gibt es keine sektorale Regel. Der VRG-Rekurs an den Regierungsrat passt nicht, weil sich der Rechtsweg gegen Akte des Betreibungsamts nach Bundesrecht richtet, das im Material fehlt. Die Beurteilung als «offen» entspricht der Praxis bei bundesrechtlichen Akten (SVAG, BGBB, Handelsregister)."
+  },
+  {
+   "form_id": 577,
+   "refuted": false,
+   "besser": null,
+   "grund": "Das Verdikt passt zu Entscheid und Behörde. form_outcome nennt einen Registereintrag (EV Nr., Eingetragen am); nach ZGB Art. 715 führt das Betreibungsamt dieses Register. Die ZGB-Kandidaten decken diesen Entscheid nicht: 956a/b gelten für das Grundbuchamt, die übrigen für KESB, FU und Kindesanhörung. Auch 'allgemein' scheidet aus, weil die bundesrechtliche SchKG-Beschwerde den Weg nach VRG verdrängt. Das SchKG ist nicht erfasst, deshalb bleibt es zu Recht 'offen'."
+  },
+  {
+   "form_id": 578,
+   "refuted": false,
+   "besser": null,
+   "grund": "Entscheidart und Behörde stimmen mit dem Verdikt überein. Das Formular richtet sich an das Arbeitsamt, Abteilung Arbeitsbewilligungen. Nach Art. 3b VV-AIG erlässt es den arbeitsmarktlichen Vorentscheid. Die Arbeitsbewilligung selbst erteilt das Migrationsamt (Art. 3), ebenfalls eine kantonale Behörde. Für beide Verfügungen verweist Art. 8 auf das VRG. Die Kandidaten passen nicht: AIG Art. 6 und 65 betreffen SEM/EDA, Art. 64, 64a und 74 Zwangsmassnahmen, Art. 112 nur Bundesbehörden. Damit gilt Rekurs an den Regierungsrat, 20 Tage."
+  },
+  {
+   "form_id": 580,
+   "refuted": false,
+   "besser": null,
+   "grund": "Das Verfahren endet mit einer Verfügung (form_outcome: verfuegung) der KESB SH, also der Erwachsenenschutzbehörde (Art. 443 ff. ZGB, JG Art. 62). Gegen deren Entscheid über eine Massnahme oder den Verzicht darauf führt Art. 450 ZGB zur Beschwerde ans Gericht, Frist nach Art. 450b. Art. 445 gilt nur für vorsorgliche Massnahmen, Art. 439 nur für die FU. Die Kindes- und Grundbuchregeln betreffen andere Behörden. Das JG enthält keine sektorale Regel. Die Meldeperson ist nur beschwerdebefugt, wenn sie unter Art. 450 Abs. 2 fällt. Das betrifft die Befugnis, nicht die massgebende Norm."
+  },
+  {
+   "form_id": 581,
+   "refuted": false,
+   "besser": null,
+   "grund": "Entscheid laut form_outcome: Verfügung (Kostengutsprache an den Schulgeldbeitrag einer ausserkantonalen Sportschule). Das passt zur Begründung. Das Formular nennt weder die verfügende Stelle noch eine Rechtsgrundlage, und es zitiert kein Gesetz, also gibt es keine Kandidaten. Auch das Hauptgesuch (Formular 485) nennt kein Gesetz und hat kein Verdikt. Für einen Rechtsmittelweg fehlt die tragende Norm, deshalb ist «offen» richtig."
+  }
+ ]
+}

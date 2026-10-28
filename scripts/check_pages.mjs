@@ -62,6 +62,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 const PAGES = [
   { route: 'home', contrast: true },
   { route: 'methode' },
+  { route: 'abgleich', contrast: true, open: true },                     // Abgleich DVSH & SHEP, every list unfolded
   { route: 'dienststellen', contrast: true },
   { route: 'dienststellen/all/abteilung-gewasser-und-materialabbau' },   // one Dienststelle briefing
   { route: 'kanton' },

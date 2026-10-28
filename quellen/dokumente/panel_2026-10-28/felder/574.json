@@ -1,0 +1,157 @@
+{
+ "form_id": 574,
+ "data_fields": [
+  {
+   "name": "Schuldner",
+   "definition": "Name und Vorname bzw. Firma, Adresse sowie PLZ und Ort der Person oder des Unternehmens, gegen die bzw. das die Betreibung eingeleitet wird.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name und Vorname bzw. Firma",
+    "Adresse",
+    "PLZ Ort"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Adresse des Betreibungsamtes",
+   "definition": "Anschrift des für den Betreibungsort des Schuldners zuständigen Betreibungsamtes, an das der Gläubiger das Begehren richtet.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Geburtsdatum",
+   "definition": "Geburtsdatum des Schuldners, anzugeben nur falls es dem Gläubiger bekannt ist.",
+   "data_type": "date",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Gläubiger",
+   "definition": "Name und Vorname bzw. Firma, Adresse sowie PLZ und Ort der Person oder des Unternehmens, die bzw. das die Betreibung verlangt.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name und Vorname bzw. Firma",
+    "Adresse",
+    "PLZ Ort"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Zahlungsverbindung",
+   "definition": "Angabe, ob die angegebene Zahlungsverbindung dem Gläubiger oder seinem Vertreter gehört.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "des Gläubigers",
+    "des Vertreters"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "IBAN",
+   "definition": "IBAN des Kontos (des Gläubigers oder des Vertreters), auf welches das Betreibungsamt eingehende Zahlungen überweist.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "vertreten durch",
+   "definition": "Name und Vorname bzw. Firma, Adresse sowie PLZ und Ort der Person oder des Unternehmens, die den Gläubiger im Betreibungsverfahren vertritt.",
+   "data_type": "composite",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [
+    "Name und Vorname bzw. Firma",
+    "Adresse",
+    "PLZ Ort"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Für Rückfragen",
+   "definition": "Telefonnummer oder E-Mail-Adresse, unter der das Betreibungsamt für Rückfragen zum Begehren jemanden erreicht.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "Telefon oder E-Mail"
+  },
+  {
+   "name": "Forderung",
+   "definition": "Erste Forderungsposition (Hauptforderung): Grund der Forderung oder zugrundeliegende Urkunde mit deren Datum, Betrag in CHF sowie allfälliger Verzugszins in Prozent und Beginn des Zinslaufs.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Forderungsgrund oder Forderungsurkunde mit Datum",
+    "Betrag (CHF)",
+    "Zins %",
+    "seit (Datum)"
+   ],
+   "format": "Position 1; Forderungsgrund maximal 640 Zeichen"
+  },
+  {
+   "name": "Weitere Forderungen",
+   "definition": "Zusätzliche Forderungspositionen (weitere Hauptforderungen oder Nebenforderungen wie Mahngebühren, Zinskosten, Spesen), je mit Grund oder Urkunde, Betrag in CHF und gegebenenfalls Zins mit Beginn des Zinslaufs.",
+   "data_type": "composite",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [
+    "Forderungsgrund oder Forderungsurkunde mit Datum",
+    "Betrag (CHF)",
+    "Zins %",
+    "seit (Datum)"
+   ],
+   "format": "Positionen 2 bis 10; Forderungsgrund je maximal 80 Zeichen"
+  },
+  {
+   "name": "Bemerkungen",
+   "definition": "Freie ergänzende Angaben zum Begehren, etwa zur Betreibung auf Pfandverwertung, Wechselbetreibung oder Betreibung auf Sicherheitsleistung.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ihre Fallreferenz",
+   "definition": "Eigene Referenznummer des Gläubigers oder Vertreters für diesen Fall, falls vorhanden.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Datum",
+   "definition": "Datum, an dem das Betreibungsbegehren unterzeichnet wird.",
+   "data_type": "date",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Unterschrift",
+   "definition": "Unterschrift des Gläubigers bzw. seines Vertreters unter das Betreibungsbegehren.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  }
+ ],
+ "hinweis": "Korrekturen: (1) Reihenfolge: «Adresse des Betreibungsamtes» steht im Formular auf gleicher Höhe rechts neben «Schuldner» (Fensterfeld), «Geburtsdatum (falls bekannt)» erst darunter; das Feld wurde daher an Position 2 vor «Geburtsdatum» verschoben (gestützt auf die gerenderte Seite 1 und die Textreihenfolge). Sonst keine: alle 14 Angaben geprüft gegen PDF (AcroForm-Felder, Koordinaten, Seitenbild) – Namen wörtlich, Typen und required korrekt; keine Angabe fehlt, keine erfunden. Geprüft und bewusst belassen: «Name und Vorname bzw. Firma» ist im Formular EIN durch Semikolon abgegrenzter Teil mit einer Zeile (wie bei Formular 491 modelliert); eine Aufteilung in Name/Vorname/Firma würde nicht gedruckte Teile erfinden (Fall für Begriffe-pruefart «aufteilen», nicht für das Datenverzeichnis). «Datum und Unterschrift» ist eine Zeile, gemäss Korpuspraxis (z. B. Formular 482) in Datum (date) und Unterschrift (signature) getrennt; nur eine unterzeichnende Person (Gläubiger bzw. Vertreter). «Forderung» als Name der Position 1 stammt aus der Rückseiten-Überschrift «Forderung»; Spaltenköpfe wörtlich. «Weitere Forderungen» optional gemäss «Bei Bedarf» (Rückseite); «vertreten durch» optional wie überall im Korpus für Vertretungen. Kein Beilagen-Ankreuzfeld und keine weitere Ankreuzgruppe ausser Zahlungsverbindung. Keine Felder der Person: Kasten «Durch das Amt auszufüllen» (Eingang, Betreibung Nr.); Rückseite «Hinweise zum Ausfüllen» (Betreibungsort, Betreibungsarten, Forderung, Kosten, Sonderfälle, Betreibungsferien) ist Anleitung. Inhaltsvorgaben der Rückseite ohne eigenes Feld: Pfandverwertung (Pfand, Ort, Dritteigentümer, Familienwohnung, Miet-/Pachtzinsen) im Forderungsgrund oder in Bemerkungen; Wechselbetreibung und Betreibung auf Sicherheitsleistung in Bemerkungen; Erbschaft (Vertreter bzw. Erbe als Zustellempfänger, Namen aller Erben) und Arrest (Nummer und Ausstellungsdatum der Arresturkunde) ohne vorgegebenes Feld. Bedingte Beilage für die Beilagen-Ebene (kein Datenfeld): «den Wechsel oder Check beizulegen» bei Wechselbetreibung. Beobachtung zur PDF-Datei (nur gemeldet, Formular bleibt unverändert): die AcroForm-Felder «Schuldner» und «Geburtsdatum» reichen über die ganze Breite und überdecken den Kasten «Adresse des Betreibungsamtes», der kein eigenes Ausfüllfeld hat; «Datum und Unterschrift» hat ebenfalls kein Ausfüllfeld (handschriftlich). Fussnote: Form 1 BJ/OASchKG BB 2016 d (Bundesformular)."
+}

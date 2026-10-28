@@ -1,0 +1,89 @@
+{
+ "hinweis": "eCH-Urteile Formular 390, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/390 --nur-offene=390",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Bestätigt. Das Feld ist eine freie Schilderung des Bissvorfalls (Zeile unter «Angaben zum Vorfall» im Block «Informationen zum Vorfall»). Durchsucht wurden alle 290 Standards. Elementnamen und Kontexte nach incident, accident, event, injur, description, remark, comment und note: Treffer gibt es nur in Steuer-Krankheitskosten (eCH-0119), bei Vermessungsbemerkungen (eCH-0129/0131) und in Nachrichtenkommentaren (eCH-0039/0058/0147). Standardtitel nach Ereignis, Unfall, Meldung, Polizei, Tier, Hund und Veterinär: eCH-0051 (Polizei/Justiz, ohne Elemente) passt nicht zu einer Arztmeldung ans Veterinäramt, eCH-0013 regelt Hundemarken und keinen Vorfallshergang, eCH-0309 (Tierverkehr) ist In Arbeit und themenfremd. Die Praxis ist gleich: «Was ist passiert» auf Formular 163 (Meldung eines aggressiven Hundes) und die Sachverhaltsschilderung auf Formular 526 sind ebenfalls kein_standard.",
+   "feld": "Angaben zum Vorfall"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Korrigiert von kein_standard. Die meldende Ärztin oder der Spitalarzt trägt hier in Freitext die medizinische Behandlung der Bissverletzung eines Menschen ein, also klinische Angaben über eine Patientin oder einen Patienten. In der Databank gehören solche ärztlich erfassten Freitext-Angaben einheitlich zu eCH-0241 «CH Core: Basic for FHIR Switzerland» (Genehmigt). Beispiele: «Abklärungen, Behandlungen», «Operationen», «Unfälle» und «Frühere Krankheiten, Hospitalisationen» auf dem Arztformular 198 sowie «Beurteilung, Diagnosen» auf Formular 26. Der Erstprüfer stützte sich auf «Untersuchung, Behandlung oder Operation in Spitälern» (Formular 199). Diese Angabe ist aber eine Ja/Nein-Frage im Selbstfragebogen und kein ärztlicher Behandlungstext, der Vergleich trägt also nicht. Eine Elementsuche nach treatment, therap, diagnos, hospital und medic ergab kein passendes Element (nur Saatgutbehandlung eCH-0263 und Krankheitskosten-Abzüge eCH-0119/0275). eCH-0241 hat im Katalog keine Elemente, darum steht der Standard ohne Element.",
+   "feld": "Behandlung",
+   "standard": "eCH-0241",
+   "element": ""
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Der übernommene Wert kein_standard stimmt. Die Angabe ist eine Auswahl nach der formulareigenen Vier-Stufen-Skala für Bissverletzungen (Bagatell-, leicht-, mittelgradige, schwere Verletzung) für die Bissmeldung ans Veterinäramt. Im Katalog gibt es kein Element nach severity, injur, wound oder accident und keine Codeliste mit einer solchen Skala. Geprüft wurde auch eCH-0241: Der Standard hat keine Elemente und legt diese Skala nicht fest. Die Einstufung gehört zu den Bissvorfall-Kategorien dieses Formulars, deren Geschwisterfelder hier ebenfalls kein_standard sind («Lokalisation der Verletzung», «Anzahl Bisse»). Auf den Schwesterformularen 158 und 391 ist die Namensgruppe gleich beurteilt.",
+   "feld": "Schweregrad der Verletzung"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Gefragt ist die Mikrochip-Nummer des beissenden Hundes (Block «Beschreibung des Hundes, der gebissen hat»). eCH-0185 ist genehmigt, und das Element chipNumber steht wörtlich im Kontext dogDataType, also der Chipnummer eines Hundes. Es ist das einzige Chip-Element im Katalog. Gleich zugeordnet sind «Chipnr. des Hundes» auf Formular 158, «Chipnummer» auf 160 und «Kennzeichnungsnummer» auf 164.",
+   "feld": "Chip-Nr.",
+   "standard": "eCH-0185",
+   "element": "chipNumber"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Die Angabe ist die Rassengruppe des beissenden Hundes und steht auf dem Formular neben «Rasse». Die Suche nach breed, race, rasse, dog, pet und animal ergab kein Rasse-Element. eCH-0185 dogDataType führt nur name, sex, birthDate, chipNumber, tattooNumber und ANISnumber, die Agrarstandards eCH-0262/0263 betreffen Nutztiere und Futtermittel. Hundestammdaten fasst die Databank einheitlich unter eCH-0013 «Prozess Hundemarken» zusammen: «Rasse» auf diesem Formular sowie auf 160, 163 und 164, «Rassetyp, Farbe (Kreuzungstiere)» auf 164 und «Rasse / Mischling» auf 158 und 391. eCH-0013 ist Sistiert, nicht Aufgehoben oder Abgelöst, und hat keine Elemente, darum steht der Standard ohne Element. Der Status Sistiert bleibt sichtbar.",
+   "feld": "Rassengruppe",
+   "standard": "eCH-0013",
+   "element": ""
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Die Angabe ist ein Ja/Nein-Kästchen zum beissenden Hund und erhält deshalb nie ein Wert-Element. Im Katalog gibt es kein Element für die Verwendungsart eines Hundes, auch nicht in eCH-0185 dogDataType (gesucht wurde nach dog, service, pet und animal). Die Angabe ist ein Merkmal der Hundestammdaten. Diensthunde sind in der Hundehaltung und bei der Hundeabgabe gesondert erfasst, also im Bereich von eCH-0013 «Prozess Hundemarken». Dort stehen auf diesem Formular schon die übrigen Ja/Nein-Merkmale des Hundes («Stammbaum vorhanden», «Kastriert»), ebenso «Erzogene und geführte Hunde» auf Formular 168. eCH-0013 ist Sistiert, nicht Aufgehoben, und hat keine Elemente, darum steht nur der Standard.",
+   "feld": "Diensthund",
+   "standard": "eCH-0013",
+   "element": ""
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Bestätigt. Das Feld ist ein Unterschriftsfeld mit Meldedatum, Praxisstempel und eigenhändiger Unterschrift der meldenden Ärztin oder des meldenden Arztes (Datentyp signature). Durchsucht wurden Elemente nach signat, sign, stamp und date sowie Standardtitel nach Signatur und Unterschrift. Die Treffer passen nicht: eCH-0091, 0220, 0230, 0250, 0274 und 0282 sind technische Normen für elektronische Signaturen und haben keine Elemente. «Stamp»-Treffer sind nur Zeitstempel in Registermeldungen (eCH-0084/0085/0212/0213). eCH-0119 locationAndDate gehört zur Steuererklärung und erfasst weder Stempel noch Unterschrift. Die Praxis ist einheitlich: Alle kombinierten Stempel-, Datum- und Unterschriftsfelder sind kein_standard, etwa «Unterschrift und Stempel Zahnarzt», «Stempel und Unterschrift der Gynäkologin/des Gynäkologen» und «Ort, Datum und Unterschrift».",
+   "feld": "Datum, Stempel und Unterschrift der Ärztin / des Arztes"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Bestätigt. Das Feld ist ein freiwilliges Bemerkungsfeld («fakultativ», Seite 2) mit fachlichen Ergänzungen zu Vorfall, Verletzung und Hund. Durchsucht wurden Elemente nach remark, comment und note. Gefunden wurden nur fachfremde Felder: Länderbemerkungen (eCH-0072), Vermessungsbemerkungen (eCH-0129/0131), Wertschriftennotizen (eCH-0119) sowie Kommentare im Nachrichten- oder Dossierkopf (eCH-0039, 0058, 0078, 0147). Diese Container stehen für Metadaten einer Nachricht und nicht für eine fachliche Angabe. Die Praxis ist einheitlich: «Zusätzliche Bemerkungen» auf Formular 158 und «Weitere Angaben / Besonderheiten / Bemerkungen» auf 164 sind ebenfalls kein_standard.",
+   "feld": "Weitere Bemerkungen zum Vorfall, zur Verletzung oder zu Merkmalen des Hundes"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Auf dem Formular ist es eine einzige Zeile «Adresse, PLZ/Ort», die Strasse mit Hausnummer, Postleitzahl und Ort der gebissenen Person bündelt. Der Teil ist also selbst nicht atomar. Für ein solches Bündel gilt der Behälter, der genau diese Bestandteile enthält: eCH-0010 addressInformation (street, houseNumber, swissZipCode, town). Das Element steht wörtlich in eCH-0010 (Genehmigt). Die verbreitete Zuordnung zu street würde PLZ und Ort als Strasse auszeichnen. Gleich behandelt sind auf diesem Formular «Adresse / Kanton des Vorfallorts» und im Korpus «Privatadresse (PLZ, Wohnort, Strasse, Hausnummer)».",
+   "elternfeld": "Personalien des Opfers",
+   "teilfeld": "Adresse, PLZ/Ort",
+   "standard": "eCH-0010",
+   "element": "addressInformation"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Die Zeile «Telefon/Mail» nimmt eine Telefonnummer, eine E-Mail-Adresse oder beides der gebissenen Person auf. Sie bündelt also zwei Angaben, die eCH-0046 getrennt führt (phone/phoneNumber und email/emailAddress). phoneNumber allein würde eine eingetragene E-Mail-Adresse falsch auszeichnen. Der Behälter für beide Angaben ist eCH-0046 contact (contactType mit phone, email und internet). Das Element steht wörtlich im Katalog von eCH-0046 (Genehmigt). Gleich zugeordnet ist «Kontaktdaten (Tel, Mail)».",
+   "elternfeld": "Personalien des Opfers",
+   "teilfeld": "Telefon/Mail",
+   "standard": "eCH-0046",
+   "element": "contact"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Die Zeile bündelt Strasse mit Hausnummer, Postleitzahl und Ort der Hundehalterin oder des Hundehalters und ist damit nicht atomar. Telefon und Name sind in diesem Block eigene Teile. Der Behälter für genau diese Bestandteile ist eCH-0010 addressInformation (street, houseNumber, swissZipCode, town). Das Element steht wörtlich in eCH-0010 (Genehmigt). street allein würde PLZ und Ort weglassen. Die Behandlung ist gleich wie bei «Adresse, PLZ/Ort» des Opfers auf diesem Formular.",
+   "elternfeld": "Personalien des Hundehalters / der Hundehalterin",
+   "teilfeld": "Adresse, PLZ, Ort",
+   "standard": "eCH-0010",
+   "element": "addressInformation"
+  }
+ ]
+}

@@ -1,0 +1,48 @@
+{
+ "form_id": 552,
+ "data_fields": [
+  {
+   "name": "Firma",
+   "definition": "Firma (eingetragener Name) der GmbH, deren Gesellschafter/innen auf die eingeschränkte Revision verzichten.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Geschäftsjahr, ab welchem der Verzicht gelten soll",
+   "definition": "Angabe des Geschäftsjahres der GmbH, ab dem der Verzicht auf die eingeschränkte Revision wirksam sein soll.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Sämtliche Gesellschafter/innen der GmbH",
+   "definition": "Tabelle mit je einer Zeile pro Gesellschafterin bzw. Gesellschafter der GmbH mit Vorname, Name, Anzahl gehaltener Stammanteile sowie Ort und Datum der Unterzeichnung.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Vorname",
+    "Name",
+    "Anzahl Stammanteile",
+    "Ort",
+    "Datum"
+   ],
+   "format": "Tabelle mit 7 Zeilen (eine Zeile je Gesellschafter/in)"
+  },
+  {
+   "name": "Unterschrift",
+   "definition": "Eigenhändige Unterschrift jeder Gesellschafterin bzw. jedes Gesellschafters in der eigenen Tabellenzeile, mit der der Verzicht auf die eingeschränkte Revision erklärt wird.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "je Gesellschafter/in eine Unterschrift (Spalte der Tabelle, 7 Zeilen)"
+  }
+ ],
+ "hinweis": "Korrekturen: keine. Geprüft am Original-DOCX (word/document.xml): Das Formular hat nur die Zeilen «Firma» und «Geschäftsjahr, ab welchem der Verzicht gelten soll» sowie eine Tabelle «Sämtliche Gesellschafter/innen der GmbH» mit 5 Spalten (Vorname | Name | Anzahl Stammanteile (zweizeiliger Kopf in einer Zelle) | Ort, Datum | Unterschrift), also 1 Kopfzeile und 7 leere Zeilen. Es gibt keine Ankreuzfelder, keine Beilagenliste, keine Kopf- oder Fusszeile und kein Feld «Vom Amt auszufüllen». Die Spalte «Ort, Datum» ist korrekt in die atomaren Teile «Ort» und «Datum» aufgeteilt. Die Unterschrift steht als eigenes signature-Feld, weil sie sich pro Tabellenzeile wiederholt (eine Unterschrift je Gesellschafter/in). Kein Feld der Person ist der Erklärungstext «Der/die unterzeichnenden Gesellschafter/innen verzichten auf die eingeschränkte Revision und beauftragen die Geschäftsführung, die notwendigen Schritte zur Eintragung des Verzichts in das Handelsregister vorzunehmen.»; er ist der rechtliche Inhalt der Erklärung. «Geschäftsjahr» bleibt text statt number, weil ein Geschäftsjahr vom Kalenderjahr abweichen kann (z. B. 2025/26). Das Wort «Eigenhändige» in der Definition der Unterschrift steht nicht im Formular. Es wurde trotzdem stehen gelassen, weil es nur die Art der Unterschrift beschreibt und keine neue Angabe erfindet."
+}

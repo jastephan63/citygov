@@ -1,0 +1,28 @@
+{
+ "urteile": [
+  {
+   "id": 6698,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Bestätigt: Der/die Vollmachtgeber(in) gibt Name, Vorname, Geb.datum, Heimatort und Wohnadresse an. Geburtsdatum und Heimatort hat nur eine natürliche Person, und das Formular fragt ausdrücklich danach. Auch bei mehreren Unterzeichnenden ist jede davon eine natürliche Person."
+  },
+  {
+   "id": 6699,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Bestätigt: Die bevollmächtigte Person wird mit denselben Personalien erfasst (Name, Vorname, Geb.datum, Heimatort, Wohnadresse). Das Formular sieht damit keine Firma als Bevollmächtigte vor, sondern eine natürliche Person."
+  },
+  {
+   "id": 6701,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Bestätigt: Das Formular verlangt die genauen Personalien des Verwaltungsrates bzw. der Verwaltungsrätin, der/die als Liquidator/in gewählt wird. Ein Mitglied des Verwaltungsrates ist immer eine natürliche Person, denn eine juristische Person ist nicht wählbar (Art. 707 Abs. 3 OR). Es geht also nicht um eine Liquidatorin, die eine juristische Person ist."
+  },
+  {
+   "id": 6702,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Bestätigt: Verlangt werden die genauen Personalien und die Funktion von Zeichnungsberechtigten unterhalb des Verwaltungsrates, zum Beispiel Prokuristen oder Direktoren. Solche Zeichnungsberechtigte sind natürliche Personen. Die Funktion beschreibt die Rolle dieser Person, also keine Angabe der AG selbst."
+  }
+ ]
+}

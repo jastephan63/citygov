@@ -1,0 +1,109 @@
+{
+ "form_id": 568,
+ "mappings": [
+  {
+   "data_field": "Firma",
+   "cites": [
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 16",
+     "beleg": "Die Anmeldung muss die Rechtseinheit klar identifizieren und die einzutragenden Tatsachen angeben"
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 87",
+     "beleg": "Bei Genossenschaften müssen ins Handelsregister eingetragen werden: … b. die Firma und die Unternehmens-Identifikationsnummer; … m. falls die Gesellschaft keine ordentliche oder eingeschränkte Revision durchführt: ein Hinweis darauf"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Geschäftsjahr, ab welchem der Verzicht gelten soll",
+   "cites": [
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 87",
+     "beleg": "m. falls die Gesellschaft keine ordentliche oder eingeschränkte Revision durchführt: ein Hinweis darauf sowie das Datum des Beginns des Geschäftsjahres, ab welchem der Verzicht gilt (Art. 62 Abs. 2)"
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 62",
+     "beleg": "Die Erklärung muss das Datum des Beginns des Geschäftsjahres enthalten, ab welchem der Verzicht gilt"
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 89",
+     "beleg": "Für die Revision, für die Revisionsstelle … der Genossenschaft gelten die Bestimmungen über die Aktiengesellschaft sinngemäss."
+    },
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 727a",
+     "beleg": "Der Verzicht gilt nur für künftige Geschäftsjahre und muss vor Beginn des Geschäftsjahres beim Handelsregisteramt angemeldet werden."
+    },
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 906",
+     "beleg": "Für die Revisionsstelle sind die Vorschriften des Aktienrechts entsprechend anwendbar."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Sämtliche Genossenschafter/innen der Genossenschaft",
+   "cites": [
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 727a",
+     "beleg": "Mit der Zustimmung sämtlicher Aktionäre kann auf die eingeschränkte Revision verzichtet werden"
+    },
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 906",
+     "beleg": "Für die Revisionsstelle sind die Vorschriften des Aktienrechts entsprechend anwendbar."
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 62",
+     "beleg": "c. sämtliche Aktionärinnen und Aktionäre auf eine eingeschränkte Revision verzichtet haben … d. die Verzichtserklärungen der Aktionärinnen und Aktionäre oder das massgebliche Protokoll der Generalversammlung"
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 89",
+     "beleg": "Für die Revision, für die Revisionsstelle … der Genossenschaft gelten die Bestimmungen über die Aktiengesellschaft sinngemäss."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Unterschrift",
+   "cites": [
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 62",
+     "beleg": "Folgende Dokumente oder Kopien davon müssen der Erklärung beigelegt werden: … d. die Verzichtserklärungen der Aktionärinnen und Aktionäre"
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 20",
+     "beleg": "Die Belege müssen rechtskonform unterzeichnet sein."
+    },
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 727a",
+     "beleg": "Mit der Zustimmung sämtlicher Aktionäre kann auf die eingeschränkte Revision verzichtet werden"
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 89",
+     "beleg": "Für die Revision, für die Revisionsstelle … der Genossenschaft gelten die Bestimmungen über die Aktiengesellschaft sinngemäss."
+    },
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 906",
+     "beleg": "Für die Revisionsstelle sind die Vorschriften des Aktienrechts entsprechend anwendbar."
+    }
+   ],
+   "over_collection": false
+  }
+ ]
+}

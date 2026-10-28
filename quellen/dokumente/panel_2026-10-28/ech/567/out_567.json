@@ -1,0 +1,146 @@
+{
+ "hinweis": "eCH-Urteile Formular 567, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/567 --nur-offene=567",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Firma der neuen Genossenschaft («… Genossenschaft», Titel und Art. 1) ist der eingetragene Name der Organisation: eCH-0098 organisationName (organisationIdentificationType). Gleich zugeordnet wie «Firma» auf 123, 124, 127, 129, 184, 307, 310, 316, 317, 363 u. a. Geprüft.",
+   "feld": "Firma",
+   "standard": "eCH-0098",
+   "element": "organisationName"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Der übernommene Wert stimmt: Der Sitz ist die politische Sitzgemeinde, also eCH-0098 headquarterMunicipality (swissHeadquarterType, Typ swissMunicipalityType). Das ist der Container für die zwei Teile Gemeinde und Kantonskürzel. Gleich wie «Sitz» auf 361, 363, 563 bis 566.",
+   "feld": "Sitz"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Teil des Sitzes ist der Name der politischen Gemeinde. headquarterMunicipality hat den Typ swissMunicipalityType aus eCH-0007 (Genehmigt). Dessen Element für den Gemeindenamen ist municipalityName. Wörtlich im Katalog geprüft.",
+   "elternfeld": "Sitz",
+   "teilfeld": "politische Gemeinde",
+   "standard": "eCH-0007",
+   "element": "municipalityName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Das Kantonskürzel wird ergänzt, wenn es mehrere Gemeinden mit diesem Namen gibt. In eCH-0007 swissMunicipalityType ist das cantonAbbreviation. Wörtlich im Katalog geprüft.",
+   "elternfeld": "Sitz",
+   "teilfeld": "Kantonskürzel",
+   "standard": "eCH-0007",
+   "element": "cantonAbbreviation"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Gewählt wird keine ja/nein-Angabe, sondern einer von zwei Texten, der wörtlich zum Zweckartikel gehört («bezweckt in gemeinsamer Selbsthilfe …» oder «ist wohltätig und nicht gewinnstrebig. Sie bezweckt …»). Er bildet den Anfang der Zweckumschreibung im Handelsregister, also eCH-0098 activityDescription (Freitext). Gesucht wurde auch ein codiertes Element für «Selbsthilfe oder gemeinnützig» (profit, charit, publicUtil, nonmaterial, purpose, exemption). Gefunden wurde keins: eCH-0229 purpose ist Freitext der Steuererklärung, eCH-0276 nennt nur Steuerbeträge für gemeinnützige Zwecke, und legalForm bezeichnet nur die Rechtsform.",
+   "feld": "Zweck (Entweder / oder)",
+   "standard": "eCH-0098",
+   "element": "activityDescription"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Der übernommene Wert stimmt: Die Umschreibung des Zwecks der Genossenschaft (Art. 2) ist eCH-0098 activityDescription. Gleich wie auf den Formularen 310, 316, 361, 363 und 563 bis 566.",
+   "feld": "Zweck"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Hier werden die statutarischen Pflichten der Mitglieder gewählt (Statutenklausel Art. 10). Gesucht wurde in allen 290 Standards nach obligation, duty, member, statut, articles, role und function. Gefunden wurden nur eCH-0108 vatStartOfObligation und vatEndOfObligation (MWST), Steuerbeträge in eCH-0229 und eCH-0276 sowie Rollen in eCH-0155, eCH-0165, eCH-0211 und eCH-0229. Kein Element beschreibt Pflichten von Genossenschaftern. Gleich wie «Statutarische Nebenleistungspflichten» (310), das ebenfalls kein_standard ist.",
+   "feld": "Pflichten"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist der Höchstbetrag, den jedes Mitglied laut Statuten pro Jahr zahlt. Die Suche nach member, fee, contribution und dues fand nur Summen der Steuerperiode: eCH-0229 statutoryMembershipFees und surplusOfMembershipFees (settlementOfExpensesAndMembershipFeesType) sowie eCH-0276 membershipFees (associationsAndFoundationsType). Das sind die gesamten eingenommenen Beiträge, nicht der Höchstbeitrag pro Mitglied. eCH-0259 feeType betrifft Gebühren von Behörden.",
+   "feld": "Betrag (jährlicher Mitgliederbeitrag)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint sind die Stunden unbezahlter Arbeit, die ein Mitglied pro Jahr mindestens leisten muss. Die Suche nach hour, work, volunt, unpaid und obligation fand nur eCH-0260 hoursPerWeek, workhours und perMonthWeekHour…. Diese gehören zur Arbeitszeit in einem Lehrvertrag und gelten pro Woche oder Monat, nicht zu einer Arbeitspflicht von Genossenschaftern.",
+   "feld": "Anzahl Stunden jährlich"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist die Abgabe in CHF, die ein Mitglied zahlt, wenn es die Arbeitsstunden nicht leistet. Die Suche nach replacement, compensat, substitute, fee und hour fand nur eCH-0217 compensationExport (MWST), eCH-0119 allowanceHelplessCompensation und eCH-0108 replacementUid. Keines davon passt.",
+   "feld": "Betrag (Ersatzabgabe für nicht geleistete Stunden)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Hier stehen weitere Pflichten der Mitglieder als freier Text. Wie bei «Pflichten» hat kein Standard im Katalog ein Element für Pflichten von Genossenschaftern. Gesucht wurde nach obligation, duty, member und statut.",
+   "feld": "weitere (Pflichten)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Hier werden die Arten von Mitteln gewählt, die in der Statutenklausel stehen (Mitgliederbeiträge, Anteilscheine, Spenden, Subventionen …). Die Suche nach funding, financ, donation, subsid, legac und membership fand nur Beträge aus Jahresrechnung oder Steuer: eCH-0276 incomeFromDonationsGiftsAndBequests, publicSectorContributionsDonation und membershipFees sowie eCH-0217 subsidies und donations. Keines davon ist eine statutarische Liste von Finanzierungsquellen.",
+   "feld": "Mittel"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Das ist der Nennwert eines Anteilscheins der Genossenschaft. Im Katalog heisst er eCH-0276 nominalValuePerShare (shareholdersOrAssociatesType); wörtlich geprüft. Die Datenbank ordnet die gleiche Angabe schon so zu: «Nennwert CHF» (307) sowie «Nennwert je Stammanteil (CHF)» und «Wert je Stammanteil (CHF)» (317). Ein Element für den Nennwert ausserhalb der Steuerdaten gibt es nicht.",
+   "feld": "nominell CHF je Anteilschein",
+   "standard": "eCH-0276",
+   "element": "nominalValuePerShare"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Hier wird gewählt, wie das Vermögen nach der Liquidation verwendet wird: an eine juristische Person mit ähnlichem Zweck oder pro Kopf an die Genossenschafter. Die Suche nach liquidat, distribut und surplus fand nur Folgendes: Datum, Beginn und Grund der Liquidation (eCH-0098, eCH-0148 und eCH-0173 liquidationDate, liquidationStartDate, liquidationEntryDate und liquidationReason), den Container liquidation (eCH-0098, eCH-0116 und eCH-0244), eCH-0278 liquidationProfit (Selbständigerwerb) sowie Steuerbeträge für die Gewinnverwendung (eCH-0229 und eCH-0276 totalProfitToBeDistributed). Keines davon ist eine Regel für die Verwendung des Liquidationsergebnisses.",
+   "feld": "Durchführung der Liquidation (entweder / oder)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Das ist das Datum, an dem die Statuten unterzeichnet werden, bei der Gründung oder bei einer Total- oder Teilrevision (laut Beglaubigung). Gesucht wurde nach statut, articles, signat, decisionDate, issueDate und creationDate sowie nach den Datumselementen in eCH-0098 und eCH-0108. eCH-0058 und eCH-0039 messageDate ist der Zeitpunkt einer elektronischen Meldung, eCH-0039 openingDate die Eröffnung eines Dossiers. eCH-0098 foundationDate und eCH-0229 foundationDate sind das Gründungsdatum und gelten nicht bei einer Statutenänderung. eCH-0108 firstRegistrationDate und commercialRegisterActivationDate sind Daten des Registers. «Ort und Datum» ist in der Datenbank bereits 31 Mal kein_standard.",
+   "feld": "Datum (Schaffhausen, …)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Diese Wahl sagt, in welcher Eigenschaft unterschrieben wird: als Gründer oder als Vorsitzende/r der Versammlung. Die Suche nach founder, chair, president, role, function, capacity und signer fand nur Rollen in anderen Bereichen: eCH-0229 role (Mitglied der Verwaltung), eCH-0211 role (Bauvorhaben), eCH-0261 personFunction (Landwirtschaft), eCH-0276 role (Begünstigte), eCH-0155 und eCH-0165 role (Wahlen) und eCH-0039 transactionRole. Keine Rolle passt für Unterzeichnende von Statuten.",
+   "feld": "Die Gründer oder Der / Die Vorsitzende"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist die handschriftliche Unterschrift. Die Standards zu Signaturen (eCH-0091, 0220, 0230, 0250, 0274 und 0282) haben keine Elemente. eCH-0260 signatures sind ja/nein-Bestätigungen zum Lehrvertrag. eCH-0039 signer verweist nur auf die Person, die unterschreibt, und enthält nicht die Unterschrift selbst. «Unterschrift» ist in der Datenbank bereits 33 Mal kein_standard, auch auf 563, 565 und 566.",
+   "feld": "Unterschrift (Die Gründer oder Der / Die Vorsitzende)"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Der Name der unterzeichnenden Person hat zwei Teile. Das Feld selbst erhält den Container für die Personenidentifikation, eCH-0044 personIdentification (wörtlich im Katalog). Gleich wie «Name, Vorname» und «Weitere zeichnungsberechtigte Personen» auf 310, 316, 361 und 363.",
+   "feld": "Vorname(n) Name",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname oder Vornamen der unterzeichnenden Person sind eCH-0044 firstName (personIdentificationType). Gleich wie «Vorname(n)» auf 310, 316 und 361.",
+   "elternfeld": "Vorname(n) Name",
+   "teilfeld": "Vorname(n)",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Der amtliche Familienname der unterzeichnenden Person ist eCH-0044 officialName (personIdentificationType). Gleich wie «Familienname» auf 310, 316 und 361.",
+   "elternfeld": "Vorname(n) Name",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  }
+ ]
+}

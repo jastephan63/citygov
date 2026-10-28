@@ -1,0 +1,28 @@
+{
+ "urteile": [
+  {
+   "id": 6599,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Personalien (Name, Vorname, Name vor der Eintragung, Geburtsdatum, Beruf, Heimatort, Wohnadresse, Telefon) der ersten gesuchstellenden Partnerin bzw. des Partners; eine eingetragene Partnerschaft können nur zwei natürliche Personen eingehen, eine Firma ist ausgeschlossen."
+  },
+  {
+   "id": 6601,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Personalien der zweiten gesuchstellenden Partei (Partnerin/Partner) mit Wohnadresse, Geburtsdatum und Heimatort; zwingend eine natürliche Person, das Formular lässt keine Organisation zu."
+  },
+  {
+   "id": 6603,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Datum der Eintragung gehört zum Zivilstand der beiden Partner (eCH dateOfMaritalStatus, Einwohnerregister-Angabe); im Korpus gleich beurteilt wie «Datum der Heirat / Eintragung der Partnerschaft» (2689) und «Verheiratet seit» (2679, 5116, 5103)."
+  },
+  {
+   "id": 6609,
+   "urteil": "bestaetigt",
+   "subjekt": "gemischt",
+   "grund": "Das Formular verlangt nur den Hinweis «Zustellungsbevollmächtigten in der Schweiz angeben», ohne Zeile und Teilangaben; zustellungsbevollmächtigt kann eine Privatperson oder eine Anwaltskanzlei bzw. Firma sein. Im Korpus gleich beurteilt wie «Zustellbevollmächtigter (Personalien)» (2562)."
+  }
+ ]
+}

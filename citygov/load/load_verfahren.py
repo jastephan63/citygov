@@ -12,9 +12,12 @@ Gates:
                beschreibung/ablauf text, or the row falls back to 'unbekannt'.
 
 Idempotent (rows whose last_checked starts with 'agent' are replaced wholesale).
-Staging -> validate -> swap.
+--nur <id,id,…> scopes a run to these Formulare: only their agent rows are replaced and
+input rows of other Formulare are rejected — the way to add the layer for new Formulare
+without the panel files of all the others (those are not kept; a run without --nur
+replaces every agent row with what the directory holds). Staging -> validate -> swap.
 
-    python3 scripts/load_verfahren.py <out-dir>
+    python3 scripts/load_verfahren.py <out-dir> [--nur 700,701]
 """
 import glob, json, os, re, shutil, sys
 from citygov.core.common import DB_PATH, connect, norm_ascii as norm
@@ -30,6 +33,9 @@ ARTEN = {"bewilligung", "verfuegung", "bestaetigung", "registereintrag",
 
 def main():
     src = sys.argv[1]
+    nur = {int(x) for x in sys.argv[sys.argv.index("--nur") + 1].split(",") if x.strip()} \
+        if "--nur" in sys.argv else None
+    scope = "" if nur is None else f" AND form_id IN ({','.join(map(str, sorted(nur))) or 'NULL'})"
     st = DB_PATH + ".staging"
     if os.path.exists(st):
         os.remove(st)
@@ -75,11 +81,13 @@ def main():
             return True
         return False
 
-    c.execute("DELETE FROM beilage WHERE last_checked LIKE 'agent%'")
+    c.execute("DELETE FROM beilage WHERE last_checked LIKE 'agent%'" + scope)
     nb = 0
     for jf in sorted(glob.glob(os.path.join(src, "beilagen_*.json"))):
         for b in json.load(open(jf, encoding="utf-8")).get("beilagen", []):
             fid, bez = b.get("form_id"), (b.get("bezeichnung") or "").strip()[:120]
+            if nur is not None and fid not in nur:
+                rejected.append(f"ausserhalb --nur: #{fid}"); continue
             if not bez or b.get("halter") not in HALTER or (b.get("obligatorium") or "unbekannt") not in OBLIG:
                 rejected.append(f"Beilage Vokabular: #{fid} {bez[:30]}"); continue
             dfid = b.get("data_field_id")
@@ -94,12 +102,14 @@ def main():
                        1 if b.get("fetchable") else 0, b.get("source") or "formular"])
             nb += c.execute("SELECT changes() n").fetchone()["n"]
 
-    c.execute("DELETE FROM form_outcome WHERE last_checked LIKE 'agent%'")
+    c.execute("DELETE FROM form_outcome WHERE last_checked LIKE 'agent%'" + scope)
     no = nu = 0
     of = os.path.join(src, "outcomes.json")
     if os.path.exists(of):
         for o in json.load(open(of, encoding="utf-8")).get("outcomes", []):
             fid, art = o.get("form_id"), o.get("entscheid_art")
+            if nur is not None and fid not in nur:
+                rejected.append(f"ausserhalb --nur: #{fid}"); continue
             if fid not in dvsh_raw or art not in ARTEN:
                 rejected.append(f"Outcome: #{fid} {art}"); continue
             beleg = norm(o.get("beleg") or "")

@@ -43,6 +43,7 @@ from citygov.domain import rollen as ROLLEN_SCHICHT         # Parteien und Rolle
 from citygov.domain import wirkung                          # the change-impact index per law and article (standard library only)
 from citygov.domain import register_map                     # registers that already hold Angaben and Beilagen (standard library only)
 from citygov.domain import konzepte                         # one preferred element per Angabe and role (standard library only)
+from citygov.domain import quelldokumente                   # the files DVSH/SHEP offer and what the harvests changed (standard library only)
 from citygov.domain.parteiwoerter import PARTY              # the party words of the Lebenslagen key (one definition)
 
 
@@ -622,6 +623,7 @@ def _summen_pruefen(data):
             fehler.append(f"{name}: {was} — {ist} statt {soll}")
 
     K, forms = data["kopfzahlen"], data["forms"]
+    fehler += quelldokumente.pruefen(data["services"], data["quellenabgleich"])
     tones = ("act", "dec", "open")
     # (1) every headline figure with «teile»: the parts sum to «von»
     for k, v in K.items():
@@ -1640,6 +1642,9 @@ def build(conn):
                 s["dvsh_n"] = len(got)      # the dashboard says «eine von N Modellierungen»
         if s["id"] in shep_by_service:
             s["shep"] = shep_by_service[s["id"]]
+    # the files DVSH and SHEP offer per service, their state against the databank,
+    # and what the latest harvests changed (citygov/domain/quelldokumente.py)
+    quellenabgleich = quelldokumente.berechne(conn, services, dvsh_by_service, shep_by_service)
 
     esh_katalog = []
     try:
@@ -2326,6 +2331,7 @@ def build(conn):
         "dienststellen_uebersicht": dienststellen_uebersicht, "kopfzahlen": kopfzahlen, "verlauf": verlauf,
         "buergersicht": buergersicht, "ech_codelists": codelists,
         "begriffe": begriffe, "begriffe_stats": begriffe_stats, "themenkatalog": themenkatalog,
+        "quellenabgleich": quellenabgleich,
     }
     data["gestaltung"] = gestaltung
     data["parteien"] = parteien

@@ -1,0 +1,114 @@
+{
+ "form_id": 562,
+ "data_fields": [
+  {
+   "name": "Ich bestätige … als Hundeführer/in zu kennen",
+   "definition": "Personalien der Hundeführerin oder des Hundeführers (Gesuchsteller/in), die die unterzeichnende Person zu kennen bestätigt.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name / Vorname",
+    "Adresse / PLZ / Ort"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Ich kenne ihn/sie vom",
+   "definition": "Freitext auf zwei Zeilen: woher bzw. seit wann die unterzeichnende Person die Hundeführerin oder den Hundeführer kennt.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Zu seinen/ihren Führungsqualitäten als Hunde-Erzieher/in und –Führer/in kann ich folgende Aussagen machen",
+   "definition": "Freitext auf fünf Zeilen mit den Aussagen der unterzeichnenden Person zu den Führungsqualitäten der Gesuchstellerin oder des Gesuchstellers als Hunde-Erzieher/in und -Führer/in.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Auf Grund meiner Erfahrung schätze ich ihn/sie als geeignet und kompetent ein, einen Hund mit erhöhtem Gefährdungspotential zu halten",
+   "definition": "Einschätzung der unterzeichnenden Person, ob die Gesuchstellerin oder der Gesuchsteller geeignet und kompetent ist, einen Hund mit erhöhtem Gefährdungspotential zu halten (ein Kästchen von zwei ankreuzen).",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "ja",
+    "nein"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Angaben zur unterzeichnenden Person",
+   "definition": "Personalien und Kontaktangaben der Person, die die kynologischen Fachkenntnisse der Gesuchstellerin oder des Gesuchstellers bestätigt.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name / Vorname",
+    "Adresse / PLZ / Ort",
+    "Festnetz / Mobil",
+    "E-Mail"
+   ],
+   "format": ""
+  },
+  {
+   "name": "meine Ausbildung / Qualifikation",
+   "definition": "Kynologische Ausbildung bzw. Qualifikation der unterzeichnenden Person, anzukreuzen unter den aufgedruckten Möglichkeiten.",
+   "data_type": "multiselect",
+   "required": true,
+   "allowed_values": [
+    "Diensthundeführer/in",
+    "Ausbildner/in in der Hundeschule",
+    "anderes"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ausbildner/in in der Hundeschule: www",
+   "definition": "Internetadresse der Hundeschule, in der die unterzeichnende Person als Ausbildner/in tätig ist; nur auszufüllen, wenn diese Qualifikation angekreuzt ist.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "www…"
+  },
+  {
+   "name": "anderes (meine Ausbildung / Qualifikation)",
+   "definition": "Bezeichnung einer anderen Ausbildung oder Qualifikation der unterzeichnenden Person; nur auszufüllen, wenn «anderes» angekreuzt ist.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ort / Datum",
+   "definition": "Ort und Datum der Unterzeichnung durch die unterzeichnende Person (Teil der Zeile «Ort / Datum / Unterschrift»).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Ort",
+    "Datum"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Unterschrift",
+   "definition": "Unterschrift der unterzeichnenden Person, die die kynologischen Fachkenntnisse bestätigt (Teil der Zeile «Ort / Datum / Unterschrift»).",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  }
+ ],
+ "hinweis": "Korrekturen: keine. Ich habe den Entwurf Zeile für Zeile mit der Formular-PDF (1 Seite, gerendert) und ihren 21 AcroForm-Widgets verglichen. Alle 10 Felder sind vorhanden, sie stehen in der Reihenfolge des Formulars, und es wurde nichts erfunden. Begründung der Prüfpunkte: (1) «Name / Vorname», «Adresse / PLZ / Ort» und «Festnetz / Mobil» sind je auf EINER Zeile mit EINEM Textfeld-Widget gedruckt. Sie bleiben deshalb je ein Teilfeld, so wie gedruckt. Dass dabei Angaben gebündelt sind, die der Standard trennt, ist eine Frage an das Formular (Begriffe-Prüfart «aufteilen»), kein Grund, Teile zu erfinden. Das gleiche Vorgehen gilt in Formular 168. (2) Die Zeile «Ort / Datum / Unterschrift» ist ein einziges Textfeld-Widget. Sie wird richtig in die Gruppe Ort/Datum und eine eigene Unterschrift aufgeteilt. Es gibt nur eine unterzeichnende Person, die Gesuchstellerin oder der Gesuchsteller unterschreibt dieses Formular nicht. (3) «ja» und «nein» sind zwei Kästchen für eine einzige Antwort, also eine Auswahl (enum). Die drei Qualifikationen sind unabhängige Kästchen ohne Hinweis «eines ankreuzen», also Mehrfachauswahl (multiselect). (4) Die Freitexte zu «www» und «anderes» gelten nur, wenn das passende Kästchen angekreuzt ist. Sie sind deshalb required=false, wie bei den Feldern «anderes» in der übrigen Databank. Das Format «www…» ist aufgedruckt. (5) Das Formular verlangt keine Beilagen, hat kein Feld nur für das Amt und keine zweite Unterschrift. Nicht als Felder aufgenommen: der Briefkopf des Veterinäramts (Adresse, Telefon, E-Mail) und die grau hinterlegte Fussnote «Dieses Formular, ausgefüllt durch eine Person, welche den Gesuchsteller gut kennt, kann einen Hinweis auf die kynologischen Fachkenntnisse des Gesuchstellers geben». Beides ist Anleitung bzw. Angabe des Amtes. Zur Information: Formular 168 «Nachweis kynologische Fachkenntnisse» enthält einen ähnlichen Bestätigungsteil, dort zusätzlich mit der Option «SKN-Trainer/in». Diese Option ist auf Formular 562 nicht gedruckt und wurde darum bewusst nicht übernommen."
+}

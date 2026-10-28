@@ -1,0 +1,497 @@
+{
+ "hinweis": "eCH-Urteile Formular 557, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/557 --nur-offene=557",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Auswahl der Versammlungsart (ordentlich/ausserordentlich). Ganzer Katalog nach meeting/assembly/Versammlung/resolution/decision/quorum/convoc durchsucht: eCH-0098/0108/0116/0148/0229/0276 kennen keine Gesellschafterversammlung; eCH-0110/0155/0252 betreffen politische Abstimmungen/Wahlen, eCH-0211/0235 Verwaltungsentscheide. Kein Element.",
+   "feld": "ordentlichen / ausserordentlichen Gesellschafterversammlung"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "«Protokoll ... der ____ GmbH»: einzutragen ist die Firma der Gesellschaft. Wie «Firma» (23x) in der Datenbank: eCH-0098 organisationName (organisationIdentificationType); Element verbatim geprüft.",
+   "feld": "GmbH",
+   "standard": "eCH-0098",
+   "element": "organisationName"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Sitzgemeinde der GmbH. Wie «Sitz» (12x) / «Eingetragener Sitz» (7x): eCH-0098 headquarterMunicipality (swissHeadquarterType).",
+   "feld": "mit Sitz in",
+   "standard": "eCH-0098",
+   "element": "headquarterMunicipality"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Ort, an dem die Versammlung stattfindet (Tagungsort). Propagiertes kein_standard bestätigt: keine Adresse einer Person/Firma; kein Element für einen Versammlungsort im Katalog (eCH-0155 placeOfVoting nur politische Stimmabgabe).",
+   "feld": "Ort"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Kalenderdatum der Gesellschafterversammlung. Alle Datums-Elemente in eCH-0039/0058/0098/0108/0116/0147/0148/0229/0276 geprüft: messageDate/eventDate sind Meldungsmetadaten, foundation-/liquidation-/registrationDate betreffen andere Ereignisse, eCH-0155 dateOfVoting nur politische Abstimmung; kein meetingDate/decisionDate vorhanden.",
+   "feld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Beginn der Versammlung als Uhrzeit («___ Uhr»). Propagiertes kein_standard bestätigt: Suche nach *Time/startTime/beginTime ergab nur technische Zeitstempel.",
+   "feld": "Beginn"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Laut Definition Name der Person, die den Vorsitz führt. Einzelnes Namensfeld wie «Name, Vorname» (30x) → eCH-0044 officialName. eCH-0276 chairmanOfTheBoardOfDirectors (titleType) ist der VR-Präsident in der E-Bilanz, nicht der Versammlungsvorsitz.",
+   "feld": "Vorsitz",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Kopfzeile «Protokoll: ___» = Name der protokollführenden Person (Definition; vgl. Unterschrift Protokollführer). Einzelnes Namensfeld → eCH-0044 officialName.",
+   "feld": "Protokoll",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freitext zur Art der Einberufung. Katalog nach meeting/convocation/convoc/Versammlung/quorum durchsucht: kein Element in eCH-0098/0108/0116/0148/0229/0276 (eCH-0252 quorum = politische Wahlen).",
+   "feld": "Zur heutigen Versammlung wurde ordnungsgemäss einberufen"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Propagierter Wert bestätigt: Element bezeichnet wörtlich Aktien-/Stamm-/Genossenschafts-/Stiftungskapital (equityType); gleiche Zuordnung wie Formular 317 «Stammkapital». Kein engerer Container für die Kapitalstruktur (equity umfasst auch Reserven, totalShareholdersAssociates nur Gesellschafterliste).",
+   "feld": "Stammkapital"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Feststellung zur Stimmrechtsvertretung an der Versammlung. Katalog nach proxy/represent/vote/attend/presen durchsucht: nur politische Rechte (eCH-0045/0110/0155/0252), eCH-0229/0260 representative = Vertreter gegenüber Behörde, eCH-0278 proxy = Steuervollmacht. Kein Element.",
+   "feld": "Durch den unabhängigen Stimmrechtsvertreter vertreten"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Feststellung zur Organstimmrechtsvertretung. Gleiche Suche wie beim unabhängigen Stimmrechtsvertreter (proxy/represent/vote/attend), kein Element im Katalog.",
+   "feld": "Durch Organstimmrechtsvertreter vertreten"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "An der Versammlung durch Anwesende vertretenes Kapital (Präsenz). Kein Element für Präsenz/Vertretung an Gesellschafterversammlungen im Katalog (vote/represent/meeting/attend/presen gesucht).",
+   "feld": "Durch selbst anwesende Gesellschafter vertreten"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Per Vollmacht vertretenes Kapital. Katalog nach proxy/power/attorney/mandate/represent durchsucht: eCH-0278 proxy ist Steuervollmacht, eCH-0252 mandateType politische Mandate. Kein Element.",
+   "feld": "Durch andere Gesellschafter mit Vollmacht vertreten"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Zusammengesetzte Personenangabe (Zeichnungsart, Name, von, in) der gewählten Person(en); Container wie «Geschäftsführer/-in» (210/218/223) und «Weitere Zeichnungsberechtigte» → eCH-0044 personIdentification.",
+   "feld": "Wahlen – neue/n Geschäftsführer/in",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Zusammengesetzte Personenangabe der gewählten vorsitzenden Person; Container → eCH-0044 personIdentification.",
+   "feld": "Wahlen – neue/n Vorsitzende/n der Geschäftsführung",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Zusammengesetzte Personenangabe der abberufenen Person; wie «Löschung von Zeichnungsberechtigten» (362) → eCH-0044 personIdentification (Identifikation bleibt gültig, nur Funktion endet).",
+   "feld": "Abberufungen – Geschäftsführer/in",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Zusammengesetzte Personenangabe der zurückgetretenen Person; Container → eCH-0044 personIdentification.",
+   "feld": "Abberufungen – als Geschäftsführer zurückgetreten",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Vorgang Stammanteilübertragung (Anzahl, Nennwert). Katalog nach transfer/cession/assign/acquir/seller/buyer durchsucht: eCH-0276 hat nur changeOfShareholdersAssociates (boolean) und acquisitionType/primeCostsType (eigene Beteiligungen der Firma) – kein Container für eine Abtretung.",
+   "feld": "Abtretung von Stammanteilen"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Zusammengesetzte Personenangabe (Name, von, in) des abtretenden Gesellschafters → Container eCH-0044 personIdentification.",
+   "feld": "Veräusserer",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Zusammengesetzte Personenangabe (Name, von, in) des erwerbenden Gesellschafters → Container eCH-0044 personIdentification.",
+   "feld": "Erwerber",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freitext-Traktandum «Diverses». Kein inhaltlich bestimmtes Element; Bemerkungsfelder (eCH-0039 comments, eCH-0229 remarks) sind Meldungs-/Steuerbemerkungen, nicht Versammlungstraktanden.",
+   "feld": "Diverses"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ende der Versammlung als Uhrzeit («___ Uhr»). Wie «Beginn»/«Ende» (kein_standard): kein Element für Sitzungsende im Katalog (endTime/*Time gesucht).",
+   "feld": "Schluss der Versammlung"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Handschriftliche Unterschrift; wie alle «Unterschrift»-Felder (33x kein_standard). eCH-0039 signer ist ein Token einer elektronischen Dokumentsignatur, nicht die Unterschrift.",
+   "feld": "Unterschrift Vorsitzender"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Handschriftliche Unterschrift; wie alle «Unterschrift»-Felder kein_standard (eCH-0039 signer = elektronische Signatur).",
+   "feld": "Unterschrift Protokollführer"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Gesamtbetrag des Stammkapitals in CHF = Bilanzposition Aktien-/Stammkapital (equityType); wie «Höhe Stammkapital (CHF)» in Formular 317.",
+   "elternfeld": "Stammkapital",
+   "teilfeld": "total CHF",
+   "standard": "eCH-0276",
+   "element": "shareCapitalShareholderCapitalAssociationCapitalFoundationCapital"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Gesamtzahl der Stammanteile der Gesellschaft = Total Anzahl Anteile aller Gesellschafter (totalShareholdersAssociatesType, integer). numberOfSharesUnits (shareholdersOrAssociatesType in beneficiaryType) ist der Bestand eines einzelnen Begünstigten.",
+   "elternfeld": "Stammkapital",
+   "teilfeld": "eingeteilt in … Stammanteile",
+   "standard": "eCH-0276",
+   "element": "totalShareholdersAssociatesAmount"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Nennwert je Stammanteil; wie «Wert je Stammanteil (CHF)» / «Nennwert je Stammanteil (CHF)» in Formular 317 → eCH-0276 nominalValuePerShare.",
+   "elternfeld": "Stammkapital",
+   "teilfeld": "Stammanteile zu CHF",
+   "standard": "eCH-0276",
+   "element": "nominalValuePerShare"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Auswahl zwischen zwei Feststellungstexten (vertreten / kein Vertreter bezeichnet); kein Element für Stimmrechtsvertretung im Katalog (proxy/represent/vote gesucht).",
+   "elternfeld": "Durch den unabhängigen Stimmrechtsvertreter vertreten",
+   "teilfeld": "Auswahl (sind CHF … bzw. … Stammanteile vertreten / Es ist kein unabhängiger Stimmrechtsvertreter bezeichnet worden)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Vom unabhängigen Stimmrechtsvertreter vertretener Kapitalbetrag – Präsenzgrösse der Versammlung, weder Stammkapital (shareCapital…) noch Bestand eines Gesellschafters (nominal). Kein Element.",
+   "elternfeld": "Durch den unabhängigen Stimmrechtsvertreter vertreten",
+   "teilfeld": "CHF"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Anzahl vertretener Stammanteile an der Versammlung; eCH-0276 numberOfSharesUnits/amount sind Bestände eines Gesellschafters, nicht die vertretene Anzahl. Kein Element.",
+   "elternfeld": "Durch den unabhängigen Stimmrechtsvertreter vertreten",
+   "teilfeld": "Stammanteile"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Auswahl zwischen zwei Feststellungstexten; kein Element für Organstimmrechtsvertretung im Katalog.",
+   "elternfeld": "Durch Organstimmrechtsvertreter vertreten",
+   "teilfeld": "Auswahl (sind CHF … bzw. … Stammanteile vertreten / Es ist kein Organstimmrechtsvertreter bezeichnet worden)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Vom Organstimmrechtsvertreter vertretener Kapitalbetrag – Präsenzgrösse, kein Element im Katalog.",
+   "elternfeld": "Durch Organstimmrechtsvertreter vertreten",
+   "teilfeld": "CHF"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Anzahl vom Organstimmrechtsvertreter vertretener Stammanteile; nicht der Bestand eines Gesellschafters (numberOfSharesUnits). Kein Element.",
+   "elternfeld": "Durch Organstimmrechtsvertreter vertreten",
+   "teilfeld": "Stammanteile"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Summe des von anwesenden Gesellschaftern vertretenen Kapitals – Präsenzgrösse, nicht Stammkapital. Kein Element.",
+   "elternfeld": "Durch selbst anwesende Gesellschafter vertreten",
+   "teilfeld": "CHF"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Summe der von anwesenden Gesellschaftern vertretenen Stammanteile – Präsenzgrösse; numberOfSharesUnits/totalShareholdersAssociatesAmount sind Bestände, nicht Präsenz. Kein Element.",
+   "elternfeld": "Durch selbst anwesende Gesellschafter vertreten",
+   "teilfeld": "Stammanteile"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Per Vollmacht vertretener Kapitalbetrag – Präsenzgrösse, kein Element im Katalog.",
+   "elternfeld": "Durch andere Gesellschafter mit Vollmacht vertreten",
+   "teilfeld": "CHF"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Per Vollmacht vertretene Stammanteile – Präsenzgrösse, kein Element im Katalog.",
+   "elternfeld": "Durch andere Gesellschafter mit Vollmacht vertreten",
+   "teilfeld": "Stammanteile"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Zeichnungsart. Katalog nach sign/signat/procur/prokur/authori durchsucht: kein Element (eCH-0229 role = Funktion im Organ, eCH-0039 signer = elektronische Signatur); wie «Zeichnungsart»/«Zeichnungsberechtigung» (307/310/312/316/317/319–325) überall kein_standard.",
+   "elternfeld": "Wahlen – neue/n Geschäftsführer/in",
+   "teilfeld": "Einzelunterschrift/Kollektivunterschrift zu zweien"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name der gewählten Person; wie «Geschäftsführer/-in | Name, Vorname» → eCH-0044 officialName.",
+   "elternfeld": "Wahlen – neue/n Geschäftsführer/in",
+   "teilfeld": "Name, Vorname",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Handelsregisterformel «Name, von X, in Y»: «von» = Heimatort bzw. Staatsangehörigkeit → eCH-0011 originName (wie «Geschäftsführer/-in | Heimatort», «Heimatort/Staatsangehörigkeit»).",
+   "elternfeld": "Wahlen – neue/n Geschäftsführer/in",
+   "teilfeld": "von",
+   "standard": "eCH-0011",
+   "element": "originName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«in Y» = Wohnort → eCH-0010 town (wie «Wohnsitz»/«Wohnort» in 263/312).",
+   "elternfeld": "Wahlen – neue/n Geschäftsführer/in",
+   "teilfeld": "in",
+   "standard": "eCH-0010",
+   "element": "town"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Zeichnungsart; kein Element im Katalog (sign/signat/procur/prokur/authori gesucht).",
+   "elternfeld": "Wahlen – neue/n Vorsitzende/n der Geschäftsführung",
+   "teilfeld": "Einzelunterschrift/Kollektivunterschrift zu zweien"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name der gewählten vorsitzenden Person → eCH-0044 officialName.",
+   "elternfeld": "Wahlen – neue/n Vorsitzende/n der Geschäftsführung",
+   "teilfeld": "Name, Vorname",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«von» = Heimatort bzw. Staatsangehörigkeit → eCH-0011 originName.",
+   "elternfeld": "Wahlen – neue/n Vorsitzende/n der Geschäftsführung",
+   "teilfeld": "von",
+   "standard": "eCH-0011",
+   "element": "originName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«in» = Wohnort → eCH-0010 town.",
+   "elternfeld": "Wahlen – neue/n Vorsitzende/n der Geschäftsführung",
+   "teilfeld": "in",
+   "standard": "eCH-0010",
+   "element": "town"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Bisherige Zeichnungsart der abberufenen Person; kein Element für Zeichnungsart im Katalog.",
+   "elternfeld": "Abberufungen – Geschäftsführer/in",
+   "teilfeld": "Einzelunterschrift/Kollektivunterschrift zu zweien"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name der abberufenen Person (aktueller Name) → eCH-0044 officialName.",
+   "elternfeld": "Abberufungen – Geschäftsführer/in",
+   "teilfeld": "Name, Vorname",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«von» = Heimatort bzw. Staatsangehörigkeit → eCH-0011 originName.",
+   "elternfeld": "Abberufungen – Geschäftsführer/in",
+   "teilfeld": "von",
+   "standard": "eCH-0011",
+   "element": "originName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«in» = aktueller Wohnort → eCH-0010 town.",
+   "elternfeld": "Abberufungen – Geschäftsführer/in",
+   "teilfeld": "in",
+   "standard": "eCH-0010",
+   "element": "town"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name der zurückgetretenen Person → eCH-0044 officialName.",
+   "elternfeld": "Abberufungen – als Geschäftsführer zurückgetreten",
+   "teilfeld": "Name, Vorname",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«von» = Heimatort bzw. Staatsangehörigkeit → eCH-0011 originName.",
+   "elternfeld": "Abberufungen – als Geschäftsführer zurückgetreten",
+   "teilfeld": "von",
+   "standard": "eCH-0011",
+   "element": "originName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«in» = aktueller Wohnort → eCH-0010 town.",
+   "elternfeld": "Abberufungen – als Geschäftsführer zurückgetreten",
+   "teilfeld": "in",
+   "standard": "eCH-0010",
+   "element": "town"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Bisherige Zeichnungsart; kein Element für Zeichnungsart im Katalog.",
+   "elternfeld": "Abberufungen – als Geschäftsführer zurückgetreten",
+   "teilfeld": "Einzelunterschrift/Kollektivunterschrift zu zweien"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Anzahl übertragener Stammanteile (Bewegung). eCH-0276 numberOfSharesUnits/amount sind Bestände eines Gesellschafters, primeCostsNumber/acquisitionType betreffen eigene Beteiligungen der Firma; kein Element für eine Übertragungsmenge im Katalog (transfer/cession/acquir gesucht).",
+   "elternfeld": "Abtretung von Stammanteilen",
+   "teilfeld": "von … Stammanteilen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«Stammanteilen zu CHF ...» = Nennwert je Stammanteil (Definition: Betrag in CHF je Stammanteil, nicht Kaufpreis) → eCH-0276 nominalValuePerShare.",
+   "elternfeld": "Abtretung von Stammanteilen",
+   "teilfeld": "zu CHF",
+   "standard": "eCH-0276",
+   "element": "nominalValuePerShare"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name des Veräusserers → eCH-0044 officialName.",
+   "elternfeld": "Veräusserer",
+   "teilfeld": "Name, Vorname",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«von» = Heimatort bzw. Staatsangehörigkeit → eCH-0011 originName.",
+   "elternfeld": "Veräusserer",
+   "teilfeld": "von",
+   "standard": "eCH-0011",
+   "element": "originName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«in» = Wohnort → eCH-0010 town (wie «Personalien Veräusserer | Wohnort» in 263).",
+   "elternfeld": "Veräusserer",
+   "teilfeld": "in",
+   "standard": "eCH-0010",
+   "element": "town"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name des Erwerbers → eCH-0044 officialName.",
+   "elternfeld": "Erwerber",
+   "teilfeld": "Name, Vorname",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«von» = Heimatort bzw. Staatsangehörigkeit → eCH-0011 originName.",
+   "elternfeld": "Erwerber",
+   "teilfeld": "von",
+   "standard": "eCH-0011",
+   "element": "originName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«in» = Wohnort → eCH-0010 town.",
+   "elternfeld": "Erwerber",
+   "teilfeld": "in",
+   "standard": "eCH-0010",
+   "element": "town"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Gedruckter Name unter der Unterschrift; einzelnes Namensfeld wie «Name, Vorname» → eCH-0044 officialName.",
+   "elternfeld": "Unterschrift Vorsitzender",
+   "teilfeld": "NAME, Vorname",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Gedruckter Name unter der Unterschrift → eCH-0044 officialName.",
+   "elternfeld": "Unterschrift Protokollführer",
+   "teilfeld": "NAME, Vorname",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  }
+ ]
+}

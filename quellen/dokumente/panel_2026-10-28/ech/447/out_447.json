@@ -1,0 +1,107 @@
+{
+ "hinweis": "eCH-Urteile Formular 447, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/447 --nur-offene=447",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Confirms the propagated kein_standard. This is the composite place and date at which the holder signs the confirmation («Die Richtigkeit der oben erwähnten Angaben bestätigt: Ort und Datum»). It is not an address or a register date. I searched the whole catalogue of 290 standards. Element names place*, sign*, confirm* and declar* found only civil-status places (placeOfBirth, placeOfDeath, placeOfMarriage, placeOfOrigin in eCH-0011/0020/0021), placeOfWork (eCH-0021/0119), real-estate placeName (eCH-0129/0131/0206/0211), the GEVER signer and openingDate in eCH-0039, the eCH-0260 signatures container (apprenticeship contract only), and message-header dates. The signature standards eCH-0091/0220/0230/0250/0274/0282 have no elements. None of these is a container for a signing place and date. In the corpus, all 31 judged «Ort und Datum» fields are kein_standard.",
+   "feld": "Ort und Datum"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "The place where the holder signs the confirmation. It is not a postal address, so eCH-0010 town does not fit. It is not a civil-status event either, so placeOfBirth, placeOfDeath and placeOfMarriage do not fit, and placeOfWork and placeName mean something else. I searched place*, town*, sign* and confirm* across all 290 standards and found no signing-place element. This matches the 11 earlier verdicts on «Ort und Datum»/Ort, which are all kein_standard.",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "The date on which the holder signs the confirmation. I searched *date* together with sign*, confirm* and declar* across the catalogue. openingDate in eCH-0039/0147 is the opening date of a GEVER document or dossier. messageDate and modificationDate in eCH-0039/0058/0090/0147 belong to message headers. dateFrom in eCH-0010 is an address period. No element means the date of a signature. This matches the 11 earlier verdicts on «Ort und Datum»/Datum, which are all kein_standard.",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "The handwritten signature of the vehicle holder. I searched the whole catalogue: titles Signatur and Unterschrift, and element names sign*. eCH-0039 signer is a GEVER metadata token that names the signer; it is not the signature itself. eCH-0260 signatures and hostCompanySignatureConfirmation are booleans in the apprenticeship contract only. eCH-0091/0220/0230/0250/0274/0282 deal with the technique of electronic signatures and have no elements. This matches all 70 judged signature fields in the corpus, which are kein_standard.",
+   "feld": "Unterschrift Fahrzeughalter/In"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "The composite in which the traffic expert records technical defects on the Hilfsblatt, point 4 («Beurteilung vor dem Hintergrund, dass die Nachprüfung bis 6 Jahre ausgedehnt wird»). I searched these catalogue titles: Fahrzeug, Verkehr, Motor, Prüf, Kontroll, Befund, Zulassung, Polizei, Expert, Gutacht. I also searched these element names: vehicle*, inspect*, defect*, deficien*, finding*, corros*, chassis*, motor*, remark*. The only standards near this topic have no elements and a police scope: eCH-0281 Datenaustausch Polizei – Individualverkehr (In Arbeit) and eCH-0051 Basis-Datenkatalog Polizei/Justiz. The vehicle elements in eCH-0119/0276 are tax data. No container exists for inspection findings. This matches the sibling fields on this Formular, Beanstandungen Fahrgestell/Unterbau and Karosserie/Lackierung, which are kein_standard.",
+   "feld": "Technisch nicht einwandfrei"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "A free-text line, with a tick box, for one technical defect the expert found. The search of the whole catalogue (vehicle*, inspect*, defect*, deficien*, finding*, remark*, comment*) found no element for a vehicle inspection finding. The comment and remark elements in eCH-0058/0211/0260 belong to message headers, building reports and apprenticeship contracts. eCH-0281 has no elements and covers police data exchange. This matches the parts Korrosion and Weitere Beanstandung on this Formular, which are kein_standard.",
+   "elternfeld": "Technisch nicht einwandfrei",
+   "teilfeld": "Beanstandung 1"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "The second defect line from the expert. The reasoning is the same as for Beanstandung 1: no element in the whole catalogue means a vehicle inspection finding, and eCH-0281 has no elements and a different scope.",
+   "elternfeld": "Technisch nicht einwandfrei",
+   "teilfeld": "Beanstandung 2"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "The third defect line from the expert. The reasoning is the same as for Beanstandung 1: no element in the whole catalogue means a vehicle inspection finding, and eCH-0281 has no elements and a different scope.",
+   "elternfeld": "Technisch nicht einwandfrei",
+   "teilfeld": "Beanstandung 3"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "The fourth defect line from the expert. The reasoning is the same as for Beanstandung 1: no element in the whole catalogue means a vehicle inspection finding, and eCH-0281 has no elements and a different scope.",
+   "elternfeld": "Technisch nicht einwandfrei",
+   "teilfeld": "Beanstandung 4"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "The composite for vehicle modifications that the expert finds were not yet reported or registered (Motor/Getriebe/Luftfilter/Auspuffanlage/Räder/Aerodynamische Anbauteile, «Zutreffendes unterstreichen»). It is an inspection finding, not a register value. The modif* elements in the catalogue are only header or record metadata: modificationDate in eCH-0039/0058/0147, registerModification in eCH-0116, recordModification in eCH-0206. I also searched vehicle*, chassis*, motor* and inspect*, and the titles Fahrzeug, Verkehr, Motor, Prüf, Zulassung and Polizei. eCH-0281 (In Arbeit) and eCH-0051 have no elements and a police scope. No standard fits.",
+   "feld": "Melde- und prüfpflichtige Änderungen, welche noch nicht gemeldet und noch nicht eingetragen sind"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "A free-text line, with a tick box, for one unreported modification the expert found. No element in the catalogue describes a vehicle modification or an inspection finding. The modif* elements are only metadata (modificationDate, registerModification, recordModification), and eCH-0281 has no elements.",
+   "elternfeld": "Melde- und prüfpflichtige Änderungen, welche noch nicht gemeldet und noch nicht eingetragen sind",
+   "teilfeld": "Änderung 1"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "The second modification line. The reasoning is the same as for Änderung 1: no element in the whole catalogue means an unreported vehicle modification, and eCH-0281 has no elements.",
+   "elternfeld": "Melde- und prüfpflichtige Änderungen, welche noch nicht gemeldet und noch nicht eingetragen sind",
+   "teilfeld": "Änderung 2"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "The third modification line. The reasoning is the same as for Änderung 1: no element in the whole catalogue means an unreported vehicle modification, and eCH-0281 has no elements.",
+   "elternfeld": "Melde- und prüfpflichtige Änderungen, welche noch nicht gemeldet und noch nicht eingetragen sind",
+   "teilfeld": "Änderung 3"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "The fourth modification line. The reasoning is the same as for Änderung 1: no element in the whole catalogue means an unreported vehicle modification, and eCH-0281 has no elements.",
+   "elternfeld": "Melde- und prüfpflichtige Änderungen, welche noch nicht gemeldet und noch nicht eingetragen sind",
+   "teilfeld": "Änderung 4"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "The expert's finding at point 3, Karosserie/Lackierung: rust and dangerous parts, entered as free text with a tick box. I searched the elements corros*, chassis*, vehicle*, inspect*, deficien*, defect* and finding*, and the titles Fahrzeug, Verkehr, Prüf, Befund and Polizei. No element exists for a bodywork inspection finding. eCH-0281 (In Arbeit) and eCH-0051 have no elements and cover police data. This matches the sibling part Weitere Beanstandung Karosserie/Lackierung and the parts Korrosion and Korrosion-Reparaturen on this Formular, which are kein_standard.",
+   "elternfeld": "Beanstandungen Karosserie/Lackierung",
+   "teilfeld": "Rost, gefährliche Teile"
+  }
+ ]
+}

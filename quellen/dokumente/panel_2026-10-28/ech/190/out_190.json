@@ -1,0 +1,38 @@
+{
+ "hinweis": "eCH-Urteile Formular 190, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/190 --nur-offene=190",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Ich bestätige den propagierten Wert kein_standard. Laut Formular S. 8 und Merkblatt Kap. 7 Ziff. 6 sind Ort und Datum gemeint, an dem das Prüfformular der Funk-Nachweisprüfung unterzeichnet wird. Gesucht habe ich im ganzen Katalog: Elementnamen und Kontexte mit sign/attest/confirm/declar/issue/place/location/inspect/check/fire sowie Datumselemente; geprüft habe ich auch die Standardtitel Signatur/Unterschrift/Feuer/Brand/Funk/Prüf. Der einzige Kandidat ist eCH-0119 locationAndDate. Er hat den Kontext attachedFormsType/listOfSecuritiesType der Steuererklärung (E-Tax Filing) und ist ein kombinierter String, legt also keinen Unterzeichnungsort und kein Unterzeichnungsdatum für ein Feuerwehr-Prüfformular fest. eCH-0039 signer (token) und eCH-0260 signaturesType (boolean, Lehrvertrag) beschreiben anderes. Gleiches gilt für eCH-0211 decisionRulingType date (behördlicher Entscheid), eCH-0039/0147 openingDate (Dossier oder Dokument) und messageDate (Nachrichtenkopf). Das deckt sich mit 17 direkt geprüften «Ort und Datum»-Feldern, die kein_standard tragen. Hinweis: Die gleichnamige Variante «Ort, Datum» trägt im Korpus eCH-0119 locationAndDate. Diese Praxis ist uneinheitlich und sollte geklärt werden.",
+   "feld": "Ort und Datum"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Der Teil ist der Ort, an dem das Prüfformular unterzeichnet wird. Er ist weder Gebäude- noch Wohnadresse noch Heimat- oder Geburtsort. Ich habe den ganzen Katalog nach place*/location*/town durchsucht und nur Elemente mit anderer Bedeutung gefunden: eCH-0010 town (Adressteil), eCH-0011 placeOfBirth/placeOfDeath, eCH-0135 placeOfOrigin, eCH-0021 placeOfWork/placeOfMarriage, eCH-0129/0131/0206/0211 placeName (Lokalname einer Liegenschaft), eCH-0211 locationAddress (Baugesuch-Objektadresse), eCH-0119 location (betroffene Person) und eCH-0119 locationAndDate (kombinierter String der Steuererklärung). Keines legt einen Unterzeichnungsort fest. Das deckt sich mit 11 direkt geprüften Teilen «Ort und Datum / Ort», die kein_standard tragen.",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Der Teil ist das Datum, an dem das Prüfformular unterzeichnet wird. Mit dieser Unterschrift bezeugt die Feuerwehr das Ergebnis der Nachweisprüfung. Ich habe den ganzen Katalog nach Datumselementen durchsucht (sign/attest/confirm/declar/issue/inspect/check). Keines passt: messageDate (eCH-0039/0058/0147) betrifft den Nachrichtenkopf, openingDate (eCH-0039/0147) Dossier oder Dokument, eCH-0211 decisionRulingType date und dateValidity den Bauentscheid der Behörde, eCH-0108 postDeliverabilityCheckDate die Adressprüfung der Post. eCH-0119 locationAndDate ist ein kombinierter String der Steuererklärung. Keines legt das Datum fest, an dem ein Prüfprotokoll unterzeichnet wird. Das deckt sich mit 11 direkt geprüften Teilen «Ort und Datum / Datum», die kein_standard tragen.",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Das Feld ist die eigenhändige Unterschrift der Vertretung der Gebäudeeigentümerschaft auf dem Prüfformular (S. 8). Durchsucht habe ich den ganzen Katalog: Elemente sign*/signatur* sowie die Standardtitel Signatur/Unterschrift. eCH-0091, eCH-0220, eCH-0230, eCH-0250, eCH-0274 und eCH-0282 regeln nur die Technik elektronischer Signaturen und haben 0 Elemente. eCH-0039 signer (documentType, token) bezeichnet die zeichnende Person eines GEVER-Dokuments und ist keine Unterschrift. eCH-0260 hostCompany-, apprentice- und representativeSignatureConfirmation sind boolesche Bestätigungen im Lehrvertrag. Das deckt sich mit den Unterschrift-Feldern im Korpus (u. a. 33× «Unterschrift»), die alle kein_standard tragen.",
+   "feld": "Unterschrift Vertretung Gebäudeeigentümer/in"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Das Feld ist die eigenhändige Unterschrift der Vertretung des Feuerwehrkommandos. Damit bezeugt die Feuerwehr das Ergebnis der Funk-Nachweisprüfung (Merkblatt Kap. 7 Ziff. 6). Durchsucht habe ich den ganzen Katalog: Elemente sign*/signatur*/fire* sowie die Standardtitel Signatur/Unterschrift/Feuer/Brand/Funk. Die Signaturstandards eCH-0091, eCH-0220, eCH-0230, eCH-0250, eCH-0274 und eCH-0282 haben 0 Elemente. eCH-0039 signer ist ein Dokument-Token, eCH-0260 signaturesType eine boolesche Bestätigung im Lehrvertrag. Die fireService*-Elemente in eCH-0020, eCH-0021 und eCH-0101 betreffen die persönliche Feuerwehrdienstpflicht und keine Unterschrift. Das deckt sich mit den Unterschrift-Feldern im Korpus, die alle kein_standard tragen.",
+   "feld": "Unterschrift Vertretung Feuerwehrkommando"
+  }
+ ]
+}

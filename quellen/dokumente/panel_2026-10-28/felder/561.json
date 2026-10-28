@@ -1,0 +1,158 @@
+{
+ "form_id": 561,
+ "data_fields": [
+  {
+   "name": "Wohnverhältnisse",
+   "definition": "Angabe, ob der Hund in einem Haus oder in einer Wohnung gehalten werden wird.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "Haus",
+    "Wohnung"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Grösse",
+   "definition": "Grösse der Wohnverhältnisse als Anzahl Zimmer.",
+   "data_type": "number",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "Zimmer"
+  },
+  {
+   "name": "Umschwung (Garten, Einzäunung usw.)",
+   "definition": "Beschreibung des Umschwungs der Unterkunft, etwa Garten und Einzäunung.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Im Haushalt lebende Personen (Erwachsene, Kinder)",
+   "definition": "Angabe der im Haushalt lebenden Erwachsenen und Kinder.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Andere Tiere im Haushalt",
+   "definition": "Angabe der weiteren Tiere, die im selben Haushalt leben.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Das Einverständnis des Eigentümers zur Haltung dieses Hundes liegt vor",
+   "definition": "Angabe, ob der Eigentümer der Liegenschaft der Haltung dieses Hundes zugestimmt hat oder ob die Liegenschaft der gesuchstellenden Person selbst gehört.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "ja",
+    "nein",
+    "die Liegenschaft gehört mir"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "allfällige Auflagen",
+   "definition": "Allfällige Auflagen, die der Eigentümer der Liegenschaft an die Haltung des Hundes knüpft.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Betreuungs- und Bezugsperson des Hundes, allfällige weitere Personen, die den Hund betreuen (Dauer, Häufigkeit)",
+   "definition": "Angabe der hauptsächlichen Betreuungs- und Bezugsperson sowie allfälliger weiterer Betreuungspersonen des Hundes mit Dauer und Häufigkeit der Betreuung.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ich beachsichtige mit dem neuen Hund folgende Ausbildung(en) zu machen",
+   "definition": "Auswahl der Ausbildungen, welche die gesuchstellende Person mit dem neuen Hund machen will.",
+   "data_type": "multiselect",
+   "required": true,
+   "allowed_values": [
+    "Familienhund",
+    "Joggen",
+    "Fährten lesen",
+    "Mantrailing",
+    "Sanitätshund",
+    "anderes"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "anderes",
+   "definition": "Bezeichnung einer weiteren, nicht vorgedruckten Ausbildung, wenn bei den Ausbildungen «anderes» angekreuzt ist.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ich beabsichtige folgende Hundeschulen zu besuchen",
+   "definition": "Angabe der Hundeschulen, welche die gesuchstellende Person mit dem Hund besuchen will.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Alltagsbeschäftigung des Hundes",
+   "definition": "Beschreibung, wie der Hund im Alltag beschäftigt werden wird.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ich habe mich für einen Hund dieser Rasse entschieden, weil",
+   "definition": "Begründung der gesuchstellenden Person für die Wahl eines Hundes dieser Rasse.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ort / Datum",
+   "definition": "Ort und Datum der Unterzeichnung der Beschreibung.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Ort",
+    "Datum"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Unterschrift",
+   "definition": "Unterschrift der gesuchstellenden Person unter der Beschreibung.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  }
+ ],
+ "hinweis": "Korrekturen: keine. Ich habe das Original-PDF (2 Seiten) Zeile für Zeile mit dem Entwurf verglichen. Alle 15 Angaben stimmen, und zwar in der Reihenfolge des Formulars. Es fehlt nichts und es ist nichts erfunden. Es gibt keine zweite Unterschriftenzeile, keine Beilagen-Checkliste, keine Tabelle und kein Amtsfeld. Die Zeile «Ort / Datum / Unterschrift» ist bewusst in zwei Felder geteilt: das Composite «Ort / Datum» mit den Teilen Ort und Datum sowie die Unterschrift als signature. Das entspricht der Praxis bei den Formularen 472, 476, 482 und 483. Der Tippfehler «beachsichtige» in Abschnitt 3 ist absichtlich wörtlich übernommen. Die Ausbildungen sind in zwei Spalten gedruckt. Die Optionen stehen spaltenweise in Leserichtung (Familienhund, Joggen, Fährten lesen | Mantrailing, Sanitätshund, anderes). Die Angabe «Ausbildung(en)» erlaubt Mehrfachnennung, deshalb ist das Feld multiselect. «allfällige Auflagen» ist als optional geführt, weil «allfällig» so viel wie «falls vorhanden» heisst. Das Freitextfeld «anderes» ist optional, weil es nur auszufüllen ist, wenn «anderes» angekreuzt ist. Bei «Grösse» ist die Einheit «Zimmer» vorgedruckt. Als number sind auch halbe Zimmer möglich, etwa 3.5. Keine Felder sind: der Briefkopf des Veterinäramts (Adresse, Telefon, E-Mail) auf beiden Seiten und die Abschnittsnummern 1 bis 6. Das Formular fragt weder nach Personalien noch nach Angaben zum Hund wie Name, Rasse oder Chipnummer. Es ist eine Beilage zum «Gesuch für das Halten von Hunden mit erhöhtem Gefährdungspotential». Die Person und den Hund erkennt man nur über das Hauptgesuch. Deshalb ist «gesuchstellende Person» in den Definitionen zutreffend."
+}

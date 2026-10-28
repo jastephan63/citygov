@@ -1,0 +1,46 @@
+{
+ "urteile": [
+  {
+   "id": 6747,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Der Name der Person, die die Sitzung eröffnet und den Vorsitz übernimmt. Geschäftsführer einer GmbH können nur natürliche Personen sein (Art. 809 Abs. 2 OR). Eine Firma kommt hier nicht in Frage."
+  },
+  {
+   "id": 6748,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Der Name der Person, die der Vorsitz als Protokollführer bezeichnet. Das Formular fragt nach einer einzelnen Person, die das Protokoll führt und es unterschreibt. Eine Organisation ist ausgeschlossen."
+  },
+  {
+   "id": 6749,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Die Namen der weiteren anwesenden Mitglieder der Geschäftsführung. Nach Art. 809 Abs. 2 OR sind das nur natürliche Personen. Es sind zwar mehrere Personen, aber keine Firma, deshalb passt «gemischt» nicht."
+  },
+  {
+   "id": 6751,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Die Person, der die Einzel- oder Kollektivunterschrift erteilt wird, mit «von» (Heimatort oder Staatsangehörigkeit) und «in» (Wohnort). Diese Angaben gibt es im Handelsregister nur für natürliche Personen (Art. 119 HRegV)."
+  },
+  {
+   "id": 6753,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Die Person, der die Zeichnungsberechtigung entzogen wird, mit «von» (Heimatort oder Staatsangehörigkeit) und «in» (Wohnort). Das ist dieselbe Gruppe von Angaben wie bei der Erteilung, also nur für eine natürliche Person."
+  },
+  {
+   "id": 6755,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Die eigenhändige Unterschrift der vorsitzenden Person mit «NAME, Vorname» in Klarschrift. Das betrifft eindeutig eine einzelne natürliche Person."
+  },
+  {
+   "id": 6756,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Die eigenhändige Unterschrift der protokollführenden Person mit «NAME, Vorname» in Klarschrift. Das betrifft eindeutig eine einzelne natürliche Person."
+  }
+ ]
+}

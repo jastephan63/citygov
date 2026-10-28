@@ -1,0 +1,29 @@
+{
+ "verdicts": [
+  {
+   "id": 6990,
+   "subjekt": "natuerliche_person",
+   "grund": "Personalien (Herr/Frau, Vorname, Name, Heimatort, Wohnadresse) eines VR-Mitglieds, das den Vorsitz führt; VR-Mitglieder sind nach Art. 707 Abs. 3 OR stets natürliche Personen."
+  },
+  {
+   "id": 6994,
+   "subjekt": "natuerliche_person",
+   "grund": "Name des abberufenen Verwaltungsrats («Seine/Ihre Zeichnungsberechtigung»); als VR wählbar sind nur natürliche Personen (Art. 707 Abs. 3 OR)."
+  },
+  {
+   "id": 6995,
+   "subjekt": "natuerliche_person",
+   "grund": "Name des zurücktretenden VR-Mitglieds («seinem/ihrem Rücktritt»); VR-Mitglied ist stets eine einzelne natürliche Person."
+  },
+  {
+   "id": 6999,
+   "subjekt": "natuerliche_person",
+   "grund": "NAME und Vorname der unterzeichnenden Vorsitzenden Person unter der Unterschriftslinie; eine einzelne natürliche Person."
+  },
+  {
+   "id": 7001,
+   "subjekt": "natuerliche_person",
+   "grund": "NAME und Vorname der unterzeichnenden protokollführenden Person (laut Formular das vorsitzende VR-Mitglied); eine einzelne natürliche Person."
+  }
+ ]
+}

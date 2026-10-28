@@ -1,0 +1,216 @@
+{
+ "form_id": 578,
+ "data_fields": [
+  {
+   "name": "Person",
+   "definition": "Personalien des entsandten Arbeitnehmers, wie sie im Kasten «Person» gedruckt sind.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Nachname",
+    "Vorname",
+    "Nationalität",
+    "Geburtsdatum"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Angestellt beim ausländischen Arbeitgeber seit",
+   "definition": "Datum, seit dem der entsandte Arbeitnehmer beim ausländischen Arbeitgeber angestellt ist.",
+   "data_type": "date",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ausländischer Arbeitgeber – Komplette Adresse",
+   "definition": "Vollständige Adresse des ausländischen Arbeitgebers, der als Auftragnehmer den Arbeitnehmer in die Schweiz entsendet.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Schweizer Einsatzfirma – Komplette Adresse",
+   "definition": "Vollständige Adresse der Schweizer Einsatzfirma, die als Auftraggeberin den Einsatz in Auftrag gibt.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Dauer des Einsatzes",
+   "definition": "Beginn und Ende des Einsatzes in der Schweiz, je als Kalenderdatum (von … bis …).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "von",
+    "bis"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Anwesenheit in Anzahl Tagen / Wochen",
+   "definition": "Anzahl Tage oder Wochen, während derer der Arbeitnehmer für den Einsatz in der Schweiz anwesend ist.",
+   "data_type": "number",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "Tage / Wochen"
+  },
+  {
+   "name": "Genaue Tätigkeit (auszuführende Arbeit des Arbeitnehmers) während des Einsatzes",
+   "definition": "Genaue Beschreibung der Arbeit, die der Arbeitnehmer während des Einsatzes in der Schweiz ausführt.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Einsatzort",
+   "definition": "Ort des Einsatzes in der Schweiz mit Adresse, Ort und Firmenname, wie in der Klammer des Formulars verlangt.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Adresse",
+    "Ort",
+    "Firmenname"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Salär; welches dem Arbeitnehmer im Ausland ausbezahlt wird",
+   "definition": "Salär, das der Arbeitgeber dem Arbeitnehmer im Ausland ausbezahlt, umgerechnet in CHF, als Betrag pro Monat oder pro Jahr.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Pro Monat",
+    "pro Jahr"
+   ],
+   "format": "CHF (umgerechnet in CHF); Pro Monat oder pro Jahr"
+  },
+  {
+   "name": "Auslandzulage während der Entsendung in der Schweiz",
+   "definition": "Auslandzulage, die der Arbeitnehmer während der Entsendung in der Schweiz erhält, ohne Auslagen für Unterkunft, Verpflegung und Reise, als Betrag pro Monat oder pro Jahr.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Pro Monat",
+    "pro Jahr"
+   ],
+   "format": "CHF; Pro Monat oder pro Jahr"
+  },
+  {
+   "name": "Allfällige weitere Zahlungen durch den Arbeitgeber – Krankenkasse in der Schweiz",
+   "definition": "Betrag, den der Arbeitgeber allenfalls für die Krankenkasse des Arbeitnehmers in der Schweiz bezahlt, pro Monat oder pro Jahr.",
+   "data_type": "composite",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [
+    "Pro Monat",
+    "pro Jahr"
+   ],
+   "format": "CHF; Pro Monat oder pro Jahr"
+  },
+  {
+   "name": "Allfällige weitere Zahlungen durch den Arbeitgeber – Steuern (falls vom Arbeitgeber übernommen)",
+   "definition": "Betrag der Steuern des Arbeitnehmers, sofern der Arbeitgeber sie übernimmt, pro Monat oder pro Jahr.",
+   "data_type": "composite",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [
+    "Pro Monat",
+    "pro Jahr"
+   ],
+   "format": "CHF; Pro Monat oder pro Jahr"
+  },
+  {
+   "name": "Allfällige weitere Zahlungen durch den Arbeitgeber – Sozialabgaben in der Schweiz",
+   "definition": "Betrag, den der Arbeitgeber allenfalls für Sozialabgaben des Arbeitnehmers in der Schweiz bezahlt, pro Monat oder pro Jahr.",
+   "data_type": "composite",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [
+    "Pro Monat",
+    "pro Jahr"
+   ],
+   "format": "CHF; Pro Monat oder pro Jahr"
+  },
+  {
+   "name": "Allfällige weitere Zahlungen durch den Arbeitgeber – Andere Vergütungen",
+   "definition": "Betrag allfälliger anderer Vergütungen des Arbeitgebers an den Arbeitnehmer, pro Monat oder pro Jahr.",
+   "data_type": "composite",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [
+    "Pro Monat",
+    "pro Jahr"
+   ],
+   "format": "CHF; Pro Monat oder pro Jahr"
+  },
+  {
+   "name": "Brutto-Salär während der Entsendung",
+   "definition": "Brutto-Salär des Arbeitnehmers während der Entsendung, das mindestens den orts- und branchenüblichen Löhnen im Kanton Schaffhausen entsprechen muss, als Betrag pro Monat oder pro Jahr.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Pro Monat",
+    "pro Jahr"
+   ],
+   "format": "CHF; Pro Monat oder pro Jahr"
+  },
+  {
+   "name": "Ort, Datum (Arbeitgeber)",
+   "definition": "Ort und Datum der Unterzeichnung durch den Arbeitgeber.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Ort",
+    "Datum"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Unterschrift Arbeitgeber",
+   "definition": "Unterschrift des Arbeitgebers, mit der er die Richtigkeit der Angaben sowie die Erklärung zu Reise-, Verpflegungs- und Unterkunftskosten und zur Kranken- und Unfallversicherung bestätigt.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ort, Datum (Arbeitnehmer)",
+   "definition": "Ort und Datum der Unterzeichnung durch den Arbeitnehmer.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Ort",
+    "Datum"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Unterschrift Arbeitnehmer",
+   "definition": "Unterschrift des entsandten Arbeitnehmers, mit der er die Richtigkeit der Angaben bestätigt.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  }
+ ],
+ "hinweis": "Korrekturen: keine. Das Wörterbuch wurde Zeile für Zeile mit dem Original-PDF (eine Seite, Layout als Bild geprüft) verglichen. Vollständig: Kasten Person (4 gedruckte Teile), «Angestellt beim ausländischen Arbeitgeber seit», zwei Adressfelder (je nur ein freies Feld «Komplette Adresse», keine gedruckten Teile, darum text und nicht composite), «Dauer des Einsatzes» von/bis, Anwesenheit, Tätigkeit, Einsatzort (Teile aus der gedruckten Klammer), sieben Zeilen der Salär-Tabelle mit je zwei CHF-Linien (Pro Monat / pro Jahr; je Zeile genügt einer der beiden Beträge), zwei Unterzeichnende mit je «Ort, Datum» und Unterschrift. Nichts Erfundenes gefunden. required=false bei den vier Zeilen «Allfällige weitere Zahlungen durch den Arbeitgeber, wie:» ist gedeckt («allfällig» = falls vorhanden). Die gedruckte Angabe «(obligatorisch)» bei beiden Unterschriften ist ein Pflichtvermerk und kein Teil des Namens. Nicht als Angaben der Person erfasst: der Briefkopf (Arbeitsamt, Arbeitsbewilligungen, Adresse), der Zwischentitel «Salär-Bestätigung», die Hinweise in Klammern («umgerechnet in CHF», «darin dürfen Auslagen für Unterkunft, Verpflegung und Reise nicht enthalten sein», «Muss mindestens den orts- und branchenüblichen Löhnen im Kanton Schaffhausen entsprechen.») und der Erklärungskasten «Während dem ganzen Aufenthalt in der Schweiz». Mit diesem Kasten bestätigt der Arbeitgeber die Übernahme von Reise-, Verpflegungs- und Unterkunftskosten und eine gültige Kranken- und Unfallversicherung. Er hat kein Ankreuzfeld und wird mit der Unterschrift abgegeben. Ebenfalls nicht erfasst ist die Zeile «Für die Richtigkeit der obigen Angaben». Das Formular hat keine Beilagen-Liste und kein Amtsfeld. Offene Beobachtung (keine Korrektur): Bei «Anwesenheit in Anzahl Tagen / Wochen» schreibt die Person die Einheit (Tage oder Wochen) frei dazu. Das Formular druckt dafür kein eigenes Feld. Die Zahl allein ist also nur mit der Einheit eindeutig."
+}

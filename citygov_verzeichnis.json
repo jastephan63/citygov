@@ -1,7 +1,7 @@
 {
  "meta": {
-  "generated_at": "2026-10-07T05:09:11",
-  "hinweis": "Verzeichnis der Bearbeitungstätigkeiten je Formular, Struktur nach KDSG Art. 17b Abs. 2 (die Führungspflicht nach Art. 17b trifft nur Polizei, Staatsanwaltschaft und Justizvollzug; für alle anderen Stellen ist dies ein Steuerungsinstrument); «FEHLT» markiert offene Inhalte ehrlich. Erfasst sind die 473 von 473 Formularen mit modellierter Datenfeld-Schicht.",
+  "generated_at": "2026-10-28T20:12:30",
+  "hinweis": "Verzeichnis der Bearbeitungstätigkeiten je Formular, Struktur nach KDSG Art. 17b Abs. 2 (die Führungspflicht nach Art. 17b trifft nur Polizei, Staatsanwaltschaft und Justizvollzug; für alle anderen Stellen ist dies ein Steuerungsinstrument); «FEHLT» markiert offene Inhalte ehrlich. Erfasst sind die 513 von 513 Formularen mit modellierter Datenfeld-Schicht.",
   "felder": {
    "verantwortliche_stelle": "Dienststelle des Services; sonst die publizierende Dienststelle des Formulars; sonst FEHLT.",
    "datenkategorien.besonders_schuetzenswert": "Kategorien besonders schützenswerter Personendaten nach KDSG Art. 2 Abs. 1 lit. d, die das Formular erhebt (Codes: gesundheit = Gesundheit, religion_weltanschauung = Religion/Weltanschauung, politik = Politische oder gewerkschaftliche Ansichten, ethnie_herkunft = Ethnische Herkunft, genetik_biometrie = Genetik/Biometrie, strafen_verfahren = Verfolgungen und Sanktionen, sozialhilfe = Massnahmen der sozialen Hilfe).",
@@ -10,7 +10,7 @@
    "dsfa_status": "Entscheid des Kantons zur Datenschutz-Folgenabschätzung (KDSG Art. 14b); FEHLT = noch nicht entschieden, die Databank setzt keinen."
   },
   "vertrag": {
-   "version": "1.0.0",
+   "version": "1.0.1",
    "schema": "schema/citygov_verzeichnis.schema.json",
    "aenderungen": "exportvertrag.json"
   }
@@ -1719,19 +1719,19 @@
    "verantwortliche_stelle": "Strassenverkehrs- und Schifffahrtsamt",
    "zweck": "Prüfung der beantragten Gewichtsänderung für die Anpassung des Gesamt- bzw. Zuggewichts im Fahrzeugausweis.",
    "datenkategorien": {
-    "felder": 10,
+    "felder": 17,
     "besonders_schuetzenswert": [],
     "n_besonders_schuetzenswert": 0
    },
    "rechtsgrundlagen": {
-    "artikel": 8,
+    "artikel": 10,
     "aufgabe": 0,
     "art5_offen": 0,
     "ohne": 0,
-    "offen": 2,
-    "zu_ermitteln": 0,
-    "n_gedeckt": 8,
-    "n_offen": 2
+    "offen": 1,
+    "zu_ermitteln": 6,
+    "n_gedeckt": 10,
+    "n_offen": 7
    },
    "empfaenger": [
     "Zulassungsbehörden",
@@ -7661,18 +7661,18 @@
    "verantwortliche_stelle": "Veterinäramt",
    "zweck": "Prüfung der persönlichen und fachlichen Voraussetzungen für die Bewilligung zur Haltung eines Hundes mit erhöhtem Gefährdungspotenzial.",
    "datenkategorien": {
-    "felder": 15,
+    "felder": 18,
     "besonders_schuetzenswert": [],
     "n_besonders_schuetzenswert": 0
    },
    "rechtsgrundlagen": {
-    "artikel": 14,
-    "aufgabe": 1,
+    "artikel": 16,
+    "aufgabe": 2,
     "art5_offen": 0,
     "ohne": 0,
     "offen": 0,
     "zu_ermitteln": 0,
-    "n_gedeckt": 15,
+    "n_gedeckt": 18,
     "n_offen": 0
    },
    "empfaenger": "FEHLT",
@@ -7810,18 +7810,18 @@
    "verantwortliche_stelle": "Veterinäramt",
    "zweck": "Beurteilung der kynologischen Erfahrung und Führungskompetenz der gesuchstellenden Person im Bewilligungsverfahren für einen Listenhund.",
    "datenkategorien": {
-    "felder": 12,
+    "felder": 5,
     "besonders_schuetzenswert": [],
     "n_besonders_schuetzenswert": 0
    },
    "rechtsgrundlagen": {
-    "artikel": 12,
+    "artikel": 5,
     "aufgabe": 0,
     "art5_offen": 0,
     "ohne": 0,
     "offen": 0,
     "zu_ermitteln": 0,
-    "n_gedeckt": 12,
+    "n_gedeckt": 5,
     "n_offen": 0
    },
    "empfaenger": "FEHLT",
@@ -8852,18 +8852,18 @@
    "verantwortliche_stelle": "Kantonale Feuerpolizei",
    "zweck": "Kontrolle, ob Einsatzkräfte im Gebäude über ausreichende Funkverbindung verfügen oder eine Inhouse-Funkanlage installiert werden muss.",
    "datenkategorien": {
-    "felder": 7,
+    "felder": 10,
     "besonders_schuetzenswert": [],
     "n_besonders_schuetzenswert": 0
    },
    "rechtsgrundlagen": {
     "artikel": 7,
-    "aufgabe": 0,
+    "aufgabe": 3,
     "art5_offen": 0,
     "ohne": 0,
     "offen": 0,
     "zu_ermitteln": 0,
-    "n_gedeckt": 7,
+    "n_gedeckt": 10,
     "n_offen": 0
    },
    "empfaenger": "FEHLT",
@@ -10939,18 +10939,20 @@
    "verantwortliche_stelle": "Sekretariat Finanzdepartement",
    "zweck": "Prüfung der Einkommens-, Ausgaben- und Vermögensverhältnisse zur Beurteilung eines Gesuchs um Erlass von Verfahrenskosten bei Mittellosigkeit.",
    "datenkategorien": {
-    "felder": 29,
-    "besonders_schuetzenswert": [],
-    "n_besonders_schuetzenswert": 0
+    "felder": 33,
+    "besonders_schuetzenswert": [
+     "gesundheit"
+    ],
+    "n_besonders_schuetzenswert": 1
    },
    "rechtsgrundlagen": {
-    "artikel": 28,
-    "aufgabe": 1,
+    "artikel": 24,
+    "aufgabe": 9,
     "art5_offen": 0,
     "ohne": 0,
     "offen": 0,
     "zu_ermitteln": 0,
-    "n_gedeckt": 29,
+    "n_gedeckt": 33,
     "n_offen": 0
    },
    "empfaenger": [
@@ -12980,18 +12982,18 @@
    "verantwortliche_stelle": "Steuerverwaltung",
    "zweck": "Feststellung der bevollmächtigten Vertretung in Steuerangelegenheiten, wobei die Steuerrechnungen weiterhin der steuerpflichtigen Person zugestellt werden.",
    "datenkategorien": {
-    "felder": 4,
+    "felder": 8,
     "besonders_schuetzenswert": [],
     "n_besonders_schuetzenswert": 0
    },
    "rechtsgrundlagen": {
-    "artikel": 4,
-    "aufgabe": 0,
+    "artikel": 6,
+    "aufgabe": 2,
     "art5_offen": 0,
     "ohne": 0,
     "offen": 0,
     "zu_ermitteln": 0,
-    "n_gedeckt": 4,
+    "n_gedeckt": 8,
     "n_offen": 0
    },
    "empfaenger": [
@@ -14782,18 +14784,18 @@
    "verantwortliche_stelle": "Handelsregisteramt",
    "zweck": "Prüfung der Gründungsunterlagen und Eintragung der neu gegründeten Aktiengesellschaft mit Firma, Sitz, Kapital und Organen ins Handelsregister.",
    "datenkategorien": {
-    "felder": 18,
+    "felder": 22,
     "besonders_schuetzenswert": [],
     "n_besonders_schuetzenswert": 0
    },
    "rechtsgrundlagen": {
-    "artikel": 17,
-    "aufgabe": 1,
+    "artikel": 20,
+    "aufgabe": 2,
     "art5_offen": 0,
     "ohne": 0,
     "offen": 0,
     "zu_ermitteln": 0,
-    "n_gedeckt": 18,
+    "n_gedeckt": 22,
     "n_offen": 0
    },
    "empfaenger": "FEHLT",
@@ -17428,18 +17430,18 @@
    "verantwortliche_stelle": "Jagd und Fischerei",
    "zweck": "Prüfung der Berechtigung anhand von Fischer-Brevet oder SaNa-Ausweis und Ausstellung des Angelfischer-Patents für die gewählten Rheinuferstrecken.",
    "datenkategorien": {
-    "felder": 5,
+    "felder": 7,
     "besonders_schuetzenswert": [],
     "n_besonders_schuetzenswert": 0
    },
    "rechtsgrundlagen": {
     "artikel": 5,
-    "aufgabe": 0,
+    "aufgabe": 2,
     "art5_offen": 0,
     "ohne": 0,
     "offen": 0,
     "zu_ermitteln": 0,
-    "n_gedeckt": 5,
+    "n_gedeckt": 7,
     "n_offen": 0
    },
    "empfaenger": "FEHLT",
@@ -18214,22 +18216,22 @@
    "verantwortliche_stelle": "Veterinäramt",
    "zweck": "Erfassung gemeldeter Hundebissverletzungen bei Menschen zur Beurteilung der Gefährlichkeit des Hundes und Anordnung allfälliger Massnahmen.",
    "datenkategorien": {
-    "felder": 23,
+    "felder": 30,
     "besonders_schuetzenswert": [
      "gesundheit",
      "strafen_verfahren"
     ],
-    "n_besonders_schuetzenswert": 5
+    "n_besonders_schuetzenswert": 8
    },
    "rechtsgrundlagen": {
-    "artikel": 22,
-    "aufgabe": 1,
-    "art5_offen": 0,
+    "artikel": 27,
+    "aufgabe": 2,
+    "art5_offen": 1,
     "ohne": 0,
     "offen": 0,
     "zu_ermitteln": 0,
-    "n_gedeckt": 23,
-    "n_offen": 0
+    "n_gedeckt": 29,
+    "n_offen": 1
    },
    "empfaenger": "FEHLT",
    "aufbewahrung": {
@@ -18739,18 +18741,22 @@
    "verantwortliche_stelle": "Sozialamt",
    "zweck": "Prüfung der Voraussetzungen für die Kostenübernahmegarantie bei ausserkantonalen Platzierungen in sozialen Einrichtungen und Sonderschulen nach IVSE.",
    "datenkategorien": {
-    "felder": 3,
-    "besonders_schuetzenswert": [],
-    "n_besonders_schuetzenswert": 0
+    "felder": 26,
+    "besonders_schuetzenswert": [
+     "gesundheit",
+     "sozialhilfe",
+     "strafen_verfahren"
+    ],
+    "n_besonders_schuetzenswert": 5
    },
    "rechtsgrundlagen": {
-    "artikel": 3,
-    "aufgabe": 0,
+    "artikel": 21,
+    "aufgabe": 5,
     "art5_offen": 0,
     "ohne": 0,
     "offen": 0,
     "zu_ermitteln": 0,
-    "n_gedeckt": 3,
+    "n_gedeckt": 26,
     "n_offen": 0
    },
    "empfaenger": [
@@ -20390,23 +20396,23 @@
   {
    "form_id": 447,
    "formular_kennung": "sh:formular:strassenverkehrs-und-schifffahrtsamt-veteranenfa-form",
-   "formular": "Anhang zum Fahrzeugausweis Forst Traktor",
+   "formular": "Antrag für die Zulassung als Veteranenfahrzeug",
    "verantwortliche_stelle": "Strassenverkehrs- und Schifffahrtsamt",
    "zweck": "Beurteilung von Zustand und Originalität des Fahrzeugs für die Zulassung als Veteranenfahrzeug und den Eintrag im Fahrzeugausweis.",
    "datenkategorien": {
-    "felder": 25,
+    "felder": 17,
     "besonders_schuetzenswert": [],
     "n_besonders_schuetzenswert": 0
    },
    "rechtsgrundlagen": {
-    "artikel": 24,
-    "aufgabe": 1,
+    "artikel": 14,
+    "aufgabe": 2,
     "art5_offen": 0,
     "ohne": 0,
     "offen": 0,
-    "zu_ermitteln": 0,
-    "n_gedeckt": 25,
-    "n_offen": 0
+    "zu_ermitteln": 1,
+    "n_gedeckt": 16,
+    "n_offen": 1
    },
    "empfaenger": "FEHLT",
    "aufbewahrung": {
@@ -20602,18 +20608,18 @@
    "verantwortliche_stelle": "Kantonale Feuerpolizei",
    "zweck": "Prüfung der gewässerschutz- und brandschutzrechtlichen Anforderungen an Tankanlage oder Fasslager im Melde- bzw. Bewilligungsverfahren.",
    "datenkategorien": {
-    "felder": 55,
+    "felder": 59,
     "besonders_schuetzenswert": [],
     "n_besonders_schuetzenswert": 0
    },
    "rechtsgrundlagen": {
     "artikel": 55,
-    "aufgabe": 0,
+    "aufgabe": 4,
     "art5_offen": 0,
     "ohne": 0,
     "offen": 0,
     "zu_ermitteln": 0,
-    "n_gedeckt": 55,
+    "n_gedeckt": 59,
     "n_offen": 0
    },
    "empfaenger": "FEHLT",
@@ -25103,6 +25109,2105 @@
     "zu_ermitteln": 34,
     "n_gedeckt": 0,
     "n_offen": 34
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 542,
+   "formular_kennung": "sh:formular:gesuch-um-erteilung-einer-nautischen-bewilligung",
+   "formular": "Gesuch um Erteilung einer nautischen Bewilligung",
+   "verantwortliche_stelle": "Strassenverkehrs- und Schifffahrtsamt",
+   "zweck": "Prüfung der Voraussetzungen für die Bewilligung einer nautischen Veranstaltung nach Art. 72 BSV anhand von Veranstalter, verantwortlicher Person und Erreichbarkeit, Art, Zeit, Ort sowie erwarteter Anzahl Boote und Teilnehmender.",
+   "datenkategorien": {
+    "felder": 12,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 5,
+    "aufgabe": 5,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 2,
+    "n_gedeckt": 10,
+    "n_offen": 2
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 543,
+   "formular_kennung": "sh:formular:erfassung-der-effektiv-ausgesprochenen-kundigungen-bei-betri",
+   "formular": "Erfassung der effektiv ausgesprochenen Kündigungen bei Betriebsschliessungen und Entlassungen gemäss OR 335g und AVV Art. 53",
+   "verantwortliche_stelle": "Arbeitsamt",
+   "zweck": "Feststellung der nach der Konsultation tatsächlich Entlassenen ohne Namen (Funktion, Alter, Geschlecht, Nationalität, Wohnort, Ablauf der Kündigungsfrist), der Zahl der Weiterbeschäftigten und der Entlassungsgründe gemäss Arbeitsvermittlungsgesetz.",
+   "datenkategorien": {
+    "felder": 5,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 3,
+    "aufgabe": 1,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 1,
+    "n_gedeckt": 4,
+    "n_offen": 1
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 544,
+   "formular_kennung": "sh:formular:atelierstipendien-in-berlin-anmeldeblatt",
+   "formular": "Atelierstipendien in Berlin – Anmeldeblatt",
+   "verantwortliche_stelle": "Fachstelle Kultur",
+   "zweck": "Prüfung des Bezugs zum Kanton Schaffhausen, Beurteilung von künstlerischer Tätigkeit, Vorhaben und Nutzen des Aufenthalts in Berlin durch das Fachkuratorium, Zuteilung einer Aufenthaltsperiode sowie Vergabe und Auszahlung des Stipendiums.",
+   "datenkategorien": {
+    "felder": 10,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 2,
+    "aufgabe": 3,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 5,
+    "n_gedeckt": 5,
+    "n_offen": 5
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 545,
+   "formular_kennung": "sh:formular:bestellung-angelfischer-patent-fur-jugendliche-1016-jahre",
+   "formular": "Bestellung Angelfischer-Patent für Jugendliche (10–16 Jahre)",
+   "verantwortliche_stelle": "Jagd und Fischerei",
+   "zweck": "Prüfung von Alter, Berechtigung (Jungfischer-Brevet oder SaNa-Ausweis) und Unterschrift eines Erziehungsberechtigten sowie Ausstellung und Verrechnung des Angelfischer-Patents für die gewählten Rheinuferstrecken und Dauer.",
+   "datenkategorien": {
+    "felder": 8,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 5,
+    "aufgabe": 3,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 0,
+    "n_gedeckt": 8,
+    "n_offen": 0
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 546,
+   "formular_kennung": "sh:formular:erklarung-uber-die-gemeinsame-elterliche-sorge-art-298a-zgb-",
+   "formular": "Erklärung über die gemeinsame elterliche Sorge (Art. 298a ZGB) / Vereinbarung über die Anrechnung von Erziehungsgutschriften",
+   "verantwortliche_stelle": "Kindes- und Erwachsenenschutzbehörde",
+   "zweck": "Entgegennahme der Erklärung der gemeinsamen elterlichen Sorge für das Kind mit der Bestätigung der Eltern zu Verantwortung, Obhut, Betreuungsanteilen und Unterhaltsbeitrag sowie Festhalten der Anrechnung der Erziehungsgutschriften.",
+   "datenkategorien": {
+    "felder": 10,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 0,
+    "aufgabe": 0,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 10,
+    "n_gedeckt": 0,
+    "n_offen": 10
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 547,
+   "formular_kennung": "sh:formular:gemeinsames-begehren-auf-auflosung-der-eingetragenen-partner",
+   "formular": "Gemeinsames Begehren auf Auflösung der eingetragenen Partnerschaft",
+   "verantwortliche_stelle": "Kantonsgericht",
+   "zweck": "Feststellung der Personalien beider Gesuchsteller und der aufzulösenden Partnerschaft (Datum und Ort der Eintragung) für das gerichtliche Auflösungsverfahren, samt Zustellung, telefonischer Kontaktaufnahme und Beizug von Dolmetschern.",
+   "datenkategorien": {
+    "felder": 12,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 0,
+    "aufgabe": 2,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 10,
+    "n_gedeckt": 2,
+    "n_offen": 10
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 548,
+   "formular_kennung": "sh:formular:gemeinsames-begehren-auf-ehescheidung",
+   "formular": "Gemeinsames Begehren auf Ehescheidung",
+   "verantwortliche_stelle": "Kantonsgericht",
+   "zweck": "Feststellung der Personalien beider Ehegatten, der Eheschliessung und der gemeinsamen Kinder, Vorladung zur Anhörung sowie Prüfung des gemeinsamen Scheidungswillens und der Angemessenheit der (Teil-)Vereinbarung über die Scheidungsfolgen.",
+   "datenkategorien": {
+    "felder": 23,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 14,
+    "aufgabe": 3,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 6,
+    "n_gedeckt": 17,
+    "n_offen": 6
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 549,
+   "formular_kennung": "sh:formular:gesuch-um-eheschutzrichterliche-massnahmen",
+   "formular": "Gesuch um eheschutzrichterliche Massnahmen",
+   "verantwortliche_stelle": "Kantonsgericht",
+   "zweck": "Prüfung des Eheschutzbegehrens anhand der Personalien von Ehegatten und Kindern sowie der finanziellen Verhältnisse für gerichtliche Anordnungen zu Unterhalt, Familienwohnung, Hausrat, Kinderbelangen, Gütertrennung und Vertretungsbefugnis.",
+   "datenkategorien": {
+    "felder": 13,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 5,
+    "aufgabe": 5,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 3,
+    "n_gedeckt": 10,
+    "n_offen": 3
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 550,
+   "formular_kennung": "sh:formular:zahlungsauftrag-antrag-auf-kontoubertrag",
+   "formular": "Zahlungsauftrag / Antrag auf Kontoübertrag",
+   "verantwortliche_stelle": "Kindes- und Erwachsenenschutzbehörde",
+   "zweck": "Prüfung der Begründung, der Konten, des Betrags und der aktuellen Kontostände für die Zustimmung der KESB zur Belastung des Lastschriftkontos der verbeiständeten Person und Weiterleitung des unterzeichneten Zahlungsauftrags an das Finanzinstitut.",
+   "datenkategorien": {
+    "felder": 17,
+    "besonders_schuetzenswert": [
+     "sozialhilfe"
+    ],
+    "n_besonders_schuetzenswert": 1
+   },
+   "rechtsgrundlagen": {
+    "artikel": 4,
+    "aufgabe": 13,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 0,
+    "n_gedeckt": 17,
+    "n_offen": 0
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 551,
+   "formular_kennung": "sh:formular:erklarung-zum-erwerb-von-grundstucken-durch-personen-im-ausl",
+   "formular": "Erklärung zum Erwerb von Grundstücken durch Personen im Ausland (BewG)",
+   "verantwortliche_stelle": "Handelsregisteramt",
+   "zweck": "Prüfung, ob das angemeldete Eintragungsgeschäft wegen Beteiligung von Personen im Ausland oder Erwerb von Nicht-Betriebsstätte-Grundstücken nach BewG bewilligungspflichtig ist, mit allfälliger Verweisung an die Bewilligungsbehörde.",
+   "datenkategorien": {
+    "felder": 9,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 4,
+    "aufgabe": 1,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 4,
+    "n_gedeckt": 5,
+    "n_offen": 4
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 552,
+   "formular_kennung": "sh:formular:verzichtserklarung-auf-revisionsstelle-gmbh",
+   "formular": "Verzichtserklärung auf Revisionsstelle (GmbH)",
+   "verantwortliche_stelle": "Handelsregisteramt",
+   "zweck": "Prüfung, ob sämtliche Gesellschafterinnen und Gesellschafter der GmbH (mit Anzahl Stammanteile) den Verzicht auf die eingeschränkte Revision unterzeichnet haben, und Eintragung des Verzichts in das Handelsregister ab dem angegebenen Geschäftsjahr.",
+   "datenkategorien": {
+    "felder": 4,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 4,
+    "aufgabe": 0,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 0,
+    "n_gedeckt": 4,
+    "n_offen": 0
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 553,
+   "formular_kennung": "sh:formular:protokoll-uber-die-ausserordentliche-generalversammlung-verz",
+   "formular": "Protokoll über die ausserordentliche Generalversammlung (Verzicht auf eine Revisionsstelle)",
+   "verantwortliche_stelle": "Handelsregisteramt",
+   "zweck": "Prüfung der Voraussetzungen und des einstimmigen Beschlusses der Universalversammlung über den Verzicht auf eine Revisionsstelle sowie Eintragung des Verzichts und der Löschung der abgewählten Revisionsstelle im Handelsregister.",
+   "datenkategorien": {
+    "felder": 17,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 15,
+    "aufgabe": 1,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 1,
+    "n_gedeckt": 16,
+    "n_offen": 1
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 554,
+   "formular_kennung": "sh:formular:kmu-erklarung-betreffend-verzicht-auf-eine-revisionsstelle",
+   "formular": "KMU-Erklärung betreffend Verzicht auf eine Revisionsstelle",
+   "verantwortliche_stelle": "Handelsregisteramt",
+   "zweck": "Prüfung der Voraussetzungen für den Verzicht auf die eingeschränkte Revision nach Art. 727a OR (keine ordentliche Revisionspflicht, höchstens 10 Vollzeitstellen, Zustimmung aller Gesellschafter) und Eintragung des Verzichts im Handelsregister.",
+   "datenkategorien": {
+    "felder": 4,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 3,
+    "aufgabe": 1,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 0,
+    "n_gedeckt": 4,
+    "n_offen": 0
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 555,
+   "formular_kennung": "sh:formular:vollmacht-zur-auflosung-einer-aktiengesellschaft",
+   "formular": "Vollmacht zur Auflösung einer Aktiengesellschaft",
+   "verantwortliche_stelle": "Sekretariat Volkswirtschaftsdepartement",
+   "zweck": "Prüfung der Vertretungsbefugnis der bevollmächtigten Person für die öffentliche Beurkundung der Auflösung der Aktiengesellschaft, die Wahl der Liquidatorin oder des Liquidators, den Entzug von Zeichnungsberechtigungen und das Liquidationsdomizil.",
+   "datenkategorien": {
+    "felder": 8,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 7,
+    "aufgabe": 1,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 0,
+    "n_gedeckt": 8,
+    "n_offen": 0
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 556,
+   "formular_kennung": "sh:formular:abtretungsvertrag-ubertragung-von-stammanteilen-der-gmbh-ver",
+   "formular": "Abtretungsvertrag: Übertragung von Stammanteilen der GmbH (Verpflichtungs- und Verfügungsgeschäft)",
+   "verantwortliche_stelle": "Handelsregisteramt",
+   "zweck": "Prüfung der Abtretung von Stammanteilen (Veräusserer/-in, Erwerber/-in, Anzahl, Nennwert, Liberierung, statutarische Bestimmungen) als Beleg für die Eintragung der neuen Gesellschafterin oder des neuen Gesellschafters im Handelsregister.",
+   "datenkategorien": {
+    "felder": 13,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 12,
+    "aufgabe": 1,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 0,
+    "n_gedeckt": 13,
+    "n_offen": 0
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 557,
+   "formular_kennung": "sh:formular:protokoll-der-ordentlichen-ausserordentlichen-gesellschafter",
+   "formular": "Protokoll der ordentlichen / ausserordentlichen Gesellschafterversammlung der GmbH",
+   "verantwortliche_stelle": "Handelsregisteramt",
+   "zweck": "Prüfung der Beschlussfähigkeit und der Beschlüsse der Gesellschafterversammlung zu Wahl, Abberufung und Zeichnungsart der Geschäftsführer sowie zur Genehmigung von Stammanteilübertragungen für die Eintragung im Handelsregister.",
+   "datenkategorien": {
+    "felder": 25,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 25,
+    "aufgabe": 0,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 0,
+    "n_gedeckt": 25,
+    "n_offen": 0
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 558,
+   "formular_kennung": "sh:formular:geschaftsfuhrerprotokoll-der-gmbh",
+   "formular": "Geschäftsführerprotokoll der GmbH",
+   "verantwortliche_stelle": "Handelsregisteramt",
+   "zweck": "Prüfung des Beschlusses der Geschäftsführung über Erteilung oder Entziehung der Einzel- oder Kollektivunterschrift zu zweien für die genannten Personen (Name, Heimatort, Wohnort) als Beleg für die Eintragung im Handelsregister.",
+   "datenkategorien": {
+    "felder": 13,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 9,
+    "aufgabe": 4,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 0,
+    "n_gedeckt": 13,
+    "n_offen": 0
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 559,
+   "formular_kennung": "sh:formular:spitex-kennzahlenset",
+   "formular": "Spitex-Kennzahlenset",
+   "verantwortliche_stelle": "Gesundheitsamt",
+   "zweck": "Feststellung von Personalbestand, verrechneten Stunden, Vollkosten und Erträgen je KLV-Leistung sowie der den Gemeinden verrechneten Minuten zur Überprüfung der Restkosten der öffentlichen Hand.",
+   "datenkategorien": {
+    "felder": 131,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 123,
+    "aufgabe": 8,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 0,
+    "n_gedeckt": 131,
+    "n_offen": 0
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 560,
+   "formular_kennung": "sh:formular:protokoll-uber-die-versammlung-des-verwaltungsrates",
+   "formular": "Protokoll über die Versammlung des Verwaltungsrates",
+   "verantwortliche_stelle": "Handelsregisteramt",
+   "zweck": "Prüfung der ordnungsgemässen Beschlussfassung des Verwaltungsrates über Erteilung und Entzug von Zeichnungsberechtigungen sowie Ernennung und Abwahl von Direktoren als Beleg für deren Eintragung im Handelsregister.",
+   "datenkategorien": {
+    "felder": 19,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 16,
+    "aufgabe": 3,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 0,
+    "n_gedeckt": 19,
+    "n_offen": 0
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 561,
+   "formular_kennung": "sh:formular:beschreibung-zur-art-und-umstande-wie-der-hund-gehalten-werd",
+   "formular": "Beschreibung zur Art und Umstände, wie der Hund gehalten werden wird",
+   "verantwortliche_stelle": "Veterinäramt",
+   "zweck": "Prüfung, ob Wohnverhältnisse, Personen und Tiere im Haushalt, Einverständnis des Eigentümers, Betreuung, geplante Ausbildung und Hundeschulen, Alltagsbeschäftigung und Gründe der Rassenwahl die beantragte Haltungsbewilligung rechtfertigen.",
+   "datenkategorien": {
+    "felder": 15,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 13,
+    "aufgabe": 2,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 0,
+    "n_gedeckt": 15,
+    "n_offen": 0
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 562,
+   "formular_kennung": "sh:formular:bestatigung-kynologische-fachkenntnisse",
+   "formular": "Bestätigung kynologische Fachkenntnisse",
+   "verantwortliche_stelle": "Veterinäramt",
+   "zweck": "Prüfung der kynologischen Fachkenntnisse und der Eignung der gesuchstellenden Person zur Haltung eines Hundes mit erhöhtem Gefährdungspotential anhand der Einschätzung und Qualifikation einer Person, die sie als Hundeführer/in kennt.",
+   "datenkategorien": {
+    "felder": 10,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 4,
+    "aufgabe": 6,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 0,
+    "n_gedeckt": 10,
+    "n_offen": 0
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 563,
+   "formular_kennung": "sh:formular:statuten-der-ag-lange-statuten",
+   "formular": "Statuten der AG (lange Statuten)",
+   "verantwortliche_stelle": "Handelsregisteramt",
+   "zweck": "Prüfung und Beglaubigung der Statuten mit Firma, Sitz, Zweck, Aktienkapital und Organisation der Aktiengesellschaft für die öffentliche Beurkundung der Gründung und die Eintragung ins Handelsregister.",
+   "datenkategorien": {
+    "felder": 8,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 8,
+    "aufgabe": 0,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 0,
+    "n_gedeckt": 8,
+    "n_offen": 0
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 564,
+   "formular_kennung": "sh:formular:statuten-der-gmbh-lange-statuten",
+   "formular": "Statuten der GmbH (lange Statuten)",
+   "verantwortliche_stelle": "Handelsregisteramt",
+   "zweck": "Prüfung und Beglaubigung der Statuten einer GmbH nach Art. 772 ff. OR (Firma, Sitz, Gesellschaftszweck, Stammkapital, Stammanteile, Organisation) bei Gründung oder Statutenrevision als Grundlage für die Eintragung im Handelsregister.",
+   "datenkategorien": {
+    "felder": 8,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 8,
+    "aufgabe": 0,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 0,
+    "n_gedeckt": 8,
+    "n_offen": 0
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 565,
+   "formular_kennung": "sh:formular:statuten-der-ag-kurzstatuten",
+   "formular": "Statuten der AG (Kurzstatuten)",
+   "verantwortliche_stelle": "Handelsregisteramt",
+   "zweck": "Prüfung und Beglaubigung der Statuten bei der öffentlichen Beurkundung der Gründung oder einer Statutenrevision sowie Eintragung von Firma, Sitz, Zweck, Aktienkapital, Aktien und Liberierung der Aktiengesellschaft ins Handelsregister.",
+   "datenkategorien": {
+    "felder": 8,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 7,
+    "aufgabe": 1,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 0,
+    "n_gedeckt": 8,
+    "n_offen": 0
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 566,
+   "formular_kennung": "sh:formular:statuten-der-gmbh-kurzstatuten",
+   "formular": "Statuten der GmbH (Kurzstatuten)",
+   "verantwortliche_stelle": "Handelsregisteramt",
+   "zweck": "Beglaubigung der Statuten sowie Eintragung von Firma, Sitz, Zweck, Stammkapital und Stammanteilen der GmbH nach Art. 772 ff. OR im Handelsregister.",
+   "datenkategorien": {
+    "felder": 7,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 7,
+    "aufgabe": 0,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 0,
+    "n_gedeckt": 7,
+    "n_offen": 0
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 567,
+   "formular_kennung": "sh:formular:statuten-der-genossenschaft",
+   "formular": "Statuten der Genossenschaft",
+   "verantwortliche_stelle": "Handelsregisteramt",
+   "zweck": "Prüfung der Statuten einer Genossenschaft nach Art. 828 ff. OR (Firma, Sitz, Zweck, Mitgliedschaft, Finanzen, Organe, Auflösung) und Beglaubigung als vollständige, gültige Statuten durch die Urkundsperson für die Eintragung ins Handelsregister.",
+   "datenkategorien": {
+    "felder": 16,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 16,
+    "aufgabe": 0,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 0,
+    "n_gedeckt": 16,
+    "n_offen": 0
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 568,
+   "formular_kennung": "sh:formular:verzichtserklarung-auf-revisionsstelle-genossenschaft",
+   "formular": "Verzichtserklärung auf Revisionsstelle (Genossenschaft)",
+   "verantwortliche_stelle": "Handelsregisteramt",
+   "zweck": "Feststellung des Verzichts sämtlicher Genossenschafterinnen und Genossenschafter auf die eingeschränkte Revision ab dem angegebenen Geschäftsjahr für die Eintragung des Verzichts in das Handelsregister.",
+   "datenkategorien": {
+    "felder": 4,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 4,
+    "aufgabe": 0,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 0,
+    "n_gedeckt": 4,
+    "n_offen": 0
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 569,
+   "formular_kennung": "sh:formular:protokoll-uber-die-ordentliche-ausserordentliche-generalvers",
+   "formular": "Protokoll über die ordentliche / ausserordentliche Generalversammlung (Wahlen / Abwahlen)",
+   "verantwortliche_stelle": "Handelsregisteramt",
+   "zweck": "Prüfung der Beschlussfähigkeit der Generalversammlung, ihrer Wahlen und Abberufungen von Verwaltungsratsmitgliedern sowie der zur Kenntnis genommenen Rücktritte als Beleg für die Eintragung dieser Änderungen im Handelsregister.",
+   "datenkategorien": {
+    "felder": 19,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 16,
+    "aufgabe": 2,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 1,
+    "n_gedeckt": 18,
+    "n_offen": 1
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 570,
+   "formular_kennung": "sh:formular:statuten-des-vereins",
+   "formular": "Statuten des Vereins",
+   "verantwortliche_stelle": "Handelsregisteramt",
+   "zweck": "Prüfung der von der Vereinsversammlung genehmigten Statuten (Name, Sitz, Zweck, Mittel, Organe, Zeichnungsberechtigung, Kontrollstelle, Genehmigungsdatum) als Beleg für die Eintragung der Änderungen ins Handelsregister.",
+   "datenkategorien": {
+    "felder": 8,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 6,
+    "aufgabe": 2,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 0,
+    "n_gedeckt": 8,
+    "n_offen": 0
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 571,
+   "formular_kennung": "sh:formular:verzichtserklarung-auf-revisionsstelle-aktiengesellschaft",
+   "formular": "Verzichtserklärung auf Revisionsstelle (Aktiengesellschaft)",
+   "verantwortliche_stelle": "Handelsregisteramt",
+   "zweck": "Prüfung der Zustimmung sämtlicher Aktionärinnen und Aktionäre (Vorname, Name, Anzahl Aktien, Unterschrift) zum Verzicht auf die eingeschränkte Revision und Eintragung des Verzichts ab dem genannten Geschäftsjahr in das Handelsregister.",
+   "datenkategorien": {
+    "felder": 4,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 4,
+    "aufgabe": 0,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 0,
+    "n_gedeckt": 4,
+    "n_offen": 0
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 572,
+   "formular_kennung": "sh:formular:gesuch-fur-die-anpassung-einer-bestehenden-tankanlage-gesuch",
+   "formular": "Gesuch für die Anpassung einer bestehenden Tankanlage (Gesuchsformular 131)",
+   "verantwortliche_stelle": "Kantonale Feuerpolizei",
+   "zweck": "Prüfung der vorgesehenen Gewässerschutz- und Leckschutzmassnahmen sowie der Änderungen an Tank und Tankraum einer bestehenden Tankanlage nach GSchG und GSchVV, einschliesslich der Zulassung der eingesetzten Produkte, und Festlegung der Auflagen.",
+   "datenkategorien": {
+    "felder": 51,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 47,
+    "aufgabe": 3,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 1,
+    "zu_ermitteln": 0,
+    "n_gedeckt": 50,
+    "n_offen": 1
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 573,
+   "formular_kennung": "sh:formular:richtlinie-anforderungen-an-einen-okologischen-bachunterhalt",
+   "formular": "Richtlinie „Anforderungen an einen ökologischen Bachunterhalt für den Erhalt von Kantonsbeiträgen“",
+   "verantwortliche_stelle": "Abteilung Gewässer und Materialabbau",
+   "zweck": "Prüfung der Voraussetzungen für Kantonsbeiträge an den ökologischen Unterhalt eines Bachs der Gemeinde anhand der Checkliste und der geschätzten Jahreskosten für die vierjährige Unterhaltsperiode.",
+   "datenkategorien": {
+    "felder": 9,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 5,
+    "aufgabe": 4,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 0,
+    "n_gedeckt": 9,
+    "n_offen": 0
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 574,
+   "formular_kennung": "sh:formular:betreibungsbegehren",
+   "formular": "Betreibungsbegehren",
+   "verantwortliche_stelle": "Betreibungs- und Konkursamt",
+   "zweck": "Prüfung der Zuständigkeit und Vollständigkeit des Begehrens, Einleitung der Betreibung gegen den bezeichneten Schuldner für die angegebenen Forderungen samt Zins und Überweisung eingehender Zahlungen an den Gläubiger oder seinen Vertreter.",
+   "datenkategorien": {
+    "felder": 14,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 1,
+    "aufgabe": 3,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 10,
+    "n_gedeckt": 4,
+    "n_offen": 10
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 575,
+   "formular_kennung": "sh:formular:fortsetzungsbegehren",
+   "formular": "Fortsetzungsbegehren",
+   "verantwortliche_stelle": "Betreibungs- und Konkursamt",
+   "zweck": "Prüfung der Voraussetzungen zur Fortsetzung einer Betreibung gestützt auf Zahlungsbefehl, Verlustschein oder Pfandausfallschein, Feststellung der fortzusetzenden Forderungen samt Zins und Überweisung eingehender Beträge an Gläubiger oder Vertreter",
+   "datenkategorien": {
+    "felder": 22,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 2,
+    "aufgabe": 1,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 19,
+    "n_gedeckt": 3,
+    "n_offen": 19
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 576,
+   "formular_kennung": "sh:formular:verwertungsbegehren",
+   "formular": "Verwertungsbegehren",
+   "verantwortliche_stelle": "Betreibungs- und Konkursamt",
+   "zweck": "Prüfung der Voraussetzungen und Verwertung der in der Betreibung betroffenen Aktiven (bewegliche Sachen, Forderungen, Rechte, Grundstücke u. a.) für die Forderung samt Zins sowie Auszahlung des Erlöses an den Gläubiger oder seinen Vertreter.",
+   "datenkategorien": {
+    "felder": 14,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 2,
+    "aufgabe": 3,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 9,
+    "n_gedeckt": 5,
+    "n_offen": 9
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 577,
+   "formular_kennung": "sh:formular:anmeldung-zur-eintragung-eines-eigentumsvorbehalts-fur-einen",
+   "formular": "Anmeldung zur Eintragung eines Eigentumsvorbehalts für einen Konsumkreditvertrag gemäss Art. 1 ff. des Bundesgesetzes über den Konsumkredit (KKG)",
+   "verantwortliche_stelle": "Betreibungs- und Konkursamt",
+   "zweck": "Prüfung der Bescheinigung nach Art. 16 KKG und bei Minderjährigen der Zustimmung des gesetzlichen Vertreters sowie Eintragung des Eigentumsvorbehalts an den bezeichneten Gegenständen mit Restforderung, Verfallterminen und allfälligem Zessionar.",
+   "datenkategorien": {
+    "felder": 23,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 6,
+    "aufgabe": 0,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 17,
+    "n_gedeckt": 6,
+    "n_offen": 17
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 578,
+   "formular_kennung": "sh:formular:entsendebestatigung",
+   "formular": "Entsendebestätigung",
+   "verantwortliche_stelle": "Arbeitsamt",
+   "zweck": "Prüfung der Lohn- und Arbeitsbedingungen entsandter Arbeitskräfte im Bewilligungsverfahren, insbesondere ob das Brutto-Salär den orts- und branchenüblichen Löhnen im Kanton Schaffhausen entspricht.",
+   "datenkategorien": {
+    "felder": 19,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 16,
+    "aufgabe": 2,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 1,
+    "n_gedeckt": 18,
+    "n_offen": 1
+   },
+   "empfaenger": [
+    "zuständige kantonale Behörde",
+    "Migrationsbehörden",
+    "SEM",
+    "Grenzkontrollbehörde",
+    "ausländische Behörden",
+    "internationale Organisationen",
+    "Heimat- oder Herkunftsstaat",
+    "Staaten mit Rückübernahme- und Transitabkommen, auch ohne gleichwertigen Datenschutz",
+    "zuständige Behörden von Schengen-Staaten",
+    "Drittstaaten"
+   ],
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 579,
+   "formular_kennung": "sh:formular:gefahrdungsmeldung-kinder-jugendliche",
+   "formular": "Gefährdungsmeldung Kinder/Jugendliche",
+   "verantwortliche_stelle": "Kindes- und Erwachsenenschutzbehörde",
+   "zweck": "Abklärung der gemeldeten Gefährdung des Kindes oder Jugendlichen durch die KESB: Einschätzung von Schutzbedürftigkeit und Dringlichkeit, Rückfragen an die meldende Person und Kontaktaufnahme mit Kind, Eltern und Bezugspersonen.",
+   "datenkategorien": {
+    "felder": 22,
+    "besonders_schuetzenswert": [
+     "gesundheit",
+     "sozialhilfe"
+    ],
+    "n_besonders_schuetzenswert": 4
+   },
+   "rechtsgrundlagen": {
+    "artikel": 9,
+    "aufgabe": 12,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 1,
+    "n_gedeckt": 21,
+    "n_offen": 1
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 580,
+   "formular_kennung": "sh:formular:gefahrdungsmeldung-erwachsene",
+   "formular": "Gefährdungsmeldung Erwachsene",
+   "verantwortliche_stelle": "Kindes- und Erwachsenenschutzbehörde",
+   "zweck": "Abklärung des gemeldeten Schwächezustands einer erwachsenen Person, ihrer Schutzbedürftigkeit und der Dringlichkeit durch die KESB, mit Rückfragen bei der meldenden Person und Kontaktaufnahme mit der betroffenen Person.",
+   "datenkategorien": {
+    "felder": 14,
+    "besonders_schuetzenswert": [
+     "gesundheit",
+     "sozialhilfe"
+    ],
+    "n_besonders_schuetzenswert": 3
+   },
+   "rechtsgrundlagen": {
+    "artikel": 7,
+    "aufgabe": 7,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 0,
+    "n_gedeckt": 14,
+    "n_offen": 0
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 581,
+   "formular_kennung": "sh:formular:leistungssport-und-schule-sportliche-biografie",
+   "formular": "Leistungssport und Schule – Sportliche Biografie",
+   "verantwortliche_stelle": "Abteilung Ausbildungsbeiträge",
+   "zweck": "Beurteilung von Kaderzugehörigkeit, Swiss Olympic Talents Card, Erfolgen und Trainingsaufwand der Athletin oder des Athleten für die Kostengutsprache zur Beteiligung am Schulgeld einer ausserkantonalen Sportschule (Sekundarstufe I und II).",
+   "datenkategorien": {
+    "felder": 15,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 0,
+    "aufgabe": 2,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 13,
+    "n_gedeckt": 2,
+    "n_offen": 13
    },
    "empfaenger": "FEHLT",
    "aufbewahrung": {

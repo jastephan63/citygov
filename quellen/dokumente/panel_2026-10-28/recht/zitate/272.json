@@ -1,0 +1,81 @@
+{
+ "form_id": 272,
+ "mappings": [
+  {
+   "data_field": "PID",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 135"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Vollmachtgeber Person 1",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 135"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Vollmachtgeber Person 2",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 135"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 10"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Bevollmächtigte Person",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 135"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Ort / Datum (Person 1)",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Unterschrift (Person 1)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 135",
+     "beleg": "Abs. 2: «Wer jemanden in Steuersachen vertritt, braucht eine schriftliche Vollmacht.» – die Unterschrift der vollmachtgebenden Person macht die Vollmacht schriftlich."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Ort / Datum (Person 2)",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Unterschrift (Person 2)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 135",
+     "beleg": "Abs. 2: «Wer jemanden in Steuersachen vertritt, braucht eine schriftliche Vollmacht.» – das gilt für jede vertretene Person, also auch für die zweite. Abs. 3 unterscheidet Verheiratete, die sich gemeinsam vertreten lassen, von solchen, die «sich nicht gemeinsam vertreten lassen»; die gemeinsame Vertretung setzt die Vollmacht beider voraus."
+    }
+   ],
+   "over_collection": false
+  }
+ ]
+}

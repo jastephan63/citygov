@@ -1,0 +1,95 @@
+{
+ "form_id": 573,
+ "data_fields": [
+  {
+   "name": "Gemeinde",
+   "definition": "Name der Gemeinde, die das Gesuch um Kantonsbeiträge für den ökologischen Bachunterhalt einreicht.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Verantwortliche/r",
+   "definition": "Die für den Bachunterhalt bzw. das Gesuch verantwortliche Person der Gemeinde (eine einzige Linie, keine getrennten Teile aufgedruckt).",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Bach",
+   "definition": "Bezeichnung des Baches, für dessen ökologischen Unterhalt der Kantonsbeitrag beantragt wird.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Bachlänge",
+   "definition": "Länge des betreffenden Baches; eine Masseinheit ist auf dem Formular nicht aufgedruckt.",
+   "data_type": "number",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Anlage Geschieberückhalt",
+   "definition": "Angabe zur Anlage für den Geschieberückhalt am betreffenden Bach.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "geschätzte Kosten/Jahr",
+   "definition": "Geschätzte jährliche Kosten des ökologischen Bachunterhalts (Betrag; die Währung ist nicht aufgedruckt).",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Telefon / E-Mail",
+   "definition": "Kontaktangaben für Rückfragen zum Gesuch, auf einer gemeinsamen Linie verlangt: Telefonnummer und E-Mail-Adresse.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Telefon",
+    "E-Mail"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Datum",
+   "definition": "Datum, an dem das Gesuch ausgefüllt bzw. eingereicht wird.",
+   "data_type": "date",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Bachböschungen mähen – Schnittzeitpunkt und -turnus",
+   "definition": "Ankreuzfelder der Checkliste, mit denen die Gemeinde angibt, welche der mit einem Prozentsatz versehenen Mahdmassnahmen an den Bachböschungen sie umsetzt.",
+   "data_type": "multiselect",
+   "required": true,
+   "allowed_values": [
+    "Die Mahd erfolgt abschnittsweise und wechselseitig. Das heisst, auf einer Seite des Baches wird der Pflanzenbestand belassen, bis die andere, gemähte Seite nachgewachsen ist (15 %).",
+    "1/3 des Pflanzenbestandes wird jedes Jahr an einer anderen Stelle stehengelassen (5 %).",
+    "Feuchte Bachböschungen, die früher im Sommer gemäht wurden, werden auf Herbstschnitt ab 1. September umgestellt (10%).",
+    "Neophyten werden bekämpft (Schnitt nach Bedarf). Dies beinhaltet 1-2 Kontrollgänge pro Jahr sowie die Bekämpfung nach benötigtem Aufwand (10 %)."
+   ],
+   "subfields": [],
+   "format": ""
+  }
+ ],
+ "hinweis": "Korrekturen: keine. Ich habe den Entwurf Zeile für Zeile mit dem Original-PDF verglichen (Seiten 1 und 2 gerendert, die Glyphen in der Textfassung ausgezählt). Das PDF hat keine AcroForm-Felder.\n\nKopfblock: Er hat sieben ausfüllbare Linien. Alle stehen im Entwurf, in der Reihenfolge des Formulars und mit den Namen wörtlich wie aufgedruckt. «Verantwortliche/r» ist auf dem Formular nur eine Linie und wurde zu Recht nicht in Name und Vorname aufgeteilt. «Telefon / E-Mail» wurde zu Recht in die zwei genannten Teile aufgeteilt, gleich wie bei Formular 311.\n\nCheckliste: Die Checkliste verwendet zwei verschiedene Zeichen.\n- Vier leere Ankreuzfelder (Wingdings 2, Zeichen 0xA3). Das sind genau die vier Massnahmen mit Prozentsatz unter «Bachböschungen mähen / Schnittzeitpunkt und -turnus». Sie sind korrekt als Mehrfachauswahl erfasst, die Optionen wörtlich übernommen (auch «(10%)» ohne Leerschlag).\n- 27 bereits vorgedruckte Häkchen (Wingdings, Zeichen 0xFC). Das sind feste Anforderungen, keine Angaben der Gemeinde, und darum zu Recht keine Felder. Das gilt auch für «Beim Planungs- und Naturschutzamt … wurde angefragt …» und «Erstellen eines Betriebskonzepts … und einreichen an Tiefbau Schaffhausen».\n\nPflichtangabe bei der Mehrfachauswahl: Sie bleibt «required true», weil das Formular nichts als freiwillig kennzeichnet. Inhaltlich sind es aber wählbare Zusatzmassnahmen, die einen Zuschlag in Prozent auslösen. Eine leere Auswahl ist darum eine gültige Antwort.\n\nNicht erfasst, weil es keine Angaben der Person sind:\n- die «Anwendungsinfo» (wann einreichen; die Tabelle «Beitragsgesuch mit Kostenschätzung» ist ein eigenes Formular, siehe Formular 477)\n- die Hinweise zu Eingriffen in die Bachsohle (Bewilligungspflicht), zu Biberbauten und zum Geschiebehaushalt (Betriebskonzept, Informationspflichten, 40 % Kostenbeitrag)\n- der Kontaktblock\n\nDas Formular hat weder eine Unterschriftslinie noch eine Beilagen-Checkliste. Das Betriebskonzept wird nach dem Text separat bei Tiefbau Schaffhausen eingereicht und ist keine Beilage zu diesem Gesuch.\n\nTitel und Inhalt passen nicht zusammen: Das Formular heisst «Richtlinie», ist aber dem Inhalt nach ein Gesuch um Kantonsbeiträge mit Kopfangaben und Ankreuz-Checkliste."
+}

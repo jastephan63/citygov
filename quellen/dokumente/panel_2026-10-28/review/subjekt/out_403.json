@@ -1,0 +1,58 @@
+{
+ "urteile": [
+  {
+   "id": 7246,
+   "urteil": "bestaetigt",
+   "subjekt": "organisation",
+   "grund": "Bezeichnung, Adresse, Abteilung/Standort und Kontakt der gesuchstellenden sozialen Einrichtung (IVSE-Bereich A/D), also einer Institution und keiner Privatperson."
+  },
+  {
+   "id": 7247,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Personalien (Name, Vorname, Geburtsdatum, Geschlecht, Sozialversicherungs-Nr., Staatsangehörigkeit) der einen platzierten Person."
+  },
+  {
+   "id": 7248,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Zivilrechtlicher Wohnsitz der platzierten Person. Das ist ein Merkmal dieser einen Person, auch wenn der Wohnsitz rechtlich abgeleitet sein kann."
+  },
+  {
+   "id": 7249,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Aufenthaltsort der platzierten Person bei externer Sonderschulung, also ihre eigene Aufenthaltsangabe."
+  },
+  {
+   "id": 7251,
+   "urteil": "bestaetigt",
+   "subjekt": "gemischt",
+   "grund": "Name, Adresse und Telefon/E-Mail des Vormunds oder Beistands. Bei platzierten Kindern ist das oft eine Berufsbeistandschaft mit Amtsadresse, sonst eine Privatperson. Deshalb gemischt, wie Feld 5115, ohne Register-Mark."
+  },
+  {
+   "id": 7252,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Name und Wohnadresse des Vaters der platzierten Person, also einer bestimmten privaten natürlichen Person."
+  },
+  {
+   "id": 7255,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Name und Wohnadresse der Mutter der platzierten Person, also einer bestimmten privaten natürlichen Person."
+  },
+  {
+   "id": 7258,
+   "urteil": "bestaetigt",
+   "subjekt": "behoerde",
+   "grund": "Name und Adresse der zuweisenden Behörde (z. B. KESB, Jugendanwaltschaft, Schulbehörde), also Angaben einer Amtsstelle."
+  },
+  {
+   "id": 7268,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Nur Name und Vorname der einen Person, die für die Einrichtung unterzeichnet. Ohne Firmenadresse, wie bei den Unterzeichnenden 5282 und 5455."
+  }
+ ]
+}

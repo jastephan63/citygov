@@ -1,0 +1,92 @@
+{
+ "form_id": 565,
+ "data_fields": [
+  {
+   "name": "Firma",
+   "definition": "Firma der zu gründenden Aktiengesellschaft, die mit dem vorgedruckten Zusatz «AG» endet (Titel und Artikel 1).",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "[…] AG"
+  },
+  {
+   "name": "Sitz",
+   "definition": "Sitz der Gesellschaft als politische Gemeinde, ergänzt um das Kantonskürzel nur, falls mehr als eine Gemeinde dieses Namens existiert (Titel und Artikel 1).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "politische Gemeinde",
+    "Kantonskürzel"
+   ],
+   "format": "politische Gemeinde, Kantonskürzel nur falls mehr als eine Gemeinde dieses Namens existiert"
+  },
+  {
+   "name": "Zweck",
+   "definition": "Umschreibung des Gesellschaftszwecks in Artikel 2 («Die Gesellschaft bezweckt …»), die der vorgedruckten Standardklausel zu Zweigniederlassungen, Beteiligungen, Grundeigentum und Finanzierungen vorangeht.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Aktienkapital und Aktien",
+   "definition": "Höhe des Aktienkapitals in CHF, Anzahl der Namenaktien, deren Nennwert je Aktie in CHF und der Liberierungsgrad in Prozent gemäss Artikel 3.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Aktienkapital (CHF)",
+    "Anzahl Namenaktien",
+    "Nennwert je Namenaktie (CHF)",
+    "Liberierung (%)"
+   ],
+   "format": "CHF; %"
+  },
+  {
+   "name": "Datum",
+   "definition": "Kalenderdatum der Unterzeichnung der Statuten, eingetragen nach dem vorgedruckten Ort «Schaffhausen,».",
+   "data_type": "date",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Der Gründer / Die Gründerin oder Der / Die Vorsitzende der a.o. Generalversammlung",
+   "definition": "Angabe, ob die Statuten vom Gründer bzw. der Gründerin oder vom bzw. von der Vorsitzenden der ausserordentlichen Generalversammlung unterzeichnet werden.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "Der Gründer / Die Gründerin",
+    "Der / Die Vorsitzende der a.o. Generalversammlung"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Unterschrift",
+   "definition": "Eigenhändige Unterschrift des Gründers bzw. der Gründerin oder des bzw. der Vorsitzenden der a.o. Generalversammlung auf der punktierten Linie.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Vorname(n) Name",
+   "definition": "Vorname(n) und Name der unterzeichnenden Person, aufgeführt unter der Unterschriftslinie.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Vorname(n)",
+    "Name"
+   ],
+   "format": ""
+  }
+ ],
+ "hinweis": "Korrekturen: keine. Ich habe den Text und die originale .docx (document.xml, Formularfelder, Fusszeilen) Zeile für Zeile geprüft. Alle Angaben der Person sind enthalten, in der Reihenfolge des Formulars: Firma und Sitz (Titel und Art. 1 sind je dieselbe Angabe), Zweck (Art. 2), die vier Lücken in Art. 3, das Datumsfeld nach «Schaffhausen,» (FORMTEXT ohne Formatvorgabe), die Wahl der Rolle in Klammern, eine einzige Unterschriftslinie und darunter «Vorname(n) Name». Es gibt keine Beilagen-Checkliste, keine Checkbox-Gruppe, keine Tabelle und keine zweite unterzeichnende Person. Der Ort «Schaffhausen» ist vorgedruckt, deshalb ist das Feld nur ein Kalenderdatum und keine Kombination aus Ort und Datum. Für das Datum und die Unterschrift druckt das Formular keine eigene Beschriftung. «Datum» und «Unterschrift» sind deshalb beschreibende Namen. Das Kantonskürzel im Sitz ist nur anzugeben, wenn es mehr als eine Gemeinde mit diesem Namen gibt. Die Unterfelder in Art. 3 (Aktienkapital in CHF und Nennwert in CHF als Beträge, Anzahl und Liberierung in % als Zahlen) sind nach dem gedruckten Satz benannt. Keine Felder der Person sind: die Artikel 4–11 und die Standardklausel in Art. 2 (vorgegebener Text ohne Lücken) sowie der ganze Abschnitt «Beglaubigung». Diesen füllt die Urkundsperson bzw. das Handelsregisteramt Schaffhausen aus. Er enthält die Wahl in Klammern «[unter Berücksichtigung der heutigen Total-/Teilrevision]» bzw. «[heute gegründeten]», die Felder «[FIRMA]» und «[SITZ]», ein eigenes Datumsfeld nach «Schaffhausen,» sowie Unterschrift und Name der Urkundsperson."
+}

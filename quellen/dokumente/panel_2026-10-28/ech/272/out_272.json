@@ -1,0 +1,62 @@
+{
+ "hinweis": "eCH-Urteile Formular 272, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/272 --nur-offene=272",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Laut Formular steht «Ort / Datum» in der Unterschriftszeile von Person 1, also der ersten vollmachtgebenden Person, auf der Vertretungsvollmacht der Kantonalen Steuerverwaltung. eCH-0119 (E-Tax Filing V4.0.0) ist genehmigt. Das Element locationAndDate (xs:string) steht dort im attachedFormsType, dem Unterzeichnungsteil der Steuererklärung, und im listOfSecuritiesType. Es führt Ort und Datum der Unterzeichnung eines Steuerdokuments als eine einzige Zeichenkette. Das Element passt zum zusammengesetzten Feld, und der Wortlaut stimmt mit dem Katalog überein. Dasselbe Formular nutzt eCH-0119 schon für personDataPartner1/2 und representativePerson. Auch die übrige Databank ordnet die Labels «Ort / Datum», «Ort/Datum» und «Ort, Datum» eCH-0119 locationAndDate zu, auf 19 Feldern. Uneinheitlich ist dagegen «Ort und Datum»: Dieses Label ist in der Databank kein_standard. Hier hat der Steuer-Standard den Vorrang, weil es um ein Steuerformular geht. Ort und Datum werden als Teile einzeln beurteilt, weil der Standard sie nicht trennt.",
+   "feld": "Ort / Datum (Person 1)",
+   "standard": "eCH-0119",
+   "element": "locationAndDate"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist die eigenhändige Unterschrift von Person 1. Das ist eine Handlung auf Papier und keine erfasste Angabe. Durchsucht wurde der ganze Katalog mit 290 Standards: in ech_element nach sign, signature, signer, signed, signing, proxy, mandat und authori, in den Titeln nach Signatur, Unterschrift, Vollmacht und Vertretung. Gefunden wurden: eCH-0260 hostCompany-, apprentice- und representativeSignatureConfirmation, das sind boolesche Bestätigungen im Lehrvertrag und kein Wert; eCH-0039 signer, ein Token im documentType, der die unterzeichnende Person eines GEVER-Dokuments nennt, nicht die Unterschrift selbst; eCH-0091/0220/0230/0250/0274/0282, die nur die Technik elektronischer Signaturen regeln und keine Elemente haben (n_elements 0). eCH-0119 und eCH-0278 (contactAndRepresentation/proxy) haben kein Element für eine Unterschrift. Das entspricht der Praxis: Alle 60 bewerteten «Unterschrift»-Felder sind kein_standard.",
+   "feld": "Unterschrift (Person 1)"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Laut Formular steht «Ort / Datum» in der Unterschriftszeile von Person 2, also der zweiten vollmachtgebenden Person, auf der Steuer-Vertretungsvollmacht. eCH-0119 (E-Tax Filing V4.0.0) ist genehmigt. Das Element locationAndDate (xs:string, attachedFormsType/listOfSecuritiesType) führt Ort und Datum der Unterzeichnung eines Steuerdokuments als eine Zeichenkette, und der Wortlaut stimmt mit dem Katalog überein. Das Element passt zum zusammengesetzten Feld, zu personDataPartner2 auf diesem Formular und zur Zuordnung desselben Labels auf den anderen 19 Feldern mit «Ort / Datum», «Ort/Datum» und «Ort, Datum». Ort und Datum werden als Teile einzeln beurteilt.",
+   "feld": "Ort / Datum (Person 2)",
+   "standard": "eCH-0119",
+   "element": "locationAndDate"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist die eigenhändige Unterschrift von Person 2. Das ist keine erfasste Angabe. Im ganzen Katalog mit 290 Standards gibt es dafür kein Element. Durchsucht wurden ech_element nach sign, signature, signer, proxy und mandat sowie die Titel nach Signatur, Unterschrift, Vollmacht und Vertretung. eCH-0260 hat nur boolesche *SignatureConfirmation-Felder im Lehrvertrag. eCH-0039 signer nennt die unterzeichnende Person eines GEVER-Dokuments. eCH-0091/0220/0230/0250/0274/0282 regeln nur die Technik elektronischer Signaturen und haben keine Elemente. eCH-0119 und eCH-0278 (proxy) enthalten kein Element für eine Unterschrift. Das entspricht der Praxis bei allen «Unterschrift»-Feldern.",
+   "feld": "Unterschrift (Person 2)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist der Ort, an dem Person 1 die Vollmacht unterzeichnet. Das ist kein Teil einer Postadresse, darum passt eCH-0010 town nicht. eCH-0119 locationAndDate fasst Ort und Datum in einer Zeichenkette zusammen und hat keinen eigenen Teil für den Ort. Durchsucht wurde ech_element nach location, place und town. Die Treffer bezeichnen andere Orte: placeOfBirth, placeOfDeath, placeOfOrigin, placeOfMarriage und placeOfWork (eCH-0011/0020/0021/0119/0278 u. a.), eCH-0119 location im concernedPersonType, eCH-0108 locationAddressDetails, eCH-0211 locationAddress und placeName in eCH-0129/0131/0206/0211. Keiner davon ist ein Unterzeichnungsort, auch nicht in eCH-0039, eCH-0278 oder eCH-0260. Das entspricht der Praxis bei Ort-Teilen in Unterschriftszeilen: 43 Mal kein_standard bzw. ohne Element. Im eSH-Entwurf heisst die Angabe eSH-0001 signaturePlace.",
+   "elternfeld": "Ort / Datum (Person 1)",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist das Datum, an dem Person 1 die Vollmacht unterzeichnet. eCH-0119 locationAndDate ist ein einziges Freitextfeld ohne eigenen Teil für das Datum. Durchsucht wurden Date-Elemente zu Dokument, Antrag, Erklärung, Vertretung und Vollmacht sowie *sign*Date, declarationDate und issueDate. Die Treffer bezeichnen andere Daten: eCH-0039 openingDate (Eröffnung von Dokument oder Dossier) und messageDate/eventDate (Nachrichtenkopf), eCH-0119/0278 transactionDate (headerType), eCH-0262 dateOfApplication (Ausbringung von Pflanzenschutzmitteln). eCH-0278 contactAndRepresentation/proxy hat kein Datum. Keines davon ist ein Unterzeichnungsdatum. Das entspricht der Praxis bei Datum-Teilen in Unterschriftszeilen. Im eSH-Entwurf heisst die Angabe eSH-0001 signatureDate.",
+   "elternfeld": "Ort / Datum (Person 1)",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist der Ort, an dem Person 2 unterzeichnet. Das ist keine Adresse, also passt eCH-0010 town nicht. Kein Standard im Katalog hat ein eigenes Element für den Unterzeichnungsort. eCH-0119 locationAndDate fasst Ort und Datum ungetrennt zusammen. Die location-, place- und town-Elemente (eCH-0011, 0020, 0021, 0108, 0119, 0129, 0131, 0206, 0211, 0278) bezeichnen Geburts-, Sterbe-, Heimat-, Arbeits-, Ehe-, Standort- oder Grundstücksorte. Das entspricht der bisherigen Praxis bei Ort-Teilen in Unterschriftszeilen (eSH-Entwurf: eSH-0001 signaturePlace).",
+   "elternfeld": "Ort / Datum (Person 2)",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist das Datum, an dem Person 2 unterzeichnet. Kein Element im Katalog bezeichnet ein Unterzeichnungsdatum. eCH-0119 locationAndDate ist ungetrennter Freitext. Andere Bedeutungen haben eCH-0039 openingDate und messageDate, eCH-0119/0278 transactionDate (headerType) und eCH-0262 dateOfApplication. eCH-0260 signaturesType enthält nur boolesche Bestätigungen und kein Datum, eCH-0278 proxy ebenfalls kein Datum. Das entspricht der Praxis bei Datum-Teilen in Unterschriftszeilen (eSH-Entwurf: eSH-0001 signatureDate).",
+   "elternfeld": "Ort / Datum (Person 2)",
+   "teilfeld": "Datum"
+  }
+ ]
+}

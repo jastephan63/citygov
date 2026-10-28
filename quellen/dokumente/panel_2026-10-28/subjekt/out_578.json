@@ -1,0 +1,24 @@
+{
+ "verdicts": [
+  {
+   "id": 7147,
+   "subjekt": "natuerliche_person",
+   "grund": "Kasten «Person»: Nachname, Vorname, Nationalität und Geburtsdatum des einen entsandten Arbeitnehmers – Angaben einer einzelnen natürlichen Person."
+  },
+  {
+   "id": 7149,
+   "subjekt": "organisation",
+   "grund": "Komplette Adresse des ausländischen Arbeitgebers, der als Auftragnehmer (Betrieb) den Arbeitnehmer entsendet – Angabe eines Unternehmens, nicht einer Privatperson."
+  },
+  {
+   "id": 7150,
+   "subjekt": "organisation",
+   "grund": "Komplette Adresse der «Schweizer Einsatzfirma» (=Auftraggeber) – das Formular verlangt ausdrücklich eine Firma."
+  },
+  {
+   "id": 7154,
+   "subjekt": "sache",
+   "grund": "Einsatzort (Adresse, Ort, Firmenname) bezeichnet den Ort der Arbeitsausführung in der Schweiz, also eine Örtlichkeit, keine Personenangabe."
+  }
+ ]
+}

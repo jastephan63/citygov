@@ -1,0 +1,233 @@
+{
+ "form_id": 575,
+ "data_fields": [
+  {
+   "name": "Schuldner",
+   "definition": "Name und Vorname bzw. Firma, Adresse sowie PLZ und Ort der Person oder Firma, gegen welche die Betreibung fortgesetzt werden soll.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name und Vorname bzw. Firma",
+    "Adresse",
+    "PLZ Ort"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Adresse des Betreibungsamtes",
+   "definition": "Anschrift des für die Fortsetzung zuständigen Betreibungsamtes, die der Gläubiger gemäss den Hinweisen zum Betreibungsort selbst einsetzt.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Geburtsdatum (falls bekannt)",
+   "definition": "Geburtsdatum des Schuldners, sofern es dem Gläubiger bekannt ist.",
+   "data_type": "date",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Gläubiger",
+   "definition": "Name und Vorname bzw. Firma, Adresse sowie PLZ und Ort des Gläubigers, der die Fortsetzung der Betreibung verlangt.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name und Vorname bzw. Firma",
+    "Adresse",
+    "PLZ Ort"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Zahlungsverbindung",
+   "definition": "Auswahl, ob die angegebene Zahlungsverbindung jene des Gläubigers oder jene seines Vertreters ist.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "des Gläubigers",
+    "des Vertreters"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "IBAN",
+   "definition": "IBAN des Kontos der angekreuzten Zahlungsverbindung (des Gläubigers oder des Vertreters).",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "vertreten durch",
+   "definition": "Name und Vorname bzw. Firma, Adresse sowie PLZ und Ort der Person oder Firma, die den Gläubiger vertritt, sofern er sich vertreten lässt.",
+   "data_type": "composite",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [
+    "Name und Vorname bzw. Firma",
+    "Adresse",
+    "PLZ Ort"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Für Rückfragen",
+   "definition": "Telefonnummer oder E-Mail-Adresse, unter der das Betreibungsamt für Rückfragen zum Begehren Kontakt aufnehmen kann.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "Telefon oder E-Mail"
+  },
+  {
+   "name": "Es wird die Fortsetzung auf folgender Grundlage verlangt",
+   "definition": "Auswahl der Urkunde, auf deren Grundlage die Fortsetzung der Betreibung verlangt wird.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "Zahlungsbefehl",
+    "Verlustschein",
+    "Pfandausfallschein"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "zugestellt am",
+   "definition": "Datum der Zustellung des als Grundlage angekreuzten Zahlungsbefehls, Verlustscheins oder Pfandausfallscheins.",
+   "data_type": "date",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "in Betreibung Nr.",
+   "definition": "Nummer der Betreibung, in welcher der als Grundlage angekreuzte Zahlungsbefehl, Verlustschein oder Pfandausfallschein ergangen ist.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Forderung",
+   "definition": "Erste Forderungsposition (Hauptforderung) mit Forderungsurkunde oder Forderungsgrund, Betrag in CHF sowie allfälligem Verzugszins in Prozent und Beginn des Zinslaufs; ist die Forderung mit jener der Grundlage identisch, genügt hier ein Vermerk wie «Forderung gemäss Zahlungsbefehl».",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Forderungsurkunde mit Datum oder Angabe des Forderungsgrundes",
+    "Betrag (CHF)",
+    "Zins %",
+    "seit (Datum)"
+   ],
+   "format": "Zeile 1; Betrag (CHF); Zins %; Forderungsgrund max. 640 Zeichen"
+  },
+  {
+   "name": "Weitere Forderungen",
+   "definition": "Bis zu neun weitere Forderungspositionen (weitere Haupt- oder Nebenforderungen wie Mahngebühren oder Spesen) mit Forderungsgrund, Betrag in CHF und gegebenenfalls Zins in Prozent mit Zinsbeginn, auszufüllen bei Bedarf.",
+   "data_type": "composite",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [
+    "Forderungsurkunde mit Datum oder Angabe des Forderungsgrundes",
+    "Betrag (CHF)",
+    "Zins %",
+    "seit (Datum)"
+   ],
+   "format": "Zeilen 2–10; Betrag (CHF); Zins %; Forderungsgrund je max. 80 Zeichen"
+  },
+  {
+   "name": "Bemerkungen",
+   "definition": "Freiwillige Bemerkungen des Gläubigers, etwa zur verlangten amtlichen Verwahrung gepfändeter Gegenstände (Art. 98 SchKG) oder zu bekannten Aktiven des Schuldners.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ihre Fallreferenz (falls vorhanden)",
+   "definition": "Eigene Fallreferenz der einreichenden Person (Gläubiger oder Vertreter), sofern eine solche besteht.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Datum",
+   "definition": "Datum der Unterzeichnung des Fortsetzungsbegehrens (Zeile «Datum und Unterschrift»).",
+   "data_type": "date",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Unterschrift",
+   "definition": "Unterschrift der einreichenden Person (Gläubiger oder Vertreter) auf der Zeile «Datum und Unterschrift».",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Doppel des Zahlungsbefehls im Original",
+   "definition": "Beizulegendes Doppel des Zahlungsbefehls im Original, sofern sich das Begehren auf einen von einem andern Betreibungsamt erlassenen Zahlungsbefehl oder auf eine in einem anderen Betreibungskreis eingeleitete Arrestbetreibung stützt.",
+   "data_type": "attachment",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Verlustschein oder Pfandausfallschein im Original",
+   "definition": "Beizulegender Verlustschein oder Pfandausfallschein im Original, sofern dieser die Grundlage der Fortsetzung bildet.",
+   "data_type": "attachment",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ein mit Rechtskraftbescheinigung versehener Entscheid",
+   "definition": "Beizulegender Entscheid mit Rechtskraftbescheinigung, durch den ein allfälliger Rechtsvorschlag beseitigt worden ist.",
+   "data_type": "attachment",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ausweis über die Kosten des Rechtsöffnungsverfahrens",
+   "definition": "Beizulegender Kostenausweis des Rechtsöffnungsverfahrens, falls der Gläubiger dafür Ersatz beanspruchen kann.",
+   "data_type": "attachment",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Nachweis, dass eine Aberkennungsklage nicht erhoben, zurückgezogen oder rechtskräftig abgewiesen worden ist",
+   "definition": "Beizulegender Nachweis zum Stand einer Aberkennungsklage, falls lediglich provisorische Rechtsöffnung erteilt worden ist.",
+   "data_type": "attachment",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  }
+ ],
+ "hinweis": "Korrekturen: (1) «Für Rückfragen (Telefon oder E-Mail)» heisst neu «Für Rückfragen». Das ist die gedruckte Bezeichnung. «Telefon oder E-Mail» ist die gedruckte Zusatzzeile und bleibt als format; die Klammer war erfunden. (2) «Mit Rechtskraftbescheinigung versehener Entscheid» heisst neu «Ein mit Rechtskraftbescheinigung versehener Entscheid», wie auf der Rückseite unter «Beilagen» gedruckt. Sonst keine Korrekturen. Geprüft wurden der Text, die AcroForm-Widgets und die gezeichneten Kästen auf Seite 1. Alle Angaben der Person sind erfasst und nichts ist erfunden. Typen, Optionen und Reihenfolge stimmen: Die Seite ist zweispaltig und wird Zeile für Zeile gelesen. Anmerkungen: Der Kasten «Durch das Amt auszufüllen» mit «Eingang» und «Betreibung Nr.» oben rechts gehört dem Amt und ist kein Feld der Person. Ebenso sind die Rückseite «Hinweise zum Ausfüllen» (Betreibungsort, Kosten, Betreibungsferien) und der Hinweis «Ist die Forderung in sämtlichen Positionen identisch …» nur Anleitung. Die Beilagen stehen auf der Rückseite als Aufzählung mit Spiegelstrichen, nicht als Liste zum Ankreuzen. Deshalb bleiben sie getrennte Felder vom Typ attachment. Sie werden nur unter einer Bedingung verlangt («sofern», «falls»), darum required=false. «vertreten durch» braucht es nur, wenn sich der Gläubiger vertreten lässt. Es bleibt required=false wie auf den verwandten Formularen 491, 489 und 483. «Name und Vorname bzw. Firma» bleibt ein einziger Teil, weil das Formular «Name und Vorname bzw. Firma; Adresse; PLZ Ort» als drei durch Strichpunkt getrennte Teile druckt. So ist es auch auf dem Schwesterformular 491 erfasst. Ob dieser Teil aufgeteilt werden soll, gehört zur Begriffe-Prüfung (aufteilen). Unstimmigkeit im ausfüllbaren PDF, nur gemeldet, das Formular wird nicht geändert: Das Widget «Schuldner» reicht über die ganze Breite, also auch über den gedruckten Kasten «Adresse des Betreibungsamtes» rechts. Dieser Kasten hat kein eigenes Widget. Das Widget «Geburtsdatum» reicht ebenso über den rechten Kasten darunter. Die drei Kästchen der Grundlage sind getrennte Ja/Off-Widgets, fachlich aber eine einzige Auswahl, darum enum."
+}

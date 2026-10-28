@@ -1,0 +1,62 @@
+{
+ "form_id": 543,
+ "data_fields": [
+  {
+   "name": "Adresse des Unternehmens",
+   "definition": "Adresse des meldenden Unternehmens (Arbeitgeber), das die Kündigungen ausgesprochen hat, als Freitext auf fünf Zeilen ohne vorgedruckte Unterteilung.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "5 Zeilen"
+  },
+  {
+   "name": "Kontaktperson",
+   "definition": "Kontaktperson des meldenden Unternehmens mit ihrer Telefonnummer und E-Mail-Adresse.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Kontaktperson",
+    "Telefon",
+    "E-Mail"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Anzahl der Mitarbeitenden, welche weiterhin im Betrieb beschäftigt sind",
+   "definition": "Anzahl der Mitarbeitenden, die nach den ausgesprochenen Kündigungen weiterhin im Betrieb beschäftigt bleiben.",
+   "data_type": "number",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Bemerkungen, Gründe für betriebsbedingte Entlassungen",
+   "definition": "Freitext zu den Gründen der betriebsbedingten Entlassungen und allfälligen weiteren Bemerkungen des Unternehmens.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "3 Zeilen"
+  },
+  {
+   "name": "Betroffene Mitarbeitende, welche infolge Umstrukturierung, Betriebsschliessung/Verlagerung entlassen werden",
+   "definition": "Liste der gekündigten Mitarbeitenden ohne Namen, je Person eine Zeile mit Funktion, Alter (ganze Zahl), Geschlecht (Auswahl m oder w), Nationalität, Wohnort und Ablauf der Kündigungsfrist (Datum).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Funktion",
+    "Alter",
+    "m/w",
+    "Nationalität",
+    "Wohnort",
+    "Abl. Kü-frist"
+   ],
+   "format": "Tabelle, eine Zeile je Person; 15 Zeilen auf Seite 1 und 49 Zeilen auf der Fortsetzungsseite (insgesamt 64); in der Excel-Datei hinterlegte Gültigkeitsprüfung: Alter ganze Zahl zwischen 1 und 150, m/w Auswahlliste «m»/«w», Abl. Kü-frist Datum nach dem 01.01.2000"
+  }
+ ],
+ "hinweis": "Korrekturen: (1) «Betroffene Mitarbeitende …»: Prüfung der Original-XLS (BIFF-Datensätze) zeigt drei hinterlegte Excel-Gültigkeitsprüfungen auf genau den 15 + 49 Tabellenzeilen (Zeilen 35–49 und 54–102): Spalte «Alter» ganze Zahl zwischen 1 und 150, Spalte «m/w» Auswahlliste mit den Werten «m» und «w», Spalte «Abl. Kü-frist» Datum grösser als 01.01.2000. In format und definition ergänzt, weil die Teilangaben eines composite keinen eigenen Typ tragen (m/w ist faktisch eine Auswahl, Abl. Kü-frist ein Datum, Alter eine Anzahl). (2) «Adresse des Unternehmens»: Definition präzisiert – die Datei hat fünf einzeln verbundene Zeilen (B14:F18), keinen Kasten; Typ text bleibt, weil keine Teilangaben vorgedruckt sind (keine erfundenen Teile wie Firmenname/PLZ/Ort). (3) «Kontaktperson»: Definition ohne die nicht gedruckte Zweckangabe «für Rückfragen der Arbeitsmarktbehörde» neu gefasst; Untergliederung Kontaktperson/Telefon/E-Mail entspricht den drei gedruckten Zeilen (vgl. Formular 120 «Personalien Kontaktperson»). Sonst unverändert: Reihenfolge, Namen (verbatim ohne Doppelpunkt), Anzahl als number, «Bemerkungen, Gründe für betriebsbedingte Entlassungen» required=false wegen «Bemerkungen» im Label (inhaltlich zugleich Frage nach den Gründen). Geprüft und nicht vorhanden: keine Unterschrift, kein Ort/Datum, keine Beilagen-Checkliste, keine Ankreuzgruppen, kein separates Feld für den Firmennamen. Keine Felder der Person: Kopfzeile mit Adressat (Kanton Schaffhausen, Arbeitsamt, Mühlentalstrasse 105, 8200 Schaffhausen, Logo), Fusszeile mit Seitenzahl, Einleitungstext mit Rechtsgrundlagen (OR 335g, AVV Art. 53, Arbeitsvermittlungsgesetz, Verweis auf Merkblatt), Hinweis auf Verzicht auf namentliche Nennung der Betroffenen, wiederholter Titel auf der Fortsetzungsseite. Das Formular erklärt seine Verwendung selbst als nicht zwingend (Angaben auch auf eigener Liste möglich) – das betrifft das Formular, nicht die Pflicht der einzelnen Angaben."
+}

@@ -1,0 +1,125 @@
+{
+ "form_id": 544,
+ "data_fields": [
+  {
+   "name": "Personalien",
+   "definition": "Persönliche Angaben und Kontaktangaben der bewerbenden kulturschaffenden Person, einschliesslich einer Kontaktadresse bzw. Telefonnummer für die Zeit ihrer Abwesenheit.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name/Vorname",
+    "Adresse",
+    "Geburtsdatum",
+    "Mobiltelefon",
+    "E-Mail",
+    "Kontaktadresse/Telefon (bei Abwesenheit)"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Bank-/Postverbindung",
+   "definition": "Bank- oder Postverbindung der bewerbenden Person, bestehend aus Name und Adresse des Instituts sowie der zwingend anzugebenden IBAN-Nummer.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Bankverbindung (Name/Adresse)",
+    "IBAN-Nummer"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Beruf/gegenwärtige Tätigkeit",
+   "definition": "Beruf bzw. gegenwärtige Tätigkeit der bewerbenden Person (Abschnitt «Tätigkeit und Bezug zu Schaffhausen»).",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Im Kanton Schaffhausen wohnhaft seit (Jahr) oder Atelier im Kanton Schaffhausen seit (Jahr)",
+   "definition": "Jahr, seit dem die bewerbende Person im Kanton Schaffhausen wohnt, oder alternativ Jahr, seit dem sie ein Atelier im Kanton Schaffhausen hat, als Angabe zu ihrem Bezug zum Kanton.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Im Kanton Schaffhausen wohnhaft seit (Jahr)",
+    "Atelier im Kanton Schaffhausen seit (Jahr)"
+   ],
+   "format": "Jahr"
+  },
+  {
+   "name": "Bürgerort oder anderer Bezug zum Kanton Schaffhausen",
+   "definition": "Bürgerort der bewerbenden Person oder Beschreibung eines anderen Bezugs zum Kanton Schaffhausen.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Begründung des Nutzens eines Aufenthalts in Berlin",
+   "definition": "Kurze Darlegung, in welcher Form ein Aufenthalt in Berlin für den künstlerischen Werdegang der bewerbenden Person nützlich ist.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Angabe zu den möglichen Aufenthaltsperioden",
+   "definition": "Auswahl der drei- oder sechsmonatigen Perioden des Jahres 2027, in denen ein Aufenthalt in Berlin für die bewerbende Person möglich ist.",
+   "data_type": "multiselect",
+   "required": true,
+   "allowed_values": [
+    "1. Januar - 30. Juni (6 Monate)",
+    "1. Juli - 31. Dezember (6 Monate)",
+    "1. April - 30. September (6 Monate)",
+    "1. Januar - 31. März (3 Monate)",
+    "1. April - 30. Juni (3 Monate)",
+    "1. Juli - 30. September (3 Monate)",
+    "1. Oktober - 31. Dezember (3 Monate)"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Erforderliche Dokumente für den Antrag",
+   "definition": "Liste der Unterlagen, die zusammen mit dem Anmeldeblatt zu einem einzigen PDF zusammengefasst einzureichen sind.",
+   "data_type": "multiselect",
+   "required": true,
+   "allowed_values": [
+    "Anmeldeblatt (Personalien)",
+    "Lebenslauf",
+    "Dokumentation der bisherigen kulturellen/künstlerischen Tätigkeit",
+    "Konkreter Antrag und Darstellung des Vorhabens, das Sie während des Stipendiums in Berlin bearbeiten möchten"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ort und Datum",
+   "definition": "Ort und Kalenderdatum der Unterzeichnung des Anmeldeblatts.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Ort",
+    "Datum"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Unterschrift",
+   "definition": "Unterschrift der bewerbenden Person, mit der sie die Verpflichtungserklärung und die Teilnahmebedingungen anerkennt.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  }
+ ],
+ "hinweis": "Korrekturen: keine. Ich habe das Wörterbuch Zeile für Zeile mit dem Original (docx, Tabellenstruktur in word/document.xml) verglichen. Alle zehn Felder stimmen mit dem Formular überein, in Reihenfolge, Bezeichnung, Typ und Pflicht. Geprüfte Punkte: (1) «Name/Vorname», «Kontaktadresse/Telefon (bei Abwesenheit)» und «Bankverbindung (Name/Adresse)» stehen im Formular je in einer einzigen Tabellenzeile mit einem einzigen Antwortfeld. Sie bleiben deshalb je ein Teil. Das entspricht der Praxis bei den Formularen 27, 191 und 221, und eine Aufteilung würde Teile erfinden, die das Formular nicht druckt. «Adresse» wird ebenfalls nicht in Strasse/PLZ/Ort aufgeteilt. (2) «Im Kanton Schaffhausen wohnhaft seit (Jahr) oder Atelier im Kanton Schaffhausen seit (Jahr)» druckt zwei Alternativen mit je eigener Jahresangabe. Die Aufteilung in zwei Teile mit dem Format «Jahr» ist korrekt. (3) Die Aufenthaltsperioden und die erforderlichen Dokumente stehen ohne Ankreuzfelder im Formular: die Perioden als einfache Zeilen, die Dokumente als Aufzählung mit Punkten. Beide bleiben trotzdem multiselect, da die Frage eine Mehrfachangabe verlangt bzw. es sich um die Beilagen-Checkliste handelt. Die Werte sind wörtlich übernommen. Die Tabulatoren zwischen Zeitraum und Dauer sind zu einem Leerzeichen vereinheitlicht. Der dritte Dokumentwert endet beim Doppelpunkt, weil der Rest Erläuterung ist. «Anmeldeblatt (Personalien)» ist das Formular selbst, wird aber so aufgeführt und bleibt deshalb stehen. (4) Es gibt nur eine Unterschrift (eine bewerbende Person), keine zweite Unterschriftszeile und keine Amtsfelder. Keine Felder der Person sind: die Einleitungsabschnitte (Einreichung bis 31. März 2026 per E-Mail als ein PDF bis 15 MB, Anschrift der Geschäftsstelle; Verlinkung zu Bild-, Audio- und Videodateien über Upload-Plattformen oder SwissTransfer; Projektphasen und Bewertung; Mögliche Aufenthaltsperioden; Zusätzliche Hinweise, u. a. dass Rechtsmittel gegen die Entscheidung des Fachkuratoriums ausgeschlossen sind; Hinweis zur Wohnung). Ebenfalls keine Felder sind der Hinweis «Bitte teilen Sie nachträgliche Adressänderungen der Geschäftsstelle mit.», der Klammerhinweis «(zwingend angeben)» bei der IBAN-Nummer, die Verpflichtungserklärung und die Kenntnisnahme der Teilnahmebedingungen vor der Unterschrift sowie das Logo und die Seitenzahl in der Fusszeile."
+}

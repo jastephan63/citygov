@@ -1,0 +1,243 @@
+{
+ "hinweis": "eCH-Urteile Formular 547, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/547 --nur-offene=547",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Composite holding the personal data of the first applicant. It gets the person container eCH-0044 personIdentification, which exists verbatim in the catalogue (id 809). This matches the corpus practice for «Personalien GesuchstellerIn/Gesuchsteller/in» (more than 25 rows). Its 9 parts are judged one by one. Nothing on this form is 'propagiert', so 'korrekt' cannot apply.",
+   "feld": "Gesuchsteller/in 1",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Current official surname of applicant 1 → eCH-0044 personIdentificationType/officialName. Checked to exist verbatim.",
+   "elternfeld": "Gesuchsteller/in 1",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "First name of applicant 1 → eCH-0044 personIdentificationType/firstName.",
+   "elternfeld": "Gesuchsteller/in 1",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "This is a past name, so officialName (the current value) is excluded. Searched the catalogue for every past-name element (former/previous/original/alliance/birth/maiden): the only candidates are originalName (eCH-0011/0044/0084/0213/0228, the Ledigname) and allianceName (a name used jointly with the partner, not a past name). originalName is the closest fit and matches the corpus practice for Ledigname, Geburtsname and lediger Name (11×). The name a person may return to after dissolution is the Ledigname (PartG Art. 30a). Caveat: if the person was married before and kept that married name, the name before registration differs from the Ledigname.",
+   "elternfeld": "Gesuchsteller/in 1",
+   "teilfeld": "Name vor der Eintragung",
+   "standard": "eCH-0044",
+   "element": "originalName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Date of birth of applicant 1 → eCH-0044 personIdentificationType/dateOfBirth.",
+   "elternfeld": "Gesuchsteller/in 1",
+   "teilfeld": "Geburtsdatum",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Occupation as free text → eCH-0021 jobDataType/jobTitle (corpus practice for «Beruf»: 22×).",
+   "elternfeld": "Gesuchsteller/in 1",
+   "teilfeld": "Beruf",
+   "standard": "eCH-0021",
+   "element": "jobTitle"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Place of origin, or the home country for foreign nationals → eCH-0011 placeOfOriginType/originName. The corpus does the same for «Heimatort / Land» (8×) and «Heimatort/Staatsangehörigkeit» (4×). Caveat: the label bundles two data items. For a foreign national, the country would be eCH-0011 nationalityData/countryInfo/country (a candidate for the «aufteilen» naming check).",
+   "elternfeld": "Gesuchsteller/in 1",
+   "teilfeld": "Heimatort/-land",
+   "standard": "eCH-0011",
+   "element": "originName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "On the form, «Wohnadresse» is its own line above a separate «Ort» line, so it holds street and house number → eCH-0010 addressInformationType/street (corpus 6×). It is not the container eCH-0011 dwellingAddress, because the place is a separate part. The house number would be eCH-0010 houseNumber.",
+   "elternfeld": "Gesuchsteller/in 1",
+   "teilfeld": "Wohnadresse",
+   "standard": "eCH-0010",
+   "element": "street"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Place of residence in the address block → eCH-0010 addressInformationType/town (corpus 55×).",
+   "elternfeld": "Gesuchsteller/in 1",
+   "teilfeld": "Ort",
+   "standard": "eCH-0010",
+   "element": "town"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Telephone number of applicant 1 → eCH-0046 phoneType/phoneNumber (corpus 182×).",
+   "elternfeld": "Gesuchsteller/in 1",
+   "teilfeld": "Telefon",
+   "standard": "eCH-0046",
+   "element": "phoneNumber"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "The datum is the language into which applicant 1 must be interpreted at the court hearing. It is a text value, not a yes/no box. Searched every language, translation and interpreter element in the 290-standard catalogue: languageOfCorrespondance (eCH-0011/0021/0045/0098/0116/0148/0173/0201/0228/0244/0246/0258/0260), eCH-0108 correspondenceLanguage, eCH-0261 preferredCorrespondenceLanguage, eCH-0084/0085/0086/0213/0214 response/descriptionLanguage, eCH-0260 nativeLanguage/firstLanguage/examLanguage/schoolLanguage/formLanguage, and the language elements of eCH-0108/0129/0155/0206/0228/0239/0252/0258/0259. None defines an interpreter or hearing language. languageOfCorrespondance is the language of written correspondence, and the court keeps writing in German. Also checked the justice standards: eCH-0051 V3.0.0 (Polizei und Justiz) has no elements in the catalogue, and its main document defines only base types (languageType = ISO 639 code), no interpreter datum. eCH-0136 (Zivilstand responsibilities) and eCH-0307 (Justizvollzug, In Arbeit, no elements) do not fit either.",
+   "feld": "falls Dolmetscher/in erforderlich, welche Sprache (Gesuchsteller/in 1)"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Composite holding the personal data of the second applicant, an equal party to the joint request → eCH-0044 personIdentification (corpus practice for Personalien composites). Its 8 parts are judged one by one; unlike applicant 1, no name before registration is asked.",
+   "feld": "Gesuchsteller/in 2",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Current official surname of applicant 2 → eCH-0044 personIdentificationType/officialName.",
+   "elternfeld": "Gesuchsteller/in 2",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "First name of applicant 2 → eCH-0044 personIdentificationType/firstName.",
+   "elternfeld": "Gesuchsteller/in 2",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Date of birth of applicant 2 → eCH-0044 personIdentificationType/dateOfBirth.",
+   "elternfeld": "Gesuchsteller/in 2",
+   "teilfeld": "Geburtsdatum",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Occupation as free text → eCH-0021 jobDataType/jobTitle (corpus practice 22×).",
+   "elternfeld": "Gesuchsteller/in 2",
+   "teilfeld": "Beruf",
+   "standard": "eCH-0021",
+   "element": "jobTitle"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Place of origin, or the home country for foreign nationals → eCH-0011 placeOfOriginType/originName, as the corpus does for «Heimatort / Land». Caveat: the label bundles two data items. A foreign national's country would be eCH-0011 nationalityData/countryInfo/country.",
+   "elternfeld": "Gesuchsteller/in 2",
+   "teilfeld": "Heimatort/-land",
+   "standard": "eCH-0011",
+   "element": "originName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«Wohnadresse» is its own line above a separate «Ort» line, so it holds street and house number → eCH-0010 addressInformationType/street. The house number would be eCH-0010 houseNumber.",
+   "elternfeld": "Gesuchsteller/in 2",
+   "teilfeld": "Wohnadresse",
+   "standard": "eCH-0010",
+   "element": "street"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Place of residence in the address block → eCH-0010 addressInformationType/town.",
+   "elternfeld": "Gesuchsteller/in 2",
+   "teilfeld": "Ort",
+   "standard": "eCH-0010",
+   "element": "town"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Telephone number of applicant 2 → eCH-0046 phoneType/phoneNumber.",
+   "elternfeld": "Gesuchsteller/in 2",
+   "teilfeld": "Telefon",
+   "standard": "eCH-0046",
+   "element": "phoneNumber"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Same datum as for applicant 1: the language for interpreting at the hearing. The same full-catalogue search found nothing that fits. That search covered every languageOfCorrespondance, correspondenceLanguage and preferredCorrespondenceLanguage element, the response/descriptionLanguage elements, eCH-0260 native/first/exam/school/formLanguage and every other language element. eCH-0051 (Justiz) has only an ISO-639 languageType and no data element; eCH-0136 and eCH-0307 do not fit. No element defines an interpreter or hearing language, and languageOfCorrespondance means written correspondence, a different datum.",
+   "feld": "falls Dolmetscher/in erforderlich, welche Sprache (Gesuchsteller/in 2)"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "The date of registration is the start date of the status «in eingetragener Partnerschaft» (code 6). That status still applies, because dissolution is only being requested, so this is not a past or changed value. eCH-0011 has exactly this in maritalDataRestrictedPartnershipType/dateOfMaritalStatus, and eCH-0020 eventPartnership carries it as maritalInfo/maritalData/dateOfMaritalStatus. The corpus maps «Datum der Heirat / Eintragung der Partnerschaft» the same way (form 290).",
+   "feld": "Datum der Eintragung der Partnerschaft",
+   "standard": "eCH-0011",
+   "element": "dateOfMaritalStatus"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Place where the partnership was registered → eCH-0021 maritalDataAddonType/placeOfMarriage. The XSD confirms that eCH-0020 eventPartnership uses maritalInfoRestrictedMarriageType, and that type contains this very maritalDataAddon. The element therefore holds the place of the partnership registration as well.",
+   "feld": "Ort der Eintragung",
+   "standard": "eCH-0021",
+   "element": "placeOfMarriage"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Date on which applicant 1 signed. Two signatories sign separately, so this is a date per signature. eCH-0058 messageDate and eventDate are message-header values, one per message, and cannot hold two different signing dates. eCH-0119 locationAndDate is tied to the tax-return attachments (attachedForms/listOfSecurities). eCH-0039 openingDate and eCH-0260 signatures (apprenticeship-contract booleans) do not fit. The signature standards eCH-0091/0220/0230/0250/0274/0282 have no elements. This is consistent with the reviewed practice «Ort und Datum» → kein_standard (eSH-0001 placeAndDate).",
+   "feld": "Datum (Gesuchsteller/in 1)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Handwritten signature. Searched every sign/signature element: eCH-0039 signer is only the signer's name as a token. eCH-0260 signatures/…SignatureConfirmation are booleans for apprenticeship contracts. eCH-0091/0220/0230/0250/0274/0282 concern electronic signatures and have no elements. The reviewed corpus practice for «Unterschrift» is kein_standard (propagated from 15, 29 reviewed rows; eSH-0001 signature).",
+   "feld": "Unterschrift Gesuchsteller/in 1"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Signing date of applicant 2, a date per signature. The message-level eCH-0058 messageDate/eventDate cannot hold two different signing dates. eCH-0119 locationAndDate belongs to tax-return attachments, and eCH-0039 openingDate and eCH-0260 signatures do not fit. The signature standards have no elements, so there is no element in the catalogue.",
+   "feld": "Datum (Gesuchsteller/in 2)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Handwritten signature of applicant 2. Same search as for applicant 1: eCH-0039 signer, eCH-0260 signatures, and eCH-0091/0220/0230/0250/0274/0282, which have no elements. No standard element exists; the reviewed corpus practice is kein_standard (eSH-0001).",
+   "feld": "Unterschrift Gesuchsteller/in 2"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "A party living abroad must name a person in Switzerland to whom the court delivers documents. That is the party's delivery address via a third person. eCH-0011 personType/contactData (contactDataType) holds exactly that, according to the XSD: optionally personIdentification, personIdentificationPartner or partnerIdOrganisation, plus a mandatory contactAddress. It is the container, because the single text field holds both the person and the address. Corpus practice maps «Zustelladresse» to contactAddress (5×). eCH-0119 representativePerson (used once for «Zustellbevollmächtigter (Personalien)») belongs to the tax-return mainForm and fits a court proceeding less well.",
+   "feld": "Zustellungsbevollmächtigter in der Schweiz",
+   "standard": "eCH-0011",
+   "element": "contactData"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "A single attachment field for the documents listed in the Merkblatt. The form does not itemise them, so this is not a checklist. → container element eCH-0058 headerType/attachment, the enclosures transported with the submission (xs:anyType, unbounded). The corpus maps «Unterlagen zu den finanziellen Verhältnissen» and 6 single «Beilagen» fields the same way. The kein_standard practice for «Beilagen» covers multiselect checklists of named documents, which is not the shape of this field.",
+   "feld": "Unterlagen (gemäss «Merkblatt Ehescheidung auf gemeinsames Begehren»)",
+   "standard": "eCH-0058",
+   "element": "attachment"
+  }
+ ]
+}

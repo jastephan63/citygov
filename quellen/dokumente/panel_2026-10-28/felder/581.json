@@ -1,0 +1,166 @@
+{
+ "form_id": 581,
+ "data_fields": [
+  {
+   "name": "Name, Vorname",
+   "definition": "Name und Vorname der Athletin oder des Athleten, deren oder dessen sportliche Biografie beschrieben wird.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Sportart",
+   "definition": "Sportart, in der die Athletin oder der Athlet Leistungssport betreibt.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Verein / Verband",
+   "definition": "Verein oder Verband, dem die Athletin oder der Athlet angehört.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Mannschaftszugehörigkeit",
+   "definition": "Mannschaft, der die Athletin oder der Athlet im Verein oder Verband angehört.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Kaderzugehörigkeit",
+   "definition": "Angabe, ob die Athletin oder der Athlet einem National- oder Regionalkader oder keinem Kader angehört.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "Nationalkader",
+    "Regionalkader",
+    "Keines"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Genaue Kaderbezeichnung",
+   "definition": "Genaue Bezeichnung des Kaders, dem die Athletin oder der Athlet angehört.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Swiss Olympic Talents Card",
+   "definition": "Angabe, ob die Athletin oder der Athlet eine Swiss Olympic Talents Card besitzt und ob diese regional oder national ist.",
+   "data_type": "multiselect",
+   "required": true,
+   "allowed_values": [
+    "ja",
+    "nein",
+    "regional",
+    "national"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ausstehender Piste-Test",
+   "definition": "Angabe, ob für die Athletin oder den Athleten noch ein Piste-Test aussteht.",
+   "data_type": "boolean",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Bisherige Erfolge / Klassierungen",
+   "definition": "Bisher erzielte sportliche Erfolge und Klassierungen der Athletin oder des Athleten.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Anzahl Wettkämpfe pro Jahr",
+   "definition": "Anzahl der Wettkämpfe, die die Athletin oder der Athlet pro Jahr bestreitet.",
+   "data_type": "number",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Trainings- und Reiseaufwand pro Woche",
+   "definition": "Wöchentlicher Trainings- und Reiseaufwand, gegliedert in Anzahl Trainingseinheiten, Anzahl Stunden und Angabe zum Trainingsweg.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Einheiten",
+    "Stunden",
+    "Trainingsweg"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Beilage Trainingsplan",
+   "definition": "Dem Formular beizulegender Trainingsplan der Athletin oder des Athleten.",
+   "data_type": "attachment",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Trainingsort",
+   "definition": "Ort, an dem die Athletin oder der Athlet trainiert.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Kontaktperson Verein / Athletenbetreuer",
+   "definition": "Personalien und Kontaktangaben der Kontaktperson im Verein beziehungsweise der Athletenbetreuerin oder des Athletenbetreuers.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name, Vorname",
+    "Strasse",
+    "Plz, Ort",
+    "Tel. Privat, Geschäft",
+    "E-Mail"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Trainerin / Trainer",
+   "definition": "Personalien und Kontaktangaben der Trainerin oder des Trainers der Athletin oder des Athleten.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name, Vorname",
+    "Strasse",
+    "Plz, Ort",
+    "Tel. Privat, Geschäft",
+    "E-Mail"
+   ],
+   "format": ""
+  }
+ ],
+ "hinweis": "Korrekturen: (1) «Ausstehender Piste-Test»: data_type enum → boolean (das Paar ☐ ja ☐ nein ist eine Ja/Nein-Angabe; in der Databank werden 267 von 278 ja/nein-Paaren als boolean geführt, labels.py zeigt boolean als «Ja/Nein»); allowed_values geleert, weil allowed_values nur bei enum/multiselect geführt werden. Alle übrigen Felder unverändert übernommen. Gegen die DOCX (word/document.xml) geprüft: 3 Tabellen, 15 FORMTEXT-Felder, 9 Kontrollkästchen (3 Kader, 4 Talents Card, 2 Piste-Test). Es fehlt keine Angabe und keine ist erfunden. Anmerkungen ohne Änderung: «Verein / Verband» und «Mannschaftszugehörigkeit» stehen als zweizeilige Beschriftung in einer Zelle mit nur EINEM Eingabefeld (Text3). Sie bleiben trotzdem zwei Angaben, weil beide Zeilen gedruckt sind. «Swiss Olympic Talents Card» hat vier Kästchen in zwei sichtbar getrennten Gruppen (ja/nein, dann regional/national; die Stufe gilt nur bei «ja»). Da nur eine Beschriftung gedruckt ist, bleibt das Feld ein multiselect mit den Optionen wörtlich. «Genaue Kaderbezeichnung» ist sachlich nur nötig, wenn nicht «Keines» angekreuzt ist. Das Formular markiert sie aber nicht als freiwillig, daher required=true. «Beilage: Trainingsplan» steht in der Beschriftungszelle von «Trainings- und Reiseaufwand pro Woche». «Name, Vorname», «Plz, Ort» und «Tel. Privat, Geschäft» sind je einzeilig mit einem Eingabefeld gedruckt und bleiben deshalb je ein Teil. Keine Felder der Person: der Kopf (Kanton Schaffhausen, Schulsport, Sportinspektorat, Herrenacker 3, CH-8200 Schaffhausen, www.sh.ch, Logo), der Untertitel «Beurteilung Kostengutsprache an Beteiligung Schulgeldbeitrag ausserkantonaler Sportschule auf Sekundarstufe I und II» und die Fusszeile «Juni 21, 1 von 1». Das Formular druckt weder eine Unterschrift noch «Ort und Datum» noch ein Amtsfeld."
+}

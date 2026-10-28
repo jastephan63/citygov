@@ -1,0 +1,40 @@
+{
+ "urteile": [
+  {
+   "id": 6635,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Block «Ehefrau» (Name, Vorname, Name vor der Heirat, Geburtsdatum, Beruf, Heimatort, Wohnadresse, Telefon) betrifft eine Ehegattin als Partei; nur eine natürliche Person möglich."
+  },
+  {
+   "id": 6636,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Dolmetschsprache im Block «Ehefrau» ist eine persönliche Angabe genau dieser einen Ehegattin."
+  },
+  {
+   "id": 6638,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Block «Ehemann» (Name, Vorname, Geburtsdatum, Beruf, Heimatort, Wohnadresse, Telefon) betrifft einen Ehegatten als Partei; nur eine natürliche Person möglich."
+  },
+  {
+   "id": 6639,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Dolmetschsprache im Block «Ehemann» ist eine persönliche Angabe genau dieses einen Ehegatten."
+  },
+  {
+   "id": 6640,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Datum der Eheschliessung ist eine Zivilstandsangabe der Ehegatten, die im Register je Person geführt wird; eine Organisation kommt nicht in Frage."
+  },
+  {
+   "id": 6643,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Vorname und Geburtsdatum («geb.») je gemeinsamem Kind; jedes Kind ist eine einzelne natürliche Person."
+  }
+ ]
+}

@@ -1,0 +1,70 @@
+{
+ "hinweis": "eCH-Urteile Formular 570, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/570 --nur-offene=570",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Das Feld enthält den Namen des Vereins («Unter dem Namen [Name] besteht ... ein Verein gemäss Art. 60 ff. ZGB»), also den Namen einer Organisation. eCH-0098 (Unternehmensdaten, Genehmigt) führt organisationName im organisationIdentificationType (unitNameType); das Element ist wörtlich so im Katalog. eCH-0010 organisationName gehört zur Postadresse, eCH-0097 ist aufgehoben. Die Datenbank ordnet vergleichbare Felder gleich zu: «Firma» 23-mal, «Name der Organisation» 1-mal. Die Zeile ist bisher leer. Zweitprüfung bestätigt.",
+   "feld": "Name",
+   "standard": "eCH-0098",
+   "element": "organisationName"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Laut Formular hat der Verein «seinen Sitz in [politische Gemeinde]», gemeint ist die Sitzgemeinde. eCH-0098 headquarterMunicipality (swissHeadquarterType, swissMunicipalityType) ist das einzige Element für die Sitzgemeinde einer Organisation; die Suche nach seat, headquarter und domicile im ganzen Katalog fand sonst nur Steuerdomizile (eCH-0229, eCH-0276). Der propagierte Wert stimmt mit der Praxis überein («Sitz» 12-mal so zugeordnet). Zweitprüfung bestätigt.",
+   "feld": "Sitz"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Das Feld enthält die Umschreibung des Vereinszwecks. eCH-0098 activityDescription (organisationType, activityDescriptionType) ist das allgemeine Organisationselement für den Zweck bzw. die Tätigkeit; in der Datenbank ist «Zweck» 10-mal so zugeordnet. eCH-0229 purpose gehört zur Steuerdeklaration juristischer Personen und passt für Statuten nicht. Der propagierte Wert ist bestätigt.",
+   "feld": "Zweck"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist ein Freitext mit weiteren Finanzierungsquellen des Vereins neben den vorgedruckten. Durchsucht wurde der ganze Katalog (290 Standards) nach financ*, fund*, means, resource*, sponsor*, donation*, membershipFee* und source. Gefunden wurden nur Betragsfelder aus Steuer- und Rechnungslegungsstandards (eCH-0229 settlementOfExpensesAndMembershipFees, eCH-0276 membershipFees, incomeFromDonationsGiftsAndBequests, publicSectorContributionsDonation, eCH-0217 donations/otherFlowsOfFunds, eCH-0119 financingCosts). eCH-0098 und eCH-0108 enthalten nichts zu Finanzierungsquellen. Kein Element beschreibt eine Finanzierungsquelle als Text. Zweitprüfung bestätigt.",
+   "feld": "Allfällige weitere Mittel"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist das Kalenderdatum, an dem die (ausserordentliche) Vereinsversammlung die Statuten genehmigt hat und ab dem sie gelten («Namens der a.o. Vereinsversammlung»), also eine Statutenrevision, nicht die Gründung; eCH-0098 foundationDate passt daher nicht. Durchsucht wurden eCH-0098 (foundationDate, statusDate), eCH-0108 (statusDate, commercialRegisterActivationDate, firstRegistrationDate), eCH-0148 (dateValidFrom nur bei eventChangeOrganisationName, eventChangeLegalForm, eventContact), eCH-0116, eCH-0173, eCH-0239, eCH-0244 sowie der ganze Katalog nach statut*, article*, bylaw*, constitution, approv*, adopt*, inForce, resolution, meeting und assembly. Kein Element steht für das Datum eines Statutenbeschlusses. Passt zu «Datum der Statutenänderung» und «Statutenänderung (Datum)» (kein_standard).",
+   "feld": "Datum (Genehmigung und Inkrafttreten)"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Das zusammengesetzte Feld umfasst Ort und Kalenderdatum der Unterzeichnung der Statuten. eCH-0119 locationAndDate (attachedFormsType, string) ist das einzige Container-Element im Katalog für «Ort und Datum der Unterzeichnung»; die Teile werden einzeln beurteilt. Der Wert wurde propagiert (10-mal geprüft) und entspricht der Praxis (13 Felder «Ort, Datum» gleich zugeordnet). Bestätigt.",
+   "feld": "Ort, Datum"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist der Ort, an dem die Statuten unterzeichnet wurden, keine Adresse. eCH-0119 kennt dafür nur den Gesamtstring locationAndDate (Elternfeld). eCH-0010 town ist Teil einer Postadresse, eCH-0007 municipalityName ein Eintrag im Gemeindeverzeichnis, eCH-0260 signaturesType enthält nur Ja/Nein-Bestätigungen, eCH-0039 documentType nur signer. Gesucht wurde im ganzen Katalog nach place*, sign*, location* und town. Kein eigenes Element für den Unterzeichnungsort. Passt zur Praxis für die Teile von «Ort und Datum» (16-mal kein_standard).",
+   "elternfeld": "Ort, Datum",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist das Kalenderdatum der Unterzeichnung. eCH-0119 hat dafür nur den Gesamtstring locationAndDate (Elternfeld). eCH-0039 openingDate ist das Eröffnungsdatum eines Dokuments, eCH-0058 messageDate bzw. eCH-0229/eCH-0278 transactionDate gehören zum Kopf einer Übermittlung, eCH-0260 signaturesType enthält nur Ja/Nein-Werte. Gesucht wurde im ganzen Katalog nach sign*, *date*, validFrom und decision. Kein Element für das Unterschriftsdatum. Passt zur Praxis für die Teile von «Ort und Datum» (16-mal kein_standard).",
+   "elternfeld": "Ort, Datum",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist die eigenhändige Unterschrift der vorsitzenden Person «Namens der a.o. Vereinsversammlung» (data_type signature). Gesucht wurde im ganzen Katalog nach sign*, chair*, president*, secretar* und minute*: eCH-0039 signer (documentType, token) bezeichnet nur den Unterzeichner eines GEVER-Dokuments, eCH-0260 signaturesType enthält nur Ja/Nein-Bestätigungen für Lehrverträge, eCH-0276 chairmanOfTheBoardOfDirectors ist ein Name in der Steuererklärung. Kein Element steht für eine Unterschrift. Passt zur Praxis (88 Unterschriftsfelder kein_standard).",
+   "feld": "Vorsitzende"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist die eigenhändige Unterschrift der protokollführenden Person, die mitunterzeichnet (data_type signature). Gesucht wurde im ganzen Katalog nach sign*, secretar*, minute*, recorder* und chair*: nur eCH-0039 signer (Bezeichner, keine Unterschrift) und die Ja/Nein-Werte in eCH-0260 signaturesType. Kein Element steht für eine Unterschrift oder die protokollführende Person. Passt zur Praxis (88 Unterschriftsfelder kein_standard).",
+   "feld": "Protokollführerin"
+  }
+ ]
+}

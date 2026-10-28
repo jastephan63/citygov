@@ -1,0 +1,238 @@
+{
+ "form_id": 164,
+ "mappings": [
+  {
+   "data_field": "Personalien Hundehalter/-in",
+   "cites": [
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 9"
+    },
+    {
+     "cref": "SHR 455.201",
+     "article_no": "§ 4"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Rufname Hund",
+   "cites": [
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 9"
+    },
+    {
+     "cref": "SHR 455.201",
+     "article_no": "§ 4"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Geburtsdatum oder Alter",
+   "cites": [
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 9"
+    },
+    {
+     "cref": "SHR 455.201",
+     "article_no": "§ 4"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Geschlecht",
+   "cites": [
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 9"
+    },
+    {
+     "cref": "SHR 455.201",
+     "article_no": "§ 4"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Kastration",
+   "cites": [
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 9"
+    },
+    {
+     "cref": "SHR 455.201",
+     "article_no": "§ 4"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Kennzeichnung",
+   "cites": [
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 9"
+    },
+    {
+     "cref": "SHR 455.201",
+     "article_no": "§ 4"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Kennzeichnungsnummer",
+   "cites": [
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 9"
+    },
+    {
+     "cref": "SHR 455.201",
+     "article_no": "§ 4"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Andere Kennzeichen",
+   "cites": [
+    {
+     "cref": "SHR 455.201",
+     "article_no": "§ 4",
+     "beleg": "Wer einen Hund der Rassentypenliste halten will, hat ein schriftliches Gesuch mit den vom Veterinäramt verlangten Angaben und Nachweisen ... zum Hund und zur Hundehaltung einzureichen."
+    },
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 9",
+     "beleg": "Wer einen Hund halten will, der einem Rassentyp mit erhöhtem Gefährdungspotenzial angehört, benötigt für jeden dieser Hunde eine Bewilligung."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Rasse",
+   "cites": [
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 9"
+    },
+    {
+     "cref": "SHR 455.201",
+     "article_no": "§ 3"
+    },
+    {
+     "cref": "SHR 455.201",
+     "article_no": "§ 4"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Rassetyp, Farbe (Kreuzungstiere)",
+   "cites": [
+    {
+     "cref": "SHR 455.201",
+     "article_no": "§ 3"
+    },
+    {
+     "cref": "SHR 455.201",
+     "article_no": "§ 4"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Schulterhöhe (adulter Hund)",
+   "cites": [
+    {
+     "cref": "SHR 455.201",
+     "article_no": "§ 3"
+    },
+    {
+     "cref": "SHR 455.201",
+     "article_no": "§ 4"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Gewichtsklasse (adulter Hund)",
+   "cites": [
+    {
+     "cref": "SHR 455.201",
+     "article_no": "§ 3"
+    },
+    {
+     "cref": "SHR 455.201",
+     "article_no": "§ 4"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Voraussichtliches Anschaffungsdatum",
+   "cites": [
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 9"
+    },
+    {
+     "cref": "SHR 455.201",
+     "article_no": "§ 4"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Züchter / Vorbesitzer",
+   "cites": [
+    {
+     "cref": "SHR 455.200",
+     "article_no": "Art. 9"
+    },
+    {
+     "cref": "SHR 455.201",
+     "article_no": "§ 4"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Beizulegende Nachweise",
+   "cites": [
+    {
+     "cref": "SHR 455.201",
+     "article_no": "§ 4"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Weitere Angaben / Besonderheiten / Bemerkungen",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Ort / Datum",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Unterschrift",
+   "cites": [
+    {
+     "cref": "SHR 455.201",
+     "article_no": "§ 4",
+     "beleg": "Wer einen Hund der Rassentypenliste halten will, hat ein schriftliches Gesuch mit den vom Veterinäramt verlangten Angaben und Nachweisen zur gesuchstellenden Person ... einzureichen."
+    }
+   ],
+   "over_collection": false
+  }
+ ]
+}

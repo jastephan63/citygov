@@ -12,6 +12,12 @@ Idempotent: re-running re-syncs names/ordinals without losing eCH assignments
 (matched by data_field_id + normalised name). Staging -> validate -> swap.
 
     python3 scripts/init_subfields.py
+    python3 scripts/init_subfields.py --nur-neue
+
+--nur-neue writes only the parts of composite fields that have no part row yet (new
+Formulare, a ported edition's new field) and leaves every existing row and its id
+alone. The full rebuild renumbers: the ids have gaps (rows of removed forms), and
+reviewed corrections and the prefill gate address parts by id.
 """
 import json, os, re, shutil, sys
 from citygov.core.common import DB_PATH, connect, norm_ascii as norm
@@ -53,10 +59,13 @@ def main():
         keep[(r["data_field_id"], norm(r["name"]))] = (
             r["ech_element_id"], r["ech_standard_code"], r["ech_status"], r["esh_code"], r["esh_element"])
 
-    c.execute("DELETE FROM data_subfield")
+    nur_neue = "--nur-neue" in sys.argv
+    if not nur_neue:
+        c.execute("DELETE FROM data_subfield")
     n = nf = 0
     for r in c.execute("SELECT id, subfields FROM data_field "
-                       "WHERE subfields IS NOT NULL AND subfields NOT IN ('', '[]')").fetchall():
+                       "WHERE subfields IS NOT NULL AND subfields NOT IN ('', '[]')"
+                       + (" AND id NOT IN (SELECT data_field_id FROM data_subfield)" if nur_neue else "")).fetchall():
         try:
             subs = json.loads(r["subfields"])
         except Exception:

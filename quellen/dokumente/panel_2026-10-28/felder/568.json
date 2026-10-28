@@ -1,0 +1,48 @@
+{
+ "form_id": 568,
+ "data_fields": [
+  {
+   "name": "Firma",
+   "definition": "Im Handelsregister eingetragene Firma der Genossenschaft, für die auf die eingeschränkte Revision verzichtet wird.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Geschäftsjahr, ab welchem der Verzicht gelten soll",
+   "definition": "Geschäftsjahr, ab dem der Verzicht auf die eingeschränkte Revision gelten soll.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Sämtliche Genossenschafter/innen der Genossenschaft",
+   "definition": "Tabelle, in der sämtliche Genossenschafter/innen je in einer eigenen Zeile mit Vorname, Name, Anzahl ihrer Genossenschaftsanteile sowie Ort und Datum der Unterzeichnung aufgeführt werden.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Vorname",
+    "Name",
+    "Anzahl Genossenschaftsanteile",
+    "Ort",
+    "Datum"
+   ],
+   "format": "Tabelle mit 7 Zeilen, eine Zeile je Genossenschafter/in"
+  },
+  {
+   "name": "Unterschrift",
+   "definition": "Eigenhändige Unterschrift jeder/jedes Genossenschafter/in in der eigenen Tabellenzeile, mit der sie oder er den Verzicht auf die eingeschränkte Revision erklärt; erforderlich sind die Unterschriften sämtlicher Genossenschafter/innen.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "je Zeile der Tabelle (7 Zeilen)"
+  }
+ ],
+ "hinweis": "Prüfung gegen die Originaldatei (DOCX, 1 Tabelle mit 8 Zeilen: 1 Kopfzeile plus 7 leere Zeilen; Spalten Vorname | Name | Anzahl Genossenschaftsanteile | Ort, Datum | Unterschrift; keine Checkboxen, keine Kopf- oder Fusszeile, keine Beilagenliste, kein Amtsfeld). Ergebnis: Der Entwurf ist vollständig, die Reihenfolge stimmt, und nichts ist erfunden. Die Namen sind wörtlich übernommen; «Genossen-schaftsanteile» ist nur durch den Zeilenumbruch in der schmalen Spalte getrennt. Die gedruckte Spalte «Ort, Datum» ist richtig in die Teile Ort und Datum aufgeteilt. Die Unterschriftenspalte ist richtig ein eigenes Feld vom Typ signature, eine Unterschrift je Tabellenzeile. Die Angabe der 7 Zeilen ist durch das gedruckte Tabellenraster belegt. Alle Felder bleiben richtig Pflichtfelder, weil nichts als freiwillig markiert ist. Das Geschäftsjahr bleibt richtig text und nicht date, weil es kein Kalenderdatum ist und ein abweichendes Geschäftsjahr zwei Kalenderjahre umfassen kann. Eine Korrektur: Die Definition von «Geschäftsjahr, ab welchem der Verzicht gelten soll» ist berichtigt. Der Entwurf sagte, der Verzicht solle ab diesem Geschäftsjahr «im Handelsregister eingetragen werden». Die Eintragung ist aber ein einmaliger Vorgang, den die Verwaltung veranlasst; das Geschäftsjahr bestimmt nur, ab wann der Verzicht gilt. Keine Felder der Person sind die Erklärung, dass die Unterzeichnenden auf die eingeschränkte Revision verzichten und die Verwaltung mit der Eintragung ins Handelsregister beauftragen, sowie der Titel. Die drei Muster-Verzichtserklärungen (552 GmbH, 568, 571 AG) haben in der DB noch keine Felder, also gab es keinen Vergleich."
+}

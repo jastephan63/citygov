@@ -1,0 +1,164 @@
+{
+ "form_id": 580,
+ "data_fields": [
+  {
+   "name": "Angaben zur Person, welche die Meldung erstattet",
+   "definition": "Personalien, Organisation, Adresse, Kontakt, Erreichbarkeit für Rückfragen und Beziehung der Person, die der KESB die Gefährdung einer erwachsenen Person meldet.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Vorname und Name",
+    "Firma/Organisation/Funktion",
+    "Adresse (Str./Nr./PLZ /Ort)",
+    "Tel.Nr./E-Mail",
+    "Erreichbarkeit für Rückfragen (wann)",
+    "Beziehung zur betroffenen Person"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Angaben zur betroffenen Person",
+   "definition": "Personalien, aktuelle Wohnadresse, Erreichbarkeit, Ausbildungs- oder Arbeitsstätte und Hausarzt der erwachsenen Person, deren Gefährdung gemeldet wird.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Vorname und Name",
+    "Geschlecht",
+    "Geburtsdatum",
+    "Aktuelle Wohnadresse (Str./Nr. /PLZ /Ort)",
+    "Erreichbarkeit (Tel.Nr./E-Mail) (wann)",
+    "Ausbildungsstätte/Arbeitgeber/Arbeitsort",
+    "Hausarzt"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Was ist der Anlass, aus welchem Sie diese Meldung bei uns einreichen?",
+   "definition": "Freie Beschreibung des Anlasses der Meldung mit den eigenen Beobachtungen, Zeitangaben sowie Dauer und Häufigkeit des Schwächezustands der betroffenen Person.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Weiss die betroffene Person von dieser Gefährdungsmeldung?",
+   "definition": "Angabe, ob die betroffene Person über die Gefährdungsmeldung an die KESB informiert ist.",
+   "data_type": "boolean",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Falls Ja, wie hat sie darauf reagiert?",
+   "definition": "Beschreibung der Reaktion der betroffenen Person auf die Meldung, nur auszufüllen, wenn sie davon weiss.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Wurde bisher bereits etwas unternommen?",
+   "definition": "Angabe, ob zur Abwendung der Gefährdung bisher bereits Massnahmen ergriffen wurden.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "Ja",
+    "Nein",
+    "weiss nicht"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Wenn ja, was und von wem?",
+   "definition": "Bereits ergriffene Massnahmen und die Stelle oder Person, die sie ergriffen hat, nur auszufüllen, wenn bisher etwas unternommen wurde.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Was",
+    "Von wem"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Kann mit ihr eine Unterhaltung auf Deutsch geführt werden?",
+   "definition": "Angabe im Abschnitt «Kommunikation», ob mit der betroffenen Person eine Unterhaltung auf Deutsch möglich ist.",
+   "data_type": "boolean",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Muttersprache",
+   "definition": "Muttersprache der betroffenen Person, nur auszufüllen, wenn keine Unterhaltung auf Deutsch möglich ist.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Kenntnisse andere Fremdsprache",
+   "definition": "Weitere Fremdsprachen, in denen sich die betroffene Person verständigen kann, nur auszufüllen, wenn keine Unterhaltung auf Deutsch möglich ist.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Weitere relevante Informationen",
+   "definition": "Zusätzliche freie Angaben der meldenden Person, die für die Beurteilung der Gefährdung von Bedeutung sein können.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Wie schätzen Sie die Gefährdungssituation ein?",
+   "definition": "Einschätzung der meldenden Person zur Schutzbedürftigkeit und Dringlichkeit der Gefährdungssituation der betroffenen Person.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "sehr niedrig",
+    "niedrig",
+    "mittel",
+    "hoch",
+    "sehr hoch",
+    "weiss nicht"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ort/Datum",
+   "definition": "Ort und Datum der Unterzeichnung der Gefährdungsmeldung durch die meldende Person.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Ort",
+    "Datum"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Unterschrift",
+   "definition": "Unterschrift der Person, welche die Gefährdungsmeldung erstattet.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  }
+ ],
+ "hinweis": "Korrekturen: keine. Ich habe das Wörterbuch Zeile für Zeile gegen die Original-DOCX (document.xml, Kopf- und Fusszeile) geprüft. Es fehlt keine Angabe und keine ist erfunden. Die Kontrollkästchen-Gruppen stimmen mit dem Formular überein: Ja/Nein zweimal als boolean (wie in 298 Feldern mit Ja/Nein in der DB), Ja/Nein/weiss nicht und die sechsstufige Einschätzung als enum mit wörtlich übernommenen Optionen. Das Formular hat genau eine Unterschriftszeile und keine Beilagen-Checkliste. «Vorname und Name» sowie «Adresse (Str./Nr./PLZ /Ort)» sind je als eine Zeile gedruckt und bleiben deshalb je ein Teil. «Geschlecht» ist eine freie Zeile ohne Optionen. Ich behalte die bedingten Angaben («Falls Ja …», «Wenn ja …», «Muttersprache», «Kenntnisse andere Fremdsprache») als required=true, weil sie nicht als freiwillig markiert sind; die Bedingung steht in der Definition. «Weitere relevante Informationen» setze ich auf required=false, entsprechend dem Bemerkungsfeld und 49 Präzedenzfällen in der DB. Keine Felder der Person sind: der Hinweistext zum Anlass («Möglichst konkrete Beschreibung … Vermutungen und Informationen vom Hörensagen sind als solche zu bezeichnen!»), die Abschnittsüberschriften «Kommunikation (Falls die betroffene Person eine fremde Muttersprache hat)» und «Einschätzung Schutzbedürftigkeit / Dringlichkeit», der Hinweis, dass die betroffene Person in aller Regel erfährt, wer die Meldung erstattet hat, die Einreichungsadresse (KESB Schaffhausen, Mühlentalstrasse 65A, 8200 Schaffhausen, kesb@sh.ch) sowie Kopfzeile, Logo und Seitenzahl."
+}

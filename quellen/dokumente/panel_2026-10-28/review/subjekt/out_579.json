@@ -1,0 +1,28 @@
+{
+ "urteile": [
+  {
+   "id": 7166,
+   "urteil": "bestaetigt",
+   "subjekt": "gemischt",
+   "grund": "Meldende Person ist zwar mit Vorname/Name erfasst, kann aber laut Unterfeld «Firma/Organisation/Funktion» als Fachperson (Schule, Arzt, Organisation) melden; Adresse/Tel./E-Mail können dann Geschäftsangaben sein. Nicht sicher die eigenen Angaben einer Privatperson, daher konservativ gemischt"
+  },
+  {
+   "id": 7167,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Vorname/Name, Geschlecht und Geburtsdatum des einen betroffenen Kindes bzw. Jugendlichen; eindeutig Personenangaben einer einzelnen natürlichen Person"
+  },
+  {
+   "id": 7171,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Aktuelle Wohnadresse des einen betroffenen Kindes bzw. Jugendlichen; Wohnsitzangabe einer einzelnen natürlichen Person, keine Firmen- oder Objektadresse"
+  },
+  {
+   "id": 7176,
+   "urteil": "bestaetigt",
+   "subjekt": "gemischt",
+   "grund": "Freitext zu allfälligen, möglicherweise mehreren Bezugspersonen (Verwandte, Dritte, evtl. auch Betreuungs- oder Fachstellen); nicht sicher die Angabe genau einer natürlichen Person, daher konservativ gemischt"
+  }
+ ]
+}

@@ -1,0 +1,24 @@
+{
+ "verdicts": [
+  {
+   "id": 6599,
+   "subjekt": "natuerliche_person",
+   "grund": "Personalien der ersten gesuchstellenden Partnerin bzw. des Partners; eine eingetragene Partnerschaft besteht nur zwischen natürlichen Personen."
+  },
+  {
+   "id": 6601,
+   "subjekt": "natuerliche_person",
+   "grund": "Personalien der zweiten gesuchstellenden Person (Partnerin/Partner), zwingend eine natürliche Person."
+  },
+  {
+   "id": 6603,
+   "subjekt": "natuerliche_person",
+   "grund": "Eintragungsdatum ist Teil des Zivilstands (Personenstand) der beiden Partner; gleich beurteilt wie die bestehenden Felder «Datum der Heirat / Eintragung der Partnerschaft» und «Verheiratet seit»."
+  },
+  {
+   "id": 6609,
+   "subjekt": "gemischt",
+   "grund": "Das Formular nennt einen Zustellungsbevollmächtigten in der Schweiz ohne nähere Angaben; das kann eine Privatperson oder eine Kanzlei bzw. Firma sein."
+  }
+ ]
+}

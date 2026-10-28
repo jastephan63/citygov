@@ -428,6 +428,9 @@ function renderLegend(){
     datenmodell: {ok:'Gesetz in der gelesenen Fassung in Kraft',dec:'Rollenliste und Vorschlag eines Elements: der Kanton bestätigt · ohne klare Praxis legt der Kanton das Element fest',
       open:'neuere Fassung des Gesetzes — die Databank liest die zitierten Artikel nach'},
     onceonly: {dec:'Zugriff je Register und Angaben von Familienangehörigen: der Kanton entscheidet · Rollenliste: der Kanton bestätigt'},
+    abgleich: {ok:'Datei als Formular erfasst · gleicher Inhalt wie ein Formular · Begleitdokument (kein Formular)',
+      act:'die Quelle bietet eine ältere Ausgabe an als das Formular der Databank',
+      open:'Datei noch nicht geprüft oder nicht lesbar · Formular noch nicht übernommen'},
   };
   const tx=TONEX[state.tab]||{};
   // on #gestaltung the tones speak the layer's words (DATA.gestaltung.labels: the findings of a tone
@@ -2754,6 +2757,82 @@ function svcLaws(dv){
 }
 // a modeller text the export had to cut at a markup glitch (service.dvsh.dvsh_text_glitch)
 const dvCut=(dv,k)=>((dv&&dv.dvsh_text_glitch)||[]).includes(k)?' <span class="muted small">(im DVSH-Text folgen hier Markup-Reste und Angaben eines anderen Feldes — nicht übernommen, Fehler im DVSH-Modell)</span>':'';
+// ---------- Abgleich mit DVSH und SHEP (citygov/domain/quelldokumente.py) ----------
+// The files DVSH and SHEP offer for a service, each known by its fingerprint (SHA-256), with
+// its state against the databank; and what the latest harvests changed. Computed once in the
+// export (services[].dokumente, services[].aenderungen, quellenabgleich) — drawn here only.
+const DOK_STAND=LAB.dok_stand||{}, DOK_ART=LAB.dok_art||{}, DOK_ROLLE=LAB.dok_rolle||{},
+  FELD_QUELLE=LAB.feld_quelle||{}, AENDERUNG=LAB.aenderung||{};
+const QA=DATA.quellenabgleich||{dokumente:{},quellen:{}};
+const DOK_ORDER=['erfasst','gleicher_inhalt','aeltere_ausgabe','begleitdokument','offen','nicht_lesbar','ungeprueft'];
+const dokBadge=d=>stBadge(tonOf('dok',d.stand),esc(lab(DOK_STAND,d.stand)),
+  (d.titel_gedruckt?'Titel auf dem Dokument: '+d.titel_gedruckt+'\n':'')+(d.zweitgeprueft?'Urteil aus dem Inhalt, zweitgeprüft':d.stand==='erfasst'?'dieselbe Datei wie ein Formular der Databank (gleicher Fingerabdruck)':''));
+const qBadge=q=>mkBadge(esc(q),q==='DVSH'?'im DVSH-Dienstleistungsmodell hinterlegt':'auf dem SHEP-Portal verlinkt');
+function dokName(d){
+  const n=esc(d.titel||d.datei||d.sha256.slice(0,12));
+  return d.url?`<a class="dlink" href="${esc(d.url)}" target="_blank" rel="noreferrer" title="Datei öffnen (${d.url.includes('shep.')?'SHEP-Portal':'sh.ch'})">${n} ↗</a>`:n;
+}
+const dokForm=d=>{const f=d.form_id!=null?formById[d.form_id]:null;
+  return f?`<div class="small">${d.stand==='erfasst'?'Formular':'zu Formular'} ${formLink(f.service_id,f.id,esc(f.title))}</div>`:'';};
+// the files of one service (service page)
+function quellDokSection(s){
+  const L=s.dokumente||[]; if(!L.length) return '';
+  return `<h4 class="hscope" id="qdok">Dateien laut DVSH und SHEP (${nf(L.length)})</h4>
+  <div class="card"><p class="hint">Jede Datei, die das DVSH-Modell oder das SHEP-Portal für diesen Service anbietet — erkannt an ihrem
+    Fingerabdruck, also auch unter anderem Namen — und was die Databank davon hält. ${goLink('abgleich','','Alle Dateien und Änderungen ›','inl')}</p>
+  <div class="tscroll"><table class="ft fit"><thead><tr><th>Datei</th><th>Rolle</th><th>Quelle</th><th>Stand in der Databank</th></tr></thead><tbody>${
+    L.map(d=>`<tr><td>${dokName(d)}${d.datei&&d.datei!==d.titel?`<div class="small muted">${esc(d.datei)}</div>`:''}</td>
+      <td class="small">${esc(lab(DOK_ROLLE,d.rolle))}${d.art&&d.art!=='formular'?' · '+esc(lab(DOK_ART,d.art)):''}</td>
+      <td class="small nw">${d.quellen.map(qBadge).join(' ')}</td><td>${dokBadge(d)}${dokForm(d)}</td></tr>`).join('')}</tbody></table></div></div>`;
+}
+// what the latest harvest changed for this service (one line under the head)
+function aenderungLine(s){
+  const A=s.aenderungen||[]; if(!A.length) return '';
+  return `<div class="hint aendline">${A.map(a=>`${qBadge(a.quelle)} ${a.art==='geaendert'
+    ?`seit dem Abzug vom ${esc(fmtDate(a.vorher))} geändert: ${esc(a.felder.map(f=>lab(FELD_QUELLE,f)).join(', '))}`
+    :a.art==='neu'?`neu im Abzug vom ${esc(fmtDate(a.abzug))}`:`im Abzug vom ${esc(fmtDate(a.abzug))} nicht mehr enthalten`}`).join(' · ')}</div>`;
+}
+function viewAbgleich(){
+  const m=document.getElementById('main');
+  const D=QA.dokumente||{}, Q=QA.quellen||{};
+  // every file once, with every service that offers it
+  const files={};
+  DATA.services.forEach(s=>(s.dokumente||[]).forEach(d=>{const f=files[d.sha256]=files[d.sha256]||{d,svcs:[]}; f.svcs.push(s);}));
+  const byStand={}; Object.values(files).forEach(f=>(byStand[f.d.stand]=byStand[f.d.stand]||[]).push(f));
+  const fileRows=L=>L.sort((a,b)=>String(a.d.titel||'').localeCompare(String(b.d.titel||''),'de')).map(f=>`<tr>
+      <td>${dokName(f.d)}${dokForm(f.d)}</td><td class="small">${esc(lab(DOK_ROLLE,f.d.rolle))}${f.d.art&&f.d.art!=='formular'?' · '+esc(lab(DOK_ART,f.d.art)):''}</td>
+      <td class="small nw">${f.d.quellen.map(qBadge).join(' ')}</td>
+      <td class="small">${f.svcs.map(s=>svcLink(s.id,esc(s.name))).join('<br>')}</td></tr>`).join('');
+  const standBlock=k=>{const L=byStand[k]||[]; if(!L.length) return '';
+    return `<details class="card" id="dok-${k}"${['aeltere_ausgabe','offen','nicht_lesbar','ungeprueft'].includes(k)?' open':''}><summary>${dokBadge({stand:k})} <b>${pl(L.length,'Datei','Dateien')}</b></summary>
+      <div class="tscroll"><table class="ft fit"><thead><tr><th>Datei</th><th>Rolle</th><th>Quelle</th><th>Service</th></tr></thead><tbody>${fileRows(L)}</tbody></table></div></details>`;};
+  const srcBlock=q=>{const x=Q[q]; if(!x) return `<div class="nores">Kein Abzug aus ${esc(q)} protokolliert.</div>`;
+    const by=a=>x.aenderungen.filter(e=>e.art===a);
+    const sv=e=>e.service_id!=null&&svcById[e.service_id]?svcLink(e.service_id,esc(svcById[e.service_id].name)):esc(e.titel||e.schluessel);
+    const feldN={}; by('geaendert').forEach(e=>e.felder.forEach(f=>{feldN[f]=(feldN[f]||0)+1;}));
+    return `<div class="card"><h4 style="margin-top:0">${qBadge(q)} Abzug vom ${esc(fmtDate(x.abzug))}${x.vorher?` — verglichen mit dem Abzug vom ${esc(fmtDate(x.vorher))}`:''}</h4>
+      <div class="regstats"><span class="rstat">${q==='DVSH'?'Services':'publizierte Seiten'} <b>${nf(x.anzahl)}</b>${x.vorher_anzahl!=null?` <span class="muted">(vorher ${nf(x.vorher_anzahl)})</span>`:''}</span>
+        <span class="rstat">neu <b>${nf(x.n.neu)}</b></span><span class="rstat">entfernt <b>${nf(x.n.entfernt)}</b></span><span class="rstat">geändert <b>${nf(x.n.geaendert)}</b></span></div>
+      ${by('neu').length?`<details><summary><b>Neu (${nf(by('neu').length)})</b></summary><ul class="small">${by('neu').map(e=>`<li>${sv(e)}</li>`).join('')}</ul></details>`:''}
+      ${by('entfernt').length?`<details open><summary><b>Nicht mehr enthalten (${nf(by('entfernt').length)})</b></summary><ul class="small">${by('entfernt').map(e=>`<li>${sv(e)}</li>`).join('')}</ul></details>`:''}
+      ${by('geaendert').length?`<details><summary><b>Geändert (${nf(by('geaendert').length)})</b> — ${Object.entries(feldN).sort((a,b)=>b[1]-a[1]).map(([f,n])=>`${esc(lab(FELD_QUELLE,f))} ${nf(n)}`).join(' · ')}</summary>
+        <div class="tscroll"><table class="ft fit"><thead><tr><th>Service</th><th>Geändert</th></tr></thead><tbody>${by('geaendert').map(e=>`<tr><td>${sv(e)}</td><td class="small">${esc(e.felder.map(f=>lab(FELD_QUELLE,f)).join(', '))}</td></tr>`).join('')}</tbody></table></div></details>`:''}
+    </div>`;};
+  const dv=QA.dvsh_services||0, sh=QA.shep_seiten||0;
+  m.innerHTML=pageHead('Abgleich DVSH & SHEP',
+    `Ob jeder Service und jede Datei aus dem DVSH-Modell und dem SHEP-Portal in der Databank ist — und was sich seit dem letzten Abzug geändert hat.`,
+    'Oben die Abdeckung: jeder Service des DVSH-Modells und jede publizierte SHEP-Seite mit ihrer Service-Seite, jede angebotene Datei mit ihrem Stand. Darunter je Quelle, was der letzte Abzug gegenüber dem vorherigen neu, nicht mehr oder geändert enthält.',
+    'Das DVSH-Dienstleistungsmodell und das SHEP-Portal, beide nur lesend abgezogen. Eine Datei wird an ihrem Fingerabdruck (SHA-256) erkannt: dieselbe Datei wie ein Formular der Databank ist «erfasst»; jede andere wurde aus ihrem Inhalt beurteilt und zweitgeprüft.',
+    'Grün: erfasst oder kein Formular (Merkblatt, Wegleitung …). Rot: die Quelle bietet eine ältere Ausgabe an als das Formular der Databank — die Dienststelle ersetzt sie dort. Grau: noch nicht geprüft oder noch nicht übernommen — eine Hausaufgabe der Databank.')
+    +`<div class="regstats"><span class="rstat">DVSH-Services <b>${nf(dv)}</b> <span class="muted">mit Service-Seite ${nf(dv-(QA.dvsh_ohne_service||0))}</span></span>
+      <span class="rstat">SHEP-Seiten <b>${nf(sh)}</b> <span class="muted">zugeordnet ${nf(sh-(QA.shep_ohne_service||0))}</span></span></div>
+    <div class="sumbox card"><div class="gcap">Dateien aus DVSH und SHEP: <b class="sumtot">${nf(QA.n_dokumente||0)}</b></div>
+      <ul class="gdist">${DOK_ORDER.filter(k=>D[k]).map(k=>`<li>${dokBadge({stand:k})} <a class="dlink" href="#dok-${k}"><b class="sumn">${nf(D[k])}</b></a></li>`).join('')}</ul></div>
+    <h4 class="hscope">Was die letzten Abzüge geändert haben</h4>${srcBlock('DVSH')}${srcBlock('SHEP')}
+    <h4 class="hscope">Alle Dateien nach Stand</h4>${DOK_ORDER.map(standBlock).join('')}`;
+  wireGo(m);
+  m.querySelectorAll('a[href^="#dok-"]').forEach(a=>a.onclick=e=>{e.preventDefault(); const t=document.getElementById(a.getAttribute('href').slice(1)); if(t){t.open=true; t.scrollIntoView({behavior:MOTION});}});
+}
 function verfahrenSection(s){
   const dv=s.dvsh||{}, sp=s.shep||{};
   // DVSH is the correct version; SHEP fills only what DVSH leaves empty
@@ -2967,7 +3046,7 @@ function viewFields(){
     :'für diesen Service liegt keine DVSH-Modellierung in der Databank vor, Verfahren und Service-Recht sind darum nicht belegt'} — darunter die Formulare und ihre Daten mit Rechtsgrundlage, Standard und Handhabung: die eigene, quellenbelegte Schicht der Databank.</p>
   ${forms.length>1?`<div class="fjump"><span class="hsl">Formulare</span>${forms.map(fm=>
     `<button class="fjc" data-fid="${fm.id}">${esc(fm.title.length>44?fm.title.slice(0,42)+'…':fm.title)}</button>`).join('')}</div>`:''}
-  ${serviceHead(s,forms)}`;
+  ${serviceHead(s,forms)}${aenderungLine(s)}`;
   if(dv&&dv.kurzbeschreibung) h+=`<div class="zweckline" style="margin:2px 2px 10px">${esc(dv.kurzbeschreibung)}</div>`;
   h+=laws.length?`<div class="svclaws"><span class="hsl">Rechtsgrundlage des Services (DVSH)</span>${laws.join('')}</div>`:'';
   if(!s.dvsh) h+=`<div class="card nodvbox"><span class="badge b-nodv">◇ ${s.in_dvsh?'DVSH-Modellierung nicht in der Databank':'Nicht im DVSH-Modell'}</span>
@@ -2992,6 +3071,7 @@ function viewFields(){
       ?(dv.endpoint_typ?`laut DVSH Kanal: <b>${esc(lab(ENDPOINT_DE,dv.endpoint_typ))}</b>`:'im DVSH ist kein Kanal (Endpoint) hinterlegt')
       :'keine DVSH-Modellierung in der Databank, der Kanal ist nicht belegt'}.</div></div>`;
     forms.forEach(fm=>{h+=formSection(s,fm);});
+    h+=quellDokSection(s);
     m.innerHTML=h;
   }
   if(fBad) m.insertAdjacentHTML('afterbegin',`<div class="nores">${fBad}</div>`);
@@ -3724,6 +3804,12 @@ function searchIndex(){
   const fmLink=f=>({tab:'fields',service:f.service_id,sub:'form-'+f.id,label:f.title});
   DATA.services.forEach(s=>ix.push({t:'Service',label:s.name,sub:[s.dienststelle,s.name_alt?'auch: '+s.name_alt:''].filter(Boolean).join(' · '),
     key:lc(s.name+' '+(s.name_alt||'')+' '+(s.dienststelle||'')),go:{tab:'fields',service:s.id,sub:'felder'}}));
+  const qd={};
+  DATA.services.forEach(s=>(s.dokumente||[]).forEach(d=>{if(d.stand==='erfasst') return;
+    const e=qd[d.sha256]=qd[d.sha256]||{d,svcs:[]}; e.svcs.push(s);}));
+  Object.values(qd).forEach(({d,svcs})=>ix.push({t:'Quelldatei',label:d.titel||d.datei||d.sha256.slice(0,12),
+    sub:[lab(DOK_STAND,d.stand),svcs.map(s=>s.name).join(' · ')].join(' — '),key:lc((d.titel||'')+' '+(d.datei||'')+' '+(d.titel_gedruckt||'')),
+    go:{tab:'fields',service:svcs[0].id,sub:'felder'}}));
   const recip={}, beil={}, ech={};
   DATA.forms.forEach(f=>{
     const svc=svcById[f.service_id];
@@ -3871,7 +3957,7 @@ function viewSearch(){
   const hits=searchIndex().filter(e=>toks.every(t=>e.key.includes(t)))
     .map(e=>{const L=e.label.toLowerCase();return {e,sc:(L.startsWith(toks[0])?2:0)+(toks.every(t=>L.includes(t))?1:0)+(toks.every(t=>wb(e.key,t))?3:0)};})
     .sort((a,b)=>b.sc-a.sc);
-  const order=['Glossar','Themengruppe','Service','Formular','Datenfeld','Begriff','Gesetz','Artikel','Regel','Empfänger','Beilage','eCH-Standard','eSH-Entwurf','Dienststelle','Gestaltung','Datenmodell','Rolle','Konzept','Register'];
+  const order=['Glossar','Themengruppe','Service','Formular','Datenfeld','Begriff','Gesetz','Artikel','Regel','Empfänger','Beilage','eCH-Standard','eSH-Entwurf','Dienststelle','Gestaltung','Datenmodell','Rolle','Konzept','Register','Quelldatei'];
   const byT={}; hits.forEach(x=>(byT[x.e.t]=byT[x.e.t]||[]).push(x.e));
   h+=`<div class="regstats">${order.filter(t=>byT[t]).map(t=>`<span class="rstat">${esc(t)} <b>${byT[t].length}</b></span>`).join('')}${hits.length?'':'<span class="rstat">keine Treffer</span>'}</div>`;
   if(!hits.length&&toks.length>1) h+=`<div class="nores">Alle Wörter müssen im selben Eintrag vorkommen. Mit einem einzelnen Begriff suchen (${toks.map(t=>`<a class="simlink" data-q="${esc(t)}">${esc(t)}</a>`).join(' · ')}) oder die Schreibweise des Gesetzestexts verwenden — Fristen stehen dort meist als Zahlwort («zehn Jahre»), nicht als Ziffer.</div>`;
@@ -4335,7 +4421,7 @@ try{const mo=new MutationObserver(()=>{const mn=document.getElementById('main');
 // only drawn here; colours and text sizes come from citygov/core/theme.py.
 // ========================================================================================
 // tabs that read no sub-segment: an unknown one is dropped and said at the top of the page
-const NO_SUB=new Set(['home','methode','katalog','esh','register','datenfluss','rules','guide']);
+const NO_SUB=new Set(['home','methode','katalog','esh','register','datenfluss','rules','guide','abgleich']);
 let _lastRoute=null;
 // the view of the current page; an unknown page says so (viewUnknown)
 function drawView(){
@@ -4358,6 +4444,7 @@ function drawView(){
   else if(state.tab==='gestaltung') viewGestaltung();
   else if(state.tab==='datenmodell') viewDatenmodell();
   else if(state.tab==='onceonly') viewOnceonly();
+  else if(state.tab==='abgleich') viewAbgleich();
   else if(state.tab==='fields') viewFields();
   else viewUnknown();
 }

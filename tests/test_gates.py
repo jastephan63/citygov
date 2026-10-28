@@ -207,7 +207,8 @@ class ExportSums(TestCase):
         name = next(n for n, v in k.items() if isinstance(v, dict) and "teile" in v)
         faelle = (("a part of a headline figure", k[name]["teile"], next(iter(k[name]["teile"])), f"kopfzahlen.{name}"),
                   ("the open points of the canton", k["offene_punkte"], "act", "kopfzahlen.offene_punkte"),
-                  ("one Dienststelle", data["dienststellen_uebersicht"][0]["offen"], "act", "dienststellen_uebersicht"))
+                  ("one Dienststelle", data["dienststellen_uebersicht"][0]["offen"], "act", "dienststellen_uebersicht"),
+                  ("a state of the DVSH/SHEP files", data["quellenabgleich"]["dokumente"], "erfasst", "quelldokumente"))
         for was, teil, key, text in faelle:
             with self.subTest(tampered=was):
                 teil[key] += 1          # the export is shared by the tests of this run: put back below

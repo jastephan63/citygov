@@ -1,0 +1,14 @@
+{
+ "verdicts": [
+  {
+   "id": 7188,
+   "subjekt": "gemischt",
+   "grund": "Meldende Person kann Privatperson oder Fachperson im Namen einer Firma/Organisation sein (Unterfeld «Firma/Organisation/Funktion»); Angaben nicht sicher die eigenen einer Privatperson."
+  },
+  {
+   "id": 7189,
+   "subjekt": "natuerliche_person",
+   "grund": "Personalien, Geschlecht, Geburtsdatum und Wohnadresse der einen erwachsenen Person, deren Gefährdung gemeldet wird; eindeutig eine natürliche Person."
+  }
+ ]
+}

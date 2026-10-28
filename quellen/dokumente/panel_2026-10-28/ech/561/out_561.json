@@ -1,0 +1,122 @@
+{
+ "hinweis": "eCH-Urteile Formular 561, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/561 --nur-offene=561",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die Auswahl Haus oder Wohnung fragt, in welcher Art Gebäude der Hund gehalten wird. Es ist eine Auswahl aus zwei Werten, kein Ja/Nein-Feld. Im Gebäude- und Wohnungsregister (eCH-0129 Objektwesen, Genehmigt) gibt die Gebäudeklasse buildingClass (buildingType, GKLAS) diese Unterscheidung an: Gebäude mit einer Wohnung ≈ Haus, Gebäude mit zwei oder mehr Wohnungen ≈ Wohnung. buildingCategory unterscheidet nicht nach Ein- oder Mehrfamilienhaus (Codes 1010–1080, Wohnnutzung 1020 als ein Wert). eCH-0185 housingSituationType (Miete oder Eigentum) und eCH-0011 typeOfHousehold (Haushaltsart, Codes 0–3) passen nicht.",
+   "feld": "Wohnverhältnisse",
+   "standard": "eCH-0129",
+   "element": "buildingClass"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Laut Formular wird die Grösse in Zimmern angegeben («Grösse: …… Zimmer» unter Wohnverhältnisse). Das ist die Anzahl Wohnräume nach eCH-0129 dwellingType/noOfHabitableRooms (Genehmigt, GWR WAZIM). Der übernommene Wert eCH-0013 (Prozess Hundemarken, Sistiert, ohne Elemente) stammt von «Grösse des Hundes» auf anderen Formularen. Hier ist aber die Wohnung gemeint. eCH-0278 apartmentRooms betrifft nur die Steuererklärung (Liegenschaftsertrag).",
+   "feld": "Grösse",
+   "standard": "eCH-0129",
+   "element": "noOfHabitableRooms"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freie Beschreibung des Aussenraums (Garten, Einzäunung). Den ganzen Katalog nach garden/fence/enclos/outdoor/yard/surrounding/landArea/Garten durchsucht: kein Treffer. Auch eCH-0129/0131/0206/0216 geprüft (Gebäude, Wohnung, Grundstück): Dort gibt es nur Gebäude-, Wohnungs- und Flächenangaben, kein Element für Umschwung oder Einzäunung.",
+   "feld": "Umschwung (Garten, Einzäunung usw.)"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Gefragt sind die Personen im Haushalt. eCH-0011 (Genehmigt) bildet die Haushaltszugehörigkeit über dwellingAddressType/householdID ab: Die Personen mit derselben Haushalts-ID sind der Haushalt. Ob jemand erwachsen oder ein Kind ist, ergibt sich aus dem Geburtsdatum. Gleiche Zuordnung wie «Personen im Haushalt» auf Formular 153. typeOfHousehold gibt nur die Haushaltsart an (Codes 0–3). eCH-0278 isChildInHousehold ist ein Ja/Nein-Feld aus dem Steuerbereich. Personenzählungen («Anzahl Personen im Haushalt») sind im Korpus kein_standard. Der Katalog hat kein Element household/numberOfPersons.",
+   "feld": "Im Haushalt lebende Personen (Erwachsene, Kinder)",
+   "standard": "eCH-0011",
+   "element": "householdID"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "eCH-0185 (Zusatzdaten Wegzug/Zuzug, Genehmigt) führt die Haustiere eines Haushalts als petData. Im Katalog ist das das einzige genehmigte Element für Tiere im Haushalt. Vorbehalt: Inhaltlich ist nur dogData ausgearbeitet. eCH-0194 petData hat keinen Status. eCH-0262 animalCategoryPRIF/zoologicalAnimal betrifft Nutztiere in den Agrardaten. eCH-0309 ist In Arbeit und hat keine Elemente, eCH-0013 ist Sistiert. Diese passen nicht.",
+   "feld": "Andere Tiere im Haushalt",
+   "standard": "eCH-0185",
+   "element": "petData"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ja/Nein-Auswahl, ob der Vermieter bzw. Eigentümer zugestimmt hat. Ein solches Feld bekommt kein Wert-Element. Den Katalog nach consent/approval/agreement/owner/landlord durchsucht: eCH-0260 publishContact (Einwilligung zur Veröffentlichung) und eCH-0254 approval (ÖREB-Prozess, behördliche Genehmigung) sind fachfremd, die owner-Elemente (eCH-0039, eCH-0211, eCH-0133) betreffen Dokumente oder Grundstücke. Die Option «Liegenschaft gehört mir» berührt die Eigentumsform (eCH-0185 housingSituationType). Gefragt ist aber die Zustimmung.",
+   "feld": "Das Einverständnis des Eigentümers zur Haltung dieses Hundes liegt vor"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freitext zu den Auflagen, die der Eigentümer der Liegenschaft an die Hundehaltung knüpft. Den Katalog nach condition/restriction/limitation/obligation durchsucht. Gefunden wurden nur fachfremde Elemente: eCH-0165 condition (SIARD-Datenbankbedingung), eCH-0129 usageLimitation (Nutzungsbeschränkung einer Wohnung), eCH-0254 conditionalApproval (Bewilligung im ÖREB-Prozess) und eCH-0235 restrictionReason. Auch im Korpus sind «weitere Auflagen» kein_standard.",
+   "feld": "allfällige Auflagen"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Im Kern ist gefragt, wer den Hund betreut. Gleiche Zuordnung wie «Verantwortliche Person für die Tierbetreuung» auf den Formularen 372/373/375/430 (eCH-0044 personIdentification, Genehmigt). Dauer und Häufigkeit stehen im selben Freitextfeld und haben keinen Standard. Das Feld sollte deshalb aufgeteilt werden. eCH-0020 carePerson und eCH-0021 care betreffen die Obhut über Kinder.",
+   "feld": "Betreuungs- und Bezugsperson des Hundes, allfällige weitere Personen, die den Hund betreuen (Dauer, Häufigkeit)",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Mehrfachauswahl von Hundeausbildungen (Familienhund, Mantrailing, Sanitätshund …). Den Katalog nach training/education/dog/pet/animal durchsucht. eCH-0260 trainingLocation/originalTrainingStart betreffen die Berufsbildung von Menschen, eCH-0278 educationAndTraining die Weiterbildungskosten in der Steuererklärung. eCH-0185 dogData führt nur Name, Geschlecht, Geburtsdatum, Chip und ANIS. eCH-0013 ist Sistiert und eCH-0309 In Arbeit, beide ohne Elemente. Für Hundeausbildungen gibt es kein Element.",
+   "feld": "Ich beachsichtige mit dem neuen Hund folgende Ausbildung(en) zu machen"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freitext zu einer weiteren, nicht vorgedruckten Hundeausbildung, wenn «anderes» angekreuzt ist. Wie bei der Ausbildungsauswahl: Im ganzen Katalog gibt es kein Element für Hundeausbildungen. eCH-0260 betrifft nur die Berufsbildung von Menschen, eCH-0013 und eCH-0309 haben keine Elemente.",
+   "feld": "anderes"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Angegeben werden die Namen der Hundeschulen, also Organisationen. Dafür gilt eCH-0098 organisationName (organisationIdentificationType, Genehmigt), genau wie bei «Name(n) der Hundeschule, des Hundetrainers etc.» auf Formular 168. eCH-0260 schoolName betrifft Berufsfachschulen.",
+   "feld": "Ich beabsichtige folgende Hundeschulen zu besuchen",
+   "standard": "eCH-0098",
+   "element": "organisationName"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Der übernommene Wert eCH-0013 (Prozess Hundemarken, Sistiert, ohne Elemente) beschreibt nicht, wie ein Hund beschäftigt wird. Den Katalog nach activity/occupation/dog/pet/animal durchsucht. eCH-0185 dogData führt nur Name, Geschlecht, Geburtsdatum, Chip und ANIS. activityDescription in eCH-0098/0108 betrifft Unternehmen, occupationData in eCH-0021 die Erwerbstätigkeit von Personen. Für die Beschäftigung eines Tiers gibt es kein Element.",
+   "feld": "Alltagsbeschäftigung des Hundes"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freie Begründung für die gewählte Rasse. Den Katalog nach breed/reason/Rasse durchsucht. Die reason-Elemente sind fachfremd (eCH-0098/0148 liquidationReason, eCH-0119 paymentReason, eCH-0129 estimationReason, eCH-0216 reason für GWR-Mutationen). Die Rasse kommt nur im sistierten eCH-0013 und in eCH-0309 (In Arbeit) vor, beide ohne Elemente.",
+   "feld": "Ich habe mich für einen Hund dieser Rasse entschieden, weil"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Der übernommene Wert stimmt. eCH-0119 locationAndDate (attachedFormsType, Genehmigt) ist im Katalog das einzige Sammelelement für «Ort und Datum» der Unterzeichnung. Der zusammengesetzte Wert bekommt dieses Element, die Teile werden einzeln beurteilt.",
+   "feld": "Ort / Datum"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist der Ort der Unterzeichnung, keine Adresse, also nicht eCH-0010 town. Den Katalog nach sign*/location*/place* durchsucht. eCH-0119 locationAndDate gibt es nur zusammen mit dem Datum, eCH-0039 signer nennt die unterzeichnende Person. placeOfBirth, placeOfOrigin und placeOfMarriage sind fachfremd. Für den Ort gibt es kein eigenes Element. Gleiches Urteil wie bei «Ort und Datum/Ort» im Korpus (16×).",
+   "elternfeld": "Ort / Datum",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist das Datum der Unterzeichnung. Den Katalog nach *Date in Dokument-, Formular-, Vertrags- und Signaturkontexten durchsucht. eCH-0058 messageDate ist das Erstellungsdatum einer Meldung, eCH-0039 openingDate die Eröffnung eines Dossiers, eCH-0260 signatures enthält nur Ja/Nein-Bestätigungen. Für das Unterschriftsdatum gibt es kein Element. Gleiches Urteil wie bei «Ort und Datum/Datum» im Korpus (16×).",
+   "elternfeld": "Ort / Datum",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Der übernommene Wert kein_standard stimmt (dazu der Entwurf eSH-0001 signature). Den Katalog nach signature/sign durchsucht. eCH-0039 signer nennt nur die unterzeichnende Person, eCH-0260 signatures enthält nur Ja/Nein-Bestätigungen. eCH-0091/0220/0230/0250/0274/0282 sind Signaturverfahren ohne Elemente. Für eine eigenhändige Unterschrift gibt es kein Element.",
+   "feld": "Unterschrift"
+  }
+ ]
+}

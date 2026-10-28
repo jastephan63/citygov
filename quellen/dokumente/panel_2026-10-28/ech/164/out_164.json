@@ -1,0 +1,67 @@
+{
+ "hinweis": "eCH-Urteile Formular 164, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/164 --nur-offene=164",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Freitext für weitere Kennzeichen des Hundes neben Tätowierung und Mikrochip (Ziffer B, Zeile «Andere Kennzeichen»). eCH-0185 dogDataType hat nur name, sex, birthDate, chipNumber, tattooNumber und ANISnumber. ANISnumber ist eine Registernummer und keine Markierung am Tier, also passt kein Element. Gesucht wurde im ganzen Katalog nach mark, tag, tattoo, chip, animal, dog, pet und livestock: Gefunden wurden nur eCH-0185 und die Container petData in eCH-0185/eCH-0194 ohne Kennzeichen-Element. Geprüft und verworfen wurde eCH-0309 Tierverkehrsdaten (In Arbeit), das sonst für Kennzeichennummern von Nutztieren und Equiden dient (159, 420, 462): Hunde stehen nicht in der TVD. eCH-0013 Prozess Hundemarken ist der hundespezifische Standard, und eine Hundemarke ist selbst ein Kennzeichen des Hundes. Auf diesem Formular tragen alle übrigen Hundeangaben ohne eCH-0185-Element eCH-0013, ebenso 160 «Besondere Merkmale» und 162 «Transponder- bzw. Tätowierungscode». Korrektur zum ersten Urteil: Auf 163 und 391 ist «Besondere Merkmale (Hundename)» eCH-0185 name zugeordnet, nicht eCH-0013. eCH-0013 hat den Status Sistiert, nicht Aufgehoben oder Abgelöst. Er hat n_elements=0, daher bleibt das Element leer.",
+   "feld": "Andere Kennzeichen",
+   "standard": "eCH-0013",
+   "element": ""
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Ort und Datum der Unterzeichnung (im PDF ein Kasten «Ort / Datum / Unterschrift»). Bestätigt wird der propagierte Wert eCH-0119 locationAndDate (id 2024, attachedFormsType, xs:string). Laut XSD ist das ein einziger String für Ort und Datum, also das Container-Element für die zusammengesetzte Angabe. eCH-0119 ist genehmigt. Der Wert entspricht der Praxis für «Ort, Datum», «Ort / Datum» und «Ort/Datum» (19 Felder), auch auf 561 und 562, den Beilagen zu genau diesem Listenhund-Gesuch. Hinweis: Gleichnamige Felder «Ort und Datum» stehen im Korpus auf kein_standard (31x). Diese Uneinheitlichkeit liegt ausserhalb dieses Formulars.",
+   "feld": "Ort / Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Bestätigt wird der propagierte Wert kein_standard (29x geprüft). Im ganzen Katalog gesucht wurde nach sign, signature und unterschrift. Gefunden wurden nur eCH-0039 signer (Token für die Person, die ein Dokument im Dossier-Austausch signiert, keine handschriftliche Unterschrift) und eCH-0260 signatures/…SignatureConfirmation (boolesche Bestätigungen nur für den Lehrvertrag). Dazu kommen die Signaturverfahren eCH-0091, eCH-0220, eCH-0230, eCH-0250, eCH-0274 und eCH-0282, alle ohne Elemente und ohne Definition einer Angabe.",
+   "feld": "Unterschrift"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Geburtsdatum der Hundehalterin bzw. des Hundehalters (Ziffer A), also einer natürlichen Person. Das Geburtsdatum des Hundes ist in Ziffer B ein eigenes Feld. dateOfBirth gibt es wörtlich in eCH-0044 (personIdentificationLightType / personIdentificationType). Das entspricht 224 bisherigen Teilangaben «Geburtsdatum» von Personen (223x personIdentificationLightType).",
+   "elternfeld": "Personalien Hundehalter/-in",
+   "teilfeld": "Geburtsdatum",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Die Teilangabe ist die Nummer der Tätowierung des Hundes, also das Wertfeld neben dem Kästchen «Tätowierung». Die Feld-Definition sagt ausdrücklich «Nummer der Tätowierung». Es ist also kein Ja/Nein-Kästchen, und ein Wert-Element ist richtig. eCH-0185 dogDataType tattooNumber (shortTextType) gibt es wörtlich, und es passt genau. chipNumber passt nicht, denn das ist die Nummer des Mikrochips.",
+   "elternfeld": "Kennzeichnungsnummer",
+   "teilfeld": "Tätowierung",
+   "standard": "eCH-0185",
+   "element": "tattooNumber"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Die Teilangabe ist die Mikrochip-Nummer des Hundes (Kästchengitter neben «Mikrochip», 15 Kästchen), also ein Wert und kein Ja/Nein-Kästchen. eCH-0185 dogDataType chipNumber gibt es wörtlich, und es passt genau. Das entspricht der Praxis bei Hunden auf 158 «Chipnr. des Hundes» und 160 «Chipnummer» sowie auf 443 und 374.",
+   "elternfeld": "Kennzeichnungsnummer",
+   "teilfeld": "Mikrochip",
+   "standard": "eCH-0185",
+   "element": "chipNumber"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Ort der Unterzeichnung. Die übergeordnete Angabe trägt eCH-0119 locationAndDate, einen einzigen kombinierten String ohne getrennte Teile. Im ganzen Katalog gesucht wurde nach place, location und sign. Gefunden wurden nur Geburtsort, Heimatort, Sterbeort, Arbeitsort, Ortsadressen und Ortsnamen von Grundstücken, aber kein Ort einer Unterzeichnung. eCH-0010 town ist eine Postadresse und passt nicht. Das entspricht 11 bisherigen Verdikten kein_standard für die Teilangabe «Ort» unter «Ort und Datum».",
+   "elternfeld": "Ort / Datum",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Datum der Unterzeichnung. eCH-0119 locationAndDate ist ein kombinierter String ohne eigenes Datum. Gesucht wurde nach date, issueDate, requestDate, submission und sign. Gefunden wurden nur fachliche Daten wie Geburt, Tod, Bewilligung, Bau und Nachrichtenkopf (eCH-0206 requestDate), aber kein Datum einer Unterzeichnung. Das entspricht 11 bisherigen Verdikten kein_standard für die Teilangabe «Datum» unter «Ort und Datum».",
+   "elternfeld": "Ort / Datum",
+   "teilfeld": "Datum"
+  }
+ ]
+}

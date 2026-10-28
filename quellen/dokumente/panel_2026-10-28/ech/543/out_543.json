@@ -1,0 +1,115 @@
+{
+ "hinweis": "eCH-Urteile Formular 543, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/543 --nur-offene=543",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "This is a five-line free-text postal address block for the reporting company (the employer). The Formular has no sub-division in the block, so it holds the company name and address together. eCH-0010 organisationMailAdress (organisationMailAddressType) is the postal address of an organisation; the element exists verbatim in eCH-0010 (Genehmigt). Comparable rows use the same mapping: «Name und Adresse des Arbeitgebers» (Formulare 108 and 282) and «Firma und Adresse» (239 and 243). The field row has no element yet.",
+   "feld": "Adresse des Unternehmens",
+   "standard": "eCH-0010",
+   "element": "organisationMailAdress"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "This is a composite of the contact person's name, phone and e-mail, so it gets the container element. That container is eCH-0046 contact (contactType), which exists verbatim in eCH-0046 (Genehmigt). All 16 other «Kontaktperson…» fields that have an element use it. The field row has no element yet.",
+   "feld": "Kontaktperson",
+   "standard": "eCH-0046",
+   "element": "contact"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "This is the exact number of people who stay employed after the dismissals, which is a value after a change. Searched all 290 standards for numberOf*, count*, *employ*, *worker*, *staff*, *personnel*, *labour*, *workforce*, *fte*, *sizeClass* and number/count/total*person*. The only candidate is eCH-0108 sizeClassFte, but the XSD defines sizeClassFteType as a register size-class code from 1 to 12 in full-time equivalents. That is not a head count, and not a post-dismissal one. eCH-0260 numberQualifiedPersons belongs to vocational training. No standard has elements for mass dismissals or AVV Art. 53 reports (the eCH-0041, eCH-0100 and eCH-0137 topic standards have no elements). Comparable rows «Anzahl betroffene Mitarbeitende» and «Anzahl Arbeitnehmer» are also kein_standard.",
+   "feld": "Anzahl der Mitarbeitenden, welche weiterhin im Betrieb beschäftigt sind"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "This is free text on the reasons for dismissals for operational reasons. Searched *remark*, *comment*, *reason*, *dismiss*, *terminat*, *notice*, *closure*, *restruct*, *cessation*, *layoff*, *redundan* and *cancel* across the whole catalogue. What exists does not fit. Message and dossier header comments (eCH-0058, eCH-0039, eCH-0147) carry no business content. Domain remarks cover buildings, surveying and tax (eCH-0129, eCH-0211, eCH-0276). Company liquidation or cessation reasons (eCH-0098 liquidationReason, eCH-0108 cessationReason) concern the company, not its employees. eCH-0260 terminateEducationRelation concerns apprenticeships. None defines reasons for dismissing employees. The comparable «Grund der Kündigung» and «Grund der Vertragsauflösung» are also kein_standard.",
+   "feld": "Bemerkungen, Gründe für betriebsbedingte Entlassungen"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "This is a table with one row per dismissed employee. By the Formular's own note the rows are anonymised (no names). Each row gives function, age, sex, nationality, place of residence and end of notice period, so each row is a person record. The container is eCH-0011 person (personType, Personendaten), which exists verbatim in eCH-0011 (Genehmigt). eCH-0044 personIdentification does not fit because the persons are deliberately not identified. A comparable person-list composite, «Personen im Haushalt (Detailangaben)», also uses eCH-0011 person. Each part is mapped to its own atomic element.",
+   "feld": "Betroffene Mitarbeitende, welche infolge Umstrukturierung, Betriebsschliessung/Verlagerung entlassen werden",
+   "standard": "eCH-0011",
+   "element": "person"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "This is the single name field of the company's contact person. Name maps to eCH-0044 officialName (personIdentificationLightType), which exists verbatim. It is consistent with the other «Kontaktperson» composites («Kontaktperson», «Name / Vorname», «Name, Vorname» all use officialName). The propagated value is confirmed.",
+   "elternfeld": "Kontaktperson",
+   "teilfeld": "Kontaktperson"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "This is the contact person's phone number. It maps to eCH-0046 phoneNumber (phoneType), which exists verbatim, the same as the other 14 «Kontaktperson»/«Telefon» parts. The propagated value is confirmed.",
+   "elternfeld": "Kontaktperson",
+   "teilfeld": "Telefon"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "This is the contact person's e-mail address. It maps to eCH-0046 emailAddress (emailType), which exists verbatim, the same as the other 13 «Kontaktperson»/«E-Mail» parts. The propagated value is confirmed.",
+   "elternfeld": "Kontaktperson",
+   "teilfeld": "E-Mail"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "This is the dismissed employee's function or job in the company. eCH-0021 jobTitle (jobDataType) defines a person's job title and exists verbatim in eCH-0021 (Genehmigt). The comparable «Funktion» parts (14) and «Beruf» parts (22) are mapped to it. The part has no element yet.",
+   "elternfeld": "Betroffene Mitarbeitende, welche infolge Umstrukturierung, Betriebsschliessung/Verlagerung entlassen werden",
+   "teilfeld": "Funktion",
+   "standard": "eCH-0021",
+   "element": "jobTitle"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "This is the age as a whole number of years. Searched element names for age*, *Age*, *alter*, *yearsOld* and *yearOfBirth* across all 290 standards; no standard has an age element. eCH-0044/eCH-0011 dateOfBirth and eCH-0155 yearOfBirth are different data (a calendar date or a year, not an age), and the Formular asks for the age, not the birth date. The comparable «Alter» part is also kein_standard.",
+   "elternfeld": "Betroffene Mitarbeitende, welche infolge Umstrukturierung, Betriebsschliessung/Verlagerung entlassen werden",
+   "teilfeld": "Alter"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "The column header «m/w» is a choice between m and w, which is the employee's sex. It is not a yes/no box. eCH-0044 sex (sexType, personIdentificationLightType) exists verbatim and is the element used for comparable parts: «Geschlecht» (14 times) and «Geschlecht (m/w)». The part has no element yet.",
+   "elternfeld": "Betroffene Mitarbeitende, welche infolge Umstrukturierung, Betriebsschliessung/Verlagerung entlassen werden",
+   "teilfeld": "m/w",
+   "standard": "eCH-0044",
+   "element": "sex"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "This is the dismissed employee's nationality. eCH-0011 nationalityData (personType) defines a person's nationality and exists verbatim. It also fits the eCH-0011 person container of the parent. Comparable «Nationalität» parts use it 36 times. The part has no element yet.",
+   "elternfeld": "Betroffene Mitarbeitende, welche infolge Umstrukturierung, Betriebsschliessung/Verlagerung entlassen werden",
+   "teilfeld": "Nationalität",
+   "standard": "eCH-0011",
+   "element": "nationalityData"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "This is the employee's current place of residence, given as a town name only, with no street or postcode. That is the locality part of the eCH-0010 address: town (addressInformationType), which exists verbatim. It is the usual mapping for «Wohnort» parts (35 times). The part has no element yet.",
+   "elternfeld": "Betroffene Mitarbeitende, welche infolge Umstrukturierung, Betriebsschliessung/Verlagerung entlassen werden",
+   "teilfeld": "Wohnort",
+   "standard": "eCH-0010",
+   "element": "town"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«Ablauf der Kündigungsfrist» is the calendar date on which the notice period runs out, which is when the employment ends. It is the end date of a period, not a current value. eCH-0021 occupationValidTill (occupationDataType, date) is the end date of an employment and exists verbatim. Comparable parts use it: «Kündigung auf den», «Austritt», «Fristlose Entlassung am». It fits better than the tax-only eCH-0278 employmentEndDate. The part has no element yet.",
+   "elternfeld": "Betroffene Mitarbeitende, welche infolge Umstrukturierung, Betriebsschliessung/Verlagerung entlassen werden",
+   "teilfeld": "Abl. Kü-frist",
+   "standard": "eCH-0021",
+   "element": "occupationValidTill"
+  }
+ ]
+}

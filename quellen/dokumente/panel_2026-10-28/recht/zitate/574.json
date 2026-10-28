@@ -1,0 +1,81 @@
+{
+ "form_id": 574,
+ "mappings": [
+  {
+   "data_field": "Schuldner",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Adresse des Betreibungsamtes",
+   "cites": [
+    {
+     "cref": "SHR 281.101",
+     "article_no": "§ 1",
+     "beleg": "Der Kanton Schaffhausen besteht aus einem einzigen Betreibungskreis. Das Betreibungsamt hat seinen Sitz in Schaffhausen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Geburtsdatum",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Gläubiger",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Zahlungsverbindung",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "IBAN",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "vertreten durch",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Für Rückfragen",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Forderung",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Weitere Forderungen",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Bemerkungen",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Ihre Fallreferenz",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Datum",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Unterschrift",
+   "cites": [],
+   "over_collection": false
+  }
+ ]
+}

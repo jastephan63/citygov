@@ -1,0 +1,75 @@
+{
+ "hinweis": "eCH-Urteile Formular 552, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/552 --nur-offene=552",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "«Firma» is the registered company name of the GmbH that waives the limited audit. eCH-0098 (Genehmigt) has organisationName in organisationIdentificationType (id 1334, the only element of that name in the standard), the company-name element. The databank maps «Firma» to it 23 times, against eCH-0010 organisationName, a mail-address line, 3 times.",
+   "feld": "Firma",
+   "standard": "eCH-0098",
+   "element": "organisationName"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "This is the first business year from which the opting-out under OR 727a takes effect, the start of the waiver's validity. I searched the whole catalogue for *year*, *period*, fiscal*, businessYear, financialYear, accounting*, reporting*, audit*, revision*, opting*, optout, waiv* and verzicht. I found tax-period elements: eCH-0276 taxPeriodFrom/To in titleType, eCH-0119 taxPeriod/periodFrom/periodTo, eCH-0278 taxYear and eCH-0217 reportingPeriodFrom. They give the period a tax return or report covers, not the year a waiver starts. I also found the business-year amounts in eCH-0276 depreciationDetailType, eCH-0229 auditor (the auditor as a party), and generic gYear parts in datePartiallyKnownType. None fits. The databank precedent agrees: form 311 «Rechnungsjahr des Verzichts» is kein_standard.",
+   "feld": "Geschäftsjahr, ab welchem der Verzicht gelten soll"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "This composite is the table of all shareholders of the GmbH, with first name, name, number of capital shares, and place and date of signing. eCH-0276 (Genehmigt) detailsShareholdersAssociates in shareholdersAssociatesType (id 7774) is the per-shareholder container: name, givenName, amount, nominal and so on. It is the container element for this list. Form 361 «Gesellschafter/innen» uses the same mapping.",
+   "feld": "Sämtliche Gesellschafter/innen der GmbH",
+   "standard": "eCH-0276",
+   "element": "detailsShareholdersAssociates"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "This is the first name of a shareholder; the column «Vorname» shows a natural person. By the rule Vorname → firstName, eCH-0044 (Genehmigt) firstName is the element. It resolves to personIdentificationType, id 789, and is the usual mapping in the databank.",
+   "elternfeld": "Sämtliche Gesellschafter/innen der GmbH",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "This is the surname of a shareholder who is a natural person. By the rule Name → officialName, eCH-0044 (Genehmigt) officialName is the element. It resolves to personIdentificationType, id 788, and is the usual mapping in the databank.",
+   "elternfeld": "Sämtliche Gesellschafter/innen der GmbH",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "This is the number of capital shares each shareholder holds, a whole number and the current holding. eCH-0276 numberOfSharesUnits in shareholdersOrAssociatesType (integer, id 7462) is the element the databank already uses for the same Angabe in forms 307, 317 («Anzahl Stammanteile», «Anzahl gezeichnete Stammanteile») and 359. Keeping it means the same Angabe has one element across forms. The alternative eCH-0276 amount in detailsShareholdersAssociatesType carries the same meaning but has a generic name, so I did not choose it.",
+   "elternfeld": "Sämtliche Gesellschafter/innen der GmbH",
+   "teilfeld": "Anzahl Stammanteile",
+   "standard": "eCH-0276",
+   "element": "numberOfSharesUnits"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "On the Formular, «Ort, Datum» is the column before «Unterschrift», so this is the place where the shareholder signed, not a residence. eCH-0010 town would be wrong because it is an address part. I searched the whole catalogue for signat*, locationAndDate, signing*, placeOf*Sign, dateOfSign and declarationDate. The only hit is eCH-0119 locationAndDate (attachedFormsType and listOfSecuritiesType), a combined string limited to tax-return attachments. It cannot be used for the atomic part «Ort». eCH-0260 signaturesType holds only signature-confirmation booleans for apprenticeship contracts. No standard defines the place of a handwritten signature, and the databank marks comparable signature Ort/Datum parts kein_standard (40 times).",
+   "elternfeld": "Sämtliche Gesellschafter/innen der GmbH",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "This is the date on which the shareholder signed, from the «Ort, Datum» column before «Unterschrift». The catalogue search was the same as for Ort (signat*, locationAndDate, signing*, dateOfSign, declarationDate). eCH-0119 locationAndDate is a combined, tax-specific string and does not fit an atomic date. eCH-0058 messageDate is the date an electronic message was created, not a signature date. No standard defines the date of a handwritten signature, and comparable signature-date parts are kein_standard in the databank.",
+   "elternfeld": "Sämtliche Gesellschafter/innen der GmbH",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "This confirms the propagated kein_standard (ech_herkunft «propagiert (Name 15x geprüft)»). A handwritten signature is not a data element in any eCH standard. The signature standards (eCH-0091, 0220, 0230, 0250, 0274, 0282) cover electronic signature procedures and have no elements. eCH-0260 signaturesType has only confirmation booleans for apprenticeship contracts.",
+   "feld": "Unterschrift"
+  }
+ ]
+}

@@ -1,0 +1,151 @@
+{
+ "form_id": 44,
+ "mappings": [
+  {
+   "data_field": "Stammnummer",
+   "cites": [
+    {
+     "cref": "SR 741.51",
+     "article_no": "Art. 80"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Bisheriges Gesamtgewicht",
+   "cites": [
+    {
+     "cref": "SR 741.51",
+     "article_no": "Art. 80"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Bisheriges Gewicht des Zuges bzw. Anhängelast",
+   "cites": [
+    {
+     "cref": "SR 741.51",
+     "article_no": "Art. 80"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Beantragte Änderung",
+   "cites": [
+    {
+     "cref": "SR 741.51",
+     "article_no": "Art. 80"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Neues Gesamtgewicht",
+   "cites": [
+    {
+     "cref": "SR 741.51",
+     "article_no": "Art. 80"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Neues Gewicht des Zuges bzw. Anhängelast",
+   "cites": [
+    {
+     "cref": "SR 741.51",
+     "article_no": "Art. 80"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Änderungen am Fahrzeug und der Verbindungseinrichtung",
+   "cites": [
+    {
+     "cref": "SR 741.01",
+     "article_no": "Art. 13",
+     "beleg": "Das Fahrzeug kann jederzeit kontrolliert werden; es ist neu zu prüfen, wenn wesentliche Änderungen daran vorgenommen wurden"
+    },
+    {
+     "cref": "SR 741.51",
+     "article_no": "Art. 75",
+     "beleg": "Für die Meldung technischer Änderungen (Art. 34 Abs. 2 VTS) ist ein besonderer Prüfungsbericht (Form. 13.20 B) erforderlich."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Angaben zum Antragssteller",
+   "cites": [
+    {
+     "cref": "SR 741.51",
+     "article_no": "Art. 78"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Stempel und Unterschrift des Fahrzeughalters",
+   "cites": [
+    {
+     "cref": "SR 741.01",
+     "article_no": "Art. 9",
+     "beleg": "Auf Gesuch des Fahrzeughalters kann das zugelassene Gesamtgewicht eines Motorfahrzeuges oder eines Anhängers verändert werden"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Beilage Fahrzeugausweis",
+   "cites": [
+    {
+     "cref": "SR 741.51",
+     "article_no": "Art. 80"
+    },
+    {
+     "cref": "SR 741.51",
+     "article_no": "Art. 74"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Weitere Beilagen",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Verbindungseinrichtung",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Schlusstraverse: Angaben laut Herstellerschild",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Bolzenkupplung: Angaben laut Herstellerschild",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Hakenkupplung: Angaben laut Herstellerschild",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Kugelkopfkupplung: Angaben laut Herstellerschild",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Zwischenplatte: Angaben laut Herstellerschild",
+   "cites": [],
+   "over_collection": false
+  }
+ ]
+}

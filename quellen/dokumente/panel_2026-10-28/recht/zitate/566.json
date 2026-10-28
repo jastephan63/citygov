@@ -1,0 +1,157 @@
+{
+ "form_id": 566,
+ "mappings": [
+  {
+   "data_field": "Firma",
+   "cites": [
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 776",
+     "beleg": "Die Statuten müssen Bestimmungen enthalten über: 1. die Firma und den Sitz der Gesellschaft"
+    },
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 950",
+     "beleg": "In der Firma muss die Rechtsform angegeben werden."
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 73",
+     "beleg": "ins Handelsregister eingetragen werden: … b. die Firma und die Unternehmens-Identifikationsnummer"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Sitz",
+   "cites": [
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 776",
+     "beleg": "1. die Firma und den Sitz der Gesellschaft"
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 117",
+     "beleg": "Als Sitz wird der Name der politischen Gemeinde eingetragen."
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 73",
+     "beleg": "c. der Sitz und das Rechtsdomizil"
+    },
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 778",
+     "beleg": "Die Gesellschaft ist ins Handelsregister des Ortes einzutragen, an dem sie ihren Sitz hat."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Zweck",
+   "cites": [
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 776",
+     "beleg": "2. den Zweck der Gesellschaft"
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 118",
+     "beleg": "Die Rechtseinheiten müssen ihren Zweck so umschreiben, dass ihr Tätigkeitsfeld für Dritte klar ersichtlich ist."
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 73",
+     "beleg": "g. der Zweck"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Stammkapital und Stammanteile",
+   "cites": [
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 776",
+     "beleg": "3. die Höhe des Stammkapitals sowie die Anzahl und den Nennwert der Stammanteile"
+    },
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 773",
+     "beleg": "Das Stammkapital beträgt mindestens 20 000 Franken."
+    },
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 774",
+     "beleg": "Die Stammanteile weisen einen Nennwert auf, der grösser als null ist."
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 73",
+     "beleg": "h. die Höhe und die Währung des Stammkapitals"
+    },
+    {
+     "cref": "SHR 221.101",
+     "article_no": "§ 1",
+     "beleg": "Aktiengesellschaften und Gesellschaften mit beschränkter Haftung: a) Gründung, Erhöhung und Herabsetzung des Kapitals, Fusion 2‰ des Grund- oder Stammkapitals"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Schaffhausen, …",
+   "cites": [
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 22",
+     "beleg": "Ins Handelsregister wird als Datum der Statuten der Tag eingetragen, an dem: a. die Gründerinnen und Gründer die Statuten angenommen haben; oder b. das zuständige Organ der Gesellschaft die letzte Änderung der Statuten beschlossen hat."
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 73",
+     "beleg": "e. das Datum der Statuten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Der Gründer / Die Gründerin oder Der / Die Vorsitzende der ao. Gesellschafterversammlung",
+   "cites": [
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 22",
+     "beleg": "a. die Gründerinnen und Gründer die Statuten angenommen haben; oder b. das zuständige Organ der Gesellschaft die letzte Änderung der Statuten beschlossen hat"
+    },
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 777",
+     "beleg": "Die Gesellschaft wird errichtet, indem die Gründer in öffentlicher Urkunde erklären, eine Gesellschaft mit beschränkter Haftung zu gründen, darin die Statuten festlegen"
+    },
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 780",
+     "beleg": "Der Beschluss der Gesellschafterversammlung oder der Geschäftsführer über eine Änderung der Statuten ist öffentlich zu beurkunden"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Unterschrift",
+   "cites": [
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 72",
+     "beleg": "Die öffentliche Urkunde über den Errichtungsakt muss folgende Angaben enthalten: a. die Personenangaben zu den Gründerinnen und Gründern … i. die Unterschriften der Gründerinnen und Gründer"
+    },
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 777",
+     "beleg": "indem die Gründer in öffentlicher Urkunde erklären, eine Gesellschaft mit beschränkter Haftung zu gründen, darin die Statuten festlegen"
+    }
+   ],
+   "over_collection": false
+  }
+ ]
+}

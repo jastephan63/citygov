@@ -1,0 +1,100 @@
+{
+ "form_id": 542,
+ "mappings": [
+  {
+   "data_field": "Name und Adresse der gesuchstellenden Person oder der Organisation",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Verantwortliche Person",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Art der Veranstaltung",
+   "cites": [
+    {
+     "cref": "SR 747.201",
+     "article_no": "Art. 27",
+     "beleg": "Versuchsfahrten, bei denen von Vorschriften abgewichen wird, und nautische Veranstaltungen bedürfen der Bewilligung der Kantone."
+    },
+    {
+     "cref": "SHR 747.201",
+     "article_no": "§ 3",
+     "beleg": "Das Schifffahrtsamt ist insbesondere zuständig für: d) die Bewilligung für Sonderfahrzeuge, Sondertransporte, Veranstaltungen und unregelmässige gewerbsmässige Personentransporte"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Durchführungsdatum",
+   "cites": [
+    {
+     "cref": "SR 747.201",
+     "article_no": "Art. 27",
+     "beleg": "Die Kantone können die Schifffahrt im Gebiet der Veranstaltung vorübergehend ganz oder teilweise verbieten."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Uhrzeit",
+   "cites": [
+    {
+     "cref": "SR 747.201",
+     "article_no": "Art. 27",
+     "beleg": "Die Kantone können die Schifffahrt im Gebiet der Veranstaltung vorübergehend ganz oder teilweise verbieten."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Veranstaltungsort",
+   "cites": [
+    {
+     "cref": "SR 747.201",
+     "article_no": "Art. 27",
+     "beleg": "Die Kantone können die Schifffahrt im Gebiet der Veranstaltung vorübergehend ganz oder teilweise verbieten."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "erwartete Anzahl Boote",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "erwartete Teilnehmerzahl",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Ort und Datum",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Unterschrift des Gesuchstellers",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Beilagen",
+   "cites": [
+    {
+     "cref": "SR 747.201",
+     "article_no": "Art. 27",
+     "beleg": "Die Kantone können die Schifffahrt im Gebiet der Veranstaltung vorübergehend ganz oder teilweise verbieten."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Sicherheitszertifikat",
+   "cites": [],
+   "over_collection": true
+  }
+ ]
+}

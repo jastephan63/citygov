@@ -1,0 +1,39 @@
+{
+ "verdicts": [
+  {
+   "id": 7124,
+   "subjekt": "gemischt",
+   "grund": "Der Veräusserer ist im Konsumkreditgeschäft meist ein gewerblicher Händler oder eine Firma. Er kann aber auch eine Einzelperson sein, obwohl das Formular Name, Vorname, Beruf und Wohnadresse verlangt."
+  },
+  {
+   "id": 7125,
+   "subjekt": "natuerliche_person",
+   "grund": "Der Erwerber ist der Konsument nach KKG, also eine natürliche Person, die zu privaten Zwecken handelt. Verlangt werden Name, Vorname, Beruf und Wohnadresse."
+  },
+  {
+   "id": 7126,
+   "subjekt": "natuerliche_person",
+   "grund": "Der minderjährige Erwerber ist eine einzelne natürliche Person, verlangt werden Name, Vorname, Wohnadresse und Geburtsdatum."
+  },
+  {
+   "id": 7127,
+   "subjekt": "natuerliche_person",
+   "grund": "Der gesetzliche Vertreter einer minderjährigen Person (Eltern oder Vormund) ist eine natürliche Person, verlangt werden Name, Vorname, Beruf und Wohnadresse."
+  },
+  {
+   "id": 7131,
+   "subjekt": "gemischt",
+   "grund": "Der Zessionar der Kreditforderung ist typischerweise eine Bank oder Finanzierungsgesellschaft, kann aber auch eine Privatperson sein."
+  },
+  {
+   "id": 7134,
+   "subjekt": "gemischt",
+   "grund": "Den Antrag kann der Veräusserer stellen (oft eine Firma), der Erwerber oder der Zessionar. Es kann also eine Person oder eine Organisation sein."
+  },
+  {
+   "id": 7137,
+   "subjekt": "sache",
+   "grund": "Gemeint ist der Ort, an dem sich die unter Eigentumsvorbehalt stehenden Gegenstände befinden, also eine Angabe zu Sachen bzw. einem Ort."
+  }
+ ]
+}

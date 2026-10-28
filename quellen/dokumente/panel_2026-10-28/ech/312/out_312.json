@@ -1,0 +1,329 @@
+{
+ "hinweis": "eCH-Urteile Formular 312, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/312 --nur-offene=312",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Handschriftliche Unterschrift der Person, bei der das c/o-Domizil besteht (Punkt 3.2). Im ganzen Katalog (290 Standards) gesucht. Die Signatur-Standards eCH-0091, 0220, 0230, 0250, 0274 und 0282 sind technische Normen für elektronische Signaturen und haben keine Elemente. eCH-0039 signer ist ein GEVER-Metadatum zum Dokument. eCH-0260 signatures/…SignatureConfirmation sind Ja/Nein-Bestätigungen zum Lehrvertrag. Für eine handschriftliche Unterschrift gibt es kein Element. Das entspricht dem Korpus: 72 Unterschriftsfelder stehen auf kein_standard, keines hat ein Element.",
+   "feld": "Unterschrift Domizilhalter / Domizilhalterin"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Beglaubigte Unterschrift eines Mitglieds des Verwaltungsrats (Punkt 8). Der Name in Druckschrift wird als eigenes Teilfeld beurteilt. Gesucht in den Signatur-Standards eCH-0091, 0220, 0230, 0250, 0274 und 0282 (alle ohne Elemente), in eCH-0039 signer (Dokument-Metadatum) und in eCH-0260 signatures (Lehrvertrag, boolean). Keines bildet eine handschriftliche Unterschrift ab, darum kein Standard. Das deckt sich mit der Praxis im Korpus.",
+   "feld": "Unterschrift/en der anmeldenden Person/en (1)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Zweite beglaubigte Unterschrift eines Mitglieds des Verwaltungsrats (Punkt 8). Gleiche Suche wie bei (1): Die Signatur-Standards eCH-0091, 0220, 0230, 0250, 0274 und 0282 haben keine Elemente, eCH-0039 signer ist ein Metadatum, eCH-0260 gilt für den Lehrvertrag. Für die Unterschrift selbst gibt es kein Element. Der Name wird im Teilfeld beurteilt.",
+   "feld": "Unterschrift/en der anmeldenden Person/en (2)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Beglaubigte Unterschrift einer weiteren zeichnungsberechtigten Person (Punkt 9). Im Katalog gibt es kein Element für eine handschriftliche Unterschrift: Die Signatur-Standards sind elementlos, eCH-0039 signer ist ein Dokument-Metadatum, eCH-0260 signatures gilt nur für den Lehrvertrag. Der Name in Druckschrift wird als Teilfeld beurteilt.",
+   "feld": "Unterschriften weiterer zeichnungsberechtigter Personen (1)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Wie bei (1): beglaubigte Unterschrift (Punkt 9). Die Signatur-Standards eCH-0091, 0220, 0230, 0250, 0274 und 0282 haben keine Elemente, eCH-0039 signer und eCH-0260 signatures passen nicht. Für die Unterschrift gibt es kein Element.",
+   "feld": "Unterschriften weiterer zeichnungsberechtigter Personen (2)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Wie bei (1): beglaubigte Unterschrift (Punkt 9). Im ganzen Katalog gibt es kein Element für eine handschriftliche Unterschrift. Die Signatur-Standards haben keine Elemente, eCH-0039 signer ist ein Metadatum, eCH-0260 gilt für den Lehrvertrag.",
+   "feld": "Unterschriften weiterer zeichnungsberechtigter Personen (3)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Wie bei (1): beglaubigte Unterschrift (Punkt 9). Im ganzen Katalog gibt es kein Element für eine handschriftliche Unterschrift. Die Signatur-Standards haben keine Elemente, eCH-0039 signer ist ein Metadatum, eCH-0260 gilt für den Lehrvertrag.",
+   "feld": "Unterschriften weiterer zeichnungsberechtigter Personen (4)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Wie bei (1): beglaubigte Unterschrift (Punkt 9). Im ganzen Katalog gibt es kein Element für eine handschriftliche Unterschrift. Die Signatur-Standards haben keine Elemente, eCH-0039 signer ist ein Metadatum, eCH-0260 gilt für den Lehrvertrag.",
+   "feld": "Unterschriften weiterer zeichnungsberechtigter Personen (5)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Wie bei (1): beglaubigte Unterschrift (Punkt 9). Im ganzen Katalog gibt es kein Element für eine handschriftliche Unterschrift. Die Signatur-Standards haben keine Elemente, eCH-0039 signer ist ein Metadatum, eCH-0260 gilt für den Lehrvertrag.",
+   "feld": "Unterschriften weiterer zeichnungsberechtigter Personen (6)"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Punkt 10 «Nicht öffentliche Angaben» fasst die Personalien natürlicher Personen zusammen: Name, Vorname, Titel, Geburtsdatum, Privatadresse und Ausweis. Der Behälter dafür ist eCH-0011 person (personType). Er umfasst personIdentification (eCH-0044, darin officialName/firstName/dateOfBirth/otherPersonId) sowie nameData und birthData. Das entspricht den gleichartigen Verbünden «Nicht öffentliche Personenangaben/Personalien» in den Formularen 310 und 361. Die Teile werden einzeln beurteilt.",
+   "feld": "Personalien von allen unter Punkt 4. und 5. aufgeführten Personen",
+   "standard": "eCH-0011",
+   "element": "person"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ankreuzliste auf Seite 8, mit der die antragstellende Person selbst prüft, ob alle Unterlagen beiliegen. Die Kreuze sind Ja/Nein-Vermerke und tragen keinen Wert. Gesucht: «checklist» und «completeness» im ganzen Katalog, ohne Treffer. Geprüft wurden auch die Dokument- und Anhang-Behälter eCH-0039 document, eCH-0211 document, eCH-0229 attachment und eCH-0058 attachment. Sie beschreiben übermittelte Dateien, keine Selbstkontrolle. Darum kein Standard, wie im Korpus bei Beilagen-Ankreuzlisten (multiselect überwiegend kein_standard, 185 Felder).",
+   "feld": "Checkliste"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Das Kreuz «Übernimmt das Präsidium» trägt keinen freien Wert. Es wählt einen Code aus: eCH-0229 role (memberOfAdministrativeBodyType) ist das Codelisten-Element administrativeBodyRoleType mit den Werten president, executive und responsibleForAccounting. Das Kreuz setzt genau den Code 'president', es ist also kein Wert-Element auf einem Ja/Nein-Kasten. Der Elternteil ist eCH-0229 administrativeBody. Das Formular 310 erfasst sein «Präsidium» ebenso. eCH-0276 chairmanOfTheBoardOfDirectors ist ein Textwert (Name des Präsidenten im Bilanzkopf) und passt nicht zu einem Kreuz.",
+   "elternfeld": "Mitglieder des Verwaltungsrats",
+   "teilfeld": "Übernimmt das Präsidium",
+   "standard": "eCH-0229",
+   "element": "role"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Akademischer Titel eines Mitglieds des Verwaltungsrats, der im Handelsregister eingetragen werden soll (Fussnote 1: Nachweis per Diplom). Das ist ein Merkmal der Person. Das Element dafür ist eCH-0021 personAdditionalData/title (titleType). eCH-0010 title steht nur in personMailAddressInfoType und organisationMailAddressInfoType, also in der Anschriftszeile einer Postadresse. Das ist keine Eintragung zur Person.",
+   "elternfeld": "Mitglieder des Verwaltungsrats",
+   "teilfeld": "Titel",
+   "standard": "eCH-0021",
+   "element": "title"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Wohnsitz (Ort) eines Mitglieds des Verwaltungsrats für den öffentlichen Eintrag. Verlangt ist nur die Ortsangabe, darum eCH-0010 town (addressInformationType). So ist es im Korpus 38-mal erfasst, ebenso in Formular 361 und beim Schwesterverbund «Weitere zeichnungsberechtigte Personen» dieses Formulars.",
+   "elternfeld": "Mitglieder des Verwaltungsrats",
+   "teilfeld": "Wohnsitz",
+   "standard": "eCH-0010",
+   "element": "town"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Heimatort (Bürgerort) eines Schweizer Mitglieds des Verwaltungsrats. Das Element ist eCH-0011 placeOfOriginType/originName, wie in Formular 361, im Korpus (29-mal) und beim Schwesterverbund dieses Formulars.",
+   "elternfeld": "Mitglieder des Verwaltungsrats",
+   "teilfeld": "Heimatort",
+   "standard": "eCH-0011",
+   "element": "originName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Staatsangehörigkeit, einzutragen bei ausländischen Personen (Fussnote 2). Das Element ist eCH-0011 nationalityData (personType). So wird die Angabe im Korpus durchgehend erfasst, auch in Formular 361 und beim Schwesterverbund dieses Formulars.",
+   "elternfeld": "Mitglieder des Verwaltungsrats",
+   "teilfeld": "Staatsangehörigkeit",
+   "standard": "eCH-0011",
+   "element": "nationalityData"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Der übernommene Wert eCH-0010 title zeigt auf den Kontext organisationMailAddressInfoType (id 47), also den Titel einer Kontaktperson in der Postadresse einer Organisation. Gemeint ist hier der akademische Titel einer natürlichen Person, der im Handelsregister eingetragen wird (Fussnote 1). Das Personenmerkmal dafür ist eCH-0021 personAdditionalData/title (gleicher titleType).",
+   "elternfeld": "Weitere zeichnungsberechtigte Personen",
+   "teilfeld": "Titel",
+   "standard": "eCH-0021",
+   "element": "title"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Der übernommene Wert eCH-0010 town (addressInformationType, id 58) passt. Verlangt ist nur der Wohnort der zeichnungsberechtigten Person (Punkt 5), wie im Korpus (38-mal).",
+   "elternfeld": "Weitere zeichnungsberechtigte Personen",
+   "teilfeld": "Wohnsitz"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Der übernommene Wert eCH-0011 originName (placeOfOriginType, id 155) ist genau der Heimatort und damit korrekt.",
+   "elternfeld": "Weitere zeichnungsberechtigte Personen",
+   "teilfeld": "Heimatort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Der übernommene Wert eCH-0011 nationalityData (personType, id 90) passt. Verlangt ist die Staatsangehörigkeit ausländischer Personen (Fussnote 2), so wird sie im Korpus durchgehend erfasst.",
+   "elternfeld": "Weitere zeichnungsberechtigte Personen",
+   "teilfeld": "Staatsangehörigkeit"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Firma (Name) der gewählten Revisionsstelle, also einer Organisation. Das Element ist eCH-0098 organisationName (organisationIdentificationType), wie bei «Revisionsstelle/Firma» in Formular 310 und bei der eigenen Firma dieses Formulars (2985).",
+   "elternfeld": "Angaben zur Revisionsstelle",
+   "teilfeld": "Firma",
+   "standard": "eCH-0098",
+   "element": "organisationName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Sitz der Revisionsstelle, also die Sitzgemeinde einer Organisation. Das Element ist eCH-0098 swissHeadquarterType/headquarterMunicipality, wie bei «Revisionsstelle/Sitz» in Formular 310 und beim Sitz der Gesellschaft (2987).",
+   "elternfeld": "Angaben zur Revisionsstelle",
+   "teilfeld": "Sitz",
+   "standard": "eCH-0098",
+   "element": "headquarterMunicipality"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Unternehmens-Identifikationsnummer der Revisionsstelle. Das Element ist eCH-0098 uid (uidType, organisationIdentificationType), wie bei «Revisionsstelle/UID-Nummer» in Formular 310.",
+   "elternfeld": "Angaben zur Revisionsstelle",
+   "teilfeld": "UID-Nummer",
+   "standard": "eCH-0098",
+   "element": "uid"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Familienname der Kontaktperson für Rückfragen (Punkt 11). Familienname wird officialName. eCH-0046 hat kein Namenselement, darum eCH-0044 officialName, wie bei den Kontaktangaben in den Formularen 310 und 361.",
+   "elternfeld": "Obligatorische Kontaktangaben der anmeldenden Person oder des Treuhänders",
+   "teilfeld": "Familienname",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname(n) der Kontaktperson (Punkt 11). Vorname wird firstName, also eCH-0044 firstName, wie in den Formularen 310 und 361.",
+   "elternfeld": "Obligatorische Kontaktangaben der anmeldenden Person oder des Treuhänders",
+   "teilfeld": "Vorname(n)",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Ein einziges Kästchen enthält Vorname(n) und Name der unterzeichnenden Person in Druckschrift. Der Behälter für officialName und firstName ist eCH-0011 nameData (nameDataType). Nur officialName würde den Vornamen falsch als Familiennamen ausweisen. So wird der Name der unterzeichnenden Person im Korpus auch erfasst (Formulare 162, 305, 306, 333: eCH-0011 nameData). eCH-0039 signer ist ein GEVER-Dokument-Metadatum, keine Namensangabe.",
+   "elternfeld": "Unterschrift/en der anmeldenden Person/en (1)",
+   "teilfeld": "Vorname(n) Name",
+   "standard": "eCH-0011",
+   "element": "nameData"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Wie bei (1): Vorname(n) und Name der zweiten anmeldenden Person stehen in einem Kästchen. Behälter für beide Teile ist eCH-0011 nameData.",
+   "elternfeld": "Unterschrift/en der anmeldenden Person/en (2)",
+   "teilfeld": "Vorname(n) Name",
+   "standard": "eCH-0011",
+   "element": "nameData"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname(n) und Name der unterzeichnenden zeichnungsberechtigten Person stehen in einem Kästchen. Behälter für firstName und officialName ist eCH-0011 nameData, so wird der Name der unterzeichnenden Person auch im Korpus erfasst.",
+   "elternfeld": "Unterschriften weiterer zeichnungsberechtigter Personen (1)",
+   "teilfeld": "Vorname(n) Name",
+   "standard": "eCH-0011",
+   "element": "nameData"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Wie bei (1): Vorname(n) und Name in einem Kästchen, darum eCH-0011 nameData.",
+   "elternfeld": "Unterschriften weiterer zeichnungsberechtigter Personen (2)",
+   "teilfeld": "Vorname(n) Name",
+   "standard": "eCH-0011",
+   "element": "nameData"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Wie bei (1): Vorname(n) und Name in einem Kästchen, darum eCH-0011 nameData.",
+   "elternfeld": "Unterschriften weiterer zeichnungsberechtigter Personen (3)",
+   "teilfeld": "Vorname(n) Name",
+   "standard": "eCH-0011",
+   "element": "nameData"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Wie bei (1): Vorname(n) und Name in einem Kästchen, darum eCH-0011 nameData.",
+   "elternfeld": "Unterschriften weiterer zeichnungsberechtigter Personen (4)",
+   "teilfeld": "Vorname(n) Name",
+   "standard": "eCH-0011",
+   "element": "nameData"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Wie bei (1): Vorname(n) und Name in einem Kästchen, darum eCH-0011 nameData.",
+   "elternfeld": "Unterschriften weiterer zeichnungsberechtigter Personen (5)",
+   "teilfeld": "Vorname(n) Name",
+   "standard": "eCH-0011",
+   "element": "nameData"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Wie bei (1): Vorname(n) und Name in einem Kästchen, darum eCH-0011 nameData.",
+   "elternfeld": "Unterschriften weiterer zeichnungsberechtigter Personen (6)",
+   "teilfeld": "Vorname(n) Name",
+   "standard": "eCH-0011",
+   "element": "nameData"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Familienname derselben Personen wie in Punkt 4/5. Familienname wird officialName. Gewählt ist eCH-0044 officialName, wie bei den Familiennamen in Punkt 4/5 dieses Formulars (4158/4165) und im Korpus. So bleibt es dieselbe Angabe derselben Person. eCH-0011 personType bindet die eCH-0044 personIdentification selbst ein.",
+   "elternfeld": "Personalien von allen unter Punkt 4. und 5. aufgeführten Personen",
+   "teilfeld": "Familienname",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname(n) derselben Personen wie in Punkt 4/5. Vorname wird firstName, also eCH-0044 firstName, gleich wie 4159/4166 und die Praxis im Korpus (34-mal).",
+   "elternfeld": "Personalien von allen unter Punkt 4. und 5. aufgeführten Personen",
+   "teilfeld": "Vorname(n)",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Akademischer Titel der Person (Fussnote 1: Nachweis per Diplom), also ein Personenmerkmal. Das Element ist eCH-0021 personAdditionalData/title, wie bei den Titeln in Punkt 4/5. eCH-0010 title gehört zur Anschriftszeile einer Postadresse und passt nicht.",
+   "elternfeld": "Personalien von allen unter Punkt 4. und 5. aufgeführten Personen",
+   "teilfeld": "Titel",
+   "standard": "eCH-0021",
+   "element": "title"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Geburtsdatum der Person. Geburtsdatum wird dateOfBirth, also eCH-0044 dateOfBirth, wie im Korpus (224-mal) und passend zu den eCH-0044-Namen dieses Verbunds.",
+   "elternfeld": "Personalien von allen unter Punkt 4. und 5. aufgeführten Personen",
+   "teilfeld": "Geburtsdatum",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Die Privatadresse steht ungeteilt in einem dreizeiligen Block (Strasse, PLZ, Ort, allenfalls Ausland). Name und Vorname sind eigene Teilfelder desselben Verbunds. Der Behälter, der nur die Adresse umfasst, ist eCH-0010 addressInformation (addressInformationType): street, houseNumber, swissZipCode oder foreignZipCode, town, country. Er deckt auch einen Wohnsitz im Ausland ab. Die Erstwahl eCH-0010 personMailAddress hätte den Namen ein zweites Mal enthalten, denn person/lastName ist dort Pflicht. eCH-0011 dwellingAddress (Formulare 310/361) ist auf Schweizer Adressen beschränkt (swissAddressInformationType mit EGID/EWID) und passt bei Ausländern nicht. Für «Privatadresse» als Feld verwendet der Korpus 14-mal eCH-0010 addressInformation.",
+   "elternfeld": "Personalien von allen unter Punkt 4. und 5. aufgeführten Personen",
+   "teilfeld": "Privatadresse",
+   "standard": "eCH-0010",
+   "element": "addressInformation"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Ausweisart (Fussnote 2: «ID oder Pass»). Sie gibt die Kategorie des Identifikators an, mit dem das Handelsregister die Person identifiziert. Element ist eCH-0044 namedPersonIdType/personIdCategory, wie bei «Ausweisart» in den Formularen 310 und 361. Gesucht wurde im ganzen Katalog nach passport, identityDocument, idCard, travelDocument und documentNumber/documentType. Ein Element für Ausweisdokumente gibt es nicht: nameOnForeignPassport ist ein Name, documentType in eCH-0119/0229/0260 betrifft Beilagen, eCH-0178 originalDocumentNumber betrifft legalGroundExhibit. Der Code eCH-0084 shownDocument ist eine Codeliste der UPI-Meldung ohne Bedeutungsangabe der Codes und passt nicht.",
+   "elternfeld": "Personalien von allen unter Punkt 4. und 5. aufgeführten Personen",
+   "teilfeld": "Ausweisart",
+   "standard": "eCH-0044",
+   "element": "personIdCategory"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Nummer des Ausweises zur angegebenen Ausweisart. Das Gegenstück zur Kategorie ist eCH-0044 namedPersonIdType/personId, wie bei «Ausweis-Nr.» in den Formularen 310 und 361. Im Katalog gibt es kein eigenes Element für Ausweisnummern, die Suche war dieselbe wie bei der Ausweisart.",
+   "elternfeld": "Personalien von allen unter Punkt 4. und 5. aufgeführten Personen",
+   "teilfeld": "Ausweis-Nr.",
+   "standard": "eCH-0044",
+   "element": "personId"
+  }
+ ]
+}

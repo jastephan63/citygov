@@ -1,0 +1,48 @@
+{
+ "form_id": 543,
+ "mappings": [
+  {
+   "data_field": "Adresse des Unternehmens",
+   "cites": [
+    {
+     "cref": "SR 823.11",
+     "article_no": "Art. 29",
+     "beleg": "Entlassungen einer grösseren Anzahl von Arbeitnehmern sowie Betriebsschliessungen muss der Arbeitgeber dem zuständigen Arbeitsamt möglichst frühzeitig melden"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Kontaktperson",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Anzahl der Mitarbeitenden, welche weiterhin im Betrieb beschäftigt sind",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Bemerkungen, Gründe für betriebsbedingte Entlassungen",
+   "cites": [
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 335f",
+     "beleg": "a. die Gründe der Massenentlassung; ... 4 Er stellt dem kantonalen Arbeitsamt eine Kopie der Mitteilung nach Absatz 3 zu."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Betroffene Mitarbeitende, welche infolge Umstrukturierung, Betriebsschliessung/Verlagerung entlassen werden",
+   "cites": [
+    {
+     "cref": "SR 823.11",
+     "article_no": "Art. 29",
+     "beleg": "Entlassungen einer grösseren Anzahl von Arbeitnehmern sowie Betriebsschliessungen muss der Arbeitgeber dem zuständigen Arbeitsamt möglichst frühzeitig melden, spätestens aber zum Zeitpunkt, in dem er die Kündigungen ausspricht."
+    }
+   ],
+   "over_collection": false
+  }
+ ]
+}

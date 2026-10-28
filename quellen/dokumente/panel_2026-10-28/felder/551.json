@@ -1,0 +1,93 @@
+{
+ "form_id": 551,
+ "data_fields": [
+  {
+   "name": "Firma und Sitz",
+   "definition": "Firma und Sitz der Gesellschaft, auf die sich die Erklärung der Unterzeichnenden zum angemeldeten Eintragungsgeschäft bezieht.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Firma",
+    "Sitz"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Personen im Ausland bzw. Personen, die für Rechnung von Personen im Ausland handeln, sind an obgenannter Gesellschaft beteiligt",
+   "definition": "Erklärung mit ja oder nein, ob Personen im Ausland (Art. 5 BewG) oder für deren Rechnung handelnde Personen an der genannten Gesellschaft beteiligt sind.",
+   "data_type": "boolean",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Personen im Ausland bzw. Personen, die für Rechnung von Personen im Ausland handeln, erwerben im Zusammenhang mit dem angemeldeten Eintragungsgeschäft an obgenannter Gesellschaft neu eine Beteiligung",
+   "definition": "Erklärung mit ja oder nein, ob Personen im Ausland oder für deren Rechnung handelnde Personen im Zusammenhang mit dem angemeldeten Eintragungsgeschäft neu eine Beteiligung an der Gesellschaft erwerben.",
+   "data_type": "boolean",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Bei Sacheinlage, Sachübernahme, Fusion, Umwandlung oder Spaltung: Obgenannte Gesellschaft erwirbt Nicht-Betriebsstätte-Grundstücke in der Schweiz",
+   "definition": "Erklärung mit ja oder nein, ob die Gesellschaft bei einer Sacheinlage, Sachübernahme, Fusion, Umwandlung oder Spaltung Nicht-Betriebsstätte-Grundstücke in der Schweiz erwirbt.",
+   "data_type": "boolean",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Bei Kapitalherabsetzung: Personen im Ausland bzw. Personen, die für Rechnung von Personen im Ausland handeln, haben nach der Kapitalherabsetzung an obgenannter Gesellschaft eine beherrschende Stellung gemäss Art. 6 BewG inne",
+   "definition": "Erklärung mit ja oder nein, ob Personen im Ausland oder für deren Rechnung handelnde Personen nach einer Kapitalherabsetzung eine beherrschende Stellung gemäss Art. 6 BewG an der Gesellschaft innehaben.",
+   "data_type": "boolean",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ort, Datum",
+   "definition": "Ort und Datum der Unterzeichnung der Erklärung durch die Personen, welche die Handelsregisteranmeldung unterzeichnen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Ort",
+    "Datum"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Persönliche Unterschriften derjenigen Personen, welche die Handelsregisteranmeldung unterzeichnen (1)",
+   "definition": "Persönliche Unterschrift der ersten Person, welche die Handelsregisteranmeldung unterzeichnet (erste gedruckte Unterschriftslinie).",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Persönliche Unterschriften derjenigen Personen, welche die Handelsregisteranmeldung unterzeichnen (2)",
+   "definition": "Persönliche Unterschrift einer weiteren Person, welche die Handelsregisteranmeldung unterzeichnet (zweite gedruckte Unterschriftslinie).",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Persönliche Unterschriften derjenigen Personen, welche die Handelsregisteranmeldung unterzeichnen (3)",
+   "definition": "Persönliche Unterschrift einer weiteren Person, welche die Handelsregisteranmeldung unterzeichnet (dritte gedruckte Unterschriftslinie).",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  }
+ ],
+ "hinweis": "Korrekturen: keine. Geprüft anhand des Textes, der document.xml und des gerenderten Formulars (render/75__64ca78599f62.docx.png). Ergebnis der Prüfung: Unter «Ort, Datum:» steht eine einzelne kurze Punktlinie, darunter folgen genau drei Unterschriftslinien. Die drei Unterschriftsfelder stimmen also, es fehlt keine weitere Person. Das Kästchen «Firma und Sitz:» ist ein einziges Tabellenfeld. Die Aufteilung in Firma und Sitz entspricht dem gedruckten Label und dem Vorgehen bei Formular 315. Jede der vier Fragen hat ein Kästchen-Paar ja/nein (8 MACROBUTTON-CheckIt-Felder). Das ist je eine Ja/Nein-Angabe und wird nach der in der DB üblichen Praxis (298 Fälle) als boolean geführt. Es gibt keine Beilagen-Checkliste, keine Tabellen und keine weiteren Eingabefelder. Die Fussnotenziffern (1, 2) und die Nummerierung wurden aus den Namen entfernt. Keine Felder sind: die Erläuterung zum Erwerbsbegriff (Art. 2, 4 BewG, Art. 1 und 18b BewV), der Hinweis auf die Aussetzung des Eintragungsverfahrens und die Verweisung an das Volkswirtschaftsdepartement, die Anweisung «Zutreffendes ankreuzen» samt Warnung, dass fehlende Angaben zur Verweisung an die Bewilligungsbehörde führen können, sowie die Fussnoten zu den Begriffen Personen im Ausland (Art. 5 BewG) und Betriebsstätte-Grundstück (Art. 2 Abs. 2 lit. a und Abs. 3 BewG). Ein Feld «Vom Amt auszufüllen» gibt es nicht. Zu beachten: Die Fragen 3 und 4 sind bedingt («Bei Sacheinlage …», «Bei Kapitalherabsetzung»), aber nicht als freiwillig gekennzeichnet. Deshalb bleibt required=true. Die Zahl der tatsächlich nötigen Unterschriften hängt davon ab, wer die Handelsregisteranmeldung unterzeichnet. Die Linien 2 und 3 sind jedoch nicht als fakultativ markiert und bleiben deshalb required=true. Die Fusszeile «5270mb01 / 12.02.2013 Ze / © Handelsregisteramt Kanton Zürich» zeigt, dass die Vorlage vom Kanton Zürich übernommen wurde. Das betrifft nur die Herkunft und ist keine Angabe."
+}

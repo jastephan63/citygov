@@ -1,0 +1,91 @@
+{
+ "form_id": 564,
+ "data_fields": [
+  {
+   "name": "Firma",
+   "definition": "Firma der zu gründenden GmbH, die im Titel und in Artikel 1 der Statuten vor dem Zusatz «GmbH» eingesetzt wird.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Sitz",
+   "definition": "Sitz der Gesellschaft gemäss Titel und Artikel 2, bestehend aus der politischen Gemeinde und dem Kantonskürzel, das nur anzugeben ist, falls mehr als eine Gemeinde dieses Namens existiert.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "politische Gemeinde",
+    "Kantonskürzel"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Zweck",
+   "definition": "Umschreibung des Gesellschaftszwecks in Artikel 3 Absatz 1 («Die Gesellschaft bezweckt …»).",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Kapital",
+   "definition": "Höhe des Stammkapitals in CHF sowie Anzahl und Nennwert in CHF der Stammanteile gemäss Artikel 4.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Stammkapital (CHF)",
+    "Anzahl Stammanteile",
+    "Nennwert je Stammanteil (CHF)"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Datum",
+   "definition": "Kalenderdatum der Unterzeichnung der Statuten; der Ort «Schaffhausen» ist vorgedruckt.",
+   "data_type": "date",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Der Gründer/Die Gründerin oder Der/Die Vorsitzende der ao. Gesellschafterversammlung",
+   "definition": "Angabe, ob die Statuten vom Gründer bzw. von der Gründerin oder von der vorsitzenden Person der ausserordentlichen Gesellschafterversammlung unterzeichnet werden.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "Der Gründer/Die Gründerin",
+    "Der/Die Vorsitzende der ao. Gesellschafterversammlung"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Unterschrift des Gründers/der Gründerin bzw. des/der Vorsitzenden der ao. Gesellschafterversammlung",
+   "definition": "Unterschrift der unterzeichnenden Person (Gründer/Gründerin oder vorsitzende Person der ausserordentlichen Gesellschafterversammlung) unter den Statuten.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Vorname(n) Name",
+   "definition": "Vorname(n) und Name der unterzeichnenden Person, wie sie unter der Unterschriftslinie einzusetzen sind.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Vorname(n)",
+    "Name"
+   ],
+   "format": ""
+  }
+ ],
+ "hinweis": "Korrekturen: keine. Das Wörterbuch wurde Zeile für Zeile gegen den Text und die Originaldatei (formulare/83__0b090cde0ad4.docx) geprüft. Die DOCX enthält keine Tabellen, Formularsteuerelemente, Kontrollkästchen, Kommentare oder Änderungsverfolgungen; die Fusszeile enthält nur die Seitenzahl. Alle Leerstellen sind erfasst: Firma (Titel und Art. 1, ein Feld), Sitz (Titel und Art. 2, ein Feld; das Kantonskürzel ist nur bedingt anzugeben, nicht freiwillig, daher bleibt das Feld Pflicht), Zweck (Art. 3 Abs. 1), Kapital (Art. 4, drei Leerstellen in einem Satz), «Schaffhausen, ……» (nur das Datum, der Ort ist vorgedruckt), Platzhalter für die Rolle, eine einzige Unterschriftslinie und darunter «[Vorname(n) Name]». Gedruckt ist nur eine Unterschriftslinie; es gibt keine zweite unterzeichnende Person, keine Beilagen-Checkliste und keine Ankreuzgruppen. Die Artikel 3 Abs. 2 sowie 5–39 sind vorgegebener Statutentext ohne Leerstellen; sie sind keine Angaben der Person. Der Block «Beglaubigung» füllt die Urkundsperson des Handelsregisteramts Schaffhausen aus (Platzhalter [unter Berücksichtigung der heutigen Total-/Teilrevision], [heute gegründeten], [FIRMA], [SITZ], «Schaffhausen, ……», Unterschrift und Name der Urkundsperson). Er ist nur für das Amt bestimmt und wurde deshalb nicht als Feld erfasst. Offene Punkte, nicht geändert: Weder für das Datum noch für die Unterschriftslinie druckt das Formular eine eigene Bezeichnung. Die Feldnamen «Datum» und «Unterschrift des Gründers/der Gründerin bzw. des/der Vorsitzenden der ao. Gesellschafterversammlung» sind deshalb beschreibend und aus den gedruckten Begriffen gebildet. Die Teile von «Kapital» verwenden die Begriffe «Anzahl» und «Nennwert» aus Art. 5 und Art. 20 desselben Formulars."
+}

@@ -1,0 +1,26 @@
+{
+ "hinweis": "eCH-Urteile Formular 168, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/168 --nur-offene=168",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Bestätigt nach zweiter Prüfung. Formular Abschnitt 2 ist ein mehrzeiliger Freitext über zwei Seiten (PDF-Felder «schäftigt haben 1–16», «1–11», «1_2–3_2», «1_3–2_3»). Die Person beschreibt darin ihre kynologischen Fachkenntnisse, also besuchte Hundeschulen, Sporthundetraining, Prüfungen und Kurse, und wie sie ihre Hunde erzogen, geführt und beschäftigt hat. Durchsucht wurde der ganze Katalog (290 Standards). Titel: Hund, Tier, Veterinär, Bildung, Ausbildung, Kurs, Zertifikat, Qualifikation, Diplom, Kompetenz. Elemente: dog, animal, breed, kynolog/cynol, school, trainer, course, training, knowledge, experience, competen, skill, qualif, certif, provider, remark, comment, description, freetext, explanation, justification, reason. Nichts davon definiert diese Angabe: eCH-0013 Hundemarken ist sistiert und hat 0 Elemente. eCH-0309 Tierverkehrsdaten ist in Arbeit und hat 0 Elemente. eCH-0266 ist aufgehoben. eCH-0185 dogDataType identifiziert nur den Hund (name, sex, birthDate, chipNumber, tattooNumber, ANISnumber). eCH-0260 schoolName/VETtrainer/originalTrainingStart gehören zur beruflichen Grundbildung. eCH-0108 qualification betrifft ausländische Organisationen. eCH-0119 description (furtherEducationCostType) und eCH-0278 educationAndTraining* sind Steuerabzüge für Weiterbildungskosten. eCH-0039/0058/0084 comment und eCH-0129 remark/FreeText sind Kommentare in anderen Fachkontexten. Gleichartige Kompetenz- und Erfahrungsfelder sind in der Databank ebenfalls kein_standard: Formular 327 «Praktische Erfahrung …», Formular 209 «Besondere Kenntnisse …», Formular 395 «Berufliche Erfahrung / Praxisnachweis», Formular 497 «Ausbildung und Berufserfahrung».",
+   "feld": "Beschreiben Sie nachfolgend ausführlich Ihre kynologischen Fachkenntnisse (besuchte Hundeschulen / Sporthundetraining / Prüfungen / Kurse etc.)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Bestätigt nach zweiter Prüfung. Im PDF ist das ein Kontrollkästchen (Feld «Kontrollkästchen1», /Btn). Es zeigt nur an, dass Beiblätter beiliegen. Ein Ja/Nein-Kästchen erhält kein Wert-Element und keinen Dokument-Container (eCH-0039 document, eCH-0058/0119/0229 attachment und eCH-0276 attachments scheiden aus). Durchsucht wurde der ganze Katalog nach einem booleschen Kennzeichen «Beiblatt/Beilage vorhanden»: enclos*, attach*, supplement*, annex, appendix, beilage, isLeadingDocument. Gefunden wurden nur fachfremde Treffer. eCH-0039 isLeadingDocument kennzeichnet das Leitdokument eines Dossiers. Die booleschen Elemente eCH-0119 attached*/attachedFreeTextCheckbox (attachedFormsType) gehören nur zu den Beilagen der Steuererklärung (E-Tax Filing). eCH-0235 attachmentAvailable ist ein nameType und kein Kennzeichen dieser Angabe. Die Beurteilung passt zum Schwesterfeld desselben Formulars «Kopie Bestätigung Hundeschule / Leistungsheft beiliegend» (kein_standard) und zu Formular 62 «Raumpläne beigelegt» (kein_standard).",
+   "feld": "Weitere Ausführungen auf Beiblättern"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Bestätigt nach zweiter Prüfung. Das Element existiert wörtlich: eCH-0098 (Unternehmensdaten V6.1.0, Genehmigt, 76 Elemente) organisationName im Kontext organisationIdentificationType (id 1334). Abschnitt 3 des Formulars (PDF-Felder «3 1»–«3 4», 4 Zeilen) fragt nach dem Namen der Stelle, bei der die kynologischen Kenntnisse erworben wurden. Das ist eine Hundeschule oder ein Hundetrainer, der in der Regel als Betrieb oder Einzelunternehmen auftritt. Gefragt ist also der Name einer Organisation. Dieselbe Zuordnung hat die Databank schon für «Name der Praxis / Institution» (Formular 63) und «Name der Trägerschaft / Institution» (Formulare 532–539) gewählt. Verworfen wurden folgende Elemente: eCH-0010 organisationName, weil es nur den Namen in einer Postadresse bezeichnet (organisationMailAddressInfoType). eCH-0260 schoolName (professionEducationType) und organisationName (hostCompanyType/legalUnitType), weil sie nur die Berufsfachschule und den Lehrbetrieb der beruflichen Grundbildung bezeichnen und keine Hundeschule. eCH-0116 organisationSearchCriteria und eCH-0148 Ereigniskontexte, weil es dort um Suche bzw. Namensänderung geht. Vorbehalt: Das Feld lässt mehrere Namen zu und schliesst auch eine einzelne Trainerperson ein. Wird eine natürliche Person genannt, bündelt das Feld Angaben, die der Standard trennt (eCH-0044 officialName/firstName). Das ist ein Hinweis zum Aufteilen an das Formular, kein Grund für ein anderes Element.",
+   "feld": "Name(n) der Hundeschule, des Hundetrainers etc.",
+   "standard": "eCH-0098",
+   "element": "organisationName"
+  }
+ ]
+}

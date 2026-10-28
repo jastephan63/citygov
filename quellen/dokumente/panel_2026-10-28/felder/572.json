@@ -1,0 +1,596 @@
+{
+ "form_id": 572,
+ "data_fields": [
+  {
+   "name": "Eigentümer der Anlage",
+   "definition": "Name, Adresse und Telefonnummer der Eigentümerin oder des Eigentümers der bestehenden Tankanlage (laut Formular «und/oder» neben dem Verwalter).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name",
+    "Adresse",
+    "Tel."
+   ],
+   "format": ""
+  },
+  {
+   "name": "Verwalter der Anlage",
+   "definition": "Name, Adresse und Telefonnummer der Verwaltung der Tankanlage, alternativ oder zusätzlich zum Eigentümer («und/oder»).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name",
+    "Adresse",
+    "Tel."
+   ],
+   "format": ""
+  },
+  {
+   "name": "Gesuchsteller",
+   "definition": "Name, Adresse und Telefonnummer der Person oder Firma, die das Gesuch um Anpassung der Tankanlage stellt.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name",
+    "Adresse",
+    "Tel."
+   ],
+   "format": ""
+  },
+  {
+   "name": "Grundstück GB-Nr.",
+   "definition": "Grundbuchnummer des Grundstücks, auf dem sich die Tankanlage befindet.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Gebäude Vers.-Nr.",
+   "definition": "Versicherungsnummer des Gebäudes, in oder bei dem sich die Tankanlage befindet.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Allgemeine Angaben (freie Zeile)",
+   "definition": "Unbeschriftetes Ankreuzfeld mit Leerzeile direkt nach «Gebäude Vers.-Nr.» in den allgemeinen Angaben; das Formular sagt nicht, welche Angabe hier verlangt ist, auszufüllen nur, wenn eine weitere Angabe zum Grundstück oder Gebäude zutrifft.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Standort der Anlage",
+   "definition": "Gemeinde, Strasse und Hausnummer des Standorts der Tankanlage.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Gemeinde",
+    "Strasse",
+    "Haus-Nr."
+   ],
+   "format": ""
+  },
+  {
+   "name": "Gewässerschutzbereich",
+   "definition": "Gewässerschutzbereich bzw. Grundwasserschutzzone, in dem die Anlage liegt; S2 ist laut Formular nur mit Ausnahmebewilligung möglich.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "Au",
+    "Au/Ao",
+    "Ao",
+    "übrige",
+    "S3",
+    "S2 (nur mit Ausnahmebewilligung)"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Gewässerschutzbereich (freie Zeile)",
+   "definition": "Unbeschriftetes Ankreuzfeld mit Leerzeile nach den vorgedruckten Bereichen, nur auszufüllen, wenn keiner der vorgedruckten Bereiche zutrifft.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Vorhandene Installation",
+   "definition": "Grössenkategorie des bestehenden Tanks.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "Kleintank",
+    "Mittelgrosser Tank",
+    "Grosstank"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Vorhandene Installation (freie Zeile)",
+   "definition": "Unbeschriftetes Ankreuzfeld mit Leerzeile für eine andere als die vorgedruckten Installationen, nur auszufüllen, wenn keine davon zutrifft.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Einbauart",
+   "definition": "Art bzw. Ort des Einbaus des bestehenden Tanks.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "Erdreich",
+    "Gebäude",
+    "Spezialkeller",
+    "Anbau/Garage"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Einbauart (freie Zeile)",
+   "definition": "Unbeschriftetes Ankreuzfeld mit Leerzeile für eine andere als die vorgedruckten Einbauarten, nur auszufüllen, wenn keine davon zutrifft.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Tank-Nr.",
+   "definition": "Nummer des von der Anpassung betroffenen Tanks.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Bauart des Tanks",
+   "definition": "Bauform des bestehenden Tanks.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "zylindrisch",
+    "prismatisch"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Bauart des Tanks (freie Zeile)",
+   "definition": "Unbeschriftetes Ankreuzfeld mit Leerzeile für eine andere als die vorgedruckten Bauarten, nur auszufüllen, wenn keine davon zutrifft.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Werkstoff Tank",
+   "definition": "Werkstoff, aus dem der bestehende Tank besteht.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "Stahl",
+    "Kunststoff"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Werkstoff Tank (freie Zeile)",
+   "definition": "Unbeschriftetes Ankreuzfeld mit Leerzeile für einen anderen als die vorgedruckten Werkstoffe, nur auszufüllen, wenn keiner davon zutrifft.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Tank im Heizraum",
+   "definition": "Angabe, ob der bestehende Tank im Heizraum steht.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "Ja",
+    "Nein"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Auffangwanne/Schutzbauwerk",
+   "definition": "Rückhaltevolumen in Prozent und Werkstoff der bestehenden Auffangwanne bzw. des bestehenden Schutzbauwerks.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Rückhaltevolumen in %",
+    "Werkstoff"
+   ],
+   "format": "%"
+  },
+  {
+   "name": "Lagergut",
+   "definition": "Flüssigkeit, die im bestehenden Tank gelagert wird.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "Heizöl",
+    "Dieselöl",
+    "Andere"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Lagergut Andere",
+   "definition": "Bezeichnung des Lagerguts, wenn «Andere» angekreuzt ist.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Allgemeine Gewässerschutzmassnahmen",
+   "definition": "Vorgesehene Anpassungen bzw. Ergänzungen der Tankanlage im Bereich der allgemeinen Gewässerschutzmassnahmen (Abschnitt 1, mehrere Antworten möglich).",
+   "data_type": "multiselect",
+   "required": true,
+   "allowed_values": [
+    "Änderung der Tankentlüftungsleitung",
+    "Einbau einer weiteren Entlüftungsleitung",
+    "Verlängerung der bestehenden Tankentlüftungsleitung",
+    "Ersetzen der Produkteleitungen",
+    "Verlegen der Produkteleitungen im Gebäude über Putz",
+    "Einbau der Berstsicherung",
+    "Einbau eines neuen Domschachtes (Zementrohr)",
+    "Erhöhen des Domschachtes (Aufsetzen zusätzlicher Zementrohrring)",
+    "Einbau einer Domschachtauskleidung",
+    "Einbau eines Magnetventils",
+    "Einbau eines Vakuumventils",
+    "Wechsel auf ein anderes Lagergut",
+    "Weitere Anpassung(en)"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Änderung der Tankentlüftungsleitung",
+   "definition": "Bisheriger und neuer Durchmesser der Tankentlüftungsleitung in Zoll, wenn deren Änderung angekreuzt ist.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "von",
+    "auf"
+   ],
+   "format": "Zoll"
+  },
+  {
+   "name": "Einbau einer weiteren Entlüftungsleitung",
+   "definition": "Durchmesser der zusätzlich einzubauenden Entlüftungsleitung in Zoll, wenn diese Massnahme angekreuzt ist.",
+   "data_type": "number",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "Zoll"
+  },
+  {
+   "name": "Verlängerung der bestehenden Tankentlüftungsleitung",
+   "definition": "Höhe in Metern über Terrain, auf welche die bestehende Tankentlüftungsleitung verlängert wird, wenn diese Massnahme angekreuzt ist.",
+   "data_type": "number",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "m über Terrain"
+  },
+  {
+   "name": "Produkt, KVU-Nr., Einbaufirma (Einbau einer Domschachtauskleidung)",
+   "definition": "Produkt, KVU-Nummer und Einbaufirma der Domschachtauskleidung, wenn deren Einbau angekreuzt ist.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Produkt",
+    "KVU-Nr.",
+    "Einbaufirma"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Allgemeine Gewässerschutzmassnahmen (freie Zeile)",
+   "definition": "Unbeschriftetes Ankreuzfeld mit Leerzeile nach Magnet- und Vakuumventil für eine weitere, nicht vorgedruckte Massnahme in Abschnitt 1, nur auszufüllen, wenn eine solche vorgesehen ist.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Wechsel auf ein anderes Lagergut",
+   "definition": "Bisheriges und künftiges Lagergut, wenn ein Wechsel des Lagerguts angekreuzt ist.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "von",
+    "auf"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Weitere Anpassung(en)",
+   "definition": "Beschreibung weiterer, nicht vorgedruckter Anpassungen, wenn diese Option angekreuzt ist.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Spezielle Schutzmassnahmen zur Leckerkennung bzw. Zurückhaltung von Leckflüssigkeit",
+   "definition": "Vorgesehene Massnahmen zur Leckerkennung bzw. zur Zurückhaltung von Leckflüssigkeit (Abschnitt 2, mehrere Antworten möglich).",
+   "data_type": "multiselect",
+   "required": true,
+   "allowed_values": [
+    "Einbau einer Innenhülle mit Vakuumüberwachung",
+    "Leckanzeigesystem",
+    "Einbau einer Doppelmantelauskleidung",
+    "Einbau einer Kunststoffbeschichtung",
+    "Erstellen eines Schutzbauwerks oder Auffangwanne (Schutzbauwerk -> armierter Beton)",
+    "Einbau einer Polyesterbeschichtung im Schutzbauwerk",
+    "Einbau einer Folienauskleidung im Schutzbauwerk",
+    "Einbau eines Flüssigkeitswarngerätes im Schutzbauwerk",
+    "Aufstellen einer mobilen Auffangwanne unter dem Kleintank"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Produkt, KVU-Nr., Einbaufirma (Einbau einer Innenhülle mit Vakuumüberwachung)",
+   "definition": "Produkt, KVU-Nummer und Einbaufirma der Innenhülle mit Vakuumüberwachung, wenn deren Einbau angekreuzt ist.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Produkt",
+    "KVU-Nr.",
+    "Einbaufirma"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Produkt, KVU-Nr., Einbaufirma (Leckanzeigesystem)",
+   "definition": "Produkt, KVU-Nummer und Einbaufirma des Leckanzeigesystems, wenn dieses angekreuzt ist.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Produkt",
+    "KVU-Nr.",
+    "Einbaufirma"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Produkt, KVU-Nr., Einbaufirma (Einbau einer Doppelmantelauskleidung)",
+   "definition": "Produkt, KVU-Nummer und Einbaufirma der Doppelmantelauskleidung, wenn deren Einbau angekreuzt ist.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Produkt",
+    "KVU-Nr.",
+    "Einbaufirma"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Einbau einer Kunststoffbeschichtung",
+   "definition": "Umfang der vorgesehenen Kunststoffbeschichtung, wenn deren Einbau angekreuzt ist.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "nur Tanksohle",
+    "Ganzer Tank"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Produkt, KVU-Nr., Einbaufirma (Einbau einer Kunststoffbeschichtung)",
+   "definition": "Produkt, KVU-Nummer und Einbaufirma der Kunststoffbeschichtung, wenn deren Einbau angekreuzt ist.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Produkt",
+    "KVU-Nr.",
+    "Einbaufirma"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Detailbeschrieb mit Skizzen von Grundriss und Schnitt",
+   "definition": "Beizulegender Detailbeschrieb mit Skizzen von Grundriss und Schnitt, wenn das Erstellen eines Schutzbauwerks oder einer Auffangwanne angekreuzt ist.",
+   "data_type": "attachment",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Produkt, KVU-Nr., Einbaufirma (Einbau einer Polyesterbeschichtung im Schutzbauwerk)",
+   "definition": "Produkt, KVU-Nummer und Einbaufirma der Polyesterbeschichtung im Schutzbauwerk, wenn deren Einbau angekreuzt ist.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Produkt",
+    "KVU-Nr.",
+    "Einbaufirma"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Produkt, KVU-Nr., Einbaufirma (Einbau einer Folienauskleidung im Schutzbauwerk)",
+   "definition": "Produkt, KVU-Nummer und Einbaufirma der Folienauskleidung im Schutzbauwerk, wenn deren Einbau angekreuzt ist.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Produkt",
+    "KVU-Nr.",
+    "Einbaufirma"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Produkt, KVU-Nr., Einbaufirma (Einbau eines Flüssigkeitswarngerätes im Schutzbauwerk)",
+   "definition": "Produkt, KVU-Nummer und Einbaufirma des Flüssigkeitswarngeräts im Schutzbauwerk, wenn dessen Einbau angekreuzt ist.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Produkt",
+    "KVU-Nr.",
+    "Einbaufirma"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Aufstellen einer mobilen Auffangwanne unter dem Kleintank",
+   "definition": "KVU-Nummer, Baustoff, Wandstärke in Millimetern und Inhalt in Litern der mobilen Auffangwanne, wenn deren Aufstellen unter dem Kleintank angekreuzt ist.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "KVU-Nr.",
+    "Baustoff",
+    "Wandstärke",
+    "Inhalt"
+   ],
+   "format": "Wandstärke: mm; Inhalt: Liter"
+  },
+  {
+   "name": "Spezielle Schutzmassnahmen zur Leckerkennung bzw. Zurückhaltung von Leckflüssigkeit (freie Zeile)",
+   "definition": "Unbeschriftetes Ankreuzfeld mit Leerzeile am Ende von Abschnitt 2 für eine weitere, nicht vorgedruckte Schutzmassnahme, nur auszufüllen, wenn eine solche vorgesehen ist.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Konstruktive Änderungen am Tank",
+   "definition": "Vorgesehene konstruktive Änderungen am bestehenden Tank (Abschnitt 3, mehrere Antworten möglich).",
+   "data_type": "multiselect",
+   "required": true,
+   "allowed_values": [
+    "Verkleinern des Tanks zu Gunsten der vorschriftsmässigen Minimalabstände zwischen Behälter und Tankraum",
+    "Ersatz eines defekten baugleichen Tanks der bestehenden Tankanlage"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Verkleinern des Tanks zu Gunsten der vorschriftsmässigen Minimalabstände zwischen Behälter und Tankraum",
+   "definition": "Seite bzw. Seiten, auf denen der Minimalabstand zwischen Behälter und Tankraum durch das Verkleinern des Tanks hergestellt werden soll, wenn diese Änderung angekreuzt ist.",
+   "data_type": "multiselect",
+   "required": true,
+   "allowed_values": [
+    "oben",
+    "seitlich"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Produkt, KVU-Nr., Einbaufirma (Ersatz eines defekten baugleichen Tanks der bestehenden Tankanlage)",
+   "definition": "Produkt, KVU-Nummer und Einbaufirma des Ersatztanks, wenn der Ersatz eines defekten baugleichen Tanks angekreuzt ist.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Produkt",
+    "KVU-Nr.",
+    "Einbaufirma"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Bei Occasionstanks ist eine Sicht- und Zustandskontrolle erforderlich",
+   "definition": "Ankreuzfeld beim Hinweis zum Ersatztank, dass bei Occasionstanks eine Sicht- und Zustandskontrolle erforderlich ist; das Formular sagt nicht ausdrücklich, ob damit ein Occasionstank gemeldet oder der Hinweis bestätigt wird.",
+   "data_type": "boolean",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Konstruktive Änderungen am Tank (freie Zeile)",
+   "definition": "Unbeschriftetes Ankreuzfeld mit Leerzeile am Ende von Abschnitt 3 für eine weitere, nicht vorgedruckte Änderung am Tank, nur auszufüllen, wenn eine solche vorgesehen ist.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Konstruktive Änderungen am Tankraum",
+   "definition": "Freitextbeschreibung der vorgesehenen konstruktiven Änderungen am Tankraum (Abschnitt 4, zwei Zeilen), sofern solche vorgesehen sind.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Weitere Angaben / Bemerkungen",
+   "definition": "Freiwillige weitere Angaben oder Bemerkungen zum Gesuch.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ort und Datum",
+   "definition": "Ort und Datum der Unterzeichnung des Gesuchs.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Ort",
+    "Datum"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Stempel und Unterschrift des Gesuchstellers",
+   "definition": "Stempel und Unterschrift der Gesuchstellerin oder des Gesuchstellers.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  }
+ ],
+ "hinweis": "Korrekturen: (1) Fehlendes Feld ergänzt: «Allgemeine Angaben (freie Zeile)». Das PDF druckt auf Seite 1 direkt nach «Gebäude Vers.-Nr.: ____» ein unbeschriftetes Ankreuzfeld mit einer langen Leerzeile (im Bild bestätigt). Der Entwurf hatte das unbeschriftete Ankreuzfeld mit Leerzeile bei jeder anderen Gruppe erfasst, aber dieses ausgelassen. Es steht jetzt zwischen «Gebäude Vers.-Nr.» und «Standort der Anlage». Alle übrigen 53 Felder wurden unverändert übernommen, nachdem sie Zeile für Zeile gegen das gerenderte PDF geprüft wurden: Ankreuzgruppen und ihre Optionen wörtlich, Produkt/KVU-Nr./Einbaufirma-Blöcke als Teilfelder, Einheiten Zoll/m über Terrain/mm/Liter/%, nur eine Unterschrift (Gesuchsteller), keine Beilagen-Checkliste (die einzige Beilage ist der Detailbeschrieb mit Skizzen bei Schutzbauwerk/Auffangwanne). Prüfhinweise ohne Änderung: «Vorhandene Installation» ist im Formular eine Abschnittsüberschrift. Die Zeile Kleintank/Mittelgrosser Tank/Grosstank hat keine eigene Beschriftung, deshalb trägt die Grössenwahl den Namen der Überschrift. Eigentümer und Verwalter sind durch «und/oder» verbunden. Beide bleiben required=true, weil das Formular keinen der beiden als freiwillig kennzeichnet, aber einer davon genügt. Die Namen der «(freie Zeile)»-Felder sind Ergänzungen der Databank, weil das Formular dort keine Beschriftung druckt. Die Leerzeile hinter «Liter» bei der mobilen Auffangwanne ist ein Füllstrich ohne Beschriftung und kein eigenes Feld. Keine Felder der Person: Kopf und Fusszeile (Feuerwehrinspektorat, Adresse, Tel./Fax), Rechtsgrundlage GSchG/GSchVV, «Ausgabe September 2018», «Für melde- und bewilligungspflichtige Anlagen» sowie die ganze Seite 3 «Bewilligung (wird vom Bereich Wassergefährdende Flüssigkeiten ausgefüllt)». Dazu gehören «Gesuches vom», die Bestätigung der Zulassung, die Auflagen-Ankreuzfelder, «Bemerkungen / zusätzliche Auflagen», die Texte zu Abnahme und Gebühr (Baubewilligungsgebührenverordnung 700.108) sowie «Schaffhausen, …» mit Stempel und Unterschrift der Kantonalen Feuerpolizei."
+}

@@ -1,0 +1,360 @@
+{
+ "hinweis": "eCH-Urteile Formular 550, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/550 --nur-offene=550",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Container: Name und Postadresse der Beistandsperson (natürliche Person, Teile Vorname/Name/Strasse/PLZ/Ort) als Absenderin des Briefs an das Finanzinstitut → eCH-0010 personMailAddress (existiert verbatim). Die Teile werden einzeln beurteilt.",
+   "feld": "Absender (Zahlungsauftrag)",
+   "standard": "eCH-0010",
+   "element": "personMailAddress"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname der Beistandsperson → eCH-0044 firstName (Regel Vorname → firstName).",
+   "elternfeld": "Absender (Zahlungsauftrag)",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Nachname der Beistandsperson (natürliche Person) → eCH-0044 officialName (Regel Name → officialName).",
+   "elternfeld": "Absender (Zahlungsauftrag)",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Strasse der Absenderadresse → eCH-0010 street (addressInformationType).",
+   "elternfeld": "Absender (Zahlungsauftrag)",
+   "teilfeld": "Strasse",
+   "standard": "eCH-0010",
+   "element": "street"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Postleitzahl der Absenderadresse → eCH-0010 swissZipCode.",
+   "elternfeld": "Absender (Zahlungsauftrag)",
+   "teilfeld": "PLZ",
+   "standard": "eCH-0010",
+   "element": "swissZipCode"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Ort der Absenderadresse (Adressort, nicht Ausstellungsort) → eCH-0010 town.",
+   "elternfeld": "Absender (Zahlungsauftrag)",
+   "teilfeld": "Ort",
+   "standard": "eCH-0010",
+   "element": "town"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Container: Empfängeradresse des Finanzinstituts (Organisation) → eCH-0010 organisationMailAdress (Schreibweise verbatim aus dem Katalog, organisationMailAddressType).",
+   "feld": "Adresse Finanzinstitut",
+   "standard": "eCH-0010",
+   "element": "organisationMailAdress"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Paar (Adresse Finanzinstitut, Name) = Name der Bank im Adressblock, keine natürliche Person → eCH-0010 organisationName (organisationMailAddressInfoType). eCH-0119 bankName gehört zur Kontoverbindung (bankAccountType), nicht zur Postadresse.",
+   "elternfeld": "Adresse Finanzinstitut",
+   "teilfeld": "Name",
+   "standard": "eCH-0010",
+   "element": "organisationName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Strasse der Bankadresse → eCH-0010 street.",
+   "elternfeld": "Adresse Finanzinstitut",
+   "teilfeld": "Strasse",
+   "standard": "eCH-0010",
+   "element": "street"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "PLZ der Bankadresse → eCH-0010 swissZipCode.",
+   "elternfeld": "Adresse Finanzinstitut",
+   "teilfeld": "PLZ",
+   "standard": "eCH-0010",
+   "element": "swissZipCode"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Ort der Bankadresse → eCH-0010 town.",
+   "elternfeld": "Adresse Finanzinstitut",
+   "teilfeld": "Ort",
+   "standard": "eCH-0010",
+   "element": "town"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ort und Datum der Unterzeichnung als Ganzes: eCH-0119 locationAndDate (xs:string, attachedFormsType/listOfSecuritiesType) ist das kombinierte Element «Ort und Datum»; in der Datenbank 21x für «Ort, Datum»/«Ort / Datum» verwendet. Gilt nur für den Container.",
+   "feld": "Ort und Datum (Zahlungsauftrag)",
+   "standard": "eCH-0119",
+   "element": "locationAndDate"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Ausstellungs-/Unterzeichnungsort allein: ganzer Katalog nach place*/location*/sign*/issue* durchsucht – nur kombiniertes eCH-0119 locationAndDate und Orte anderer Bedeutung (placeOfBirth, placeOfOrigin, placeOfWork, placeOfMarriage, eCH-0262 locationOfUtilisation); eCH-0010 town ist Adressort. Kein atomares Element; Datenbank-Konvention für Teil «Ort» von «Ort und Datum» ist kein_standard.",
+   "elternfeld": "Ort und Datum (Zahlungsauftrag)",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Unterzeichnungsdatum allein: gesucht *Date/issue*/sign*/submission* – nur kombiniertes eCH-0119 locationAndDate, technisches eCH-0058 messageDate, eCH-0217 invoiceDate (Rechnung), eCH-0262 dateOfApplication (Pflanzenschutz), Bau-/GWR-Daten; keines ist das Datum eines Schreibens. Kein atomares Element.",
+   "elternfeld": "Ort und Datum (Zahlungsauftrag)",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Container: Gutschriftskonto mit IBAN und Kontoinhaber = Bankverbindung → eCH-0119 bankAccount (Typ bankAccountType mit ibanNumber/accountOwner); Datenbank-Konvention für Konto-/Zahlungsverbindungen.",
+   "feld": "Gutschrift auf Konto / IBAN",
+   "standard": "eCH-0119",
+   "element": "bankAccount"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "IBAN des Gutschriftskontos → eCH-0119 ibanNumber (bankAccountType); Datenbank-Konvention für «Kontonummer IBAN»/«IBAN».",
+   "elternfeld": "Gutschrift auf Konto / IBAN",
+   "teilfeld": "Konto / IBAN",
+   "standard": "eCH-0119",
+   "element": "ibanNumber"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«lautend auf» = Kontoinhaber des Gutschriftskontos → eCH-0119 accountOwner (bankAccountType, String).",
+   "elternfeld": "Gutschrift auf Konto / IBAN",
+   "teilfeld": "lautend auf",
+   "standard": "eCH-0119",
+   "element": "accountOwner"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Container: Lastschriftkonto mit IBAN und Kontoinhaber = Bankverbindung → eCH-0119 bankAccount.",
+   "feld": "Belastung vom Konto / IBAN",
+   "standard": "eCH-0119",
+   "element": "bankAccount"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "IBAN des zu belastenden Kontos → eCH-0119 ibanNumber.",
+   "elternfeld": "Belastung vom Konto / IBAN",
+   "teilfeld": "Konto / IBAN",
+   "standard": "eCH-0119",
+   "element": "ibanNumber"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«lautend auf» = Kontoinhaber des Lastschriftkontos → eCH-0119 accountOwner.",
+   "elternfeld": "Belastung vom Konto / IBAN",
+   "teilfeld": "lautend auf",
+   "standard": "eCH-0119",
+   "element": "accountOwner"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Zu überweisender Betrag in Fr. → eCH-0119 paymentAmount (paymentType, moneyType1 = Betrag einer Zahlung). Hinweis: paymentType steht in eCH-0119 unter benefitType (Kapitalleistungen); gleiche Verallgemeinerung wie bei bankAccount. Ganzer Katalog nach *amount*/*pay*/*transfer*/*invoice* durchsucht: eCH-0259 amount (Gebühr), eCH-0119 amount (restBenefitType), eCH-0069 E-Invoicing ohne Elemente – paymentAmount ist der einzige Zahlungsbetrag.",
+   "feld": "Betrag",
+   "standard": "eCH-0119",
+   "element": "paymentAmount"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Gewünschtes Ausführungsdatum der Zahlung (Datum, sofern nicht «per sofort») = Datum der Zahlung → eCH-0119 paymentDate (paymentType, xs:date); kein anderes Zahlungs-/Ausführungsdatum im Katalog (eCH-0217 invoiceDate ist Rechnungsdatum).",
+   "feld": "Ausführung per sofort / Datum",
+   "standard": "eCH-0119",
+   "element": "paymentDate"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Handschriftliche Unterschrift ist keine Datenangabe: ganzer Katalog nach sign*/signature* durchsucht – eCH-0039 signer (Unterzeichner-Kennung eines GEVER-Dokuments), eCH-0260 *SignatureConfirmation (Ja/Nein-Bestätigungen), eCH-0260 signatures (Lehrvertrag) sowie Signaturstandards ohne Elemente. Keines definiert die Unterschrift selbst; Datenbank-Konvention (88x) kein_standard.",
+   "feld": "Unterschrift Beistandsperson (Zahlungsauftrag)"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Name der unterzeichnenden Beistandsperson = Identifikation des Beistands in der Beistandsbeziehung: eCH-0021 guardianRelationshipType/partner/personIdentificationPartner (personIdentificationLightType) ist laut XSD genau die Person des Beistands (choice mit partnerIdOrganisation).",
+   "feld": "Beistandsperson",
+   "standard": "eCH-0021",
+   "element": "personIdentificationPartner"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Container: Name und Postadresse der Beistandsperson als Absenderin des Antrags an die KESB → eCH-0010 personMailAddress.",
+   "feld": "Absender (Antrag auf Kontoübertrag)",
+   "standard": "eCH-0010",
+   "element": "personMailAddress"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname der Beistandsperson → eCH-0044 firstName.",
+   "elternfeld": "Absender (Antrag auf Kontoübertrag)",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Nachname der Beistandsperson → eCH-0044 officialName.",
+   "elternfeld": "Absender (Antrag auf Kontoübertrag)",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Strasse der Absenderadresse → eCH-0010 street.",
+   "elternfeld": "Absender (Antrag auf Kontoübertrag)",
+   "teilfeld": "Strasse",
+   "standard": "eCH-0010",
+   "element": "street"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "PLZ der Absenderadresse → eCH-0010 swissZipCode.",
+   "elternfeld": "Absender (Antrag auf Kontoübertrag)",
+   "teilfeld": "PLZ",
+   "standard": "eCH-0010",
+   "element": "swissZipCode"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Ort der Absenderadresse → eCH-0010 town.",
+   "elternfeld": "Absender (Antrag auf Kontoübertrag)",
+   "teilfeld": "Ort",
+   "standard": "eCH-0010",
+   "element": "town"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ort und Datum der Ausstellung des Antrags als Ganzes → eCH-0119 locationAndDate (kombiniertes Element «Ort und Datum»); nur für den Container.",
+   "feld": "Ort und Datum (Antrag auf Kontoübertrag)",
+   "standard": "eCH-0119",
+   "element": "locationAndDate"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Ausstellungsort allein: ganzer Katalog nach place*/location*/sign*/issue* durchsucht – nur kombiniertes eCH-0119 locationAndDate und Orte anderer Bedeutung (Geburt, Heimat, Arbeit, Heirat); eCH-0010 town ist Adressort. Kein atomares Element.",
+   "elternfeld": "Ort und Datum (Antrag auf Kontoübertrag)",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Ausstellungsdatum allein: gesucht *Date/issue*/submission*/request* – nur kombiniertes eCH-0119 locationAndDate, technisches eCH-0058 messageDate, eCH-0217 invoiceDate, GWR-/Baudaten; kein Element für das Datum eines Antragsschreibens.",
+   "elternfeld": "Ort und Datum (Antrag auf Kontoübertrag)",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Container: Personalien (Vorname, Name, Geburtsdatum) der verbeiständeten Person → eCH-0044 personIdentification (Datenbank-Konvention für «Personalien»); die Adresse wird als Teil separat nach eCH-0010 beurteilt.",
+   "feld": "Daten der verbeiständeten Person",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname der verbeiständeten Person → eCH-0044 firstName.",
+   "elternfeld": "Daten der verbeiständeten Person",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Nachname der verbeiständeten Person → eCH-0044 officialName.",
+   "elternfeld": "Daten der verbeiständeten Person",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Geburtsdatum der verbeiständeten Person → eCH-0044 dateOfBirth.",
+   "elternfeld": "Daten der verbeiständeten Person",
+   "teilfeld": "Geburtsdatum",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Ganze Wohnadresse in einem Eintrag (keine separaten Teile Strasse/PLZ/Ort) → eCH-0010 addressInformation; street wäre zu eng, weil der Teil die vollständige Adresse umfasst.",
+   "elternfeld": "Daten der verbeiständeten Person",
+   "teilfeld": "Adresse",
+   "standard": "eCH-0010",
+   "element": "addressInformation"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Propagiertes kein_standard bestätigt; Vorschlag eCH-0119 paymentReason verworfen: laut XSD (eCH-0119-4-0-0, paymentType unter benefitType) ist paymentReason eine feste Codeliste der Kapitalleistungsart (1 AHV/IV, 2 Freizügigkeit, 3 Tod/Invalidität, 4 Säule 2, 5 Säule 3a, 6 Andere) und kann «geringer Kontostand aufgrund Vermögensverzehr» nicht abbilden. Ganzer Katalog nach *reason*/*justif*/*grund* durchsucht: eCH-0258 justification (nur Fristerstreckung), eCH-0235 reason/justifyDemand (Gesundheitswesen), eCH-0216 reason (GWR), eCH-0011 cancelationReason, eCH-0098/0148 liquidation-/foundationReason, eCH-0129 changeReason – keines ist der Grund eines Antrags auf Kontoübertrag.",
+   "feld": "Begründung"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freitext-Begründung des Kontoübertrags: eCH-0119 paymentReason ist eine Codeliste der Kapitalleistungsart (kein Freitext, andere Bedeutung); übrige Reason-/Justification-Elemente (eCH-0258 justification für Fristerstreckung, eCH-0235 reason Gesundheitswesen, eCH-0216 reason GWR, eCH-0278 reason Liegenschaftsertrag) gehören zu anderen Vorgängen. Kein passendes Element im ganzen Katalog.",
+   "feld": "Andere Begründung"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Handschriftliche Unterschrift: ganzer Katalog nach sign*/signature* durchsucht (eCH-0039 signer = Unterzeichner-Kennung, eCH-0260 Bestätigungs-Booleans und signatures, Signaturstandards ohne Elemente). Kein Element definiert die Unterschrift selbst; Datenbank-Konvention kein_standard.",
+   "feld": "Unterschrift Beistandsperson (Antrag auf Kontoübertrag)"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Beilage (Aufzählungspunkt, keine Ja/Nein-Box): Kontoauszug mit aktuellem Saldo = beigelegtes Dokument → eCH-0058 attachment (headerType), Datenbank-Konvention für Beilagen. eCH-0119 attachedBalance ist ein Boolean (Bilanz beigelegt) und passt nicht; kein Saldo-Element für ein Bankkonto im Katalog.",
+   "feld": "aktueller Kontostand vom Lastschriftkonto",
+   "standard": "eCH-0058",
+   "element": "attachment"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Beilage (Kontoauszug mit aktuellem Saldo des Gutschriftskontos) → eCH-0058 attachment (headerType).",
+   "feld": "aktueller Kontostand vom Gutschriftskonto",
+   "standard": "eCH-0058",
+   "element": "attachment"
+  }
+ ]
+}

@@ -1,0 +1,77 @@
+{
+ "hinweis": "eCH-Urteile Formular 186, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/186 --nur-offene=186",
+ "urteile": [
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Name of the event (show, concert etc.) for which open fire is requested. Searched the whole catalogue of 290 standards. Titles with Veranstaltung/Anlass/Event/Feuer/Brand/Pyro/Spreng/Bewilligung/Sicherheit/Gesuch give no event standard. An element search for event*/name/title/designation/description finds only eCH-0102 eventName (eVoting, status Abgelöst, so not usable), the event message types of eCH-0020/0132/0211, eCH-0039 title/subject (title of a dossier or message, not of an event), eCH-0211 description (building project) and eCH-0129 name/nameOfBuilding (building). No standard in force defines the name of an event, so kein_standard is confirmed.",
+   "elternfeld": "Angaben zur Veranstaltung",
+   "teilfeld": "Bezeichnung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Land-register (Grundbuch) number of the plot where the event takes place; the footnote points to the cantonal geoportal. eCH-0129 Objektwesen (Genehmigt) has the element number in realestateIdentificationType (and in buildingIdentificationType). The same label «Grundstück GB Nr.» / «GB-Nr.» is mapped to eCH-0129 number on Formulare 532-539, 572, 180 and 7. Confirmed; the element is copied verbatim.",
+   "elternfeld": "Angaben zur Veranstaltung",
+   "teilfeld": "Grundstück GB-Nr.",
+   "standard": "eCH-0129",
+   "element": "number"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Gebäudeversicherungsnummer (VS-Nr.) of the building where the event takes place; the footnote points to the geoportal. eCH-0129 (Genehmigt) has insuranceNumber in insuranceObjectType and insuranceObjectOnlyType, with type buildingInsuranceNumberType. The identical label «Gebäude VS-Nr.» on Formulare 532-539, and «Versicherungsnr. (VS-Nr.)» on Formular 7, map to eCH-0129 insuranceNumber. Confirmed.",
+   "elternfeld": "Angaben zur Veranstaltung",
+   "teilfeld": "Gebäude VS-Nr.",
+   "standard": "eCH-0129",
+   "element": "insuranceNumber"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Company name of the organiser. It sits in a postal-address block whose parent is mapped to eCH-0010 mailAddress, and whose sibling «Vorname Name (Ansprechperson)» is already in organisationMailAddressInfoType. eCH-0010 (Genehmigt) has organisationName in organisationMailAddressInfoType. The Pyrotechniker block's «Firma» on this Formular and on sister Formular 185 carries the same element. Confirmed.",
+   "elternfeld": "Angaben zum Veranstalter",
+   "teilfeld": "Firma",
+   "standard": "eCH-0010",
+   "element": "organisationName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Telephone number of the pyrotechnician. eCH-0046 Kontakt (Genehmigt) has phoneNumber in phoneType (type phoneNumberType). The neighbouring part E-Mail already uses eCH-0046 emailAddress, and «Tel. Nr.» / «Telefon» parts on Formulare 24 and 376 use eCH-0046 phoneNumber. Confirmed.",
+   "elternfeld": "Angaben zum Pyrotechniker",
+   "teilfeld": "Tel-Nr.",
+   "standard": "eCH-0046",
+   "element": "phoneNumber"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Fuel quantity in kg for each open-fire effect. Searched all 290 standards: no title covers fire safety, pyrotechnics, explosives or events. An element search for fuel/burn/combust/flam/gas/weight/mass/kilo/quantity/energy/explos/pyro/fire found only: energySourceHeating in eCH-0129/0206 (the energy source of a building's heating, not an amount); quantity in eCH-0259 (fee items) and in eCH-0262/0263 (farm inputs such as feed, fertiliser, seed); fireService* in eCH-0020/0021/0101 (fire-service duty of a person). None of these defines the fuel quantity of a stage fire effect. The sister columns Anzahl, Effektdauer and Effekthöhe are already kein_standard. Confirmed; only the search note was corrected (eCH-0216 has no energySourceHeating).",
+   "elternfeld": "Zusatzblatt Bezeichnung der offenen Feuer",
+   "teilfeld": "Brennstoffmenge [kg]"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Lateral safety distance, in metres, around an open-fire effect. Searched all 290 standards: an element search for dist/abstand/clearance/safety finds only eCH-0119 distance/distancePerYear/amountPerDistance (vehicle costs in the tax return) and eCH-0278 travelDistance (commuting), plus eCH-0071 district (unrelated). No title covers fire safety or pyrotechnics. No standard defines a safety distance. Confirmed.",
+   "elternfeld": "Zusatzblatt Bezeichnung der offenen Feuer",
+   "teilfeld": "Sicherheitsabstand seitlich [m]"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Safety distance in the direction of the effect, in metres. The search was the same as for the lateral distance (dist/abstand/clearance/safety over all 290 standards). It finds only vehicle and commuting distances (eCH-0119, eCH-0278) and no fire-safety or pyrotechnics standard. No standard defines this. Confirmed.",
+   "elternfeld": "Zusatzblatt Bezeichnung der offenen Feuer",
+   "teilfeld": "Sicherheitsabstand in Effektrichtung [m]"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Free-text technical information on the set-up, mounting and base of each fire effect. No standard among the 290 covers stage-fire or pyrotechnics set-up. Searched titles Feuer/Brand/Pyro/Spreng/Sicherheit/Veranstaltung and elements install/mount/setup/safety/explos/firework. The only general comment elements are eCH-0039/0058 comment, eCH-0211 remark and eCH-0129 remark. They are message or dossier remarks, or remarks about a building project or dwelling, and they do not define this technical description. The databank's practice for free-text parts is overwhelmingly kein_standard, and the equivalent column on sister Formular 185 («Informationen zu Abbrennplatz, Aufstellung, Montage …») is kein_standard. Confirmed.",
+   "elternfeld": "Zusatzblatt Bezeichnung der offenen Feuer",
+   "teilfeld": "Informationen zu Aufstellung, Montage, Unterlage etc."
+  }
+ ]
+}

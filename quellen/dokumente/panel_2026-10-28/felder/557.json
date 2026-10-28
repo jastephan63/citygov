@@ -1,0 +1,287 @@
+{
+ "form_id": 557,
+ "data_fields": [
+  {
+   "name": "ordentlichen / ausserordentlichen Gesellschafterversammlung",
+   "definition": "Auswahl, ob das Protokoll eine ordentliche oder eine ausserordentliche Gesellschafterversammlung der GmbH betrifft.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "ordentlichen",
+    "ausserordentlichen"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "GmbH",
+   "definition": "Firma der Gesellschaft mit beschränkter Haftung, deren Gesellschafterversammlung protokolliert wird (im Formular vor dem Zusatz «GmbH» einzusetzen).",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "mit Sitz in",
+   "definition": "Sitz (Gemeinde) der GmbH.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ort",
+   "definition": "Ort, an dem die Gesellschafterversammlung stattfindet.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Datum",
+   "definition": "Kalenderdatum, an dem die Gesellschafterversammlung stattfindet.",
+   "data_type": "date",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Beginn",
+   "definition": "Uhrzeit, zu der die Gesellschafterversammlung beginnt.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "Uhr"
+  },
+  {
+   "name": "Vorsitz",
+   "definition": "Name der Person, die den Vorsitz der Gesellschafterversammlung führt.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Protokoll",
+   "definition": "Name der Person, die das Protokoll der Gesellschafterversammlung führt.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Zur heutigen Versammlung wurde ordnungsgemäss einberufen",
+   "definition": "Freie Angabe, wie die heutige Versammlung ordnungsgemäss einberufen wurde; sie ersetzt den im Formular vorgegebenen, zu entfernenden Hinweis «Beschlussfähigkeit genau abklären».",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Stammkapital",
+   "definition": "Gesamtbetrag des Stammkapitals in CHF, Anzahl der Stammanteile und Betrag je Stammanteil in CHF, auf die sich die Feststellungen zur Vertretung an der Versammlung beziehen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "total CHF",
+    "eingeteilt in … Stammanteile",
+    "Stammanteile zu CHF"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Durch den unabhängigen Stimmrechtsvertreter vertreten",
+   "definition": "Feststellung, mit welchem Betrag in CHF bzw. welcher Anzahl Stammanteile das Stammkapital durch den unabhängigen Stimmrechtsvertreter vertreten ist, oder dass kein unabhängiger Stimmrechtsvertreter bezeichnet wurde (Unzutreffendes löschen).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Auswahl (sind CHF … bzw. … Stammanteile vertreten / Es ist kein unabhängiger Stimmrechtsvertreter bezeichnet worden)",
+    "CHF",
+    "Stammanteile"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Durch Organstimmrechtsvertreter vertreten",
+   "definition": "Feststellung, mit welchem Betrag in CHF bzw. welcher Anzahl Stammanteile das Stammkapital durch Organstimmrechtsvertreter vertreten ist, oder dass kein Organstimmrechtsvertreter bezeichnet wurde (Unzutreffendes löschen).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Auswahl (sind CHF … bzw. … Stammanteile vertreten / Es ist kein Organstimmrechtsvertreter bezeichnet worden)",
+    "CHF",
+    "Stammanteile"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Durch selbst anwesende Gesellschafter vertreten",
+   "definition": "Betrag in CHF bzw. Anzahl Stammanteile, die durch selbst anwesende Gesellschafter vertreten sind.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "CHF",
+    "Stammanteile"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Durch andere Gesellschafter mit Vollmacht vertreten",
+   "definition": "Betrag in CHF bzw. Anzahl Stammanteile, die durch andere Gesellschafter mit Vollmacht vertreten sind.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "CHF",
+    "Stammanteile"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Wahlen – neue/n Geschäftsführer/in",
+   "definition": "Von der Gesellschafterversammlung neu gewählte Geschäftsführer/innen mit der gemeinsam angegebenen Zeichnungsart sowie je Name, Heimatort bzw. Staatsangehörigkeit (von) und Wohnort (in).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Einzelunterschrift/Kollektivunterschrift zu zweien",
+    "Name, Vorname",
+    "von",
+    "in"
+   ],
+   "format": "2 Zeilen (Personen)"
+  },
+  {
+   "name": "Wahlen – neue/n Vorsitzende/n der Geschäftsführung",
+   "definition": "Von der Gesellschafterversammlung neu gewählte Person für den Vorsitz der Geschäftsführung mit Zeichnungsart sowie Name, Heimatort bzw. Staatsangehörigkeit (von) und Wohnort (in).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Einzelunterschrift/Kollektivunterschrift zu zweien",
+    "Name, Vorname",
+    "von",
+    "in"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Abberufungen – Geschäftsführer/in",
+   "definition": "Von der Gesellschafterversammlung als Geschäftsführer/in abberufene Person mit ihrer Zeichnungsart sowie Name, Heimatort bzw. Staatsangehörigkeit (von) und Wohnort (in).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Einzelunterschrift/Kollektivunterschrift zu zweien",
+    "Name, Vorname",
+    "von",
+    "in"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Abberufungen – als Geschäftsführer zurückgetreten",
+   "definition": "Als Geschäftsführer zurückgetretene Person mit Name, Heimatort bzw. Staatsangehörigkeit (von), Wohnort (in) und ihrer Zeichnungsart, deren Rücktritt die Gesellschafterversammlung zur Kenntnis nimmt.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name, Vorname",
+    "von",
+    "in",
+    "Einzelunterschrift/Kollektivunterschrift zu zweien"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Abtretung von Stammanteilen",
+   "definition": "Anzahl der abgetretenen Stammanteile und Betrag in CHF je Stammanteil, deren Übertragung die Gesellschafterversammlung genehmigt.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "von … Stammanteilen",
+    "zu CHF"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Veräusserer",
+   "definition": "Person, welche die Stammanteile abtritt, mit Name, Heimatort bzw. Staatsangehörigkeit (von) und Wohnort (in).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name, Vorname",
+    "von",
+    "in"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Erwerber",
+   "definition": "Person, welche die Stammanteile erwirbt und als neue/r Gesellschafter/in mit allen Mitgliedschaftsrechten anerkannt wird, mit Name, Heimatort bzw. Staatsangehörigkeit (von) und Wohnort (in).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name, Vorname",
+    "von",
+    "in"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Diverses",
+   "definition": "Freie Angaben zu weiteren Geschäften unter dem Traktandum «Diverses».",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Schluss der Versammlung",
+   "definition": "Uhrzeit, zu der die Gesellschafterversammlung geschlossen wird.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "Uhr"
+  },
+  {
+   "name": "Unterschrift Vorsitzender",
+   "definition": "Unterschrift des Vorsitzenden der Gesellschafterversammlung über dem in Druckschrift einzusetzenden Namen ([NAME, Vorname]).",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "NAME, Vorname"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Unterschrift Protokollführer",
+   "definition": "Unterschrift des Protokollführers der Gesellschafterversammlung über dem in Druckschrift einzusetzenden Namen ([NAME, Vorname]).",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "NAME, Vorname"
+   ],
+   "format": ""
+  }
+ ],
+ "hinweis": "Geprüft gegen die DOCX (FORMTEXT-Felder und gepunktete Leerstellen) Zeile für Zeile; Reihenfolge und Feldbestand des Entwurfs stimmen, nichts fehlt, nichts erfunden (keine Beilagen-Checkliste, kein Amtsfeld, keine Kopf-/Fusszeilenfelder). Korrekturen: (1) Teilfelder «von (Heimatort)» / «in (Wohnort)» in allen sechs Personen-Composites (Wahlen Geschäftsführer/in, Vorsitzende/r der Geschäftsführung, Abberufung, Rücktritt, Veräusserer, Erwerber) auf den gedruckten Wortlaut «von» / «in» zurückgeführt; die Bedeutung (Heimatort bzw. Staatsangehörigkeit; Wohnort) steht jetzt in der Definition. (2) In den beiden Stimmrechtsvertreter-Composites lautete die erste Auswahloption verkürzt «vertreten»; jetzt wörtlich «sind CHF … bzw. … Stammanteile vertreten». (3) Beide Unterschriftsfelder erhalten das Teilfeld «NAME, Vorname» für den gedruckten Platzhalter «[NAME, Vorname]» unter der Unterschriftslinie (wie bei den Formularen 313/314/323). Bewusst unverändert: «Name, Vorname» als ein Teil der Personenzeilen (das Formular druckt dort nur eine Leerstelle; sein eigener Platzhalter heisst «[NAME, Vorname]» in einer Zeile). Ort, Datum und Beginn bleiben getrennt, weil es eigene beschriftete Zeilen zur Versammlung sind und kein «Ort und Datum»-Block bei der Unterschrift. «Diverses» bleibt freiwillig (Funktion wie «Bemerkungen»). Keine Felder der Person sind: die fest vorgegebenen Traktanden 1–4, «Der Vorsitzende stellt fest», «Damit ist die Gesellschafterversammlung … beschlussfähig», «Gegen diese Feststellungen wird kein Widerspruch erhoben», «Sie / Er nimmt die Wahl an», «Die Gesellschafterversammlung nimmt hiervon Kenntnis», der zu entfernende Hinweis «Beschlussfähigkeit genau abklären», die Anweisungen «(Unzutreffendes löschen)» sowie der Hinweis «Vollmachten müssen der Versammlungsleitung vorliegen». Der Hinweis zu den Vollmachten ist keine Beilage an das Amt."
+}

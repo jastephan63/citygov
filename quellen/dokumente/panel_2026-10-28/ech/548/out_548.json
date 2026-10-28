@@ -1,0 +1,356 @@
+{
+ "hinweis": "eCH-Urteile Formular 548, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/548 --nur-offene=548",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Der Block enthält die vollständigen Personalien der Ehefrau als Partei: Name, Vorname, Name vor der Heirat, Mädchenname, Geburtsdatum, Beruf, Heimatort/-land, Wohnadresse, Ort und Telefon. eCH-0011 person (reportedPersonType, personType) ist der Container dafür. Er umfasst auch placeOfOrigin und die Wohnsitzangaben, was eCH-0044 personIdentification nicht tut (dieses Element verwenden die Klageformulare 492/493 für ihre Parteien). Gleiche Praxis bei vollständigen Personalien-Blöcken (Formulare 289, 290, 307, 317). eCH-0021 maritalRelationship passt nicht: Es beschreibt den Ehegatten aus der Sicht einer anderen Person, hier sind aber beide Ehegatten selbst Parteien. Jedes Teilfeld ist einzeln beurteilt. Das Element gibt es wörtlich im Katalog (id 81).",
+   "feld": "Ehefrau",
+   "standard": "eCH-0011",
+   "element": "person"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Der aktuelle amtliche Familienname der Ehefrau ist eCH-0044 officialName. So sind auch die übrigen Teilfelder «Name» in Personalien-Blöcken der Databank zugeordnet.",
+   "elternfeld": "Ehefrau",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Vorname der Ehefrau = eCH-0044 firstName.",
+   "elternfeld": "Ehefrau",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Bestätigt. Das Formular fragt den «Mädchennamen» in einer eigenen Zeile ab. «Name vor der Heirat» ist also der Name unmittelbar vor dieser Ehe; er kann aus einer früheren Ehe stammen. Das ist ein früherer Wert. officialName (aktueller Name) kommt deshalb nicht in Frage, und originalName (Ledigname) ist schon durch «Mädchenname» belegt. Durchsucht wurden: eCH-0011 nameDataType (officialName, firstName, originalName, allianceName, aliasName, otherName, callName, nameOnForeignPassport, declaredForeignName), eCH-0044 und eCH-0228 personIdentification, eCH-0020 nameInfo/nameValidFrom (nur der geltende Name ab einem Datum), changeName/correctName, personIdentificationBefore (Korrekturereignis), nameOfParentAtEvent, eCH-0021 nameOfParent, eCH-0084/eCH-0213 sowie alle Elemente der 290 Standards mit before/previous/former/maiden/birthName/prior. Ein Element für den Namen vor einer bestimmten Eheschliessung gibt es nicht. Gleich wie «Name vor der Eintragung» (Formular 547), das ebenfalls offen ist.",
+   "elternfeld": "Ehefrau",
+   "teilfeld": "Name vor der Heirat"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Mädchenname = Ledigname = eCH-0044 originalName. Gleich wie «Geburtsname» und «Ledigname» in der Databank (Formulare 34, 37, 214, 215, 232, 289).",
+   "elternfeld": "Ehefrau",
+   "teilfeld": "Mädchenname",
+   "standard": "eCH-0044",
+   "element": "originalName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Geburtsdatum der Ehefrau = eCH-0044 dateOfBirth.",
+   "elternfeld": "Ehefrau",
+   "teilfeld": "Geburtsdatum",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Beruf der Ehefrau = eCH-0021 jobTitle (jobDataType). Das Teilfeld «Beruf» ist in der Databank 22-mal so zugeordnet.",
+   "elternfeld": "Ehefrau",
+   "teilfeld": "Beruf",
+   "standard": "eCH-0021",
+   "element": "jobTitle"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt mit Vorbehalt. Das Teilfeld ist eine Zeile für den Heimatort; bei ausländischen Staatsangehörigen steht dort das Heimatland. Für den Heimatort ist eCH-0011 originName (placeOfOriginType) das Element, wie bei «Heimatort / Land» in der Databank (8-mal). Die Variante «-land» wäre eigentlich eine Staatsangehörigkeit bzw. ein Land (eCH-0011 nationalityData/country). Das Formular bündelt hier zwei Angaben in einer Zeile.",
+   "elternfeld": "Ehefrau",
+   "teilfeld": "Heimatort/-land",
+   "standard": "eCH-0011",
+   "element": "originName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Der Ort hat ein eigenes Teilfeld «Ort», die Zeile «Wohnadresse» enthält also die Strassenangabe: eCH-0010 street (addressInformationType). Gleiche Praxis wie bei «Wohnadresse» neben einem eigenen «PLZ Ort» (Formular 209).",
+   "elternfeld": "Ehefrau",
+   "teilfeld": "Wohnadresse",
+   "standard": "eCH-0010",
+   "element": "street"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Wohnort zur Wohnadresse der Ehefrau = eCH-0010 town (addressInformationType). Das Teilfeld «Ort» ist in der Databank 55-mal so zugeordnet.",
+   "elternfeld": "Ehefrau",
+   "teilfeld": "Ort",
+   "standard": "eCH-0010",
+   "element": "town"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Telefonnummer der Ehefrau = eCH-0046 phoneNumber (phoneType), so wie bei 182 gleichartigen Teilfeldern.",
+   "elternfeld": "Ehefrau",
+   "teilfeld": "Telefon",
+   "standard": "eCH-0046",
+   "element": "phoneNumber"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Bestätigt mit Vorbehalt. Der Wert ist eine Sprache (Text), kein Ja/Nein-Feld. Die Frage, ob überhaupt eine Dolmetscherin oder ein Dolmetscher nötig ist, steht nur im Bedingungssatz. Das allgemeine personbezogene Sprach-Element ist eCH-0011 languageOfCorrespondance (personType, languageType = offener ISO-639-1-Code). Die Klageformulare desselben Kantonsgerichts ordnen «Sprache Übersetzung (klagende/beklagte Partei)» ebenso zu (Formulare 492/493). Vorbehalt: Gemeint ist die Sprache, die die Partei versteht, nicht unbedingt die Sprache der Korrespondenz. Ein genaueres Element gibt es im Katalog aber nicht. Durchsucht wurden alle Elemente mit language/interpret/tongue/translat: eCH-0260 nativeLanguage/firstLanguage (Lehrvertrag) und eCH-0258/0261 (Leistungs- bzw. Landwirtschaftskontext) sind fachfremd, ein Dolmetscher-Element gibt es nicht.",
+   "feld": "falls Dolmetscher/in erforderlich, welche Sprache (Ehefrau)",
+   "standard": "eCH-0011",
+   "element": "languageOfCorrespondance"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Der Block enthält die Personalien des Ehemanns als Partei (Name, Vorname, Geburtsdatum, Beruf, Heimatort/-land, Wohnadresse, Ort, Telefon). Container eCH-0011 person (reportedPersonType), gleich wie beim Block «Ehefrau». Jedes Teilfeld ist einzeln beurteilt.",
+   "feld": "Ehemann",
+   "standard": "eCH-0011",
+   "element": "person"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Aktueller amtlicher Familienname des Ehemanns = eCH-0044 officialName.",
+   "elternfeld": "Ehemann",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Vorname des Ehemanns = eCH-0044 firstName.",
+   "elternfeld": "Ehemann",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Geburtsdatum des Ehemanns = eCH-0044 dateOfBirth.",
+   "elternfeld": "Ehemann",
+   "teilfeld": "Geburtsdatum",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Beruf des Ehemanns = eCH-0021 jobTitle (jobDataType).",
+   "elternfeld": "Ehemann",
+   "teilfeld": "Beruf",
+   "standard": "eCH-0021",
+   "element": "jobTitle"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt mit Vorbehalt. Für den Heimatort des Ehemanns ist eCH-0011 originName (placeOfOriginType) das Element, wie bei «Heimatort / Land» in der Databank. Bei Ausländern steht in der Zeile das Heimatland; das wäre eigentlich eine Staatsangehörigkeit bzw. ein Land (eCH-0011 nationalityData/country). Das Formular bündelt zwei Angaben in einer Zeile.",
+   "elternfeld": "Ehemann",
+   "teilfeld": "Heimatort/-land",
+   "standard": "eCH-0011",
+   "element": "originName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Der Ort hat ein eigenes Teilfeld, die Zeile «Wohnadresse» enthält also die Strassenangabe: eCH-0010 street (addressInformationType).",
+   "elternfeld": "Ehemann",
+   "teilfeld": "Wohnadresse",
+   "standard": "eCH-0010",
+   "element": "street"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Wohnort des Ehemanns = eCH-0010 town (addressInformationType).",
+   "elternfeld": "Ehemann",
+   "teilfeld": "Ort",
+   "standard": "eCH-0010",
+   "element": "town"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Telefonnummer des Ehemanns = eCH-0046 phoneNumber (phoneType).",
+   "elternfeld": "Ehemann",
+   "teilfeld": "Telefon",
+   "standard": "eCH-0046",
+   "element": "phoneNumber"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Bestätigt mit Vorbehalt, gleich wie beim Feld für die Ehefrau. Der Wert ist eine Sprache (Text). Das Element ist eCH-0011 languageOfCorrespondance (personType, offener ISO-639-1-Code), wie «Sprache Übersetzung» in den Formularen 492/493 desselben Gerichts. Gemeint ist die Sprache, die der Ehemann versteht. Ein eigenes Dolmetscher-Element gibt es im Katalog nicht; eCH-0260 nativeLanguage/firstLanguage gehören zum Lehrvertrag.",
+   "feld": "falls Dolmetscher/in erforderlich, welche Sprache (Ehemann)",
+   "standard": "eCH-0011",
+   "element": "languageOfCorrespondance"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Das Kalenderdatum der Heirat der Ehe, die noch besteht, ist das Datum, seit dem der aktuelle Zivilstand «verheiratet» gilt: eCH-0011 dateOfMaritalStatus (maritalDataType; als Ereignis maritalDataRestrictedMarriageType). Das ist kein früherer Wert, denn die Ehe besteht bis zum Scheidungsurteil. Gleiche Praxis bei «Verheiratet seit» (Formular 288), «Datum der Heirat / Eintragung der Partnerschaft» (Formular 290) und «Datum Heirat» (Formular 232). Ein eigenes Element für das Heiratsdatum gibt es nicht: eCH-0021 maritalDataAddonType enthält nur placeOfMarriage.",
+   "feld": "Datum der Eheschliessung",
+   "standard": "eCH-0011",
+   "element": "dateOfMaritalStatus"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Der Ort, an dem die Ehe geschlossen wurde, ist eCH-0021 placeOfMarriage (maritalDataAddonType, generalPlaceType). Das Element ist genau für diese Angabe bestimmt und passt besser als der Container eCH-0020 maritalInfo, den ein anderes Formular verwendet.",
+   "feld": "Ort der Eheschliessung",
+   "standard": "eCH-0021",
+   "element": "placeOfMarriage"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Bestätigt. Das Feld ist ein Ankreuzfeld nein/ja und darf deshalb kein Wert-Element erhalten. Der Wert-Container für die Kinder, eCH-0021 parentalRelationship, gehört zum nächsten Feld. Durchsucht wurden alle Kind-Elemente der 290 Standards: eCH-0021 parentalRelationship, eCH-0020 eventChildRelationship (Ereignis), eCH-0119 deductionChildNumber (Anzahl der Kinderabzüge), eCH-0278 hasJointChildInCohabitation (boolesch, pro Kind, Konkubinat, Steuer), isChildInHousehold, isChild, singleNoChildren (Steuerabzug). Ein boolesches Element «die Ehe hat gemeinsame Kinder» gibt es nicht.",
+   "feld": "Gemeinsame Kinder"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Das Feld listet die gemeinsamen Kinder auf. eCH-0021 parentalRelationship (personAddonType) ist das Kindesverhältnis. Es wird im Datensatz des Kindes geführt und verweist mit typeOfRelationship 3/4 (Mutter/Vater) auf beide Ehegatten. So ist «Kinder» in der Databank gut 15-mal zugeordnet, darunter die Formulare 138, 143, 232 und 357. Vorname und Geburtsdatum sind als Teilfelder einzeln beurteilt.",
+   "feld": "Gemeinsame Kinder (Vorname, geb.)",
+   "standard": "eCH-0021",
+   "element": "parentalRelationship"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Vorname des gemeinsamen Kindes = eCH-0044 firstName.",
+   "elternfeld": "Gemeinsame Kinder (Vorname, geb.)",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. «geb.» steht für das Geburtsdatum des gemeinsamen Kindes = eCH-0044 dateOfBirth.",
+   "elternfeld": "Gemeinsame Kinder (Vorname, geb.)",
+   "teilfeld": "geb.",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Bestätigt. Es ist das Datum, an dem der Ehemann unterschreibt; die Ehefrau hat ein eigenes Datum. eCH-0058 messageDate ist dagegen das eine Erstellungsdatum der Meldung. Das Element passt dort, wo ein Formular nur ein einziges Datum hat (Formulare 492/493), nimmt aber keine zwei getrennten Unterschriftsdaten auf. Durchsucht wurden alle Elemente mit sign/Unterschrift: eCH-0039 signer (Name des Unterzeichners eines Dokuments, kein Datum), eCH-0260 *SignatureConfirmation (boolesch, Lehrvertrag). Dazu eCH-0058 eventDate (Datum des gemeldeten Ereignisses), eCH-0119 locationAndDate (nur Steuererklärung) und die Signatur-Standards eCH-0091/0220/0230/0250/0274/0282 (ohne Elemente). Gleich wie «Datum der Halterunterschrift» in Formular 468, das kein_standard ist.",
+   "feld": "Datum (Ehemann)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Bestätigt. Es ist eine eigenhändige Unterschrift. eCH-0039 signer enthält nur den Namen des Unterzeichners, nicht die Unterschrift. eCH-0260 *SignatureConfirmation sind boolesche Bestätigungen im Lehrvertrag. Die Signatur-Standards eCH-0091/0220/0230/0250/0274/0282 betreffen elektronische Signaturen und haben keine Elemente. Die Databank führt Unterschriften durchgehend als kein_standard (88-mal).",
+   "feld": "Unterschrift Ehemann"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Bestätigt. Es ist das Datum, an dem die Ehefrau unterschreibt, neben einem eigenen Datum für den Ehemann. eCH-0058 messageDate ist das eine Erstellungsdatum der Meldung. eCH-0039 signer ist ein Name und kein Datum, eCH-0119 locationAndDate gilt nur für die Steuererklärung, und die Signatur-Standards eCH-0091/0220/0230/0250/0274/0282 haben keine Elemente. Gleich wie «Datum der Halterunterschrift» in Formular 468.",
+   "feld": "Datum (Ehefrau)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Bestätigt. Es ist eine eigenhändige Unterschrift. eCH-0039 signer ist nur der Name des Unterzeichners, eCH-0260 *SignatureConfirmation sind boolesche Bestätigungen im Lehrvertrag, und die Signatur-Standards eCH-0091/0220/0230/0250/0274/0282 haben keine Elemente. Kein Element im Katalog.",
+   "feld": "Unterschrift Ehefrau"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Gemeint ist die Person in der Schweiz, der die Gerichtsakten für eine Partei mit Wohnsitz im Ausland zugestellt werden. eCH-0011 contactData (personType, contactDataType) enthält die Kontaktperson (personIdentification, personIdentificationPartner oder partnerIdOrganisation) und die contactAddress. Das ist genau der Zustellungsbevollmächtigte mit seiner Adresse. contactAddress allein würde die Person weglassen. eCH-0119 representativePerson (in Formular 274 verwendet) gehört zur Steuererklärung.",
+   "feld": "Zustellungsbevollmächtigter in der Schweiz",
+   "standard": "eCH-0011",
+   "element": "contactData"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Es ist eine Beilage (Zivilstandsdokument). Für den Familienausweis gibt es keinen eigenen Standard: eCH-0011/0020/0021 beschreiben Registerdaten und nicht das Dokument, eCH-0136 regelt Zuständigkeiten. Die Beilage erhält deshalb den Dokument-Container eCH-0039 document (contentType), wie die «Beilagedokumente» der Klageformulare 492/493 desselben Gerichts.",
+   "feld": "Familienausweis im Original",
+   "standard": "eCH-0039",
+   "element": "document"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Bestätigt. eCH-0104 «Digitaler Wohnsitznachweis» ist der Standard genau für diese Bescheinigung und deshalb genauer als der allgemeine Dokument-Container. Der Standard hat keine Elemente (n_elements=0), das Element bleibt leer. Status «In Arbeit»: nicht aufgehoben oder abgelöst, wird aber als Entwurf angezeigt. Gleich wie bei «Wohnsitzbestätigung / HR-Auszug» in Formular 33.",
+   "feld": "Wohnsitzbescheinigungen im Original beider Ehegatten",
+   "standard": "eCH-0104",
+   "element": ""
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Es ist eine Beilage: amtliche, oft ausländische Dokumente über Ort und Datum der Heirat sowie über die Kinder. Für den Inhalt gibt es keinen eigenen Standard, daher der Dokument-Container eCH-0039 document (contentType).",
+   "feld": "Amtliche Dokumente (ev. mit Übersetzung)",
+   "standard": "eCH-0039",
+   "element": "document"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Es ist eine Beilage (Vereinbarung über die Scheidungsfolgen). Kein Standard im Katalog regelt Scheidungsvereinbarungen: eCH-0051 (Polizei/Justiz) hat keine Elemente, eCH-0303/0307 betreffen Strafverfolgung und Justizvollzug. Daher der Dokument-Container eCH-0039 document.",
+   "feld": "Scheidungsvereinbarung bzw. Teilvereinbarung über die Folgen der Ehescheidung",
+   "standard": "eCH-0039",
+   "element": "document"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Bestätigt. Es ist ein Freitext (data_type text, keine Beilage) über die strittigen Scheidungsfolgen. Durchsucht wurden: eCH-0051 (Basis-Datenkatalog Polizei/Justiz, ohne Elemente), eCH-0303/0307 (Strafverfolgung, Justizvollzug), eCH-0039/0058 (Container für Dokumente und Meldungen; eCH-0058 comment ist ein allgemeiner Meldungskommentar), eCH-0258 justification (Leistungsbegründung) und eCH-0147. Für Zivilprozess oder Familiengericht gibt es keinen Standard. Gleich wie «Rechtsbegehren» und «Streitgegenstand» in den Formularen 492/493 desselben Gerichts, die beide kein_standard sind.",
+   "feld": "Angaben darüber, in welchen Punkten man sich nicht einig ist"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Es ist eine Beilage: Ausweise der Pensionskassen über die während der Ehe erworbenen Guthaben. eCH-0248 betrifft nur die Bescheinigung von Vorsorgebeiträgen für die Steuer, nicht Freizügigkeitsguthaben. Daher der Dokument-Container eCH-0039 document.",
+   "feld": "Aufstellungen der beruflichen Vorsorgeeinrichtungen",
+   "standard": "eCH-0039",
+   "element": "document"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Es ist eine Beilage (Durchführbarkeitserklärung der Pensionskassen zur Teilung der BVG-Guthaben). Dafür gibt es keinen eigenen Standard; eCH-0248 betrifft Steuerbescheinigungen über Vorsorgebeiträge. Daher der Dokument-Container eCH-0039 document.",
+   "feld": "Bestätigung der Vorsorgeeinrichtungen (Durchführbarkeitserklärung)",
+   "standard": "eCH-0039",
+   "element": "document"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Es ist eine Beilage aus mehreren Einkommensbelegen. eCH-0119 attachedWageStatement ist nur ein Merkmal der Steuererklärung und kein Dokument. Für den Lohnausweis oder die Lohnabrechnung gibt es keinen eCH-Standard (die Suche im Katalog nach «Lohn» ergab nichts). Daher der Dokument-Container eCH-0039 document.",
+   "feld": "Letzter Jahreslohnausweis und Lohnabrechnungen für die letzten drei Monate oder Ausweise über Renteneinkommen",
+   "standard": "eCH-0039",
+   "element": "document"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Es ist eine Beilage aus drei Steuerdokumenten als Nachweis für das Gericht. eCH-0119/0278 legen nur den Inhalt der Steuererklärung fest, nicht Rechnung und Veranlagung. eCH-0196 ist der Steuerauszug der Bank, eCH-0233 die Archivierung von Steuerakten. Daher der Dokument-Container eCH-0039 document.",
+   "feld": "Letzte Steuererklärung, letzte Steuerrechnung und letzte Steuerveranlagungsmitteilung",
+   "standard": "eCH-0039",
+   "element": "document"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Es ist eine Beilage: Belege zu Miete, Fahrkosten, Krankenkasse und Versicherungen oder eine unterzeichnete Aufstellung der Ausgaben. Dafür gibt es keinen eigenen Standard, daher der Dokument-Container eCH-0039 document, wie «Belege» in Formular 499.",
+   "feld": "Belege über feste Ausgaben für den Lebensbedarf",
+   "standard": "eCH-0039",
+   "element": "document"
+  }
+ ]
+}

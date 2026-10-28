@@ -1,0 +1,19 @@
+{
+ "verdicts": [
+  {
+   "id": 6554,
+   "subjekt": "gemischt",
+   "grund": "Formular fragt ausdrücklich nach «Name und Adresse der gesuchstellenden Person oder der Organisation»; Gesuchsteller kann Privatperson oder Verein/Veranstalter sein."
+  },
+  {
+   "id": 6555,
+   "subjekt": "natuerliche_person",
+   "grund": "«Verantwortliche Person» ist eine einzelne namentlich genannte Person (Merkblatt: Hauptverantwortliche Person) mit eigener Adresse, PLZ/Ort, Telefon und E-Mail."
+  },
+  {
+   "id": 6559,
+   "subjekt": "sache",
+   "grund": "Veranstaltungsort bezeichnet Ort bzw. Gewässerabschnitt der nautischen Veranstaltung, also einen Ort/ein Ereignis, keine Person."
+  }
+ ]
+}

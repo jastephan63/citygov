@@ -1,0 +1,140 @@
+{
+ "hinweis": "eCH-Urteile Formular 562, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/562 --nur-offene=562",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Komposit: Name/Vorname und Adresse/PLZ/Ort der Hundeführerin oder des Hundeführers (Gesuchsteller/in). Der Satzteil «als Hundeführer/in zu kennen» ist nur die Bestätigung, die eigentlichen Angaben sind Name und Postadresse. Der Container dafür ist eCH-0010 personMailAddress (person + addressInformation). Das Element ist im Katalog vorhanden. Gleich gemappt wie im Schwesterformular 164 («Personalien Hundehalter/-in») sowie in 418, 471 und 357 (dort nachgeprüft).",
+   "feld": "Ich bestätige … als Hundeführer/in zu kennen",
+   "standard": "eCH-0010",
+   "element": "personMailAddress"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name der Hundeführerin oder des Hundeführers. Regel Name → eCH-0044 officialName (personIdentificationLightType). Im Korpus ist das die vorherrschende Praxis: 18x bei genau «Name / Vorname», dazu 30x «Name, Vorname» und 13x «Name/Vorname». Der Vorname (eCH-0044 firstName) ist im selben Teilfeld mitgebündelt, weil das Formular beide Angaben auf einer Zeile verlangt.",
+   "elternfeld": "Ich bestätige … als Hundeführer/in zu kennen",
+   "teilfeld": "Name / Vorname",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Wohnadresse der Hundeführerin oder des Hundeführers. Das Teilfeld bündelt die Adressteile von eCH-0010 (street, swissZipCode, town). Wie im Korpus (rund 20 gebündelte Adressteilfelder auf street gegenüber 2 auf addressInformation) und wie im Schwesterformular 164 wird es auf den führenden Teil eCH-0010 street (addressInformationType) gelegt.",
+   "elternfeld": "Ich bestätige … als Hundeführer/in zu kennen",
+   "teilfeld": "Adresse / PLZ / Ort",
+   "standard": "eCH-0010",
+   "element": "street"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freitext auf zwei Zeilen: woher die unterzeichnende Person die Hundeführerin oder den Hundeführer kennt (z. B. vom Hundeplatz oder Verein). Das ist kein einzelnes Datum und kein Zeitraum. Durchsucht wurde der ganze Katalog nach Beziehungselementen: eCH-0020/0021 typeOfRelationship, parentalRelationship, guardianRelationship und maritalRelationship sowie eCH-0211 relationshipToPerson (Rolle im Baubewilligungsverfahren). Sie decken nur familien- oder verfahrensrechtliche Rollen ab, nicht eine Bekanntschaft und deren Herkunft. Für diese Freitext-Angabe gibt es kein Element.",
+   "feld": "Ich kenne ihn/sie vom"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freitext mit dem fachlichen Urteil über die Führungsqualitäten als Hunde-Erzieher/in und -Führer/in. Durchsucht wurden der Katalog (u. a. eCH-0185 dogData, eCH-0039 comments, eCH-0260 Bildungselemente) und die Hunde- und Tierstandards: eCH-0013 ist sistiert und hat keine Elemente, eCH-0266 ist aufgehoben, eCH-0309 ist in Arbeit und hat keine Elemente. Kein Standard definiert eine kynologische Fachbeurteilung.",
+   "feld": "Zu seinen/ihren Führungsqualitäten als Hunde-Erzieher/in und –Führer/in kann ich folgende Aussagen machen"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ja/Nein-Ankreuzfeld (☐ ja ☐ nein) zur Eignung für die Haltung eines Hundes mit erhöhtem Gefährdungspotential. Ein Ankreuzfeld erhält kein Wertelement. Im ganzen Katalog gibt es auch kein Element für eine Eignungsbeurteilung als Hundehalter/in: eCH-0185 dogData enthält nur Hundedaten wie Name, Geschlecht und Chip, und eCH-0013 «Prozess Hundemarken» ist sistiert und hat keine Elemente.",
+   "feld": "Auf Grund meiner Erfahrung schätze ich ihn/sie als geeignet und kompetent ein, einen Hund mit erhöhtem Gefährdungspotential zu halten"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Komposit mit Name/Vorname, Adresse/PLZ/Ort, Festnetz/Mobil und E-Mail der unterzeichnenden Fachperson. Nachgeprüft: eCH-0046 contactType enthält nur localID, email, phone und internet, also keinen Namen und keine Postadresse. Den identifizierenden Kern aus Name und Postadresse deckt eCH-0010 personMailAddress ab, wie beim gleich aufgebauten Komposit im Formular 164 sowie in 485 und 200 (dort nachgeprüft). Telefon und E-Mail tragen eCH-0046 auf Teilfeld-Ebene.",
+   "feld": "Angaben zur unterzeichnenden Person",
+   "standard": "eCH-0010",
+   "element": "personMailAddress"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name der unterzeichnenden Fachperson. Regel Name → eCH-0044 officialName (personIdentificationLightType), Korpuspraxis 18x bei «Name / Vorname». Der Vorname (firstName) ist im selben Teilfeld mitgebündelt.",
+   "elternfeld": "Angaben zur unterzeichnenden Person",
+   "teilfeld": "Name / Vorname",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Adresse der unterzeichnenden Person. Das gebündelte Adressteilfeld (street, swissZipCode, town) wird nach der vorherrschenden Korpuspraxis und wie im Formular 164 auf eCH-0010 street (addressInformationType) gelegt.",
+   "elternfeld": "Angaben zur unterzeichnenden Person",
+   "teilfeld": "Adresse / PLZ / Ort",
+   "standard": "eCH-0010",
+   "element": "street"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Telefonnummer der unterzeichnenden Person (Festnetz oder Mobil). Telefon → eCH-0046 phoneNumber (phoneType). Die Art der Nummer (Festnetz/Mobil) sieht eCH-0046 in phoneCategory vor. Gleich gemappt wie «Tel Festnetz / Mobil» im Formular 164.",
+   "elternfeld": "Angaben zur unterzeichnenden Person",
+   "teilfeld": "Festnetz / Mobil",
+   "standard": "eCH-0046",
+   "element": "phoneNumber"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "E-Mail-Adresse der unterzeichnenden Person → eCH-0046 emailAddress (emailType). Korpuspraxis: 174x bei Teilfeldern «E-Mail».",
+   "elternfeld": "Angaben zur unterzeichnenden Person",
+   "teilfeld": "E-Mail",
+   "standard": "eCH-0046",
+   "element": "emailAddress"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Auswahl mit Ankreuzfeldern für die kynologische Qualifikation (Diensthundeführer/in, Ausbildner/in in der Hundeschule, anderes). Durchsucht wurden: eCH-0260 education (eduSpecificationsType), ein 3-stelliger «Bildungstyp»-Code der Berufsbildung, den der Korpus für allgemeine Ausbildungsfelder nutzt (z. B. 377 «Andere Ausbildung»). Die Optionen hier sind aber Funktionen im Hundewesen, keine Bildungstypen. Weiter durchsucht: eCH-0260 profession/educationDetails (SBFI-Berufe der Grundbildung), eCH-0021 jobTitle/occupationData (aktuelle Berufstätigkeit), eCH-0108 qualification (Rechtsform ausländischer Organisationen), eCH-0155 occupationalTitle (Wahlen) und eCH-0278 educationType (Steuerabzug). Es gibt weder ein Element noch eine Codeliste für kynologische Qualifikationen.",
+   "feld": "meine Ausbildung / Qualifikation"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Wertfeld, nicht das Ankreuzfeld (dieses liegt in «meine Ausbildung / Qualifikation»): die Internetadresse der Hundeschule, an der die Person ausbildet. Die Webadresse einer Organisation → eCH-0098 website (organisationType). So wird im Korpus «Internet-Adresse» bei Unternehmen und Betrieben gemappt (13x). eCH-0046 internetAddress wäre die persönliche Kontaktadresse der Person selbst.",
+   "feld": "Ausbildner/in in der Hundeschule: www",
+   "standard": "eCH-0098",
+   "element": "website"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freitext für eine andere kynologische Ausbildung oder Qualifikation. Durchsucht wurde derselbe Katalog wie bei «meine Ausbildung / Qualifikation»: eCH-0260 education (3-stelliger Bildungstyp-Code, nimmt keinen Freitext auf), eCH-0260 profession, eCH-0021 jobTitle, eCH-0108 qualification, eCH-0155 occupationalTitle sowie eCH-0278 nameOfEducation und educationType (Steuern). Kein Standard definiert diese Angabe.",
+   "feld": "anderes (meine Ausbildung / Qualifikation)"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Bestätigt (propagiert, Name 10x geprüft): Ort und Datum der Unterzeichnung. eCH-0119 locationAndDate (attachedFormsType/listOfSecuritiesType, xs:string) ist das einzige Element im Katalog für «Ort und Datum» einer Unterzeichnung. Gleich gemappt wie im Schwesterformular 164 und in 561.",
+   "feld": "Ort / Datum"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Ort der Unterzeichnung als eigene Angabe. eCH-0119 kennt ihn nur zusammen mit dem Datum in einem einzigen String (locationAndDate), und dieser String gehört zum Elternfeld. Durchsucht wurden: eCH-0010 town (Ort einer Postadresse), eCH-0011 placeOfBirth, eCH-0021 placeOfMarriage und placeOfWork sowie eCH-0119 location (concernedPersonType). Keines ist ein Element für den Unterzeichnungsort. Korpuspraxis bei «Ort / Datum»-Teilen: 20x kein_standard, auch in 164 und 499.",
+   "elternfeld": "Ort / Datum",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Datum der Unterzeichnung als eigene Angabe. eCH-0119 führt es nur zusammen mit dem Ort im String locationAndDate, der zum Elternfeld gehört. Durchsucht wurden: eCH-0039 openingDate (Eröffnung eines Dossiers oder Dokuments), eCH-0039 signer (Kennung, kein Datum), eCH-0260 signaturesType (nur boolesche Bestätigungen), eCH-0010/0046 dateFrom und dateTo (Gültigkeit) sowie eCH-0119/0278 transactionDate (Meldungskopf). Keines ist ein Element für das Unterzeichnungsdatum. Korpuspraxis: 20x kein_standard.",
+   "elternfeld": "Ort / Datum",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Bestätigt kein_standard (propagiert, Name 15x geprüft): Die eigenhändige Unterschrift ist eine Formhandlung und keine Angabe. Die Suche nach sign/Signat/Unterschrift im ganzen Katalog fand nur eCH-0039 signer (Kennung der unterzeichnenden Person) und eCH-0260 signatures/…SignatureConfirmation (boolesche Bestätigungen im Lehrvertrag). Keines davon ist die Unterschrift selbst.",
+   "feld": "Unterschrift"
+  }
+ ]
+}

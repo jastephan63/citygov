@@ -9,13 +9,24 @@ the server-rendered HTML read-only via plain GETs and parse by the template's
 h2 sections. Matching to our service rows goes through dvsh_service.slug —
 SHEP uses the modeller's slugs.
 
-Idempotent (table rebuilt wholesale). Staging -> validate -> swap.
+Idempotent (table rebuilt wholesale). Before the rebuild, quellen_log records what
+this harvest changed against the pages the databank held (quellen_aenderung); the
+harvest date is the date in the pages directory's path (else today), --vorher
+<YYYY-MM-DD> names the earlier harvest when the log has no row for it yet.
+Staging -> validate -> swap.
 
-    python3 scripts/load_shep.py <pages-dir>
+    python3 scripts/load_shep.py <pages-dir> [--vorher 2026-09-03]
 """
 import glob, html, json, os, re, shutil, sys
 from citygov.core.common import DB_PATH, connect
 from citygov.checks.validate_db import validate
+from citygov.load import quellen_log
+
+# the columns whose change the harvest log records — the sections the template
+# marks unambiguously (teaser and link labels were re-parsed in 2026-10 and are
+# not compared)
+COMPARE = ["title", "kurzbeschreibung", "voraussetzungen", "unterlagen", "ablauf",
+           "formular_url", "kontakt_einheit", "kontakt_adresse", "kontakt_email"]
 
 DDL = """
 CREATE TABLE IF NOT EXISTS shep_service (
@@ -28,7 +39,7 @@ CREATE TABLE IF NOT EXISTS shep_service (
     unterlagen TEXT,           -- JSON array of {name, detail}
     ablauf TEXT,               -- JSON array of {nr, titel, text}
     formular_url TEXT,
-    dokumente TEXT,            -- JSON array of {label, url}
+    dokumente TEXT,            -- JSON array of {label, url, sha256} (SHEP asset store)
     links TEXT,                -- JSON array of {label, url}
     kontakt_einheit TEXT, kontakt_adresse TEXT, kontakt_email TEXT,
     harvested_at TEXT
@@ -43,6 +54,14 @@ def text_of(fragment):
     t = TAG.sub("\n", fragment)
     t = html.unescape(t)
     return [ln.strip() for ln in t.splitlines() if ln.strip()]
+
+
+def link_label(fragment):
+    """Visible name of a link — without the template's «Externer Link · host» and
+    «(öffnet in neuem Tab)» additions."""
+    keep = [l for l in text_of(fragment)
+            if not l.startswith("Externer Link") and l not in ("(", ")", "öffnet in neuem Tab")]
+    return " ".join(keep).replace("(öffnet in neuem Tab)", "").strip()
 
 
 def section(page, heading, until):
@@ -95,30 +114,57 @@ def parse(page):
             else:
                 cur["text"] = (cur["text"] + " " + ln) if cur["text"] else ln
     d["ablauf"] = steps
-    # links: the Formular button plus the Dokumente/Links lists
-    m = re.search(r'<a[^>]+href="([^"]+)"[^>]*>\s*(?:<[^>]+>\s*)*Formular', page)
+    # links: the Formular button plus the Dokumente/Links lists. Match from href="…"
+    # on: since 2026-10 the template's class lists contain «>» ([&>svg]:…), which
+    # breaks an <a[^>]+ prefix
+    m = re.search(r'href="([^"]+)"[^>]*>\s*(?:<[^>]+>\s*)*Formular\b', page)
     d["formular_url"] = html.unescape(m.group(1)) if m else None
     info = section(page, "Weiterführende Informationen", ALL)
-    d["links"] = [{"label": html.unescape(TAG.sub("", t)).replace("(öffnet in neuem Tab)", "").strip(),
-                   "url": html.unescape(u)}
-                  for u, t in re.findall(r'<a[^>]+href="(http[^"]+)"[^>]*>(.*?)</a>', info, re.S)]
+    d["links"] = [{"label": link_label(t), "url": html.unescape(u)}
+                  for u, t in re.findall(r'href="(http[^"]+)"[^>]*>(.*?)</a>', info, re.S)]
+    # every file the page offers (the SHEP asset store names a file by its sha256,
+    # so it is compared with form.file_hash); the related/popular-service lists at
+    # the foot belong to other services and are cut off
+    foot = min([i for i in (page.find(">Verwandte Services<"), page.find(">Beliebte Services<")) if i > 0]
+               or [len(page)])
+    d["dokumente"], seen = [], set()
+    for u, sha, t in re.findall(r'href="(/api/catalog/assets/([0-9a-f]{64})\.[a-z0-9]+)"[^>]*>(.*?)</a>',
+                                page[:foot], re.S):
+        if u not in seen:
+            seen.add(u)
+            d["dokumente"].append({"label": link_label(t), "url": u, "sha256": sha})
     kont = section(page, "Kontakt", ALL)
     lines = text_of(kont)
     d["kontakt_email"] = next((l for l in lines if "@" in l and " " not in l), None)
-    try:
+    d["kontakt_einheit"] = d["kontakt_adresse"] = None
+    adr = re.search(r"<address[^>]*>(.*?)</address>", kont, re.S)
+    if adr:
+        # since 2026-10: <address> with one span per line — units, street, «PLZ Ort»
+        al = text_of(adr.group(1))
+        plz = next((i for i, l in enumerate(al) if re.match(r"\d{4}\s", l)), None)
+        if plz is not None and plz >= 1:
+            d["kontakt_einheit"] = "; ".join(al[:plz - 1]) or None
+            d["kontakt_adresse"] = "; ".join(al[plz - 1:plz + 1])
+    elif "Organisationseinheit" in lines:
         i = lines.index("Organisationseinheit")
         d["kontakt_einheit"] = "; ".join(lines[i + 1:i + 3])
         d["kontakt_adresse"] = "; ".join(lines[i + 3:i + 5])
-    except ValueError:
-        d["kontakt_einheit"] = d["kontakt_adresse"] = None
-    # the teaser repeats right after the h1 block; take the first paragraph-ish line
-    body = text_of(page[:page.find("Kurzbeschreibung")] if "Kurzbeschreibung" in page else page[:4000])
-    d["teaser"] = next((l for l in body if len(l) > 80), None)
+    # the teaser is the paragraph right under the h1 (before «Aktualisiert:»); the
+    # <head> is cut first — since 2026-10 its <title> carries «… | Kanton Schaffhausen»
+    body = re.sub(r"<head[^>]*>.*?</head>", "", page, flags=re.S)
+    h1 = re.search(r"</h1>", body)
+    after = text_of(body[h1.end():h1.end() + 4000]) if h1 else []
+    d["teaser"] = next((l for l in after if not l.startswith("Aktualisiert")
+                        and l != "Kurzbeschreibung" and len(l) > 20), None)
     return d
 
 
 def main():
     src = sys.argv[1]
+    vorher_arg = sys.argv[sys.argv.index("--vorher") + 1] if "--vorher" in sys.argv else None
+    from datetime import date
+    m = re.search(r"\d{4}-\d{2}-\d{2}", os.path.abspath(src))
+    abzug = m.group(0) if m else date.today().isoformat()
     st = DB_PATH + ".staging"
     if os.path.exists(st):
         os.remove(st)
@@ -126,9 +172,9 @@ def main():
     c = connect(st)
     c.executescript(DDL)
     dvsh = {r["slug"]: r for r in c.execute("SELECT slug, dvsh_id, service_id FROM dvsh_service")}
+    before = quellen_log.snapshot(c, "shep_service", "slug", COMPARE)
     c.execute("DELETE FROM shep_service")
     n = matched = 0
-    from datetime import date
     for f in sorted(glob.glob(os.path.join(src, "*.html"))):
         slug = os.path.basename(f)[:-5]
         page = open(f, encoding="utf-8").read()
@@ -144,10 +190,13 @@ def main():
             [slug, dv["service_id"] if dv else None, dv["dvsh_id"] if dv else None,
              d["title"], d["teaser"], d["updated"], d["kurzbeschreibung"] or None,
              j(d["voraussetzungen"]), j(d["unterlagen"]), j(d["ablauf"]),
-             d["formular_url"], None, j(d["links"]),
+             d["formular_url"], j(d["dokumente"]), j(d["links"]),
              d["kontakt_einheit"], d["kontakt_adresse"], d["kontakt_email"],
-             date.today().isoformat()])
+             abzug])
         n += 1
+    after = quellen_log.snapshot(c, "shep_service", "slug", COMPARE)
+    logged, counts = quellen_log.record_changes(c, "SHEP", abzug, "/".join(os.path.normpath(src).split(os.sep)[-2:]),
+                                                n, before, after, COMPARE, vorher_arg)
     c.commit()
     errs = validate(c)
     c.close()
@@ -155,6 +204,8 @@ def main():
         os.remove(st); print("ABORT:", *errs[:3], sep="\n  "); sys.exit(1)
     os.replace(st, DB_PATH)
     print(f"shep_service: {n} publizierte Services geparst, {matched} via DVSH-Slug gematcht")
+    print(f"Abzug {abzug}: " + (", ".join(f"{v} {k}" for k, v in counts.items()) if logged
+                                else "schon protokolliert, Änderungen nicht neu verglichen"))
 
 
 if __name__ == "__main__":

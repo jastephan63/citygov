@@ -1,0 +1,160 @@
+{
+ "hinweis": "eCH-Urteile Formular 542, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/542 --nur-offene=542",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Second review: confirmed. The block «Name und Adresse der gesuchstellenden Person oder der Organisation» (three free lines) may describe a natural person or an organisation. eCH-0010 mailAddress (mailAddressType) is the container that holds either person or organisation plus addressInformation, so it fits both cases. The element exists verbatim in eCH-0010 (Genehmigt). The narrower containers personMailAddress and organisationMailAdress would each exclude one of the two cases the label allows. Corpus precedent: composites for Absender, Gesuchsteller, Antragsteller and Veranstalter also use mailAddress.",
+   "feld": "Name und Adresse der gesuchstellenden Person oder der Organisation",
+   "standard": "eCH-0010",
+   "element": "mailAddress"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Second review: kept, with a reservation. The pair (applicant person or organisation, Name) is the applicant's name. The Formular records the responsible natural person separately («Verantwortliche Person»). The Merkblatt names clubs, commercial operators and the «Veranstalter» who must be insured. So the applicant is normally an organisation, and eCH-0010 organisationName (organisationMailAddressInfoType, the organisation branch of mailAddress) fits. The element exists verbatim and eCH-0010 is Genehmigt. Precedents: «Firma/Name», «Gemeinde/Organisation/Firma» and «Firma / Namen» under mailAddress map to organisationName. Reservation: the label also allows a natural person, whose name would be personMailAddressInfo lastName/firstName. No single element covers both, so the Begriffe layer should flag this as an «aufteilen» point (person name vs. organisation name).",
+   "elternfeld": "Name und Adresse der gesuchstellenden Person oder der Organisation",
+   "teilfeld": "Name",
+   "standard": "eCH-0010",
+   "element": "organisationName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Second review: confirmed. Unlike the Verantwortliche Person, the applicant block has no separate PLZ / Ort line, so «Adresse» covers the whole postal address (street, number, PLZ, Ort). That is eCH-0010 addressInformation (context mailAddressType, consistent with the mailAddress container), not the single part street. The element exists verbatim. Corpus: «Adresse» maps to eCH-0010 addressInformation 25 times (22 in mailAddressType, 3 in personMailAddressType).",
+   "elternfeld": "Name und Adresse der gesuchstellenden Person oder der Organisation",
+   "teilfeld": "Adresse",
+   "standard": "eCH-0010",
+   "element": "addressInformation"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Second review: the propagated value (Name checked 5x) is confirmed. The composite identifies the natural person responsible for the nautical event («Hauptverantwortliche Person» in the Merkblatt). Its parts carry their own atomic elements. All 5 other «Verantwortliche Person» composites (Formulare 24, 170, 219, 376, 453) use eCH-0044 personIdentification. I considered eCH-0010 personMailAddress, which covers name and address but not phone or e-mail. No single container covers all six parts, so I keep the uniform corpus value. eCH-0044 is Genehmigt and the element exists verbatim.",
+   "feld": "Verantwortliche Person"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Second review: the propagated value is confirmed. The pair (Verantwortliche Person, Name) is a natural person's name, so it maps to eCH-0044 officialName, as on Formulare 24, 219, 376 and 453 and for «Name / Vorname» on 170. Note: the single line on the Formular likely holds the first name as well (eCH-0044 firstName), which is a possible «aufteilen» point for the Begriffe layer, but not a reason to change the mapping.",
+   "elternfeld": "Verantwortliche Person",
+   "teilfeld": "Name"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Second review: the propagated value is confirmed. The Formular asks for PLZ / Ort on its own line, so «Adresse» means only street and house number. That maps to eCH-0010 street (addressInformationType), as for the same pair on Formulare 24, 219 and 376. The line also bundles houseNumber, which the standard separates, so it is an «aufteilen» point on the Formular, not a mapping error.",
+   "elternfeld": "Verantwortliche Person",
+   "teilfeld": "Adresse"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Second review: confirmed. The line is part of the responsible person's postal address. It maps to eCH-0010 swissZipCode (addressInformationType), following the clear corpus practice: «PLZ / Ort» → swissZipCode 66x, «PLZ/Ort» 28x, «PLZ und Ort» 9x. The element exists verbatim and eCH-0010 is Genehmigt. The line bundles PLZ and Ort (eCH-0010 town), which the standard separates, so it is an «aufteilen» point on the Formular.",
+   "elternfeld": "Verantwortliche Person",
+   "teilfeld": "PLZ / Ort",
+   "standard": "eCH-0010",
+   "element": "swissZipCode"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Second review: confirmed. «Telefonische Erreichbarkeit» of the responsible person is their phone number, which is eCH-0046 phoneNumber (phoneType). The element exists verbatim and eCH-0046 is Genehmigt. Corpus: «Telefon» → eCH-0046 phoneNumber 181x, «Tel. Nr.» 3x, «Telefon (beste Erreichbarkeit)» 3x, and the same pair on the other «Verantwortliche Person» Formulare.",
+   "elternfeld": "Verantwortliche Person",
+   "teilfeld": "Telefonische Erreichbarkeit",
+   "standard": "eCH-0046",
+   "element": "phoneNumber"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Second review: confirmed. Read to the end, the label means the number at which the person can be reached during the event. The value is still a phone number. It is not a past or changed value, and not a date of a period. eCH-0046 phoneType has phoneNumber, and the period goes into the same type's validity (dateRangeType, dateFrom/dateTo), not into a different element. The corpus handles the parallel case the same way («Adresse im Ausland während des Einsatzes» → addressInformation). So the answer is eCH-0046 phoneNumber.",
+   "elternfeld": "Verantwortliche Person",
+   "teilfeld": "Telefonische Erreichbarkeit während der Veranstaltung",
+   "standard": "eCH-0046",
+   "element": "phoneNumber"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Second review: the propagated value is confirmed. The responsible person's e-mail address is eCH-0046 emailAddress (emailType), as for the same pair on Formulare 24, 170 and 219. The element exists verbatim and eCH-0046 is Genehmigt.",
+   "elternfeld": "Verantwortliche Person",
+   "teilfeld": "E-Mail"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Second review: the propagated kein_standard is confirmed. I searched all 290 standard titles (Veranstalt, Anlass, Event, Bewillig, Schiff, Boot, Gewässer, Sport) and all element names and contexts (event, veranstalt, anlass, occasion, boat, ship, vessel, schiff, watercraft). The only hits were the eCH-0020 event… message types (civil-registry reports), eCH-0058 header events, eCH-0099 eventTime and eCH-0179 Parkbewilligungen (Sistiert, no elements). None defines the kind of a nautical event. eCH-0049 has no elements. Formular 24 has the same «Art der Veranstaltung» = kein_standard.",
+   "feld": "Art der Veranstaltung"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Second review: confirmed. This is the calendar date of the nautical event. I searched the elements for date, start, begin, event. eCH-0058 eventDate is the header date of the business event behind a message. eCH-0010/0046 dateFrom/dateTo and validity are validity ranges of addresses and contacts. eCH-0129/0206/0216 projectStartDate is the start of a construction project. eCH-0260/0278 startDate/beginDate belong to apprenticeships, employment and alimony. No element defines the date on which an event takes place. This matches Formular 24 («Durchführungsdatum Beginn/Ende» = kein_standard).",
+   "feld": "Durchführungsdatum"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Second review: confirmed. This is the time of day of the event. I searched the elements for time, uhrzeit, timestamp, hour. The only hits were technical or domain-specific timestamps: eCH-0084/0085/0086/0212/0213/0215 (UPI), eCH-0110/0222/0252 (voting results), eCH-0217/0235/0258 (headers and metadata), eCH-0099 eventTime (statistics receipt), eCH-0165 actionTime, and eCH-0155 timeOfVoting (voting card only). No standard defines the time of an event.",
+   "feld": "Uhrzeit"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Second review: the propagated value (checked 1x, Formular 376, where Veranstaltungsort with parts Ort → town and Lokalität → locality uses addressInformation) is confirmed. The place of the event is one free line. eCH-0010 addressInformation can express a place through addressLine1/2, locality and town, e.g. «Rhein, Badi …, Stein am Rhein». I searched for water, lake, river, route, location, place, locality. eCH-0129/0131 placeName is a parcel or local name of real estate. eCH-0108/0098 additionalLocationAddress is a business site. eCH-0211 locationAddress is a solar installation. eCH-0262 location is a storage site. None defines a stretch of water or a route, so addressInformation remains the best available element. A route itself belongs to the Beilage «Planskizze mit Standort / Route».",
+   "feld": "Veranstaltungsort"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Second review: confirmed. This is the expected number of boats. I searched all 290 standards for boat, ship, vessel, Schiff, watercraft (no standard on watercraft exists) and for numberOf, countOf, expected. The count hits are only voting and election results (eCH-0045/0110/0155/0252), packages (eCH-0058/0078/0102), organisations in register deliveries (eCH-0116/0148), tax trips and workdays (eCH-0119) and buildings and dwellings (eCH-0129/0130/0206). No element counts boats.",
+   "feld": "erwartete Anzahl Boote"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Second review: confirmed. This is the expected number of participants. I searched for participant, teilnehm, visitor, attendee, numberOf, countOf, expected. The only hits are eCH-0276 tradeReceivablesPayableByParticipants… (accounting), voting counts (eCH-0110/0252) and the count elements listed for «erwartete Anzahl Boote». No element defines the number of participants of an event. This matches Formular 24 («Anzahl Teilnehmer» = kein_standard).",
+   "feld": "erwartete Teilnehmerzahl"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Second review: the propagated kein_standard (checked 17x) is confirmed. The only similar element is eCH-0119 locationAndDate (attachedFormsType), a combined string from the E-Tax Filing standard that does not apply to a nautical permit. I searched for signat, signing, location, place and found no other container for the place and date of signing. All 11 judged «Ort und Datum» composites in the corpus are kein_standard.",
+   "feld": "Ort und Datum"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Second review: confirmed. This is the place of signing, not part of a postal address, so eCH-0010 town (inside addressInformation) does not fit. eCH-0119 location and locationAndDate are E-Tax-specific. eCH-0011 placeOfBirth/placeOfDeath (generalPlaceType) refer to civil-status events. eCH-0155 placeOfVoting belongs to voting cards. No element defines a place of signing. This matches the corpus (pair «Ort und Datum»/«Ort» = kein_standard 11x, none mapped otherwise).",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Second review: confirmed. This is the date of signing. eCH-0058 messageDate is the date a message was created. eCH-0260 signaturesType has only boolean signature confirmations for apprenticeship contracts. The signature standards eCH-0091/0220/0230/0250/0274/0282 have no elements. No element defines a date of signing. This matches the corpus (pair «Ort und Datum»/«Datum» = kein_standard 11x).",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Second review: confirmed. This is the applicant's handwritten signature. I searched for signat, unterschr, signing. The only element hits are eCH-0260 signatures / …SignatureConfirmation, which are boolean confirmations for apprenticeship contracts only. eCH-0091/0220/0230/0250/0274/0282 deal with electronic signature technology and have no elements. No standard defines a signature as a value. This matches the corpus: all 70 judged signature fields are kein_standard.",
+   "feld": "Unterschrift des Gesuchstellers"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Second review: confirmed. The field is a checkbox list (Planskizze mit Standort / Route, Sicherheitsdispositiv, Versicherungsnachweis gemäss Art. 155 BSV). Each box only confirms that a document is enclosed and must not take a value element. eCH-0058 attachment and eCH-0039/0211 document are generic file containers that do not define the content. I searched for certificat, insurance, Versicher (eCH-0132 covers building insurance objects, not liability proof), plan and route, and found no element for these documents. Corpus: «Beilagen» multiselect = kein_standard 35x against 2x eCH-0058 attachment.",
+   "feld": "Beilagen"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Second review: confirmed. This document attachment comes from the Merkblatt («Sicherheitszertifikat, falls vorhanden»). I searched all 290 standards for certificat, Zertifikat, safety, Sicherheit and insurance, and found no element for a safety certificate of a nautical event. eCH-0058 attachment and eCH-0039 document are only generic file containers. Dominant corpus practice for attachment fields is kein_standard (131x, against 14x eCH-0211, 12x eCH-0058 and 7x eCH-0039 document). «Zertifikate» elsewhere is kein_standard too.",
+   "feld": "Sicherheitszertifikat"
+  }
+ ]
+}

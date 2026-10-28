@@ -1,0 +1,39 @@
+{
+ "verdicts": [
+  {
+   "id": 6892,
+   "subjekt": "natuerliche_person",
+   "grund": "Name des vorsitzenden Verwaltungsratsmitglieds; VR-Mitglieder sind zwingend natürliche Personen, unterschreibt persönlich unter [NAME, Vorname]."
+  },
+  {
+   "id": 6893,
+   "subjekt": "natuerliche_person",
+   "grund": "Name der als Protokollführer bezeichneten Person, die persönlich unter [NAME, Vorname] unterschreibt."
+  },
+  {
+   "id": 6894,
+   "subjekt": "natuerliche_person",
+   "grund": "Namen der weiteren anwesenden VR-Mitglieder; jedes Mitglied ist eine natürliche Person, keine Organisation möglich."
+  },
+  {
+   "id": 6895,
+   "subjekt": "natuerliche_person",
+   "grund": "Name, Heimatort und Wohnort der Person, der Einzel-/Kollektivunterschrift erteilt wird; Heimatort gibt es nur bei natürlichen Personen."
+  },
+  {
+   "id": 6897,
+   "subjekt": "natuerliche_person",
+   "grund": "Name, Heimatort und Wohnort der zum Direktor/Vizedirektor ernannten Person; eindeutig eine natürliche Person."
+  },
+  {
+   "id": 6900,
+   "subjekt": "natuerliche_person",
+   "grund": "Name, Heimatort und Wohnort der Person, der die Zeichnungsberechtigung entzogen wird; Heimatort nur bei natürlichen Personen."
+  },
+  {
+   "id": 6902,
+   "subjekt": "natuerliche_person",
+   "grund": "Name, Heimatort und Wohnort der als Direktor/Vizedirektor abgewählten Person; eindeutig eine natürliche Person."
+  }
+ ]
+}

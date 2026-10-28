@@ -1,0 +1,421 @@
+{
+ "hinweis": "eCH-Urteile Formular 233, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/233 --nur-offene=233",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Die Nummer vergibt das Finanzdepartement für das Erlassgesuch, sie identifiziert also den Geschäftsfall. Laut XSD ist eCH-0039 referenceType/caseId die «Identifikation des Geschäftsfalls (wird von der federführenden Stelle vergeben)». caseReferenceLocalId vergibt dagegen der Absender (Ordnungsmerkmal des Dossiers), es passt hier nicht. Im Korpus ist die gleiche Zuordnung schon einmal belegt.",
+   "feld": "Fragebogen Erlassgesuch Nr.",
+   "standard": "eCH-0039",
+   "element": "caseId"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Die Freitextfrage gilt den geleisteten Unterhaltszahlungen an Kinder sowie an getrennt lebende oder geschiedene Ehegatten. eCH-0278 alimonyPayments (alimonyPaymentsType) umfasst genau paymentAlimony (separatedOrDivorcedPerson, monthlyPayment, startDate/endDate) und paymentAlimonyChild. Die Angabe bündelt beide Arten, deshalb gilt das Container-Element. Das Feld «Unterhaltszahlungen» desselben Formulars ist gleich zugeordnet.",
+   "feld": "Welche Unterhaltsleistungen müssen Sie für Ihre Kinder oder für einen von Ihnen getrenntlebenden oder geschiedenen Ehegatten leisten?",
+   "standard": "eCH-0278",
+   "element": "alimonyPayments"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Gefragt ist die Ausbildung der Person. eCH-0260 eduSpecificationsType/education ist laut XSD der «Bildungstyp». Im Korpus gilt dieselbe Zuordnung für «Andere Ausbildung», «Berufsausbildung/Studium» und «Ausbildung der verantwortlichen Person» (Formulare 278, 332, 372–377). eCH-0278 kennt nur Ausbildungen von Kindern bzw. Ausbildungskosten, eCH-0021 nur Beruf und Erwerb.",
+   "feld": "Über welche Ausbildung verfügen Sie?",
+   "standard": "eCH-0260",
+   "element": "education"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Gefragt ist der heutige Umfang der Erwerbstätigkeit. eCH-0278 dependentEmploymentDetail/employmentPercentage (percentageType) ist der Beschäftigungsgrad. Korpus: Formular 254 «Beschäftigungsgrad in %» und Formular 118 «zu (%)» → employmentPercentage. eCH-0021 kindOfEmployment gibt nur die Erwerbsart an, nicht den Umfang.",
+   "feld": "In welchem Umfang sind Sie erwerbstätig?",
+   "standard": "eCH-0278",
+   "element": "employmentPercentage"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Bestätigt. Gefragt ist eine Prognose: Ja/Nein, der künftige Umfang und eine Begründung. employmentPercentage ist der heutige Wert und darf eine künftige Angabe nicht tragen. Durchsucht wurden eCH-0278 dependentEmploymentType, eCH-0021 jobData/kindOfEmployment und eCH-0260, dazu der ganze Katalog nach increase/availab/capacity/expected/future/planned/prognos. Die Treffer sind fachfremd: eCH-0211 expectedStartOfOperation, eCH-0229/0276 taxableResultIncrease, eCH-0260 numberPlannedOpenings.",
+   "feld": "Können Sie in den kommenden Jahren Ihre Erwerbstätigkeit erhöhen?"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Bestätigt. Gefragt sind künftig erwartete Leistungen, mit Art und ungefährem Beginn. eCH-0278 bildet nur bezogene oder vorhandene Werte ab (socialAndOtherInsuranceIncome, capitalBenefits, inheritanceAndGifts, undistributedInheritanceShares); ein vergangener oder heutiger Wert passt nicht auf eine Erwartung. Auch eCH-0119 revenueType und der ganze Katalog nach expected/future/planned enthalten kein solches Element. Einzige Treffer: eCH-0211 expectedStartOfOperation (Solaranlagen) und eCH-0278 expectedEndOfEducation (Kinder).",
+   "feld": "Erwarten Sie in den kommenden Jahren eine Rente, Versicherungsleistungen oder eine Erbschaft etc.?"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Bestätigt. Verlangt ist eine freie Begründung des Erlassinteresses. eCH-0259 Gebühren (31 Elemente: feeType, legalBasis, calculationBase usw.) kennt keine Angabe zu Erlass oder Befreiung, eCH-0039 nur Dossier- und Dokumentdaten. Die Suche nach reason/justification/waiver/exempt/remission im ganzen Katalog ergab nur fachfremde Elemente (eCH-0173 justification, eCH-0216 reason, eCH-0119 paymentReason, eCH-0276 debtWaiverValueAdjustment).",
+   "feld": "Worin liegt Ihr besonderes Interesse an einem Erlass der Ihnen auferlegten Verfahrenskosten?"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Bestätigt. Gefragt sind Ja/Nein und bei Nein eine Begründung. Ein Ja/Nein-Feld darf ohnehin kein Wert-Element tragen, und kein Element im Katalog definiert diese Angabe. Geprüft wurden: eCH-0039 (Dossier/Geschäftsfall); eCH-0051 (Polizei und Justiz, genehmigt, ohne Elementkatalog, nicht belegbar); eCH-0307 (In Arbeit, ohne Elemente); eCH-0259 Gebühren. Die Suche nach legalAid/waiver/exempt/remission/legalCost/courtCost blieb ohne passenden Treffer.",
+   "feld": "Haben Sie im Verfahren, in dem Ihnen Kosten auferlegt wurden, die unentgeltliche Prozessführung verlangt?"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Gemeint ist der beizulegende Entscheid über die unentgeltliche Prozessführung (Frage 14: «bitte Entscheid beilegen»). eCH-0039 contentType/document (documentType) ist laut XSD die «Basiskomponente zur Abbildung der Metadaten von Dokumenten und Unterlagen». Im Korpus werden beizulegende Unterlagen 36-mal so zugeordnet (z.B. Ärztliches Zeugnis, Strafregisterauszug, Nachweis der finanziellen Situation).",
+   "feld": "Entscheid (unentgeltliche Prozessführung)",
+   "standard": "eCH-0039",
+   "element": "document"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Das übernommene kein_standard (propagiert) wird bestätigt. Die Angabe besteht aus Unterschriftsort und Unterschriftsdatum; ein Container-Element dafür gibt es nicht. eCH-0119 locationAndDate kommt nur im Steuererklärungs-Kontext vor (attachedFormsType, listOfSecuritiesType) und ist dort ein einziger Text, nicht atomar. eCH-0039 documentType kennt nur openingDate und signer, eCH-0058 messageDate ist ein Meldungszeitstempel.",
+   "feld": "Ort und Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Das übernommene kein_standard (propagiert) wird bestätigt. eCH-0039 documentType/signer bezeichnet die Person, die unterzeichnet hat (token), nicht die eigenhändige Unterschrift. Die eCH-0260 signaturesType-Elemente (…SignatureConfirmation) sind Ja/Nein-Bestätigungen zu Lehrverträgen. Kein Standard im Katalog definiert die Unterschrift als Angabe.",
+   "feld": "Unterschrift"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Gemeint ist der Nettolohn der gesuchstellenden Person einschliesslich Nebenerwerb, also die Summe aller unselbständigen Erwerbe. Laut XSD ist employedRevenueTotal das Total über alle dependentEmploymentDetail; dependentEmploymentType trägt das Attribut person. Korpus: Formular 484 mit gleichem Wortlaut → employedRevenueTotal.",
+   "elternfeld": "Monatlicher Nettolohn inkl. Anteil 13. Gehalt, Gratifikation, Spesen, Nebenerwerb",
+   "teilfeld": "Persönlich",
+   "standard": "eCH-0278",
+   "element": "employedRevenueTotal"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Gleiche Angabe für die Partnerin, den Partner oder den Ehegatten (person=2 auf dependentEmploymentType). employedRevenueTotal ist das Total aus Haupt- und Nebenerwerb dieser Person.",
+   "elternfeld": "Monatlicher Nettolohn inkl. Anteil 13. Gehalt, Gratifikation, Spesen, Nebenerwerb",
+   "teilfeld": "Partnerin/Partner/Ehegatte",
+   "standard": "eCH-0278",
+   "element": "employedRevenueTotal"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Die Zeile fasst AHV, IV, EL, ALV und private Versicherungen der Person zusammen. Ein Gesamtbetrag-Element gibt es in eCH-0278 nicht, nur Einzelarten (retirementPension, incapacityPension, unemploymentInsurance, occupationalPension, pillar3bPension, annuity, otherPensions). Der personenbezogene Container socialAndOtherInsuranceIncome (Attribut person) fasst sie zusammen. Vorbehalt: Die EL führt eCH-0278 separat als nonTaxableIncome.",
+   "elternfeld": "Versicherungs- und Rentenleistungen",
+   "teilfeld": "Persönlich",
+   "standard": "eCH-0278",
+   "element": "socialAndOtherInsuranceIncome"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Gleiche Summe für die zweite Person (person=2 auf socialAndOtherInsuranceIncomeType). Ein Gesamtbetrag-Element fehlt, daher gilt der Container.",
+   "elternfeld": "Versicherungs- und Rentenleistungen",
+   "teilfeld": "Partnerin/Partner/Ehegatte",
+   "standard": "eCH-0278",
+   "element": "socialAndOtherInsuranceIncome"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Zeile «Kinder», Spalte «Persönlich»: die Unterhaltsbeiträge, welche die gesuchstellende Person für die Kinder erhält. Der Betrag ist eCH-0278 alimonyIncomeType (Attribut person) mit restRevenueAlimonyChild/restRevenueAlimonyChildAmount. Korpus: Formular 484 «Kindesunterhalt» → dasselbe Element.",
+   "elternfeld": "Unterhalts- und Unterstützungsbeiträge",
+   "teilfeld": "Kinder – Persönlich",
+   "standard": "eCH-0278",
+   "element": "restRevenueAlimonyChildAmount"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Zeile «Kinder», Spalte «Partnerin/Partner/Ehegatte»: die für die Kinder erhaltenen Unterhaltsbeiträge der zweiten Person (person=2 auf alimonyIncomeType).",
+   "elternfeld": "Unterhalts- und Unterstützungsbeiträge",
+   "teilfeld": "Kinder – Partnerin/Partner/Ehegatte",
+   "standard": "eCH-0278",
+   "element": "restRevenueAlimonyChildAmount"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Zeile «Persönlich»: Unterhaltsbeiträge, welche die gesuchstellende Person für sich selbst erhält, nicht für die Kinder. Dafür steht eCH-0278 alimonyIncomeType/restRevenueAlimony (amount/monthlyAmount, Attribut person), nicht restRevenueAlimonyChild. Korpus: Formular 229 «Persönlich», Formular 484 «Ehegattenunterhalt» und Formular 118 «Alimente (ohne Kinderanteil)» → restRevenueAlimony.",
+   "elternfeld": "Unterhalts- und Unterstützungsbeiträge",
+   "teilfeld": "Persönlich – Persönlich",
+   "standard": "eCH-0278",
+   "element": "restRevenueAlimony"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Zeile «Persönlich», Spalte «Partnerin/Partner/Ehegatte»: Unterhaltsbeiträge, welche die zweite Person für sich selbst erhält (person=2). Element: restRevenueAlimony.",
+   "elternfeld": "Unterhalts- und Unterstützungsbeiträge",
+   "teilfeld": "Persönlich – Partnerin/Partner/Ehegatte",
+   "standard": "eCH-0278",
+   "element": "restRevenueAlimony"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Haushaltsbeiträge der Kinder, Kostgeld usw. sind übrige Einkünfte der Person. Der Betrag ist eCH-0278 otherIncomeAndGainsType (Attribut person) mit otherIncome/otherIncomeAmount. Korpus: Formular 155 «Weitere Einkünfte» → otherIncomeAmount. Vorbehalt: Die Untermiete führt der Standard separat als subleaseIncome im selben Typ.",
+   "elternfeld": "Sonstiges Einkommen",
+   "teilfeld": "Persönlich",
+   "standard": "eCH-0278",
+   "element": "otherIncomeAmount"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Übrige Einkünfte der zweiten Person (person=2 auf otherIncomeAndGainsType). Element: otherIncomeAmount.",
+   "elternfeld": "Sonstiges Einkommen",
+   "teilfeld": "Partnerin/Partner/Ehegatte",
+   "standard": "eCH-0278",
+   "element": "otherIncomeAmount"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt, mit Vorbehalt. eCH-0278 domesticAndForeignIncomeType/totalAmountRevenue ist das Total der Einkünfte, allerdings je Steuerdossier und ohne Attribut person. Ein Total je Person definiert kein Standard (eCH-0119 totalAmountRevenue ist ebenfalls gemeinsam). totalAmountRevenue ist die nächstliegende Definition und entspricht dem Elternfeld.",
+   "elternfeld": "Total pro Monat (Einkommen)",
+   "teilfeld": "Persönlich",
+   "standard": "eCH-0278",
+   "element": "totalAmountRevenue"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt, mit Vorbehalt. Total der Einkünfte der zweiten Person. Kein Standard kennt ein Total je Person; totalAmountRevenue ist die Definition für das Total der Einkünfte, wie beim Elternfeld.",
+   "elternfeld": "Total pro Monat (Einkommen)",
+   "teilfeld": "Partnerin/Partner/Ehegatte",
+   "standard": "eCH-0278",
+   "element": "totalAmountRevenue"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Bestätigt. Für den Mietzins, den ein privater Mieter bezahlt, gibt es kein Element. Der ganze Katalog wurde nach rent/lease/miete durchsucht: eCH-0278 propertyIncomeType kennt nur Mieteinnahmen des Vermieters (privateRentalAmount, businessRentalIncome), subleaseIncome ist ein Ertrag; eCH-0119 propertyRevenueRent ist ein Mietertrag; eCH-0276 rentalExpense ist Geschäftsaufwand juristischer Personen; eCH-0185 housingSituationType ist die Wohnform ohne Betrag. Das deckt sich mit dem Elternfeld und mit Formular 229/155.",
+   "elternfeld": "Mietzins",
+   "teilfeld": "Persönlich"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Bestätigt. Es geht um den bezahlten Mietzins der zweiten Person. Dieselbe Katalogsuche wie bei «Persönlich» (eCH-0278, eCH-0119, eCH-0276, eCH-0185) ergab kein Element für bezahlte Miete.",
+   "elternfeld": "Mietzins",
+   "teilfeld": "Partnerin/Partner/Ehegatte"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt, mit Vorbehalt. Gemeint ist die Krankenkassenprämie der Person. Massgebend ist eCH-0278 insuranceContributionsType (Attribut person laut XSD) mit insurancePremium. Die abzuziehende Prämienverbilligung führt der Standard separat als deductionsPremiumsReduction; ein Netto-Element gibt es nicht. totalEffectiveInsuranceContributions enthält zusätzlich Sparzinsen. Gleiche Zuordnung wie beim Elternfeld und im Korpus: Formular 229, Formular 254 «Prämien Krankenkasse».",
+   "elternfeld": "Krankenkassenprämien abzüglich Prämienverbilligung",
+   "teilfeld": "Persönlich",
+   "standard": "eCH-0278",
+   "element": "insurancePremium"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Krankenkassenprämie der zweiten Person (person=2 auf insuranceContributionsType). Element: insurancePremium; die Verbilligung steht separat in deductionsPremiumsReduction.",
+   "elternfeld": "Krankenkassenprämien abzüglich Prämienverbilligung",
+   "teilfeld": "Partnerin/Partner/Ehegatte",
+   "standard": "eCH-0278",
+   "element": "insurancePremium"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Gemeint sind die Berufsauslagen der Person für Arbeitsweg, auswärtige Verpflegung und Kinderbetreuung, als ein Betrag. eCH-0278 jobCostsType/jobExpenses ist ein moneyType mit Attribut person und das Total der Berufskosten je Person. Einzelposten wären travelCostsHomeToWork und cateringNonSubsidized.",
+   "elternfeld": "Berufsauslagen",
+   "teilfeld": "Persönlich",
+   "standard": "eCH-0278",
+   "element": "jobExpenses"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Total der Berufsauslagen der zweiten Person (person=2 auf jobExpenses).",
+   "elternfeld": "Berufsauslagen",
+   "teilfeld": "Partnerin/Partner/Ehegatte",
+   "standard": "eCH-0278",
+   "element": "jobExpenses"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Gemeint sind die geleisteten Unterhaltszahlungen der Person an Kinder sowie an getrennt lebende oder geschiedene Ehegatten (Frage 4). eCH-0278 deductionsType/alimonyPayments umfasst paymentAlimony und paymentAlimonyChild (eindeutig je @person). Die Zeile bündelt beide Arten, und nur das Container-Element deckt sie ab; paymentAlimonyAmount wäre nur der Ehegattenunterhalt. Gleiche Zuordnung wie beim Elternfeld.",
+   "elternfeld": "Unterhaltszahlungen",
+   "teilfeld": "Persönlich",
+   "standard": "eCH-0278",
+   "element": "alimonyPayments"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Geleistete Unterhaltszahlungen der zweiten Person (person=2 auf paymentAlimony/paymentAlimonyChild). Kinder- und Ehegattenunterhalt sind zusammengefasst, daher gilt alimonyPayments.",
+   "elternfeld": "Unterhaltszahlungen",
+   "teilfeld": "Partnerin/Partner/Ehegatte",
+   "standard": "eCH-0278",
+   "element": "alimonyPayments"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt, mit Vorbehalt. Drei der vier Ausgabenzeilen (insuranceContributions, jobCosts, alimonyPayments) sind in eCH-0278 Kinder von deductionsType, und deren Total ist totalAmountDeduction. Gleiche Zuordnung wie beim Elternfeld und in Formular 229. Vorbehalt: totalAmountDeduction gilt je Steuerdossier ohne Attribut person, und der Mietzins ist dort kein Abzug.",
+   "elternfeld": "Total pro Monat (Ausgaben)",
+   "teilfeld": "Persönlich",
+   "standard": "eCH-0278",
+   "element": "totalAmountDeduction"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt, mit Vorbehalt. Total der Ausgaben der zweiten Person; nächstliegende Definition ist totalAmountDeduction, wie beim Elternfeld. Ein Total je Person und der Mietzins sind im Standard nicht vorgesehen.",
+   "elternfeld": "Total pro Monat (Ausgaben)",
+   "teilfeld": "Partnerin/Partner/Ehegatte",
+   "standard": "eCH-0278",
+   "element": "totalAmountDeduction"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt, mit Vorbehalt. Gemeint sind Guthaben und Wertschriften der Person. eCH-0278 privateAssetsType (Attribut person) mit assetsBalanceAndSecurities/totalTaxableBalanceAssetsAndSecurities ist der Betrag für Bank- und Postkonti sowie Wertschriften, also den Hauptteil der Zeile. Bargeld und Edelmetalle führt der Standard separat (otherAssets/cashAndPreciousMetalsAmount); kein Element vereint beide.",
+   "elternfeld": "Bargeld, Bank- oder Postkonti, Wertschriften, Edelmetalle",
+   "teilfeld": "Persönlich",
+   "standard": "eCH-0278",
+   "element": "totalTaxableBalanceAssetsAndSecurities"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt, mit Vorbehalt. Guthaben und Wertschriften der zweiten Person (person=2 auf privateAssetsType). Bargeld und Edelmetalle stünden separat in cashAndPreciousMetalsAmount.",
+   "elternfeld": "Bargeld, Bank- oder Postkonti, Wertschriften, Edelmetalle",
+   "teilfeld": "Partnerin/Partner/Ehegatte",
+   "standard": "eCH-0278",
+   "element": "totalTaxableBalanceAssetsAndSecurities"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Die Zeile verlangt ausdrücklich den Verkehrswert. eCH-0278 kennt nur Steuerwerte (propertyIncomeType/assetTaxValue, totalPropertyTaxValues), und ein Steuerwert ist eine andere Angabe. eCH-0119 assetType/propertyMarketValue ist der Verkehrswert der Liegenschaften natürlicher Personen, neben propertyHouseOrFlat und propertyCapitalizedValue (Ertragswert). eCH-0276 marketValue betrifft nur juristische Personen. Das Elternfeld (assetTaxValue) bleibt fraglich.",
+   "elternfeld": "Grundstücke, Haus, Stockwerk-Eigentum (Verkehrswert)",
+   "teilfeld": "Persönlich",
+   "standard": "eCH-0119",
+   "element": "propertyMarketValue"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Gemeint ist der Verkehrswert der Liegenschaften der zweiten Person. Für Privatpersonen definiert nur eCH-0119 propertyMarketValue einen Verkehrswert; eCH-0278 kennt nur Steuerwerte.",
+   "elternfeld": "Grundstücke, Haus, Stockwerk-Eigentum (Verkehrswert)",
+   "teilfeld": "Partnerin/Partner/Ehegatte",
+   "standard": "eCH-0119",
+   "element": "propertyMarketValue"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Gemeint ist der Wert der Fahrzeuge der Person. Der Betrag ist eCH-0278 privateAssetsType (Attribut person) mit otherAssets/motorVehicles/motorVehiclesAmount, dem Total der Motorfahrzeuge (je Fahrzeug taxValue und purchasePrice). Korpus: Formular 131 «Fahrzeuge CHF» → motorVehiclesAmount.",
+   "elternfeld": "Auto, Motorrad etc. (Zeitwert)",
+   "teilfeld": "Persönlich",
+   "standard": "eCH-0278",
+   "element": "motorVehiclesAmount"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Wert der Fahrzeuge der zweiten Person (person=2 auf privateAssetsType). Element: motorVehiclesAmount.",
+   "elternfeld": "Auto, Motorrad etc. (Zeitwert)",
+   "teilfeld": "Partnerin/Partner/Ehegatte",
+   "standard": "eCH-0278",
+   "element": "motorVehiclesAmount"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Korrigiert (vorher otherAssets). Liest man die Bezeichnung zu Ende, verlangt die Zeile ausdrücklich Lebensversicherungen, unverteilte Erbschaft und Beteiligungen. eCH-0278 privateAssetsType/otherAssets enthält laut XSD nur motorVehicles, movableHouseholdAssets, cashAndPreciousMetals, cryptoAssets und otherCollectibleAssets, also keines der genannten Beispiele. Dafür enthält es Fahrzeuge und Bargeld/Edelmetalle, die dieses Formular in eigenen Zeilen erfragt (motorVehiclesAmount ist ein Kind von otherAssets); die Zuordnung würde also doppelt zählen. Die genannten Posten führt eCH-0278 getrennt: lifeInsuranceAmount und qualifiedInvestmentsPrivate unter assetsBalanceAndSecurities, undistributedInheritanceShares als eigenes Element. Auch in eCH-0119 assetType sind sie getrennt (movablePropertyLifeInsurances, movablePropertyHeritageEtc, movablePropertyFreeTextAmount). Der einzige gemeinsame Container, privateAssets, ist das ganze Privatvermögen der Person und entspricht der Total-Zeile. Kein Element definiert diese Bündelung: Das Formular bündelt, was der Standard trennt. Das Elternfeld (otherAssets) ist aus demselben Grund fraglich.",
+   "elternfeld": "Weiteres Vermögen",
+   "teilfeld": "Persönlich"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Korrigiert (vorher otherAssets). Es ist dieselbe Bündelung für die zweite Person: Lebensversicherungen, unverteilte Erbschaft und Beteiligungen. eCH-0278 otherAssets umfasst keines davon, sondern Fahrzeuge, Hausrat, Bargeld/Edelmetalle, Krypto und Sammlerstücke, darunter Posten anderer Zeilen dieses Formulars. Die Bestandteile sind einzeln definiert (lifeInsuranceAmount, undistributedInheritanceShares, qualifiedInvestmentsPrivate; eCH-0119 movablePropertyLifeInsurances, movablePropertyHeritageEtc). Ein Element für die Summe gibt es nicht; privateAssets wäre das ganze Privatvermögen.",
+   "elternfeld": "Weiteres Vermögen",
+   "teilfeld": "Partnerin/Partner/Ehegatte"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt, mit Vorbehalt. Gemeint ist das Gesamtvermögen der Person vor Abzug der Schulden. eCH-0278 domesticAndForeignAssetsType/totalAmountAssets ist das Total der Vermögenswerte (netAssets wäre nach Schulden), allerdings je Steuerdossier und ohne Attribut person. Ein Total je Person definiert kein Standard. Gleiche Zuordnung wie beim Elternfeld und in Formular 229.",
+   "elternfeld": "Total (Vermögen)",
+   "teilfeld": "Persönlich",
+   "standard": "eCH-0278",
+   "element": "totalAmountAssets"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt, mit Vorbehalt. Gesamtvermögen der zweiten Person; nächstliegende Definition ist totalAmountAssets, wie beim Elternfeld. Ein Total je Person fehlt im Standard.",
+   "elternfeld": "Total (Vermögen)",
+   "teilfeld": "Partnerin/Partner/Ehegatte",
+   "standard": "eCH-0278",
+   "element": "totalAmountAssets"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Gemeint ist der Name der Gläubigerin oder des Gläubigers. eCH-0278 debtInterestsType/liabilityInterest/creditor (string) ist das einzige ausdrückliche Gläubiger-Element; eCH-0119 liabilitiesListingType hat nur den allgemeinen Text identification. Korpus: Formular 229 und 254 «Name des Gläubigers» sowie Formular 155 → creditor.",
+   "elternfeld": "Schulden oder Verlustscheine",
+   "teilfeld": "Gläubigerin oder Gläubiger",
+   "standard": "eCH-0278",
+   "element": "creditor"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Gemeint ist der Betrag der einzelnen Schuld (je Gläubigerzeile) der gesuchstellenden Person. eCH-0119 liabilitiesListingType/liability ist der Betrag einer Schuld im Schuldenverzeichnis, im selben Container wie das Elternfeld privateLiabilities. Korpus: Formular 229 «Betrag Gesuchsteller/in» und Formular 155 «Vermögen: Passiven / Betrag» → liability.",
+   "elternfeld": "Schulden oder Verlustscheine",
+   "teilfeld": "Persönlich",
+   "standard": "eCH-0119",
+   "element": "liability"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Gemeint ist der Betrag der einzelnen Schuld der Partnerin oder des Partners. Element: eCH-0119 liabilitiesListingType/liability, wie in Formular 229 «Betrag Partner/in».",
+   "elternfeld": "Schulden oder Verlustscheine",
+   "teilfeld": "Partnerin oder Partner",
+   "standard": "eCH-0119",
+   "element": "liability"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. In eCH-0278 liabilitiesType ist liability je Person eindeutig (unique über @person, personGroup), und liability/totalLiability ist das Total der Schulden dieser Person. Das ist genauer als totalAmountLiabilities, das gemeinsame Total ohne Attribut person. Korpus: Formular 131 «Schulden Betrag CHF» → totalLiability.",
+   "elternfeld": "Total (Schulden oder Verlustscheine)",
+   "teilfeld": "Persönlich",
+   "standard": "eCH-0278",
+   "element": "totalLiability"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Total der Schulden der Partnerin oder des Partners (liability mit person=2). Element: totalLiability.",
+   "elternfeld": "Total (Schulden oder Verlustscheine)",
+   "teilfeld": "Partnerin oder Partner",
+   "standard": "eCH-0278",
+   "element": "totalLiability"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Bestätigt. Gemeint ist der Unterschriftsort. Durchsucht wurden: eCH-0119 locationAndDate (nur Steuererklärung, Ort und Datum als ein Text, nicht atomar); eCH-0010 town (Ort der Postadresse, nicht der Unterzeichnung); eCH-0007 (Gemeinden); eCH-0039 documentType (signer, openingDate, kein Ort); dazu der Katalog nach sign*. Kein Element für den Unterschriftsort. Korpus: Teil «Ort» von «Ort und Datum» 11-mal kein_standard.",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Bestätigt. Gemeint ist das Unterschriftsdatum. eCH-0039 documentType kennt openingDate (Eröffnung des Dokuments) und signer (Person), aber kein Unterschriftsdatum. eCH-0058/eCH-0039 messageDate ist der Zeitstempel einer Meldung, eCH-0119 locationAndDate ist nicht atomar, und eCH-0260 signaturesType hat nur Ja/Nein-Bestätigungen. Korpus: Teil «Datum» von «Ort und Datum» 11-mal kein_standard.",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Datum"
+  }
+ ]
+}

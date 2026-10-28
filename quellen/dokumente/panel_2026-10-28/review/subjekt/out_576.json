@@ -1,0 +1,28 @@
+{
+ "urteile": [
+  {
+   "id": 7113,
+   "urteil": "bestaetigt",
+   "subjekt": "behoerde",
+   "grund": "Das Feld nennt nur die Gemeinde, an deren Betreibungsamt das Begehren geht. Es ist eine Angabe der Behörde, keine Angabe über eine Person."
+  },
+  {
+   "id": 7114,
+   "urteil": "bestaetigt",
+   "subjekt": "gemischt",
+   "grund": "Laut Erläuterungen gilt das Formular auch für die Faustpfand- und die Grundpfandbetreibung, und diese laufen auch gegen Firmen. Trotz «Name, Vorname» ist der Schuldner also nicht sicher eine natürliche Person. Das deckt sich mit den Schuldner-Feldern der übrigen SchKG-Formulare (z. B. 5725, 5716)."
+  },
+  {
+   "id": 7115,
+   "urteil": "bestaetigt",
+   "subjekt": "gemischt",
+   "grund": "Gläubiger kann eine Privatperson oder eine Firma sein (Bank, Vermieter-AG, Inkasso). Das Formular lässt beides zu, Name, Adresse und Zahlungsverbindung eingeschlossen. Das deckt sich mit Feld 5728."
+  },
+  {
+   "id": 7116,
+   "urteil": "bestaetigt",
+   "subjekt": "gemischt",
+   "grund": "Der allfällige Vertreter ist oft ein Inkassobüro oder eine Anwaltskanzlei, kann aber auch eine Einzelperson sein. Er ist also nicht sicher eine natürliche Person. Das deckt sich mit Feld 5729."
+  }
+ ]
+}

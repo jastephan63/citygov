@@ -1,0 +1,280 @@
+{
+ "hinweis": "eCH-Urteile Formular 549, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/549 --nur-offene=549",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ankreuzfeld zur Parteirolle der Ehefrau im Eheschutzverfahren (Gesuchstellerin oder Gesuchsgegnerin). Zweitprüfung im ganzen Katalog nach role, party, applicant, respondent, requester, plaintiff, defendant und petition, dazu ech_codelist nach gesuch, applicant, respondent und plaintiff. eCH-0039/0147 transactionRole gilt für den GEVER-Geschäftsverkehr. eCH-0173 und eCH-0258 requester sind Absender-Container ohne Gegenpartei. eCH-0254 involvedParty betrifft Nutzungsplanverfahren. Die role-Elemente in eCH-0155, 0165, 0211, 0229 und 0276 gehören zu anderen Fachgebieten. Der einzige Codelisten-Treffer ist eCH-0211 «applicant request» (Baugesuch-Ereignis). eCH-0051 (Polizei und Justiz) hat keine Elemente. Die Korpuspraxis passt dazu: «Kündigende Partei» und die Rollen-Felder sind dort ebenfalls kein_standard.",
+   "feld": "Ehefrau – Gesuchstellerin / Gesuchsgegnerin"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Der Block mit den Personalien der Ehefrau enthält Name, Vorname, Name vor der Heirat, Mädchenname, Geburtsdatum, Heimatort, Beruf, Wohnadresse und Telefon. Die Teilfelder tragen ihre eigenen Elemente. Container ist eCH-0011 person (reportedPersonType → personType) mit nameData (inkl. originalName) und placeOfOrigin. Das geht über die reine Identifikation in eCH-0044 personIdentification hinaus. Korpuspraxis für Personalien-Blöcke mit Heimatort: z. B. «Bewerber/in» und «Personalien der verstorbenen Person» (17×).",
+   "feld": "Ehefrau",
+   "standard": "eCH-0011",
+   "element": "person"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Der heutige amtliche Familienname der Ehefrau. Daneben werden «Name vor der Heirat» und «Mädchenname» getrennt erfragt, «Name» ist also der aktuelle Wert: officialName. Korpuspraxis für «Name»: 243× eCH-0044 officialName.",
+   "elternfeld": "Ehefrau",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname der Ehefrau, also eCH-0044 firstName.",
+   "elternfeld": "Ehefrau",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Das Formular fragt neben «Mädchenname» (Ledigname = originalName) eigens nach dem Namen unmittelbar vor DIESER Heirat. Nach einer früheren Ehe ist das ein anderer, früherer Name. Es ist ein vergangener Wert, also nicht officialName, und originalName ist durch den Mädchennamen belegt. Geprüft wurden alle Elemente von eCH-0011 nameDataType: officialName, firstName, originalName, allianceName, aliasName, otherName, callName, nameOnForeignPassport, declaredForeignName. Keines bedeutet «Name vor der Heirat». eCH-0020 nameInfo/nameValidFrom datiert nur eine Namensänderung. Katalogweit wurde nach before, previous, former, prior, maiden, birthName und Marriage gesucht. Gefunden wurden nur personIdentificationBefore (Identitätskorrektur), marriagePerson (Ereignis-Identifikation) und placeOfMarriage. Es gibt kein Element.",
+   "elternfeld": "Ehefrau",
+   "teilfeld": "Name vor der Heirat"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Mädchenname = Ledigname bzw. Geburtsname, also eCH-0044 originalName. So sind in der Korpuspraxis auch «Ledigname» bei Vater, Mutter und Ehegatte zugeordnet.",
+   "elternfeld": "Ehefrau",
+   "teilfeld": "Mädchenname",
+   "standard": "eCH-0044",
+   "element": "originalName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Geburtsdatum der Ehefrau, also eCH-0044 dateOfBirth.",
+   "elternfeld": "Ehefrau",
+   "teilfeld": "Geburtsdatum",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Berufsbezeichnung der Ehefrau, also eCH-0021 jobData/jobTitle. Korpuspraxis für das Teilfeld «Beruf»: 22× jobTitle.",
+   "elternfeld": "Ehefrau",
+   "teilfeld": "Beruf",
+   "standard": "eCH-0021",
+   "element": "jobTitle"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Für Schweizerinnen ist der Heimatort verlangt, also eCH-0011 placeOfOrigin/originName. Die Variante «-land» (Staatsangehörigkeit bei Ausländerinnen, eCH-0011 nationalityData) ist in derselben Zeile gebündelt. Das ist ein Hinweis zum Aufteilen für das Formular. Korpuspraxis für die gleich gebündelte Bezeichnung «Heimatort / Land»: 8× originName.",
+   "elternfeld": "Ehefrau",
+   "teilfeld": "Heimatort/-land",
+   "standard": "eCH-0011",
+   "element": "originName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«Ort» steht auf einer eigenen Zeile. Die Zeile «Wohnadresse» enthält darum Strasse (und Hausnummer), also eCH-0010 street. Korpuspraxis für «Wohnadresse» neben separatem Ort: 6× street.",
+   "elternfeld": "Ehefrau",
+   "teilfeld": "Wohnadresse",
+   "standard": "eCH-0010",
+   "element": "street"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Wohnort zur Wohnadresse, also eCH-0010 town (Korpuspraxis für «Ort»: 55× town).",
+   "elternfeld": "Ehefrau",
+   "teilfeld": "Ort",
+   "standard": "eCH-0010",
+   "element": "town"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Telefonnummer der Ehefrau, also eCH-0046 phoneNumber.",
+   "elternfeld": "Ehefrau",
+   "teilfeld": "Telefon",
+   "standard": "eCH-0046",
+   "element": "phoneNumber"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Erfasst wird ein Wert, nämlich die Sprache, in der sich die Ehefrau mit dem Gericht verständigt. Ein Ja/Nein-Feld ist es nicht. eCH-0011 personType/languageOfCorrespondance ist das allgemeine Personen-Element für die Verständigungssprache. Sein languageType ist nur auf einen zweistelligen ISO-Code beschränkt (maxLength 2, keine de/fr/it/rm-Codeliste wie bei eCH-0045), es kann also jede Dolmetschsprache aufnehmen. Korpuspraxis: «Sprache Übersetzung (klagende/beklagte Partei)» der Gerichtsformulare 492 und 493 und «Verfahrenssprache» sind ebenso zugeordnet. eCH-0260 nativeLanguage und firstLanguage gelten nur für die Berufsbildung.",
+   "feld": "falls Dolmetscher/in erforderlich, welche Sprache (Ehefrau)",
+   "standard": "eCH-0011",
+   "element": "languageOfCorrespondance"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Parteirolle des Ehemanns im Eheschutzverfahren. Gesucht wurde wie beim Feld der Ehefrau: role, party, applicant, respondent, requester, plaintiff, defendant und petition im ganzen Katalog, dazu die Codelisten. Gefunden wurden eCH-0039/0147 transactionRole (GEVER), eCH-0173/0258 requester (Container ohne Gegenpartei) und eCH-0254 involvedParty (Nutzungsplanung). eCH-0051 hat keine Elemente. Es gibt kein Element und keine Codeliste für Gesuchsteller/Gesuchsgegner.",
+   "feld": "Ehemann – Gesuchsteller / Gesuchsgegner"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Personalien-Block des Ehemanns mit Name, Vorname, Geburtsdatum, Heimatort, Beruf, Wohnadresse und Telefon. Container ist eCH-0011 person (personType mit nameData und placeOfOrigin), gleich wie beim Block der Ehefrau. Die Teilfelder tragen ihre eigenen Elemente.",
+   "feld": "Ehemann",
+   "standard": "eCH-0011",
+   "element": "person"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Der heutige amtliche Familienname des Ehemanns, also eCH-0044 officialName.",
+   "elternfeld": "Ehemann",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname des Ehemanns, also eCH-0044 firstName.",
+   "elternfeld": "Ehemann",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Geburtsdatum des Ehemanns, also eCH-0044 dateOfBirth.",
+   "elternfeld": "Ehemann",
+   "teilfeld": "Geburtsdatum",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Berufsbezeichnung des Ehemanns, also eCH-0021 jobTitle (Korpuspraxis für «Beruf»: 22×).",
+   "elternfeld": "Ehemann",
+   "teilfeld": "Beruf",
+   "standard": "eCH-0021",
+   "element": "jobTitle"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Für Schweizer ist der Heimatort verlangt, also eCH-0011 originName, wie in der Korpuspraxis für «Heimatort / Land» (8×). Die Variante «-land» (Staatsangehörigkeit, eCH-0011 nationalityData) ist in derselben Zeile gebündelt.",
+   "elternfeld": "Ehemann",
+   "teilfeld": "Heimatort/-land",
+   "standard": "eCH-0011",
+   "element": "originName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«Ort» steht auf einer eigenen Zeile. Die Wohnadresse enthält also Strasse (und Hausnummer), das ist eCH-0010 street.",
+   "elternfeld": "Ehemann",
+   "teilfeld": "Wohnadresse",
+   "standard": "eCH-0010",
+   "element": "street"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Wohnort des Ehemanns, also eCH-0010 town.",
+   "elternfeld": "Ehemann",
+   "teilfeld": "Ort",
+   "standard": "eCH-0010",
+   "element": "town"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Telefonnummer des Ehemanns, also eCH-0046 phoneNumber.",
+   "elternfeld": "Ehemann",
+   "teilfeld": "Telefon",
+   "standard": "eCH-0046",
+   "element": "phoneNumber"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Gesucht ist die Verständigungssprache des Ehemanns gegenüber dem Gericht. Das ist ein Wertfeld, also eCH-0011 languageOfCorrespondance (zweistelliger ISO-Sprachcode ohne Einschränkung auf Landessprachen). Die Korpuspraxis der Gerichtsformulare 492 und 493 ordnet «Sprache Übersetzung (…Partei)» gleich zu.",
+   "feld": "falls Dolmetscher/in erforderlich, welche Sprache (Ehemann)",
+   "standard": "eCH-0011",
+   "element": "languageOfCorrespondance"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Eheschutz setzt eine bestehende Ehe voraus. Der Tag der Eheschliessung ist darum das Datum, seit dem der heutige Zivilstand «verheiratet» gilt: eCH-0011 maritalData/dateOfMaritalStatus. Das ist kein vergangener oder abgelöster Wert, sondern der Beginn des aktuellen Zivilstands. Korpuspraxis: «Verheiratet seit» und «Datum der Heirat / Eintragung der Partnerschaft» sind ebenso zugeordnet. Ein eigenes Element dateOfMarriage gibt es im Katalog nicht.",
+   "feld": "Datum der Eheschliessung",
+   "standard": "eCH-0011",
+   "element": "dateOfMaritalStatus"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ort der Heirat, also eCH-0021 maritalDataAddon/placeOfMarriage. So ist auch das Teilfeld «Ort» von «Datum und Ort der Eheschliessung» (Formular 289) zugeordnet.",
+   "feld": "Ort der Eheschliessung",
+   "standard": "eCH-0021",
+   "element": "placeOfMarriage"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ja/Nein-Ankreuzfeld («nein □ ja □»), ob die Ehegatten gemeinsame Kinder haben. Ein Wertelement wie firstName, dateOfBirth oder parentalRelationship darf es darum nicht erhalten. Katalogweit wurde nach child, children, hasChild, joint und common gesucht. eCH-0278 hasJointChildInCohabitation ist ein Steuer-Boolean je Kind für Konkubinatspaare, eCH-0278 isChildInHousehold betrifft die Haushaltszugehörigkeit, und eCH-0119 deductionChildNumber ist eine Steuergrösse. eCH-0020 childRelationship ist ein Kindesverhältnis-Ereignis. Ein Element «hat gemeinsame Kinder» für Ehegatten gibt es nicht.",
+   "feld": "Gemeinsame Kinder"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Liste der Kinder, die zu beiden Ehegatten im Kindesverhältnis stehen. Container ist eCH-0021 personAddon/parentalRelationship, wie in der Korpuspraxis für «Kinder» (11×). Vorname und Geburtsdatum tragen ihre eigenen Elemente.",
+   "feld": "Gemeinsame Kinder – Vorname, geb.",
+   "standard": "eCH-0021",
+   "element": "parentalRelationship"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname des gemeinsamen Kindes, also eCH-0044 firstName.",
+   "elternfeld": "Gemeinsame Kinder – Vorname, geb.",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«geb.» steht für «geboren am»: das Geburtsdatum des gemeinsamen Kindes, also eCH-0044 dateOfBirth.",
+   "elternfeld": "Gemeinsame Kinder – Vorname, geb.",
+   "teilfeld": "geb.",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Kalendertag, an dem das Gesuch unterzeichnet und eingereicht wird (einzige Datumszeile vor der Unterschrift). Bei elektronischer Einreichung trägt eCH-0058 headerType/messageDate das Datum der Meldung, hier des Gesuchs. Für «Datum» ist das die vorherrschende geprüfte Zuordnung im Korpus (9× messageDate gegenüber 2× kein_standard). eCH-0119 locationAndDate gilt nur für Beilageformulare der Steuererklärung.",
+   "feld": "Datum",
+   "standard": "eCH-0058",
+   "element": "messageDate"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Der übernommene Wert kein_standard (propagiert, Name 15× geprüft) stimmt. Die Katalogsuche nach «sign» ergab nur eCH-0039 signer (Name der unterzeichnenden Person eines GEVER-Dokuments) und eCH-0260 …SignatureConfirmation (Booleans für Lehrverträge). Die Signaturstandards eCH-0091, 0220, 0230, 0250, 0274 und 0282 haben keine Elemente und betreffen die elektronische Signatur. Ein Element für die eigenhändige Unterschrift gibt es nicht.",
+   "feld": "Unterschrift"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Gemeint sind die Dokumente selbst laut Merkblatt «Eheschutz», keine Ankreuzliste, welche Beilagen vorliegen: Lohnausweise, Lohnabrechnungen, Arbeitsvertrag, Renten- und ALK-Abrechnungen, Steuerveranlagungen, Mietvertrag, Policen, Bankauszüge und Schuldenbelege. Sie werden dem Gesuch im Doppel beigelegt. Container für Beilagen zu einer eingereichten Meldung ist eCH-0058 headerType/attachment. Die neuere Korpuspraxis für beigelegte Dokumente ordnet gleich zu, darunter die Gerichtsformulare 492 und 493 «Beilagen» (16 Felder mit attachment).",
+   "feld": "Unterlagen",
+   "standard": "eCH-0058",
+   "element": "attachment"
+  }
+ ]
+}

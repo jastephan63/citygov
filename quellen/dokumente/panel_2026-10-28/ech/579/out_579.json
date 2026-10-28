@@ -1,0 +1,263 @@
+{
+ "hinweis": "eCH-Urteile Formular 579, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/579 --nur-offene=579",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Sammelangabe zur meldenden Person, die auch für eine Firma oder Organisation melden kann. Sie enthält Name, Firma/Organisation und Adresse. eCH-0010 mailAddress ist der Container für Personen- oder Organisationsadressen. Gleiches Vorbild: «Personalien der meldenden Person/Organisation» → eCH-0010 mailAddress. Die Teile werden einzeln beurteilt.",
+   "feld": "Angaben zur Person, welche die Meldung erstattet",
+   "standard": "eCH-0010",
+   "element": "mailAddress"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name und Vorname der meldenden Person. Leitende Angabe ist der amtliche Name → eCH-0044 officialName, wie beim Vorbild «Personendaten des/r Absolventen/in › Vorname und Name». Der Vorname wäre firstName.",
+   "elternfeld": "Angaben zur Person, welche die Meldung erstattet",
+   "teilfeld": "Vorname und Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Leitende Angabe ist der Name der Firma oder Organisation, für die gemeldet wird. Im Adress-Kontext des Elternfelds (organisationMailAddressInfoType) ist das eCH-0010 organisationName. Die Funktion wäre eCH-0021 jobTitle.",
+   "elternfeld": "Angaben zur Person, welche die Meldung erstattet",
+   "teilfeld": "Firma/Organisation/Funktion",
+   "standard": "eCH-0010",
+   "element": "organisationName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Eine einzige Adresse aus Strasse, Nummer, PLZ und Ort. Das ist der Inhalt von eCH-0010 addressInformation (street, houseNumber, swissZipCode, town). Vorbilder: «Bauherrschaft › Adresse» und «Betriebsleiter › Adresse des Betriebsleiters» → addressInformation.",
+   "elternfeld": "Angaben zur Person, welche die Meldung erstattet",
+   "teilfeld": "Adresse (Str./Nr./PLZ/Ort)",
+   "standard": "eCH-0010",
+   "element": "addressInformation"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Der Teil nennt zwei Angaben, Telefon und E-Mail. Leitende Angabe ist die Telefonnummer → eCH-0046 phoneNumber, wie bei den Vorbildern «Tel., E-Mail» (5×), «Tel. / E-Mail» und «Telefon, E-Mail». Die E-Mail wäre eCH-0046 emailAddress.",
+   "elternfeld": "Angaben zur Person, welche die Meldung erstattet",
+   "teilfeld": "Tel. Nr./ E-Mail",
+   "standard": "eCH-0046",
+   "element": "phoneNumber"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Gefragt sind die Zeiten, zu denen die Person für Rückfragen erreichbar ist, keine Telefonnummer. Durchsucht: alle Elemente von eCH-0046 (validity/dateFrom/dateTo ist nur der Gültigkeitszeitraum eines Kontakts), eCH-0011 contactData und der ganze Katalog nach availab/reachab/hour/opening/contactTime. Treffer wie eCH-0260 workhours oder eCH-0039 openingDate haben eine andere Bedeutung. Kein Element für Erreichbarkeitszeiten.",
+   "elternfeld": "Angaben zur Person, welche die Meldung erstattet",
+   "teilfeld": "Erreichbarkeit für Rückfragen (wann)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Korrigiert. Gefragt ist die Beziehung der meldenden Person zum Kind. Bei einer Gefährdungsmeldung ist das meist eine soziale oder berufliche Beziehung (Lehrperson, Nachbarin, Ärztin, Grosseltern). eCH-0021 typeOfRelationship gilt nur innerhalb von parental-, marital- und guardianRelationship und kennt nur zivilrechtliche Beziehungen (Ehe, Mutter, Vater, Pflegeeltern, Beistand/Vormund). Die meisten Antworten lassen sich damit nicht ausdrücken. Durchsucht wurde der Katalog nach relation/kinship/contactPerson. eCH-0260 typeOfRelationship (representativeType) betrifft Vertreter von Lernenden, eCH-0278 relationship (personIncapableOfWorkType) unterstützte Personen im Steuerrecht, eCH-0211 relationshipToPerson Rollen im Baugesuch. Nächste Vorbilder: «In welcher Beziehung steht die beschwerdemeldende Person zu der in der Beschwerde genannten Person?» und «Beziehung zur Unterkunft gebenden Person» → kein_standard. typeOfRelationship gilt nur für zivilrechtliche Verhältnisse («Zivilrechtliches Verhältnis zum Kind»).",
+   "elternfeld": "Angaben zur Person, welche die Meldung erstattet",
+   "teilfeld": "Beziehung zum betroffenen Kind/Jugendl."
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Personalien des Kindes: Name, Geschlecht und Geburtsdatum. Container dafür ist eCH-0044 personIdentification (officialName, firstName, sex, dateOfBirth). Vorbild: «Personalien des/der Minderjährigen» → personIdentification. Die Teile werden einzeln beurteilt.",
+   "feld": "Angaben zum betroffenen Kind/Jugendlichen",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name und Vorname des Kindes. Leitende Angabe ist der amtliche Name → eCH-0044 officialName. Der Vorname wäre firstName.",
+   "elternfeld": "Angaben zum betroffenen Kind/Jugendlichen",
+   "teilfeld": "Vorname und Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Geschlecht des Kindes innerhalb der Personenidentifikation → eCH-0044 sex. Vorbild: «1. Kind › Geschlecht» (15×).",
+   "elternfeld": "Angaben zum betroffenen Kind/Jugendlichen",
+   "teilfeld": "Geschlecht",
+   "standard": "eCH-0044",
+   "element": "sex"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Geburtsdatum des Kindes → eCH-0044 dateOfBirth.",
+   "elternfeld": "Angaben zum betroffenen Kind/Jugendlichen",
+   "teilfeld": "Geburtsdatum",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ankreuzfeld Ja/Nein/weiss nicht, also kein Wertelement wie dateOfBirth. eCH-0278 isMinor (childType, boolean) ist das Ja/Nein-Element zur Minderjährigkeit eines Kindes. «Volljährig» ist die Umkehrung, «weiss nicht» heisst kein Wert. Vorbild: «Sind Sie minderjährig? (nein/ja)» → eCH-0278 isMinor. eCH-0252 isMinor zählt nur Stimmberechtigte.",
+   "feld": "Volljährig?",
+   "standard": "eCH-0278",
+   "element": "isMinor"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ein Freitextfeld zu beiden Elternteilen. eCH-0021 parentalRelationship ist der Container für das Kindesverhältnis zu Mutter und Vater, mit personIdentification (Name), address und typeOfRelationship. Vorbilder: «Eltern des Kindes», «Name und Adresse Vater/Mutter» → parentalRelationship. Der Zivilstand liegt ausserhalb dieses Containers (eCH-0011 maritalStatus).",
+   "feld": "Name, Adresse und Zivilstand beider Eltern",
+   "standard": "eCH-0021",
+   "element": "parentalRelationship"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Gefragt ist, wer die elterliche Sorge innehat. eCH-0021 care (careType im parentalRelationship bzw. guardianRelationship) hält pro Eltern- oder Vormundschaftsbeziehung fest, ob gemeinsame, alleinige oder keine elterliche Sorge besteht. Daraus ergibt sich, wer die Sorge innehat. Vorbilder: «Wer hat die elterliche Sorge» und «Elterliche Sorge» → care. eCH-0278 custodyStatus ist steuerspezifisch.",
+   "feld": "Sorgerechtsinhaber/in",
+   "standard": "eCH-0021",
+   "element": "care"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die aktuelle Wohnadresse des Kindes aus Strasse, Nummer, PLZ und Ort in einem Feld, also eCH-0010 addressInformation. Vorbilder: «Wohnadresse des Kindes» und «Wohnadresse (Privatadresse)» (12×) → addressInformation. Die Angabe ist aktuell, nicht vergangen.",
+   "feld": "Aktuelle Wohnadresse (Str./Nr./PLZ/Ort)",
+   "standard": "eCH-0010",
+   "element": "addressInformation"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Telefon und E-Mail in einem Feld ohne Teile. Der Container dafür ist eCH-0046 contact (phone, email). Vorbild: «Erreichbarkeit Gesuchsteller/in» → eCH-0046 contact. Die Zeitangabe «wann» hat kein eigenes Element.",
+   "feld": "Erreichbarkeit (Tel.Nr./E-Mail) (wann)",
+   "standard": "eCH-0046",
+   "element": "contact"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Leitende Angabe ist der Name der besuchten Schule, des Kindergartens oder der Krippe → eCH-0260 schoolName. Vorbilder: «Kindergarten», «Name der Schule» und «Schule › Schulhaus» → eCH-0260 schoolName. Für die Lehr- oder Betreuungsperson gibt es kein eigenes Element; handingOverTeacher ist eine andere Rolle. Alternative wäre eCH-0278 educationInstitutionName.",
+   "feld": "Schule/Kindergarten/Kinderkrippe und Name der hauptsächlichen Lehr-/Betreuungs-person/Schulleitung",
+   "standard": "eCH-0260",
+   "element": "schoolName"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die Hausärztin oder der Hausarzt ist in CH Core (FHIR) als Patient.generalPractitioner definiert. eCH-0241 ist genehmigt und hat im Katalog keine Elemente (n_elements=0), daher Standard ohne Element. So wird eCH-0241 auch sonst für medizinische Angaben verwendet (65 Felder). Geprüft: eCH-0119 expenseDoctor (Geldbetrag) und eCH-0235 gln/authorType (Nachrichtenautor) passen nicht. Möglich wäre auch die blosse Personenadresse (eCH-0010 personMailAddress, wie bei «Name und Adresse des Hausarztes»), aber sie trifft die Rolle nicht.",
+   "feld": "Hausarzt",
+   "standard": "eCH-0241",
+   "element": ""
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freie Schilderung von Beobachtungen und Sachverhalt. Alle 290 Standards nach reason/description/remark/comment durchsucht. Die Treffer sind fachfremd, etwa paymentReason und foundationReason. eCH-0051 (Polizei und Justiz, ohne Elemente) wird nur für Straf- und Polizeiangaben verwendet, nicht für den Kindesschutz. eCH-0004 und eCH-0029 sind sistiert und haben keine Elemente. Kein Element für den Meldeanlass.",
+   "feld": "Was ist der Anlass, aus welchem Sie diese Meldung bei uns einreichen?"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Korrigiert. Das Formular bietet kein Ja/Nein-Kästchen, sondern Leerzeilen: Die Antwort nennt die Bezugspersonen des Kindes. Für die Rolle «Bezugsperson» gibt es kein eigenes Element, die genannten Personen identifiziert aber eCH-0044 personIdentification (officialName, firstName …). Vorbilder: «Volljährige Personen im Haushalt» und «Betreuende Ärztin / betreuender Arzt» → personIdentification. eCH-0011 contactData ist eine Zustelladresse, und eCH-0021 kennt nur Eltern-, Ehe- und Vormundschaftsbeziehungen. Diese passen daher nicht.",
+   "feld": "Gibt es wichtige Bezugspersonen des Kindes/Jugendlichen?",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ja/Nein-Feld zur Kenntnis der Meldung, darf also kein Wertelement erhalten. Alle 290 Standards nach inform/aware/knows/consent durchsucht. Es gibt kein boolesches Element zur Kenntnis einer Meldung.",
+   "feld": "Wissen die Kindeseltern bzw. das Kind oder der Jugendliche von dieser Gefährdungsmeldung?"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freitext über die Reaktion der Eltern bzw. des Kindes. Im ganzen Katalog gibt es dafür kein Element. Geprüft wurden comment/remark/response, alle fachfremd (z. B. eCH-0235 response für Kostengutsprachen, eCH-0258 responseType).",
+   "feld": "Falls Ja, wie haben sie darauf reagiert?"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ja/Nein/weiss-nicht-Feld, darf also kein Wertelement erhalten. eCH-0021 guardianMeasureInfo bezeichnet nur eine formelle KESB-Massnahme, nicht beliebige Schritte etwa der Schule. Katalog nach measure/action durchsucht, kein passendes boolesches Element.",
+   "feld": "Wurde bisher bereits etwas unternommen?"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Sammelfeld zu bisherigen Schritten und wer sie unternommen hat. Im Katalog gibt es keinen Container dafür: Massnahmen-Elemente gibt es nur für formelle Erwachsenen- und Kindesschutzmassnahmen (eCH-0021 guardianMeasureInfo).",
+   "feld": "Wenn ja, was und von wem?"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Freie Beschreibung unternommener Schritte. Katalog nach measure/action/description durchsucht, kein Element dafür. Gleich wie «Sport › Was» (kein_standard).",
+   "elternfeld": "Wenn ja, was und von wem?",
+   "teilfeld": "Was"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Freie Angabe der Stelle oder Person, die etwas unternommen hat, z. B. Schulsozialarbeit, Polizei, Kinderarzt oder Grosseltern, also meist eine Rolle oder Stelle und kein Name. Ein Personen- oder Organisationsname (eCH-0044 officialName, eCH-0010 organisationName) trifft die Art der Angabe nicht. Kein Element für den Akteur einer Massnahme gefunden.",
+   "elternfeld": "Wenn ja, was und von wem?",
+   "teilfeld": "Von wem"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ja/Nein-Feld dazu, ob ein Gespräch auf Deutsch möglich ist. Alle Standards nach language/sprach/interpret/translat durchsucht. Es gibt nur Korrespondenz-, Erst-, Mutter-, Schul- und Prüfungssprache, kein boolesches Element für Deutschkenntnisse.",
+   "feld": "Kann mit ihr/ihm eine Unterhaltung auf Deutsch geführt werden?"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Der übernommene Wert eCH-0260 nativeLanguage bedeutet genau Muttersprache und wird bestätigt. Im Katalog gibt es sonst nur languageOfCorrespondance (Korrespondenzsprache) und eCH-0260 firstLanguage.",
+   "feld": "Muttersprache"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Weitere Fremdsprachkenntnisse. Alle Standards nach language/sprach/skill durchsucht: languageOfCorrespondance, nativeLanguage, firstLanguage, schoolLanguage und examLanguage bezeichnen je eine bestimmte Sprache, keine weiteren Sprachkenntnisse.",
+   "feld": "Kenntnisse andere Fremdsprache"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Allgemeiner Bemerkungs-Freitext, gleich behandelt wie «Bemerkungen» (kein_standard). Die comment/remark-Elemente (eCH-0039, eCH-0211, eCH-0258 usw.) gehören zu Nachrichtenköpfen oder Fachobjekten, nicht zu einer Meldung.",
+   "feld": "Weitere relevante Informationen"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Einschätzung von Gefährdung und Dringlichkeit auf einer Skala (sehr niedrig … sehr hoch, weiss nicht). Katalog nach risk/urgen/priority/assess/estimat durchsucht: eCH-0039 priority ist die Priorität einer GEVER-Weisung, eCH-0211 natureRisk ein Naturgefahrenrisiko. Kein Element für eine Kindeswohlgefährdung, gleich wie «Gefährdung»/«Gefährdungsart» (kein_standard).",
+   "feld": "Wie schätzen Sie die Gefährdungssituation ein?"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Der übernommene Wert eCH-0119 locationAndDate wird bestätigt. Es ist das einzige Katalog-Element für die zusammengesetzte Angabe von Ort und Datum der Unterzeichnung.",
+   "feld": "Ort/Datum"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Ort der Unterzeichnung als eigener Teil. Katalog nach place/location/sign durchsucht: Es gibt nur das kombinierte locationAndDate (beim Elternfeld) und Orte mit anderer Bedeutung (placeOfBirth, placeOfWork, town einer Adresse). Gleich wie das Vorbild «Ort und Datum › Ort» (21× kein_standard).",
+   "elternfeld": "Ort/Datum",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Datum der Unterzeichnung als eigener Teil. Katalog nach sign/date/eventDate/messageDate durchsucht: Die Datumselemente gehören zu Nachrichtenköpfen (eCH-0058/0039 messageDate) oder Fachobjekten. Kein Element für das Unterzeichnungsdatum, gleich wie bei den Vorbildern für Ort-und-Datum-Teile.",
+   "elternfeld": "Ort/Datum",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Bestätigt den übernommenen Wert kein_standard. Katalog nach sign/signature durchsucht: eCH-0260 *SignatureConfirmation sind boolesche Bestätigungen im Lehrvertrag, eCH-0039 signer ist der Name des Unterzeichners eines Dokuments. Kein Element für die eigenhändige Unterschrift.",
+   "feld": "Unterschrift"
+  }
+ ]
+}

@@ -1,0 +1,39 @@
+{
+ "verdicts": [
+  {
+   "id": 6747,
+   "subjekt": "natuerliche_person",
+   "grund": "Name der vorsitzenden Person der Geschäftsführersitzung; Geschäftsführer einer GmbH sind natürliche Personen (Art. 809 Abs. 2 OR)."
+  },
+  {
+   "id": 6748,
+   "subjekt": "natuerliche_person",
+   "grund": "Name der als Protokollführer bezeichneten Person; das Protokoll führt stets eine einzelne natürliche Person."
+  },
+  {
+   "id": 6749,
+   "subjekt": "natuerliche_person",
+   "grund": "Namen der weiteren anwesenden Geschäftsführungsmitglieder; das sind natürliche Personen, keine Firma."
+  },
+  {
+   "id": 6751,
+   "subjekt": "natuerliche_person",
+   "grund": "Person, der die Zeichnungsberechtigung erteilt wird, mit Name, Heimatort/Staatsangehörigkeit und Wohnort; zeichnen können nur natürliche Personen."
+  },
+  {
+   "id": 6753,
+   "subjekt": "natuerliche_person",
+   "grund": "Person, der die Zeichnungsberechtigung entzogen wird, mit Name, Heimatort/Staatsangehörigkeit und Wohnort; das betrifft nur eine natürliche Person."
+  },
+  {
+   "id": 6755,
+   "subjekt": "natuerliche_person",
+   "grund": "Eigenhändige Unterschrift und Name/Vorname der vorsitzenden Person; Angabe einer einzelnen natürlichen Person."
+  },
+  {
+   "id": 6756,
+   "subjekt": "natuerliche_person",
+   "grund": "Eigenhändige Unterschrift und Name/Vorname der protokollführenden Person; Angabe einer einzelnen natürlichen Person."
+  }
+ ]
+}

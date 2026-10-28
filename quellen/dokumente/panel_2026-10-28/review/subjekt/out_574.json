@@ -1,0 +1,34 @@
+{
+ "urteile": [
+  {
+   "id": 7074,
+   "urteil": "bestaetigt",
+   "subjekt": "gemischt",
+   "grund": "Formular verlangt beim Schuldner «Name und Vorname bzw. Firma; Adresse; PLZ Ort». Betrieben werden kann laut Hinweisen eine Person (lit. a) oder ein Unternehmen (lit. b), aber auch eine Erbschaft (lit. c) oder eine Stockwerkeigentümergemeinschaft (lit. d). Es ist also nicht sicher eine natürliche Person: gemischt."
+  },
+  {
+   "id": 7075,
+   "urteil": "bestaetigt",
+   "subjekt": "behoerde",
+   "grund": "Anschrift des Betreibungsamtes, das nach dem Betreibungsort des Schuldners zuständig ist. Das ist die eigene Angabe der Behörde, auch wenn der Gläubiger sie einträgt."
+  },
+  {
+   "id": 7076,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "«Geburtsdatum (falls bekannt)» steht im Block des Schuldners. Ein Geburtsdatum hat nur ein Mensch. Ist der Schuldner eine Firma, bleibt das Feld leer. Ist es ausgefüllt, betrifft es sicher eine einzelne natürliche Person. Das entspricht der Praxis bei Geburtsdaten Dritter, etwa «Kind Geburtsdatum» oder «Begleitperson Geburtsdatum». Wessen Profil vorbefüllt wird, regelt die Rolle (Gegenpartei), nicht das Subjekt."
+  },
+  {
+   "id": 7077,
+   "urteil": "bestaetigt",
+   "subjekt": "gemischt",
+   "grund": "Beim Gläubiger verlangt das Formular «Name und Vorname bzw. Firma; Adresse; PLZ Ort». Den Gläubiger nennt es ausdrücklich als Person oder Firma, also gemischt."
+  },
+  {
+   "id": 7080,
+   "urteil": "bestaetigt",
+   "subjekt": "gemischt",
+   "grund": "Bei «vertreten durch» verlangt das Formular ebenfalls «Name und Vorname bzw. Firma». Vertreten kann eine Einzelperson oder ein Unternehmen, etwa ein Inkassobüro oder eine Kanzlei. Beides ist möglich, also gemischt."
+  }
+ ]
+}

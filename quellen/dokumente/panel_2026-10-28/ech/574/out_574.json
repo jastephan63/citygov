@@ -1,0 +1,227 @@
+{
+ "hinweis": "eCH-Urteile Formular 574, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/574 --nur-offene=574",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Composite aus Name und Vorname bzw. Firma, Adresse und PLZ Ort des Schuldners, also die Postadresse einer Person oder Firma. eCH-0010 mailAddress (id 80) ist das Container-Element und steht verbatim im Katalog; eCH-0010 ist genehmigt. Gleich wie die geprüfte Zuordnung auf Formular 491.",
+   "feld": "Schuldner"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Name des Schuldners: Name -> eCH-0044 officialName (id 800, personIdentificationLightType), wie auf dem geprüften Formular 491. Dass Vorname bzw. Firma im selben Feld stehen, ist in begriff_label (800, «name und vorname bzw. firma») bereits als «aufteilen» vermerkt. Das muss am Formular gelöst werden, nicht in der Zuordnung.",
+   "elternfeld": "Schuldner",
+   "teilfeld": "Name und Vorname bzw. Firma"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "«Adresse» steht neben einem eigenen Teilfeld «PLZ Ort», meint also Strasse (mit Nr.) -> eCH-0010 street (id 52, addressInformationType), wie auf Formular 491. Dass die Hausnummer im selben Feld steht, ist in begriff_label (52) als «aufteilen» vermerkt.",
+   "elternfeld": "Schuldner",
+   "teilfeld": "Adresse"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "PLZ und Ort stehen in einem Teilfeld; eCH-0010 town (id 58) deckt den Ort ab. Die Bündelung ist in begriff_label (58, «plz ort») als «aufteilen» vermerkt. Konsistent mit dem geprüften Formular 491.",
+   "elternfeld": "Schuldner",
+   "teilfeld": "PLZ Ort"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Anschrift des zuständigen Betreibungsamts, also einer Behörde -> eCH-0010 organisationMailAdress (id 79). Die Schreibweise mit nur einem «d» ist verbatim aus dem Katalog übernommen. Wie geprüft auf Formular 491.",
+   "feld": "Adresse des Betreibungsamtes"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Formular: «Geburtsdatum (falls bekannt)» direkt unter dem Schuldner, also das Geburtsdatum des Schuldners -> eCH-0044 dateOfBirth. Der Typ datePartiallyKnownType passt auch zu einem nur teilweise bekannten Datum. Bisher ohne Zuordnung.",
+   "feld": "Geburtsdatum",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Composite aus Name und Vorname bzw. Firma, Adresse und PLZ Ort des Gläubigers, also die Postadresse einer Person oder Firma -> eCH-0010 mailAddress (Container), wie auf Formular 491.",
+   "feld": "Gläubiger"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Name des Gläubigers: Name -> eCH-0044 officialName (id 800), wie auf Formular 491. Die Bündelung mit Vorname und Firma ist in begriff_label als «aufteilen» vermerkt, also ein Thema des Formulars.",
+   "elternfeld": "Gläubiger",
+   "teilfeld": "Name und Vorname bzw. Firma"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "«Adresse» steht neben einem eigenen Teilfeld «PLZ Ort», meint also die Strasse -> eCH-0010 street (id 52). Die Bündelung mit der Hausnummer ist als «aufteilen» vermerkt.",
+   "elternfeld": "Gläubiger",
+   "teilfeld": "Adresse"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "PLZ und Ort stehen in einem Teilfeld; eCH-0010 town (id 58) deckt den Ort ab, die Bündelung ist als «aufteilen» vermerkt. Konsistent mit dem Schuldner und mit Formular 491.",
+   "elternfeld": "Gläubiger",
+   "teilfeld": "PLZ Ort"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Das Feld ist eine Auswahl (enum) zwischen «des Gläubigers» und «des Vertreters». Es legt also fest, wem das Konto gehört; Kontodaten enthält es keine. Die IBAN ist ein eigenes Feld. Die propagierte eCH-0278 bankAccountInformation ist ein Container für das Rückerstattungskonto der Steuererklärung (refundAccountIBAN, officialName …). Sie wurde von gleichnamigen Composite-Feldern mit Kontodaten übernommen und passt nicht auf eine Auswahl ohne Teile. Passend ist eCH-0119 accountOwner (bankAccountType, Inhaber des Kontos), im selben bankAccountType wie das IBAN-Feld. Präzedenzen für die Auswahl, wem das Konto gehört: Formular 156 «Kontoinhaber-Art» und «Das Konto lautet auf», Formular 170 «Auszahlen an» -> accountOwner. Das Feld ist keine Ja/Nein-Box, sondern die Wahl des Inhabers.",
+   "feld": "Zahlungsverbindung",
+   "standard": "eCH-0119",
+   "element": "accountOwner"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "IBAN des Kontos, auf das das Betreibungsamt Zahlungen überweist -> eCH-0119 ibanNumber (bankAccountType, allgemeines Bankkonto). Es ist kein steuerliches Rückerstattungskonto (eCH-0278 refundAccountIBAN, eCH-0276 bankDetailsForRefundType). eCH-0209 IBAN gilt nur für Grundbuchmeldungen. Wie die propagierte Zuordnung, 6x geprüft.",
+   "feld": "IBAN"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Composite aus Name und Vorname bzw. Firma, Adresse und PLZ Ort des Vertreters, also die Postadresse einer Person oder Firma -> eCH-0010 mailAddress. Gleich wie Schuldner und Gläubiger hier und wie «Vertretung des Gläubigers» auf Formular 491. Bisher ohne Zuordnung.",
+   "feld": "vertreten durch",
+   "standard": "eCH-0010",
+   "element": "mailAddress"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name des Vertreters: Name -> eCH-0044 officialName, wie bei Schuldner und Gläubiger und bei «Vertretung des Gläubigers» auf Formular 491. Die Bündelung mit Vorname und Firma ist ein Thema des Formulars («aufteilen»).",
+   "elternfeld": "vertreten durch",
+   "teilfeld": "Name und Vorname bzw. Firma",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«Adresse» steht neben einem eigenen Teilfeld «PLZ Ort», meint also die Strasse -> eCH-0010 street, wie bei Schuldner und Gläubiger und auf Formular 491.",
+   "elternfeld": "vertreten durch",
+   "teilfeld": "Adresse",
+   "standard": "eCH-0010",
+   "element": "street"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "PLZ und Ort stehen in einem Teilfeld -> eCH-0010 town, wie bei Schuldner und Gläubiger hier und auf Formular 491. Die Bündelung ist als «aufteilen» vermerkt.",
+   "elternfeld": "vertreten durch",
+   "teilfeld": "PLZ Ort",
+   "standard": "eCH-0010",
+   "element": "town"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Formular: «Für Rückfragen – Telefon oder E-Mail». Ein einziges Feld nimmt entweder eine Telefonnummer oder eine E-Mail-Adresse auf, also weder nur phoneNumber noch nur emailAddress. Passend ist der Container eCH-0046 contact (contactType mit phone und email; id 923, verbatim). Präzedenzen: «Kontakt für Rückfragen» (491) und «Telefon und E-Mail für Rückfragen» (263) -> contact.",
+   "feld": "Für Rückfragen",
+   "standard": "eCH-0046",
+   "element": "contact"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Erste Forderungsposition (Hauptforderung) einer Betreibung mit Grund oder Urkunde, Betrag, Zins und Zinsbeginn. Alle 290 Standards durchsucht: Kein Titel betrifft SchKG, Betreibung, Forderung, Inkasso oder Konkurs. eCH-0069 E-Invoicing hat keine Elemente und betrifft Rechnungen; eCH-0051 (Polizei/Justiz) hat keine Elemente; eCH-0259 betrifft Gebühren (feeType). Die Element-Suche nach claim, debt, creditor, receivable, payment und interest findet nur Steuer- und Bilanz-Elemente (eCH-0119 paymentType = Leistungen in der Steuererklärung, eCH-0276 receivables, eCH-0278 debtInterests). Ein Container für eine Betreibungsforderung fehlt. Im Korpus sind die Forderungsfelder der SchKG-Formulare (490, 527) ebenfalls kein_standard.",
+   "feld": "Forderung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Freitext: Grund der Forderung oder Bezeichnung der Urkunde mit Datum (max. 640 Zeichen). Gesucht in allen Standards nach claim, reason, debt, document und reference. eCH-0039 document betrifft beigelegte Dokumente, nicht die Bezeichnung des Forderungsgrunds. eCH-0119 paymentReason gilt nur für Leistungen in der Steuererklärung. Ein Element für den Rechtsgrund einer Forderung gibt es nicht. Korpus: «Forderungsurkunde und Grund der Forderung» (490) und «Forderungsgrund» (527) = kein_standard.",
+   "elternfeld": "Forderung",
+   "teilfeld": "Forderungsgrund oder Forderungsurkunde mit Datum"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Betrag der Forderung, die in Betreibung gesetzt wird. Die Betragselemente im Katalog sind nur steuer- oder gebührenspezifisch: eCH-0119 paymentAmount (Leistungen in der Steuererklärung), eCH-0276/0278 Einkommens- und Abzugsposten, eCH-0259 amount in feeType (Gebühr). Keines davon definiert einen Forderungsbetrag. Korpus: «Forderungssumme» (490) = kein_standard.",
+   "elternfeld": "Forderung",
+   "teilfeld": "Betrag (CHF)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Verzugszinssatz der Hauptforderung. Es gibt nur zwei Arten von interestRate-Elementen. eCH-0278 interestRate liegt in debtInterestsType/liabilityInterest: Schuldzinsen des Steuerpflichtigen mit taxFactor 'taxable', also ein Abzugsposten der Steuererklärung. eCH-0276 interestRate betrifft Darlehen und Guthaben in der E-Bilanz. Beides ist eine andere Angabe. Formular 483 (Konkursbegehren) ordnet «Zinssatz (%)» zwar eCH-0278 interestRate zu, das vermischt aber Steuerdaten mit einer Betreibungsforderung. Die übrige Korpus-Praxis ist kein_standard: «Zinssatz in %» auf 490, 414 und 527, «Verzugszins zu 5% seit» auf 493.",
+   "elternfeld": "Forderung",
+   "teilfeld": "Zins %"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Beginn des Zinslaufs: das Datum, an dem ein Zeitraum beginnt, kein aktueller Wert. Gesucht nach interestDate, validFrom und dateFrom. eCH-0209 betrifft Grundbuchmeldungen; eCH-0010/0046 dateFrom ist die Gültigkeit einer Adresse oder eines Kontakts. Keines bezeichnet den Zinsbeginn einer Forderung. Korpus: «Zins seit (Datum)» (490) und «seit (Datum)» (483) = kein_standard.",
+   "elternfeld": "Forderung",
+   "teilfeld": "seit (Datum)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Positionen 2 bis 10: weitere Haupt- oder Nebenforderungen wie Mahngebühren oder Spesen. Gleiche Suche über den ganzen Katalog wie bei «Forderung»: Es gibt keinen Standard für Betreibungsforderungen, nur steuerspezifische Zins- und Betragselemente (eCH-0119/0276/0278) und Gebühren (eCH-0259); eCH-0069 hat keine Elemente.",
+   "feld": "Weitere Forderungen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Freitext mit Grund oder Urkunde der weiteren Forderung (max. 80 Zeichen). Im ganzen Katalog gibt es kein Element für den Forderungsgrund (eCH-0039 document = Beilage; eCH-0119 paymentReason = Steuerleistung). Wie Position 1.",
+   "elternfeld": "Weitere Forderungen",
+   "teilfeld": "Forderungsgrund oder Forderungsurkunde mit Datum"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Betrag der weiteren Forderung. Der Katalog hat nur steuer- und gebührenspezifische Betragselemente (eCH-0119/0276/0278, eCH-0259 amount = Gebühr), keines für Forderungsbeträge. Wie Position 1.",
+   "elternfeld": "Weitere Forderungen",
+   "teilfeld": "Betrag (CHF)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Zinssatz der weiteren Forderung. interestRate gibt es nur im Steuer- und Bilanzkontext (eCH-0278 debtInterestsType = Schuldzinsabzug, eCH-0276 Darlehen), also für eine andere Angabe. Wie Position 1.",
+   "elternfeld": "Weitere Forderungen",
+   "teilfeld": "Zins %"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Beginn des Zinslaufs der weiteren Forderung, also der Beginn eines Zeitraums. Kein Katalogelement bezeichnet den Zinsbeginn einer Forderung. Wie Position 1.",
+   "elternfeld": "Weitere Forderungen",
+   "teilfeld": "seit (Datum)"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Freie Bemerkungen mit fachlichem Inhalt: Pfandverwertung, Wechselbetreibung, Sicherheitsleistung, Pfandangaben (Rückseite des Formulars). Die Katalogsuche nach comment und remark findet nur den Kommentar im Meldungskopf (eCH-0058 comment) oder Bemerkungen bestimmter Fachbereiche (eCH-0129/0131/0211/0276 …). Keines passt. Das bestätigt die propagierte, 80x geprüfte Zuordnung kein_standard.",
+   "feld": "Bemerkungen"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Eigene Referenz des Gläubigers oder Vertreters für diesen Fall, «falls vorhanden». Der Gläubiger sendet das Begehren ab; «Ihre» ist die Anrede des Amts an ihn. eCH-0058 ourBusinessReferenceId (headerType) ist die Referenz des Geschäftsfalls beim Sender; yourBusinessReferenceId wäre die Referenz des Amts. Präzedenz: «Referenz-Nr. (interne Fall-Nr.)» (246) -> ourBusinessReferenceId. Bisher ohne Zuordnung.",
+   "feld": "Ihre Fallreferenz",
+   "standard": "eCH-0058",
+   "element": "ourBusinessReferenceId"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Datum, an dem das Betreibungsbegehren unterzeichnet und eingereicht wird (Formular: «Datum und Unterschrift»). Der Korpus ordnet ein alleinstehendes Datum der Unterzeichnung oder Einreichung eines Gesuchs eCH-0058 messageDate zu (9x, z.B. 477/492/496 «Datum», 518 «Datum der Eingabe»). eCH-0119 locationAndDate gehört zur Steuererklärung und umfasst zudem den Ort. Bisher ohne Zuordnung.",
+   "feld": "Datum",
+   "standard": "eCH-0058",
+   "element": "messageDate"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Unterschrift des Gläubigers bzw. seines Vertreters. Die Katalogsuche nach signat* findet nur eCH-0260 signaturesType (Unterschriftsbestätigungen im Lehrvertrag, boolean). Die Signatur-Standards (eCH-0091/0220/0230/0250/0274/0282) haben keine Elemente und regeln die Technik. Ein allgemeines Unterschriftselement gibt es nicht; das bestätigt die propagierte Zuordnung kein_standard.",
+   "feld": "Unterschrift"
+  }
+ ]
+}

@@ -149,9 +149,13 @@ def fingerabdruck(conn, law_id, zitiert=None):
     if law is None:
         return None
     arts = conn.execute("SELECT id, last_checked FROM article WHERE law_id=? ORDER BY id", [law_id]).fetchall()
+    zitiert = zitierte_artikel(conn) if zitiert is None else zitiert
     texte = [[r[0], hashlib.sha256((r[1] or "").encode("utf-8")).hexdigest()]
              for r in _zitierte_texte(conn, law_id, zitiert)]
-    stoff = json.dumps([law[0], law[1], [[a[0], a[1]] for a in arts], texte], ensure_ascii=False)
+    # which articles are cited belongs to what the row read (vermerke counts them): a new
+    # citation makes the row stale — renewed by the next run — instead of contradicting it
+    zit = [a[0] for a in arts if a[0] in zitiert]
+    stoff = json.dumps([law[0], law[1], [[a[0], a[1]] for a in arts], texte, zit], ensure_ascii=False)
     return hashlib.sha256(stoff.encode("utf-8")).hexdigest()
 
 

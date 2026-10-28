@@ -1,0 +1,34 @@
+{
+ "urteile": [
+  {
+   "id": 7088,
+   "urteil": "bestaetigt",
+   "subjekt": "gemischt",
+   "grund": "Formular verlangt für den Schuldner «Name und Vorname bzw. Firma; Adresse; PLZ Ort». Die Hinweise nennen ausdrücklich Personen und Unternehmen als Schuldner (Betreibungsort a) bis f)), also ist beides möglich."
+  },
+  {
+   "id": 7089,
+   "urteil": "bestaetigt",
+   "subjekt": "behoerde",
+   "grund": "Anschrift des zuständigen Betreibungsamtes. Der Gläubiger setzt sie nach den Hinweisen (betreibungsschalter.ch) nur ein. Es ist die eigene Angabe der Behörde, keine Angabe der Partei."
+  },
+  {
+   "id": 7090,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Geburtsdatum des Schuldners (falls bekannt). Ein Geburtsdatum gibt es nur bei einer natürlichen Person, auch beim Inhaber einer Einzelfirma. Wird es ausgefüllt, betrifft es sicher genau eine natürliche Person. Das deckt sich mit den 25 übrigen Geburtsdatum-Feldern."
+  },
+  {
+   "id": 7091,
+   "urteil": "bestaetigt",
+   "subjekt": "gemischt",
+   "grund": "Formular verlangt für den Gläubiger «Name und Vorname bzw. Firma; Adresse; PLZ Ort». Gläubiger kann eine Privatperson oder eine Firma sein."
+  },
+  {
+   "id": 7094,
+   "urteil": "bestaetigt",
+   "subjekt": "gemischt",
+   "grund": "«vertreten durch (Name und Vorname bzw. Firma; Adresse; PLZ Ort)». Vertreter kann eine Einzelperson oder eine Firma sein, etwa ein Inkassobüro oder eine Kanzlei. Das Formular lässt beides zu."
+  }
+ ]
+}

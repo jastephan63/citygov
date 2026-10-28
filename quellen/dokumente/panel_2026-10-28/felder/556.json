@@ -1,0 +1,158 @@
+{
+ "form_id": 556,
+ "data_fields": [
+  {
+   "name": "GmbH, mit Sitz in",
+   "definition": "Firma der Gesellschaft mit beschränkter Haftung, deren Stammanteile abgetreten werden, und Ort ihres Sitzes.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "GmbH",
+    "mit Sitz in"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Veräusserer/-in",
+   "definition": "Vorname, Name, Heimatort («von») und Wohnort («in») der Person, die ihre Stammanteile abtritt.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Vorname",
+    "Name",
+    "von",
+    "in"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Erwerber/-in",
+   "definition": "Vorname, Name, Heimatort («von») und Wohnort («in») der Person, die die Stammanteile erwirbt.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Vorname",
+    "Name",
+    "von",
+    "in"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Stammanteil(e)",
+   "definition": "Anzahl der abgetretenen Stammanteile, ihr Nennwert in CHF und der Prozentsatz, zu dem sie liberiert sind (Ziffer I).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Stammanteil(e)",
+    "zu CHF",
+    "% liberiert"
+   ],
+   "format": "CHF; %"
+  },
+  {
+   "name": "Preis",
+   "definition": "Kaufpreis in CHF für die abgetretenen Stammanteile, der nur zum Verpflichtungsgeschäft gehört und nicht eingereicht werden muss (Ziffer I).",
+   "data_type": "money",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "CHF"
+  },
+  {
+   "name": "Nachschusspflichten",
+   "definition": "Artikel der Statuten, der eine Nachschusspflicht festlegt, und deren Betrag in CHF für den zu veräussernden Stammanteil (Ziffer II).",
+   "data_type": "composite",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [
+    "Art. der Statuten",
+    "Nachschusspflicht CHF"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Nebenleistungspflichten",
+   "definition": "Artikel der Statuten und Beschreibung der mit dem zu veräussernden Stammanteil verbundenen Nebenleistungspflichten nach Gegenstand und Umfang (Ziffer II).",
+   "data_type": "composite",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [
+    "Art. der Statuten",
+    "Nebenleistungspflichten"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Konkurrenzverbote für die Gesellschafter",
+   "definition": "Artikel der Statuten und sämtliche konkurrenzierenden Tätigkeiten, die den Gesellschaftern statutarisch verboten sind (Ziffer II).",
+   "data_type": "composite",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [
+    "Art. der Statuten",
+    "konkurrenzierende Tätigkeiten"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Vorhand-, Vorkaufs- und Kaufsrechte der Gesellschafter oder der Gesellschaft",
+   "definition": "Artikel der Statuten und detaillierte Umschreibung aller statutarisch vorgesehenen Vorhand-, Vorkaufs- und Kaufsrechte (Ziffer II).",
+   "data_type": "composite",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [
+    "Art. der Statuten",
+    "Vorhand-, Vorkaufs- und Kaufsrechte"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Konventionalstrafen",
+   "definition": "Artikel der Statuten und präzise Umschreibung der statutarischen Konventionalstrafen (Ziffer II).",
+   "data_type": "composite",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [
+    "Art. der Statuten",
+    "Konventionalstrafen"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Ort und Datum",
+   "definition": "Ort und Datum der Unterzeichnung des Abtretungsvertrags.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Ort",
+    "Datum"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Der/die Veräusserer/-in",
+   "definition": "Unterschrift der veräussernden Person, mit der sie auch bestätigt, dass die Stammanteile frei von Rechten Dritter sind (Ziffer III).",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Der/die Erwerber/-in",
+   "definition": "Unterschrift der erwerbenden Person unter den Abtretungsvertrag.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  }
+ ],
+ "hinweis": "Geprüft gegen den Text und die Formularfelder der .docx (35 Textfelder, keine Kontrollkästchen, keine Tabellen, keine Beilagenliste). Korrektur: 1) «Stammanteil(e)»: Den Teil «Anzahl Stammanteil(e)» habe ich in «Stammanteil(e)» umbenannt, denn so steht es wörtlich hinter dem Feld (die Anzahl nennt die Definition). Alle anderen Felder sind unverändert übernommen. Bemerkungen zur Prüfung: a) Mehrere Textfelder wiederholen eine Angabe, die schon erfasst ist, und sind deshalb keine eigenen Felder. Das sind die beiden Felder «(Vorname Name)» in Ziffer I (Veräusserer/-in und Erwerber/-in), die Firma der GmbH in Ziffer I («an der … GmbH»), in jedem der fünf Absätze von Ziffer II («der Statuten der … GmbH») und in Ziffer IV, und das unbeschriftete Textfeld unter jeder der beiden Unterschriftslinien (Name der unterzeichnenden Partei). b) Die Aufteilung des Parteinamens in «Vorname» und «Name» stützt sich auf die gedruckte Bezeichnung «(Vorname Name)» in Ziffer I. Im Parteiblock selbst steht nur ein Feld ohne Bezeichnung. c) Für «Ort und Datum» ist keine Bezeichnung gedruckt (nur «…, den …»). Der Name ist die übliche Bezeichnung. d) Ziffer II ist bedingt: «Nachstehende Ziffern (unter II.) sind wegzulassen, wenn nicht zutreffend». Darum gilt required=false. Die Fussnote verlangt aber, dass Nachschusspflichten, Nebenleistungspflichten, Konkurrenzverbote, Vorhand-, Vorkaufs- und Kaufsrechte sowie Konventionalstrafen «immer aufzuführen» sind, wenn es sie gibt. e) Der Preis ist laut Fussnote nicht einzureichen (eingereicht werden muss nur das Verfügungsgeschäft, ohne Preis). Darum gilt required=false. Keine Felder der Person sind: die eckigen Anleitungen in Ziffer II, die Fussnote zu Verpflichtungs- und Verfügungsgeschäft, die Vertragstexte der Ziffern III (Bestätigung «frei von Rechten Dritter», durch die Unterschrift abgedeckt), IV (Zustimmung der Gesellschafterversammlung, Anteilbuch, Anmeldung beim Handelsregisteramt durch die Geschäftsführung) und V (Aufhebung der Gewährleistung). Ein Feld «Vom Amt auszufüllen» gibt es nicht."
+}

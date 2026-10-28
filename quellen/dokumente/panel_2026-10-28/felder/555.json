@@ -1,0 +1,96 @@
+{
+ "form_id": 555,
+ "data_fields": [
+  {
+   "name": "Der/Die Unterzeichnete(n)",
+   "definition": "Personalien der vollmachtgebenden Person oder Personen, die mit dieser Vollmacht eine Vertretung für die Auflösung der Aktiengesellschaft bestellen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name",
+    "Vorname",
+    "Geb.datum",
+    "Heimatort",
+    "Wohnadresse"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Der/die Bevollmächtigte",
+   "definition": "Personalien der Person, die nach «bestellt hiermit» als Bevollmächtigte(r) für das bezeichnete Geschäft eingesetzt wird.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name",
+    "Vorname",
+    "Geb.datum",
+    "Heimatort",
+    "Wohnadresse"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Auflösung der … AG",
+   "definition": "Firma der Aktiengesellschaft, deren Auflösung nach der Bezeichnung des Geschäftes Gegenstand der Vollmacht ist.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Wahl des Verwaltungsrates/der Verwaltungsrätin als Liquidator/in mit Einzelunterschrift",
+   "definition": "Genaue Personalien des Verwaltungsratsmitglieds, das als Liquidator/in mit Einzelunterschrift gewählt werden soll.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Entzug der Zeichnungsberechtigungen der Zeichnungsberechtigten unterhalb des Verwaltungsrates",
+   "definition": "Genaue Personalien und Funktion der Zeichnungsberechtigten unterhalb des Verwaltungsrates, deren Zeichnungsberechtigung entzogen werden soll.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "genaue Personalien",
+    "Funktion"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Festlegung des folgenden Liquidationsdomizils",
+   "definition": "Adresse, die als Liquidationsdomizil der aufgelösten Aktiengesellschaft festgelegt werden soll.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ort, Datum",
+   "definition": "Ort und Datum der Unterzeichnung der Vollmacht.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Ort",
+    "Datum"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Der/die Vollmachtgeber/in",
+   "definition": "Unterschrift der vollmachtgebenden Person auf der dafür vorgesehenen Unterschriftslinie.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  }
+ ],
+ "hinweis": "Korrekturen: (1) «Wahl des Verwaltungsrates/der Verwaltungsrätin als Liquidator/in mit Einzelunterschrift»: format «(genaue Personalien)» entfernt. Das ist ein Inhaltshinweis und kein Formathinweis. Der Inhalt steht bereits in der Definition. So wird es auch beim Feld «Entzug …» gehandhabt, wo der gleiche Klammerhinweis die Teilfelder bildet. Sonst keine Änderungen. Geprüft am Original (79__b6a4cfeb51fc.docx, document.xml sowie Kopf- und Fusszeilen): Die vier Punkte unter «Bezeichnung des Geschäftes» sind normale Absätze ohne Kontrollkästchen und ohne Aufzählungszeichen. Es gibt also keine Auswahlgruppe, und jeder Punkt ist eine eigene Lücke zum Ausfüllen. Für die Personalienblöcke ist nur je eine Zeile gedruckt, mit der Beschriftung «Name, Vorname, Geb.datum, Heimatort, Wohnadresse». Diese fünf Teile sind korrekt aufgeteilt. Es gibt nur eine Unterschriftslinie «Der/die Vollmachtgeber/in». Trotz der Pluralform «Unterzeichnete(n)»/«anerkennt(en)» wurde deshalb keine zweite Unterschrift ergänzt. Es gibt keine Beilagenliste, kein Feld für das Amt und keine Angaben in Kopf- oder Fusszeilen. Keine Felder sind die vorgedruckten Textstellen «bestellt hiermit … zu seinem(r)/ihrem(r) Bevollmächtigten», die Umschreibung der Befugnisse («Der/die Bevollmächtigte ist berechtigt …») und die Anerkennungsklausel («Der/die Vollmachtgeber(in) anerkennt(en) …»). Das Formular kennzeichnet keinen Punkt als freiwillig. Deshalb bleiben alle Angaben Pflicht. Das gilt auch für «Entzug der Zeichnungsberechtigungen …», obwohl dieser Punkt nur dann zutrifft, wenn es Zeichnungsberechtigte unterhalb des Verwaltungsrates gibt."
+}

@@ -1,0 +1,84 @@
+{
+ "hinweis": "eCH-Urteile Formular 573, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/573 --nur-offene=573",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Propagierter Wert (ech_herkunft 'propagiert', Element-ID 15, Kontext swissAndFlMunicipalityType) bestätigt. Die Zeile «Gemeinde» verlangt den Namen der gesuchstellenden Gemeinde, also eCH-0007 municipalityName (Genehmigt). Gleich wie auf dem Schwesterformular 477 (Beitragsgesuch Bachunterhalt).",
+   "feld": "Gemeinde"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Auf einer einzigen Linie steht die verantwortliche Person der Gemeinde. Name und Vorname sind nicht als getrennte Teile aufgedruckt. Ein Personenbündel ohne Teile erhält das Container-Element eCH-0044 personIdentification (Genehmigt, im Katalog vorhanden). Das ist die einheitliche Korpuspraxis für «Verantwortliche Person» (Formulare 24, 170, 219, 376, 453, 542).",
+   "feld": "Verantwortliche/r",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Korrigiert (vorher eCH-0129 localGeographicalName). Der Erstvorschlag war nur «am nächsten». Dieselbe Angabe ist es nicht. Im Katalog kommt eCH-0129 placeName (placeNameType + localGeographicalName) nur als Eigenschaft eines Grundstücks vor (eCH-0131 realestateInfo*, eCH-0211 realestateInformationType). Dort ist es der Lokal- bzw. Flurname einer Parzelle. Hier ist «Bach» jedoch der Name des Gewässers, das unterhalten wird, also das Objekt selbst. Das Gesuch nennt keinen Ort eines Grundstücks. Den ganzen Katalog habe ich durchsucht (water, river, stream, lake, hydro, gewaess, sediment, geographical; dazu die Titel Geo/Umwelt/Natur/Wasser/Objekt, darunter eCH-0166 ohne Elemente). Kein Standard modelliert Gewässer oder Gewässernamen. Die Korpuspraxis bestätigt das: Auf dem Schwesterformular 477 (gleiches Verfahren) ist «Bachname» kein_standard, ebenso 55 «Entnahmegewässer» und 56 «genutztes Gewässer». Nur Formular 51 weicht ab.",
+   "feld": "Bach"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Bestätigt. Gesucht nach length, laenge, distance, meter, measure, extent sowie in eCH-0265 (Agrardaten). Gefunden habe ich nur Flächen (eCH-0129/0131 squareMeasure), Fahrdistanzen in Steuerdaten (eCH-0119 distance, eCH-0278 travelDistance) und den landwirtschaftlichen Messwert eCH-0265 measurementType für Kulturen. Für die Länge eines Gewässers gibt es kein Element. Auf dem Schwesterformular 477 sind «Gesamte Bachlänge» und «Unterhaltslänge» ebenfalls kein_standard.",
+   "feld": "Bachlänge"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Bestätigt. Gemeint ist eine Angabe zur wasserbaulichen Anlage für den Geschieberückhalt am Bach. Gesucht nach facility, installation, protect, flood, retention, dam, structure, sediment, geschieb sowie in eCH-0129/0206/0211/0216. Dort gibt es nur Elemente für Gebäude, Bauprojekte und Solaranlagen (z.B. thermicSolarFacility, solarInstallation). Für Wasserbau- oder Geschiebeanlagen enthält kein Standard ein Element. Auf Formular 56 ist «Art der Anlage» ebenfalls kein_standard.",
+   "feld": "Anlage Geschieberückhalt"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Bestätigt. Gesucht nach cost, kosten, estimat, budget, subsid, contribution, maintenance, expens. eCH-0129 estimationValue/estimationObject ist die amtliche Schätzung eines Grundstücks. totalCostsOfProject (eCH-0129) und die Baukosten in eCH-0211/0216 betreffen Bauprojekte bzw. die Baustatistik. Die Kosten in eCH-0119/0276/0278 gehören zu Steuern und Bilanzen. Keines davon ist die geschätzte jährliche Summe für den ökologischen Unterhalt eines Baches. Auf Formular 477 ist «Kosten (CHF)» ebenfalls kein_standard.",
+   "feld": "geschätzte Kosten/Jahr"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Die Kontaktzeile besteht aus Telefonnummer und E-Mail-Adresse und erhält das Container-Element eCH-0046 contact (Genehmigt, im Katalog vorhanden). So sind auch die übrigen Felder «Telefon / E-Mail» im Korpus zugeordnet. Die beiden Teile werden einzeln beurteilt.",
+   "feld": "Telefon / E-Mail",
+   "standard": "eCH-0046",
+   "element": "contact"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Der Teil «Telefon» der Kontaktzeile ist die Telefonnummer, also das atomare Element eCH-0046 phoneNumber (Kontext phoneType). Gleich wie beim bereits zugeordneten Teil «Telefon» im Korpus.",
+   "elternfeld": "Telefon / E-Mail",
+   "teilfeld": "Telefon",
+   "standard": "eCH-0046",
+   "element": "phoneNumber"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Der Teil «E-Mail» der Kontaktzeile ist die E-Mail-Adresse, also das atomare Element eCH-0046 emailAddress (Kontext emailType). Gleich wie beim bereits zugeordneten Teil «E-Mail» im Korpus.",
+   "elternfeld": "Telefon / E-Mail",
+   "teilfeld": "E-Mail",
+   "standard": "eCH-0046",
+   "element": "emailAddress"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Bestätigt. Gemeint ist das Kalenderdatum, an dem das Gesuch erstellt bzw. eingereicht wird. Dafür steht eCH-0058 messageDate (Genehmigt, Kontext headerType). Das ist die Praxis bei 9 gleichartigen Feldern «Datum», darunter das Schwesterformular 477 sowie die Formulare 492, 493 und 496. Ein Ort wird nicht verlangt, deshalb passt eCH-0119 locationAndDate nicht.",
+   "feld": "Datum",
+   "standard": "eCH-0058",
+   "element": "messageDate"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Bestätigt. Es sind Ankreuzfelder der Checkliste: Die Gemeinde gibt an, welche der vier prozentual gewichteten Mahdmassnahmen sie umsetzt. Ein Ankreuzfeld erhält kein Wert-Element. Gesucht nach mow, mahd, ecolog, biodiv, neophyt, mulch, maintenance sowie in eCH-0265 (Kulturen, Direktzahlungsprogramme, biodiversityAreaQualityI). Diese Elemente betreffen landwirtschaftliche Flächen, nicht Massnahmen im Gewässerunterhalt. Kein Standard hat dafür ein Element.",
+   "feld": "Bachböschungen mähen – Schnittzeitpunkt und -turnus"
+  }
+ ]
+}

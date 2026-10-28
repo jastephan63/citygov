@@ -144,6 +144,13 @@ def lesen():
                       "nur der Art des Erlasses. Geschrieben von scripts/load_gesetz_titel.py --lesen.",
            "anwenden": "python3 scripts/load_gesetz_titel.py",
            "eintraege": eintraege}
+    # an entry already in the file stays: once applied, its law is no longer defective and
+    # a new reading would not find it again — dropping it would erase the evidence of the
+    # correction (and the gate's check that the database still holds the corrected name)
+    if os.path.exists(DATEI):
+        bisher = json.load(open(DATEI, encoding="utf-8")).get("eintraege") or []
+        neu_ids = {e["law_id"] for e in eintraege}
+        doc["eintraege"] = [e for e in bisher if e["law_id"] not in neu_ids] + eintraege
     os.makedirs(os.path.dirname(DATEI), exist_ok=True)
     with open(DATEI, "w", encoding="utf-8") as fh:
         json.dump(doc, fh, ensure_ascii=False, indent=1)

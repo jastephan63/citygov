@@ -1,0 +1,14 @@
+{
+ "verdicts": [
+  {
+   "id": 6707,
+   "subjekt": "natuerliche_person",
+   "grund": "Formular verlangt Vorname, Name, Heimatort («von») und Wohnort («in») der abtretenden Person, auch in Ziffer I «(Vorname Name)». Heimatort und Vorname gibt es nur bei natürlichen Personen, ein Feld für Firma oder Sitz fehlt."
+  },
+  {
+   "id": 6708,
+   "subjekt": "natuerliche_person",
+   "grund": "Formular verlangt Vorname, Name, Heimatort («von») und Wohnort («in») der erwerbenden Person, auch in Ziffer I «(Vorname Name)». Die Vorlage ist nur auf eine natürliche Person ausgelegt, ein Feld für Firma oder Sitz fehlt."
+  }
+ ]
+}

@@ -1,0 +1,248 @@
+{
+ "hinweis": "eCH-Urteile Formular 546, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/546 --nur-offene=546",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Personenblock der Mutter des Kindes. eCH-0021 (Genehmigt) parentalRelationship (personAddonType, Typ parentalRelationshipType) ist der Container für das Kindesverhältnis aus Sicht des Kindes: partner/personIdentification (eCH-0044) für den Elternteil, typeOfRelationship (Code 3 = Mutter) und care (careType, elterliche Sorge). Das passt zur Erklärung über die gemeinsame elterliche Sorge nach Art. 298a ZGB und zur Praxis auf Formular 103, 289, 394 und 403. Den übernommenen Wert bestätige ich.",
+   "feld": "Mutter"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Personenblock des Vaters des Kindes. eCH-0021 parentalRelationship mit partner/personIdentification, typeOfRelationship (Code 4 = Vater) und care (elterliche Sorge) ist der passende Container, gleich wie auf Formular 103, 289, 394 und 403. Den übernommenen Wert bestätige ich.",
+   "feld": "Vater"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Identifikation des Kindes, um dessen elterliche Sorge es geht. eCH-0044 personIdentification ist der Container für Name, Vornamen und Geburtsdatum; «Kind» ist im Korpus so zugeordnet (Formulare 150, 480, 481). Die Teile ausserhalb der Identifikation (Heimatort, Staatsangehörigkeit, Wohnort) bekommen jeweils ein eigenes Element. Den übernommenen Wert (3x geprüft) bestätige ich.",
+   "feld": "Kind"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Aktueller amtlicher Name der Mutter, die selbst erklärt und unterschreibt. In parentalRelationshipType wird der Elternteil über partner/personIdentification (eCH-0044 personIdentificationType) identifiziert, also gilt eCH-0044 officialName. eCH-0021 nameOfParent gehört dagegen zu birthAddonDataType, also zu den Elternnamen in den Geburtsangaben des Kindes, und nicht zur aktuellen Identifikation des Elternteils. Formular 103 (KESB, zustimmende Sorgeberechtigte) und 403 sind gleich zugeordnet.",
+   "elternfeld": "Mutter",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Übernommen wurde eCH-0021 firstName aus nameOfParentType. Das gehört zu birthAddonData/nameOfParent, also zu den Elternnamen in den Geburtsangaben des Kindes (Stand bei der Geburt), nicht zu den aktuellen Vornamen der erklärenden Mutter. Der Container parentalRelationship identifiziert den Elternteil über partner/personIdentification = eCH-0044 personIdentificationType. Für die aktuellen Vornamen gilt deshalb eCH-0044 firstName, wie beim Namen und Geburtsdatum im selben Block und auf Formular 103.",
+   "elternfeld": "Mutter",
+   "teilfeld": "Vornamen",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Geburtsdatum der Mutter. Es gehört zu deren Personenidentifikation (eCH-0044 dateOfBirth), die über partner/personIdentification in parentalRelationship liegt. Der Korpus ordnet «Geburtsdatum» so zu (227x), auch beim Elternteil auf den Formularen 103, 289 und 394.",
+   "elternfeld": "Mutter",
+   "teilfeld": "Geburtsdatum",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Heimatort der Mutter (Lieu d'origine). Atomarer Teil ist der Name des Heimatorts, eCH-0011 originName (placeOfOriginType) und nicht der Container placeOfOrigin. Das entspricht der Praxis im Korpus (30x originName gegen 4x placeOfOrigin), auch auf Formular 103.",
+   "elternfeld": "Mutter",
+   "teilfeld": "Heimatort",
+   "standard": "eCH-0011",
+   "element": "originName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Staatsangehörigkeit der Mutter. eCH-0011 nationalityData (personType) bildet die Staatsangehörigkeit einschliesslich mehrerer Staaten und Staatenlosigkeit ab und ist im Korpus einheitlich verwendet (27x, auch bei Vater/Mutter auf Formular 289). Den übernommenen Wert bestätige ich.",
+   "elternfeld": "Mutter",
+   "teilfeld": "Staatsangehörigkeit"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Wohnort der Mutter (Domicile), also der Ort der Wohnadresse. Dafür gilt eCH-0010 town (addressInformationType), wie im Korpus für «Wohnort» (35x gegen 1x eCH-0011 municipalityName).",
+   "elternfeld": "Mutter",
+   "teilfeld": "Wohnort",
+   "standard": "eCH-0010",
+   "element": "town"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Aktueller amtlicher Name des Vaters, der selbst erklärt und unterschreibt. parentalRelationship identifiziert den Elternteil über partner/personIdentification (eCH-0044), also gilt eCH-0044 officialName. eCH-0021 nameOfParent (birthAddonDataType) bildet nur die Elternnamen in den Geburtsangaben des Kindes ab. Formular 103 und 403 sind gleich zugeordnet.",
+   "elternfeld": "Vater",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Übernommen wurde eCH-0021 firstName aus nameOfParentType. Das gehört zu birthAddonData, also zu den Elternnamen in den Geburtsangaben des Kindes, nicht zu den aktuellen Vornamen des erklärenden Vaters. Der Container parentalRelationship identifiziert den Vater über eCH-0044 personIdentificationType. Für die aktuellen Vornamen gilt deshalb eCH-0044 firstName, gleich wie für Name und Geburtsdatum im selben Block.",
+   "elternfeld": "Vater",
+   "teilfeld": "Vornamen",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Geburtsdatum des Vaters. Es gehört zu dessen Personenidentifikation, eCH-0044 dateOfBirth (über partner/personIdentification in parentalRelationship). Das ist die Praxis im Korpus, auch auf Formular 103, 289 und 394.",
+   "elternfeld": "Vater",
+   "teilfeld": "Geburtsdatum",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Heimatort des Vaters. Atomarer Teil ist eCH-0011 originName (placeOfOriginType), nicht der Container placeOfOrigin, wie im Korpus (30x).",
+   "elternfeld": "Vater",
+   "teilfeld": "Heimatort",
+   "standard": "eCH-0011",
+   "element": "originName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Staatsangehörigkeit des Vaters. eCH-0011 nationalityData ist im Korpus einheitlich verwendet (27x, auch beim Vater auf Formular 289). Den übernommenen Wert bestätige ich.",
+   "elternfeld": "Vater",
+   "teilfeld": "Staatsangehörigkeit"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Wohnort des Vaters, Ort der Wohnadresse. Dafür gilt eCH-0010 town (addressInformationType), wie im Korpus für «Wohnort» (35x).",
+   "elternfeld": "Vater",
+   "teilfeld": "Wohnort",
+   "standard": "eCH-0010",
+   "element": "town"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Amtlicher Name des Kindes, eCH-0044 officialName in dessen Personenidentifikation, wie bei «Kind» auf den Formularen 150, 480 und 481. Den übernommenen Wert bestätige ich.",
+   "elternfeld": "Kind",
+   "teilfeld": "Name"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vornamen des Kindes, eCH-0044 firstName. So sind auch Name und Geburtsdatum im selben Block zugeordnet, ebenso «Kind/Vorname» im Korpus (Formulare 150, 480, 481).",
+   "elternfeld": "Kind",
+   "teilfeld": "Vornamen",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Geburtsdatum des Kindes, eCH-0044 dateOfBirth, wie bei «Kind» im Korpus. Den übernommenen Wert bestätige ich.",
+   "elternfeld": "Kind",
+   "teilfeld": "Geburtsdatum"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Heimatort des Kindes. Atomarer Name des Heimatorts ist eCH-0011 originName (placeOfOriginType), wie im Korpus und auf Formular 103 bei den Personalien des Minderjährigen.",
+   "elternfeld": "Kind",
+   "teilfeld": "Heimatort",
+   "standard": "eCH-0011",
+   "element": "originName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Staatsangehörigkeit des Kindes, eCH-0011 nationalityData. So ist es auch bei Mutter und Vater auf diesem Formular zugeordnet und im Korpus einheitlich (27x).",
+   "elternfeld": "Kind",
+   "teilfeld": "Staatsangehörigkeit",
+   "standard": "eCH-0011",
+   "element": "nationalityData"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Wohnort des Kindes, Ort der Wohnadresse. Dafür gilt eCH-0010 town, wie bei «Wohnort» im Korpus (35x) und bei Mutter und Vater auf diesem Formular.",
+   "elternfeld": "Kind",
+   "teilfeld": "Wohnort",
+   "standard": "eCH-0010",
+   "element": "town"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ort und Datum der Unterzeichnung der Erklärung. Durchsucht habe ich den ganzen Elementkatalog (290 Standards) nach sign*/signat*/declar*/placeOf*/*Date. Gefunden habe ich nur Fremdes: eCH-0039/0058/0147 messageDate/eventDate/openingDate (Meldungs- und Dossier-Metadaten), eCH-0039 signer (GEVER-Dokument) und eCH-0260 signatures (Lehrvertrag). Keines bildet Ort oder Datum einer Unterzeichnung ab, und es gibt keinen Container. Der Korpus führt «Ort und Datum» ebenfalls als kein_standard (31x), auch auf Formular 403.",
+   "feld": "Ort und Datum (Erklärung über die gemeinsame elterliche Sorge)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Ort der Unterzeichnung, keine Adresse und kein Wohnort. Die Katalogsuche nach placeOf*/sign*/declar* ergab nur placeOfBirth/Death/Marriage/Work/Origin, also andere Bedeutungen. Ein Element für den Unterzeichnungsort gibt es nicht. Im Korpus ist «Ort» in «Ort und Datum» ebenfalls kein_standard (16x).",
+   "elternfeld": "Ort und Datum (Erklärung über die gemeinsame elterliche Sorge)",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Datum der Unterzeichnung. Die Katalogsuche nach *Date/sign*/declar* ergab nur Meldungs- und Dossier-Metadaten (eCH-0058/0039/0147 messageDate, eventDate, openingDate) und Datumselemente mit anderer Bedeutung. Ein Element für das Unterzeichnungsdatum gibt es nicht. Im Korpus ist es ebenfalls kein_standard (16x, auch auf Formular 103 und 403).",
+   "elternfeld": "Ort und Datum (Erklärung über die gemeinsame elterliche Sorge)",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Eigenhändige Unterschrift der Mutter. Durchsucht habe ich den ganzen Katalog nach signat*/sign*/Unterschrift und die Standardtitel nach Signatur. Ergebnis: eCH-0260 *SignatureConfirmation (signaturesType) sind nur Bestätigungen zum Lehrvertrag, eCH-0039 signer ist GEVER-Metadatum. eCH-0091/0220/0230/0250/0274/0282 regeln die Technik elektronischer Signaturen und haben keine Elemente. Für eine Unterschrift gibt es kein Element. Im Korpus sind Unterschriften kein_standard (90x).",
+   "feld": "Die Mutter (Erklärung über die gemeinsame elterliche Sorge)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Eigenhändige Unterschrift des Vaters. Die Katalogsuche (signat*/sign*, Signatur-Standards eCH-0091/0220/0230/0250/0274/0282 ohne Elemente, eCH-0260 Lehrvertrag, eCH-0039 signer) ergab kein Element für eine Unterschrift. Im Korpus sind Unterschriften kein_standard.",
+   "feld": "Der Vater (Erklärung über die gemeinsame elterliche Sorge)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Auswahl, wie die AHV-Erziehungsgutschrift aufgeteilt wird (50/50, 100/0, 0/100 oder keine Vereinbarung). Durchsucht: Elemente nach bonus/credit/gutschrift/educat*/pension/AHV/care/custody/allocation/attribution/splitting sowie Standardtitel nach AHV/Sozialversicherung/Rente/Ausgleich/Kindes/Sorge. Treffer mit anderer Bedeutung: eCH-0021 care (careType, Art der elterlichen Sorge, nicht die AHV-Gutschrift), eCH-0278 custodyStatus/isAlternatingCustody (Steuererklärung), eCH-0119/0278 AHV-Einkünfte (Steuer), eCH-0263 percentageAllocation (Hofdünger). eCH-0083 AHVN13 ist sistiert und ohne Elemente. Für die Erziehungsgutschrift gibt es kein Element.",
+   "feld": "Anrechnung der Erziehungsgutschrift"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ort und Datum der Unterzeichnung der Vereinbarung. Wie beim Erklärungsteil gibt es nach der Katalogsuche (sign*/declar*/placeOf*/*Date) weder Element noch Container für Unterzeichnungsort oder -datum. Treffer waren nur Meldungs- und Dossier-Metadaten aus eCH-0039/0058/0147. Im Korpus ebenfalls kein_standard.",
+   "feld": "Ort und Datum (Vereinbarung über die Anrechnung von Erziehungsgutschriften)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Ort der Unterzeichnung. Die Katalogsuche nach placeOf*/sign* ergab nur Geburts-, Todes-, Ehe-, Arbeits- und Heimatort. Ein Element für den Unterzeichnungsort gibt es nicht. Im Korpus ebenfalls kein_standard.",
+   "elternfeld": "Ort und Datum (Vereinbarung über die Anrechnung von Erziehungsgutschriften)",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Datum der Unterzeichnung. Die Katalogsuche nach *Date/sign* ergab nur Meldungs- und Dossier-Metadaten (messageDate, eventDate, openingDate). Ein Element für das Unterzeichnungsdatum gibt es nicht. Im Korpus ebenfalls kein_standard.",
+   "elternfeld": "Ort und Datum (Vereinbarung über die Anrechnung von Erziehungsgutschriften)",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Unterschrift der Mutter unter die Vereinbarung. Die Katalogsuche nach signat*/sign* und nach Signatur-Standards ergab kein Element für eine Unterschrift. Die Signatur-Standards haben keine Elemente, eCH-0260 betrifft nur den Lehrvertrag und eCH-0039 signer ist GEVER-Metadatum. Im Korpus kein_standard.",
+   "feld": "Die Mutter (Vereinbarung über die Anrechnung von Erziehungsgutschriften)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Unterschrift des Vaters unter die Vereinbarung. Für eine Unterschrift gibt es im Katalog kein Element (Suche signat*/sign*, Signatur-Standards ohne Elemente, eCH-0260 Lehrvertrag, eCH-0039 signer). Im Korpus kein_standard.",
+   "feld": "Der Vater (Vereinbarung über die Anrechnung von Erziehungsgutschriften)"
+  }
+ ]
+}

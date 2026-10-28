@@ -1,0 +1,156 @@
+{
+ "hinweis": "eCH-Urteile Formular 544, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/544 --nur-offene=544",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Block «Personalien» der bewerbenden Person. Bestätigt die propagierte Zuordnung zum Container eCH-0044 personIdentification (53x geprüft). Das Element steht wörtlich im Katalog. Die sechs Teile tragen eigene Elemente.",
+   "feld": "Personalien"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Eine Zeile für Familien- und Vorname der bewerbenden Person. Bestätigt die propagierte Zuordnung eCH-0044 officialName (personIdentificationType). Das ist die häufigste Zuordnung für «Name/Vorname» (13 von 26; die übrigen eCH-0010/0261 lastName). Der Vorname hat im Formular keinen eigenen Teil.",
+   "elternfeld": "Personalien",
+   "teilfeld": "Name/Vorname"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Auf «Adresse» folgt im Anmeldeblatt kein eigener Teil für PLZ oder Ort. Die eine Zeile nimmt also die ganze Postadresse auf (Strasse, Nr., PLZ, Ort). Das propagierte street deckt nur den Strassennamen ab. eCH-0010 addressInformation (addressInformationType mit street, houseNumber, swissZipCode, town, country) gibt die Angabe vollständig wieder und steht wörtlich im Katalog. Bei «Adresse» ohne eigene PLZ/Ort-Teile ist das Muster im Databank gemischt (65 street, 15 addressInformation).",
+   "elternfeld": "Personalien",
+   "teilfeld": "Adresse",
+   "standard": "eCH-0010",
+   "element": "addressInformation"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Geburtsdatum der bewerbenden Person. Bestätigt die propagierte Zuordnung eCH-0044 dateOfBirth (personIdentificationType).",
+   "elternfeld": "Personalien",
+   "teilfeld": "Geburtsdatum"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Telefonnummer der bewerbenden Person. Bestätigt die propagierte Zuordnung eCH-0046 phoneNumber (phoneType). Die Kategorie «mobil» steht in phoneCategory.",
+   "elternfeld": "Personalien",
+   "teilfeld": "Mobiltelefon"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "E-Mail-Adresse der bewerbenden Person. Bestätigt die propagierte Zuordnung eCH-0046 emailAddress (emailType).",
+   "elternfeld": "Personalien",
+   "teilfeld": "E-Mail"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Kontaktadresse für die Zeit der Abwesenheit. Bestätigt die propagierte Zuordnung eCH-0011 contactAddress (contactDataType, mailAddressType). contactDataType sieht mit contactValidFrom und contactValidTill auch eine befristete Gültigkeit vor. Für die alternative Telefonnummer gibt es in contactDataType kein Element. Das Schwesterformular 171 «Förderbeiträge (Vergabe 2026) – Anmeldeblatt» ordnet dasselbe Paar ebenso zu.",
+   "elternfeld": "Personalien",
+   "teilfeld": "Kontaktadresse/Telefon (bei Abwesenheit)"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Bank- oder Postkonto für die Auszahlung des Stipendiums. Bestätigt den propagierten Container eCH-0119 bankAccount (bankAccountType mit bankName, ibanNumber, postAccountNumber, accountOwner). Er umfasst beide Teile.",
+   "feld": "Bank-/Postverbindung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Name (und Ort) des Bank- bzw. Postinstituts. Bestätigt die propagierte Zuordnung eCH-0119 bankName (bankAccountType). bankAccountType hat kein eigenes Element für die Adresse des Instituts. Formular 171 ordnet dasselbe Paar ebenso zu.",
+   "elternfeld": "Bank-/Postverbindung",
+   "teilfeld": "Bankverbindung (Name/Adresse)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "IBAN des Auszahlungskontos (zwingend). Bestätigt die propagierte Zuordnung eCH-0119 ibanNumber (bankAccountType).",
+   "elternfeld": "Bank-/Postverbindung",
+   "teilfeld": "IBAN-Nummer"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Beruf bzw. gegenwärtige Tätigkeit der bewerbenden Person. Bestätigt die propagierte Zuordnung eCH-0021 jobTitle (jobDataType). Das Element steht wörtlich im Katalog.",
+   "feld": "Beruf/gegenwärtige Tätigkeit"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Das Feld bietet zwei Alternativen: Wohnsitz im Kanton seit oder Atelier im Kanton seit. Im ganzen Katalog gibt es keinen Container, der beide umfasst. eCH-0155 candidateType deckt nur den Wohnsitz ab, das Atelier hat kein Element. Gesucht nach since/arrival/inCanton/moveIn, workplace/placeOfWork/premises/studio. Die Teile tragen eigene Urteile. Formular 171 hat das ungeteilte Paar ebenfalls als kein_standard.",
+   "feld": "Im Kanton Schaffhausen wohnhaft seit (Jahr) oder Atelier im Kanton Schaffhausen seit (Jahr)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Gefragt ist der Beginn des Wohnsitzes im Kanton, als Jahr (ein Beginn-Datum, kein aktueller Wert). eCH-0155 inCantonSince (xs:date, candidateType/foreigner, «im Kanton wohnhaft seit») ist genau diese Angabe und steht wörtlich im Katalog. eCH-0011/0098 arrivalDate ist das Zuzugsdatum in die Gemeinde: Bei einem Umzug innerhalb des Kantons ergäbe es ein späteres Datum. eCH-0278 arrivalDate betrifft den Zuzug im Steuerjahr. Der Status von eCH-0155 ist im Katalog nicht erfasst, also weder Aufgehoben noch Abgelöst. Hinweis: Formular 141 hat «Zivilrechtlicher Wohnsitz im Kanton Schaffhausen seit» noch als kein_standard.",
+   "elternfeld": "Im Kanton Schaffhausen wohnhaft seit (Jahr) oder Atelier im Kanton Schaffhausen seit (Jahr)",
+   "teilfeld": "Im Kanton Schaffhausen wohnhaft seit (Jahr)",
+   "standard": "eCH-0155",
+   "element": "inCantonSince"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Gefragt ist das Jahr, seit dem die Person ein Künstleratelier (Arbeitsraum) im Kanton hat. Ganzer Katalog durchsucht (atelier/studio/workshop/workplace/placeOfWork/premises/since/selfEmploy). eCH-0021 placeOfWork ist eine Adresse, kein Datum. occupationValidFrom ist der Beginn einer Beschäftigung, nicht der Bezug eines Arbeitsraums. eCH-0276 establishmentOfBusinessPremises gehört zu E-Tax JP, betrifft also die steuerliche Betriebsstätte einer juristischen Person, ein anderes Objekt. Kein passendes Element.",
+   "elternfeld": "Im Kanton Schaffhausen wohnhaft seit (Jahr) oder Atelier im Kanton Schaffhausen seit (Jahr)",
+   "teilfeld": "Atelier im Kanton Schaffhausen seit (Jahr)"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die Angabe ist in erster Linie der Bürgerort, also eCH-0011 placeOfOrigin (placeOfOriginType mit originName und canton). Das Element steht wörtlich im Katalog. Das Schwesterformular 171 «Förderbeiträge (Vergabe 2026) – Anmeldeblatt» ordnet das gleichlautende Teilfeld ebenso zu. Ein «anderer Bezug» als Freitext hat kein eigenes Element.",
+   "feld": "Bürgerort oder anderer Bezug zum Kanton Schaffhausen",
+   "standard": "eCH-0011",
+   "element": "placeOfOrigin"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freitext, in dem die Person den Nutzen des Aufenthalts für ihren künstlerischen Werdegang darlegt. Ganzer Katalog durchsucht (justif*/motivat*/reason/benefit/grant/subsid*/stipend*/cultur*/artist; Titel Kultur/Förder*/Stipend*/Beitr*/Gesuch/Antrag). Gefunden wurden nur fachfremde Elemente: eCH-0020 residenceJustification, eCH-0173 justification, eCH-0235 justifyDemand, eCH-0216 reason, eCH-0258 justification (Fristerstreckung), eCH-0119 benefit (Steuer). Es gibt keinen Standard für Kulturförder- oder Stipendiengesuche.",
+   "feld": "Begründung des Nutzens eines Aufenthalts in Berlin"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Mehrfachauswahl der möglichen Aufenthaltsperioden 2027 (3 oder 6 Monate). Gesucht nach period/stay/sojourn/duration/availab*/dateRange. Gefunden wurden nur fachfremde Perioden: Steuerperiode eCH-0119/0229 periodFrom/To, Bauphase eCH-0129, eCH-0155 eVotingPeriod, eCH-0046 dateRangeType als Gültigkeit eines Kontakts, eCH-0278 weeklyStay (Berufskosten). Kein Element für gewünschte Aufenthaltszeiträume.",
+   "feld": "Angabe zu den möglichen Aufenthaltsperioden"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Checkliste der beizulegenden Unterlagen (Anmeldeblatt, Lebenslauf, Dokumentation, Projektantrag). Geprüft wurden eCH-0039 document/documentKind, eCH-0058 attachment und eCH-0258 document. Diese transportieren eine Datei, definieren aber keine Liste geforderter Beilagenarten und keine Codeliste dafür. Gleich beurteilt wie die übrigen Beilagen-Mehrfachauswahlen (multiselect «Beilagen» 35x kein_standard).",
+   "feld": "Erforderliche Dokumente für den Antrag"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Ort und Datum der Unterzeichnung. Bestätigt das propagierte kein_standard (17x geprüft). Die Signatur-Standards eCH-0091/0220/0230/0250/0274/0282 haben keine Elemente für Ort oder Datum der Unterschrift. eCH-0039 signer ist eine Personenkennung, kein Ort und kein Datum.",
+   "feld": "Ort und Datum"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Ort der Unterzeichnung, keine Postadresse. eCH-0010 town hätte hier eine falsche Bedeutung. Katalog durchsucht nach sign*/placeOfSubmission: Die Signatur-Standards haben kein Element für den Ort, eCH-0039 signer ist eine Kennung. Gleich beurteilt wie die übrigen Paare (Ort und Datum, Ort), 16x kein_standard.",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Datum der Unterzeichnung. Katalog durchsucht nach sign*/submissionDate/applicationDate: kein Element für das Signaturdatum. eCH-0039 openingDate ist das Eröffnungsdatum eines Dokuments. eCH-0260 signaturesType enthält nur Ja/Nein-Bestätigungen. eCH-0262 dateOfApplication betrifft die Ausbringung von Pflanzenschutzmitteln. Gleich beurteilt wie die übrigen Paare (Ort und Datum, Datum), 16x kein_standard.",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Handschriftliche Unterschrift der bewerbenden Person unter der Verpflichtungserklärung. Bestätigt das propagierte kein_standard (15x geprüft). eCH-0091/0220/0230/0250/0282 regeln elektronische Signaturen und haben kein Element für eine Unterschrift auf dem Formular. eCH-0260 hat nur Bestätigungs-Booleans.",
+   "feld": "Unterschrift"
+  }
+ ]
+}

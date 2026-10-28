@@ -1,0 +1,222 @@
+{
+ "hinweis": "eCH-Urteile Formular 558, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/558 --nur-offene=558",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Zusammengesetzte Angabe «der … GmbH, mit Sitz in …» (Firma + Sitz) bezeichnet die Gesellschaft als Ganzes; Container eCH-0098 organisation (organisationType) existiert wörtlich, wie «Firma und Sitz» in den Formularen 315, 318, 551, 554 (alle eCH-0098 organisation).",
+   "feld": "GmbH",
+   "standard": "eCH-0098",
+   "element": "organisation"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Paar (GmbH, Firma) = im Handelsregister eingetragene Firma der Gesellschaft; eCH-0098 organisationName (organisationIdentificationType, unitNameType), die durchgehende Zuordnung für «Firma» (u. a. Formulare 123, 307, 310, 313, 316).",
+   "elternfeld": "GmbH",
+   "teilfeld": "Firma",
+   "standard": "eCH-0098",
+   "element": "organisationName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Paar (GmbH, Sitz) aus «mit Sitz in …» = statutarische Sitzgemeinde; eCH-0098 headquarterMunicipality (swissHeadquarterType, swissMunicipalityType), wie das propagierte «Sitz» in 553/560/569 und der Teil «Sitz» (8x).",
+   "elternfeld": "GmbH",
+   "teilfeld": "Sitz",
+   "standard": "eCH-0098",
+   "element": "headquarterMunicipality"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Kein Container für Datum+Uhrzeit einer Sitzung im Katalog (gesucht: meeting/session/assembly/decision, alle dateTime-Elemente); nur der Teil «Datum» hat einen Standard, daher Standard der Zusammensetzung eCH-0058 mit dem Pflicht-Element eventDate (headerType, Datum des auslösenden Ereignisses, hier der Geschäftsführungsbeschluss), wie «Datum und Zeit der Verletzung» (Formular 470). eCH-0147/eCH-0090 eventDate (dateTime) sind GEVER-/sedex-Umschlagköpfe, nicht passender.",
+   "feld": "Datum und Zeit",
+   "standard": "eCH-0058",
+   "element": "eventDate"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Kalenderdatum der Sitzung = Datum des Ereignisses (Beschluss), das die Handelsregistermutation auslöst; eCH-0058 eventDate (headerType, eventDateType = xs:date), nicht messageDate (Zeitpunkt der Meldung); wie «Ereignisdatum» (261) und «Datum der Kontrolle» (469).",
+   "elternfeld": "Datum und Zeit",
+   "teilfeld": "Datum",
+   "standard": "eCH-0058",
+   "element": "eventDate"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Uhrzeit des Sitzungsbeginns. Ganzer Katalog nach time/Time/dateTime/meeting/session durchsucht: eCH-0058 eventDate nur xs:date, messageDate = Meldungszeitpunkt; eCH-0147/0078/0090 eventDate/messageDate sind Zeitstempel von Nachrichtenköpfen, eCH-0155 timeOfVoting = Stimmabgabe, eCH-0099 eventTime (xs:date, Statistiklieferung), eCH-0085/0212/0215 Timestamps betreffen Register-Vorgänge. Kein Element für Sitzungszeit; deckungsgleich mit propagiertem «Beginn» (kein_standard) in 553/557/569.",
+   "elternfeld": "Datum und Zeit",
+   "teilfeld": "Zeit"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Propagiertes kein_standard bestätigt: Ort, an dem die Sitzung der Geschäftsführung stattfindet (Sitzungsort, keine Postadresse, kein Sitz der Gesellschaft). Katalog nach place/location/venue durchsucht: nur Heimat-, Geburts-, Todes-, Heirats-, Arbeitsort (eCH-0011/0020/0021/0119) und Unternehmensadressen (eCH-0098/0108) — kein Versammlungs-/Sitzungsort.",
+   "feld": "Ort"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Einfeldige Angabe des Namens der vorsitzenden natürlichen Person (Definition: «Name der Person, welche … den Vorsitz übernimmt»); Name → eCH-0044 officialName (personIdentificationType), wie «Präsident/in» (279). Für die Rolle «Vorsitz» selbst gibt es kein Element (eCH-0276 chairmanOfTheBoardOfDirectors ist ein Bilanz-/Steuerfeld, eCH-0229 role nur president/executive/responsibleForAccounting).",
+   "feld": "Vorsitz",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Name der vom Vorsitz als Protokollführer bezeichneten natürlichen Person; reine Namensangabe → eCH-0044 officialName (personIdentificationType).",
+   "feld": "Protokoll",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Namen der weiteren anwesenden Mitglieder der Geschäftsführung; je Eintrag eine Namensangabe einer natürlichen Person → eCH-0044 officialName. Die Anwesenheit als solche hat kein Element.",
+   "feld": "Neben ihm/ihr sind anwesend",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Auswahl der Art der erteilten Zeichnungsberechtigung (Einzelunterschrift / Kollektivunterschrift zu zweien). Gesucht in eCH-0098, 0108, 0116, 0148, 0229 (role: administrativeBodyRoleType), 0276, 0261, 0044, 0011, 0021 sowie katalogweit nach sign/authori/represent/procura/power/function/role: kein Element für Zeichnungsart; deckungsgleich mit «Art der Zeichnungsberechtigung» (319, 322–325) und «Zeichnungsberechtigung»-Teilen (308, 310, 311, 312) = kein_standard.",
+   "feld": "Erteilung einer Zeichnungsberechtigung"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Zusammengesetzte Personenangabe (Name, von, in) der Person, der die Zeichnungsberechtigung erteilt wird; Container eCH-0044 personIdentification, wie «Weitere Zeichnungsberechtigte» (307, 317) und «Weitere zeichnungsberechtigte Personen» (310, 312, 361).",
+   "feld": "Folgender Person (Erteilung einer Zeichnungsberechtigung)",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Paar (berechtigte Person, Name) = Name der natürlichen Person → eCH-0044 officialName (personIdentificationType).",
+   "elternfeld": "Folgender Person (Erteilung einer Zeichnungsberechtigung)",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«von» = nach Handelsregisterpraxis Heimatort bzw. bei Ausländern Staatsangehörigkeit; eCH-0011 originName (placeOfOriginType), häufigste Zuordnung für «Heimatort» (30x) und «Heimatort / Staatsangehörigkeit».",
+   "elternfeld": "Folgender Person (Erteilung einer Zeichnungsberechtigung)",
+   "teilfeld": "von",
+   "standard": "eCH-0011",
+   "element": "originName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«in» = aktueller Wohnort der Person; eCH-0010 town (addressInformationType), wie «Wohnort» (35x).",
+   "elternfeld": "Folgender Person (Erteilung einer Zeichnungsberechtigung)",
+   "teilfeld": "in",
+   "standard": "eCH-0010",
+   "element": "town"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Auswahl der Art der entzogenen Zeichnungsberechtigung (Einzelunterschrift / Kollektivunterschrift zu zweien). Gleiche katalogweite Suche wie bei der Erteilung (eCH-0098, 0108, 0116, 0148, 0229, 0276, 0261, 0044, 0011, 0021; sign/authori/represent/procura/power/function/role): kein Element für Zeichnungsart.",
+   "feld": "Entziehung einer Zeichnungsberechtigung"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Zusammengesetzte Personenangabe (Name, von, in) der Person, der die Zeichnungsberechtigung entzogen wird; Container eCH-0044 personIdentification, wie «Löschung von Zeichnungsberechtigten» (362) und «Ausgeschiedene Personen und erloschene Unterschriften» (308, 311).",
+   "feld": "Folgender Person (Entziehung einer Zeichnungsberechtigung)",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name der Person → eCH-0044 officialName; der Name bleibt aktuell, nur die Berechtigung wird entzogen.",
+   "elternfeld": "Folgender Person (Entziehung einer Zeichnungsberechtigung)",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«von» = Heimatort bzw. Staatsangehörigkeit der Person (aktuelle Identifikationsangabe, kein früherer Wert); eCH-0011 originName (placeOfOriginType).",
+   "elternfeld": "Folgender Person (Entziehung einer Zeichnungsberechtigung)",
+   "teilfeld": "von",
+   "standard": "eCH-0011",
+   "element": "originName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«in» = aktueller Wohnort der Person (identifiziert die Person; entzogen wird nur die Berechtigung, nicht der Wohnort); eCH-0010 town (addressInformationType).",
+   "elternfeld": "Folgender Person (Entziehung einer Zeichnungsberechtigung)",
+   "teilfeld": "in",
+   "standard": "eCH-0010",
+   "element": "town"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freitext zum Traktandum «Verschiedenes» eines Sitzungsprotokolls. Katalog nach Protokoll/Sitzung/Beschluss/remark/comment/minute/protocol durchsucht: eCH-0058 comment ist Meldungskopf-Kommentar, eCH-0039 betrifft Dossier-/Dokument-Metadaten, eCH-0207 ohne Elemente; kein Element für Protokollinhalte von Gesellschaftsorganen.",
+   "feld": "Verschiedenes"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Eigenhändige Unterschrift der vorsitzenden Person: keine Unterschrift als Datenelement im Katalog (eCH-0039 signer ist Signatur-Token von Dokumentmetadaten; eCH-0091/0220/0230/0250/0282 ohne Elemente); deckungsgleich mit allen 15 Unterschrifts-Komposita mit Teilen (kein_standard). Die Klarschrift-Teile werden einzeln zugeordnet.",
+   "feld": "Vorsitzender"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Klarschrift NAME (Familienname) der vorsitzenden Person → eCH-0044 officialName, wie Namensteile unter Unterschriften (Formulare 9, 313, 314, 323).",
+   "elternfeld": "Vorsitzender",
+   "teilfeld": "NAME",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Klarschrift Vorname der vorsitzenden Person → eCH-0044 firstName (personIdentificationType).",
+   "elternfeld": "Vorsitzender",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Eigenhändige Unterschrift der protokollführenden Person: kein Unterschrift-Element im Katalog (eCH-0039 signer = Dokument-Signaturtoken; Signaturstandards 0091/0220/0230/0250/0282 ohne Elemente); wie die übrigen Unterschrifts-Komposita kein_standard.",
+   "feld": "Protokollführer"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Klarschrift NAME (Familienname) der protokollführenden Person → eCH-0044 officialName.",
+   "elternfeld": "Protokollführer",
+   "teilfeld": "NAME",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Klarschrift Vorname der protokollführenden Person → eCH-0044 firstName.",
+   "elternfeld": "Protokollführer",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  }
+ ]
+}

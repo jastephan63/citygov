@@ -1,0 +1,132 @@
+{
+ "form_id": 575,
+ "mappings": [
+  {
+   "data_field": "Schuldner",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Adresse des Betreibungsamtes",
+   "cites": [
+    {
+     "cref": "SHR 281.101",
+     "article_no": "§ 1",
+     "beleg": "Der Kanton Schaffhausen besteht aus einem einzigen Betreibungskreis. Das Betreibungsamt hat seinen Sitz in Schaffhausen."
+    },
+    {
+     "cref": "SHR 173.200",
+     "article_no": "Art. 103",
+     "beleg": "Der Kanton Schaffhausen besteht aus höchstens vier Betreibungskreisen mit je einem Betreibungsamt. Dieses hat seinen Sitz am Kreishauptort."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Geburtsdatum (falls bekannt)",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Gläubiger",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Zahlungsverbindung",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "IBAN",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "vertreten durch",
+   "cites": [
+    {
+     "cref": "SHR 173.200",
+     "article_no": "Art. 107",
+     "beleg": "Die gewerbsmässige Vertretung der Beteiligten in Schuldbetreibungs- und Konkurssachen bedarf keiner Bewilligung."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Für Rückfragen",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Es wird die Fortsetzung auf folgender Grundlage verlangt",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "zugestellt am",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "in Betreibung Nr.",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Forderung",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Weitere Forderungen",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Bemerkungen",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Ihre Fallreferenz (falls vorhanden)",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Datum",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Unterschrift",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Doppel des Zahlungsbefehls im Original",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Verlustschein oder Pfandausfallschein im Original",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Ein mit Rechtskraftbescheinigung versehener Entscheid",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Ausweis über die Kosten des Rechtsöffnungsverfahrens",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Nachweis, dass eine Aberkennungsklage nicht erhoben, zurückgezogen oder rechtskräftig abgewiesen worden ist",
+   "cites": [],
+   "over_collection": false
+  }
+ ]
+}

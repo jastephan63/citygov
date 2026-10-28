@@ -1,0 +1,293 @@
+{
+ "hinweis": "eCH-Urteile Formular 556, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/556 --nur-offene=556",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Zusammengesetzte Angabe Firma + Sitz der GmbH, deren Stammanteile abgetreten werden; Container eCH-0098 organisation (organisationType), gleich wie «Firma und Sitz» in den Formularen 315 und 318. Element im Katalog verbatim vorhanden.",
+   "feld": "GmbH, mit Sitz in",
+   "standard": "eCH-0098",
+   "element": "organisation"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Firma der GmbH = Name der Organisation (organisationIdentificationType), wie «Firma» in 310/315/316/317. Die Rechtsform «GmbH» ist vorgedruckt und wird nicht erfragt; die Wiederholungen des GmbH-Namens in Ziffer I, II und IV betreffen dieselbe Angabe.",
+   "elternfeld": "GmbH, mit Sitz in",
+   "teilfeld": "GmbH",
+   "standard": "eCH-0098",
+   "element": "organisationName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Sitz der Gesellschaft = Sitzgemeinde (swissHeadquarterType), so wie «Sitz» in den übrigen HR-Formularen zugeordnet ist (26x, u.a. 308–316, 315 «Firma und Sitz»/«Sitz»).",
+   "elternfeld": "GmbH, mit Sitz in",
+   "teilfeld": "mit Sitz in",
+   "standard": "eCH-0098",
+   "element": "headquarterMunicipality"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Natürliche Person (Formular verlangt «Vorname Name») mit Heimatort und Wohnort; Container eCH-0011 person (personType, enthält personIdentification und placeOfOrigin), wie «Gründer / Stammanteilzeichnung» (Formular 317).",
+   "feld": "Veräusserer/-in",
+   "standard": "eCH-0011",
+   "element": "person"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname der veräussernden Person → eCH-0044 firstName (personIdentificationType).",
+   "elternfeld": "Veräusserer/-in",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name der veräussernden Person → eCH-0044 officialName (personIdentificationType).",
+   "elternfeld": "Veräusserer/-in",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«von» in der Vertragsformel «Name, von X, in Y» ist der Heimatort (Felddefinition: Heimatort «von») → eCH-0011 originName (placeOfOriginType), wie 30 weitere Heimatort-Teile.",
+   "elternfeld": "Veräusserer/-in",
+   "teilfeld": "von",
+   "standard": "eCH-0011",
+   "element": "originName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«in» ist der aktuelle Wohnort (Felddefinition: Wohnort «in») → eCH-0010 town (addressInformationType), die übliche Zuordnung für Wohnort-Teile (37x).",
+   "elternfeld": "Veräusserer/-in",
+   "teilfeld": "in",
+   "standard": "eCH-0010",
+   "element": "town"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Natürliche Person («Vorname Name») mit Heimatort und Wohnort; Container eCH-0011 person (personType), wie beim Veräusserer und in Formular 317.",
+   "feld": "Erwerber/-in",
+   "standard": "eCH-0011",
+   "element": "person"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname der erwerbenden Person → eCH-0044 firstName.",
+   "elternfeld": "Erwerber/-in",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name der erwerbenden Person → eCH-0044 officialName.",
+   "elternfeld": "Erwerber/-in",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«von» = Heimatort der erwerbenden Person → eCH-0011 originName (placeOfOriginType).",
+   "elternfeld": "Erwerber/-in",
+   "teilfeld": "von",
+   "standard": "eCH-0011",
+   "element": "originName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«in» = aktueller Wohnort der erwerbenden Person → eCH-0010 town (addressInformationType).",
+   "elternfeld": "Erwerber/-in",
+   "teilfeld": "in",
+   "standard": "eCH-0010",
+   "element": "town"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Anzahl, Nennwert und Liberierung der abgetretenen Stammanteile; Container eCH-0276 shareholdersOrAssociates (Typ shareholdersOrAssociatesType mit numberOfSharesUnits, nominalValuePerShare, currency), passend zu den Teilen.",
+   "feld": "Stammanteil(e)",
+   "standard": "eCH-0276",
+   "element": "shareholdersOrAssociates"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Anzahl der abgetretenen Stammanteile («n Stammanteil(e)») → numberOfSharesUnits (shareholdersOrAssociatesType), wie «Anzahl gezeichnete Stammanteile» und «Anzahl Stammanteile» in Formular 317.",
+   "elternfeld": "Stammanteil(e)",
+   "teilfeld": "Stammanteil(e)",
+   "standard": "eCH-0276",
+   "element": "numberOfSharesUnits"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«n Stammanteile zu CHF x» = Nennwert je Stammanteil → nominalValuePerShare, wie «Nennwert je Stammanteil (CHF)» / «Wert je Stammanteil (CHF)» in Formular 317.",
+   "elternfeld": "Stammanteil(e)",
+   "teilfeld": "zu CHF",
+   "standard": "eCH-0276",
+   "element": "nominalValuePerShare"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Liberierungsgrad des Anteils in Prozent. Ganzer Katalog durchsucht nach *paid*, *liber*, *percent*, *apital*, *share*, *nominal*: eCH-0229/0276 paidInCapitalOrNetAsset ist ein Kapitalbetrag, eCH-0229 percentageOfPaidInCapital ein Gewinnverwendungssatz, eCH-0276 sharesInPercentage die Beteiligungsquote, eCH-0276 unpaidShareCapital ein Bilanzposten. Kein Element für den Liberierungsprozentsatz eines Anteils.",
+   "elternfeld": "Stammanteil(e)",
+   "teilfeld": "% liberiert"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Kaufpreis in CHF für die erworbenen Stammanteile. Katalog nach *price*/*consideration* durchsucht: einziges Element für den Kaufpreis von Gesellschaftsanteilen ist eCH-0276 acquisitionType …PurchasePriceForTheSharesAcquired…; eCH-0178 purchasePrice betrifft Grundstückskäufe, eCH-0278 purchasePrice private Vermögenswerte, eCH-0119 nur Fahrzeuge. Element verbatim vorhanden.",
+   "feld": "Preis",
+   "standard": "eCH-0276",
+   "element": "acquisitionDuringTheTaxPeriodPurchasePriceForTheSharesAcquiredInTheTaxPeriod"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Statutarische Nachschusspflicht (Artikel + Betrag). Kein Container; beide Teile ohne Standard. Katalog durchsucht (*statut*, *article*, *additional*, *supplement*, *contribut*, *obligat*, *liabil*): nur Bilanz-/Steuerposten (eCH-0276 *Liabilities*) und eCH-0178 additionalPaymentItem (Grundstückkauf), nichts Passendes.",
+   "feld": "Nachschusspflichten"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Artikelnummer in den Statuten. Ganzer Katalog nach *article*, *paragraph*, *statut*, *legalBasis*, *legalRef*, *legalGround* durchsucht: eCH-0259 legalBasis betrifft Gebühren, eCH-0134/0178/0209 legalGroundExhibit Grundbuchbelege. Kein Element für einen Statutenverweis; die übrigen «Art. der Statuten»-Teile sind ebenfalls ohne Standard.",
+   "elternfeld": "Nachschusspflichten",
+   "teilfeld": "Art. der Statuten"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Betrag der Nachschusspflicht für den zu veräussernden Stammanteil. Im Katalog kein Element dafür (gesucht: *additional*, *supplement*, *contribut*, *obligat*, *liabil* in eCH-0098/0108/0229/0276/0178 und gesamt). eCH-0276 unpaidShareCapital ist nicht einbezahltes Kapital, eCH-0178 additionalPaymentItem eine Zahlung beim Grundstückkauf.",
+   "elternfeld": "Nachschusspflichten",
+   "teilfeld": "Nachschusspflicht CHF"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Statutarische Nebenleistungspflichten (Artikel + Beschreibung). Katalog durchsucht (*ancillar*, *obligat*, *statut*): eCH-0276 *AncillaryOperations* betrifft Nebenbetriebserträge, eCH-0211 ancillaryClauses Bauauflagen. Kein Standard.",
+   "feld": "Nebenleistungspflichten"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Artikelnummer der Statuten. Im ganzen Katalog kein Element für einen Statutenartikel (gesucht: *article*, *paragraph*, *statut*, *legalBasis*, *legalRef*).",
+   "elternfeld": "Nebenleistungspflichten",
+   "teilfeld": "Art. der Statuten"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Freitext zu Gegenstand und Umfang der Nebenleistungspflichten. Im Katalog kein Element für gesellschaftsrechtliche Nebenleistungspflichten (*ancillar*, *obligat* ergeben nur Steuer-/Bauelemente).",
+   "elternfeld": "Nebenleistungspflichten",
+   "teilfeld": "Nebenleistungspflichten"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Statutarisches Konkurrenzverbot (Artikel + Tätigkeiten). Katalog durchsucht (*compet*, *restraint*, *prohibit*, *statut*): kein Element.",
+   "feld": "Konkurrenzverbote für die Gesellschafter"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Artikelnummer der Statuten. Im ganzen Katalog kein Element für einen Statutenartikel.",
+   "elternfeld": "Konkurrenzverbote für die Gesellschafter",
+   "teilfeld": "Art. der Statuten"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Freitext zu den verbotenen Tätigkeiten. Kein Element (eCH-0098/0108 activityDescription ist der Gesellschaftszweck, kein Verbot; *compet* ergibt keinen Treffer).",
+   "elternfeld": "Konkurrenzverbote für die Gesellschafter",
+   "teilfeld": "konkurrenzierende Tätigkeiten"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Statutarische Erwerbsrechte an Stammanteilen. Katalog durchsucht (*preempt*, *firstRefusal*, *option*, *right*): eCH-0129/0134/0178 Rechte betreffen Grundstücke, eCH-0165 option Privilegien. Kein Standard.",
+   "feld": "Vorhand-, Vorkaufs- und Kaufsrechte der Gesellschafter oder der Gesellschaft"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Artikelnummer der Statuten. Im ganzen Katalog kein Element für einen Statutenartikel.",
+   "elternfeld": "Vorhand-, Vorkaufs- und Kaufsrechte der Gesellschafter oder der Gesellschaft",
+   "teilfeld": "Art. der Statuten"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Freitext zu den Vorhand-, Vorkaufs- und Kaufsrechten an Stammanteilen. Die Rechte-Elemente im Katalog (eCH-0129, eCH-0134, eCH-0178) gelten nur für Grundstücke.",
+   "elternfeld": "Vorhand-, Vorkaufs- und Kaufsrechte der Gesellschafter oder der Gesellschaft",
+   "teilfeld": "Vorhand-, Vorkaufs- und Kaufsrechte"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Statutarische Konventionalstrafen (Artikel + Umschreibung). Katalog durchsucht (*penalt*, *fine*, *statut*): kein Element.",
+   "feld": "Konventionalstrafen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Artikelnummer der Statuten. Im ganzen Katalog kein Element für einen Statutenartikel.",
+   "elternfeld": "Konventionalstrafen",
+   "teilfeld": "Art. der Statuten"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Freitext zu den Konventionalstrafen. Im Katalog kein Element (*penalt* ergibt keinen Treffer).",
+   "elternfeld": "Konventionalstrafen",
+   "teilfeld": "Konventionalstrafen"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Bestätigt das propagierte kein_standard (ech_herkunft «propagiert (Name 17x geprüft)»): Ort und Datum der Vertragsunterzeichnung. Kein eCH-Element dafür (eCH-0039 openingDate/signer betreffen Dossiereröffnung bzw. Unterzeichnerkennung, eCH-0260 signaturesType nur Bestätigungs-Booleans). Abgedeckt durch eSH-0001 placeAndDate.",
+   "feld": "Ort und Datum"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Ort der Unterzeichnung, kein Adressteil; kein eCH-Element für den Unterzeichnungsort (Katalog nach *signat*/*sign* durchsucht); gleich wie die übrigen 16 geprüften «Ort und Datum»-Teile «Ort».",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Datum der Unterzeichnung; kein eCH-Element für das Unterzeichnungsdatum (eCH-0039 openingDate ist die Dossiereröffnung); gleich wie die übrigen 16 geprüften «Datum»-Teile.",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Eigenhändige Unterschrift (data_type signature; der Name darunter ist bereits im Feld «Veräusserer/-in» erfasst). Katalog durchsucht (*signat*): eCH-0260 signaturesType nur Bestätigungs-Booleans, eCH-0039 signer nur eine Kennung. Kein Element, gleich wie die 88 bereits geprüften Unterschriftsfelder.",
+   "feld": "Der/die Veräusserer/-in"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Eigenhändige Unterschrift der erwerbenden Person (data_type signature). Im Katalog kein Element für eine Unterschrift (*signat* durchsucht: eCH-0260 nur Booleans, eCH-0039 signer nur eine Kennung).",
+   "feld": "Der/die Erwerber/-in"
+  }
+ ]
+}

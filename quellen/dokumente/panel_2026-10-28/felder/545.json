@@ -1,0 +1,94 @@
+{
+ "form_id": 545,
+ "data_fields": [
+  {
+   "name": "Personalien",
+   "definition": "Name, Geburtsdatum, Adresse und Kontaktangaben der jugendlichen Person (10–16 Jahre), für die das Angelfischer-Patent bestellt wird.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Familienname",
+    "Vorname",
+    "Geburtsdatum",
+    "Strasse / Nr.",
+    "PLZ / Ort",
+    "Telefon",
+    "E-Mail"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Name und Vorname der Eltern",
+   "definition": "Name und Vorname der Eltern der jugendlichen Person, auf einer einzigen Linie erfragt.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Rheinuferstrecken",
+   "definition": "Gewünschte Rheinuferstrecke(n), für die das Patent gelten soll; die Gebühr fällt je Strecke an.",
+   "data_type": "multiselect",
+   "required": true,
+   "allowed_values": [
+    "Steinerwasser",
+    "Rheinstrecke Schaffhausen",
+    "Rheinfallbecken"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Dauer",
+   "definition": "Gewünschte Geltungsdauer bzw. Kartenart des Patents (Saisonkarte Fr. 20.00, Verlängerung Fr. 15.00, Jahreskarte Fr. 35.00, je Strecke).",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "Saisonkarte 1. Mai bis 30. September",
+    "Verlängerung Saisonkarte 1. Oktober bis 31. Dezember",
+    "Jahreskarte von 1. Mai bis 31. Dezember"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Saisonkarte (Beilage bei Verlängerung)",
+   "definition": "Bei der Wahl «Verlängerung Saisonkarte» ist die bestehende Saisonkarte unbedingt mitzuschicken.",
+   "data_type": "attachment",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Jungfischer-Brevet oder SaNa-Ausweis",
+   "definition": "Der ersten Bestellung beizulegendes Jungfischer-Brevet oder SaNa-Ausweis als Sachkundenachweis.",
+   "data_type": "attachment",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Datum",
+   "definition": "Kalenderdatum der Unterzeichnung der Bestellung.",
+   "data_type": "date",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Unterschrift eines Erziehungsberechtigten",
+   "definition": "Unterschrift einer erziehungsberechtigten Person, die die Bestellung für die jugendliche Person unterzeichnet.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  }
+ ],
+ "hinweis": "Korrekturen: keine. Ich habe den Entwurf Zeile für Zeile mit dem Original-PDF (1 Seite) verglichen. Alle Angaben sind vorhanden und stehen in der Reihenfolge des Formulars. Die Teilfelder der Personalien entsprechen genau den gedruckten Zeilen: Familienname; Vorname und Geburtsdatum auf einer Zeile, aber als zwei Beschriftungen; Strasse / Nr.; PLZ / Ort; Telefon; E-Mail. «Strasse / Nr.» und «PLZ / Ort» sind je eine gedruckte Zeile und bleiben deshalb je ein Teilfeld. Eine Überschrift «Personalien» druckt das Formular nicht. Der Name folgt der Schwester-Formular 370 (Erwachsene). «Name und Vorname der Eltern» ist eine einzige gedruckte Linie und bleibt deshalb text. Formulare 242 und 293 handhaben das gleich. Bei «Dauer» schliessen sich die drei Ankreuzfelder gegenseitig aus, deshalb enum. Die Gebühren (Fr. 20.00 / 15.00 / 35.00, «Gebühr je Strecke») sind Hinweise und keine Felder. Die beiden Beilagen sind nur bedingt verlangt: die Saisonkarte nur bei «Verlängerung Saisonkarte» («Bitte unbedingt Saisonkarte mitschicken!»), das Brevet bzw. der SaNa-Ausweis nur bei der ersten Bestellung. Das Formular kennzeichnet sie aber nicht als freiwillig, deshalb gilt required=true. Die Bedingung steht in der Definition. Abweichung zum Schwester-Formular 370: Dort sind beide Beilagen als required=0 erfasst, und Datum sowie Unterschrift fehlen. Das ist eine Einheitlichkeitsfrage für 370 und keine Korrektur an 545. Keine Felder sind: die Hinweisliste (Altersgrenze «Wer vor dem 1. Mai seinen 16. Geburtstag feiert, gilt als Erwachsener», Bestellung per E-Mail, Telefonnummer für Fragen, kein Bargeld / Rechnung folgt, weitere Formulare am virtuellen Schalter) und der Amtskasten «INTERN» mit Nr., Beleg, Visum und Datum, den nur die Verwaltung ausfüllt. Es gibt nur eine Unterschriftslinie («Unterschrift eines Erziehungsberechtigten»). Eine Unterschrift der jugendlichen Person ist nicht vorgesehen."
+}

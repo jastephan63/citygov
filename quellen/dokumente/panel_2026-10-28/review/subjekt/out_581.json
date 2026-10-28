@@ -1,0 +1,28 @@
+{
+ "urteile": [
+  {
+   "id": 7202,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Name, Vorname der Athletin bzw. des Athleten, um dessen sportliche Biografie es geht; eindeutig eine einzelne natürliche Person."
+  },
+  {
+   "id": 7214,
+   "urteil": "bestaetigt",
+   "subjekt": "sache",
+   "grund": "Trainingsort ist eine Orts- bzw. Anlageangabe zum Training, keine Personalie einer Person oder Organisation."
+  },
+  {
+   "id": 7215,
+   "urteil": "bestaetigt",
+   "subjekt": "gemischt",
+   "grund": "«Kontaktperson Verein» handelt in Funktion für den Verein; Strasse/Plz und «Tel. Geschäft» können Vereinsangaben sein. Wie andere Kontaktpersonen von Firmen konservativ gemischt, keine Registervorbelegung."
+  },
+  {
+   "id": 7216,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Trainerin/Trainer als einzelne Person mit Name, Strasse, «Tel. Privat» und E-Mail; kein Organisationsbezug im Formular, konsistent mit Feld 5019."
+  }
+ ]
+}

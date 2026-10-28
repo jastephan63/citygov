@@ -1,0 +1,131 @@
+{
+ "form_id": 542,
+ "data_fields": [
+  {
+   "name": "Name und Adresse der gesuchstellenden Person oder der Organisation",
+   "definition": "Name und Adresse der Person oder Organisation, die um die nautische Bewilligung ersucht.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name",
+    "Adresse"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Verantwortliche Person",
+   "definition": "Name, Adresse und Erreichbarkeit der für die nautische Veranstaltung verantwortlichen Person, einschliesslich ihrer telefonischen Erreichbarkeit während der Veranstaltung.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name",
+    "Adresse",
+    "PLZ / Ort",
+    "Telefonische Erreichbarkeit",
+    "Telefonische Erreichbarkeit während der Veranstaltung",
+    "E-Mail"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Art der Veranstaltung",
+   "definition": "Beschreibung, um welche Art von nautischer Veranstaltung es sich handelt.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Durchführungsdatum",
+   "definition": "Kalenderdatum, an dem die nautische Veranstaltung durchgeführt wird.",
+   "data_type": "date",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Uhrzeit",
+   "definition": "Uhrzeit, zu der die nautische Veranstaltung stattfindet.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Veranstaltungsort",
+   "definition": "Ort beziehungsweise Gewässerabschnitt, an dem die nautische Veranstaltung stattfindet.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "erwartete Anzahl Boote",
+   "definition": "Anzahl Boote, die an der Veranstaltung voraussichtlich teilnehmen.",
+   "data_type": "number",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "erwartete Teilnehmerzahl",
+   "definition": "Anzahl Personen, die an der Veranstaltung voraussichtlich teilnehmen.",
+   "data_type": "number",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ort und Datum",
+   "definition": "Ort und Kalenderdatum der Unterzeichnung des Gesuchs.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Ort",
+    "Datum"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Unterschrift des Gesuchstellers",
+   "definition": "Unterschrift des Gesuchstellers, also der gesuchstellenden Person oder für die gesuchstellende Organisation.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Beilagen",
+   "definition": "Checkliste der Unterlagen, die dem Gesuch zwingend beizulegen sind, damit es geprüft werden kann.",
+   "data_type": "multiselect",
+   "required": true,
+   "allowed_values": [
+    "Planskizze mit Standort / Route",
+    "Sicherheitsdispositiv das über die Risiken und Sicherheitsmassnahmen der Veranstaltung Auskunft gibt",
+    "Versicherungsnachweis oder Deckungsbestätigung gemäss Art. 155 BSV (SR 747.201.1), welche belegt, dass der Veranstalter gegen Haftpflichtansprüche bis zu einem Betrag von mindestens CHF 5 Mio. versichert ist"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Sicherheitszertifikat",
+   "definition": "Sicherheitszertifikat der Veranstaltung, das dem Gesuch laut Merkblatt (Seite 2 des Formulars, «Was muss ein Gesuch enthalten?») beizulegen ist, sofern eines vorhanden ist.",
+   "data_type": "attachment",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  }
+ ],
+ "hinweis": "Korrekturen: (1) Neu: Feld «Sicherheitszertifikat» (attachment, required=false). Das Merkblatt auf Seite 2 derselben Datei verlangt es unter «Einem Gesuch sind folgende Unterlagen beizulegen» als «Sicherheitszertifikat, falls vorhanden». Auf der Beilagen-Checkliste von Seite 1 fehlt es. Es ist das einzige Dokument aus dem Merkblatt, das auf Seite 1 nicht schon erfasst ist. (2) Definition von «Unterschrift des Gesuchstellers» geändert: Der Ausdruck «zeichnungsberechtigte Person der Organisation» steht nicht auf dem Formular und wurde entfernt. Es gibt nur eine Unterschriftslinie, also keine zweite unterzeichnende Person. Alle übrigen Felder sind unverändert übernommen; Reihenfolge, Namen, Typen und required wurden gegen das PDF geprüft. Bewusst beibehalten: Bei «Name und Adresse der gesuchstellenden Person oder der Organisation» ist ein Feld mit drei Leerzeilen gedruckt; die Teile «Name» und «Adresse» nennt die Beschriftung selbst. Bei «Verantwortliche Person» ist die erste Zeile mit «Verantwortliche Person» beschriftet und fragt nach dem Namen. Den Teil «Name» trennt das Formular nicht in Name und Vorname auf. Das zweite Telefonfeld ist auf derselben Zeile nur mit «während der Veranstaltung» beschriftet; darum heisst der Teil «Telefonische Erreichbarkeit während der Veranstaltung». «Uhrzeit» ist text, weil kein Format gedruckt ist. Bei der dritten Beilage steht ein fett gedruckter Klammerzusatz: «aus dem Dokument muss insbesondere hervorgehen, dass der betreffende Anlass oder Anlässe dieser Art zum Zeitpunkt der Durchführung versichert sind». Er ist eine Anweisung und gehört nicht zum Auswahlwert. Keine Felder sind: der Briefkopf des Strassenverkehrs- und Schifffahrtsamts, der Rechtshinweis «Gemäss Art. 72 BSV (SR 747.201.1) sowie BSO 11.05 (SR 747.223.1)» und die Einreichfrist (mindestens zwei Monate vor der Veranstaltung). Auch das Merkblatt auf Seite 2 ist kein Feld: Es nennt die Rechtsgrundlagen Art. 27 BSG / Art. 72 BSV und die bewilligungspflichtigen Veranstaltungen. Es enthält auch eine eigene Unterlagenliste: «Situationsplan oder Ortsbeschrieb» entspricht der Planskizze, «Sicherheits- und Rettungsdispositiv» dem Sicherheitsdispositiv, «Hauptverantwortliche Person» der Verantwortlichen Person, dazu der Versicherungsnachweis. Ebenfalls kein Feld ist die Prüfung der Floss-Konstruktion durch das Strassenverkehrsamt (vks-Richtlinie Nr. 140) bei Flossfahrten; das ist ein Verfahrensschritt, kein Dokument. Ein Feld «Vom Amt auszufüllen» gibt es nicht."
+}

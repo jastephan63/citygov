@@ -1,0 +1,185 @@
+{
+ "form_id": 553,
+ "data_fields": [
+  {
+   "name": "Firma",
+   "definition": "Firma (Name) der Aktiengesellschaft, deren ausserordentliche Generalversammlung protokolliert wird.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Sitz",
+   "definition": "Sitz (Gemeinde) der Aktiengesellschaft gemäss Handelsregister.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ort",
+   "definition": "Ort, an dem die ausserordentliche Generalversammlung stattfindet.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Datum",
+   "definition": "Kalendertag, an dem die ausserordentliche Generalversammlung stattfindet.",
+   "data_type": "date",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Beginn",
+   "definition": "Uhrzeit, zu der die Versammlung beginnt.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "Uhr"
+  },
+  {
+   "name": "Vorsitz",
+   "definition": "Personalien der Person aus dem Verwaltungsrat, die die Versammlung eröffnet und den Vorsitz übernimmt (Kopfzeile «Vorsitz», Abschnitt I und Klarschrift unter der Unterschrift).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Herr/Frau",
+    "Vorname",
+    "Name",
+    "Heimatort",
+    "PLZ Ort",
+    "Strasse Nr."
+   ],
+   "format": ""
+  },
+  {
+   "name": "Protokollführer",
+   "definition": "Personalien des Mitglieds des Verwaltungsrates, das als Protokollführer/in amtet (Kopfzeile «Protokollführer», Abschnitt I und Klarschrift unter der Unterschrift).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Herr/Frau",
+    "Vorname",
+    "Name",
+    "Heimatort",
+    "PLZ Ort",
+    "Strasse Nr."
+   ],
+   "format": ""
+  },
+  {
+   "name": "Anwesend",
+   "definition": "Angabe der an der Versammlung anwesenden oder vertretenen Personen (Aktionärinnen und Aktionäre bzw. deren Vertretung).",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Präsident/in oder Mitglied des Verwaltungsrates",
+   "definition": "Funktion im Verwaltungsrat, in der die vorsitzende Person die Versammlung eröffnet.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "Präsident/in",
+    "Mitglied des Verwaltungsrates"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Der/Die Vorsitzende stellt fest",
+   "definition": "Feststellung zur Anwesenheit des Verwaltungsrates: entweder sind alle Mitglieder anwesend, oder die nicht anwesenden Mitglieder haben auf ihr Recht zur Teilnahme und Antragstellung verzichtet (Nichtzutreffendes entfernen).",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "alle Mitglieder des Verwaltungsrates sind anwesend",
+    "das nicht anwesende Mitglied/die nicht anwesenden Mitglieder des Verwaltungsrates hat/haben auf sein/ihr Recht verzichtet, an der Versammlung teilzunehmen und Anträge zu stellen"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Aktienkapital",
+   "definition": "Betrag des gesamten Aktienkapitals der Gesellschaft, das an der Universalversammlung anwesend oder vertreten ist.",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "CHF"
+  },
+  {
+   "name": "Geschäftsjahr",
+   "definition": "Geschäftsjahr, ab dem die Versammlung auf eine Revisionsstelle verzichtet.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Bisherige Revisionsstelle",
+   "definition": "Name und Sitz der bisherigen Revisionsstelle, die unter Verdankung der geleisteten Dienste abgewählt wird.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name",
+    "Sitz"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Ende der Versammlung",
+   "definition": "Uhrzeit, zu der die Versammlung endet.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "Uhr"
+  },
+  {
+   "name": "Ort und Datum",
+   "definition": "Ort und Datum der Unterzeichnung des Protokolls.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Ort",
+    "Datum"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Der/Die Vorsitzende",
+   "definition": "Eigenhändige Unterschrift der vorsitzenden Person unter dem Protokoll.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Die Protokollführer/in",
+   "definition": "Eigenhändige Unterschrift der protokollführenden Person unter dem Protokoll.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  }
+ ],
+ "hinweis": "Korrekturen: keine. Geprüft wurde gegen den Text und gegen die Original-DOCX: 8 FORMTEXT-Felder (Ort, Datum, Beginn, Vorsitz, Protokollführer, Anwesend, Aktienkapital CHF, Geschäftsjahr, Ende der Versammlung) sowie gelb markierte Platzhalter in eckigen Klammern ([Firma], [Sitz], Personalien in Abschnitt I, [NAME, SITZ], [Ort], [Datum], Klarschrift «Vorname Name» unter beiden Unterschriftslinien). Kopf- und Fusszeilen sind leer. Jede Angabe ist erfasst; es gibt keine Beilagen-Checkliste, keine Tabelle und kein Amtsfeld. Entscheide, die bewusst so belassen wurden: (1) Die Kopfzeilen «Vorsitz»/«Protokollführer», die Personalien in Abschnitt I und die Klarschrift «Vorname Name» unter der Unterschrift betreffen jeweils dieselbe Person und bilden deshalb je ein Composite. (2) «[PLZ Ort]» und «[Strasse Nr.]» stehen im Formular als je ein Platzhalter und bleiben darum je ein Teil, wie bei den gehaltenen Formularen («PLZ, Ort»). (3) «[NAME, SITZ]» wird in Name und Sitz der Revisionsstelle aufgeteilt, weil das zwei verschiedene Angaben einer Gesellschaft sind. (4) «Herr/Frau», «Der/Die», «hat/haben» und «sein/ihr» sind grammatische Auswahlen, keine eigenen Felder. Nur Hinweise, keine Felder: der feste Text «Traktandum: Verzicht auf eine Revisionstelle»; die festen Feststellungen (keine Stimmrechts- oder Depotvertreter nach Art. 689d/689e OR; Universalversammlung konstituiert und beschlussfähig; keine Einwände); die Erläuterungen und der Beschlusstext in Abschnitt II; die Anmeldepflicht beim Handelsregister in Abschnitt III; die Anweisung «[bitte nicht Zutreffendes entfernen]». Unstimmigkeiten im Formular (nur gemeldet, nicht geändert): «Revisionstelle» im Traktandum (Tippfehler); überzählige Klammer in «[NAME, SITZ] ]unter»; doppeltes Wort «aus den den vorstehenden Beschlüssen»; in Abschnitt II steht «Der Vorsitzende», sonst «Der/Die Vorsitzende»; die Kopfzeile lautet «Protokollführer», in Abschnitt I und bei der Unterschrift «Protokollführer/in»."
+}

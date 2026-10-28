@@ -1,0 +1,1669 @@
+{
+ "form_id": 559,
+ "data_fields": [
+  {
+   "name": "Jahr",
+   "definition": "Rechnungsjahr, für welches die Spitex-Organisation das Kennzahlenset einreicht (vorausgefüllt mit 2025 und auf alle weiteren Blätter übernommen).",
+   "data_type": "number",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "ZSR-Nummer",
+   "definition": "Nummer der meldenden Spitex-Organisation im Zahlstellenregister (ZSR) für die Abrechnung mit den Krankenversicherern.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "BUR-Nummer",
+   "definition": "Nummer der meldenden Organisation im Betriebs- und Unternehmensregister (BUR) des Bundesamts für Statistik.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Organisation",
+   "definition": "Name und Kontaktangaben (E-Mail-Adresse, Telefonnummer) der meldenden Spitex-Organisation.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Organisation",
+    "E-Mail-Adresse",
+    "Telefon Nr."
+   ],
+   "format": ""
+  },
+  {
+   "name": "100 Pflegefachfrau FH",
+   "definition": "Anzahl Personen und Stellen in Vollzeitäquivalenten der Organisation mit der Qualifikation «Pflegefachfrau FH» (Code BFS Spitex 100, KORE-Gruppe 310) im Rechnungsjahr.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Personen",
+    "Stellen VZÄ"
+   ],
+   "format": "Stellen in VZÄ"
+  },
+  {
+   "name": "101 Master of Science Pflege FH",
+   "definition": "Anzahl Personen und Stellen in Vollzeitäquivalenten der Organisation mit der Qualifikation «Master of Science Pflege FH» (Code BFS Spitex 101, KORE-Gruppe 310) im Rechnungsjahr.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Personen",
+    "Stellen VZÄ"
+   ],
+   "format": "Stellen in VZÄ"
+  },
+  {
+   "name": "102 Master of Science Nursing FH",
+   "definition": "Anzahl Personen und Stellen in Vollzeitäquivalenten der Organisation mit der Qualifikation «Master of Science Nursing FH» (Code BFS Spitex 102, KORE-Gruppe 310) im Rechnungsjahr.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Personen",
+    "Stellen VZÄ"
+   ],
+   "format": "Stellen in VZÄ"
+  },
+  {
+   "name": "103 PhD Nursing Science",
+   "definition": "Anzahl Personen und Stellen in Vollzeitäquivalenten der Organisation mit der Qualifikation «PhD Nursing Science» (Code BFS Spitex 103, KORE-Gruppe 310) im Rechnungsjahr.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Personen",
+    "Stellen VZÄ"
+   ],
+   "format": "Stellen in VZÄ"
+  },
+  {
+   "name": "110 Dipl. Pflegefachfrau/-mann",
+   "definition": "Anzahl Personen und Stellen in Vollzeitäquivalenten der Organisation mit der Qualifikation «Dipl. Pflegefachfrau/-mann» (Code BFS Spitex 110, KORE-Gruppe 311) im Rechnungsjahr.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Personen",
+    "Stellen VZÄ"
+   ],
+   "format": "Stellen in VZÄ"
+  },
+  {
+   "name": "111 Krankenschwester/-pfleger Diplom II",
+   "definition": "Anzahl Personen und Stellen in Vollzeitäquivalenten der Organisation mit der Qualifikation «Krankenschwester/-pfleger Diplom II» (Code BFS Spitex 111, KORE-Gruppe 311) im Rechnungsjahr.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Personen",
+    "Stellen VZÄ"
+   ],
+   "format": "Stellen in VZÄ"
+  },
+  {
+   "name": "112 Dipl. Krankenschwester-/Pfleger AKP",
+   "definition": "Anzahl Personen und Stellen in Vollzeitäquivalenten der Organisation mit der Qualifikation «Dipl. Krankenschwester-/Pfleger AKP» (Code BFS Spitex 112, KORE-Gruppe 311) im Rechnungsjahr.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Personen",
+    "Stellen VZÄ"
+   ],
+   "format": "Stellen in VZÄ"
+  },
+  {
+   "name": "113 Hebamme",
+   "definition": "Anzahl Personen und Stellen in Vollzeitäquivalenten der Organisation mit der Qualifikation «Hebamme» (Code BFS Spitex 113, KORE-Gruppe 311) im Rechnungsjahr.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Personen",
+    "Stellen VZÄ"
+   ],
+   "format": "Stellen in VZÄ"
+  },
+  {
+   "name": "120 Pflegefachfrau DNI",
+   "definition": "Anzahl Personen und Stellen in Vollzeitäquivalenten der Organisation mit der Qualifikation «Pflegefachfrau DNI» (Code BFS Spitex 120, KORE-Gruppe 312) im Rechnungsjahr.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Personen",
+    "Stellen VZÄ"
+   ],
+   "format": "Stellen in VZÄ"
+  },
+  {
+   "name": "121 Prakt. Krankenpflege (FA SRK)",
+   "definition": "Anzahl Personen und Stellen in Vollzeitäquivalenten der Organisation mit der Qualifikation «Prakt. Krankenpflege (FA SRK)» (Code BFS Spitex 121, KORE-Gruppe 312) im Rechnungsjahr.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Personen",
+    "Stellen VZÄ"
+   ],
+   "format": "Stellen in VZÄ"
+  },
+  {
+   "name": "130 Fachfrau Gesundheit (FAGE)",
+   "definition": "Anzahl Personen und Stellen in Vollzeitäquivalenten der Organisation mit der Qualifikation «Fachfrau Gesundheit (FAGE)» (Code BFS Spitex 130, KORE-Gruppe 312) im Rechnungsjahr.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Personen",
+    "Stellen VZÄ"
+   ],
+   "format": "Stellen in VZÄ"
+  },
+  {
+   "name": "131 Med. Praxisassistentin",
+   "definition": "Anzahl Personen und Stellen in Vollzeitäquivalenten der Organisation mit der Qualifikation «Med. Praxisassistentin» (Code BFS Spitex 131, KORE-Gruppe 312) im Rechnungsjahr.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Personen",
+    "Stellen VZÄ"
+   ],
+   "format": "Stellen in VZÄ"
+  },
+  {
+   "name": "132 Fachfrau Betreuung (FABE)",
+   "definition": "Anzahl Personen und Stellen in Vollzeitäquivalenten der Organisation mit der Qualifikation «Fachfrau Betreuung (FABE)» (Code BFS Spitex 132, KORE-Gruppe 312) im Rechnungsjahr.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Personen",
+    "Stellen VZÄ"
+   ],
+   "format": "Stellen in VZÄ"
+  },
+  {
+   "name": "133 Assisten Gesundheit EBA, Pflegeass. SR",
+   "definition": "Anzahl Personen und Stellen in Vollzeitäquivalenten der Organisation mit der Qualifikation «Assisten Gesundheit EBA, Pflegeass. SR» (Code BFS Spitex 133, KORE-Gruppe 312) im Rechnungsjahr.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Personen",
+    "Stellen VZÄ"
+   ],
+   "format": "Stellen in VZÄ"
+  },
+  {
+   "name": "140 Assisten Gesundheit SRK",
+   "definition": "Anzahl Personen und Stellen in Vollzeitäquivalenten der Organisation mit der Qualifikation «Assisten Gesundheit SRK» (Code BFS Spitex 140, KORE-Gruppe 312) im Rechnungsjahr.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Personen",
+    "Stellen VZÄ"
+   ],
+   "format": "Stellen in VZÄ"
+  },
+  {
+   "name": "141 Nachdipl. Gesundh.-Schwester",
+   "definition": "Anzahl Personen und Stellen in Vollzeitäquivalenten der Organisation mit der Qualifikation «Nachdipl. Gesundh.-Schwester» (Code BFS Spitex 141, KORE-Gruppe 312) im Rechnungsjahr.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Personen",
+    "Stellen VZÄ"
+   ],
+   "format": "Stellen in VZÄ"
+  },
+  {
+   "name": "142 Qualifizierte Nachdiplome (CAS, MAS etc.)",
+   "definition": "Anzahl Personen und Stellen in Vollzeitäquivalenten der Organisation mit der Qualifikation «Qualifizierte Nachdiplome (CAS, MAS etc.)» (Code BFS Spitex 142, KORE-Gruppe 312) im Rechnungsjahr.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Personen",
+    "Stellen VZÄ"
+   ],
+   "format": "Stellen in VZÄ"
+  },
+  {
+   "name": "150 Sozialarbeiterin FH, HF",
+   "definition": "Anzahl Personen und Stellen in Vollzeitäquivalenten der Organisation mit der Qualifikation «Sozialarbeiterin FH, HF» (Code BFS Spitex 150, KORE-Gruppe 310) im Rechnungsjahr.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Personen",
+    "Stellen VZÄ"
+   ],
+   "format": "Stellen in VZÄ"
+  },
+  {
+   "name": "151 Therapeutische Ausbildung",
+   "definition": "Anzahl Personen und Stellen in Vollzeitäquivalenten der Organisation mit der Qualifikation «Therapeutische Ausbildung» (Code BFS Spitex 151, KORE-Gruppe 312) im Rechnungsjahr.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Personen",
+    "Stellen VZÄ"
+   ],
+   "format": "Stellen in VZÄ"
+  },
+  {
+   "name": "152 Auszubildende Pflege FH HF",
+   "definition": "Anzahl Personen und Stellen in Vollzeitäquivalenten der Organisation mit der Qualifikation «Auszubildende Pflege FH HF» (Code BFS Spitex 152, KORE-Gruppe 316) im Rechnungsjahr.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Personen",
+    "Stellen VZÄ"
+   ],
+   "format": "Stellen in VZÄ"
+  },
+  {
+   "name": "152 Auszubildende Pflege FAGE, FABE",
+   "definition": "Anzahl Personen und Stellen in Vollzeitäquivalenten der Organisation mit der Qualifikation «Auszubildende Pflege FAGE, FABE» (Code BFS Spitex 152, KORE-Gruppe 317) im Rechnungsjahr.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Personen",
+    "Stellen VZÄ"
+   ],
+   "format": "Stellen in VZÄ"
+  },
+  {
+   "name": "153 Ausbildung Leitung und Adminisation",
+   "definition": "Anzahl Personen und Stellen in Vollzeitäquivalenten der Organisation mit der Qualifikation «Ausbildung Leitung und Adminisation» (Code BFS Spitex 153, KORE-Gruppe 330) im Rechnungsjahr.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Personen",
+    "Stellen VZÄ"
+   ],
+   "format": "Stellen in VZÄ"
+  },
+  {
+   "name": "154 Pflegehelferin SRK ordentlich",
+   "definition": "Anzahl Personen und Stellen in Vollzeitäquivalenten der Organisation mit der Qualifikation «Pflegehelferin SRK ordentlich» (Code BFS Spitex 154, KORE-Gruppe 314) im Rechnungsjahr.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Personen",
+    "Stellen VZÄ"
+   ],
+   "format": "Stellen in VZÄ"
+  },
+  {
+   "name": "154 Pflegehelferin (Angehörigenpflege)",
+   "definition": "Anzahl Personen und Stellen in Vollzeitäquivalenten der Organisation mit der Qualifikation «Pflegehelferin (Angehörigenpflege)» (Code BFS Spitex 154, KORE-Gruppe 319) im Rechnungsjahr.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Personen",
+    "Stellen VZÄ"
+   ],
+   "format": "Stellen in VZÄ"
+  },
+  {
+   "name": "155 Keine spezielle Ausbildung",
+   "definition": "Anzahl Personen und Stellen in Vollzeitäquivalenten der Organisation mit der Qualifikation «Keine spezielle Ausbildung» (Code BFS Spitex 155, KORE-Gruppe 315) im Rechnungsjahr.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Personen",
+    "Stellen VZÄ"
+   ],
+   "format": "Stellen in VZÄ"
+  },
+  {
+   "name": "155 Keine spez. Ausbildung (Angehörigenpfl.)",
+   "definition": "Anzahl Personen und Stellen in Vollzeitäquivalenten der Organisation mit der Qualifikation «Keine spez. Ausbildung (Angehörigenpfl.)» (Code BFS Spitex 155, KORE-Gruppe 319) im Rechnungsjahr.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Personen",
+    "Stellen VZÄ"
+   ],
+   "format": "Stellen in VZÄ"
+  },
+  {
+   "name": "Praktikanten",
+   "definition": "Anzahl Personen und Stellen in Vollzeitäquivalenten der Organisation für Praktikantinnen und Praktikanten (ohne Code BFS Spitex, KORE-Gruppe 318) im Rechnungsjahr.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Personen",
+    "Stellen VZÄ"
+   ],
+   "format": "Stellen in VZÄ"
+  },
+  {
+   "name": "Bemerkungen zuhanden Gesundheitsamt (Formular A)",
+   "definition": "Freie Bemerkungen der Organisation zu den Personal- und Stellenangaben in Formular A.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "310 Dipl. Pflegefachpersonal mit Zusatzdiplom / Master",
+   "definition": "Verrechnete Stunden (aus der Leistungserfassung) und Personalkosten ohne Sozialversicherungen (aus der Finanzbuchhaltung) der KORE-Gruppe 310 «Dipl. Pflegefachpersonal mit Zusatzdiplom / Master» im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Verrechnete Stunden",
+    "Personalkosten ohne Soz.Vers."
+   ],
+   "format": "Stunden; CHF"
+  },
+  {
+   "name": "311 Diplomiertes Pflegefachpersonal",
+   "definition": "Verrechnete Stunden (aus der Leistungserfassung) und Personalkosten ohne Sozialversicherungen (aus der Finanzbuchhaltung) der KORE-Gruppe 311 «Diplomiertes Pflegefachpersonal» im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Verrechnete Stunden",
+    "Personalkosten ohne Soz.Vers."
+   ],
+   "format": "Stunden; CHF"
+  },
+  {
+   "name": "312 Personal mit berufl. Grundbildung (FABE, FAGE)",
+   "definition": "Verrechnete Stunden (aus der Leistungserfassung) und Personalkosten ohne Sozialversicherungen (aus der Finanzbuchhaltung) der KORE-Gruppe 312 «Personal mit berufl. Grundbildung (FABE, FAGE)» im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Verrechnete Stunden",
+    "Personalkosten ohne Soz.Vers."
+   ],
+   "format": "Stunden; CHF"
+  },
+  {
+   "name": "313 Assistenz (in Pflege)",
+   "definition": "Verrechnete Stunden (aus der Leistungserfassung) und Personalkosten ohne Sozialversicherungen (aus der Finanzbuchhaltung) der KORE-Gruppe 313 «Assistenz (in Pflege)» im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Verrechnete Stunden",
+    "Personalkosten ohne Soz.Vers."
+   ],
+   "format": "Stunden; CHF"
+  },
+  {
+   "name": "314 Grundkurs Pflegehelferin SRK",
+   "definition": "Verrechnete Stunden (aus der Leistungserfassung) und Personalkosten ohne Sozialversicherungen (aus der Finanzbuchhaltung) der KORE-Gruppe 314 «Grundkurs Pflegehelferin SRK» im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Verrechnete Stunden",
+    "Personalkosten ohne Soz.Vers."
+   ],
+   "format": "Stunden; CHF"
+  },
+  {
+   "name": "315 Ohne spezifische Ausbildung",
+   "definition": "Verrechnete Stunden (aus der Leistungserfassung) und Personalkosten ohne Sozialversicherungen (aus der Finanzbuchhaltung) der KORE-Gruppe 315 «Ohne spezifische Ausbildung» im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Verrechnete Stunden",
+    "Personalkosten ohne Soz.Vers."
+   ],
+   "format": "Stunden; CHF"
+  },
+  {
+   "name": "316 Auszubildene Pflege HF, FH",
+   "definition": "Verrechnete Stunden (aus der Leistungserfassung) und Personalkosten ohne Sozialversicherungen (aus der Finanzbuchhaltung) der KORE-Gruppe 316 «Auszubildene Pflege HF, FH» im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Verrechnete Stunden",
+    "Personalkosten ohne Soz.Vers."
+   ],
+   "format": "Stunden; CHF"
+  },
+  {
+   "name": "317 Auszubildende Pflege FaGe, FaBe, AGS",
+   "definition": "Verrechnete Stunden (aus der Leistungserfassung) und Personalkosten ohne Sozialversicherungen (aus der Finanzbuchhaltung) der KORE-Gruppe 317 «Auszubildende Pflege FaGe, FaBe, AGS» im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Verrechnete Stunden",
+    "Personalkosten ohne Soz.Vers."
+   ],
+   "format": "Stunden; CHF"
+  },
+  {
+   "name": "318 Praktikanten",
+   "definition": "Verrechnete Stunden (aus der Leistungserfassung) und Personalkosten ohne Sozialversicherungen (aus der Finanzbuchhaltung) der KORE-Gruppe 318 «Praktikanten» im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Verrechnete Stunden",
+    "Personalkosten ohne Soz.Vers."
+   ],
+   "format": "Stunden; CHF"
+  },
+  {
+   "name": "319 Pflegende Angehörige",
+   "definition": "Verrechnete Stunden (aus der Leistungserfassung) und Personalkosten ohne Sozialversicherungen (aus der Finanzbuchhaltung) der KORE-Gruppe 319 «Pflegende Angehörige» im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Verrechnete Stunden",
+    "Personalkosten ohne Soz.Vers."
+   ],
+   "format": "Stunden; CHF"
+  },
+  {
+   "name": "320-329 Besoldung weitere Fachbereiche",
+   "definition": "Pensen in Vollzeitäquivalenten, verrechnete Stunden und Personalkosten ohne Sozialversicherungen der weiteren Fachbereiche (Kontenrahmen 320–329) im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Pensen (VZÄ)",
+    "Verrechnete Stunden",
+    "Personalkosten ohne Soz.Vers."
+   ],
+   "format": "VZÄ; Stunden; CHF"
+  },
+  {
+   "name": "HF, FH (Stundenverteilung auf Kostenträger)",
+   "definition": "Aufteilung der verrechneten Stunden der Qualifikationsgruppe «HF, FH» im Kanton Schaffhausen auf die Kostenträger KLV-A, KLV-B, KLV-C normal, KLV-C Angehörige, Hauswirtschaft & Betreuung und übrige Dienstleistungen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Std. KLV-A",
+    "Std. KLV-B",
+    "Std. KLV-C normal",
+    "Std. KLV-C Angehörige",
+    "Std. Hauswirtschaft & Betreuung",
+    "Std. übrige Dienstleistungen"
+   ],
+   "format": "Stunden"
+  },
+  {
+   "name": "FABE/FAGE (Stundenverteilung auf Kostenträger)",
+   "definition": "Aufteilung der verrechneten Stunden der Qualifikationsgruppe «FABE/FAGE» im Kanton Schaffhausen auf die Kostenträger KLV-A, KLV-B, KLV-C normal, KLV-C Angehörige, Hauswirtschaft & Betreuung und übrige Dienstleistungen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Std. KLV-A",
+    "Std. KLV-B",
+    "Std. KLV-C normal",
+    "Std. KLV-C Angehörige",
+    "Std. Hauswirtschaft & Betreuung",
+    "Std. übrige Dienstleistungen"
+   ],
+   "format": "Stunden"
+  },
+  {
+   "name": "Assistenz (Stundenverteilung auf Kostenträger)",
+   "definition": "Aufteilung der verrechneten Stunden der Qualifikationsgruppe «Assistenz» im Kanton Schaffhausen auf die Kostenträger KLV-A, KLV-B, KLV-C normal, KLV-C Angehörige, Hauswirtschaft & Betreuung und übrige Dienstleistungen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Std. KLV-A",
+    "Std. KLV-B",
+    "Std. KLV-C normal",
+    "Std. KLV-C Angehörige",
+    "Std. Hauswirtschaft & Betreuung",
+    "Std. übrige Dienstleistungen"
+   ],
+   "format": "Stunden"
+  },
+  {
+   "name": "Pflegende Angehörige (Stundenverteilung auf Kostenträger)",
+   "definition": "Aufteilung der verrechneten Stunden der Qualifikationsgruppe «Pflegende Angehörige» im Kanton Schaffhausen auf die Kostenträger KLV-A, KLV-B, KLV-C normal, KLV-C Angehörige, Hauswirtschaft & Betreuung und übrige Dienstleistungen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Std. KLV-A",
+    "Std. KLV-B",
+    "Std. KLV-C normal",
+    "Std. KLV-C Angehörige",
+    "Std. Hauswirtschaft & Betreuung",
+    "Std. übrige Dienstleistungen"
+   ],
+   "format": "Stunden"
+  },
+  {
+   "name": "ohne spezifische Ausbildung (Stundenverteilung auf Kostenträger)",
+   "definition": "Aufteilung der verrechneten Stunden der Qualifikationsgruppe «ohne spezifische Ausbildung» im Kanton Schaffhausen auf die Kostenträger KLV-A, KLV-B, KLV-C normal, KLV-C Angehörige, Hauswirtschaft & Betreuung und übrige Dienstleistungen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Std. KLV-A",
+    "Std. KLV-B",
+    "Std. KLV-C normal",
+    "Std. KLV-C Angehörige",
+    "Std. Hauswirtschaft & Betreuung",
+    "Std. übrige Dienstleistungen"
+   ],
+   "format": "Stunden"
+  },
+  {
+   "name": "in Ausbildung (Stundenverteilung auf Kostenträger)",
+   "definition": "Aufteilung der verrechneten Stunden der Qualifikationsgruppe «in Ausbildung» im Kanton Schaffhausen auf die Kostenträger KLV-A, KLV-B, KLV-C normal, KLV-C Angehörige, Hauswirtschaft & Betreuung und übrige Dienstleistungen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Std. KLV-A",
+    "Std. KLV-B",
+    "Std. KLV-C normal",
+    "Std. KLV-C Angehörige",
+    "Std. Hauswirtschaft & Betreuung",
+    "Std. übrige Dienstleistungen"
+   ],
+   "format": "Stunden"
+  },
+  {
+   "name": "Weitere Fachbereiche (Stundenverteilung auf Kostenträger)",
+   "definition": "Aufteilung der verrechneten Stunden der Qualifikationsgruppe «Weitere Fachbereiche» im Kanton Schaffhausen auf die Kostenträger KLV-A, KLV-B, KLV-C normal, KLV-C Angehörige, Hauswirtschaft & Betreuung und übrige Dienstleistungen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Std. KLV-A",
+    "Std. KLV-B",
+    "Std. KLV-C normal",
+    "Std. KLV-C Angehörige",
+    "Std. Hauswirtschaft & Betreuung",
+    "Std. übrige Dienstleistungen"
+   ],
+   "format": "Stunden"
+  },
+  {
+   "name": "KLV Stundenleistungen in weiteren Kantonen",
+   "definition": "Verrechnete KLV-Stunden der Organisation in anderen Kantonen als Schaffhausen, je Kanton.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Kanton",
+    "Stunden"
+   ],
+   "format": "Zeilen Zürich und Thurgau vorgedruckt, 18 freie Zeilen für weitere Kantone"
+  },
+  {
+   "name": "Bemerkungen zuhanden Gesundheitsamt (Formular B)",
+   "definition": "Freie Bemerkungen der Organisation zu den Angaben für die Umlageschlüssel in Formular B.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "310 Besoldung Pflege, Betreuung, Hauswirtschaft",
+   "definition": "Betrag für die Besoldung Pflege, Betreuung, Hauswirtschaft (Konto 310) gemäss revidierter Erfolgsrechnung des Berichtsjahres, gesamthaft für die Unternehmung und davon für KLV-Kerndienstleistungen im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "TotaL CHF gesamte Unternehmung",
+    "davon KLV-Kern DL im Kanton Schaffhausen"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "320 Besoldung andere Fachbereiche",
+   "definition": "Betrag für die Besoldung anderer Fachbereiche (Konto 320) gemäss revidierter Erfolgsrechnung des Berichtsjahres, gesamthaft für die Unternehmung, davon für KLV-Kerndienstleistungen und davon für übrige Dienstleistungen im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "TotaL CHF gesamte Unternehmung",
+    "davon KLV-Kern DL im Kanton Schaffhausen",
+    "davon übrige DL im Kanton Schaffhausen"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "330 Besoldung Verwaltung, Organisation, Leitung",
+   "definition": "Betrag für die Besoldung von Verwaltung, Organisation und Leitung (Konto 330) gemäss revidierter Erfolgsrechnung des Berichtsjahres, gesamthaft für die Unternehmung und davon für KLV-Kerndienstleistungen im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "TotaL CHF gesamte Unternehmung",
+    "davon KLV-Kern DL im Kanton Schaffhausen"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "370 Sozialversicherungsaufwand Total",
+   "definition": "Betrag des gesamten Sozialversicherungsaufwands (Konto 370) gemäss revidierter Erfolgsrechnung des Berichtsjahres, gesamthaft für die Unternehmung und davon für KLV-Kerndienstleistungen im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "TotaL CHF gesamte Unternehmung",
+    "davon KLV-Kern DL im Kanton Schaffhausen"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "380 Arbeitsleistungen Dritter",
+   "definition": "Betrag für Arbeitsleistungen Dritter (Konto 380) gemäss revidierter Erfolgsrechnung des Berichtsjahres, gesamthaft für die Unternehmung, davon für KLV-Kerndienstleistungen und davon für übrige Dienstleistungen im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "TotaL CHF gesamte Unternehmung",
+    "davon KLV-Kern DL im Kanton Schaffhausen",
+    "davon übrige DL im Kanton Schaffhausen"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "390 Sonstiger Personalaufwand",
+   "definition": "Betrag des sonstigen Personalaufwands (Konto 390) gemäss revidierter Erfolgsrechnung des Berichtsjahres, gesamthaft für die Unternehmung, davon für KLV-Kerndienstleistungen und davon für übrige Dienstleistungen im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "TotaL CHF gesamte Unternehmung",
+    "davon KLV-Kern DL im Kanton Schaffhausen",
+    "davon übrige DL im Kanton Schaffhausen"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "400 Medizinischer Bedarf",
+   "definition": "Betrag für medizinischen Bedarf (Konto 400) gemäss revidierter Erfolgsrechnung des Berichtsjahres, gesamthaft für die Unternehmung, davon für KLV-Kerndienstleistungen und davon für übrige Dienstleistungen im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "TotaL CHF gesamte Unternehmung",
+    "davon KLV-Kern DL im Kanton Schaffhausen",
+    "davon übrige DL im Kanton Schaffhausen"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "460 Bezogene Dienstleistungen",
+   "definition": "Betrag für bezogene Dienstleistungen (Konto 460) gemäss revidierter Erfolgsrechnung des Berichtsjahres, gesamthaft für die Unternehmung, davon für KLV-Kerndienstleistungen und davon für übrige Dienstleistungen im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "TotaL CHF gesamte Unternehmung",
+    "davon KLV-Kern DL im Kanton Schaffhausen",
+    "davon übrige DL im Kanton Schaffhausen"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "davon konzerninterne Verrechnungen (460 Bezogene Dienstleistungen)",
+   "definition": "Betrag der konzerninternen Verrechnungen innerhalb der bezogenen Dienstleistungen (Konto 460) gemäss revidierter Erfolgsrechnung des Berichtsjahres, gesamthaft für die Unternehmung, davon für KLV-Kerndienstleistungen und davon für übrige Dienstleistungen im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "TotaL CHF gesamte Unternehmung",
+    "davon KLV-Kern DL im Kanton Schaffhausen",
+    "davon übrige DL im Kanton Schaffhausen"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "davon Marketing & Kommunikation (460 Bezogene Dienstleistungen)",
+   "definition": "Betrag für Marketing und Kommunikation innerhalb der bezogenen Dienstleistungen (Konto 460) gemäss revidierter Erfolgsrechnung des Berichtsjahres, gesamthaft für die Unternehmung, davon für KLV-Kerndienstleistungen und davon für übrige Dienstleistungen im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "TotaL CHF gesamte Unternehmung",
+    "davon KLV-Kern DL im Kanton Schaffhausen",
+    "davon übrige DL im Kanton Schaffhausen"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "520 Fahrzeug- & Transportaufwand",
+   "definition": "Betrag des Fahrzeug- und Transportaufwands (Konto 520) gemäss revidierter Erfolgsrechnung des Berichtsjahres, gesamthaft für die Unternehmung, davon für KLV-Kerndienstleistungen und davon für übrige Dienstleistungen im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "TotaL CHF gesamte Unternehmung",
+    "davon KLV-Kern DL im Kanton Schaffhausen",
+    "davon übrige DL im Kanton Schaffhausen"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "530 Unterhalt/Reparatur mobile Anlagen (ohne Fz)",
+   "definition": "Betrag für Unterhalt und Reparatur mobiler Anlagen ohne Fahrzeuge (Konto 530) gemäss revidierter Erfolgsrechnung des Berichtsjahres, gesamthaft für die Unternehmung, davon für KLV-Kerndienstleistungen und davon für übrige Dienstleistungen im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "TotaL CHF gesamte Unternehmung",
+    "davon KLV-Kern DL im Kanton Schaffhausen",
+    "davon übrige DL im Kanton Schaffhausen"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "550 Raumaufwand",
+   "definition": "Betrag des Raumaufwands (Konto 550) gemäss revidierter Erfolgsrechnung des Berichtsjahres, gesamthaft für die Unternehmung, davon für KLV-Kerndienstleistungen und davon für übrige Dienstleistungen im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "TotaL CHF gesamte Unternehmung",
+    "davon KLV-Kern DL im Kanton Schaffhausen",
+    "davon übrige DL im Kanton Schaffhausen"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "560 Energie und Entsorgung",
+   "definition": "Betrag für Energie und Entsorgung (Konto 560) gemäss revidierter Erfolgsrechnung des Berichtsjahres, gesamthaft für die Unternehmung, davon für KLV-Kerndienstleistungen und davon für übrige Dienstleistungen im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "TotaL CHF gesamte Unternehmung",
+    "davon KLV-Kern DL im Kanton Schaffhausen",
+    "davon übrige DL im Kanton Schaffhausen"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "570 Verwaltung und Informatik",
+   "definition": "Betrag für Verwaltung und Informatik (Konto 570) gemäss revidierter Erfolgsrechnung des Berichtsjahres, gesamthaft für die Unternehmung, davon für KLV-Kerndienstleistungen und davon für übrige Dienstleistungen im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "TotaL CHF gesamte Unternehmung",
+    "davon KLV-Kern DL im Kanton Schaffhausen",
+    "davon übrige DL im Kanton Schaffhausen"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "davon konzerninterne Verrechnungen (570 Verwaltung und Informatik)",
+   "definition": "Betrag der konzerninternen Verrechnungen innerhalb des Aufwands für Verwaltung und Informatik (Konto 570) gemäss revidierter Erfolgsrechnung des Berichtsjahres, gesamthaft für die Unternehmung, davon für KLV-Kerndienstleistungen und davon für übrige Dienstleistungen im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "TotaL CHF gesamte Unternehmung",
+    "davon KLV-Kern DL im Kanton Schaffhausen",
+    "davon übrige DL im Kanton Schaffhausen"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "580 Sachversicherungen, Abgaben, Gebühren",
+   "definition": "Betrag für Sachversicherungen, Abgaben und Gebühren (Konto 580) gemäss revidierter Erfolgsrechnung des Berichtsjahres, gesamthaft für die Unternehmung, davon für KLV-Kerndienstleistungen und davon für übrige Dienstleistungen im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "TotaL CHF gesamte Unternehmung",
+    "davon KLV-Kern DL im Kanton Schaffhausen",
+    "davon übrige DL im Kanton Schaffhausen"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "590 Sonstiger betrieblicher Aufwand, Steuern",
+   "definition": "Betrag des sonstigen betrieblichen Aufwands und der Steuern (Konto 590) gemäss revidierter Erfolgsrechnung des Berichtsjahres, gesamthaft für die Unternehmung, davon für KLV-Kerndienstleistungen und davon für übrige Dienstleistungen im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "TotaL CHF gesamte Unternehmung",
+    "davon KLV-Kern DL im Kanton Schaffhausen",
+    "davon übrige DL im Kanton Schaffhausen"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "540 Abschreibungen und Wertberichtigungen",
+   "definition": "Betrag der Abschreibungen und Wertberichtigungen (Konto 540) gemäss revidierter Erfolgsrechnung des Berichtsjahres, gesamthaft für die Unternehmung, davon für KLV-Kerndienstleistungen und davon für übrige Dienstleistungen im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "TotaL CHF gesamte Unternehmung",
+    "davon KLV-Kern DL im Kanton Schaffhausen",
+    "davon übrige DL im Kanton Schaffhausen"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "von Klienten (600 Nettoerlöse aus KLV-Leistungen)",
+   "definition": "Nettoerlöse aus KLV-Leistungen, die von Klientinnen und Klienten bezahlt wurden (Konto 600), gemäss revidierter Erfolgsrechnung des Berichtsjahres, gesamthaft für die Unternehmung, davon für KLV-Kerndienstleistungen und davon für übrige Dienstleistungen im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "TotaL CHF gesamte Unternehmung",
+    "davon KLV-Kern DL im Kanton Schaffhausen",
+    "davon übrige DL im Kanton Schaffhausen"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "von Versicherern (600 Nettoerlöse aus KLV-Leistungen)",
+   "definition": "Nettoerlöse aus KLV-Leistungen, die von Versicherern bezahlt wurden (Konto 600), gemäss revidierter Erfolgsrechnung des Berichtsjahres, gesamthaft für die Unternehmung, davon für KLV-Kerndienstleistungen und davon für übrige Dienstleistungen im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "TotaL CHF gesamte Unternehmung",
+    "davon KLV-Kern DL im Kanton Schaffhausen",
+    "davon übrige DL im Kanton Schaffhausen"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "von öff. Hand (Restkosten) (600 Nettoerlöse aus KLV-Leistungen)",
+   "definition": "Nettoerlöse aus KLV-Leistungen, die von der öffentlichen Hand als Restkosten bezahlt wurden (Konto 600), gemäss revidierter Erfolgsrechnung des Berichtsjahres, gesamthaft für die Unternehmung, davon für KLV-Kerndienstleistungen und davon für übrige Dienstleistungen im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "TotaL CHF gesamte Unternehmung",
+    "davon KLV-Kern DL im Kanton Schaffhausen",
+    "davon übrige DL im Kanton Schaffhausen"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "620 Nettoerlöse aus Hauswirtschaft und Betreuung",
+   "definition": "Nettoerlöse aus Hauswirtschaft und Betreuung (Konto 620) gemäss revidierter Erfolgsrechnung des Berichtsjahres, gesamthaft für die Unternehmung, davon für KLV-Kerndienstleistungen und davon für übrige Dienstleistungen im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "TotaL CHF gesamte Unternehmung",
+    "davon KLV-Kern DL im Kanton Schaffhausen",
+    "davon übrige DL im Kanton Schaffhausen"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "630 Mitgliederbeiträge, Spenden, Legate",
+   "definition": "Ertrag aus Mitgliederbeiträgen, Spenden und Legaten (Konto 630) gemäss revidierter Erfolgsrechnung des Berichtsjahres, gesamthaft für die Unternehmung, davon für KLV-Kerndienstleistungen und davon für übrige Dienstleistungen im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "TotaL CHF gesamte Unternehmung",
+    "davon KLV-Kern DL im Kanton Schaffhausen",
+    "davon übrige DL im Kanton Schaffhausen"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "670 Andere Erträge",
+   "definition": "Betrag der anderen Erträge (Konto 670) gemäss revidierter Erfolgsrechnung des Berichtsjahres, gesamthaft für die Unternehmung, davon für KLV-Kerndienstleistungen und davon für übrige Dienstleistungen im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "TotaL CHF gesamte Unternehmung",
+    "davon KLV-Kern DL im Kanton Schaffhausen",
+    "davon übrige DL im Kanton Schaffhausen"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Defizitdeckung (65 Beiträge der öffentlichen Hand und Anderen)",
+   "definition": "Beiträge der öffentlichen Hand und Anderer zur Defizitdeckung, ohne Beiträge nach Art. 7 KLV (Kontengruppe 65), gemäss revidierter Erfolgsrechnung des Berichtsjahres, gesamthaft für die Unternehmung, davon für KLV-Kerndienstleistungen und davon für übrige Dienstleistungen im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "TotaL CHF gesamte Unternehmung",
+    "davon KLV-Kern DL im Kanton Schaffhausen",
+    "davon übrige DL im Kanton Schaffhausen"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Übrige Beiträge (65 Beiträge der öffentlichen Hand und Anderen)",
+   "definition": "Übrige Beiträge der öffentlichen Hand und Anderer, ohne Beiträge nach Art. 7 KLV (Kontengruppe 65), gemäss revidierter Erfolgsrechnung des Berichtsjahres, gesamthaft für die Unternehmung, davon für KLV-Kerndienstleistungen und davon für übrige Dienstleistungen im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "TotaL CHF gesamte Unternehmung",
+    "davon KLV-Kern DL im Kanton Schaffhausen",
+    "davon übrige DL im Kanton Schaffhausen"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "700 Finanzertrag",
+   "definition": "Betrag des Finanzertrags (Konto 700) gemäss revidierter Erfolgsrechnung des Berichtsjahres, gesamthaft für die Unternehmung, davon für KLV-Kerndienstleistungen und davon für übrige Dienstleistungen im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "TotaL CHF gesamte Unternehmung",
+    "davon KLV-Kern DL im Kanton Schaffhausen",
+    "davon übrige DL im Kanton Schaffhausen"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "750 Finanzaufwand",
+   "definition": "Betrag des Finanzaufwands (Konto 750) gemäss revidierter Erfolgsrechnung des Berichtsjahres, gesamthaft für die Unternehmung, davon für KLV-Kerndienstleistungen und davon für übrige Dienstleistungen im Kanton Schaffhausen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "TotaL CHF gesamte Unternehmung",
+    "davon KLV-Kern DL im Kanton Schaffhausen",
+    "davon übrige DL im Kanton Schaffhausen"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Bemerkungen zuhanden Gesundheitsamt (Formular C)",
+   "definition": "Freie Bemerkungen der Organisation zur komprimierten Betriebsrechnung in Formular C.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Bemerkungen zuhanden Gesundheitsamt (Formular D1)",
+   "definition": "Freie Bemerkungen der Organisation zur automatisch erzeugten vereinfachten Kostenträgerrechnung in Formular D1.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Vollkosten (KLV Pflegeleistungen Kanton Schaffhausen)",
+   "definition": "Vollkosten gemäss eigener Kostenrechnung für die KLV-Pflegeleistungen im Kanton Schaffhausen, je Kostenträger (KLV-A, KLV-B, KLV-C ohne Angehörige, KLV-C Angehörigengrundpflege).",
+   "data_type": "composite",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [
+    "KLV-A Abklärung (500)",
+    "KLV-B Untersuchung (501)",
+    "KLV-C Grundpflege (502, o/Angehörige)",
+    "KLV-C Angehörigengrundpflege (502 Grundpflege)"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Klienten Ist (Erträge, KLV Pflegeleistungen Kanton Schaffhausen)",
+   "definition": "Erträge von Klientinnen und Klienten gemäss eigener Kostenrechnung für die KLV-Pflegeleistungen im Kanton Schaffhausen, je Kostenträger (KLV-A, KLV-B, KLV-C ohne Angehörige, KLV-C Angehörigengrundpflege).",
+   "data_type": "composite",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [
+    "KLV-A Abklärung (500)",
+    "KLV-B Untersuchung (501)",
+    "KLV-C Grundpflege (502, o/Angehörige)",
+    "KLV-C Angehörigengrundpflege (502 Grundpflege)"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Versicherer (Erträge, KLV Pflegeleistungen Kanton Schaffhausen)",
+   "definition": "Erträge von Versicherern gemäss eigener Kostenrechnung für die KLV-Pflegeleistungen im Kanton Schaffhausen, je Kostenträger (KLV-A, KLV-B, KLV-C ohne Angehörige, KLV-C Angehörigengrundpflege).",
+   "data_type": "composite",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [
+    "KLV-A Abklärung (500)",
+    "KLV-B Untersuchung (501)",
+    "KLV-C Grundpflege (502, o/Angehörige)",
+    "KLV-C Angehörigengrundpflege (502 Grundpflege)"
+   ],
+   "format": ""
+  },
+  {
+   "name": "öff. Hand (Erträge, KLV Pflegeleistungen Kanton Schaffhausen)",
+   "definition": "Erträge von der öffentlichen Hand gemäss eigener Kostenrechnung für die KLV-Pflegeleistungen im Kanton Schaffhausen, je Kostenträger (KLV-A, KLV-B, KLV-C ohne Angehörige, KLV-C Angehörigengrundpflege).",
+   "data_type": "composite",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [
+    "KLV-A Abklärung (500)",
+    "KLV-B Untersuchung (501)",
+    "KLV-C Grundpflege (502, o/Angehörige)",
+    "KLV-C Angehörigengrundpflege (502 Grundpflege)"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Total Stunden (KLV Pflegeleistungen Kanton Schaffhausen)",
+   "definition": "Total der Stunden gemäss eigener Kostenrechnung für die KLV-Pflegeleistungen im Kanton Schaffhausen, je Kostenträger (KLV-A, KLV-B, KLV-C ohne Angehörige, KLV-C Angehörigengrundpflege).",
+   "data_type": "composite",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [
+    "KLV-A Abklärung (500)",
+    "KLV-B Untersuchung (501)",
+    "KLV-C Grundpflege (502, o/Angehörige)",
+    "KLV-C Angehörigengrundpflege (502 Grundpflege)"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Total Anzahl Klienten KLV",
+   "definition": "Gesamtzahl der Klientinnen und Klienten mit KLV-Pflegeleistungen im Kanton Schaffhausen im Rechnungsjahr.",
+   "data_type": "number",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Vollkosten (Übrige Pflegeleistungen Kanton Schaffhausen (AÜP, IV, MV, UV))",
+   "definition": "Vollkosten gemäss eigener Kostenrechnung für die übrigen Pflegeleistungen im Kanton Schaffhausen (AÜP, IV, MV, UV), je Kostenträger (KLV-A, KLV-B, KLV-C ohne Angehörige, KLV-C Angehörige).",
+   "data_type": "composite",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [
+    "KLV-A Abklärung (500)",
+    "KLV-B Untersuchung (501)",
+    "KLV-C Grundpflege (502, o/Angehörige)",
+    "KLV-C Grundpflege Angehörige (502)"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Klienten Ist (Erträge, Übrige Pflegeleistungen Kanton Schaffhausen (AÜP, IV, MV, UV))",
+   "definition": "Erträge von Klientinnen und Klienten gemäss eigener Kostenrechnung für die übrigen Pflegeleistungen im Kanton Schaffhausen (AÜP, IV, MV, UV), je Kostenträger (KLV-A, KLV-B, KLV-C ohne Angehörige, KLV-C Angehörige).",
+   "data_type": "composite",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [
+    "KLV-A Abklärung (500)",
+    "KLV-B Untersuchung (501)",
+    "KLV-C Grundpflege (502, o/Angehörige)",
+    "KLV-C Grundpflege Angehörige (502)"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Versicherer (Erträge, Übrige Pflegeleistungen Kanton Schaffhausen (AÜP, IV, MV, UV))",
+   "definition": "Erträge von Versicherern gemäss eigener Kostenrechnung für die übrigen Pflegeleistungen im Kanton Schaffhausen (AÜP, IV, MV, UV), je Kostenträger (KLV-A, KLV-B, KLV-C ohne Angehörige, KLV-C Angehörige).",
+   "data_type": "composite",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [
+    "KLV-A Abklärung (500)",
+    "KLV-B Untersuchung (501)",
+    "KLV-C Grundpflege (502, o/Angehörige)",
+    "KLV-C Grundpflege Angehörige (502)"
+   ],
+   "format": ""
+  },
+  {
+   "name": "öff. Hand (Erträge, Übrige Pflegeleistungen Kanton Schaffhausen (AÜP, IV, MV, UV))",
+   "definition": "Erträge von der öffentlichen Hand gemäss eigener Kostenrechnung für die übrigen Pflegeleistungen im Kanton Schaffhausen (AÜP, IV, MV, UV), je Kostenträger (KLV-A, KLV-B, KLV-C ohne Angehörige, KLV-C Angehörige).",
+   "data_type": "composite",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [
+    "KLV-A Abklärung (500)",
+    "KLV-B Untersuchung (501)",
+    "KLV-C Grundpflege (502, o/Angehörige)",
+    "KLV-C Grundpflege Angehörige (502)"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Total Stunden (Übrige Pflegeleistungen Kanton Schaffhausen (AÜP, IV, MV, UV))",
+   "definition": "Total der Stunden gemäss eigener Kostenrechnung für die übrigen Pflegeleistungen im Kanton Schaffhausen (AÜP, IV, MV, UV), je Kostenträger (KLV-A, KLV-B, KLV-C ohne Angehörige, KLV-C Angehörige).",
+   "data_type": "composite",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [
+    "KLV-A Abklärung (500)",
+    "KLV-B Untersuchung (501)",
+    "KLV-C Grundpflege (502, o/Angehörige)",
+    "KLV-C Grundpflege Angehörige (502)"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Total Anzahl übrige Klienten Pflege",
+   "definition": "Gesamtzahl der Klientinnen und Klienten mit übrigen Pflegeleistungen (AÜP, IV, MV, UV) im Kanton Schaffhausen im Rechnungsjahr.",
+   "data_type": "number",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Vollkosten (Übrige Leistungen)",
+   "definition": "Vollkosten gemäss eigener Kostenrechnung für die übrigen Leistungen, je Kostenträger (Hauswirtschaft und Betreuung, übrige Dienstleistungen).",
+   "data_type": "composite",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [
+    "Hauswirtschaft und Betreuung (560)",
+    "Übrige Dienstleistungen (600)"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Klienten Ist (Erträge, Übrige Leistungen)",
+   "definition": "Erträge von Klientinnen und Klienten gemäss eigener Kostenrechnung für die übrigen Leistungen, je Kostenträger (Hauswirtschaft und Betreuung, übrige Dienstleistungen).",
+   "data_type": "composite",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [
+    "Hauswirtschaft und Betreuung (560)",
+    "Übrige Dienstleistungen (600)"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Versicherer (Erträge, Übrige Leistungen)",
+   "definition": "Erträge von Versicherern gemäss eigener Kostenrechnung für die übrigen Leistungen, je Kostenträger (Hauswirtschaft und Betreuung, übrige Dienstleistungen).",
+   "data_type": "composite",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [
+    "Hauswirtschaft und Betreuung (560)",
+    "Übrige Dienstleistungen (600)"
+   ],
+   "format": ""
+  },
+  {
+   "name": "öff. Hand (Erträge, Übrige Leistungen)",
+   "definition": "Erträge von der öffentlichen Hand gemäss eigener Kostenrechnung für die übrigen Leistungen, je Kostenträger (Hauswirtschaft und Betreuung, übrige Dienstleistungen).",
+   "data_type": "composite",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [
+    "Hauswirtschaft und Betreuung (560)",
+    "Übrige Dienstleistungen (600)"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Total Stunden (Übrige Leistungen)",
+   "definition": "Total der Stunden gemäss eigener Kostenrechnung für die übrigen Leistungen, je Kostenträger (Hauswirtschaft und Betreuung, übrige Dienstleistungen).",
+   "data_type": "composite",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [
+    "Hauswirtschaft und Betreuung (560)",
+    "Übrige Dienstleistungen (600)"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Total Anzahl Klienten Hauswirtschaft und Betreuung",
+   "definition": "Gesamtzahl der Klientinnen und Klienten mit Leistungen der Hauswirtschaft und Betreuung im Rechnungsjahr.",
+   "data_type": "number",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Kostenrechnung in CSV-Format",
+   "definition": "Eigene Kostenrechnung der Spitex-Organisation als CSV-Datei, die zusätzlich zu Formular D2 beizulegen oder zuzustellen ist.",
+   "data_type": "attachment",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "CSV"
+  },
+  {
+   "name": "Bemerkungen zuhanden Gesundheitsamt (Formular D2)",
+   "definition": "Freie Bemerkungen der Organisation zu den Kennzahlen aus der eigenen Kostenrechnung in Formular D2.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Bargen (Verrechnete Minuten pro Gemeinde)",
+   "definition": "Im Rechnungsjahr an die Gemeinde Bargen abgerechnete Minuten je KLV-Leistung (Abklärung, Untersuchung, Grundpflege ohne und mit pflegenden Angehörigen).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "KLV-A Abklärung (500)",
+    "KLV-B Untersuchung (501)",
+    "KLV-C Grundpflege (502 ohne pflegende Angeh.)",
+    "KLV-C Grundpflege (502 pfl. Angeh.)"
+   ],
+   "format": "Anzahl Minuten p.a."
+  },
+  {
+   "name": "Beggingen (Verrechnete Minuten pro Gemeinde)",
+   "definition": "Im Rechnungsjahr an die Gemeinde Beggingen abgerechnete Minuten je KLV-Leistung (Abklärung, Untersuchung, Grundpflege ohne und mit pflegenden Angehörigen).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "KLV-A Abklärung (500)",
+    "KLV-B Untersuchung (501)",
+    "KLV-C Grundpflege (502 ohne pflegende Angeh.)",
+    "KLV-C Grundpflege (502 pfl. Angeh.)"
+   ],
+   "format": "Anzahl Minuten p.a."
+  },
+  {
+   "name": "Beringen (Verrechnete Minuten pro Gemeinde)",
+   "definition": "Im Rechnungsjahr an die Gemeinde Beringen abgerechnete Minuten je KLV-Leistung (Abklärung, Untersuchung, Grundpflege ohne und mit pflegenden Angehörigen).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "KLV-A Abklärung (500)",
+    "KLV-B Untersuchung (501)",
+    "KLV-C Grundpflege (502 ohne pflegende Angeh.)",
+    "KLV-C Grundpflege (502 pfl. Angeh.)"
+   ],
+   "format": "Anzahl Minuten p.a."
+  },
+  {
+   "name": "Buch (Verrechnete Minuten pro Gemeinde)",
+   "definition": "Im Rechnungsjahr an die Gemeinde Buch abgerechnete Minuten je KLV-Leistung (Abklärung, Untersuchung, Grundpflege ohne und mit pflegenden Angehörigen).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "KLV-A Abklärung (500)",
+    "KLV-B Untersuchung (501)",
+    "KLV-C Grundpflege (502 ohne pflegende Angeh.)",
+    "KLV-C Grundpflege (502 pfl. Angeh.)"
+   ],
+   "format": "Anzahl Minuten p.a."
+  },
+  {
+   "name": "Buchberg (Verrechnete Minuten pro Gemeinde)",
+   "definition": "Im Rechnungsjahr an die Gemeinde Buchberg abgerechnete Minuten je KLV-Leistung (Abklärung, Untersuchung, Grundpflege ohne und mit pflegenden Angehörigen).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "KLV-A Abklärung (500)",
+    "KLV-B Untersuchung (501)",
+    "KLV-C Grundpflege (502 ohne pflegende Angeh.)",
+    "KLV-C Grundpflege (502 pfl. Angeh.)"
+   ],
+   "format": "Anzahl Minuten p.a."
+  },
+  {
+   "name": "Büttenhardt (Verrechnete Minuten pro Gemeinde)",
+   "definition": "Im Rechnungsjahr an die Gemeinde Büttenhardt abgerechnete Minuten je KLV-Leistung (Abklärung, Untersuchung, Grundpflege ohne und mit pflegenden Angehörigen).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "KLV-A Abklärung (500)",
+    "KLV-B Untersuchung (501)",
+    "KLV-C Grundpflege (502 ohne pflegende Angeh.)",
+    "KLV-C Grundpflege (502 pfl. Angeh.)"
+   ],
+   "format": "Anzahl Minuten p.a."
+  },
+  {
+   "name": "Dörflingen (Verrechnete Minuten pro Gemeinde)",
+   "definition": "Im Rechnungsjahr an die Gemeinde Dörflingen abgerechnete Minuten je KLV-Leistung (Abklärung, Untersuchung, Grundpflege ohne und mit pflegenden Angehörigen).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "KLV-A Abklärung (500)",
+    "KLV-B Untersuchung (501)",
+    "KLV-C Grundpflege (502 ohne pflegende Angeh.)",
+    "KLV-C Grundpflege (502 pfl. Angeh.)"
+   ],
+   "format": "Anzahl Minuten p.a."
+  },
+  {
+   "name": "Gächlingen (Verrechnete Minuten pro Gemeinde)",
+   "definition": "Im Rechnungsjahr an die Gemeinde Gächlingen abgerechnete Minuten je KLV-Leistung (Abklärung, Untersuchung, Grundpflege ohne und mit pflegenden Angehörigen).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "KLV-A Abklärung (500)",
+    "KLV-B Untersuchung (501)",
+    "KLV-C Grundpflege (502 ohne pflegende Angeh.)",
+    "KLV-C Grundpflege (502 pfl. Angeh.)"
+   ],
+   "format": "Anzahl Minuten p.a."
+  },
+  {
+   "name": "Hallau (Verrechnete Minuten pro Gemeinde)",
+   "definition": "Im Rechnungsjahr an die Gemeinde Hallau abgerechnete Minuten je KLV-Leistung (Abklärung, Untersuchung, Grundpflege ohne und mit pflegenden Angehörigen).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "KLV-A Abklärung (500)",
+    "KLV-B Untersuchung (501)",
+    "KLV-C Grundpflege (502 ohne pflegende Angeh.)",
+    "KLV-C Grundpflege (502 pfl. Angeh.)"
+   ],
+   "format": "Anzahl Minuten p.a."
+  },
+  {
+   "name": "Hemishofen (Verrechnete Minuten pro Gemeinde)",
+   "definition": "Im Rechnungsjahr an die Gemeinde Hemishofen abgerechnete Minuten je KLV-Leistung (Abklärung, Untersuchung, Grundpflege ohne und mit pflegenden Angehörigen).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "KLV-A Abklärung (500)",
+    "KLV-B Untersuchung (501)",
+    "KLV-C Grundpflege (502 ohne pflegende Angeh.)",
+    "KLV-C Grundpflege (502 pfl. Angeh.)"
+   ],
+   "format": "Anzahl Minuten p.a."
+  },
+  {
+   "name": "Löhningen (Verrechnete Minuten pro Gemeinde)",
+   "definition": "Im Rechnungsjahr an die Gemeinde Löhningen abgerechnete Minuten je KLV-Leistung (Abklärung, Untersuchung, Grundpflege ohne und mit pflegenden Angehörigen).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "KLV-A Abklärung (500)",
+    "KLV-B Untersuchung (501)",
+    "KLV-C Grundpflege (502 ohne pflegende Angeh.)",
+    "KLV-C Grundpflege (502 pfl. Angeh.)"
+   ],
+   "format": "Anzahl Minuten p.a."
+  },
+  {
+   "name": "Lohn (Verrechnete Minuten pro Gemeinde)",
+   "definition": "Im Rechnungsjahr an die Gemeinde Lohn abgerechnete Minuten je KLV-Leistung (Abklärung, Untersuchung, Grundpflege ohne und mit pflegenden Angehörigen).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "KLV-A Abklärung (500)",
+    "KLV-B Untersuchung (501)",
+    "KLV-C Grundpflege (502 ohne pflegende Angeh.)",
+    "KLV-C Grundpflege (502 pfl. Angeh.)"
+   ],
+   "format": "Anzahl Minuten p.a."
+  },
+  {
+   "name": "Merishausen (Verrechnete Minuten pro Gemeinde)",
+   "definition": "Im Rechnungsjahr an die Gemeinde Merishausen abgerechnete Minuten je KLV-Leistung (Abklärung, Untersuchung, Grundpflege ohne und mit pflegenden Angehörigen).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "KLV-A Abklärung (500)",
+    "KLV-B Untersuchung (501)",
+    "KLV-C Grundpflege (502 ohne pflegende Angeh.)",
+    "KLV-C Grundpflege (502 pfl. Angeh.)"
+   ],
+   "format": "Anzahl Minuten p.a."
+  },
+  {
+   "name": "Neuhausen (Verrechnete Minuten pro Gemeinde)",
+   "definition": "Im Rechnungsjahr an die Gemeinde Neuhausen abgerechnete Minuten je KLV-Leistung (Abklärung, Untersuchung, Grundpflege ohne und mit pflegenden Angehörigen).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "KLV-A Abklärung (500)",
+    "KLV-B Untersuchung (501)",
+    "KLV-C Grundpflege (502 ohne pflegende Angeh.)",
+    "KLV-C Grundpflege (502 pfl. Angeh.)"
+   ],
+   "format": "Anzahl Minuten p.a."
+  },
+  {
+   "name": "Neunkirch (Verrechnete Minuten pro Gemeinde)",
+   "definition": "Im Rechnungsjahr an die Gemeinde Neunkirch abgerechnete Minuten je KLV-Leistung (Abklärung, Untersuchung, Grundpflege ohne und mit pflegenden Angehörigen).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "KLV-A Abklärung (500)",
+    "KLV-B Untersuchung (501)",
+    "KLV-C Grundpflege (502 ohne pflegende Angeh.)",
+    "KLV-C Grundpflege (502 pfl. Angeh.)"
+   ],
+   "format": "Anzahl Minuten p.a."
+  },
+  {
+   "name": "Oberhallau (Verrechnete Minuten pro Gemeinde)",
+   "definition": "Im Rechnungsjahr an die Gemeinde Oberhallau abgerechnete Minuten je KLV-Leistung (Abklärung, Untersuchung, Grundpflege ohne und mit pflegenden Angehörigen).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "KLV-A Abklärung (500)",
+    "KLV-B Untersuchung (501)",
+    "KLV-C Grundpflege (502 ohne pflegende Angeh.)",
+    "KLV-C Grundpflege (502 pfl. Angeh.)"
+   ],
+   "format": "Anzahl Minuten p.a."
+  },
+  {
+   "name": "Ramsen (Verrechnete Minuten pro Gemeinde)",
+   "definition": "Im Rechnungsjahr an die Gemeinde Ramsen abgerechnete Minuten je KLV-Leistung (Abklärung, Untersuchung, Grundpflege ohne und mit pflegenden Angehörigen).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "KLV-A Abklärung (500)",
+    "KLV-B Untersuchung (501)",
+    "KLV-C Grundpflege (502 ohne pflegende Angeh.)",
+    "KLV-C Grundpflege (502 pfl. Angeh.)"
+   ],
+   "format": "Anzahl Minuten p.a."
+  },
+  {
+   "name": "Rüdlingen (Verrechnete Minuten pro Gemeinde)",
+   "definition": "Im Rechnungsjahr an die Gemeinde Rüdlingen abgerechnete Minuten je KLV-Leistung (Abklärung, Untersuchung, Grundpflege ohne und mit pflegenden Angehörigen).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "KLV-A Abklärung (500)",
+    "KLV-B Untersuchung (501)",
+    "KLV-C Grundpflege (502 ohne pflegende Angeh.)",
+    "KLV-C Grundpflege (502 pfl. Angeh.)"
+   ],
+   "format": "Anzahl Minuten p.a."
+  },
+  {
+   "name": "Schaffhausen (Verrechnete Minuten pro Gemeinde)",
+   "definition": "Im Rechnungsjahr an die Gemeinde Schaffhausen abgerechnete Minuten je KLV-Leistung (Abklärung, Untersuchung, Grundpflege ohne und mit pflegenden Angehörigen).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "KLV-A Abklärung (500)",
+    "KLV-B Untersuchung (501)",
+    "KLV-C Grundpflege (502 ohne pflegende Angeh.)",
+    "KLV-C Grundpflege (502 pfl. Angeh.)"
+   ],
+   "format": "Anzahl Minuten p.a."
+  },
+  {
+   "name": "Schleitheim (Verrechnete Minuten pro Gemeinde)",
+   "definition": "Im Rechnungsjahr an die Gemeinde Schleitheim abgerechnete Minuten je KLV-Leistung (Abklärung, Untersuchung, Grundpflege ohne und mit pflegenden Angehörigen).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "KLV-A Abklärung (500)",
+    "KLV-B Untersuchung (501)",
+    "KLV-C Grundpflege (502 ohne pflegende Angeh.)",
+    "KLV-C Grundpflege (502 pfl. Angeh.)"
+   ],
+   "format": "Anzahl Minuten p.a."
+  },
+  {
+   "name": "Siblingen (Verrechnete Minuten pro Gemeinde)",
+   "definition": "Im Rechnungsjahr an die Gemeinde Siblingen abgerechnete Minuten je KLV-Leistung (Abklärung, Untersuchung, Grundpflege ohne und mit pflegenden Angehörigen).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "KLV-A Abklärung (500)",
+    "KLV-B Untersuchung (501)",
+    "KLV-C Grundpflege (502 ohne pflegende Angeh.)",
+    "KLV-C Grundpflege (502 pfl. Angeh.)"
+   ],
+   "format": "Anzahl Minuten p.a."
+  },
+  {
+   "name": "Stein am Rhein (Verrechnete Minuten pro Gemeinde)",
+   "definition": "Im Rechnungsjahr an die Gemeinde Stein am Rhein abgerechnete Minuten je KLV-Leistung (Abklärung, Untersuchung, Grundpflege ohne und mit pflegenden Angehörigen).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "KLV-A Abklärung (500)",
+    "KLV-B Untersuchung (501)",
+    "KLV-C Grundpflege (502 ohne pflegende Angeh.)",
+    "KLV-C Grundpflege (502 pfl. Angeh.)"
+   ],
+   "format": "Anzahl Minuten p.a."
+  },
+  {
+   "name": "Stetten (Verrechnete Minuten pro Gemeinde)",
+   "definition": "Im Rechnungsjahr an die Gemeinde Stetten abgerechnete Minuten je KLV-Leistung (Abklärung, Untersuchung, Grundpflege ohne und mit pflegenden Angehörigen).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "KLV-A Abklärung (500)",
+    "KLV-B Untersuchung (501)",
+    "KLV-C Grundpflege (502 ohne pflegende Angeh.)",
+    "KLV-C Grundpflege (502 pfl. Angeh.)"
+   ],
+   "format": "Anzahl Minuten p.a."
+  },
+  {
+   "name": "Thayngen (Verrechnete Minuten pro Gemeinde)",
+   "definition": "Im Rechnungsjahr an die Gemeinde Thayngen abgerechnete Minuten je KLV-Leistung (Abklärung, Untersuchung, Grundpflege ohne und mit pflegenden Angehörigen).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "KLV-A Abklärung (500)",
+    "KLV-B Untersuchung (501)",
+    "KLV-C Grundpflege (502 ohne pflegende Angeh.)",
+    "KLV-C Grundpflege (502 pfl. Angeh.)"
+   ],
+   "format": "Anzahl Minuten p.a."
+  },
+  {
+   "name": "Trasadingen (Verrechnete Minuten pro Gemeinde)",
+   "definition": "Im Rechnungsjahr an die Gemeinde Trasadingen abgerechnete Minuten je KLV-Leistung (Abklärung, Untersuchung, Grundpflege ohne und mit pflegenden Angehörigen).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "KLV-A Abklärung (500)",
+    "KLV-B Untersuchung (501)",
+    "KLV-C Grundpflege (502 ohne pflegende Angeh.)",
+    "KLV-C Grundpflege (502 pfl. Angeh.)"
+   ],
+   "format": "Anzahl Minuten p.a."
+  },
+  {
+   "name": "Wilchingen (Verrechnete Minuten pro Gemeinde)",
+   "definition": "Im Rechnungsjahr an die Gemeinde Wilchingen abgerechnete Minuten je KLV-Leistung (Abklärung, Untersuchung, Grundpflege ohne und mit pflegenden Angehörigen).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "KLV-A Abklärung (500)",
+    "KLV-B Untersuchung (501)",
+    "KLV-C Grundpflege (502 ohne pflegende Angeh.)",
+    "KLV-C Grundpflege (502 pfl. Angeh.)"
+   ],
+   "format": "Anzahl Minuten p.a."
+  },
+  {
+   "name": "Gemeinden ausserkantonal (Verrechnete Minuten pro Gemeinde)",
+   "definition": "Im Rechnungsjahr an ausserkantonale Gemeinden abgerechnete Minuten je KLV-Leistung (Abklärung, Untersuchung, Grundpflege ohne und mit pflegenden Angehörigen).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "KLV-A Abklärung (500)",
+    "KLV-B Untersuchung (501)",
+    "KLV-C Grundpflege (502 ohne pflegende Angeh.)",
+    "KLV-C Grundpflege (502 pfl. Angeh.)"
+   ],
+   "format": "Anzahl Minuten p.a."
+  },
+  {
+   "name": "Bemerkungen zuhanden Gesundheitsamt (Formular E)",
+   "definition": "Freie Bemerkungen der Organisation zu den verrechneten Minuten pro Gemeinde in Formular E.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  }
+ ],
+ "hinweis": "Korrekturen: keine. Ich habe die Originaldatei geprüft (die Textfassung war leer). Grundlage war die Excel-Datei selbst: Die Blätter sind geschützt, Zellen mit Schreibschutz lassen sich nicht auswählen, und nur die nicht gesperrten Eingabezellen zählen als Felder. Geprüft habe ich die sichtbaren Blätter A, B, C, D1, D2 und E Zeile für Zeile. Ergebnis: Alle Eingabezeilen und -spalten sind vorhanden, es wurde nichts erfunden, und die Teilfelder stimmen mit den gedruckten Spaltenköpfen überein (A 27 Zeilen; B 1.1 11 Zeilen; B 1.2 7×6; B 2. 2+18 Zeilen; C 29 Zeilen; D2 3 Abschnitte; E 27 Zeilen). Gemischte Spaltenzahlen in C sind richtig übernommen (310/330/370 nur Total und KLV-Kern). Die Formulare enthalten keine Unterschrift, keine Ort/Datum-Angabe, keine Auswahlliste und keine Datenprüfung. Keine Felder der Person, sondern Anleitung, Rechnung oder internes Material: der Hinweis «Anleitung für Kennzahlenset» (Homepage Gesundheitsamt); die Notiz zu Stellen nach BFS Spitex-Statistik (Angehörigenpflege separat); alle Summen, die Zusammenfassung in KORE-Gruppen, die Pensen aus A in B 1.1, B 1.3 und B 1.4 (Ansätze vorgedruckt und gesperrt); das ganze Formular D1 (wird automatisch erzeugt, nur Bemerkungen sind auszufüllen); die ausgeblendeten Blätter Hilfsblatt Stunden, Basis und KST KOA; die Kommentare der Ersteller. D2 ist laut Formular «nur von Spitexbetrieben mit eigener Kostenrechnung auszufüllen». Darum sind die Felder von D2 und die CSV-Beilage bedingt und als required=false behalten. Der Hinweis auf Blatt E zur Übereinstimmung mit den Monatsangaben an die Gemeinden ist eine Anleitung. Unstimmigkeiten im Formular (nur gemeldet, nicht geändert): (1) Die Total-Zeile in B 2. ist =SUM(C67:C82) und lässt die freien Kantonszeilen 83–87 weg. (2) Die Prüfformeln L34–L40 in B 1.2 beziehen sich auf verschobene Bereiche (z. B. SUM(E6:J34)). (3) In der Zusammenfassung der KORE-Gruppen auf A stehen die Gruppen 414/415 (Text «314 … (Angehörige)» bzw. «415 …»). Die Zeilen 154/155 Angehörigenpflege sind aber KORE 319 zugeordnet, darum bleiben 414/415 immer 0. (4) In B 1.1 fehlt für Zeile 319 die Formel «Kosten je Std.» (F25). (5) Tippfehler im Formular: «Schffhausen», «Pesonalkosten», «Schafffhausen», «übrlge», «Adminisation», «Assisten», «Auszubildene», «TotaL CHF». Die Feldnamen geben diese Tippfehler bewusst unverändert wieder, nur Leerzeichen sind vereinheitlicht."
+}

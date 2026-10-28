@@ -1,0 +1,46 @@
+{
+ "urteile": [
+  {
+   "id": 7124,
+   "urteil": "bestaetigt",
+   "subjekt": "gemischt",
+   "grund": "Das Formular fragt nach Name, Vorname, Beruf und Wohnadresse, also nach einer Person. Veräusserer bei einem Konsumkredit-Kauf ist aber meist ein gewerblicher Händler, oft eine Firma. Nach Art. 2 KKG kann die Kreditgeberin eine natürliche oder juristische Person sein. Deshalb bleibt es vorsichtig bei «gemischt»."
+  },
+  {
+   "id": 7125,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Der Erwerber ist der Konsument nach Art. 3 KKG, also immer eine natürliche Person. Das Formular bestätigt das: Es unterscheidet Erwerber und Käufer, und der Erwerber erklärt, dass er sein Widerrufsrecht nach Art. 16 KKG nicht ausgeübt hat. Verlangt werden Name, Vorname, Beruf und Wohnadresse."
+  },
+  {
+   "id": 7126,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Ein minderjähriger Erwerber ist zwingend ein einzelner Mensch. Verlangt werden Name, Vorname, Wohnadresse und Geburtsdatum."
+  },
+  {
+   "id": 7127,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Gesetzlicher Vertreter einer minderjährigen Person nach Art. 13 KKG sind die Eltern oder ein Vormund bzw. Beistand, also immer eine natürliche Person. Verlangt werden Name, Vorname, Beruf und Wohnadresse."
+  },
+  {
+   "id": 7131,
+   "urteil": "bestaetigt",
+   "subjekt": "gemischt",
+   "grund": "Zessionar der Kreditforderung ist meist eine Bank oder eine Finanzierungsgesellschaft. Eine Privatperson ist rechtlich aber auch möglich. Die Personenfelder der Vorlage (Name, Vorname, Beruf) beweisen keine natürliche Person, deshalb «gemischt»."
+  },
+  {
+   "id": 7134,
+   "urteil": "bestaetigt",
+   "subjekt": "gemischt",
+   "grund": "Das Feld ist frei auszufüllen. Den Antrag stellen kann der Veräusserer (oft eine Firma), der Erwerber, der Zessionar (oft eine Bank) oder eine Vertretung. Es kann also eine Person oder eine Organisation sein."
+  },
+  {
+   "id": 7137,
+   "urteil": "bestaetigt",
+   "subjekt": "sache",
+   "grund": "Gefragt ist der Ort, an dem die Gegenstände unter Eigentumsvorbehalt stehen. Das ist eine Angabe zu einer Sache bzw. einem Ort und keine Personenangabe, auch wenn sie mit der Wohnadresse des Erwerbers übereinstimmen kann."
+  }
+ ]
+}

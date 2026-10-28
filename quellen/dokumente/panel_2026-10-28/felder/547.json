@@ -1,0 +1,133 @@
+{
+ "form_id": 547,
+ "data_fields": [
+  {
+   "name": "Gesuchsteller/in 1",
+   "definition": "Personalien der ersten gesuchstellenden Person, die gemeinsam mit der Partnerin bzw. dem Partner die Auflösung der eingetragenen Partnerschaft verlangt, samt Namen vor der Eintragung, Beruf, Heimatort/-land, Wohnadresse und Telefon.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name",
+    "Vorname",
+    "Name vor der Eintragung",
+    "Geburtsdatum",
+    "Beruf",
+    "Heimatort/-land",
+    "Wohnadresse",
+    "Ort",
+    "Telefon"
+   ],
+   "format": ""
+  },
+  {
+   "name": "falls Dolmetscher/in erforderlich, welche Sprache (Gesuchsteller/in 1)",
+   "definition": "Sprache, in die für die erste gesuchstellende Person übersetzt werden muss; nur anzugeben, wenn eine Dolmetscherin bzw. ein Dolmetscher erforderlich ist.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Gesuchsteller/in 2",
+   "definition": "Personalien der zweiten gesuchstellenden Person (Partnerin bzw. Partner) samt Beruf, Heimatort/-land, Wohnadresse und Telefon; anders als bei Gesuchsteller/in 1 wird kein Name vor der Eintragung erfragt.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name",
+    "Vorname",
+    "Geburtsdatum",
+    "Beruf",
+    "Heimatort/-land",
+    "Wohnadresse",
+    "Ort",
+    "Telefon"
+   ],
+   "format": ""
+  },
+  {
+   "name": "falls Dolmetscher/in erforderlich, welche Sprache (Gesuchsteller/in 2)",
+   "definition": "Sprache, in die für die zweite gesuchstellende Person übersetzt werden muss; nur anzugeben, wenn eine Dolmetscherin bzw. ein Dolmetscher erforderlich ist.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Datum der Eintragung der Partnerschaft",
+   "definition": "Kalendertag, an dem die eingetragene Partnerschaft, deren Auflösung verlangt wird, beurkundet wurde.",
+   "data_type": "date",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ort der Eintragung",
+   "definition": "Ort, an dem die eingetragene Partnerschaft beurkundet wurde.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Datum (Gesuchsteller/in 1)",
+   "definition": "Kalendertag, an dem die erste gesuchstellende Person das gemeinsame Begehren unterzeichnet.",
+   "data_type": "date",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Unterschrift Gesuchsteller/in 1",
+   "definition": "Eigenhändige Unterschrift der ersten gesuchstellenden Person unter dem gemeinsamen Begehren.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Datum (Gesuchsteller/in 2)",
+   "definition": "Kalendertag, an dem die zweite gesuchstellende Person das gemeinsame Begehren unterzeichnet.",
+   "data_type": "date",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Unterschrift Gesuchsteller/in 2",
+   "definition": "Eigenhändige Unterschrift der zweiten gesuchstellenden Person unter dem gemeinsamen Begehren.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Zustellungsbevollmächtigter in der Schweiz",
+   "definition": "Angabe einer zustellungsbevollmächtigten Person in der Schweiz, die eine Partei mit Wohnsitz im Ausland gemäss Hinweis auf dem Formular angeben muss; das Formular druckt dafür keine eigene Zeile und keine Teilangaben.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Unterlagen (gemäss «Merkblatt Ehescheidung auf gemeinsames Begehren»)",
+   "definition": "Mit dem ausgefüllten Formular einzureichende Unterlagen, und zwar dieselben, die das «Merkblatt Ehescheidung auf gemeinsames Begehren» aufführt; das Formular selbst nennt sie nicht einzeln.",
+   "data_type": "attachment",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  }
+ ],
+ "hinweis": "Korrekturen: (1) Feld «Zustellungsbevollmächtigte/r in der Schweiz» umbenannt in «Zustellungsbevollmächtigter in der Schweiz»: Das Formular druckt keine Beschriftung, sondern nur den Satz «… muss einen Zustellungsbevollmächtigten in der Schweiz angeben»; die Schrägstrich-Form «/r» steht nicht im Formular, der Name folgt nun dem gedruckten Wort (Grundform). Typ text, nicht Pflicht (gilt nur für eine Partei mit Wohnsitz im Ausland), unverändert. Sonst keine Korrekturen. Gegen das Original-PDF (eine Seite) Zeile für Zeile geprüft: beide Personalien-Blöcke mit genau den gedruckten Teilangaben (nur Gesuchsteller/in 1 hat «Name vor der Eintragung»; Geburtsdatum/Beruf und Ort/Telefon stehen je in einer Zeile, sind aber getrennte Teilangaben), je eine Dolmetscher-Zeile pro Person, «Datum der Eintragung der Partnerschaft» und «Ort der Eintragung» als zwei eigene Beschriftungen im selben Kasten (darum zwei Felder, keine erfundene Sammelbezeichnung), je eine Datums- und Unterschriftszeile für beide Unterzeichnenden (es ist kein Ort gedruckt, darum nur Datum). Keine Ankreuzfelder, keine Tabellen, keine Beilagen-Checkliste und kein Feld «Vom Amt auszufüllen». Keine Felder der Person: der Briefkopf (Kantonsgericht Schaffhausen, Herrenacker 26, 8200 Schaffhausen, 052 632 74 32, justiz.sh.ch), der Titel «Gemeinsames Begehren auf: Auflösung der eingetragenen Partnerschaft» und der WICHTIG-Hinweis zur Einreichung an obenstehende Adresse. Zum Feld «Unterlagen»: Das Formular verweist auf das «Merkblatt Ehescheidung auf gemeinsames Begehren», das dieser Datei nicht beiliegt (anders als bei der Ehescheidungs-Datei 396 «…_mitMB», Formular 548). Die einzelnen Unterlagen lassen sich deshalb nur aus dem Merkblatt ableiten. Für die Formulare 547 und 548 sind noch keine Felder in der Databank erfasst, es gab also keine Vorlage zum Vergleich."
+}

@@ -13,7 +13,11 @@ in the six groups of the sidebar:
     from DATA.kopfzahlen, further gaps, three doors, the tone key, a compact
     Verlauf) · Für Dienststellen (#dienststellen, + /all/<slug> per office) ·
     Für den Kanton (#kanton) · Methode & Quellen (#methode: method, tones and
-    tiers, all key figures, the Verlauf table)
+    tiers, all key figures, the Verlauf table) · Abgleich DVSH & SHEP (#abgleich:
+    every DVSH service and SHEP page with its service row, every file the two sources
+    offer with its state against the databank, what the latest harvests changed —
+    DATA.quellenabgleich, services[].dokumente and .aenderungen from
+    citygov/domain/quelldokumente.py; each service page lists its files and the change line)
   * Datenstandard — Datenkatalog (#katalog) · Begriffe (#begriffe) ·
     eSH-Katalog (#esh, marked «Entwurf»)
   * Datenmodell & Once-Only — Datenmodell (#datenmodell, + /all/parteien · konzepte ·
@@ -161,8 +165,10 @@ def gap_wording(text):
 REQUIRED = {
     "": ("labels", "kopfzahlen", "dienststellen_uebersicht", "forms", "services", "laws",
          "zitate", "datenstand", "verlauf", "gestaltung", "parteien", "konzepte", "wirkung", "register",
-         "vorbefuellung", "kennungen", "vertrag", "datenmodell"),
-    "labels": ("ton", "ton_map", "kontakt"),
+         "vorbefuellung", "kennungen", "vertrag", "datenmodell", "quellenabgleich"),
+    "labels": ("ton", "ton_map", "kontakt", "dok_stand", "feld_quelle"),
+    # citygov/domain/quelldokumente.py (the hook in export_json.py)
+    "quellenabgleich": ("dokumente", "n_dokumente", "quellen", "dvsh_services", "shep_seiten"),
     "kopfzahlen": ("standard_ech", "standard_einheitlich", "standard_benannt", "rechtsgrundlage",
                    "verzeichnis", "offene_punkte", "kein_standard", "kategorien"),
     "kopfzahlen.standard_ech": ("wert", "von", "ech", "ech_ton"),
@@ -194,6 +200,8 @@ def missing_keys(export):
     fields = [d for fm in forms for d in fm.get("data_fields") or []]
     if any("ech_state" not in d or "basis_state" not in d for d in fields):
         out.append("forms[].data_fields[].ech_state / basis_state")
+    if any("dokumente" not in s or "aenderungen" not in s for s in export.get("services") or []):
+        out.append("services[].dokumente / aenderungen")
     if any("dienststelle" not in fm for fm in forms):
         out.append("forms[].dienststelle")
     if any("standard" not in fm for fm in forms if fm.get("data_fields")):

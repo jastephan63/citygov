@@ -1,0 +1,29 @@
+{
+ "verdicts": [
+  {
+   "id": 7074,
+   "subjekt": "gemischt",
+   "grund": "Schuldner laut Formular «Name und Vorname bzw. Firma»; betrieben werden kann eine Privatperson oder ein Unternehmen (Hinweise lit. a/b), also beides möglich."
+  },
+  {
+   "id": 7075,
+   "subjekt": "behoerde",
+   "grund": "Anschrift des zuständigen Betreibungsamtes, also eigene Angabe der Behörde, an die das Begehren geht."
+  },
+  {
+   "id": 7076,
+   "subjekt": "natuerliche_person",
+   "grund": "Geburtsdatum des Schuldners «falls bekannt»; ein Geburtsdatum gibt es nur bei einer natürlichen Person, die Angabe betrifft also sicher eine einzelne Person (den Schuldner)."
+  },
+  {
+   "id": 7077,
+   "subjekt": "gemischt",
+   "grund": "Gläubiger laut Formular «Name und Vorname bzw. Firma; Adresse; PLZ Ort»; das kann eine Privatperson oder eine Firma sein."
+  },
+  {
+   "id": 7080,
+   "subjekt": "gemischt",
+   "grund": "Vertreter des Gläubigers «Name und Vorname bzw. Firma»; vertreten kann eine Einzelperson oder ein Unternehmen, etwa ein Inkassobüro oder eine Kanzlei."
+  }
+ ]
+}

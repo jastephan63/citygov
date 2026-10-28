@@ -1,0 +1,210 @@
+{
+ "form_id": 560,
+ "data_fields": [
+  {
+   "name": "Firma",
+   "definition": "Firma der Gesellschaft, deren Verwaltungsrat sich versammelt, eingesetzt im Titel anstelle des Platzhalters «[FIRMA]».",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Sitz",
+   "definition": "Sitz der Gesellschaft, eingesetzt im Titel anstelle des Platzhalters «[SITZ]».",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Datum",
+   "definition": "Kalenderdatum, an dem die Versammlung des Verwaltungsrates stattfindet.",
+   "data_type": "date",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ort",
+   "definition": "Ort, an dem die Versammlung des Verwaltungsrates stattfindet.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Vorsitz",
+   "definition": "Name des Verwaltungsratsmitglieds, das die Sitzung eröffnet und den Vorsitz führt (wird im Eröffnungssatz und unter der Unterschriftslinie «[NAME, Vorname]» erneut eingesetzt).",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "NAME, Vorname"
+  },
+  {
+   "name": "Protokoll",
+   "definition": "Name der Person, die vom Vorsitz als Protokollführer bezeichnet wird (wird im Eröffnungssatz und unter der Unterschriftslinie «[NAME, Vorname]» erneut eingesetzt).",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "NAME, Vorname"
+  },
+  {
+   "name": "Neben ihm/ihr sind anwesend",
+   "definition": "Namen der übrigen an der Sitzung anwesenden Mitglieder des Verwaltungsrates neben dem Vorsitz.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Erteilung einer Zeichnungsberechtigung – Person, der die Unterschrift erteilt wird",
+   "definition": "Angaben zur Person, der unter Traktandum 1 eine Zeichnungsberechtigung erteilt wird («…, von …, in … wird die … erteilt»).",
+   "data_type": "composite",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [
+    "Name, Vorname",
+    "von (Heimatort)",
+    "in (Wohnort)"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Erteilung einer Zeichnungsberechtigung – erteilte Unterschrift",
+   "definition": "Art der Unterschrift, die dieser Person erteilt wird, gewählt durch Entfernen der nicht zutreffenden Variante.",
+   "data_type": "enum",
+   "required": false,
+   "allowed_values": [
+    "Einzelunterschrift",
+    "Kollektivunterschrift zu zweien"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Erteilung einer Zeichnungsberechtigung – ernannte Person",
+   "definition": "Angaben zur Person, die unter Traktandum 1 zum Direktor, stellvertretenden Direktor oder Vizedirektor ernannt wird («…, von …, in … wird zum … ernannt»).",
+   "data_type": "composite",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [
+    "Name, Vorname",
+    "von (Heimatort)",
+    "in (Wohnort)"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Erteilung einer Zeichnungsberechtigung – Funktion der ernannten Person",
+   "definition": "Funktion, zu der die Person ernannt wird, gewählt durch Entfernen der nicht zutreffenden Varianten.",
+   "data_type": "enum",
+   "required": false,
+   "allowed_values": [
+    "Direktor",
+    "stellv. Direktor",
+    "Vizedirektor"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Erteilung einer Zeichnungsberechtigung – Unterschrift der ernannten Person",
+   "definition": "Art der Unterschrift, mit der die ernannte Person zeichnet, gewählt durch Entfernen der nicht zutreffenden Variante.",
+   "data_type": "enum",
+   "required": false,
+   "allowed_values": [
+    "Einzelunterschrift",
+    "Kollektivunterschrift zu zweien"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Entziehung einer Zeichnungsberechtigung – Person, der die Unterschrift entzogen wird",
+   "definition": "Angaben zur Person unterhalb des Verwaltungsrates, der unter Traktandum 2 die Zeichnungsberechtigung entzogen wird («…, von …, in … wird die … entzogen»).",
+   "data_type": "composite",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [
+    "Name, Vorname",
+    "von (Heimatort)",
+    "in (Wohnort)"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Entziehung einer Zeichnungsberechtigung – entzogene Unterschrift",
+   "definition": "Art der Unterschrift, die dieser Person entzogen wird, gewählt durch Entfernen der nicht zutreffenden Variante.",
+   "data_type": "enum",
+   "required": false,
+   "allowed_values": [
+    "Einzelunterschrift",
+    "Kollektivunterschrift zu zweien"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Entziehung einer Zeichnungsberechtigung – abgewählte Person",
+   "definition": "Angaben zur Person, die unter Traktandum 2 als Direktor, stellvertretender Direktor oder Vizedirektor abgewählt wird und deren Zeichnungsberechtigung damit erlischt.",
+   "data_type": "composite",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [
+    "Name, Vorname",
+    "von (Heimatort)",
+    "in (Wohnort)"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Entziehung einer Zeichnungsberechtigung – Funktion der abgewählten Person",
+   "definition": "Funktion, aus der die Person abgewählt wird, gewählt durch Entfernen der nicht zutreffenden Varianten.",
+   "data_type": "enum",
+   "required": false,
+   "allowed_values": [
+    "Direktor",
+    "stellv. Direktor",
+    "Vizedirektor"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Verschiedenes",
+   "definition": "Freitext zu weiteren Punkten, die unter dem Traktandum «Verschiedenes» besprochen werden.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Vorsitzender",
+   "definition": "Unterschrift des Vorsitzenden der Verwaltungsratssitzung über dem Platzhalter «[NAME, Vorname]».",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Protokollführer",
+   "definition": "Unterschrift des Protokollführers der Verwaltungsratssitzung über dem Platzhalter «[NAME, Vorname]».",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  }
+ ],
+ "hinweis": "Geprüft am Original-DOCX (formulare/157__1cb37dffa3e8.docx): 30 Textfelder (FORMTEXT), keine Kontrollkästchen, keine Kopf-/Fusszeilen, keine Beilagenliste, keine dritte Unterschriftszeile. Alle Angaben des Entwurfs sind vorhanden, Reihenfolge stimmt, nichts erfunden.\n\nKorrekturen:\n1. «Vorsitz» und «Protokoll»: format von leer auf «NAME, Vorname» gesetzt. Das Formular druckt für genau diese Personen unter den Unterschriftslinien den Platzhalter «[NAME, Vorname]», also die Schreibweise des Namens (Familienname in Grossbuchstaben, dann Vorname). Typ text bleibt, weil das Formular dafür jeweils nur ein Feld bzw. einen Platzhalter druckt und keine zwei Zeilen.\nAlle übrigen Felder wurden unverändert übernommen.\n\nBegründungen ohne Änderung:\n- Vorsitz/Protokoll erscheinen dreimal: als Kopffeld, als Feld im Eröffnungssatz («… eröffnet die Sitzung … bezeichnet … als Protokollführer») und als Platzhalter «[NAME, Vorname]» unter der Unterschrift. Das ist jeweils dieselbe Angabe, deshalb je ein Feld.\n- Für die Personen in Traktandum 1 und 2 druckt das Formular «     , von      , in      » (drei Felder). Die Teilfelder sind «Name, Vorname» (ein unbeschriftetes Feld nach der Platzhalter-Konvention des Formulars), «von (Heimatort)» und «in (Wohnort)». Weil das Formular für den Namen nur ein Feld druckt, wird er nicht in Name und Vorname aufgeteilt.\n- Diese Felder haben kein gedrucktes Label. Ihre Namen bestehen deshalb aus der Blocküberschrift und einer Beschreibung.\n- required=false für die Felder in Traktandum 1 und 2: Das Formular druckt «[bitte nicht Zutreffendes entfernen]», die Sätze und Varianten sind also nur im zutreffenden Fall auszufüllen. Wird ein Satz beibehalten, ist die Wahl in der Klammer zu treffen.\n- «Verschiedenes» ist freiwillig, analog zu «Bemerkungen».\n\nKeine Felder der Person sind:\n- die fest vorgedruckte Traktandenliste;\n- die Feststellungen zur ordnungsgemässen Einladung und zur Beschlussfähigkeit;\n- die geschlechtsbezogenen Varianten «Er/Sie» und «ihm/ihr» (grammatisch, keine Angabe);\n- der Hinweis «[bitte nicht Zutreffendes entfernen]».\n\nUnstimmigkeiten im Formular (nur festgehalten, Formular nicht geändert):\n- Die Traktandenliste nummeriert «3. Verschiedenes», im Text steht «4. Verschiedenes». Ein Traktandum 3 fehlt.\n- Beim zweiten Satz von Traktandum 1 fehlt die öffnende Klammer: «mit Einzelunterschrift /Kollektivunterschrift zu zweien]».\n- Das Label «Datum» steht ohne Doppelpunkt, die übrigen Kopflabels mit.\n- Der Text nennt «Er/Sie» und «ihm/ihr», der Unterschriftenblock und der Eröffnungssatz aber nur die männlichen Formen «Vorsitzender» und «Protokollführer».\n- Die Traktandenliste nennt «(unterhalb des Verwaltungsrates)», die Überschrift von Traktandum 2 im Text nicht."
+}

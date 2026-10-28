@@ -1,0 +1,28 @@
+{
+ "urteile": [
+  {
+   "id": 6647,
+   "urteil": "bestaetigt",
+   "subjekt": "gemischt",
+   "grund": "Absenderblock der Beistandsperson (Vorname, Name, Strasse, PLZ, Ort). Die KLIB-Vorlage mit Benutzer- und Abteilungsfeldern weist auf Berufsbeistände hin, die die Büroadresse der Berufsbeistandschaft angeben. Private Mandatsträger geben dagegen ihre Wohnadresse an. Die Adresse ist also nicht sicher die Angabe einer Privatperson, und eine Vorbefüllung aus dem Einwohnerregister wäre unsicher."
+  },
+  {
+   "id": 6648,
+   "urteil": "bestaetigt",
+   "subjekt": "organisation",
+   "grund": "Name und Adresse des Finanzinstituts (Bank oder PostFinance), an das der Zahlungsauftrag geht. Das ist eine juristische Person und keine Privatperson."
+  },
+  {
+   "id": 6656,
+   "urteil": "bestaetigt",
+   "subjekt": "gemischt",
+   "grund": "Gleicher Absenderblock der Beistandsperson wie im Zahlungsauftrag, hier an die KESB gerichtet. Je nach Mandat steht die private Wohnadresse oder die Büroadresse der Berufsbeistandschaft. Es ist also nicht sicher die Angabe einer Privatperson."
+  },
+  {
+   "id": 6658,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Laut Formular «Vorname, Name, Geburtsdatum, Adresse» der verbeiständeten Person, also die eigenen Personalien genau einer natürlichen Person. Dass die Beistandsperson sie einträgt, ändert nichts daran, wessen Angabe es ist."
+  }
+ ]
+}

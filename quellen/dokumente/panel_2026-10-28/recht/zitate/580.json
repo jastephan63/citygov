@@ -1,0 +1,157 @@
+{
+ "form_id": 580,
+ "mappings": [
+  {
+   "data_field": "Angaben zur Person, welche die Meldung erstattet",
+   "cites": [
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 443",
+     "beleg": "Jede Person kann der Erwachsenenschutzbehörde Meldung erstatten ... Wer in amtlicher Tätigkeit von einer solchen Person erfährt ... ist meldepflichtig. Vorbehalten bleiben die Bestimmungen über das Berufsgeheimnis."
+    },
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 446",
+     "beleg": "Sie zieht die erforderlichen Erkundigungen ein und erhebt die notwendigen Beweise."
+    },
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 448",
+     "beleg": "Die am Verfahren beteiligten Personen und Dritte sind zur Mitwirkung bei der Abklärung des Sachverhalts verpflichtet."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Angaben zur betroffenen Person",
+   "cites": [
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 443",
+     "beleg": "Jede Person kann der Erwachsenenschutzbehörde Meldung erstatten, wenn eine Person hilfsbedürftig erscheint."
+    },
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 442",
+     "beleg": "Zuständig ist die Erwachsenenschutzbehörde am Wohnsitz der betroffenen Person."
+    },
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 390",
+     "beleg": "Die Erwachsenenschutzbehörde errichtet eine Beistandschaft, wenn eine volljährige Person ..."
+    },
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 447",
+     "beleg": "Die betroffene Person wird persönlich angehört, soweit dies nicht als unverhältnismässig erscheint."
+    },
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 448",
+     "beleg": "Die am Verfahren beteiligten Personen und Dritte sind zur Mitwirkung bei der Abklärung des Sachverhalts verpflichtet ... Ärztinnen und Ärzte ... sind nur dann zur Mitwirkung verpflichtet, wenn ..."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Was ist der Anlass, aus welchem Sie diese Meldung bei uns einreichen?",
+   "cites": [
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 443",
+     "beleg": "Jede Person kann der Erwachsenenschutzbehörde Meldung erstatten, wenn eine Person hilfsbedürftig erscheint."
+    },
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 390",
+     "beleg": "wegen einer geistigen Behinderung, einer psychischen Störung oder eines ähnlichen in der Person liegenden Schwächezustands ihre Angelegenheiten nur teilweise oder gar nicht besorgen kann"
+    },
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 446",
+     "beleg": "Die Erwachsenenschutzbehörde erforscht den Sachverhalt von Amtes wegen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Weiss die betroffene Person von dieser Gefährdungsmeldung?",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Falls Ja, wie hat sie darauf reagiert?",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Wurde bisher bereits etwas unternommen?",
+   "cites": [
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 389",
+     "beleg": "die Unterstützung der hilfsbedürftigen Person durch die Familie, andere nahestehende Personen oder private oder öffentliche Dienste nicht ausreicht oder von vornherein als ungenügend erscheint"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Wenn ja, was und von wem?",
+   "cites": [
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 389",
+     "beleg": "die Unterstützung der hilfsbedürftigen Person durch die Familie, andere nahestehende Personen oder private oder öffentliche Dienste nicht ausreicht"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Kann mit ihr eine Unterhaltung auf Deutsch geführt werden?",
+   "cites": [
+    {
+     "cref": "SHR 173.200",
+     "article_no": "Art. 62",
+     "beleg": "Verfahrenssprache ist Deutsch."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Muttersprache",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Kenntnisse andere Fremdsprache",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Weitere relevante Informationen",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Wie schätzen Sie die Gefährdungssituation ein?",
+   "cites": [
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 445",
+     "beleg": "Bei besonderer Dringlichkeit kann sie vorsorgliche Massnahmen sofort ohne Anhörung der am Verfahren beteiligten Personen treffen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Ort/Datum",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Unterschrift",
+   "cites": [],
+   "over_collection": true
+  }
+ ]
+}

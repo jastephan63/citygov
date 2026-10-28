@@ -1,0 +1,46 @@
+{
+ "urteile": [
+  {
+   "id": 6611,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Block «Ehefrau» fragt Name, Vorname, Name vor der Heirat, Mädchenname, Geburtsdatum, Beruf, Heimatort, Wohnadresse, Ort und Telefon ab. Das sind die Personalien einer einzigen natürlichen Person. Eine Organisation kann nicht Ehegattin sein."
+  },
+  {
+   "id": 6612,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Im Block «Ehefrau» steht «falls Dolmetscher/in erforderlich, welche Sprache». Das ist eine eigene Angabe der Ehegattin, also einer natürlichen Person."
+  },
+  {
+   "id": 6613,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Block «Ehemann» fragt Name, Vorname, Geburtsdatum, Beruf, Heimatort, Wohnadresse, Ort und Telefon ab. Das sind die Personalien einer einzigen natürlichen Person, des Ehegatten."
+  },
+  {
+   "id": 6614,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Im Block «Ehemann» steht die Sprache für eine Dolmetscherin oder einen Dolmetscher. Das ist eine eigene Angabe des Ehegatten, also einer natürlichen Person."
+  },
+  {
+   "id": 6615,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Das Datum der Eheschliessung ist eine Zivilstandsangabe der beiden Ehegatten. Es geht um ihren Personenstand und nicht um eine Sache. Gleich beurteilt wie «Verheiratet seit» (2679, 5116) und «Datum der Heirat» (2689)."
+  },
+  {
+   "id": 6618,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Das Formular fragt Vorname und «geb.» jedes gemeinsamen Kindes ab, eine Zeile pro Kind. Es sind Personendaten der Kinder, also natürlicher Personen."
+  },
+  {
+   "id": 6623,
+   "urteil": "bestaetigt",
+   "subjekt": "gemischt",
+   "grund": "Laut Hinweis «Bitte beachten Sie» muss eine Partei mit Wohnsitz im Ausland einen Zustellungsbevollmächtigten in der Schweiz angeben. Das Formular sagt nicht, ob es eine Privatperson oder eine Anwaltskanzlei sein muss. Deshalb bleibt es vorsichtig «gemischt», gleich wie Feld 2562 «Zustellbevollmächtigter»."
+  }
+ ]
+}

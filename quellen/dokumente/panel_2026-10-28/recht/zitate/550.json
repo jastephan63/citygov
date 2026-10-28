@@ -1,0 +1,129 @@
+{
+ "form_id": 550,
+ "mappings": [
+  {
+   "data_field": "Absender (Zahlungsauftrag)",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Adresse Finanzinstitut",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Ort und Datum (Zahlungsauftrag)",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Gutschrift auf Konto / IBAN",
+   "cites": [
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 408",
+     "beleg": "Der Beistand oder die Beiständin verwaltet die Vermögenswerte sorgfältig und nimmt alle Rechtsgeschäfte vor, die mit der Verwaltung zusammenhängen."
+    },
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 417",
+     "beleg": "Die Erwachsenenschutzbehörde kann aus wichtigen Gründen anordnen, dass ihr weitere Geschäfte zur Zustimmung unterbreitet werden."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Belastung vom Konto / IBAN",
+   "cites": [
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 408",
+     "beleg": "Der Beistand oder die Beiständin verwaltet die Vermögenswerte sorgfältig und nimmt alle Rechtsgeschäfte vor, die mit der Verwaltung zusammenhängen."
+    },
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 417",
+     "beleg": "Die Erwachsenenschutzbehörde kann aus wichtigen Gründen anordnen, dass ihr weitere Geschäfte zur Zustimmung unterbreitet werden."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Betrag",
+   "cites": [
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 408",
+     "beleg": "Der Beistand oder die Beiständin verwaltet die Vermögenswerte sorgfältig und nimmt alle Rechtsgeschäfte vor, die mit der Verwaltung zusammenhängen."
+    },
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 417",
+     "beleg": "Die Erwachsenenschutzbehörde kann aus wichtigen Gründen anordnen, dass ihr weitere Geschäfte zur Zustimmung unterbreitet werden."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Ausführung per sofort / Datum",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Unterschrift Beistandsperson (Zahlungsauftrag)",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Beistandsperson",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Absender (Antrag auf Kontoübertrag)",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Ort und Datum (Antrag auf Kontoübertrag)",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Daten der verbeiständeten Person",
+   "cites": [
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 417",
+     "beleg": "Die Erwachsenenschutzbehörde kann aus wichtigen Gründen anordnen, dass ihr weitere Geschäfte zur Zustimmung unterbreitet werden."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Begründung",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Andere Begründung",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Unterschrift Beistandsperson (Antrag auf Kontoübertrag)",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "aktueller Kontostand vom Lastschriftkonto",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "aktueller Kontostand vom Gutschriftskonto",
+   "cites": [],
+   "over_collection": true
+  }
+ ]
+}

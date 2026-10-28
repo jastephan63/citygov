@@ -1,0 +1,14 @@
+{
+ "verdicts": [
+  {
+   "id": 7284,
+   "subjekt": "natuerliche_person",
+   "grund": "Name und Vorname der unterzeichnenden Person in Blockschrift (Eigentümer/in oder Stellvertreter/in): Das Formular fragt hier nur Name und Vorname der Person ab, die eigenhändig unterschreibt, also sicher eine einzelne natürliche Person. Eine allfällige Firma als Eigentümerin wird in Feld 5124 erfasst und nicht hier. Gleich beurteilt wie die bisherigen Unterzeichner-Felder 2883 und 5455."
+  },
+  {
+   "id": 7286,
+   "subjekt": "natuerliche_person",
+   "grund": "Name und Vorname der Person, die für die Gesuchstellerin unterschreibt (in Blockschrift, unter dem Firmenstempel): Die Firma selbst ist der Stempel bzw. die Installationsfirma (Feld 5125). Abgefragt wird hier nur der Name einer einzelnen natürlichen Person. Gleich beurteilt wie die bisherigen Felder 5282 und 5455 (Unterzeichner bei Firmen)."
+  }
+ ]
+}

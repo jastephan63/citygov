@@ -1,0 +1,49 @@
+{
+ "verdicts": [
+  {
+   "id": 7246,
+   "subjekt": "organisation",
+   "grund": "Name, Adresse und Kontakt der gesuchstellenden sozialen Einrichtung (IVSE-Bereich A/D), also einer Institution, nicht einer Person."
+  },
+  {
+   "id": 7247,
+   "subjekt": "natuerliche_person",
+   "grund": "Personalien (Name, Vorname, Geburtsdatum, Geschlecht, AHV-Nr., Staatsangehörigkeit) der einen platzierten Person."
+  },
+  {
+   "id": 7248,
+   "subjekt": "natuerliche_person",
+   "grund": "Zivilrechtlicher Wohnsitz der platzierten Person, also ihre eigene Adressangabe."
+  },
+  {
+   "id": 7249,
+   "subjekt": "natuerliche_person",
+   "grund": "Aufenthaltsort der platzierten Person bei externer Sonderschulung, also ihre eigene Adressangabe."
+  },
+  {
+   "id": 7251,
+   "subjekt": "gemischt",
+   "grund": "Vormund/Beistand kann eine private Person oder eine Berufsbeistandschaft mit Amtsadresse und Amtskontakt sein. Deshalb gemischt, ohne Once-Only-Mark."
+  },
+  {
+   "id": 7252,
+   "subjekt": "natuerliche_person",
+   "grund": "Name und Adresse des Vaters der platzierten Person, also einer bestimmten natürlichen Person."
+  },
+  {
+   "id": 7255,
+   "subjekt": "natuerliche_person",
+   "grund": "Name und Adresse der Mutter der platzierten Person, also einer bestimmten natürlichen Person."
+  },
+  {
+   "id": 7258,
+   "subjekt": "behoerde",
+   "grund": "Name und Adresse der zuweisenden Behörde, also Angaben einer Amtsstelle."
+  },
+  {
+   "id": 7268,
+   "subjekt": "natuerliche_person",
+   "grund": "Name und Vorname der einen Person, die für die Einrichtung unterzeichnet. Das entspricht den früheren Urteilen zu Unterzeichnenden für Firmen (5282, 5455)."
+  }
+ ]
+}

@@ -258,7 +258,32 @@ TON_MAP = {
     "dsfa": {"entschieden": "ok", "indiziert": "dec", "nicht_indiziert": "ok"},
     "schutzstufe": {"festgelegt": "ok", "fehlt": "dec"},
     "dup": {"entschieden": "ok", "offen": "dec"},
+    # a file DVSH or SHEP offers for a service (citygov/domain/quelldokumente.py): an
+    # older edition in the source is the Dienststelle's to replace there
+    "dok": {"erfasst": "ok", "gleicher_inhalt": "ok", "begleitdokument": "ok", "aeltere_ausgabe": "act",
+            "offen": "open", "nicht_lesbar": "open", "ungeprueft": "open"},
 }
+
+# the files DVSH and SHEP offer per service: state against the databank
+DOK_STAND = {"erfasst": "als Formular erfasst", "gleicher_inhalt": "gleicher Inhalt wie ein erfasstes Formular",
+             "aeltere_ausgabe": "ältere Ausgabe als das erfasste Formular",
+             "begleitdokument": "Begleitdokument (kein Formular)", "offen": "Formular, noch nicht übernommen",
+             "nicht_lesbar": "nicht lesbar", "ungeprueft": "noch nicht geprüft"}
+DOK_ART = {"formular": "Formular", "merkblatt": "Merkblatt", "wegleitung": "Wegleitung", "liste": "Liste",
+           "gesetz": "Rechtstext", "brief": "Schreiben", "uebersetzung": "Übersetzung", "anderes": "anderes Dokument"}
+DOK_ROLLE = {"einreichung": "zum Einreichen", "begleitend": "begleitend"}
+# what a harvest changed: the column names of dvsh_service / shep_service
+FELD_QUELLE = {"title": "Titel", "kurzbeschreibung": "Kurzbeschreibung", "beschreibung": "Beschreibung",
+               "voraussetzungen": "Voraussetzungen", "unterlagen": "Unterlagen", "ablauf": "Ablauf",
+               "bearbeitungsdauer": "Bearbeitungsdauer", "fristen": "Fristen", "gebuehren": "Gebühren",
+               "recht_kantonal": "kantonale Rechtsgrundlagen", "recht_bund": "Bundesrecht",
+               "externe_links": "Links", "submission_endpoint": "Einreichung", "documents": "Dokumente",
+               "form_definitions": "eFormular", "vollzugsbehoerde": "Vollzugsbehörde", "email": "E-Mail",
+               "phone": "Telefon", "address": "Adresse", "opening_hours": "Öffnungszeiten",
+               "status": "Status", "online": "online", "endpoint_typ": "Kanal",
+               "formular_url": "Formular-Link", "kontakt_einheit": "Kontakt (Stelle)",
+               "kontakt_adresse": "Kontakt (Adresse)", "kontakt_email": "Kontakt (E-Mail)"}
+AENDERUNG = {"neu": "neu", "entfernt": "entfernt", "geaendert": "geändert"}
 
 # ---- priority: what comes first on the board ------------------------------------
 # The data standard is the core of the databank, so it leads. These are GAPS —
@@ -347,4 +372,6 @@ def as_export():
             "begriff_klasse": BEGRIFF_KLASSE, "esh_status": ESH_STATUS, "ebene": EBENE, "node_typ": NODE_TYP,
             "todo_art": TODO_ART, "ton": TON, "ton_of_art": TON_OF_ART, "ton_map": TON_MAP,
             "stufen": [list(x) for x in STUFEN], "stufe_of_cat": STUFE_OF_CAT, "cat_order": CAT_ORDER, "aktion": AKTION, "einheit": EINHEIT,
-            "todo_cats": [list(c) for c in TODO_CATS], "kontakt": KONTAKT}
+            "todo_cats": [list(c) for c in TODO_CATS], "kontakt": KONTAKT,
+            "dok_stand": DOK_STAND, "dok_art": DOK_ART, "dok_rolle": DOK_ROLLE, "feld_quelle": FELD_QUELLE,
+            "aenderung": AENDERUNG}

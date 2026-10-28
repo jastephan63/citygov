@@ -1,0 +1,48 @@
+{
+ "form_id": 571,
+ "data_fields": [
+  {
+   "name": "Firma",
+   "definition": "Firma (eingetragener Name) der Aktiengesellschaft, deren Aktionärinnen und Aktionäre auf die eingeschränkte Revision verzichten.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Geschäftsjahr, ab welchem der Verzicht gelten soll",
+   "definition": "Angabe des Geschäftsjahres, ab dem der Verzicht auf die eingeschränkte Revision (Opting-out) gelten soll.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Sämtliche Aktionäre der Aktiengesellschaft",
+   "definition": "Tabelle mit den Angaben zu allen Aktionärinnen und Aktionären der Gesellschaft, je Person eine Zeile mit Vorname, Name, Anzahl gehaltener Aktien sowie Ort und Datum der Unterzeichnung.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Vorname",
+    "Name",
+    "Anzahl Aktien",
+    "Ort",
+    "Datum"
+   ],
+   "format": "bis zu 7 Zeilen (eine Zeile je Aktionär/in)"
+  },
+  {
+   "name": "Unterschrift",
+   "definition": "Eigenhändige Unterschrift jeder Aktionärin bzw. jedes Aktionärs in der eigenen Tabellenzeile, mit der der Verzicht auf die eingeschränkte Revision erklärt wird.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "je Tabellenzeile eine Unterschrift (bis zu 7)"
+  }
+ ],
+ "hinweis": "Formular anhand der Original-DOCX geprüft. Es enthält zwei Ausfüllzeilen (Firma, Geschäftsjahr), danach eine Tabelle mit einer Kopfzeile, 7 leeren Zeilen und den 5 Spalten Vorname | Name | Anzahl Aktien | Ort, Datum | Unterschrift. Kopf- und Fusszeilen, Ankreuzfelder und eine Beilagenliste gibt es nicht, ebenso kein Feld «Vom Amt auszufüllen». Der Erklärungstext (Verzicht auf die eingeschränkte Revision und Auftrag an den Verwaltungsrat, den Verzicht ins Handelsregister eintragen zu lassen) ist ein vorgedruckter Erklärungsinhalt und kein Feld. Korrekturen: (1) Beim Feld «Sämtliche Aktionäre der Aktiengesellschaft» wurde der Formathinweis bereinigt. Die Bemerkung, der Spaltenkopf «Ort, Datum» sei als eine Spalte gedruckt, ist kein Formathinweis und steht jetzt hier: Die gemeinsam gedruckte Spalte «Ort, Datum» wird wie im Bestand üblich («Ort und Datum» → Ort, Datum) in die Teile Ort und Datum aufgeteilt. Ein Datumsformat ist nicht gedruckt. Das Format lautet nach der Bestandskonvention nun «bis zu 7 Zeilen (eine Zeile je Aktionär/in)». Sonst ist alles unverändert und korrekt: Die Bezeichnungen stehen wörtlich wie gedruckt. Die Unterschrift ist ein eigenes Feld vom Typ signature, eine je Aktionärszeile. Alle Felder sind Pflicht, weil das Formular nichts als freiwillig kennzeichnet und «Sämtliche Aktionäre» unterzeichnen müssen. Das Geschäftsjahr bleibt text und nicht date, weil es kein Kalenderdatum ist und auch ein abweichendes Geschäftsjahr (z. B. «2025/2026») möglich ist."
+}

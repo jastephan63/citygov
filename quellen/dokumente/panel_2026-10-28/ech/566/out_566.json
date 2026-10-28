@@ -1,0 +1,115 @@
+{
+ "hinweis": "eCH-Urteile Formular 566, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/566 --nur-offene=566",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die Firma ist der Name der zu gründenden GmbH («… GmbH», Titel und Art. 1). eCH-0098 organisationName (organisationIdentificationType) ist der Name des Unternehmens. Das entspricht der durchgehenden Praxis der Datenbank für «Firma» (Formulare 123, 307, 310, 316, 317 usw.). Die Zeile hat noch keinen Wert, darum «besser».",
+   "feld": "Firma",
+   "standard": "eCH-0098",
+   "element": "organisationName"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Gemeint ist der statutarische Sitz als politische Gemeinde («mit Sitz in [politische Gemeinde, Kantonskürzel …]»). eCH-0098 headquarterMunicipality (swissHeadquarterType, Datentyp swissMunicipalityType) ist das Container-Element für die beiden Teile Gemeindename und Kantonskürzel. Der übernommene Wert ist richtig.",
+   "feld": "Sitz"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Teil des Sitzes ist der Name der politischen Gemeinde. Das ist eCH-0007 municipalityName im swissMunicipalityType, also im Datentyp von headquarterMunicipality. So wird «politische Gemeinde» auch in den Formularen 308, 311 und 359 zugeordnet.",
+   "elternfeld": "Sitz",
+   "teilfeld": "politische Gemeinde",
+   "standard": "eCH-0007",
+   "element": "municipalityName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Kantonskürzel des Sitzes, das nur bei mehreren gleichnamigen Gemeinden angegeben wird. Es ist ein Wert, kein Ja/Nein-Feld. Das ist eCH-0007 cantonAbbreviation im swissMunicipalityType, dem Datentyp von headquarterMunicipality.",
+   "elternfeld": "Sitz",
+   "teilfeld": "Kantonskürzel",
+   "standard": "eCH-0007",
+   "element": "cantonAbbreviation"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Gemeint ist der Gesellschaftszweck nach «Die Gesellschaft bezweckt …» in Art. 2. eCH-0098 activityDescription (organisationType) ist die Umschreibung der Tätigkeit des Unternehmens (gleich in den Formularen 310, 316, 361, 363). eCH-0229 purpose gehört zur Steuererklärung juristischer Personen. Der übernommene Wert ist richtig.",
+   "feld": "Zweck"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Das Feld umfasst Stammkapital, Anzahl und Nennwert der Stammanteile (Art. 3). Kein eCH-Element fasst alle drei Teile zusammen (eCH-0276 equity deckt nur das Kapital, shareholdersOrAssociates nur die Anteile). Für das zusammengesetzte Feld gilt deshalb das führende Element für das Stammkapital in eCH-0276. Gleich zugeordnet ist das zusammengesetzte Feld «Stammkapital» in Formular 317 sowie 310 und 557. eCH-0098 und eCH-0108 haben kein Kapital-Element.",
+   "feld": "Stammkapital und Stammanteile",
+   "standard": "eCH-0276",
+   "element": "shareCapitalShareholderCapitalAssociationCapitalFoundationCapital"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Gemeint ist der Betrag des Stammkapitals der GmbH in CHF («Das Stammkapital beträgt CHF [ ]»). eCH-0276 shareCapitalShareholderCapitalAssociationCapitalFoundationCapital (equityType) ist das Aktien-, Stamm-, Genossenschafts- oder Stiftungskapital. So ist auch Formular 317 «Höhe Stammkapital (CHF)» zugeordnet. eCH-0276 shareCapital (equityAndLiabilitiesChfType) wird in der Datenbank für Aktienkapital verwendet; eCH-0098, eCH-0108 und eCH-0116 haben kein Kapital-Element.",
+   "elternfeld": "Stammkapital und Stammanteile",
+   "teilfeld": "Stammkapital (CHF)",
+   "standard": "eCH-0276",
+   "element": "shareCapitalShareholderCapitalAssociationCapitalFoundationCapital"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Gemeint ist die Anzahl Stammanteile, in die das Stammkapital eingeteilt ist («eingeteilt in [ ] Stammanteile»). eCH-0276 numberOfSharesUnits (integer) ist die Anzahl Anteile oder Stammanteile. Gleich zugeordnet sind Formular 317 «Anzahl Stammanteile» und Formular 307 «Anzahl Aktien». totalShareholdersAssociatesAmount ist nur die Summenzeile einer Gesellschaftertabelle, numberOfSecurities gilt für Beteiligungen.",
+   "elternfeld": "Stammkapital und Stammanteile",
+   "teilfeld": "Anzahl Stammanteile",
+   "standard": "eCH-0276",
+   "element": "numberOfSharesUnits"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«Stammanteile zu CHF [ ]» ist der Nennwert je Stammanteil. Dafür steht eCH-0276 nominalValuePerShare (shareholdersOrAssociatesType). Formular 317 «Nennwert je Stammanteil (CHF)» und Formular 307 «Nennwert CHF» sind gleich zugeordnet.",
+   "elternfeld": "Stammkapital und Stammanteile",
+   "teilfeld": "Stammanteile zu CHF",
+   "standard": "eCH-0276",
+   "element": "nominalValuePerShare"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist das Unterzeichnungsdatum der Statuten; der Ort Schaffhausen ist vorgedruckt. Gilt für die Gründung und für eine Total- oder Teilrevision durch die ao. Gesellschafterversammlung. Den ganzen Katalog nach Datums-, Unterschrifts-, Beschluss-, Versammlungs- und Statuten-Elementen durchsucht (date, sign, decision, resolution, meeting, assembly, statut). eCH-0098 foundationDate passt nur bei der Gründung, nicht bei einer Revision. eCH-0119 locationAndDate gehört zur Steuererklärung (Ort und Datum als ein String). eCH-0058 messageDate ist das Datum einer elektronischen Meldung, statusDate in eCH-0098/0108 das Datum des Registerstatus. Kein Element passt; das entspricht den 17x propagierten Feldern «Ort und Datum» mit kein_standard.",
+   "feld": "Schaffhausen, …"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Auswahl, in welcher Eigenschaft unterschrieben wird: als Gründer/in oder als Vorsitzende/r der ao. Gesellschafterversammlung. Katalog nach role, function, position, founder, chair, president, assembly, meeting und shareholder durchsucht. eCH-0229 role (memberOfAdministrativeBodyType) gilt nur für Rollen im Verwaltungs- oder Leitungsorgan. eCH-0276 role (beneficiaryType) und chairmanOfTheBoardOfDirectors gehören zur Steuererklärung und betreffen den VR-Präsidenten. eCH-0021 jobTitle ist eine Berufsbezeichnung. eCH-0211 role betrifft das Baugesuch, eCH-0261 personFunction die Landwirtschaft, eCH-0155 und eCH-0165 die politischen Rechte. Kein Element beschreibt Gründer oder GV-Vorsitz als Unterzeichner.",
+   "feld": "Der Gründer / Die Gründerin oder Der / Die Vorsitzende der ao. Gesellschafterversammlung"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Die eigenhändige Unterschrift hat kein eCH-Element. eCH-0091, eCH-0220, eCH-0230, eCH-0250, eCH-0274 und eCH-0282 regeln elektronische Signaturen und haben keine Elemente. eCH-0260 signatures enthält nur Bestätigungsfelder für Lehrverträge. Die Namen darunter werden in den Teilen zugeordnet. Der übernommene Wert kein_standard ist richtig, wie bei den Unterschriftsfeldern der Formulare 312, 313, 314 und 323.",
+   "feld": "Unterschrift"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname(n) der unterzeichnenden Person in Druckschrift unter der Unterschrift («[Vorname(n) Name]»). Das ist eCH-0044 firstName (personIdentificationType). Die Regel lautet: Vorname wird firstName; gleich in den Formularen 47 und 468 für die unterzeichnende Person.",
+   "elternfeld": "Unterschrift",
+   "teilfeld": "Vorname(n)",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name der unterzeichnenden Person in Druckschrift unter der Unterschrift. Das ist eCH-0044 officialName (personIdentificationType), wie bei «Vorname Name» unter der Unterschrift in den Formularen 313, 314 und 323.",
+   "elternfeld": "Unterschrift",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  }
+ ]
+}

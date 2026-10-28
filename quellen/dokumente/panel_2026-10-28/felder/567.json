@@ -1,0 +1,178 @@
+{
+ "form_id": 567,
+ "data_fields": [
+  {
+   "name": "Firma",
+   "definition": "Firma der Genossenschaft, die im Titel («der … Genossenschaft») und in Art. 1 («Unter der Firma … Genossenschaft») vor dem Zusatz «Genossenschaft» einzusetzen ist.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "… Genossenschaft"
+  },
+  {
+   "name": "Sitz",
+   "definition": "Sitz der Genossenschaft, der im Titel («mit Sitz in …») und in Art. 1 einzusetzen ist: die politische Gemeinde, ergänzt um das Kantonskürzel nur falls mehr als eine Gemeinde dieses Namens existiert.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "politische Gemeinde",
+    "Kantonskürzel"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Zweck (Entweder / oder)",
+   "definition": "Auswahl einer der beiden in Art. 2 vorgedruckten Zweckvarianten (gemeinsame Selbsthilfe oder wohltätige, nicht gewinnstrebige Tätigkeit).",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "Die Genossenschaft bezweckt in gemeinsamer Selbsthilfe",
+    "Die Tätigkeit der Genossenschaft ist wohltätig und nicht gewinnstrebig. Sie bezweckt"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Zweck",
+   "definition": "Umschreibung des Zwecks der Genossenschaft, die an der punktierten Stelle der gewählten Variante von Art. 2 eingesetzt wird.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Pflichten",
+   "definition": "Auswahl der zusätzlichen Mitgliederpflichten in Art. 10, die nur aufgenommen werden, sofern sie konkret gewollt sind; nicht gewollte Pflichten werden gestrichen.",
+   "data_type": "multiselect",
+   "required": false,
+   "allowed_values": [
+    "den Statuten und den Beschlüssen der Generalversammlung und der Verwaltung nachzuleben",
+    "an den genossenschaftlichen Aktivitäten teilzunehmen",
+    "einen jährlichen Mitgliederbeitrag von maximal CHF [Betrag] zu leisten",
+    "für die Genossenschaft während mindestens [Anzahl] Stunden jährlich unentgeltlich Arbeiten zu verrichten oder andernfalls eine Ersatzabgabe für nicht geleistete Stunden von CHF [Betrag] zu leisten",
+    "in genossenschaftlichen Gremien während mindestens einer Amtsdauer mitzuwirken",
+    "weitere"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Betrag (jährlicher Mitgliederbeitrag)",
+   "definition": "Höchstbetrag des jährlichen Mitgliederbeitrags, der einzusetzen ist, wenn diese Pflicht in Art. 10 gewählt wird.",
+   "data_type": "money",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "CHF"
+  },
+  {
+   "name": "Anzahl Stunden jährlich",
+   "definition": "Mindestanzahl Stunden unentgeltlicher Arbeit pro Jahr für die Genossenschaft, die einzusetzen ist, wenn diese Pflicht in Art. 10 gewählt wird.",
+   "data_type": "number",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "Stunden"
+  },
+  {
+   "name": "Betrag (Ersatzabgabe für nicht geleistete Stunden)",
+   "definition": "Betrag der Ersatzabgabe für nicht geleistete Arbeitsstunden, der zusammen mit der Arbeitspflicht in Art. 10 einzusetzen ist.",
+   "data_type": "money",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "CHF"
+  },
+  {
+   "name": "weitere (Pflichten)",
+   "definition": "Weitere, frei formulierte Mitgliederpflichten, die in Art. 10 an der Stelle «weitere……» ergänzt werden können.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Mittel",
+   "definition": "Auswahl der Mittel der Genossenschaft in Art. 11 aus der beispielhaft («Bspw.») vorgedruckten Aufzählung.",
+   "data_type": "multiselect",
+   "required": true,
+   "allowed_values": [
+    "jährlichen Mitgliederbeiträgen der Genossenschafter",
+    "Anteilscheine der Mitglieder der Genossenschaft (nominell CHF … je Anteilschein, nicht verzinst)",
+    "Die erarbeiteten Mittel der Genossenschaft",
+    "Spenden, Schenkungen, Vermächtnissen und Legaten",
+    "Subventionen"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "nominell CHF je Anteilschein",
+   "definition": "Nennwert eines Anteilscheins, der einzusetzen ist, wenn Anteilscheine als Mittel der Genossenschaft in Art. 11 aufgenommen werden.",
+   "data_type": "money",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "CHF"
+  },
+  {
+   "name": "Durchführung der Liquidation (entweder / oder)",
+   "definition": "Auswahl einer der beiden in Art. 29 vorgedruckten Regelungen zur Verwendung des nach Tilgung aller Schulden verbleibenden Genossenschaftsvermögens.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "Das Genossenschaftsvermögen, welches nach der Tilgung von sämtlichen Schulden verbleibt, wird einer juristischen Person übertragen, welche sich in einem gleichen oder ähnlichen Bereich wie die Genossenschaft engagiert.",
+    "Das Genossenschaftsvermögen, welches nach der Tilgung von sämtlichen Schulden verbleibt, wird auf die zum Zeitpunkt der Auflösung der Genossenschaft vorhandenen Genossenschafter oder deren Rechtsnachfolgern nach Köpfen verteilt. Der gesetzliche Abfindungsanspruch der ausgeschiedenen Genossenschaftern oder ihrer Erben bleibt vorbehalten."
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Datum (Schaffhausen, …)",
+   "definition": "Kalenderdatum der Unterzeichnung der Statuten, eingesetzt nach dem vorgedruckten Ort «Schaffhausen».",
+   "data_type": "date",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Die Gründer oder Der / Die Vorsitzende",
+   "definition": "Angabe, in welcher Eigenschaft die Statuten unterzeichnet werden: durch die Gründer (bei der Gründung) oder durch den Vorsitzenden bzw. die Vorsitzende (bei einer Statutenänderung).",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "Die Gründer",
+    "Der / Die Vorsitzende"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Unterschrift (Die Gründer oder Der / Die Vorsitzende)",
+   "definition": "Unterschrift auf der punktierten Linie durch die unterzeichnende Person (bei der Gründung je Gründer eine Unterschrift).",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Vorname(n) Name",
+   "definition": "Vorname(n) und Name der unterzeichnenden Person, unter der Unterschriftslinie angegeben.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Vorname(n)",
+    "Name"
+   ],
+   "format": ""
+  }
+ ],
+ "hinweis": "Korrekturen: (1) «Durchführung der Liquidation (entweder / oder)»: Die Definition nannte Art. 30; laut Nummerierung im Originaldokument ist es Art. 29 (Art. 30 = «Mitteilungen an die Genossenschafter»). Zur Kontrolle: Der Querverweis «nach Art. 15» trifft genau «Abfindung eines ausscheidenden Genossenschafters». Die übrigen Artikelangaben (1, 2, 10, 11) stimmen. (2) Namen wörtlich nach dem Platzhalter, den das Formular druckt: «Betrag jährlicher Mitgliederbeitrag (maximal CHF)» heisst neu «Betrag (jährlicher Mitgliederbeitrag)», «Betrag Ersatzabgabe für nicht geleistete Stunden (CHF)» heisst neu «Betrag (Ersatzabgabe für nicht geleistete Stunden)». Gedruckt ist jeweils «[Betrag]»; die Klammer unterscheidet die beiden gleich beschrifteten Stellen, und «CHF» bleibt nur im Format. (3) «Vorname(n) Name»: Im Format stand «[Vorname(n) Name]». Das ist die gedruckte Beschriftung, kein Formathinweis, deshalb jetzt leer. Alle übrigen Felder sind unverändert übernommen. Geprüft und für richtig befunden: (a) Reihenfolge entlang des Formulars (Titel/Art. 1, Art. 2, Art. 10, Art. 11, Art. 29, Unterschriftsblock). (b) Sitz ist in die gedruckten Teile «politische Gemeinde» und «Kantonskürzel» zerlegt (Kantonskürzel nur, falls der Gemeindename mehrfach vorkommt). (c) Bei Zweck und Liquidation sind die Optionen von «Entweder/oder» wörtlich übernommen. (d) Die Wahlpflichten in Art. 10 sind als Mehrfachauswahl erfasst (die erste Pflicht, «die Interessen der Genossenschaft in guten Treuen zu wahren», ist fest vorgegeben, keine Wahl). Dazu kommen die Platzhalter [Betrag]/[Anzahl]/[Betrag] und «weitere……». (e) In Art. 11 «Mittel» ist der leere Absatz zwischen den Aufzählungspunkten im Original ohne Aufzählungszeichen (numId 0) gesetzt. Er ist also keine Leerzeile zum Ausfüllen, und ein Feld «weitere Mittel» wird nicht erfunden. Wegen «Bspw.» darf die Aufzählung aber frei angepasst werden. Kein Feld der Person: Die Anweisungen in eckigen Klammern («[sofern konkret gewollt, ansonsten streichen:», «Bspw.:», «[politische Gemeinde, Kantonskürzel nur falls …]») sind Ausfüllhinweise. Alle übrigen Artikel (3–9, 12–28, 30) sind feste Mustertexte ohne Ausfüllstelle. Der Ort «Schaffhausen» im Unterschriftsblock ist vorgedruckt; einzutragen ist nur das Datum. Gedruckt ist nur eine Unterschriftslinie mit «[Vorname(n) Name]». Unterzeichnen die Gründer, wird dieser Block für jede gründende Person wiederholt; ein zweites Unterschriftsfeld ist nicht gedruckt und wird nicht erfunden. Der ganze Block «Beglaubigung» füllt die Urkundsperson des Handelsregisteramts Schaffhausen aus: «[unter Berücksichtigung der heutigen Total-/Teilrevision]», «[heute gegründeten]», «[FIRMA]», «[SITZ]», «Schaffhausen, ….», Unterschrift «Urkundsperson». Er ist kein Feld der Person. Fussnoten, Kopf- und Fusszeile enthalten keine weiteren Angaben (Fusszeile nur Seitenzahl)."
+}

@@ -1,0 +1,24 @@
+{
+ "verdicts": [
+  {
+   "id": 7202,
+   "subjekt": "natuerliche_person",
+   "grund": "Name und Vorname der Athletin bzw. des Athleten (Schülerin/Schüler), also eindeutig eine einzelne natürliche Person."
+  },
+  {
+   "id": 7214,
+   "subjekt": "sache",
+   "grund": "Trainingsort ist eine Ortsangabe (Ort/Anlage des Trainings), keine Personalie."
+  },
+  {
+   "id": 7215,
+   "subjekt": "gemischt",
+   "grund": "Kontaktperson des Vereins bzw. Athletenbetreuer: Person in Funktion für Verein/Betreuung, Adresse und Telefon können Vereins- oder Geschäftsangaben sein; konservativ gemischt."
+  },
+  {
+   "id": 7216,
+   "subjekt": "natuerliche_person",
+   "grund": "Personalien (Name, Vorname, Strasse, Tel. Privat, E-Mail) der einzelnen Trainerin bzw. des Trainers; konsistent mit Feld 5019."
+  }
+ ]
+}

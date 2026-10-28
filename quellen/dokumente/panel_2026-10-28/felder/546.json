@@ -1,0 +1,128 @@
+{
+ "form_id": 546,
+ "data_fields": [
+  {
+   "name": "Mutter",
+   "definition": "Personalien der Mutter des Kindes, die mit dem Vater die gemeinsame elterliche Sorge erklärt.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name",
+    "Vornamen",
+    "Geburtsdatum",
+    "Heimatort",
+    "Staatsangehörigkeit",
+    "Wohnort"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Vater",
+   "definition": "Personalien des Vaters des Kindes, der mit der Mutter die gemeinsame elterliche Sorge erklärt.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name",
+    "Vornamen",
+    "Geburtsdatum",
+    "Heimatort",
+    "Staatsangehörigkeit",
+    "Wohnort"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Kind",
+   "definition": "Personalien des Kindes, für das die gemeinsame elterliche Sorge erklärt wird.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name",
+    "Vornamen",
+    "Geburtsdatum",
+    "Heimatort",
+    "Staatsangehörigkeit",
+    "Wohnort"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Ort und Datum (Erklärung über die gemeinsame elterliche Sorge)",
+   "definition": "Ort und Datum, an dem die Eltern die Erklärung über die gemeinsame elterliche Sorge unterzeichnen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Ort",
+    "Datum"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Die Mutter (Erklärung über die gemeinsame elterliche Sorge)",
+   "definition": "Unterschrift der Mutter unter die Erklärung über die gemeinsame elterliche Sorge und die Bestätigung der Punkte 1 und 2.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Der Vater (Erklärung über die gemeinsame elterliche Sorge)",
+   "definition": "Unterschrift des Vaters unter die Erklärung über die gemeinsame elterliche Sorge und die Bestätigung der Punkte 1 und 2.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Anrechnung der Erziehungsgutschrift",
+   "definition": "Angabe, wie die Eltern die Erziehungsgutschrift für das Kind zwischen Mutter und Vater aufteilen oder dass keine Vereinbarung getroffen wird.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "Mutter 50% / Vater 50% (Betreuung des Kindes zu gleichen Teilen durch Mutter und Vater)",
+    "Mutter 100% / Vater 0% (Betreuung des Kindes zum überwiegenden Teil durch die Mutter)",
+    "Mutter 0% / Vater 100% (Betreuung des Kindes zum überwiegenden Teil durch den Vater)",
+    "Keine Vereinbarung"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ort und Datum (Vereinbarung über die Anrechnung von Erziehungsgutschriften)",
+   "definition": "Ort und Datum, an dem die Eltern die Vereinbarung über die Anrechnung von Erziehungsgutschriften unterzeichnen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Ort",
+    "Datum"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Die Mutter (Vereinbarung über die Anrechnung von Erziehungsgutschriften)",
+   "definition": "Unterschrift der Mutter unter die Vereinbarung über die Anrechnung von Erziehungsgutschriften.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Der Vater (Vereinbarung über die Anrechnung von Erziehungsgutschriften)",
+   "definition": "Unterschrift des Vaters unter die Vereinbarung über die Anrechnung von Erziehungsgutschriften.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  }
+ ],
+ "hinweis": "Korrekturen: keine. Ich habe den Entwurf Zeile für Zeile mit dem Original-PDF verglichen (KOKES-Formular, dreisprachig F/D/I, 2 Seiten). Die drei Personalien-Blöcke Mutter, Vater und Kind drucken je sechs Zeilen: Name, Vornamen, Geburtsdatum, Heimatort, Staatsangehörigkeit, Wohnort. Diese Teile sind vollständig und atomar erfasst. Beide Unterschriftsblöcke («Ort und Datum», «Die Mutter», «Der Vater») sind vorhanden, auf S. 1 und auf S. 2 je eine eigene Unterschrift pro Elternteil. Die vier Ankreuzfelder auf S. 2 sind eine Einfachauswahl (enum). Die Optionen setzen die Spaltenköpfe Mutter/Vater, die gedruckten Prozentwerte und den gedruckten Klammerzusatz wörtlich zusammen, weil der Optionstitel «Anrechnung der Erziehungsgutschrift» bei allen drei Optionen gleich lautet. Es gibt weder Beilagen noch weitere Ankreuzgruppen oder Tabellenspalten. Keine Angaben der Personen: Die Zeile «zuständige Kindesschutzbehörde (Stempel und Unterschrift)» auf S. 1 füllt die Behörde aus. Die Bestätigungen 1 und 2 («dass wir bereit sind …», «dass wir uns über die Obhut … verständigt haben») sind vorgedruckter Erklärungstext ohne Ankreuzfeld; die Eltern bestätigen sie mit ihrer Unterschrift. Ebenfalls kein Feld sind der Verweis auf Art. 298a ZGB und der Hinweis zur Option «Keine Vereinbarung»: Ab 1.1.2015 ist die Vereinbarung innert 3 Monaten bei der KESB am Wohnsitz der Mutter einzureichen, sonst eröffnet die KESB ein kostenpflichtiges Verfahren."
+}

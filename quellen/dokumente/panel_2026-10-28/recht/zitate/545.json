@@ -1,0 +1,105 @@
+{
+ "form_id": 545,
+ "mappings": [
+  {
+   "data_field": "Personalien",
+   "cites": [
+    {
+     "cref": "SHR 923.101",
+     "article_no": "§ 22",
+     "beleg": "Mit Ausnahme von Wochenkarten können Angelpatente nur an Personen mit Wohnsitz in der Schweiz oder in Büsingen abgegeben werden. Die Angelpatente lauten auf den Namen und sind nicht übertragbar. Jugendlichen zwischen 10 und 16 Jahren kann das Anglerpatent erteilt werden"
+    },
+    {
+     "cref": "SHR 923.101",
+     "article_no": "§ 11",
+     "beleg": "Die Fischereibewilligung kann an Personen erteilt werden: die das 16. Altersjahr vollendet haben, unter Vorbehalt der §§ 20 Abs. 3, 21 Abs. 2 und 22 Abs. 4"
+    },
+    {
+     "cref": "SHR 923.101",
+     "article_no": "§ 24",
+     "beleg": "Die Patenttaxen betragen für die Zeit vom 1. Mai bis 30. September: ... für Jugendliche zwischen 10 und 16 Jahren: Fr. 20.00"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Name und Vorname der Eltern",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Rheinuferstrecken",
+   "cites": [
+    {
+     "cref": "SHR 923.101",
+     "article_no": "§ 22",
+     "beleg": "Das Sekretariat des Departementes des Innern bezeichnet – unabhängig von bestehenden Pachtverträgen – bestimmte Uferstrecken für die Ausübung der Patentfischerei und gibt Angelpatente ab."
+    },
+    {
+     "cref": "SHR 923.101",
+     "article_no": "§ 23",
+     "beleg": "Das Angelpatent ist nur auf der im Patent umschriebenen Strecke gültig."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Dauer",
+   "cites": [
+    {
+     "cref": "SHR 923.101",
+     "article_no": "§ 24",
+     "beleg": "Die Patenttaxen betragen für die Zeit vom 1. Mai bis 30. September: ... für Jugendliche zwischen 10 und 16 Jahren: Fr. 20.00. Ist das Patent bis zum 31. Dezember gültig, so erhöhen sich die Ansätze gemäss Abs. 1 ... für Jugendliche um Fr. 15.00."
+    },
+    {
+     "cref": "SHR 923.101",
+     "article_no": "§ 28",
+     "beleg": "Die Patentfischerei ist während folgenden Zeiten gestattet: 1. Mai bis 30. September ... 1. Oktober bis 31. Dezember: jeweils am Samstag und Sonntag"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Saisonkarte (Beilage bei Verlängerung)",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Jungfischer-Brevet oder SaNa-Ausweis",
+   "cites": [
+    {
+     "cref": "SHR 923.101",
+     "article_no": "§ 22",
+     "beleg": "Jugendlichen zwischen 10 und 16 Jahren kann das Anglerpatent erteilt werden, wenn sie eine vom Departement des Innern anerkannte Prüfung vorweisen können."
+    },
+    {
+     "cref": "SHR 923.101",
+     "article_no": "§ 11",
+     "beleg": "die sich über eine bestandene Fischereiprüfung im Kanton Schaffhausen oder über eine vom Departement des Innern als gleichwertig anerkannte, bestandene Prüfung ausweisen können"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Datum",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Unterschrift eines Erziehungsberechtigten",
+   "cites": [
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 19",
+     "beleg": "Urteilsfähige handlungsunfähige Personen können nur mit Zustimmung ihres gesetzlichen Vertreters Verpflichtungen eingehen oder Rechte aufgeben."
+    },
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 304",
+     "beleg": "Die Eltern haben von Gesetzes wegen die Vertretung des Kindes gegenüber Drittpersonen im Umfang der ihnen zustehenden elterlichen Sorge."
+    }
+   ],
+   "over_collection": false
+  }
+ ]
+}

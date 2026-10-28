@@ -1,0 +1,22 @@
+{
+ "urteile": [
+  {
+   "id": 6554,
+   "urteil": "bestaetigt",
+   "subjekt": "gemischt",
+   "grund": "Abschnitt 1 heisst «Gesuchstellende Person oder Organisation» und das Feld verlangt Name und Adresse «der gesuchstellenden Person oder der Organisation». Gesuchsteller kann eine Privatperson oder ein Verein bzw. Veranstalter sein, deshalb bleibt es vorsichtig gemischt."
+  },
+  {
+   "id": 6555,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Die «Verantwortliche Person» wird getrennt von der gesuchstellenden Person oder Organisation erfragt. Laut Merkblatt ist es die «Hauptverantwortliche Person» für die Veranstaltung, also immer ein einzelner Mensch mit eigener Adresse, PLZ/Ort, Telefon (auch während der Veranstaltung) und E-Mail. Auch wenn sie für einen Verein handelt, sind es die Angaben einer natürlichen Person und nicht der Organisation."
+  },
+  {
+   "id": 6559,
+   "urteil": "bestaetigt",
+   "subjekt": "sache",
+   "grund": "Der Veranstaltungsort steht in Abschnitt 2 «Veranstaltung» und bezeichnet den Ort bzw. Gewässerabschnitt der nautischen Veranstaltung, gestützt durch Planskizze mit Standort/Route. Es ist die Angabe zu einem Ort oder Ereignis, nicht zu einer Person."
+  }
+ ]
+}

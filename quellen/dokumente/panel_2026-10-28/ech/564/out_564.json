@@ -1,0 +1,123 @@
+{
+ "hinweis": "eCH-Urteile Formular 564, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/564 --nur-offene=564",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Firma der GmbH (Titel und Art. 1, der Teil vor dem Zusatz «GmbH») ist der Firmenname der Unternehmung. Dafür steht eCH-0098 organisationName (organisationIdentificationType), wie bei 23 gleichnamigen Feldern der Datenbank, u. a. «Firma» in den HR-Formularen 310 und 317. Die Rechtsform wäre ein eigenes Element (legalForm) und wird hier nicht abgefragt. Das Feld ist noch leer, darum besser und nicht korrekt.",
+   "feld": "Firma",
+   "standard": "eCH-0098",
+   "element": "organisationName"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Der Sitz der Gesellschaft (Titel und Art. 2) ist die politische Gemeinde des Sitzes. eCH-0098 swissHeadquarterType/headquarterMunicipality (Typ eCH-0007 swissMunicipalityType) ist der Container für die Teile Gemeindename und Kantonskürzel. Der propagierte Wert stimmt.",
+   "feld": "Sitz"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Art. 3 Abs. 1 «Die Gesellschaft bezweckt …» umschreibt den Gesellschaftszweck. eCH-0098 organisationType/activityDescription ist das Element dafür, gleich wie «Zweck» in 310, 316 und den anderen Statuten. eCH-0229 contactAndAdministrationType/purpose gehört zur Steuererklärung juristischer Personen und passt im HR-Zusammenhang weniger. Der propagierte Wert stimmt.",
+   "feld": "Zweck"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Art. 4 legt das Stammkapital fest (Betrag, eingeteilt in Anzahl Stammanteile zu Nennwert). Kein eCH-Container umfasst alle drei Teile: Der Betrag liegt in equityType, Anzahl und Nennwert in shareholdersOrAssociatesType. Das tragende Datum ist das Stammkapital, darum eCH-0276 equityType/shareCapitalShareholderCapitalAssociationCapitalFoundationCapital. So ist auch das gleich aufgebaute Composite «Stammkapital» in 317 und 310 gemappt.",
+   "feld": "Kapital",
+   "standard": "eCH-0276",
+   "element": "shareCapitalShareholderCapitalAssociationCapitalFoundationCapital"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Das Paar (Sitz, politische Gemeinde) ergibt den Namen der Sitzgemeinde. headquarterMunicipality hat den Typ eCH-0007 swissMunicipalityType, und darin ist municipalityName der Gemeindename. Das Element ist im Katalog verbatim vorhanden (Kontext swissMunicipalityType).",
+   "elternfeld": "Sitz",
+   "teilfeld": "politische Gemeinde",
+   "standard": "eCH-0007",
+   "element": "municipalityName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Das Paar (Sitz, Kantonskürzel) ergibt das Kantonskürzel der Sitzgemeinde. Das Formular verlangt es nur, wenn mehrere Gemeinden gleich heissen, es ist aber dasselbe Datum. Dafür steht eCH-0007 swissMunicipalityType/cantonAbbreviation, das zu headquarterMunicipality gehört.",
+   "elternfeld": "Sitz",
+   "teilfeld": "Kantonskürzel",
+   "standard": "eCH-0007",
+   "element": "cantonAbbreviation"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Das Paar (Kapital, Stammkapital CHF) ergibt den Betrag des Stammkapitals der GmbH. Dafür steht eCH-0276 equityType/shareCapitalShareholderCapitalAssociationCapitalFoundationCapital (long, CHF). «Höhe Stammkapital (CHF)» in 317 ist gleich gemappt. Geprüft wurde auch eCH-0276 totalShareholdersAssociatesNominal: Das ist eine Summe der Beteiligtenliste ohne Dokumentation und passt weniger. Weitere Suche nach capital/nominal in eCH-0119, eCH-0229 und eCH-0278 ergab kein spezifischeres Element.",
+   "elternfeld": "Kapital",
+   "teilfeld": "Stammkapital (CHF)",
+   "standard": "eCH-0276",
+   "element": "shareCapitalShareholderCapitalAssociationCapitalFoundationCapital"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Das Paar (Kapital, Anzahl Stammanteile) ergibt die Anzahl Stammanteile, in die das Stammkapital eingeteilt ist. eCH-0276 numberOfSharesUnits zählt die Anteile, zusammen mit nominalValuePerShare entspricht es genau «eingeteilt in … Stammanteile zu CHF …». Die Datenbank verwendet es für dasselbe Paar (317 «Stammkapital / Anzahl Stammanteile», 307). Vorbehalt: Der Kontext shareholdersOrAssociatesType gilt je Inhaber. Geprüft wurde auch totalShareholdersAssociatesType/totalShareholdersAssociatesAmount: In der XSD ist nicht dokumentiert, ob es Anteile oder Beteiligte zählt, darum ist es nicht sicherer. companyType/numberOfSecurities betrifft Beteiligungen an Drittgesellschaften.",
+   "elternfeld": "Kapital",
+   "teilfeld": "Anzahl Stammanteile",
+   "standard": "eCH-0276",
+   "element": "numberOfSharesUnits"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Das Paar (Kapital, Nennwert je Stammanteil CHF) ergibt den Nennwert eines Stammanteils. eCH-0276 nominalValuePerShare ist genau der Nennwert je Anteil. In 317 ist «Nennwert je Stammanteil (CHF)» gleich gemappt.",
+   "elternfeld": "Kapital",
+   "teilfeld": "Nennwert je Stammanteil (CHF)",
+   "standard": "eCH-0276",
+   "element": "nominalValuePerShare"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist das Kalenderdatum der Unterzeichnung der Statuten («Schaffhausen, …»). Das Formular dient laut Beglaubigung sowohl der Gründung als auch einer Total- oder Teilrevision. Gesucht wurde im ganzen Katalog (290 Standards) nach date-, decision-, signature-, document- und adopt-Elementen. eCH-0098/0229/0173 foundationDate passt nur bei der Gründung. Bei einer Revision wäre es ein anderes Datum, darum trägt auch das 310-Mapping «Statutendatum» → foundationDate hier nicht. eCH-0039 documentType/openingDate ist ein Eröffnungsdatum im Records Management. eCH-0108 firstRegistrationDate/registrationDate sind Eintragungsdaten. eCH-0148 dateValidFrom gehört zu Änderungsereignissen, eCH-0119 locationAndDate zu Steuerformularen, eCH-0235 decisionValidityDate ist ein Gültigkeitsdatum. Keines davon ist das Unterzeichnungsdatum der Statuten.",
+   "feld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Diese Auswahl (enum) hält fest, in welcher Funktion unterzeichnet wird: als Gründer/in oder als Vorsitz der ao. Gesellschafterversammlung. Gesucht wurde im ganzen Katalog nach role, function, founder und chair sowie in den Codelisten. eCH-0229 administrativeBodyRoleType kennt nur president, executive und responsibleForAccounting eines Verwaltungsorgans. eCH-0276 beneficiaryType/role betrifft Leistungsempfänger, eCH-0039 transactionRoleType sender/addressee/participant, eCH-0261 personFunction die Landwirtschaft, eCH-0260 VETtrainerRole die Berufsbildung. Keines bildet Gründer oder Versammlungsvorsitz ab.",
+   "feld": "Der Gründer/Die Gründerin oder Der/Die Vorsitzende der ao. Gesellschafterversammlung"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist die eigenhändige Unterschrift unter den Statuten. Gesucht wurde im ganzen Katalog nach signature/sign*. Die Signaturstandards haben keine Datenelemente. eCH-0260 *SignatureConfirmation sind Ja/Nein-Bestätigungen im Lehrvertrag. eCH-0039 documentType/signer ist nur eine Kennung in Dokument-Metadaten, keine Unterschrift. Das entspricht der Praxis der Datenbank: «Unterschrift» ist 33-mal kein_standard, auch in den Schwesterstatuten 563, 565 und 566.",
+   "feld": "Unterschrift des Gründers/der Gründerin bzw. des/der Vorsitzenden der ao. Gesellschafterversammlung"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Das Composite besteht aus Vorname(n) und Name der unterzeichnenden natürlichen Person. Der Container für die Namensteile ist eCH-0044 personIdentification (Typ personIdentificationType mit officialName und firstName). So sind auch andere Namens-Composites in der Datenbank gemappt.",
+   "feld": "Vorname(n) Name",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Das Paar (Vorname(n) Name, Vorname(n)) ergibt den oder die Vornamen der unterzeichnenden Person. Dafür steht eCH-0044 firstName (baseNameType, umfasst alle Vornamen).",
+   "elternfeld": "Vorname(n) Name",
+   "teilfeld": "Vorname(n)",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Das Paar (Vorname(n) Name, Name) ergibt den amtlichen Familiennamen der unterzeichnenden Person. Dafür steht eCH-0044 officialName.",
+   "elternfeld": "Vorname(n) Name",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  }
+ ]
+}

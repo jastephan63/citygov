@@ -1,0 +1,239 @@
+{
+ "form_id": 548,
+ "data_fields": [
+  {
+   "name": "Ehefrau",
+   "definition": "Personalien der Ehefrau, wie sie das Formular im Block «Ehefrau» Zeile für Zeile abfragt.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name",
+    "Vorname",
+    "Name vor der Heirat",
+    "Mädchenname",
+    "Geburtsdatum",
+    "Beruf",
+    "Heimatort/-land",
+    "Wohnadresse",
+    "Ort",
+    "Telefon"
+   ],
+   "format": ""
+  },
+  {
+   "name": "falls Dolmetscher/in erforderlich, welche Sprache (Ehefrau)",
+   "definition": "Sprache, für die die Ehefrau eine Dolmetscherin oder einen Dolmetscher braucht, nur anzugeben, falls eine Übersetzung erforderlich ist.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ehemann",
+   "definition": "Personalien des Ehemanns, wie sie das Formular im Block «Ehemann» Zeile für Zeile abfragt (ohne Name vor der Heirat und ohne Mädchenname).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name",
+    "Vorname",
+    "Geburtsdatum",
+    "Beruf",
+    "Heimatort/-land",
+    "Wohnadresse",
+    "Ort",
+    "Telefon"
+   ],
+   "format": ""
+  },
+  {
+   "name": "falls Dolmetscher/in erforderlich, welche Sprache (Ehemann)",
+   "definition": "Sprache, für die der Ehemann eine Dolmetscherin oder einen Dolmetscher braucht, nur anzugeben, falls eine Übersetzung erforderlich ist.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Datum der Eheschliessung",
+   "definition": "Kalenderdatum, an dem die zu scheidende Ehe geschlossen wurde.",
+   "data_type": "date",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ort der Eheschliessung",
+   "definition": "Ort, an dem die zu scheidende Ehe geschlossen wurde.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Gemeinsame Kinder",
+   "definition": "Angabe, ob die Ehegatten gemeinsame Kinder haben, durch Ankreuzen von «nein» oder «ja».",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "nein",
+    "ja"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Gemeinsame Kinder (Vorname, geb.)",
+   "definition": "Bei «ja»: Vorname und Geburtsdatum («geb.») jedes gemeinsamen Kindes, eine Zeile pro Kind; einen Familiennamen der Kinder fragt das Formular nicht ab.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Vorname",
+    "geb."
+   ],
+   "format": "3 Zeilen"
+  },
+  {
+   "name": "Datum (Ehemann)",
+   "definition": "Kalenderdatum, an dem der Ehemann das gemeinsame Begehren unterzeichnet.",
+   "data_type": "date",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Unterschrift Ehemann",
+   "definition": "Eigenhändige Unterschrift des Ehemanns unter das gemeinsame Begehren auf Ehescheidung.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Datum (Ehefrau)",
+   "definition": "Kalenderdatum, an dem die Ehefrau das gemeinsame Begehren unterzeichnet.",
+   "data_type": "date",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Unterschrift Ehefrau",
+   "definition": "Eigenhändige Unterschrift der Ehefrau unter das gemeinsame Begehren auf Ehescheidung.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Zustellungsbevollmächtigter in der Schweiz",
+   "definition": "Angabe einer zustellungsbevollmächtigten Person in der Schweiz, die eine Partei mit Wohnsitz im Ausland gemäss dem Hinweis «Bitte beachten Sie» angeben muss; das Formular druckt dafür keine eigene Zeile.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Familienausweis im Original",
+   "definition": "Aktueller Familienausweis im Original vom Zivilstandsamt der Heimatgemeinde, beizulegen falls ein Ehegatte schweizerischer Nationalität ist (Unterlage Nr. 2.a des Merkblatts).",
+   "data_type": "attachment",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "nicht älter als drei Monate"
+  },
+  {
+   "name": "Wohnsitzbescheinigungen im Original beider Ehegatten",
+   "definition": "Wohnsitzbescheinigungen beider Ehegatten im Original von den Einwohnerkontrollen der Wohnsitzgemeinden, beizulegen falls beide Ehegatten ausländischer Nationalität sind (Unterlage Nr. 2.b des Merkblatts).",
+   "data_type": "attachment",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "nicht älter als drei Monate"
+  },
+  {
+   "name": "Amtliche Dokumente (ev. mit Übersetzung)",
+   "definition": "Amtliche Dokumente, aus denen Ort und Datum der Heirat sowie Anzahl, Name und Geburtsdatum der Kinder bzw. die Bestätigung der Kinderlosigkeit der Ehe hervorgehen, beizulegen falls beide Ehegatten ausländischer Nationalität sind (Unterlage Nr. 2.b des Merkblatts).",
+   "data_type": "attachment",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Scheidungsvereinbarung bzw. Teilvereinbarung über die Folgen der Ehescheidung",
+   "definition": "Vollständige Vereinbarung oder Teilvereinbarung der Ehegatten über die Scheidungsfolgen (Kinderzuteilung, Betreuung, Kinder- und Ehegattenunterhalt, Erziehungsgutschriften, berufliche Vorsorge, Güterrecht, Verfahrenskosten) (Unterlage Nr. 3 des Merkblatts).",
+   "data_type": "attachment",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Angaben darüber, in welchen Punkten man sich nicht einig ist",
+   "definition": "Bei Einreichung nur einer Teilvereinbarung: Angabe der Scheidungsfolgen, über die sich die Ehegatten nicht einig sind (Merkblatt, Einleitung des Verfahrens lit. b).",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Aufstellungen der beruflichen Vorsorgeeinrichtungen",
+   "definition": "Aufstellungen der Vorsorgeeinrichtungen beider Parteien über die während der Ehe erworbenen Guthaben im Zeitpunkt der Klageeinleitung, im Vorsorgefall die Guthaben im Zeitpunkt der Rentenberechtigung samt aktueller Rentenbescheinigung (Unterlage Nr. 4 des Merkblatts).",
+   "data_type": "attachment",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Bestätigung der Vorsorgeeinrichtungen (Durchführbarkeitserklärung)",
+   "definition": "Bestätigung der Vorsorgeeinrichtungen, dass die vereinbarte Aufteilung der BVG-Guthaben durchführbar ist (Unterlage Nr. 4 des Merkblatts).",
+   "data_type": "attachment",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Letzter Jahreslohnausweis und Lohnabrechnungen für die letzten drei Monate oder Ausweise über Renteneinkommen",
+   "definition": "Einkommensbelege der Parteien; bei selbständiger Erwerbstätigkeit stattdessen die beiden letzten Geschäftsabschlüsse (Bilanz und Erfolgsrechnung) und eine lückenlose Aufstellung der Privatbezüge im laufenden Jahr (Unterlage Nr. 5 des Merkblatts).",
+   "data_type": "attachment",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "im Doppel"
+  },
+  {
+   "name": "Letzte Steuererklärung, letzte Steuerrechnung und letzte Steuerveranlagungsmitteilung",
+   "definition": "Die jeweils letzte Steuererklärung, Steuerrechnung und Steuerveranlagungsmitteilung der Parteien als Unterlagen über die finanziellen Verhältnisse (Unterlage Nr. 5 des Merkblatts).",
+   "data_type": "attachment",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "im Doppel"
+  },
+  {
+   "name": "Belege über feste Ausgaben für den Lebensbedarf",
+   "definition": "Belege über feste Ausgaben wie Mietzins, Fahrtkosten zum Arbeitsweg, Krankenkasse und Versicherungen oder ersatzweise eine von beiden Parteien unterzeichnete detaillierte Aufstellung der monatlichen Ausgaben mit separat ausgewiesenen Kosten der Kinder (Unterlage Nr. 5 des Merkblatts).",
+   "data_type": "attachment",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "im Doppel"
+  }
+ ],
+ "hinweis": "Korrekturen: keine. Ich habe das Original-PDF (S. 1 Formular, S. 2–3 Merkblatt) Zeile für Zeile mit dem Wörterbuch verglichen. Ergebnis: Ehefrau-Block mit 10 gedruckten Zeilen und Ehemann-Block mit 8 Zeilen vollständig und atomar. Die Zeile «Wohnadresse» bleibt eine Zeile, weil das Formular sie nicht aufteilt; «Ort» und «Telefon» sind eigene Teile. Die beiden Dolmetscher-Zeilen sind je Block erfasst und als «falls … erforderlich» freiwillig. Erfasst sind auch die Ankreuzfrage «nein»/«ja» und die drei Kinderzeilen mit «Vorname» und «geb.». Beide Unterzeichnenden haben je eine eigene Datumszeile und eine eigene Unterschrift, in der Reihenfolge des Formulars (zuerst Ehemann, dann Ehefrau). Eine Ankreuzliste für Beilagen druckt das Formular nicht. Die Unterlagen kommen aus der Aufzählung des Merkblatts und sind darum einzelne attachment-Felder je Aufzählungspunkt, kein multiselect.\n\nBedingte Pflichtangaben bleiben required=true; die Bedingung steht jeweils in der Definition. Das betrifft:\n- die Kinderzeilen, nur bei «ja»,\n- den Zustellungsbevollmächtigten, nur bei Wohnsitz im Ausland,\n- die Unterlagen 2.a und 2.b, je nach Nationalität,\n- die Angaben zu den strittigen Punkten, nur bei einer Teilvereinbarung.\n\nFür den Zustellungsbevollmächtigten und für die «Angaben darüber, in welchen Punkten man sich nicht einig ist» druckt das Formular keine eigene Zeile. Beide werden aber ausdrücklich verlangt. Teile dafür habe ich keine erfunden.\n\nDie aktuelle Rentenbescheinigung im Vorsorgefall steht im selben Aufzählungspunkt wie die Aufstellungen der beruflichen Vorsorgeeinrichtungen (Nr. 4). Sie ist deshalb in der Definition dieses Felds enthalten und nicht als eigenes Feld erfasst.\n\nNicht als Angaben der Person erfasst:\n- der Kopf des Kantonsgerichts (Adresse, Telefon, justiz.sh.ch),\n- der Hinweis «WICHTIG» (die Unterlagen gemäss Merkblatt sind beizulegen),\n- die Merkblatt-Abschnitte «Voraussetzungen» und «Verfahren» (Kostenvorschuss, Anhörung, Eröffnung des Scheidungsurteils),\n- Unterlage Nr. 1, das Formular selbst, das vollständig auszufüllen ist.\n\nEin Feld «Vom Amt auszufüllen» gibt es nicht."
+}

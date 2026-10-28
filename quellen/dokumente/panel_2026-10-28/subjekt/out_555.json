@@ -1,0 +1,24 @@
+{
+ "verdicts": [
+  {
+   "id": 6698,
+   "subjekt": "natuerliche_person",
+   "grund": "Vollmachtgeber unterschreibt mit eigenen Personalien (Name, Vorname, Geb.datum, Heimatort, Wohnadresse); Geburtsdatum und Heimatort gibt es nur bei natürlichen Personen."
+  },
+  {
+   "id": 6699,
+   "subjekt": "natuerliche_person",
+   "grund": "Bevollmächtigte Person wird mit Name, Vorname, Geb.datum, Heimatort und Wohnadresse erfasst, also eindeutig eine natürliche Person."
+  },
+  {
+   "id": 6701,
+   "subjekt": "natuerliche_person",
+   "grund": "Genaue Personalien eines Verwaltungsratsmitglieds, das Liquidator wird; Verwaltungsräte sind nach Art. 707 Abs. 3 OR natürliche Personen."
+  },
+  {
+   "id": 6702,
+   "subjekt": "natuerliche_person",
+   "grund": "Genaue Personalien und Funktion der einzelnen Zeichnungsberechtigten unterhalb des VR; zeichnungsberechtigt sind nur natürliche Personen, die Funktion ist ihre eigene Rolle."
+  }
+ ]
+}

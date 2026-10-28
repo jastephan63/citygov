@@ -1,0 +1,52 @@
+{
+ "form_id": 554,
+ "data_fields": [
+  {
+   "name": "Firma und Sitz",
+   "definition": "Firma und Sitz der Gesellschaft (Aktiengesellschaft, GmbH oder Genossenschaft), für welche die Unterzeichnenden den Verzicht auf die eingeschränkte Revision erklären.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Firma",
+    "Sitz"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Diese Erklärungen stützen sich kumulativ auf",
+   "definition": "Angekreuzte Unterlagen, auf welche sich die Erklärungen stützen und von denen Kopien der Erklärung beizulegen sind.",
+   "data_type": "multiselect",
+   "required": true,
+   "allowed_values": [
+    "Jahresrechnungen der vergangenen zwei Jahre inklusive Anhang",
+    "Verzichtserklärungen sämtlicher Gesellschafterinnen und Gesellschafter",
+    "Protokoll der Universalversammlung, enthaltend die Verzichtserklärungen sämtlicher Gesellschafterinnen und Gesellschafter"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ort und Datum",
+   "definition": "Ort und Datum der Unterzeichnung der KMU-Erklärung.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Ort",
+    "Datum"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Unterschrift/en mindestens eines Mitglieds des obersten Leitungs- oder Verwaltungsorgans",
+   "definition": "Unterschrift mindestens eines Mitglieds des obersten Leitungs- oder Verwaltungsorgans der Gesellschaft, mit der die Erklärung abgegeben wird.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  }
+ ],
+ "hinweis": "Korrekturen: keine. Ich habe das Formular anhand der Original-DOCX (word/document.xml, Kopf- und Fusszeilen) Zeile für Zeile geprüft. Es gibt keine Formularsteuerelemente, keine Tabellen und keinen Amtsbereich; Kopf- und Fusszeilen sind leer. Was keine Angaben der Person sind: Ziff. 1 ist eine Rechtsbelehrung (Art. 727a OR, Art. 62 Abs. 2 HRegV). Die Erklärungen 2.1 bis 2.3 sind vorgedruckt und werden durch die Unterschrift bestätigt; sie haben weder ein Ankreuzfeld noch ein Eingabefeld. Zur Checkliste in 2.4: Der Hinweis «bitte ankreuzen und Kopien beilegen» ist eine Anleitung und kein Format. Die Checkliste ist zugleich die Beilagenliste, deshalb gibt es kein eigenes Attachment-Feld. In den allowed_values ist das Verbindungswort «oder» am Ende der zweiten Option weggelassen, ebenso der Schlusspunkt der dritten Option. Inhaltlich gilt: Jahresrechnungen und dazu entweder die Verzichtserklärungen oder das Protokoll der Universalversammlung. Unterschriftenblock: Gedruckt sind nur zwei punktierte Linien, links «Ort und Datum», rechts die Unterschrift. Trotz «Unterschrift/en» gibt es also nur eine Unterschriftslinie, und es ist zu Recht nur ein signature-Feld erfasst. «Firma und Sitz» steht als eine einzige Zeile; die Aufteilung in Firma und Sitz entspricht den beiden im Label genannten Teilen und dem Vorgehen bei Formular 315."
+}

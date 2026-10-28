@@ -1,0 +1,84 @@
+{
+ "form_id": 552,
+ "mappings": [
+  {
+   "data_field": "Firma",
+   "cites": [
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 73",
+     "beleg": "Bei Gesellschaften mit beschränkter Haftung müssen ins Handelsregister eingetragen werden: … b. die Firma und die Unternehmens-Identifikationsnummer; … r. falls die Gesellschaft keine ordentliche oder eingeschränkte Revision durchführt: ein Hinweis darauf"
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 16",
+     "beleg": "Die Anmeldung muss die Rechtseinheit klar identifizieren und die einzutragenden Tatsachen angeben oder auf die entsprechenden Belege einzeln verweisen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Geschäftsjahr, ab welchem der Verzicht gelten soll",
+   "cites": [
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 62",
+     "beleg": "Die Erklärung muss das Datum des Beginns des Geschäftsjahres enthalten, ab welchem der Verzicht gilt"
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 73",
+     "beleg": "r. falls die Gesellschaft keine ordentliche oder eingeschränkte Revision durchführt: ein Hinweis darauf sowie das Datum des Beginns des Geschäftsjahres, ab welchem der Verzicht gilt (Art. 62 Abs. 2)"
+    },
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 727a",
+     "beleg": "Der Verzicht gilt nur für künftige Geschäftsjahre und muss vor Beginn des Geschäftsjahres beim Handelsregisteramt angemeldet werden."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Sämtliche Gesellschafter/innen der GmbH",
+   "cites": [
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 727a",
+     "beleg": "Mit der Zustimmung sämtlicher Aktionäre kann auf die eingeschränkte Revision verzichtet werden, wenn die Gesellschaft nicht mehr als zehn Vollzeitstellen im Jahresdurchschnitt hat."
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 62",
+     "beleg": "c. sämtliche Aktionärinnen und Aktionäre auf eine eingeschränkte Revision verzichtet haben … d. die Verzichtserklärungen der Aktionärinnen und Aktionäre oder das massgebliche Protokoll der Generalversammlung"
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 73",
+     "beleg": "i. die Gesellschafterinnen und Gesellschafter unter Angabe der Anzahl und des Nennwerts ihrer Stammanteile"
+    },
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 791",
+     "beleg": "Die Gesellschafter sind mit der Anzahl und dem Nennwert ihrer Stammanteile ins Handelsregister einzutragen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Unterschrift",
+   "cites": [
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 20",
+     "beleg": "Die Belege müssen rechtskonform unterzeichnet sein."
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 62",
+     "beleg": "Folgende Dokumente oder Kopien davon müssen der Erklärung beigelegt werden: … d. die Verzichtserklärungen der Aktionärinnen und Aktionäre oder das massgebliche Protokoll der Generalversammlung"
+    }
+   ],
+   "over_collection": false
+  }
+ ]
+}

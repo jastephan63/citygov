@@ -1,0 +1,16 @@
+{
+ "urteile": [
+  {
+   "id": 6957,
+   "urteil": "bestaetigt",
+   "subjekt": "organisation",
+   "grund": "Statutarischer Sitz der GmbH (politische Gemeinde, ggf. Kantonskürzel) in Titel und Art. 1; eine Angabe der Gesellschaft, keine Wohnadresse einer Privatperson und nicht aus dem Einwohnerregister vorbefüllbar."
+  },
+  {
+   "id": 6962,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Eigenhändige Unterschrift mit Platzhalter «[Vorname(n) Name]» und gegenderter Rolle «Der Gründer / Die Gründerin» bzw. «Der / Die Vorsitzende»; es unterschreibt stets ein einzelner Mensch. Die Angabe ist sein eigener Name. Das gilt auch dann, wenn er für die Gesellschaft handelt, und deckt sich mit Gründerfeld 3015 (natuerliche_person)."
+  }
+ ]
+}

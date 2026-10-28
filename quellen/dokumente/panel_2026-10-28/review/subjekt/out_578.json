@@ -1,0 +1,28 @@
+{
+ "urteile": [
+  {
+   "id": 7147,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Kasten «Person» (Nachname, Vorname, Nationalität, Geburtsdatum) beschreibt den einen entsandten Arbeitnehmer, der selbst unterschreibt – sicher Angaben einer einzelnen natürlichen Person."
+  },
+  {
+   "id": 7149,
+   "urteil": "bestaetigt",
+   "subjekt": "organisation",
+   "grund": "Komplette Adresse des ausländischen Arbeitgebers «(=Auftragnehmer)», der neben der «Schweizer Einsatzfirma» als Vertragsbetrieb auftritt – Betriebsangabe; keine Personalien, korpusweit wie andere Arbeitgeber/Betrieb-Felder als Organisation geführt."
+  },
+  {
+   "id": 7150,
+   "urteil": "bestaetigt",
+   "subjekt": "organisation",
+   "grund": "Das Formular verlangt ausdrücklich die Adresse der «Schweizer Einsatzfirma (=Auftraggeber)» – Angabe eines Unternehmens, nicht einer Privatperson."
+  },
+  {
+   "id": 7154,
+   "urteil": "bestaetigt",
+   "subjekt": "sache",
+   "grund": "«Einsatzort (Adresse, Ort und Firmenname)» bezeichnet den Ort, an dem die Arbeit ausgeführt wird; der Firmenname dient nur der Lokalisierung – Ortsangabe, keine Personenangabe."
+  }
+ ]
+}

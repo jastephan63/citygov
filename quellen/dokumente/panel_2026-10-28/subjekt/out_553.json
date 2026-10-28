@@ -1,0 +1,14 @@
+{
+ "verdicts": [
+  {
+   "id": 6682,
+   "subjekt": "natuerliche_person",
+   "grund": "Personalien einer einzelnen Person aus dem Verwaltungsrat (Herr/Frau, Vorname, Name, Heimatort, Wohnadresse), die den Vorsitz führt; Verwaltungsratsmitglieder einer AG sind stets natürliche Personen."
+  },
+  {
+   "id": 6683,
+   "subjekt": "natuerliche_person",
+   "grund": "Personalien eines einzelnen Verwaltungsratsmitglieds als Protokollführer/in (Herr/Frau, Vorname, Name, Heimatort, Wohnadresse); gemeint ist sicher eine natürliche Person."
+  }
+ ]
+}

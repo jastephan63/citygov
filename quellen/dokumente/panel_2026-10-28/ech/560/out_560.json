@@ -1,0 +1,246 @@
+{
+ "hinweis": "eCH-Urteile Formular 560, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/560 --nur-offene=560",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Firma der Gesellschaft im Titel «[FIRMA]» = Name der Organisation; eCH-0098 organisationName (organisationIdentificationType) existiert wörtlich, Mehrheitspraxis (23x) für «Firma» gegenüber eCH-0010 organisationName (Postadresse, 3x).",
+   "feld": "Firma",
+   "standard": "eCH-0098",
+   "element": "organisationName"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "«[FIRMA] in [SITZ]» = Sitzgemeinde der Gesellschaft; propagierter Wert eCH-0098 headquarterMunicipality (swissHeadquarterType) existiert wörtlich und passt, bestätigt.",
+   "feld": "Sitz"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Kalenderdatum der Verwaltungsratssitzung (Definition: Tag, an dem die Versammlung stattfindet). Ganzer Katalog durchsucht nach meeting/session/assembly/resolution/minute/protocol/decision/date: nur Meldungskopf-Daten (eCH-0058/0039/0147 messageDate, eventDate), Dossier-/Dokument-openingDate (eCH-0039/0147), Abstimmungs-, Bau- und Registerdaten (z.B. eCH-0108 registrationDate, eCH-0235 decisionValidityDate) – kein Element für das Datum einer Organsitzung.",
+   "feld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Ort der Versammlung (Lokal oder Gemeinde, keine Personen- oder Firmenadresse); propagierter Wert kein_standard bestätigt: Suche place/location/venue/meeting ergab nur Geburts-, Heimat-, Arbeits- und Abstimmungsorte.",
+   "feld": "Ort"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Angabe ist der Name (Format NAME, Vorname) der Person, die den Sitzungsvorsitz führt; eCH-0044 officialName (personIdentificationLightType) wie Mehrheitspraxis für «Name, Vorname» (30x) und «Präsident/in». eCH-0276 chairmanOfTheBoardOfDirectors verworfen: E-Bilanz-Titelangabe zum VR-Präsidenten, Sitzungsvorsitz ist nicht zwingend der Präsident.",
+   "feld": "Vorsitz",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Angabe ist der Name (NAME, Vorname) der als Protokollführer bezeichneten Person; eCH-0044 officialName (personIdentificationLightType). Für die Rolle Protokollführer gibt es kein Element (Suche protocol/minute/secretar ohne Treffer).",
+   "feld": "Protokoll",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Angabe sind die Namen der übrigen anwesenden VR-Mitglieder; ausgetauscht wird je Person der Name – eCH-0044 officialName (personIdentificationLightType). Für die Anwesenheit selbst existiert kein Element (Suche attend/present/meeting ohne passenden Treffer).",
+   "feld": "Neben ihm/ihr sind anwesend",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Zusammengesetzte Personenangabe (Name, Heimatort, Wohnort); Container eCH-0044 personIdentification (wörtlich im Katalog) wie bei gleichartigen HR-Personen-Composites («Weitere zeichnungsberechtigte Personen», «Arbeitnehmende Person»).",
+   "feld": "Erteilung einer Zeichnungsberechtigung – Person, der die Unterschrift erteilt wird",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name der Person; eCH-0044 officialName (personIdentificationLightType), Mehrheitspraxis (30x) für Teilfeld «Name, Vorname».",
+   "elternfeld": "Erteilung einer Zeichnungsberechtigung – Person, der die Unterschrift erteilt wird",
+   "teilfeld": "Name, Vorname",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Heimatort der Person («von …»); eCH-0011 originName (placeOfOriginType), Mehrheitspraxis für Heimatort-Teilfelder.",
+   "elternfeld": "Erteilung einer Zeichnungsberechtigung – Person, der die Unterschrift erteilt wird",
+   "teilfeld": "von (Heimatort)",
+   "standard": "eCH-0011",
+   "element": "originName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Aktueller Wohnort der Person («in …»); eCH-0010 town (addressInformationType), Mehrheitspraxis für Wohnort-Teilfelder.",
+   "elternfeld": "Erteilung einer Zeichnungsberechtigung – Person, der die Unterschrift erteilt wird",
+   "teilfeld": "in (Wohnort)",
+   "standard": "eCH-0010",
+   "element": "town"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Art der Zeichnungsberechtigung (Einzel-/Kollektivunterschrift zu zweien). Ganzer Katalog durchsucht nach sign/signat/authori/power/proxy/represent/Zeichnung: nur eCH-0091/0220/0230/0250/0274/0282 (elektronische Signatur, ohne Elemente), eCH-0039 signer, eCH-0260 Signatur-Bestätigungen (boolean); eCH-0098/0108/0116 kennen keine Zeichnungsart. Wie «Art der Zeichnungsberechtigung» (5x kein_standard).",
+   "feld": "Erteilung einer Zeichnungsberechtigung – erteilte Unterschrift"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Zusammengesetzte Personenangabe der ernannten Person (Name, Heimatort, Wohnort); Container eCH-0044 personIdentification.",
+   "feld": "Erteilung einer Zeichnungsberechtigung – ernannte Person",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name der ernannten Person; eCH-0044 officialName (personIdentificationLightType).",
+   "elternfeld": "Erteilung einer Zeichnungsberechtigung – ernannte Person",
+   "teilfeld": "Name, Vorname",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Heimatort der ernannten Person; eCH-0011 originName (placeOfOriginType).",
+   "elternfeld": "Erteilung einer Zeichnungsberechtigung – ernannte Person",
+   "teilfeld": "von (Heimatort)",
+   "standard": "eCH-0011",
+   "element": "originName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Aktueller Wohnort der ernannten Person; eCH-0010 town (addressInformationType).",
+   "elternfeld": "Erteilung einer Zeichnungsberechtigung – ernannte Person",
+   "teilfeld": "in (Wohnort)",
+   "standard": "eCH-0010",
+   "element": "town"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Neue, ab Ernennung geltende Funktion in der Geschäftsleitung (Direktor/stellv. Direktor/Vizedirektor); eCH-0229 role (memberOfAdministrativeBodyType, Enum president/executive/responsibleForAccounting laut XSD) – Werte fallen unter «executive», wie bei den HR-Formularen 307/310/312/317. eCH-0021 jobTitle (Beruf), eCH-0261 personFunction (Agrar) und eCH-0165 role (SIARD-Datenbankrolle) verworfen.",
+   "feld": "Erteilung einer Zeichnungsberechtigung – Funktion der ernannten Person",
+   "standard": "eCH-0229",
+   "element": "role"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Art der Unterschrift (Einzel-/Kollektivunterschrift zu zweien) der ernannten Person; kein Element für die Zeichnungsart im ganzen Katalog (Suche sign/authori/power/represent; nur elektronische Signatur-Standards ohne Elemente, eCH-0039 signer, eCH-0260 Signatur-Bestätigungen).",
+   "feld": "Erteilung einer Zeichnungsberechtigung – Unterschrift der ernannten Person"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Zusammengesetzte Personenangabe (Name, Heimatort, Wohnort) der Person, deren Unterschrift entzogen wird; die Identifikation selbst ist aktuell – Container eCH-0044 personIdentification wie bei «Ausgeschiedene Personen und erloschene Unterschriften».",
+   "feld": "Entziehung einer Zeichnungsberechtigung – Person, der die Unterschrift entzogen wird",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name der Person; eCH-0044 officialName (personIdentificationLightType).",
+   "elternfeld": "Entziehung einer Zeichnungsberechtigung – Person, der die Unterschrift entzogen wird",
+   "teilfeld": "Name, Vorname",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Heimatort der Person; eCH-0011 originName (placeOfOriginType).",
+   "elternfeld": "Entziehung einer Zeichnungsberechtigung – Person, der die Unterschrift entzogen wird",
+   "teilfeld": "von (Heimatort)",
+   "standard": "eCH-0011",
+   "element": "originName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Aktueller Wohnort der Person; eCH-0010 town (addressInformationType).",
+   "elternfeld": "Entziehung einer Zeichnungsberechtigung – Person, der die Unterschrift entzogen wird",
+   "teilfeld": "in (Wohnort)",
+   "standard": "eCH-0010",
+   "element": "town"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Art der entzogenen (künftig erloschenen) Unterschrift; weder für die Zeichnungsart noch für deren Entzug gibt es ein Element (Suche sign/authori/power/represent/withdraw im ganzen Katalog ohne passenden Treffer).",
+   "feld": "Entziehung einer Zeichnungsberechtigung – entzogene Unterschrift"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Zusammengesetzte Personenangabe (Name, Heimatort, Wohnort) der abgewählten Person; Container eCH-0044 personIdentification.",
+   "feld": "Entziehung einer Zeichnungsberechtigung – abgewählte Person",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name der abgewählten Person; eCH-0044 officialName (personIdentificationLightType).",
+   "elternfeld": "Entziehung einer Zeichnungsberechtigung – abgewählte Person",
+   "teilfeld": "Name, Vorname",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Heimatort der abgewählten Person; eCH-0011 originName (placeOfOriginType).",
+   "elternfeld": "Entziehung einer Zeichnungsberechtigung – abgewählte Person",
+   "teilfeld": "von (Heimatort)",
+   "standard": "eCH-0011",
+   "element": "originName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Aktueller Wohnort der abgewählten Person; eCH-0010 town (addressInformationType).",
+   "elternfeld": "Entziehung einer Zeichnungsberechtigung – abgewählte Person",
+   "teilfeld": "in (Wohnort)",
+   "standard": "eCH-0010",
+   "element": "town"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Funktion, aus der die Person abgewählt wird = endende, bisherige Funktion; eCH-0229 role trägt nur die aktuelle Rolle und darf für einen vergangenen Wert nicht stehen. Kein Element für eine beendete Funktion oder Abwahl im Katalog (Suche role/function/position/director/withdraw).",
+   "feld": "Entziehung einer Zeichnungsberechtigung – Funktion der abgewählten Person"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freitext-Protokollinhalt zum Traktandum «Verschiedenes». Die comment/remark-Elemente (eCH-0039/0147 comments, eCH-0229 remarks u.a.) sind an fremde Kontexte gebunden (Dossier-/Dokument-/Steuerbemerkung); kein Element für Sitzungsprotokoll-Inhalt, wie «Bemerkungen» (82x kein_standard).",
+   "feld": "Verschiedenes"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Handschriftliche Unterschrift des Vorsitzenden (data_type signature). eCH-0091/0220/0230/0250/0282 regeln elektronische Signaturen ohne Elemente, eCH-0039 signer ist Dokumentmetadatum; wie «Unterschrift» (33x kein_standard).",
+   "feld": "Vorsitzender"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Handschriftliche Unterschrift des Protokollführers (data_type signature); kein Element für eine Unterschrift im Katalog (nur elektronische Signatur-Standards ohne Elemente, eCH-0039 signer, eCH-0260 Signatur-Bestätigungen).",
+   "feld": "Protokollführer"
+  }
+ ]
+}

@@ -1,0 +1,381 @@
+{
+ "hinweis": "eCH-Urteile Formular 578, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/578 --nur-offene=578",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Zweitprüfung: Der Kasten «Person» fasst Nachname, Vorname und Geburtsdatum zusammen, also die Teile von eCH-0044 personIdentification. Das Element steht wörtlich im Katalog (id 809). Im Korpus ist es der übliche Container für Personalien (Personalien 55x, Person 2x). Die Nationalität wird beim Teilfeld eigens beurteilt. Der propagierte Wert wird bestätigt.",
+   "feld": "Person"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Der Nachname des entsandten Arbeitnehmers ist eCH-0044 officialName (personIdentificationLightType, id 800). Der propagierte Wert ist richtig.",
+   "elternfeld": "Person",
+   "teilfeld": "Nachname"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Der Vorname des Arbeitnehmers ist eCH-0044 firstName (personIdentificationLightType, id 801). Der propagierte Wert ist richtig.",
+   "elternfeld": "Person",
+   "teilfeld": "Vorname"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Die Staatsangehörigkeit gehört nicht zu personIdentification, sondern ist eCH-0011 nationalityData (personType). Das ist die vorherrschende Korpus-Zuordnung (85 Felder und Teilfelder, gegenüber 6x country), z. B. «Staatsangehörigkeit» im FlaM-Formular 541.",
+   "elternfeld": "Person",
+   "teilfeld": "Nationalität",
+   "standard": "eCH-0011",
+   "element": "nationalityData"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Das Geburtsdatum ist eCH-0044 dateOfBirth. Es steht im selben Kontext personIdentificationLightType (id 804) wie die Geschwisterteile Nachname und Vorname, so auch «Geburtsdatum» in Formular 541.",
+   "elternfeld": "Person",
+   "teilfeld": "Geburtsdatum",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Der vollständige Text «… seit» meint den Beginn des Arbeitsverhältnisses mit dem ausländischen Arbeitgeber, also das Anfangsdatum eines Zeitraums und keinen aktuellen Wert. Das passt zu eCH-0278 dependentEmploymentType/employmentStartDate. Abgewogen gegen eCH-0021 occupationValidFrom, das im Korpus für «angestellt seit» häufiger vorkommt: Auf diesem Formular gehört occupationValidFrom schon zum Einsatzbeginn. Formular 105 trennt genau gleich: «Dauer des Arbeitsverhältnisses | von» → employmentStartDate, «Einsatzzeiten | Einsatz von» → occupationValidFrom. So bleiben Arbeitsverhältnis und Einsatz unterscheidbar.",
+   "feld": "Angestellt beim ausländischen Arbeitgeber seit",
+   "standard": "eCH-0278",
+   "element": "employmentStartDate"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Das freie Feld «Komplette Adresse» im Kasten des ausländischen Arbeitgebers enthält Firmenname und Postadresse in einem; ein eigenes Namensfeld gibt es nicht. Das entspricht der Organisations-Postadresse eCH-0010 organisationMailAdress (Schreibweise wörtlich wie im Katalog, id 79). So ist auch «Name und Adresse des Arbeitgebers» in den Formularen 108 und 282 zugeordnet. eCH-0021 placeOfEmployer wurde verworfen, weil es nur addressInformation ohne Organisationsnamen enthält.",
+   "feld": "Ausländischer Arbeitgeber – Komplette Adresse",
+   "standard": "eCH-0010",
+   "element": "organisationMailAdress"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Vollständige Adresse samt Namen der auftraggebenden Schweizer Firma, also eine Organisations-Postadresse nach eCH-0010 organisationMailAdress. So ist auch «Einsatzbetrieb im Ausland» in Formular 232 zugeordnet.",
+   "feld": "Schweizer Einsatzfirma – Komplette Adresse",
+   "standard": "eCH-0010",
+   "element": "organisationMailAdress"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Der Einsatzzeitraum von/bis ist die Gültigkeit der Erwerbstätigkeit am Einsatzort. Container ist eCH-0021 occupationData (jobDataType); es enthält occupationValidFrom und occupationValidTill. So ist auch «Einsatzzeiten (Temporärarbeitsvertrag)» in Formular 105 zugeordnet.",
+   "feld": "Dauer des Einsatzes",
+   "standard": "eCH-0021",
+   "element": "occupationData"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Der Beginn des Einsatzes ist das Anfangsdatum des Zeitraums, also eCH-0021 occupationValidFrom (occupationDataType). So auch «Startdatum Einsatz» in Formular 541 und «Einsatz 1 von» in Formular 105.",
+   "elternfeld": "Dauer des Einsatzes",
+   "teilfeld": "von",
+   "standard": "eCH-0021",
+   "element": "occupationValidFrom"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Das Ende des Einsatzes ist das Enddatum des Zeitraums, also eCH-0021 occupationValidTill (occupationDataType). So auch «Enddatum Einsatz» in Formular 541.",
+   "elternfeld": "Dauer des Einsatzes",
+   "teilfeld": "bis",
+   "standard": "eCH-0021",
+   "element": "occupationValidTill"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ganzer Katalog durchsucht (duration, days, weeks, stay, presence, attendance, numberOf…). Ein Element für die Zahl der Anwesenheitstage oder -wochen eines entsandten Arbeitnehmers gibt es nicht. Nur fachfremde Treffer kamen vor: eCH-0260 workingDaysPerWeek (Lehrvertrag), eCH-0119 numberOfWorkdays (Arbeitsweg), eCH-0278 taxLiabilityDays/travelDays (Steuer). Der Fachbereich ist eCH-0256 (FlaM-Vollzug, In Arbeit, ohne Elemente), so auch «Einsatzdauer (Anzahl Arbeitstage)» in Formular 541.",
+   "feld": "Anwesenheit in Anzahl Tagen / Wochen",
+   "standard": "eCH-0256",
+   "element": ""
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die Tätigkeit des Arbeitnehmers ist eCH-0021 jobDataType/jobTitle. So sind auch «Tätigkeit am Arbeitsort» in Formular 541 und 16 weitere Tätigkeitsfelder im Korpus zugeordnet. eCH-0098 activityDescription wurde verworfen: Es beschreibt die Tätigkeit einer Organisation, nicht die einer Person.",
+   "feld": "Genaue Tätigkeit (auszuführende Arbeit des Arbeitnehmers) während des Einsatzes",
+   "standard": "eCH-0021",
+   "element": "jobTitle"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Der Einsatzort ist der Arbeitsort des Arbeitnehmers. Container ist eCH-0021 occupationDataType/placeOfWork (addressInformationType), so auch «Einsatzort in der Schweiz» in Formular 541 und «Üblicher Einsatzort».",
+   "feld": "Einsatzort",
+   "standard": "eCH-0021",
+   "element": "placeOfWork"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Neben einem eigenen Teil «Ort» meint «Adresse» die Strasse (mit Nummer), also eCH-0010 addressInformationType/street (id 52). Das passt zum Container placeOfWork und zum Korpus («Adresse» neben «Ort» 4x street). Der propagierte Wert ist richtig.",
+   "elternfeld": "Einsatzort",
+   "teilfeld": "Adresse"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Die Ortschaft des Einsatzortes ist eCH-0010 addressInformationType/town, im selben Adresskontext wie street. Das ist die vorherrschende Korpus-Zuordnung für «Ort» (55x).",
+   "elternfeld": "Einsatzort",
+   "teilfeld": "Ort",
+   "standard": "eCH-0010",
+   "element": "town"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Gemeint ist der Name der Firma am Einsatzort, also eCH-0098 organisationIdentificationType/organisationName. Das ist die vorherrschende Korpus-Zuordnung für «Firmenname»/«Firma» als Teilfeld (31x, gegenüber 12x eCH-0010 organisationName). placeOfWork (addressInformationType) hat kein Namenselement. Gemeint ist der Einsatzbetrieb, nicht der Arbeitgeber, deshalb nicht eCH-0021 employer.",
+   "elternfeld": "Einsatzort",
+   "teilfeld": "Firmenname",
+   "standard": "eCH-0098",
+   "element": "organisationName"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Gemeint ist der Lohn aus dem Arbeitsverhältnis, umgerechnet in CHF. Das ist eCH-0278 dependentEmploymentType/employedRevenue (moneyType), die etablierte Korpus-Zuordnung für Lohnbeträge (129 Felder und Teilfelder). Die beiden Teile sind derselbe Betrag pro Monat bzw. pro Jahr, deshalb trägt der Elternteil dasselbe Element wie bei «Lohn | Jahresbruttolohn / Monatsbruttolohn» (Formular 142).",
+   "feld": "Salär; welches dem Arbeitnehmer im Ausland ausbezahlt wird",
+   "standard": "eCH-0278",
+   "element": "employedRevenue"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Monatlicher Lohnbetrag aus dem Arbeitsverhältnis, also eCH-0278 employedRevenue. So sind auch Monatslöhne im Korpus zugeordnet, z. B. «oder Monatsbruttolohn» (Formulare 138, 142, 147).",
+   "elternfeld": "Salär; welches dem Arbeitnehmer im Ausland ausbezahlt wird",
+   "teilfeld": "Pro Monat",
+   "standard": "eCH-0278",
+   "element": "employedRevenue"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Jährlicher Lohnbetrag aus dem Arbeitsverhältnis, also eCH-0278 employedRevenue, so auch «Jahresbruttolohn CHF» im Korpus.",
+   "elternfeld": "Salär; welches dem Arbeitnehmer im Ausland ausbezahlt wird",
+   "teilfeld": "pro Jahr",
+   "standard": "eCH-0278",
+   "element": "employedRevenue"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ganzer Katalog durchsucht (allowance, salary, wage, bonus, benefit, compensation, payment, remuneration, expat, posting, secondment). Eine Entsendungs- oder Auslandzulage gibt es nirgends. eCH-0278 jobCostsExpatriates ist ein Berufskostenabzug. Die allowance-Elemente von eCH-0119 betreffen Krankheits- und Behinderungskosten, eCH-0260 salaryType/benefits den Lehrvertrag. Der Fachbereich ist eCH-0256 (FlaM-Vollzug, In Arbeit, ohne Elemente), so auch «Zulagen, welche ausgerichtet werden» in Formular 541.",
+   "feld": "Auslandzulage während der Entsendung in der Schweiz",
+   "standard": "eCH-0256",
+   "element": ""
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Monatlicher Betrag der Entsendungszulage. Dafür gibt es im Katalog kein Element (siehe Elternfeld); Fachbereich eCH-0256 (FlaM, In Arbeit, ohne Elemente).",
+   "elternfeld": "Auslandzulage während der Entsendung in der Schweiz",
+   "teilfeld": "Pro Monat",
+   "standard": "eCH-0256",
+   "element": ""
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Jährlicher Betrag der Entsendungszulage. Dafür gibt es im Katalog kein Element; Fachbereich eCH-0256 (FlaM, In Arbeit, ohne Elemente).",
+   "elternfeld": "Auslandzulage während der Entsendung in der Schweiz",
+   "teilfeld": "pro Jahr",
+   "standard": "eCH-0256",
+   "element": ""
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Gemeint ist die Krankenkassenprämie, die der Arbeitgeber während der Entsendung zahlt. Gesucht wurde nach insurance, contribution, benefit, fringe und payment. eCH-0021 healthInsuranceData kennt nur Versicherer und Status, keinen Betrag. eCH-0278 insurancePremium/insuranceContributions sind Steuerabzüge der versicherten Person. Ein passendes Element gibt es nicht; der Fachbereich ist eCH-0256 (FlaM-Lohnkontrolle, In Arbeit, ohne Elemente).",
+   "feld": "Allfällige weitere Zahlungen durch den Arbeitgeber – Krankenkasse in der Schweiz",
+   "standard": "eCH-0256",
+   "element": ""
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Monatlicher Krankenkassenbetrag, den der Arbeitgeber zahlt. Dafür gibt es kein Element; eCH-0256 (FlaM, In Arbeit, ohne Elemente).",
+   "elternfeld": "Allfällige weitere Zahlungen durch den Arbeitgeber – Krankenkasse in der Schweiz",
+   "teilfeld": "Pro Monat",
+   "standard": "eCH-0256",
+   "element": ""
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Jährlicher Krankenkassenbetrag, den der Arbeitgeber zahlt. Dafür gibt es kein Element; eCH-0256 (FlaM, In Arbeit, ohne Elemente).",
+   "elternfeld": "Allfällige weitere Zahlungen durch den Arbeitgeber – Krankenkasse in der Schweiz",
+   "teilfeld": "pro Jahr",
+   "standard": "eCH-0256",
+   "element": ""
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Gemeint sind Steuern, die der Arbeitgeber übernimmt. Gesucht wurde nach tax, salary, compensation, benefit und payment. Die Steuerstandards eCH-0119, eCH-0278 und eCH-0276 beschreiben Steuerfaktoren und Abzüge, aber keine Steuerlast, die der Arbeitgeber übernimmt. Ein Element gibt es nicht; der Fachbereich ist eCH-0256 (FlaM, In Arbeit, ohne Elemente).",
+   "feld": "Allfällige weitere Zahlungen durch den Arbeitgeber – Steuern (falls vom Arbeitgeber übernommen)",
+   "standard": "eCH-0256",
+   "element": ""
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Monatlicher Betrag der übernommenen Steuern. Dafür gibt es kein Element; eCH-0256 (FlaM, In Arbeit, ohne Elemente).",
+   "elternfeld": "Allfällige weitere Zahlungen durch den Arbeitgeber – Steuern (falls vom Arbeitgeber übernommen)",
+   "teilfeld": "Pro Monat",
+   "standard": "eCH-0256",
+   "element": ""
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Jährlicher Betrag der übernommenen Steuern. Dafür gibt es kein Element; eCH-0256 (FlaM, In Arbeit, ohne Elemente).",
+   "elternfeld": "Allfällige weitere Zahlungen durch den Arbeitgeber – Steuern (falls vom Arbeitgeber übernommen)",
+   "teilfeld": "pro Jahr",
+   "standard": "eCH-0256",
+   "element": ""
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Gemeint sind Sozialabgaben, die der Arbeitgeber für den Arbeitnehmer in der Schweiz zahlt. Gesucht wurde nach social, contribution und insurance. eCH-0276 socialSecurityExpenses ist der Gesamtaufwand einer juristischen Person in der Steuererklärung, eCH-0278 socialDeductions sind Steuerabzüge. Keiner davon ist ein Betrag pro Arbeitnehmer. Ein Element gibt es nicht; der Fachbereich ist eCH-0256 (FlaM, In Arbeit, ohne Elemente).",
+   "feld": "Allfällige weitere Zahlungen durch den Arbeitgeber – Sozialabgaben in der Schweiz",
+   "standard": "eCH-0256",
+   "element": ""
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Monatlicher Betrag der Sozialabgaben, die der Arbeitgeber zahlt. Dafür gibt es kein Element; eCH-0256 (FlaM, In Arbeit, ohne Elemente).",
+   "elternfeld": "Allfällige weitere Zahlungen durch den Arbeitgeber – Sozialabgaben in der Schweiz",
+   "teilfeld": "Pro Monat",
+   "standard": "eCH-0256",
+   "element": ""
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Jährlicher Betrag der Sozialabgaben, die der Arbeitgeber zahlt. Dafür gibt es kein Element; eCH-0256 (FlaM, In Arbeit, ohne Elemente).",
+   "elternfeld": "Allfällige weitere Zahlungen durch den Arbeitgeber – Sozialabgaben in der Schweiz",
+   "teilfeld": "pro Jahr",
+   "standard": "eCH-0256",
+   "element": ""
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Gemeint sind weitere Vergütungen des Arbeitgebers während der Entsendung. eCH-0278 otherCompensations ist in domesticAndForeignIncomeType eine eigene Einkommenskategorie neben dependentEmployment, also kein Lohnbestandteil. employedRevenue würde den Gesamtlohn mit einem einzelnen Zusatzposten gleichsetzen. Ein Element gibt es sonst nicht; der Fachbereich ist eCH-0256 (FlaM, In Arbeit, ohne Elemente), so auch «Spesen/Zulagen, welche ausgerichtet werden» in Formular 541.",
+   "feld": "Allfällige weitere Zahlungen durch den Arbeitgeber – Andere Vergütungen",
+   "standard": "eCH-0256",
+   "element": ""
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Monatlicher Betrag der anderen Vergütungen. Dafür gibt es kein Element; eCH-0256 (FlaM, In Arbeit, ohne Elemente).",
+   "elternfeld": "Allfällige weitere Zahlungen durch den Arbeitgeber – Andere Vergütungen",
+   "teilfeld": "Pro Monat",
+   "standard": "eCH-0256",
+   "element": ""
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Jährlicher Betrag der anderen Vergütungen. Dafür gibt es kein Element; eCH-0256 (FlaM, In Arbeit, ohne Elemente).",
+   "elternfeld": "Allfällige weitere Zahlungen durch den Arbeitgeber – Andere Vergütungen",
+   "teilfeld": "pro Jahr",
+   "standard": "eCH-0256",
+   "element": ""
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Gemeint ist der Bruttolohn aus dem Arbeitsverhältnis während der Entsendung. Das ist eCH-0278 dependentEmploymentType/employedRevenue, die etablierte Korpus-Zuordnung für Bruttolöhne (z. B. «Brutto-Lohn» in Formular 497, «Bruttolohn pro Monat» in Formular 241). employedRevenueTotal wäre die Summe über alle Arbeitsverhältnisse und passt deshalb nicht.",
+   "feld": "Brutto-Salär während der Entsendung",
+   "standard": "eCH-0278",
+   "element": "employedRevenue"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Brutto-Monatslohn während der Entsendung, also eCH-0278 employedRevenue.",
+   "elternfeld": "Brutto-Salär während der Entsendung",
+   "teilfeld": "Pro Monat",
+   "standard": "eCH-0278",
+   "element": "employedRevenue"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Brutto-Jahreslohn während der Entsendung, also eCH-0278 employedRevenue.",
+   "elternfeld": "Brutto-Salär während der Entsendung",
+   "teilfeld": "pro Jahr",
+   "standard": "eCH-0278",
+   "element": "employedRevenue"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die Zeile «Ort, Datum» des Arbeitgebers bei der Unterschrift. Als Ganzes ist das eCH-0119 locationAndDate (ein String für Ort und Datum der Unterzeichnung). Im Korpus ist das die etablierte Zuordnung für gleichlautende «Ort, Datum»-Felder (21 Felder mit locationAndDate).",
+   "feld": "Ort, Datum (Arbeitgeber)",
+   "standard": "eCH-0119",
+   "element": "locationAndDate"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Ganzer Katalog durchsucht (sign*, location*, placeOf*, …Date mit sign/submi/issu/declar). Ein atomares Element für den Ort der Unterzeichnung gibt es nicht. locationAndDate ist ein unteilbarer Gesamtstring, eCH-0010 town ist ein Adressteil und meint etwas anderes. Im Korpus sind die Teile von «Ort, Datum» ebenfalls kein_standard (19x Ort).",
+   "elternfeld": "Ort, Datum (Arbeitgeber)",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Für das Datum der Unterzeichnung gibt es nach der Suche im ganzen Katalog (sign*, dateOfSign, signatureDate, submissionDate, declarationDate, issu*) kein atomares Element. Gefunden wurden nur eCH-0039 signer und die Ja/Nein-Werte …SignatureConfirmation in eCH-0260. locationAndDate ist ein Gesamtstring. Im Korpus ist das ebenfalls kein_standard (19x Datum).",
+   "elternfeld": "Ort, Datum (Arbeitgeber)",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ganzer Katalog nach sign* durchsucht. Gefunden wurden nur eCH-0039 signer (Metadatum eines Dossierdokuments, token) und die Ja/Nein-Bestätigungen hostCompany-, apprentice- und representativeSignatureConfirmation in eCH-0260 (Lehrvertrag). Ein Ja/Nein-Wert passt nicht zu einer Unterschrift. Unterschriften sind im Korpus durchgehend kein_standard (76x).",
+   "feld": "Unterschrift Arbeitgeber"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die Zeile «Ort, Datum» des Arbeitnehmers bei der Unterschrift. Als Ganzes ist das eCH-0119 locationAndDate, wie beim gleichlautenden «Ort, Datum» im Korpus (21 Felder).",
+   "feld": "Ort, Datum (Arbeitnehmer)",
+   "standard": "eCH-0119",
+   "element": "locationAndDate"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Für den Ort der Unterzeichnung gibt es nach der Suche im ganzen Katalog (sign*, location*, placeOf*) kein atomares Element. locationAndDate ist ein Gesamtstring, town ist ein Adressteil. Im Korpus ist das ebenfalls kein_standard.",
+   "elternfeld": "Ort, Datum (Arbeitnehmer)",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Für das Datum der Unterzeichnung gibt es nach der Suche im ganzen Katalog (sign*, signatureDate, submissionDate, declarationDate) kein atomares Element. Im Korpus ist das ebenfalls kein_standard.",
+   "elternfeld": "Ort, Datum (Arbeitnehmer)",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Katalog nach sign* durchsucht: Für die Unterschrift selbst gibt es kein Element. eCH-0039 signer ist ein Metadatum eines Dokuments, die …SignatureConfirmation-Elemente in eCH-0260 sind Ja/Nein-Werte. Im Korpus durchgehend kein_standard (76x).",
+   "feld": "Unterschrift Arbeitnehmer"
+  }
+ ]
+}

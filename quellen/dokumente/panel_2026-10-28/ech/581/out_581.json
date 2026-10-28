@@ -1,0 +1,213 @@
+{
+ "hinweis": "eCH-Urteile Formular 581, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/581 --nur-offene=581",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Name der Athletin oder des Athleten in einem einzigen Textfeld ohne Teile. Die Praxis für Felder «Name, Vorname» ist 4x eCH-0044 officialName (1x personIdentification), und das Teilfeld beim Trainer im selben Formular ist ebenfalls officialName. Im Schwesterformular 485 gilt für Athletin/Athlet: Name → eCH-0044 officialName. Das Element ist in eCH-0044 vorhanden (personIdentificationType/personIdentificationLightType).",
+   "feld": "Name, Vorname",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Alle 290 Standards durchsucht. Titel mit Sport/Schul/Bildung/Verein/Jugend/Freizeit/Talent/Förder ergeben nur eCH-0029 (sistiert) und eCH-0260 (Berufsbildung). Elemente mit sport/athlet/discipline/training/club/team gibt es keine. Schwesterformular 485: Sportart = kein_standard.",
+   "feld": "Sportart"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Name des Sportvereins oder -verbands, also eine Organisation: eCH-0098 organisationName (organisationIdentificationType), wörtlich im Katalog. Gleich wie im Schwesterformular 485 (Verein, Verband → eCH-0098 organisationName) und wie die anderen Vereins- und Verbandsfelder.",
+   "feld": "Verein / Verband",
+   "standard": "eCH-0098",
+   "element": "organisationName"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freitext zur Mannschaft innerhalb eines Vereins; sie ist keine eigenständige Organisation. Elemente und Titel aller 290 Standards durchsucht nach team/club/member/membership/Mannschaft. Treffer gibt es nur zu Vereinssteuern (eCH-0229 membershipFees) und zu eCH-0072 unMember, nichts für eine Sportmannschaft.",
+   "feld": "Mannschaftszugehörigkeit"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Auswahl National-/Regionalkader/Keines. Katalog (290) durchsucht nach cadre/squad/level/sport/athlet: kein Element für eine sportliche Kaderstufe (level-Treffer nur eCH-0214 detailLevelOfResponse).",
+   "feld": "Kaderzugehörigkeit"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freitext für die Bezeichnung eines Sportkaders. Die Suche nach cadre/squad/team/sport im ganzen Katalog (290 Standards) fand nichts Passendes.",
+   "feld": "Genaue Kaderbezeichnung"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Das propagierte eCH-0058 attachment ist hier falsch. In 485 ist die Talents Card eine Beilage, in diesem Formular aber ein Ankreuzfeld ja/nein plus regional/national, also keine Beilage, und ein Ja/Nein-Feld bekommt kein Wertelement. Suche nach card/talent im Katalog ergibt nur eCH-0155/0110/0228 votingCard… und eCH-0185 cardNumber; nichts davon passt. Auch in 485 ist das Teilfeld Talent Card kein_standard.",
+   "feld": "Swiss Olympic Talents Card"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ja/Nein-Feld zu einem ausstehenden sportlichen Leistungstest; es bekommt kein Wertelement. Die Suche nach test/sport im Katalog ergibt nur testDeliveryFlag/testData (Kopfdaten von Meldungen in eCH-0058/0078/0102/0147), nichts Fachliches.",
+   "feld": "Ausstehender Piste-Test"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freitext zu bisherigen sportlichen Erfolgen. Suche nach result/rank/success/achievement/classif/competition im Katalog: Treffer betreffen nur Wahl- und Abstimmungsergebnisse (eCH-0110/0252/0222), Dossier-Klassifikation (eCH-0039/0147) und Steuern, nichts zu Sportresultaten.",
+   "feld": "Bisherige Erfolge / Klassierungen"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Gesucht nach competition/contest/perYear im Katalog. Treffer betreffen nur Abstimmungen (eCH-0045/0155/0228 contest) und Kilometer (eCH-0119 distancePerYear). Für Sportwettkämpfe gibt es kein Element.",
+   "feld": "Anzahl Wettkämpfe pro Jahr"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Zusammengesetztes Feld (Einheiten, Stunden, Trainingsweg) zum sportlichen Trainingsaufwand. Weder ein Container noch ein Standard passt: eCH-0260 workingHoursType/hoursPerWeek gilt für die Arbeitszeit im Lehrvertrag. Die Suche nach train/travel/week/hours/lesson im ganzen Katalog fand nichts für Sporttraining.",
+   "feld": "Trainings- und Reiseaufwand pro Woche"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "«Beilage: Trainingsplan» ist ein beizulegendes Dokument, also eine Beilage zur Meldung: eCH-0058 attachment (headerType), wörtlich im Katalog. Gleich wie «Trainingsplan» im Schwesterformular 485.",
+   "feld": "Beilage Trainingsplan",
+   "standard": "eCH-0058",
+   "element": "attachment"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Name des Orts, an dem trainiert wird, in einem einzelnen Textfeld ohne Adressteile: eCH-0010 town (addressInformationType). Das entspricht der Praxis für das vergleichbare Feld «Austragungsort» (eCH-0010 town).",
+   "feld": "Trainingsort",
+   "standard": "eCH-0010",
+   "element": "town"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Zusammengesetztes Feld mit Name, Adresse, Telefon und E-Mail einer Kontaktperson. Der Container dafür ist eCH-0046 contact, wörtlich im Katalog. So ist auch «Trainerin / Trainer» im selben Formular zugeordnet, ebenso 19 andere Felder «Kontaktperson».",
+   "feld": "Kontaktperson Verein / Athletenbetreuer",
+   "standard": "eCH-0046",
+   "element": "contact"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Der propagierte Container eCH-0046 contact (Element-ID 923) passt zu den Teilen Name, Strasse, PLZ/Ort, Telefon und E-Mail der Trainerin oder des Trainers.",
+   "feld": "Trainerin / Trainer"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Anzahl Trainingseinheiten pro Woche. Gesucht nach train/lesson/unit/week/sport im Katalog. eCH-0260 hat nur workingDaysPerWeek/hoursPerWeek für das Lehrverhältnis, die unit-Elemente gehören zu Messwerten und Gebühren. Nichts passt zum Sporttraining.",
+   "elternfeld": "Trainings- und Reiseaufwand pro Woche",
+   "teilfeld": "Einheiten"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Wöchentliche Stunden für Training und Reisen. eCH-0260 hoursPerWeek (workingHoursType) meint die vertragliche Arbeitszeit im Lehrvertrag, nicht den Trainings- und Reiseaufwand. Sonst gibt es im Katalog nichts dazu.",
+   "elternfeld": "Trainings- und Reiseaufwand pro Woche",
+   "teilfeld": "Stunden"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Angabe zum Weg ins Training. Suche nach travel/route/commut/way/transport ergibt nur eCH-0119 ticketCostPublicTransport/distancePerYear (Berufskosten in der Steuererklärung) und eCH-0147 transportHistory. Nichts davon passt.",
+   "elternfeld": "Trainings- und Reiseaufwand pro Woche",
+   "teilfeld": "Trainingsweg"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name der Kontaktperson. Gleiche Zuordnung wie beim propagierten Teilfeld unter «Trainerin / Trainer» im selben Formular und wie bei 30 anderen Teilfeldern «Name, Vorname» (eCH-0044 officialName).",
+   "elternfeld": "Kontaktperson Verein / Athletenbetreuer",
+   "teilfeld": "Name, Vorname",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Strasse in der Adresse der Kontaktperson: eCH-0010 street (addressInformationType), wie bei 128 anderen Teilfeldern «Strasse».",
+   "elternfeld": "Kontaktperson Verein / Athletenbetreuer",
+   "teilfeld": "Strasse",
+   "standard": "eCH-0010",
+   "element": "street"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "PLZ/Ort der Adresse. Gleich wie beim propagierten Teilfeld unter «Trainerin / Trainer» und wie die Praxis bei 110 Teilfeldern «Plz, Ort» (eCH-0010 swissZipCode).",
+   "elternfeld": "Kontaktperson Verein / Athletenbetreuer",
+   "teilfeld": "Plz, Ort",
+   "standard": "eCH-0010",
+   "element": "swissZipCode"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Telefonnummer (privat/geschäftlich) der Kontaktperson: eCH-0046 phoneNumber (phoneType), wie bei 327 anderen Telefon-Teilfeldern.",
+   "elternfeld": "Kontaktperson Verein / Athletenbetreuer",
+   "teilfeld": "Tel. Privat, Geschäft",
+   "standard": "eCH-0046",
+   "element": "phoneNumber"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "E-Mail-Adresse der Kontaktperson: eCH-0046 emailAddress (emailType).",
+   "elternfeld": "Kontaktperson Verein / Athletenbetreuer",
+   "teilfeld": "E-Mail",
+   "standard": "eCH-0046",
+   "element": "emailAddress"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Der propagierte Wert eCH-0044 officialName (ID 800) für den Namen der Trainerin oder des Trainers entspricht der Praxis für Teilfelder «Name, Vorname».",
+   "elternfeld": "Trainerin / Trainer",
+   "teilfeld": "Name, Vorname"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Strasse in der Adresse der Trainerin oder des Trainers: eCH-0010 street (addressInformationType).",
+   "elternfeld": "Trainerin / Trainer",
+   "teilfeld": "Strasse",
+   "standard": "eCH-0010",
+   "element": "street"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Der propagierte Wert eCH-0010 swissZipCode (ID 59, addressInformationType) für PLZ/Ort entspricht der Praxis (110 Teilfelder «Plz, Ort»).",
+   "elternfeld": "Trainerin / Trainer",
+   "teilfeld": "Plz, Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Telefonnummer (privat/geschäftlich) der Trainerin oder des Trainers: eCH-0046 phoneNumber (phoneType).",
+   "elternfeld": "Trainerin / Trainer",
+   "teilfeld": "Tel. Privat, Geschäft",
+   "standard": "eCH-0046",
+   "element": "phoneNumber"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "E-Mail-Adresse der Trainerin oder des Trainers: eCH-0046 emailAddress (emailType).",
+   "elternfeld": "Trainerin / Trainer",
+   "teilfeld": "E-Mail",
+   "standard": "eCH-0046",
+   "element": "emailAddress"
+  }
+ ]
+}

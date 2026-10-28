@@ -1,0 +1,160 @@
+{
+ "form_id": 576,
+ "data_fields": [
+  {
+   "name": "Betreibung Nr.",
+   "definition": "Nummer der Betreibung, in der die Verwertung verlangt wird; sie wird im Kopf und nochmals im Satz zur Verwertung der betroffenen Aktiven verlangt.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Gruppe Nr.",
+   "definition": "Nummer der Pfändungsgruppe, zu der die Betreibung gehört.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Pfändung Nr.",
+   "definition": "Nummer der Pfändung, deren gepfändete Aktiven verwertet werden sollen.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "An das Betreibungsamt der Gemeinde",
+   "definition": "Gemeinde, an deren Betreibungsamt das Verwertungsbegehren gerichtet wird.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Schuldner",
+   "definition": "Name, Vorname und genaue Adresse der betriebenen Person (Schuldner).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name",
+    "Vorname",
+    "genaue Adresse"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Gläubiger",
+   "definition": "Name, Vorname und genaue Adresse des Gläubigers sowie seine Zahlungsverbindung (Postkonto oder Bankverbindung mit Kontonummer).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name",
+    "Vorname",
+    "genaue Adresse",
+    "Postkonto",
+    "Bankverbindung mit Kontonummer"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Allfälliger Vertreter des Gläubigers",
+   "definition": "Name, Vorname, genaue Adresse und Zahlungsverbindung (Postkonto oder Bankverbindung mit Kontonummer) einer allfälligen Vertretung des Gläubigers.",
+   "data_type": "composite",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [
+    "Name",
+    "Vorname",
+    "genaue Adresse",
+    "Postkonto",
+    "Bankverbindung mit Kontonummer"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Forderung",
+   "definition": "In Betreibung gesetzte Forderung, je Zeile mit Betrag in Franken, Zinssatz in Prozent und dem Datum, seit dem der Zins läuft.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Fr.",
+    "nebst Zins zu %",
+    "seit"
+   ],
+   "format": "4 Zeilen"
+  },
+  {
+   "name": "Es wird die Verwertung nachfolgender in der Betreibung Nr. betroffenen Aktiven verlangt",
+   "definition": "Auswahl der in der Betreibung gepfändeten Arten von Aktiven, deren Verwertung der Gläubiger verlangt; ein fünftes, unbeschriftetes Kästchen mit freier Zeile ist als eigene Angabe «Andere Aktiven (freie Zeile)» erfasst.",
+   "data_type": "multiselect",
+   "required": true,
+   "allowed_values": [
+    "beweglichen Sachen",
+    "Forderungen",
+    "Rechte",
+    "Grundstücke"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Andere Aktiven (freie Zeile)",
+   "definition": "Frei bezeichnete weitere Aktiven, deren Verwertung verlangt wird (fünftes Kästchen mit Leerzeile, ohne gedruckte Bezeichnung).",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Bemerkungen",
+   "definition": "Freie Bemerkungen des Gläubigers zum Verwertungsbegehren.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ort und Datum",
+   "definition": "Ort und Datum der Unterzeichnung des Verwertungsbegehrens.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Ort",
+    "Datum"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Unterschrift des Gläubigers oder seines Vertreters",
+   "definition": "Unterschrift des Gläubigers oder seiner Vertretung.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Bescheinigung des zuständigen Gerichts",
+   "definition": "Beizulegende Bescheinigung des zuständigen Gerichts, dass eine Aberkennungsklage nicht angestellt, zurückgezogen oder rechtskräftig abgewiesen worden ist (nur für Gläubiger mit provisorischer Pfändung, Erläuterung 4).",
+   "data_type": "attachment",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  }
+ ],
+ "hinweis": "Korrekturen: (1) «Forderung»: format von «bis zu 4 Zeilen; Betragsfelder mit 0.00 vorbelegt» auf «4 Zeilen» berichtigt. Gedruckt sind genau vier Zeilen. Das «0.00» ist nicht vorbelegt (Feldwert leer), sondern nur die Anzeige einer Formatierungsfunktion des Widgets, also kein gedruckter Formathinweis. (2) Mehrfachauswahl «Es wird die Verwertung … verlangt»: format «zusätzlich ein fünftes Kästchen …» entfernt, weil es kein gedruckter Formathinweis ist. Der Sachverhalt steht jetzt in der Definition mit Verweis auf die eigene Angabe «Andere Aktiven (freie Zeile)». Sonst unverändert geprüft: Alle ausfüllbaren Stellen sind abgedeckt (Kopf, Gemeinde, drei Personenblöcke mit Postkonto/Bankverbindung, 4 Forderungszeilen mit Fr./Zins %/seit, 4 beschriftete Kästchen + 5. Kästchen mit Leerzeile, Bemerkungen, Ort und Datum, eine Unterschriftslinie). Composites sind in die gedruckten Teile zerlegt. Es gibt keine zweite Unterschrift und keine Beilagen-Checkliste. Bewusst beibehalten: Die zwei Leerstellen «Betreibung Nr.» (Kopf und Satz zu den Aktiven, im PDF zwei getrennte Widgets) bleiben eine Angabe, mit der Annahme, dass es dieselbe Betreibung ist. Die freie Zeile beim 5. Kästchen hat auf dem Formular keine Beschriftung. Der Name «Andere Aktiven (freie Zeile)» ist deshalb eine Hilfsbezeichnung nach der Korpus-Praxis (z. B. «Andere Tierart (Angabe)»). Gruppe Nr./Pfändung Nr. bleiben required=true, weil sie nicht als freiwillig markiert sind, obwohl sie nur in der Betreibung auf Pfändung einen Sinn haben (Erläuterung 1 nennt auch Faustpfand- und Grundpfandbetreibung). Die Bescheinigung (Erläuterung 4) bleibt required=false wie die übrigen nur bedingt verlangten Beilagen im Korpus. Keine Felder der Person: «Eingang:» im Kopf (Eingangsvermerk des Amts) sowie die Erläuterungen 1–3 und 5 (Zuständigkeit, Frist, Kostenvorschuss, Rückzug). Auffälligkeit im Formular (nur gemeldet, nicht geändert): Im PDF sind «Betreibung Nr.», «Gruppe Nr.» und «Pfändung Nr.» drei Widgets EINES AcroForm-Feldes (betr_nr). Wer eine Nummer eintippt, füllt damit alle drei Zeilen mit demselben Wert."
+}

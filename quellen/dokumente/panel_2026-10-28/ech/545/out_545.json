@@ -1,0 +1,107 @@
+{
+ "hinweis": "eCH-Urteile Formular 545, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/545 --nur-offene=545",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Composite holding the young applicant's identity, address and contact parts. The propagated container eCH-0044 personIdentification (id 809) exists verbatim and is the established container for «Personalien» (name checked 53 times, also on sibling form 370). Each of the 7 atomic parts carries its own element below, so this container badge is not the unit.",
+   "feld": "Personalien"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "The pair Personalien/Familienname is the juvenile applicant's current family name, so eCH-0044 officialName (exists, baseNameType). The propagated value is right.",
+   "elternfeld": "Personalien",
+   "teilfeld": "Familienname"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "The applicant's first name maps to eCH-0044 firstName (exists, baseNameType). The propagated value is right.",
+   "elternfeld": "Personalien",
+   "teilfeld": "Vorname"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "The applicant's date of birth, which decides the 10–16 bracket («Wer vor dem 1. Mai seinen 16. Geburtstag feiert, gilt als Erwachsener»). It maps to eCH-0044 dateOfBirth (exists, datePartiallyKnownType). The propagated value is right.",
+   "elternfeld": "Personalien",
+   "teilfeld": "Geburtsdatum"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "The street line of the applicant's current postal address, so eCH-0010 street (exists, addressInformationType), as in corpus practice for «Strasse / Nr.». The line also takes houseNumber, a separate eCH-0010 element. That is a form-side «aufteilen» point, not a mapping error. The propagated value is right.",
+   "elternfeld": "Personalien",
+   "teilfeld": "Strasse / Nr."
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "The postcode of the applicant's address, so eCH-0010 swissZipCode (exists, addressInformationType), as in corpus practice for «PLZ / Ort». town is a separate eCH-0010 element on the same line. That is a form-side «aufteilen» point. The propagated value is right.",
+   "elternfeld": "Personalien",
+   "teilfeld": "PLZ / Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "The contact telephone number maps to eCH-0046 phoneNumber (exists, phoneType). The propagated value is right.",
+   "elternfeld": "Personalien",
+   "teilfeld": "Telefon"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "The contact e-mail address maps to eCH-0046 emailAddress (exists, emailType). The propagated value is right.",
+   "elternfeld": "Personalien",
+   "teilfeld": "E-Mail"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "One line with the current name and first name of the juvenile's parents, and no parts in the databank. It takes the container for the parent relation: eCH-0021 parentalRelationship (exists, personAddonType). Its parentalRelationshipType holds personIdentification/partner, which carry officialName and firstName. This matches corpus practice for parents' identity: form 103 «Personalien der Mutter/des Vaters (Sorgeberechtigte)», form 394 «Personalien der Mutter/des Vaters» and form 289 «Vater»/«Mutter». eCH-0021 nameOfParent was rejected. It sits in birthAddonDataType, the parents' names as recorded at the child's birth (used on 156/209 for civil-status data), and would be a past value instead of the current one.",
+   "feld": "Name und Vorname der Eltern",
+   "standard": "eCH-0021",
+   "element": "parentalRelationship"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Multiselect of cantonal Rhine fishing stretches (Steinerwasser, Rheinstrecke Schaffhausen, Rheinfallbecken). Re-searched standard titles for Fisch, Jagd, Patent, Bewilligung, Gewässer, Gebühr, Berechtigung, Ausweis, Umwelt, Natur, Sport and Tier: only residence/work permits (eCH-0041), parking permits (eCH-0179, Sistiert), signatures, fees (eCH-0259) and animal data (eCH-0266 Aufgehoben, eCH-0309 In Arbeit). Re-searched element names for fish, fisch, angl, licen, permit, river, season, stretch, waterbody and hunt: only residence permits (eCH-0006/0011/0020/0093), building permits (eCH-0129/0206/0216), tax licence items (eCH-0276) and animal husbandry (eCH-0262). Nothing fits. The propagated kein_standard is right and the same as on sibling form 370.",
+   "feld": "Rheinuferstrecken"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Choice of card type and validity (Saisonkarte 1.5.–30.9., Verlängerung 1.10.–31.12., Jahreskarte), with the fee per stretch. Searching for validity, period and season elements finds only residence-permit validity (eCH-0011 residencePermitValidFrom/Till, eCH-0093), contact/address validity and tax periods. eCH-0259 Gebühren describes fee positions, not the fishing-permit product or its period. The propagated kein_standard is right and the same as on form 370.",
+   "feld": "Dauer"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "The existing season card must be sent back for an extension («Bitte unbedingt Saisonkarte mitschicken!»). No standard defines a fishing season card (same searches as for Rheinuferstrecken). The generic containers eCH-0058 attachment and eCH-0039 document carry only the file, not this Angabe. Majority practice for attachments is kein_standard (131 times), including this same field on form 370. The propagated kein_standard is right.",
+   "feld": "Saisonkarte (Beilage bei Verlängerung)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Proof of competence (Jungfischer-Brevet or SaNa-Ausweis) attached to the first order. Searched titles for Fisch, Patent, Ausweis, Berechtigung and Sport, and elements for fish, angl, brevet, licen, permit, certif, qualif and diplom. The only hits are eCH-0108 qualification (foreign organisations), eCH-0260 numberQualifiedPersons (Berufsbildung), eCH-0261 nprCertified (agriculture) and tax/residence items, none of which is a fishing competence proof. eCH-0058 attachment and eCH-0039 document are file carriers (container elements, never the Angabe itself). Corpus: form 370 «Angelfischer- oder Sportfischer-Brevet» and form 62 «Fähigkeitsausweise, Diplome …» are kein_standard.",
+   "feld": "Jungfischer-Brevet oder SaNa-Ausweis"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "The bare calendar date beside the guardian's signature, i.e. the date the order is made and submitted. A field labelled «Datum» that dates the submission itself is mapped to eCH-0058 messageDate (exists, headerType) on 9 forms, e.g. 478 (definition «Datum der Bestellung»), 496 («Datum der Unterzeichnung des Gesuchs») and 479 («Datum der Meldung»). The only two kein_standard «Datum» fields (196, 206) date other events. eventDate does not fit because there is no separate event. eCH-0119 locationAndDate is a tax-form element for place plus date, and this field has no place. Form 370's kein_standard is for the combined «Ort und Datum», which differs. The INTERN «Datum» is an office stamp and not part of this field.",
+   "feld": "Datum",
+   "standard": "eCH-0058",
+   "element": "messageDate"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "A handwritten signature by a parent or guardian. Correction to the first reviewer: signature elements do exist, but none fits. eCH-0039 signer (documentType, token) is GEVER document metadata naming who signed a business document. eCH-0260 signatures and representativeSignatureConfirmation (signaturesType, boolean) apply only to the apprenticeship contract (Lehrvertrag). eCH-0091/0220/0230/0250/0274/0282 are technical e-signature standards without this Angabe. eCH-0021 guardianRelationship identifies the guardian, not the act of signing. Corpus: «Unterschrift» fields are kein_standard 90 times, including form 370 «Unterschrift» and form 304 «Unterschrift Erziehungsberechtigter».",
+   "feld": "Unterschrift eines Erziehungsberechtigten"
+  }
+ ]
+}

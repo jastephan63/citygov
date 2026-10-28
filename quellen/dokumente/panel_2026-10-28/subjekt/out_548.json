@@ -1,0 +1,39 @@
+{
+ "verdicts": [
+  {
+   "id": 6611,
+   "subjekt": "natuerliche_person",
+   "grund": "Personalien der Ehefrau (Name, Vorname, Name vor der Heirat, Geburtsdatum, Heimatort, Wohnadresse); bei einer Scheidung ist sie zwingend eine natürliche Person."
+  },
+  {
+   "id": 6612,
+   "subjekt": "natuerliche_person",
+   "grund": "Eigene Angabe der Ehefrau zur Sprache, für die sie eine Dolmetscherin oder einen Dolmetscher braucht; die Ehegattin ist sicher eine natürliche Person."
+  },
+  {
+   "id": 6613,
+   "subjekt": "natuerliche_person",
+   "grund": "Personalien des Ehemanns (Name, Vorname, Geburtsdatum, Heimatort, Wohnadresse); als Ehegatte ist er zwingend eine natürliche Person."
+  },
+  {
+   "id": 6614,
+   "subjekt": "natuerliche_person",
+   "grund": "Eigene Angabe des Ehemanns zur Sprache, für die er eine Dolmetscherin oder einen Dolmetscher braucht; der Ehegatte ist sicher eine natürliche Person."
+  },
+  {
+   "id": 6615,
+   "subjekt": "natuerliche_person",
+   "grund": "Das Datum der Eheschliessung ist eine Zivilstandsangabe der beiden Ehegatten (natürliche Personen). Gleich beurteilt wie bei den Feldern «Verheiratet seit» und «Datum der Heirat»."
+  },
+  {
+   "id": 6618,
+   "subjekt": "natuerliche_person",
+   "grund": "Vorname und Geburtsdatum jedes gemeinsamen Kindes, eine Zeile pro Kind. Es sind Personendaten natürlicher Personen."
+  },
+  {
+   "id": 6623,
+   "subjekt": "gemischt",
+   "grund": "Den Zustellungsbevollmächtigten in der Schweiz wählt die Partei frei: Es kann eine Privatperson oder eine Anwaltskanzlei bzw. eine andere Organisation sein. Gleich beurteilt wie beim Feld «Zustellbevollmächtigter»."
+  }
+ ]
+}

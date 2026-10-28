@@ -10,6 +10,7 @@ the proof gate maps against. Upserts are idempotent; last_checked is set to
 import json, os, re, shutil, subprocess, sys
 from citygov.core.common import ROOT, DB_PATH, connect
 from citygov.checks.validate_db import validate
+from citygov.domain.gesetz_titel import kurztitel
 
 HERE = os.path.join(ROOT, "scripts")   # runs scripts/extract_law.py, as before the move
 IDX = json.load(open(os.path.join(HERE, "..", "inventory", "gesetze_index.json")))
@@ -75,9 +76,14 @@ def main():
         if r:
             lid = r["id"]
         else:
-            slug = re.sub(r"[^a-z0-9]+", "-", (law["title"] or shr).lower())[:60].strip("-")
+            # a new law: the title without the Rechtsbuch's edition line «Vom … (Stand …)» and
+            # footnote marker, the short title as the title correction derives it (the gate in
+            # citygov/domain/gates.py refuses both; quellen/korrekturen/gesetz_titel_2026-10-05.json)
+            title = re.split(r"\s+Vom\s+\d", law["title"] or shr)[0]
+            title = re.sub(r"\s*\*\s*$", "", title).strip()
+            slug = re.sub(r"[^a-z0-9]+", "-", title.lower())[:60].strip("-")
             c.execute("INSERT INTO law(slug,title,short_title,jurisdiction_level,cantonal_ref,last_checked) "
-                      "VALUES(?,?,?,?,?,?)", [slug, law["title"], law["title"][:40], "cantonal", cref, "Gesetze-PDF"])
+                      "VALUES(?,?,?,?,?,?)", [slug, title, kurztitel(title), "cantonal", cref, "Gesetze-PDF"])
             lid = c.execute("SELECT id FROM law WHERE cantonal_ref=?", [cref]).fetchone()["id"]
             nl += 1
         for a in law["articles"]:

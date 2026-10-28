@@ -1,0 +1,540 @@
+{
+ "hinweis": "eCH-Urteile Formular 403, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/403 --nur-offene=403",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Zur Vollständigkeit geprüft: «Einrichtung:» im Unterschriftsblock ist der Name der unterzeichnenden Einrichtung, also der Name einer Organisation. Die bestehende Zuordnung eCH-0098 organisationName (organisationIdentificationType) wird mit demselben Wert bestätigt. Sie entspricht der Korpus-Praxis («Einrichtung» → organisationName, 4x). 'korrekt' ist ausgeschlossen, weil der Wert nicht propagiert ist.",
+   "feld": "Einrichtung",
+   "standard": "eCH-0098",
+   "element": "organisationName"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ankreuzfeld A/D für den Leistungsbereich nach IVSE (A Heime, D externe Sonderschulung). Gesucht in allen 290 Titeln (Sozial/Schul/Bildung/Heim/Kind/Jugend/Behinder/Leistung) und in den Elementen (institution/placement/home/category): eCH-0049, eCH-0070 und eCH-0141 gliedern Verwaltungsleistungen, haben aber keine Elemente; eCH-0004 und eCH-0029 sind sistiert; eCH-0235 betrifft das Gesundheitswesen, eCH-0260 die Berufsbildung. Keine Codeliste für IVSE-Bereiche.",
+   "feld": "IVSE-Bereich"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Composite mit Name, Abteilung, Adresse und Kontakt der Einrichtung (eine Organisation). Container ist eCH-0098 organisation; organisationType enthält Name, Adresse, Telefon und E-Mail. Das entspricht der Korpus-Praxis für «Institution», «Institutionsangaben» und «Einrichtung» (composite).",
+   "feld": "Angaben zur Einrichtung",
+   "standard": "eCH-0098",
+   "element": "organisation"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Das Paar (Einrichtung, Name) meint den Namen einer Organisation, nicht einer Person. Gleich wie das Feld «Einrichtung» desselben Formulars (eCH-0098 organisationName) und die Korpus-Praxis für Namen von Institutionen.",
+   "elternfeld": "Angaben zur Einrichtung",
+   "teilfeld": "Name",
+   "standard": "eCH-0098",
+   "element": "organisationName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Strasse mit Hausnummer der Einrichtungsadresse = eCH-0010 street (Korpus-Praxis für «Strasse, Nr.» 29x). Die Hausnummer (houseNumber) ist im selben Feld miterfasst.",
+   "elternfeld": "Angaben zur Einrichtung",
+   "teilfeld": "Strasse, Nr.",
+   "standard": "eCH-0010",
+   "element": "street"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Telefonnummer der Einrichtung = eCH-0046 phoneNumber (Regel Telefon → eCH-0046).",
+   "elternfeld": "Angaben zur Einrichtung",
+   "teilfeld": "Telefon",
+   "standard": "eCH-0046",
+   "element": "phoneNumber"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Postleitzahl und Ort der Einrichtungsadresse = eCH-0010 swissZipCode (Korpus-Praxis 103x). Der Ort (town) ist im selben Feld miterfasst.",
+   "elternfeld": "Angaben zur Einrichtung",
+   "teilfeld": "PLZ, Ort",
+   "standard": "eCH-0010",
+   "element": "swissZipCode"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Faxnummer der Einrichtung. eCH-0046 unterscheidet Fax über phoneCategory bei phoneNumber, daher eCH-0046 phoneNumber (Korpus-Praxis für «Fax» 11x).",
+   "elternfeld": "Angaben zur Einrichtung",
+   "teilfeld": "Fax",
+   "standard": "eCH-0046",
+   "element": "phoneNumber"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Abteilung bzw. Standort ist eine Zusatzbezeichnung der Organisation (Untereinheit der Einrichtung), also eCH-0098 organisationAdditionalName, wie im Korpus für «Abteilung». Gefragt ist eine Bezeichnung, keine zweite Adresse; additionalLocationAddress passt deshalb nicht.",
+   "elternfeld": "Angaben zur Einrichtung",
+   "teilfeld": "Abteilung / Standort",
+   "standard": "eCH-0098",
+   "element": "organisationAdditionalName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "E-Mail-Adresse der Einrichtung = eCH-0046 emailAddress (Regel E-Mail → eCH-0046).",
+   "elternfeld": "Angaben zur Einrichtung",
+   "teilfeld": "E-Mail",
+   "standard": "eCH-0046",
+   "element": "emailAddress"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Composite mit den Personalien der platzierten Person (Name, Vorname, Geburtsdatum, Geschlecht, AHV-Nr., Staatsangehörigkeit). Container eCH-0044 personIdentification, wie die Korpus-Praxis für Personalien-Blöcke (55x «Personalien»).",
+   "feld": "Angaben zur Person",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name der platzierten Person = amtlicher Name, eCH-0044 officialName (Regel Name → officialName).",
+   "elternfeld": "Angaben zur Person",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname der platzierten Person = eCH-0044 firstName (Regel Vorname → firstName).",
+   "elternfeld": "Angaben zur Person",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Geburtsdatum der platzierten Person = eCH-0044 dateOfBirth (Regel Geburtsdatum → dateOfBirth).",
+   "elternfeld": "Angaben zur Person",
+   "teilfeld": "Geburtsdatum",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Auswahlfeld Geschlecht der platzierten Person: Die Auswahl liefert den Wert selbst, daher eCH-0044 sex (Korpus-Praxis 14x).",
+   "elternfeld": "Angaben zur Person",
+   "teilfeld": "Geschlecht",
+   "standard": "eCH-0044",
+   "element": "sex"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Die Sozialversicherungsnummer ist die AHV-Nummer (AHVN13), also eCH-0044 vn (Regel AHV-Nummer → vn).",
+   "elternfeld": "Angaben zur Person",
+   "teilfeld": "Sozialversicherungs-Nr.",
+   "standard": "eCH-0044",
+   "element": "vn"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Staatsangehörigkeit der Person = eCH-0011 nationalityData (Korpus-Praxis für «Staatsangehörigkeit» 25x).",
+   "elternfeld": "Angaben zur Person",
+   "teilfeld": "Staatsangehörigkeit",
+   "standard": "eCH-0011",
+   "element": "nationalityData"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Composite mit Adresse und Kanton des zivilrechtlichen Wohnsitzes. eCH-0011 mainResidence ist der Hauptwohnsitz: Meldegemeinde mit Kanton und Wohnadresse. Das ist die Korpus-Praxis für «Zivilrechtlicher Wohnsitz, Adresse» (Formular 467). Eine reine Postadresse (eCH-0010) gäbe den Wohnsitzbegriff nicht wieder.",
+   "feld": "Zivilrechtlicher Wohnsitz",
+   "standard": "eCH-0011",
+   "element": "mainResidence"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Strasse mit Hausnummer der Wohnsitzadresse = eCH-0010 street (Adressteil; die Hausnummer ist miterfasst).",
+   "elternfeld": "Zivilrechtlicher Wohnsitz",
+   "teilfeld": "Strasse, Nr.",
+   "standard": "eCH-0010",
+   "element": "street"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "PLZ und Ort der Wohnsitzadresse = eCH-0010 swissZipCode (Korpus-Praxis; der Ort ist miterfasst).",
+   "elternfeld": "Zivilrechtlicher Wohnsitz",
+   "teilfeld": "PLZ, Ort",
+   "standard": "eCH-0010",
+   "element": "swissZipCode"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Wohnsitzkanton = Kantonskürzel eCH-0007 cantonAbbreviation (Korpus-Praxis für «Kanton» 20x).",
+   "elternfeld": "Zivilrechtlicher Wohnsitz",
+   "teilfeld": "Kanton",
+   "standard": "eCH-0007",
+   "element": "cantonAbbreviation"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Composite mit der tatsächlichen Aufenthaltsadresse des Kindes bei externer Sonderschulung (Strasse, PLZ/Ort, Kanton). Gefragt ist eine Adresse, kein registerrechtlicher Wohnsitz. Daher Container eCH-0010 addressInformation, wie bei «Aufenthaltsadresse in der Schweiz» im Korpus; eCH-0011 secondaryResidence würde eine Registermeldung unterstellen.",
+   "feld": "Aufenthaltsort (bei externer Sonderschulung)",
+   "standard": "eCH-0010",
+   "element": "addressInformation"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Strasse mit Hausnummer der Aufenthaltsadresse = eCH-0010 street.",
+   "elternfeld": "Aufenthaltsort (bei externer Sonderschulung)",
+   "teilfeld": "Strasse, Nr.",
+   "standard": "eCH-0010",
+   "element": "street"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "PLZ und Ort der Aufenthaltsadresse = eCH-0010 swissZipCode (Korpus-Praxis).",
+   "elternfeld": "Aufenthaltsort (bei externer Sonderschulung)",
+   "teilfeld": "PLZ, Ort",
+   "standard": "eCH-0010",
+   "element": "swissZipCode"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Kanton des Aufenthaltsorts = eCH-0007 cantonAbbreviation.",
+   "elternfeld": "Aufenthaltsort (bei externer Sonderschulung)",
+   "teilfeld": "Kanton",
+   "standard": "eCH-0007",
+   "element": "cantonAbbreviation"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Auswahlliste zur Art der bestehenden Kindes- oder Erwachsenenschutzmassnahme. eCH-0021 basedOnLaw codiert die Massnahme nach ZGB-Artikel; die Codeliste basedOnLawType (306, 310, 311, 312, 327-a, 363–372, 393–399) deckt Kindes- und Erwachsenenschutz ab. Die Auswahl liefert den Wert selbst (kein Ja/Nein), daher passt das Wert-Element. Korpus-Praxis: «Bestehende zivilrechtliche Kindesschutzmassnahmen» → basedOnLaw.",
+   "feld": "Kindesschutz-/Erwachsenenschutzmassnahme",
+   "standard": "eCH-0021",
+   "element": "basedOnLaw"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Composite mit Name, Adresse und Kontakt des Vormunds bzw. Beistands. Container eCH-0021 guardianRelationship (Partner, Adresse, typeOfRelationship 7–10), wie im Korpus für «Angaben zu Vormund/Beistand».",
+   "feld": "Vormund / Vormundin, Beistand / Beiständin",
+   "standard": "eCH-0021",
+   "element": "guardianRelationship"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name (und Vorname) des Vormunds bzw. Beistands. guardianRelationship identifiziert den Partner über eCH-0044 personIdentification, also Name → officialName (Korpus-Praxis für «Name, Vorname»; der Vorname ist miterfasst).",
+   "elternfeld": "Vormund / Vormundin, Beistand / Beiständin",
+   "teilfeld": "Name, Vorname",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Gebündelte Adresszeile des Vormunds bzw. Beistands. Die Korpus-Praxis für gebündelte Adressteilfelder («Adresse, PLZ, Ort», «Strasse PLZ und Ort», «Adresse (Strasse, Nummer, PLZ, Ort)») ist eCH-0010 street als führender Adressteil; swissZipCode und town sind miterfasst.",
+   "elternfeld": "Vormund / Vormundin, Beistand / Beiständin",
+   "teilfeld": "Strasse, Nr., PLZ, Ort",
+   "standard": "eCH-0010",
+   "element": "street"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Gebündelte Kontaktzeile. Die Korpus-Praxis für «Telefon, E-Mail», «Telefon/E-Mail» und «Telefon / E-Mail» als Teilfeld ist eCH-0046 phoneNumber; emailAddress ist miterfasst.",
+   "elternfeld": "Vormund / Vormundin, Beistand / Beiständin",
+   "teilfeld": "Telefon, E-Mail",
+   "standard": "eCH-0046",
+   "element": "phoneNumber"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Composite mit Name und Adresse des Vaters des Kindes. eCH-0021 parentalRelationship enthält den Elternteil mit Identifikation, Adresse, Beziehungsart und Sorge; das ist die Korpus-Praxis für Vater- und Mutter-Blöcke (30x composite).",
+   "feld": "Name und Adresse Vater",
+   "standard": "eCH-0021",
+   "element": "parentalRelationship"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name des Vaters. parentalRelationship identifiziert den Elternteil über eCH-0044 personIdentification, also officialName (Regel Name → officialName).",
+   "elternfeld": "Name und Adresse Vater",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Strasse mit Hausnummer der Adresse des Vaters = eCH-0010 street.",
+   "elternfeld": "Name und Adresse Vater",
+   "teilfeld": "Strasse, Nr.",
+   "standard": "eCH-0010",
+   "element": "street"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "PLZ und Ort der Adresse des Vaters = eCH-0010 swissZipCode (Korpus-Praxis).",
+   "elternfeld": "Name und Adresse Vater",
+   "teilfeld": "PLZ, Ort",
+   "standard": "eCH-0010",
+   "element": "swissZipCode"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Wohnkanton des Vaters = eCH-0007 cantonAbbreviation.",
+   "elternfeld": "Name und Adresse Vater",
+   "teilfeld": "Kanton",
+   "standard": "eCH-0007",
+   "element": "cantonAbbreviation"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "KORRIGIERT: Das Feld ist ein Ja/Nein-Kästchen, ob der Vater die elterliche Sorge hat. eCH-0021 care ist ein Wert-Element (careType, Codes 0–4) und darf nach der Regel nicht auf einem Ja/Nein stehen. Die Angabe gehört zur Eltern-Kind-Beziehung dieses Elternteils, daher der Container eCH-0021 parentalRelationship, in dem care geführt wird. Die zwei Korpus-Fälle boolean → care sind kein Vorbild.",
+   "feld": "Sorgeberechtigter Elternteil (Vater)",
+   "standard": "eCH-0021",
+   "element": "parentalRelationship"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ja/Nein, ob dem Vater das Aufenthaltsbestimmungsrecht (früher Obhut) entzogen ist. Das ist die Massnahme nach Art. 310 ZGB (basedOnLaw-Code 310), die eCH-0021 in guardianMeasureInfo führt. Ein Ja/Nein liefert keinen Code, daher der Container guardianMeasureInfo statt des Wert-Elements basedOnLaw (Korpus: boolean → guardianMeasureInfo). Dass eCH-0021 die Zuordnung zu einem einzelnen Elternteil nicht eigens modelliert, bleibt offen.",
+   "feld": "Entzug Aufenthaltsbestimmungsrecht/Obhut (Vater)",
+   "standard": "eCH-0021",
+   "element": "guardianMeasureInfo"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Composite mit Name und Adresse der Mutter des Kindes = eCH-0021 parentalRelationship (Korpus-Praxis für Mutter-Blöcke).",
+   "feld": "Name und Adresse Mutter",
+   "standard": "eCH-0021",
+   "element": "parentalRelationship"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name der Mutter. Der Elternteil wird über eCH-0044 personIdentification identifiziert, also officialName.",
+   "elternfeld": "Name und Adresse Mutter",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Strasse mit Hausnummer der Adresse der Mutter = eCH-0010 street.",
+   "elternfeld": "Name und Adresse Mutter",
+   "teilfeld": "Strasse, Nr.",
+   "standard": "eCH-0010",
+   "element": "street"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "PLZ und Ort der Adresse der Mutter = eCH-0010 swissZipCode (Korpus-Praxis).",
+   "elternfeld": "Name und Adresse Mutter",
+   "teilfeld": "PLZ, Ort",
+   "standard": "eCH-0010",
+   "element": "swissZipCode"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Wohnkanton der Mutter = eCH-0007 cantonAbbreviation.",
+   "elternfeld": "Name und Adresse Mutter",
+   "teilfeld": "Kanton",
+   "standard": "eCH-0007",
+   "element": "cantonAbbreviation"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "KORRIGIERT: Das Feld ist ein Ja/Nein-Kästchen, ob die Mutter die elterliche Sorge hat. eCH-0021 care ist ein Wert-Element (careType) und darf nicht auf einem Ja/Nein stehen. Daher der Container eCH-0021 parentalRelationship dieses Elternteils, in dem care geführt wird; gleich wie beim Vater.",
+   "feld": "Sorgeberechtigter Elternteil (Mutter)",
+   "standard": "eCH-0021",
+   "element": "parentalRelationship"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ja/Nein, ob der Mutter das Aufenthaltsbestimmungsrecht bzw. die Obhut entzogen ist. Das ist die Massnahme nach Art. 310 ZGB (basedOnLaw-Code 310). Ein Ja/Nein liefert keinen Code, daher der Container guardianMeasureInfo statt des Wert-Elements basedOnLaw.",
+   "feld": "Entzug Aufenthaltsbestimmungsrecht/Obhut (Mutter)",
+   "standard": "eCH-0021",
+   "element": "guardianMeasureInfo"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Composite mit Name und Postadresse der zuweisenden Behörde (eine Organisation, keine Person) = eCH-0010 organisationMailAdress (so geschrieben im XSD). Das entspricht der Korpus-Praxis für «Name und Adresse der Vorsorgeeinrichtung». eCH-0186 hat keine Elemente und beschreibt Behörden-Metadaten.",
+   "feld": "Name und Adresse der zuweisenden Behörde",
+   "standard": "eCH-0010",
+   "element": "organisationMailAdress"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Das Paar (zuweisende Behörde, Name) meint den Namen einer Organisation in der Postadresse = eCH-0010 organisationName (organisationMailAddressInfoType), passend zum Container organisationMailAdress.",
+   "elternfeld": "Name und Adresse der zuweisenden Behörde",
+   "teilfeld": "Name",
+   "standard": "eCH-0010",
+   "element": "organisationName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Strasse mit Hausnummer der Behördenadresse = eCH-0010 street.",
+   "elternfeld": "Name und Adresse der zuweisenden Behörde",
+   "teilfeld": "Strasse, Nr.",
+   "standard": "eCH-0010",
+   "element": "street"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "PLZ und Ort der Behördenadresse = eCH-0010 swissZipCode (Korpus-Praxis).",
+   "elternfeld": "Name und Adresse der zuweisenden Behörde",
+   "teilfeld": "PLZ, Ort",
+   "standard": "eCH-0010",
+   "element": "swissZipCode"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Das propagierte eCH-0029 (Volksschuldatenbank Musterlösung, sistiert, ohne Elemente) passt nicht. Gefragt ist der Eintritt in eine soziale Einrichtung nach IVSE (A Heim oder D externe Sonderschulung), nicht in eine Volksschule, und der Standard ist nicht in Kraft. Gesucht: eCH-0011 arrivalDate/movingDate (Registerereignisse der Gemeinde; bei externer Platzierung findet kein Zuzug statt), eCH-0021 guardianMeasureValidFrom (Beginn der Massnahme, eine andere Angabe), eCH-0235 startDate (Gesundheitswesen), eCH-0260 startDate (Berufsbildung), eCH-0185 (Zuzug). Kein Standard regelt den Eintritt in eine Einrichtung.",
+   "feld": "Datum des Eintritts"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Geplantes Ende des Aufenthalts in der Einrichtung. Gesucht: eCH-0011 departureDate (vollzogener Wegzug aus der Gemeinde, nicht geplant), eCH-0235 endDate/duration (Kostengutsprache im Gesundheitswesen nach KVG/VVG, andere Domäne), eCH-0260 endDate (Lehrvertrag/Berufsfachschule). Kein Standard für die Planung eines Aufenthalts in einer sozialen Einrichtung.",
+   "feld": "Aufenthalt geplant bis"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ankreuzfeld, dass der Aufenthalt unbefristet ist. Ein Ja/Nein darf kein Datums-Element erhalten. Für die Befristung eines Einrichtungsaufenthalts gibt es im Katalog weder Element noch Codeliste (gesucht: eCH-0011, eCH-0021, eCH-0235, eCH-0260).",
+   "feld": "unbefristet"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Art der Platzierung nach IVSE: intern = mit Unterkunft in der Einrichtung, extern = ohne. Gesucht: eCH-0119 homeOrExternal (Steuererklärung; meint, ob ein Kind im Haushalt des Steuerpflichtigen oder auswärts lebt, also eine andere Angabe), eCH-0011 typeOfHousehold (Haushaltsart einer Wohnung im Register), eCH-0185 housingSituationType (Zuzug), eCH-0021, eCH-0029 (sistiert, ohne Elemente), eCH-0235 (Gesundheitswesen). Keine Codeliste für interne/externe Platzierung.",
+   "feld": "intern / extern"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Datum, ab dem die IVSE-Kostenübernahmegarantie gelten soll. Nächster Kandidat ist eCH-0235 decisionValidityDate; es gilt für Kostengutsprachen im Gesundheitswesen (Versicherer und Leistungserbringer), nicht für die interkantonale Finanzierung sozialer Einrichtungen. eCH-0260 costCoverage (Berufsbildung, boolean), eCH-0259 (Gebühren) und eCH-0069 (E-Rechnung, ohne Elemente) passen ebenfalls nicht.",
+   "feld": "Beginn der KÜG"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ja/Nein, ob dem Aufenthalt eine Massnahme nach Jugendstrafrecht zugrunde liegt; das ist eine Justizangabe. eCH-0051 (Basis-Datenkatalog Polizei und Justiz, Genehmigt) hat keinen Elementkatalog, daher nur der Standard. Korpus-Praxis für Ja/Nein-Strafangaben («Strafrechtliche Massnahmen oder Verfahren …», «Hängiges Strafverfahren») ist ebenfalls eCH-0051. eCH-0306 und eCH-0307 sind erst In Arbeit; eCH-0021 basedOnLaw kennt nur zivilrechtliche Massnahmen.",
+   "feld": "Jugendstrafrechtliche Massnahme",
+   "standard": "eCH-0051",
+   "element": ""
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ankreuzfeld für die IVSE-Abgeltungsmethode P (Pauschale). Gesucht: eCH-0259 Gebühren (feeType, unitPrice: Gebühren einer Behörde, keine Leistungsabgeltung), eCH-0235 (Gesundheitswesen), eCH-0069 E-Rechnung (ohne Elemente), eCH-0119/eCH-0278 *Flatrate (Steuerpauschalen). Keine Codeliste für IVSE-Abgeltungsmethoden.",
+   "feld": "Methode P (Pauschale)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Composite für bis zu drei IVSE-Leistungen mit Verrechnungseinheit und Frankenbeträgen. eCH-0235 serviceDecision (service/unit) gilt für Kostengutsprachen nach KVG/VVG, eCH-0259 für Behördengebühren, eCH-0185 serviceData für Zusatzleistungen beim Zuzug; eCH-0069 hat keine Elemente. Kein Standard für die Leistungsabgeltung sozialer Einrichtungen, also auch kein Container.",
+   "feld": "Angaben zu den Leistungen und zur Leistungsabgeltung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Auswahl der IVSE-Leistung (die Liste ist im PDF nicht abgedruckt, das PDF hat keine Formularfelder). eCH-0235 service gilt für Leistungen im Gesundheitswesen; eCH-0049 und eCH-0070 gliedern Verwaltungsleistungen ohne Elemente. Keine Codeliste für IVSE-Leistungen.",
+   "elternfeld": "Angaben zu den Leistungen und zur Leistungsabgeltung",
+   "teilfeld": "Leistung/en"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Verrechnungseinheit der IVSE-Leistung (z. B. Tag oder Monat, Auswahlliste). eCH-0235 unit (Gesundheitswesen) und eCH-0259 unit (Behördengebühren) gehören zu einer anderen Domäne. Kein passender Standard.",
+   "elternfeld": "Angaben zu den Leistungen und zur Leistungsabgeltung",
+   "teilfeld": "Verrechnungseinheit"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Anrechenbarer Nettoaufwand in Franken nach IVSE-Kostenrechnung. Die Betrags-Elemente im Katalog meinen eine andere Angabe: eCH-0259 amount (Gebühr), eCH-0276 expenses (Erfolgsrechnung juristischer Personen), eCH-0278 (Steuern).",
+   "elternfeld": "Angaben zu den Leistungen und zur Leistungsabgeltung",
+   "teilfeld": "Anrechenbarer Nettoaufwand"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Abzug der Betriebsbeiträge des Bundesamts für Justiz an die Einrichtung, in Franken. Kein Element für Bundesbeiträge an Erziehungseinrichtungen (gesucht: eCH-0259, eCH-0276, eCH-0278 subsidiesHousingGrants, das eine Steuerangabe ist).",
+   "elternfeld": "Angaben zu den Leistungen und zur Leistungsabgeltung",
+   "teilfeld": "./. Beiträge BJ"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Verrechenbarer Aufwand (Nettoaufwand minus BJ-Beiträge) in Franken je Leistung. Kein Standard für die IVSE-Leistungsabgeltung (gesucht: eCH-0235, eCH-0259, eCH-0069, eCH-0276).",
+   "elternfeld": "Angaben zu den Leistungen und zur Leistungsabgeltung",
+   "teilfeld": "Verrechenbarer Aufwand"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Propagiertes kein_standard bestätigt: Ort und Datum der Unterzeichnung durch die Einrichtung. Es gibt kein eCH-Element für Ort oder Datum einer Unterzeichnung; eCH-0039 openingDate und eCH-0058 messageDate meinen Dossier- bzw. Meldungsdaten. Im Korpus durchgehend kein_standard.",
+   "feld": "Ort und Datum"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Ort der Unterzeichnung. eCH-0010 town ist ein Adressteil und keine Angabe zur Unterzeichnung. Kein Standard (Korpus-Praxis für (Ort und Datum, Ort): kein_standard).",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Datum der Unterzeichnung. eCH-0039 openingDate und eCH-0058 messageDate sind Dossier- bzw. Meldungsdaten. Kein Standard (Korpus-Praxis: kein_standard).",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Name und Vorname der Person, die für die Einrichtung unterzeichnet, also einer natürlichen Person: eCH-0044 officialName (Regel Name → officialName; Korpus-Praxis für das Feld «Name, Vorname»; der Vorname ist miterfasst).",
+   "feld": "Name, Vorname",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Propagiertes kein_standard bestätigt: handschriftliche Unterschrift der zeichnenden Person. Die Signatur-Standards (eCH-0220/0230/0250/0274/0282) betreffen elektronische Signaturen und haben keine Elemente für eine Unterschrift auf Papier. Im Korpus durchgehend kein_standard.",
+   "feld": "Unterschrift"
+  }
+ ]
+}

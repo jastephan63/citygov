@@ -1,0 +1,264 @@
+{
+ "hinweis": "eCH-Urteile Formular 44, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/44 --nur-offene=44",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Punkt 4 hat zwei Ankreuzfelder (AcroForm verbingungseinrichtung_ohne_aenderung / _mit_aenderung). Der Antragsteller bestätigt damit, dass an Fahrzeug und Zugvorrichtung nichts geändert wurde, oder er verweist auf die Angaben unter Punkt 6. Das ist eine Ja/Nein-Erklärung, also kommt kein Wert-Element in Frage. Den ganzen Katalog (290 Standards) habe ich durchsucht: Elemente nach vehicle/motor/trailer/coupl/tow/hitch/modif/change/declar/confirm/equipment/device/technical, Titel nach Fahrzeug/Verkehr/Strasse/Zulassung/Polizei. Gefunden habe ich nur Meldegründe für Personen (eCH-0020), Fahrzeuge als Steuerangabe (eCH-0119, 0276, 0278) und Header-modificationDate (eCH-0039, 0058, 0147). Kein Standard mit Elementen betrifft Fahrzeugtechnik. eCH-0281 (In Arbeit, 0 Elemente) regelt den Datenaustausch Polizei–Individualverkehr und keine Erklärung über technische Änderungen. Auf Formular 46 sind die vergleichbaren Fragen ebenfalls kein_standard, so «Ist der originale Unterfahrschutz/Heckabschluss abgeändert oder ersetzt worden?».",
+   "feld": "Änderungen am Fahrzeug und der Verbindungseinrichtung"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Handschriftliche Unterschrift mit Stempel des Fahrzeughalters bei Punkt 5 (AcroForm stempel_unterschrift). Im ganzen Katalog habe ich nach signat*/stamp/sign gesucht und kein Element gefunden. Die Signatur-Standards eCH-0091, 0220, 0230, 0250, 0274 und 0282 haben 0 Elemente. Sie regeln das Format und die Prüfung elektronischer Signaturen, aber kein Unterschriftsfeld auf einem Formular. Das passt zur Praxis im Korpus: Alle 70 beurteilten Felder vom Typ signature sind kein_standard.",
+   "feld": "Stempel und Unterschrift des Fahrzeughalters"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Punkt 6 ist eine Mehrfachauswahl der Bauart der Verbindungseinrichtung (Schlusstraverse, Bolzen-, Haken-, Kugelkopfkupplung, Zwischenplatte), auszufüllen laut Herstellerschild. Gesucht habe ich nach Elementen mit coupl/hitch/trailer/tow/vehicle/device/equipment/technical. Es gibt kein Element zur Anhängevorrichtung, die einzigen Fahrzeugtreffer sind Steuerangaben in eCH-0119, 0276 und 0278. Kein Standardtitel betrifft Fahrzeugtechnik. eCH-0281 (In Arbeit, 0 Elemente) betrifft den Austausch Polizei–Individualverkehr. Dieselbe Angabe auf Formular 46 («Typ der Verbindungseinrichtung») ist kein_standard.",
+   "feld": "Verbindungseinrichtung"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Gruppe der technischen Angaben laut Herstellerschild der Schlusstraverse. Ein Container-Element gibt es nicht, und keines der sechs Teilfelder hat einen Standard. Katalogsuche nach coupl/hitch/trailer/brand/manufactur/weight/load/mass/approval/certif/plate/force/technical. Die einzigen Treffer liegen ausserhalb des Themas: eCH-0058 manufacturer (Software, die die Meldung sendet), eCH-0263 manufacturer (Futtermittel/Dünger) und Fahrzeuge als Steuerangabe in eCH-0119, 0276 und 0278. Die propagierte Einstufung kein_standard ist bestätigt und deckt sich mit Formular 46.",
+   "feld": "Schlusstraverse: Angaben laut Herstellerschild"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Propagiert war standard_only eCH-0281, übernommen von Formular 46 (Feld 3499). Dort ist das ein Ausreisser: Die vier gleich gebauten Gruppen auf Formular 46 und alle fünf Teilfelder der Bolzenkupplung sind kein_standard. Auch hier widerspricht der Wert den eigenen sechs Teilfeldern, die alle ohne Standard sind. Eine Gruppe erhält ein Container-Element oder den Standard ihrer Teile, und hier gibt es weder das eine noch das andere. eCH-0281 (Datenaustausch Polizei–Individualverkehr, In Arbeit, 0 Elemente) belegt keine technischen Angaben vom Herstellerschild einer Kupplung. Die Katalogsuche wie bei der Schlusstraverse (coupl/hitch/trailer/brand/manufactur/load/weight/approval/plate/force) ergab keinen Treffer.",
+   "feld": "Bolzenkupplung: Angaben laut Herstellerschild"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Gruppe der technischen Angaben laut Herstellerschild der Hakenkupplung. Ein Container-Element gibt es nicht, und keines der Teilfelder hat einen Standard. Die Katalogsuche (coupl/hitch/trailer/brand/manufactur/weight/load/approval/certif/plate/force/technical) ergab keinen passenden Treffer. eCH-0281 (In Arbeit, 0 Elemente) betrifft den Austausch Polizei–Individualverkehr. Die propagierte Einstufung kein_standard ist bestätigt und deckt sich mit Formular 46.",
+   "feld": "Hakenkupplung: Angaben laut Herstellerschild"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Gruppe der technischen Angaben laut Herstellerschild der Kugelkopfkupplung. Ein Container-Element gibt es nicht, und keines der Teilfelder hat einen Standard. Die Katalogsuche (coupl/hitch/trailer/brand/manufactur/weight/load/approval/certif/plate/force/technical) ergab keinen passenden Treffer. eCH-0281 (In Arbeit, 0 Elemente) betrifft den Austausch Polizei–Individualverkehr. Die propagierte Einstufung kein_standard ist bestätigt und deckt sich mit Formular 46.",
+   "feld": "Kugelkopfkupplung: Angaben laut Herstellerschild"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Gruppe der technischen Angaben laut Herstellerschild der Zwischenplatte. Ein Container-Element gibt es nicht, und keines der Teilfelder hat einen Standard. Die Katalogsuche (coupl/hitch/trailer/brand/manufactur/weight/load/approval/certif/plate/force/technical) ergab keinen passenden Treffer. eCH-0281 (In Arbeit, 0 Elemente) betrifft den Austausch Polizei–Individualverkehr. Die propagierte Einstufung kein_standard ist bestätigt und deckt sich mit Formular 46.",
+   "feld": "Zwischenplatte: Angaben laut Herstellerschild"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Herstellermarke der Schlusstraverse laut Herstellerschild. Gesucht habe ich nach brand/manufactur/make/model. Die einzigen Treffer sind eCH-0058 manufacturer (Hersteller der sendenden Software) und eCH-0263 manufacturer (Futtermittel/Dünger). Ein Element für den Hersteller eines Fahrzeugbauteils gibt es nicht. Formular 46 hat dieselbe Angabe als kein_standard.",
+   "elternfeld": "Schlusstraverse: Angaben laut Herstellerschild",
+   "teilfeld": "Marke"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Typbezeichnung der Schlusstraverse laut Herstellerschild. Gesucht habe ich nach type/model/coupl/hitch/device/equipment/vehicle. Es gibt kein Element für die Typbezeichnung eines Fahrzeugbauteils, und kein Standardtitel betrifft Fahrzeugtechnik. eCH-0281 (In Arbeit, 0 Elemente) betrifft den Austausch Polizei–Individualverkehr. Formular 46 hat dieselbe Angabe als kein_standard.",
+   "elternfeld": "Schlusstraverse: Angaben laut Herstellerschild",
+   "teilfeld": "Typ"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "ECE-Genehmigungszeichen («e»-Nummer) der Schlusstraverse. Gesucht habe ich nach approv/homolog/certif/registrationNumber. Die einzigen Treffer liegen ausserhalb des Themas: eCH-0254 approval (Genehmigung im ÖREB-Prozess), eCH-0130 constructionProjectApproval (Bauprojekt), eCH-0209 transactionApproval (Grundbuch) und eCH-0263 approvalDate (Pflanzenschutzmittel). Ein Element für die Typengenehmigung eines Fahrzeugteils gibt es nicht. Formular 46 hat dieselbe Angabe als kein_standard.",
+   "elternfeld": "Schlusstraverse: Angaben laut Herstellerschild",
+   "teilfeld": "\"e\" Nr."
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Zulässige Stützlast der Schlusstraverse in kg laut Herstellerschild. Gesucht habe ich nach load/weight/mass/capacity/axle/tow. Ein Element für eine Last oder ein Gewicht an Fahrzeug oder Kupplung gibt es nicht. Die Treffer sind nur payload-Elemente (eCH-0235) und Steuerelemente (eCH-0276), beide ausserhalb des Themas. Formular 46 hat dieselbe Angabe als kein_standard.",
+   "elternfeld": "Schlusstraverse: Angaben laut Herstellerschild",
+   "teilfeld": "Stützlast (kg)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "D-Wert (Deichselkraft-Kennwert; laut Fussnote ersatzweise die höchstzulässige Anhängelast) der Schlusstraverse. Gesucht habe ich nach force/load/weight/tow/trailer/coupl. Der Katalog hat kein technisches Kupplungs-Element. Die Treffer zu force in eCH-0254 betreffen die Rechtskraft im ÖREB-Prozess. Formular 46 hat dieselbe Angabe als kein_standard.",
+   "elternfeld": "Schlusstraverse: Angaben laut Herstellerschild",
+   "teilfeld": "D-Wert (kN/kg)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "DC-Wert (Kennwert für Zentralachsanhänger) der Schlusstraverse, neu in dieser Ausgabe. Gesucht habe ich nach force/load/weight/tow/trailer/coupl/technical. Der Katalog hat kein technisches Kupplungs-Element, und kein Standardtitel betrifft Fahrzeugtechnik. eCH-0281 (In Arbeit, 0 Elemente) betrifft den Austausch Polizei–Individualverkehr. Gleich beurteilt wie der D-Wert.",
+   "elternfeld": "Schlusstraverse: Angaben laut Herstellerschild",
+   "teilfeld": "DC-Wert (kN/kg)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Herstellermarke der Bolzenkupplung laut Herstellerschild. Gesucht habe ich nach brand/manufactur/make/model. Die einzigen Treffer sind eCH-0058 manufacturer (Software) und eCH-0263 manufacturer (Futtermittel/Dünger). Ein Element für den Hersteller eines Fahrzeugbauteils gibt es nicht. Formular 46 hat dieselbe Angabe als kein_standard.",
+   "elternfeld": "Bolzenkupplung: Angaben laut Herstellerschild",
+   "teilfeld": "Marke"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Typbezeichnung der Bolzenkupplung laut Herstellerschild. Gesucht habe ich nach type/model/coupl/hitch/device/equipment/vehicle. Ein Element für die Typbezeichnung eines Fahrzeugbauteils gibt es nicht. eCH-0281 (In Arbeit, 0 Elemente) betrifft den Austausch Polizei–Individualverkehr. Formular 46 hat dieselbe Angabe als kein_standard.",
+   "elternfeld": "Bolzenkupplung: Angaben laut Herstellerschild",
+   "teilfeld": "Typ"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "ECE-Genehmigungszeichen der Bolzenkupplung. Gesucht habe ich nach approv/homolog/certif/registrationNumber. Die einzigen Treffer betreffen ÖREB-Prozess (eCH-0254), Bauprojekt (eCH-0130), Grundbuch (eCH-0209) und Pflanzenschutzmittel (eCH-0263). Ein Element für die Typengenehmigung eines Fahrzeugteils gibt es nicht. Formular 46 hat dieselbe Angabe als kein_standard.",
+   "elternfeld": "Bolzenkupplung: Angaben laut Herstellerschild",
+   "teilfeld": "\"e\" Nr."
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Zulässige Stützlast der Bolzenkupplung in kg. Gesucht habe ich nach load/weight/mass/capacity/axle/tow. Ein Element für eine Last oder ein Gewicht an der Kupplung gibt es nicht. Formular 46 hat dieselbe Angabe als kein_standard.",
+   "elternfeld": "Bolzenkupplung: Angaben laut Herstellerschild",
+   "teilfeld": "Stützlast (kg)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "D-Wert der Bolzenkupplung (laut Fussnote ersatzweise die höchstzulässige Anhängelast). Gesucht habe ich nach force/load/weight/tow/trailer/coupl. Der Katalog hat kein technisches Kupplungs-Element. Formular 46 hat dieselbe Angabe als kein_standard.",
+   "elternfeld": "Bolzenkupplung: Angaben laut Herstellerschild",
+   "teilfeld": "D-Wert (kN/kg)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "DC-Wert der Bolzenkupplung, neu in dieser Ausgabe. Gesucht habe ich nach force/load/weight/tow/trailer/coupl/technical. Der Katalog hat kein technisches Kupplungs-Element. eCH-0281 (In Arbeit, 0 Elemente) betrifft den Austausch Polizei–Individualverkehr. Gleich beurteilt wie der D-Wert.",
+   "elternfeld": "Bolzenkupplung: Angaben laut Herstellerschild",
+   "teilfeld": "DC-Wert (kN/kg)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Herstellermarke der Hakenkupplung laut Herstellerschild. Gesucht habe ich nach brand/manufactur/make/model. Die einzigen Treffer sind eCH-0058 manufacturer (Software) und eCH-0263 manufacturer (Futtermittel/Dünger). Formular 46 hat dieselbe Angabe als kein_standard.",
+   "elternfeld": "Hakenkupplung: Angaben laut Herstellerschild",
+   "teilfeld": "Marke"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Typbezeichnung der Hakenkupplung laut Herstellerschild. Gesucht habe ich nach type/model/coupl/hitch/device/equipment/vehicle. Ein Element für die Typbezeichnung eines Fahrzeugbauteils gibt es nicht. eCH-0281 (In Arbeit, 0 Elemente) betrifft den Austausch Polizei–Individualverkehr. Formular 46 hat dieselbe Angabe als kein_standard.",
+   "elternfeld": "Hakenkupplung: Angaben laut Herstellerschild",
+   "teilfeld": "Typ"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "ECE-Genehmigungszeichen der Hakenkupplung. Gesucht habe ich nach approv/homolog/certif/registrationNumber. Die Treffer liegen nur ausserhalb des Themas (eCH-0254, 0130, 0209, 0263). Ein Element für die Typengenehmigung eines Fahrzeugteils gibt es nicht. Formular 46 hat dieselbe Angabe als kein_standard.",
+   "elternfeld": "Hakenkupplung: Angaben laut Herstellerschild",
+   "teilfeld": "\"e\" Nr."
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Zulässige Stützlast der Hakenkupplung in kg. Gesucht habe ich nach load/weight/mass/capacity/axle/tow. Ein Element für eine Last oder ein Gewicht an der Kupplung gibt es nicht. Formular 46 hat dieselbe Angabe als kein_standard.",
+   "elternfeld": "Hakenkupplung: Angaben laut Herstellerschild",
+   "teilfeld": "Stützlast (kg)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "D-Wert der Hakenkupplung (laut Fussnote ersatzweise die höchstzulässige Anhängelast). Gesucht habe ich nach force/load/weight/tow/trailer/coupl. Der Katalog hat kein technisches Kupplungs-Element. Formular 46 hat dieselbe Angabe als kein_standard.",
+   "elternfeld": "Hakenkupplung: Angaben laut Herstellerschild",
+   "teilfeld": "D-Wert (kN/kg)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "DC-Wert der Hakenkupplung, neu in dieser Ausgabe. Gesucht habe ich nach force/load/weight/tow/trailer/coupl/technical. Der Katalog hat kein technisches Kupplungs-Element. eCH-0281 (In Arbeit, 0 Elemente) betrifft den Austausch Polizei–Individualverkehr. Gleich beurteilt wie der D-Wert.",
+   "elternfeld": "Hakenkupplung: Angaben laut Herstellerschild",
+   "teilfeld": "DC-Wert (kN/kg)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Herstellermarke der Kugelkopfkupplung laut Herstellerschild. Gesucht habe ich nach brand/manufactur/make/model. Die einzigen Treffer sind eCH-0058 manufacturer (Software) und eCH-0263 manufacturer (Futtermittel/Dünger). Formular 46 hat dieselbe Angabe als kein_standard.",
+   "elternfeld": "Kugelkopfkupplung: Angaben laut Herstellerschild",
+   "teilfeld": "Marke"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Typbezeichnung der Kugelkopfkupplung laut Herstellerschild. Gesucht habe ich nach type/model/coupl/hitch/device/equipment/vehicle. Ein Element für die Typbezeichnung eines Fahrzeugbauteils gibt es nicht. eCH-0281 (In Arbeit, 0 Elemente) betrifft den Austausch Polizei–Individualverkehr. Formular 46 hat dieselbe Angabe als kein_standard.",
+   "elternfeld": "Kugelkopfkupplung: Angaben laut Herstellerschild",
+   "teilfeld": "Typ"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "ECE-Genehmigungszeichen der Kugelkopfkupplung. Gesucht habe ich nach approv/homolog/certif/registrationNumber. Die Treffer liegen nur ausserhalb des Themas (eCH-0254, 0130, 0209, 0263). Ein Element für die Typengenehmigung eines Fahrzeugteils gibt es nicht. Formular 46 hat dieselbe Angabe als kein_standard.",
+   "elternfeld": "Kugelkopfkupplung: Angaben laut Herstellerschild",
+   "teilfeld": "\"e\" Nr."
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Zulässige Stützlast der Kugelkopfkupplung in kg. Gesucht habe ich nach load/weight/mass/capacity/axle/tow. Ein Element für eine Last oder ein Gewicht an der Kupplung gibt es nicht. Formular 46 hat dieselbe Angabe als kein_standard.",
+   "elternfeld": "Kugelkopfkupplung: Angaben laut Herstellerschild",
+   "teilfeld": "Stützlast (kg)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "D-Wert der Kugelkopfkupplung (laut Fussnote ersatzweise die höchstzulässige Anhängelast). Gesucht habe ich nach force/load/weight/tow/trailer/coupl. Der Katalog hat kein technisches Kupplungs-Element. Formular 46 hat dieselbe Angabe als kein_standard.",
+   "elternfeld": "Kugelkopfkupplung: Angaben laut Herstellerschild",
+   "teilfeld": "D-Wert (kN/kg)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "DC-Wert der Kugelkopfkupplung, neu in dieser Ausgabe. Gesucht habe ich nach force/load/weight/tow/trailer/coupl/technical. Der Katalog hat kein technisches Kupplungs-Element. eCH-0281 (In Arbeit, 0 Elemente) betrifft den Austausch Polizei–Individualverkehr. Gleich beurteilt wie der D-Wert.",
+   "elternfeld": "Kugelkopfkupplung: Angaben laut Herstellerschild",
+   "teilfeld": "DC-Wert (kN/kg)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Herstellermarke der Zwischenplatte laut Herstellerschild. Gesucht habe ich nach brand/manufactur/make/model. Die einzigen Treffer sind eCH-0058 manufacturer (Software) und eCH-0263 manufacturer (Futtermittel/Dünger). Formular 46 hat dieselbe Angabe als kein_standard.",
+   "elternfeld": "Zwischenplatte: Angaben laut Herstellerschild",
+   "teilfeld": "Marke"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Typbezeichnung der Zwischenplatte laut Herstellerschild. Gesucht habe ich nach type/model/coupl/hitch/device/equipment/vehicle. Ein Element für die Typbezeichnung eines Fahrzeugbauteils gibt es nicht. eCH-0281 (In Arbeit, 0 Elemente) betrifft den Austausch Polizei–Individualverkehr. Formular 46 hat dieselbe Angabe als kein_standard.",
+   "elternfeld": "Zwischenplatte: Angaben laut Herstellerschild",
+   "teilfeld": "Typ"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "ECE-Genehmigungszeichen der Zwischenplatte. Gesucht habe ich nach approv/homolog/certif/registrationNumber. Die Treffer liegen nur ausserhalb des Themas (eCH-0254, 0130, 0209, 0263). Ein Element für die Typengenehmigung eines Fahrzeugteils gibt es nicht. Formular 46 hat dieselbe Angabe als kein_standard.",
+   "elternfeld": "Zwischenplatte: Angaben laut Herstellerschild",
+   "teilfeld": "\"e\" Nr."
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Zulässige Stützlast der Zwischenplatte in kg. Gesucht habe ich nach load/weight/mass/capacity/axle/tow. Ein Element für eine Last oder ein Gewicht an der Kupplung gibt es nicht. Formular 46 hat dieselbe Angabe als kein_standard.",
+   "elternfeld": "Zwischenplatte: Angaben laut Herstellerschild",
+   "teilfeld": "Stützlast (kg)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "D-Wert der Zwischenplatte (laut Fussnote ersatzweise die höchstzulässige Anhängelast). Gesucht habe ich nach force/load/weight/tow/trailer/coupl. Der Katalog hat kein technisches Kupplungs-Element. Formular 46 hat dieselbe Angabe als kein_standard.",
+   "elternfeld": "Zwischenplatte: Angaben laut Herstellerschild",
+   "teilfeld": "D-Wert (kN/kg)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "DC-Wert der Zwischenplatte, neu in dieser Ausgabe. Gesucht habe ich nach force/load/weight/tow/trailer/coupl/technical. Der Katalog hat kein technisches Kupplungs-Element. eCH-0281 (In Arbeit, 0 Elemente) betrifft den Austausch Polizei–Individualverkehr. Gleich beurteilt wie der D-Wert.",
+   "elternfeld": "Zwischenplatte: Angaben laut Herstellerschild",
+   "teilfeld": "DC-Wert (kN/kg)"
+  }
+ ]
+}

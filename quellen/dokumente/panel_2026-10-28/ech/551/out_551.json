@@ -1,0 +1,88 @@
+{
+ "hinweis": "eCH-Urteile Formular 551, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/551 --nur-offene=551",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Firma und Sitz zusammen bezeichnen die Gesellschaft, auf die sich die BewG-Erklärung bezieht. Der Container eCH-0098 organisation (organisationType / reportedOrganisationType, Genehmigt) umfasst die Identifikation und, über reportedOrganisationType, auch den Sitz (swissHeadquarter). Dafür gibt es keinen engeren Container: organisationIdentificationType enthält keinen Sitz. Den propagierten Wert bestätige ich. Er stimmt mit den 4 übrigen «Firma und Sitz»-Feldern in der Datenbank überein.",
+   "feld": "Firma und Sitz"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "«Firma» ist der im Handelsregister eingetragene Name der Gesellschaft. eCH-0098 organisationName (organisationIdentificationType, unitNameType) ist das atomare Element dafür und steht wörtlich im Katalog. Die Varianten organisationLegalName (eCH-0148/0239/0244) sind Mutationsmeldungen oder stammen aus nicht genehmigten Standards. Den propagierten Wert bestätige ich, er ist in allen 3 übrigen Vorkommen gleich.",
+   "elternfeld": "Firma und Sitz",
+   "teilfeld": "Firma"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "«Sitz» ist die statutarische Sitzgemeinde der Gesellschaft. Atomares Element dafür ist eCH-0098 headquarterMunicipality (swissHeadquarterType, swissMunicipalityType). Gesucht nach seat, headquarter, domicile und municip: eCH-0108 hat nur Adress-Gemeinden (locationAddressDetailsType municipality), die eCH-0276-Domicile-Elemente betreffen das Steuerdomizil. Den propagierten Wert bestätige ich, er ist in allen 3 übrigen Vorkommen gleich.",
+   "elternfeld": "Firma und Sitz",
+   "teilfeld": "Sitz"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ja/Nein-Kreuz (Formular: Spalten «ja / nein») zur Erklärung nach BewG, ob Personen im Ausland (Art. 5 BewG) an der Gesellschaft beteiligt sind. Im ganzen Katalog gesucht nach abroad, foreign, bewg, koller, participat, sharehold, controll, dominan und restrict, dazu in den Unternehmens-, Register- und Grundbuch-Standards (eCH-0098, 0108, 0116, 0148, 0129, 0131, 0134, 0178, 0209). Treffer gibt es nur für Steuerangaben, etwa eCH-0276 changeOfShareholdersAssociates (Wechsel im Gesellschafterkreis in der Steuererklärung) oder eCH-0229 *Participations, und für Registerangaben zu ausländischen Unternehmen (eCH-0108 foreignOrganisationInformation). Keines davon ist diese Aussage. Ein Ja/Nein-Kreuz erhält ohnehin kein Wertelement.",
+   "feld": "Personen im Ausland bzw. Personen, die für Rechnung von Personen im Ausland handeln, sind an obgenannter Gesellschaft beteiligt"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ja/Nein-Kreuz, ob Personen im Ausland mit dem angemeldeten Eintragungsgeschäft neu eine Beteiligung erwerben (Art. 4 Abs. 1 lit. e BewG). Gesucht wie beim ersten Feld, zusätzlich nach acqui und stake: eCH-0276 dateOfTheFirstAcquisitionOfSharesInTheParticipation und acquisition* sind steuerliche Beteiligungsdaten (ein Datum oder Anschaffungskosten), kein Ja/Nein-Wert zur BewG. Kein passendes Element im Katalog.",
+   "feld": "Personen im Ausland bzw. Personen, die für Rechnung von Personen im Ausland handeln, erwerben im Zusammenhang mit dem angemeldeten Eintragungsgeschäft an obgena"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ja/Nein-Kreuz zum Erwerb von Nicht-Betriebsstätte-Grundstücken (Art. 2 Abs. 2 lit. a BewG) bei Sacheinlage, Fusion, Umwandlung oder Spaltung. Gesucht nach merger, fusion, inkind, contribution, spinoff, demerger, transformation, permanentEstab und acqui, dazu in den Grundbuch- und Objektwesen-Standards eCH-0129, 0131, 0134, 0178, 0209 und den Meldegründen eCH-0116/0148: kein Element für diese Aussage. eCH-0276 establishmentOfBusinessPremises ist eine Angabe aus der Steuererklärung, kein BewG-Ja/Nein-Wert.",
+   "feld": "Bei Sacheinlage, Sachübernahme, Fusion, Umwandlung oder Spaltung: Obgenannte Gesellschaft erwirbt Nicht-Betriebsstätte-Grundstücke in der Schweiz"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ja/Nein-Kreuz, ob Personen im Ausland nach der Kapitalherabsetzung eine beherrschende Stellung nach Art. 6 BewG innehaben. Im ganzen Katalog gesucht nach capitalReduc, control, dominan, abroad, foreign und sharehold: Treffer gibt es nur in Bilanz und Steuern (eCH-0276 shareholders*, holding*), keines für diese Aussage. Ein Ja/Nein-Kreuz erhält kein Wertelement.",
+   "feld": "Bei Kapitalherabsetzung: Personen im Ausland bzw. Personen, die für Rechnung von Personen im Ausland handeln, haben nach der Kapitalherabsetzung an obgenannter "
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Ort und Datum der Unterzeichnung als eine zusammengesetzte Angabe. eCH-0119 locationAndDate (attachedFormsType / listOfSecuritiesType, string, Genehmigt) steht wörtlich im Katalog und ist das einzige Element, das genau «Ort und Datum» einer Unterzeichnung als einen Wert abbildet. Den propagierten Wert (10x geprüft) bestätige ich, er stimmt mit den übrigen 12 «Ort, Datum»-Feldern überein. Hinweis: Die 31 Felder «Ort und Datum» sind in der Datenbank kein_standard. Diese Uneinheitlichkeit liegt ausserhalb dieses Formulars.",
+   "feld": "Ort, Datum"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Der Ort der Unterzeichnung ist weder eine Wohn- noch eine Postadresse. Gesucht nach place*, location*, sign*, town und signat*: eCH-0010/0108 town ist die Ortschaft einer Adresse, eCH-0011 placeOfBirth/placeOfDeath sind andere Ereignisse, eCH-0119 location (concernedPersonType) und eCH-0262 location (storageType) haben andere Bedeutungen, eCH-0119 locationAndDate ist der zusammengesetzte Wert und kein atomarer Ort. Kein Element für den Unterzeichnungsort. Das stimmt mit allen bisherigen kein_standard-Urteilen zum Paar Ort/Datum überein.",
+   "elternfeld": "Ort, Datum",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Datum der Unterzeichnung der Erklärung. Gesucht nach signingDate, signatureDate, dateOfSignature, documentDate, issueDate, submissionDate, declarationDate, date und sign*. Die Treffer passen nicht: eCH-0235 date (authorType) ist der Zeitstempel einer Gesundheitswesen-Meldung, eCH-0254/0211/0259 date sind Verfahrens- oder Entscheiddaten, eCH-0119 date (restBenefitType) ist ein gMonthDay. Kein Unterzeichnungsdatum. Das stimmt mit den bisherigen kein_standard-Urteilen überein.",
+   "elternfeld": "Ort, Datum",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Eine handschriftliche Unterschrift ist kein Datenwert. Gesucht nach sign*, signat* und unterschr*: eCH-0039 signer ist ein GEVER-Token zur unterzeichnenden Person, eCH-0260 signatures und *SignatureConfirmation sind Ja/Nein-Bestätigungen nur für Lehrverträge. Kein Element für eine Unterschrift. Das stimmt mit den 90 kein_standard-Unterschriftsfeldern in der Datenbank überein.",
+   "feld": "Persönliche Unterschriften derjenigen Personen, welche die Handelsregisteranmeldung unterzeichnen (1)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Zweite Unterschriftslinie, gleiche Lage wie (1). Für eine handschriftliche Unterschrift gibt es kein eCH-Element (eCH-0039 signer ist ein GEVER-Token, eCH-0260 *SignatureConfirmation sind Lehrvertrags-Booleans).",
+   "feld": "Persönliche Unterschriften derjenigen Personen, welche die Handelsregisteranmeldung unterzeichnen (2)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Dritte Unterschriftslinie, gleiche Lage wie (1). Für eine handschriftliche Unterschrift gibt es kein eCH-Element (eCH-0039 signer ist ein GEVER-Token, eCH-0260 *SignatureConfirmation sind Lehrvertrags-Booleans).",
+   "feld": "Persönliche Unterschriften derjenigen Personen, welche die Handelsregisteranmeldung unterzeichnen (3)"
+  }
+ ]
+}

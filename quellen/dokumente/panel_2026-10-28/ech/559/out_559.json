@@ -1,0 +1,3410 @@
+{
+ "hinweis": "eCH-Urteile Formular 559, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/559 --nur-offene=559",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Rechnungsjahr des Kennzahlensets (Berichtsperiode), keine Steuerperiode: propagiertes eCH-0119 taxPeriod verworfen. Katalog nach year/period/fiscal/reporting durchsucht (eCH-0229/0258/0278 taxPeriod, eCH-0276 taxPeriodFrom/To, eCH-0217 reportingPeriodFrom/Till, eCH-0044/0098 datePartiallyKnownType year, eCH-0216 currentYear): kein Element für ein Berichtsjahr; wie «Rechnungsjahr» in Formular 275/280.",
+   "feld": "Jahr"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Propagiertes eCH-0234 (Leistungsfälle Administration Gesundheitswesen, ohne Elemente) bestätigt: ZSR-Nummer der Leistungserbringerin für die KVG-Abrechnung; kein ZSR-Element im Katalog (eCH-0235 nur gln), wie Formular 439.",
+   "feld": "ZSR-Nummer"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "BUR-Nummer der Arbeitsstätte = eCH-0108 localUnitMasterDataType/localId (localIdType, Muster [A-B][1-9][0-9]{7}), wie «BUR-Nr.» in Formular 497; eCH-0097 aufgehoben.",
+   "feld": "BUR-Nummer",
+   "standard": "eCH-0108",
+   "element": "localId"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Behälter: Name, E-Mail und Telefon der meldenden Organisation = eCH-0098 organisationType/organisation (enthält organisationIdentification/organisationName, emailAddress, phoneNumber).",
+   "feld": "Organisation",
+   "standard": "eCH-0098",
+   "element": "organisation"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name der meldenden Spitex-Organisation (Formular: «Organisation – Name») = eCH-0098 organisationIdentificationType/organisationName.",
+   "elternfeld": "Organisation",
+   "teilfeld": "Organisation",
+   "standard": "eCH-0098",
+   "element": "organisationName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "E-Mail-Adresse der Organisation = eCH-0046 emailType/emailAddress.",
+   "elternfeld": "Organisation",
+   "teilfeld": "E-Mail-Adresse",
+   "standard": "eCH-0046",
+   "element": "emailAddress"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Telefonnummer der Organisation = eCH-0046 phoneType/phoneNumber.",
+   "elternfeld": "Organisation",
+   "teilfeld": "Telefon Nr.",
+   "standard": "eCH-0046",
+   "element": "phoneNumber"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Personalstatistik je Qualifikation; Katalog durchsucht (fte/employ/staff/numberOf): eCH-0108 sizeClassFte, eCH-0260 workhours, eCH-0278 employmentPercentage passen nicht; kein Behälter.",
+   "feld": "100 Pflegefachfrau FH"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Kopfzahl: kein eCH-Element.",
+   "elternfeld": "100 Pflegefachfrau FH",
+   "teilfeld": "Personen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "VZÄ: eCH-0108 sizeClassFte nur Grössenklasse.",
+   "elternfeld": "100 Pflegefachfrau FH",
+   "teilfeld": "Stellen VZÄ"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Personalstatistik je Qualifikation; eCH-0108 sizeClassFte, eCH-0260 workhours, eCH-0278 employmentPercentage passen nicht; kein Behälter.",
+   "feld": "101 Master of Science Pflege FH"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Kopfzahl: kein eCH-Element.",
+   "elternfeld": "101 Master of Science Pflege FH",
+   "teilfeld": "Personen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "VZÄ: eCH-0108 sizeClassFte nur Grössenklasse.",
+   "elternfeld": "101 Master of Science Pflege FH",
+   "teilfeld": "Stellen VZÄ"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Personalstatistik je Qualifikation; eCH-0108 sizeClassFte, eCH-0260 workhours, eCH-0278 employmentPercentage passen nicht; kein Behälter.",
+   "feld": "102 Master of Science Nursing FH"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Kopfzahl: kein eCH-Element.",
+   "elternfeld": "102 Master of Science Nursing FH",
+   "teilfeld": "Personen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "VZÄ: eCH-0108 sizeClassFte nur Grössenklasse.",
+   "elternfeld": "102 Master of Science Nursing FH",
+   "teilfeld": "Stellen VZÄ"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Personalstatistik je Qualifikation; eCH-0108 sizeClassFte, eCH-0260 workhours, eCH-0278 employmentPercentage passen nicht; kein Behälter.",
+   "feld": "103 PhD Nursing Science"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Kopfzahl: kein eCH-Element.",
+   "elternfeld": "103 PhD Nursing Science",
+   "teilfeld": "Personen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "VZÄ: eCH-0108 sizeClassFte nur Grössenklasse.",
+   "elternfeld": "103 PhD Nursing Science",
+   "teilfeld": "Stellen VZÄ"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Personalstatistik je Qualifikation; eCH-0108 sizeClassFte, eCH-0260 workhours, eCH-0278 employmentPercentage passen nicht; kein Behälter.",
+   "feld": "110 Dipl. Pflegefachfrau/-mann"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Kopfzahl: kein eCH-Element.",
+   "elternfeld": "110 Dipl. Pflegefachfrau/-mann",
+   "teilfeld": "Personen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "VZÄ: eCH-0108 sizeClassFte nur Grössenklasse.",
+   "elternfeld": "110 Dipl. Pflegefachfrau/-mann",
+   "teilfeld": "Stellen VZÄ"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Personalstatistik je Qualifikation; eCH-0108 sizeClassFte, eCH-0260 workhours, eCH-0278 employmentPercentage passen nicht; kein Behälter.",
+   "feld": "111 Krankenschwester/-pfleger Diplom II"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Kopfzahl: kein eCH-Element.",
+   "elternfeld": "111 Krankenschwester/-pfleger Diplom II",
+   "teilfeld": "Personen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "VZÄ: eCH-0108 sizeClassFte nur Grössenklasse.",
+   "elternfeld": "111 Krankenschwester/-pfleger Diplom II",
+   "teilfeld": "Stellen VZÄ"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Personalstatistik je Qualifikation; eCH-0108 sizeClassFte, eCH-0260 workhours, eCH-0278 employmentPercentage passen nicht; kein Behälter.",
+   "feld": "112 Dipl. Krankenschwester-/Pfleger AKP"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Kopfzahl: kein eCH-Element.",
+   "elternfeld": "112 Dipl. Krankenschwester-/Pfleger AKP",
+   "teilfeld": "Personen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "VZÄ: eCH-0108 sizeClassFte nur Grössenklasse.",
+   "elternfeld": "112 Dipl. Krankenschwester-/Pfleger AKP",
+   "teilfeld": "Stellen VZÄ"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Personalstatistik je Qualifikation; eCH-0108 sizeClassFte, eCH-0260 workhours, eCH-0278 employmentPercentage passen nicht; kein Behälter.",
+   "feld": "113 Hebamme"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Kopfzahl: kein eCH-Element.",
+   "elternfeld": "113 Hebamme",
+   "teilfeld": "Personen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "VZÄ: eCH-0108 sizeClassFte nur Grössenklasse.",
+   "elternfeld": "113 Hebamme",
+   "teilfeld": "Stellen VZÄ"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Personalstatistik je Qualifikation; eCH-0108 sizeClassFte, eCH-0260 workhours, eCH-0278 employmentPercentage passen nicht; kein Behälter.",
+   "feld": "120 Pflegefachfrau DNI"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Kopfzahl: kein eCH-Element.",
+   "elternfeld": "120 Pflegefachfrau DNI",
+   "teilfeld": "Personen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "VZÄ: eCH-0108 sizeClassFte nur Grössenklasse.",
+   "elternfeld": "120 Pflegefachfrau DNI",
+   "teilfeld": "Stellen VZÄ"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Personalstatistik je Qualifikation; eCH-0108 sizeClassFte, eCH-0260 workhours, eCH-0278 employmentPercentage passen nicht; kein Behälter.",
+   "feld": "121 Prakt. Krankenpflege (FA SRK)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Kopfzahl: kein eCH-Element.",
+   "elternfeld": "121 Prakt. Krankenpflege (FA SRK)",
+   "teilfeld": "Personen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "VZÄ: eCH-0108 sizeClassFte nur Grössenklasse.",
+   "elternfeld": "121 Prakt. Krankenpflege (FA SRK)",
+   "teilfeld": "Stellen VZÄ"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Personalstatistik je Qualifikation; eCH-0108 sizeClassFte, eCH-0260 workhours, eCH-0278 employmentPercentage passen nicht; kein Behälter.",
+   "feld": "130 Fachfrau Gesundheit (FAGE)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Kopfzahl: kein eCH-Element.",
+   "elternfeld": "130 Fachfrau Gesundheit (FAGE)",
+   "teilfeld": "Personen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "VZÄ: eCH-0108 sizeClassFte nur Grössenklasse.",
+   "elternfeld": "130 Fachfrau Gesundheit (FAGE)",
+   "teilfeld": "Stellen VZÄ"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Personalstatistik je Qualifikation; eCH-0108 sizeClassFte, eCH-0260 workhours, eCH-0278 employmentPercentage passen nicht; kein Behälter.",
+   "feld": "131 Med. Praxisassistentin"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Kopfzahl: kein eCH-Element.",
+   "elternfeld": "131 Med. Praxisassistentin",
+   "teilfeld": "Personen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "VZÄ: eCH-0108 sizeClassFte nur Grössenklasse.",
+   "elternfeld": "131 Med. Praxisassistentin",
+   "teilfeld": "Stellen VZÄ"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Personalstatistik je Qualifikation; eCH-0108 sizeClassFte, eCH-0260 workhours, eCH-0278 employmentPercentage passen nicht; kein Behälter.",
+   "feld": "132 Fachfrau Betreuung (FABE)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Kopfzahl: kein eCH-Element.",
+   "elternfeld": "132 Fachfrau Betreuung (FABE)",
+   "teilfeld": "Personen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "VZÄ: eCH-0108 sizeClassFte nur Grössenklasse.",
+   "elternfeld": "132 Fachfrau Betreuung (FABE)",
+   "teilfeld": "Stellen VZÄ"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Personalstatistik je Qualifikation; eCH-0108 sizeClassFte, eCH-0260 workhours, eCH-0278 employmentPercentage passen nicht; kein Behälter.",
+   "feld": "133 Assisten Gesundheit EBA, Pflegeass. SR"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Kopfzahl: kein eCH-Element.",
+   "elternfeld": "133 Assisten Gesundheit EBA, Pflegeass. SR",
+   "teilfeld": "Personen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "VZÄ: eCH-0108 sizeClassFte nur Grössenklasse.",
+   "elternfeld": "133 Assisten Gesundheit EBA, Pflegeass. SR",
+   "teilfeld": "Stellen VZÄ"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Personalstatistik je Qualifikation; eCH-0108 sizeClassFte, eCH-0260 workhours, eCH-0278 employmentPercentage passen nicht; kein Behälter.",
+   "feld": "140 Assisten Gesundheit SRK"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Kopfzahl: kein eCH-Element.",
+   "elternfeld": "140 Assisten Gesundheit SRK",
+   "teilfeld": "Personen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "VZÄ: eCH-0108 sizeClassFte nur Grössenklasse.",
+   "elternfeld": "140 Assisten Gesundheit SRK",
+   "teilfeld": "Stellen VZÄ"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Personalstatistik je Qualifikation; eCH-0108 sizeClassFte, eCH-0260 workhours, eCH-0278 employmentPercentage passen nicht; kein Behälter.",
+   "feld": "141 Nachdipl. Gesundh.-Schwester"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Kopfzahl: kein eCH-Element.",
+   "elternfeld": "141 Nachdipl. Gesundh.-Schwester",
+   "teilfeld": "Personen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "VZÄ: eCH-0108 sizeClassFte nur Grössenklasse.",
+   "elternfeld": "141 Nachdipl. Gesundh.-Schwester",
+   "teilfeld": "Stellen VZÄ"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Personalstatistik je Qualifikation; eCH-0108 sizeClassFte, eCH-0260 workhours, eCH-0278 employmentPercentage passen nicht; kein Behälter.",
+   "feld": "142 Qualifizierte Nachdiplome (CAS, MAS etc.)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Kopfzahl: kein eCH-Element.",
+   "elternfeld": "142 Qualifizierte Nachdiplome (CAS, MAS etc.)",
+   "teilfeld": "Personen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "VZÄ: eCH-0108 sizeClassFte nur Grössenklasse.",
+   "elternfeld": "142 Qualifizierte Nachdiplome (CAS, MAS etc.)",
+   "teilfeld": "Stellen VZÄ"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Personalstatistik je Qualifikation; eCH-0108 sizeClassFte, eCH-0260 workhours, eCH-0278 employmentPercentage passen nicht; kein Behälter.",
+   "feld": "150 Sozialarbeiterin FH, HF"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Kopfzahl: kein eCH-Element.",
+   "elternfeld": "150 Sozialarbeiterin FH, HF",
+   "teilfeld": "Personen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "VZÄ: eCH-0108 sizeClassFte nur Grössenklasse.",
+   "elternfeld": "150 Sozialarbeiterin FH, HF",
+   "teilfeld": "Stellen VZÄ"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Personalstatistik je Qualifikation; eCH-0108 sizeClassFte, eCH-0260 workhours, eCH-0278 employmentPercentage passen nicht; kein Behälter.",
+   "feld": "151 Therapeutische Ausbildung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Kopfzahl: kein eCH-Element.",
+   "elternfeld": "151 Therapeutische Ausbildung",
+   "teilfeld": "Personen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "VZÄ: eCH-0108 sizeClassFte nur Grössenklasse.",
+   "elternfeld": "151 Therapeutische Ausbildung",
+   "teilfeld": "Stellen VZÄ"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Personalstatistik je Qualifikation; eCH-0108 sizeClassFte, eCH-0260 (Lehrverträge einzeln), eCH-0278 employmentPercentage passen nicht; kein Behälter.",
+   "feld": "152 Auszubildende Pflege FH HF"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Kopfzahl: kein eCH-Element.",
+   "elternfeld": "152 Auszubildende Pflege FH HF",
+   "teilfeld": "Personen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "VZÄ: eCH-0108 sizeClassFte nur Grössenklasse.",
+   "elternfeld": "152 Auszubildende Pflege FH HF",
+   "teilfeld": "Stellen VZÄ"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Personalstatistik je Qualifikation; eCH-0108 sizeClassFte, eCH-0260 (Lehrverträge einzeln), eCH-0278 employmentPercentage passen nicht; kein Behälter.",
+   "feld": "152 Auszubildende Pflege FAGE, FABE"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Kopfzahl: kein eCH-Element.",
+   "elternfeld": "152 Auszubildende Pflege FAGE, FABE",
+   "teilfeld": "Personen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "VZÄ: eCH-0108 sizeClassFte nur Grössenklasse.",
+   "elternfeld": "152 Auszubildende Pflege FAGE, FABE",
+   "teilfeld": "Stellen VZÄ"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Personalstatistik je Qualifikation; eCH-0108 sizeClassFte, eCH-0260 workhours, eCH-0278 employmentPercentage passen nicht; kein Behälter.",
+   "feld": "153 Ausbildung Leitung und Adminisation"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Kopfzahl: kein eCH-Element.",
+   "elternfeld": "153 Ausbildung Leitung und Adminisation",
+   "teilfeld": "Personen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "VZÄ: eCH-0108 sizeClassFte nur Grössenklasse.",
+   "elternfeld": "153 Ausbildung Leitung und Adminisation",
+   "teilfeld": "Stellen VZÄ"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Personalstatistik je Qualifikation; eCH-0108 sizeClassFte, eCH-0260 workhours, eCH-0278 employmentPercentage passen nicht; kein Behälter.",
+   "feld": "154 Pflegehelferin SRK ordentlich"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Kopfzahl: kein eCH-Element.",
+   "elternfeld": "154 Pflegehelferin SRK ordentlich",
+   "teilfeld": "Personen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "VZÄ: eCH-0108 sizeClassFte nur Grössenklasse.",
+   "elternfeld": "154 Pflegehelferin SRK ordentlich",
+   "teilfeld": "Stellen VZÄ"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Personalstatistik je Qualifikation; eCH-0108 sizeClassFte, eCH-0260 workhours, eCH-0278 employmentPercentage passen nicht; kein Behälter.",
+   "feld": "154 Pflegehelferin (Angehörigenpflege)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Kopfzahl: kein eCH-Element.",
+   "elternfeld": "154 Pflegehelferin (Angehörigenpflege)",
+   "teilfeld": "Personen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "VZÄ: eCH-0108 sizeClassFte nur Grössenklasse.",
+   "elternfeld": "154 Pflegehelferin (Angehörigenpflege)",
+   "teilfeld": "Stellen VZÄ"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Personalstatistik je Qualifikation; eCH-0108 sizeClassFte, eCH-0260 workhours, eCH-0278 employmentPercentage passen nicht; kein Behälter.",
+   "feld": "155 Keine spezielle Ausbildung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Kopfzahl: kein eCH-Element.",
+   "elternfeld": "155 Keine spezielle Ausbildung",
+   "teilfeld": "Personen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "VZÄ: eCH-0108 sizeClassFte nur Grössenklasse.",
+   "elternfeld": "155 Keine spezielle Ausbildung",
+   "teilfeld": "Stellen VZÄ"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Personalstatistik je Qualifikation; eCH-0108 sizeClassFte, eCH-0260 workhours, eCH-0278 employmentPercentage passen nicht; kein Behälter.",
+   "feld": "155 Keine spez. Ausbildung (Angehörigenpfl.)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Kopfzahl: kein eCH-Element.",
+   "elternfeld": "155 Keine spez. Ausbildung (Angehörigenpfl.)",
+   "teilfeld": "Personen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "VZÄ: eCH-0108 sizeClassFte nur Grössenklasse.",
+   "elternfeld": "155 Keine spez. Ausbildung (Angehörigenpfl.)",
+   "teilfeld": "Stellen VZÄ"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Personalstatistik (Praktikanten); eCH-0108 sizeClassFte, eCH-0260 workhours, eCH-0278 employmentPercentage passen nicht; kein Behälter.",
+   "feld": "Praktikanten"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Kopfzahl: kein eCH-Element.",
+   "elternfeld": "Praktikanten",
+   "teilfeld": "Personen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "VZÄ: eCH-0108 sizeClassFte nur Grössenklasse.",
+   "elternfeld": "Praktikanten",
+   "teilfeld": "Stellen VZÄ"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freitext-Bemerkung zum Formularblatt, wie «Bemerkungen» im Bestand kein_standard; eCH-0058/0039/0078 headerType comment (Meldungskopf), eCH-0276 remark/generalRemarks (E-Bilanz), eCH-0178 remarks (Grundbuch) sind nicht diese Angabe.",
+   "feld": "Bemerkungen zuhanden Gesundheitsamt (Formular A)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Gruppe (Kostenrechnung): kein Behälter; eCH-0276 salaryExpenses (ganzer Lohnaufwand), eCH-0235 Einzelfall, eCH-0234/0237 ohne Elemente (Einzelfall-Administration) passen nicht.",
+   "feld": "310 Dipl. Pflegefachpersonal mit Zusatzdiplom / Master"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Aggregierte Stunden: kein eCH-Element (eCH-0235 duration Einzelfall, eCH-0260 workhours Lehrvertrag).",
+   "elternfeld": "310 Dipl. Pflegefachpersonal mit Zusatzdiplom / Master",
+   "teilfeld": "Verrechnete Stunden"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Teil-Lohnkosten: eCH-0276 salaryExpenses ist ganzer Lohnaufwand.",
+   "elternfeld": "310 Dipl. Pflegefachpersonal mit Zusatzdiplom / Master",
+   "teilfeld": "Personalkosten ohne Soz.Vers."
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Gruppe (Kostenrechnung): kein Behälter; eCH-0276 salaryExpenses, eCH-0235 Einzelfall, eCH-0237 ohne Elemente passen nicht.",
+   "feld": "311 Diplomiertes Pflegefachpersonal"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Aggregierte Stunden: kein eCH-Element.",
+   "elternfeld": "311 Diplomiertes Pflegefachpersonal",
+   "teilfeld": "Verrechnete Stunden"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Teil-Lohnkosten: eCH-0276 salaryExpenses ist ganzer Lohnaufwand.",
+   "elternfeld": "311 Diplomiertes Pflegefachpersonal",
+   "teilfeld": "Personalkosten ohne Soz.Vers."
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Gruppe (Kostenrechnung): kein Behälter; eCH-0276 salaryExpenses, eCH-0235 Einzelfall, eCH-0237 ohne Elemente passen nicht.",
+   "feld": "312 Personal mit berufl. Grundbildung (FABE, FAGE)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Aggregierte Stunden: kein eCH-Element.",
+   "elternfeld": "312 Personal mit berufl. Grundbildung (FABE, FAGE)",
+   "teilfeld": "Verrechnete Stunden"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Teil-Lohnkosten: eCH-0276 salaryExpenses ist ganzer Lohnaufwand.",
+   "elternfeld": "312 Personal mit berufl. Grundbildung (FABE, FAGE)",
+   "teilfeld": "Personalkosten ohne Soz.Vers."
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Gruppe (Kostenrechnung): kein Behälter; eCH-0276 salaryExpenses, eCH-0235 Einzelfall, eCH-0237 ohne Elemente passen nicht.",
+   "feld": "313 Assistenz (in Pflege)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Aggregierte Stunden: kein eCH-Element.",
+   "elternfeld": "313 Assistenz (in Pflege)",
+   "teilfeld": "Verrechnete Stunden"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Teil-Lohnkosten: eCH-0276 salaryExpenses ist ganzer Lohnaufwand.",
+   "elternfeld": "313 Assistenz (in Pflege)",
+   "teilfeld": "Personalkosten ohne Soz.Vers."
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Gruppe (Kostenrechnung): kein Behälter; eCH-0276 salaryExpenses, eCH-0235 Einzelfall, eCH-0237 ohne Elemente passen nicht.",
+   "feld": "314 Grundkurs Pflegehelferin SRK"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Aggregierte Stunden: kein eCH-Element.",
+   "elternfeld": "314 Grundkurs Pflegehelferin SRK",
+   "teilfeld": "Verrechnete Stunden"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Teil-Lohnkosten: eCH-0276 salaryExpenses ist ganzer Lohnaufwand.",
+   "elternfeld": "314 Grundkurs Pflegehelferin SRK",
+   "teilfeld": "Personalkosten ohne Soz.Vers."
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Gruppe (Kostenrechnung): kein Behälter; eCH-0276 salaryExpenses, eCH-0235 Einzelfall, eCH-0237 ohne Elemente passen nicht.",
+   "feld": "315 Ohne spezifische Ausbildung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Aggregierte Stunden: kein eCH-Element.",
+   "elternfeld": "315 Ohne spezifische Ausbildung",
+   "teilfeld": "Verrechnete Stunden"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Teil-Lohnkosten: eCH-0276 salaryExpenses ist ganzer Lohnaufwand.",
+   "elternfeld": "315 Ohne spezifische Ausbildung",
+   "teilfeld": "Personalkosten ohne Soz.Vers."
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Gruppe (Kostenrechnung): kein Behälter; eCH-0276 salaryExpenses, eCH-0235 Einzelfall, eCH-0237 ohne Elemente passen nicht.",
+   "feld": "316 Auszubildene Pflege HF, FH"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Aggregierte Stunden: kein eCH-Element.",
+   "elternfeld": "316 Auszubildene Pflege HF, FH",
+   "teilfeld": "Verrechnete Stunden"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Teil-Lohnkosten: eCH-0276 salaryExpenses ist ganzer Lohnaufwand.",
+   "elternfeld": "316 Auszubildene Pflege HF, FH",
+   "teilfeld": "Personalkosten ohne Soz.Vers."
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Gruppe (Kostenrechnung): kein Behälter; eCH-0276 salaryExpenses, eCH-0235 Einzelfall, eCH-0237 ohne Elemente passen nicht.",
+   "feld": "317 Auszubildende Pflege FaGe, FaBe, AGS"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Aggregierte Stunden: kein eCH-Element.",
+   "elternfeld": "317 Auszubildende Pflege FaGe, FaBe, AGS",
+   "teilfeld": "Verrechnete Stunden"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Teil-Lohnkosten: eCH-0276 salaryExpenses ist ganzer Lohnaufwand.",
+   "elternfeld": "317 Auszubildende Pflege FaGe, FaBe, AGS",
+   "teilfeld": "Personalkosten ohne Soz.Vers."
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Gruppe (Kostenrechnung): kein Behälter; eCH-0276 salaryExpenses, eCH-0235 Einzelfall, eCH-0237 ohne Elemente passen nicht.",
+   "feld": "318 Praktikanten"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Aggregierte Stunden: kein eCH-Element.",
+   "elternfeld": "318 Praktikanten",
+   "teilfeld": "Verrechnete Stunden"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Teil-Lohnkosten: eCH-0276 salaryExpenses ist ganzer Lohnaufwand.",
+   "elternfeld": "318 Praktikanten",
+   "teilfeld": "Personalkosten ohne Soz.Vers."
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Gruppe (Kostenrechnung): kein Behälter; eCH-0276 salaryExpenses, eCH-0235 Einzelfall, eCH-0237 ohne Elemente passen nicht.",
+   "feld": "319 Pflegende Angehörige"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Aggregierte Stunden: kein eCH-Element.",
+   "elternfeld": "319 Pflegende Angehörige",
+   "teilfeld": "Verrechnete Stunden"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Teil-Lohnkosten: eCH-0276 salaryExpenses ist ganzer Lohnaufwand.",
+   "elternfeld": "319 Pflegende Angehörige",
+   "teilfeld": "Personalkosten ohne Soz.Vers."
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Weitere Fachbereiche: Pensen, Stunden, Personalkosten (Kostenrechnung); kein Behälter; eCH-0276 salaryExpenses, eCH-0235 Einzelfall, eCH-0108 sizeClassFte passen nicht.",
+   "feld": "320-329 Besoldung weitere Fachbereiche"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "VZÄ je Fachbereich: eCH-0108 sizeClassFte nur Grössenklasse.",
+   "elternfeld": "320-329 Besoldung weitere Fachbereiche",
+   "teilfeld": "Pensen (VZÄ)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Aggregierte Stunden: kein eCH-Element.",
+   "elternfeld": "320-329 Besoldung weitere Fachbereiche",
+   "teilfeld": "Verrechnete Stunden"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Teil-Lohnkosten: eCH-0276 salaryExpenses ist ganzer Lohnaufwand.",
+   "elternfeld": "320-329 Besoldung weitere Fachbereiche",
+   "teilfeld": "Personalkosten ohne Soz.Vers."
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger (Kostenträgerrechnung nach Spitex-Finanzmanual, Jahresaggregat): kein Behälter/Element; eCH-0235 count/duration nur Einzelfall, eCH-0234/0237 ohne Elemente (Einzelfall-Prozess), eCH-0276 nur FiBu geprüft.",
+   "feld": "HF, FH (Stundenverteilung auf Kostenträger)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "HF, FH (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. KLV-A"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "HF, FH (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. KLV-B"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "HF, FH (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. KLV-C normal"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "HF, FH (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. KLV-C Angehörige"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "HF, FH (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. Hauswirtschaft & Betreuung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "HF, FH (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. übrige Dienstleistungen"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger (Jahresaggregat): kein Behälter/Element (eCH-0235 Einzelfall, eCH-0237 ohne Elemente, eCH-0276 FiBu geprüft).",
+   "feld": "FABE/FAGE (Stundenverteilung auf Kostenträger)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "FABE/FAGE (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. KLV-A"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "FABE/FAGE (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. KLV-B"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "FABE/FAGE (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. KLV-C normal"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "FABE/FAGE (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. KLV-C Angehörige"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "FABE/FAGE (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. Hauswirtschaft & Betreuung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "FABE/FAGE (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. übrige Dienstleistungen"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger (Jahresaggregat): kein Behälter/Element (eCH-0235 Einzelfall, eCH-0237 ohne Elemente, eCH-0276 FiBu geprüft).",
+   "feld": "Assistenz (Stundenverteilung auf Kostenträger)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "Assistenz (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. KLV-A"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "Assistenz (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. KLV-B"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "Assistenz (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. KLV-C normal"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "Assistenz (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. KLV-C Angehörige"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "Assistenz (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. Hauswirtschaft & Betreuung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "Assistenz (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. übrige Dienstleistungen"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger (Jahresaggregat): kein Behälter/Element (eCH-0235 Einzelfall, eCH-0237 ohne Elemente, eCH-0276 FiBu geprüft).",
+   "feld": "Pflegende Angehörige (Stundenverteilung auf Kostenträger)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "Pflegende Angehörige (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. KLV-A"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "Pflegende Angehörige (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. KLV-B"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "Pflegende Angehörige (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. KLV-C normal"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "Pflegende Angehörige (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. KLV-C Angehörige"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "Pflegende Angehörige (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. Hauswirtschaft & Betreuung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "Pflegende Angehörige (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. übrige Dienstleistungen"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger (Jahresaggregat): kein Behälter/Element (eCH-0235 Einzelfall, eCH-0237 ohne Elemente, eCH-0276 FiBu geprüft).",
+   "feld": "ohne spezifische Ausbildung (Stundenverteilung auf Kostenträger)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "ohne spezifische Ausbildung (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. KLV-A"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "ohne spezifische Ausbildung (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. KLV-B"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "ohne spezifische Ausbildung (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. KLV-C normal"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "ohne spezifische Ausbildung (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. KLV-C Angehörige"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "ohne spezifische Ausbildung (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. Hauswirtschaft & Betreuung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "ohne spezifische Ausbildung (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. übrige Dienstleistungen"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger (Jahresaggregat): kein Behälter/Element (eCH-0235 Einzelfall, eCH-0237 ohne Elemente, eCH-0276 FiBu geprüft).",
+   "feld": "in Ausbildung (Stundenverteilung auf Kostenträger)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "in Ausbildung (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. KLV-A"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "in Ausbildung (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. KLV-B"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "in Ausbildung (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. KLV-C normal"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "in Ausbildung (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. KLV-C Angehörige"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "in Ausbildung (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. Hauswirtschaft & Betreuung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "in Ausbildung (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. übrige Dienstleistungen"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger (Jahresaggregat): kein Behälter/Element (eCH-0235 Einzelfall, eCH-0237 ohne Elemente, eCH-0276 FiBu geprüft).",
+   "feld": "Weitere Fachbereiche (Stundenverteilung auf Kostenträger)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "Weitere Fachbereiche (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. KLV-A"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "Weitere Fachbereiche (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. KLV-B"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "Weitere Fachbereiche (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. KLV-C normal"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "Weitere Fachbereiche (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. KLV-C Angehörige"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "Weitere Fachbereiche (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. Hauswirtschaft & Betreuung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden je Kostenträger: kein eCH-Element.",
+   "elternfeld": "Weitere Fachbereiche (Stundenverteilung auf Kostenträger)",
+   "teilfeld": "Std. übrige Dienstleistungen"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KLV-Stunden je anderem Kanton; nur der Kanton ist normiert (eCH-0007), für Kanton+Stunden kein Behälter (eCH-0007 swissMunicipalityType ist eine Gemeinde).",
+   "feld": "KLV Stundenleistungen in weiteren Kantonen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Kanton, in dem die KLV-Stunden erbracht wurden = eCH-0007 cantonAbbreviation, wie «Kanton» im Bestand (Formular 439).",
+   "elternfeld": "KLV Stundenleistungen in weiteren Kantonen",
+   "teilfeld": "Kanton",
+   "standard": "eCH-0007",
+   "element": "cantonAbbreviation"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KLV-Stunden je Kanton (Jahresaggregat): kein Element (eCH-0235/0237/0260 geprüft).",
+   "elternfeld": "KLV Stundenleistungen in weiteren Kantonen",
+   "teilfeld": "Stunden"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freitext-Bemerkung zum Formularblatt; eCH-0058/0039 headerType comment (Meldungskopf), eCH-0276 remark (E-Bilanz) sind nicht diese Angabe.",
+   "feld": "Bemerkungen zuhanden Gesundheitsamt (Formular B)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Kontozeile ohne Behälter; Konto 310 ist nur ein Teil von eCH-0276 salaryExpenses (ganzer Lohnaufwand), nicht deckungsgleich.",
+   "feld": "310 Besoldung Pflege, Betreuung, Hauswirtschaft"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Konto 310 ist nur ein Teil von eCH-0276 salaryExpenses (ganzer Lohnaufwand).",
+   "elternfeld": "310 Besoldung Pflege, Betreuung, Hauswirtschaft",
+   "teilfeld": "TotaL CHF gesamte Unternehmung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil KLV: kein eCH-Element.",
+   "elternfeld": "310 Besoldung Pflege, Betreuung, Hauswirtschaft",
+   "teilfeld": "davon KLV-Kern DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Kontozeile ohne Behälter; Konto 320 ist nur ein Teil von eCH-0276 salaryExpenses, nicht deckungsgleich.",
+   "feld": "320 Besoldung andere Fachbereiche"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Konto 320 ist nur ein Teil von eCH-0276 salaryExpenses (ganzer Lohnaufwand).",
+   "elternfeld": "320 Besoldung andere Fachbereiche",
+   "teilfeld": "TotaL CHF gesamte Unternehmung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil KLV: kein eCH-Element.",
+   "elternfeld": "320 Besoldung andere Fachbereiche",
+   "teilfeld": "davon KLV-Kern DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil übrige DL: kein eCH-Element.",
+   "elternfeld": "320 Besoldung andere Fachbereiche",
+   "teilfeld": "davon übrige DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Kontozeile ohne Behälter; Konto 330 ist nur ein Teil von eCH-0276 salaryExpenses, nicht deckungsgleich.",
+   "feld": "330 Besoldung Verwaltung, Organisation, Leitung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Konto 330 ist nur ein Teil von eCH-0276 salaryExpenses (ganzer Lohnaufwand).",
+   "elternfeld": "330 Besoldung Verwaltung, Organisation, Leitung",
+   "teilfeld": "TotaL CHF gesamte Unternehmung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil KLV: kein eCH-Element.",
+   "elternfeld": "330 Besoldung Verwaltung, Organisation, Leitung",
+   "teilfeld": "davon KLV-Kern DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Kontozeile ohne Behälter für die davon-Aufteilung; Position = eCH-0276 employeeExpensesType/socialSecurityExpenses (Sozialversicherungsaufwand, KMU 5700), getragen vom Teil Total.",
+   "feld": "370 Sozialversicherungsaufwand Total",
+   "standard": "eCH-0276",
+   "element": "socialSecurityExpenses"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Gesamtbetrag laut revidierter Erfolgsrechnung = eCH-0276 socialSecurityExpenses (KMU 5700).",
+   "elternfeld": "370 Sozialversicherungsaufwand Total",
+   "teilfeld": "TotaL CHF gesamte Unternehmung",
+   "standard": "eCH-0276",
+   "element": "socialSecurityExpenses"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil KLV: eCH-0276 nur Gesamtbetrag.",
+   "elternfeld": "370 Sozialversicherungsaufwand Total",
+   "teilfeld": "davon KLV-Kern DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Kontozeile ohne Behälter für die davon-Aufteilung; Position = eCH-0276 employeeExpensesType/expensesThirdParties (Leistungen Dritter im Personalaufwand, KMU 5900), getragen vom Teil Total.",
+   "feld": "380 Arbeitsleistungen Dritter",
+   "standard": "eCH-0276",
+   "element": "expensesThirdParties"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Gesamtbetrag laut Erfolgsrechnung = eCH-0276 expensesThirdParties (KMU 5900).",
+   "elternfeld": "380 Arbeitsleistungen Dritter",
+   "teilfeld": "TotaL CHF gesamte Unternehmung",
+   "standard": "eCH-0276",
+   "element": "expensesThirdParties"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil KLV: eCH-0276 nur Gesamtbetrag.",
+   "elternfeld": "380 Arbeitsleistungen Dritter",
+   "teilfeld": "davon KLV-Kern DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil übrige DL: eCH-0276 nur Gesamtbetrag.",
+   "elternfeld": "380 Arbeitsleistungen Dritter",
+   "teilfeld": "davon übrige DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Kontozeile ohne Behälter für die davon-Aufteilung; Position = eCH-0276 employeeExpensesType/otherEmployeeExpenses (übriger Personalaufwand, KMU 5800), getragen vom Teil Total.",
+   "feld": "390 Sonstiger Personalaufwand",
+   "standard": "eCH-0276",
+   "element": "otherEmployeeExpenses"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Gesamtbetrag laut Erfolgsrechnung = eCH-0276 otherEmployeeExpenses (KMU 5800).",
+   "elternfeld": "390 Sonstiger Personalaufwand",
+   "teilfeld": "TotaL CHF gesamte Unternehmung",
+   "standard": "eCH-0276",
+   "element": "otherEmployeeExpenses"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil KLV: eCH-0276 nur Gesamtbetrag.",
+   "elternfeld": "390 Sonstiger Personalaufwand",
+   "teilfeld": "davon KLV-Kern DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil übrige DL: eCH-0276 nur Gesamtbetrag.",
+   "elternfeld": "390 Sonstiger Personalaufwand",
+   "teilfeld": "davon übrige DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Kontozeile ohne Behälter; Medizinischer Bedarf (Pflegematerial): eCH-0276 productionMaterialCosts (Materialaufwand Produktion) / totalExpensesForMaterialsGoodsServices anders abgegrenzt, nicht deckungsgleich.",
+   "feld": "400 Medizinischer Bedarf"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Medizinischer Bedarf: eCH-0276 productionMaterialCosts nicht deckungsgleich.",
+   "elternfeld": "400 Medizinischer Bedarf",
+   "teilfeld": "TotaL CHF gesamte Unternehmung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil KLV: kein eCH-Element.",
+   "elternfeld": "400 Medizinischer Bedarf",
+   "teilfeld": "davon KLV-Kern DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil übrige DL: kein eCH-Element.",
+   "elternfeld": "400 Medizinischer Bedarf",
+   "teilfeld": "davon übrige DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Kontozeile ohne Behälter für die davon-Aufteilung; Position = eCH-0276 expensesForMaterialsGoodsServicesType/expensesForPurchasedServices (KMU 4400), getragen vom Teil Total.",
+   "feld": "460 Bezogene Dienstleistungen",
+   "standard": "eCH-0276",
+   "element": "expensesForPurchasedServices"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Gesamtbetrag laut Erfolgsrechnung = eCH-0276 expensesForPurchasedServices (KMU 4400).",
+   "elternfeld": "460 Bezogene Dienstleistungen",
+   "teilfeld": "TotaL CHF gesamte Unternehmung",
+   "standard": "eCH-0276",
+   "element": "expensesForPurchasedServices"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil KLV: eCH-0276 nur Gesamtbetrag.",
+   "elternfeld": "460 Bezogene Dienstleistungen",
+   "teilfeld": "davon KLV-Kern DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil übrige DL: eCH-0276 nur Gesamtbetrag.",
+   "elternfeld": "460 Bezogene Dienstleistungen",
+   "teilfeld": "davon übrige DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Konzerninterner Teil von Konto 460: eCH-0276 hat nur expensesForPurchasedServices gesamt, keine Konzern-Unterposition.",
+   "feld": "davon konzerninterne Verrechnungen (460 Bezogene Dienstleistungen)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Konzerninterner Teil von Konto 460: kein eCH-0276-Element.",
+   "elternfeld": "davon konzerninterne Verrechnungen (460 Bezogene Dienstleistungen)",
+   "teilfeld": "TotaL CHF gesamte Unternehmung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil KLV: kein eCH-Element.",
+   "elternfeld": "davon konzerninterne Verrechnungen (460 Bezogene Dienstleistungen)",
+   "teilfeld": "davon KLV-Kern DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil übrige DL: kein eCH-Element.",
+   "elternfeld": "davon konzerninterne Verrechnungen (460 Bezogene Dienstleistungen)",
+   "teilfeld": "davon übrige DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Marketing-Teil von Konto 460; eCH-0276 advertisingExpense ist Werbeaufwand im übrigen Betriebsaufwand (KMU 6600), nicht dieselbe Angabe.",
+   "feld": "davon Marketing & Kommunikation (460 Bezogene Dienstleistungen)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Marketing-Teil von Konto 460; eCH-0276 advertisingExpense (KMU 6600) nicht dasselbe.",
+   "elternfeld": "davon Marketing & Kommunikation (460 Bezogene Dienstleistungen)",
+   "teilfeld": "TotaL CHF gesamte Unternehmung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil KLV: kein eCH-Element.",
+   "elternfeld": "davon Marketing & Kommunikation (460 Bezogene Dienstleistungen)",
+   "teilfeld": "davon KLV-Kern DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil übrige DL: kein eCH-Element.",
+   "elternfeld": "davon Marketing & Kommunikation (460 Bezogene Dienstleistungen)",
+   "teilfeld": "davon übrige DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Kontozeile ohne Behälter für die davon-Aufteilung; Position = eCH-0276 otherOperatingExpensesType/vehicleTransportationExpenses (KMU 6200), getragen vom Teil Total.",
+   "feld": "520 Fahrzeug- & Transportaufwand",
+   "standard": "eCH-0276",
+   "element": "vehicleTransportationExpenses"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Gesamtbetrag laut Erfolgsrechnung = eCH-0276 vehicleTransportationExpenses (KMU 6200).",
+   "elternfeld": "520 Fahrzeug- & Transportaufwand",
+   "teilfeld": "TotaL CHF gesamte Unternehmung",
+   "standard": "eCH-0276",
+   "element": "vehicleTransportationExpenses"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil KLV: eCH-0276 nur Gesamtbetrag.",
+   "elternfeld": "520 Fahrzeug- & Transportaufwand",
+   "teilfeld": "davon KLV-Kern DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil übrige DL: eCH-0276 nur Gesamtbetrag.",
+   "elternfeld": "520 Fahrzeug- & Transportaufwand",
+   "teilfeld": "davon übrige DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Kontozeile ohne Behälter für die davon-Aufteilung; Position = eCH-0276 otherOperatingExpensesType/maintenanceRepairsReplacementOfMobileAssets (KMU 6100, Fahrzeuge in 6200), getragen vom Teil Total.",
+   "feld": "530 Unterhalt/Reparatur mobile Anlagen (ohne Fz)",
+   "standard": "eCH-0276",
+   "element": "maintenanceRepairsReplacementOfMobileAssets"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Gesamtbetrag laut Erfolgsrechnung = eCH-0276 maintenanceRepairsReplacementOfMobileAssets (KMU 6100, ohne Fahrzeuge).",
+   "elternfeld": "530 Unterhalt/Reparatur mobile Anlagen (ohne Fz)",
+   "teilfeld": "TotaL CHF gesamte Unternehmung",
+   "standard": "eCH-0276",
+   "element": "maintenanceRepairsReplacementOfMobileAssets"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil KLV: eCH-0276 nur Gesamtbetrag.",
+   "elternfeld": "530 Unterhalt/Reparatur mobile Anlagen (ohne Fz)",
+   "teilfeld": "davon KLV-Kern DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil übrige DL: eCH-0276 nur Gesamtbetrag.",
+   "elternfeld": "530 Unterhalt/Reparatur mobile Anlagen (ohne Fz)",
+   "teilfeld": "davon übrige DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Kontozeile ohne Behälter für die davon-Aufteilung; Position = eCH-0276 otherOperatingExpensesType/rentalExpense (Raumaufwand, KMU 6000), getragen vom Teil Total.",
+   "feld": "550 Raumaufwand",
+   "standard": "eCH-0276",
+   "element": "rentalExpense"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Gesamtbetrag laut Erfolgsrechnung = eCH-0276 rentalExpense (Raumaufwand, KMU 6000).",
+   "elternfeld": "550 Raumaufwand",
+   "teilfeld": "TotaL CHF gesamte Unternehmung",
+   "standard": "eCH-0276",
+   "element": "rentalExpense"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil KLV: eCH-0276 nur Gesamtbetrag.",
+   "elternfeld": "550 Raumaufwand",
+   "teilfeld": "davon KLV-Kern DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil übrige DL: eCH-0276 nur Gesamtbetrag.",
+   "elternfeld": "550 Raumaufwand",
+   "teilfeld": "davon übrige DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Kontozeile ohne Behälter für die davon-Aufteilung; Position = eCH-0276 otherOperatingExpensesType/energyAndDisposalExpenses (KMU 6400), getragen vom Teil Total.",
+   "feld": "560 Energie und Entsorgung",
+   "standard": "eCH-0276",
+   "element": "energyAndDisposalExpenses"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Gesamtbetrag laut Erfolgsrechnung = eCH-0276 energyAndDisposalExpenses (KMU 6400).",
+   "elternfeld": "560 Energie und Entsorgung",
+   "teilfeld": "TotaL CHF gesamte Unternehmung",
+   "standard": "eCH-0276",
+   "element": "energyAndDisposalExpenses"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil KLV: eCH-0276 nur Gesamtbetrag.",
+   "elternfeld": "560 Energie und Entsorgung",
+   "teilfeld": "davon KLV-Kern DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil übrige DL: eCH-0276 nur Gesamtbetrag.",
+   "elternfeld": "560 Energie und Entsorgung",
+   "teilfeld": "davon übrige DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Kontozeile ohne Behälter für die davon-Aufteilung; Position = eCH-0276 otherOperatingExpensesType/administrativeAndItExpenses (KMU 6500), getragen vom Teil Total.",
+   "feld": "570 Verwaltung und Informatik",
+   "standard": "eCH-0276",
+   "element": "administrativeAndItExpenses"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Gesamtbetrag laut Erfolgsrechnung = eCH-0276 administrativeAndItExpenses (KMU 6500).",
+   "elternfeld": "570 Verwaltung und Informatik",
+   "teilfeld": "TotaL CHF gesamte Unternehmung",
+   "standard": "eCH-0276",
+   "element": "administrativeAndItExpenses"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil KLV: eCH-0276 nur Gesamtbetrag.",
+   "elternfeld": "570 Verwaltung und Informatik",
+   "teilfeld": "davon KLV-Kern DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil übrige DL: eCH-0276 nur Gesamtbetrag.",
+   "elternfeld": "570 Verwaltung und Informatik",
+   "teilfeld": "davon übrige DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Konzerninterner Teil von Konto 570: eCH-0276 hat nur administrativeAndItExpenses gesamt, keine Konzern-Unterposition.",
+   "feld": "davon konzerninterne Verrechnungen (570 Verwaltung und Informatik)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Konzerninterner Teil von Konto 570: kein eCH-0276-Element.",
+   "elternfeld": "davon konzerninterne Verrechnungen (570 Verwaltung und Informatik)",
+   "teilfeld": "TotaL CHF gesamte Unternehmung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil KLV: kein eCH-Element.",
+   "elternfeld": "davon konzerninterne Verrechnungen (570 Verwaltung und Informatik)",
+   "teilfeld": "davon KLV-Kern DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil übrige DL: kein eCH-Element.",
+   "elternfeld": "davon konzerninterne Verrechnungen (570 Verwaltung und Informatik)",
+   "teilfeld": "davon übrige DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Kontozeile ohne Behälter für die davon-Aufteilung; Position = eCH-0276 otherOperatingExpensesType/insuranceContributionFeeApprovalExpenses (KMU 6300), getragen vom Teil Total.",
+   "feld": "580 Sachversicherungen, Abgaben, Gebühren",
+   "standard": "eCH-0276",
+   "element": "insuranceContributionFeeApprovalExpenses"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Gesamtbetrag laut Erfolgsrechnung = eCH-0276 insuranceContributionFeeApprovalExpenses (KMU 6300).",
+   "elternfeld": "580 Sachversicherungen, Abgaben, Gebühren",
+   "teilfeld": "TotaL CHF gesamte Unternehmung",
+   "standard": "eCH-0276",
+   "element": "insuranceContributionFeeApprovalExpenses"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil KLV: eCH-0276 nur Gesamtbetrag.",
+   "elternfeld": "580 Sachversicherungen, Abgaben, Gebühren",
+   "teilfeld": "davon KLV-Kern DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil übrige DL: eCH-0276 nur Gesamtbetrag.",
+   "elternfeld": "580 Sachversicherungen, Abgaben, Gebühren",
+   "teilfeld": "davon übrige DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Kontozeile ohne Behälter; Konto 590 = sonstiger Betriebsaufwand und Steuern, eCH-0276 trennt miscellaneousOperatingExpenses (KMU 6700) und directTaxes - kein Einzelelement deckt die Summe.",
+   "feld": "590 Sonstiger betrieblicher Aufwand, Steuern"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Konto 590 inkl. Steuern; eCH-0276 trennt miscellaneousOperatingExpenses und directTaxes.",
+   "elternfeld": "590 Sonstiger betrieblicher Aufwand, Steuern",
+   "teilfeld": "TotaL CHF gesamte Unternehmung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil KLV: kein eCH-Element.",
+   "elternfeld": "590 Sonstiger betrieblicher Aufwand, Steuern",
+   "teilfeld": "davon KLV-Kern DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil übrige DL: kein eCH-Element.",
+   "elternfeld": "590 Sonstiger betrieblicher Aufwand, Steuern",
+   "teilfeld": "davon übrige DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Kontozeile ohne Behälter für die davon-Aufteilung; Position = eCH-0276 depreciationValueAdjustmentNoncurrentAssetsType/totalDepreciationValueAdjustmentNoncurrentAssets (KMU 6800), getragen vom Teil Total.",
+   "feld": "540 Abschreibungen und Wertberichtigungen",
+   "standard": "eCH-0276",
+   "element": "totalDepreciationValueAdjustmentNoncurrentAssets"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Gesamtbetrag laut Erfolgsrechnung = eCH-0276 totalDepreciationValueAdjustmentNoncurrentAssets (KMU 6800).",
+   "elternfeld": "540 Abschreibungen und Wertberichtigungen",
+   "teilfeld": "TotaL CHF gesamte Unternehmung",
+   "standard": "eCH-0276",
+   "element": "totalDepreciationValueAdjustmentNoncurrentAssets"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil KLV: eCH-0276 nur Gesamtbetrag.",
+   "elternfeld": "540 Abschreibungen und Wertberichtigungen",
+   "teilfeld": "davon KLV-Kern DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil übrige DL: eCH-0276 nur Gesamtbetrag.",
+   "elternfeld": "540 Abschreibungen und Wertberichtigungen",
+   "teilfeld": "davon übrige DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KLV-Erlös von Klientinnen/Klienten (Zahleraufteilung); eCH-0276 serviceRevenue ist der ganze Dienstleistungsertrag, eCH-0275/0278 nur Steuerbescheinigung einer Person - nicht dieselbe Angabe.",
+   "feld": "von Klienten (600 Nettoerlöse aus KLV-Leistungen)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KLV-Erlös von Klienten; eCH-0276 serviceRevenue ohne Zahleraufteilung.",
+   "elternfeld": "von Klienten (600 Nettoerlöse aus KLV-Leistungen)",
+   "teilfeld": "TotaL CHF gesamte Unternehmung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil KLV: kein eCH-Element.",
+   "elternfeld": "von Klienten (600 Nettoerlöse aus KLV-Leistungen)",
+   "teilfeld": "davon KLV-Kern DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil übrige DL: kein eCH-Element.",
+   "elternfeld": "von Klienten (600 Nettoerlöse aus KLV-Leistungen)",
+   "teilfeld": "davon übrige DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KLV-Erlös von Versicherern; eCH-0276 serviceRevenue ohne Zahleraufteilung, eCH-0275 totalReimbursedByInsurance ist Steuerbescheinigung einer versicherten Person - nicht dieselbe Angabe.",
+   "feld": "von Versicherern (600 Nettoerlöse aus KLV-Leistungen)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KLV-Erlös von Versicherern; eCH-0276 serviceRevenue ohne Zahleraufteilung.",
+   "elternfeld": "von Versicherern (600 Nettoerlöse aus KLV-Leistungen)",
+   "teilfeld": "TotaL CHF gesamte Unternehmung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil KLV: kein eCH-Element.",
+   "elternfeld": "von Versicherern (600 Nettoerlöse aus KLV-Leistungen)",
+   "teilfeld": "davon KLV-Kern DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil übrige DL: kein eCH-Element.",
+   "elternfeld": "von Versicherern (600 Nettoerlöse aus KLV-Leistungen)",
+   "teilfeld": "davon übrige DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Restfinanzierung der öffentlichen Hand (KVG Art. 25a) als KLV-Erlös; eCH-0276 publicSectorContributions/publicSectorContributionsDonation und serviceRevenue sind nicht dieselbe Angabe.",
+   "feld": "von öff. Hand (Restkosten) (600 Nettoerlöse aus KLV-Leistungen)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Restkosten öff. Hand; eCH-0276 publicSectorContributions nicht dieselbe Angabe.",
+   "elternfeld": "von öff. Hand (Restkosten) (600 Nettoerlöse aus KLV-Leistungen)",
+   "teilfeld": "TotaL CHF gesamte Unternehmung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil KLV: kein eCH-Element.",
+   "elternfeld": "von öff. Hand (Restkosten) (600 Nettoerlöse aus KLV-Leistungen)",
+   "teilfeld": "davon KLV-Kern DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil übrige DL: kein eCH-Element.",
+   "elternfeld": "von öff. Hand (Restkosten) (600 Nettoerlöse aus KLV-Leistungen)",
+   "teilfeld": "davon übrige DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Kontozeile ohne Behälter; nur ein Teil von eCH-0276 serviceRevenue (ganzer Dienstleistungsertrag), nicht deckungsgleich.",
+   "feld": "620 Nettoerlöse aus Hauswirtschaft und Betreuung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Teil von eCH-0276 serviceRevenue, nicht deckungsgleich.",
+   "elternfeld": "620 Nettoerlöse aus Hauswirtschaft und Betreuung",
+   "teilfeld": "TotaL CHF gesamte Unternehmung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil KLV: kein eCH-Element.",
+   "elternfeld": "620 Nettoerlöse aus Hauswirtschaft und Betreuung",
+   "teilfeld": "davon KLV-Kern DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil übrige DL: kein eCH-Element.",
+   "elternfeld": "620 Nettoerlöse aus Hauswirtschaft und Betreuung",
+   "teilfeld": "davon übrige DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Kontozeile ohne Behälter; Konto 630 = Mitgliederbeiträge + Spenden + Legate, eCH-0276 führt membershipFees und incomeFromDonationsGiftsAndBequests getrennt - kein Einzelelement deckt die Summe.",
+   "feld": "630 Mitgliederbeiträge, Spenden, Legate"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Summe aus eCH-0276 membershipFees und incomeFromDonationsGiftsAndBequests, kein Einzelelement.",
+   "elternfeld": "630 Mitgliederbeiträge, Spenden, Legate",
+   "teilfeld": "TotaL CHF gesamte Unternehmung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil KLV: kein eCH-Element.",
+   "elternfeld": "630 Mitgliederbeiträge, Spenden, Legate",
+   "teilfeld": "davon KLV-Kern DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil übrige DL: kein eCH-Element.",
+   "elternfeld": "630 Mitgliederbeiträge, Spenden, Legate",
+   "teilfeld": "davon übrige DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Kontozeile ohne Behälter; Andere Erträge: eCH-0276 otherOperatingRevenue/otherExternalIncome anders abgegrenzt, nicht deckungsgleich.",
+   "feld": "670 Andere Erträge"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "eCH-0276 otherOperatingRevenue/otherExternalIncome anders abgegrenzt.",
+   "elternfeld": "670 Andere Erträge",
+   "teilfeld": "TotaL CHF gesamte Unternehmung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil KLV: kein eCH-Element.",
+   "elternfeld": "670 Andere Erträge",
+   "teilfeld": "davon KLV-Kern DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil übrige DL: kein eCH-Element.",
+   "elternfeld": "670 Andere Erträge",
+   "teilfeld": "davon übrige DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Defizitdeckung der öffentlichen Hand und Dritter, nur ein Teil der Gruppe 65; eCH-0276 publicSectorContributions/publicSectorContributionsDonation sind Gesamtbeträge öffentlicher Beiträge - nicht dieselbe Angabe.",
+   "feld": "Defizitdeckung (65 Beiträge der öffentlichen Hand und Anderen)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Teil der Gruppe 65 inkl. Dritte; eCH-0276 publicSectorContributions nicht dieselbe Angabe.",
+   "elternfeld": "Defizitdeckung (65 Beiträge der öffentlichen Hand und Anderen)",
+   "teilfeld": "TotaL CHF gesamte Unternehmung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil KLV: kein eCH-Element.",
+   "elternfeld": "Defizitdeckung (65 Beiträge der öffentlichen Hand und Anderen)",
+   "teilfeld": "davon KLV-Kern DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil übrige DL: kein eCH-Element.",
+   "elternfeld": "Defizitdeckung (65 Beiträge der öffentlichen Hand und Anderen)",
+   "teilfeld": "davon übrige DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Übrige Beiträge der öffentlichen Hand und Dritter, nur ein Teil der Gruppe 65; eCH-0276 publicSectorContributions/publicSectorContributionsDonation nicht dieselbe Angabe.",
+   "feld": "Übrige Beiträge (65 Beiträge der öffentlichen Hand und Anderen)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Teil der Gruppe 65 inkl. Dritte; eCH-0276 publicSectorContributions nicht dieselbe Angabe.",
+   "elternfeld": "Übrige Beiträge (65 Beiträge der öffentlichen Hand und Anderen)",
+   "teilfeld": "TotaL CHF gesamte Unternehmung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil KLV: kein eCH-Element.",
+   "elternfeld": "Übrige Beiträge (65 Beiträge der öffentlichen Hand und Anderen)",
+   "teilfeld": "davon KLV-Kern DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil übrige DL: kein eCH-Element.",
+   "elternfeld": "Übrige Beiträge (65 Beiträge der öffentlichen Hand und Anderen)",
+   "teilfeld": "davon übrige DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Brutto-Finanzertrag: eCH-0276 financialExpensesAndFinancialIncomeType kennt nur Einzelarten (financialIncomeFromCurrentAssets, investmentIncome, financialIncomeFromNoncurrentAssets, otherFinancialIncome) und den Nettosaldo totalFinancialExpensesAndFinancialIncome.",
+   "feld": "700 Finanzertrag"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Brutto-Finanzertrag: eCH-0276 nur Einzelarten und Nettosaldo.",
+   "elternfeld": "700 Finanzertrag",
+   "teilfeld": "TotaL CHF gesamte Unternehmung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil KLV: kein eCH-Element.",
+   "elternfeld": "700 Finanzertrag",
+   "teilfeld": "davon KLV-Kern DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil übrige DL: kein eCH-Element.",
+   "elternfeld": "700 Finanzertrag",
+   "teilfeld": "davon übrige DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Gesamter Finanzaufwand: eCH-0276 kennt nur interestExpenseFromLiabilities, capitalLossesOnInvestments, otherFinancialExpenses und den Nettosaldo totalFinancialExpensesAndFinancialIncome.",
+   "feld": "750 Finanzaufwand"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Gesamter Finanzaufwand: eCH-0276 nur Einzelarten und Nettosaldo.",
+   "elternfeld": "750 Finanzaufwand",
+   "teilfeld": "TotaL CHF gesamte Unternehmung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil KLV: kein eCH-Element.",
+   "elternfeld": "750 Finanzaufwand",
+   "teilfeld": "davon KLV-Kern DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Umlageanteil übrige DL: kein eCH-Element.",
+   "elternfeld": "750 Finanzaufwand",
+   "teilfeld": "davon übrige DL im Kanton Schaffhausen"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freitext-Bemerkung zum Formularblatt; eCH-0058/0039 headerType comment (Meldungskopf), eCH-0276 remark (E-Bilanz) sind nicht diese Angabe.",
+   "feld": "Bemerkungen zuhanden Gesundheitsamt (Formular C)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freitext-Bemerkung zum Formularblatt; eCH-0058/0039 headerType comment (Meldungskopf), eCH-0276 remark (E-Bilanz) sind nicht diese Angabe.",
+   "feld": "Bemerkungen zuhanden Gesundheitsamt (Formular D1)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Eigene Kostenträgerrechnung je KLV-Leistung: kein Behälter/Element; eCH-0276 nur FiBu-Positionen der Unternehmung, eCH-0235 Einzelfall, eCH-0234/0237 ohne Elemente (Einzelfall-Prozess).",
+   "feld": "Vollkosten (KLV Pflegeleistungen Kanton Schaffhausen)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "Vollkosten (KLV Pflegeleistungen Kanton Schaffhausen)",
+   "teilfeld": "KLV-A Abklärung (500)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "Vollkosten (KLV Pflegeleistungen Kanton Schaffhausen)",
+   "teilfeld": "KLV-B Untersuchung (501)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "Vollkosten (KLV Pflegeleistungen Kanton Schaffhausen)",
+   "teilfeld": "KLV-C Grundpflege (502, o/Angehörige)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "Vollkosten (KLV Pflegeleistungen Kanton Schaffhausen)",
+   "teilfeld": "KLV-C Angehörigengrundpflege (502 Grundpflege)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Eigene KORE je Kostenträger: kein Behälter; eCH-0276 nur FiBu, eCH-0235 Einzelfall.",
+   "feld": "Klienten Ist (Erträge, KLV Pflegeleistungen Kanton Schaffhausen)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "Klienten Ist (Erträge, KLV Pflegeleistungen Kanton Schaffhausen)",
+   "teilfeld": "KLV-A Abklärung (500)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "Klienten Ist (Erträge, KLV Pflegeleistungen Kanton Schaffhausen)",
+   "teilfeld": "KLV-B Untersuchung (501)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "Klienten Ist (Erträge, KLV Pflegeleistungen Kanton Schaffhausen)",
+   "teilfeld": "KLV-C Grundpflege (502, o/Angehörige)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "Klienten Ist (Erträge, KLV Pflegeleistungen Kanton Schaffhausen)",
+   "teilfeld": "KLV-C Angehörigengrundpflege (502 Grundpflege)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Eigene KORE je Kostenträger: kein Behälter; eCH-0276 nur FiBu, eCH-0235 Einzelfall.",
+   "feld": "Versicherer (Erträge, KLV Pflegeleistungen Kanton Schaffhausen)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "Versicherer (Erträge, KLV Pflegeleistungen Kanton Schaffhausen)",
+   "teilfeld": "KLV-A Abklärung (500)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "Versicherer (Erträge, KLV Pflegeleistungen Kanton Schaffhausen)",
+   "teilfeld": "KLV-B Untersuchung (501)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "Versicherer (Erträge, KLV Pflegeleistungen Kanton Schaffhausen)",
+   "teilfeld": "KLV-C Grundpflege (502, o/Angehörige)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "Versicherer (Erträge, KLV Pflegeleistungen Kanton Schaffhausen)",
+   "teilfeld": "KLV-C Angehörigengrundpflege (502 Grundpflege)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Eigene KORE je Kostenträger: kein Behälter; eCH-0276 nur FiBu, eCH-0235 Einzelfall.",
+   "feld": "öff. Hand (Erträge, KLV Pflegeleistungen Kanton Schaffhausen)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "öff. Hand (Erträge, KLV Pflegeleistungen Kanton Schaffhausen)",
+   "teilfeld": "KLV-A Abklärung (500)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "öff. Hand (Erträge, KLV Pflegeleistungen Kanton Schaffhausen)",
+   "teilfeld": "KLV-B Untersuchung (501)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "öff. Hand (Erträge, KLV Pflegeleistungen Kanton Schaffhausen)",
+   "teilfeld": "KLV-C Grundpflege (502, o/Angehörige)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "öff. Hand (Erträge, KLV Pflegeleistungen Kanton Schaffhausen)",
+   "teilfeld": "KLV-C Angehörigengrundpflege (502 Grundpflege)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Eigene KORE je Kostenträger (Jahresaggregat): kein Behälter; eCH-0235 count/duration nur Einzelfall, eCH-0237 ohne Elemente.",
+   "feld": "Total Stunden (KLV Pflegeleistungen Kanton Schaffhausen)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden: kein eCH-Element.",
+   "elternfeld": "Total Stunden (KLV Pflegeleistungen Kanton Schaffhausen)",
+   "teilfeld": "KLV-A Abklärung (500)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden: kein eCH-Element.",
+   "elternfeld": "Total Stunden (KLV Pflegeleistungen Kanton Schaffhausen)",
+   "teilfeld": "KLV-B Untersuchung (501)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden: kein eCH-Element.",
+   "elternfeld": "Total Stunden (KLV Pflegeleistungen Kanton Schaffhausen)",
+   "teilfeld": "KLV-C Grundpflege (502, o/Angehörige)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden: kein eCH-Element.",
+   "elternfeld": "Total Stunden (KLV Pflegeleistungen Kanton Schaffhausen)",
+   "teilfeld": "KLV-C Angehörigengrundpflege (502 Grundpflege)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Anzahl Klientinnen/Klienten im Rechnungsjahr (Jahresaggregat); kein Zähl-Element (Suche numberOf/client/patient; eCH-0235 count ist Leistungsmenge eines Einzelfalls, eCH-0237 ohne Elemente).",
+   "feld": "Total Anzahl Klienten KLV"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Eigene KORE je Kostenträger: kein Behälter; eCH-0276 nur FiBu, eCH-0235 Einzelfall.",
+   "feld": "Vollkosten (Übrige Pflegeleistungen Kanton Schaffhausen (AÜP, IV, MV, UV))"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "Vollkosten (Übrige Pflegeleistungen Kanton Schaffhausen (AÜP, IV, MV, UV))",
+   "teilfeld": "KLV-A Abklärung (500)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "Vollkosten (Übrige Pflegeleistungen Kanton Schaffhausen (AÜP, IV, MV, UV))",
+   "teilfeld": "KLV-B Untersuchung (501)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "Vollkosten (Übrige Pflegeleistungen Kanton Schaffhausen (AÜP, IV, MV, UV))",
+   "teilfeld": "KLV-C Grundpflege (502, o/Angehörige)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "Vollkosten (Übrige Pflegeleistungen Kanton Schaffhausen (AÜP, IV, MV, UV))",
+   "teilfeld": "KLV-C Grundpflege Angehörige (502)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Eigene KORE je Kostenträger: kein Behälter; eCH-0276 nur FiBu, eCH-0235 Einzelfall.",
+   "feld": "Klienten Ist (Erträge, Übrige Pflegeleistungen Kanton Schaffhausen (AÜP, IV, MV, UV))"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "Klienten Ist (Erträge, Übrige Pflegeleistungen Kanton Schaffhausen (AÜP, IV, MV, UV))",
+   "teilfeld": "KLV-A Abklärung (500)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "Klienten Ist (Erträge, Übrige Pflegeleistungen Kanton Schaffhausen (AÜP, IV, MV, UV))",
+   "teilfeld": "KLV-B Untersuchung (501)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "Klienten Ist (Erträge, Übrige Pflegeleistungen Kanton Schaffhausen (AÜP, IV, MV, UV))",
+   "teilfeld": "KLV-C Grundpflege (502, o/Angehörige)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "Klienten Ist (Erträge, Übrige Pflegeleistungen Kanton Schaffhausen (AÜP, IV, MV, UV))",
+   "teilfeld": "KLV-C Grundpflege Angehörige (502)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Eigene KORE je Kostenträger: kein Behälter; eCH-0276 nur FiBu, eCH-0235 Einzelfall.",
+   "feld": "Versicherer (Erträge, Übrige Pflegeleistungen Kanton Schaffhausen (AÜP, IV, MV, UV))"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "Versicherer (Erträge, Übrige Pflegeleistungen Kanton Schaffhausen (AÜP, IV, MV, UV))",
+   "teilfeld": "KLV-A Abklärung (500)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "Versicherer (Erträge, Übrige Pflegeleistungen Kanton Schaffhausen (AÜP, IV, MV, UV))",
+   "teilfeld": "KLV-B Untersuchung (501)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "Versicherer (Erträge, Übrige Pflegeleistungen Kanton Schaffhausen (AÜP, IV, MV, UV))",
+   "teilfeld": "KLV-C Grundpflege (502, o/Angehörige)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "Versicherer (Erträge, Übrige Pflegeleistungen Kanton Schaffhausen (AÜP, IV, MV, UV))",
+   "teilfeld": "KLV-C Grundpflege Angehörige (502)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Eigene KORE je Kostenträger: kein Behälter; eCH-0276 nur FiBu, eCH-0235 Einzelfall.",
+   "feld": "öff. Hand (Erträge, Übrige Pflegeleistungen Kanton Schaffhausen (AÜP, IV, MV, UV))"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "öff. Hand (Erträge, Übrige Pflegeleistungen Kanton Schaffhausen (AÜP, IV, MV, UV))",
+   "teilfeld": "KLV-A Abklärung (500)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "öff. Hand (Erträge, Übrige Pflegeleistungen Kanton Schaffhausen (AÜP, IV, MV, UV))",
+   "teilfeld": "KLV-B Untersuchung (501)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "öff. Hand (Erträge, Übrige Pflegeleistungen Kanton Schaffhausen (AÜP, IV, MV, UV))",
+   "teilfeld": "KLV-C Grundpflege (502, o/Angehörige)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "öff. Hand (Erträge, Übrige Pflegeleistungen Kanton Schaffhausen (AÜP, IV, MV, UV))",
+   "teilfeld": "KLV-C Grundpflege Angehörige (502)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Eigene KORE je Kostenträger (Jahresaggregat): kein Behälter; eCH-0235 count/duration nur Einzelfall.",
+   "feld": "Total Stunden (Übrige Pflegeleistungen Kanton Schaffhausen (AÜP, IV, MV, UV))"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden: kein eCH-Element.",
+   "elternfeld": "Total Stunden (Übrige Pflegeleistungen Kanton Schaffhausen (AÜP, IV, MV, UV))",
+   "teilfeld": "KLV-A Abklärung (500)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden: kein eCH-Element.",
+   "elternfeld": "Total Stunden (Übrige Pflegeleistungen Kanton Schaffhausen (AÜP, IV, MV, UV))",
+   "teilfeld": "KLV-B Untersuchung (501)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden: kein eCH-Element.",
+   "elternfeld": "Total Stunden (Übrige Pflegeleistungen Kanton Schaffhausen (AÜP, IV, MV, UV))",
+   "teilfeld": "KLV-C Grundpflege (502, o/Angehörige)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden: kein eCH-Element.",
+   "elternfeld": "Total Stunden (Übrige Pflegeleistungen Kanton Schaffhausen (AÜP, IV, MV, UV))",
+   "teilfeld": "KLV-C Grundpflege Angehörige (502)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Aggregierte Fallzahl; kein Zähl-Element im Katalog (Suche numberOf/client/patient; eCH-0237 ohne Elemente).",
+   "feld": "Total Anzahl übrige Klienten Pflege"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Eigene KORE je Kostenträger: kein Behälter; eCH-0276 nur FiBu, eCH-0235 Einzelfall.",
+   "feld": "Vollkosten (Übrige Leistungen)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "Vollkosten (Übrige Leistungen)",
+   "teilfeld": "Hauswirtschaft und Betreuung (560)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "Vollkosten (Übrige Leistungen)",
+   "teilfeld": "Übrige Dienstleistungen (600)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Eigene KORE je Kostenträger: kein Behälter; eCH-0276 nur FiBu, eCH-0235 Einzelfall.",
+   "feld": "Klienten Ist (Erträge, Übrige Leistungen)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "Klienten Ist (Erträge, Übrige Leistungen)",
+   "teilfeld": "Hauswirtschaft und Betreuung (560)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "Klienten Ist (Erträge, Übrige Leistungen)",
+   "teilfeld": "Übrige Dienstleistungen (600)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Eigene KORE je Kostenträger: kein Behälter; eCH-0276 nur FiBu, eCH-0235 Einzelfall.",
+   "feld": "Versicherer (Erträge, Übrige Leistungen)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "Versicherer (Erträge, Übrige Leistungen)",
+   "teilfeld": "Hauswirtschaft und Betreuung (560)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "Versicherer (Erträge, Übrige Leistungen)",
+   "teilfeld": "Übrige Dienstleistungen (600)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Eigene KORE je Kostenträger: kein Behälter; eCH-0276 nur FiBu, eCH-0235 Einzelfall.",
+   "feld": "öff. Hand (Erträge, Übrige Leistungen)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "öff. Hand (Erträge, Übrige Leistungen)",
+   "teilfeld": "Hauswirtschaft und Betreuung (560)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KORE-Wert: kein eCH-Element.",
+   "elternfeld": "öff. Hand (Erträge, Übrige Leistungen)",
+   "teilfeld": "Übrige Dienstleistungen (600)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Eigene KORE je Kostenträger (Jahresaggregat): kein Behälter; eCH-0235 count/duration nur Einzelfall.",
+   "feld": "Total Stunden (Übrige Leistungen)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden: kein eCH-Element.",
+   "elternfeld": "Total Stunden (Übrige Leistungen)",
+   "teilfeld": "Hauswirtschaft und Betreuung (560)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Stunden: kein eCH-Element.",
+   "elternfeld": "Total Stunden (Übrige Leistungen)",
+   "teilfeld": "Übrige Dienstleistungen (600)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Aggregierte Fallzahl; kein Zähl-Element im Katalog (Suche numberOf/client/patient; eCH-0237 ohne Elemente).",
+   "feld": "Total Anzahl Klienten Hauswirtschaft und Betreuung"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Beilage der eigenen Kostenrechnung als CSV; Inhalt ohne eCH-Element. eCH-0283 regelt nur CSV-Dateiregeln (ohne Elemente, kein Inhalt), eCH-0058 attachment/eCH-0039 document sind generische Hüllen; Beilagen im Bestand mehrheitlich kein_standard.",
+   "feld": "Kostenrechnung in CSV-Format"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freitext-Bemerkung zum Formularblatt; eCH-0058/0039 headerType comment (Meldungskopf), eCH-0276 remark (E-Bilanz) sind nicht diese Angabe.",
+   "feld": "Bemerkungen zuhanden Gesundheitsamt (Formular D2)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "An die Gemeinde abgerechnete KLV-Minuten je Leistung (Jahresaggregat); Gemeinde ist vorgedruckte Zeile, keine Angabe; kein Behälter/Element (eCH-0235/0237 geprüft, eCH-0007 nur Gemeindeidentifikation).",
+   "feld": "Bargen (Verrechnete Minuten pro Gemeinde)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Bargen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-A Abklärung (500)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Bargen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-B Untersuchung (501)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Bargen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 ohne pflegende Angeh.)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Bargen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 pfl. Angeh.)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KLV-Minuten je Gemeinde (Jahresaggregat): kein Behälter/Element (eCH-0235/0237 geprüft).",
+   "feld": "Beggingen (Verrechnete Minuten pro Gemeinde)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Beggingen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-A Abklärung (500)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Beggingen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-B Untersuchung (501)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Beggingen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 ohne pflegende Angeh.)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Beggingen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 pfl. Angeh.)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KLV-Minuten je Gemeinde (Jahresaggregat): kein Behälter/Element (eCH-0235/0237 geprüft).",
+   "feld": "Beringen (Verrechnete Minuten pro Gemeinde)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Beringen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-A Abklärung (500)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Beringen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-B Untersuchung (501)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Beringen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 ohne pflegende Angeh.)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Beringen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 pfl. Angeh.)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KLV-Minuten je Gemeinde (Jahresaggregat): kein Behälter/Element (eCH-0235/0237 geprüft).",
+   "feld": "Buch (Verrechnete Minuten pro Gemeinde)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Buch (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-A Abklärung (500)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Buch (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-B Untersuchung (501)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Buch (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 ohne pflegende Angeh.)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Buch (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 pfl. Angeh.)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KLV-Minuten je Gemeinde (Jahresaggregat): kein Behälter/Element (eCH-0235/0237 geprüft).",
+   "feld": "Buchberg (Verrechnete Minuten pro Gemeinde)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Buchberg (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-A Abklärung (500)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Buchberg (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-B Untersuchung (501)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Buchberg (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 ohne pflegende Angeh.)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Buchberg (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 pfl. Angeh.)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KLV-Minuten je Gemeinde (Jahresaggregat): kein Behälter/Element (eCH-0235/0237 geprüft).",
+   "feld": "Büttenhardt (Verrechnete Minuten pro Gemeinde)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Büttenhardt (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-A Abklärung (500)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Büttenhardt (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-B Untersuchung (501)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Büttenhardt (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 ohne pflegende Angeh.)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Büttenhardt (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 pfl. Angeh.)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KLV-Minuten je Gemeinde (Jahresaggregat): kein Behälter/Element (eCH-0235/0237 geprüft).",
+   "feld": "Dörflingen (Verrechnete Minuten pro Gemeinde)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Dörflingen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-A Abklärung (500)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Dörflingen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-B Untersuchung (501)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Dörflingen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 ohne pflegende Angeh.)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Dörflingen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 pfl. Angeh.)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KLV-Minuten je Gemeinde (Jahresaggregat): kein Behälter/Element (eCH-0235/0237 geprüft).",
+   "feld": "Gächlingen (Verrechnete Minuten pro Gemeinde)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Gächlingen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-A Abklärung (500)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Gächlingen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-B Untersuchung (501)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Gächlingen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 ohne pflegende Angeh.)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Gächlingen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 pfl. Angeh.)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KLV-Minuten je Gemeinde (Jahresaggregat): kein Behälter/Element (eCH-0235/0237 geprüft).",
+   "feld": "Hallau (Verrechnete Minuten pro Gemeinde)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Hallau (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-A Abklärung (500)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Hallau (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-B Untersuchung (501)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Hallau (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 ohne pflegende Angeh.)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Hallau (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 pfl. Angeh.)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KLV-Minuten je Gemeinde (Jahresaggregat): kein Behälter/Element (eCH-0235/0237 geprüft).",
+   "feld": "Hemishofen (Verrechnete Minuten pro Gemeinde)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Hemishofen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-A Abklärung (500)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Hemishofen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-B Untersuchung (501)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Hemishofen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 ohne pflegende Angeh.)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Hemishofen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 pfl. Angeh.)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KLV-Minuten je Gemeinde (Jahresaggregat): kein Behälter/Element (eCH-0235/0237 geprüft).",
+   "feld": "Löhningen (Verrechnete Minuten pro Gemeinde)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Löhningen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-A Abklärung (500)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Löhningen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-B Untersuchung (501)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Löhningen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 ohne pflegende Angeh.)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Löhningen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 pfl. Angeh.)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KLV-Minuten je Gemeinde (Jahresaggregat): kein Behälter/Element (eCH-0235/0237 geprüft).",
+   "feld": "Lohn (Verrechnete Minuten pro Gemeinde)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Lohn (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-A Abklärung (500)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Lohn (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-B Untersuchung (501)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Lohn (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 ohne pflegende Angeh.)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Lohn (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 pfl. Angeh.)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KLV-Minuten je Gemeinde (Jahresaggregat): kein Behälter/Element (eCH-0235/0237 geprüft).",
+   "feld": "Merishausen (Verrechnete Minuten pro Gemeinde)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Merishausen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-A Abklärung (500)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Merishausen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-B Untersuchung (501)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Merishausen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 ohne pflegende Angeh.)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Merishausen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 pfl. Angeh.)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KLV-Minuten je Gemeinde (Jahresaggregat): kein Behälter/Element (eCH-0235/0237 geprüft).",
+   "feld": "Neuhausen (Verrechnete Minuten pro Gemeinde)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Neuhausen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-A Abklärung (500)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Neuhausen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-B Untersuchung (501)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Neuhausen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 ohne pflegende Angeh.)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Neuhausen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 pfl. Angeh.)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KLV-Minuten je Gemeinde (Jahresaggregat): kein Behälter/Element (eCH-0235/0237 geprüft).",
+   "feld": "Neunkirch (Verrechnete Minuten pro Gemeinde)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Neunkirch (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-A Abklärung (500)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Neunkirch (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-B Untersuchung (501)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Neunkirch (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 ohne pflegende Angeh.)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Neunkirch (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 pfl. Angeh.)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KLV-Minuten je Gemeinde (Jahresaggregat): kein Behälter/Element (eCH-0235/0237 geprüft).",
+   "feld": "Oberhallau (Verrechnete Minuten pro Gemeinde)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Oberhallau (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-A Abklärung (500)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Oberhallau (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-B Untersuchung (501)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Oberhallau (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 ohne pflegende Angeh.)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Oberhallau (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 pfl. Angeh.)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KLV-Minuten je Gemeinde (Jahresaggregat): kein Behälter/Element (eCH-0235/0237 geprüft).",
+   "feld": "Ramsen (Verrechnete Minuten pro Gemeinde)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Ramsen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-A Abklärung (500)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Ramsen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-B Untersuchung (501)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Ramsen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 ohne pflegende Angeh.)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Ramsen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 pfl. Angeh.)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KLV-Minuten je Gemeinde (Jahresaggregat): kein Behälter/Element (eCH-0235/0237 geprüft).",
+   "feld": "Rüdlingen (Verrechnete Minuten pro Gemeinde)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Rüdlingen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-A Abklärung (500)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Rüdlingen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-B Untersuchung (501)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Rüdlingen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 ohne pflegende Angeh.)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Rüdlingen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 pfl. Angeh.)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KLV-Minuten je Gemeinde (Jahresaggregat): kein Behälter/Element (eCH-0235/0237 geprüft).",
+   "feld": "Schaffhausen (Verrechnete Minuten pro Gemeinde)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Schaffhausen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-A Abklärung (500)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Schaffhausen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-B Untersuchung (501)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Schaffhausen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 ohne pflegende Angeh.)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Schaffhausen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 pfl. Angeh.)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KLV-Minuten je Gemeinde (Jahresaggregat): kein Behälter/Element (eCH-0235/0237 geprüft).",
+   "feld": "Schleitheim (Verrechnete Minuten pro Gemeinde)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Schleitheim (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-A Abklärung (500)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Schleitheim (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-B Untersuchung (501)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Schleitheim (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 ohne pflegende Angeh.)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Schleitheim (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 pfl. Angeh.)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KLV-Minuten je Gemeinde (Jahresaggregat): kein Behälter/Element (eCH-0235/0237 geprüft).",
+   "feld": "Siblingen (Verrechnete Minuten pro Gemeinde)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Siblingen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-A Abklärung (500)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Siblingen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-B Untersuchung (501)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Siblingen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 ohne pflegende Angeh.)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Siblingen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 pfl. Angeh.)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KLV-Minuten je Gemeinde (Jahresaggregat): kein Behälter/Element (eCH-0235/0237 geprüft).",
+   "feld": "Stein am Rhein (Verrechnete Minuten pro Gemeinde)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Stein am Rhein (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-A Abklärung (500)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Stein am Rhein (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-B Untersuchung (501)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Stein am Rhein (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 ohne pflegende Angeh.)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Stein am Rhein (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 pfl. Angeh.)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KLV-Minuten je Gemeinde (Jahresaggregat): kein Behälter/Element (eCH-0235/0237 geprüft).",
+   "feld": "Stetten (Verrechnete Minuten pro Gemeinde)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Stetten (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-A Abklärung (500)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Stetten (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-B Untersuchung (501)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Stetten (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 ohne pflegende Angeh.)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Stetten (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 pfl. Angeh.)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KLV-Minuten je Gemeinde (Jahresaggregat): kein Behälter/Element (eCH-0235/0237 geprüft).",
+   "feld": "Thayngen (Verrechnete Minuten pro Gemeinde)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Thayngen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-A Abklärung (500)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Thayngen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-B Untersuchung (501)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Thayngen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 ohne pflegende Angeh.)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Thayngen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 pfl. Angeh.)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KLV-Minuten je Gemeinde (Jahresaggregat): kein Behälter/Element (eCH-0235/0237 geprüft).",
+   "feld": "Trasadingen (Verrechnete Minuten pro Gemeinde)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Trasadingen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-A Abklärung (500)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Trasadingen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-B Untersuchung (501)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Trasadingen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 ohne pflegende Angeh.)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Trasadingen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 pfl. Angeh.)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KLV-Minuten je Gemeinde (Jahresaggregat): kein Behälter/Element (eCH-0235/0237 geprüft).",
+   "feld": "Wilchingen (Verrechnete Minuten pro Gemeinde)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Wilchingen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-A Abklärung (500)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Wilchingen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-B Untersuchung (501)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Wilchingen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 ohne pflegende Angeh.)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Wilchingen (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 pfl. Angeh.)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KLV-Minuten ausserkantonaler Gemeinden (Jahresaggregat): kein Behälter/Element (eCH-0235/0237 geprüft).",
+   "feld": "Gemeinden ausserkantonal (Verrechnete Minuten pro Gemeinde)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Gemeinden ausserkantonal (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-A Abklärung (500)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Gemeinden ausserkantonal (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-B Untersuchung (501)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Gemeinden ausserkantonal (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 ohne pflegende Angeh.)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Minuten: kein eCH-Element.",
+   "elternfeld": "Gemeinden ausserkantonal (Verrechnete Minuten pro Gemeinde)",
+   "teilfeld": "KLV-C Grundpflege (502 pfl. Angeh.)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freitext-Bemerkung zum Formularblatt; eCH-0058/0039 headerType comment (Meldungskopf), eCH-0276 remark (E-Bilanz) sind nicht diese Angabe.",
+   "feld": "Bemerkungen zuhanden Gesundheitsamt (Formular E)"
+  }
+ ]
+}

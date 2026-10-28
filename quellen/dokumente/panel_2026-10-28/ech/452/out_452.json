@@ -1,0 +1,54 @@
+{
+ "hinweis": "eCH-Urteile Formular 452, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/452 --nur-offene=452",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Formular S. 2, Block «Ergänzungen / Unterschrift»: «Ort/Datum:» steht über den Unterschriften. Gemeint sind Ort und Datum, an dem das Gesuch unterzeichnet wird. Die Zuordnung wurde übernommen (ech_herkunft «propagiert (Name 17x geprüft)»). Laut XSD ist eCH-0119 (Genehmigt) locationAndDate (attachedFormsType, xs:string) Ort und Datum der Unterzeichnung als ein zusammengesetzter Wert. Es ist der einzige Container im Katalog, der genau diese beiden Angaben zusammen hält. Nachgeprüft: Das Element steht wörtlich so im Katalog, der Standard hat Status Genehmigt. «Ort, Datum» ist 10× direkt geprüft so zugeordnet. Hinweis: 31 Felder «Ort und Datum» stehen im Korpus auf kein_standard. Diese Uneinheitlichkeit betrifft andere Formulare.",
+   "feld": "Ort/Datum"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Das Paar (Ort/Datum, Ort) meint den Ort der Unterzeichnung. Das ist keine Adresse und kein Wohnort. Im ganzen Katalog gesucht (location/place/placeOf/town/locality/sign). eCH-0010 town (addressInformationType) ist ein Teil der Postadresse. eCH-0129/0131 placeName ist ein Flur- oder Lokalname. eCH-0119 location (concernedPersonType) ist der Wohnort einer betroffenen Person. eCH-0033 location (addressType) gehört zu einer Adresse. eCH-0011 placeOfBirth/placeOfOrigin und eCH-0021 placeOfMarriage sind andere Angaben. Kein Element nennt den Unterzeichnungsort allein, er steckt nur im zusammengesetzten eCH-0119 locationAndDate. Ein Teil darf kein zusammengesetztes Element erhalten. Das deckt sich mit 11 geprüften Teilfeldern «Ort» unter «Ort und Datum».",
+   "elternfeld": "Ort/Datum",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Das Paar (Ort/Datum, Datum) meint das Datum, an dem die gesuchstellende Person unterzeichnet. Im ganzen Katalog nach Datums-, Antrags- und Unterzeichnungs-Elementen gesucht (date/sign/submi/request/application/timestamp). Keines passt: eCH-0058/0147 messageDate/eventDate (headerType) und eCH-0206 requestDate (requestHeaderType) sind Metadaten eines Meldungskopfs. eCH-0039 openingDate betrifft Dossier oder Dokument. eCH-0211 date/dateValidity (decisionRulingType) gehört zum Entscheid der Behörde. Auch eCH-0211 profilingDate/publicationDate, eCH-0129 buildingPermitIssueDate und eCH-0262 dateOfApplication (Ausbringung von Pflanzenschutzmitteln) sind andere Angaben. Ein Element für das Datum der Unterzeichnung gibt es nicht. Das deckt sich mit 11 geprüften Teilfeldern «Datum» unter «Ort und Datum».",
+   "elternfeld": "Ort/Datum",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "S. 2: Feld für die eigenhändige Unterschrift von Eigentümer/in oder Stellvertreter/in. Im ganzen Katalog nach signat/sign/Unterschrift/stamp/seal gesucht. eCH-0039 signer (documentType, token) ist der Name einer unterzeichnenden Person in GEVER-Metadaten, nicht die Unterschrift. eCH-0260 signatures und apprentice/hostCompany/representativeSignatureConfirmation (signaturesType) sind Ja/Nein-Bestätigungen beim Lehrvertrag. eCH-0091/0220/0230/0250/0274/0282 sind Standards für elektronische Signaturen, ohne Elemente und ohne Status Genehmigt. Kein Element bildet die Unterschrift auf einem Formular ab. Das entspricht der Korpuspraxis: 72 Felder mit «Unterschrift» stehen auf kein_standard.",
+   "feld": "Unterschrift Eigentümer/in oder dessen Stellvertreter/in"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "S. 2: Unter der Unterschriftslinie von Eigentümer/in oder Stellvertreter/in stehen Name und Vorname der unterzeichnenden natürlichen Person in Blockschrift. Das Feld hat keine Teilfelder und fasst zwei Angaben zusammen, deshalb erhält es das Container-Element. eCH-0011 (Genehmigt) nameData (personType, nameDataType) enthält officialName und firstName (beide nameDataType). Das Element steht wörtlich so im Katalog. Gleich zugeordnet sind «Unterzeichnende Person (Name, Vorname)» und «Unterzeichnende Person» auf den Formularen 305, 162 und 333 sowie die Unterzeichner auf 306 und 371. officialName allein würde den Vornamen weglassen. eCH-0039 signer ist ein Metadatum von GEVER-Dokumenten und wird im Korpus nirgends verwendet.",
+   "feld": "Name, Vorname (Blockschrift) Eigentümer/in oder dessen Stellvertreter/in",
+   "standard": "eCH-0011",
+   "element": "nameData"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "S. 2: Feld für Unterschrift und Firmenstempel der gesuchstellenden Person bzw. Firma. Gleiche Suche im ganzen Katalog (signat/sign/stamp/seal/Unterschrift/Stempel). eCH-0039 signer ist nur der Name in Dokument-Metadaten. eCH-0260 signaturesType enthält Ja/Nein-Bestätigungen beim Lehrvertrag. eCH-0091/0220/0230/0250/0274/0282 sind Standards für elektronische Signaturen ohne Elemente. Für eine Unterschrift oder einen Firmenstempel auf einem Formular gibt es kein Element. Das entspricht der Korpuspraxis: 72× kein_standard; auch «Firmenstempel» als Teilfeld steht auf kein_standard.",
+   "feld": "Unterschrift Gesuchsteller/in (Firmenstempel)"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "S. 2: Unter «Gesuchsteller/in (Firmenstempel)» stehen Name und Vorname der Person in Blockschrift, die für die gesuchstellende Firma unterschreibt. Gemeint ist eine natürliche Person, keine Firma. Deshalb passt eCH-0098 organisationName nicht, denn den Firmennamen gibt der Stempel an. Das zusammengesetzte Feld hat keine Teilfelder und erhält deshalb den Container eCH-0011 (Genehmigt) nameData (personType). Er enthält officialName und firstName, das Element steht wörtlich so im Katalog. Gleich zugeordnet ist die unterzeichnende Person auf den Formularen 305, 162, 333, 306 und 371.",
+   "feld": "Name, Vorname (Blockschrift) Gesuchsteller/in",
+   "standard": "eCH-0011",
+   "element": "nameData"
+  }
+ ]
+}

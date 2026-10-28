@@ -1,0 +1,265 @@
+{
+ "form_id": 553,
+ "mappings": [
+  {
+   "data_field": "Firma",
+   "cites": [
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 62",
+     "beleg": "Aktiengesellschaften, die weder eine ordentliche noch eine eingeschränkte Revision durchführen, müssen dem Handelsregisteramt mit der Anmeldung zur Eintragung des Verzichts eine Erklärung einreichen"
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 23",
+     "beleg": "Beruhen einzutragende Tatsachen auf Beschlüssen oder Wahlen von Organen einer juristischen Person ..., so muss das Protokoll ... über die Beschlussfassung ... als Beleg eingereicht werden."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Sitz",
+   "cites": [
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 117",
+     "beleg": "Als Sitz wird der Name der politischen Gemeinde eingetragen."
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 23",
+     "beleg": "Beruhen einzutragende Tatsachen auf Beschlüssen oder Wahlen von Organen einer juristischen Person ..., so muss das Protokoll ... über die Beschlussfassung ... als Beleg eingereicht werden."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Ort",
+   "cites": [
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 702",
+     "beleg": "Er sorgt für die Führung des Protokolls. Dieses hält fest: 1. das Datum, den Beginn und das Ende sowie die Art und den Ort der Generalversammlung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Datum",
+   "cites": [
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 702",
+     "beleg": "Dieses hält fest: 1. das Datum, den Beginn und das Ende sowie die Art und den Ort der Generalversammlung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Beginn",
+   "cites": [
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 702",
+     "beleg": "Dieses hält fest: 1. das Datum, den Beginn und das Ende sowie die Art und den Ort der Generalversammlung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Vorsitz",
+   "cites": [
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 702",
+     "beleg": "Das Protokoll muss vom Protokollführer und vom Vorsitzenden der Generalversammlung unterzeichnet werden."
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 23",
+     "beleg": "Protokolle oder Protokollauszüge müssen von der Protokollführerin oder vom Protokollführer sowie von der Vorsitzenden oder vom Vorsitzenden des beschliessenden Organs unterzeichnet werden"
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 62",
+     "beleg": "Die Erklärung muss das Datum des Beginns des Geschäftsjahres enthalten ... und von mindestens einem Mitglied des Verwaltungsrats unterzeichnet sein."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Protokollführer",
+   "cites": [
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 702",
+     "beleg": "Das Protokoll muss vom Protokollführer und vom Vorsitzenden der Generalversammlung unterzeichnet werden."
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 23",
+     "beleg": "Protokolle oder Protokollauszüge müssen von der Protokollführerin oder vom Protokollführer sowie von der Vorsitzenden oder vom Vorsitzenden des beschliessenden Organs unterzeichnet werden"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Anwesend",
+   "cites": [
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 701",
+     "beleg": "Die Eigentümer oder Vertreter sämtlicher Aktien können, falls kein Widerspruch erhoben wird, eine Generalversammlung ohne Einhaltung der für die Einberufung geltenden Vorschriften abhalten."
+    },
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 727a",
+     "beleg": "Mit der Zustimmung sämtlicher Aktionäre kann auf die eingeschränkte Revision verzichtet werden"
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 62",
+     "beleg": "c. sämtliche Aktionärinnen und Aktionäre auf eine eingeschränkte Revision verzichtet haben"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Präsident/in oder Mitglied des Verwaltungsrates",
+   "cites": [
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 62",
+     "beleg": "Die Erklärung muss ... von mindestens einem Mitglied des Verwaltungsrats unterzeichnet sein."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Der/Die Vorsitzende stellt fest",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Aktienkapital",
+   "cites": [
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 701",
+     "beleg": "solange die Eigentümer oder Vertreter sämtlicher Aktien daran teilnehmen"
+    },
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 702",
+     "beleg": "2. die Anzahl, die Art, den Nennwert und die Kategorie der vertretenen Aktien"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Geschäftsjahr",
+   "cites": [
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 62",
+     "beleg": "Die Erklärung muss das Datum des Beginns des Geschäftsjahres enthalten, ab welchem der Verzicht gilt"
+    },
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 727a",
+     "beleg": "Der Verzicht gilt nur für künftige Geschäftsjahre und muss vor Beginn des Geschäftsjahres beim Handelsregisteramt angemeldet werden."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Bisherige Revisionsstelle",
+   "cites": [
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 727a",
+     "beleg": "Soweit erforderlich passt der Verwaltungsrat die Statuten an und meldet dem Handelsregister die Löschung oder die Eintragung der Revisionsstelle an."
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 62",
+     "beleg": "Soweit erforderlich, passt der Verwaltungsrat die Statuten an und meldet dem Handelsregisteramt die Löschung oder die Eintragung der Revisionsstelle an."
+    },
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 702",
+     "beleg": "3. die Beschlüsse und die Wahlergebnisse"
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 119",
+     "beleg": "Werden Rechtseinheiten als Inhaberinnen einer Funktion bei einer anderen Rechtseinheit eingetragen, so muss dieser Eintrag ... die Firma ... den Sitz ... enthalten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Ende der Versammlung",
+   "cites": [
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 702",
+     "beleg": "Dieses hält fest: 1. das Datum, den Beginn und das Ende sowie die Art und den Ort der Generalversammlung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Ort und Datum",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Der/Die Vorsitzende",
+   "cites": [
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 702",
+     "beleg": "Das Protokoll muss vom Protokollführer und vom Vorsitzenden der Generalversammlung unterzeichnet werden."
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 23",
+     "beleg": "Protokolle oder Protokollauszüge müssen von der Protokollführerin oder vom Protokollführer sowie von der Vorsitzenden oder vom Vorsitzenden des beschliessenden Organs unterzeichnet werden"
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 62",
+     "beleg": "Die Erklärung muss ... von mindestens einem Mitglied des Verwaltungsrats unterzeichnet sein."
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 20",
+     "beleg": "Die Belege müssen rechtskonform unterzeichnet sein."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Die Protokollführer/in",
+   "cites": [
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 702",
+     "beleg": "Das Protokoll muss vom Protokollführer und vom Vorsitzenden der Generalversammlung unterzeichnet werden."
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 23",
+     "beleg": "Protokolle oder Protokollauszüge müssen von der Protokollführerin oder vom Protokollführer sowie von der Vorsitzenden oder vom Vorsitzenden des beschliessenden Organs unterzeichnet werden"
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 20",
+     "beleg": "Die Belege müssen rechtskonform unterzeichnet sein."
+    }
+   ],
+   "over_collection": false
+  }
+ ]
+}

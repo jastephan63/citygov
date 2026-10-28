@@ -1,0 +1,19 @@
+{
+ "verdicts": [
+  {
+   "id": 6566,
+   "subjekt": "organisation",
+   "grund": "Adresse des meldenden Unternehmens (Arbeitgeber) bei Massenentlassung bzw. Betriebsschliessung, also eine Geschäftsadresse. Das Einwohnerregister führt keine Betriebsadressen."
+  },
+  {
+   "id": 6567,
+   "subjekt": "gemischt",
+   "grund": "Ansprechperson des meldenden Unternehmens mit geschäftlichem Telefon und geschäftlicher E-Mail. Sie handelt für die Firma und macht keine eigene private Angabe. Deshalb keine Vorbefüllung aus dem Einwohnerregister, wie bei den Feldern 2024 und 2096."
+  },
+  {
+   "id": 6570,
+   "subjekt": "natuerliche_person",
+   "grund": "Jede Zeile beschreibt eine einzelne gekündigte Person, ohne Namen: Alter, Geschlecht, Nationalität, Wohnort und Ablauf der Kündigungsfrist. Das sind Personenangaben natürlicher Personen, wie bei anderen Listen von Mitarbeitenden."
+  }
+ ]
+}

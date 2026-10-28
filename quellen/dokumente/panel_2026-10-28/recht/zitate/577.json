@@ -1,0 +1,171 @@
+{
+ "form_id": 577,
+ "mappings": [
+  {
+   "data_field": "Veräusserer",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Erwerber",
+   "cites": [
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 715",
+     "beleg": "Der Vorbehalt des Eigentums an einer dem Erwerber übertragenen beweglichen Sache ist nur dann wirksam, wenn er an dessen jeweiligem Wohnort in einem vom Betreibungsbeamten zu führenden öffentlichen Register eingetragen ist."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Minderjähriger Erwerber",
+   "cites": [
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 715",
+     "beleg": "dem Erwerber übertragenen beweglichen Sache ... an dessen jeweiligem Wohnort in einem vom Betreibungsbeamten zu führenden öffentlichen Register eingetragen"
+    },
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 14",
+     "beleg": "Volljährig ist, wer das 18. Lebensjahr zurückgelegt hat."
+    },
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 17",
+     "beleg": "Handlungsunfähig sind urteilsunfähige Personen, Minderjährige sowie Personen unter umfassender Beistandschaft."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Schriftliche Zustimmung des gesetzlichen Vertreters",
+   "cites": [
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 19",
+     "beleg": "Urteilsfähige handlungsunfähige Personen können nur mit Zustimmung ihres gesetzlichen Vertreters Verpflichtungen eingehen oder Rechte aufgeben."
+    },
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 304",
+     "beleg": "Die Eltern haben von Gesetzes wegen die Vertretung des Kindes gegenüber Drittpersonen im Umfang der ihnen zustehenden elterlichen Sorge."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Ist die Zustimmung im Kaufvertrag enthalten?",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Zustimmung auf beiliegendem separatem Dokument",
+   "cites": [
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 19",
+     "beleg": "Urteilsfähige handlungsunfähige Personen können nur mit Zustimmung ihres gesetzlichen Vertreters Verpflichtungen eingehen"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Datum der Zustimmung",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Allfälliger Zessionar",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Inhalt der Zession",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Datum der Zession",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Antragsteller",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Bezeichnung der Gegenstände",
+   "cites": [
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 715",
+     "beleg": "Der Vorbehalt des Eigentums an einer dem Erwerber übertragenen beweglichen Sache ist nur dann wirksam, wenn er ... in einem vom Betreibungsbeamten zu führenden öffentlichen Register eingetragen ist."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Inventar",
+   "cites": [
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 715",
+     "beleg": "Der Vorbehalt des Eigentums an einer dem Erwerber übertragenen beweglichen Sache ist nur dann wirksam, wenn er ... in einem vom Betreibungsbeamten zu führenden öffentlichen Register eingetragen ist."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Standort der Gegenstände",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Datum der Vereinbarung",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Forderungsbetrag (restlich)",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Verfalltermine",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Ort und Datum",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Unterschrift des Veräusserers / Verkäufers",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Unterschrift des Erwerbers / Käufers",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Unterschrift des Zessionars",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Ort und Datum (Bescheinigung nach Art. 16 KKG)",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Unterschrift des Erwerbers / Käufers (Bescheinigung nach Art. 16 KKG)",
+   "cites": [],
+   "over_collection": false
+  }
+ ]
+}

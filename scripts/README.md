@@ -200,15 +200,30 @@ extraction from law PDFs (`extract_law.py`) and from Word files needs macOS.
 # 1. laws (official PDFs in ../Gesetze, ../Gesetze/Bund; text extraction needs macOS)
 python3 scripts/build_gesetze_index.py            # inventory/gesetze_index.json from the PDF folder
 python3 scripts/fetch_rechtsbuch.py <SHR> ...     # fetch a cantonal law PDF from rechtsbuch.sh.ch
-python3 scripts/ingest_laws.py <SHR> ... [--out <dir>]                       # cantonal law + articles from the PDF index
+python3 scripts/ingest_laws.py <SHR> ... [--out <dir>]                       # cantonal law + articles from the PDF index;
+                                                  # a new law's title loses the line «Vom … (Stand …)», its short title
+                                                  # follows the title correction (gesetz_titel.kurztitel); a title the index
+                                                  # cut short is completed by load_gesetz_titel.py --lesen (pypdf), then applied
 python3 scripts/ingest_fed.py <SR>=<pdf>=<title>=<short> ... [--out <dir>]   # federal laws from Fedlex PDFs
 python3 scripts/ingest_bigcode.py <SR>=<pdf>=<title>=<short> ... [--out <dir>]   # ZGB/OR/StGB-sized codes (page streaming)
 python3 scripts/extract_quotes.py ../Gesetze/Bund # article.text_excerpt for every cited article (federal PDFs in
                                                   # <dir>, cantonal via inventory/gesetze_index.json from ../Gesetze)
 
 # 2. services and Formulare
-python3 scripts/load_dvsh_harvest.py ../DVSH/dvsh_harvest_<date>.json   # DVSH modeller (read-only source of truth)
-python3 scripts/load_shep.py <pages-dir>          # SHEP portal pages (published citizen view)
+python3 scripts/load_dvsh_harvest.py ../DVSH/dvsh_harvest_<date>.json [--vorher <date>]   # DVSH modeller (read-only
+                                                  # source of truth); records what the harvest changed (quellen_aenderung,
+                                                  # quellen_abzug); a new service row takes the office spelling of the databank
+                                                  # and stays «Themengruppe noch nicht zugeordnet» until placed
+python3 scripts/load_shep.py <pages-dir> [--vorher <date>]   # SHEP portal pages (published citizen view), the files each
+                                                  # page links (shep_service.dokumente, with sha256) and the change log
+python3 scripts/migrate_2026_10_28.py             # service level of the 2026-10-28 harvests: removed/merged/split
+                                                  # services, Themengruppen of the new ones (quellen/korrekturen/dvsh_abzug_2026-10-28.json)
+python3 scripts/load_uebernahme.py quellen/dokumente/uebernahme_<date>.json   # new Formulare and newer editions from
+                                                  # the harvested files (sha256-checked) into formulare/ and form
+python3 scripts/migrate_ausgaben_2026_10_28.py    # the fields of the swapped editions ported (quellen/dokumente/ausgaben_2026-10-28.json)
+python3 scripts/load_dokument_urteile.py [quellen/dokumente]   # what each file DVSH/SHEP offers is when no Formular holds
+                                                  # its bytes (Merkblatt, edition of a held Formular …), from the reviewed
+                                                  # verdicts in quellen/dokumente/urteile_*.json -> dokument_urteil
 python3 scripts/classify.py "../Verwaltung/<Departement>/<Amt>"   # formular vs calculation_tool vs helper
 python3 scripts/ingest_new.py <names.json>        # new files only (JSON list of names under ../Verwaltung);
                                                   # copies each into formulare/, never touches existing forms
@@ -218,7 +233,8 @@ python3 scripts/apply_consolidation.py <dir-with-cons_out_*.json>   # stage 2: g
 python3 scripts/link_dvsh_eforms.py               # eFormulare from DVSH form definitions; tentative title matches marked
 python3 scripts/load_data_fields.py <dir>         # logical data dictionary per form (refuses to
                                                   # overwrite curated layers without --force)
-python3 scripts/init_subfields.py                 # composite parts -> data_subfield (keeps eCH+eSH)
+python3 scripts/init_subfields.py                 # composite parts -> data_subfield (keeps eCH+eSH; renumbers the ids)
+python3 scripts/init_subfields.py --nur-neue      # only fields without part rows (new Formulare): every existing id stays
 python3 scripts/scan_documents.py                 # PDF facts: signature, AcroForm, hash; needs pypdf
 python3 scripts/scan_gestaltung.py [--only <form_id> ...] [--dry]   # how each Formular looks: fonts, sizes, colours,
                                                   # accessibility facts of the file, printed phone numbers, edition mark
@@ -248,6 +264,7 @@ python3 scripts/sweep_ech_xsd.py [--offline]      # XSD versions + code lists (f
 python3 scripts/load_field_legal.py <dir>         # article citations, gated against the law text
 python3 scripts/load_basis_typ.py <dir>           # aufgabe / ohne / offen for fields without an article
 python3 scripts/load_subjekt.py <dir>             # whose datum (natural person / organisation / ...)
+python3 scripts/load_sensitiv.py <dir>            # besonders schützenswerte Personendaten (data_field.sensitive), never overwrites
 python3 scripts/rollen.py ableiten                  # Parteien und Rollen, stage B1 (deterministic; also a step of ./build.sh)
 python3 scripts/rollen.py bericht [--json F]        # coverage: per rule, per Formular, the ambiguous register points
 python3 scripts/rollen.py stichprobe [N] [SEED]     # random settled assignments to check against the Formular text
@@ -273,8 +290,11 @@ python3 scripts/kennungen.py                      # permanent identifiers (also 
                                                   # --abloesungen <json> applies reviewed «abgelöst durch» decisions
                                                   # (default quellen/kennung_abloesungen.json, absent today);
                                                   # --aufloesen <kennung> resolves one (read-only)
-python3 scripts/load_register.py <dir>            # purposes, recipients, Fristen (number must be in the quote)
-python3 scripts/load_verfahren.py <dir>           # Beilagen + Entscheide
+python3 scripts/load_register.py <dir> [--nur <ids>]   # purposes, recipients, Fristen (number must be in the quote);
+                                                  # --nur: purposes of those Formulare, their recipients fanned out from the
+                                                  # recipients the databank holds per sectoral rule, Fristen untouched
+python3 scripts/load_verfahren.py <dir> [--nur <ids>]   # Beilagen + Entscheide; without --nur EVERY agent row is
+                                                  # replaced by the directory's content, with --nur only those Formulare's
 python3 scripts/register_katalog.py --abrufen     # network, read-only GETs: refresh quellen/register/ (unchanged texts keep their file)
 python3 scripts/register_katalog.py               # register catalogue: holder, level, content, key, eCH links — every claim quoted from a fetched source
                                                   # («unverändert» when the database holds it already); --pruefen: the gate only, writes nothing
@@ -287,7 +307,8 @@ python3 scripts/register_map.py --bericht         # the register figures and the
 python3 scripts/konzepte.py [--konzept <code>]    # the cells per concept × role with the Vorschlag (reads only)
 python3 scripts/konzepte.py --selbsttest          # every invariant must fire on tampered copies (reads only)
 python3 scripts/load_rechtsmittel.py [<dir>]      # VRG general rule + sektoral provisions, PDF-gated
-python3 scripts/load_rechtsmittel_verdicts.py <dir>   # which provision governs a form; then load_rechtsmittel.py again
+python3 scripts/load_rechtsmittel_verdicts.py <dir>   # which provision governs a form; then load_rechtsmittel.py again;
+                                                  # a new verdict carries the review mark 'offen' until load_panel_reviews.py
 python3 scripts/load_panel_reviews.py <dir>       # second opinions on basis_typ / subjekt / remedies
                                                   # (<dir> holds basis/ subjekt/ rmrules/ rmverdicts/)
 
@@ -354,7 +375,8 @@ python3 scripts/register_map.py --korrekturen     # every quote of those files f
                                                   # pip install -r requirements.txt)
 python3 scripts/load_gesetz_titel.py --lesen      # law titles from the title block of the PDF the articles
                                                   # were read from (../Gesetze; after gesetz_stand.py, whose file and
-                                                  # SHA-256 it takes) -> quellen/korrekturen/gesetz_titel_2026-10-05.json;
+                                                  # SHA-256 it takes) -> quellen/korrekturen/gesetz_titel_2026-10-05.json
+                                                  # (entries already there are kept: an applied correction is evidence);
                                                   # needs pypdf: run it with a Python that has it, like the line above
 python3 scripts/load_gesetz_titel.py              # apply them: staging -> validate -> swap; «unverändert» once applied;
                                                   # --pruefen: the gate only, writes nothing
@@ -662,7 +684,12 @@ copy, so no test writes the shared database.
 | `build_datentresor.py` | `datentresor.db` — the synthetic storage example (`./build.sh --tresor`, before `export_json.py`); every stored Angabe is named by its permanent identifier (vault table `angabe`), never by `canonical_attribute.id`, and the build stops, writing nothing, when an Angabe has no identifier |
 | `extract_law.py` | Text of a law PDF (offline; macOS PDFKit via osascript), the ground truth every citation gate maps against |
 | `ingest_laws.py` / `ingest_fed.py` / `ingest_bigcode.py` / `fetch_rechtsbuch.py` / `build_gesetze_index.py` / `extract_quotes.py` | The law chain (step 1 above) |
-| `load_dvsh_harvest.py` / `load_shep.py` / `consolidate_services.py` / `apply_consolidation.py` / `link_dvsh_eforms.py` | Service universe from DVSH and SHEP (read-only harvests) |
+| `load_dvsh_harvest.py` / `load_shep.py` / `consolidate_services.py` / `apply_consolidation.py` / `link_dvsh_eforms.py` | Service universe from DVSH and SHEP (read-only harvests). Both harvest loaders call `citygov/load/quellen_log.py` (a helper, no command) before they replace their mirror table: it compares the rows the databank held with the rows just loaded and writes what is new, removed or changed (`quellen_aenderung`, one row per DVSH id / SHEP slug, with the changed columns) and one row per harvest (`quellen_abzug`); a harvest already logged is not compared again. `--vorher <date>` names the earlier harvest when the log has none yet |
+| `load_dokument_urteile.py` | The files DVSH and SHEP offer that no Formular holds (by sha256): what each is, judged from its content by a panel with a sceptical second review — Merkblatt or other Begleitdokument, the same / an older / a newer edition of a held Formular, a Formular not yet held — with verbatim evidence; rebuilt from `quellen/dokumente/urteile_*.json` (gates: a file a DVSH/SHEP row names, vocabularies, an existing Formular for an edition verdict). `citygov/domain/quelldokumente.py` (standard library only, called by `export_json.py`) computes from it and from `form.file_hash` the state of every file per service (`services[].dokumente`), the changes of the latest harvests (`services[].aenderungen`) and the overview `quellenabgleich` — page «Abgleich DVSH & SHEP» (`#abgleich`), the block «Dateien laut DVSH und SHEP» and the change line of every service page |
+| `load_uebernahme.py` | The Formulare DVSH and SHEP offer that the databank did not hold, from a reviewed plan (`quellen/dokumente/uebernahme_<date>.json`): each harvested file is checked against its sha256 and copied into `formulare/`; a new Formular gets its row under the service the plan names (by DVSH id), with the title as printed, the channel the DVSH model records and its provenance in `form.dvsh_match`; a newer edition swaps the file of the held Formular (its fields and curated layers stay; the old file, its Gestaltung row and its currency verdict go). Idempotent |
+| `migrate_ausgaben_2026_10_28.py` | Carries the fields of the Formulare whose newer edition arrived on 2026-10-28 over to the new edition, from the reviewed ports in `quellen/dokumente/ausgaben_2026-10-28.json`: kept fields keep their id and every curated layer, changed ones take the new label, type, options or parts (a kept part keeps its row and eCH element, no id moves), dropped ones go with what hangs on them (a Beilage only loses its link), new Angaben are added. Idempotent |
+| `load_sensitiv.py` | Which fields are besonders schützenswerte Personendaten (`data_field.sensitive`, one key of `labels.SENS`), from a panel with a sceptical second review (`<dir>/out_*.json`); never overwrites a field that already carries a category |
+| `migrate_2026_10_28.py` | The service level of the harvests of 2026-10-28 (`quellen/korrekturen/dvsh_abzug_2026-10-28.json`): the service DVSH deleted, the new DVSH service that duplicated an existing row (merged; DVSH title kept in `name_alt`), the row split back into its own Formular's service and the DVSH service, and the Themengruppen of the new services (replacing the loader's mark «noch nicht zugeordnet»). Idempotent |
 | `classify.py` / `ingest_new.py` / `load_data_fields.py` / `init_subfields.py` | Formulare and their fields |
 | `scan_documents.py` / `init_verfahren.py` / `load_verfahren.py` / `build_similarity.py` | Verfahren layer and Duplikat-Radar |
 | `scan_gestaltung.py` (+ `gestaltung_pdf.py`, `gestaltung_office.py`, `gestaltung_text.py`) | Gestaltung: how each Formular with a file looks and is presented, as measured facts in `form_gestaltung` — fonts, sizes, colours, the accessibility facts the file carries, printed phone numbers and e-mail types, edition mark, page numbers, sender; what cannot be measured is NULL with the reason, no verdict is stored. The three modules measure a PDF, a Word/Excel file and the text lines (each runs its self-test when started without arguments); `scan_gestaltung.py` runs those self-tests, measures every file and writes only rows that changed (idempotent; method `gestaltung-2`, raised whenever a measuring module returns something else for an unchanged file). Needs pypdf — run it with a Python that has it — and is not part of `./build.sh`: the build imports only `gestaltung_text.py` (standard library only, through `gestaltung_export.py`), never `gestaltung_pdf.py`, `gestaltung_office.py` or `scan_gestaltung.py` |

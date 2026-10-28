@@ -1,0 +1,248 @@
+{
+ "form_id": 577,
+ "data_fields": [
+  {
+   "name": "Veräusserer",
+   "definition": "Angaben zur Person des Veräusserers (Verkäufers) des unter Eigentumsvorbehalt verkauften Gegenstands.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name",
+    "Vorname",
+    "Beruf",
+    "genaue Wohnadresse"
+   ],
+   "format": "Vorname [ausgeschrieben]"
+  },
+  {
+   "name": "Erwerber",
+   "definition": "Angaben zur Person des Erwerbers (Käufers und Konsumenten) aus dem Konsumkreditvertrag.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name",
+    "Vorname",
+    "Beruf",
+    "genaue Wohnadresse"
+   ],
+   "format": "Vorname [ausgeschrieben]"
+  },
+  {
+   "name": "Minderjähriger Erwerber",
+   "definition": "Angaben zum Erwerber, wenn dieser minderjährig ist, einschliesslich seines Geburtsdatums.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name",
+    "Vorname",
+    "genaue Wohnadresse",
+    "Geburtsdatum"
+   ],
+   "format": "Vorname [ausgeschrieben]"
+  },
+  {
+   "name": "Schriftliche Zustimmung des gesetzlichen Vertreters",
+   "definition": "Angaben zur Person des gesetzlichen Vertreters, der dem Vertrag des minderjährigen Erwerbers schriftlich zugestimmt hat.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name",
+    "Vorname",
+    "Beruf",
+    "genaue Wohnadresse"
+   ],
+   "format": "Vorname [ausgeschrieben]"
+  },
+  {
+   "name": "Ist die Zustimmung im Kaufvertrag enthalten?",
+   "definition": "Angabe, ob die Zustimmung des gesetzlichen Vertreters im Kaufvertrag selbst oder auf einem beiliegenden separaten Dokument enthalten ist.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "Ja",
+    "Nein",
+    "Die Zustimmung ist auf einem beiliegenden separaten Dokument enthalten."
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Zustimmung auf beiliegendem separatem Dokument",
+   "definition": "Separates Dokument mit der schriftlichen Zustimmung des gesetzlichen Vertreters, das der Anmeldung beizulegen ist, wenn die Zustimmung nicht im Kaufvertrag enthalten ist.",
+   "data_type": "attachment",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Datum der Zustimmung",
+   "definition": "Kalendertag, an dem der gesetzliche Vertreter seine schriftliche Zustimmung erteilt hat.",
+   "data_type": "date",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Allfälliger Zessionar",
+   "definition": "Angaben zur Person, an welche die Forderung aus dem Konsumkreditvertrag abgetreten wurde, sofern eine Zession besteht.",
+   "data_type": "composite",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [
+    "Name",
+    "Vorname",
+    "Beruf",
+    "genaue Wohnadresse"
+   ],
+   "format": "Vorname [ausgeschrieben]"
+  },
+  {
+   "name": "Inhalt der Zession",
+   "definition": "Beschreibung, was mit der allfälligen Zession an den Zessionar abgetreten wurde.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Datum der Zession",
+   "definition": "Kalendertag, an dem die allfällige Zession vereinbart wurde.",
+   "data_type": "date",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Antragsteller",
+   "definition": "Angabe, wer die Eintragung des Eigentumsvorbehalts beim Betreibungsamt beantragt.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Bezeichnung der Gegenstände",
+   "definition": "Bezeichnung der unter Eigentumsvorbehalt stehenden Gegenstände, mit Hinweis auf ein allfällig beiliegendes Inventar.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Inventar",
+   "definition": "Allfälliges detailliertes, von den Parteien im Original unterzeichnetes Inventar der Gegenstände, das der Anmeldung beiliegen muss.",
+   "data_type": "attachment",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Standort der Gegenstände",
+   "definition": "Ort, an dem sich die unter Eigentumsvorbehalt stehenden Gegenstände befinden.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Datum der Vereinbarung",
+   "definition": "Kalendertag, an dem der Eigentumsvorbehalt zwischen Veräusserer und Erwerber vereinbart wurde.",
+   "data_type": "date",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Forderungsbetrag (restlich)",
+   "definition": "Noch offener Betrag der Forderung aus dem Konsumkreditvertrag in Franken.",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "Fr."
+  },
+  {
+   "name": "Verfalltermine",
+   "definition": "Fälligkeiten der Restforderung, allenfalls mit Angabe der einzelnen Raten.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ort und Datum",
+   "definition": "Ort und Kalendertag der Unterzeichnung der Anmeldung durch die Parteien.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Ort",
+    "Datum"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Unterschrift des Veräusserers / Verkäufers",
+   "definition": "Unterschrift des Veräusserers bzw. Verkäufers unter der Anmeldung.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Unterschrift des Erwerbers / Käufers",
+   "definition": "Unterschrift des Erwerbers bzw. Käufers unter der Anmeldung.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Unterschrift des Zessionars",
+   "definition": "Unterschrift des allfälligen Zessionars unter der Anmeldung.",
+   "data_type": "signature",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ort und Datum (Bescheinigung nach Art. 16 KKG)",
+   "definition": "Ort und Kalendertag, an dem der Erwerber bescheinigt, vor mindestens 14 Tagen eine Vertragskopie erhalten und den Vertrag nicht widerrufen zu haben.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Ort",
+    "Datum"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Unterschrift des Erwerbers / Käufers (Bescheinigung nach Art. 16 KKG)",
+   "definition": "Unterschrift, mit welcher der Erwerber die Bescheinigung nach Art. 16 KKG (Erhalt der Vertragskopie vor mindestens 14 Tagen, kein Widerruf) abgibt.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  }
+ ],
+ "hinweis": "Korrekturen: keine. Geprüft habe ich den Text und die AcroForm des PDF (19 Widgets, Formular 8203, 2 Seiten), Zeile für Zeile. Alle Angaben sind in der Reihenfolge des Formulars erfasst, und es ist nichts erfunden. Die Namen und die Teile stimmen wörtlich mit dem Druck überein: «Name, Vorname [ausgeschrieben], Beruf, genaue Wohnadresse»; beim minderjährigen Erwerber «Geburtsdatum» statt «Beruf»; «Ort und Datum» zweimal mit eigenem Widget. Die Optionsgruppe Optionsfeld3 hat drei Zustände (/0 /1 /2). Sie ist korrekt als enum mit drei wörtlichen Optionen erfasst. Es gibt drei Unterschriftsfelder unter der Anmeldung und ein weiteres unter der Bescheinigung. Zessionar, Inhalt und Datum der Zession, die Unterschrift des Zessionars und das Inventar sind wegen «allfällig» zu Recht freiwillig. Bewusst NICHT als Angaben erfasst: (1) «EV Nr.» und «Eingetragen am» oben rechts (Widgets ev_nr und eintrag_am) sind Einträge des Amts im Eigentumsvorbehaltsregister. (2) Das Adressfenster «A-Post» (Widget «adresse») trägt keine gedruckte Bezeichnung. Es gehört zum Rücksendeblock des Amts neben EV Nr. und Eingetragen am und ist darum keine verlangte Angabe der Person. (3) Die Bescheinigung nach Art. 16 KKG ist ein vorgedruckter Erklärungstext ohne Ankreuzfeld. Sie wird nur über Ort und Datum und die Unterschrift des Erwerbers abgegeben. (4) Der «Auszug aus dem Bundesgesetz über den Konsumkredit (KKG, SR 221.214.1)» mit Art. 9–15 ist Rechtstext. (5) Die Klammerhinweise beim Inventar und bei den Verfallterminen sind Anleitungen; sie sind in den Definitionen und im Feld Inventar berücksichtigt. Zur Pflicht: Minderjähriger Erwerber, Zustimmung des gesetzlichen Vertreters, die Frage nach der Zustimmung, das separate Zustimmungsdokument und Datum der Zustimmung gelten nur bei einem minderjährigen Erwerber. Das separate Dokument wird nur bei der dritten Option verlangt. Das Formular bezeichnet diese Felder aber nicht als freiwillig, deshalb bleiben sie nach der Regel Pflichtfelder (required true)."
+}

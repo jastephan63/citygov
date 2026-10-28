@@ -1,0 +1,262 @@
+{
+ "hinweis": "eCH-Urteile Formular 553, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/553 --nur-offene=553",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Firma der AG im Kopf «[Firma], in [Sitz]», also der Name der Organisation. eCH-0098 organisationName (organisationIdentificationType, unitNameType) ist im Katalog vorhanden und wird schon bei 23 anderen Feldern «Firma» und bei 2 Feldern «Eingetragene Firma» verwendet. Bisher war das Feld leer.",
+   "feld": "Firma",
+   "standard": "eCH-0098",
+   "element": "organisationName"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Sitz der AG gemäss Handelsregister ist die Sitzgemeinde. Die propagierte Zuordnung eCH-0098 headquarterMunicipality (swissHeadquarterType) trifft zu. Gleich zugeordnet auf den verwandten Protokollen 560 und 569.",
+   "feld": "Sitz"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Ort, an dem die Versammlung stattfindet. Das propagierte kein_standard stimmt. Im ganzen Katalog gesucht nach meeting/assembly/session/venue/location/place. Gefunden: eCH-0010 town (Teil einer Postadresse), eCH-0119 location (concernedPersonType), eCH-0155 placeOfVoting und eCH-0228 votingPlace (Stimmlokal), eCH-0129/0131 placeName (Lokalname). Keines davon ist ein Versammlungsort. Gleich bei den Protokollen 557, 558, 560 und 569.",
+   "feld": "Ort"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Kalendertag der Generalversammlung, also der Tag des Beschlusses, der dem Handelsregister gemeldet wird. Für einen Sitzungstag gibt es kein eigenes Element (gesucht nach meeting/assembly/resolution/decision). eCH-0058 eventDate (headerType) ist der Tag des gemeldeten Ereignisses. Die Datenbank nutzt es schon für «Ereignisdatum» und «Datum der Kontrolle». messageDate passt nicht: Es ist der Tag der Meldung oder Einreichung.",
+   "feld": "Datum",
+   "standard": "eCH-0058",
+   "element": "eventDate"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Uhrzeit, zu der die Versammlung beginnt. Das propagierte kein_standard stimmt. Gesucht nach time/Time/start/begin/hour. Gefunden: eCH-0155 timeOfVoting, eCH-0099 eventTime (Quittung), Zeitstempel von Meldungen (eCH-0085/0212/0235) sowie Anfangstage wie eCH-0260 beginDate. Keines ist die Anfangszeit einer Sitzung.",
+   "feld": "Beginn"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Personalien der vorsitzenden Person. Laut Formular ist sie «Präsident/in [oder] Mitglied des Verwaltungsrates». Container ist eCH-0229 administrativeBody (contactAndAdministrationType, memberOfAdministrativeBodyType mit role), wie bei «Verwaltungsrat», «Mitglieder des Verwaltungsrats» und «Personalien der Mitglieder der Geschäftsführung». eCH-0276 chairmanOfTheBoardOfDirectors passt nicht, weil auch ein einfaches Mitglied den Vorsitz führen kann. Die Teile tragen eigene Elemente.",
+   "feld": "Vorsitz",
+   "standard": "eCH-0229",
+   "element": "administrativeBody"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Personalien der protokollführenden Person. Laut Formular ist sie «Mitglied des Verwaltungsrates, amtet als Protokollführer/in». Container für ein Mitglied des Verwaltungsorgans ist eCH-0229 administrativeBody (memberOfAdministrativeBodyType). Die Teile tragen eigene Elemente.",
+   "feld": "Protokollführer",
+   "standard": "eCH-0229",
+   "element": "administrativeBody"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freitext: welche Aktionäre oder Vertreter an der Versammlung anwesend sind. Gesucht nach attend/particip/present/represent/proxy/shareholder. Gefunden: eCH-0276 detailsShareholdersAssociates (Aktionärsbestand mit Beteiligungen), eCH-0229 representative und eCH-0278 proxy (Vertretung in der Steuererklärung), eCH-0260 mayAttendBM (Berufsmaturität). Keines beschreibt die Anwesenheit an einer Versammlung.",
+   "feld": "Anwesend"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Auswahl der Funktion der vorsitzenden Person im Verwaltungsrat. Das ist eine Auswahl aus Funktionen, kein Ja/Nein-Feld. Passend ist eCH-0229 role (memberOfAdministrativeBodyType, administrativeBodyRoleType), wie bei «Funktion» und «Präsidium» auf anderen Handelsregister-Formularen. Die Codeliste kennt nur president, executive und responsibleForAccounting, also keinen Code für ein einfaches Mitglied. Das ist eine Lücke in der Codeliste, nicht beim Element.",
+   "feld": "Präsident/in oder Mitglied des Verwaltungsrates",
+   "standard": "eCH-0229",
+   "element": "role"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Feststellung als Auswahl: Sind alle Verwaltungsräte anwesend, oder haben die Abwesenden auf Teilnahme und Anträge verzichtet? Gesucht nach attend/present/waiver/board/member/administrativeBody. eCH-0229 administrativeBody und role beschreiben die Mitglieder, aber weder ihre Anwesenheit noch einen Verzicht. Kein Element vorhanden.",
+   "feld": "Der/Die Vorsitzende stellt fest"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Betrag des gesamten Aktienkapitals in CHF. Die propagierte Zuordnung eCH-0276 shareCapital (equityAndLiabilitiesChfType, Bilanzposition Aktienkapital) trifft zu, gleich wie auf Protokoll 569. Geprüft und verworfen: shareCapitalShareholderCapitalAssociationCapitalFoundationCapital (steuerbares Eigenkapital), eCH-0229 paidInCapitalOrNetAsset (einbezahltes Kapital). In eCH-0098 und eCH-0108 gibt es kein Kapital-Element.",
+   "feld": "Aktienkapital"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Geschäftsjahr, ab dem der Verzicht auf die Revisionsstelle gilt, also der Beginn der Geltung eines Beschlusses. Gesucht nach businessYear/financialYear/fiscal/taxPeriod/taxYear/optingOut/dateValidFrom. Gefunden: eCH-0276 taxPeriodFrom/To, eCH-0278 taxYear, eCH-0276 …BeginningFinancialYear (Werte von Abschreibungen), eCH-0148 dateValidFrom (nur bei Änderung von Rechtsform oder Name). Keines bezeichnet das Geschäftsjahr, ab dem ein Opting-out gilt.",
+   "feld": "Geschäftsjahr"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Name und Sitz der Revisionsstelle, die abgewählt wird. Bis zum Beschluss ist sie die amtierende Revisionsstelle. eCH-0229 auditor (contactAndAdministrationType, representativeType mit organisationIdentification) bezeichnet die Revisionsstelle der Gesellschaft für eine Periode. Ein eigenes Element für eine frühere Revisionsstelle, das gegen auditor abgegrenzt wäre, gibt es nicht. auditor ist also kein reines Element für den aktuellen Wert, das hier falsch wäre. Gleich zugeordnet bei «Revisionsstelle» (3×) und «Revisionsstelle oder Opting-out». Bisherige Parteien bekommen in der Datenbank auch sonst den Container, etwa «Bisherige Bewirtschafter» oder «bisherige Halterin».",
+   "feld": "Bisherige Revisionsstelle",
+   "standard": "eCH-0229",
+   "element": "auditor"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Uhrzeit, zu der die Versammlung endet. Gesucht nach time/Time/end/hour. Gefunden: nur Zeitstempel von Meldungen (eCH-0085/0212/0235), eCH-0099 eventTime, eCH-0155 timeOfVoting und Vertragsenden (eCH-0021 occupationValidTill, eCH-0260). Kein Element für das Ende einer Sitzung, gleich wie beim propagierten kein_standard für «Beginn».",
+   "feld": "Ende der Versammlung"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ort und Datum der Unterzeichnung des Protokolls. Der Katalog hat dafür genau ein Element: eCH-0119 locationAndDate (attachedFormsType, string), die Zeile «Ort und Datum» bei der Unterschrift. kein_standard ist nur zulässig, wenn nichts passt, und hier passt ein Element. Die Datenbank nutzt es schon für «Ort, Datum», «Ort / Datum» und «Ort/Datum» (19 Felder). Das propagierte kein_standard für «Ort und Datum» (31 Felder, auch Protokoll 569) widerspricht dem. Diese uneinheitliche Behandlung ist zu bereinigen.",
+   "feld": "Ort und Datum",
+   "standard": "eCH-0119",
+   "element": "locationAndDate"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Eigenhändige Unterschrift der vorsitzenden Person. Gesucht nach sign/Sign/signature. Gefunden: eCH-0039 signer (token, nur die Kennung der unterzeichnenden Person) und eCH-0260 *SignatureConfirmation (Ja/Nein-Bestätigungen). Kein Element für die Unterschrift selbst. Alle 88 beurteilten Unterschriftsfelder der Datenbank sind ebenfalls kein_standard.",
+   "feld": "Der/Die Vorsitzende"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Eigenhändige Unterschrift der protokollführenden Person. Gleiche Suche wie bei der vorsitzenden Person (sign/signature): eCH-0039 signer ist nur eine Kennung, eCH-0260 hat nur Ja/Nein-Bestätigungen. Kein Element für eine Unterschrift.",
+   "feld": "Die Protokollführer/in"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Anrede «Herr/Frau [Vorname] [Name]» der vorsitzenden Person. Das Element für die Anrede ist eCH-0010 mrMrs (mrMrsType, bei einer Person im Kontext personMailAddressInfoType), wie bei «Anrede» auf anderen Formularen. Es ist eine Anrede und keine Angabe zum Geschlecht (sex).",
+   "elternfeld": "Vorsitz",
+   "teilfeld": "Herr/Frau",
+   "standard": "eCH-0010",
+   "element": "mrMrs"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname der vorsitzenden Person: eCH-0044 firstName (personIdentificationLightType), wie bei 213 anderen Teilfeldern «Vorname».",
+   "elternfeld": "Vorsitz",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Nachname der vorsitzenden Person: eCH-0044 officialName (personIdentificationLightType), wie bei 243 anderen Teilfeldern «Name» von Personen.",
+   "elternfeld": "Vorsitz",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Heimatort der vorsitzenden Person («von [Heimatort]»), also der Name des Heimatorts: eCH-0011 originName (placeOfOriginType), wie bei 30 anderen Teilfeldern «Heimatort», darunter «Mitglieder des Verwaltungsrats» auf Formular 312.",
+   "elternfeld": "Vorsitz",
+   "teilfeld": "Heimatort",
+   "standard": "eCH-0011",
+   "element": "originName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«wohnhaft in [PLZ Ort]»: Gemeint ist der Wohnort, den das Handelsregister führt. Deshalb trägt eCH-0010 town (addressInformationType) den Sinn des Teils, und nicht swissZipCode, das die Datenbank bei reinen Adressblöcken öfter wählt. Die Postleitzahl in derselben Lücke wäre eCH-0010 swissZipCode.",
+   "elternfeld": "Vorsitz",
+   "teilfeld": "PLZ Ort",
+   "standard": "eCH-0010",
+   "element": "town"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Strasse der Wohnadresse der vorsitzenden Person: eCH-0010 street (addressInformationType), wie bei 9 anderen Teilfeldern «Strasse Nr.». Die Hausnummer in derselben Lücke wäre eCH-0010 houseNumber.",
+   "elternfeld": "Vorsitz",
+   "teilfeld": "Strasse Nr.",
+   "standard": "eCH-0010",
+   "element": "street"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Anrede «Herr/Frau» der protokollführenden Person: eCH-0010 mrMrs (mrMrsType, Kontext personMailAddressInfoType). Es ist eine Anrede, keine Angabe zum Geschlecht.",
+   "elternfeld": "Protokollführer",
+   "teilfeld": "Herr/Frau",
+   "standard": "eCH-0010",
+   "element": "mrMrs"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname der protokollführenden Person: eCH-0044 firstName (personIdentificationLightType).",
+   "elternfeld": "Protokollführer",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Nachname der protokollführenden Person: eCH-0044 officialName (personIdentificationLightType).",
+   "elternfeld": "Protokollführer",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Heimatort der protokollführenden Person («von [Heimatort]»): eCH-0011 originName (placeOfOriginType).",
+   "elternfeld": "Protokollführer",
+   "teilfeld": "Heimatort",
+   "standard": "eCH-0011",
+   "element": "originName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«wohnhaft in [PLZ Ort]» der protokollführenden Person, also ihr Wohnort: eCH-0010 town (addressInformationType). Die Postleitzahl in derselben Lücke wäre eCH-0010 swissZipCode.",
+   "elternfeld": "Protokollführer",
+   "teilfeld": "PLZ Ort",
+   "standard": "eCH-0010",
+   "element": "town"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Strasse der Wohnadresse der protokollführenden Person: eCH-0010 street (addressInformationType). Die Hausnummer wäre eCH-0010 houseNumber.",
+   "elternfeld": "Protokollführer",
+   "teilfeld": "Strasse Nr.",
+   "standard": "eCH-0010",
+   "element": "street"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Firmenname der Revisionsstelle, einer Organisation. eCH-0229 auditor enthält eine organisationIdentification. Deren Name ist eCH-0098 organisationName (organisationIdentificationType). Gemeint ist der heute gültige Name dieser Firma, kein früherer. Gleich zugeordnet bei «Name der Revisionsstelle».",
+   "elternfeld": "Bisherige Revisionsstelle",
+   "teilfeld": "Name",
+   "standard": "eCH-0098",
+   "element": "organisationName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Sitz der Revisionsstelle ist ihre Sitzgemeinde: eCH-0098 headquarterMunicipality (swissHeadquarterType), wie beim Feld «Sitz» der AG und bei 8 anderen Teilfeldern «Sitz».",
+   "elternfeld": "Bisherige Revisionsstelle",
+   "teilfeld": "Sitz",
+   "standard": "eCH-0098",
+   "element": "headquarterMunicipality"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Ort, an dem das Protokoll unterzeichnet wird. eCH-0119 locationAndDate ist ein gemeinsamer Text für Ort und Datum und steht deshalb beim übergeordneten Feld. Gesucht nach place/location/sign: Für den Unterschriftsort allein gibt es kein Element. eCH-0010 town ist Teil einer Postadresse, eCH-0119 location gehört zu einer betroffenen Person. Gleich wie bei den Teilen «Ort» unter «Ort / Datum» und «Ort/Datum».",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Kalendertag, an dem das Protokoll unterzeichnet wird. Für diesen Tag allein gibt es kein Element. eCH-0119 locationAndDate fasst Ort und Datum in einem Text zusammen. eCH-0058 messageDate ist der Tag einer Meldung oder Einreichung, und ein Protokoll ist keine Meldung. eCH-0039 openingDate ist die Eröffnung eines Dokuments in der Ablage, eCH-0039 signer nur eine Kennung. Gleich wie bei den Teilen «Datum» unter «Ort / Datum» und «Ort/Datum».",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Datum"
+  }
+ ]
+}

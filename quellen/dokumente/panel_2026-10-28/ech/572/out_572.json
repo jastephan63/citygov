@@ -1,0 +1,713 @@
+{
+ "hinweis": "eCH-Urteile Formular 572, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/572 --nur-offene=572",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Composite Name/Adresse/Tel. einer Partei in der Rolle Eigentümer der Anlage (nicht ausdrücklich Grundeigentümer, daher nicht eCH-0211 owner/realestateInformationType). eCH-0211 relationshipToPerson (role + person) ist der Container, gleich wie beim Schwesterformular 130 (Form 452). Die Teile werden einzeln beurteilt.",
+   "feld": "Eigentümer der Anlage",
+   "standard": "eCH-0211",
+   "element": "relationshipToPerson"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name der Eigentümerin oder des Eigentümers → officialName (wie Form 128 «Name oder Firma» und Formulare 50/51 unter relationshipToPerson).",
+   "elternfeld": "Eigentümer der Anlage",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Einzige Adresszeile ohne eigenes PLZ/Ort-Teilfeld, enthält also die ganze Postadresse (Strasse, Nr., PLZ, Ort) → addressInformation (wie Form 180 und 452 unter relationshipToPerson), nicht street allein.",
+   "elternfeld": "Eigentümer der Anlage",
+   "teilfeld": "Adresse",
+   "standard": "eCH-0010",
+   "element": "addressInformation"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Telefonnummer → eCH-0046 phoneNumber.",
+   "elternfeld": "Eigentümer der Anlage",
+   "teilfeld": "Tel.",
+   "standard": "eCH-0046",
+   "element": "phoneNumber"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Composite Name/Adresse/Tel. der Verwaltung in der Rolle Verwalter («und/oder» zum Eigentümer, kann allein stehen, daher nicht deputy); Container eCH-0211 relationshipToPerson, gleich wie beim Eigentümer.",
+   "feld": "Verwalter der Anlage",
+   "standard": "eCH-0211",
+   "element": "relationshipToPerson"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name des Verwalters → officialName (Regel Name → officialName).",
+   "elternfeld": "Verwalter der Anlage",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Einzige Adresszeile ohne PLZ/Ort-Teilfeld, also die ganze Postadresse → addressInformation.",
+   "elternfeld": "Verwalter der Anlage",
+   "teilfeld": "Adresse",
+   "standard": "eCH-0010",
+   "element": "addressInformation"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Telefonnummer → eCH-0046 phoneNumber.",
+   "elternfeld": "Verwalter der Anlage",
+   "teilfeld": "Tel.",
+   "standard": "eCH-0046",
+   "element": "phoneNumber"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Propagierter Wert stimmt: Der Gesuchsteller unterschreibt mit «Stempel und Unterschrift», ist also eine Firma (Tankrevisions- oder Installationsfirma; vgl. Form 452 «Unterschrift Gesuchsteller/in (Firmenstempel)», Feuerpolizei-Form 189 Gesuchsteller = organisation). Eigentümer und Verwalter werden getrennt erfasst.",
+   "feld": "Gesuchsteller"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Firmenname des Gesuchstellers (Firma mit Stempel) → organisationName. Propagierter Wert bestätigt.",
+   "elternfeld": "Gesuchsteller",
+   "teilfeld": "Name"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Propagiert war street. Die Zeile ist aber die einzige Adressangabe ohne PLZ/Ort-Teilfeld und enthält die ganze Postadresse; street (nur Strassenname) wäre zu eng → addressInformation (auch im Kontext organisationMailAddressType vorhanden).",
+   "elternfeld": "Gesuchsteller",
+   "teilfeld": "Adresse",
+   "standard": "eCH-0010",
+   "element": "addressInformation"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Telefonnummer → eCH-0046 phoneNumber (Regel Telefon → eCH-0046); bisher nicht zugeordnet.",
+   "elternfeld": "Gesuchsteller",
+   "teilfeld": "Tel.",
+   "standard": "eCH-0046",
+   "element": "phoneNumber"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Grundbuch- bzw. Grundstücksnummer → eCH-0129 number (realestateIdentificationType, gleicher Name in buildingIdentificationType). Propagierter Wert bestätigt; gleich wie Form 452 «Grundbuch Nr.».",
+   "feld": "Grundstück GB-Nr."
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Gebäudeversicherungsnummer → eCH-0129 insuranceNumber (buildingInsuranceNumberType), gleich wie Form 452 «Versicherungs Nr.» und Form 191 «Gebäudevers.-Nummer».",
+   "feld": "Gebäude Vers.-Nr.",
+   "standard": "eCH-0129",
+   "element": "insuranceNumber"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ankreuzfeld mit Leerzeile ohne Beschriftung nach der Vers.-Nr.; das Formular sagt nicht, welche Angabe verlangt ist. Einer unbestimmten Angabe kann kein Element eines der 290 Standards zugeordnet werden.",
+   "feld": "Allgemeine Angaben (freie Zeile)"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Standort der Anlage → eCH-0129 constructionLocalisation; propagiert und einheitliche Korpuspraxis (Formulare 52, 54, 56, 188, 191, 384, 452). Die Adressteile werden einzeln zugeordnet.",
+   "feld": "Standort der Anlage"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Standortgemeinde → eCH-0129 municipality; propagierter Wert bestätigt, gleich wie Formulare 52/54/56/188/384.",
+   "elternfeld": "Standort der Anlage",
+   "teilfeld": "Gemeinde"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Strasse des Standorts → eCH-0129 street (buildingIdentificationType); propagierter Wert bestätigt.",
+   "elternfeld": "Standort der Anlage",
+   "teilfeld": "Strasse"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Hausnummer des Standorts → eCH-0129 houseNumber, im selben Kontext (buildingIdentificationType) wie street; bisher nicht zugeordnet.",
+   "elternfeld": "Standort der Anlage",
+   "teilfeld": "Haus-Nr.",
+   "standard": "eCH-0129",
+   "element": "houseNumber"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ganzen Katalog durchsucht (water/protect/groundwater/zone/Gewässer, Codelisten nach Gewässer/Grundwasser): eCH-0211 zone/zoneType beschreibt die Nutzungszone, nicht den Gewässerschutzbereich (Au/Ao/S3/S2); eCH-0211 natureRisk = Naturgefahren; eCH-0254 PLRTopic ist das ÖREB-Thema eines Verfahrens; eCH-0129 usageLimitation = Zweitwohnungs-Codes; eCH-0166 Geokategorien hat keine Elemente.",
+   "feld": "Gewässerschutzbereich"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freie Alternative zum Gewässerschutzbereich; wie dieser ohne Standard (Suche siehe Gewässerschutzbereich).",
+   "feld": "Gewässerschutzbereich (freie Zeile)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Grössenkategorie des Tanks (Klein-/Mittel-/Grosstank). Katalog durchsucht nach tank/storage/volume/capacity/installation: kein Standard modelliert Tankanlagen. eCH-0262 storageType gilt nur für Hofdüngerlager, eCH-0129 volume für Gebäudevolumen. Auch Form 452 «Tankgrösse» ist kein_standard.",
+   "feld": "Vorhandene Installation"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freie Alternative zur Tankgrösse; kein Tank-Element im Katalog (siehe Vorhandene Installation).",
+   "feld": "Vorhandene Installation (freie Zeile)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Einbauort des Tanks (Erdreich/Gebäude/Spezialkeller/Anbau). Weder eCH-0129/0206/0211/0216 (Gebäude, Bauprojekt) noch ein anderer der 290 Standards kennt Tank-Einbauarten; Form 452 «Tankraum Standort/Geschoss» ebenfalls kein_standard.",
+   "feld": "Einbauart"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freie Alternative zur Einbauart; kein Tank-Element im Katalog.",
+   "feld": "Einbauart (freie Zeile)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Nummer des betroffenen Tanks. Kein Standard kennt einen Tank als Objekt; die Kennungen in eCH-0129 (localID, EGID, insuranceNumber) bezeichnen Gebäude, Wohnungen oder Versicherungsobjekte.",
+   "feld": "Tank-Nr."
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Bauform des Tanks (zylindrisch/prismatisch). Kein Element im Katalog; auch Form 452 «Tankform» ist kein_standard.",
+   "feld": "Bauart des Tanks"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freie Alternative zur Bauart des Tanks; kein Element im Katalog.",
+   "feld": "Bauart des Tanks (freie Zeile)"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Propagiertes kein_standard bestätigt: Den Tankwerkstoff (Stahl/Kunststoff) definiert keiner der 290 Standards (Suche nach material/tank); gleich wie Form 452.",
+   "feld": "Werkstoff Tank"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freie Alternative zum Tankwerkstoff; wie Werkstoff Tank ohne Standard.",
+   "feld": "Werkstoff Tank (freie Zeile)"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Propagiertes kein_standard bestätigt: Ja/Nein-Frage zum Aufstellungsort (kein Wert-Element zulässig); kein Boolean dafür im Katalog (eCH-0129 heating/hotWater beschreiben Wärmeerzeuger). Gleich wie Form 452.",
+   "feld": "Tank im Heizraum"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Rückhaltevolumen und Werkstoff der Auffangwanne. Kein Container und kein Element im Katalog (gesucht: leak/storage/volume/material/protect); Form 452 führt die Auffangwanne ebenfalls als kein_standard.",
+   "feld": "Auffangwanne/Schutzbauwerk"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Rückhaltevolumen einer Auffangwanne in Prozent; kein Element im Katalog (Form 452 «Auffangvermögen Auffangwanne» ebenfalls kein_standard).",
+   "elternfeld": "Auffangwanne/Schutzbauwerk",
+   "teilfeld": "Rückhaltevolumen in %"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Werkstoff der Auffangwanne; kein Element im Katalog (Form 452 «Werkstoff Auffangwanne» ebenfalls kein_standard).",
+   "elternfeld": "Auffangwanne/Schutzbauwerk",
+   "teilfeld": "Werkstoff"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Im Tank gelagerte Flüssigkeit. Die Codeliste energySourceType (energySourceHeating) in eCH-0129/0206 bezeichnet den Energieträger der Gebäudeheizung, nicht das Lagergut (Dieselöl ist kein Heizenergieträger). eCH-0262 storageType gilt nur für Hofdünger. Form 452 «Tankinhalt» ist ebenfalls kein_standard.",
+   "feld": "Lagergut"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Bezeichnung eines anderen Lagerguts; wie Lagergut ohne Standard.",
+   "feld": "Lagergut Andere"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Auswahl technischer Gewässerschutzmassnahmen. Die eCH-0129-Codeliste kindOfWork kennt nur 6001/6002/6007 (Neubau/Umbau/Abbruch), typeOfConstructionProject nur 6010–6012; die Booleans von kindOfConstructionWork betreffen Gebäudearbeiten. Für Tankmassnahmen gibt es in den 290 Standards keine Codeliste und kein Element.",
+   "feld": "Allgemeine Gewässerschutzmassnahmen"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Bisheriger und neuer Durchmesser der Entlüftungsleitung in Zoll; kein Element im Katalog (gesucht: vent/tank/pipe/diameter).",
+   "feld": "Änderung der Tankentlüftungsleitung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Bisheriger Durchmesser (früherer Wert) der Entlüftungsleitung; kein Element im Katalog.",
+   "elternfeld": "Änderung der Tankentlüftungsleitung",
+   "teilfeld": "von"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Neuer Durchmesser der Entlüftungsleitung; kein Element im Katalog.",
+   "elternfeld": "Änderung der Tankentlüftungsleitung",
+   "teilfeld": "auf"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Durchmesser einer zusätzlichen Entlüftungsleitung in Zoll; im Katalog gibt es kein Element für Tankleitungen.",
+   "feld": "Einbau einer weiteren Entlüftungsleitung"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Höhe der Entlüftungsleitung in m über Terrain; im Katalog gibt es kein Element für Tankleitungen (gesucht: height/vent/pipe).",
+   "feld": "Verlängerung der bestehenden Tankentlüftungsleitung"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Gemischtes Composite (Produkt, Zulassungsnummer, Einbaufirma). Kein Standard bietet einen Container dafür; nur der Teil Einbaufirma hat ein Element (eCH-0098). Korpuspraxis für gemischte Composites ohne Container: kein_standard.",
+   "feld": "Produkt, KVU-Nr., Einbaufirma (Einbau einer Domschachtauskleidung)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Produktbezeichnung eines Bauprodukts. Gesucht nach product/approval/manufacturer: eCH-0058 product ist die sendende Software, eCH-0263 gilt nur für Pflanzenschutz-/Dünge-/Futtermittel. Kein Element.",
+   "elternfeld": "Produkt, KVU-Nr., Einbaufirma (Einbau einer Domschachtauskleidung)",
+   "teilfeld": "Produkt"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KVU-Zulassungsnummer des Produkts; kein Element im Katalog (Form 452 «Zulassungs-Nr. (KVU)» ebenfalls kein_standard).",
+   "elternfeld": "Produkt, KVU-Nr., Einbaufirma (Einbau einer Domschachtauskleidung)",
+   "teilfeld": "KVU-Nr."
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name der ausführenden Firma → eCH-0098 organisationName.",
+   "elternfeld": "Produkt, KVU-Nr., Einbaufirma (Einbau einer Domschachtauskleidung)",
+   "teilfeld": "Einbaufirma",
+   "standard": "eCH-0098",
+   "element": "organisationName"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freie Zeile für eine weitere Gewässerschutzmassnahme, also die freie Alternative zur Massnahmenliste; wie diese ohne Standard. eCH-0211 description ist die Beschreibung des ganzen Bauvorhabens, keine einzelne technische Massnahme.",
+   "feld": "Allgemeine Gewässerschutzmassnahmen (freie Zeile)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Bisheriges und künftiges Lagergut; wie Lagergut ohne Standard (energySourceHeating bezeichnet den Heizenergieträger, nicht das Lagergut).",
+   "feld": "Wechsel auf ein anderes Lagergut"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Bisheriges Lagergut (früherer Wert); kein Element im Katalog.",
+   "elternfeld": "Wechsel auf ein anderes Lagergut",
+   "teilfeld": "von"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Künftiges Lagergut; kein Element im Katalog.",
+   "elternfeld": "Wechsel auf ein anderes Lagergut",
+   "teilfeld": "auf"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Option «Weitere Anpassung(en)» der Massnahmenliste in Abschnitt 1; wie die Liste ohne Standard. eCH-0211 description und eCH-0129 description beschreiben das ganze Bauvorhaben und keine einzelne Tankmassnahme.",
+   "feld": "Weitere Anpassung(en)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Auswahl technischer Massnahmen zur Leckerkennung und Rückhaltung. Gesucht nach leak/protect/storage/liquid: keine Codeliste und kein Element in den 290 Standards; kindOfWork und kindOfConstructionWork decken das nicht ab.",
+   "feld": "Spezielle Schutzmassnahmen zur Leckerkennung bzw. Zurückhaltung von Leckflüssigkeit"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Gemischtes Composite (Produkt, Zulassungsnummer, Einbaufirma) ohne Container in einem Standard; nur der Teil Einbaufirma hat ein Element.",
+   "feld": "Produkt, KVU-Nr., Einbaufirma (Einbau einer Innenhülle mit Vakuumüberwachung)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Produktbezeichnung; kein Element im Katalog (eCH-0058 product = Software, eCH-0263 = Agrar-Betriebsmittel).",
+   "elternfeld": "Produkt, KVU-Nr., Einbaufirma (Einbau einer Innenhülle mit Vakuumüberwachung)",
+   "teilfeld": "Produkt"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KVU-Zulassungsnummer; kein Element im Katalog.",
+   "elternfeld": "Produkt, KVU-Nr., Einbaufirma (Einbau einer Innenhülle mit Vakuumüberwachung)",
+   "teilfeld": "KVU-Nr."
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name der ausführenden Firma → eCH-0098 organisationName.",
+   "elternfeld": "Produkt, KVU-Nr., Einbaufirma (Einbau einer Innenhülle mit Vakuumüberwachung)",
+   "teilfeld": "Einbaufirma",
+   "standard": "eCH-0098",
+   "element": "organisationName"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Gemischtes Composite (Produkt, Zulassungsnummer, Einbaufirma) ohne Container in einem Standard; nur der Teil Einbaufirma hat ein Element.",
+   "feld": "Produkt, KVU-Nr., Einbaufirma (Leckanzeigesystem)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Produktbezeichnung; kein Element im Katalog.",
+   "elternfeld": "Produkt, KVU-Nr., Einbaufirma (Leckanzeigesystem)",
+   "teilfeld": "Produkt"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KVU-Zulassungsnummer; kein Element im Katalog.",
+   "elternfeld": "Produkt, KVU-Nr., Einbaufirma (Leckanzeigesystem)",
+   "teilfeld": "KVU-Nr."
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name der ausführenden Firma → eCH-0098 organisationName.",
+   "elternfeld": "Produkt, KVU-Nr., Einbaufirma (Leckanzeigesystem)",
+   "teilfeld": "Einbaufirma",
+   "standard": "eCH-0098",
+   "element": "organisationName"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Gemischtes Composite (Produkt, Zulassungsnummer, Einbaufirma) ohne Container in einem Standard; nur der Teil Einbaufirma hat ein Element.",
+   "feld": "Produkt, KVU-Nr., Einbaufirma (Einbau einer Doppelmantelauskleidung)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Produktbezeichnung; kein Element im Katalog.",
+   "elternfeld": "Produkt, KVU-Nr., Einbaufirma (Einbau einer Doppelmantelauskleidung)",
+   "teilfeld": "Produkt"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KVU-Zulassungsnummer; kein Element im Katalog.",
+   "elternfeld": "Produkt, KVU-Nr., Einbaufirma (Einbau einer Doppelmantelauskleidung)",
+   "teilfeld": "KVU-Nr."
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name der ausführenden Firma → eCH-0098 organisationName.",
+   "elternfeld": "Produkt, KVU-Nr., Einbaufirma (Einbau einer Doppelmantelauskleidung)",
+   "teilfeld": "Einbaufirma",
+   "standard": "eCH-0098",
+   "element": "organisationName"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Umfang der Beschichtung (nur Tanksohle / ganzer Tank); kein Element und keine Codeliste im Katalog.",
+   "feld": "Einbau einer Kunststoffbeschichtung"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Gemischtes Composite (Produkt, Zulassungsnummer, Einbaufirma) ohne Container in einem Standard; nur der Teil Einbaufirma hat ein Element.",
+   "feld": "Produkt, KVU-Nr., Einbaufirma (Einbau einer Kunststoffbeschichtung)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Produktbezeichnung; kein Element im Katalog.",
+   "elternfeld": "Produkt, KVU-Nr., Einbaufirma (Einbau einer Kunststoffbeschichtung)",
+   "teilfeld": "Produkt"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KVU-Zulassungsnummer; kein Element im Katalog.",
+   "elternfeld": "Produkt, KVU-Nr., Einbaufirma (Einbau einer Kunststoffbeschichtung)",
+   "teilfeld": "KVU-Nr."
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name der ausführenden Firma → eCH-0098 organisationName.",
+   "elternfeld": "Produkt, KVU-Nr., Einbaufirma (Einbau einer Kunststoffbeschichtung)",
+   "teilfeld": "Einbaufirma",
+   "standard": "eCH-0098",
+   "element": "organisationName"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Beizulegende Unterlage (Grundriss/Schnitt) zum Gesuch → eCH-0211 document, gleich wie Form 452 «Grundriss und Schnitt …», Form 51 «Grundriss- und Schnittpläne» und Form 188 «Grundriss mit Massangaben».",
+   "feld": "Detailbeschrieb mit Skizzen von Grundriss und Schnitt",
+   "standard": "eCH-0211",
+   "element": "document"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Gemischtes Composite (Produkt, Zulassungsnummer, Einbaufirma) ohne Container in einem Standard; nur der Teil Einbaufirma hat ein Element.",
+   "feld": "Produkt, KVU-Nr., Einbaufirma (Einbau einer Polyesterbeschichtung im Schutzbauwerk)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Produktbezeichnung; kein Element im Katalog.",
+   "elternfeld": "Produkt, KVU-Nr., Einbaufirma (Einbau einer Polyesterbeschichtung im Schutzbauwerk)",
+   "teilfeld": "Produkt"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KVU-Zulassungsnummer; kein Element im Katalog.",
+   "elternfeld": "Produkt, KVU-Nr., Einbaufirma (Einbau einer Polyesterbeschichtung im Schutzbauwerk)",
+   "teilfeld": "KVU-Nr."
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name der ausführenden Firma → eCH-0098 organisationName.",
+   "elternfeld": "Produkt, KVU-Nr., Einbaufirma (Einbau einer Polyesterbeschichtung im Schutzbauwerk)",
+   "teilfeld": "Einbaufirma",
+   "standard": "eCH-0098",
+   "element": "organisationName"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Gemischtes Composite (Produkt, Zulassungsnummer, Einbaufirma) ohne Container in einem Standard; nur der Teil Einbaufirma hat ein Element.",
+   "feld": "Produkt, KVU-Nr., Einbaufirma (Einbau einer Folienauskleidung im Schutzbauwerk)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Produktbezeichnung; kein Element im Katalog.",
+   "elternfeld": "Produkt, KVU-Nr., Einbaufirma (Einbau einer Folienauskleidung im Schutzbauwerk)",
+   "teilfeld": "Produkt"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KVU-Zulassungsnummer; kein Element im Katalog.",
+   "elternfeld": "Produkt, KVU-Nr., Einbaufirma (Einbau einer Folienauskleidung im Schutzbauwerk)",
+   "teilfeld": "KVU-Nr."
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name der ausführenden Firma → eCH-0098 organisationName.",
+   "elternfeld": "Produkt, KVU-Nr., Einbaufirma (Einbau einer Folienauskleidung im Schutzbauwerk)",
+   "teilfeld": "Einbaufirma",
+   "standard": "eCH-0098",
+   "element": "organisationName"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Gemischtes Composite (Produkt, Zulassungsnummer, Einbaufirma) ohne Container in einem Standard; nur der Teil Einbaufirma hat ein Element.",
+   "feld": "Produkt, KVU-Nr., Einbaufirma (Einbau eines Flüssigkeitswarngerätes im Schutzbauwerk)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Produktbezeichnung; kein Element im Katalog.",
+   "elternfeld": "Produkt, KVU-Nr., Einbaufirma (Einbau eines Flüssigkeitswarngerätes im Schutzbauwerk)",
+   "teilfeld": "Produkt"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KVU-Zulassungsnummer; kein Element im Katalog.",
+   "elternfeld": "Produkt, KVU-Nr., Einbaufirma (Einbau eines Flüssigkeitswarngerätes im Schutzbauwerk)",
+   "teilfeld": "KVU-Nr."
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name der ausführenden Firma → eCH-0098 organisationName.",
+   "elternfeld": "Produkt, KVU-Nr., Einbaufirma (Einbau eines Flüssigkeitswarngerätes im Schutzbauwerk)",
+   "teilfeld": "Einbaufirma",
+   "standard": "eCH-0098",
+   "element": "organisationName"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Angaben zur mobilen Auffangwanne (Zulassung, Baustoff, Wandstärke, Inhalt); kein Container und kein Element im Katalog.",
+   "feld": "Aufstellen einer mobilen Auffangwanne unter dem Kleintank"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KVU-Zulassungsnummer der Auffangwanne; kein Element im Katalog.",
+   "elternfeld": "Aufstellen einer mobilen Auffangwanne unter dem Kleintank",
+   "teilfeld": "KVU-Nr."
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Baustoff der Auffangwanne; kein Element im Katalog (gesucht: material).",
+   "elternfeld": "Aufstellen einer mobilen Auffangwanne unter dem Kleintank",
+   "teilfeld": "Baustoff"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Wandstärke in mm; kein Element im Katalog (gesucht: thickness).",
+   "elternfeld": "Aufstellen einer mobilen Auffangwanne unter dem Kleintank",
+   "teilfeld": "Wandstärke"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Fassungsvermögen in Litern. eCH-0129 volume bezeichnet Gebäude- oder Versicherungsvolumen, eCH-0262 storageType Hofdüngerlager; kein passendes Element.",
+   "elternfeld": "Aufstellen einer mobilen Auffangwanne unter dem Kleintank",
+   "teilfeld": "Inhalt"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freie Zeile für eine weitere Schutzmassnahme, also die Alternative zur Massnahmenliste in Abschnitt 2; wie diese ohne Standard.",
+   "feld": "Spezielle Schutzmassnahmen zur Leckerkennung bzw. Zurückhaltung von Leckflüssigkeit (freie Zeile)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Auswahl konstruktiver Tankänderungen; keine Codeliste und kein Element in den 290 Standards (kindOfWork/kindOfConstructionWork betreffen Gebäude).",
+   "feld": "Konstruktive Änderungen am Tank"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Seite des Minimalabstands (oben/seitlich); kein Element im Katalog.",
+   "feld": "Verkleinern des Tanks zu Gunsten der vorschriftsmässigen Minimalabstände zwischen Behälter und Tankraum"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Gemischtes Composite (Produkt, Zulassungsnummer, Einbaufirma) ohne Container in einem Standard; nur der Teil Einbaufirma hat ein Element.",
+   "feld": "Produkt, KVU-Nr., Einbaufirma (Ersatz eines defekten baugleichen Tanks der bestehenden Tankanlage)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Produktbezeichnung des Ersatztanks; kein Element im Katalog.",
+   "elternfeld": "Produkt, KVU-Nr., Einbaufirma (Ersatz eines defekten baugleichen Tanks der bestehenden Tankanlage)",
+   "teilfeld": "Produkt"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "KVU-Zulassungsnummer des Ersatztanks; kein Element im Katalog.",
+   "elternfeld": "Produkt, KVU-Nr., Einbaufirma (Ersatz eines defekten baugleichen Tanks der bestehenden Tankanlage)",
+   "teilfeld": "KVU-Nr."
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name der ausführenden Firma → eCH-0098 organisationName.",
+   "elternfeld": "Produkt, KVU-Nr., Einbaufirma (Ersatz eines defekten baugleichen Tanks der bestehenden Tankanlage)",
+   "teilfeld": "Einbaufirma",
+   "standard": "eCH-0098",
+   "element": "organisationName"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ankreuzfeld (ja/nein) beim Hinweis zu Occasionstanks; ein Ja/Nein-Feld erhält kein Wert-Element, und im Katalog gibt es kein Boolean für Tankkontrollen.",
+   "feld": "Bei Occasionstanks ist eine Sicht- und Zustandskontrolle erforderlich"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freie Zeile für eine weitere Tankänderung, also die Alternative zur Liste in Abschnitt 3; wie diese ohne Standard.",
+   "feld": "Konstruktive Änderungen am Tank (freie Zeile)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freitext zu baulichen Massnahmen am Tankraum (Abschnitt 4), gleiche Art von Angabe wie die Massnahmen in Abschnitt 1–3. Geprüft: eCH-0211 description (Pflichtbeschreibung des ganzen Bauvorhabens) und remark, eCH-0129 description, kindOfConstructionWork: keines definiert eine einzelne Tankraum-Massnahme.",
+   "feld": "Konstruktive Änderungen am Tankraum"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freie Bemerkung. Korpuspraxis «Bemerkungen» = kein_standard (82×, auch in allen eCH-0211-Formularen wie 7, 52, 180, 384, 452). eCH-0058 comment/eCH-0039 comment sind Nachrichten- bzw. Dokumentkommentare, keine Antragsbemerkung.",
+   "feld": "Weitere Angaben / Bemerkungen"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Propagiertes kein_standard bestätigt (Korpus «Ort und Datum» 31× kein_standard): Ort und Datum der Unterzeichnung. eCH-0119 locationAndDate gilt nur für Beilagen der Steuererklärung; sonst gibt es kein Element dafür.",
+   "feld": "Ort und Datum"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Ort der Unterzeichnung, keine Adresse: eCH-0010 town ist ein Postadressteil, eCH-0119 locationAndDate gehört zur Steuererklärung. Korpuspraxis kein_standard (auch Form 452).",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Datum der Unterzeichnung; kein allgemeines Element für ein Unterschriftsdatum (eCH-0119 locationAndDate ist steuerspezifisch). Korpuspraxis kein_standard (auch Form 452).",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Handschriftliche Unterschrift mit Firmenstempel. Gesucht nach signat*/stamp: eCH-0260 signatures enthält nur Bestätigungs-Booleans im Lehrvertrag. Korpuspraxis Unterschrift = kein_standard (u. a. Form 452 «Unterschrift Gesuchsteller/in (Firmenstempel)»).",
+   "feld": "Stempel und Unterschrift des Gesuchstellers"
+  }
+ ]
+}

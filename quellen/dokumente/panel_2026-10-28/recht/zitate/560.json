@@ -1,0 +1,266 @@
+{
+ "form_id": 560,
+ "mappings": [
+  {
+   "data_field": "Firma",
+   "cites": [
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 16",
+     "beleg": "Die Anmeldung muss die Rechtseinheit klar identifizieren und die einzutragenden Tatsachen angeben oder auf die entsprechenden Belege einzeln verweisen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Sitz",
+   "cites": [
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 16",
+     "beleg": "Die Anmeldung muss die Rechtseinheit klar identifizieren und … auf die entsprechenden Belege einzeln verweisen."
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 117",
+     "beleg": "Als Sitz wird der Name der politischen Gemeinde eingetragen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Datum",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Ort",
+   "cites": [
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 713",
+     "beleg": "Der Verwaltungsrat kann seine Beschlüsse fassen: 1. an einer Sitzung mit Tagungsort"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Vorsitz",
+   "cites": [
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 713",
+     "beleg": "Der Vorsitzende hat den Stichentscheid … dieses wird vom Vorsitzenden und vom Protokollführer unterzeichnet"
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 23",
+     "beleg": "Protokolle oder Protokollauszüge müssen … von der Vorsitzenden oder vom Vorsitzenden des beschliessenden Organs unterzeichnet werden"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Protokoll",
+   "cites": [
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 713",
+     "beleg": "Über die Verhandlungen und Beschlüsse ist ein Protokoll zu führen; dieses wird vom Vorsitzenden und vom Protokollführer unterzeichnet."
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 23",
+     "beleg": "Protokolle oder Protokollauszüge müssen von der Protokollführerin oder vom Protokollführer … unterzeichnet werden"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Neben ihm/ihr sind anwesend",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Erteilung einer Zeichnungsberechtigung – Person, der die Unterschrift erteilt wird",
+   "cites": [
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 119",
+     "beleg": "Einträge zu natürlichen Personen müssen die folgenden Angaben enthalten: a. den Familiennamen; b. mindestens einen ausgeschriebenen Vornamen; … d. die politische Gemeinde des Heimatortes …; e. die politische Gemeinde des Wohnsitzes"
+    },
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 721",
+     "beleg": "Der Verwaltungsrat kann Prokuristen und andere Bevollmächtigte ernennen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Erteilung einer Zeichnungsberechtigung – erteilte Unterschrift",
+   "cites": [
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 119",
+     "beleg": "h. die Art der Zeichnungsberechtigung oder der Hinweis, dass die Person nicht zeichnungsberechtigt ist"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Erteilung einer Zeichnungsberechtigung – ernannte Person",
+   "cites": [
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 119",
+     "beleg": "a. den Familiennamen; b. mindestens einen ausgeschriebenen Vornamen; … d. die politische Gemeinde des Heimatortes …; e. die politische Gemeinde des Wohnsitzes"
+    },
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 718",
+     "beleg": "Der Verwaltungsrat kann die Vertretung einem oder mehreren Mitgliedern (Delegierte) oder Dritten (Direktoren) übertragen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Erteilung einer Zeichnungsberechtigung – Funktion der ernannten Person",
+   "cites": [
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 119",
+     "beleg": "g. die Funktion, die die Person in der Rechtseinheit wahrnimmt"
+    },
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 718",
+     "beleg": "oder Dritten (Direktoren) übertragen"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Erteilung einer Zeichnungsberechtigung – Unterschrift der ernannten Person",
+   "cites": [
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 119",
+     "beleg": "h. die Art der Zeichnungsberechtigung oder der Hinweis, dass die Person nicht zeichnungsberechtigt ist"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Entziehung einer Zeichnungsberechtigung – Person, der die Unterschrift entzogen wird",
+   "cites": [
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 119",
+     "beleg": "Einträge zu natürlichen Personen müssen die folgenden Angaben enthalten: a. den Familiennamen; b. … Vornamen; … d. … Heimatortes …; e. … Wohnsitzes"
+    },
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 726",
+     "beleg": "Der Verwaltungsrat kann die von ihm bestellten … andern Bevollmächtigten und Beauftragten jederzeit abberufen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Entziehung einer Zeichnungsberechtigung – entzogene Unterschrift",
+   "cites": [
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 119",
+     "beleg": "h. die Art der Zeichnungsberechtigung"
+    },
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 933",
+     "beleg": "Ist eine Tatsache im Handelsregister eingetragen, so muss auch jede Änderung dieser Tatsache eingetragen werden."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Entziehung einer Zeichnungsberechtigung – abgewählte Person",
+   "cites": [
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 119",
+     "beleg": "a. den Familiennamen; b. mindestens einen ausgeschriebenen Vornamen; … d. die politische Gemeinde des Heimatortes …; e. die politische Gemeinde des Wohnsitzes"
+    },
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 726",
+     "beleg": "Der Verwaltungsrat kann die von ihm bestellten Ausschüsse, Delegierten, Direktoren … jederzeit abberufen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Entziehung einer Zeichnungsberechtigung – Funktion der abgewählten Person",
+   "cites": [
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 119",
+     "beleg": "g. die Funktion, die die Person in der Rechtseinheit wahrnimmt"
+    },
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 726",
+     "beleg": "Delegierten, Direktoren und andern Bevollmächtigten … jederzeit abberufen"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Verschiedenes",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Vorsitzender",
+   "cites": [
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 713",
+     "beleg": "dieses wird vom Vorsitzenden und vom Protokollführer unterzeichnet"
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 23",
+     "beleg": "Protokolle oder Protokollauszüge müssen … von der Vorsitzenden oder vom Vorsitzenden des beschliessenden Organs unterzeichnet werden"
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 20",
+     "beleg": "Die Belege müssen rechtskonform unterzeichnet sein."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Protokollführer",
+   "cites": [
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 713",
+     "beleg": "dieses wird vom Vorsitzenden und vom Protokollführer unterzeichnet"
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 23",
+     "beleg": "Protokolle oder Protokollauszüge müssen von der Protokollführerin oder vom Protokollführer … unterzeichnet werden"
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 20",
+     "beleg": "Die Belege müssen rechtskonform unterzeichnet sein."
+    }
+   ],
+   "over_collection": false
+  }
+ ]
+}

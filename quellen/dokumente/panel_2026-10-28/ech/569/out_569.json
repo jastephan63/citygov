@@ -1,0 +1,258 @@
+{
+ "hinweis": "eCH-Urteile Formular 569, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/569 --nur-offene=569",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Auswahl «ordentliche / ausserordentliche» Generalversammlung. Im ganzen Katalog gesucht nach meeting, assembly, general, ordinary, extraordinary, session, agenda, protocol, minutes, resolution, sowie in den Unternehmensstandards eCH-0098, eCH-0108, eCH-0116, eCH-0148, eCH-0229 und eCH-0276. Gefunden wurden nur Wahl-/Abstimmungselemente der politischen Rechte (eCH-0110, eCH-0155, eCH-0252) und Erfolgsrechnungsposten (eCH-0276 externalExtraordinary…). Kein Standard kennt die Art einer Versammlung von Gesellschaftern.",
+   "feld": "Generalversammlung"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die Firma der Aktiengesellschaft ist ihr Name als Unternehmen: eCH-0098 organisationName (organisationIdentificationType). So ist «Firma» auf den HR-Formularen 307, 310, 313, 317 und weiteren zugeordnet.",
+   "feld": "Firma",
+   "standard": "eCH-0098",
+   "element": "organisationName"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Der Sitz der Gesellschaft gemäss Handelsregister ist eine Gemeinde: eCH-0098 headquarterMunicipality (swissHeadquarterType), gleich wie «Sitz» auf 361, 363, 553 und «Sitz (Gemeinde)» auf 310. Der übernommene Wert stimmt.",
+   "feld": "Sitz"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Ort, an dem die Versammlung abgehalten wird. Gesucht nach place, location, venue und meeting: gefunden nur Geburts-, Todes-, Heimat-, Heirats- und Arbeitsorte (eCH-0011, eCH-0020, eCH-0021), Postadressen (eCH-0010, eCH-0033) und Standortadressen von Unternehmen (eCH-0108), aber kein Ort einer Versammlung. Das übernommene kein_standard stimmt.",
+   "feld": "Ort"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Kalenderdatum, an dem die Generalversammlung stattfindet. Gesucht nach date, meeting, decision, resolution und eventDate im ganzen Katalog und in eCH-0098/0108/0116/0148/0229/0276: eCH-0058 messageDate und eventDate sind Daten im Kopf einer Meldung, foundationDate/incorporationDate/statusDate/dateValidFrom betreffen Ereignisse des Unternehmens im Register. Für das Datum einer Versammlung gibt es kein Element.",
+   "feld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Uhrzeit, zu der die Versammlung beginnt. Gesucht nach time, begin, start und hour: nur Zeitstempel von Meldungen (eCH-0085, eCH-0086) und eCH-0155 timeOfVoting (Stimmabgabe). Kein Element gilt für den Beginn einer Sitzung. Das übernommene kein_standard stimmt.",
+   "feld": "Beginn"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Nummer des Traktandums «Wahlen / Abwahlen» (im Kopf und in Abschnitt II dieselbe Angabe). Gesucht nach agenda, item, protocol und minutes; eCH-0292 und eCH-0295 (politische Geschäfte) haben keine Elemente, eCH-0164/0177 ebenfalls nicht. Im Katalog gibt es kein Element für Traktanden einer Versammlung.",
+   "feld": "Traktandum"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Personalien des Vorsitzenden: Anrede, Vorname, Name, Heimatort und Wohnadresse. eCH-0011 person (Datentyp personType, im reportedPersonType) fasst personIdentification (Name, Vorname) und placeOfOrigin (Heimatort) zusammen; die Wohnadresse steht im Geschwisterelement hasMainResidence und wird über die Teilfelder (eCH-0010) abgebildet. So sind auch die Gründer-Personalien auf 307 und 317 zugeordnet. Die Funktion «Vorsitz der GV» hat kein eigenes Element; eCH-0276 chairmanOfTheBoardOfDirectors ist der VR-Präsident, nicht der Vorsitzende der Versammlung.",
+   "feld": "Der/Die Vorsitzende",
+   "standard": "eCH-0011",
+   "element": "person"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Die Anrede «Herr/Frau» gehört hier zu den Personalien einer natürlichen Person, nicht zu einer Postanschrift. Das ist eCH-0021 mrMrs (personAdditionalData, Personenzusatzdaten zu eCH-0011), gleich wie «Frau / Herr» bei den Personalien auf Formular 289. eCH-0010 mrMrs gehört zum Adressblock (personMailAddressInfoType) und passt zum Container eCH-0011 person weniger.",
+   "elternfeld": "Der/Die Vorsitzende",
+   "teilfeld": "Herr/Frau",
+   "standard": "eCH-0021",
+   "element": "mrMrs"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Der Vorname des Vorsitzenden ist eCH-0044 firstName.",
+   "elternfeld": "Der/Die Vorsitzende",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Der amtliche Name des Vorsitzenden ist eCH-0044 officialName.",
+   "elternfeld": "Der/Die Vorsitzende",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«von [Heimatort]» ist der Name des Heimatorts: eCH-0011 originName (placeOfOriginType), gleich wie bei 30 bereits zugeordneten Teilfeldern «Heimatort».",
+   "elternfeld": "Der/Die Vorsitzende",
+   "teilfeld": "Heimatort",
+   "standard": "eCH-0011",
+   "element": "originName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«wohnhaft in [PLZ Ort]» ist die Postleitzahl der aktuellen Wohnadresse: eCH-0010 swissZipCode.",
+   "elternfeld": "Der/Die Vorsitzende",
+   "teilfeld": "PLZ",
+   "standard": "eCH-0010",
+   "element": "swissZipCode"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Der Ort der aktuellen Wohnadresse («wohnhaft in [PLZ Ort]») ist eCH-0010 town.",
+   "elternfeld": "Der/Die Vorsitzende",
+   "teilfeld": "Ort",
+   "standard": "eCH-0010",
+   "element": "town"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Die Strasse der aktuellen Wohnadresse ist eCH-0010 street.",
+   "elternfeld": "Der/Die Vorsitzende",
+   "teilfeld": "Strasse",
+   "standard": "eCH-0010",
+   "element": "street"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«[Strasse Nr.]» ist die Hausnummer der aktuellen Wohnadresse: eCH-0010 houseNumber.",
+   "elternfeld": "Der/Die Vorsitzende",
+   "teilfeld": "Nr.",
+   "standard": "eCH-0010",
+   "element": "houseNumber"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Gewählt wird eine von zwei Feststellungen zur Anwesenheit des Verwaltungsrates (alle anwesend oder Verzicht der Abwesenden). Gesucht nach presence, attend, quorum, waiver, member und administrativeBody: eCH-0229 memberOfAdministrativeBodyType kennt nur die Rolle eines Mitglieds, eCH-0252 quorum betrifft politische Wahlen. Kein Element passt.",
+   "feld": "Der/Die Vorsitzende stellt fest"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Das übernommene shareCapital (equityAndLiabilitiesChfType) hängt in eCH-0276 nur unter conversionOfEquityFromTheFunctionalCurrencyIntoChfType, gilt also nur für die Umrechnung von Eigenkapital aus einer fremden funktionalen Währung. Das Aktienkapital der Gesellschaft selbst ist die Eigenkapitalposition shareCapitalShareholderCapitalAssociationCapitalFoundationCapital (equityType), wie «Stammkapital» auf 310, 317 und 557. nominalAmountOfTotalCapitalInDomesticCurrency (companyType) betrifft Beteiligungen an anderen Gesellschaften und passt nicht.",
+   "feld": "Aktienkapital",
+   "standard": "eCH-0276",
+   "element": "shareCapitalShareholderCapitalAssociationCapitalFoundationCapital"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Angegeben ist die Person, welche die GV neu in den Verwaltungsrat wählt; ab der Wahl ist sie aktuelles Mitglied. Das ist eCH-0229 administrativeBody (memberOfAdministrativeBodyType mit role), gleich wie «Verwaltungsrat» auf 307 und «Mitglieder des Verwaltungsrats» auf 312.",
+   "feld": "Neues Mitglied des Verwaltungsrates",
+   "standard": "eCH-0229",
+   "element": "administrativeBody"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Angegeben ist die abberufene Person; sie ist danach ein früheres Mitglied und darf nicht das Element für aktuelle Mitglieder (eCH-0229 administrativeBody) erhalten. Bezeichnet wird nur die Person: eCH-0044 personIdentification, gleich wie «Ausgeschiedene Personen und erloschene Unterschriften» auf 308, 311 und 359.",
+   "feld": "Als Verwaltungsrat abberufen",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Angegeben ist die zurücktretende Person, also ein ausscheidendes und kein aktuelles Mitglied; sie erhält deshalb nicht eCH-0229 administrativeBody. Die Person wird mit eCH-0044 personIdentification bezeichnet, gleich wie «Ausgeschiedene Personen» auf den HR-Formularen 308, 311 und 359.",
+   "feld": "Rücktritt als Mitglied des Verwaltungsrates",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Uhrzeit, zu der die Versammlung geschlossen wird. Gesucht nach time, end, hour und session: nur Zeitstempel von Meldungen (eCH-0085, eCH-0086), eCH-0155 timeOfVoting und Enddaten zu Bauprojekten und Verträgen. Kein Element gilt für das Ende einer Sitzung; «Ende» und «Beginn» sind auch sonst kein_standard.",
+   "feld": "Ende der Sitzung"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Ort und Datum der Unterzeichnung des Protokolls. eCH-0119 locationAndDate gilt nur für Beilagen zur Steuererklärung, nicht für ein GV-Protokoll; für die Teile gibt es kein Element. Das übernommene kein_standard stimmt (17-mal geprüft).",
+   "feld": "Ort und Datum"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Ort, an dem das Protokoll unterzeichnet wird. Gesucht nach place, location und signature: es gibt kein Element für den Ort einer Unterzeichnung (nur Geburts-, Heimat-, Heirats- und Arbeitsorte sowie Postadressen).",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Kalenderdatum, an dem das Protokoll unterzeichnet wird. Gesucht nach date, signature und eventDate: es gibt kein Element für das Datum einer Unterzeichnung (messageDate/eventDate sind Meldungskopfdaten).",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Eigenhändige Unterschrift. Gesucht nach signat und signature im ganzen Katalog: nur eCH-0260 …SignatureConfirmation (Ja/Nein-Werte im Lehrvertrag) und Signaturverfahren-Standards ohne Elemente (eCH-0091, eCH-0220, eCH-0230, eCH-0250). Für eine Unterschrift gibt es kein Element.",
+   "feld": "Unterschrift Vorsitzender"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Unter der Unterschriftslinie stehen NAME und Vorname des Vorsitzenden. Der Container für Name und Vorname zur Identifikation einer Person ist eCH-0044 personIdentification, wie bei rund 295 vergleichbaren Namens-Composites.",
+   "feld": "Vorsitzender",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Der Nachname des Vorsitzenden in Grossbuchstaben ist der amtliche Name: eCH-0044 officialName.",
+   "elternfeld": "Vorsitzender",
+   "teilfeld": "NAME",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Der Vorname des Vorsitzenden ist eCH-0044 firstName.",
+   "elternfeld": "Vorsitzender",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Eigenhändige Unterschrift. Gesucht nach signat und signature im ganzen Katalog: nur eCH-0260 …SignatureConfirmation (Ja/Nein-Werte im Lehrvertrag) und Signaturverfahren-Standards ohne Elemente. Für eine Unterschrift gibt es kein Element.",
+   "feld": "Unterschrift Protokollführer"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Unter der Unterschriftslinie stehen NAME und Vorname des Protokollführers. Der Container für Name und Vorname zur Identifikation einer Person ist eCH-0044 personIdentification. Für die Funktion Protokollführer gibt es kein Element (gesucht nach secretary, clerk, minute, protocol).",
+   "feld": "Protokollführer",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Der Nachname des Protokollführers in Grossbuchstaben ist der amtliche Name: eCH-0044 officialName.",
+   "elternfeld": "Protokollführer",
+   "teilfeld": "NAME",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Der Vorname des Protokollführers ist eCH-0044 firstName.",
+   "elternfeld": "Protokollführer",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  }
+ ]
+}

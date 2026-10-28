@@ -1,0 +1,2013 @@
+{
+ "form_id": 559,
+ "mappings": [
+  {
+   "data_field": "Jahr",
+   "cites": [
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "haben dem Kanton jährlich über die erbrachten Leistungen, die Kosten, die Finanzierung und weitere für die Aufsicht und Planung relevante Fakten zu berichten"
+    },
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Jahresrechnung (Bilanz und Erfolgsrechnung)"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "ZSR-Nummer",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "BUR-Nummer",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Organisation",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Organisationen der Hilfe und Pflege zu Hause und selbständig tätige Pflegefachpersonen, die Leistungen im Sinne des KVG bzw. des AbPG unter Beanspruchung finanzieller Beiträge des Kantons und/oder der Gemeinden erbringen, stellen dem Gesundheitsamt nach dessen Weisungen folgende Unterlagen zu"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "Heime und Organisationen, die unter Beizug von Kostenbeiträgen der bundesrechtlichen Sozialversicherungen, des Kantons oder der Gemeinden finanziert werden, haben dem Kanton jährlich über die erbrachten Leistungen"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "100 Pflegefachfrau FH",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Stellen- und Einsatzpläne"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "weitere für die Aufsicht und Planung relevante Fakten zu berichten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "101 Master of Science Pflege FH",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Stellen- und Einsatzpläne"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "weitere für die Aufsicht und Planung relevante Fakten zu berichten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "102 Master of Science Nursing FH",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Stellen- und Einsatzpläne"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "weitere für die Aufsicht und Planung relevante Fakten zu berichten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "103 PhD Nursing Science",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Stellen- und Einsatzpläne"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "weitere für die Aufsicht und Planung relevante Fakten zu berichten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "110 Dipl. Pflegefachfrau/-mann",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Stellen- und Einsatzpläne"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "weitere für die Aufsicht und Planung relevante Fakten zu berichten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "111 Krankenschwester/-pfleger Diplom II",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Stellen- und Einsatzpläne"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "weitere für die Aufsicht und Planung relevante Fakten zu berichten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "112 Dipl. Krankenschwester-/Pfleger AKP",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Stellen- und Einsatzpläne"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "weitere für die Aufsicht und Planung relevante Fakten zu berichten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "113 Hebamme",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Stellen- und Einsatzpläne"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "weitere für die Aufsicht und Planung relevante Fakten zu berichten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "120 Pflegefachfrau DNI",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Stellen- und Einsatzpläne"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "weitere für die Aufsicht und Planung relevante Fakten zu berichten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "121 Prakt. Krankenpflege (FA SRK)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Stellen- und Einsatzpläne"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "weitere für die Aufsicht und Planung relevante Fakten zu berichten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "130 Fachfrau Gesundheit (FAGE)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Stellen- und Einsatzpläne"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "weitere für die Aufsicht und Planung relevante Fakten zu berichten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "131 Med. Praxisassistentin",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Stellen- und Einsatzpläne"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "weitere für die Aufsicht und Planung relevante Fakten zu berichten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "132 Fachfrau Betreuung (FABE)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Stellen- und Einsatzpläne"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "weitere für die Aufsicht und Planung relevante Fakten zu berichten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "133 Assisten Gesundheit EBA, Pflegeass. SR",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Stellen- und Einsatzpläne"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "weitere für die Aufsicht und Planung relevante Fakten zu berichten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "140 Assisten Gesundheit SRK",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Stellen- und Einsatzpläne"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "weitere für die Aufsicht und Planung relevante Fakten zu berichten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "141 Nachdipl. Gesundh.-Schwester",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Stellen- und Einsatzpläne"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "weitere für die Aufsicht und Planung relevante Fakten zu berichten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "142 Qualifizierte Nachdiplome (CAS, MAS etc.)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Stellen- und Einsatzpläne"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "weitere für die Aufsicht und Planung relevante Fakten zu berichten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "150 Sozialarbeiterin FH, HF",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Stellen- und Einsatzpläne"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "weitere für die Aufsicht und Planung relevante Fakten zu berichten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "151 Therapeutische Ausbildung",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Stellen- und Einsatzpläne"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "weitere für die Aufsicht und Planung relevante Fakten zu berichten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "152 Auszubildende Pflege FH HF",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Stellen- und Einsatzpläne"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "weitere für die Aufsicht und Planung relevante Fakten zu berichten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "152 Auszubildende Pflege FAGE, FABE",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Stellen- und Einsatzpläne"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "weitere für die Aufsicht und Planung relevante Fakten zu berichten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "153 Ausbildung Leitung und Adminisation",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Stellen- und Einsatzpläne"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "weitere für die Aufsicht und Planung relevante Fakten zu berichten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "154 Pflegehelferin SRK ordentlich",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Stellen- und Einsatzpläne"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "weitere für die Aufsicht und Planung relevante Fakten zu berichten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "154 Pflegehelferin (Angehörigenpflege)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Stellen- und Einsatzpläne"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "weitere für die Aufsicht und Planung relevante Fakten zu berichten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "155 Keine spezielle Ausbildung",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Stellen- und Einsatzpläne"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "weitere für die Aufsicht und Planung relevante Fakten zu berichten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "155 Keine spez. Ausbildung (Angehörigenpfl.)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Stellen- und Einsatzpläne"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "weitere für die Aufsicht und Planung relevante Fakten zu berichten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Praktikanten",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Stellen- und Einsatzpläne"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "weitere für die Aufsicht und Planung relevante Fakten zu berichten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Bemerkungen zuhanden Gesundheitsamt (Formular A)",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "310 Dipl. Pflegefachpersonal mit Zusatzdiplom / Master",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Kostenrechnung inkl. Anlagenbuchhaltung geführt nach branchenüblichen Standards"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen, die Kosten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "311 Diplomiertes Pflegefachpersonal",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Kostenrechnung inkl. Anlagenbuchhaltung geführt nach branchenüblichen Standards"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen, die Kosten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "312 Personal mit berufl. Grundbildung (FABE, FAGE)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Kostenrechnung inkl. Anlagenbuchhaltung geführt nach branchenüblichen Standards"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen, die Kosten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "313 Assistenz (in Pflege)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Kostenrechnung inkl. Anlagenbuchhaltung geführt nach branchenüblichen Standards"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen, die Kosten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "314 Grundkurs Pflegehelferin SRK",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Kostenrechnung inkl. Anlagenbuchhaltung geführt nach branchenüblichen Standards"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen, die Kosten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "315 Ohne spezifische Ausbildung",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Kostenrechnung inkl. Anlagenbuchhaltung geführt nach branchenüblichen Standards"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen, die Kosten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "316 Auszubildene Pflege HF, FH",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Kostenrechnung inkl. Anlagenbuchhaltung geführt nach branchenüblichen Standards"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen, die Kosten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "317 Auszubildende Pflege FaGe, FaBe, AGS",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Kostenrechnung inkl. Anlagenbuchhaltung geführt nach branchenüblichen Standards"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen, die Kosten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "318 Praktikanten",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Kostenrechnung inkl. Anlagenbuchhaltung geführt nach branchenüblichen Standards"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen, die Kosten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "319 Pflegende Angehörige",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Kostenrechnung inkl. Anlagenbuchhaltung geführt nach branchenüblichen Standards"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen, die Kosten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "320-329 Besoldung weitere Fachbereiche",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Kostenrechnung inkl. Anlagenbuchhaltung geführt nach branchenüblichen Standards"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen, die Kosten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "HF, FH (Stundenverteilung auf Kostenträger)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "FABE/FAGE (Stundenverteilung auf Kostenträger)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Assistenz (Stundenverteilung auf Kostenträger)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Pflegende Angehörige (Stundenverteilung auf Kostenträger)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "ohne spezifische Ausbildung (Stundenverteilung auf Kostenträger)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "in Ausbildung (Stundenverteilung auf Kostenträger)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Weitere Fachbereiche (Stundenverteilung auf Kostenträger)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "KLV Stundenleistungen in weiteren Kantonen",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Bemerkungen zuhanden Gesundheitsamt (Formular B)",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "310 Besoldung Pflege, Betreuung, Hauswirtschaft",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Jahresrechnung (Bilanz und Erfolgsrechnung)"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "320 Besoldung andere Fachbereiche",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Jahresrechnung (Bilanz und Erfolgsrechnung)"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "330 Besoldung Verwaltung, Organisation, Leitung",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Jahresrechnung (Bilanz und Erfolgsrechnung)"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "370 Sozialversicherungsaufwand Total",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Jahresrechnung (Bilanz und Erfolgsrechnung)"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "380 Arbeitsleistungen Dritter",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Jahresrechnung (Bilanz und Erfolgsrechnung)"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "390 Sonstiger Personalaufwand",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Jahresrechnung (Bilanz und Erfolgsrechnung)"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "400 Medizinischer Bedarf",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Jahresrechnung (Bilanz und Erfolgsrechnung)"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "460 Bezogene Dienstleistungen",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Jahresrechnung (Bilanz und Erfolgsrechnung)"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "davon konzerninterne Verrechnungen (460 Bezogene Dienstleistungen)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Weitere Daten und Unterlagen für die Plausibilisierung von Angaben zur Wirtschaftlichkeit und Qualität"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Kosten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "davon Marketing & Kommunikation (460 Bezogene Dienstleistungen)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Weitere Daten und Unterlagen für die Plausibilisierung von Angaben zur Wirtschaftlichkeit und Qualität"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Kosten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "520 Fahrzeug- & Transportaufwand",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Jahresrechnung (Bilanz und Erfolgsrechnung)"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "530 Unterhalt/Reparatur mobile Anlagen (ohne Fz)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Jahresrechnung (Bilanz und Erfolgsrechnung)"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "550 Raumaufwand",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Jahresrechnung (Bilanz und Erfolgsrechnung)"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "560 Energie und Entsorgung",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Jahresrechnung (Bilanz und Erfolgsrechnung)"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "570 Verwaltung und Informatik",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Jahresrechnung (Bilanz und Erfolgsrechnung)"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "davon konzerninterne Verrechnungen (570 Verwaltung und Informatik)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Weitere Daten und Unterlagen für die Plausibilisierung von Angaben zur Wirtschaftlichkeit und Qualität"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Kosten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "580 Sachversicherungen, Abgaben, Gebühren",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Jahresrechnung (Bilanz und Erfolgsrechnung)"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "590 Sonstiger betrieblicher Aufwand, Steuern",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Jahresrechnung (Bilanz und Erfolgsrechnung)"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "540 Abschreibungen und Wertberichtigungen",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Jahresrechnung (Bilanz und Erfolgsrechnung)"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "von Klienten (600 Nettoerlöse aus KLV-Leistungen)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Jahresrechnung (Bilanz und Erfolgsrechnung)"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "von Versicherern (600 Nettoerlöse aus KLV-Leistungen)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Jahresrechnung (Bilanz und Erfolgsrechnung)"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "von öff. Hand (Restkosten) (600 Nettoerlöse aus KLV-Leistungen)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Jahresrechnung (Bilanz und Erfolgsrechnung)"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "620 Nettoerlöse aus Hauswirtschaft und Betreuung",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Jahresrechnung (Bilanz und Erfolgsrechnung)"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "630 Mitgliederbeiträge, Spenden, Legate",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Jahresrechnung (Bilanz und Erfolgsrechnung)"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "670 Andere Erträge",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Jahresrechnung (Bilanz und Erfolgsrechnung)"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Defizitdeckung (65 Beiträge der öffentlichen Hand und Anderen)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Jahresrechnung (Bilanz und Erfolgsrechnung)"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Übrige Beiträge (65 Beiträge der öffentlichen Hand und Anderen)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Jahresrechnung (Bilanz und Erfolgsrechnung)"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "700 Finanzertrag",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Jahresrechnung (Bilanz und Erfolgsrechnung)"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "750 Finanzaufwand",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Jahresrechnung (Bilanz und Erfolgsrechnung)"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Bemerkungen zuhanden Gesundheitsamt (Formular C)",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Bemerkungen zuhanden Gesundheitsamt (Formular D1)",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Vollkosten (KLV Pflegeleistungen Kanton Schaffhausen)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Kostenrechnung inkl. Anlagenbuchhaltung geführt nach branchenüblichen Standards"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Kosten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Klienten Ist (Erträge, KLV Pflegeleistungen Kanton Schaffhausen)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Kostenrechnung inkl. Anlagenbuchhaltung geführt nach branchenüblichen Standards"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Versicherer (Erträge, KLV Pflegeleistungen Kanton Schaffhausen)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Kostenrechnung inkl. Anlagenbuchhaltung geführt nach branchenüblichen Standards"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "öff. Hand (Erträge, KLV Pflegeleistungen Kanton Schaffhausen)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Kostenrechnung inkl. Anlagenbuchhaltung geführt nach branchenüblichen Standards"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Total Stunden (KLV Pflegeleistungen Kanton Schaffhausen)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Total Anzahl Klienten KLV",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Vollkosten (Übrige Pflegeleistungen Kanton Schaffhausen (AÜP, IV, MV, UV))",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Kostenrechnung inkl. Anlagenbuchhaltung geführt nach branchenüblichen Standards"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Kosten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Klienten Ist (Erträge, Übrige Pflegeleistungen Kanton Schaffhausen (AÜP, IV, MV, UV))",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Kostenrechnung inkl. Anlagenbuchhaltung geführt nach branchenüblichen Standards"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Versicherer (Erträge, Übrige Pflegeleistungen Kanton Schaffhausen (AÜP, IV, MV, UV))",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Kostenrechnung inkl. Anlagenbuchhaltung geführt nach branchenüblichen Standards"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "öff. Hand (Erträge, Übrige Pflegeleistungen Kanton Schaffhausen (AÜP, IV, MV, UV))",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Kostenrechnung inkl. Anlagenbuchhaltung geführt nach branchenüblichen Standards"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Total Stunden (Übrige Pflegeleistungen Kanton Schaffhausen (AÜP, IV, MV, UV))",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Total Anzahl übrige Klienten Pflege",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Vollkosten (Übrige Leistungen)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Kostenrechnung inkl. Anlagenbuchhaltung geführt nach branchenüblichen Standards"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Kosten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Klienten Ist (Erträge, Übrige Leistungen)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Kostenrechnung inkl. Anlagenbuchhaltung geführt nach branchenüblichen Standards"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Versicherer (Erträge, Übrige Leistungen)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Kostenrechnung inkl. Anlagenbuchhaltung geführt nach branchenüblichen Standards"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "öff. Hand (Erträge, Übrige Leistungen)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Kostenrechnung inkl. Anlagenbuchhaltung geführt nach branchenüblichen Standards"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Total Stunden (Übrige Leistungen)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Total Anzahl Klienten Hauswirtschaft und Betreuung",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Kostenrechnung in CSV-Format",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Kostenrechnung inkl. Anlagenbuchhaltung geführt nach branchenüblichen Standards"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Bemerkungen zuhanden Gesundheitsamt (Formular D2)",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Bargen (Verrechnete Minuten pro Gemeinde)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen, die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Beggingen (Verrechnete Minuten pro Gemeinde)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen, die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Beringen (Verrechnete Minuten pro Gemeinde)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen, die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Buch (Verrechnete Minuten pro Gemeinde)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen, die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Buchberg (Verrechnete Minuten pro Gemeinde)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen, die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Büttenhardt (Verrechnete Minuten pro Gemeinde)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen, die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Dörflingen (Verrechnete Minuten pro Gemeinde)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen, die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Gächlingen (Verrechnete Minuten pro Gemeinde)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen, die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Hallau (Verrechnete Minuten pro Gemeinde)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen, die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Hemishofen (Verrechnete Minuten pro Gemeinde)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen, die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Löhningen (Verrechnete Minuten pro Gemeinde)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen, die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Lohn (Verrechnete Minuten pro Gemeinde)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen, die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Merishausen (Verrechnete Minuten pro Gemeinde)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen, die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Neuhausen (Verrechnete Minuten pro Gemeinde)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen, die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Neunkirch (Verrechnete Minuten pro Gemeinde)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen, die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Oberhallau (Verrechnete Minuten pro Gemeinde)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen, die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Ramsen (Verrechnete Minuten pro Gemeinde)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen, die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Rüdlingen (Verrechnete Minuten pro Gemeinde)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen, die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Schaffhausen (Verrechnete Minuten pro Gemeinde)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen, die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Schleitheim (Verrechnete Minuten pro Gemeinde)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen, die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Siblingen (Verrechnete Minuten pro Gemeinde)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen, die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Stein am Rhein (Verrechnete Minuten pro Gemeinde)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen, die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Stetten (Verrechnete Minuten pro Gemeinde)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen, die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Thayngen (Verrechnete Minuten pro Gemeinde)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen, die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Trasadingen (Verrechnete Minuten pro Gemeinde)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen, die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Wilchingen (Verrechnete Minuten pro Gemeinde)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen, die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Gemeinden ausserkantonal (Verrechnete Minuten pro Gemeinde)",
+   "cites": [
+    {
+     "cref": "SHR 813.501",
+     "article_no": "§ 27",
+     "beleg": "Statistik der erbrachten Leistungen"
+    },
+    {
+     "cref": "SHR 813.500",
+     "article_no": "Art. 8",
+     "beleg": "über die erbrachten Leistungen, die Kosten, die Finanzierung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Bemerkungen zuhanden Gesundheitsamt (Formular E)",
+   "cites": [],
+   "over_collection": true
+  }
+ ]
+}

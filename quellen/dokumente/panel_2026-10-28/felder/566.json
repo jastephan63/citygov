@@ -1,0 +1,82 @@
+{
+ "form_id": 566,
+ "data_fields": [
+  {
+   "name": "Firma",
+   "definition": "Die Firma der zu gründenden Gesellschaft mit dem vorgedruckten Rechtsformzusatz GmbH; sie wird im Titel und in Artikel 1 eingesetzt.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "… GmbH"
+  },
+  {
+   "name": "Sitz",
+   "definition": "Der statutarische Sitz der Gesellschaft als politische Gemeinde, ergänzt um das Kantonskürzel nur dann, wenn es mehr als eine Gemeinde dieses Namens gibt; er wird im Titel und in Artikel 1 eingesetzt.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "politische Gemeinde",
+    "Kantonskürzel"
+   ],
+   "format": "[politische Gemeinde, Kantonskürzel nur falls mehr als eine Gemeinde dieses Namens existiert]"
+  },
+  {
+   "name": "Zweck",
+   "definition": "Die Umschreibung des Gesellschaftszwecks, die nach «Die Gesellschaft bezweckt» in Artikel 2 eingesetzt wird.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Stammkapital und Stammanteile",
+   "definition": "Die Höhe des Stammkapitals in CHF, die Anzahl Stammanteile und der Betrag je Stammanteil in CHF gemäss Artikel 3.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Stammkapital (CHF)",
+    "Anzahl Stammanteile",
+    "Stammanteile zu CHF"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Schaffhausen, …",
+   "definition": "Das Kalenderdatum, an dem die Statuten unterzeichnet werden; der Ort Schaffhausen ist vorgedruckt.",
+   "data_type": "date",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Der Gründer / Die Gründerin oder Der / Die Vorsitzende der ao. Gesellschafterversammlung",
+   "definition": "Angabe, in welcher Eigenschaft die unterzeichnende Person die Statuten unterzeichnet; anstelle des Platzhalters in eckigen Klammern wird die zutreffende der beiden vorgedruckten Bezeichnungen eingesetzt.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "Der Gründer / Die Gründerin",
+    "Der / Die Vorsitzende der ao. Gesellschafterversammlung"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Unterschrift",
+   "definition": "Eigenhändige Unterschrift des Gründers bzw. der Gründerin oder des bzw. der Vorsitzenden der ausserordentlichen Gesellschafterversammlung auf der punktierten Linie, darunter Vorname(n) und Name gemäss dem Platzhalter «[Vorname(n) Name]».",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Vorname(n)",
+    "Name"
+   ],
+   "format": ""
+  }
+ ],
+ "hinweis": "Geprüft gegen den Text und die Original-DOCX (word/document.xml, Fusszeilen; keine Formularfelder, Kontrollkästchen, Tabellen oder Fussnoten vorhanden). Alle auszufüllenden Stellen sind abgedeckt: «… GmbH» und «mit Sitz in …» im Titel sind dieselben Angaben wie Firma und Sitz in Artikel 1, Artikel 3 hat drei Lücken (Stammkapital, Anzahl, Betrag je Stammanteil); die Artikel 4–8 enthalten keine Lücken und keine Wahlmöglichkeiten. Es ist nur eine Unterschriftslinie gedruckt (Singular «Der Gründer / Die Gründerin»); eine zweite Unterschrift wurde deshalb nicht hinzugefügt. Keine Beilagen-Checkliste. Korrekturen: (1) Definition des Enum-Felds zur Eigenschaft der unterzeichnenden Person: «die nicht zutreffende Bezeichnung wird gestrichen» steht nicht auf dem Formular. Neu heisst es, dass der Platzhalter in eckigen Klammern durch die zutreffende Bezeichnung ersetzt wird. (2) Definition von «Unterschrift»: «in Druckschrift» ist nicht gedruckt und wurde entfernt. Jetzt wird auf den gedruckten Platzhalter «[Vorname(n) Name]» verwiesen. Unverändert belassen: Die Unterschriftslinie hat keine gedruckte Beschriftung, der Name «Unterschrift» folgt der Praxis der anderen Handelsregister-Formulare (313, 323), ebenso wie die Namensteile als Subfelder der Unterschrift; nach der Regel der atomaren Subfelder sind Vorname(n) und Name dabei getrennt. Das Subfeld «Kantonskürzel» ist laut Platzhalter nur nötig, wenn es mehr als eine Gemeinde dieses Namens gibt. Nicht als Felder der Person erfasst: der Abschnitt «Beglaubigung». Ihn füllt die Urkundsperson des Handelsregisteramts Schaffhausen aus: Wahl zwischen «[unter Berücksichtigung der heutigen Total-/Teilrevision]» und «[heute gegründeten]», [FIRMA], [SITZ], «Schaffhausen, ….» sowie die Unterschrift und der Name der Urkundsperson. Ebenfalls nicht erfasst sind die vorgedruckten Statutenbestimmungen der Artikel 2 (2. Absatz) und 4–8, denn sie sind Rechtstext."
+}

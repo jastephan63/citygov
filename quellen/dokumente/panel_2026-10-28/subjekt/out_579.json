@@ -1,0 +1,24 @@
+{
+ "verdicts": [
+  {
+   "id": 7166,
+   "subjekt": "gemischt",
+   "grund": "Meldende Person kann Privatperson oder Fachperson für eine Firma/Organisation sein (Unterfeld «Firma/Organisation/Funktion»); nicht sicher eine Privatperson mit eigenen Angaben"
+  },
+  {
+   "id": 7167,
+   "subjekt": "natuerliche_person",
+   "grund": "Vorname/Name, Geschlecht und Geburtsdatum des einen betroffenen Kindes bzw. Jugendlichen, also einer natürlichen Person"
+  },
+  {
+   "id": 7171,
+   "subjekt": "natuerliche_person",
+   "grund": "Aktuelle Wohnadresse des einen betroffenen Kindes bzw. Jugendlichen, eine Personenangabe einer natürlichen Person"
+  },
+  {
+   "id": 7176,
+   "subjekt": "gemischt",
+   "grund": "Freitext zu allenfalls mehreren Bezugspersonen (Dritte, evtl. auch Fachstellen); nicht sicher die Angabe einer einzigen natürlichen Person, daher konservativ"
+  }
+ ]
+}

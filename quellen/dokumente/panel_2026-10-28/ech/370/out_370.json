@@ -1,0 +1,55 @@
+{
+ "hinweis": "eCH-Urteile Formular 370, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/370 --nur-offene=370",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Auf dem Formular steht «Ort und Datum ....» auf der Unterschriftszeile der Bestellung. Das propagierte kein_standard stimmt. Gesucht wurde im ganzen Katalog nach *sign*, unterschr*, placeAndDate, locationAndDate, orderDate, submission, requestDate und dateOfApplication. Gefunden wurden nur fachgebundene Elemente: eCH-0119 locationAndDate (attachedFormsType und listOfSecuritiesType, E-Tax Filing), eCH-0185 serviceOrderDate (Zusatzdienstleistungen bei Wegzug/Zuzug), eCH-0206 requestDate (Kopf einer Meldung), eCH-0039/0147 messageDate und openingDate (Meldungskopf, Dossier) sowie eCH-0260 signatures (Lehrvertrag, Boolesche Werte). Keines davon passt zu einer Patentbestellung bei Jagd und Fischerei. Auch beide Teile (Ort, Datum) bleiben ohne Element, deshalb gibt es kein Container-Element. In der Databank wurde dieselbe Bezeichnung 31-mal als kein_standard beurteilt. Die Zuordnung der Variante «Ort, Datum» zu eCH-0119 ist eine fachfremde Ausnahme.",
+   "feld": "Ort und Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Das propagierte kein_standard stimmt. Verlangt wird die eigenhändige Unterschrift. Sie ist keine Angabe, die sich als Daten übertragen lässt. Im ganzen Katalog wurde nach *sign*, signat*, signer und unterschr* gesucht. eCH-0039 signer (documentType, token) nennt nur den Unterzeichner eines Dokuments. eCH-0260 signatures, apprenticeSignatureConfirmation, hostCompanySignatureConfirmation und representativeSignatureConfirmation sind Boolesche Bestätigungen im Lehrvertrag. Keines davon gibt die Unterschrift selbst wieder. In der Databank ist «Unterschrift» 33-mal als kein_standard beurteilt.",
+   "feld": "Unterschrift"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Die Zeile fragt zuerst den heutigen Familiennamen ab. Dafür steht eCH-0044 officialName (personIdentificationType, baseNameType). Das passt zum Elternfeld Personalien (eCH-0044 personIdentification) und zu den anderen Teilen Vorname (eCH-0044 firstName) und Geburtsdatum (eCH-0044 dateOfBirth). Die Klammer «bei Frauen auch Ledigenname» verlangt auf derselben Zeile zusätzlich den früheren Namen. Dafür hat eCH-0044 ein eigenes Element, originalName. In der Databank sind «Ledigname» und «lediger Name» so zugeordnet. Ein früherer Wert darf nicht unter dem Element für den heutigen Wert stehen. Die Zeile bündelt also zwei Angaben, die der Standard trennt (Prüfart aufteilen, das Formular selbst wird nicht geändert). officialName gilt nur für die Hauptangabe der Zeile, den heutigen Familiennamen.",
+   "elternfeld": "Personalien",
+   "teilfeld": "Familienname (bei Frauen auch Ledigenname)",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Auf dem Formular steht «Telefon». Verlangt ist die Telefonnummer der bestellenden Person. Das propagierte Element eCH-0046 phoneNumber (phoneType, phoneNumberType) stimmt. Es steht so im Katalog, eCH-0046 ist genehmigt, und die Zuordnung entspricht der Regel Telefon → eCH-0046 phoneNumber.",
+   "elternfeld": "Personalien",
+   "teilfeld": "Telefon"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Auf dem Formular steht «E-Mail». Verlangt ist die E-Mail-Adresse der bestellenden Person. Das propagierte Element eCH-0046 emailAddress (emailType, emailAddressType) stimmt. Es steht so im Katalog, eCH-0046 ist genehmigt, und die Zuordnung entspricht der Regel E-Mail → eCH-0046 emailAddress.",
+   "elternfeld": "Personalien",
+   "teilfeld": "E-Mail"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Verlangt ist der Ort, an dem die Bestellung unterschrieben wird, keine Adresse. Deshalb passen die Adressteile von eCH-0010 (town, swissZipCode) nicht. Gesucht wurde im ganzen Katalog nach location*, place*, *sign* und placeAndDate. Gefunden wurden nur Herkunfts- und Ereignisorte und fachgebundene Elemente: eCH-0021 placeOfMarriage und placeOfWork, eCH-0119 location (concernedPersonType, E-Tax), eCH-0119 locationAndDate (Ort und Datum in einer einzigen Zeichenkette, E-Tax) und eCH-0262 location (storageType, Lager in der Landwirtschaft). Für den Unterzeichnungsort gibt es kein Element. Beim selben Teilfeld unter «Ort und Datum» ist das 11-mal als kein_standard beurteilt.",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Verlangt ist das Datum, an dem die Bestellung unterschrieben wird. Gesucht wurde nach dateOf*, *Date, signing*, submission, requestDate und orderDate. Zu keinem Treffer passt das Unterschriftsdatum einer Person: eCH-0058, eCH-0039 und eCH-0147 messageDate sind Erstellungsdaten einer elektronischen Meldung. eCH-0206 requestDate steht im Kopf einer Anfrage. eCH-0185 serviceOrderDate gilt nur für Zusatzdienstleistungen bei Wegzug/Zuzug. eCH-0119 locationAndDate gehört zu E-Tax und ist kombiniert. eCH-0262 dateOfApplication meint die Ausbringung von Pflanzenschutzmitteln. Ein allgemeines Element für das Unterzeichnungsdatum gibt es nicht. Beim selben Teilfeld unter «Ort und Datum» ist das 11-mal als kein_standard beurteilt.",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Datum"
+  }
+ ]
+}

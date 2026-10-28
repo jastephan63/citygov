@@ -526,6 +526,37 @@ CREATE TABLE IF NOT EXISTS shep_service (          -- one row per SHEP portal pa
     kontakt_einheit TEXT, kontakt_adresse TEXT, kontakt_email TEXT,
     harvested_at TEXT);
 
+CREATE TABLE IF NOT EXISTS quellen_abzug (         -- one row per harvest of DVSH / SHEP (citygov/load/quellen_log.py)
+    quelle TEXT NOT NULL CHECK (quelle IN ('DVSH','SHEP')),
+    datum  TEXT NOT NULL,                          -- date of the harvest (YYYY-MM-DD)
+    datei  TEXT,                                   -- harvest file / pages directory (base name)
+    anzahl INTEGER,                                -- services (DVSH) / published pages (SHEP)
+    PRIMARY KEY (quelle, datum));
+
+CREATE TABLE IF NOT EXISTS quellen_aenderung (     -- what a harvest changed against the one before
+    quelle     TEXT NOT NULL CHECK (quelle IN ('DVSH','SHEP')),
+    abzug      TEXT NOT NULL,                      -- date of the new harvest
+    vorher     TEXT,                               -- date of the harvest compared against (NULL = unknown)
+    schluessel TEXT NOT NULL,                      -- DVSH id / SHEP slug
+    service_id INTEGER,                            -- our service (no FK: a removed service may be gone)
+    titel      TEXT,
+    art        TEXT NOT NULL CHECK (art IN ('neu','entfernt','geaendert')),
+    felder     TEXT,                               -- JSON list of the changed columns (art 'geaendert')
+    PRIMARY KEY (quelle, abzug, schluessel));
+
+CREATE TABLE IF NOT EXISTS dokument_urteil (       -- what a file DVSH or SHEP offers is, judged from its content
+    sha256        TEXT PRIMARY KEY,                -- (load_dokument_urteile.py from quellen/dokumente/urteile_*.json)
+    art           TEXT NOT NULL CHECK (art IN ('formular','merkblatt','wegleitung','liste','gesetz','brief',
+                                               'uebersetzung','anderes')),
+    urteil        TEXT NOT NULL CHECK (urteil IN ('neue_ausgabe','gleiche_ausgabe','aeltere_ausgabe',
+                                                  'weiteres_formular','ersetzt_falsch_zugeordnetes',
+                                                  'kein_formular','nicht_lesbar')),
+    form_id       INTEGER REFERENCES form(id),     -- the Formular it is an edition of / the same as / became
+    titel         TEXT,                            -- the title as printed on the document
+    beleg         TEXT,                            -- verbatim evidence from the texts
+    zweitgeprueft INTEGER NOT NULL DEFAULT 0,      -- a sceptical second review agreed (or corrected it)
+    abzug         TEXT);                           -- the harvest in which it was judged
+
 CREATE TABLE IF NOT EXISTS form_check (            -- is the Formular still the current one online?
     form_id     INTEGER PRIMARY KEY REFERENCES form(id) ON DELETE CASCADE,   -- (load_currency.py, from
                                                    -- check_online.py output; Formulare with a file only)

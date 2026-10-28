@@ -1,0 +1,116 @@
+{
+ "form_id": 570,
+ "mappings": [
+  {
+   "data_field": "Name",
+   "cites": [
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 92",
+     "beleg": "Bei Vereinen müssen ins Handelsregister eingetragen werden: a. der Name und die Unternehmens-Identifikationsnummer"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Sitz",
+   "cites": [
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 92",
+     "beleg": "Bei Vereinen müssen ins Handelsregister eingetragen werden: b. der Sitz und das Rechtsdomizil"
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 117",
+     "beleg": "Als Sitz wird der Name der politischen Gemeinde eingetragen."
+    },
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 56",
+     "beleg": "Der Sitz der juristischen Personen befindet sich, wenn ihre Statuten es nicht anders bestimmen, an dem Orte, wo ihre Verwaltung geführt wird."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Zweck",
+   "cites": [
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 60",
+     "beleg": "Die Statuten müssen in schriftlicher Form errichtet sein und über den Zweck des Vereins, seine Mittel und seine Organisation Aufschluss geben."
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 92",
+     "beleg": "Bei Vereinen müssen ins Handelsregister eingetragen werden: ... g. der Zweck"
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 118",
+     "beleg": "Die Rechtseinheiten müssen ihren Zweck so umschreiben, dass ihr Tätigkeitsfeld für Dritte klar ersichtlich ist. ... Für die Eintragung übernimmt das Handelsregisteramt die Umschreibung des Zwecks der Rechtseinheit unverändert aus den Statuten"
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 91",
+     "beleg": "Eine Rechtseinheit wird nur als Verein ins Handelsregister eingetragen, wenn sie nicht zugleich einen wirtschaftlichen Zweck verfolgt und ein nach kaufmännischer Art geführtes Gewerbe betreibt."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Allfällige weitere Mittel",
+   "cites": [
+    {
+     "cref": "SR 210",
+     "article_no": "Art. 60",
+     "beleg": "Die Statuten müssen ... über den Zweck des Vereins, seine Mittel und seine Organisation Aufschluss geben."
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 92",
+     "beleg": "h. die Mittel, wie Mitgliederbeiträge, Erträge aus dem Vereinsvermögen oder aus der Vereinstätigkeit und Schenkungen"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Datum (Genehmigung und Inkrafttreten)",
+   "cites": [
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 22",
+     "beleg": "Ins Handelsregister wird als Datum der Statuten der Tag eingetragen, an dem: ... b. das zuständige Organ der Gesellschaft die letzte Änderung der Statuten beschlossen hat."
+    },
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 92",
+     "beleg": "Bei Vereinen müssen ins Handelsregister eingetragen werden: ... e. das Datum der Statuten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Ort, Datum",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Vorsitzende",
+   "cites": [
+    {
+     "cref": "SR 221.411",
+     "article_no": "Art. 22",
+     "beleg": "Die Statuten von Vereinen müssen von einem Mitglied des Vorstandes unterzeichnet sein."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Protokollführerin",
+   "cites": [],
+   "over_collection": true
+  }
+ ]
+}

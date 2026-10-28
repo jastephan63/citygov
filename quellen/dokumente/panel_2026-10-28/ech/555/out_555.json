@@ -1,0 +1,188 @@
+{
+ "hinweis": "eCH-Urteile Formular 555, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/555 --nur-offene=555",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Zusammengesetzte Personalien der vollmachtgebenden Person(en) (Name, Vorname, Geb.datum, Heimatort, Wohnadresse). Behälter = eCH-0044 personIdentification. So sind auch die Personalien-Blöcke in der Datenbank zugeordnet (Personalien Vollmachtgeber/in in 109/110, Weitere Zeichnungsberechtigte in 307/310/317). Die Teile werden einzeln beurteilt. Geprüft: Das Element steht wörtlich im Katalog von eCH-0044 (Status Genehmigt).",
+   "feld": "Der/Die Unterzeichnete(n)",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Amtlicher Familienname der unterzeichnenden Person → eCH-0044 officialName (personIdentificationType/personIdentificationLightType). So auch bei Name in Personalien Vollmachtgeber/in.",
+   "elternfeld": "Der/Die Unterzeichnete(n)",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname der unterzeichnenden Person → eCH-0044 firstName.",
+   "elternfeld": "Der/Die Unterzeichnete(n)",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Geburtsdatum der unterzeichnenden Person → eCH-0044 dateOfBirth (datePartiallyKnownType).",
+   "elternfeld": "Der/Die Unterzeichnete(n)",
+   "teilfeld": "Geb.datum",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Der Heimatort (Bürgerort) ist ein Personendatum aus eCH-0011. Der atomare Teil ist der Name des Heimatorts → originName (placeOfOriginType), nicht der Behälter placeOfOrigin. Das ist die mehrheitliche Zuordnung in der Datenbank (u. a. 131, 153, 210, 215–228, 26).",
+   "elternfeld": "Der/Die Unterzeichnete(n)",
+   "teilfeld": "Heimatort",
+   "standard": "eCH-0011",
+   "element": "originName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Die «Wohnadresse» ist die Adresse am Wohnsitz, nicht in Strasse/PLZ/Ort aufgeteilt. Das Element in eCH-0011 heisst genau dwellingAddress (Wohnadresse). So ist es auch in den Handelsregister-Formularen 307/317 (Gründer, Verwaltungsrat) zugeordnet. eCH-0010 street deckt nur die Strasse ab und passt deshalb nicht für eine ungeteilte Adresse (6 ältere Zuordnungen in der Datenbank haben diesen Fehler).",
+   "elternfeld": "Der/Die Unterzeichnete(n)",
+   "teilfeld": "Wohnadresse",
+   "standard": "eCH-0011",
+   "element": "dwellingAddress"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Zusammengesetzte Personalien der bevollmächtigten Person nach «bestellt hiermit» (Name, Vorname, Geb.datum, Heimatort, Wohnadresse). Behälter = eCH-0044 personIdentification. So ist auch «Personalien Vollmachtnehmer/in» in 109/110 zugeordnet.",
+   "feld": "Der/die Bevollmächtigte",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Amtlicher Familienname der bevollmächtigten Person → eCH-0044 officialName.",
+   "elternfeld": "Der/die Bevollmächtigte",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname der bevollmächtigten Person → eCH-0044 firstName.",
+   "elternfeld": "Der/die Bevollmächtigte",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Geburtsdatum der bevollmächtigten Person → eCH-0044 dateOfBirth.",
+   "elternfeld": "Der/die Bevollmächtigte",
+   "teilfeld": "Geb.datum",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name des Heimatorts der bevollmächtigten Person → eCH-0011 originName (placeOfOriginType). Das ist der atomare Teil von placeOfOrigin.",
+   "elternfeld": "Der/die Bevollmächtigte",
+   "teilfeld": "Heimatort",
+   "standard": "eCH-0011",
+   "element": "originName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Adresse am Wohnsitz der bevollmächtigten Person, nicht in Strasse/PLZ/Ort aufgeteilt → eCH-0011 dwellingAddress (Wohnadresse). So auch in 307/317.",
+   "elternfeld": "Der/die Bevollmächtigte",
+   "teilfeld": "Wohnadresse",
+   "standard": "eCH-0011",
+   "element": "dwellingAddress"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "In die Lücke «Auflösung der …… AG» kommt die Firma der aufzulösenden Aktiengesellschaft, also der Name des Unternehmens → eCH-0098 organisationName (organisationIdentificationType). So ist auch «Firma» in 123/124/127/213 zugeordnet.",
+   "feld": "Auflösung der … AG",
+   "standard": "eCH-0098",
+   "element": "organisationName"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "In die Lücke kommen die «genauen Personalien» des Verwaltungsratsmitglieds, das als Liquidator/in gewählt wird. Die Angabe identifiziert eine Person → eCH-0044 personIdentification, wie bei Liquidator/in 1/2 in Formular 360. Wahl und Einzelunterschrift sind vorgedruckt und keine Angabe. Für die Zeichnungsart hat der Katalog kein Element (gesucht: sign*, authori*, function*).",
+   "feld": "Wahl des Verwaltungsrates/der Verwaltungsrätin als Liquidator/in mit Einzelunterschrift",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Zusammengesetzte Angabe zu den Zeichnungsberechtigten, deren Berechtigung entzogen wird (Personalien und Funktion). Behälter = eCH-0044 personIdentification. So sind auch «Löschung von Zeichnungsberechtigten» (362) und «Ausgeschiedene Personen und erloschene Unterschriften» (308/311/359) zugeordnet. eCH-0261 personWithFunction gilt nur für Agrarbetriebe und passt darum nicht.",
+   "feld": "Entzug der Zeichnungsberechtigungen der Zeichnungsberechtigten unterhalb des Verwaltungsrates",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Die «genauen Personalien» identifizieren die zeichnungsberechtigte Person und sind in der Datenbank nicht weiter aufgeteilt. Deshalb ist dieser Teil selbst zusammengesetzt → eCH-0044 personIdentification.",
+   "elternfeld": "Entzug der Zeichnungsberechtigungen der Zeichnungsberechtigten unterhalb des Verwaltungsrates",
+   "teilfeld": "genaue Personalien",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Eingetragene Funktion der zeichnungsberechtigten Person unterhalb des Verwaltungsrates (z. B. Direktor/in, Prokurist/in) → eCH-0021 jobTitle (jobDataType). Das ist die übliche Zuordnung für «Funktion» bei weiteren bzw. ausgeschiedenen Zeichnungsberechtigten (308/310/311/312/359/361). eCH-0229 role (memberOfAdministrativeBodyType) gilt nur für Mitglieder des Verwaltungsorgans und passt darum nicht. jobTitle ist kein Element für einen aktuellen Wert, das Urteil gilt also auch für eine Funktion, die erlischt.",
+   "elternfeld": "Entzug der Zeichnungsberechtigungen der Zeichnungsberechtigten unterhalb des Verwaltungsrates",
+   "teilfeld": "Funktion",
+   "standard": "eCH-0021",
+   "element": "jobTitle"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Das Liquidationsdomizil wird neu festgelegt und ist danach das eingetragene Domizil der AG in Liquidation, also die Domiziladresse des Unternehmens → eCH-0098 mainAddress (organisationType). So ist es auch bei Domizil bzw. Neues Rechtsdomizil in den Handelsregister-Formularen 307/308/317/359 zugeordnet. Das passt genauer als die allgemeine Postadresse eCH-0010 addressInformation, die bei 356/411 verwendet wurde. Es ist ein neuer und kein vergangener Wert.",
+   "feld": "Festlegung des folgenden Liquidationsdomizils",
+   "standard": "eCH-0098",
+   "element": "mainAddress"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Bestätigt den übernommenen Wert (propagiert): Ort und Datum der Unterzeichnung als zusammengesetzte Angabe → eCH-0119 locationAndDate. Das ist das einzige Element im Katalog für «Ort und Datum» und dient als Behälter für beide Teile. Gleich zugeordnet bei 21 Feldern in 20 Formularen.",
+   "feld": "Ort, Datum"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Ort der Unterzeichnung, keine Adresse. Im ganzen Katalog gesucht nach sign*, signer, signing, place*, location*, town. eCH-0010/0011/0108/0260 town sind Teile einer Post- oder Wohnadresse, eCH-0119 location gehört zur betroffenen Person, eCH-0039 signer ist der Unterzeichner in den Dokument-Metadaten. eCH-0091/0220/0230/0250/0274/0282 haben keine Elemente. Es gibt kein Element für den Ort der Unterzeichnung. Das deckt sich mit den bisherigen Urteilen zu Ort und Datum (364, 370, 470–483, 497, 499).",
+   "elternfeld": "Ort, Datum",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Datum der Unterzeichnung. Im ganzen Katalog gesucht nach *date*, sign*, issue*. eCH-0039/0147 openingDate ist die Eröffnung eines Dossiers oder Dokuments, eCH-0119 date gehört zu restBenefitType (gMonthDay), dateFrom (eCH-0010 u. a.) ist der Beginn eines Zeitraums, eCH-0260 signatures sind nur Ja/Nein-Bestätigungen im Lehrvertrag. Es gibt kein Element für das Datum der Unterzeichnung.",
+   "elternfeld": "Ort, Datum",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Handschriftliche Unterschrift auf der Unterschriftslinie. Im ganzen Katalog gesucht nach sign*, signature*, signer. eCH-0039 signer nennt nur den Unterzeichner in den Dokument-Metadaten. eCH-0260 signatures und *SignatureConfirmation sind Ja/Nein-Bestätigungen im Lehrvertrag. Die Signaturstandards eCH-0091/0220/0230/0250/0274/0282 haben keine Elemente und betreffen elektronische Signaturen. Es gibt kein Element für eine Unterschrift. Das deckt sich mit «Unterschrift Vollmachtgeber/in» in 487/488.",
+   "feld": "Der/die Vollmachtgeber/in"
+  }
+ ]
+}

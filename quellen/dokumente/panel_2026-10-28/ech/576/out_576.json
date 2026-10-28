@@ -1,0 +1,250 @@
+{
+ "hinweis": "eCH-Urteile Formular 576, Panel 2026-10-28, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-10-28/ech/576 --nur-offene=576",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die Betreibungsnummer ist die Kennung des Geschäftsfalls, die das Betreibungsamt vergibt. eCH-0039 (Genehmigt) beschreibt caseId (referenceType) in der XSD als «Identifikation des Geschäftsfalls (wird von der federführenden Stelle vergeben)». Das passt genau. caseReferenceLocalId (dossierType) wird dagegen vom Absender vergeben. Im Korpus sind «Konkurs-Nr.» (525/527) und «Geschäftsnummer» (531) schon caseId. Der propagierte Wert kein_standard (489/491, ebenso 492/493) widerspricht dem. Diese Spaltung muss bereinigt werden.",
+   "feld": "Betreibung Nr.",
+   "standard": "eCH-0039",
+   "element": "caseId"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Nummer der Pfändungsgruppe (Art. 110 SchKG). Sie ist eine Unterkennung im SchKG-Verfahren und nicht der Geschäftsfall selbst. caseId trägt hier schon die Betreibungsnummer, zwei verschiedene Kennungen würden so zu einer Angabe verschmolzen. Durchsucht: Namen und Kontexte im ganzen Katalog (seiz/enforc/debt/claim/creditor/pfaend/betreib/auction/groupNumber), Standard-Titel (Betreib/SchKG/Konkurs/Pfänd/Inkasso/Justiz/Gericht) und die Codelisten (pfänd/betreib/verwert). Es gibt keinen SchKG-Standard. eCH-0051 (Polizei/Justiz) hat 0 Elemente, eCH-0307 ist «In Arbeit» und hat ebenfalls 0 Elemente.",
+   "feld": "Gruppe Nr."
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Kennung der Pfändung (Pfändungsurkunde), eine SchKG-interne Unterkennung neben der Betreibungsnummer. Der ganze Katalog wurde nach seiz/Pfänd/enforc/claim/debt/auction durchsucht, ohne Treffer. Die Fall-Kennungen von eCH-0039 (caseId, caseReferenceLocalId) würden sie mit der Betreibungsnummer gleichsetzen.",
+   "feld": "Pfändung Nr."
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Verlangt wird der Name der Gemeinde, an deren Betreibungsamt das Begehren geht. Dafür gibt es eCH-0007 (Genehmigt) municipalityName. Im Korpus ist es üblich: «Gemeinde» hat 23-mal municipalityName.",
+   "feld": "An das Betreibungsamt der Gemeinde",
+   "standard": "eCH-0007",
+   "element": "municipalityName"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Der Verbund aus Name, Vorname und genauer Adresse der betriebenen Person entspricht dem Container eCH-0010 mailAddress. Das stimmt mit den SchKG-Formularen 489/490/491/574/575 überein.",
+   "feld": "Schuldner"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Die Partei mit Name, Vorname und Adresse passt zum Container eCH-0010 mailAddress, wie in 489/490/491/574/575. Die Zahlungsteile tragen ihre eigenen eCH-0119-Elemente. Einen Container, der Adresse und Konto zusammenfasst, gibt es nicht.",
+   "feld": "Gläubiger"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Gleicher Aufbau wie beim Gläubiger (Name, Vorname, genaue Adresse, Konto). Container eCH-0010 mailAddress, wie bei «Vertreter» (489), «Vertreter/in» (490) und «Vertretung des Gläubigers» (491).",
+   "feld": "Allfälliger Vertreter des Gläubigers",
+   "standard": "eCH-0010",
+   "element": "mailAddress"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Die in Betreibung gesetzte Forderung (Betrag, Zins, Zinsbeginn) hat kein eCH-Element. Gesucht nach claim/debt/creditor/receivable/interest/amount. Die Treffer sind Angaben der Steuererklärung: eCH-0278 debtInterestsType (abziehbare Schuldzinsen), eCH-0276 debtsLoansAndLiabilitiesType, eCH-0119. Das ist nicht dieselbe Angabe. Im Korpus sind die Forderungen in 489/490/493 ebenfalls kein_standard.",
+   "feld": "Forderung"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Mehrfachauswahl der Aktivenarten, die verwertet werden sollen (bewegliche Sachen, Forderungen, Rechte, Grundstücke). Es gibt weder ein eCH-Element noch eine Codeliste dafür (ech_codelist nach beweglich/Grundstück/pfänd/verwert durchsucht). Geprüft wurden eCH-0119 assetType movableProperty* und eCH-0278 movableHouseholdAssets (Vermögen in der Steuererklärung). Beide sind andere Angaben.",
+   "feld": "Es wird die Verwertung nachfolgender in der Betreibung Nr. betroffenen Aktiven verlangt"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freitext für weitere zu verwertende Aktiven. Wie bei der Auswahl gibt es im Katalog kein Element für SchKG-Verwertungsgegenstände: gesucht nach asset/movable/seiz/auction/realestate.",
+   "feld": "Andere Aktiven (freie Zeile)"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Freie Bemerkungen. Die comment- und remark-Elemente des Katalogs (eCH-0039/0058/0147 Nachrichten- und Dossier-Kopf, eCH-0178 remarks bei Grundbuchbelegen, eCH-0211 remark bei Baugesuchen) gehören zu anderen Verfahren oder Hüllen. Das bestätigt den propagierten Wert: Im Korpus ist «Bemerkungen» 82-mal kein_standard.",
+   "feld": "Bemerkungen"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die Begründung des ersten Urteils («kein Element für Ort/Datum der Unterzeichnung») ist falsch. eCH-0119 (Genehmigt) hat locationAndDate (xs:string, in attachedFormsType und listOfSecuritiesType). Das ist dieselbe Angabe: Ort und Datum der Unterzeichnung in einer Zeile. Der Korpus verwendet dieses Element schon 21-mal für «Ort, Datum» bzw. «Ort / Datum» (z. B. 488 «Vollmacht für Betreibungsverfahren», 164, 452, 551). Das Verbundfeld bekommt dieses kombinierte Element. Der propagierte Wert kein_standard steht nur unter der Schreibweise «Ort und Datum» (31-mal). Der Unterschied liegt also nur im Wortlaut der Bezeichnung, und diese Spaltung muss zentral bereinigt werden.",
+   "feld": "Ort und Datum",
+   "standard": "eCH-0119",
+   "element": "locationAndDate"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Eigenhändige Unterschrift. Der Katalog hat kein Element für die Unterschrift selbst. eCH-0260 signaturesType enthält nur Ja/Nein-Bestätigungen zum Lehrvertrag, eCH-0274 hat keine Elemente. Das bestätigt den propagierten Wert: Im Korpus ist «Unterschrift» 33-mal kein_standard, «Unterschrift des Gläubigers oder seines Vertreters» 2-mal.",
+   "feld": "Unterschrift des Gläubigers oder seines Vertreters"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Beizulegende Gerichtsbescheinigung: keine Aberkennungsklage angestellt, zurückgezogen oder abgewiesen (Erläuterung 4). Die generischen Hüllen eCH-0058 attachment und eCH-0039 document beschreiben nur die Hülle, nicht diesen Inhalt. Ein SchKG- oder Justizstandard mit Elementen fehlt (eCH-0051 und eCH-0307 haben 0 Elemente). Im Korpus sind benannte Bescheinigungen und Nachweise mehrheitlich kein_standard (69).",
+   "feld": "Bescheinigung des zuständigen Gerichts"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Familienname des Schuldners: eCH-0044 officialName, wie in 489–493/574/575.",
+   "elternfeld": "Schuldner",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname des Schuldners: eCH-0044 firstName.",
+   "elternfeld": "Schuldner",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Die vollständige Adresse (Strasse, Nr., PLZ, Ort) steht in einem mehrzeiligen Feld. Das entspricht dem Adressblock eCH-0010 addressInformation, wie bei «Adresse» in 489 und 490. street oder town allein würden nur einen Teil abdecken.",
+   "elternfeld": "Schuldner",
+   "teilfeld": "genaue Adresse",
+   "standard": "eCH-0010",
+   "element": "addressInformation"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Familienname des Gläubigers: eCH-0044 officialName.",
+   "elternfeld": "Gläubiger",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname des Gläubigers: eCH-0044 firstName.",
+   "elternfeld": "Gläubiger",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Die vollständige Adresse in einem Feld entspricht dem Adressblock eCH-0010 addressInformation.",
+   "elternfeld": "Gläubiger",
+   "teilfeld": "genaue Adresse",
+   "standard": "eCH-0010",
+   "element": "addressInformation"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Postkontonummer: eCH-0119 (Genehmigt) bankAccountType postAccountNumber, wie bei «Postkonto-Nummer» (179) und «Postkonto Nr.» (252/253/264).",
+   "elternfeld": "Gläubiger",
+   "teilfeld": "Postkonto",
+   "standard": "eCH-0119",
+   "element": "postAccountNumber"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Korrigiert gegenüber bankAccountNumber. Die Zeile verlangt die ganze Bankverbindung, also Bank und Kontonummer zusammen. Das ist der Behälter eCH-0119 bankAccount (Typ bankAccountType mit bankName und bankAccountNumber), so wie «Bankverbindung für Auszahlung» (230) und «Kontoverbindung» im Korpus. Gleiche Logik wie bei «genaue Adresse» mit addressInformation. bankAccountNumber allein würde den Teil mit reinen «Konto-Nr.»-Angaben gleichsetzen. Das Formular bündelt zwei Angaben, die der Standard trennt.",
+   "elternfeld": "Gläubiger",
+   "teilfeld": "Bankverbindung mit Kontonummer",
+   "standard": "eCH-0119",
+   "element": "bankAccount"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Familienname der Vertretung: eCH-0044 officialName, wie bei den Vertretern in 492/493.",
+   "elternfeld": "Allfälliger Vertreter des Gläubigers",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname der Vertretung: eCH-0044 firstName.",
+   "elternfeld": "Allfälliger Vertreter des Gläubigers",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Die vollständige Adresse der Vertretung in einem Feld: eCH-0010 addressInformation, wie bei «Vertreter»/«Vertreter/in» in 489/490.",
+   "elternfeld": "Allfälliger Vertreter des Gläubigers",
+   "teilfeld": "genaue Adresse",
+   "standard": "eCH-0010",
+   "element": "addressInformation"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Postkontonummer der Vertretung: eCH-0119 postAccountNumber.",
+   "elternfeld": "Allfälliger Vertreter des Gläubigers",
+   "teilfeld": "Postkonto",
+   "standard": "eCH-0119",
+   "element": "postAccountNumber"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Korrigiert gegenüber bankAccountNumber, mit derselben Begründung wie beim Gläubiger. Die ganze Bankverbindung (Bank und Kontonummer) in einer Zeile ist der Behälter eCH-0119 bankAccount (bankAccountType). Das Formular bündelt bankName und bankAccountNumber.",
+   "elternfeld": "Allfälliger Vertreter des Gläubigers",
+   "teilfeld": "Bankverbindung mit Kontonummer",
+   "standard": "eCH-0119",
+   "element": "bankAccount"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Betrag der in Betreibung gesetzten Forderung. Für SchKG-Forderungen gibt es kein eCH-Element: gesucht nach claim/debt/receivable/amount. Die Treffer sind Steuer- und Bilanzbeträge (eCH-0119/0276/0278, z. B. debtInterestsType interest = bezahlte Schuldzinsen) oder Gebühren (eCH-0259). Im Korpus ist «Betrag Fr.» in 489 kein_standard.",
+   "elternfeld": "Forderung",
+   "teilfeld": "Fr."
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Zinssatz der Forderung. Im Katalog gibt es interestRate nur in eCH-0278 debtInterestsType (Schuldzinsabzug in der Steuererklärung) und in eCH-0276 debtsLoansAndLiabilitiesType (Verbindlichkeiten in der Unternehmenssteuererklärung). Beides sind andere Angaben. Im Korpus ist «Zinssatz in %» in 490 kein_standard.",
+   "elternfeld": "Forderung",
+   "teilfeld": "nebst Zins zu %"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Datum, ab dem der Zins läuft, also der Beginn einer Periode. Der Katalog hat kein Element für den Zinsbeginn einer Forderung. Generische Elemente wie dateFrom (eCH-0010 dateRangeType) betreffen die Gültigkeit einer Adresse. Im Korpus sind «Zins seit (Datum)» (490) und «Verzugszins zu 5% seit» (493) kein_standard.",
+   "elternfeld": "Forderung",
+   "teilfeld": "seit"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Ort der Unterzeichnung. Er gehört nicht zur Adresse, deshalb passt eCH-0010 town nicht. Für den Ort allein gibt es kein atomares Element: eCH-0119 locationAndDate ist ein kombinierter Text aus Ort und Datum und steht beim Verbundfeld. Das entspricht dem Korpus, wo die Teile «Ort» unter Verbundfeldern mit locationAndDate (164/272/452) kein_standard sind.",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Datum der Unterzeichnung. Für das Datum allein gibt es kein atomares Element: eCH-0119 locationAndDate ist kombiniert und steht beim Verbundfeld. messageDate und eventDate (eCH-0058/0039) sind Metadaten einer Nachricht. Das entspricht dem Korpus, wo die Teile «Datum» unter Verbundfeldern mit locationAndDate (164/272/452) kein_standard sind.",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Datum"
+  }
+ ]
+}

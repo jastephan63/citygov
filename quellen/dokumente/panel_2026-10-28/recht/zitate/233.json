@@ -1,0 +1,306 @@
+{
+ "form_id": 233,
+ "mappings": [
+  {
+   "data_field": "Fragebogen Erlassgesuch Nr.",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Geburtsdatum",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 144"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 187"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Wohnen Sie allein oder mit einer anderen volljährigen Person zusammen?",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 144"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Wohnen Sie zusammen mit Ihren minderjährigen Kindern oder sind Sie für diese unterhaltspflichtig?",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 144"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Welche Unterhaltsleistungen müssen Sie für Ihre Kinder oder für einen von Ihnen getrenntlebenden oder geschiedenen Ehegatten leisten?",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Über welche Ausbildung verfügen Sie?",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "In welchem Umfang sind Sie erwerbstätig?",
+   "cites": [
+    {
+     "cref": "SHR 172.201",
+     "article_no": "§ 11",
+     "beleg": "Abs. 2: Als Erlassgründe gelten insbesondere Unterstützungsbedürftigkeit oder eine finanzielle Notlage zufolge Erwerbsunfähigkeit, andauernder Krankheit, Arbeitslosigkeit und dergleichen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Können Sie in den kommenden Jahren Ihre Erwerbstätigkeit erhöhen?",
+   "cites": [
+    {
+     "cref": "SHR 173.200",
+     "article_no": "Art. 94",
+     "beleg": "Abs. 3: kann ... die Bezahlung der auferlegten Kosten bei dauernder Mittellosigkeit ganz oder teilweise erlassen. Die Kosten können nachträglich eingefordert werden, wenn der kostenpflichtigen Person die Zahlung später zugemutet werden kann."
+    },
+    {
+     "cref": "SHR 172.201",
+     "article_no": "§ 11",
+     "beleg": "Abs. 2: Als Erlassgründe gelten insbesondere ... eine finanzielle Notlage zufolge Erwerbsunfähigkeit, andauernder Krankheit, Arbeitslosigkeit und dergleichen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Monatlicher Nettolohn inkl. Anteil 13. Gehalt, Gratifikation, Spesen, Nebenerwerb",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 144"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Versicherungs- und Rentenleistungen",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 144"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Unterhalts- und Unterstützungsbeiträge",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 144"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Sonstiges Einkommen",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 144"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Total pro Monat (Einkommen)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 144"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Mietzins",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 144"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Krankenkassenprämien abzüglich Prämienverbilligung",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 144"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Berufsauslagen",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 144"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Unterhaltszahlungen",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 144"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Total pro Monat (Ausgaben)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 144"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Bargeld, Bank- oder Postkonti, Wertschriften, Edelmetalle",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 144"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Grundstücke, Haus, Stockwerk-Eigentum (Verkehrswert)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 144"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Auto, Motorrad etc. (Zeitwert)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 144"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Weiteres Vermögen",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 144"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Total (Vermögen)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 144"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Schulden oder Verlustscheine",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 144"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Total (Schulden oder Verlustscheine)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 144"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Erwarten Sie in den kommenden Jahren eine Rente, Versicherungsleistungen oder eine Erbschaft etc.?",
+   "cites": [
+    {
+     "cref": "SHR 173.200",
+     "article_no": "Art. 94",
+     "beleg": "Abs. 3: bei dauernder Mittellosigkeit ganz oder teilweise erlassen. Die Kosten können nachträglich eingefordert werden, wenn der kostenpflichtigen Person die Zahlung später zugemutet werden kann."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Worin liegt Ihr besonderes Interesse an einem Erlass der Ihnen auferlegten Verfahrenskosten?",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Haben Sie im Verfahren, in dem Ihnen Kosten auferlegt wurden, die unentgeltliche Prozessführung verlangt?",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Entscheid (unentgeltliche Prozessführung)",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Weitere Bemerkungen?",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Ort und Datum",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Unterschrift",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Beilagen",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 144"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 187"
+    }
+   ],
+   "over_collection": false
+  }
+ ]
+}

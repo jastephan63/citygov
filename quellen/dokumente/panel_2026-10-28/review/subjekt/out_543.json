@@ -1,0 +1,22 @@
+{
+ "urteile": [
+  {
+   "id": 6566,
+   "urteil": "bestaetigt",
+   "subjekt": "organisation",
+   "grund": "Einverstanden. Die Formularzeile «Adresse des Unternehmens» (fünf Zeilen Freitext) ist die Geschäftsadresse des meldenden Arbeitgebers. Eine Meldung nach OR 335g kommt nur von einem Betrieb. Auch bei einer Einzelfirma ist es die Betriebsadresse und nicht die Wohnadresse, und das Einwohnerregister führt keine Betriebsadressen."
+  },
+  {
+   "id": 6567,
+   "urteil": "geaendert",
+   "subjekt": "natuerliche_person",
+   "grund": "Geändert von gemischt. Die Firma steht in einem eigenen Block («Adresse des Unternehmens»). Die Zeilen «Kontaktperson», «Telefon» und «E-Mail» fragen nach genau einer natürlichen Person und ihrer Erreichbarkeit. Das ist der gleiche Aufbau wie bei Feld 393, das im Audit 2026-10-05 mit dieser Begründung von gemischt auf natuerliche_person geändert wurde (ebenso 439, 464, 474, 889 und 6529). Eine Organisation ist als Antwort nicht vorgesehen. Die Vorbefüllung bleibt über die Rollenregel ohnehin auf die eigenen Angaben der antragstellenden Person beschränkt."
+  },
+  {
+   "id": 6570,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Einverstanden. Jede Zeile gehört zu genau einer gekündigten Arbeitnehmerin oder einem gekündigten Arbeitnehmer. Erfasst werden Funktion, Alter, m/w, Nationalität, Wohnort und Ablauf der Kündigungsfrist. Namen fehlen ausdrücklich («Auf die namentliche Nennung … verzichten wir»), es bleiben aber Angaben über natürliche Personen. Eine Organisation kommt als Subjekt nicht in Frage. Das stimmt mit anderen Mitarbeitendenlisten überein (446, 476, 5388, 5787)."
+  }
+ ]
+}

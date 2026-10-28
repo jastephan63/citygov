@@ -1,7 +1,7 @@
 {
  "$schema": "https://json-schema.org/draft/2020-12/schema",
  "title": "data_export.json",
- "description": "Struktur von data_export.json, Version 1.3.0. Erzeugt aus der Datei, wie der Build sie schreibt (scripts/export_vertrag.py); Änderungen und Regeln in exportvertrag.json. Nie von Hand ändern.",
+ "description": "Struktur von data_export.json, Version 1.5.0. Erzeugt aus der Datei, wie der Build sie schreibt (scripts/export_vertrag.py); Änderungen und Regeln in exportvertrag.json. Nie von Hand ändern.",
  "$ref": "#/$defs/datei",
  "$defs": {
   "datei": {
@@ -439,7 +439,30 @@
             },
             "wiederverwendet": {
              "type": "array",
-             "items": {}
+             "items": {
+              "type": "object",
+              "properties": {
+               "attribut": {
+                "type": "string"
+               },
+               "erhoben_am": {
+                "type": "string"
+               },
+               "herkunft": {
+                "type": "string"
+               },
+               "herkunft_dst": {
+                "type": "string"
+               }
+              },
+              "required": [
+               "attribut",
+               "erhoben_am",
+               "herkunft",
+               "herkunft_dst"
+              ],
+              "additionalProperties": false
+             }
             }
            },
            "required": [
@@ -2098,6 +2121,9 @@
             "integer",
             "null"
            ]
+          },
+          "ech_herkunft": {
+           "type": "string"
           },
           "ech_standard_code": {
            "type": [
@@ -5189,7 +5215,63 @@
          },
          "nicht_beurteilt": {
           "type": "array",
-          "items": {}
+          "items": {
+           "type": "object",
+           "properties": {
+            "angabe_kennung": {
+             "type": "string",
+             "pattern": "^sh:angabe:e(?:CH|SH)-[0-9]{4}:[A-Za-z0-9_.-]+(?::[A-Za-z0-9_]+)?(?:~[0-9]+)?$"
+            },
+            "begriffe": {
+             "type": "array",
+             "items": {}
+            },
+            "bezeichnung": {
+             "type": "string"
+            },
+            "context": {
+             "type": "string"
+            },
+            "datentyp": {
+             "type": "string"
+            },
+            "element": {
+             "type": "string"
+            },
+            "element_ids": {
+             "type": "array",
+             "items": {
+              "type": "integer"
+             }
+            },
+            "n": {
+             "type": "integer"
+            },
+            "n_formulare": {
+             "type": "integer"
+            },
+            "n_zuordnung_falsch": {
+             "type": "integer"
+            },
+            "standard": {
+             "type": "string"
+            }
+           },
+           "required": [
+            "angabe_kennung",
+            "begriffe",
+            "bezeichnung",
+            "context",
+            "datentyp",
+            "element",
+            "element_ids",
+            "n",
+            "n_formulare",
+            "n_zuordnung_falsch",
+            "standard"
+           ],
+           "additionalProperties": false
+          }
          },
          "ohne_rolle": {
           "type": "object",
@@ -6545,6 +6627,26 @@
     "labels": {
      "type": "object",
      "properties": {
+      "aenderung": {
+       "type": "object",
+       "properties": {
+        "entfernt": {
+         "type": "string"
+        },
+        "geaendert": {
+         "type": "string"
+        },
+        "neu": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "entfernt",
+        "geaendert",
+        "neu"
+       ],
+       "additionalProperties": false
+      },
       "aktion": {
        "type": "object",
        "properties": {
@@ -6931,6 +7033,98 @@
        ],
        "additionalProperties": false
       },
+      "dok_art": {
+       "type": "object",
+       "properties": {
+        "anderes": {
+         "type": "string"
+        },
+        "brief": {
+         "type": "string"
+        },
+        "formular": {
+         "type": "string"
+        },
+        "gesetz": {
+         "type": "string"
+        },
+        "liste": {
+         "type": "string"
+        },
+        "merkblatt": {
+         "type": "string"
+        },
+        "uebersetzung": {
+         "type": "string"
+        },
+        "wegleitung": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "anderes",
+        "brief",
+        "formular",
+        "gesetz",
+        "liste",
+        "merkblatt",
+        "uebersetzung",
+        "wegleitung"
+       ],
+       "additionalProperties": false
+      },
+      "dok_rolle": {
+       "type": "object",
+       "properties": {
+        "begleitend": {
+         "type": "string"
+        },
+        "einreichung": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "begleitend",
+        "einreichung"
+       ],
+       "additionalProperties": false
+      },
+      "dok_stand": {
+       "type": "object",
+       "properties": {
+        "aeltere_ausgabe": {
+         "type": "string"
+        },
+        "begleitdokument": {
+         "type": "string"
+        },
+        "erfasst": {
+         "type": "string"
+        },
+        "gleicher_inhalt": {
+         "type": "string"
+        },
+        "nicht_lesbar": {
+         "type": "string"
+        },
+        "offen": {
+         "type": "string"
+        },
+        "ungeprueft": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "aeltere_ausgabe",
+        "begleitdokument",
+        "erfasst",
+        "gleicher_inhalt",
+        "nicht_lesbar",
+        "offen",
+        "ungeprueft"
+       ],
+       "additionalProperties": false
+      },
       "dvsh_status": {
        "type": "object",
        "properties": {
@@ -7100,6 +7294,122 @@
        },
        "required": [
         "entwurf"
+       ],
+       "additionalProperties": false
+      },
+      "feld_quelle": {
+       "type": "object",
+       "properties": {
+        "ablauf": {
+         "type": "string"
+        },
+        "address": {
+         "type": "string"
+        },
+        "bearbeitungsdauer": {
+         "type": "string"
+        },
+        "beschreibung": {
+         "type": "string"
+        },
+        "documents": {
+         "type": "string"
+        },
+        "email": {
+         "type": "string"
+        },
+        "endpoint_typ": {
+         "type": "string"
+        },
+        "externe_links": {
+         "type": "string"
+        },
+        "form_definitions": {
+         "type": "string"
+        },
+        "formular_url": {
+         "type": "string"
+        },
+        "fristen": {
+         "type": "string"
+        },
+        "gebuehren": {
+         "type": "string"
+        },
+        "kontakt_adresse": {
+         "type": "string"
+        },
+        "kontakt_einheit": {
+         "type": "string"
+        },
+        "kontakt_email": {
+         "type": "string"
+        },
+        "kurzbeschreibung": {
+         "type": "string"
+        },
+        "online": {
+         "type": "string"
+        },
+        "opening_hours": {
+         "type": "string"
+        },
+        "phone": {
+         "type": "string"
+        },
+        "recht_bund": {
+         "type": "string"
+        },
+        "recht_kantonal": {
+         "type": "string"
+        },
+        "status": {
+         "type": "string"
+        },
+        "submission_endpoint": {
+         "type": "string"
+        },
+        "title": {
+         "type": "string"
+        },
+        "unterlagen": {
+         "type": "string"
+        },
+        "vollzugsbehoerde": {
+         "type": "string"
+        },
+        "voraussetzungen": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "ablauf",
+        "address",
+        "bearbeitungsdauer",
+        "beschreibung",
+        "documents",
+        "email",
+        "endpoint_typ",
+        "externe_links",
+        "form_definitions",
+        "formular_url",
+        "fristen",
+        "gebuehren",
+        "kontakt_adresse",
+        "kontakt_einheit",
+        "kontakt_email",
+        "kurzbeschreibung",
+        "online",
+        "opening_hours",
+        "phone",
+        "recht_bund",
+        "recht_kantonal",
+        "status",
+        "submission_endpoint",
+        "title",
+        "unterlagen",
+        "vollzugsbehoerde",
+        "voraussetzungen"
        ],
        "additionalProperties": false
       },
@@ -7899,6 +8209,42 @@
          ],
          "additionalProperties": false
         },
+        "dok": {
+         "type": "object",
+         "properties": {
+          "aeltere_ausgabe": {
+           "type": "string"
+          },
+          "begleitdokument": {
+           "type": "string"
+          },
+          "erfasst": {
+           "type": "string"
+          },
+          "gleicher_inhalt": {
+           "type": "string"
+          },
+          "nicht_lesbar": {
+           "type": "string"
+          },
+          "offen": {
+           "type": "string"
+          },
+          "ungeprueft": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "aeltere_ausgabe",
+          "begleitdokument",
+          "erfasst",
+          "gleicher_inhalt",
+          "nicht_lesbar",
+          "offen",
+          "ungeprueft"
+         ],
+         "additionalProperties": false
+        },
         "dsfa": {
          "type": "object",
          "properties": {
@@ -8049,6 +8395,7 @@
         "begriff",
         "check",
         "div",
+        "dok",
         "dsfa",
         "dup",
         "ech",
@@ -8172,6 +8519,7 @@
       }
      },
      "required": [
+      "aenderung",
       "aktion",
       "aspect",
       "basis_typ",
@@ -8183,11 +8531,15 @@
       "disposition",
       "div",
       "div_cls",
+      "dok_art",
+      "dok_rolle",
+      "dok_stand",
       "dvsh_status",
       "ebene",
       "einheit",
       "endpoint",
       "esh_status",
+      "feld_quelle",
       "halter",
       "jur",
       "kat",
@@ -8406,6 +8758,262 @@
       "regeln",
       "rollen",
       "zahlen"
+     ],
+     "additionalProperties": false
+    },
+    "quellenabgleich": {
+     "type": "object",
+     "properties": {
+      "dokumente": {
+       "type": "object",
+       "properties": {
+        "aeltere_ausgabe": {
+         "type": "integer"
+        },
+        "begleitdokument": {
+         "type": "integer"
+        },
+        "erfasst": {
+         "type": "integer"
+        },
+        "gleicher_inhalt": {
+         "type": "integer"
+        },
+        "nicht_lesbar": {
+         "type": "integer"
+        },
+        "offen": {
+         "type": "integer"
+        },
+        "ungeprueft": {
+         "type": "integer"
+        }
+       },
+       "required": [
+        "aeltere_ausgabe",
+        "begleitdokument",
+        "erfasst",
+        "gleicher_inhalt",
+        "nicht_lesbar",
+        "offen",
+        "ungeprueft"
+       ],
+       "additionalProperties": false
+      },
+      "dvsh_ohne_service": {
+       "type": "integer"
+      },
+      "dvsh_services": {
+       "type": "integer"
+      },
+      "entfernte_ohne_zeile": {
+       "type": "integer"
+      },
+      "n_dokumente": {
+       "type": "integer"
+      },
+      "quellen": {
+       "type": "object",
+       "properties": {
+        "DVSH": {
+         "type": "object",
+         "properties": {
+          "abzug": {
+           "type": "string"
+          },
+          "aenderungen": {
+           "type": "array",
+           "items": {
+            "type": "object",
+            "properties": {
+             "art": {
+              "type": "string"
+             },
+             "felder": {
+              "type": "array",
+              "items": {
+               "type": "string"
+              }
+             },
+             "quelle": {
+              "type": "string"
+             },
+             "schluessel": {
+              "type": "string"
+             },
+             "service_id": {
+              "type": "integer"
+             },
+             "titel": {
+              "type": "string"
+             }
+            },
+            "required": [
+             "art",
+             "felder",
+             "quelle",
+             "schluessel",
+             "service_id",
+             "titel"
+            ],
+            "additionalProperties": false
+           }
+          },
+          "anzahl": {
+           "type": "integer"
+          },
+          "datei": {
+           "type": "string"
+          },
+          "n": {
+           "type": "object",
+           "properties": {
+            "entfernt": {
+             "type": "integer"
+            },
+            "geaendert": {
+             "type": "integer"
+            },
+            "neu": {
+             "type": "integer"
+            }
+           },
+           "required": [
+            "entfernt",
+            "geaendert",
+            "neu"
+           ],
+           "additionalProperties": false
+          },
+          "vorher": {
+           "type": "string"
+          },
+          "vorher_anzahl": {
+           "type": "integer"
+          }
+         },
+         "required": [
+          "abzug",
+          "aenderungen",
+          "anzahl",
+          "datei",
+          "n",
+          "vorher",
+          "vorher_anzahl"
+         ],
+         "additionalProperties": false
+        },
+        "SHEP": {
+         "type": "object",
+         "properties": {
+          "abzug": {
+           "type": "string"
+          },
+          "aenderungen": {
+           "type": "array",
+           "items": {
+            "type": "object",
+            "properties": {
+             "art": {
+              "type": "string"
+             },
+             "felder": {
+              "type": "array",
+              "items": {
+               "type": "string"
+              }
+             },
+             "quelle": {
+              "type": "string"
+             },
+             "schluessel": {
+              "type": "string"
+             },
+             "service_id": {
+              "type": "integer"
+             },
+             "titel": {
+              "type": "string"
+             }
+            },
+            "required": [
+             "art",
+             "felder",
+             "quelle",
+             "schluessel",
+             "service_id",
+             "titel"
+            ],
+            "additionalProperties": false
+           }
+          },
+          "anzahl": {
+           "type": "integer"
+          },
+          "datei": {
+           "type": "string"
+          },
+          "n": {
+           "type": "object",
+           "properties": {
+            "entfernt": {
+             "type": "integer"
+            },
+            "geaendert": {
+             "type": "integer"
+            },
+            "neu": {
+             "type": "integer"
+            }
+           },
+           "required": [
+            "entfernt",
+            "geaendert",
+            "neu"
+           ],
+           "additionalProperties": false
+          },
+          "vorher": {
+           "type": "string"
+          },
+          "vorher_anzahl": {
+           "type": "integer"
+          }
+         },
+         "required": [
+          "abzug",
+          "aenderungen",
+          "anzahl",
+          "datei",
+          "n",
+          "vorher",
+          "vorher_anzahl"
+         ],
+         "additionalProperties": false
+        }
+       },
+       "required": [
+        "DVSH",
+        "SHEP"
+       ],
+       "additionalProperties": false
+      },
+      "shep_ohne_service": {
+       "type": "integer"
+      },
+      "shep_seiten": {
+       "type": "integer"
+      }
+     },
+     "required": [
+      "dokumente",
+      "dvsh_ohne_service",
+      "dvsh_services",
+      "entfernte_ohne_zeile",
+      "n_dokumente",
+      "quellen",
+      "shep_ohne_service",
+      "shep_seiten"
      ],
      "additionalProperties": false
     },
@@ -8763,11 +9371,115 @@
      "items": {
       "type": "object",
       "properties": {
+       "aenderungen": {
+        "type": "array",
+        "items": {
+         "type": "object",
+         "properties": {
+          "abzug": {
+           "type": "string"
+          },
+          "art": {
+           "type": "string"
+          },
+          "felder": {
+           "type": "array",
+           "items": {
+            "type": "string"
+           }
+          },
+          "quelle": {
+           "type": "string"
+          },
+          "vorher": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "abzug",
+          "art",
+          "felder",
+          "quelle",
+          "vorher"
+         ],
+         "additionalProperties": false
+        }
+       },
        "department": {
         "type": "string"
        },
        "dienststelle": {
         "type": "string"
+       },
+       "dokumente": {
+        "type": "array",
+        "items": {
+         "type": "object",
+         "properties": {
+          "art": {
+           "type": "string"
+          },
+          "datei": {
+           "type": [
+            "string",
+            "null"
+           ]
+          },
+          "form_id": {
+           "type": [
+            "integer",
+            "null"
+           ]
+          },
+          "quellen": {
+           "type": "array",
+           "items": {
+            "type": "string"
+           }
+          },
+          "rolle": {
+           "type": "string"
+          },
+          "sha256": {
+           "type": "string"
+          },
+          "stand": {
+           "type": "string"
+          },
+          "titel": {
+           "type": "string"
+          },
+          "titel_gedruckt": {
+           "type": [
+            "string",
+            "null"
+           ]
+          },
+          "url": {
+           "type": [
+            "string",
+            "null"
+           ]
+          },
+          "zweitgeprueft": {
+           "type": "boolean"
+          }
+         },
+         "required": [
+          "art",
+          "datei",
+          "form_id",
+          "quellen",
+          "rolle",
+          "sha256",
+          "stand",
+          "titel",
+          "titel_gedruckt",
+          "url",
+          "zweitgeprueft"
+         ],
+         "additionalProperties": false
+        }
        },
        "dossier_slug": {
         "type": "string"
@@ -8811,7 +9523,10 @@
           }
          },
          "address": {
-          "type": "string"
+          "type": [
+           "string",
+           "null"
+          ]
          },
          "bearbeitungsdauer": {
           "type": [
@@ -8955,7 +9670,10 @@
           "type": "string"
          },
          "email": {
-          "type": "string"
+          "type": [
+           "string",
+           "null"
+          ]
          },
          "endpoint_typ": {
           "type": [
@@ -9149,7 +9867,10 @@
           "type": "integer"
          },
          "phone": {
-          "type": "string"
+          "type": [
+           "string",
+           "null"
+          ]
          },
          "published_at": {
           "type": [
@@ -9300,7 +10021,10 @@
           "type": "string"
          },
          "vollzugsbehoerde": {
-          "type": "string"
+          "type": [
+           "string",
+           "null"
+          ]
          },
          "voraussetzungen": {
           "type": "array",
@@ -9404,7 +10128,26 @@
          },
          "dokumente": {
           "type": "array",
-          "items": {}
+          "items": {
+           "type": "object",
+           "properties": {
+            "label": {
+             "type": "string"
+            },
+            "sha256": {
+             "type": "string"
+            },
+            "url": {
+             "type": "string"
+            }
+           },
+           "required": [
+            "label",
+            "sha256",
+            "url"
+           ],
+           "additionalProperties": false
+          }
          },
          "dvsh_id": {
           "type": "integer"
@@ -9425,7 +10168,10 @@
           "type": "string"
          },
          "kontakt_email": {
-          "type": "string"
+          "type": [
+           "string",
+           "null"
+          ]
          },
          "kurzbeschreibung": {
           "type": "string"
@@ -9456,10 +10202,7 @@
           "type": "string"
          },
          "teaser": {
-          "type": [
-           "string",
-           "null"
-          ]
+          "type": "string"
          },
          "title": {
           "type": "string"
@@ -9556,8 +10299,10 @@
        }
       },
       "required": [
+       "aenderungen",
        "department",
        "dienststelle",
+       "dokumente",
        "dossier_slug",
        "id",
        "in_dvsh",
@@ -10219,7 +10964,10 @@
           "type": "string"
          },
          "pruefung": {
-          "type": "object",
+          "type": [
+           "object",
+           "null"
+          ],
           "properties": {
            "ergebnis": {
             "type": "string"
@@ -10855,6 +11603,7 @@
     "labels",
     "laws",
     "parteien",
+    "quellenabgleich",
     "register",
     "services",
     "texte",

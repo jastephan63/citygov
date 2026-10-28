@@ -74,6 +74,11 @@ def main():
                 rejected += 1; continue
             c.execute("INSERT OR REPLACE INTO rechtsmittel_verdikt(form_id, regel_id, quelle, begruendung, last_checked) "
                       "VALUES(?,?,?,?,?)", [fid, rid if q == "sektoral" else None, q, why[:400], "Panel-Verdikt"])
+            # a verdict added after the second review carries the review mark 'offen'
+            # until load_panel_reviews.py (rmverdicts/) has reviewed it — the gate wants
+            # a review row for every verdict; an existing review is never overwritten
+            c.execute("INSERT OR IGNORE INTO panel_review(kind, item_id, urteil, grund) "
+                      "VALUES('rmverdict', ?, 'offen', 'noch nicht zweitgeprüft')", [fid])
             counts[q] = counts.get(q, 0) + 1
             n += 1
     c.commit()
