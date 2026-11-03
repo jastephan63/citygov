@@ -526,18 +526,33 @@ CREATE TABLE IF NOT EXISTS shep_service (          -- one row per SHEP portal pa
     kontakt_einheit TEXT, kontakt_adresse TEXT, kontakt_email TEXT,
     harvested_at TEXT);
 
-CREATE TABLE IF NOT EXISTS quellen_abzug (         -- one row per harvest of DVSH / SHEP (citygov/load/quellen_log.py)
-    quelle TEXT NOT NULL CHECK (quelle IN ('DVSH','SHEP')),
+CREATE TABLE IF NOT EXISTS portal_service (        -- one row per page of the LIVE portal services.sh.ch (load_portal.py)
+    slug TEXT PRIMARY KEY,
+    service_id INTEGER REFERENCES service(id),
+    dvsh_id INTEGER,
+    zuordnung TEXT,                                -- 'slug' (DVSH slug) / 'umbenannt, vorher <SHEP slug>'
+    title TEXT, teaser TEXT, updated TEXT, kurzbeschreibung TEXT,
+    voraussetzungen TEXT, unterlagen TEXT, ablauf TEXT,            -- JSON arrays
+    formular_url TEXT,
+    aktionen TEXT,                                 -- JSON [{art, url}]: the action buttons, verbatim
+    dokumente TEXT,                                -- JSON [{label, url, sha256}]: asset store of the portal
+    datei_links TEXT,                              -- JSON [{label, url, sha256, dateiname}]: linked sh.ch files
+    links TEXT,                                    -- JSON [{label, url}]
+    kontakt_einheit TEXT, kontakt_adresse TEXT, kontakt_email TEXT,
+    harvested_at TEXT);
+
+CREATE TABLE IF NOT EXISTS quellen_abzug (         -- one row per harvest of DVSH / SHEP / the live portal (citygov/load/quellen_log.py)
+    quelle TEXT NOT NULL CHECK (quelle IN ('DVSH','SHEP','Portal')),
     datum  TEXT NOT NULL,                          -- date of the harvest (YYYY-MM-DD)
     datei  TEXT,                                   -- harvest file / pages directory (base name)
-    anzahl INTEGER,                                -- services (DVSH) / published pages (SHEP)
+    anzahl INTEGER,                                -- services (DVSH) / published pages (SHEP, Portal)
     PRIMARY KEY (quelle, datum));
 
 CREATE TABLE IF NOT EXISTS quellen_aenderung (     -- what a harvest changed against the one before
-    quelle     TEXT NOT NULL CHECK (quelle IN ('DVSH','SHEP')),
+    quelle     TEXT NOT NULL CHECK (quelle IN ('DVSH','SHEP','Portal')),
     abzug      TEXT NOT NULL,                      -- date of the new harvest
     vorher     TEXT,                               -- date of the harvest compared against (NULL = unknown)
-    schluessel TEXT NOT NULL,                      -- DVSH id / SHEP slug
+    schluessel TEXT NOT NULL,                      -- DVSH id / SHEP or Portal slug
     service_id INTEGER,                            -- our service (no FK: a removed service may be gone)
     titel      TEXT,
     art        TEXT NOT NULL CHECK (art IN ('neu','entfernt','geaendert')),

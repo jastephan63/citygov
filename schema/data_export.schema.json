@@ -1,7 +1,7 @@
 {
  "$schema": "https://json-schema.org/draft/2020-12/schema",
  "title": "data_export.json",
- "description": "Struktur von data_export.json, Version 1.5.0. Erzeugt aus der Datei, wie der Build sie schreibt (scripts/export_vertrag.py); Änderungen und Regeln in exportvertrag.json. Nie von Hand ändern.",
+ "description": "Struktur von data_export.json, Version 1.6.0. Erzeugt aus der Datei, wie der Build sie schreibt (scripts/export_vertrag.py); Änderungen und Regeln in exportvertrag.json. Nie von Hand ändern.",
  "$ref": "#/$defs/datei",
  "$defs": {
   "datei": {
@@ -1426,6 +1426,9 @@
        ],
        "additionalProperties": false
       },
+      "portal_harvest": {
+       "type": "string"
+      },
       "shep_harvest": {
        "type": "string"
       },
@@ -1455,6 +1458,7 @@
       "dvsh_stand",
       "gesetzesstand_geprueft",
       "online_check",
+      "portal_harvest",
       "shep_harvest",
       "xsd_sweep"
      ],
@@ -2871,6 +2875,50 @@
         ],
         "additionalProperties": false
        },
+       "live": {
+        "type": "object",
+        "properties": {
+         "angebot": {
+          "type": "array",
+          "items": {
+           "type": "object",
+           "properties": {
+            "datei": {
+             "type": "string"
+            },
+            "label": {
+             "type": "string"
+            },
+            "seite": {
+             "type": "string"
+            },
+            "slug": {
+             "type": "string"
+            },
+            "wie": {
+             "type": "string"
+            }
+           },
+           "required": [
+            "datei",
+            "label",
+            "seite",
+            "slug",
+            "wie"
+           ],
+           "additionalProperties": false
+          }
+         },
+         "stand": {
+          "type": "string"
+         }
+        },
+        "required": [
+         "angebot",
+         "stand"
+        ],
+        "additionalProperties": false
+       },
        "mismatch_note": {
         "type": "null"
        },
@@ -3632,6 +3680,7 @@
        "id",
        "kennung",
        "konzepte",
+       "live",
        "mismatch_note",
        "next_check_due",
        "outcome",
@@ -7315,6 +7364,9 @@
         "documents": {
          "type": "string"
         },
+        "dokumente": {
+         "type": "string"
+        },
         "email": {
          "type": "string"
         },
@@ -7388,6 +7440,7 @@
         "bearbeitungsdauer",
         "beschreibung",
         "documents",
+        "dokumente",
         "email",
         "endpoint_typ",
         "externe_links",
@@ -7522,6 +7575,86 @@
         "leer",
         "mail",
         "tel"
+       ],
+       "additionalProperties": false
+      },
+      "live_auff": {
+       "type": "object",
+       "properties": {
+        "link_kein_formular": {
+         "type": "string"
+        },
+        "ohne_aktion": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "link_kein_formular",
+        "ohne_aktion"
+       ],
+       "additionalProperties": false
+      },
+      "live_erkl": {
+       "type": "object",
+       "properties": {
+        "aeltere_live": {
+         "type": "string"
+        },
+        "datei_live": {
+         "type": "string"
+        },
+        "inhalt_live": {
+         "type": "string"
+        },
+        "neuere_live": {
+         "type": "string"
+        },
+        "nicht_live": {
+         "type": "string"
+        },
+        "service_live": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "aeltere_live",
+        "datei_live",
+        "inhalt_live",
+        "neuere_live",
+        "nicht_live",
+        "service_live"
+       ],
+       "additionalProperties": false
+      },
+      "live_stand": {
+       "type": "object",
+       "properties": {
+        "aeltere_live": {
+         "type": "string"
+        },
+        "datei_live": {
+         "type": "string"
+        },
+        "inhalt_live": {
+         "type": "string"
+        },
+        "neuere_live": {
+         "type": "string"
+        },
+        "nicht_live": {
+         "type": "string"
+        },
+        "service_live": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "aeltere_live",
+        "datei_live",
+        "inhalt_live",
+        "neuere_live",
+        "nicht_live",
+        "service_live"
        ],
        "additionalProperties": false
       },
@@ -8321,6 +8454,30 @@
          ],
          "additionalProperties": false
         },
+        "live": {
+         "type": "object",
+         "properties": {
+          "aeltere_live": {
+           "type": "string"
+          },
+          "datei_live": {
+           "type": "string"
+          },
+          "inhalt_live": {
+           "type": "string"
+          },
+          "neuere_live": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "aeltere_live",
+          "datei_live",
+          "inhalt_live",
+          "neuere_live"
+         ],
+         "additionalProperties": false
+        },
         "rechtsmittel": {
          "type": "object",
          "properties": {
@@ -8399,6 +8556,7 @@
         "dsfa",
         "dup",
         "ech",
+        "live",
         "rechtsmittel",
         "schutzstufe",
         "verif"
@@ -8544,6 +8702,9 @@
       "jur",
       "kat",
       "kontakt",
+      "live_auff",
+      "live_erkl",
+      "live_stand",
       "minmax",
       "mode",
       "node_typ",
@@ -8812,6 +8973,217 @@
       "n_dokumente": {
        "type": "integer"
       },
+      "portal": {
+       "type": "object",
+       "properties": {
+        "abzug": {
+         "type": "string"
+        },
+        "aktionen": {
+         "type": "object",
+         "additionalProperties": {
+          "type": "integer"
+         }
+        },
+        "auffaelligkeiten": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "properties": {
+           "art": {
+            "type": "string"
+           },
+           "dateiname": {
+            "type": [
+             "string",
+             "null"
+            ]
+           },
+           "label": {
+            "type": [
+             "string",
+             "null"
+            ]
+           },
+           "seite": {
+            "type": "string"
+           },
+           "service_id": {
+            "type": "integer"
+           },
+           "slug": {
+            "type": "string"
+           },
+           "url": {
+            "type": [
+             "string",
+             "null"
+            ]
+           }
+          },
+          "required": [
+           "art",
+           "dateiname",
+           "label",
+           "seite",
+           "service_id",
+           "slug",
+           "url"
+          ],
+          "additionalProperties": false
+         }
+        },
+        "basis": {
+         "type": "string"
+        },
+        "dateien": {
+         "type": "integer"
+        },
+        "dateien_formular": {
+         "type": "integer"
+        },
+        "formulare": {
+         "type": "object",
+         "properties": {
+          "aeltere_live": {
+           "type": "integer"
+          },
+          "datei_live": {
+           "type": "integer"
+          },
+          "inhalt_live": {
+           "type": "integer"
+          },
+          "neuere_live": {
+           "type": "integer"
+          },
+          "nicht_live": {
+           "type": "integer"
+          },
+          "service_live": {
+           "type": "integer"
+          }
+         },
+         "required": [
+          "aeltere_live",
+          "datei_live",
+          "inhalt_live",
+          "neuere_live",
+          "nicht_live",
+          "service_live"
+         ],
+         "additionalProperties": false
+        },
+        "n_formulare": {
+         "type": "integer"
+        },
+        "seiten": {
+         "type": "integer"
+        },
+        "services_live": {
+         "type": "integer"
+        },
+        "vs_shep": {
+         "type": "object",
+         "properties": {
+          "abzug_shep": {
+           "type": "string"
+          },
+          "geaendert": {
+           "type": "array",
+           "items": {
+            "type": "object",
+            "properties": {
+             "felder": {
+              "type": "array",
+              "items": {
+               "type": "string"
+              }
+             },
+             "service_id": {
+              "type": "integer"
+             },
+             "slug": {
+              "type": "string"
+             },
+             "titel": {
+              "type": "string"
+             }
+            },
+            "required": [
+             "felder",
+             "service_id",
+             "slug",
+             "titel"
+            ],
+            "additionalProperties": false
+           }
+          },
+          "nur_live": {
+           "type": "array",
+           "items": {}
+          },
+          "nur_shep": {
+           "type": "array",
+           "items": {}
+          },
+          "umbenannt": {
+           "type": "array",
+           "items": {
+            "type": "object",
+            "properties": {
+             "live": {
+              "type": "string"
+             },
+             "service_id": {
+              "type": "integer"
+             },
+             "titel": {
+              "type": "string"
+             },
+             "vorher": {
+              "type": "string"
+             }
+            },
+            "required": [
+             "live",
+             "service_id",
+             "titel",
+             "vorher"
+            ],
+            "additionalProperties": false
+           }
+          }
+         },
+         "required": [
+          "abzug_shep",
+          "geaendert",
+          "nur_live",
+          "nur_shep",
+          "umbenannt"
+         ],
+         "additionalProperties": false
+        },
+        "zugeordnet": {
+         "type": "integer"
+        }
+       },
+       "required": [
+        "abzug",
+        "aktionen",
+        "auffaelligkeiten",
+        "basis",
+        "dateien",
+        "dateien_formular",
+        "formulare",
+        "n_formulare",
+        "seiten",
+        "services_live",
+        "vs_shep",
+        "zugeordnet"
+       ],
+       "additionalProperties": false
+      },
       "quellen": {
        "type": "object",
        "properties": {
@@ -8890,6 +9262,60 @@
           },
           "vorher_anzahl": {
            "type": "integer"
+          }
+         },
+         "required": [
+          "abzug",
+          "aenderungen",
+          "anzahl",
+          "datei",
+          "n",
+          "vorher",
+          "vorher_anzahl"
+         ],
+         "additionalProperties": false
+        },
+        "Portal": {
+         "type": "object",
+         "properties": {
+          "abzug": {
+           "type": "string"
+          },
+          "aenderungen": {
+           "type": "array",
+           "items": {}
+          },
+          "anzahl": {
+           "type": "integer"
+          },
+          "datei": {
+           "type": "string"
+          },
+          "n": {
+           "type": "object",
+           "properties": {
+            "entfernt": {
+             "type": "integer"
+            },
+            "geaendert": {
+             "type": "integer"
+            },
+            "neu": {
+             "type": "integer"
+            }
+           },
+           "required": [
+            "entfernt",
+            "geaendert",
+            "neu"
+           ],
+           "additionalProperties": false
+          },
+          "vorher": {
+           "type": "null"
+          },
+          "vorher_anzahl": {
+           "type": "null"
           }
          },
          "required": [
@@ -8994,6 +9420,7 @@
        },
        "required": [
         "DVSH",
+        "Portal",
         "SHEP"
        ],
        "additionalProperties": false
@@ -9011,6 +9438,7 @@
       "dvsh_services",
       "entfernte_ohne_zeile",
       "n_dokumente",
+      "portal",
       "quellen",
       "shep_ohne_service",
       "shep_seiten"
@@ -10097,6 +10525,60 @@
          "null"
         ]
        },
+       "portal": {
+        "type": [
+         "array",
+         "null"
+        ],
+        "items": {
+         "type": "object",
+         "properties": {
+          "aktionen": {
+           "type": "array",
+           "items": {
+            "type": "object",
+            "properties": {
+             "art": {
+              "type": "string"
+             },
+             "url": {
+              "type": "string"
+             }
+            },
+            "required": [
+             "art",
+             "url"
+            ],
+            "additionalProperties": false
+           }
+          },
+          "aktualisiert": {
+           "type": "string"
+          },
+          "slug": {
+           "type": "string"
+          },
+          "titel": {
+           "type": "string"
+          },
+          "url": {
+           "type": "string"
+          },
+          "zuordnung": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "aktionen",
+          "aktualisiert",
+          "slug",
+          "titel",
+          "url",
+          "zuordnung"
+         ],
+         "additionalProperties": false
+        }
+       },
        "shep": {
         "type": "object",
         "properties": {
@@ -10309,6 +10791,7 @@
        "kennung",
        "name",
        "name_alt",
+       "portal",
        "slug",
        "themen"
       ],

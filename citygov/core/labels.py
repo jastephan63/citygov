@@ -262,6 +262,10 @@ TON_MAP = {
     # older edition in the source is the Dienststelle's to replace there
     "dok": {"erfasst": "ok", "gleicher_inhalt": "ok", "begleitdokument": "ok", "aeltere_ausgabe": "act",
             "offen": "open", "nicht_lesbar": "open", "ungeprueft": "open"},
+    # a Formular on the live portal services.sh.ch: an older edition there is the
+    # Dienststelle's to replace, a newer one the databank's to take over; «service_live»
+    # and «nicht_live» are facts about the portal, not a task — they carry no tone
+    "live": {"datei_live": "ok", "inhalt_live": "ok", "neuere_live": "open", "aeltere_live": "act"},
 }
 
 # the files DVSH and SHEP offer per service: state against the databank
@@ -272,6 +276,19 @@ DOK_STAND = {"erfasst": "als Formular erfasst", "gleicher_inhalt": "gleicher Inh
 DOK_ART = {"formular": "Formular", "merkblatt": "Merkblatt", "wegleitung": "Wegleitung", "liste": "Liste",
            "gesetz": "Rechtstext", "brief": "Schreiben", "uebersetzung": "Übersetzung", "anderes": "anderes Dokument"}
 DOK_ROLLE = {"einreichung": "zum Einreichen", "begleitend": "begleitend"}
+# a Formular on the live portal services.sh.ch (quelldokumente.live)
+LIVE_STAND = {"datei_live": "live auf services.sh.ch", "inhalt_live": "live, gleicher Inhalt",
+              "neuere_live": "live, neuere Ausgabe", "aeltere_live": "live, ältere Ausgabe",
+              "service_live": "nur der Service live", "nicht_live": "nicht auf services.sh.ch"}
+LIVE_ERKL = {"datei_live": "Das Live-Portal bietet genau diese Datei an (gleicher Fingerabdruck).",
+             "inhalt_live": "Das Live-Portal bietet eine andere Datei mit demselben Inhalt an (aus dem Inhalt beurteilt).",
+             "neuere_live": "Das Live-Portal bietet eine neuere Ausgabe an, als die Databank hält — die Databank übernimmt sie.",
+             "aeltere_live": "Das Live-Portal bietet eine ältere Ausgabe an, als die Databank hält — die Dienststelle ersetzt sie dort.",
+             "service_live": "Der Service hat eine Live-Seite, dieses Formular bietet sie aber nicht an (die Seite führt zum Beispiel «Online erledigen» oder eine andere Datei).",
+             "nicht_live": "Der Service hat keine Seite auf dem Live-Portal services.sh.ch."}
+# what does not fit on a live page (quellenabgleich.portal.auffaelligkeiten)
+LIVE_AUFF = {"link_kein_formular": "als Formular beschriftet, die verlinkte Datei ist keines",
+             "ohne_aktion": "Seite ohne Schaltfläche — weder Formular noch Online-Zugang"}
 # what a harvest changed: the column names of dvsh_service / shep_service
 FELD_QUELLE = {"title": "Titel", "kurzbeschreibung": "Kurzbeschreibung", "beschreibung": "Beschreibung",
                "voraussetzungen": "Voraussetzungen", "unterlagen": "Unterlagen", "ablauf": "Ablauf",
@@ -282,7 +299,7 @@ FELD_QUELLE = {"title": "Titel", "kurzbeschreibung": "Kurzbeschreibung", "beschr
                "phone": "Telefon", "address": "Adresse", "opening_hours": "Öffnungszeiten",
                "status": "Status", "online": "online", "endpoint_typ": "Kanal",
                "formular_url": "Formular-Link", "kontakt_einheit": "Kontakt (Stelle)",
-               "kontakt_adresse": "Kontakt (Adresse)", "kontakt_email": "Kontakt (E-Mail)"}
+               "kontakt_adresse": "Kontakt (Adresse)", "kontakt_email": "Kontakt (E-Mail)", "dokumente": "Dateien"}
 AENDERUNG = {"neu": "neu", "entfernt": "entfernt", "geaendert": "geändert"}
 
 # ---- priority: what comes first on the board ------------------------------------
@@ -374,4 +391,4 @@ def as_export():
             "stufen": [list(x) for x in STUFEN], "stufe_of_cat": STUFE_OF_CAT, "cat_order": CAT_ORDER, "aktion": AKTION, "einheit": EINHEIT,
             "todo_cats": [list(c) for c in TODO_CATS], "kontakt": KONTAKT,
             "dok_stand": DOK_STAND, "dok_art": DOK_ART, "dok_rolle": DOK_ROLLE, "feld_quelle": FELD_QUELLE,
-            "aenderung": AENDERUNG}
+            "aenderung": AENDERUNG, "live_stand": LIVE_STAND, "live_erkl": LIVE_ERKL, "live_auff": LIVE_AUFF}

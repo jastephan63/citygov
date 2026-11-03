@@ -43,7 +43,7 @@ from citygov.domain import rollen as ROLLEN_SCHICHT         # Parteien und Rolle
 from citygov.domain import wirkung                          # the change-impact index per law and article (standard library only)
 from citygov.domain import register_map                     # registers that already hold Angaben and Beilagen (standard library only)
 from citygov.domain import konzepte                         # one preferred element per Angabe and role (standard library only)
-from citygov.domain import quelldokumente                   # the files DVSH/SHEP offer and what the harvests changed (standard library only)
+from citygov.domain import quelldokumente                   # the files DVSH/SHEP/the live portal offer, what the harvests changed, live state (standard library only)
 from citygov.domain.parteiwoerter import PARTY              # the party words of the Lebenslagen key (one definition)
 
 
@@ -624,6 +624,7 @@ def _summen_pruefen(data):
 
     K, forms = data["kopfzahlen"], data["forms"]
     fehler += quelldokumente.pruefen(data["services"], data["quellenabgleich"])
+    fehler += quelldokumente.pruefen_live(forms, data["quellenabgleich"].get("portal"))
     tones = ("act", "dec", "open")
     # (1) every headline figure with «teile»: the parts sum to «von»
     for k, v in K.items():
@@ -1645,6 +1646,8 @@ def build(conn):
     # the files DVSH and SHEP offer per service, their state against the databank,
     # and what the latest harvests changed (citygov/domain/quelldokumente.py)
     quellenabgleich = quelldokumente.berechne(conn, services, dvsh_by_service, shep_by_service)
+    # whether each Formular is live on services.sh.ch (forms[].live, services[].portal)
+    quellenabgleich["portal"] = quelldokumente.live(conn, services, forms)
 
     esh_katalog = []
     try:
@@ -2249,6 +2252,7 @@ def build(conn):
     datenstand = {"build": None}
     try:
         datenstand["shep_harvest"] = (rows(conn, "SELECT MAX(harvested_at) m FROM shep_service")[0]["m"] or "")[:10] or None
+        datenstand["portal_harvest"] = (quellenabgleich.get("portal") or {}).get("abzug")
         datenstand["dvsh_stand"] = (rows(conn, "SELECT MAX(dvsh_updated_at) m FROM dvsh_service")[0]["m"] or "")[:10] or None
         oc = rows(conn, "SELECT MAX(substr(checked_at,1,10)) d, COUNT(*) n, "
                         "SUM(next_check_due < date('now')) overdue, "

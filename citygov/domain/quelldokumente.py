@@ -1,11 +1,14 @@
-"""The files DVSH and SHEP offer per service, what the databank holds of them,
-and what the latest harvests changed. Standard library only.
+"""The files DVSH, SHEP and the live portal offer per service, what the databank
+holds of them, what the latest harvests changed, and whether each Formular is live
+on services.sh.ch. Standard library only.
 
-Computed once in export_json (services[].dokumente, services[].aenderungen and the
-overview quellenabgleich); the dashboard, the dossiers and the LLM export read it.
+Computed once in export_json (services[].dokumente, services[].aenderungen,
+services[].portal, forms[].live and the overview quellenabgleich, all in
+data_export.json); the dashboard reads it.
 
 A file is identified by its sha256: DVSH records it per document (documents[],
-submissionEndpoint), SHEP names its asset files by it. Its state:
+submissionEndpoint), SHEP and the live portal name their asset files by it, and the
+files on sh.ch the live portal links were fetched with its harvest. Its state:
   erfasst          a Formular of the databank holds these bytes (form.file_hash)
   gleicher_inhalt  same content as a held Formular, other bytes (judged: gleiche_ausgabe)
   aeltere_ausgabe  an older edition than the Formular the databank holds
@@ -14,10 +17,24 @@ submissionEndpoint), SHEP names its asset files by it. Its state:
   nicht_lesbar     could not be read
   ungeprueft       not judged yet (a file of a newer harvest)
 The judgements come from dokument_urteil (load_dokument_urteile.py).
+
+A Formular on the live portal (forms[].live.stand):
+  datei_live     the portal offers these very bytes (form.file_hash)
+  inhalt_live    it offers a file of the same content (judged: gleiche_ausgabe)
+  neuere_live    it offers a newer edition than the databank holds
+  aeltere_live   it offers an older edition than the databank holds
+  service_live   the service has a live page, but this Formular is not offered there
+  nicht_live     the service has no page on the live portal
 """
 import json
 
 SHEP_BASE = "https://shep.meetfrida.agency"
+PORTAL_BASE = "https://services.sh.ch"
+# the columns of a portal page whose change is compared (harvest log, live vs. SHEP): the
+# sections the template marks unambiguously (teaser and link labels were re-parsed in
+# 2026-10 and are not compared)
+SEITEN_VERGLEICH = ["title", "kurzbeschreibung", "voraussetzungen", "unterlagen", "ablauf",
+                    "formular_url", "kontakt_einheit", "kontakt_adresse", "kontakt_email"]
 STAENDE = ["erfasst", "gleicher_inhalt", "aeltere_ausgabe", "begleitdokument", "offen", "nicht_lesbar", "ungeprueft"]
 
 
@@ -45,6 +62,12 @@ def _txt(s):
     return s
 
 
+def _zeilen(conn, table):
+    cur = conn.execute(f"SELECT * FROM {table}")
+    cols = [d[0] for d in cur.description]
+    return [dict(zip(cols, r)) for r in cur.fetchall()]
+
+
 def _stand(sha, held, urteile):
     if sha in held:
         return "erfasst", held[sha]
@@ -59,6 +82,10 @@ def berechne(conn, services, dvsh_rows_by_service, shep_by_service):
     """Sets s['dokumente'] and s['aenderungen'] on every service; returns the overview."""
     held = {r[0]: r[1] for r in conn.execute("SELECT file_hash, id FROM form WHERE file_hash IS NOT NULL")}
     have = {r[0] for r in conn.execute("SELECT name FROM sqlite_master WHERE type='table'")}
+    portal_by_service = {}
+    for p in (_zeilen(conn, "portal_service") if "portal_service" in have else []):
+        if p["service_id"] is not None:
+            portal_by_service.setdefault(p["service_id"], []).append(p)
     urteile = {}
     if "dokument_urteil" in have:
         cols = [r[1] for r in conn.execute("PRAGMA table_info(dokument_urteil)")]
@@ -78,7 +105,8 @@ def berechne(conn, services, dvsh_rows_by_service, shep_by_service):
             it["datei"] = it["datei"] or _txt(datei)
             if rolle == "einreichung":
                 it["rolle"] = "einreichung"
-            it["url"] = it["url"] or url
+            # the link a reader opens: the live portal's when it offers the file
+            it["url"] = url if quelle == "Live" and url else it["url"] or url
 
         for g in dvsh_rows_by_service.get(s["id"], []):
             src = {x.get("id"): x for x in _liste(g.get("sources"))}
@@ -96,6 +124,14 @@ def berechne(conn, services, dvsh_rows_by_service, shep_by_service):
             add(d.get("sha256"), "SHEP", d.get("label"), None,
                 "einreichung" if (d.get("label") or "").strip() == "Formular" else "begleitend",
                 SHEP_BASE + d["url"] if (d.get("url") or "").startswith("/api/catalog/assets/") else None)
+        for sp in portal_by_service.get(s["id"], []):
+            for d in _liste(sp.get("dokumente")):
+                add(d.get("sha256"), "Live", d.get("label"), None,
+                    "einreichung" if (d.get("label") or "").strip() == "Formular" else "begleitend",
+                    PORTAL_BASE + d["url"] if (d.get("url") or "").startswith("/api/catalog/assets/") else None)
+            # the sh.ch files the page links under «Weiterführende Informationen»
+            for d in _liste(sp.get("datei_links")):
+                add(d.get("sha256"), "Live", d.get("label"), d.get("dateiname"), "begleitend", d.get("url"))
         out = []
         for sha, it in items.items():
             stand, fid = _stand(sha, held, urteile)
@@ -115,7 +151,7 @@ def berechne(conn, services, dvsh_rows_by_service, shep_by_service):
         abgleich["dokumente"][st] += 1
     aend_by_service = {}
     if "quellen_abzug" in have:
-        for q in ("DVSH", "SHEP"):
+        for q in ("DVSH", "SHEP", "Portal"):
             ab = conn.execute("SELECT datum, datei, anzahl FROM quellen_abzug WHERE quelle=? ORDER BY datum DESC LIMIT 2",
                               [q]).fetchall()
             if not ab:
@@ -153,6 +189,123 @@ def berechne(conn, services, dvsh_rows_by_service, shep_by_service):
     return abgleich
 
 
+LIVE_STAENDE = ["datei_live", "inhalt_live", "neuere_live", "aeltere_live", "service_live", "nicht_live"]
+# a judged file of the portal that is an edition of a Formular -> its live state
+_URTEIL_LIVE = {"gleiche_ausgabe": "inhalt_live", "neue_ausgabe": "neuere_live", "aeltere_ausgabe": "aeltere_live"}
+
+
+def live(conn, services, forms):
+    """Is each Formular on the live portal services.sh.ch? Sets fm['live'] on every form
+    and s['portal'] on every service (None without a live page); returns
+    quellenabgleich['portal'] (None when the live portal was never harvested)."""
+    have = {r[0] for r in conn.execute("SELECT name FROM sqlite_master WHERE type='table'")}
+    portal_rows = _zeilen(conn, "portal_service") if "portal_service" in have else []
+    shep_rows = _zeilen(conn, "shep_service") if "shep_service" in have else []
+    if not portal_rows:
+        for fm in forms:
+            fm["live"] = None
+        for s in services:
+            s["portal"] = None
+        return None
+    file_hash = {r[0]: r[1] for r in conn.execute("SELECT id, file_hash FROM form")}
+    held = set(file_hash.values())
+    urteile = {r[0]: (r[1], r[2]) for r in conn.execute("SELECT sha256, urteil, form_id FROM dokument_urteil")} \
+        if "dokument_urteil" in have else {}
+    seite = lambda slug: f"{PORTAL_BASE}/de/services/{slug}"
+    # every file of the portal: where it is offered and how (button / list / link to sh.ch)
+    angebot = {}
+    pages_by_service = {}
+    for p in portal_rows:
+        if p.get("service_id") is not None:
+            pages_by_service.setdefault(p["service_id"], []).append(p)
+        for d in _liste(p.get("dokumente")):
+            if d.get("sha256"):
+                angebot.setdefault(d["sha256"], []).append(
+                    {"slug": p["slug"], "seite": seite(p["slug"]), "label": d.get("label"),
+                     "datei": PORTAL_BASE + d["url"] if (d.get("url") or "").startswith("/") else d.get("url"),
+                     "wie": "Schaltfläche" if (d.get("label") or "").strip() == "Formular" else "Dokumentliste"})
+        for d in _liste(p.get("datei_links")):
+            if d.get("sha256"):
+                angebot.setdefault(d["sha256"], []).append(
+                    {"slug": p["slug"], "seite": seite(p["slug"]), "label": d.get("label"), "datei": d.get("url"),
+                     "wie": "Link auf sh.ch"})
+    ausgabe = {}            # form_id -> [(live state, file offers)] from the judged editions
+    for sha, wo in angebot.items():
+        urt, fid = urteile.get(sha, (None, None))
+        if fid is not None and urt in _URTEIL_LIVE and file_hash.get(fid) != sha:
+            ausgabe.setdefault(fid, []).append((_URTEIL_LIVE[urt], wo))
+    # the service's live page(s): the action buttons, verbatim
+    for s in services:
+        P = pages_by_service.get(s["id"], [])
+        s["portal"] = [{"slug": p["slug"], "url": seite(p["slug"]), "titel": p.get("title"),
+                        "aktualisiert": p.get("updated"), "zuordnung": p.get("zuordnung"),
+                        "aktionen": [a for a in _liste(p.get("aktionen"))]} for p in P] or None
+    n = {k: 0 for k in LIVE_STAENDE}
+    for fm in forms:
+        sha = file_hash.get(fm["id"])
+        if sha and sha in angebot:
+            stand, wo = "datei_live", angebot[sha]
+        elif fm["id"] in ausgabe:
+            stand, wo = min(ausgabe[fm["id"]], key=lambda x: LIVE_STAENDE.index(x[0]))
+        elif fm.get("service_id") in pages_by_service:
+            stand, wo = "service_live", []
+        else:
+            stand, wo = "nicht_live", []
+        n[stand] += 1
+        fm["live"] = {"stand": stand, "angebot": wo}
+    # the live portal against the SHEP staging pages of the last harvest
+    shep = {r["slug"]: r for r in shep_rows}
+    port = {p["slug"]: p for p in portal_rows}
+    geaendert = []
+    for slug, p in sorted(port.items()):
+        r = shep.get(slug)
+        if not r:
+            continue
+        felder = [k for k in SEITEN_VERGLEICH if (p.get(k) or None) != (r.get(k) or None)]
+        if sorted(d.get("sha256") or "" for d in _liste(p.get("dokumente"))) != \
+                sorted(d.get("sha256") or "" for d in _liste(r.get("dokumente"))):
+            felder.append("dokumente")
+        if felder:
+            geaendert.append({"slug": slug, "service_id": p.get("service_id"), "titel": p.get("title"), "felder": felder})
+    umbenannt = {p["zuordnung"].split("vorher ", 1)[1]: slug for slug, p in port.items()
+                 if (p.get("zuordnung") or "").startswith("umbenannt, vorher ")}
+    vs = {"abzug_shep": max((r.get("harvested_at") or "" for r in shep_rows), default=None) or None,
+          "umbenannt": [{"vorher": a, "live": b, "service_id": port[b].get("service_id"), "titel": port[b].get("title")}
+                        for a, b in sorted(umbenannt.items())],
+          "nur_live": [{"slug": k, "service_id": port[k].get("service_id"), "titel": port[k].get("title")}
+                       for k in sorted(set(port) - set(shep) - set(umbenannt.values()))],
+          "nur_shep": [{"slug": k, "service_id": shep[k].get("service_id"), "titel": shep[k].get("title")}
+                       for k in sorted(set(shep) - set(port) - set(umbenannt))],
+          "geaendert": geaendert}
+    # what a reader can see on the portal that does not fit: a link named «Formular»
+    # that leads to a file judged not to be one; a page without any action button
+    auff = []
+    for p in portal_rows:
+        for d in _liste(p.get("datei_links")):
+            u = urteile.get(d.get("sha256") or "")
+            if "formular" in (d.get("label") or "").lower() and u and u[0] == "kein_formular" \
+                    and d.get("sha256") not in held:
+                auff.append({"slug": p["slug"], "seite": seite(p["slug"]), "service_id": p.get("service_id"),
+                             "art": "link_kein_formular", "label": d.get("label"), "url": d.get("url"),
+                             "dateiname": d.get("dateiname")})
+        if not _liste(p.get("aktionen")):
+            auff.append({"slug": p["slug"], "seite": seite(p["slug"]), "service_id": p.get("service_id"),
+                         "art": "ohne_aktion", "label": None, "url": None, "dateiname": None})
+    aktionen = {}
+    for p in portal_rows:
+        for a in {a.get("art") for a in _liste(p.get("aktionen"))}:
+            aktionen[a] = aktionen.get(a, 0) + 1
+    files_live = {sha for sha in angebot}
+    return {"abzug": max(p.get("harvested_at") or "" for p in portal_rows) or None,
+            "basis": PORTAL_BASE, "seiten": len(portal_rows),
+            "zugeordnet": sum(1 for p in portal_rows if p.get("service_id") is not None),
+            "services_live": sum(1 for s in services if s.get("portal")),
+            "formulare": n, "n_formulare": len(forms),
+            "dateien": len(files_live), "dateien_formular": len(files_live & held),
+            "aktionen": dict(sorted(aktionen.items(), key=lambda x: -x[1])),
+            "vs_shep": vs, "auffaelligkeiten": auff}
+
+
 def pruefen(services, abgleich):
     """The parts add up: the states sum to the distinct files; every service's list
     is counted in the overview. Returns a list of error strings."""
@@ -165,4 +318,22 @@ def pruefen(services, abgleich):
     for q in abgleich["quellen"].values():
         if sum(q["n"].values()) != len(q["aenderungen"]):
             err.append("quelldokumente: die Änderungen ergeben nicht ihre Liste")
+    return err
+
+
+def pruefen_live(forms, portal):
+    """Every Formular has exactly one live state, and the states sum to the Formulare."""
+    if not portal:
+        return []
+    err = []
+    if sum(portal["formulare"].values()) != portal["n_formulare"] or portal["n_formulare"] != len(forms):
+        err.append("quelldokumente: die Live-Stände ergeben nicht die Zahl der Formulare")
+    ist = {k: 0 for k in LIVE_STAENDE}
+    for fm in forms:
+        st = (fm.get("live") or {}).get("stand")
+        if st not in ist:
+            err.append(f"quelldokumente: Formular {fm['id']} ohne Live-Stand"); continue
+        ist[st] += 1
+    if ist != portal["formulare"]:
+        err.append(f"quelldokumente: Live-Stände der Formulare {ist} statt {portal['formulare']}")
     return err

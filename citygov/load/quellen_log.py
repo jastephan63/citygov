@@ -1,6 +1,8 @@
-"""The harvest log of the two read-only sources (DVSH modeller, SHEP portal).
+"""The harvest log of the read-only sources (DVSH modeller, SHEP portal, the live
+portal services.sh.ch).
 
-Both loaders replace their mirror table wholesale (dvsh_service, shep_service).
+The loaders replace their mirror table wholesale (dvsh_service, shep_service,
+portal_service).
 Before they do, record_changes() compares the rows the databank holds with the
 rows just loaded and writes what is new, removed or changed into
 quellen_aenderung, dated with the harvest; quellen_abzug keeps one row per
@@ -13,13 +15,13 @@ import json
 
 DDL = """
 CREATE TABLE IF NOT EXISTS quellen_abzug (
-    quelle TEXT NOT NULL CHECK (quelle IN ('DVSH','SHEP')),
+    quelle TEXT NOT NULL CHECK (quelle IN ('DVSH','SHEP','Portal')),
     datum  TEXT NOT NULL,
     datei  TEXT,
     anzahl INTEGER,
     PRIMARY KEY (quelle, datum));
 CREATE TABLE IF NOT EXISTS quellen_aenderung (
-    quelle     TEXT NOT NULL CHECK (quelle IN ('DVSH','SHEP')),
+    quelle     TEXT NOT NULL CHECK (quelle IN ('DVSH','SHEP','Portal')),
     abzug      TEXT NOT NULL,
     vorher     TEXT,
     schluessel TEXT NOT NULL,
@@ -29,6 +31,18 @@ CREATE TABLE IF NOT EXISTS quellen_aenderung (
     felder     TEXT,
     PRIMARY KEY (quelle, abzug, schluessel));
 """
+
+
+def _erweitern(c):
+    """A databank from before the live portal was harvested allows only 'DVSH' and
+    'SHEP' as source: its two log tables are rebuilt with the wider check (rows kept)."""
+    for t in ("quellen_abzug", "quellen_aenderung"):
+        row = c.execute("SELECT sql FROM sqlite_master WHERE type='table' AND name=?", [t]).fetchone()
+        if row and "'Portal'" not in row[0]:
+            c.execute(f"ALTER TABLE {t} RENAME TO {t}_alt")
+            c.executescript(DDL)
+            c.execute(f"INSERT INTO {t} SELECT * FROM {t}_alt")
+            c.execute(f"DROP TABLE {t}_alt")
 
 
 def snapshot(c, table, key, cols):
@@ -53,6 +67,7 @@ def record_changes(c, quelle, abzug, datei, anzahl, before, after, cols, vorher_
     """Write the harvest row and its changes. Returns (logged, counts) — logged
     is False when this harvest was logged already (nothing is touched then)."""
     c.executescript(DDL)
+    _erweitern(c)
     if c.execute("SELECT 1 FROM quellen_abzug WHERE quelle=? AND datum=?", [quelle, abzug]).fetchone():
         return False, {}
     prev = c.execute("SELECT MAX(datum) FROM quellen_abzug WHERE quelle=? AND datum<?", [quelle, abzug]).fetchone()[0]

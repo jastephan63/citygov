@@ -1,0 +1,7 @@
+{
+ "hinweis": "Einträge im Abzugsprotokoll (quellen_aenderung), die ein Fehler des Seitenparsers erzeugt hat und keine Änderung der Quelle sind. Angewandt von citygov/load/migrate_2026_11_03.py.",
+ "streichen": [
+  {"quelle": "SHEP", "abzug": "2026-10-28", "schluessel": "trichinenuntersuchung-pferde-wildschwein", "feld": "formular_url",
+   "beleg": "Der Parser suchte den Formular-Link als freies Wort «Formular» nach einem href und traf auf dieser Seite eine Schriftdatei im <head> (/_next/static/media/797e433ab948586e-s.p.0r6juujl39pe6.woff2). Seit 2026-11-03 liest load_shep.parse() den Link der Schaltfläche «Formular»: auf den Seiten vom 28.10.2026 ist das /api/catalog/assets/c7cf702a4f36bb5fc3e8859637cee5edac03aaa702bfe0a886e71265b224f10a.pdf — derselbe Link, den der Export des Abzugs vom 03.09.2026 hielt (data_export.json, Commit 2615045 und früher). Die Seite hat ihren Formular-Link nicht geändert."}
+ ]
+}

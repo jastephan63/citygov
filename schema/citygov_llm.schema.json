@@ -1,7 +1,7 @@
 {
  "$schema": "https://json-schema.org/draft/2020-12/schema",
  "title": "citygov_llm.json",
- "description": "Struktur von citygov_llm.json, Version 1.1.0. Erzeugt aus der Datei, wie der Build sie schreibt (scripts/export_vertrag.py); Änderungen und Regeln in exportvertrag.json. Nie von Hand ändern.",
+ "description": "Struktur von citygov_llm.json, Version 1.2.0. Erzeugt aus der Datei, wie der Build sie schreibt (scripts/export_vertrag.py); Änderungen und Regeln in exportvertrag.json. Nie von Hand ändern.",
  "$ref": "#/$defs/datei",
  "$defs": {
   "datei": {
@@ -411,6 +411,9 @@
          ],
          "additionalProperties": false
         },
+        "portal_harvest": {
+         "type": "string"
+        },
         "shep_harvest": {
          "type": "string"
         },
@@ -440,6 +443,7 @@
         "dvsh_stand",
         "gesetzesstand_geprueft",
         "online_check",
+        "portal_harvest",
         "shep_harvest",
         "xsd_sweep"
        ],
@@ -1196,6 +1200,9 @@
           "documents": {
            "type": "string"
           },
+          "dokumente": {
+           "type": "string"
+          },
           "email": {
            "type": "string"
           },
@@ -1269,6 +1276,7 @@
           "bearbeitungsdauer",
           "beschreibung",
           "documents",
+          "dokumente",
           "email",
           "endpoint_typ",
           "externe_links",
@@ -1403,6 +1411,86 @@
           "leer",
           "mail",
           "tel"
+         ],
+         "additionalProperties": false
+        },
+        "live_auff": {
+         "type": "object",
+         "properties": {
+          "link_kein_formular": {
+           "type": "string"
+          },
+          "ohne_aktion": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "link_kein_formular",
+          "ohne_aktion"
+         ],
+         "additionalProperties": false
+        },
+        "live_erkl": {
+         "type": "object",
+         "properties": {
+          "aeltere_live": {
+           "type": "string"
+          },
+          "datei_live": {
+           "type": "string"
+          },
+          "inhalt_live": {
+           "type": "string"
+          },
+          "neuere_live": {
+           "type": "string"
+          },
+          "nicht_live": {
+           "type": "string"
+          },
+          "service_live": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "aeltere_live",
+          "datei_live",
+          "inhalt_live",
+          "neuere_live",
+          "nicht_live",
+          "service_live"
+         ],
+         "additionalProperties": false
+        },
+        "live_stand": {
+         "type": "object",
+         "properties": {
+          "aeltere_live": {
+           "type": "string"
+          },
+          "datei_live": {
+           "type": "string"
+          },
+          "inhalt_live": {
+           "type": "string"
+          },
+          "neuere_live": {
+           "type": "string"
+          },
+          "nicht_live": {
+           "type": "string"
+          },
+          "service_live": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "aeltere_live",
+          "datei_live",
+          "inhalt_live",
+          "neuere_live",
+          "nicht_live",
+          "service_live"
          ],
          "additionalProperties": false
         },
@@ -2202,6 +2290,30 @@
            ],
            "additionalProperties": false
           },
+          "live": {
+           "type": "object",
+           "properties": {
+            "aeltere_live": {
+             "type": "string"
+            },
+            "datei_live": {
+             "type": "string"
+            },
+            "inhalt_live": {
+             "type": "string"
+            },
+            "neuere_live": {
+             "type": "string"
+            }
+           },
+           "required": [
+            "aeltere_live",
+            "datei_live",
+            "inhalt_live",
+            "neuere_live"
+           ],
+           "additionalProperties": false
+          },
           "rechtsmittel": {
            "type": "object",
            "properties": {
@@ -2280,6 +2392,7 @@
           "dsfa",
           "dup",
           "ech",
+          "live",
           "rechtsmittel",
           "schutzstufe",
           "verif"
@@ -2425,6 +2538,9 @@
         "jur",
         "kat",
         "kontakt",
+        "live_auff",
+        "live_erkl",
+        "live_stand",
         "minmax",
         "mode",
         "node_typ",

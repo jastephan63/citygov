@@ -732,6 +732,8 @@ def foot_html():
         bits.append(f"DVSH-Stand {fmt_date(ds['dvsh_stand'])}")
     if ds.get("shep_harvest"):
         bits.append(f"SHEP-Abzug {fmt_date(ds['shep_harvest'])}")
+    if ds.get("portal_harvest"):
+        bits.append(f"Live-Portal {fmt_date(ds['portal_harvest'])}")
     if oc.get("date"):
         # the last FULL pass and the recheck since — the same two dates the
         # dashboard's Datenstand line names (a recheck of 98 Formulare is not

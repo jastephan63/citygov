@@ -55,7 +55,8 @@ def main():
     stand = " · ".join(x for x in (
         f"Daten exportiert {fmt_date(ds.get('build'))}" if ds.get("build") else "",
         f"DVSH-Modell {fmt_date(ds.get('dvsh_stand'))}" if ds.get("dvsh_stand") else "",
-        f"SHEP-Portal {fmt_date(ds.get('shep_harvest'))}" if ds.get("shep_harvest") else "") if x)
+        f"SHEP-Portal {fmt_date(ds.get('shep_harvest'))}" if ds.get("shep_harvest") else "",
+        f"Live-Portal {fmt_date(ds.get('portal_harvest'))}" if ds.get("portal_harvest") else "") if x)
 
     # the two pages are templates under citygov/present/assets/index/ (start.html for
     # index.html, notfound.html for 404.html); fill() puts each value in place of its %%NAME%% marker.

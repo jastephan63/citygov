@@ -31,10 +31,11 @@
    "datenhandhabung.scope": "allgemein=applies to every personal-data field; besonders_schuetzenswert=additionally applies to fields with a sensitive category (matching sensitive_category, or all when null); sektoral=applies only to fields whose legal basis cites the same law (match on law). The addressee is part of the claim: rules from DSG/DSV/BGA/EMBAG bind Bundesorgane, not the canton (see each rule's law and quote).",
    "process_steps / findings": "legacy service-level rows of the 2026-06 era, kept as text (process_steps mode is a code; findings are the auto-draft's notes, status as drafted, never reviewed — see retired_layer); the Verfahren facts a reader should rely on are dvsh_verfahren and forms[].verfahren."
   },
-  "generated_at": "2026-10-28T20:12:30",
+  "generated_at": "2026-11-03T11:33:33",
   "datenstand": {
-   "build": "2026-10-28",
+   "build": "2026-11-03",
    "shep_harvest": "2026-10-28",
+   "portal_harvest": "2026-11-03",
    "dvsh_stand": "2026-10-20",
    "online_check": {
     "date": "2026-09-26",
@@ -404,6 +405,12 @@
      "offen": "open",
      "nicht_lesbar": "open",
      "ungeprueft": "open"
+    },
+    "live": {
+     "datei_live": "ok",
+     "inhalt_live": "ok",
+     "neuere_live": "open",
+     "aeltere_live": "act"
     }
    },
    "stufen": [
@@ -744,12 +751,33 @@
     "formular_url": "Formular-Link",
     "kontakt_einheit": "Kontakt (Stelle)",
     "kontakt_adresse": "Kontakt (Adresse)",
-    "kontakt_email": "Kontakt (E-Mail)"
+    "kontakt_email": "Kontakt (E-Mail)",
+    "dokumente": "Dateien"
    },
    "aenderung": {
     "neu": "neu",
     "entfernt": "entfernt",
     "geaendert": "geändert"
+   },
+   "live_stand": {
+    "datei_live": "live auf services.sh.ch",
+    "inhalt_live": "live, gleicher Inhalt",
+    "neuere_live": "live, neuere Ausgabe",
+    "aeltere_live": "live, ältere Ausgabe",
+    "service_live": "nur der Service live",
+    "nicht_live": "nicht auf services.sh.ch"
+   },
+   "live_erkl": {
+    "datei_live": "Das Live-Portal bietet genau diese Datei an (gleicher Fingerabdruck).",
+    "inhalt_live": "Das Live-Portal bietet eine andere Datei mit demselben Inhalt an (aus dem Inhalt beurteilt).",
+    "neuere_live": "Das Live-Portal bietet eine neuere Ausgabe an, als die Databank hält — die Databank übernimmt sie.",
+    "aeltere_live": "Das Live-Portal bietet eine ältere Ausgabe an, als die Databank hält — die Dienststelle ersetzt sie dort.",
+    "service_live": "Der Service hat eine Live-Seite, dieses Formular bietet sie aber nicht an (die Seite führt zum Beispiel «Online erledigen» oder eine andere Datei).",
+    "nicht_live": "Der Service hat keine Seite auf dem Live-Portal services.sh.ch."
+   },
+   "live_auff": {
+    "link_kein_formular": "als Formular beschriftet, die verlinkte Datei ist keines",
+    "ohne_aktion": "Seite ohne Schaltfläche — weder Formular noch Online-Zugang"
    }
   },
   "kennungen": {
@@ -2488,7 +2516,7 @@
    ]
   },
   "vertrag": {
-   "version": "1.1.0",
+   "version": "1.2.0",
    "schema": "schema/citygov_llm.schema.json",
    "aenderungen": "exportvertrag.json"
   }

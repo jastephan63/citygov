@@ -7,7 +7,9 @@ service, but as the citizen sees it: teaser, Voraussetzungen, Unterlagen,
 Ablauf, Formular-Link, Dokumente, rechtliche Grundlagen, Kontakt. We harvest
 the server-rendered HTML read-only via plain GETs and parse by the template's
 h2 sections. Matching to our service rows goes through dvsh_service.slug —
-SHEP uses the modeller's slugs.
+SHEP uses the modeller's slugs. parse() also reads the action buttons and the sh.ch
+files a page links; the live portal services.sh.ch has the same template
+(load_portal.py stores both).
 
 Idempotent (table rebuilt wholesale). Before the rebuild, quellen_log records what
 this harvest changed against the pages the databank held (quellen_aenderung); the
@@ -21,12 +23,8 @@ import glob, html, json, os, re, shutil, sys
 from citygov.core.common import DB_PATH, connect
 from citygov.checks.validate_db import validate
 from citygov.load import quellen_log
-
-# the columns whose change the harvest log records — the sections the template
-# marks unambiguously (teaser and link labels were re-parsed in 2026-10 and are
-# not compared)
-COMPARE = ["title", "kurzbeschreibung", "voraussetzungen", "unterlagen", "ablauf",
-           "formular_url", "kontakt_einheit", "kontakt_adresse", "kontakt_email"]
+# the columns whose change the harvest log records (one list for SHEP and the live portal)
+from citygov.domain.quelldokumente import SEITEN_VERGLEICH as COMPARE
 
 DDL = """
 CREATE TABLE IF NOT EXISTS shep_service (
@@ -114,19 +112,37 @@ def parse(page):
             else:
                 cur["text"] = (cur["text"] + " " + ln) if cur["text"] else ln
     d["ablauf"] = steps
-    # links: the Formular button plus the Dokumente/Links lists. Match from href="…"
-    # on: since 2026-10 the template's class lists contain «>» ([&>svg]:…), which
-    # breaks an <a[^>]+ prefix
-    m = re.search(r'href="([^"]+)"[^>]*>\s*(?:<[^>]+>\s*)*Formular\b', page)
-    d["formular_url"] = html.unescape(m.group(1)) if m else None
+    # the related/popular-service lists at the foot belong to other services and are cut off
+    foot = min([i for i in (page.find(">Verwandte Services<"), page.find(">Beliebte Services<")) if i > 0]
+               or [len(page)])
+    # the action buttons under the teaser («Formular», «Online erledigen», «Per E-Mail
+    # erledigen», «Zum Angebot» …), verbatim. Links are matched from href="…" on: since
+    # 2026-10 the template's class lists contain «>» ([&>svg]:…), which breaks an <a[^>]+ prefix
+    body = re.sub(r"<head[^>]*>.*?</head>", "", page, flags=re.S)
+    h1 = re.search(r"</h1>", body)
+    d["aktionen"] = []
+    for u, t in re.findall(r'href="([^"]+)"[^>]*>(.*?)</a>', body[h1.end() if h1 else 0:body.find(">Verwandte Services<")
+                                                              if ">Verwandte Services<" in body else len(body)], re.S):
+        t = link_label(t)
+        if (t == "Formular" or t == "Zum Angebot" or t.endswith(" erledigen")) and \
+                {"art": t, "url": html.unescape(u)} not in d["aktionen"]:
+            d["aktionen"].append({"art": t, "url": html.unescape(u)})
+    # the Formular link is the «Formular» button (a free search for the word picked up a
+    # font file in the <head> of one page)
+    d["formular_url"] = next((a["url"] for a in d["aktionen"] if a["art"] == "Formular"), None)
     info = section(page, "Weiterführende Informationen", ALL)
     d["links"] = [{"label": link_label(t), "url": html.unescape(u)}
                   for u, t in re.findall(r'href="(http[^"]+)"[^>]*>(.*?)</a>', info, re.S)]
+    # files on the canton's website the page links to (sh.ch/CMS/get/file/<id>, *.pdf …);
+    # their bytes are fetched with the harvest (load_portal.py reads them)
+    d["datei_links"] = []
+    for u, t in re.findall(r'href="(https?://[^"]+)"[^>]*>(.*?)</a>', page[:foot], re.S):
+        u = html.unescape(u)
+        if re.search(r"sh\.ch/CMS/get/file/|\.(pdf|docx?|xlsx?)(\?|$)", u, re.I) and \
+                u not in [x["url"] for x in d["datei_links"]]:
+            d["datei_links"].append({"label": link_label(t), "url": u})
     # every file the page offers (the SHEP asset store names a file by its sha256,
-    # so it is compared with form.file_hash); the related/popular-service lists at
-    # the foot belong to other services and are cut off
-    foot = min([i for i in (page.find(">Verwandte Services<"), page.find(">Beliebte Services<")) if i > 0]
-               or [len(page)])
+    # so it is compared with form.file_hash)
     d["dokumente"], seen = [], set()
     for u, sha, t in re.findall(r'href="(/api/catalog/assets/([0-9a-f]{64})\.[a-z0-9]+)"[^>]*>(.*?)</a>',
                                 page[:foot], re.S):

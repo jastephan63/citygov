@@ -1,16 +1,18 @@
 #!/usr/bin/env python3
-"""Load what each file DVSH or SHEP offers is, when no Formular holds its bytes.
+"""Load what each file DVSH, SHEP or the live portal offers is, when no Formular
+holds its bytes.
 
 DVSH lists per service the files a person submits or reads (documents[],
-submissionEndpoint, each with its sha256); SHEP links them from the portal
-page (/api/catalog/assets/<sha256>.<ext>). A file whose sha256 equals a
+submissionEndpoint, each with its sha256); SHEP and the live portal services.sh.ch
+link them from the page (/api/catalog/assets/<sha256>.<ext>), the live portal also
+links files on sh.ch (fetched with the harvest, load_portal.py). A file whose sha256 equals a
 form.file_hash is a Formular of the databank. Every other file was read and
 judged from its content by a panel, and a sceptical second review checked each
 verdict that would change the databank: a Merkblatt, a newer/older/the same
 edition of a held Formular, or a Formular the databank did not hold yet. The
 verdicts are kept with their verbatim evidence in quellen/dokumente/urteile_*.json.
 
-Gates: the sha256 must be a file a DVSH or SHEP row of the databank lists;
+Gates: the sha256 must be a file a DVSH, SHEP or live-portal row of the databank lists;
 vocabularies (art, urteil); a form_id must exist; an edition verdict
 (neue/gleiche/aeltere Ausgabe, ersetzt_falsch_zugeordnetes) needs a form_id.
 The table is rebuilt from all files of quellen/dokumente/ (sorted; a later
@@ -45,7 +47,7 @@ CREATE TABLE IF NOT EXISTS dokument_urteil (
 
 
 def listed_hashes(c):
-    """Every sha256 a DVSH or SHEP row of the databank names."""
+    """Every sha256 a DVSH, SHEP or live-portal row of the databank names."""
     out = set()
 
     def walk(v):
@@ -65,6 +67,9 @@ def listed_hashes(c):
         walk(r["documents"]); walk(r["submission_endpoint"])
     for r in c.execute("SELECT dokumente FROM shep_service"):
         walk(r["dokumente"])
+    if c.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='portal_service'").fetchone():
+        for r in c.execute("SELECT dokumente, datei_links FROM portal_service"):
+            walk(r["dokumente"]); walk(r["datei_links"])
     return out
 
 
@@ -86,7 +91,7 @@ def main():
         d = json.load(open(f, encoding="utf-8"))
         for u in d.get("urteile", []):
             h, art, urt, fid = u.get("sha256"), u.get("art"), u.get("urteil"), u.get("form_id")
-            why = ("sha256 von keiner DVSH-/SHEP-Zeile genannt" if h not in listed else
+            why = ("sha256 von keiner DVSH-/SHEP-/Portal-Zeile genannt" if h not in listed else
                    "art" if art not in ART else "urteil" if urt not in URTEIL else
                    "form_id fehlt" if urt in BRAUCHT_FORM and not fid else
                    "form_id unbekannt" if fid and fid not in forms else

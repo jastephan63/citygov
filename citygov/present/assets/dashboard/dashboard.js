@@ -303,6 +303,7 @@ function datenstandText(){
   const p=[];
   if(ds.dvsh_stand) p.push('DVSH-Modell '+fmtDate(ds.dvsh_stand));
   if(ds.shep_harvest) p.push('SHEP-Abzug '+fmtDate(ds.shep_harvest));
+  if(ds.portal_harvest) p.push('Live-Portal services.sh.ch '+fmtDate(ds.portal_harvest));
   if(oc.date) p.push(`Online-Prüfung: vollständig ${fmtDate(oc.full_date||oc.date)}${oc.full_date&&oc.date!==oc.full_date?', Nachprüfung '+fmtDate(oc.date)+' ('+pl(oc.n_recent||0,'Formular','Formulare')+')':''} — ${nf(oc.n_checked)}/${nf(oc.n_forms)} Formulare geprüft${oc.n_overdue?', '+pl(oc.n_overdue,'Wiedervorlage überfällig','Wiedervorlagen überfällig'):''}${oc.n_never?', '+nf(oc.n_never)+' nie geprüft':''}`);
   else p.push('Online-Prüfung: noch keine');
   if(xs.date) p.push(`XSD-Prüfung ${fmtDate(xs.date)} (${pl(xs.n,'Standard','Standards')} geprüft${xs.n_xsd!=null?', '+nf(xs.n_xsd)+' mit eigener XSD, '+nf(xs.n-xs.n_xsd)+' ohne':''})`);
@@ -960,7 +961,8 @@ const GLOSSAR=(()=>{
     ['luecke','Lücke','Ein offener Punkt: etwas ist noch zu klären, zu entscheiden oder zu belegen. Die Farbe sagt, wer als Nächstes handelt — die Dienststelle, der Kanton oder die Databank.'
       +(GEST?' In der Gestaltung der Formulare heisst Lücke: ein geprüftes Merkmal fehlt, etwa ein Mindestmerkmal der Barrierefreiheit — ein Befund über die Datei, kein offener Punkt des Datenstandards.':'')],
     ['dvsh','DVSH','Das Dienstleistungsmodell des Kantons (amtliches Modellierungswerkzeug): massgebliche Quelle für Verfahren und Rechtsgrundlage, nur lesend übernommen. Auch die Kontakte der Dienststellen stammen von dort.'],
-    ['shep','SHEP','Das publizierte Service-Portal des Kantons — was Bürgerinnen und Bürger zu einem Service sehen.'],
+    ['shep','SHEP','Das Service-Portal unter shep.meetfrida.agency — was Bürgerinnen und Bürger zu einem Service sehen; im Betrieb unter services.sh.ch (Live-Portal).'],
+    (DATA.quellenabgleich||{}).portal&&['live','Live-Portal','services.sh.ch, das Service-Portal des Kantons im Betrieb. Die Databank liest es wie DVSH und SHEP nur ab und erkennt jede angebotene Datei an ihrem Fingerabdruck — so steht bei jedem Formular, ob es dort live ist.'],
     kdsg&&['kdsg','KDSG',`${kdsg.title}${kdsg.sr_number?' (SHR '+kdsg.sr_number+')':''} — das Datenschutzgesetz des Kantons; es gilt für die Organe des Kantons.`],
     ['besonders-schuetzenswert','Besonders schützenswert (⛨)','Besonders schützenswerte Personendaten nach KDSG Art. 2 Abs. 1 lit. d. Für sie genügt «aufgabennotwendig» nicht: die Grundlage nach KDSG Art. 5 Abs. 1 muss benannt sein.'],
     ['dsfa','DSFA','Datenschutz-Folgenabschätzung (KDSG Art. 14b). Die Databank berechnet nur einen Anhaltspunkt aus der Zahl der besonders schützenswerten Felder; ob eine DSFA nötig ist, ist ein Entscheid, kein Rechenergebnis.'],
@@ -2655,7 +2657,7 @@ function formFacts(fm){
       ${fm.signature_requirement==='handschriftlich'?`<span class="hubsig" title="${esc(fm.signature_evidence||'')}">✍ Unterschrift nötig</span>`:''}
       ${fm.signature_requirement==='sig_widget'?`<span class="hubsig">✓ digitale Signatur möglich</span>`:''}
       ${fm.has_flow?`<a class="hubmeta" href="flows.html" target="_blank" rel="noopener" title="Prototyp: geführter Flow zu diesem Formular — flows.html öffnet mit eigener Formularsuche">geführter Flow (Prototyp) ↗</a>`:''}
-      ${checked}
+      ${liveBadge(fm)}${checked}
     </div>
     ${fm.burden?`<div class="hubburden">Bürgerlast: <b>${fm.burden.inputs}</b> ${plw(fm.burden.inputs,'Pflichtangabe','Pflichtangaben')}
       ${fm.burden.attachments?` · <b>${fm.burden.attachments}</b> ${plw(fm.burden.attachments,'Beilage','Beilagen')}`:''} · ~<b>${fm.burden.minutes}</b> Min.
@@ -2767,18 +2769,44 @@ const QA=DATA.quellenabgleich||{dokumente:{},quellen:{}};
 const DOK_ORDER=['erfasst','gleicher_inhalt','aeltere_ausgabe','begleitdokument','offen','nicht_lesbar','ungeprueft'];
 const dokBadge=d=>stBadge(tonOf('dok',d.stand),esc(lab(DOK_STAND,d.stand)),
   (d.titel_gedruckt?'Titel auf dem Dokument: '+d.titel_gedruckt+'\n':'')+(d.zweitgeprueft?'Urteil aus dem Inhalt, zweitgeprüft':d.stand==='erfasst'?'dieselbe Datei wie ein Formular der Databank (gleicher Fingerabdruck)':''));
-const qBadge=q=>mkBadge(esc(q),q==='DVSH'?'im DVSH-Dienstleistungsmodell hinterlegt':'auf dem SHEP-Portal verlinkt');
+const QUELLE_DE={DVSH:['DVSH','im DVSH-Dienstleistungsmodell hinterlegt'],SHEP:['SHEP','auf dem SHEP-Portal (shep.meetfrida.agency) verlinkt'],
+  Live:['Live','auf dem Live-Portal services.sh.ch angeboten'],Portal:['Live-Portal','services.sh.ch, das Service-Portal im Betrieb']};
+const qBadge=q=>mkBadge(esc((QUELLE_DE[q]||[q])[0]),(QUELLE_DE[q]||[])[1]);
+// ---- the live portal services.sh.ch: is the Formular offered there? (forms[].live, services[].portal)
+const LIVE_STAND=LAB.live_stand||{}, LIVE_ERKL=LAB.live_erkl||{}, LIVE_AUFF=LAB.live_auff||{}, QP=QA.portal||null;
+const LIVE_ORDER=['datei_live','inhalt_live','neuere_live','aeltere_live','service_live','nicht_live'];
+const liveTon=k=>((LAB.ton_map||{}).live||{})[k];
+// toned where someone acts (older edition there: the Dienststelle; newer: the databank), neutral where it is a fact
+const liveBadgeOf=(k,tip)=>{const t=(LIVE_ERKL[k]||'')+(tip?'\n'+tip:'');
+  return liveTon(k)?stBadge(liveTon(k),esc(lab(LIVE_STAND,k)),t):mkBadge(esc(lab(LIVE_STAND,k)),t);};
+function liveBadge(fm){
+  const L=fm.live; if(!L) return '';
+  const wo=L.angebot||[];
+  const tip=(wo.length?wo.map(w=>`${w.wie} auf ${w.seite}${w.label&&w.label!=='Formular'?' («'+w.label+'»)':''}`).join('\n')+'\n':'')
+    +(QP&&QP.abzug?'Abzug von services.sh.ch vom '+fmtDate(QP.abzug):'');
+  return `<span class="hubmeta">${liveBadgeOf(L.stand,tip)}${wo[0]?` <a class="dlink" href="${esc(wo[0].seite)}" target="_blank" rel="noreferrer" title="die Live-Seite auf services.sh.ch öffnen">Live-Seite ↗</a>`:''}</span>`;
+}
+// the service's live page with its buttons (one line under the head)
+function portalLine(s){
+  if(!QP) return '';
+  const P=s.portal||[];
+  if(!P.length) return `<div class="hint aendline">${qBadge('Portal')} keine Seite auf services.sh.ch (Abzug vom ${esc(fmtDate(QP.abzug))})</div>`;
+  return `<div class="hint aendline">${P.map(p=>`${qBadge('Portal')} <a class="dlink" href="${esc(p.url)}" target="_blank" rel="noreferrer">Live-Seite ↗</a>${
+    p.aktualisiert?` <span class="muted">aktualisiert ${esc(p.aktualisiert)}</span>`:''}${(p.aktionen||[]).length?' · Schaltfläche'+((p.aktionen||[]).length>1?'n':'')+': '+p.aktionen.map(a=>
+      /^(https?:|\/)/.test(a.url||'')?`<a class="dlink" href="${esc(/^\//.test(a.url)?QP.basis+a.url:a.url)}" target="_blank" rel="noreferrer">«${esc(a.art)}» ↗</a>`:`«${esc(a.art)}»`).join(' · '):' · <span class="muted">keine Schaltfläche</span>'}${
+    p.zuordnung&&p.zuordnung!=='slug'?` <span class="muted small" title="${esc(p.zuordnung)}">(Seite umbenannt)</span>`:''}`).join('<br>')}</div>`;
+}
 function dokName(d){
   const n=esc(d.titel||d.datei||d.sha256.slice(0,12));
-  return d.url?`<a class="dlink" href="${esc(d.url)}" target="_blank" rel="noreferrer" title="Datei öffnen (${d.url.includes('shep.')?'SHEP-Portal':'sh.ch'})">${n} ↗</a>`:n;
+  return d.url?`<a class="dlink" href="${esc(d.url)}" target="_blank" rel="noreferrer" title="Datei öffnen (${d.url.includes('shep.')?'SHEP-Portal':d.url.includes('services.sh.ch')?'Live-Portal services.sh.ch':'sh.ch'})">${n} ↗</a>`:n;
 }
 const dokForm=d=>{const f=d.form_id!=null?formById[d.form_id]:null;
   return f?`<div class="small">${d.stand==='erfasst'?'Formular':'zu Formular'} ${formLink(f.service_id,f.id,esc(f.title))}</div>`:'';};
 // the files of one service (service page)
 function quellDokSection(s){
   const L=s.dokumente||[]; if(!L.length) return '';
-  return `<h4 class="hscope" id="qdok">Dateien laut DVSH und SHEP (${nf(L.length)})</h4>
-  <div class="card"><p class="hint">Jede Datei, die das DVSH-Modell oder das SHEP-Portal für diesen Service anbietet — erkannt an ihrem
+  return `<h4 class="hscope" id="qdok">Dateien laut DVSH, SHEP und Live-Portal (${nf(L.length)})</h4>
+  <div class="card"><p class="hint">Jede Datei, die das DVSH-Modell, das SHEP-Portal oder das Live-Portal services.sh.ch für diesen Service anbietet — erkannt an ihrem
     Fingerabdruck, also auch unter anderem Namen — und was die Databank davon hält. ${goLink('abgleich','','Alle Dateien und Änderungen ›','inl')}</p>
   <div class="tscroll"><table class="ft fit"><thead><tr><th>Datei</th><th>Rolle</th><th>Quelle</th><th>Stand in der Databank</th></tr></thead><tbody>${
     L.map(d=>`<tr><td>${dokName(d)}${d.datei&&d.datei!==d.titel?`<div class="small muted">${esc(d.datei)}</div>`:''}</td>
@@ -2810,6 +2838,8 @@ function viewAbgleich(){
     const by=a=>x.aenderungen.filter(e=>e.art===a);
     const sv=e=>e.service_id!=null&&svcById[e.service_id]?svcLink(e.service_id,esc(svcById[e.service_id].name)):esc(e.titel||e.schluessel);
     const feldN={}; by('geaendert').forEach(e=>e.felder.forEach(f=>{feldN[f]=(feldN[f]||0)+1;}));
+    if(!x.vorher) return `<div class="card"><h4 style="margin-top:0">${qBadge(q)} Abzug vom ${esc(fmtDate(x.abzug))}</h4>
+      <div class="hint">Der erste Abzug dieser Quelle — es gibt noch keinen früheren, mit dem er verglichen werden könnte.${q==='Portal'?' Wie die Live-Seiten von den SHEP-Seiten abweichen, steht oben.':''}</div></div>`;
     return `<div class="card"><h4 style="margin-top:0">${qBadge(q)} Abzug vom ${esc(fmtDate(x.abzug))}${x.vorher?` — verglichen mit dem Abzug vom ${esc(fmtDate(x.vorher))}`:''}</h4>
       <div class="regstats"><span class="rstat">${q==='DVSH'?'Services':'publizierte Seiten'} <b>${nf(x.anzahl)}</b>${x.vorher_anzahl!=null?` <span class="muted">(vorher ${nf(x.vorher_anzahl)})</span>`:''}</span>
         <span class="rstat">neu <b>${nf(x.n.neu)}</b></span><span class="rstat">entfernt <b>${nf(x.n.entfernt)}</b></span><span class="rstat">geändert <b>${nf(x.n.geaendert)}</b></span></div>
@@ -2819,19 +2849,51 @@ function viewAbgleich(){
         <div class="tscroll"><table class="ft fit"><thead><tr><th>Service</th><th>Geändert</th></tr></thead><tbody>${by('geaendert').map(e=>`<tr><td>${sv(e)}</td><td class="small">${esc(e.felder.map(f=>lab(FELD_QUELLE,f)).join(', '))}</td></tr>`).join('')}</tbody></table></div></details>`:''}
     </div>`;};
   const dv=QA.dvsh_services||0, sh=QA.shep_seiten||0;
-  m.innerHTML=pageHead('Abgleich DVSH & SHEP',
-    `Ob jeder Service und jede Datei aus dem DVSH-Modell und dem SHEP-Portal in der Databank ist — und was sich seit dem letzten Abzug geändert hat.`,
-    'Oben die Abdeckung: jeder Service des DVSH-Modells und jede publizierte SHEP-Seite mit ihrer Service-Seite, jede angebotene Datei mit ihrem Stand. Darunter je Quelle, was der letzte Abzug gegenüber dem vorherigen neu, nicht mehr oder geändert enthält.',
-    'Das DVSH-Dienstleistungsmodell und das SHEP-Portal, beide nur lesend abgezogen. Eine Datei wird an ihrem Fingerabdruck (SHA-256) erkannt: dieselbe Datei wie ein Formular der Databank ist «erfasst»; jede andere wurde aus ihrem Inhalt beurteilt und zweitgeprüft.',
-    'Grün: erfasst oder kein Formular (Merkblatt, Wegleitung …). Rot: die Quelle bietet eine ältere Ausgabe an als das Formular der Databank — die Dienststelle ersetzt sie dort. Grau: noch nicht geprüft oder noch nicht übernommen — eine Hausaufgabe der Databank.')
+  // the Formulare on the live portal services.sh.ch, by state
+  const liveBlock=()=>{if(!QP) return '';
+    const F=QP.formulare||{}, byL={};
+    DATA.forms.forEach(fm=>{if(fm.live) (byL[fm.live.stand]=byL[fm.live.stand]||[]).push(fm);});
+    const V=QP.vs_shep||{}, svN=e=>e.service_id!=null&&svcById[e.service_id]?svcLink(e.service_id,esc(svcById[e.service_id].name)):esc(e.titel||e.slug);
+    const formRows=L=>L.sort((a,b)=>String(a.title||'').localeCompare(String(b.title||''),'de')).map(fm=>`<tr>
+        <td>${formLink(fm.service_id,fm.id,esc(fm.title))}</td>
+        <td class="small">${svcById[fm.service_id]?svcLink(fm.service_id,esc(svcById[fm.service_id].name)):''}</td>
+        <td class="small">${(fm.live.angebot||[]).map(w=>`<a class="dlink" href="${esc(w.seite)}" target="_blank" rel="noreferrer">${esc(w.wie)} ↗</a>`).join('<br>')
+          ||((svcById[fm.service_id]||{}).portal||[]).map(p=>`<a class="dlink" href="${esc(p.url)}" target="_blank" rel="noreferrer">Live-Seite ↗</a> ${(p.aktionen||[]).map(a=>'«'+esc(a.art)+'»').join(' ')}`).join('<br>')}</td></tr>`).join('');
+    const lBlock=k=>{const L=byL[k]||[]; if(!L.length) return '';
+      return `<details class="card" id="live-${k}"${['neuere_live','aeltere_live'].includes(k)?' open':''}><summary>${liveBadgeOf(k)} <b>${pl(L.length,'Formular','Formulare')}</b></summary>
+        <div class="tscroll"><table class="ft fit"><thead><tr><th>Formular</th><th>Service</th><th>${k==='nicht_live'?'':'Auf services.sh.ch'}</th></tr></thead><tbody>${formRows(L)}</tbody></table></div></details>`;};
+    const A=QP.auffaelligkeiten||[];
+    return `<h4 class="hscope" id="live">Formulare auf dem Live-Portal services.sh.ch</h4>
+    <p class="hint">Abzug vom ${esc(fmtDate(QP.abzug))}: ${nf(QP.seiten)} Live-Seiten, ${nf(QP.zugeordnet)} davon einem Service zugeordnet; ${nf(QP.dateien)} Dateien, ${nf(QP.dateien_formular)} davon dieselbe Datei wie ein Formular der Databank. Live heisst: das Portal bietet genau diese Datei an (gleicher Fingerabdruck), als Schaltfläche «Formular», in der Dokumentliste oder als Link auf sh.ch. Ein Formular, dessen Datei das Portal nicht anbietet, steht unter «nur der Service live», wenn sein Service eine Live-Seite hat — dort mit den Schaltflächen der Seite («Online erledigen» und so weiter).</p>
+    <div class="sumbox card"><div class="gcap">Formulare der Databank: <b class="sumtot">${nf(QP.n_formulare)}</b></div>
+      <ul class="gdist">${LIVE_ORDER.filter(k=>F[k]).map(k=>`<li>${liveBadgeOf(k)} <a class="dlink" href="#live-${k}"><b class="sumn">${nf(F[k])}</b></a></li>`).join('')}</ul></div>
+    ${LIVE_ORDER.map(lBlock).join('')}
+    <div class="card"><h4 style="margin-top:0">${qBadge('Portal')} gegenüber den SHEP-Seiten${V.abzug_shep?' vom '+esc(fmtDate(V.abzug_shep)):''}</h4>
+      <div class="regstats"><span class="rstat">umbenannt <b>${nf((V.umbenannt||[]).length)}</b></span><span class="rstat">nur live <b>${nf((V.nur_live||[]).length)}</b></span>
+        <span class="rstat">nur SHEP <b>${nf((V.nur_shep||[]).length)}</b></span><span class="rstat">Inhalt anders <b>${nf((V.geaendert||[]).length)}</b></span></div>
+      ${(V.umbenannt||[]).length?`<div class="small"><b>Umbenannt:</b> ${V.umbenannt.map(e=>`${svN(e)} <span class="muted">(${esc(e.vorher)} → ${esc(e.live)})</span>`).join(' · ')}</div>`:''}
+      ${(V.nur_live||[]).length?`<div class="small"><b>Nur live:</b> ${V.nur_live.map(svN).join(' · ')}</div>`:''}
+      ${(V.nur_shep||[]).length?`<div class="small"><b>Nur auf SHEP:</b> ${V.nur_shep.map(svN).join(' · ')}</div>`:''}
+      ${(V.geaendert||[]).length?`<div class="tscroll"><table class="ft fit"><thead><tr><th>Service</th><th>Live anders als SHEP</th></tr></thead><tbody>${V.geaendert.map(e=>`<tr><td>${svN(e)}</td><td class="small">${esc(e.felder.map(f=>lab(FELD_QUELLE,f)).join(', '))}</td></tr>`).join('')}</tbody></table></div>`:''}
+    </div>
+    ${A.length?`<div class="card"><h4 style="margin-top:0">Was auf den Live-Seiten nicht passt (${nf(A.length)})</h4>
+      <p class="hint">Befunde über die Seiten, nichts daran wurde geändert — die Dienststelle entscheidet.</p><ul class="small">${A.map(a=>`<li>${a.service_id!=null&&svcById[a.service_id]?svcLink(a.service_id,esc(svcById[a.service_id].name)):esc(a.slug)}
+        (<a class="dlink" href="${esc(a.seite)}" target="_blank" rel="noreferrer">Live-Seite ↗</a>): ${esc(lab(LIVE_AUFF,a.art))}${a.label?` — Link «${a.url?`<a class="dlink" href="${esc(a.url)}" target="_blank" rel="noreferrer">${esc(a.label)}</a>`:esc(a.label)}»${a.dateiname?' liefert die Datei «'+esc(a.dateiname)+'»':''}`:''}</li>`).join('')}</ul></div>`:''}`;};
+  m.innerHTML=pageHead('Abgleich DVSH, SHEP & Live',
+    `Ob jeder Service und jede Datei aus dem DVSH-Modell, dem SHEP-Portal und dem Live-Portal services.sh.ch in der Databank ist, welche Formulare live sind — und was sich seit dem letzten Abzug geändert hat.`,
+    'Oben die Abdeckung: jeder Service des DVSH-Modells und jede SHEP- und Live-Seite mit ihrer Service-Seite. Dann jedes Formular der Databank mit seinem Stand auf services.sh.ch, die Unterschiede zwischen Live- und SHEP-Seiten und was auf den Live-Seiten nicht passt. Darunter jede angebotene Datei mit ihrem Stand und je Quelle, was der letzte Abzug gegenüber dem vorherigen neu, nicht mehr oder geändert enthält.',
+    'Das DVSH-Dienstleistungsmodell, das SHEP-Portal und das Live-Portal services.sh.ch, alle nur lesend abgezogen. Eine Datei wird an ihrem Fingerabdruck (SHA-256) erkannt: dieselbe Datei wie ein Formular der Databank ist «erfasst»; jede andere wurde aus ihrem Inhalt beurteilt und zweitgeprüft.',
+    'Grün: erfasst oder kein Formular (Merkblatt, Wegleitung …); live auf services.sh.ch. Rot: eine Quelle bietet eine ältere Ausgabe an als das Formular der Databank — die Dienststelle ersetzt sie dort. Grau: noch nicht geprüft oder noch nicht übernommen — eine Hausaufgabe der Databank. Ohne Farbe: Tatsachen über das Live-Portal (nur der Service live; nicht auf services.sh.ch).')
     +`<div class="regstats"><span class="rstat">DVSH-Services <b>${nf(dv)}</b> <span class="muted">mit Service-Seite ${nf(dv-(QA.dvsh_ohne_service||0))}</span></span>
-      <span class="rstat">SHEP-Seiten <b>${nf(sh)}</b> <span class="muted">zugeordnet ${nf(sh-(QA.shep_ohne_service||0))}</span></span></div>
-    <div class="sumbox card"><div class="gcap">Dateien aus DVSH und SHEP: <b class="sumtot">${nf(QA.n_dokumente||0)}</b></div>
+      <span class="rstat">SHEP-Seiten <b>${nf(sh)}</b> <span class="muted">zugeordnet ${nf(sh-(QA.shep_ohne_service||0))}</span></span>
+      ${QP?`<span class="rstat">Live-Seiten <b>${nf(QP.seiten)}</b> <span class="muted">zugeordnet ${nf(QP.zugeordnet)}</span></span>`:''}</div>
+    ${liveBlock()}
+    <div class="sumbox card"><div class="gcap">Dateien aus DVSH, SHEP und dem Live-Portal: <b class="sumtot">${nf(QA.n_dokumente||0)}</b></div>
       <ul class="gdist">${DOK_ORDER.filter(k=>D[k]).map(k=>`<li>${dokBadge({stand:k})} <a class="dlink" href="#dok-${k}"><b class="sumn">${nf(D[k])}</b></a></li>`).join('')}</ul></div>
-    <h4 class="hscope">Was die letzten Abzüge geändert haben</h4>${srcBlock('DVSH')}${srcBlock('SHEP')}
+    <h4 class="hscope">Was die letzten Abzüge geändert haben</h4>${srcBlock('DVSH')}${srcBlock('SHEP')}${QP?srcBlock('Portal'):''}
     <h4 class="hscope">Alle Dateien nach Stand</h4>${DOK_ORDER.map(standBlock).join('')}`;
   wireGo(m);
-  m.querySelectorAll('a[href^="#dok-"]').forEach(a=>a.onclick=e=>{e.preventDefault(); const t=document.getElementById(a.getAttribute('href').slice(1)); if(t){t.open=true; t.scrollIntoView({behavior:MOTION});}});
+  m.querySelectorAll('a[href^="#dok-"],a[href^="#live-"]').forEach(a=>a.onclick=e=>{e.preventDefault(); const t=document.getElementById(a.getAttribute('href').slice(1)); if(t){t.open=true; t.scrollIntoView({behavior:MOTION});}});
 }
 function verfahrenSection(s){
   const dv=s.dvsh||{}, sp=s.shep||{};
@@ -3046,7 +3108,7 @@ function viewFields(){
     :'für diesen Service liegt keine DVSH-Modellierung in der Databank vor, Verfahren und Service-Recht sind darum nicht belegt'} — darunter die Formulare und ihre Daten mit Rechtsgrundlage, Standard und Handhabung: die eigene, quellenbelegte Schicht der Databank.</p>
   ${forms.length>1?`<div class="fjump"><span class="hsl">Formulare</span>${forms.map(fm=>
     `<button class="fjc" data-fid="${fm.id}">${esc(fm.title.length>44?fm.title.slice(0,42)+'…':fm.title)}</button>`).join('')}</div>`:''}
-  ${serviceHead(s,forms)}${aenderungLine(s)}`;
+  ${serviceHead(s,forms)}${aenderungLine(s)}${portalLine(s)}`;
   if(dv&&dv.kurzbeschreibung) h+=`<div class="zweckline" style="margin:2px 2px 10px">${esc(dv.kurzbeschreibung)}</div>`;
   h+=laws.length?`<div class="svclaws"><span class="hsl">Rechtsgrundlage des Services (DVSH)</span>${laws.join('')}</div>`:'';
   if(!s.dvsh) h+=`<div class="card nodvbox"><span class="badge b-nodv">◇ ${s.in_dvsh?'DVSH-Modellierung nicht in der Databank':'Nicht im DVSH-Modell'}</span>

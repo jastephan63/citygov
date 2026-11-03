@@ -1,0 +1,16 @@
+{
+ "hinweis": "Dateien auf sh.ch, die die Live-Seiten von services.sh.ch verlinken und die weder ein Formular der Databank noch ein früheres Urteil kennt (Abzug des Live-Portals vom 03.11.2026, ../SHEP/live-2026-11-03/links/manifest.json). Aus dem Inhalt beurteilt; eine skeptische Zweitprüfung hat beide Urteile aus dem Inhalt bestätigt (keine AcroForm-Felder, keine Leerfelder, Ankreuzfelder oder Unterschriftszeile).",
+ "abzug": "2026-11-03",
+ "urteile": [
+  {"sha256": "5ec7080c22cf5add8ec2036d81d8b65ce601717b8cdfa00670383ad90032971c",
+   "art": "merkblatt", "urteil": "kein_formular", "form_id": null,
+   "titel": "Merkblatt — Erhebung von Gebühren für Verfügungen und Dienstleistungen des Kantonalen Arbeitsamtes betreffend die Behandlung von Gesuchen um Bewilligung zur Beschäftigung von ausländischen Arbeitskräften",
+   "beleg": "Verlinkt auf der Live-Seite «gesuch-arbeitsbewilligung» (https://sh.ch/CMS/get/file/20ffe203-74a9-41e2-acef-6c4b03a49a37). Eine Seite, Vermerk «760FO005_P / Freigabedatum 1.1.2015»: ein fester Gebührentarif mit vorgedruckten Beträgen (z. B. «Ablehnungen CHF 500.--») ohne Leerfelder, Ankreuzfelder oder Unterschriftszeile — nichts auszufüllen.",
+   "zweitgeprueft": true},
+  {"sha256": "54d99e09046eabb0c3d689852a54f64e981881cec255d07cd7a5a16380eff657",
+   "art": "merkblatt", "urteil": "kein_formular", "form_id": null,
+   "titel": "Merkblatt erwerbstätige Aufenthalter/innen (Angehörige von Staaten, die nicht Mitgliedstaaten der EU/EFTA sind)",
+   "beleg": "Verlinkt auf der Live-Seite «gesuch-arbeitsbewilligung» (https://sh.ch/CMS/get/file/63799e7c-d469-4ecd-963c-88b8432741ca). Zwei Seiten, Vermerk «September 2021»: beschreibt die Voraussetzungen und zählt die Beilagen auf, die «zusammen mit dem Gesuchsformular A1» einzureichen sind — das auszufüllende Formular ist ein eigenes Dokument (in der Databank Formular 497); keine Felder.",
+   "zweitgeprueft": true}
+ ]
+}
