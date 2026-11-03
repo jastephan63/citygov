@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generated_at": "2026-11-03T11:33:33",
+  "generated_at": "2026-11-03T16:23:33",
   "hinweis": "Datenpunkt→eCH-Element-Map je Formular (Schlüssel = Formular-id) für Once-Only-Prefill: ein nach eCH-Element gekeytes Profil der einreichenden Person füllt damit die Punkte vor, die vorbefuellbar = true tragen — nur diese, nie alle Punkte, nie die Angaben einer anderen Person (Ehepartner/in, Kind, Arbeitnehmer/in …).",
   "felder": {
    "kennung": "dauerhafte Kennung des Punkts (Datenfeld oder Teilfeld, scripts/kennungen.py): ändert nie ihre Bedeutung und wird nie neu vergeben — ein Profil oder ein Abgleich speichert sie, nie die laufende Formular-id oder den Pfad «feld». meta.formular_kennung nennt die Kennung jedes Formulars (Schlüssel = Formular-id).",
@@ -16,8 +16,8 @@
    "vorbefuellbar": "true = einwohnerregister UND partei_status gesuchsteller UND nicht mehrdeutig UND nicht zeitbezug: nur diese Punkte füllt ein Profil der einreichenden Person vor (dieselbe Regel in flows.html; Zählung des Dashboards = Pflichtpunkte davon). Angaben anderer Personen erst, wenn der Kanton bestätigt, dass Beziehungen geliefert werden dürfen."
   },
   "zaehlung": {
-   "n_formulare": 507,
-   "n_formulare_gesamt": 513,
+   "n_formulare": 514,
+   "n_formulare_gesamt": 520,
    "formulare_ohne_ech_punkt": [
     154,
     208,
@@ -26,15 +26,15 @@
     522,
     530
    ],
-   "n_punkte": 8718,
-   "n_einwohnerregister": 2444,
-   "n_mehrdeutig": 260,
-   "n_zeitbezug": 518,
-   "n_vorbefuellbar": 868,
+   "n_punkte": 8863,
+   "n_einwohnerregister": 2534,
+   "n_mehrdeutig": 271,
+   "n_zeitbezug": 551,
+   "n_vorbefuellbar": 862,
    "partei": {
-    "andere_partei": 1367,
-    "gesuchsteller": 898,
-    "partei_offen": 179
+    "andere_partei": 1393,
+    "gesuchsteller": 892,
+    "partei_offen": 249
    },
    "hinweis": "n_punkte zählt alle eCH-Punkte (Pflicht und optional, alle Subjekte und Parteien); die Kennzahl «vorbefüllbar» des Dashboards (burden.prefillable) zählt nur PFLICHT-Punkte mit vorbefuellbar = true — genau die Punkte, die diese Datei und die geführten Formulare füllen würden; partei zählt die Punkte mit Einwohnerregister-Marke je partei_status."
   },
@@ -545,10 +545,17 @@
    "578": "sh:formular:entsendebestatigung",
    "579": "sh:formular:gefahrdungsmeldung-kinder-jugendliche",
    "580": "sh:formular:gefahrdungsmeldung-erwachsene",
-   "581": "sh:formular:leistungssport-und-schule-sportliche-biografie"
+   "581": "sh:formular:leistungssport-und-schule-sportliche-biografie",
+   "582": "sh:formular:vorbereitung-der-heirat",
+   "583": "sh:formular:garantieerklarung-zu-vorbereitung-der-heirat",
+   "584": "sh:formular:gesuch-familiennachzug-formular-a2",
+   "585": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung",
+   "586": "sh:formular:erklarung-betreffend-pensionskassengelder",
+   "587": "sh:formular:erklarung-zum-gesuch-um-niederlassungsbewilligung-bei-einem-",
+   "588": "sh:formular:entbindung-der-arztlichen-schweigepflicht"
   },
   "vertrag": {
-   "version": "1.1.1",
+   "version": "1.1.2",
    "schema": "schema/citygov_prefill.schema.json",
    "aenderungen": "exportvertrag.json"
   }
@@ -150839,12 +150846,8 @@
     "pflicht": true,
     "subjekt": "natuerliche_person",
     "einwohnerregister": true,
-    "partei": {
-     "nr": 1,
-     "rolle": "betroffene_person",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "andere_partei",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
     "vorbefuellbar": false
@@ -150859,12 +150862,8 @@
     "pflicht": true,
     "subjekt": "natuerliche_person",
     "einwohnerregister": true,
-    "partei": {
-     "nr": 1,
-     "rolle": "betroffene_person",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "andere_partei",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
     "vorbefuellbar": false
@@ -150879,12 +150878,8 @@
     "pflicht": true,
     "subjekt": "natuerliche_person",
     "einwohnerregister": true,
-    "partei": {
-     "nr": 1,
-     "rolle": "betroffene_person",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "andere_partei",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
     "vorbefuellbar": false
@@ -150899,12 +150894,24 @@
     "pflicht": true,
     "subjekt": "natuerliche_person",
     "einwohnerregister": true,
-    "partei": {
-     "nr": 1,
-     "rolle": "betroffene_person",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "andere_partei",
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:verlust-des-auslanderausweises:feld:5",
+    "angabe_kennung": "sh:angabe:eCH-0039:document:contentType",
+    "feld": "Verlustmeldung der Polizei",
+    "feld_parent": null,
+    "standard": "eCH-0039",
+    "element": "document",
+    "pflicht": true,
+    "subjekt": null,
+    "einwohnerregister": false,
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
     "vorbefuellbar": false
@@ -151023,15 +151030,11 @@
     "pflicht": true,
     "subjekt": "natuerliche_person",
     "einwohnerregister": true,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
-    "vorbefuellbar": true
+    "vorbefuellbar": false
    },
    {
     "kennung": "sh:formular:verlangerungsgesuch:feld:2",
@@ -151043,15 +151046,11 @@
     "pflicht": true,
     "subjekt": "natuerliche_person",
     "einwohnerregister": true,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
-    "vorbefuellbar": true
+    "vorbefuellbar": false
    },
    {
     "kennung": "sh:formular:verlangerungsgesuch:feld:3",
@@ -151063,15 +151062,11 @@
     "pflicht": true,
     "subjekt": "natuerliche_person",
     "einwohnerregister": true,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
-    "vorbefuellbar": true
+    "vorbefuellbar": false
    },
    {
     "kennung": "sh:formular:verlangerungsgesuch:feld:4",
@@ -151083,15 +151078,11 @@
     "pflicht": true,
     "subjekt": "natuerliche_person",
     "einwohnerregister": true,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
-    "vorbefuellbar": true
+    "vorbefuellbar": false
    },
    {
     "kennung": "sh:formular:verlangerungsgesuch:feld:5",
@@ -151100,18 +151091,14 @@
     "feld_parent": null,
     "standard": "eCH-0044",
     "element": "otherPersonId",
-    "pflicht": false,
+    "pflicht": true,
     "subjekt": "natuerliche_person",
     "einwohnerregister": true,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
-    "vorbefuellbar": true
+    "vorbefuellbar": false
    },
    {
     "kennung": "sh:formular:verlangerungsgesuch:feld:6",
@@ -151120,15 +151107,27 @@
     "feld_parent": null,
     "standard": "eCH-0044",
     "element": "localPersonId",
-    "pflicht": false,
+    "pflicht": true,
     "subjekt": "natuerliche_person",
     "einwohnerregister": false,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:verlangerungsgesuch:feld:7:teil:1",
+    "angabe_kennung": "sh:angabe:eCH-0044:personId:namedPersonIdType",
+    "feld": "Nummer des Passes und Gültigkeitsdauer›Nummer des Passes",
+    "feld_parent": "Nummer des Passes und Gültigkeitsdauer",
+    "standard": "eCH-0044",
+    "element": "personId",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": false,
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
     "vorbefuellbar": false
@@ -151143,15 +151142,11 @@
     "pflicht": true,
     "subjekt": "natuerliche_person",
     "einwohnerregister": true,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
-    "vorbefuellbar": true
+    "vorbefuellbar": false
    },
    {
     "kennung": "sh:formular:verlangerungsgesuch:feld:9",
@@ -151160,15 +151155,11 @@
     "feld_parent": null,
     "standard": "eCH-0046",
     "element": "emailAddress",
-    "pflicht": false,
+    "pflicht": true,
     "subjekt": null,
     "einwohnerregister": false,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
     "vorbefuellbar": false
@@ -151180,15 +151171,11 @@
     "feld_parent": null,
     "standard": "eCH-0046",
     "element": "phoneNumber",
-    "pflicht": false,
+    "pflicht": true,
     "subjekt": null,
     "einwohnerregister": false,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
     "vorbefuellbar": false
@@ -151203,15 +151190,11 @@
     "pflicht": true,
     "subjekt": "natuerliche_person",
     "einwohnerregister": true,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
-    "vorbefuellbar": true
+    "vorbefuellbar": false
    },
    {
     "kennung": "sh:formular:verlangerungsgesuch:feld:13",
@@ -151256,7 +151239,7 @@
     "subjekt": null,
     "einwohnerregister": false,
     "partei": {
-     "nr": 2,
+     "nr": 1,
      "rolle": "ehepartner",
      "entitaet": "natuerliche_person"
     },
@@ -151268,22 +151251,18 @@
    {
     "kennung": "sh:formular:verlangerungsgesuch:feld:16",
     "angabe_kennung": "sh:angabe:eCH-0011:dateOfMaritalStatus:maritalDataRestrictedDivorceType",
-    "feld": "Zivilstandsänderung seit",
+    "feld": "Seit",
     "feld_parent": null,
     "standard": "eCH-0011",
     "element": "dateOfMaritalStatus",
     "pflicht": false,
     "subjekt": "natuerliche_person",
     "einwohnerregister": true,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
-    "vorbefuellbar": true
+    "vorbefuellbar": false
    },
    {
     "kennung": "sh:formular:verlangerungsgesuch:feld:17",
@@ -151295,32 +151274,56 @@
     "pflicht": false,
     "subjekt": null,
     "einwohnerregister": false,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
     "vorbefuellbar": false
    },
    {
-    "kennung": "sh:formular:verlangerungsgesuch:feld:18",
-    "angabe_kennung": "sh:angabe:eCH-0021:employer:occupationDataType",
-    "feld": "Name und Adresse des Betriebes",
+    "kennung": "sh:formular:verlangerungsgesuch:feld:27",
+    "angabe_kennung": "sh:angabe:eCH-0039:document:contentType",
+    "feld": "Immatrikulationsbestätigung beilegen",
     "feld_parent": null,
+    "standard": "eCH-0039",
+    "element": "document",
+    "pflicht": false,
+    "subjekt": null,
+    "einwohnerregister": false,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:verlangerungsgesuch:feld:18:teil:1",
+    "angabe_kennung": "sh:angabe:eCH-0021:employer:occupationDataType",
+    "feld": "Name und Adresse des Betriebes›Name",
+    "feld_parent": "Name und Adresse des Betriebes",
     "standard": "eCH-0021",
     "element": "employer",
     "pflicht": false,
     "subjekt": null,
     "einwohnerregister": false,
-    "partei": {
-     "nr": 3,
-     "rolle": "betrieb",
-     "entitaet": "organisation"
-    },
-    "partei_status": "andere_partei",
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:verlangerungsgesuch:feld:18:teil:2",
+    "angabe_kennung": "sh:angabe:eCH-0021:placeOfEmployer:occupationDataType",
+    "feld": "Name und Adresse des Betriebes›Adresse",
+    "feld_parent": "Name und Adresse des Betriebes",
+    "standard": "eCH-0021",
+    "element": "placeOfEmployer",
+    "pflicht": false,
+    "subjekt": null,
+    "einwohnerregister": false,
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
     "vorbefuellbar": false
@@ -151335,12 +151338,8 @@
     "pflicht": false,
     "subjekt": null,
     "einwohnerregister": false,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": true,
     "mehrdeutig": false,
     "vorbefuellbar": false
@@ -151355,12 +151354,8 @@
     "pflicht": false,
     "subjekt": null,
     "einwohnerregister": false,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
     "vorbefuellbar": false
@@ -151391,7 +151386,11 @@
     "pflicht": false,
     "subjekt": null,
     "einwohnerregister": false,
-    "partei": null,
+    "partei": {
+     "nr": 2,
+     "rolle": "gesuchsteller",
+     "entitaet": "offen"
+    },
     "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
@@ -152181,15 +152180,11 @@
     "pflicht": true,
     "subjekt": "natuerliche_person",
     "einwohnerregister": true,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
-    "vorbefuellbar": true
+    "vorbefuellbar": false
    },
    {
     "kennung": "sh:formular:formular-post-schalter:feld:2",
@@ -152201,15 +152196,11 @@
     "pflicht": true,
     "subjekt": "natuerliche_person",
     "einwohnerregister": true,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
-    "vorbefuellbar": true
+    "vorbefuellbar": false
    },
    {
     "kennung": "sh:formular:formular-post-schalter:feld:3",
@@ -152221,15 +152212,11 @@
     "pflicht": true,
     "subjekt": "natuerliche_person",
     "einwohnerregister": true,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
-    "vorbefuellbar": true
+    "vorbefuellbar": false
    },
    {
     "kennung": "sh:formular:formular-post-schalter:feld:4",
@@ -152241,15 +152228,11 @@
     "pflicht": true,
     "subjekt": "natuerliche_person",
     "einwohnerregister": true,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
-    "vorbefuellbar": true
+    "vorbefuellbar": false
    },
    {
     "kennung": "sh:formular:formular-post-schalter:feld:5",
@@ -152258,18 +152241,14 @@
     "feld_parent": null,
     "standard": "eCH-0044",
     "element": "otherPersonId",
-    "pflicht": false,
+    "pflicht": true,
     "subjekt": "natuerliche_person",
     "einwohnerregister": true,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
-    "vorbefuellbar": true
+    "vorbefuellbar": false
    },
    {
     "kennung": "sh:formular:formular-post-schalter:feld:6",
@@ -152278,15 +152257,11 @@
     "feld_parent": null,
     "standard": "eCH-0044",
     "element": "localPersonId",
-    "pflicht": false,
+    "pflicht": true,
     "subjekt": "natuerliche_person",
     "einwohnerregister": false,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
     "vorbefuellbar": false
@@ -152301,15 +152276,11 @@
     "pflicht": true,
     "subjekt": "natuerliche_person",
     "einwohnerregister": true,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
-    "vorbefuellbar": true
+    "vorbefuellbar": false
    },
    {
     "kennung": "sh:formular:formular-post-schalter:feld:9",
@@ -152318,15 +152289,11 @@
     "feld_parent": null,
     "standard": "eCH-0046",
     "element": "emailAddress",
-    "pflicht": false,
+    "pflicht": true,
     "subjekt": null,
     "einwohnerregister": false,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
     "vorbefuellbar": false
@@ -152338,15 +152305,11 @@
     "feld_parent": null,
     "standard": "eCH-0046",
     "element": "phoneNumber",
-    "pflicht": false,
+    "pflicht": true,
     "subjekt": null,
     "einwohnerregister": false,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
     "vorbefuellbar": false
@@ -152361,12 +152324,8 @@
     "pflicht": true,
     "subjekt": null,
     "einwohnerregister": false,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
     "vorbefuellbar": false
@@ -152381,12 +152340,8 @@
     "pflicht": false,
     "subjekt": null,
     "einwohnerregister": false,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
     "vorbefuellbar": false
@@ -152401,12 +152356,8 @@
     "pflicht": false,
     "subjekt": null,
     "einwohnerregister": false,
-    "partei": {
-     "nr": 2,
-     "rolle": "arbeitgeber",
-     "entitaet": "organisation"
-    },
-    "partei_status": "andere_partei",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
     "vorbefuellbar": false
@@ -152421,12 +152372,8 @@
     "pflicht": false,
     "subjekt": null,
     "einwohnerregister": false,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": true,
     "mehrdeutig": false,
     "vorbefuellbar": false
@@ -152441,20 +152388,16 @@
     "pflicht": false,
     "subjekt": null,
     "einwohnerregister": false,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
     "vorbefuellbar": false
    },
    {
-    "kennung": "sh:formular:formular-post-schalter:feld:17",
+    "kennung": "sh:formular:formular-post-schalter:feld:20",
     "angabe_kennung": "sh:angabe:eCH-0058:comment:headerType",
-    "feld": "Bemerkungen des(r) Antragssteller(in)",
+    "feld": "Bemerkungen des(r) Gesuchsteller(in)",
     "feld_parent": null,
     "standard": "eCH-0058",
     "element": "comment",
@@ -152464,9 +152407,9 @@
     "partei": {
      "nr": 1,
      "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
+     "entitaet": "offen"
     },
-    "partei_status": "gesuchsteller",
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
     "vorbefuellbar": false
@@ -152483,15 +152426,11 @@
     "pflicht": true,
     "subjekt": "natuerliche_person",
     "einwohnerregister": true,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
-    "vorbefuellbar": true
+    "vorbefuellbar": false
    },
    {
     "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:2",
@@ -152503,15 +152442,11 @@
     "pflicht": true,
     "subjekt": "natuerliche_person",
     "einwohnerregister": true,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
-    "vorbefuellbar": true
+    "vorbefuellbar": false
    },
    {
     "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:3",
@@ -152523,15 +152458,11 @@
     "pflicht": true,
     "subjekt": "natuerliche_person",
     "einwohnerregister": true,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
-    "vorbefuellbar": true
+    "vorbefuellbar": false
    },
    {
     "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:4",
@@ -152543,15 +152474,11 @@
     "pflicht": true,
     "subjekt": "natuerliche_person",
     "einwohnerregister": true,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
-    "vorbefuellbar": true
+    "vorbefuellbar": false
    },
    {
     "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:5",
@@ -152560,18 +152487,14 @@
     "feld_parent": null,
     "standard": "eCH-0044",
     "element": "otherPersonId",
-    "pflicht": false,
+    "pflicht": true,
     "subjekt": "natuerliche_person",
     "einwohnerregister": true,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
-    "vorbefuellbar": true
+    "vorbefuellbar": false
    },
    {
     "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:6",
@@ -152580,15 +152503,11 @@
     "feld_parent": null,
     "standard": "eCH-0044",
     "element": "localPersonId",
-    "pflicht": false,
+    "pflicht": true,
     "subjekt": "natuerliche_person",
     "einwohnerregister": false,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
     "vorbefuellbar": false
@@ -152603,15 +152522,11 @@
     "pflicht": true,
     "subjekt": "natuerliche_person",
     "einwohnerregister": true,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
-    "vorbefuellbar": true
+    "vorbefuellbar": false
    },
    {
     "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:9",
@@ -152620,15 +152535,11 @@
     "feld_parent": null,
     "standard": "eCH-0046",
     "element": "emailAddress",
-    "pflicht": false,
+    "pflicht": true,
     "subjekt": null,
     "einwohnerregister": false,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
     "vorbefuellbar": false
@@ -152640,15 +152551,11 @@
     "feld_parent": null,
     "standard": "eCH-0046",
     "element": "phoneNumber",
-    "pflicht": false,
+    "pflicht": true,
     "subjekt": null,
     "einwohnerregister": false,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
     "vorbefuellbar": false
@@ -152663,15 +152570,11 @@
     "pflicht": true,
     "subjekt": "natuerliche_person",
     "einwohnerregister": true,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
-    "vorbefuellbar": true
+    "vorbefuellbar": false
    },
    {
     "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:13",
@@ -152680,7 +152583,7 @@
     "feld_parent": null,
     "standard": "eCH-0011",
     "element": "separationData",
-    "pflicht": false,
+    "pflicht": true,
     "subjekt": "natuerliche_person",
     "einwohnerregister": false,
     "partei": null,
@@ -152696,7 +152599,7 @@
     "feld_parent": null,
     "standard": "eCH-0011",
     "element": "separationValidFrom",
-    "pflicht": false,
+    "pflicht": true,
     "subjekt": "natuerliche_person",
     "einwohnerregister": false,
     "partei": null,
@@ -152712,11 +152615,11 @@
     "feld_parent": null,
     "standard": "eCH-0021",
     "element": "address",
-    "pflicht": false,
+    "pflicht": true,
     "subjekt": null,
     "einwohnerregister": false,
     "partei": {
-     "nr": 2,
+     "nr": 1,
      "rolle": "ehepartner",
      "entitaet": "natuerliche_person"
     },
@@ -152732,18 +152635,14 @@
     "feld_parent": null,
     "standard": "eCH-0011",
     "element": "dateOfMaritalStatus",
-    "pflicht": false,
+    "pflicht": true,
     "subjekt": "natuerliche_person",
     "einwohnerregister": true,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
-    "vorbefuellbar": true
+    "vorbefuellbar": false
    },
    {
     "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:17",
@@ -152752,15 +152651,27 @@
     "feld_parent": null,
     "standard": "eCH-0021",
     "element": "kindOfEmployment",
-    "pflicht": false,
+    "pflicht": true,
     "subjekt": null,
     "einwohnerregister": false,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:41",
+    "angabe_kennung": "sh:angabe:eCH-0039:document:contentType",
+    "feld": "Immatrikulationsbestätigung",
+    "feld_parent": null,
+    "standard": "eCH-0039",
+    "element": "document",
+    "pflicht": true,
+    "subjekt": null,
+    "einwohnerregister": false,
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
     "vorbefuellbar": false
@@ -152772,15 +152683,11 @@
     "feld_parent": null,
     "standard": "eCH-0021",
     "element": "employer",
-    "pflicht": false,
+    "pflicht": true,
     "subjekt": null,
     "einwohnerregister": false,
-    "partei": {
-     "nr": 3,
-     "rolle": "betrieb",
-     "entitaet": "organisation"
-    },
-    "partei_status": "andere_partei",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
     "vorbefuellbar": false
@@ -152792,15 +152699,11 @@
     "feld_parent": null,
     "standard": "eCH-0021",
     "element": "occupationValidTill",
-    "pflicht": false,
+    "pflicht": true,
     "subjekt": null,
     "einwohnerregister": false,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": true,
     "mehrdeutig": false,
     "vorbefuellbar": false
@@ -152812,15 +152715,11 @@
     "feld_parent": null,
     "standard": "eCH-0260",
     "element": "hoursPerWeek",
-    "pflicht": false,
+    "pflicht": true,
     "subjekt": null,
     "einwohnerregister": false,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
     "vorbefuellbar": false
@@ -152832,7 +152731,7 @@
     "feld_parent": null,
     "standard": "eCH-0039",
     "element": "document",
-    "pflicht": false,
+    "pflicht": true,
     "subjekt": null,
     "einwohnerregister": false,
     "partei": null,
@@ -152849,9 +152748,13 @@
     "standard": "eCH-0058",
     "element": "comment",
     "pflicht": false,
-    "subjekt": null,
+    "subjekt": "gemischt",
     "einwohnerregister": false,
-    "partei": null,
+    "partei": {
+     "nr": 2,
+     "rolle": "gesuchsteller",
+     "entitaet": "gemischt"
+    },
     "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
@@ -152869,15 +152772,11 @@
     "pflicht": true,
     "subjekt": "natuerliche_person",
     "einwohnerregister": true,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
-    "vorbefuellbar": true
+    "vorbefuellbar": false
    },
    {
     "kennung": "sh:formular:formular-post-schalter-e:feld:2",
@@ -152889,15 +152788,11 @@
     "pflicht": true,
     "subjekt": "natuerliche_person",
     "einwohnerregister": true,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
-    "vorbefuellbar": true
+    "vorbefuellbar": false
    },
    {
     "kennung": "sh:formular:formular-post-schalter-e:feld:3",
@@ -152909,15 +152804,11 @@
     "pflicht": true,
     "subjekt": "natuerliche_person",
     "einwohnerregister": true,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
-    "vorbefuellbar": true
+    "vorbefuellbar": false
    },
    {
     "kennung": "sh:formular:formular-post-schalter-e:feld:4",
@@ -152929,15 +152820,11 @@
     "pflicht": true,
     "subjekt": "natuerliche_person",
     "einwohnerregister": true,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
-    "vorbefuellbar": true
+    "vorbefuellbar": false
    },
    {
     "kennung": "sh:formular:formular-post-schalter-e:feld:5",
@@ -152946,18 +152833,14 @@
     "feld_parent": null,
     "standard": "eCH-0044",
     "element": "otherPersonId",
-    "pflicht": false,
+    "pflicht": true,
     "subjekt": "natuerliche_person",
     "einwohnerregister": true,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
-    "vorbefuellbar": true
+    "vorbefuellbar": false
    },
    {
     "kennung": "sh:formular:formular-post-schalter-e:feld:6",
@@ -152966,15 +152849,11 @@
     "feld_parent": null,
     "standard": "eCH-0044",
     "element": "localPersonId",
-    "pflicht": false,
+    "pflicht": true,
     "subjekt": "natuerliche_person",
     "einwohnerregister": false,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
     "vorbefuellbar": false
@@ -152989,15 +152868,11 @@
     "pflicht": true,
     "subjekt": "natuerliche_person",
     "einwohnerregister": true,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
-    "vorbefuellbar": true
+    "vorbefuellbar": false
    },
    {
     "kennung": "sh:formular:formular-post-schalter-e:feld:9",
@@ -153006,15 +152881,11 @@
     "feld_parent": null,
     "standard": "eCH-0046",
     "element": "emailAddress",
-    "pflicht": false,
+    "pflicht": true,
     "subjekt": null,
     "einwohnerregister": false,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
     "vorbefuellbar": false
@@ -153026,15 +152897,11 @@
     "feld_parent": null,
     "standard": "eCH-0046",
     "element": "phoneNumber",
-    "pflicht": false,
+    "pflicht": true,
     "subjekt": null,
     "einwohnerregister": false,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
     "vorbefuellbar": false
@@ -153049,15 +152916,11 @@
     "pflicht": true,
     "subjekt": "natuerliche_person",
     "einwohnerregister": true,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
-    "vorbefuellbar": true
+    "vorbefuellbar": false
    },
    {
     "kennung": "sh:formular:formular-post-schalter-e:feld:12",
@@ -153069,12 +152932,24 @@
     "pflicht": true,
     "subjekt": null,
     "einwohnerregister": false,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:formular-post-schalter-e:feld:18",
+    "angabe_kennung": "sh:angabe:eCH-0039:document:contentType",
+    "feld": "Einsatzvertrag",
+    "feld_parent": null,
+    "standard": "eCH-0039",
+    "element": "document",
+    "pflicht": false,
+    "subjekt": null,
+    "einwohnerregister": false,
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
     "vorbefuellbar": false
@@ -153086,15 +152961,11 @@
     "feld_parent": null,
     "standard": "eCH-0021",
     "element": "jobTitle",
-    "pflicht": false,
+    "pflicht": true,
     "subjekt": null,
     "einwohnerregister": false,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
     "vorbefuellbar": false
@@ -153106,15 +152977,11 @@
     "feld_parent": null,
     "standard": "eCH-0021",
     "element": "employer",
-    "pflicht": false,
+    "pflicht": true,
     "subjekt": null,
     "einwohnerregister": false,
-    "partei": {
-     "nr": 2,
-     "rolle": "betrieb",
-     "entitaet": "organisation"
-    },
-    "partei_status": "andere_partei",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
     "vorbefuellbar": false
@@ -153126,15 +152993,11 @@
     "feld_parent": null,
     "standard": "eCH-0021",
     "element": "placeOfWork",
-    "pflicht": false,
+    "pflicht": true,
     "subjekt": null,
     "einwohnerregister": false,
-    "partei": {
-     "nr": 1,
-     "rolle": "gesuchsteller",
-     "entitaet": "natuerliche_person"
-    },
-    "partei_status": "gesuchsteller",
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
     "vorbefuellbar": false
@@ -153149,7 +153012,11 @@
     "pflicht": false,
     "subjekt": null,
     "einwohnerregister": false,
-    "partei": null,
+    "partei": {
+     "nr": 1,
+     "rolle": "gesuchsteller",
+     "entitaet": "offen"
+    },
     "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
@@ -169043,6 +168910,2568 @@
      "entitaet": "natuerliche_person"
     },
     "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   }
+  ],
+  "582": [
+   {
+    "kennung": "sh:formular:vorbereitung-der-heirat:feld:1",
+    "angabe_kennung": "sh:angabe:eCH-0039:document:contentType",
+    "feld": "Im Brief aufgeführte Unterlagen",
+    "feld_parent": null,
+    "standard": "eCH-0039",
+    "element": "document",
+    "pflicht": true,
+    "subjekt": null,
+    "einwohnerregister": false,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:vorbereitung-der-heirat:feld:2:teil:1",
+    "angabe_kennung": "sh:angabe:eCH-0044:officialName:personIdentificationLightType",
+    "feld": "Gesuchsteller / in›Familiename",
+    "feld_parent": "Gesuchsteller / in",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 1,
+     "rolle": "gesuchsteller",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "gesuchsteller",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": true
+   },
+   {
+    "kennung": "sh:formular:vorbereitung-der-heirat:feld:2:teil:2",
+    "angabe_kennung": "sh:angabe:eCH-0044:firstName:personIdentificationLightType",
+    "feld": "Gesuchsteller / in›Vorname",
+    "feld_parent": "Gesuchsteller / in",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 1,
+     "rolle": "gesuchsteller",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "gesuchsteller",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": true
+   },
+   {
+    "kennung": "sh:formular:vorbereitung-der-heirat:feld:2:teil:3",
+    "angabe_kennung": "sh:angabe:eCH-0044:originalName:personIdentificationLightType",
+    "feld": "Gesuchsteller / in›Mädchenfamilienname",
+    "feld_parent": "Gesuchsteller / in",
+    "standard": "eCH-0044",
+    "element": "originalName",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 1,
+     "rolle": "gesuchsteller",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "gesuchsteller",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": true
+   },
+   {
+    "kennung": "sh:formular:vorbereitung-der-heirat:feld:2:teil:4",
+    "angabe_kennung": "sh:angabe:eCH-0011:birthData:personType",
+    "feld": "Gesuchsteller / in›Geburtsdatum/-ort",
+    "feld_parent": "Gesuchsteller / in",
+    "standard": "eCH-0011",
+    "element": "birthData",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": false,
+    "partei": {
+     "nr": 1,
+     "rolle": "gesuchsteller",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "gesuchsteller",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:vorbereitung-der-heirat:feld:2:teil:5",
+    "angabe_kennung": "sh:angabe:eCH-0010:swissZipCode:addressInformationType",
+    "feld": "Gesuchsteller / in›PLZ / Wohnort in CH",
+    "feld_parent": "Gesuchsteller / in",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 1,
+     "rolle": "gesuchsteller",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "gesuchsteller",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": true
+   },
+   {
+    "kennung": "sh:formular:vorbereitung-der-heirat:feld:2:teil:6",
+    "angabe_kennung": "sh:angabe:eCH-0010:street:addressInformationType",
+    "feld": "Gesuchsteller / in›Strasse",
+    "feld_parent": "Gesuchsteller / in",
+    "standard": "eCH-0010",
+    "element": "street",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 1,
+     "rolle": "gesuchsteller",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "gesuchsteller",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": true
+   },
+   {
+    "kennung": "sh:formular:vorbereitung-der-heirat:feld:2:teil:7",
+    "angabe_kennung": "sh:angabe:eCH-0011:nationalityData:personType",
+    "feld": "Gesuchsteller / in›Staatsangehörigkeit",
+    "feld_parent": "Gesuchsteller / in",
+    "standard": "eCH-0011",
+    "element": "nationalityData",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 1,
+     "rolle": "gesuchsteller",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "gesuchsteller",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": true
+   },
+   {
+    "kennung": "sh:formular:vorbereitung-der-heirat:feld:3",
+    "angabe_kennung": "sh:angabe:eCH-0044:sex:personIdentificationLightType",
+    "feld": "Geschlecht",
+    "feld_parent": null,
+    "standard": "eCH-0044",
+    "element": "sex",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:vorbereitung-der-heirat:feld:4",
+    "angabe_kennung": "sh:angabe:eCH-0011:maritalStatus:maritalDataRestrictedDivorceType",
+    "feld": "Zivilstand (Gesuchsteller / in)",
+    "feld_parent": null,
+    "standard": "eCH-0011",
+    "element": "maritalStatus",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 1,
+     "rolle": "gesuchsteller",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "gesuchsteller",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": true
+   },
+   {
+    "kennung": "sh:formular:vorbereitung-der-heirat:feld:5",
+    "angabe_kennung": "sh:angabe:eCH-0011:entryDate:residencePermitDataType",
+    "feld": "Datum der Einreise (nur Ausländer/in)",
+    "feld_parent": null,
+    "standard": "eCH-0011",
+    "element": "entryDate",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": false,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": true,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:vorbereitung-der-heirat:feld:6",
+    "angabe_kennung": "sh:angabe:eCH-0006:residencePermit",
+    "feld": "Art der Bewilligung",
+    "feld_parent": null,
+    "standard": "eCH-0006",
+    "element": "residencePermit",
+    "pflicht": true,
+    "subjekt": null,
+    "einwohnerregister": false,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:vorbereitung-der-heirat:feld:7",
+    "angabe_kennung": "sh:angabe:eCH-0021:jobTitle:jobDataType",
+    "feld": "Beruf",
+    "feld_parent": null,
+    "standard": "eCH-0021",
+    "element": "jobTitle",
+    "pflicht": true,
+    "subjekt": null,
+    "einwohnerregister": false,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:vorbereitung-der-heirat:feld:8",
+    "angabe_kennung": "sh:angabe:eCH-0021:employer:occupationDataType",
+    "feld": "Arbeitgeber",
+    "feld_parent": null,
+    "standard": "eCH-0021",
+    "element": "employer",
+    "pflicht": true,
+    "subjekt": null,
+    "einwohnerregister": false,
+    "partei": {
+     "nr": 2,
+     "rolle": "arbeitgeber",
+     "entitaet": "offen"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:vorbereitung-der-heirat:feld:9:teil:1",
+    "angabe_kennung": "sh:angabe:eCH-0044:officialName:personIdentificationLightType",
+    "feld": "Zukünftige/r Ehefrau / Ehemann›Familiename",
+    "feld_parent": "Zukünftige/r Ehefrau / Ehemann",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 3,
+     "rolle": "ehepartner",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": true,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:vorbereitung-der-heirat:feld:9:teil:2",
+    "angabe_kennung": "sh:angabe:eCH-0044:firstName:personIdentificationLightType",
+    "feld": "Zukünftige/r Ehefrau / Ehemann›Vorname",
+    "feld_parent": "Zukünftige/r Ehefrau / Ehemann",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 3,
+     "rolle": "ehepartner",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": true,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:vorbereitung-der-heirat:feld:9:teil:3",
+    "angabe_kennung": "sh:angabe:eCH-0044:originalName:personIdentificationLightType",
+    "feld": "Zukünftige/r Ehefrau / Ehemann›Mädchenfamilienname",
+    "feld_parent": "Zukünftige/r Ehefrau / Ehemann",
+    "standard": "eCH-0044",
+    "element": "originalName",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 3,
+     "rolle": "ehepartner",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": true,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:vorbereitung-der-heirat:feld:9:teil:4",
+    "angabe_kennung": "sh:angabe:eCH-0011:birthData:personType",
+    "feld": "Zukünftige/r Ehefrau / Ehemann›Geburtsdatum/-ort",
+    "feld_parent": "Zukünftige/r Ehefrau / Ehemann",
+    "standard": "eCH-0011",
+    "element": "birthData",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": false,
+    "partei": {
+     "nr": 3,
+     "rolle": "ehepartner",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": true,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:vorbereitung-der-heirat:feld:9:teil:5",
+    "angabe_kennung": "sh:angabe:eCH-0011:nationalityData:personType",
+    "feld": "Zukünftige/r Ehefrau / Ehemann›Staatsangehörigkeit",
+    "feld_parent": "Zukünftige/r Ehefrau / Ehemann",
+    "standard": "eCH-0011",
+    "element": "nationalityData",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 3,
+     "rolle": "ehepartner",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": true,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:vorbereitung-der-heirat:feld:9:teil:6",
+    "angabe_kennung": "sh:angabe:eCH-0010:foreignZipCode:addressInformationType",
+    "feld": "Zukünftige/r Ehefrau / Ehemann›PLZ / Wohnort im Ausland",
+    "feld_parent": "Zukünftige/r Ehefrau / Ehemann",
+    "standard": "eCH-0010",
+    "element": "foreignZipCode",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 3,
+     "rolle": "ehepartner",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": true,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:vorbereitung-der-heirat:feld:9:teil:7",
+    "angabe_kennung": "sh:angabe:eCH-0010:street:addressInformationType",
+    "feld": "Zukünftige/r Ehefrau / Ehemann›Strasse",
+    "feld_parent": "Zukünftige/r Ehefrau / Ehemann",
+    "standard": "eCH-0010",
+    "element": "street",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 3,
+     "rolle": "ehepartner",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": true,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:vorbereitung-der-heirat:feld:10",
+    "angabe_kennung": "sh:angabe:eCH-0011:maritalStatus:maritalDataRestrictedDivorceType",
+    "feld": "Zivilstand (Zukünftige/r Ehefrau / Ehemann)",
+    "feld_parent": null,
+    "standard": "eCH-0011",
+    "element": "maritalStatus",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 3,
+     "rolle": "ehepartner",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": true,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:vorbereitung-der-heirat:feld:11:teil:1",
+    "angabe_kennung": "sh:angabe:eCH-0021:officialName:nameOfParentType",
+    "feld": "Mutter›Name(n)",
+    "feld_parent": "Mutter",
+    "standard": "eCH-0021",
+    "element": "officialName",
+    "pflicht": true,
+    "subjekt": null,
+    "einwohnerregister": false,
+    "partei": {
+     "nr": 4,
+     "rolle": "elternteil",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:vorbereitung-der-heirat:feld:11:teil:2",
+    "angabe_kennung": "sh:angabe:eCH-0021:firstName:nameOfParentType",
+    "feld": "Mutter›Vorname(n)",
+    "feld_parent": "Mutter",
+    "standard": "eCH-0021",
+    "element": "firstName",
+    "pflicht": true,
+    "subjekt": null,
+    "einwohnerregister": false,
+    "partei": {
+     "nr": 4,
+     "rolle": "elternteil",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:vorbereitung-der-heirat:feld:12:teil:1",
+    "angabe_kennung": "sh:angabe:eCH-0021:officialName:nameOfParentType",
+    "feld": "Vater›Name(n)",
+    "feld_parent": "Vater",
+    "standard": "eCH-0021",
+    "element": "officialName",
+    "pflicht": true,
+    "subjekt": null,
+    "einwohnerregister": false,
+    "partei": {
+     "nr": 5,
+     "rolle": "elternteil",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:vorbereitung-der-heirat:feld:12:teil:2",
+    "angabe_kennung": "sh:angabe:eCH-0021:firstName:nameOfParentType",
+    "feld": "Vater›Vorname(n)",
+    "feld_parent": "Vater",
+    "standard": "eCH-0021",
+    "element": "firstName",
+    "pflicht": true,
+    "subjekt": null,
+    "einwohnerregister": false,
+    "partei": {
+     "nr": 5,
+     "rolle": "elternteil",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   }
+  ],
+  "583": [
+   {
+    "kennung": "sh:formular:garantieerklarung-zu-vorbereitung-der-heirat:feld:1:teil:1",
+    "angabe_kennung": "sh:angabe:eCH-0044:officialName:personIdentificationLightType",
+    "feld": "Zukünftige/r Ehefrau / Ehemann›Familienname",
+    "feld_parent": "Zukünftige/r Ehefrau / Ehemann",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 1,
+     "rolle": "ehepartner",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": true,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:garantieerklarung-zu-vorbereitung-der-heirat:feld:1:teil:2",
+    "angabe_kennung": "sh:angabe:eCH-0044:firstName:personIdentificationLightType",
+    "feld": "Zukünftige/r Ehefrau / Ehemann›Vorname",
+    "feld_parent": "Zukünftige/r Ehefrau / Ehemann",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 1,
+     "rolle": "ehepartner",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": true,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:garantieerklarung-zu-vorbereitung-der-heirat:feld:1:teil:3",
+    "angabe_kennung": "sh:angabe:eCH-0044:dateOfBirth:personIdentificationLightType",
+    "feld": "Zukünftige/r Ehefrau / Ehemann›Geburtsdatum",
+    "feld_parent": "Zukünftige/r Ehefrau / Ehemann",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 1,
+     "rolle": "ehepartner",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": true,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:garantieerklarung-zu-vorbereitung-der-heirat:feld:1:teil:4",
+    "angabe_kennung": "sh:angabe:eCH-0011:nationalityData:personType",
+    "feld": "Zukünftige/r Ehefrau / Ehemann›Staatsangehörigkeit",
+    "feld_parent": "Zukünftige/r Ehefrau / Ehemann",
+    "standard": "eCH-0011",
+    "element": "nationalityData",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 1,
+     "rolle": "ehepartner",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": true,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:garantieerklarung-zu-vorbereitung-der-heirat:feld:1:teil:5",
+    "angabe_kennung": "sh:angabe:eCH-0010:foreignZipCode:addressInformationType",
+    "feld": "Zukünftige/r Ehefrau / Ehemann›PLZ / Wohnort im Ausland",
+    "feld_parent": "Zukünftige/r Ehefrau / Ehemann",
+    "standard": "eCH-0010",
+    "element": "foreignZipCode",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 1,
+     "rolle": "ehepartner",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": true,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:garantieerklarung-zu-vorbereitung-der-heirat:feld:1:teil:6",
+    "angabe_kennung": "sh:angabe:eCH-0010:street:addressInformationType",
+    "feld": "Zukünftige/r Ehefrau / Ehemann›Strasse",
+    "feld_parent": "Zukünftige/r Ehefrau / Ehemann",
+    "standard": "eCH-0010",
+    "element": "street",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 1,
+     "rolle": "ehepartner",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": true,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   }
+  ],
+  "584": [
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:1",
+    "angabe_kennung": "sh:angabe:eCH-0044:otherPersonId:personIdentificationKeyOnlyType",
+    "feld": "ZEMIS Nr. der Gesuchstellerin/des Gesuchstellers",
+    "feld_parent": null,
+    "standard": "eCH-0044",
+    "element": "otherPersonId",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:2:teil:1",
+    "angabe_kennung": "sh:angabe:eCH-0044:officialName:personIdentificationLightType",
+    "feld": "Name und Adresse der Gesuchstellerin/des Gesuchstellers›Familienname(n)",
+    "feld_parent": "Name und Adresse der Gesuchstellerin/des Gesuchstellers",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 1,
+     "rolle": "gesuchsteller",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "gesuchsteller",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": true
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:2:teil:2",
+    "angabe_kennung": "sh:angabe:eCH-0044:firstName:personIdentificationLightType",
+    "feld": "Name und Adresse der Gesuchstellerin/des Gesuchstellers›Vorname(n)",
+    "feld_parent": "Name und Adresse der Gesuchstellerin/des Gesuchstellers",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 1,
+     "rolle": "gesuchsteller",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "gesuchsteller",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": true
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:2:teil:3",
+    "angabe_kennung": "sh:angabe:eCH-0044:dateOfBirth:personIdentificationLightType",
+    "feld": "Name und Adresse der Gesuchstellerin/des Gesuchstellers›Geburtsdatum",
+    "feld_parent": "Name und Adresse der Gesuchstellerin/des Gesuchstellers",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 1,
+     "rolle": "gesuchsteller",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "gesuchsteller",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": true
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:2:teil:4",
+    "angabe_kennung": "sh:angabe:eCH-0010:addressInformation:mailAddressType",
+    "feld": "Name und Adresse der Gesuchstellerin/des Gesuchstellers›Adresse",
+    "feld_parent": "Name und Adresse der Gesuchstellerin/des Gesuchstellers",
+    "standard": "eCH-0010",
+    "element": "addressInformation",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 1,
+     "rolle": "gesuchsteller",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "gesuchsteller",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": true
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:2:teil:5",
+    "angabe_kennung": "sh:angabe:eCH-0011:nationalityData:personType",
+    "feld": "Name und Adresse der Gesuchstellerin/des Gesuchstellers›Staatsangehörigkeit",
+    "feld_parent": "Name und Adresse der Gesuchstellerin/des Gesuchstellers",
+    "standard": "eCH-0011",
+    "element": "nationalityData",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 1,
+     "rolle": "gesuchsteller",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "gesuchsteller",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": true
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:3:teil:1",
+    "angabe_kennung": "sh:angabe:eCH-0044:officialName:personIdentificationLightType",
+    "feld": "Personalien der Familienangehörigen, deren Nachzug gewünscht wird (Ehefrau/Ehemann)›Familienname(n)",
+    "feld_parent": "Personalien der Familienangehörigen, deren Nachzug gewünscht wird (Ehefrau/Ehemann)",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 2,
+     "rolle": "ehepartner",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:3:teil:2",
+    "angabe_kennung": "sh:angabe:eCH-0044:firstName:personIdentificationLightType",
+    "feld": "Personalien der Familienangehörigen, deren Nachzug gewünscht wird (Ehefrau/Ehemann)›Vorname(n)",
+    "feld_parent": "Personalien der Familienangehörigen, deren Nachzug gewünscht wird (Ehefrau/Ehemann)",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 2,
+     "rolle": "ehepartner",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:3:teil:3",
+    "angabe_kennung": "sh:angabe:eCH-0044:dateOfBirth:personIdentificationLightType",
+    "feld": "Personalien der Familienangehörigen, deren Nachzug gewünscht wird (Ehefrau/Ehemann)›Geburtsdatum",
+    "feld_parent": "Personalien der Familienangehörigen, deren Nachzug gewünscht wird (Ehefrau/Ehemann)",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 2,
+     "rolle": "ehepartner",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:3:teil:4",
+    "angabe_kennung": "sh:angabe:eCH-0011:placeOfBirth:birthDataType",
+    "feld": "Personalien der Familienangehörigen, deren Nachzug gewünscht wird (Ehefrau/Ehemann)›Geburtsort",
+    "feld_parent": "Personalien der Familienangehörigen, deren Nachzug gewünscht wird (Ehefrau/Ehemann)",
+    "standard": "eCH-0011",
+    "element": "placeOfBirth",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 2,
+     "rolle": "ehepartner",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:3:teil:5",
+    "angabe_kennung": "sh:angabe:eCH-0011:country:countryInfoType",
+    "feld": "Personalien der Familienangehörigen, deren Nachzug gewünscht wird (Ehefrau/Ehemann)›Geburtsland",
+    "feld_parent": "Personalien der Familienangehörigen, deren Nachzug gewünscht wird (Ehefrau/Ehemann)",
+    "standard": "eCH-0011",
+    "element": "country",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": false,
+    "partei": {
+     "nr": 2,
+     "rolle": "ehepartner",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:3:teil:6",
+    "angabe_kennung": "sh:angabe:eCH-0011:nationalityData:personType",
+    "feld": "Personalien der Familienangehörigen, deren Nachzug gewünscht wird (Ehefrau/Ehemann)›Staatsangehörigkeit",
+    "feld_parent": "Personalien der Familienangehörigen, deren Nachzug gewünscht wird (Ehefrau/Ehemann)",
+    "standard": "eCH-0011",
+    "element": "nationalityData",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 2,
+     "rolle": "ehepartner",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:4",
+    "angabe_kennung": "sh:angabe:eCH-0044:sex:personIdentificationLightType",
+    "feld": "Geschlecht (Ehefrau/Ehemann)",
+    "feld_parent": null,
+    "standard": "eCH-0044",
+    "element": "sex",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 2,
+     "rolle": "ehepartner",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:5:teil:1",
+    "angabe_kennung": "sh:angabe:eCH-0021:officialName:nameOfParentType",
+    "feld": "Mutter (Ehefrau/Ehemann)›Name(n)",
+    "feld_parent": "Mutter (Ehefrau/Ehemann)",
+    "standard": "eCH-0021",
+    "element": "officialName",
+    "pflicht": true,
+    "subjekt": null,
+    "einwohnerregister": false,
+    "partei": {
+     "nr": 3,
+     "rolle": "elternteil",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:5:teil:2",
+    "angabe_kennung": "sh:angabe:eCH-0021:firstName:nameOfParentType",
+    "feld": "Mutter (Ehefrau/Ehemann)›Vorname(n)",
+    "feld_parent": "Mutter (Ehefrau/Ehemann)",
+    "standard": "eCH-0021",
+    "element": "firstName",
+    "pflicht": true,
+    "subjekt": null,
+    "einwohnerregister": false,
+    "partei": {
+     "nr": 3,
+     "rolle": "elternteil",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:6:teil:1",
+    "angabe_kennung": "sh:angabe:eCH-0021:officialName:nameOfParentType",
+    "feld": "Vater (Ehefrau/Ehemann)›Name(n)",
+    "feld_parent": "Vater (Ehefrau/Ehemann)",
+    "standard": "eCH-0021",
+    "element": "officialName",
+    "pflicht": true,
+    "subjekt": null,
+    "einwohnerregister": false,
+    "partei": {
+     "nr": 4,
+     "rolle": "elternteil",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:6:teil:2",
+    "angabe_kennung": "sh:angabe:eCH-0021:firstName:nameOfParentType",
+    "feld": "Vater (Ehefrau/Ehemann)›Vorname(n)",
+    "feld_parent": "Vater (Ehefrau/Ehemann)",
+    "standard": "eCH-0021",
+    "element": "firstName",
+    "pflicht": true,
+    "subjekt": null,
+    "einwohnerregister": false,
+    "partei": {
+     "nr": 4,
+     "rolle": "elternteil",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:10",
+    "angabe_kennung": "sh:angabe:eCH-0011:entryDate:residencePermitDataType",
+    "feld": "Falls ja, wann (Ehefrau/Ehemann)",
+    "feld_parent": null,
+    "standard": "eCH-0011",
+    "element": "entryDate",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": false,
+    "partei": {
+     "nr": 2,
+     "rolle": "ehepartner",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:11",
+    "angabe_kennung": "sh:angabe:eCH-0010:addressInformation:mailAddressType",
+    "feld": "Gegenwärtige Aufenthaltsadresse (Ehefrau/Ehemann)",
+    "feld_parent": null,
+    "standard": "eCH-0010",
+    "element": "addressInformation",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 2,
+     "rolle": "ehepartner",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:12",
+    "angabe_kennung": "sh:angabe:eCH-0044:personIdCategory:namedPersonIdType",
+    "feld": "Pass / ID (Ehefrau/Ehemann)",
+    "feld_parent": null,
+    "standard": "eCH-0044",
+    "element": "personIdCategory",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": false,
+    "partei": {
+     "nr": 2,
+     "rolle": "ehepartner",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:16",
+    "angabe_kennung": "sh:angabe:eCH-0021:typeOfRelationship:guardianRelationshipType",
+    "feld": "Verwandtschaftsverhältnis zur Gesuchstellerin/zum Gesuchsteller (Person 1)",
+    "feld_parent": null,
+    "standard": "eCH-0021",
+    "element": "typeOfRelationship",
+    "pflicht": true,
+    "subjekt": null,
+    "einwohnerregister": false,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:17:teil:1",
+    "angabe_kennung": "sh:angabe:eCH-0044:officialName:personIdentificationLightType",
+    "feld": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 1)›Familienname(n)",
+    "feld_parent": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 1)",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": true,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:17:teil:2",
+    "angabe_kennung": "sh:angabe:eCH-0044:firstName:personIdentificationLightType",
+    "feld": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 1)›Vorname(n)",
+    "feld_parent": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 1)",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": true,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:17:teil:3",
+    "angabe_kennung": "sh:angabe:eCH-0044:dateOfBirth:personIdentificationLightType",
+    "feld": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 1)›Geburtsdatum",
+    "feld_parent": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 1)",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": true,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:17:teil:4",
+    "angabe_kennung": "sh:angabe:eCH-0011:placeOfBirth:birthDataType",
+    "feld": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 1)›Geburtsort",
+    "feld_parent": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 1)",
+    "standard": "eCH-0011",
+    "element": "placeOfBirth",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": true,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:17:teil:5",
+    "angabe_kennung": "sh:angabe:eCH-0011:country:countryInfoType",
+    "feld": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 1)›Geburtsland",
+    "feld_parent": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 1)",
+    "standard": "eCH-0011",
+    "element": "country",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": false,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": true,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:17:teil:6",
+    "angabe_kennung": "sh:angabe:eCH-0011:nationalityData:personType",
+    "feld": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 1)›Staatsangehörigkeit",
+    "feld_parent": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 1)",
+    "standard": "eCH-0011",
+    "element": "nationalityData",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": true,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:18",
+    "angabe_kennung": "sh:angabe:eCH-0044:sex:personIdentificationLightType",
+    "feld": "Geschlecht (Person 1)",
+    "feld_parent": null,
+    "standard": "eCH-0044",
+    "element": "sex",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": true,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:19:teil:1",
+    "angabe_kennung": "sh:angabe:eCH-0021:officialName:nameOfParentType",
+    "feld": "Mutter (Person 1)›Name(n)",
+    "feld_parent": "Mutter (Person 1)",
+    "standard": "eCH-0021",
+    "element": "officialName",
+    "pflicht": true,
+    "subjekt": null,
+    "einwohnerregister": false,
+    "partei": {
+     "nr": 3,
+     "rolle": "elternteil",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:19:teil:2",
+    "angabe_kennung": "sh:angabe:eCH-0021:firstName:nameOfParentType",
+    "feld": "Mutter (Person 1)›Vorname(n)",
+    "feld_parent": "Mutter (Person 1)",
+    "standard": "eCH-0021",
+    "element": "firstName",
+    "pflicht": true,
+    "subjekt": null,
+    "einwohnerregister": false,
+    "partei": {
+     "nr": 3,
+     "rolle": "elternteil",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:20:teil:1",
+    "angabe_kennung": "sh:angabe:eCH-0021:officialName:nameOfParentType",
+    "feld": "Vater (Person 1)›Name(n)",
+    "feld_parent": "Vater (Person 1)",
+    "standard": "eCH-0021",
+    "element": "officialName",
+    "pflicht": true,
+    "subjekt": null,
+    "einwohnerregister": false,
+    "partei": {
+     "nr": 4,
+     "rolle": "elternteil",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:20:teil:2",
+    "angabe_kennung": "sh:angabe:eCH-0021:firstName:nameOfParentType",
+    "feld": "Vater (Person 1)›Vorname(n)",
+    "feld_parent": "Vater (Person 1)",
+    "standard": "eCH-0021",
+    "element": "firstName",
+    "pflicht": true,
+    "subjekt": null,
+    "einwohnerregister": false,
+    "partei": {
+     "nr": 4,
+     "rolle": "elternteil",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:21",
+    "angabe_kennung": "sh:angabe:eCH-0044:personIdCategory:namedPersonIdType",
+    "feld": "Pass / ID (Person 1)",
+    "feld_parent": null,
+    "standard": "eCH-0044",
+    "element": "personIdCategory",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": false,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": true,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:26",
+    "angabe_kennung": "sh:angabe:eCH-0011:entryDate:residencePermitDataType",
+    "feld": "Falls ja, wann (Person 1)",
+    "feld_parent": null,
+    "standard": "eCH-0011",
+    "element": "entryDate",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": false,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": true,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:27",
+    "angabe_kennung": "sh:angabe:eCH-0021:typeOfRelationship:guardianRelationshipType",
+    "feld": "Verwandtschaftsverhältnis zur Gesuchstellerin/zum Gesuchsteller (Person 2)",
+    "feld_parent": null,
+    "standard": "eCH-0021",
+    "element": "typeOfRelationship",
+    "pflicht": true,
+    "subjekt": null,
+    "einwohnerregister": false,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:28:teil:1",
+    "angabe_kennung": "sh:angabe:eCH-0044:officialName:personIdentificationLightType",
+    "feld": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 2)›Familienname(n)",
+    "feld_parent": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 2)",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": true,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:28:teil:2",
+    "angabe_kennung": "sh:angabe:eCH-0044:firstName:personIdentificationLightType",
+    "feld": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 2)›Vorname(n)",
+    "feld_parent": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 2)",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": true,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:28:teil:3",
+    "angabe_kennung": "sh:angabe:eCH-0044:dateOfBirth:personIdentificationLightType",
+    "feld": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 2)›Geburtsdatum",
+    "feld_parent": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 2)",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": true,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:28:teil:4",
+    "angabe_kennung": "sh:angabe:eCH-0011:placeOfBirth:birthDataType",
+    "feld": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 2)›Geburtsort",
+    "feld_parent": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 2)",
+    "standard": "eCH-0011",
+    "element": "placeOfBirth",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": true,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:28:teil:5",
+    "angabe_kennung": "sh:angabe:eCH-0011:country:countryInfoType",
+    "feld": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 2)›Geburtsland",
+    "feld_parent": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 2)",
+    "standard": "eCH-0011",
+    "element": "country",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": false,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": true,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:28:teil:6",
+    "angabe_kennung": "sh:angabe:eCH-0011:nationalityData:personType",
+    "feld": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 2)›Staatsangehörigkeit",
+    "feld_parent": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 2)",
+    "standard": "eCH-0011",
+    "element": "nationalityData",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": true,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:29",
+    "angabe_kennung": "sh:angabe:eCH-0044:sex:personIdentificationLightType",
+    "feld": "Geschlecht (Person 2)",
+    "feld_parent": null,
+    "standard": "eCH-0044",
+    "element": "sex",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": true,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:30:teil:1",
+    "angabe_kennung": "sh:angabe:eCH-0021:officialName:nameOfParentType",
+    "feld": "Mutter (Person 2)›Name(n)",
+    "feld_parent": "Mutter (Person 2)",
+    "standard": "eCH-0021",
+    "element": "officialName",
+    "pflicht": true,
+    "subjekt": null,
+    "einwohnerregister": false,
+    "partei": {
+     "nr": 3,
+     "rolle": "elternteil",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:30:teil:2",
+    "angabe_kennung": "sh:angabe:eCH-0021:firstName:nameOfParentType",
+    "feld": "Mutter (Person 2)›Vorname(n)",
+    "feld_parent": "Mutter (Person 2)",
+    "standard": "eCH-0021",
+    "element": "firstName",
+    "pflicht": true,
+    "subjekt": null,
+    "einwohnerregister": false,
+    "partei": {
+     "nr": 3,
+     "rolle": "elternteil",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:31:teil:1",
+    "angabe_kennung": "sh:angabe:eCH-0021:officialName:nameOfParentType",
+    "feld": "Vater (Person 2)›Name(n)",
+    "feld_parent": "Vater (Person 2)",
+    "standard": "eCH-0021",
+    "element": "officialName",
+    "pflicht": true,
+    "subjekt": null,
+    "einwohnerregister": false,
+    "partei": {
+     "nr": 4,
+     "rolle": "elternteil",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:31:teil:2",
+    "angabe_kennung": "sh:angabe:eCH-0021:firstName:nameOfParentType",
+    "feld": "Vater (Person 2)›Vorname(n)",
+    "feld_parent": "Vater (Person 2)",
+    "standard": "eCH-0021",
+    "element": "firstName",
+    "pflicht": true,
+    "subjekt": null,
+    "einwohnerregister": false,
+    "partei": {
+     "nr": 4,
+     "rolle": "elternteil",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:32",
+    "angabe_kennung": "sh:angabe:eCH-0044:personIdCategory:namedPersonIdType",
+    "feld": "Pass / ID (Person 2)",
+    "feld_parent": null,
+    "standard": "eCH-0044",
+    "element": "personIdCategory",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": false,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": true,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:37",
+    "angabe_kennung": "sh:angabe:eCH-0011:entryDate:residencePermitDataType",
+    "feld": "Falls ja, wann (Person 2)",
+    "feld_parent": null,
+    "standard": "eCH-0011",
+    "element": "entryDate",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": false,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": true,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:38",
+    "angabe_kennung": "sh:angabe:eCH-0021:typeOfRelationship:guardianRelationshipType",
+    "feld": "Verwandtschaftsverhältnis zur Gesuchstellerin/zum Gesuchsteller (Person 3)",
+    "feld_parent": null,
+    "standard": "eCH-0021",
+    "element": "typeOfRelationship",
+    "pflicht": true,
+    "subjekt": null,
+    "einwohnerregister": false,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:39:teil:1",
+    "angabe_kennung": "sh:angabe:eCH-0044:officialName:personIdentificationLightType",
+    "feld": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 3)›Familienname(n)",
+    "feld_parent": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 3)",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": true,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:39:teil:2",
+    "angabe_kennung": "sh:angabe:eCH-0044:firstName:personIdentificationLightType",
+    "feld": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 3)›Vorname(n)",
+    "feld_parent": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 3)",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": true,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:39:teil:3",
+    "angabe_kennung": "sh:angabe:eCH-0044:dateOfBirth:personIdentificationLightType",
+    "feld": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 3)›Geburtsdatum",
+    "feld_parent": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 3)",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": true,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:39:teil:4",
+    "angabe_kennung": "sh:angabe:eCH-0011:placeOfBirth:birthDataType",
+    "feld": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 3)›Geburtsort",
+    "feld_parent": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 3)",
+    "standard": "eCH-0011",
+    "element": "placeOfBirth",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": true,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:39:teil:5",
+    "angabe_kennung": "sh:angabe:eCH-0011:country:countryInfoType",
+    "feld": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 3)›Geburtsland",
+    "feld_parent": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 3)",
+    "standard": "eCH-0011",
+    "element": "country",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": false,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": true,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:39:teil:6",
+    "angabe_kennung": "sh:angabe:eCH-0011:nationalityData:personType",
+    "feld": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 3)›Staatsangehörigkeit",
+    "feld_parent": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 3)",
+    "standard": "eCH-0011",
+    "element": "nationalityData",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": true,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:40",
+    "angabe_kennung": "sh:angabe:eCH-0044:sex:personIdentificationLightType",
+    "feld": "Geschlecht (Person 3)",
+    "feld_parent": null,
+    "standard": "eCH-0044",
+    "element": "sex",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": true,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:41:teil:1",
+    "angabe_kennung": "sh:angabe:eCH-0021:officialName:nameOfParentType",
+    "feld": "Mutter (Person 3)›Name(n)",
+    "feld_parent": "Mutter (Person 3)",
+    "standard": "eCH-0021",
+    "element": "officialName",
+    "pflicht": true,
+    "subjekt": null,
+    "einwohnerregister": false,
+    "partei": {
+     "nr": 3,
+     "rolle": "elternteil",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:41:teil:2",
+    "angabe_kennung": "sh:angabe:eCH-0021:firstName:nameOfParentType",
+    "feld": "Mutter (Person 3)›Vorname(n)",
+    "feld_parent": "Mutter (Person 3)",
+    "standard": "eCH-0021",
+    "element": "firstName",
+    "pflicht": true,
+    "subjekt": null,
+    "einwohnerregister": false,
+    "partei": {
+     "nr": 3,
+     "rolle": "elternteil",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:42:teil:1",
+    "angabe_kennung": "sh:angabe:eCH-0021:officialName:nameOfParentType",
+    "feld": "Vater (Person 3)›Name(n)",
+    "feld_parent": "Vater (Person 3)",
+    "standard": "eCH-0021",
+    "element": "officialName",
+    "pflicht": true,
+    "subjekt": null,
+    "einwohnerregister": false,
+    "partei": {
+     "nr": 4,
+     "rolle": "elternteil",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:42:teil:2",
+    "angabe_kennung": "sh:angabe:eCH-0021:firstName:nameOfParentType",
+    "feld": "Vater (Person 3)›Vorname(n)",
+    "feld_parent": "Vater (Person 3)",
+    "standard": "eCH-0021",
+    "element": "firstName",
+    "pflicht": true,
+    "subjekt": null,
+    "einwohnerregister": false,
+    "partei": {
+     "nr": 4,
+     "rolle": "elternteil",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:43",
+    "angabe_kennung": "sh:angabe:eCH-0044:personIdCategory:namedPersonIdType",
+    "feld": "Pass / ID (Person 3)",
+    "feld_parent": null,
+    "standard": "eCH-0044",
+    "element": "personIdCategory",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": false,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": true,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:48",
+    "angabe_kennung": "sh:angabe:eCH-0011:entryDate:residencePermitDataType",
+    "feld": "Falls ja, wann (Person 3)",
+    "feld_parent": null,
+    "standard": "eCH-0011",
+    "element": "entryDate",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": false,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": true,
+    "vorbefuellbar": false
+   }
+  ],
+  "585": [
+   {
+    "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:1:teil:1",
+    "angabe_kennung": "sh:angabe:eCH-0044:otherPersonId:personIdentificationKeyOnlyType",
+    "feld": "Personalien›Zemis-Nr.",
+    "feld_parent": "Personalien",
+    "standard": "eCH-0044",
+    "element": "otherPersonId",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:1:teil:2",
+    "angabe_kennung": "sh:angabe:eCH-0044:localPersonId:personIdentificationKeyOnlyType",
+    "feld": "Personalien›kant. Ref.",
+    "feld_parent": "Personalien",
+    "standard": "eCH-0044",
+    "element": "localPersonId",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": false,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:1:teil:3",
+    "angabe_kennung": "sh:angabe:eCH-0044:officialName:personIdentificationLightType",
+    "feld": "Personalien›Name(n)",
+    "feld_parent": "Personalien",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:1:teil:4",
+    "angabe_kennung": "sh:angabe:eCH-0044:firstName:personIdentificationLightType",
+    "feld": "Personalien›Vorname(n)",
+    "feld_parent": "Personalien",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:1:teil:5",
+    "angabe_kennung": "sh:angabe:eCH-0044:dateOfBirth:personIdentificationLightType",
+    "feld": "Personalien›Geb.- Dat",
+    "feld_parent": "Personalien",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:1:teil:6",
+    "angabe_kennung": "sh:angabe:eCH-0011:nationalityData:personType",
+    "feld": "Personalien›Staatsangehörigkeit",
+    "feld_parent": "Personalien",
+    "standard": "eCH-0011",
+    "element": "nationalityData",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:2",
+    "angabe_kennung": "sh:angabe:eCH-0011:maritalStatus:maritalDataRestrictedDivorceType",
+    "feld": "Zivilstand",
+    "feld_parent": null,
+    "standard": "eCH-0011",
+    "element": "maritalStatus",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:4",
+    "angabe_kennung": "sh:angabe:eCH-0039:document:contentType",
+    "feld": "Belege (Gründe der Aufrechterhaltung der Niederlassungsbewilligung)",
+    "feld_parent": null,
+    "standard": "eCH-0039",
+    "element": "document",
+    "pflicht": true,
+    "subjekt": null,
+    "einwohnerregister": false,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:5",
+    "angabe_kennung": "sh:angabe:eCH-0011:departureDate:otherResidenceType",
+    "feld": "Datum der Abreise",
+    "feld_parent": null,
+    "standard": "eCH-0011",
+    "element": "departureDate",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:7:teil:1",
+    "angabe_kennung": "sh:angabe:eCH-0010:addressLine1:addressInformationType",
+    "feld": "Adresse im Ausland›c/o",
+    "feld_parent": "Adresse im Ausland",
+    "standard": "eCH-0010",
+    "element": "addressLine1",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:7:teil:2",
+    "angabe_kennung": "sh:angabe:eCH-0010:street:addressInformationType",
+    "feld": "Adresse im Ausland›Strasse",
+    "feld_parent": "Adresse im Ausland",
+    "standard": "eCH-0010",
+    "element": "street",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": true,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:7:teil:3",
+    "angabe_kennung": "sh:angabe:eCH-0010:foreignZipCode:addressInformationType",
+    "feld": "Adresse im Ausland›PLZ und Wohnort",
+    "feld_parent": "Adresse im Ausland",
+    "standard": "eCH-0010",
+    "element": "foreignZipCode",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:7:teil:4",
+    "angabe_kennung": "sh:angabe:eCH-0010:country:addressInformationType",
+    "feld": "Adresse im Ausland›Land",
+    "feld_parent": "Adresse im Ausland",
+    "standard": "eCH-0010",
+    "element": "country",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:8:teil:1",
+    "angabe_kennung": "sh:angabe:eCH-0010:lastName:organisationMailAddressInfoType",
+    "feld": "Kontaktadresse in der Schweiz›Vorname und Name",
+    "feld_parent": "Kontaktadresse in der Schweiz",
+    "standard": "eCH-0010",
+    "element": "lastName",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:8:teil:2",
+    "angabe_kennung": "sh:angabe:eCH-0010:street:addressInformationType",
+    "feld": "Kontaktadresse in der Schweiz›Strasse",
+    "feld_parent": "Kontaktadresse in der Schweiz",
+    "standard": "eCH-0010",
+    "element": "street",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": true,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:8:teil:3",
+    "angabe_kennung": "sh:angabe:eCH-0010:swissZipCode:addressInformationType",
+    "feld": "Kontaktadresse in der Schweiz›PLZ und Wohnort",
+    "feld_parent": "Kontaktadresse in der Schweiz",
+    "standard": "eCH-0010",
+    "element": "swissZipCode",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:9:teil:1",
+    "angabe_kennung": "sh:angabe:eCH-0044:firstName:personIdentificationLightType",
+    "feld": "Ehepartner/in oder eingetragene/r Partner/in›Vorname",
+    "feld_parent": "Ehepartner/in oder eingetragene/r Partner/in",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 1,
+     "rolle": "ehepartner",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:9:teil:2",
+    "angabe_kennung": "sh:angabe:eCH-0044:officialName:personIdentificationLightType",
+    "feld": "Ehepartner/in oder eingetragene/r Partner/in›Name",
+    "feld_parent": "Ehepartner/in oder eingetragene/r Partner/in",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 1,
+     "rolle": "ehepartner",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:9:teil:3",
+    "angabe_kennung": "sh:angabe:eCH-0044:dateOfBirth:personIdentificationLightType",
+    "feld": "Ehepartner/in oder eingetragene/r Partner/in›Geb.- Dat",
+    "feld_parent": "Ehepartner/in oder eingetragene/r Partner/in",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 1,
+     "rolle": "ehepartner",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:10:teil:1",
+    "angabe_kennung": "sh:angabe:eCH-0044:firstName:personIdentificationLightType",
+    "feld": "Die unterzeichnende Person wird durch die nachgenannten, ihrer elterlichen Sorge unterstellten minderjährigen Kinder begleitet›Vorname",
+    "feld_parent": "Die unterzeichnende Person wird durch die nachgenannten, ihrer elterlichen Sorge unterstellten minderjährigen Kinder begleitet",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 2,
+     "rolle": "kind",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:10:teil:2",
+    "angabe_kennung": "sh:angabe:eCH-0044:officialName:personIdentificationLightType",
+    "feld": "Die unterzeichnende Person wird durch die nachgenannten, ihrer elterlichen Sorge unterstellten minderjährigen Kinder begleitet›Name",
+    "feld_parent": "Die unterzeichnende Person wird durch die nachgenannten, ihrer elterlichen Sorge unterstellten minderjährigen Kinder begleitet",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 2,
+     "rolle": "kind",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:10:teil:3",
+    "angabe_kennung": "sh:angabe:eCH-0044:dateOfBirth:personIdentificationLightType",
+    "feld": "Die unterzeichnende Person wird durch die nachgenannten, ihrer elterlichen Sorge unterstellten minderjährigen Kinder begleitet›Geb.- Dat",
+    "feld_parent": "Die unterzeichnende Person wird durch die nachgenannten, ihrer elterlichen Sorge unterstellten minderjährigen Kinder begleitet",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 2,
+     "rolle": "kind",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:11",
+    "angabe_kennung": "sh:angabe:eCH-0039:document:contentType",
+    "feld": "Beilagen",
+    "feld_parent": null,
+    "standard": "eCH-0039",
+    "element": "document",
+    "pflicht": true,
+    "subjekt": null,
+    "einwohnerregister": false,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   }
+  ],
+  "586": [
+   {
+    "kennung": "sh:formular:erklarung-betreffend-pensionskassengelder:feld:1:teil:1",
+    "angabe_kennung": "sh:angabe:eCH-0044:otherPersonId:personIdentificationKeyOnlyType",
+    "feld": "Die Gesuchstellerin / Der Gesuchsteller›Zemis-Nr.",
+    "feld_parent": "Die Gesuchstellerin / Der Gesuchsteller",
+    "standard": "eCH-0044",
+    "element": "otherPersonId",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 1,
+     "rolle": "gesuchsteller",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "gesuchsteller",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": true
+   },
+   {
+    "kennung": "sh:formular:erklarung-betreffend-pensionskassengelder:feld:1:teil:2",
+    "angabe_kennung": "sh:angabe:eCH-0044:localPersonId:personIdentificationKeyOnlyType",
+    "feld": "Die Gesuchstellerin / Der Gesuchsteller›kant. Ref.",
+    "feld_parent": "Die Gesuchstellerin / Der Gesuchsteller",
+    "standard": "eCH-0044",
+    "element": "localPersonId",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": false,
+    "partei": {
+     "nr": 1,
+     "rolle": "gesuchsteller",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "gesuchsteller",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:erklarung-betreffend-pensionskassengelder:feld:1:teil:3",
+    "angabe_kennung": "sh:angabe:eCH-0044:officialName:personIdentificationLightType",
+    "feld": "Die Gesuchstellerin / Der Gesuchsteller›Name",
+    "feld_parent": "Die Gesuchstellerin / Der Gesuchsteller",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 1,
+     "rolle": "gesuchsteller",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "gesuchsteller",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": true
+   },
+   {
+    "kennung": "sh:formular:erklarung-betreffend-pensionskassengelder:feld:1:teil:4",
+    "angabe_kennung": "sh:angabe:eCH-0044:firstName:personIdentificationLightType",
+    "feld": "Die Gesuchstellerin / Der Gesuchsteller›Vorname",
+    "feld_parent": "Die Gesuchstellerin / Der Gesuchsteller",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 1,
+     "rolle": "gesuchsteller",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "gesuchsteller",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": true
+   },
+   {
+    "kennung": "sh:formular:erklarung-betreffend-pensionskassengelder:feld:1:teil:5",
+    "angabe_kennung": "sh:angabe:eCH-0044:dateOfBirth:personIdentificationLightType",
+    "feld": "Die Gesuchstellerin / Der Gesuchsteller›Geb.- Dat",
+    "feld_parent": "Die Gesuchstellerin / Der Gesuchsteller",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 1,
+     "rolle": "gesuchsteller",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "gesuchsteller",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": true
+   },
+   {
+    "kennung": "sh:formular:erklarung-betreffend-pensionskassengelder:feld:1:teil:6",
+    "angabe_kennung": "sh:angabe:eCH-0011:nationalityData:personType",
+    "feld": "Die Gesuchstellerin / Der Gesuchsteller›Staatsangehörigkeit",
+    "feld_parent": "Die Gesuchstellerin / Der Gesuchsteller",
+    "standard": "eCH-0011",
+    "element": "nationalityData",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 1,
+     "rolle": "gesuchsteller",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "gesuchsteller",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": true
+   }
+  ],
+  "587": [
+   {
+    "kennung": "sh:formular:erklarung-zum-gesuch-um-niederlassungsbewilligung-bei-einem-:feld:1:teil:1",
+    "angabe_kennung": "sh:angabe:eCH-0044:otherPersonId:personIdentificationKeyOnlyType",
+    "feld": "Die Gesuchstellerin / Der Gesuchsteller›Zemis-Nr.",
+    "feld_parent": "Die Gesuchstellerin / Der Gesuchsteller",
+    "standard": "eCH-0044",
+    "element": "otherPersonId",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 1,
+     "rolle": "gesuchsteller",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "gesuchsteller",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": true
+   },
+   {
+    "kennung": "sh:formular:erklarung-zum-gesuch-um-niederlassungsbewilligung-bei-einem-:feld:1:teil:2",
+    "angabe_kennung": "sh:angabe:eCH-0044:localPersonId:personIdentificationKeyOnlyType",
+    "feld": "Die Gesuchstellerin / Der Gesuchsteller›kant. Ref.",
+    "feld_parent": "Die Gesuchstellerin / Der Gesuchsteller",
+    "standard": "eCH-0044",
+    "element": "localPersonId",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": false,
+    "partei": {
+     "nr": 1,
+     "rolle": "gesuchsteller",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "gesuchsteller",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:erklarung-zum-gesuch-um-niederlassungsbewilligung-bei-einem-:feld:1:teil:3",
+    "angabe_kennung": "sh:angabe:eCH-0044:officialName:personIdentificationLightType",
+    "feld": "Die Gesuchstellerin / Der Gesuchsteller›Name",
+    "feld_parent": "Die Gesuchstellerin / Der Gesuchsteller",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 1,
+     "rolle": "gesuchsteller",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "gesuchsteller",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": true
+   },
+   {
+    "kennung": "sh:formular:erklarung-zum-gesuch-um-niederlassungsbewilligung-bei-einem-:feld:1:teil:4",
+    "angabe_kennung": "sh:angabe:eCH-0044:firstName:personIdentificationLightType",
+    "feld": "Die Gesuchstellerin / Der Gesuchsteller›Vorname",
+    "feld_parent": "Die Gesuchstellerin / Der Gesuchsteller",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 1,
+     "rolle": "gesuchsteller",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "gesuchsteller",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": true
+   },
+   {
+    "kennung": "sh:formular:erklarung-zum-gesuch-um-niederlassungsbewilligung-bei-einem-:feld:1:teil:5",
+    "angabe_kennung": "sh:angabe:eCH-0044:dateOfBirth:personIdentificationLightType",
+    "feld": "Die Gesuchstellerin / Der Gesuchsteller›Geb.- Dat",
+    "feld_parent": "Die Gesuchstellerin / Der Gesuchsteller",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 1,
+     "rolle": "gesuchsteller",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "gesuchsteller",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": true
+   },
+   {
+    "kennung": "sh:formular:erklarung-zum-gesuch-um-niederlassungsbewilligung-bei-einem-:feld:1:teil:6",
+    "angabe_kennung": "sh:angabe:eCH-0011:nationalityData:personType",
+    "feld": "Die Gesuchstellerin / Der Gesuchsteller›Staatsangehörigkeit",
+    "feld_parent": "Die Gesuchstellerin / Der Gesuchsteller",
+    "standard": "eCH-0011",
+    "element": "nationalityData",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 1,
+     "rolle": "gesuchsteller",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "gesuchsteller",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": true
+   },
+   {
+    "kennung": "sh:formular:erklarung-zum-gesuch-um-niederlassungsbewilligung-bei-einem-:feld:1:teil:7",
+    "angabe_kennung": "sh:angabe:eCH-0010:addressInformation:mailAddressType",
+    "feld": "Die Gesuchstellerin / Der Gesuchsteller›Adresse",
+    "feld_parent": "Die Gesuchstellerin / Der Gesuchsteller",
+    "standard": "eCH-0010",
+    "element": "addressInformation",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 1,
+     "rolle": "gesuchsteller",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "gesuchsteller",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": true
+   },
+   {
+    "kennung": "sh:formular:erklarung-zum-gesuch-um-niederlassungsbewilligung-bei-einem-:feld:2:teil:1",
+    "angabe_kennung": "sh:angabe:eCH-0044:officialName:personIdentificationLightType",
+    "feld": "die Ehepartnerin /der Ehepartnern›Name",
+    "feld_parent": "die Ehepartnerin /der Ehepartnern",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 2,
+     "rolle": "ehepartner",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:erklarung-zum-gesuch-um-niederlassungsbewilligung-bei-einem-:feld:2:teil:2",
+    "angabe_kennung": "sh:angabe:eCH-0044:firstName:personIdentificationLightType",
+    "feld": "die Ehepartnerin /der Ehepartnern›Vorname",
+    "feld_parent": "die Ehepartnerin /der Ehepartnern",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 2,
+     "rolle": "ehepartner",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:erklarung-zum-gesuch-um-niederlassungsbewilligung-bei-einem-:feld:2:teil:3",
+    "angabe_kennung": "sh:angabe:eCH-0044:dateOfBirth:personIdentificationLightType",
+    "feld": "die Ehepartnerin /der Ehepartnern›Geb.- Dat",
+    "feld_parent": "die Ehepartnerin /der Ehepartnern",
+    "standard": "eCH-0044",
+    "element": "dateOfBirth",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 2,
+     "rolle": "ehepartner",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:erklarung-zum-gesuch-um-niederlassungsbewilligung-bei-einem-:feld:2:teil:4",
+    "angabe_kennung": "sh:angabe:eCH-0011:nationalityData:personType",
+    "feld": "die Ehepartnerin /der Ehepartnern›Staatsangehörigkeit",
+    "feld_parent": "die Ehepartnerin /der Ehepartnern",
+    "standard": "eCH-0011",
+    "element": "nationalityData",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": {
+     "nr": 2,
+     "rolle": "ehepartner",
+     "entitaet": "natuerliche_person"
+    },
+    "partei_status": "andere_partei",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   }
+  ],
+  "588": [
+   {
+    "kennung": "sh:formular:entbindung-der-arztlichen-schweigepflicht:feld:1:teil:1",
+    "angabe_kennung": "sh:angabe:eCH-0044:otherPersonId:personIdentificationKeyOnlyType",
+    "feld": "u. ref.›Zemis",
+    "feld_parent": "u. ref.",
+    "standard": "eCH-0044",
+    "element": "otherPersonId",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:entbindung-der-arztlichen-schweigepflicht:feld:1:teil:2",
+    "angabe_kennung": "sh:angabe:eCH-0044:localPersonId:personIdentificationKeyOnlyType",
+    "feld": "u. ref.›SH",
+    "feld_parent": "u. ref.",
+    "standard": "eCH-0044",
+    "element": "localPersonId",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": false,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:entbindung-der-arztlichen-schweigepflicht:feld:2",
+    "angabe_kennung": "sh:angabe:eCH-0058:messageDate:headerType",
+    "feld": "Schaffhausen, den",
+    "feld_parent": null,
+    "standard": "eCH-0058",
+    "element": "messageDate",
+    "pflicht": true,
+    "subjekt": null,
+    "einwohnerregister": false,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:entbindung-der-arztlichen-schweigepflicht:feld:3:teil:1",
+    "angabe_kennung": "sh:angabe:eCH-0044:officialName:personIdentificationLightType",
+    "feld": "NAME Vorname›NAME",
+    "feld_parent": "NAME Vorname",
+    "standard": "eCH-0044",
+    "element": "officialName",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": null,
+    "partei_status": "partei_offen",
+    "zeitbezug": false,
+    "mehrdeutig": false,
+    "vorbefuellbar": false
+   },
+   {
+    "kennung": "sh:formular:entbindung-der-arztlichen-schweigepflicht:feld:3:teil:2",
+    "angabe_kennung": "sh:angabe:eCH-0044:firstName:personIdentificationLightType",
+    "feld": "NAME Vorname›Vorname",
+    "feld_parent": "NAME Vorname",
+    "standard": "eCH-0044",
+    "element": "firstName",
+    "pflicht": true,
+    "subjekt": "natuerliche_person",
+    "einwohnerregister": true,
+    "partei": null,
+    "partei_status": "partei_offen",
     "zeitbezug": false,
     "mehrdeutig": false,
     "vorbefuellbar": false

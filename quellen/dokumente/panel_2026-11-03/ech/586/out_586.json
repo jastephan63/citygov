@@ -1,0 +1,94 @@
+{
+ "hinweis": "eCH-Urteile Formular 586, Panel 2026-11-03, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-11-03/ech/586 --nur-offene=586",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "This composite identifies the applicant: Zemis-Nr., kant. Ref., Name, Vorname, Geb.-Dat and Staatsangehörigkeit, as the Formular PDF shows. It gets the eCH-0044 container personIdentification. eCH-0044 has status Genehmigt and the catalogue holds exactly one personIdentification element (id 809). The sibling Migrationsamt forms 474 «Erwerbstätige Person» and 585 «Personalien» map their identification composites to the same element. The row was unassigned.",
+   "feld": "Die Gesuchstellerin / Der Gesuchsteller",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "The ZEMIS number identifies the person in the federal migration register (SEM), which is a system other than the canton's own. In eCH-0044 that is otherPersonId (namedPersonIdType: category plus ID). The corpus practice is uniform: «ZEMIS Nr.» on form 474 and «ZEMIS-Nummer»/«ZEMIS-NR.» on forms 497 and 506 to 513 all carry eCH-0044 otherPersonId. vn is the AHV number, a different identifier. The part was unassigned.",
+   "elternfeld": "Die Gesuchstellerin / Der Gesuchsteller",
+   "teilfeld": "Zemis-Nr.",
+   "standard": "eCH-0044",
+   "element": "otherPersonId"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«kant. Ref.: SH …» is the Migrationsamt's own reference for this person. It sits in the identification block next to the ZEMIS number, so it is the person's ID in the local, cantonal system, which is eCH-0044 localPersonId (namedPersonIdType). The corpus maps other local person numbers the same way: PID-Nr. on forms 237, 259-274 and 339, and Abrechnungs-Nr. of a person on forms 139 and 149. Checked and rejected: eCH-0039 caseReferenceLocalId (a dossier ID for documents) and eCH-0058 ourBusinessReferenceId (a message-header reference for one business case). This number labels the person, not one message or one case. The part was unassigned.",
+   "elternfeld": "Die Gesuchstellerin / Der Gesuchsteller",
+   "teilfeld": "kant. Ref.",
+   "standard": "eCH-0044",
+   "element": "localPersonId"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "This is the applicant's surname. It maps to eCH-0044 officialName (baseNameType), the element that exists in personIdentificationType and personIdentificationLightType. Sibling forms 474, 585 and 588 map it the same way. The part was unassigned.",
+   "elternfeld": "Die Gesuchstellerin / Der Gesuchsteller",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "This is the applicant's first name. It maps to eCH-0044 firstName (baseNameType), as on sibling forms 474, 585 and 588. The part was unassigned.",
+   "elternfeld": "Die Gesuchstellerin / Der Gesuchsteller",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«Geb.- Dat» is the applicant's date of birth. It is a fixed personal datum, not a past or period value. It maps to eCH-0044 dateOfBirth (datePartiallyKnownType). Corpus practice is overwhelmingly this element: 262 parts named like «Geb.- Dat»/Geburtsdatum, including form 474. The part was unassigned.",
+   "elternfeld": "Die Gesuchstellerin / Der Gesuchsteller",
+   "teilfeld": "Geb.- Dat",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "This is the applicant's current nationality. eCH-0044 has no nationality element, so it maps to eCH-0011 nationalityData (personType, nationalityDataType; eCH-0011 is Genehmigt). All 29 «Staatsangehörigkeit» parts in the corpus carry this element, including forms 474 and 585. The part was unassigned.",
+   "elternfeld": "Die Gesuchstellerin / Der Gesuchsteller",
+   "teilfeld": "Staatsangehörigkeit",
+   "standard": "eCH-0011",
+   "element": "nationalityData"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "The propagated eCH-0119 locationAndDate (attachedFormsType, string; eCH-0119 Genehmigt) is confirmed as the container for the combined «Ort/Datum» of the signature. It is the only element in the catalogue that stands for place and date together; no generic signing place/date element exists. The four other rows named exactly «Ort/Datum» and every «Ort, Datum» row carry it. Corpus caveat: most rows named «Ort und Datum» are kein_standard, so the corpus is split by label. That is a databank consistency point, not a reason to drop an element that matches this datum. The parts below stay kein_standard.",
+   "feld": "Ort/Datum"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "The propagated kein_standard is confirmed. This is the place where the declaration was signed. I searched the whole catalogue for *location*, *place*, *Ort* and town elements. The hits are: places of birth, death, marriage, origin and work; reportingMunicipality; address towns (eCH-0010/0011/0108/0260 town, all postal or residence addresses); placeName in real estate (eCH-0129/0131/0206/0211); eCH-0119 location (concernedPerson/handicap); eCH-0262 location (storage); and votingPlace. None stands for a place of signing, and an address town would wrongly turn it into an address. All 34 «Ort» parts of place/date composites in the corpus are kein_standard.",
+   "elternfeld": "Ort/Datum",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "The propagated kein_standard is confirmed. This is the date the declaration was signed. I searched the catalogue for sign*, signature, *Date and dateFrom elements. The hits are: eCH-0039 openingDate (opening of a document or dossier) and signer (a token naming the signer); eCH-0039/0058 eventDate (message header); eCH-0119/0229/0278 transactionDate and paymentDate (tax and payment); and dateFrom (start of a period). None means a signature date. All 34 «Datum» parts of place/date composites in the corpus are kein_standard.",
+   "elternfeld": "Ort/Datum",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "The propagated kein_standard is confirmed (name checked 33x; 98 Unterschrift* rows in the corpus are kein_standard). I searched the whole catalogue for sign* and unterschrift. The only hits are eCH-0039 signer, a document-metadata token naming who signed rather than the signature itself, and eCH-0260 signatures/*SignatureConfirmation. The latter are boolean confirmations specific to the apprenticeship contract, and a yes/no element cannot take a signature value. No standard in force defines a handwritten signature.",
+   "feld": "Unterschrift"
+  }
+ ]
+}

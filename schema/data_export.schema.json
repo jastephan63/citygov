@@ -1,7 +1,7 @@
 {
  "$schema": "https://json-schema.org/draft/2020-12/schema",
  "title": "data_export.json",
- "description": "Struktur von data_export.json, Version 1.6.0. Erzeugt aus der Datei, wie der Build sie schreibt (scripts/export_vertrag.py); Änderungen und Regeln in exportvertrag.json. Nie von Hand ändern.",
+ "description": "Struktur von data_export.json, Version 1.7.0. Erzeugt aus der Datei, wie der Build sie schreibt (scripts/export_vertrag.py); Änderungen und Regeln in exportvertrag.json. Nie von Hand ändern.",
  "$ref": "#/$defs/datei",
  "$defs": {
   "datei": {
@@ -7612,6 +7612,9 @@
         "nicht_live": {
          "type": "string"
         },
+        "online_live": {
+         "type": "string"
+        },
         "service_live": {
          "type": "string"
         }
@@ -7622,6 +7625,7 @@
         "inhalt_live",
         "neuere_live",
         "nicht_live",
+        "online_live",
         "service_live"
        ],
        "additionalProperties": false
@@ -7644,6 +7648,9 @@
         "nicht_live": {
          "type": "string"
         },
+        "online_live": {
+         "type": "string"
+        },
         "service_live": {
          "type": "string"
         }
@@ -7654,6 +7661,7 @@
         "inhalt_live",
         "neuere_live",
         "nicht_live",
+        "online_live",
         "service_live"
        ],
        "additionalProperties": false
@@ -7767,6 +7775,126 @@
         "fakultativ",
         "unbekannt",
         "zwingend"
+       ],
+       "additionalProperties": false
+      },
+      "online_gegen": {
+       "type": "object",
+       "properties": {
+        "databank_dvsh_eformular": {
+         "type": "string"
+        },
+        "databank_formular": {
+         "type": "string"
+        },
+        "keins": {
+         "type": "string"
+        },
+        "pdf_kandidat": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "databank_dvsh_eformular",
+        "databank_formular",
+        "keins",
+        "pdf_kandidat"
+       ],
+       "additionalProperties": false
+      },
+      "online_gegen_erkl": {
+       "type": "object",
+       "properties": {
+        "databank_dvsh_eformular": {
+         "type": "string"
+        },
+        "databank_formular": {
+         "type": "string"
+        },
+        "keins": {
+         "type": "string"
+        },
+        "pdf_kandidat": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "databank_dvsh_eformular",
+        "databank_formular",
+        "keins",
+        "pdf_kandidat"
+       ],
+       "additionalProperties": false
+      },
+      "online_ziel": {
+       "type": "object",
+       "properties": {
+        "anderes": {
+         "type": "string"
+        },
+        "anmeldung": {
+         "type": "string"
+        },
+        "defekt": {
+         "type": "string"
+        },
+        "eformular": {
+         "type": "string"
+        },
+        "eformular_beilagen": {
+         "type": "string"
+        },
+        "fremdformular": {
+         "type": "string"
+        },
+        "info": {
+         "type": "string"
+        },
+        "portal": {
+         "type": "string"
+        },
+        "rechner": {
+         "type": "string"
+        },
+        "termin": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "anderes",
+        "anmeldung",
+        "defekt",
+        "eformular",
+        "eformular_beilagen",
+        "fremdformular",
+        "info",
+        "portal",
+        "rechner",
+        "termin"
+       ],
+       "additionalProperties": false
+      },
+      "online_zugang": {
+       "type": "object",
+       "properties": {
+        "alle_seiten_sichtbar": {
+         "type": "string"
+        },
+        "nur_beilagen": {
+         "type": "string"
+        },
+        "nur_einstieg": {
+         "type": "string"
+        },
+        "teilweise_sichtbar": {
+         "type": "string"
+        }
+       },
+       "required": [
+        "alle_seiten_sichtbar",
+        "nur_beilagen",
+        "nur_einstieg",
+        "teilweise_sichtbar"
        ],
        "additionalProperties": false
       },
@@ -8468,13 +8596,41 @@
           },
           "neuere_live": {
            "type": "string"
+          },
+          "online_live": {
+           "type": "string"
           }
          },
          "required": [
           "aeltere_live",
           "datei_live",
           "inhalt_live",
-          "neuere_live"
+          "neuere_live",
+          "online_live"
+         ],
+         "additionalProperties": false
+        },
+        "online": {
+         "type": "object",
+         "properties": {
+          "databank_dvsh_eformular": {
+           "type": "string"
+          },
+          "databank_formular": {
+           "type": "string"
+          },
+          "keins": {
+           "type": "string"
+          },
+          "pdf_kandidat": {
+           "type": "string"
+          }
+         },
+         "required": [
+          "databank_dvsh_eformular",
+          "databank_formular",
+          "keins",
+          "pdf_kandidat"
          ],
          "additionalProperties": false
         },
@@ -8557,6 +8713,7 @@
         "dup",
         "ech",
         "live",
+        "online",
         "rechtsmittel",
         "schutzstufe",
         "verif"
@@ -8709,6 +8866,10 @@
       "mode",
       "node_typ",
       "oblig",
+      "online_gegen",
+      "online_gegen_erkl",
+      "online_ziel",
+      "online_zugang",
       "outcome",
       "rm",
       "rm_status",
@@ -9060,6 +9221,9 @@
           "nicht_live": {
            "type": "integer"
           },
+          "online_live": {
+           "type": "integer"
+          },
           "service_live": {
            "type": "integer"
           }
@@ -9070,12 +9234,156 @@
           "inhalt_live",
           "neuere_live",
           "nicht_live",
+          "online_live",
           "service_live"
          ],
          "additionalProperties": false
         },
         "n_formulare": {
          "type": "integer"
+        },
+        "online": {
+         "type": "object",
+         "properties": {
+          "defekt": {
+           "type": "array",
+           "items": {
+            "type": "object",
+            "properties": {
+             "befund": {
+              "type": "string"
+             },
+             "seite": {
+              "type": "string"
+             },
+             "service_id": {
+              "type": "integer"
+             },
+             "slug": {
+              "type": "string"
+             },
+             "url": {
+              "type": "string"
+             }
+            },
+            "required": [
+             "befund",
+             "seite",
+             "service_id",
+             "slug",
+             "url"
+            ],
+            "additionalProperties": false
+           }
+          },
+          "formulare": {
+           "type": "integer"
+          },
+          "gegenstueck": {
+           "type": "object",
+           "properties": {
+            "databank_dvsh_eformular": {
+             "type": "integer"
+            },
+            "databank_formular": {
+             "type": "integer"
+            },
+            "keins": {
+             "type": "integer"
+            }
+           },
+           "required": [
+            "databank_dvsh_eformular",
+            "databank_formular",
+            "keins"
+           ],
+           "additionalProperties": false
+          },
+          "ziel_art": {
+           "type": "object",
+           "properties": {
+            "anderes": {
+             "type": "integer"
+            },
+            "anmeldung": {
+             "type": "integer"
+            },
+            "defekt": {
+             "type": "integer"
+            },
+            "eformular": {
+             "type": "integer"
+            },
+            "eformular_beilagen": {
+             "type": "integer"
+            },
+            "fremdformular": {
+             "type": "integer"
+            },
+            "info": {
+             "type": "integer"
+            },
+            "portal": {
+             "type": "integer"
+            },
+            "rechner": {
+             "type": "integer"
+            },
+            "termin": {
+             "type": "integer"
+            }
+           },
+           "required": [
+            "anderes",
+            "anmeldung",
+            "defekt",
+            "eformular",
+            "eformular_beilagen",
+            "fremdformular",
+            "info",
+            "portal",
+            "rechner",
+            "termin"
+           ],
+           "additionalProperties": false
+          },
+          "ziele": {
+           "type": "integer"
+          },
+          "zugang": {
+           "type": "object",
+           "properties": {
+            "alle_seiten_sichtbar": {
+             "type": "integer"
+            },
+            "nur_beilagen": {
+             "type": "integer"
+            },
+            "nur_einstieg": {
+             "type": "integer"
+            },
+            "teilweise_sichtbar": {
+             "type": "integer"
+            }
+           },
+           "required": [
+            "alle_seiten_sichtbar",
+            "nur_beilagen",
+            "nur_einstieg",
+            "teilweise_sichtbar"
+           ],
+           "additionalProperties": false
+          }
+         },
+         "required": [
+          "defekt",
+          "formulare",
+          "gegenstueck",
+          "ziel_art",
+          "ziele",
+          "zugang"
+         ],
+         "additionalProperties": false
         },
         "seiten": {
          "type": "integer"
@@ -9177,6 +9485,7 @@
         "dateien_formular",
         "formulare",
         "n_formulare",
+        "online",
         "seiten",
         "services_live",
         "vs_shep",
@@ -10525,6 +10834,134 @@
          "null"
         ]
        },
+       "online": {
+        "type": [
+         "object",
+         "null"
+        ],
+        "properties": {
+         "formulare": {
+          "type": "array",
+          "items": {
+           "type": "object",
+           "properties": {
+            "beleg": {
+             "type": "string"
+            },
+            "gegenstueck_art": {
+             "type": "string"
+            },
+            "gegenstueck_form_id": {
+             "type": [
+              "integer",
+              "null"
+             ]
+            },
+            "gegenstueck_sha256": {
+             "type": [
+              "string",
+              "null"
+             ]
+            },
+            "id": {
+             "type": "string"
+            },
+            "n_felder_sichtbar": {
+             "type": "integer"
+            },
+            "name": {
+             "type": "string"
+            },
+            "schritte": {
+             "type": "array",
+             "items": {
+              "type": "string"
+             }
+            },
+            "seiten": {
+             "type": "array",
+             "items": {
+              "type": "object",
+              "properties": {
+               "seite": {
+                "type": "string"
+               },
+               "slug": {
+                "type": "string"
+               },
+               "via": {
+                "type": "string"
+               }
+              },
+              "required": [
+               "seite",
+               "slug",
+               "via"
+              ],
+              "additionalProperties": false
+             }
+            },
+            "start_url": {
+             "type": "string"
+            },
+            "system": {
+             "type": "string"
+            },
+            "zugang": {
+             "type": "string"
+            }
+           },
+           "required": [
+            "beleg",
+            "gegenstueck_art",
+            "gegenstueck_form_id",
+            "gegenstueck_sha256",
+            "id",
+            "n_felder_sichtbar",
+            "name",
+            "schritte",
+            "seiten",
+            "start_url",
+            "system",
+            "zugang"
+           ],
+           "additionalProperties": false
+          }
+         },
+         "ziele": {
+          "type": "array",
+          "items": {
+           "type": "object",
+           "properties": {
+            "art": {
+             "type": "string"
+            },
+            "befund": {
+             "type": "string"
+            },
+            "slug": {
+             "type": "string"
+            },
+            "url": {
+             "type": "string"
+            }
+           },
+           "required": [
+            "art",
+            "befund",
+            "slug",
+            "url"
+           ],
+           "additionalProperties": false
+          }
+         }
+        },
+        "required": [
+         "formulare",
+         "ziele"
+        ],
+        "additionalProperties": false
+       },
        "portal": {
         "type": [
          "array",
@@ -10791,6 +11228,7 @@
        "kennung",
        "name",
        "name_alt",
+       "online",
        "portal",
        "slug",
        "themen"

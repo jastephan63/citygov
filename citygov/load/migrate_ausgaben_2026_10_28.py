@@ -13,9 +13,12 @@ Parts (data_subfield) of a changed composite: a part that stays keeps its row,
 id and eCH element (matched by normalised name), a dropped part goes, a new part
 is added at the end of the table (no existing id moves). New fields get their
 parts from init_subfields.py --nur-neue. Staging -> validate -> swap.
-Idempotent: a second run changes nothing.
+Idempotent: a second run changes nothing. A later intake passes its own reviewed
+ports (same format), e.g. quellen/dokumente/ausgaben_2026-11-03.json — the newer A1
+edition and the live PDFs of the file-less eFormulare whose fields came from the DVSH
+model of exactly that document.
 
-    python3 scripts/migrate_ausgaben_2026_10_28.py
+    python3 scripts/migrate_ausgaben_2026_10_28.py [quellen/dokumente/ausgaben_<date>.json]
 """
 import json, os, shutil, sys
 from citygov.core.common import ROOT, DB_PATH, connect, norm_ascii as norm
@@ -43,7 +46,7 @@ def werte(f):
 
 
 def main():
-    ev = json.load(open(SRC, encoding="utf-8"))
+    ev = json.load(open(sys.argv[1] if len(sys.argv) > 1 else SRC, encoding="utf-8"))
     st = DB_PATH + ".staging"
     if os.path.exists(st):
         os.remove(st)

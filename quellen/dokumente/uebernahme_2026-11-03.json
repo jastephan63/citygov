@@ -1,0 +1,121 @@
+{
+ "hinweis": "Übernahme aus dem Abzug des Live-Portals vom 03.11.2026 (Ziele von «Online erledigen»): neue Formulare, die neuere Ausgabe von Formular 497 (A1) und die Live-Datei der dateilosen eFormulare, die das DVSH-Modell aus genau diesen Dateien gebildet hat.",
+ "abzug": "2026-11-03",
+ "neue_formulare": [
+  {
+   "sha256": "4e8c137886a148ac81529ee5185b9652ff98d44e56418e87a5a8ef78e565f2a0",
+   "service_id": 487,
+   "titel": "Vorbereitung der Heirat",
+   "datei": "200__Gesuch_vorb_heirat.pdf",
+   "pfad": "SHEP/live-2026-11-03/online/dateien/32.bin",
+   "beleg": "Live-Portal 03.11.2026: «Online erledigen» -> https://sh.ch/fileadmin/Redaktoren/MuP/Gesuch_vorb_heirat.pdf (verlinkt: verlinkt in Hilfsblatt_T_VDH.pdf); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-11-03_online.json)"
+  },
+  {
+   "sha256": "2d8b06df78f9d5ede296545c2f258aa5f3552f67ffd02b7d2ff311b3b22d1480",
+   "service_id": 487,
+   "titel": "Garantieerklärung zu Vorbereitung der Heirat",
+   "datei": "200__garantieerkl_vorb_heirat.pdf",
+   "pfad": "SHEP/live-2026-11-03/online/dateien/33.bin",
+   "beleg": "Live-Portal 03.11.2026: «Online erledigen» -> https://sh.ch/fileadmin/Redaktoren/MuP/garantieerkl_vorb_heirat.pdf (verlinkt: verlinkt in Hilfsblatt_T_VDH.pdf); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-11-03_online.json)"
+  },
+  {
+   "sha256": "d3d278a307dcd88e6f20b70cace04e0517e85662770795a119f815e43a44db80",
+   "service_id": 465,
+   "titel": "Gesuch Familiennachzug (Formular A2)",
+   "datei": "176__A2_A1_ausfuellbar.pdf",
+   "pfad": "SHEP/live-2026-11-03/online/dateien/30.bin",
+   "beleg": "Live-Portal 03.11.2026: «Online erledigen» -> https://sh.ch/fileadmin/Redaktoren/MuP/A2_A1_ausfuellbar.pdf (verlinkt: verlinkt in Hilfsblatt_H_FNZ_Drittstaat.pdf); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-11-03_online.json)"
+  },
+  {
+   "sha256": "97b7bc73575c77da66e50f09cae09f639e88f0f081d8c077ce46eb9c136d17d8",
+   "service_id": 456,
+   "titel": "Gesuch um Aufrechterhaltung der Niederlassungsbewilligung",
+   "datei": "167__Ges_Aufrechterh_ausfuellbar.pdf",
+   "pfad": "SHEP/live-2026-11-03/online/dateien/26.bin",
+   "beleg": "Live-Portal 03.11.2026: «Online erledigen» -> https://sh.ch/fileadmin/Redaktoren/MuP/Ges_Aufrechterh_ausfuellbar.pdf (verlinkt: verlinkt in Hilfsblatt_R_Aufrechterhaltung_C.pdf); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-11-03_online.json)"
+  },
+  {
+   "sha256": "91e0b37242522788bbba3bcc53578c45fb592c8ec9047226691190a4a4bdec5c",
+   "service_id": 456,
+   "titel": "Erklärung betreffend Pensionskassengelder",
+   "datei": "167__Aufrechterhaltung_Verpflerk_PKbeit_ausfuellbar.pdf",
+   "pfad": "SHEP/live-2026-11-03/online/dateien/27.bin",
+   "beleg": "Live-Portal 03.11.2026: «Online erledigen» -> https://sh.ch/fileadmin/Redaktoren/MuP/Aufrechterhaltung_Verpflerk_PKbeit_ausfuellbar.pdf (verlinkt: verlinkt in Hilfsblatt_R_Aufrechterhaltung_C.pdf); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-11-03_online.json)"
+  },
+  {
+   "sha256": "3b0066751c46428d2f2f12d83bf8831b57ba75874da2ecfed570d1f5a7f783d3",
+   "service_id": 459,
+   "titel": "Erklärung zum Gesuch um Niederlassungsbewilligung bei einem aus der ehelichen Gemeinschaft abgeleiteten gesetzlichen Anspruch",
+   "datei": "170__erkl_ges_Niederlassungsbew_ges_ansp_betr_ehe_gem.pdf",
+   "pfad": "SHEP/live-2026-11-03/online/dateien/39.bin",
+   "beleg": "Live-Portal 03.11.2026: «Online erledigen» -> https://sh.ch/fileadmin/Redaktoren/MuP/erkl_ges_Niederlassungsbew_ges_ansp_betr_ehe_gem.pdf (verlinkt: verlinkt in Hilfsblatt_E_Erteilung_C_aufgrund_der_Ehe.pdf); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-11-03_online.json)"
+  },
+  {
+   "sha256": "e1291ef776324556421dcfb0a85ca6f9ac8d90ae592075b6bd54c98603b8ebd9",
+   "service_id": 480,
+   "titel": "Entbindung der ärztlichen Schweigepflicht",
+   "datei": "193__Entb_aerzt_schweigepflicht_ausfuellbar.pdf",
+   "pfad": "SHEP/live-2026-11-03/online/dateien/31.bin",
+   "beleg": "Live-Portal 03.11.2026: «Online erledigen» -> https://sh.ch/fileadmin/Redaktoren/MuP/Entb_aerzt_schweigepflicht_ausfuellbar.pdf (verlinkt: verlinkt in Hilfsblatt_U_F_in_B.pdf); Inhaltsurteil «weiteres Formular», zweitgeprüft (quellen/dokumente/urteile_2026-11-03_online.json)"
+  }
+ ],
+ "neue_ausgaben": [
+  {
+   "sha256": "7844657e25019e7cb24db8991b6fc728230cbc6333aa4f0abbbf471147f28930",
+   "form_id": 507,
+   "titel": null,
+   "datei": "184__namens_nationalitaetsaenderung.pdf",
+   "pfad": "SHEP/live-2026-11-03/online/dateien/14.bin",
+   "begruendung": "die Datei, aus der das DVSH-Modell das dateilose eFormular gebildet hat (gleiche Ausgabe), verlinkt über «Online erledigen» (https://sh.ch/fileadmin/Redaktoren/MuP/namens_nationalitaetsaenderung.pdf)"
+  },
+  {
+   "sha256": "5aa310622c216e410a70d97a7a0c17c4df5661d9a999d5cf91ed9c8c54bf15b4",
+   "form_id": 508,
+   "titel": null,
+   "datei": "194__verlaengerungsgesuch_B.pdf",
+   "pfad": "SHEP/live-2026-11-03/online/dateien/21.bin",
+   "begruendung": "die Datei, aus der das DVSH-Modell das dateilose eFormular gebildet hat (gleiche Ausgabe), verlinkt über «Online erledigen» (https://sh.ch/fileadmin/Redaktoren/MuP/verlaengerungsgesuch_B.pdf)"
+  },
+  {
+   "sha256": "87600da0863506d629ea72365b9716cb93d5ce78fcfc65afbb8905e061796974",
+   "form_id": 506,
+   "titel": null,
+   "datei": "168__verlustmeldung.pdf",
+   "pfad": "SHEP/live-2026-11-03/online/dateien/02.bin",
+   "begruendung": "die Datei, aus der das DVSH-Modell das dateilose eFormular gebildet hat (gleiche Ausgabe), verlinkt über «Online erledigen» (https://sh.ch/fileadmin/Redaktoren/MuP/verlustmeldung.pdf)"
+  },
+  {
+   "sha256": "3233a4e847fb9348d2cf6e08d77f8ecefd6666e17125f65b78e417370f9d0d25",
+   "form_id": 512,
+   "titel": "C Verlängerungsgesuch",
+   "datei": "198__verlaengerungsgesuch_C.pdf",
+   "pfad": "SHEP/live-2026-11-03/online/dateien/22.bin",
+   "begruendung": "die Datei, aus der das DVSH-Modell das dateilose eFormular gebildet hat (gleiche Ausgabe), verlinkt über «Online erledigen» (https://sh.ch/fileadmin/Redaktoren/MuP/verlaengerungsgesuch_C.pdf)"
+  },
+  {
+   "sha256": "b59e957892902c1a2f0e2d3719328d92f6242f1101bbc7eebb288a08ea323ad3",
+   "form_id": 497,
+   "titel": null,
+   "datei": "372__A1_ausfuellbar.pdf",
+   "pfad": "SHEP/live-2026-11-03/online/dateien/29.bin",
+   "begruendung": "neuere Ausgabe, verlinkt über «Online erledigen» (https://sh.ch/fileadmin/Redaktoren/MuP/A1_ausfuellbar.pdf)"
+  },
+  {
+   "sha256": "41781e7ed54b33dd9121e2fd911f38606964a19d5c7f75466b9bc17bc68fe383",
+   "form_id": 511,
+   "titel": "Verlängerungsgesuch",
+   "datei": "197__verlaengerungsgesuch_F_S_N.pdf",
+   "pfad": "SHEP/live-2026-11-03/online/dateien/23.bin",
+   "begruendung": "die Datei, aus der das DVSH-Modell das dateilose eFormular gebildet hat (gleiche Ausgabe), verlinkt über «Online erledigen» (https://sh.ch/fileadmin/Redaktoren/MuP/verlaengerungsgesuch_F_S_N.pdf)"
+  },
+  {
+   "sha256": "3702cbfb35c4bb3d8b91a7bd9096f08f46f45a96f0b3d19a858745f990546007",
+   "form_id": 513,
+   "titel": "Verlängerungsgesuch",
+   "datei": "199__verlaengerungsgesuch_G.pdf",
+   "pfad": "SHEP/live-2026-11-03/online/dateien/25.bin",
+   "begruendung": "die Datei, aus der das DVSH-Modell das dateilose eFormular gebildet hat (gleiche Ausgabe), verlinkt über «Online erledigen» (https://sh.ch/fileadmin/Redaktoren/MuP/verlaengerungsgesuch_G.pdf)"
+  }
+ ],
+ "duplikate": []
+}

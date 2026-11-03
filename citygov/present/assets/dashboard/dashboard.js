@@ -2770,11 +2770,33 @@ const DOK_ORDER=['erfasst','gleicher_inhalt','aeltere_ausgabe','begleitdokument'
 const dokBadge=d=>stBadge(tonOf('dok',d.stand),esc(lab(DOK_STAND,d.stand)),
   (d.titel_gedruckt?'Titel auf dem Dokument: '+d.titel_gedruckt+'\n':'')+(d.zweitgeprueft?'Urteil aus dem Inhalt, zweitgeprüft':d.stand==='erfasst'?'dieselbe Datei wie ein Formular der Databank (gleicher Fingerabdruck)':''));
 const QUELLE_DE={DVSH:['DVSH','im DVSH-Dienstleistungsmodell hinterlegt'],SHEP:['SHEP','auf dem SHEP-Portal (shep.meetfrida.agency) verlinkt'],
-  Live:['Live','auf dem Live-Portal services.sh.ch angeboten'],Portal:['Live-Portal','services.sh.ch, das Service-Portal im Betrieb']};
+  Live:['Live','auf dem Live-Portal services.sh.ch angeboten'],Portal:['Live-Portal','services.sh.ch, das Service-Portal im Betrieb'],
+  Online:['Online','auf der Seite verlinkt, zu der «Online erledigen» des Live-Portals führt']};
 const qBadge=q=>mkBadge(esc((QUELLE_DE[q]||[q])[0]),(QUELLE_DE[q]||[])[1]);
 // ---- the live portal services.sh.ch: is the Formular offered there? (forms[].live, services[].portal)
 const LIVE_STAND=LAB.live_stand||{}, LIVE_ERKL=LAB.live_erkl||{}, LIVE_AUFF=LAB.live_auff||{}, QP=QA.portal||null;
-const LIVE_ORDER=['datei_live','inhalt_live','neuere_live','aeltere_live','service_live','nicht_live'];
+const LIVE_ORDER=['datei_live','inhalt_live','aeltere_live','neuere_live','online_live','service_live','nicht_live'];
+// ---- the online forms behind «Online erledigen» (services[].online, quellenabgleich.portal.online)
+const ONLINE_ZIEL=LAB.online_ziel||{}, ONLINE_ZUGANG=LAB.online_zugang||{}, ONLINE_GEGEN=LAB.online_gegen||{},
+  ONLINE_GEGEN_ERKL=LAB.online_gegen_erkl||{};
+const ONLINE_GEGEN_ORDER=['databank_formular','databank_dvsh_eformular','pdf_kandidat','keins'];
+const gegenBadge=(k,tip)=>stBadge(tonOf('online',k),esc(lab(ONLINE_GEGEN,k)),(ONLINE_GEGEN_ERKL[k]||'')+(tip?'\n'+tip:''));
+function onlineGegen(o){
+  const f=o.gegenstueck_form_id!=null?formById[o.gegenstueck_form_id]:null;
+  return gegenBadge(o.gegenstueck_art,o.beleg||'')+(f?` <span class="small">${formLink(f.service_id,f.id,esc(f.title))}</span>`:'');
+}
+// the online targets of one service (service page)
+function onlineSection(s){
+  const O=s.online; if(!O) return '';
+  const F=O.formulare||[], Z=O.ziele||[];
+  return `<h4 class="hscope" id="online">Hinter «Online erledigen» (${nf(F.length)} Online-Formular${F.length===1?'':'e'})</h4>
+  <div class="card"><p class="hint">Wohin die Schaltfläche «Online erledigen» auf services.sh.ch führt, und welches Formular der Databank das Online-Formular ist. Nur gelesen: jede Seite wurde geöffnet wie im Browser, «Weiter» nur dort gedrückt, wo nichts einzugeben war — nichts wurde ausgefüllt oder abgeschickt.</p>
+  ${Z.map(z=>`<div class="small">${mkBadge(esc(lab(ONLINE_ZIEL,z.art)))} ${z.url&&/^https?:\/\/./.test(z.url)?`<a class="dlink" href="${esc(z.url)}" target="_blank" rel="noreferrer">Ziel ↗</a>`:'<span class="muted">kein Ziel hinterlegt</span>'} ${z.befund?'— '+esc(z.befund):''}</div>`).join('')}
+  ${F.length?`<div class="tscroll"><table class="ft fit"><thead><tr><th>Online-Formular</th><th>Einsehbar</th><th>In der Databank</th></tr></thead><tbody>${F.map(o=>`<tr>
+    <td><a class="dlink" href="${esc(o.start_url)}" target="_blank" rel="noreferrer" title="das Online-Formular öffnen (${esc(o.system||'')})">${esc(o.name)} ↗</a>${(o.schritte||[]).length?`<div class="small muted">Schritte: ${esc(o.schritte.join(' › '))}</div>`:''}</td>
+    <td class="small">${esc(lab(ONLINE_ZUGANG,o.zugang))}${o.n_felder_sichtbar?` · ${nf(o.n_felder_sichtbar)} Felder sichtbar`:''}</td>
+    <td>${onlineGegen(o)}</td></tr>`).join('')}</tbody></table></div>`:''}</div>`;
+}
 const liveTon=k=>((LAB.ton_map||{}).live||{})[k];
 // toned where someone acts (older edition there: the Dienststelle; newer: the databank), neutral where it is a fact
 const liveBadgeOf=(k,tip)=>{const t=(LIVE_ERKL[k]||'')+(tip?'\n'+tip:'');
@@ -2849,6 +2871,26 @@ function viewAbgleich(){
         <div class="tscroll"><table class="ft fit"><thead><tr><th>Service</th><th>Geändert</th></tr></thead><tbody>${by('geaendert').map(e=>`<tr><td>${sv(e)}</td><td class="small">${esc(e.felder.map(f=>lab(FELD_QUELLE,f)).join(', '))}</td></tr>`).join('')}</tbody></table></div></details>`:''}
     </div>`;};
   const dv=QA.dvsh_services||0, sh=QA.shep_seiten||0;
+  // the online forms behind «Online erledigen», by what the databank holds of them
+  const onlineBlock=()=>{const O=QP&&QP.online; if(!O) return '';
+    const all=[]; const seen={};
+    DATA.services.forEach(sv=>((sv.online||{}).formulare||[]).forEach(o=>{if(!seen[o.id]){seen[o.id]=1; all.push({o,sv});}}));
+    const byG={}; all.forEach(x=>(byG[x.o.gegenstueck_art]=byG[x.o.gegenstueck_art]||[]).push(x));
+    const G=O.gegenstueck||{}, ZA=O.ziel_art||{};
+    const gBlock=k=>{const L=byG[k]||[]; if(!L.length) return '';
+      return `<details class="card" id="onl-${k}"${k!=='databank_formular'&&k!=='databank_dvsh_eformular'?' open':''}><summary>${gegenBadge(k)} <b>${pl(L.length,'Online-Formular','Online-Formulare')}</b></summary>
+        <div class="tscroll"><table class="ft fit"><thead><tr><th>Online-Formular</th><th>Service</th><th>Einsehbar</th><th>In der Databank</th></tr></thead><tbody>${
+        L.sort((a,b)=>String(a.o.name||'').localeCompare(String(b.o.name||''),'de')).map(({o,sv})=>`<tr>
+          <td><a class="dlink" href="${esc(o.start_url)}" target="_blank" rel="noreferrer">${esc(o.name)} ↗</a></td>
+          <td class="small">${svcLink(sv.id,esc(sv.name))}</td><td class="small">${esc(lab(ONLINE_ZUGANG,o.zugang))}</td>
+          <td>${onlineGegen(o)}</td></tr>`).join('')}</tbody></table></div></details>`;};
+    return `<h4 class="hscope" id="online">Hinter «Online erledigen»</h4>
+    <p class="hint">${nf(O.ziele)} Live-Seiten führen mit «Online erledigen» zu einem Online-Ziel; dahinter ${nf(O.formulare)} Online-Formulare. Nur gelesen: jede Seite wurde geöffnet wie im Browser, «Weiter» nur dort gedrückt, wo nichts einzugeben war — nichts wurde ausgefüllt oder abgeschickt. Ob ein Online-Formular ein Formular der Databank ist, ist aus Feldern und Schritten beurteilt und zweitgeprüft; wo die Databank es nicht hatte, wurde die Papierfassung gesucht.</p>
+    <div class="regstats">${Object.entries(ZA).map(([k,n])=>`<span class="rstat">${esc(lab(ONLINE_ZIEL,k))} <b>${nf(n)}</b></span>`).join('')}</div>
+    <div class="sumbox card"><div class="gcap">Online-Formulare: <b class="sumtot">${nf(O.formulare)}</b></div>
+      <ul class="gdist">${ONLINE_GEGEN_ORDER.filter(k=>G[k]).map(k=>`<li>${gegenBadge(k)} <a class="dlink" href="#onl-${k}"><b class="sumn">${nf(G[k])}</b></a></li>`).join('')}</ul></div>
+    ${ONLINE_GEGEN_ORDER.map(gBlock).join('')}
+    ${(O.defekt||[]).length?`<div class="card"><h4 style="margin-top:0">Schaltfläche führt ins Leere (${nf(O.defekt.length)})</h4><ul class="small">${O.defekt.map(d=>`<li>${d.service_id!=null&&svcById[d.service_id]?svcLink(d.service_id,esc(svcById[d.service_id].name)):esc(d.slug)} (<a class="dlink" href="${esc(d.seite)}" target="_blank" rel="noreferrer">Live-Seite ↗</a>): ${esc(d.befund||'')}</li>`).join('')}</ul></div>`:''}`;};
   // the Formulare on the live portal services.sh.ch, by state
   const liveBlock=()=>{if(!QP) return '';
     const F=QP.formulare||{}, byL={};
@@ -2876,6 +2918,7 @@ function viewAbgleich(){
       ${(V.nur_shep||[]).length?`<div class="small"><b>Nur auf SHEP:</b> ${V.nur_shep.map(svN).join(' · ')}</div>`:''}
       ${(V.geaendert||[]).length?`<div class="tscroll"><table class="ft fit"><thead><tr><th>Service</th><th>Live anders als SHEP</th></tr></thead><tbody>${V.geaendert.map(e=>`<tr><td>${svN(e)}</td><td class="small">${esc(e.felder.map(f=>lab(FELD_QUELLE,f)).join(', '))}</td></tr>`).join('')}</tbody></table></div>`:''}
     </div>
+    ${onlineBlock()}
     ${A.length?`<div class="card"><h4 style="margin-top:0">Was auf den Live-Seiten nicht passt (${nf(A.length)})</h4>
       <p class="hint">Befunde über die Seiten, nichts daran wurde geändert — die Dienststelle entscheidet.</p><ul class="small">${A.map(a=>`<li>${a.service_id!=null&&svcById[a.service_id]?svcLink(a.service_id,esc(svcById[a.service_id].name)):esc(a.slug)}
         (<a class="dlink" href="${esc(a.seite)}" target="_blank" rel="noreferrer">Live-Seite ↗</a>): ${esc(lab(LIVE_AUFF,a.art))}${a.label?` — Link «${a.url?`<a class="dlink" href="${esc(a.url)}" target="_blank" rel="noreferrer">${esc(a.label)}</a>`:esc(a.label)}»${a.dateiname?' liefert die Datei «'+esc(a.dateiname)+'»':''}`:''}</li>`).join('')}</ul></div>`:''}`;};
@@ -2893,7 +2936,7 @@ function viewAbgleich(){
     <h4 class="hscope">Was die letzten Abzüge geändert haben</h4>${srcBlock('DVSH')}${srcBlock('SHEP')}${QP?srcBlock('Portal'):''}
     <h4 class="hscope">Alle Dateien nach Stand</h4>${DOK_ORDER.map(standBlock).join('')}`;
   wireGo(m);
-  m.querySelectorAll('a[href^="#dok-"],a[href^="#live-"]').forEach(a=>a.onclick=e=>{e.preventDefault(); const t=document.getElementById(a.getAttribute('href').slice(1)); if(t){t.open=true; t.scrollIntoView({behavior:MOTION});}});
+  m.querySelectorAll('a[href^="#dok-"],a[href^="#live-"],a[href^="#onl-"]').forEach(a=>a.onclick=e=>{e.preventDefault(); const t=document.getElementById(a.getAttribute('href').slice(1)); if(t){t.open=true; t.scrollIntoView({behavior:MOTION});}});
 }
 function verfahrenSection(s){
   const dv=s.dvsh||{}, sp=s.shep||{};
@@ -3133,6 +3176,7 @@ function viewFields(){
       ?(dv.endpoint_typ?`laut DVSH Kanal: <b>${esc(lab(ENDPOINT_DE,dv.endpoint_typ))}</b>`:'im DVSH ist kein Kanal (Endpoint) hinterlegt')
       :'keine DVSH-Modellierung in der Databank, der Kanal ist nicht belegt'}.</div></div>`;
     forms.forEach(fm=>{h+=formSection(s,fm);});
+    h+=onlineSection(s);
     h+=quellDokSection(s);
     m.innerHTML=h;
   }

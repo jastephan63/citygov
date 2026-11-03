@@ -1,0 +1,189 @@
+{
+ "form_id": 511,
+ "mappings": [
+  {
+   "data_field": "Name",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 90",
+     "beleg": "Mitwirkungspflicht: «zutreffende und vollständige Angaben über die für die Regelung des Aufenthalts wesentlichen Tatsachen machen» (lit. a)"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Vorname",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 90",
+     "beleg": "Mitwirkungspflicht: «zutreffende und vollständige Angaben über die für die Regelung des Aufenthalts wesentlichen Tatsachen machen» (lit. a)"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Adresse",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 90",
+     "beleg": "«zutreffende und vollständige Angaben über die für die Regelung des Aufenthalts wesentlichen Tatsachen machen» (lit. a)"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 85",
+     "beleg": "Abs. 1: Ausweis «wird vom Aufenthaltskanton zur Kontrolle für höchstens zwölf Monate ausgestellt und ... verlängert»; Abs. 5: «ihren Wohnort im Gebiet des bisherigen oder des zugewiesenen Kantons»"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Geburtsdatum",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 90",
+     "beleg": "«zutreffende und vollständige Angaben über die für die Regelung des Aufenthalts wesentlichen Tatsachen machen» (lit. a)"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "ZEMIS-Nummer",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "SH-Nummer",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Nummer des Passes und Gültigkeitsdauer",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 89",
+     "beleg": "«während ihres Aufenthaltes in der Schweiz im Besitz eines gültigen, nach Artikel 13 Absatz 1 anerkannten Ausweispapiers sein»"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 90",
+     "beleg": "«Ausweispapiere (Art. 89) beschaffen oder bei deren Beschaffung durch die Behörden mitwirken» (lit. c)"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Staatsangehörigkeit",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 90",
+     "beleg": "«zutreffende und vollständige Angaben über die für die Regelung des Aufenthalts wesentlichen Tatsachen machen» (lit. a)"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "E-Mail-Adresse",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Telefonnummer",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Bewilligungsart",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 85",
+     "beleg": "«Der Ausweis für vorläufig aufgenommene Personen (Art. 41 Abs. 2) wird vom Aufenthaltskanton ... ausgestellt und unter Vorbehalt von Artikel 84 verlängert» (Abs. 1)"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 41",
+     "beleg": "«Vorläufig Aufgenommene (Art. 83) erhalten einen Ausweis, der ihre Rechtsstellung festhält» (Abs. 2)"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Jetzige ausgeübte Tätigkeit",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Name und Adresse des Betriebes",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Anstellungsdauer",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Anstellungsdauer - Befristet bis",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Beschäftigungsgrad / Arbeitszeit (Stunden pro Woche)",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Beilagen",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 90",
+     "beleg": "«die erforderlichen Beweismittel unverzüglich einreichen» (lit. b); «Ausweispapiere (Art. 89) beschaffen» (lit. c)"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 89",
+     "beleg": "«im Besitz eines gültigen, nach Artikel 13 Absatz 1 anerkannten Ausweispapiers sein» (Pass/ID/Konsulatsbestätigung)"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 85",
+     "beleg": "«Der Ausweis für vorläufig aufgenommene Personen (Art. 41 Abs. 2) wird ... ausgestellt und ... verlängert» (Ausländerausweis im Original)"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 41",
+     "beleg": "«Vorläufig Aufgenommene (Art. 83) erhalten einen Ausweis, der ihre Rechtsstellung festhält» (Abs. 2)"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Bemerkungen des(r) Gesuchsteller(in)",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Ort und Datum",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Unterschrift des(r) Gesuchsteller(in)",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 90",
+     "beleg": "«zutreffende und vollständige Angaben über die für die Regelung des Aufenthalts wesentlichen Tatsachen machen» (lit. a); die Unterschrift bestätigt vollständige und wahrheitsgetreue Angaben"
+    }
+   ],
+   "over_collection": false
+  }
+ ]
+}

@@ -7,16 +7,16 @@
  },
  "exporte": {
   "citygov_datafields.jsonl": {
-   "version": "1.0.1",
+   "version": "1.0.2",
    "schema": "schema/citygov_datafields.schema.json",
-   "schema_sha256": "f62a71691f739fe1c154b5b18b70c1fe2ecd953eef507b244afea5802270b407",
+   "schema_sha256": "311d01a452cf678fe313b8c67e247301059c3b4674a43bcf3666a94c89cbceac",
    "version_steht": "nur hier: eine JSON-Zeilen-Datei hat keine Kopfzeile",
-   "seit": "2026-10-28T20:09:36",
+   "seit": "2026-11-03T16:23:33",
    "zaehlungen": {
-    "$": 6700,
-    "$.allowed_values[]": 5095,
-    "$.legal_basis[]": 7309,
-    "$.subfields[]": 8652
+    "$": 6795,
+    "$.allowed_values[]": 5180,
+    "$.legal_basis[]": 7705,
+    "$.subfields[]": 8787
    }
   },
   "citygov_datarules.jsonl": {
@@ -30,34 +30,34 @@
    }
   },
   "citygov_ech_schemas.json": {
-   "version": "1.0.2",
+   "version": "1.0.3",
    "schema": "schema/citygov_ech_schemas.schema.json",
-   "schema_sha256": "d06d2bfe588b81c8a83df7ef12e7ac56c75d7aef1a56a81e9e11fb2e98825ca2",
+   "schema_sha256": "9f1c4938e1032ce592565c1d85691f708631553f798667c32bdc3bd166da5a8e",
    "version_steht": "meta.vertrag.version",
-   "seit": "2026-10-28T20:09:36",
+   "seit": "2026-11-03T16:23:33",
    "zaehlungen": {
-    "$.formulare[]": 513,
-    "$.formulare[].ech.*": 2568,
-    "$.formulare[].ohne_standard[]": 4575,
+    "$.formulare[]": 520,
+    "$.formulare[].ech.*": 2594,
+    "$.formulare[].ohne_standard[]": 4619,
     "$.meta.xsd_versionen.*": 82
    }
   },
   "citygov_llm.json": {
-   "version": "1.2.0",
+   "version": "1.3.0",
    "schema": "schema/citygov_llm.schema.json",
-   "schema_sha256": "b96ad5ca7a96ed8faccf9a7e7e83c3f8e9340e5811c71443289617244d2ec345",
+   "schema_sha256": "5f8cc04f9d7674a8ddf9da7c6b18774fc4884834d845b381334841f81212d084",
    "version_steht": "meta.vertrag.version",
-   "seit": "2026-11-03T11:33:33",
+   "seit": "2026-11-03T16:23:33",
    "zaehlungen": {
     "$.begriffe[]": 470,
     "$.begriffe[].labels[]": 3037,
     "$.datenhandhabung[]": 248,
     "$.lebenslagen[]": 113,
     "$.lebenslagen[].services[]": 915,
-    "$.lebenslagen[].services_modelliert[]": 772,
-    "$.lebenslagen[].services_ohne_daten[]": 143,
-    "$.lebenslagen[].wiederholt[]": 1346,
-    "$.meta.kennungen.nicht_aktiv[]": 216,
+    "$.lebenslagen[].services_modelliert[]": 778,
+    "$.lebenslagen[].services_ohne_daten[]": 137,
+    "$.lebenslagen[].wiederholt[]": 1364,
+    "$.meta.kennungen.nicht_aktiv[]": 234,
     "$.meta.labels.cat_order[]": 21,
     "$.meta.labels.einheit.begriff[]": 2,
     "$.meta.labels.einheit.divergenz[]": 2,
@@ -83,48 +83,48 @@
     "$.services[].dvsh_verfahren.unterlagen[]": 1004,
     "$.services[].dvsh_verfahren.voraussetzungen[]": 1466,
     "$.services[].findings[]": 388,
-    "$.services[].forms[]": 513,
+    "$.services[].forms[]": 520,
     "$.services[].lebenslagen_ech0049[]": 915,
     "$.services[].process_steps[]": 1458
    }
   },
   "citygov_prefill.json": {
-   "version": "1.1.1",
+   "version": "1.1.2",
    "schema": "schema/citygov_prefill.schema.json",
-   "schema_sha256": "1f7045647d766f1c984ac16fc3710d32a053f94cec8709915c203f00873e7a75",
+   "schema_sha256": "28084eba3fa116ba0eefbb6edeba4ea9c3bc2c3d5cc7cf23dafc8c771dfa5f75",
    "version_steht": "meta.vertrag.version",
-   "seit": "2026-10-28T20:09:36",
+   "seit": "2026-11-03T16:23:33",
    "zaehlungen": {
-    "$.formulare.*": 507,
-    "$.formulare.*[]": 8718,
-    "$.meta.formular_kennung.*": 507,
+    "$.formulare.*": 514,
+    "$.formulare.*[]": 8863,
+    "$.meta.formular_kennung.*": 514,
     "$.meta.zaehlung.formulare_ohne_ech_punkt[]": 6,
     "$.meta.zaehlung.partei.*": 3
    }
   },
   "citygov_verzeichnis.json": {
-   "version": "1.0.1",
+   "version": "1.0.2",
    "schema": "schema/citygov_verzeichnis.schema.json",
-   "schema_sha256": "0f15967cfe48cdf1b0a51e79e8f7dcc3e48abbb0e474d2ad66ec80ef9219e082",
+   "schema_sha256": "69a539ba9431355854bd7a66fc8b55c6fb024b3b128619226506141454fbb34d",
    "version_steht": "meta.vertrag.version",
-   "seit": "2026-10-28T20:09:36",
+   "seit": "2026-11-03T16:23:33",
    "zaehlungen": {
     "$.meta.felder.*": 5,
-    "$.verzeichnis[]": 513,
+    "$.verzeichnis[]": 520,
     "$.verzeichnis[].aufbewahrung.fristen[]": 109,
-    "$.verzeichnis[].aufbewahrung.standardregime.refs[]": 1832,
-    "$.verzeichnis[].datenkategorien.besonders_schuetzenswert[]": 80,
+    "$.verzeichnis[].aufbewahrung.standardregime.refs[]": 1860,
+    "$.verzeichnis[].datenkategorien.besonders_schuetzenswert[]": 87,
     "$.verzeichnis[].empfaenger[]": 397
    }
   },
   "data_export.json": {
-   "version": "1.6.0",
+   "version": "1.7.0",
    "schema": "schema/data_export.schema.json",
-   "schema_sha256": "fe17681b152ee3adf0ae14001cba3f371e0bada44a9805a94df13a2cdab02c84",
+   "schema_sha256": "1758c74a1debfad04b8c3644f7cfe9f21e58ef203b497a8d4ad6ac57c2b600e9",
    "version_steht": "vertrag.version",
-   "seit": "2026-11-03T11:33:33",
+   "seit": "2026-11-03T16:23:33",
    "zaehlungen": {
-    "$.attribut_katalog[]": 2762,
+    "$.attribut_katalog[]": 2763,
     "$.begriffe[]": 470,
     "$.begriffe[].labels[]": 3037,
     "$.buergersicht.personen[]": 3,
@@ -133,7 +133,7 @@
     "$.buergersicht.personen[].loeschkalender[]": 11,
     "$.datenhandhabung[]": 248,
     "$.datenmodell.beilagen.je_register.*": 9,
-    "$.datenmodell.beilagen.je_register.*[]": 77,
+    "$.datenmodell.beilagen.je_register.*[]": 79,
     "$.datenmodell.dienststellen.*": 56,
     "$.datenmodell.einwohnerregister_andere.familie.rollen[]": 5,
     "$.datenmodell.einwohnerregister_andere.je_rolle.*": 19,
@@ -158,36 +158,36 @@
     "$.datenmodell.register_gruppen[].register[]": 18,
     "$.datenmodell.zugriff.*": 2,
     "$.dienststellen_uebersicht[]": 56,
-    "$.dienststellen_uebersicht[].entscheide[]": 132,
-    "$.dienststellen_uebersicht[].formulare[]": 513,
+    "$.dienststellen_uebersicht[].entscheide[]": 134,
+    "$.dienststellen_uebersicht[].formulare[]": 520,
     "$.dienststellen_uebersicht[].kontakt[]": 136,
-    "$.dienststellen_uebersicht[].massnahmen[]": 112,
+    "$.dienststellen_uebersicht[].massnahmen[]": 113,
     "$.dienststellen_uebersicht[].services[]": 518,
-    "$.dienststellen_uebersicht[].standard.ech.*": 187,
+    "$.dienststellen_uebersicht[].standard.ech.*": 188,
     "$.dienststellen_uebersicht[].stufen.*": 183,
     "$.ech_codelists.*": 49,
     "$.ech_codelists.*[]": 2090,
     "$.esh_katalog[]": 25,
-    "$.forms[]": 513,
-    "$.forms[].beilagen[]": 1380,
-    "$.forms[].blockers[]": 1041,
-    "$.forms[].data_fields[]": 6700,
+    "$.forms[]": 520,
+    "$.forms[].beilagen[]": 1410,
+    "$.forms[].blockers[]": 1073,
+    "$.forms[].data_fields[]": 6795,
     "$.forms[].disclosures[]": 397,
-    "$.forms[].gestaltung.merkmale[]": 6135,
-    "$.forms[].handlungsbedarf[]": 2783,
-    "$.forms[].konzepte.abweichungen[]": 241,
-    "$.forms[].live.angebot[]": 99,
-    "$.forms[].outcome.gesetzesebenen[]": 41,
-    "$.forms[].outcome.rechtsmittel_kandidaten[]": 577,
-    "$.forms[].parteien[]": 1567,
-    "$.forms[].register.je_register.*": 1170,
+    "$.forms[].gestaltung.merkmale[]": 6307,
+    "$.forms[].handlungsbedarf[]": 2823,
+    "$.forms[].konzepte.abweichungen[]": 228,
+    "$.forms[].live.angebot[]": 162,
+    "$.forms[].outcome.gesetzesebenen[]": 42,
+    "$.forms[].outcome.rechtsmittel_kandidaten[]": 684,
+    "$.forms[].parteien[]": 1579,
+    "$.forms[].register.je_register.*": 1186,
     "$.forms[].retention[]": 109,
     "$.forms[].retention_decisions[]": 0,
-    "$.forms[].similar[]": 100,
-    "$.forms[].standard.ech.*": 1319,
-    "$.forms[].standard_divergenzen.angleichen[]": 1646,
-    "$.forms[].standard_divergenzen.bezeichnungen[]": 4271,
-    "$.forms[].standard_divergenzen.fehlend[]": 982,
+    "$.forms[].similar[]": 102,
+    "$.forms[].standard.ech.*": 1335,
+    "$.forms[].standard_divergenzen.angleichen[]": 1698,
+    "$.forms[].standard_divergenzen.bezeichnungen[]": 4310,
+    "$.forms[].standard_divergenzen.fehlend[]": 990,
     "$.gestaltung.dienststellen[]": 56,
     "$.gestaltung.dienststellen[].top[]": 137,
     "$.gestaltung.entscheide[]": 5,
@@ -195,18 +195,18 @@
     "$.gestaltung.grenzen[]": 18,
     "$.gestaltung.gruppen[]": 5,
     "$.gestaltung.merkmale[]": 21,
-    "$.gestaltung.merkmale[].formulare.betroffen[]": 108,
+    "$.gestaltung.merkmale[].formulare.betroffen[]": 111,
     "$.gestaltung.merkmale[].formulare.hinweis[]": 176,
-    "$.gestaltung.merkmale[].formulare.luecke[]": 1100,
-    "$.gestaltung.merkmale[].formulare.nicht_messbar[]": 117,
-    "$.gestaltung.merkmale[].formulare.weicht_ab[]": 239,
+    "$.gestaltung.merkmale[].formulare.luecke[]": 1139,
+    "$.gestaltung.merkmale[].formulare.nicht_messbar[]": 131,
+    "$.gestaltung.merkmale[].formulare.weicht_ab[]": 244,
     "$.gestaltung.merkmale[].urteile.*": 81,
     "$.gestaltung.merkmale[].verteilung[]": 96,
     "$.gestaltung.merkmale[].zusatz.dienststellen[]": 3,
     "$.gestaltung.merkmale[].zusatz.muster[]": 10,
     "$.gestaltung.merkmale[].zusatz.nummern[]": 9,
     "$.gestaltung.merkmale[].zusatz.schreibweisen[]": 12,
-    "$.kennungen.nicht_aktiv[]": 216,
+    "$.kennungen.nicht_aktiv[]": 234,
     "$.konzepte.konzepte[]": 27,
     "$.konzepte.konzepte[].andere_entitaet.elemente[]": 5,
     "$.konzepte.konzepte[].ausserhalb[]": 9,
@@ -215,7 +215,7 @@
     "$.konzepte.konzepte[].mitglieder[]": 104,
     "$.konzepte.konzepte[].nicht_beurteilt[]": 1,
     "$.konzepte.konzepte[].ohne_rolle.elemente[]": 44,
-    "$.konzepte.konzepte[].zellen[]": 360,
+    "$.konzepte.konzepte[].zellen[]": 361,
     "$.konzepte.konzepte[].zuordnung_falsch.elemente[]": 16,
     "$.konzepte.pruefung.zweitpruefung.aenderungen[]": 5,
     "$.kopfzahlen.kein_standard.codes.ech_entwurf.*": 12,
@@ -247,6 +247,7 @@
     "$.parteien.zahlen.regel.*": 4,
     "$.quellenabgleich.portal.aktionen.*": 5,
     "$.quellenabgleich.portal.auffaelligkeiten[]": 4,
+    "$.quellenabgleich.portal.online.defekt[]": 4,
     "$.quellenabgleich.portal.vs_shep.geaendert[]": 3,
     "$.quellenabgleich.portal.vs_shep.geaendert[].felder[]": 3,
     "$.quellenabgleich.portal.vs_shep.nur_live[]": 0,
@@ -263,7 +264,7 @@
     "$.register.katalog[].zugriff[]": 6,
     "$.services[]": 518,
     "$.services[].aenderungen[]": 223,
-    "$.services[].dokumente[]": 521,
+    "$.services[].dokumente[]": 559,
     "$.services[].dvsh.abgabe[]": 702,
     "$.services[].dvsh.ablauf[]": 2000,
     "$.services[].dvsh.completeness.missingRequired[]": 201,
@@ -279,6 +280,8 @@
     "$.services[].dvsh.sources[]": 1021,
     "$.services[].dvsh.unterlagen[]": 1004,
     "$.services[].dvsh.voraussetzungen[]": 1466,
+    "$.services[].online.formulare[]": 79,
+    "$.services[].online.ziele[]": 87,
     "$.services[].portal[]": 204,
     "$.services[].shep.ablauf[]": 628,
     "$.services[].shep.dokumente[]": 94,
@@ -290,22 +293,22 @@
     "$.texte.aufbewahrung_standard.refs[][]": 12,
     "$.themenkatalog[]": 153,
     "$.themenkatalog[].services[]": 915,
-    "$.themenkatalog[].services_modelliert[]": 772,
-    "$.themenkatalog[].services_ohne_daten[]": 143,
-    "$.themenkatalog[].wiederholt[]": 1346,
-    "$.wirkung.gesetze[]": 102,
-    "$.wirkung.gesetze[].artikel[]": 1060,
-    "$.wirkung.gesetze[].dienststellen[]": 132,
-    "$.wirkung.gesetze[].formulare[]": 606,
+    "$.themenkatalog[].services_modelliert[]": 778,
+    "$.themenkatalog[].services_ohne_daten[]": 137,
+    "$.themenkatalog[].wiederholt[]": 1364,
+    "$.wirkung.gesetze[]": 103,
+    "$.wirkung.gesetze[].artikel[]": 1102,
+    "$.wirkung.gesetze[].dienststellen[]": 137,
+    "$.wirkung.gesetze[].formulare[]": 625,
     "$.wirkung.gesetze[].pruefung.kuenftig[]": 20,
-    "$.wirkung.gesetze[].services[]": 515,
+    "$.wirkung.gesetze[].services[]": 531,
     "$.wirkung.gesetze[].weitere.bekanntgabe_formulare[]": 206,
-    "$.wirkung.gesetze[].weitere.entscheid_formulare[]": 128,
-    "$.wirkung.gesetze[].weitere.rechtsmittel_formulare[]": 128,
+    "$.wirkung.gesetze[].weitere.entscheid_formulare[]": 139,
+    "$.wirkung.gesetze[].weitere.rechtsmittel_formulare[]": 139,
     "$.wirkung.uebersicht.betroffen.dienststellen[]": 24,
-    "$.wirkung.uebersicht.betroffen.formulare[]": 223,
-    "$.wirkung.uebersicht.betroffen.gesetze[]": 37,
-    "$.wirkung.uebersicht.betroffen.services[]": 181,
+    "$.wirkung.uebersicht.betroffen.formulare[]": 237,
+    "$.wirkung.uebersicht.betroffen.gesetze[]": 38,
+    "$.wirkung.uebersicht.betroffen.services[]": 192,
     "$.wirkung.uebersicht.pruefung.*": 3,
     "$.wirkung.uebersicht.pruefung_zitiert.*": 3,
     "$.wirkung.uebersicht.stand.*": 2,
@@ -3158,6 +3161,509 @@
     "$.meta.labels.ton_map.live.datei_live",
     "$.meta.labels.ton_map.live.inhalt_live",
     "$.meta.labels.ton_map.live.neuere_live"
+   ]
+  },
+  {
+   "export": "data_export.json",
+   "version": "1.7.0",
+   "vorher": "1.6.0",
+   "stufe": "minor",
+   "stand": "2026-11-03T16:23:33",
+   "schluessel_neu": [
+    "$.labels.live_erkl.online_live",
+    "$.labels.live_stand.online_live",
+    "$.labels.online_gegen",
+    "$.labels.online_gegen.databank_dvsh_eformular",
+    "$.labels.online_gegen.databank_formular",
+    "$.labels.online_gegen.keins",
+    "$.labels.online_gegen.pdf_kandidat",
+    "$.labels.online_gegen_erkl",
+    "$.labels.online_gegen_erkl.databank_dvsh_eformular",
+    "$.labels.online_gegen_erkl.databank_formular",
+    "$.labels.online_gegen_erkl.keins",
+    "$.labels.online_gegen_erkl.pdf_kandidat",
+    "$.labels.online_ziel",
+    "$.labels.online_ziel.anderes",
+    "$.labels.online_ziel.anmeldung",
+    "$.labels.online_ziel.defekt",
+    "$.labels.online_ziel.eformular",
+    "$.labels.online_ziel.eformular_beilagen",
+    "$.labels.online_ziel.fremdformular",
+    "$.labels.online_ziel.info",
+    "$.labels.online_ziel.portal",
+    "$.labels.online_ziel.rechner",
+    "$.labels.online_ziel.termin",
+    "$.labels.online_zugang",
+    "$.labels.online_zugang.alle_seiten_sichtbar",
+    "$.labels.online_zugang.nur_beilagen",
+    "$.labels.online_zugang.nur_einstieg",
+    "$.labels.online_zugang.teilweise_sichtbar",
+    "$.labels.ton_map.live.online_live",
+    "$.labels.ton_map.online",
+    "$.labels.ton_map.online.databank_dvsh_eformular",
+    "$.labels.ton_map.online.databank_formular",
+    "$.labels.ton_map.online.keins",
+    "$.labels.ton_map.online.pdf_kandidat",
+    "$.quellenabgleich.portal.formulare.online_live",
+    "$.quellenabgleich.portal.online",
+    "$.quellenabgleich.portal.online.defekt",
+    "$.quellenabgleich.portal.online.defekt[]",
+    "$.quellenabgleich.portal.online.defekt[].befund",
+    "$.quellenabgleich.portal.online.defekt[].seite",
+    "$.quellenabgleich.portal.online.defekt[].service_id",
+    "$.quellenabgleich.portal.online.defekt[].slug",
+    "$.quellenabgleich.portal.online.defekt[].url",
+    "$.quellenabgleich.portal.online.formulare",
+    "$.quellenabgleich.portal.online.gegenstueck",
+    "$.quellenabgleich.portal.online.gegenstueck.databank_dvsh_eformular",
+    "$.quellenabgleich.portal.online.gegenstueck.databank_formular",
+    "$.quellenabgleich.portal.online.gegenstueck.keins",
+    "$.quellenabgleich.portal.online.ziel_art",
+    "$.quellenabgleich.portal.online.ziel_art.anderes",
+    "$.quellenabgleich.portal.online.ziel_art.anmeldung",
+    "$.quellenabgleich.portal.online.ziel_art.defekt",
+    "$.quellenabgleich.portal.online.ziel_art.eformular",
+    "$.quellenabgleich.portal.online.ziel_art.eformular_beilagen",
+    "$.quellenabgleich.portal.online.ziel_art.fremdformular",
+    "$.quellenabgleich.portal.online.ziel_art.info",
+    "$.quellenabgleich.portal.online.ziel_art.portal",
+    "$.quellenabgleich.portal.online.ziel_art.rechner",
+    "$.quellenabgleich.portal.online.ziel_art.termin",
+    "$.quellenabgleich.portal.online.ziele",
+    "$.quellenabgleich.portal.online.zugang",
+    "$.quellenabgleich.portal.online.zugang.alle_seiten_sichtbar",
+    "$.quellenabgleich.portal.online.zugang.nur_beilagen",
+    "$.quellenabgleich.portal.online.zugang.nur_einstieg",
+    "$.quellenabgleich.portal.online.zugang.teilweise_sichtbar",
+    "$.services[].online",
+    "$.services[].online.formulare",
+    "$.services[].online.formulare[]",
+    "$.services[].online.formulare[].beleg",
+    "$.services[].online.formulare[].gegenstueck_art",
+    "$.services[].online.formulare[].gegenstueck_form_id",
+    "$.services[].online.formulare[].gegenstueck_sha256",
+    "$.services[].online.formulare[].id",
+    "$.services[].online.formulare[].n_felder_sichtbar",
+    "$.services[].online.formulare[].name",
+    "$.services[].online.formulare[].schritte",
+    "$.services[].online.formulare[].schritte[]",
+    "$.services[].online.formulare[].seiten",
+    "$.services[].online.formulare[].seiten[]",
+    "$.services[].online.formulare[].seiten[].seite",
+    "$.services[].online.formulare[].seiten[].slug",
+    "$.services[].online.formulare[].seiten[].via",
+    "$.services[].online.formulare[].start_url",
+    "$.services[].online.formulare[].system",
+    "$.services[].online.formulare[].zugang",
+    "$.services[].online.ziele",
+    "$.services[].online.ziele[]",
+    "$.services[].online.ziele[].art",
+    "$.services[].online.ziele[].befund",
+    "$.services[].online.ziele[].slug",
+    "$.services[].online.ziele[].url"
+   ],
+   "zaehlungen": [
+    {
+     "pfad": "$.attribut_katalog[]",
+     "vorher": 2762,
+     "nachher": 2763
+    },
+    {
+     "pfad": "$.datenmodell.beilagen.je_register.*[]",
+     "vorher": 77,
+     "nachher": 79
+    },
+    {
+     "pfad": "$.dienststellen_uebersicht[].entscheide[]",
+     "vorher": 132,
+     "nachher": 134
+    },
+    {
+     "pfad": "$.dienststellen_uebersicht[].formulare[]",
+     "vorher": 513,
+     "nachher": 520
+    },
+    {
+     "pfad": "$.dienststellen_uebersicht[].massnahmen[]",
+     "vorher": 112,
+     "nachher": 113
+    },
+    {
+     "pfad": "$.dienststellen_uebersicht[].standard.ech.*",
+     "vorher": 187,
+     "nachher": 188
+    },
+    {
+     "pfad": "$.forms[]",
+     "vorher": 513,
+     "nachher": 520
+    },
+    {
+     "pfad": "$.forms[].beilagen[]",
+     "vorher": 1380,
+     "nachher": 1410
+    },
+    {
+     "pfad": "$.forms[].blockers[]",
+     "vorher": 1041,
+     "nachher": 1073
+    },
+    {
+     "pfad": "$.forms[].data_fields[]",
+     "vorher": 6700,
+     "nachher": 6795
+    },
+    {
+     "pfad": "$.forms[].gestaltung.merkmale[]",
+     "vorher": 6135,
+     "nachher": 6307
+    },
+    {
+     "pfad": "$.forms[].handlungsbedarf[]",
+     "vorher": 2783,
+     "nachher": 2823
+    },
+    {
+     "pfad": "$.forms[].konzepte.abweichungen[]",
+     "vorher": 241,
+     "nachher": 228
+    },
+    {
+     "pfad": "$.forms[].live.angebot[]",
+     "vorher": 99,
+     "nachher": 162
+    },
+    {
+     "pfad": "$.forms[].outcome.gesetzesebenen[]",
+     "vorher": 41,
+     "nachher": 42
+    },
+    {
+     "pfad": "$.forms[].outcome.rechtsmittel_kandidaten[]",
+     "vorher": 577,
+     "nachher": 684
+    },
+    {
+     "pfad": "$.forms[].parteien[]",
+     "vorher": 1567,
+     "nachher": 1579
+    },
+    {
+     "pfad": "$.forms[].register.je_register.*",
+     "vorher": 1170,
+     "nachher": 1186
+    },
+    {
+     "pfad": "$.forms[].similar[]",
+     "vorher": 100,
+     "nachher": 102
+    },
+    {
+     "pfad": "$.forms[].standard.ech.*",
+     "vorher": 1319,
+     "nachher": 1335
+    },
+    {
+     "pfad": "$.forms[].standard_divergenzen.angleichen[]",
+     "vorher": 1646,
+     "nachher": 1698
+    },
+    {
+     "pfad": "$.forms[].standard_divergenzen.bezeichnungen[]",
+     "vorher": 4271,
+     "nachher": 4310
+    },
+    {
+     "pfad": "$.forms[].standard_divergenzen.fehlend[]",
+     "vorher": 982,
+     "nachher": 990
+    },
+    {
+     "pfad": "$.gestaltung.merkmale[].formulare.betroffen[]",
+     "vorher": 108,
+     "nachher": 111
+    },
+    {
+     "pfad": "$.gestaltung.merkmale[].formulare.luecke[]",
+     "vorher": 1100,
+     "nachher": 1139
+    },
+    {
+     "pfad": "$.gestaltung.merkmale[].formulare.nicht_messbar[]",
+     "vorher": 117,
+     "nachher": 131
+    },
+    {
+     "pfad": "$.gestaltung.merkmale[].formulare.weicht_ab[]",
+     "vorher": 239,
+     "nachher": 244
+    },
+    {
+     "pfad": "$.kennungen.nicht_aktiv[]",
+     "vorher": 216,
+     "nachher": 234
+    },
+    {
+     "pfad": "$.konzepte.konzepte[].zellen[]",
+     "vorher": 360,
+     "nachher": 361
+    },
+    {
+     "pfad": "$.quellenabgleich.portal.online.defekt[]",
+     "vorher": null,
+     "nachher": 4
+    },
+    {
+     "pfad": "$.services[].dokumente[]",
+     "vorher": 521,
+     "nachher": 559
+    },
+    {
+     "pfad": "$.services[].online.formulare[]",
+     "vorher": null,
+     "nachher": 79
+    },
+    {
+     "pfad": "$.services[].online.ziele[]",
+     "vorher": null,
+     "nachher": 87
+    },
+    {
+     "pfad": "$.themenkatalog[].services_modelliert[]",
+     "vorher": 772,
+     "nachher": 778
+    },
+    {
+     "pfad": "$.themenkatalog[].services_ohne_daten[]",
+     "vorher": 143,
+     "nachher": 137
+    },
+    {
+     "pfad": "$.themenkatalog[].wiederholt[]",
+     "vorher": 1346,
+     "nachher": 1364
+    },
+    {
+     "pfad": "$.wirkung.gesetze[]",
+     "vorher": 102,
+     "nachher": 103
+    },
+    {
+     "pfad": "$.wirkung.gesetze[].artikel[]",
+     "vorher": 1060,
+     "nachher": 1102
+    },
+    {
+     "pfad": "$.wirkung.gesetze[].dienststellen[]",
+     "vorher": 132,
+     "nachher": 137
+    },
+    {
+     "pfad": "$.wirkung.gesetze[].formulare[]",
+     "vorher": 606,
+     "nachher": 625
+    },
+    {
+     "pfad": "$.wirkung.gesetze[].services[]",
+     "vorher": 515,
+     "nachher": 531
+    },
+    {
+     "pfad": "$.wirkung.gesetze[].weitere.entscheid_formulare[]",
+     "vorher": 128,
+     "nachher": 139
+    },
+    {
+     "pfad": "$.wirkung.gesetze[].weitere.rechtsmittel_formulare[]",
+     "vorher": 128,
+     "nachher": 139
+    },
+    {
+     "pfad": "$.wirkung.uebersicht.betroffen.formulare[]",
+     "vorher": 223,
+     "nachher": 237
+    },
+    {
+     "pfad": "$.wirkung.uebersicht.betroffen.gesetze[]",
+     "vorher": 37,
+     "nachher": 38
+    },
+    {
+     "pfad": "$.wirkung.uebersicht.betroffen.services[]",
+     "vorher": 181,
+     "nachher": 192
+    }
+   ]
+  },
+  {
+   "export": "citygov_datafields.jsonl",
+   "version": "1.0.2",
+   "vorher": "1.0.1",
+   "stufe": "patch",
+   "stand": "2026-11-03T16:23:33",
+   "zaehlungen": [
+    {
+     "pfad": "$",
+     "vorher": 6700,
+     "nachher": 6795
+    },
+    {
+     "pfad": "$.allowed_values[]",
+     "vorher": 5095,
+     "nachher": 5180
+    },
+    {
+     "pfad": "$.legal_basis[]",
+     "vorher": 7309,
+     "nachher": 7705
+    },
+    {
+     "pfad": "$.subfields[]",
+     "vorher": 8652,
+     "nachher": 8787
+    }
+   ]
+  },
+  {
+   "export": "citygov_llm.json",
+   "version": "1.3.0",
+   "vorher": "1.2.0",
+   "stufe": "minor",
+   "stand": "2026-11-03T16:23:33",
+   "schluessel_neu": [
+    "$.meta.labels.live_erkl.online_live",
+    "$.meta.labels.live_stand.online_live",
+    "$.meta.labels.online_gegen",
+    "$.meta.labels.online_gegen.databank_dvsh_eformular",
+    "$.meta.labels.online_gegen.databank_formular",
+    "$.meta.labels.online_gegen.keins",
+    "$.meta.labels.online_gegen.pdf_kandidat",
+    "$.meta.labels.online_gegen_erkl",
+    "$.meta.labels.online_gegen_erkl.databank_dvsh_eformular",
+    "$.meta.labels.online_gegen_erkl.databank_formular",
+    "$.meta.labels.online_gegen_erkl.keins",
+    "$.meta.labels.online_gegen_erkl.pdf_kandidat",
+    "$.meta.labels.online_ziel",
+    "$.meta.labels.online_ziel.anderes",
+    "$.meta.labels.online_ziel.anmeldung",
+    "$.meta.labels.online_ziel.defekt",
+    "$.meta.labels.online_ziel.eformular",
+    "$.meta.labels.online_ziel.eformular_beilagen",
+    "$.meta.labels.online_ziel.fremdformular",
+    "$.meta.labels.online_ziel.info",
+    "$.meta.labels.online_ziel.portal",
+    "$.meta.labels.online_ziel.rechner",
+    "$.meta.labels.online_ziel.termin",
+    "$.meta.labels.online_zugang",
+    "$.meta.labels.online_zugang.alle_seiten_sichtbar",
+    "$.meta.labels.online_zugang.nur_beilagen",
+    "$.meta.labels.online_zugang.nur_einstieg",
+    "$.meta.labels.online_zugang.teilweise_sichtbar",
+    "$.meta.labels.ton_map.live.online_live",
+    "$.meta.labels.ton_map.online",
+    "$.meta.labels.ton_map.online.databank_dvsh_eformular",
+    "$.meta.labels.ton_map.online.databank_formular",
+    "$.meta.labels.ton_map.online.keins",
+    "$.meta.labels.ton_map.online.pdf_kandidat"
+   ],
+   "zaehlungen": [
+    {
+     "pfad": "$.lebenslagen[].services_modelliert[]",
+     "vorher": 772,
+     "nachher": 778
+    },
+    {
+     "pfad": "$.lebenslagen[].services_ohne_daten[]",
+     "vorher": 143,
+     "nachher": 137
+    },
+    {
+     "pfad": "$.lebenslagen[].wiederholt[]",
+     "vorher": 1346,
+     "nachher": 1364
+    },
+    {
+     "pfad": "$.meta.kennungen.nicht_aktiv[]",
+     "vorher": 216,
+     "nachher": 234
+    },
+    {
+     "pfad": "$.services[].forms[]",
+     "vorher": 513,
+     "nachher": 520
+    }
+   ]
+  },
+  {
+   "export": "citygov_prefill.json",
+   "version": "1.1.2",
+   "vorher": "1.1.1",
+   "stufe": "patch",
+   "stand": "2026-11-03T16:23:33",
+   "zaehlungen": [
+    {
+     "pfad": "$.formulare.*",
+     "vorher": 507,
+     "nachher": 514
+    },
+    {
+     "pfad": "$.formulare.*[]",
+     "vorher": 8718,
+     "nachher": 8863
+    },
+    {
+     "pfad": "$.meta.formular_kennung.*",
+     "vorher": 507,
+     "nachher": 514
+    }
+   ]
+  },
+  {
+   "export": "citygov_verzeichnis.json",
+   "version": "1.0.2",
+   "vorher": "1.0.1",
+   "stufe": "patch",
+   "stand": "2026-11-03T16:23:33",
+   "zaehlungen": [
+    {
+     "pfad": "$.verzeichnis[]",
+     "vorher": 513,
+     "nachher": 520
+    },
+    {
+     "pfad": "$.verzeichnis[].aufbewahrung.standardregime.refs[]",
+     "vorher": 1832,
+     "nachher": 1860
+    },
+    {
+     "pfad": "$.verzeichnis[].datenkategorien.besonders_schuetzenswert[]",
+     "vorher": 80,
+     "nachher": 87
+    }
+   ]
+  },
+  {
+   "export": "citygov_ech_schemas.json",
+   "version": "1.0.3",
+   "vorher": "1.0.2",
+   "stufe": "patch",
+   "stand": "2026-11-03T16:23:33",
+   "zaehlungen": [
+    {
+     "pfad": "$.formulare[]",
+     "vorher": 513,
+     "nachher": 520
+    },
+    {
+     "pfad": "$.formulare[].ech.*",
+     "vorher": 2568,
+     "nachher": 2594
+    },
+    {
+     "pfad": "$.formulare[].ohne_standard[]",
+     "vorher": 4575,
+     "nachher": 4619
+    }
    ]
   }
  ]

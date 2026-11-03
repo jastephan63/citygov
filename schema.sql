@@ -541,6 +541,53 @@ CREATE TABLE IF NOT EXISTS portal_service (        -- one row per page of the LI
     kontakt_einheit TEXT, kontakt_adresse TEXT, kontakt_email TEXT,
     harvested_at TEXT);
 
+CREATE TABLE IF NOT EXISTS online_ziel (           -- where «Online erledigen» of a live page leads (load_online.py)
+    slug       TEXT PRIMARY KEY,                       -- the live page (portal_service.slug)
+    service_id INTEGER REFERENCES service(id),
+    url        TEXT,
+    art        TEXT NOT NULL CHECK (art IN ('eformular','eformular_beilagen','fremdformular','anmeldung','rechner',
+                                            'termin','portal','info','defekt','anderes')),
+    befund     TEXT,                                   -- reviewed, one or two sentences
+    abruf      TEXT,                                   -- fetch result of a non-eForm target
+    abzug      TEXT);
+
+CREATE TABLE IF NOT EXISTS online_formular (       -- an online form behind «Online erledigen» (eforms.sh.ch …), read only
+    id                  TEXT PRIMARY KEY,              -- <mandant>/<kennung> of the eForm, or the slug for another provider
+    system              TEXT,
+    start_url           TEXT,
+    name                TEXT,                          -- as the form prints it
+    name_intern         TEXT,                          -- the eForm's internal form name
+    zugang              TEXT NOT NULL CHECK (zugang IN ('alle_seiten_sichtbar','teilweise_sichtbar','nur_beilagen',
+                                                        'nur_einstieg')),
+    schritte            TEXT,                          -- JSON: the progress-bar steps
+    felder_sichtbar     TEXT,                          -- JSON [{label, typ}]: controls on the pages reached without input
+    n_felder_sichtbar   INTEGER,
+    gegenstueck_art     TEXT NOT NULL CHECK (gegenstueck_art IN ('databank_formular','databank_dvsh_eformular',
+                                                                 'pdf_kandidat','keins')),
+    gegenstueck_form_id INTEGER REFERENCES form(id),   -- the Formular of the databank that is this form
+    gegenstueck_sha256  TEXT,                          -- the paper version (online_datei) when one was found
+    beleg               TEXT,
+    pruefung            TEXT,                          -- the second review's mark
+    abzug               TEXT);
+
+CREATE TABLE IF NOT EXISTS online_formular_seite ( -- which live page leads to which online form
+    formular_id TEXT NOT NULL REFERENCES online_formular(id) ON DELETE CASCADE,
+    slug        TEXT NOT NULL,
+    service_id  INTEGER REFERENCES service(id),
+    via         TEXT,                                  -- 'Schaltfläche' / 'migrationsamt.sh.ch'
+    PRIMARY KEY (formular_id, slug));
+
+CREATE TABLE IF NOT EXISTS online_datei (          -- documents behind «Online erledigen»: linked, or found by a web search
+    url        TEXT PRIMARY KEY,
+    sha256     TEXT NOT NULL,
+    bytes      INTEGER,
+    dateiname  TEXT,
+    herkunft   TEXT NOT NULL CHECK (herkunft IN ('verlinkt','websuche')),
+    slug       TEXT,
+    service_id INTEGER REFERENCES service(id),
+    label      TEXT,
+    abzug      TEXT);
+
 CREATE TABLE IF NOT EXISTS quellen_abzug (         -- one row per harvest of DVSH / SHEP / the live portal (citygov/load/quellen_log.py)
     quelle TEXT NOT NULL CHECK (quelle IN ('DVSH','SHEP','Portal')),
     datum  TEXT NOT NULL,                          -- date of the harvest (YYYY-MM-DD)

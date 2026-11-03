@@ -1,0 +1,46 @@
+{
+ "hinweis": "eCH-Urteile Formular 506, Panel 2026-11-03, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-11-03/ech/506 --nur-offene=506",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Zweitprüfung bestätigt. Das PDF fragt unter «Name:» nach dem amtlichen Familiennamen der ausländischen Person, deren Ausweis verloren ging. eCH-0044 hat den Status Genehmigt und 28 Elemente. officialName steht dort wörtlich so (personIdentificationLightType, id 800, die Zeile hält bereits id 800). Das Feld hat keine Teilfelder. ech_herkunft ist leer, nicht 'propagiert', deshalb ist 'korrekt' nicht zulässig und der Wert wird als 'besser' unverändert wiederholt. Er deckt sich mit den Migrationsamt-Formularen 507–513.",
+   "feld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Zweitprüfung bestätigt. «Vorname:» ist der Vorname der ausländischen Person. eCH-0044 (Genehmigt) hat firstName wörtlich so (personIdentificationLightType, id 801 wie auf der Zeile). Das Feld hat keine Teilfelder. ech_herkunft ist leer, nicht 'propagiert', deshalb wird der Wert als 'besser' unverändert wiederholt. Er deckt sich mit den Formularen 507–513.",
+   "feld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Zweitprüfung bestätigt. «Geburtsdatum:» ist das Geburtsdatum der Person. Es dient der Identifikation und ist weder ein Zeitraum noch ein früherer Wert. Das PDF selbst gibt kein Format vor, TT.MM.JJJJ stammt aus dem Feldformat der Databank (date.ch). eCH-0044 (Genehmigt) hat dateOfBirth wörtlich so (personIdentificationLightType, datePartiallyKnownType, id 804 wie auf der Zeile). ech_herkunft ist leer, nicht 'propagiert', deshalb 'besser' mit unverändertem Wert. Er deckt sich mit den Formularen 507–513.",
+   "feld": "Geburtsdatum",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Zweitprüfung bestätigt. Die ZEMIS-Nummer ist die Personenkennung im Zentralen Migrationsinformationssystem des Bundes. Sie ist weder AHV-Nummer noch lokale Kennung. eCH-0044 (Genehmigt) hat otherPersonId wörtlich so (namedPersonIdType mit personIdCategory und personId, id 795 wie auf der Zeile). Gesucht habe ich im ganzen Katalog nach 'zemis' in Elementnamen und Kontexten. Der einzige Treffer ist der Codewert ZEMIS in eCH-0239 knownRegistryDesignationType (ohne Status, registerlokale Kennung), also kein besseres Element. Alle 10 ZEMIS-Felder im Korpus (497, 506–513, 584) tragen otherPersonId. ech_herkunft ist leer, nicht 'propagiert', deshalb 'besser' mit unverändertem Wert.",
+   "feld": "ZEMIS-NR.",
+   "standard": "eCH-0044",
+   "element": "otherPersonId"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Zweitprüfung bestätigt. Laut PDF ist das eine Beilage («Notwendige Unterlagen/Dokumente als Beilage einzureichen: Verlustmeldung der Polizei»), in der Databank data_type 'attachment'. Es ist also ein eingereichtes Dokument und keine Wertangabe. Die Zeile hat bisher keine Zuordnung. eCH-0039 (Genehmigt, Dossiers und Dokumente, 103 Elemente) hat document wörtlich so (contentType, documentType, id 772). Das ist das Container-Element für ein Dokument. Im Korpus sind Beilagen gespalten: eCH-0058 attachment 24-mal, eCH-0039 document 22-mal. Die Migrationsamt-Schwesterformulare 507, 508, 509 und 512 nutzen für ihre Beilagen jedoch einheitlich eCH-0039 document, deshalb dieselbe Wahl hier.",
+   "feld": "Verlustmeldung der Polizei",
+   "standard": "eCH-0039",
+   "element": "document"
+  }
+ ]
+}

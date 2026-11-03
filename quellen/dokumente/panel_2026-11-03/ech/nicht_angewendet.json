@@ -1,0 +1,166 @@
+{
+ "hinweis": "Bestehende eCH-Zuordnungen der Formulare 497, 508, 511, 512, 513, die das Panel vom 03.11.2026 anders sähe. NICHT angewendet: die Übernahme wendet Urteile nur auf offene Zeilen an (load_ech_verdicts_new.py --nur-offene), und die Vorschläge widersprechen sich teils selbst und der Praxis der Databank (z. B. «Name und Adresse des Betriebes» einmal occupationData, einmal organisationMailAdress; «Bemerkungen» ohne das sonst verwendete Element comment). Zur Durchsicht festgehalten.",
+ "vorschlaege": [
+  {
+   "form_id": 497,
+   "art": "feld",
+   "punkt": "Gesuchsart",
+   "bisher": "None·None",
+   "panel": "eCH-0223·eventType"
+  },
+  {
+   "form_id": 497,
+   "art": "feld",
+   "punkt": "Personalien der Ausländerin/des Ausländers",
+   "bisher": "eCH-0044·personIdentification",
+   "panel": "eCH-0223·personData"
+  },
+  {
+   "form_id": 497,
+   "art": "feld",
+   "punkt": "Eltern",
+   "bisher": "eCH-0021·nameOfParent",
+   "panel": "eCH-0021·birthAddonData"
+  },
+  {
+   "form_id": 497,
+   "art": "feld",
+   "punkt": "Strafverfahren hängig",
+   "bisher": "None·None",
+   "panel": "eCH-0051·None"
+  },
+  {
+   "form_id": 497,
+   "art": "feld",
+   "punkt": "Vorstrafen",
+   "bisher": "None·None",
+   "panel": "eCH-0051·None"
+  },
+  {
+   "form_id": 497,
+   "art": "teilfeld",
+   "punkt": "Arbeitgeberdaten › GAV-Bezeichnung",
+   "bisher": "None·None",
+   "panel": "eCH-0256·None"
+  },
+  {
+   "form_id": 497,
+   "art": "feld",
+   "punkt": "Selbständig",
+   "bisher": "eCH-0021·kindOfEmployment",
+   "panel": "eCH-0278·isSelfEmployed"
+  },
+  {
+   "form_id": 497,
+   "art": "teilfeld",
+   "punkt": "Ausbildung und Berufserfahrung › Ausbildung/bisherige Tätigkeit",
+   "bisher": "eCH-0260·profession",
+   "panel": "kein_standard"
+  },
+  {
+   "form_id": 497,
+   "art": "feld",
+   "punkt": "Brutto-Lohn",
+   "bisher": "eCH-0278·employedRevenue",
+   "panel": "eCH-0278·dependentEmploymentDetail"
+  },
+  {
+   "form_id": 497,
+   "art": "teilfeld",
+   "punkt": "Brutto-Lohn › Betrag",
+   "bisher": "eCH-0260·grossSalary1stYear",
+   "panel": "eCH-0278·employedRevenue"
+  },
+  {
+   "form_id": 497,
+   "art": "teilfeld",
+   "punkt": "Brutto-Lohn › Pro Stunde / Pro Monat",
+   "bisher": "eCH-0260·perMonthWeekHour1stYear",
+   "panel": "kein_standard"
+  },
+  {
+   "form_id": 497,
+   "art": "teilfeld",
+   "punkt": "Personalbestand › Heutiger Personalbestand",
+   "bisher": "eCH-0108·sizeClassFte",
+   "panel": "kein_standard"
+  },
+  {
+   "form_id": 508,
+   "art": "feld",
+   "punkt": "Nummer des Passes und Gültigkeitsdauer",
+   "bisher": "None·None",
+   "panel": "eCH-0044·otherPersonId"
+  },
+  {
+   "form_id": 508,
+   "art": "feld",
+   "punkt": "Gemeinsamer Haushalt (zusammenwohnend)",
+   "bisher": "eCH-0011·separationData",
+   "panel": "kein_standard"
+  },
+  {
+   "form_id": 508,
+   "art": "feld",
+   "punkt": "Jetziger Aufenthaltszweck (Erwerbstätige)",
+   "bisher": "eCH-0021·kindOfEmployment",
+   "panel": "kein_standard"
+  },
+  {
+   "form_id": 508,
+   "art": "feld",
+   "punkt": "Name und Adresse des Betriebes",
+   "bisher": "eCH-0021·employer",
+   "panel": "eCH-0021·occupationData"
+  },
+  {
+   "form_id": 508,
+   "art": "feld",
+   "punkt": "Bemerkungen des(r) Gesuchsteller(in)",
+   "bisher": "eCH-0058·comment",
+   "panel": "kein_standard"
+  },
+  {
+   "form_id": 511,
+   "art": "feld",
+   "punkt": "Name und Adresse des Betriebes",
+   "bisher": "eCH-0021·employer",
+   "panel": "eCH-0021·occupationData"
+  },
+  {
+   "form_id": 511,
+   "art": "feld",
+   "punkt": "Bemerkungen des(r) Gesuchsteller(in)",
+   "bisher": "eCH-0058·comment",
+   "panel": "kein_standard"
+  },
+  {
+   "form_id": 512,
+   "art": "feld",
+   "punkt": "Jetziger Aufenthaltszweck (Erwerbstätige)",
+   "bisher": "eCH-0021·kindOfEmployment",
+   "panel": "kein_standard"
+  },
+  {
+   "form_id": 512,
+   "art": "feld",
+   "punkt": "Name und Adresse des Betriebes",
+   "bisher": "eCH-0021·employer",
+   "panel": "eCH-0010·organisationMailAdress"
+  },
+  {
+   "form_id": 512,
+   "art": "feld",
+   "punkt": "Bemerkungen des(r) Gesuchsteller(in)",
+   "bisher": "eCH-0058·comment",
+   "panel": "kein_standard"
+  },
+  {
+   "form_id": 513,
+   "art": "feld",
+   "punkt": "Name und Adresse des Betriebes",
+   "bisher": "eCH-0021·employer",
+   "panel": "eCH-0021·occupationData"
+  }
+ ]
+}

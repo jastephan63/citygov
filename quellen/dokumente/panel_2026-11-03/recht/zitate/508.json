@@ -1,0 +1,502 @@
+{
+ "form_id": 508,
+ "mappings": [
+  {
+   "data_field": "Name",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 90",
+     "beleg": "zutreffende und vollständige Angaben über die für die Regelung des Aufenthalts wesentlichen Tatsachen machen"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Vorname",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 90",
+     "beleg": "zutreffende und vollständige Angaben über die für die Regelung des Aufenthalts wesentlichen Tatsachen machen"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Adresse",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 36",
+     "beleg": "Personen mit ... einer Aufenthalts- ... bewilligung können ihren Wohnort innerhalb des Kantons, der die Bewilligung erteilt hat, frei wählen"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 90",
+     "beleg": "zutreffende und vollständige Angaben über die für die Regelung des Aufenthalts wesentlichen Tatsachen machen"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Geburtsdatum",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 90",
+     "beleg": "zutreffende und vollständige Angaben über die für die Regelung des Aufenthalts wesentlichen Tatsachen machen"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 43",
+     "beleg": "Ausländische Ehegatten und ledige Kinder unter 18 Jahren von Personen mit Niederlassungsbewilligung haben Anspruch auf Erteilung und Verlängerung der Aufenthaltsbewilligung"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 44",
+     "beleg": "Ausländischen Ehegatten und ledigen Kindern unter 18 Jahren von Personen mit Aufenthaltsbewilligung kann eine Aufenthaltsbewilligung erteilt und verlängert werden"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 28",
+     "beleg": "a. ein vom Bundesrat festgelegtes Mindestalter erreicht haben"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "ZEMIS-Nummer",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "SH-Nummer",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Nummer des Passes und Gültigkeitsdauer",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 89",
+     "beleg": "müssen während ihres Aufenthaltes in der Schweiz im Besitz eines gültigen, nach Artikel 13 Absatz 1 anerkannten Ausweispapiers sein"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 90",
+     "beleg": "c. Ausweispapiere (Art. 89) beschaffen oder bei deren Beschaffung durch die Behörden mitwirken"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Staatsangehörigkeit",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 2",
+     "beleg": "Für Staatsangehörige der Mitgliedstaaten der Europäischen Gemeinschaft (EG) ... gilt dieses Gesetz nur so weit, als das Abkommen ... über die Freizügigkeit keine abweichenden Bestimmungen enthält"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 90",
+     "beleg": "zutreffende und vollständige Angaben über die für die Regelung des Aufenthalts wesentlichen Tatsachen machen"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "E-Mail-Adresse",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Telefonnummer",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Zivilstand",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 42",
+     "beleg": "Ausländische Ehegatten ... von Schweizerinnen und Schweizern haben Anspruch auf Erteilung und Verlängerung der Aufenthaltsbewilligung, wenn sie mit diesen zusammenwohnen"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 43",
+     "beleg": "Ausländische Ehegatten ... von Personen mit Niederlassungsbewilligung haben Anspruch auf Erteilung und Verlängerung der Aufenthaltsbewilligung"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 44",
+     "beleg": "Ausländischen Ehegatten ... von Personen mit Aufenthaltsbewilligung kann eine Aufenthaltsbewilligung erteilt und verlängert werden"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 50",
+     "beleg": "Nach Auflösung der Ehe oder der Familiengemeinschaft besteht der Anspruch des Ehegatten ... auf Erteilung und Verlängerung der Aufenthaltsbewilligung ... weiter"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 52",
+     "beleg": "Die Bestimmungen dieses Kapitels über ausländische Ehegatten gelten für die eingetragene Partnerschaft gleichgeschlechtlicher Paare sinngemäss"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Ehegatte oder Partner Schweizer(in)",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 42",
+     "beleg": "Ausländische Ehegatten ... von Schweizerinnen und Schweizern haben Anspruch auf Erteilung und Verlängerung der Aufenthaltsbewilligung"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 52",
+     "beleg": "Die Bestimmungen dieses Kapitels über ausländische Ehegatten gelten für die eingetragene Partnerschaft gleichgeschlechtlicher Paare sinngemäss"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Gemeinsamer Haushalt (zusammenwohnend)",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 42",
+     "beleg": "Anspruch auf Erteilung und Verlängerung der Aufenthaltsbewilligung, wenn sie mit diesen zusammenwohnen"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 43",
+     "beleg": "Anspruch auf Erteilung und Verlängerung der Aufenthaltsbewilligung, wenn: a. sie mit diesen zusammenwohnen"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 44",
+     "beleg": "kann eine Aufenthaltsbewilligung erteilt und verlängert werden, wenn: a. sie mit diesen zusammenwohnen"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 49",
+     "beleg": "Das Erfordernis des Zusammenwohnens nach den Artikeln 42–44 besteht nicht, wenn für getrennte Wohnorte wichtige Gründe geltend gemacht werden"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Getrennter Haushalt seit",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 49",
+     "beleg": "Das Erfordernis des Zusammenwohnens ... besteht nicht, wenn für getrennte Wohnorte wichtige Gründe geltend gemacht werden und die Familiengemeinschaft weiter besteht"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 50",
+     "beleg": "Nach Auflösung der Ehe oder der Familiengemeinschaft ... a. die Ehegemeinschaft mindestens drei Jahre bestanden hat"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Adresse des Ehegatten oder Partners",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 42",
+     "beleg": "Anspruch auf Erteilung und Verlängerung der Aufenthaltsbewilligung, wenn sie mit diesen zusammenwohnen"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 43",
+     "beleg": "Anspruch auf Erteilung und Verlängerung der Aufenthaltsbewilligung, wenn: a. sie mit diesen zusammenwohnen"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 44",
+     "beleg": "kann eine Aufenthaltsbewilligung erteilt und verlängert werden, wenn: a. sie mit diesen zusammenwohnen"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 49",
+     "beleg": "wenn für getrennte Wohnorte wichtige Gründe geltend gemacht werden und die Familiengemeinschaft weiter besteht"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Seit",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 50",
+     "beleg": "Nach Auflösung der Ehe oder der Familiengemeinschaft besteht der Anspruch ... weiter, wenn: a. die Ehegemeinschaft mindestens drei Jahre bestanden hat"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 52",
+     "beleg": "Die Bestimmungen dieses Kapitels über ausländische Ehegatten gelten für die eingetragene Partnerschaft gleichgeschlechtlicher Paare sinngemäss"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Jetziger Aufenthaltszweck (Erwerbstätige)",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 33",
+     "beleg": "Sie wird für einen bestimmten Aufenthaltszweck erteilt ... Sie ist befristet und kann verlängert werden"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 38",
+     "beleg": "Personen mit einer Aufenthaltsbewilligung, die zur selbständigen oder unselbständigen Erwerbstätigkeit zugelassen sind, können ihre Tätigkeit in der ganzen Schweiz ausüben"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 27",
+     "beleg": "Ausländerinnen und Ausländer können für eine Aus- oder Weiterbildung zugelassen werden"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 48",
+     "beleg": "Pflegekinder haben Anspruch auf Erteilung und Verlängerung einer Aufenthaltsbewilligung, wenn: a. ihre Adoption in der Schweiz vorgesehen ist"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Immatrikulationsbestätigung beilegen",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 27",
+     "beleg": "a. die Schulleitung bestätigt, dass die Aus- oder Weiterbildung aufgenommen werden kann"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 90",
+     "beleg": "b. die erforderlichen Beweismittel unverzüglich einreichen"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Name und Adresse des Betriebes",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 58a",
+     "beleg": "d. die Teilnahme am Wirtschaftsleben oder am Erwerb von Bildung"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 33",
+     "beleg": "Bei der Erteilung und der Verlängerung der Aufenthaltsbewilligung wird bei der Festlegung der Gültigkeitsdauer die Integration der betreffenden Person berücksichtigt"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Anstellungsdauer",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 33",
+     "beleg": "Bei der Erteilung und der Verlängerung der Aufenthaltsbewilligung wird bei der Festlegung der Gültigkeitsdauer die Integration der betreffenden Person berücksichtigt"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 58a",
+     "beleg": "d. die Teilnahme am Wirtschaftsleben oder am Erwerb von Bildung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Befristet bis",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 33",
+     "beleg": "Sie ist befristet und kann verlängert werden ... bei der Festlegung der Gültigkeitsdauer die Integration der betreffenden Person berücksichtigt"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 58a",
+     "beleg": "d. die Teilnahme am Wirtschaftsleben oder am Erwerb von Bildung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Beschäftigungsgrad / Arbeitszeit (Stunden pro Woche)",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 58a",
+     "beleg": "d. die Teilnahme am Wirtschaftsleben oder am Erwerb von Bildung"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 33",
+     "beleg": "Bei der Erteilung und der Verlängerung der Aufenthaltsbewilligung wird bei der Festlegung der Gültigkeitsdauer die Integration der betreffenden Person berücksichtigt"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Aufenthaltszweck (Nichterwerbstätige)",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 33",
+     "beleg": "Sie wird für einen bestimmten Aufenthaltszweck erteilt"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 27",
+     "beleg": "Ausländerinnen und Ausländer können für eine Aus- oder Weiterbildung zugelassen werden"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 28",
+     "beleg": "Ausländerinnen und Ausländer, die nicht mehr erwerbstätig sind, können zugelassen werden"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 29",
+     "beleg": "Ausländerinnen und Ausländer können zu medizinischen Behandlungen zugelassen werden"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 42",
+     "beleg": "Ausländische Ehegatten ... von Schweizerinnen und Schweizern haben Anspruch auf Erteilung und Verlängerung der Aufenthaltsbewilligung"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 43",
+     "beleg": "Ausländische Ehegatten und ledige Kinder unter 18 Jahren von Personen mit Niederlassungsbewilligung haben Anspruch auf ... Verlängerung der Aufenthaltsbewilligung"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 44",
+     "beleg": "Ausländischen Ehegatten und ledigen Kindern unter 18 Jahren von Personen mit Aufenthaltsbewilligung kann eine Aufenthaltsbewilligung erteilt und verlängert werden"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 48",
+     "beleg": "Pflegekinder haben Anspruch auf Erteilung und Verlängerung einer Aufenthaltsbewilligung"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 62",
+     "beleg": "e. oder eine Person, für die sie oder er zu sorgen hat, auf Sozialhilfe angewiesen ist"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 101",
+     "beleg": "können Personendaten, einschliesslich besonders schützenswerter Personendaten, von Ausländerinnen und Ausländern ... bearbeiten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Auf Stellensuche seit",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 58a",
+     "beleg": "d. die Teilnahme am Wirtschaftsleben oder am Erwerb von Bildung"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 33",
+     "beleg": "Bei der Erteilung und der Verlängerung der Aufenthaltsbewilligung wird bei der Festlegung der Gültigkeitsdauer die Integration der betreffenden Person berücksichtigt"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Nachweis der finanziellen Situation beilegen",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 28",
+     "beleg": "c. über die notwendigen finanziellen Mittel verfügen"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 27",
+     "beleg": "c. die notwendigen finanziellen Mittel vorhanden sind"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 29",
+     "beleg": "Die Finanzierung und die Wiederausreise müssen gesichert sein"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 62",
+     "beleg": "e. oder eine Person, für die sie oder er zu sorgen hat, auf Sozialhilfe angewiesen ist"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 90",
+     "beleg": "b. die erforderlichen Beweismittel unverzüglich einreichen"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 101",
+     "beleg": "können Personendaten, einschliesslich besonders schützenswerter Personendaten, von Ausländerinnen und Ausländern ... bearbeiten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Beilagen",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 89",
+     "beleg": "müssen während ihres Aufenthaltes in der Schweiz im Besitz eines gültigen, nach Artikel 13 Absatz 1 anerkannten Ausweispapiers sein"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 90",
+     "beleg": "c. Ausweispapiere (Art. 89) beschaffen oder bei deren Beschaffung durch die Behörden mitwirken"
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 41",
+     "beleg": "Ausländerinnen und Ausländer erhalten mit der Bewilligung in der Regel einen entsprechenden Ausweis"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Bemerkungen des(r) Gesuchsteller(in)",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Ort und Datum",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Unterschrift des(r) Gesuchsteller(in)",
+   "cites": [],
+   "over_collection": true
+  }
+ ]
+}

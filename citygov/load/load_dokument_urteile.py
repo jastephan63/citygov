@@ -5,7 +5,8 @@ holds its bytes.
 DVSH lists per service the files a person submits or reads (documents[],
 submissionEndpoint, each with its sha256); SHEP and the live portal services.sh.ch
 link them from the page (/api/catalog/assets/<sha256>.<ext>), the live portal also
-links files on sh.ch (fetched with the harvest, load_portal.py). A file whose sha256 equals a
+links files on sh.ch (fetched with the harvest, load_portal.py), and the pages behind
+its «Online erledigen» link documents too (load_online.py). A file whose sha256 equals a
 form.file_hash is a Formular of the databank. Every other file was read and
 judged from its content by a panel, and a sceptical second review checked each
 verdict that would change the databank: a Merkblatt, a newer/older/the same
@@ -70,6 +71,9 @@ def listed_hashes(c):
     if c.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='portal_service'").fetchone():
         for r in c.execute("SELECT dokumente, datei_links FROM portal_service"):
             walk(r["dokumente"]); walk(r["datei_links"])
+    # the documents behind the live portal's «Online erledigen» (load_online.py)
+    if c.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='online_datei'").fetchone():
+        out |= {r[0] for r in c.execute("SELECT sha256 FROM online_datei")}
     return out
 
 

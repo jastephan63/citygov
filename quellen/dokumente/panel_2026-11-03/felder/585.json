@@ -1,0 +1,174 @@
+{
+ "form_id": 585,
+ "data_fields": [
+  {
+   "name": "Personalien",
+   "definition": "Angaben zur gesuchstellenden Person im Kopf des Formulars: ZEMIS-Nummer, kantonale Referenz (mit vorgedrucktem Präfix SH), Name(n), Vorname(n), Geburtsdatum und Staatsangehörigkeit.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Zemis-Nr.",
+    "kant. Ref.",
+    "Name(n)",
+    "Vorname(n)",
+    "Geb.- Dat",
+    "Staatsangehörigkeit"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Zivilstand",
+   "definition": "Aktueller Zivilstand der gesuchstellenden Person, eine Option aus den vorgedruckten Kästchen.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "ledig",
+    "verheiratet",
+    "getrennt",
+    "verwitwet",
+    "geschieden",
+    "eingetragene Partnerschaft",
+    "durch Tod aufgelöste Partnerschaft",
+    "gerichtlich aufgelöste Partnerschaft"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Gründe der Aufrechterhaltung der Niederlassungsbewilligung",
+   "definition": "Grund oder Gründe, aus denen die Niederlassungsbewilligung trotz Auslandaufenthalt aufrechterhalten werden soll; jede Option ist ein eigenes Kästchen.",
+   "data_type": "multiselect",
+   "required": true,
+   "allowed_values": [
+    "Militärdienst (Belege liegen bei)",
+    "Studium, Sprachaufenthalt oder Auslandaufenthalt zu sonstigen Ausbildungszwecken (Immatrikulationsbestätigung, Bescheinigung der Lehranstalt liegt bei)",
+    "Arbeitseinsatz für einen schweizerischen Arbeitgeber im Ausland (Arbeitsvertrag liegt bei)",
+    "Besondere medizinische Gründe (Arztzeugnis liegt bei)",
+    "Andere Gründe (bitte in separatem Schreiben detailliert darlegen und allfällige Belege beilegen)"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Belege (Gründe der Aufrechterhaltung der Niederlassungsbewilligung)",
+   "definition": "Nachweis zum angekreuzten Grund, den das Formular als beiliegend verlangt: Belege zum Militärdienst, Immatrikulationsbestätigung bzw. Bescheinigung der Lehranstalt, Arbeitsvertrag, Arztzeugnis oder bei anderen Gründen ein separates Schreiben mit detaillierter Darlegung und allfälligen Belegen.",
+   "data_type": "attachment",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Datum der Abreise",
+   "definition": "Kalendertag, an dem die gesuchstellende Person für den Auslandaufenthalt abreist.",
+   "data_type": "date",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Geplantes Rückkehrdatum",
+   "definition": "Monat und Jahr der geplanten Rückkehr in die Schweiz.",
+   "data_type": "date",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "Monat/Jahr"
+  },
+  {
+   "name": "Adresse im Ausland",
+   "definition": "Anschrift der gesuchstellenden Person während des Auslandaufenthalts.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "c/o",
+    "Strasse",
+    "PLZ und Wohnort",
+    "Land"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Kontaktadresse in der Schweiz",
+   "definition": "Person und Anschrift in der Schweiz, über die die gesuchstellende Person während des Auslandaufenthalts erreichbar ist.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Vorname und Name",
+    "Strasse",
+    "PLZ und Wohnort"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Ehepartner/in oder eingetragene/r Partner/in",
+   "definition": "Angaben zum Ehepartner bzw. zur eingetragenen Partnerin oder zum eingetragenen Partner, der oder die als Familienangehörige/r ebenfalls wegzieht.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Vorname",
+    "Name",
+    "Geb.- Dat"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Die unterzeichnende Person wird durch die nachgenannten, ihrer elterlichen Sorge unterstellten minderjährigen Kinder begleitet",
+   "definition": "Angaben zu den minderjährigen Kindern unter der elterlichen Sorge der unterzeichnenden Person, die beim Wegzug mitkommen (wegziehende Familienangehörige), je Kind eine Zeile.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Vorname",
+    "Name",
+    "Geb.- Dat"
+   ],
+   "format": "5 Zeilen"
+  },
+  {
+   "name": "Beilagen",
+   "definition": "Die im Merkblatt Aufrechterhaltung genannten Beilagen, die zusammen mit dem Gesuchsformular beim Migrationsamt und Passbüro einzureichen sind.",
+   "data_type": "attachment",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ort und Datum",
+   "definition": "Ort und Kalenderdatum der Unterzeichnung des Gesuchs.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Ort",
+    "Datum"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Unterschrift des Gesuchstellers/der Gesuchstellerin bzw. des gesetzlichen Vertreters/der gesetzlichen Vertreterin",
+   "definition": "Unterschrift der gesuchstellenden Person oder ihrer gesetzlichen Vertretung, mit der die Vollständigkeit und Wahrheit der Angaben erklärt wird.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Wegziehende/r Partner/in",
+   "definition": "Unterschrift des ebenfalls wegziehenden Ehepartners bzw. der eingetragenen Partnerin oder des eingetragenen Partners.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  }
+ ],
+ "hinweis": "Korrekturen: keine. Geprüft gegen den Text und das Original-PDF (2 Seiten, 40 AcroForm-Felder). Alle Angaben sind vorhanden und stehen in der Reihenfolge des Formulars. Die Teilfelder entsprechen den gedruckten Zeilen, auch die einzeiligen Beschriftungen «PLZ und Wohnort» und «Vorname und Name». Die Partnerzeile und die 5 Kinderzeilen entsprechen den AcroForm-Feldern Vorname/Name/GebDat bis _6. Es gibt zwei Unterschriftslinien. Ein Beilagen-Ankreuzkatalog fehlt auf dem Formular, deshalb ist «Beilagen» ein attachment. Die Belege je Grund sind ein eigenes attachment, weil das Formular sie in den Optionen ausdrücklich als beiliegend verlangt. Anmerkungen: (1) Der Kopfblock trägt auf dem Formular keine eigene Überschrift. «Personalien» ist der übliche Sammelname und ist nicht gedruckt. (2) Das Formular kennzeichnet nichts als freiwillig, deshalb ist alles required=true. Partnerblock, Kinderzeilen und die Partner-Unterschrift gelten aber nur, wenn Familienangehörige mit wegziehen. (3) «(Monat/Jahr)» ist als format geführt, nicht im Namen. Keine Felder der Person: die Zwischentitel «Angaben zum Auslandaufenthalt» und «Wegziehende Familienangehörige», der Einreichungshinweis (Migrationsamt und Passbüro, Mühlentalstrasse 105, 8200 Schaffhausen, mit den Beilagen gemäss Merkblatt Aufrechterhaltung) und die Erklärung, die Angaben vollständig und wahrheitsgetreu gemacht zu haben (Art. 90 AIG). Es gibt kein Feld, das nur das Amt ausfüllt."
+}

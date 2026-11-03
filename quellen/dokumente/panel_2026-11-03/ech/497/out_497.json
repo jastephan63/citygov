@@ -1,0 +1,548 @@
+{
+ "hinweis": "eCH-Urteile Formular 497, Panel 2026-11-03, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-11-03/ech/497 --nur-offene=497",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Erteilung vs. Verlängerung ist die Art des ausländerrechtlichen Geschäftsfalls. eCH-0223 (laut ech.ch genehmigt 2022, aktuell) hat dafür personEventMessageType/eventType. Dessen Codeliste eventTypeType enthält «prolongation» (Verlängerung) und für eine Neuerteilung «moveIn»/«othercaseOfMigration». Das bisherige kein_standard ist damit überholt. eCH-0258 serviceName ist nur ein generischer Dienstname.",
+   "feld": "Gesuchsart",
+   "standard": "eCH-0223",
+   "element": "eventType"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Gefragt ist die beantragte Bewilligungsart (Einreise, L, B, G, Dienstleistungserbringer L/B, C). Dafür steht der Code eCH-0006 residencePermit (residencePermitType), wie bei «Aufenthaltsbewilligung Typ» im Bestand. Die Verfahrensoptionen Umwandlung und Familiennachzug kommen zusätzlich als eCH-0223 eventType vor (conversion, familyReunification). Die Zuordnung stimmt, wurde aber nicht propagiert.",
+   "feld": "Gesuch für",
+   "standard": "eCH-0006",
+   "element": "residencePermit"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Der Composite umfasst Name, Vorname, Geburtsdatum, Geburtsort, Geburtsland, Aufenthaltsadresse und Staatsangehörigkeit. eCH-0044 personIdentification deckt nur Namen, Geschlecht und Geburtsdatum ab. eCH-0223 personDataType (Austausch Einwohnerdienst–Migrationsamt) bündelt nameData, birthData, nationalityData und residenceAddress. Das ist der Container für den ganzen Block dieses Migrationsformulars.",
+   "feld": "Personalien der Ausländerin/des Ausländers",
+   "standard": "eCH-0223",
+   "element": "personData"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Familienname → amtlicher Name eCH-0044 officialName. Die Zuordnung stimmt, wurde aber nicht propagiert.",
+   "elternfeld": "Personalien der Ausländerin/des Ausländers",
+   "teilfeld": "Familienname(n)",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname(n) → eCH-0044 firstName. Die Zuordnung stimmt, wurde aber nicht propagiert.",
+   "elternfeld": "Personalien der Ausländerin/des Ausländers",
+   "teilfeld": "Vorname(n)",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Geburtsdatum → eCH-0044 dateOfBirth. Die Zuordnung stimmt, wurde aber nicht propagiert.",
+   "elternfeld": "Personalien der Ausländerin/des Ausländers",
+   "teilfeld": "Geburtsdatum",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Geburtsort → eCH-0011 birthDataType/placeOfBirth. Das ist die Konvention im Bestand (12 Teilfelder). Die Zuordnung stimmt, wurde aber nicht propagiert.",
+   "elternfeld": "Personalien der Ausländerin/des Ausländers",
+   "teilfeld": "Geburtsort",
+   "standard": "eCH-0011",
+   "element": "placeOfBirth"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Gemeint ist das Land des Geburtsorts, also eCH-0011 country im generalPlaceType (placeOfBirth/foreignCountry). Die Zeile zeigt heute auf country im countryInfoType. Das ist das Land der Staatsangehörigkeit und damit eine andere Angabe.",
+   "elternfeld": "Personalien der Ausländerin/des Ausländers",
+   "teilfeld": "Geburtsland",
+   "standard": "eCH-0011",
+   "element": "country"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Eine freie Adresszeile für die gegenwärtige Aufenthaltsadresse, bei Einreisegesuchen auch im Ausland. eCH-0010 addressInformationType deckt Schweizer und ausländische Adressen ab. eCH-0223 residenceAddress (swissAddressInformationType) nimmt nur Schweizer Adressen. Die Zuordnung stimmt, wurde aber nicht propagiert.",
+   "elternfeld": "Personalien der Ausländerin/des Ausländers",
+   "teilfeld": "Adresse (gegenwärtige Aufenthaltsadresse)",
+   "standard": "eCH-0010",
+   "element": "addressInformation"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Staatsangehörigkeit → eCH-0011 nationalityData (Status und Land, Mehrfachnennung möglich). Das ist die Konvention im Bestand (40 Teilfelder). Die Zuordnung stimmt, wurde aber nicht propagiert.",
+   "elternfeld": "Personalien der Ausländerin/des Ausländers",
+   "teilfeld": "Staatsangehörigkeit",
+   "standard": "eCH-0011",
+   "element": "nationalityData"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Der Composite enthält Mutter und Vater. Laut XSD enthält eCH-0021 birthAddonDataType genau nameOfParent mit maxOccurs=2, ist also der Container für beide Elternnamen. Die bisherige Zuordnung nameOfParent beschreibt nur einen einzelnen Elternteil.",
+   "feld": "Eltern",
+   "standard": "eCH-0021",
+   "element": "birthAddonData"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name der Mutter → eCH-0021 nameOfParentType/officialName. Die Zuordnung stimmt, wurde aber nicht propagiert.",
+   "elternfeld": "Eltern",
+   "teilfeld": "Mutter: Name(n)",
+   "standard": "eCH-0021",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname der Mutter → eCH-0021 nameOfParentType/firstName. Die Zuordnung stimmt, wurde aber nicht propagiert.",
+   "elternfeld": "Eltern",
+   "teilfeld": "Mutter: Vorname(n)",
+   "standard": "eCH-0021",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name des Vaters → eCH-0021 nameOfParentType/officialName. Die Zuordnung stimmt, wurde aber nicht propagiert.",
+   "elternfeld": "Eltern",
+   "teilfeld": "Vater: Name(n)",
+   "standard": "eCH-0021",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname des Vaters → eCH-0021 nameOfParentType/firstName. Die Zuordnung stimmt, wurde aber nicht propagiert.",
+   "elternfeld": "Eltern",
+   "teilfeld": "Vater: Vorname(n)",
+   "standard": "eCH-0021",
+   "element": "firstName"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "weiblich/männlich → eCH-0044 sex. Die Zuordnung stimmt, wurde aber nicht propagiert.",
+   "feld": "Geschlecht",
+   "standard": "eCH-0044",
+   "element": "sex"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Zivilstandscode → eCH-0011 maritalStatus. Richtiger Kontext ist das allgemeine maritalDataType. Die Zeile zeigt auf den Scheidungs-Restriktionstyp maritalDataRestrictedDivorceType. Die Optionen «gerichtlich getrennt/getrennt lebend» führt eCH-0011 als separationData neben dem Zivilstand.",
+   "feld": "Zivilstand",
+   "standard": "eCH-0011",
+   "element": "maritalStatus"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "«… seit wann» ist das Datum, ab dem der Zivilstand gilt → eCH-0011 dateOfMaritalStatus, im Kontext maritalDataType und nicht im Scheidungs-Restriktionstyp. Für die beiden Trennungszeilen wäre separationValidFrom genauer. Das Feld fasst aber alle vier «seit wann»-Zeilen zusammen, und die meisten davon sind Zivilstandsereignisse.",
+   "feld": "Zivilstand seit",
+   "standard": "eCH-0011",
+   "element": "dateOfMaritalStatus"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ja/Nein-Feld zu einem hängigen Strafverfahren, fachlich im Basis-Datenkatalog Polizei und Justiz eCH-0051 (Genehmigt, ohne Elemente). Darum bleibt das Element leer. Das ist die Konvention im Bestand für alle «Strafverfahren hängig»-Felder. Die Elementsuche nach criminal/penal/convict/sentence/judgement brachte nichts Passendes.",
+   "feld": "Strafverfahren hängig",
+   "standard": "eCH-0051",
+   "element": ""
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ja/Nein-Feld zu Vorstrafen, also Daten der Strafjustiz → eCH-0051 (Genehmigt, ohne Elemente, Element bleibt leer). Das ist die Konvention im Bestand. Ein Ja/Nein-Feld bekommt ohnehin kein Wertelement.",
+   "feld": "Vorstrafen",
+   "standard": "eCH-0051",
+   "element": ""
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Gesucht nach purpose/reason/motive/Zweck in allen 290 Standards. eCH-0006 residencePermitRuling ist ein Regelungscode (01–09) und kein Zweck. eCH-0211 intendedPurpose betrifft Baugesuche, eCH-0229 purpose die Steuerverwaltung. eCH-0041 «Einreise mit Arbeitsbewilligung» ist laut ech.ch aufgehoben und ein Prozess-Hilfsmittel ohne Elemente. Kein Element definiert den Aufenthaltszweck.",
+   "feld": "Zweck des Aufenthaltes"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Der Container für die beantragte Dauer von/bis ist eCH-0011 personType/residencePermit (residencePermitDataType mit residencePermitValidFrom/ValidTill). Das sind Periodenelemente, keine Momentwerte. Die Zuordnung stimmt, wurde aber nicht propagiert.",
+   "feld": "Dauer des Aufenthaltes",
+   "standard": "eCH-0011",
+   "element": "residencePermit"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Beginn der beantragten Aufenthaltsdauer, also Beginn der Bewilligungsgültigkeit → residencePermitValidFrom. Die Zuordnung stimmt, wurde aber nicht propagiert.",
+   "elternfeld": "Dauer des Aufenthaltes",
+   "teilfeld": "von",
+   "standard": "eCH-0011",
+   "element": "residencePermitValidFrom"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Ende der beantragten Aufenthaltsdauer → residencePermitValidTill. Die Zuordnung stimmt, wurde aber nicht propagiert.",
+   "elternfeld": "Dauer des Aufenthaltes",
+   "teilfeld": "bis",
+   "standard": "eCH-0011",
+   "element": "residencePermitValidTill"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Ein Ankreuzfeld bekommt kein Wertelement wie ValidTill. Gesucht nach unlimit/indefinite/permanent/duration im ganzen Katalog. Ein boolesches Element für eine unbeschränkte Dauer gibt es nicht.",
+   "elternfeld": "Dauer des Aufenthaltes",
+   "teilfeld": "Unbeschränkte Dauer"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die ZEMIS-Nummer ist ein fremder Personenidentifikator (namedPersonIdType mit personIdCategory) → eCH-0044 otherPersonId. Das ist die Konvention im Bestand (ZEMIS-Nummer 7×). Die Zuordnung stimmt, wurde aber nicht propagiert.",
+   "feld": "ZEMIS-Nummer",
+   "standard": "eCH-0044",
+   "element": "otherPersonId"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Gesucht nach visa/visum/embass/consul/botschaft/represent/mission in allen Standards. Die Treffer sind nur Vertreterpersonen aus Steuer und Berufsbildung (eCH-0119/0229/0260/0278), keine Auslandvertretung. Auch eCH-0006 und eCH-0223 kennen keine Auslandvertretung.",
+   "feld": "Schweizer Vertretung für Visumsabholung"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ort und Datum der Unterzeichnung. Einziger Kandidat ist eCH-0119 locationAndDate aus den Steuerbeilagen (attachedFormsType), also steuerspezifisch. Ein allgemeines Element dafür gibt es nicht. Das ist die Konvention im Bestand (Ort und Datum 31× kein_standard, die Teilfelder überall kein_standard).",
+   "feld": "Ort und Datum"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Ort der Unterzeichnung. Im Katalog gibt es nur Adress- und Geburtsortelemente (eCH-0010 town ist ein Adressteil). Ein Element für den Unterzeichnungsort fehlt, und eCH-0119 locationAndDate ist steuerspezifisch.",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Datum der Unterzeichnung. eCH-0058 messageDate/eventDate sind Metadaten einer Meldung und nicht das Datum der Unterschrift. Ein passendes Element gibt es nicht.",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Eigenhändige Unterschrift. Gesucht nach signat/signed/stamp: Es gibt nur die Lehrvertrag-Bestätigungen in eCH-0260 signaturesType, und die Signatur-Standards (eCH-0091/0220/0230/0250/0282) haben keine Elemente. Das ist die Konvention für Unterschriften (34× kein_standard).",
+   "feld": "Unterschrift der Ausländerin/des Ausländers"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Container für die Daten des Arbeitgeberbetriebs (Identifikation/Name, NOGA, Adresse, Telefon, E-Mail) ist eCH-0098 organisationType/organisation. Die Zuordnung stimmt, wurde aber nicht propagiert.",
+   "feld": "Arbeitgeberdaten",
+   "standard": "eCH-0098",
+   "element": "organisation"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Die BUR-Nummer der Arbeitsstätte ist im Unternehmensregister eCH-0108 localUnitMasterDataType/localId (localIdType, Muster [A-B][1-9][0-9]{7}). Die Zuordnung stimmt, wurde aber nicht propagiert.",
+   "elternfeld": "Arbeitgeberdaten",
+   "teilfeld": "BUR-Nr.",
+   "standard": "eCH-0108",
+   "element": "localId"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Firmen- bzw. Betriebsname → eCH-0098 organisationIdentificationType/organisationName. Die Zuordnung stimmt, wurde aber nicht propagiert.",
+   "elternfeld": "Arbeitgeberdaten",
+   "teilfeld": "Name des Betriebes",
+   "standard": "eCH-0098",
+   "element": "organisationName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Branche ist die Wirtschaftszweigzuordnung → eCH-0098 nogaCode. Das ist die Konvention im Bestand (6×). Die Zuordnung stimmt, wurde aber nicht propagiert.",
+   "elternfeld": "Arbeitgeberdaten",
+   "teilfeld": "Branche",
+   "standard": "eCH-0098",
+   "element": "nogaCode"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Gesucht nach collective/agreement/GAV/tariff, kein Element. Der GAV gehört fachlich zum Vollzug der flankierenden Massnahmen, also zu eCH-0256 (In Arbeit, ohne Elemente). Darum nur der Standard, wie bei «Gesamtarbeitsvertrag (GAV)» und «NAV / GAV» im Bestand. Die Zuordnung stimmt, wurde aber nicht propagiert.",
+   "elternfeld": "Arbeitgeberdaten",
+   "teilfeld": "GAV-Bezeichnung",
+   "standard": "eCH-0256",
+   "element": ""
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Strassenteil der Betriebsadresse → eCH-0010 addressInformationType/street. Die Hausnummer steht in derselben Zeile. Das ist die Konvention im Bestand. Die Zuordnung stimmt, wurde aber nicht propagiert.",
+   "elternfeld": "Arbeitgeberdaten",
+   "teilfeld": "Strasse/Hausnummer",
+   "standard": "eCH-0010",
+   "element": "street"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Postleitzahl (mit Ort) der Betriebsadresse → eCH-0010 swissZipCode. Das ist die Konvention im Bestand für «PLZ/Ort» (30×). Die Zuordnung stimmt, wurde aber nicht propagiert.",
+   "elternfeld": "Arbeitgeberdaten",
+   "teilfeld": "PLZ/Ort",
+   "standard": "eCH-0010",
+   "element": "swissZipCode"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name der Kontaktperson im Betrieb → eCH-0010 organisationMailAddressInfoType/lastName (Person zuhanden der Organisation). Die Zuordnung stimmt, wurde aber nicht propagiert.",
+   "elternfeld": "Arbeitgeberdaten",
+   "teilfeld": "Verantwortliche Person",
+   "standard": "eCH-0010",
+   "element": "lastName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Telefon → eCH-0046 phoneNumber. Die Zuordnung stimmt, wurde aber nicht propagiert.",
+   "elternfeld": "Arbeitgeberdaten",
+   "teilfeld": "Telefon",
+   "standard": "eCH-0046",
+   "element": "phoneNumber"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Faxnummer → eCH-0046 phoneNumber (Fax ist eine phoneCategory). Das ist die Konvention im Bestand (12×). Die Zuordnung stimmt, wurde aber nicht propagiert.",
+   "elternfeld": "Arbeitgeberdaten",
+   "teilfeld": "Fax",
+   "standard": "eCH-0046",
+   "element": "phoneNumber"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "E-Mail → eCH-0046 emailAddress. Die Zuordnung stimmt, wurde aber nicht propagiert.",
+   "elternfeld": "Arbeitgeberdaten",
+   "teilfeld": "E-Mail",
+   "standard": "eCH-0046",
+   "element": "emailAddress"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Bezeichnung der künftigen Tätigkeit → eCH-0021 jobDataType/jobTitle (auch in eCH-0223 personData/jobData enthalten). Die Zuordnung stimmt, wurde aber nicht propagiert.",
+   "feld": "Beschäftigung als",
+   "standard": "eCH-0021",
+   "element": "jobTitle"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ein einzelnes Ankreuzfeld (ja/nein). Ein Ja/Nein-Feld bekommt keinen Erwerbsart-Code wie eCH-0021 kindOfEmployment. Das boolesche Element für «ist selbständig erwerbend» ist eCH-0278 personalDetailType/isSelfEmployed (xs:boolean), wie bei «Selbständige Erwerbstätigkeit» im Bestand.",
+   "feld": "Selbständig",
+   "standard": "eCH-0278",
+   "element": "isSelfEmployed"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Es gibt keinen Container für Ausbildung, Ausbildungsdauer, Berufserfahrung und Kaderfunktion einer erwerbstätigen Person. eCH-0260 beschreibt nur Lehrverhältnisse der Schweizer Berufsbildung. Keines der Teilfelder hat einen Standard.",
+   "feld": "Ausbildung und Berufserfahrung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Freitext zu abgeschlossener Ausbildung oder früherer Tätigkeit, also ein vergangener Wert. eCH-0260 profession (QPgradesResponsesType) ist nur der codierte Schweizer Lehrberuf im Qualifikationsverfahren, eCH-0260 education ein dreistelliger Bildungstyp-Code. eCH-0021 jobTitle und eCH-0278 job sind aktuelle Werte. Gesucht nach educ/profess/training/qualif/experience/previous, ohne passendes Element.",
+   "elternfeld": "Ausbildung und Berufserfahrung",
+   "teilfeld": "Ausbildung/bisherige Tätigkeit"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Anzahl Ausbildungsjahre. eCH-0260 durationFrom/durationTo sind Daten eines Lehrvertrags und keine Jahresanzahl. Gesucht nach duration/year, ohne passendes Element.",
+   "elternfeld": "Ausbildung und Berufserfahrung",
+   "teilfeld": "Dauer der Ausbildung (Jahre)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Gesucht nach experien/Berufserfahrung im ganzen Katalog, kein Element. Das ist die Konvention im Bestand (Teilfeld «Berufserfahrung (Jahre)» 4× kein_standard).",
+   "elternfeld": "Ausbildung und Berufserfahrung",
+   "teilfeld": "Berufserfahrung (Jahre)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Ja/Nein-Feld. Gesucht nach cadre/manag/execut/leader, kein Element.",
+   "elternfeld": "Ausbildung und Berufserfahrung",
+   "teilfeld": "Kaderfunktion (ja/nein)"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Beginn der Anstellung → eCH-0021 occupationDataType/occupationValidFrom, wie bei «Stellenantritt» im Bestand. Die Zuordnung stimmt, wurde aber nicht propagiert.",
+   "feld": "Zeitpunkt des Stellenantritts",
+   "standard": "eCH-0021",
+   "element": "occupationValidFrom"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Vollzeit/Teilzeit ist der Beschäftigungsgrad in grober Form (Vollzeit = 100 %). Das einzige Element dafür ist eCH-0278 employmentPercentage (dependentEmploymentType). Gesucht auch nach fullTime/partTime, ohne Treffer. Auswahl statt Prozentwert ist ein Formatunterschied und keine andere Angabe. Die Zuordnung stimmt, wurde aber nicht propagiert.",
+   "feld": "Umfang der Beschäftigung",
+   "standard": "eCH-0278",
+   "element": "employmentPercentage"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "befristet/unbefristet/auf Abruf. Gesucht nach contract/fixedTerm/temporar/onCall/limited/permanent im ganzen Katalog. eCH-0278 employmentEndDate ist ein Datum und nicht die Art. eCH-0021 kindOfEmployment ist die Erwerbsart (Codes 0–4, selbständig/unselbständig usw.), also eine andere Angabe. eCH-0276 temporaryEmployeesExpenses gehört zur Buchhaltung.",
+   "feld": "Art des Arbeitsverhältnisses"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ein Composite bekommt den Container. Die erste Prüfung schlug eCH-0260 salary vor. Dessen Elemente grossSalary1stYear/perMonthWeekHour1stYear sind laut XSD aber die «Entschädigung 1. Lehrjahr» eines Lehrvertrags, also eine andere Angabe. Der Betrag gehört zu eCH-0278 employedRevenue (Konvention im Bestand), und dessen Container ist dependentEmploymentDetail (mit employmentPercentage, employmentStartDate usw.). Die bisherige Zuordnung employedRevenue ist ein Wertelement und kein Container.",
+   "feld": "Brutto-Lohn",
+   "standard": "eCH-0278",
+   "element": "dependentEmploymentDetail"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bruttolohn der anzustellenden Person. eCH-0260 grossSalary1stYear ist laut XSD die «Entschädigung 1. Lehrjahr» im Lehrvertrag, also eine andere Angabe. Das Element für das Einkommen aus einem unselbständigen Arbeitsverhältnis ist eCH-0278 dependentEmploymentDetail/employedRevenue. So sind im Bestand auch «Brutto-Lohn», «Bruttolohn», «Bruttolohn pro Monat» und «Letzter vertraglicher Bruttolohn pro Stunde» zugeordnet.",
+   "elternfeld": "Brutto-Lohn",
+   "teilfeld": "Betrag",
+   "standard": "eCH-0278",
+   "element": "employedRevenue"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Einheit des Lohnansatzes. Der einzige Kandidat eCH-0260 perMonthWeekHour1stYear ist laut XSD die «Angabe Entschädigung pro Monat/Woche/Stunde (1. Lehrjahr)» eines Lehrvertrags, also eine andere Angabe. Gesucht nach perMonth/perHour/hourly/monthly/wage/rate/frequency/period im ganzen Katalog. eCH-0278 monthlyAmount/monthlyPayment betreffen Alimente. Ein Element für die Lohneinheit einer Anstellung gibt es nicht.",
+   "elternfeld": "Brutto-Lohn",
+   "teilfeld": "Pro Stunde / Pro Monat"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Wöchentliche Arbeitszeit → eCH-0260 workingHoursType/hoursPerWeek. Laut XSD heisst es allgemein «Stunden pro Woche» und ist an kein Lehrjahr gebunden. Das ist die Konvention im Bestand (z. B. «Wöchentliche Normalarbeitszeit im Betrieb», «Arbeitszeit in Stunden pro Woche»). Die Zuordnung stimmt, wurde aber nicht propagiert.",
+   "elternfeld": "Brutto-Lohn",
+   "teilfeld": "Wochenstunden",
+   "standard": "eCH-0260",
+   "element": "hoursPerWeek"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Beide Teilfelder bleiben ohne Standard (siehe dort), darum gibt es keinen Container. Die erste Prüfung schlug eCH-0108 localUnitMasterData vor, begründet nur über sizeClassFte. Das ist aber eine Grössenklasse und keine Personenzahl.",
+   "feld": "Personalbestand"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Gefragt ist die Anzahl Beschäftigter heute. eCH-0108 sizeClassFte ist laut XSD (sizeClassFteType) ein Grössenklassen-Code 1–12 nach Vollzeitäquivalenten im Unternehmensregister, keine Personenzahl. Er füllt diese Angabe nicht und lässt sich auch nicht aus ihr füllen (so schon das Panel zu Formular 543). Gesucht nach employ/staff/personnel/worker/workforce/headcount/fte/numberOf/persons: eCH-0260 numberQualifiedPersons gehört zur Berufsbildung, eCH-0276 temporaryEmployeesExpenses zur Buchhaltung. Die sechs anderen «Personalbestand»-Zeilen auf sizeClassFte sollten nachgeprüft werden.",
+   "elternfeld": "Personalbestand",
+   "teilfeld": "Heutiger Personalbestand"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Anzahl ausländischer Beschäftigter ohne C-Bewilligung. Gesucht nach employ/staff/personnel/foreign/numberOf im ganzen Katalog, kein Element.",
+   "elternfeld": "Personalbestand",
+   "teilfeld": "davon Ausländer ohne C-Ausweis"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ja/Nein-Feld zur RAV-Stellenmeldung. Gesucht nach vacan/unemploy/RAV/recruit im ganzen Katalog. Nur eCH-0119/0278 unemploymentInsurance (Einkommen aus der ALV) wurde gefunden. Kein Standard deckt die Arbeitsvermittlung (AVAM) ab. eCH-0041 ist aufgehoben und hat keine Elemente.",
+   "feld": "Stelle beim RAV gemeldet"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Nummer einer RAV-Stellenmeldung. Weder in eCH-0044, eCH-0098, eCH-0108 noch sonst im Katalog gibt es einen Identifikator dafür.",
+   "feld": "RAV-Stellennummer"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freitext zu den Rekrutierungsbemühungen des Arbeitgebers. Gesucht nach recruit/search/vacan im ganzen Katalog: Die Treffer sind nur Personensuchen (eCH-0085/0214/0277). Kein Element.",
+   "feld": "Andere Suchbemühungen"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ja/Nein-Feld. eCH-0185 housingSituationMoveInMunicipality ist ein Code zur Wohnsituation beim Zuzug und keine Ja/Nein-Angabe zur Angemessenheit. Gesucht nach accommod/housing/dwelling/lodg/appropriate, ohne passendes Element.",
+   "feld": "Angemessene Unterkunft vorhanden"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Container für eine frühere Erwerbstätigkeit mit Zeitraum ist eCH-0021 occupationDataType/occupationData (mit occupationValidFrom/ValidTill). Das sind Periodenelemente. Die Zuordnung stimmt, wurde aber nicht propagiert.",
+   "feld": "Frühere Tätigkeiten in der Schweiz",
+   "standard": "eCH-0021",
+   "element": "occupationData"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Ein Ja/Nein-Feld bekommt kein Wertelement wie occupationData. Ein boolesches Element für eine frühere Tätigkeit in der Schweiz gibt es nicht.",
+   "elternfeld": "Frühere Tätigkeiten in der Schweiz",
+   "teilfeld": "Frühere Tätigkeiten (ja/nein)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Beginn des früheren Tätigkeitszeitraums. Das ist das Periodenelement occupationValidFrom von occupationData und kein Momentwert. Die Zuordnung stimmt, wurde aber nicht propagiert.",
+   "elternfeld": "Frühere Tätigkeiten in der Schweiz",
+   "teilfeld": "von",
+   "standard": "eCH-0021",
+   "element": "occupationValidFrom"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Ende des früheren Tätigkeitszeitraums → occupationValidTill. Die Zuordnung stimmt, wurde aber nicht propagiert.",
+   "elternfeld": "Frühere Tätigkeiten in der Schweiz",
+   "teilfeld": "bis",
+   "standard": "eCH-0021",
+   "element": "occupationValidTill"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Freie Bemerkungen des Arbeitgebers. Gesucht nach remark/comment: eCH-0058/0039 comment sind Metadaten einer Meldung, eCH-0223 businessComment ist der Geschäftskommentar des Einwohnerdienstes, eCH-0211 remark gehört zum Baugesuch. Keines davon definiert diese Angabe. Das ist die Konvention (Bemerkungen 84× kein_standard).",
+   "feld": "Bemerkungen"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Stempel und Unterschrift mit Ort und Datum. Gesucht nach signat/stamp im ganzen Katalog: Es gibt nur die Lehrvertrag-Signaturbestätigungen in eCH-0260, und eCH-0119 locationAndDate ist steuerspezifisch. Kein Element.",
+   "feld": "Ort, Datum und Unterschrift des Arbeitgebers"
+  }
+ ]
+}

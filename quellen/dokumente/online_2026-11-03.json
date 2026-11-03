@@ -1,0 +1,2371 @@
+{
+ "hinweis": "Was die Schaltfläche «Online erledigen» der 87 Live-Seiten von services.sh.ch öffnet und welches Formular der Databank das Online-Formular ist (Abzug 03.11.2026). Nur gelesen: jede Seite wie im Browser geöffnet, «Weiter» nur dort gedrückt, wo nichts einzugeben war; nichts ausgefüllt, nichts abgeschickt. Urteile aus den gespeicherten Seiten, dem DVSH-Modell und den verlinkten Dokumenten, je mit skeptischer Zweitprüfung (Feld «pruefung»).",
+ "abzug": "2026-11-03",
+ "ziele": [
+  {
+   "slug": "biometrietermin-verschieben-auslanderausweis",
+   "service_id": 490,
+   "ziel_art": "termin",
+   "ziel_befund": "Der Button führt zur Terminreservation des Bundes (EJPD, ch-edoc-reservation.admin.ch), wo man den Biometrietermin verschiebt. Gespeichert ist nur die Ladeseite «Terminvereinbarung - EJPD» mit «Loading...», ohne Formular des Kantons.",
+   "pruefung": "bestätigt",
+   "eformulare": []
+  },
+  {
+   "slug": "migrationsamt-erteilung-der-niederlassungsbewilligung-aufgrund-der-ehe-vorzeitig",
+   "service_id": 459,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button öffnet direkt das eForm «Vorzeitige Erteilung der Niederlassungsbewilligung aufgrund der Ehe» (eforms.sh.ch, generalid=ert_c_a_ehe_e). Es hat die Schritte Persönliche Angaben, Arbeitgeberdaten und Beilagen.",
+   "pruefung": "bestätigt (die Zuordnung zu 497 hält; Beleg präzisiert: «Feld für Feld» war zu stark, denn E-Mail, Telefon, Reisedokument, Kinder und Sonstiges stehen nur im eForm; ergänzt: die gespeicherten Hilfsblätter C, D und F zur C-Erteilung verlangen alle das A1)",
+   "eformulare": [
+    {
+     "id": "migrationsamt_passbuero/ert_c_a_ehe_e",
+     "name": "Vorzeitige Erteilung der Niederlassungsbewilligung aufgrund der Ehe",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Persönliche Angaben",
+      "Arbeitgeberdaten",
+      "Beilagen",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 21,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 497,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Das Hilfsblatt 28.bin nennt als Papiergesuch ausdrücklich «Vollständig ausgefülltes und unterschriebenes Gesuchsformular A1». Formular 497 «Gesuch Ausländerbewilligung (Formular A1)» hat das Kästchen «Umwandlung B in C». Im eForm-Schritt «Persönliche Angaben» stehen 21 verschiedene Felder; 16 davon hat auch A1: Familienname, Vorname, Geburtsdatum, Geburtsort, Geburtsland, Adresse, Staatsangehörigkeit, Name und Vorname von Mutter und Vater, Geschlecht, Zivilstand, Strafverfahren hängig, Vorstrafen, ZEMIS-Nummer. Der Zivilstand hat dieselben neun Werte (u.a. «gerichtlich aufgelöste Partnerschaft»). Nur das eForm hat E-Mail, Telefon, «Reisedokument vorhanden», Kinder, Sonstiges und beim Geschlecht «divers». Der eForm-Schritt «Arbeitgeberdaten» entspricht der A1-Rückseite «Arbeitgeberdaten». Die Erklärung 39.bin deckt nur 6 dieser Felder (Name, Vorname, Geb.-Dat., Staatsangehörigkeit, Adresse, Zemis-Nr.). Ihr fehlen Eltern, Geschlecht, Zivilstand, Strafverfahren, Vorstrafen und Arbeitgeber; dafür hat sie Ehepartnerdaten und eine Ehe-Erklärung. Sie ist also eine Beilage (eher Schritt «Beilagen»), nicht die Papierfassung des Gesuchs."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "migrationsamt-erwerbsloser-aufenthalt-eu-efta",
+   "service_id": 463,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button führt auf migrationsamt.sh.ch/erwerbsloser-aufenthalt-eu-efta. Die Seite verlinkt ein Hilfsblatt und zwei eForms: «Rentner/innen (EU/EFTA)» (r_EU_EFTA) und «Nichterwerbstätige Personen (EU/EFTA)» für Übrige (nerwerb_EU).",
+   "pruefung": "bestätigt",
+   "eformulare": [
+    {
+     "id": "migrationsamt_passbuero/nerwerb_EU",
+     "name": "Nichterwerbstätige Personen (EU/EFTA)",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Persönliche Angaben",
+      "Beilagen",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 21,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 497,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Das Hilfsblatt dieses Dienstes (07.bin) verlangt für Post oder Schalter das «Gesuchsformular A1». Das ist Formular 497 «Gesuch Ausländerbewilligung (Formular A1)». Die sichtbaren Felder decken den A1-Personalienblock ab: Familienname, Vorname, Geburtsdatum, Geburtsort, Geburtsland, Name und Vorname von Mutter und Vater, Staatsangehörigkeit, «Zemis-Nr. falls vorhanden» (A1: «ZEMIS Nummer»), Adresse, Geschlecht, Zivilstand, «Strafverfahren hängig», «Vorstrafen». Das A1 bietet «Aufenthaltsbewilligung (B)» und «Zweck des Aufenthaltes» an."
+     }
+    },
+    {
+     "id": "migrationsamt_passbuero/r_EU_EFTA",
+     "name": "Rentner/innen (EU/EFTA)",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Persönliche Angaben",
+      "Beilagen",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 21,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 497,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Es ist derselbe Block wie bei nerwerb_EU (Feldnamen block_pers_angaben_ohne_bew_V1_0_*). Das Hilfsblatt gilt ausdrücklich für «Rentnerinnen/Rentner, sonstige nichterwerbstätige Personen» und verlangt «Gesuchsformular A1», also Formular 497. Die Felder (Familienname, Vorname, Geburtsdatum, Geburtsort, Geburtsland, Eltern, Staatsangehörigkeit, Zemis-Nr., Geschlecht, Zivilstand, Strafverfahren hängig, Vorstrafen) entsprechen dem A1-Personalienblock."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "migrationsamt-familiennachzug-durch-schweizer-innen",
+   "service_id": 467,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button führt auf eine Zwischenseite von migrationsamt.sh.ch mit Hilfsblatt und dem eForm «Familiennachzug durch Schweizer/innen» (generalid=FNZ_CH_drittst). Das eForm erfasst den Gesuchsteller und wiederholbar bis zu 99 nachzuziehende Familienangehörige.",
+   "pruefung": "bestätigt",
+   "eformulare": [
+    {
+     "id": "migrationsamt_passbuero/FNZ_CH_drittst",
+     "name": "Familiennachzug durch Schweizer/innen",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Persönliche Angaben",
+      "Beilagen",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 19,
+     "gegenstueck": {
+      "art": "pdf_kandidat",
+      "form_id": null,
+      "pdf_sha256": "d3d278a307dcd88e6f20b70cace04e0517e85662770795a119f815e43a44db80",
+      "pdf_pfad": "SHEP/live-2026-11-03/online/dateien/30.bin",
+      "pdf_url": "https://sh.ch/fileadmin/Redaktoren/MuP/A2_A1_ausfuellbar.pdf",
+      "beleg": "Sichtbar sind die Schritte «Einstiegsseite» und «Persönliche Angaben». «Beilagen», «Kontrolle» und «Abschluss» sind ohne Eingabe nicht erfasst. «Persönliche Angaben» hat zwei Blöcke, die dem A2 aus 30.bin entsprechen. Der erste Block, «Personalien des Gesuchstellers/der Gesuchstellerin», fragt Zemis-Nr., Familienname, Vorname, Geburtsdatum, Adresse und Staatsangehörigkeit. Das A2 fragt dieselben Angaben unter «ZEMIS Nr. der Gesuchstellerin/des Gesuchstellers» und «Name und Adresse der Gesuchstellerin/des Gesuchstellers». Der zweite Block, «Personalien der Familienangehörigen, deren Nachzug erwünscht wird», fragt Familienname, Vorname, Geburtsdatum, Geburtsort, Geburtsland, Staatsangehörigkeit, Geschlecht, «Elternnamen und Vornamen», gegenwärtige Aufenthaltsadresse, «Strafverfahren hängig» und Vorstrafen. Er lässt sich mit «Weitere hinzufügen» wiederholen. Im A2 entspricht ihm «Personalien der Familienangehörigen, deren Nachzug gewünscht wird» mit Person 1–3 auf der Rückseite. Nur das eForm fragt E-Mail und Telefon und bietet beim Geschlecht «divers» an. Nur das A2 fragt Pass/ID gültig bis, «Ist die Einreise bereits erfolgt?», das Verwandtschaftsverhältnis und die Unterschrift. Das A1 (Formular 497) ist nicht das Gegenstück, denn das eForm fragt weder Zivilstand noch «Zweck des Aufenthaltes» noch Arbeitgeberangaben. Das Hilfsblatt 11.bin verlangt für Post und Schalter die «Gesuchsformulare A1 und A2» und verlinkt dafür genau diese Datei, die beide enthält."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "migrationsamt-namensanderung-nationalitatsanderung-melden",
+   "service_id": 472,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button führt auf eine Zwischenseite von migrationsamt.sh.ch. Sie verlinkt das eForm «Namensänderungen und Nationalitätsänderungen» (generalid=nam_nat_aend) und für Post oder Schalter das PDF-Formular namens_nationalitaetsaenderung.pdf.",
+   "pruefung": "bestätigt (Ausgabeurteil zusätzlich gestützt: das PDF-ModDate 2025-11-21 liegt vor der DVSH-Erfassung 2026-06-16, aus der 507 stammt)",
+   "eformulare": [
+    {
+     "id": "migrationsamt_passbuero/nam_nat_aend",
+     "name": "Namensänderungen und Nationalitätsänderungen",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Persönliche Angaben",
+      "Beilagen",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 7,
+     "gegenstueck": {
+      "art": "databank_dvsh_eformular",
+      "form_id": 507,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Formular 507 ist dateilos und aus der DVSH-formDefinition gebaut (derived_by dvsh-formdefinition, online_formular). Seine Felder Name, Vorname, Geburtsdatum und «ZEMIS-NR.» stehen auch sichtbar im eForm (Name*, Vorname*, Geburtsdatum*, «Zemis-Nr. falls vorhanden»). Das fünfte Feld «Kopie des gültigen Reisepasses…» entspricht dem Schritt «Beilagen». Der Einstiegstext des eForms ist wortgleich mit dem Formular: «Der Name/die Nationalität im Reisepass der ausländischen Person». Nur im eForm stehen Zivilstand, E-Mail und Telefon."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "migrationsamt-schulerinnen-und-schuler-aus-drittstaaten",
+   "service_id": 477,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button führt auf eine Zwischenseite von migrationsamt.sh.ch mit Hilfsblatt und dem eForm «Drittstaatsangehörige Schülerinnen und Schüler» (generalid=s_drittst).",
+   "pruefung": "bestätigt",
+   "eformulare": [
+    {
+     "id": "migrationsamt_passbuero/s_drittst",
+     "name": "Drittstaatsangehörige Schülerinnen und Schüler",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Persönliche Angaben",
+      "Beilagen",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 21,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 497,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Das Hilfsblatt (17.bin) verlangt für Post oder Schalter das «Gesuchsformular A1», also Formular 497 «Gesuch Ausländerbewilligung (Formular A1)». Die sichtbaren Felder decken den A1-Personalienblock ab: Familienname, Vorname, Geburtsdatum, Geburtsort, Geburtsland, Name und Vorname von Mutter und Vater, Staatsangehörigkeit, Zemis-Nr. (A1: «ZEMIS Nummer»), Adresse, Geschlecht, Zivilstand, «Strafverfahren hängig», «Vorstrafen». Das A1 bietet «Aufenthaltsbewilligung (B)», «Zweck des Aufenthaltes» und «Dauer des Aufenthaltes» an."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "migrationsamt-verlangerung-b-drittstaaten",
+   "service_id": 481,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button führt auf eine Zwischenseite von migrationsamt.sh.ch. Sie verlinkt das eForm «Verlängerung B für Drittstaatsangehörige» (generalid=verl_b_dritt) und für Post oder Schalter das PDF «Verlängerungsgesuch» (verlaengerungsgesuch_B.pdf).",
+   "pruefung": "bestätigt (Ausgabeurteil zusätzlich gestützt: das PDF-ModDate 2026-02-09 liegt vor der DVSH-Erfassung 2026-06-16; dieselbe Datei nennt auch DVSH 195 für Formular 509, in diesem Dienst gilt aber 508)",
+   "eformulare": [
+    {
+     "id": "migrationsamt_passbuero/verl_b_dritt",
+     "name": "Verlängerung B für Drittstaatsangehörige",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Persönliche Angaben",
+      "Beilagen",
+      "Verlängerungsgesuch",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 21,
+     "gegenstueck": {
+      "art": "databank_dvsh_eformular",
+      "form_id": 508,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Formular 508 «Verlängerungsgesuch» ist dateilos und aus der DVSH-formDefinition gebaut (dvsh-formdefinition, online_formular). DVSH 194 leitet sie aus verlaengerungsgesuch_B.pdf ab. Das eForm hat einen eigenen Schritt «Verlängerungsgesuch». Diese sichtbaren Felder decken sich mit 508: Familienname/Name, Vorname, Geburtsdatum, Adresse, Staatsangehörigkeit, «Zemis-Nr.*» (508: «ZEMIS-Nummer»), E-Mail («E-Mail-Adresse»), Telefon («Telefonnummer»), Zivilstand. Die übrigen 508-Felder (Aufenthaltszweck, Betrieb, Stellensuche) liegen vermutlich im ungesehenen Schritt."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "migrationsamt-vorbereitung-der-heirat-provisorische-aufenthaltsbewilligung",
+   "service_id": 487,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button führt auf eine Zwischenseite von migrationsamt.sh.ch mit Hilfsblatt und drei eForms je nach Staatsangehörigkeit: «Vorbereitung der Heirat durch Schweizer/innen» (VDH_ch), «… durch EU/EFTA-Staatsangehörige» (VDH_EU_drittst) und «… durch Drittstaatsangehörige» (VDH_drittst).",
+   "pruefung": "korrigiert: Gegenstück (Gesuch_vorb_heirat.pdf für alle drei eForms, Links in Hilfsblatt S. 1 und zweimal S. 2) und alle drei PDF-Urteile bestätigt; nur die Feldvergleiche ergänzt: Geschlecht der gesuchstellenden Person und «Bemerkungen:» stehen nur auf Papier, bei VDH_ch fehlten Geschlecht/Geburtsland des Ehegatten (nur eForm) sowie Mädchenfamilienname und «Art der Bewilligung» (nur Papier); Eltern im eForm als ein Feld «Elternnamen und Vornamen».",
+   "eformulare": [
+    {
+     "id": "migrationsamt_passbuero/VDH_EU_drittst",
+     "name": "Vorbereitung der Heirat durch EU/EFTA-Staatsangehörige",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Persönliche Angaben",
+      "Beilagen",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 20,
+     "gegenstueck": {
+      "art": "pdf_kandidat",
+      "form_id": null,
+      "pdf_sha256": "4e8c137886a148ac81529ee5185b9652ff98d44e56418e87a5a8ef78e565f2a0",
+      "pdf_pfad": "SHEP/live-2026-11-03/online/dateien/32.bin",
+      "pdf_url": "https://sh.ch/fileadmin/Redaktoren/MuP/Gesuch_vorb_heirat.pdf",
+      "beleg": "Hilfsblatt T, Ziff. 3.1.2 (EU/EFTA, Seite 1): Die Link-Annotation führt auf Gesuch_vorb_heirat.pdf, beschriftet «Gesuch Vorbereitung der Heirat». Ziff. 3.1.1 nennt die digitale Einreichung als Alternative. Fortschrittsanzeige des eForms: Einstiegsseite, Persönliche Angaben, Beilagen, Kontrolle, Abschluss. Im Schritt «Persönliche Angaben» stimmen mit 32.bin überein: beim Gesuchsteller bzw. der Gesuchstellerin Familienname, Vorname, Geburtsdatum, Adresse (Papier: PLZ/Wohnort in CH und Strasse) und Staatsangehörigkeit; bei der künftigen Ehepartnerin bzw. dem künftigen Ehepartner Familienname, Vorname, Geburtsdatum/-ort, Staatsangehörigkeit, Aufenthaltsadresse (Papier: «PLZ / Wohnort im Ausland»), Eltern (Papier: Mutter/Vater), Vorstrafen und Strafverfahren hängig. Nur im eForm: Zemis-Nr., E-Mail, Telefon, Geburtsland, Geschlecht der Ehepartnerin bzw. des Ehepartners und die Wahl Ehemann/Ehefrau. Nur auf Papier: Mädchenfamilienname, Geschlecht und Zivilstand der gesuchstellenden Person, Zivilstand der Ehepartnerin bzw. des Ehepartners, Einreisedatum, Art der Bewilligung, Beruf, Arbeitgeber, Bemerkungen, CH-Vertretung. Die Databank hält kein Formular des Dienstes 487. 33.bin ist eine eigene Beilage und nicht das Gesuch."
+     }
+    },
+    {
+     "id": "migrationsamt_passbuero/VDH_ch",
+     "name": "Vorbereitung der Heirat durch Schweizer/innen",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Persönliche Angaben",
+      "Beilagen",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 19,
+     "gegenstueck": {
+      "art": "pdf_kandidat",
+      "form_id": null,
+      "pdf_sha256": "4e8c137886a148ac81529ee5185b9652ff98d44e56418e87a5a8ef78e565f2a0",
+      "pdf_pfad": "SHEP/live-2026-11-03/online/dateien/32.bin",
+      "pdf_url": "https://sh.ch/fileadmin/Redaktoren/MuP/Gesuch_vorb_heirat.pdf",
+      "beleg": "Hilfsblatt T, Ziff. 3.2.2 (Schweizer/innen, Seite 2): Die Link-Annotation führt auf dieselbe Datei, beschriftet „Gesuch Vorbereitung der Heirat\". Schrittfolge wie bei VDH_EU_drittst. Die Feldliste ist identisch, bis auf eine Ausnahme: Die Staatsangehörigkeit der gesuchstellenden Person fehlt im eForm. Damit stimmen dieselben Felder mit 32.bin überein: Namen, Geburtsdaten, Adressen, Eltern, Vorstrafen, Strafverfahren. Das Papierfeld «Datum der Einreise (nur Ausländer/in):» zeigt, dass ein einziges Papierformular auch für Schweizer Gesuchstellende gilt. Die Databank hält kein Formular des Dienstes 487."
+     }
+    },
+    {
+     "id": "migrationsamt_passbuero/VDH_drittst",
+     "name": "Vorbereitung der Heirat durch Drittstaatsangehörige",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Persönliche Angaben",
+      "Beilagen",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 20,
+     "gegenstueck": {
+      "art": "pdf_kandidat",
+      "form_id": null,
+      "pdf_sha256": "4e8c137886a148ac81529ee5185b9652ff98d44e56418e87a5a8ef78e565f2a0",
+      "pdf_pfad": "SHEP/live-2026-11-03/online/dateien/32.bin",
+      "pdf_url": "https://sh.ch/fileadmin/Redaktoren/MuP/Gesuch_vorb_heirat.pdf",
+      "beleg": "Hilfsblatt T, Abschnitt 3.3 (Drittstaatsangehörige, Seite 2): Der Unterpunkt ist dort als «3.2.2» nummeriert, und seine Link-Annotation führt auf dieselbe Datei «Gesuch Vorbereitung der Heirat». Das eForm hat dieselbe Schrittfolge und eine Feldliste, die mit VDH_EU_drittst identisch ist. Übereinstimmung mit 32.bin: bei der gesuchstellenden Person und der künftigen Ehepartnerin bzw. dem künftigen Ehepartner Namen, Geburtsdatum/-ort, Staatsangehörigkeit, Adresse, Eltern, Vorstrafen und Strafverfahren hängig. Das Papierfeld «Art der Bewilligung» (L/B/C) passt zu ausländischen Gesuchstellenden. Die Databank hält kein Formular des Dienstes 487."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "migrationsamt-aufrechterhaltung-der-niederlassungsbewilligung",
+   "service_id": 456,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button führt auf die Migrationsamt-Seite «Aufrechterhaltung der Niederlassungsbewilligung». Dort kann man online, per Post oder am Schalter einreichen, und es gibt ein Hilfsblatt. Von dort geht es zum eForm aufr_c (intern «Aufrechterhaltung_C_V1_0_Seite_1»). Dieses erfasst Personalien, «Gründe der Aufrechterhaltung der Niederlassungsbewilligung» (5 Radio-Optionen) und einen Beilagen-Upload. Das Hilfsblatt verlinkt zusätzlich ein Papier-Gesuchsformular und eine PK-Erklärung (siehe Gegenstück).",
+   "pruefung": "korrigiert: Gegenstück geändert von «keins» auf «pdf_kandidat». Das Hilfsblatt 01.bin verlinkt selbst das Gesuchsformular (Ges_Aufrechterh_ausfuellbar.pdf) und die PK-Erklärung (Aufrechterhaltung_Verpflerk_PKbeit_ausfuellbar.pdf). Beide wurden nicht geladen, ihr Inhalt ist ungeprüft, und die beiden Dateinamen wurden als Suchbegriffe ergänzt. Das Urteil zum Hilfsblatt (Merkblatt, kein Formular) ist bestätigt. Das eForm (teilweise sichtbar, 9 Felder) ist bestätigt.",
+   "eformulare": [
+    {
+     "id": "migrationsamt_passbuero/aufr_c",
+     "name": "Aufrechterhaltung der Niederlassungsbewilligung",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Persönliche Angaben",
+      "Einzureichende Unterlagen",
+      "Angaben",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 9,
+     "gegenstueck": {
+      "art": "pdf_kandidat",
+      "form_id": null,
+      "pdf_sha256": "97b7bc73575c77da66e50f09cae09f639e88f0f081d8c077ce46eb9c136d17d8",
+      "pdf_pfad": "SHEP/live-2026-11-03/online/dateien/26.bin",
+      "pdf_url": "https://sh.ch/fileadmin/Redaktoren/MuP/Ges_Aufrechterh_ausfuellbar.pdf",
+      "beleg": "Papiergesuch 26.bin (Ges_Aufrechterh_ausfuellbar.pdf, nicht in der Databank) deckt Schritt 2 «Persönliche Angaben» (intern Aufrechterhaltung_C_V1_0_Seite_1) ab: Familienname/Vorname/Geburtsdatum/Staatsangehörigkeit/Zemis-Nr./Zivilstand ↔ «Name(n)», «Vorname(n)», «Geb.- Dat», «Staatsangehörigkeit», «Zemis-Nr.», «Zivilstand». Der Block «Gründe der Aufrechterhaltung der Niederlassungsbewilligung» trägt auf beiden dieselben fünf Optionen fast wortgleich, z. B. «Arbeitseinsatz für einen schweizerischen Arbeitgeber im Ausland (Arbeitsvertrag liegt bei)»; einzige Abweichung im Block: «Militärdienst (Belege liegen bei)» vs. «Militärdienst (Bitte die entsprechenden Belege hochladen)». Zivilstand-Optionen weichen leicht ab (Papier «getrennt», eFormular «gerichtlich getrennt», «getrennt lebend»). Nur im eFormular: E-Mail, Telefon, Beilage-Upload. Auf Papier zusätzlich, in den erfassten eFormular-Schritten 1–2 nicht sichtbar: kant. Ref., «Angaben zum Auslandaufenthalt», Kontaktadresse, wegziehende Familienangehörige, Unterschrift; die Schritte «Einzureichende Unterlagen»/«Angaben» wurden ohne Eingabe nicht erfasst und können diese Angaben enthalten. Hilfsblatt 01.bin verlinkt im selben Absatz das Gesuchsformular und das eFormular (start.do?id=Aufrechterhaltung_C_V1_0, passend zum internen Namen Aufrechterhaltung_C_V1_0_Einstiegsseite). 27.bin (Erklärung Pensionskassengelder) ist eine Beilage zum Gesuch und kein Gegenstück."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "migrationsamt-erteilung-der-niederlassungsbewilligung-aufgrund-niederlassungsvereinbarung-vertrag",
+   "service_id": 460,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button führt auf die Migrationsamt-Seite «Erteilung der Niederlassungsbewilligung (B in C) aufgrund Niederlassungsvereinbarung/-vertrag». Sie verlinkt ein Hilfsblatt und zwei eForms, die beide Personalien erfassen: ert_C_EU_NV_erw (Erwachsene, mit Arbeitgeberdaten) und ert_C_NV_Kind (Kinder).",
+   "pruefung": "bestätigt",
+   "eformulare": [
+    {
+     "id": "migrationsamt_passbuero/ert_C_EU_NV_erw",
+     "name": "Erteilung der Niederlassungsbewilligung aufgrund einer Niederlassungsvereinbarung oder eines Niederlassungsvertrags (Erwachsene)",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Persönliche Angaben",
+      "Arbeitgeberdaten",
+      "Beilagen",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 21,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 497,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Für Post und Schalter verlangt das Hilfsblatt das «Vollständig ausgefülltes und unterschriebenes Gesuchsformular A1». A1 (form 497, Quelle formulare/372__1603_P_Gesuchsformular_Auslaenderbewilligung_A1.pdf) hat das Ankreuzfeld «Umwandlung B in C». Dieselben Angaben stehen in beiden: Familienname, Vorname, Geburtsdatum, Geburtsort, Geburtsland, Adresse, Staatsangehörigkeit, Name und Vorname von Mutter und Vater, Geschlecht, Zivilstand, «Strafverfahren hängig», «Vorstrafen», ZEMIS-Nummer. Der eForm-Schritt «Arbeitgeberdaten» entspricht der A1-Rückseite «Arbeitgeberdaten». Die DVSH-formDefinition niederlassungsbewilligung_b_in_c hat 0 Felder."
+     }
+    },
+    {
+     "id": "migrationsamt_passbuero/ert_C_NV_Kind",
+     "name": "Erteilung der Niederlassungsbewilligung aufgrund einer Niederlassungsvereinbarung oder eines Niederlassungsvertrags (Kinder)",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Persönliche Angaben",
+      "Beilagen",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 16,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 497,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Das einzige Hilfsblatt der Seite nennt für die Papiereinreichung nur das «Gesuchsformular A1». Ein eigenes Papierformular für Kinder wurde nicht gefunden. Die Kinder-Angaben stimmen mit A1 (form 497) überein: Familienname, Vorname, Geburtsdatum, Geburtsland, Geburtsort, Name und Vorname von Mutter und Vater, Staatsangehörigkeit, Adresse, Zemis-Nr., Geschlecht. A1 hat dazu das Ankreuzfeld «Umwandlung B in C»."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "migrationsamt-erwerbstatige-eu-efta",
+   "service_id": 464,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button führt auf die Migrationsamt-Seite «Erwerbstätige (EU/EFTA)» mit Hilfsblatt. Von dort geht es zum eForm sel_unsel_erw_eu_efta «Selbständig und unselbständig Erwerbstätige (EU/EFTA)», das Personalien, Arbeitgeberdaten und Beilagen erfasst.",
+   "pruefung": "bestätigt",
+   "eformulare": [
+    {
+     "id": "migrationsamt_passbuero/sel_unsel_erw_eu_efta",
+     "name": "Selbständig und unselbständig Erwerbstätige (EU/EFTA)",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Persönliche Angaben",
+      "Arbeitgeberdaten",
+      "Beilagen",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 21,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 497,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Das Hilfsblatt nennt für Post und Schalter bei beiden Gruppen das «Gesuchsformular A1». A1 (form 497) enthält dieselben Personalien: Familienname, Vorname, Geburtsdatum, Geburtsort, Geburtsland, Adresse, Staatsangehörigkeit, Mutter und Vater, Geschlecht, Zivilstand, «Strafverfahren hängig», «Vorstrafen», ZEMIS. Der eForm-Schritt «Arbeitgeberdaten» entspricht der A1-Rückseite «Arbeitgeberdaten» mit dem Ankreuzfeld «Selbständig»."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "migrationsamt-grenzganger-innen-selbstandig-und-unselbstandig-erwerbstatige-eu-efta",
+   "service_id": 468,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button führt auf die Migrationsamt-Seite «Grenzgänger/innen selbständig und unselbständig Erwerbstätige - EU/EFTA» mit Hilfsblatt. Von dort geht es zum eForm g_bew_uns_selb, das Personalien (Staatsangehörigkeit als EU/EFTA-Auswahl), Arbeitgeberdaten und Beilagen erfasst. Die Seite verlinkt zusätzlich Mutationen für bestehende Grenzgängerbewilligungen.",
+   "pruefung": "bestätigt",
+   "eformulare": [
+    {
+     "id": "migrationsamt_passbuero/g_bew_uns_selb",
+     "name": "Selbständig und unselbständig erwerbstätige Grenzgänger/innen (EU/EFTA)",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Persönliche Angaben",
+      "Arbeitgeberdaten",
+      "Beilagen",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 21,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 497,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Das Hilfsblatt nennt für die selbständige und die unselbständige Erwerbstätigkeit das «Gesuchsformular A1». A1 (form 497) hat das Ankreuzfeld «Grenzgängerbewilligung (G)» und dieselben Personalien: Familienname, Vorname, Geburtsdatum, Geburtsort, Geburtsland, Adresse, Staatsangehörigkeit, Mutter und Vater, Geschlecht, Zivilstand, «Strafverfahren hängig», «Vorstrafen», ZEMIS. Der eForm-Schritt «Arbeitgeberdaten» entspricht der A1-Rückseite «Arbeitgeberdaten»."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "migrationsamt-rentner-innen-aus-drittstaaten",
+   "service_id": 474,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button führt auf die Migrationsamt-Seite «Rentner/innen aus Drittstaaten» mit Hilfsblatt. Von dort geht es zum eForm r_drittst «Drittstaatsangehörige Rentner/innen», das Personalien und Beilagen erfasst und keinen Arbeitgeber-Schritt hat. Im Seitenkopf steht der Tippfehler «Drittstaatsangehörige Retner/innen».",
+   "pruefung": "korrigiert: Die Aussage «deshalb fehlt im eForm der Arbeitgeber-Schritt» ist nicht belegt und steht jetzt nur als Beobachtung im Beleg. Die Zuordnung zu A1 (497) und das Urteil zum Hilfsblatt sind bestätigt.",
+   "eformulare": [
+    {
+     "id": "migrationsamt_passbuero/r_drittst",
+     "name": "Drittstaatsangehörige Rentner/innen",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Persönliche Angaben",
+      "Beilagen",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 21,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 497,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Das Hilfsblatt K nennt für die Einreichung per Post oder am Schalter das «Gesuchsformular A1». A1 (form 497) hat die Ankreuzfelder «Einreisebewilligung» und «Aufenthaltsbewilligung (B)», das Feld «Zweck des Aufenthaltes» und dieselben Personalien: Familienname, Vorname, Geburtsdatum, Geburtsort, Geburtsland, Adresse, Staatsangehörigkeit, Mutter und Vater, Geschlecht, Zivilstand, «Strafverfahren hängig», «Vorstrafen», ZEMIS. Die A1-Rückseite ist nur «Bei Erwerbstätigkeit» vom Arbeitgeber auszufüllen. Das eForm hat keinen Arbeitgeber-Schritt, was dazu passt."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "migrationsamt-stellensuche-eu-efta",
+   "service_id": 478,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button führt auf die Migrationsamt-Seite «Aufenthalt zur Stellensuche - EU/EFTA» mit Hilfsblatt. Von dort geht es zum eForm l_auf_stsuch «Aufenthalt zur Stellensuche (EU/EFTA)», das Personalien und Beilagen erfasst.",
+   "pruefung": "bestätigt",
+   "eformulare": [
+    {
+     "id": "migrationsamt_passbuero/l_auf_stsuch",
+     "name": "Aufenthalt zur Stellensuche (EU/EFTA)",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Persönliche Angaben",
+      "Beilagen",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 21,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 497,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Das Hilfsblatt Z nennt für Post und Schalter das «Gesuchsformular A1». A1 (form 497) hat das Ankreuzfeld «Kurzaufenthaltsbewilligung (L)» und dieselben Personalien: Familienname, Vorname, Geburtsdatum, Geburtsort, Geburtsland, Adresse, Staatsangehörigkeit, Mutter und Vater, Geschlecht, Zivilstand, «Strafverfahren hängig», «Vorstrafen», ZEMIS."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "migrationsamt-verlangerung-b-eu-efta",
+   "service_id": 482,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button führt auf die Migrationsamt-Seite «Verlängerung B für EU/EFTA-Staatsangehörige». Dort sind das eForm verl_b_EU verlinkt (Schritte bis «Verlängerungsgesuch») und für Post und Schalter das Papierformular verlaengerungsgesuch_B.pdf.",
+   "pruefung": "korrigiert: Beleg präzisiert. 509 stammt laut DVSH aus der Papierquelle 4593 «Formular (Post/Schalter)», nicht aus dem eForm, und deckt nur 9 der 21 sichtbaren eForm-Angaben ab. 508 hat nicht «dieselbe» Feldliste, sondern 24 von 26 gleichen Namen. Als Datumsbeleg gilt die DVSH-Erfassung vom 2026-06-16 statt des Abzugs vom 2026-10-28. Zuordnung zu 509 und gleiche_ausgabe bleiben.",
+   "eformulare": [
+    {
+     "id": "migrationsamt_passbuero/verl_b_EU",
+     "name": "Verlängerung B für EU/EFTA-Staatsangehörige",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Persönliche Angaben",
+      "Arbeitgeberdaten",
+      "Beilagen",
+      "Verlängerungsgesuch",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 21,
+     "gegenstueck": {
+      "art": "databank_dvsh_eformular",
+      "form_id": 509,
+      "pdf_sha256": "5aa310622c216e410a70d97a7a0c17c4df5661d9a999d5cf91ed9c8c54bf15b4",
+      "pdf_pfad": "/Users/jakestephan/Documents/KT Schaffhausen/SHEP/live-2026-11-03/online/dateien/21.bin",
+      "pdf_url": "https://sh.ch/fileadmin/Redaktoren/MuP/verlaengerungsgesuch_B.pdf",
+      "beleg": "Die Databank hält das Verfahren als dateiloses Formular 509 «Verlängerungsgesuch» (derived_by dvsh-formdefinition, submission_channel online_formular, 26 Felder). DVSH 195 hat diese formDefinition aber aus Quelle 4593 «Formular (Post/Schalter)» abgeleitet (originalFilename verlaengerungsgesuch_B.pdf, sourceCitations 4593), nicht aus dem eForm (Quelle 4592). 509 bildet also das Papier-Verlängerungsgesuch ab. Mit dem sichtbaren eForm-Schritt gemeinsam sind nur 9 Angaben: Familienname/Name, Vorname, Adresse, Geburtsdatum, Zemis-Nr./ZEMIS-Nummer, Staatsangehörigkeit, E-Mail, Telefon, Zivilstand. 12 sichtbare eForm-Angaben fehlen in 509: Geburtsland, Geburtsort, Name und Vorname von Mutter und Vater, «Reisedokument vorhanden», Geschlecht, Kinder, «Strafverfahren hängig», «Vorstrafen», Sonstiges. Die 509-Angaben zu Aufenthaltszweck, Betrieb und Beschäftigungsgrad gehören vermutlich in den nicht erfassten Schritt «Verlängerungsgesuch» (nicht gesehen). Die Papierversion ist verlaengerungsgesuch_B.pdf (21.bin) mit allen 26 Angaben von 509."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "schweizer-pass-und-identitatskarte-zusammen-kombi-oder-nur-den-schweizer-pass-beantragen",
+   "service_id": 491,
+   "ziel_art": "info",
+   "ziel_befund": "Der Button führt auf die Bundesseite von fedpol «Pass und Identitätskarten». Das ist eine Informationsseite ohne Formular mit Links wie «Mehr über «Beantragen»», Preise und Verlust, kein eForm des Kantons. Der Abruf lieferte Status 200.",
+   "pruefung": "bestätigt",
+   "eformulare": []
+  },
+  {
+   "slug": "migrationsamt-auslanderausweis-verloren",
+   "service_id": 457,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button führt auf die Migrationsamt-Seite «Ausländerausweis verloren». Von dort geht es zum eForm «Verlust des Ausländerausweises» (generalid=verl_auslausw), das die Personalien und den Upload der polizeilichen Verlustmeldung verlangt. Für Post und Schalter verlinkt die Seite das PDF verlustmeldung.pdf.",
+   "pruefung": "bestätigt – Felder, Schritte (1 und 2 von 2) und Ausgabe nachgeprüft. Dass der DVSH-Lauf vom 2026-06-16 nach der PDF-Änderung vom 2025-11-21 liegt, ist als zusätzlicher Beleg aufgenommen. Der sha256 steht weder in form.file_hash noch in dokument_urteil noch unter den DVSH-Assets.",
+   "eformulare": [
+    {
+     "id": "migrationsamt_passbuero/verl_auslausw",
+     "name": "Verlust des Ausländerausweises",
+     "zugang": "alle_seiten_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Persönliche Angaben",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 6,
+     "gegenstueck": {
+      "art": "databank_dvsh_eformular",
+      "form_id": 506,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Formular 506 «Verlust des Ausländerausweises» ist ein dateiloses Formular aus der DVSH-Formulardefinition (derived_by dvsh-formdefinition). Seine Felder sind «Name», «Vorname», «Geburtsdatum» und «ZEMIS-NR.». Das eForm fragt «Name*», «Vorname*», «Geburtsdatum (tt.mm.jjjj)*» und «Zemis-Nr. falls vorhanden», dazu «E-Mail*», «Telefon*» und die Beilage «Verlustmeldung der Polizei». Der Einstiegstext stimmt wörtlich mit dem PDF überein: «Die ausländische Person muss im Besitz eines gültigen Aufenthaltstitels sein». DVSH nennt als Quelle «verlustmeldung.pdf». Die Papierfassung ist verlustmeldung.pdf (sha 87600da0…)."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "migrationsamt-erteilung-der-niederlassungsbewilligung-erfolgreiche-integration-vorzeitig",
+   "service_id": 461,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button führt auf die Migrationsamt-Seite «Erteilung der Niederlassungsbewilligung (B in C) aufgrund erfolgreicher Integration - vorzeitig». Sie bietet zwei eForms an, eines für Erwachsene (Personalien, Arbeitgeberdaten, Beilagen) und eines für Kinder (Personalien, Beilagen). Für Post und Schalter verlinkt sie ein Hilfsblatt, das das «Gesuchsformular A1» verlangt.",
+   "pruefung": "bestätigt – Für beide eForms sind nur Einstieg und erste Datenseite erfasst. A1 (497, Ausgabe «01/2016», byte-gleich mit DVSH-Asset 372) ist laut Hilfsblatt das Papierformular und hat das Kästchen «Umwandlung B in C». Die Databank hält für Service 461 kein eigenes Formular, und der DVSH-formDefinition fehlen die Felder.",
+   "eformulare": [
+    {
+     "id": "migrationsamt_passbuero/ert_c_vorz_e",
+     "name": "Vorzeitige Erteilung der Niederlassungsbewilligung aufgrund erfolgreicher Integration (Erwachsene)",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Persönliche Angaben",
+      "Arbeitgeberdaten",
+      "Beilagen",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 21,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 497,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Für Post und Schalter nennt das Hilfsblatt das «Vollständig ausgefülltes und unterschriebenes Gesuchsformular A1». Formular 497 «Gesuch Ausländerbewilligung (Formular A1)» hat das Kästchen «Umwandlung B in C». Es fragt dieselben Personalien wie das eForm: «Geburtsort», «Geburtsland», «Mutter:», «Vater:», «Zivilstand», «Strafverfahren hängig», «Vorstrafen» und «ZEMIS Nummer». Die A1-Rückseite «Arbeitgeberdaten» entspricht dem eForm-Schritt «Arbeitgeberdaten». Nur das eForm fragt nach E-Mail und Telefon der antragstellenden Person, nach «Kinder» und nach «Reisedokument vorhanden»."
+     }
+    },
+    {
+     "id": "migrationsamt_passbuero/ert_c_vorz_k",
+     "name": "Vorzeitige Erteilung der Niederlassungsbewilligung aufgrund erfolgreicher Integration (Kinder)",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Persönliche Angaben",
+      "Beilagen",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 16,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 497,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Für Kinder und Erwachsene gilt dasselbe Hilfsblatt, und für den Papierweg verlangt es das «Gesuchsformular A1». Die eForm-Felder «Familienname», «Vorname», «Geburtsdatum», «Geburtsland», «Geburtsort», «Name/Vorname Mutter», «Name/Vorname Vater», «Staatsangehörigkeit», «Adresse», «Zemis-Nr.» und «Geschlecht» decken sich mit dem A1-Block «Personalien und gegenwärtige Aufenthaltsadresse der Ausländerin/des Ausländers» in Formular 497. Dazu gehört auch das Kästchen «Umwandlung B in C»."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "migrationsamt-familiennachzug-durch-drittstaatsangehorige",
+   "service_id": 465,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button führt auf die Migrationsamt-Seite «Familiennachzug durch Drittstaatsangehörige» mit Hilfsblatt und eForm. Das eForm fragt die Personalien des Gesuchstellers und, in wiederholbaren Blöcken, die der nachzuziehenden Familienangehörigen. Für Post und Schalter verlangt das Hilfsblatt die «Gesuchsformulare A1 und A2».",
+   "pruefung": "korrigiert: Die Vermutung, der Gesuchsteller-Block gehöre «vermutlich» zu A2, ist gestrichen, weil sie unbelegt war. Neu steht dort nur, was die Quellen zeigen: A1 hat dafür keinen Abschnitt und verweist auf A2. Die Suche nach A2 ist per Inhaltsscan von Verwaltung/ und den DVSH-Assets bestätigt erfolglos. A1 (497) deckt den Teil zu den Familienangehörigen; die Suche bleibt nur für A2 nötig.",
+   "eformulare": [
+    {
+     "id": "migrationsamt_passbuero/FNZ_drittst",
+     "name": "Familiennachzug durch Drittstaatsangehörige",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Persönliche Angaben",
+      "Beilagen",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 19,
+     "gegenstueck": {
+      "art": "pdf_kandidat",
+      "form_id": null,
+      "pdf_sha256": "d3d278a307dcd88e6f20b70cace04e0517e85662770795a119f815e43a44db80",
+      "pdf_pfad": "SHEP/live-2026-11-03/online/dateien/30.bin",
+      "pdf_url": "https://sh.ch/fileadmin/Redaktoren/MuP/A2_A1_ausfuellbar.pdf",
+      "beleg": "FNZ_drittst zeigt im Schritt «Persönliche Angaben» dieselben Felder wie die anderen FNZ-eForms, und sie entsprechen dem A2 in 30.bin. Der Block «Personalien des Gesuchstellers/der Gesuchstellerin» fragt Zemis-Nr., Familienname, Vorname, Geburtsdatum, Adresse und Staatsangehörigkeit. Im A2 steht dafür «ZEMIS Nr. der Gesuchstellerin/des Gesuchstellers» und «Name und Adresse der Gesuchstellerin/des Gesuchstellers». Dazu kommt der wiederholbare Block «Personalien der Familienangehörigen, deren Nachzug erwünscht wird» mit Geburtsort, Geburtsland, Geschlecht, Elternnamen, Aufenthaltsadresse, «Strafverfahren hängig» und Vorstrafen. Im A2 entspricht ihm «Personalien der Familienangehörigen, deren Nachzug gewünscht wird» mit Person 1–3. Nur das eForm fragt E-Mail und Telefon. Nur das A2 fragt Pass/ID, «Ist die Einreise bereits erfolgt?», das Verwandtschaftsverhältnis und die Unterschrift. Mit dem A1 (497) gibt es keine Überschneidung bei Zivilstand, Aufenthaltszweck oder Arbeitgeber. Das Hilfsblatt 09.bin verlangt für Post und Schalter die «Gesuchsformulare A1 und A2» und verlinkt A2_A1_ausfuellbar.pdf."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "migrationsamt-grenzgangerbewilligung-adressanderung-namensanderung-arbeitgeberwechsel-aufgabe-der-erwerbstatigkeit",
+   "service_id": 469,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button führt auf die Migrationsamt-Seite mit vier eForm-Links für Inhaber einer Grenzgängerbewilligung G: Meldung von Adressänderung, Namensänderung, Wechsel des Arbeitgebers und Aufgabe der Erwerbstätigkeit. Ein PDF für Post oder Schalter ist nicht verlinkt (migrationsamt_pdfs leer). Auch DVSH hat kein eigenes Modell: die formDefinition hat 0 Felder, und die Databank hält für Service 469 kein Formular.",
+   "pruefung": "korrigiert: (1) Formular 507 ist keine Papierfassung, sondern ein dateiloses eFormular (dvsh-formdefinition) des eForms nam_nat_aend von Service 472. (2) «Kein Papierblatt fragt Familienname, Zemis-Nr., Arbeitgeber» war falsch, denn A1 (497) fragt diese Angaben und hat die Kästchen «Grenzgängerbewilligung (G)» und «Stellenantritt/Stellenwechsel». Hilfsblatt Q verlangt A1 für diese Meldungen aber nicht. (3) Das Merkblatt 2022 verlangt bei der Adressänderung das Original, keine Kopie. Neu belegt: Das Verlängerungsgesuch G verweist Adress- und Namensänderungen auf migrationsamt.sh.ch. Die PDF-Metadaten bestätigen, dass das Merkblatt 2022 älter ist. Das Gegenstück bleibt überall «keins», alle Datei-Urteile sind bestätigt.",
+   "eformulare": [
+    {
+     "id": "migrationsamt_passbuero/G_Adressaenderung_V1_0",
+     "name": "Adressänderung Grenzgängerbewilligung G",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Persönliche Angaben",
+      "Einzureichende Unterlagen",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 7,
+     "gegenstueck": {
+      "art": "keins",
+      "form_id": null,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Laut Suchlauf fand die Websuche (sh.ch und Bund, alle vier Suchbegriffe) kein Papierformular. Die sh.ch-Treffer sind Merkblätter ohne Formularfelder. Das eine ist Hilfsblatt Q mit derselben sha256 wie dateien/12.bin, erstellt am 08.01.2026. Das andere ist sein älterer Vorgänger, das «Merkblatt» vom «Januar 2022» (CMS 2cbf7da1, erstellt am 17.12.2021). Unter Ziff. 6 «Adressänderung» nennen beide nur Unterlagen. Hilfsblatt Q verlangt eine «Kopie der bestehenden Grenzgängerbewilligung», das Merkblatt 2022 noch die «bestehende Grenzgängerbewilligung im Original». Beide verlangen dazu die «aktuelle Wohnsitzbescheinigung (Meldebescheinigung) im Original». Das Verlängerungsgesuch G (dateien/25.bin) schickt Meldungen von «Adressänderungen oder Namensänderungen» an «www.migrationsamt.sh.ch». A1 (Formular 497) fragt zwar «Familienname(n)», «ZEMIS Nummer» und «Arbeitgeberdaten» und hat ein Kästchen «Grenzgängerbewilligung (G)». Es bietet aber keine Gesuchsart Adressänderung. Hilfsblatt Q verlangt A1 nur beim Neugesuch und bei der Verlängerung. Laut Suchlauf ergaben Proben nach Dateinamen unter sh.ch/fileadmin/Redaktoren/MuP/ HTTP 404. Databank, DVSH-Assets und Verwaltung/ enthalten kein Papierformular."
+     }
+    },
+    {
+     "id": "migrationsamt_passbuero/G_Namensaenderung_V1_0",
+     "name": "Namensänderung Grenzgängerbewilligung G",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Persönliche Angaben",
+      "Einzureichende Unterlagen",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 6,
+     "gegenstueck": {
+      "art": "keins",
+      "form_id": null,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Laut Suchlauf fand die Websuche (sh.ch und Bund) kein Papierformular. Hilfsblatt Q und das Merkblatt vom Januar 2022 nennen unter Ziff. 6 «Namensänderung» nur Unterlagen: die «bestehende Grenzgängerbewilligung im Original» und eine «Kopie des gültigen Reisepasses oder der gültigen Identitätskarte mit dem neuen Namen». Das Verlängerungsgesuch G (dateien/25.bin) schickt Meldungen von «Adressänderungen oder Namensänderungen» an «www.migrationsamt.sh.ch». Formular 507 ist kein Papierformular. Es hat keine Datei (source_file leer, submission_channel online_formular, dvsh_match dvsh-formdefinition) und bildet das eForm nam_nat_aend von Service 472 «Namensänderung/Nationalitätsänderung melden» ab, nicht dieses G-eForm. Laut Suchlauf ergaben Proben nach Dateinamen HTTP 404. Databank, DVSH-Assets und Verwaltung/ enthalten kein G-eigenes Papierformular."
+     }
+    },
+    {
+     "id": "migrationsamt_passbuero/G_aufg_erwerbstaetigkeit_V1_0",
+     "name": "Aufgabe der Erwerbstätigkeit Grenzgängerbewilligung G",
+     "zugang": "alle_seiten_sichtbar",
+     "schritte": [
+      "Persönliche Angaben",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 8,
+     "gegenstueck": {
+      "art": "keins",
+      "form_id": null,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Laut Suchlauf fand die Websuche (sh.ch und Bund) kein Papierformular. Hilfsblatt Q verlangt unter Ziff. 6 «Abmeldung» kein Formular. Man soll die «Grenzgängerbewilligung im Original zu retournieren» und vermerken, «per wann der Austritt stattgefunden hat». Das Merkblatt vom Januar 2022 sagt dasselbe und in Ziff. 4 nur: «Diese Ereignisse sind dem kantonalen Migrationsamt umgehend zu melden.» Kein Papierblatt fragt nach «Arbeitgeber*» und «Datum der Beendigung der Erwerbstätigkeit*». Formular 474 passt auch nach seinem Inhalt nicht: Es gilt für «Flüchtlinge, Schutzbedürftige, vorläufig Aufgenommene oder Staatenlose (Ausweise B / S / F)». Der sh.ch-Treffer CMS 413399cd ist nur eine 404-Wartungsseite. Laut Suchlauf ergaben Proben nach Dateinamen HTTP 404."
+     }
+    },
+    {
+     "id": "migrationsamt_passbuero/G_wechsel_arbeitgeber_V1_0",
+     "name": "Wechsel des Arbeitgebers Grenzgängerbewilligung G",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Persönliche Angaben",
+      "Arbeitgeberdaten",
+      "Einzureichende Unterlagen",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 8,
+     "gegenstueck": {
+      "art": "keins",
+      "form_id": null,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Laut Suchlauf fand die Websuche (sh.ch und Bund) kein Papierformular. Hilfsblatt Q und das Merkblatt vom Januar 2022 verlangen unter Ziff. 6 «Stellenwechsel» kein Formular. Sie nennen nur die «bestehende Grenzgängerbewilligung im Original» und eine «Kopie des neuen Arbeitsvertrages oder der neuen Anstellungsbescheinigung». A1 (Formular 497) hat zwar die Kästchen «Grenzgängerbewilligung (G)» und «Stellenantritt/Stellenwechsel». Es fehlen ihm aber die Felder «Bisheriger Arbeitgeber*» und «Datum der Beendigung der Erwerbstätigkeit*». Hilfsblatt Q verlangt A1 beim Stellenwechsel nicht. Laut Suchlauf ergaben Proben nach Dateinamen unter sh.ch/fileadmin/Redaktoren/MuP/ HTTP 404. Databank, DVSH-Assets und Verwaltung/ enthalten kein Papierformular."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "migrationsamt-ruckreisevisum",
+   "service_id": 475,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button führt auf die Migrationsamt-Seite «Rückreisevisum» und von dort zum eForm «Rückreisevisum» (generalid=rueckr), das Personalien und Reisedaten fragt. Die Seite nennt nur den Weg online oder am Schalter und verlinkt kein PDF.",
+   "pruefung": "korrigiert: Die Zürcher Weisung erwähnt in Ziff. 3.3.3 ein unbenanntes «Antragsformular». «Nennt nur einen Antrag am Schalter» war darum unvollständig; ein bestimmtes Bundesformular nennt die Weisung weiterhin nicht. Das Hilfsblatt S behandelt Rückreisevisa auch für Pflegekinder (Ziff. 3.5), nicht «nur» in Ziff. 3.3. Das Gegenstück «keins» und alle Datei-Urteile sind bestätigt. Formular 517 gehört zu Service 497 (Militärdienst: Gesuch Auslandsurlaub). Beide eForm-Seiten (Schritt 1 und 2 von 2) sind erfasst.",
+   "eformulare": [
+    {
+     "id": "migrationsamt_passbuero/rueckr",
+     "name": "Rückreisevisum",
+     "zugang": "alle_seiten_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Persönliche Angaben",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 9,
+     "gegenstueck": {
+      "art": "keins",
+      "form_id": null,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Laut Suchlauf fand die Websuche (sh.ch, SEM und andere Kantone) kein Schaffhauser Gesuchsformular. Die Migrationsamt-Seite nennt nur den Weg «online oder am Schalter» und verlinkt kein PDF. Der einzige sh.ch-Treffer ist das «Hilfsblatt Reisedokumente SEM für ausländische Personen» ohne Formularfelder. Es betrifft das SEM-Verfahren: Rückreisevisa für «Schutzbedürftigen und vorläufig aufgenommenen Personen» (Ziff. 3.3) und für Pflegekinder (Ziff. 3.5). Dieses eForm gilt dagegen für Personen, die «nicht im Besitz eines gültigen Aufenthaltstitels» sind. Dass das SEM-Formular «Visum D» die Papierfassung ist, ist nicht belegt. Ihm fehlen «Zemis-Nr.» und «Reisedatum von/bis», und es fragt nach dem «Zweck des Aufenthalts in der Schweiz» und dem «Geplantes Ankunftsdatum». Die Zürcher Weisung sagt, der Kanton erteile Rückreisevisa «in Form eines nationalen Visums (Visum D)». In Ziff. 3.3.3 erwähnt sie die «Einreichung des Antragsformulars», benennt das Formular aber nicht. Für Schaffhausen gibt es keinen Beleg. Laut Suchlauf ergaben Proben nach Dateinamen unter sh.ch/fileadmin/Redaktoren/MuP/ HTTP 404. Databank, DVSH und Verwaltung/ enthalten keines. Formular 517 hat zwar «Reisedatum von/bis», gehört aber zu Service 497 (Militärdienst: Gesuch Auslandsurlaub)."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "migrationsamt-studenten-innen-und-doktoranden-innen-aus-drittstaaten",
+   "service_id": 479,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button führt auf die Migrationsamt-Seite «Studenten/innen und Doktoranden/innen aus Drittstaaten» mit Hilfsblatt und dem eForm «Drittstaatsangehörige Studenten/innen und Doktoranden/innen» (Personalien, Beilagen). Für Post und Schalter verlangt das Hilfsblatt das «Gesuchsformular A1».",
+   "pruefung": "bestätigt – Erfasst sind nur Einstieg und Persönliche Angaben. Die DVSH-Daten haben weder detectedForms noch formDefinitions, und die Databank hält für Service 479 kein eigenes Formular. A1 (497) ist laut Hilfsblatt das Papierformular.",
+   "eformulare": [
+    {
+     "id": "migrationsamt_passbuero/s_d_drittst",
+     "name": "Drittstaatsangehörige Studenten/innen und Doktoranden/innen",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Persönliche Angaben",
+      "Beilagen",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 21,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 497,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Für den Papierweg verlangt das Hilfsblatt das «Gesuchsformular A1». Die eForm-Felder «Geburtsland», «Geburtsort», «Name/Vorname Mutter», «Name/Vorname Vater», «Staatsangehörigkeit», «Adresse», «Geschlecht», «Zivilstand», «Strafverfahren hängig», «Vorstrafen» und «Zemis-Nr. falls vorhanden» decken sich mit den Personalien von Formular 497 «Gesuch Ausländerbewilligung (Formular A1)». A1 bietet dazu die Kästchen «Einreisebewilligung» und «Aufenthaltsbewilligung (B)» sowie «Zweck des Aufenthaltes» an."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "migrationsamt-verlangerung-c-eu-efta",
+   "service_id": 485,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button führt auf die Migrationsamt-Seite «Verlängerung C für EU/EFTA-Staatsangehörige» mit dem eForm «Kontrollfristverlängerung C für EU/EFTA-Staatsangehörige» (Personalien, Beilagen, Verlängerungsgesuch). Für Post und Schalter verlinkt sie das PDF verlaengerungsgesuch_C.pdf.",
+   "pruefung": "bestätigt – Für den gemeinsamen sha256 3233a4e8… ist das Urteil in beiden Bündeln einheitlich: form_id 512, gleiche_ausgabe. Formular 512 überträgt die Datei vollständiger als 510: Es hat ein eigenes Feld für das AcroForm-Textfeld «stellensuche_seit» («Auf Stellensuche seit»), das 510 nicht hat. 510 bleibt das eForm-Gegenstück für Service 483.",
+   "eformulare": [
+    {
+     "id": "migrationsamt_passbuero/verl_c_EU",
+     "name": "Kontrollfristverlängerung C für EU/EFTA-Staatsangehörige",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Persönliche Angaben",
+      "Beilagen",
+      "Verlängerungsgesuch",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 21,
+     "gegenstueck": {
+      "art": "databank_dvsh_eformular",
+      "form_id": 512,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Formular 512 «Verlängerungsgesuch Ausländerausweis» ist ein dateiloses Formular aus der DVSH-Formulardefinition, gebaut aus «verlaengerungsgesuch_C.pdf». Das eForm hat einen eigenen Schritt «Verlängerungsgesuch». Gemeinsam sind die Angaben «Familienname/Name», «Vorname», «Adresse», «Geburtsdatum», «Zemis-Nr./ZEMIS-Nummer», «Staatsangehörigkeit», «E-Mail», «Telefon» und «Zivilstand». Nur im eForm stehen Geburtsland, Geburtsort, Eltern, Geschlecht, Kinder, Strafverfahren und Vorstrafen. Der Schritt «Verlängerungsgesuch» ist nicht erfasst. Die Papierfassung ist verlaengerungsgesuch_C.pdf (sha 3233a4e8…)."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "verlangerung-c-drittstaatsangehorige",
+   "service_id": 483,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button führt auf die Migrationsamt-Seite «Verlängerung C für Drittstaatsangehörige» mit dem eForm «Kontrollfristverlängerung C für Drittstaatsangehörige» (Personalien, Beilagen, Verlängerungsgesuch). Für Post und Schalter verlinkt sie das PDF verlaengerungsgesuch_C.pdf.",
+   "pruefung": "korrigiert: Im PDF-Urteil steht jetzt form_id 512 statt 510, damit der gemeinsame sha256 3233a4e8… in beiden Bündeln dasselbe eine Urteil trägt. 510 und 512 sind beide aus derselben Datei gebaut, doch 512 hat ein Feld mehr, «Auf Stellensuche seit» (AcroForm-Feld «stellensuche_seit»), das 510 fehlt. Das eForm-Gegenstück für Service 483 bleibt 510.",
+   "eformulare": [
+    {
+     "id": "migrationsamt_passbuero/verl_c_dritt",
+     "name": "Kontrollfristverlängerung C für Drittstaatsangehörige",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Persönliche Angaben",
+      "Beilagen",
+      "Verlängerungsgesuch",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 21,
+     "gegenstueck": {
+      "art": "databank_dvsh_eformular",
+      "form_id": 510,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Formular 510 «Verlängerungsgesuch Ausländerausweis» (Service 483) ist ein dateiloses Formular aus der DVSH-Formulardefinition, gebaut aus «verlaengerungsgesuch_C.pdf». Das eForm hat einen eigenen Schritt «Verlängerungsgesuch». Gemeinsam sind die Angaben «Familienname/Name», «Vorname», «Adresse», «Geburtsdatum», «Zemis-Nr./ZEMIS-Nummer», «Staatsangehörigkeit», «E-Mail», «Telefon» und «Zivilstand». Nur im eForm stehen Geburtsland, Geburtsort, Eltern, Geschlecht, Kinder, Strafverfahren und Vorstrafen. Der Schritt «Verlängerungsgesuch» ist nicht erfasst. Die Papierfassung ist verlaengerungsgesuch_C.pdf (sha 3233a4e8…)."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "migrationsamt-besuchervisum",
+   "service_id": 458,
+   "ziel_art": "eformular_beilagen",
+   "ziel_befund": "Der Button führt auf die Zwischenseite migrationsamt.sh.ch/besuchervisum. Dort liegen ein Hilfsblatt für Post/Schalter und der Link «Gesuch online einreichen» zum eForm «Besuchervisum» (generalid=BesVis). Nach der Einstiegsseite hat das eForm nur die Seite «Beilagen» mit sechs Pflicht-Uploads und einer freiwilligen Beilage, ohne Datenfelder.",
+   "pruefung": "bestätigt",
+   "eformulare": [
+    {
+     "id": "migrationsamt_passbuero/BesVis",
+     "name": "Besuchervisum",
+     "zugang": "nur_beilagen",
+     "schritte": [
+      "Einstiegsseite",
+      "Einzureichende Unterlagen",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 0,
+     "gegenstueck": {
+      "art": "keins",
+      "form_id": null,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Die Websuche lief mit den drei Suchbegriffen und zusätzlich eingeschränkt auf sem.admin.ch, eda.admin.ch und admin.ch. Sie fand keine herunterladbare Verpflichtungserklärung. Gefunden wurde nur das SEM-«Merkblatt zur Verpflichtungserklärung» («Stand: Juli 2018»). Es ist heruntergeladen und als kein_formular beurteilt. Laut Merkblatt «überreicht sie dem Antragsteller das entsprechende Formular» (gemeint ist die Auslandvertretung). Das Formular «wird nicht im Voraus abgegeben und kann nicht heruntergeladen werden». Das passt zum Hilfsblatt 03.bin: «füllt die ausgehändigte Verpflichtungserklärung aus». Der sh.ch-Treffer CMS/get/file/cbb76a3d-… lieferte nur eine HTML-Seite «Maintenance Page … 404» und kein Dokument (HTTP 404 auch beim zweiten Abruf). Diese HTML-Datei wurde wieder entfernt. Weitere Treffer sind Merkblätter anderer Gemeinden und Kantone (Binningen, Zug, Uzwil, Küssnacht) oder deutsche Formulare nach § 68 AufenthG. Sie sind nicht das Formular des Bundes. Die früheren Befunde bleiben: Die Databank hat kein Formular zu Dienst 458, unter Verwaltung/ gibt es keinen Treffer, DVSH 169 hat weder documents noch formDefinitions. Eine Volltextsuche über die 276 DVSH-Assets findet «Verpflichtungserkl» nirgends."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "migrationsamt-erteilung-der-niederlassungsbewilligung-ordentlich-nach-10-jahren",
+   "service_id": 462,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button führt auf die Zwischenseite migrationsamt.sh.ch/erteilung-der-niederlassungsbewilligung-ordentlich. Sie bietet ein Hilfsblatt und zwei eForms: «Ordentliche Erteilung der Niederlassungsbewilligung (Erwachsene)» (ert_c_ord_e) und «(Kinder)» (ert_c_ord_k). Beide haben Personalien-Datenfelder und einen Beilagen-Schritt.",
+   "pruefung": "korrigiert: Der Beleg zu ert_c_ord_e ist präzisiert. Den Schritt «Arbeitgeberdaten» hat die Erfassung nicht gesehen, die Entsprechung zur A1-Rückseite stützt sich nur auf den Namen. Weiter gültig: Formular 497 (A1) ist in der Databank Dienst 631 (Gesuch Arbeitsbewilligung) zugeordnet. Dienst 462 hat kein Formular, obwohl sein Hilfsblatt A1 verlangt.",
+   "eformulare": [
+    {
+     "id": "migrationsamt_passbuero/ert_c_ord_e",
+     "name": "Ordentliche Erteilung der Niederlassungsbewilligung (Erwachsene)",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Persönliche Angaben",
+      "Arbeitgeberdaten",
+      "Beilagen",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 21,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 497,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Das Hilfsblatt 06.bin verlangt für Post/Schalter ein «Vollständig ausgefülltes und unterschriebenes Gesuchsformular A1». Das ist Formular 497 «Gesuch Ausländerbewilligung ( Formular A1)», Vermerk «01/2016», mit dem Ankreuzfeld «Umwandlung B in C». Der Personalienblock ist derselbe. Das eForm fragt «Familienname», «Geburtsland», «Geburtsort», «Name Mutter», «Name Vater», «Zemis-Nr.», «Zivilstand», «Strafverfahren hängig» und «Vorstrafen». A1 hat «Familienname(n)», «Geburtsort Geburtsland», «Mutter: Name(n) Vorname(n)», «ZEMIS Nummer» und «Strafverfahren hängig Ja Nein». Den Schritt «Arbeitgeberdaten» hat die Erfassung nicht gesehen. Nur sein Name deckt sich mit der A1-Rückseite «Arbeitgeberdaten BUR Nr.». Nur im eForm: E-Mail, Telefon, «Reisedokument vorhanden», «Kinder» und das Geschlecht «divers»."
+     }
+    },
+    {
+     "id": "migrationsamt_passbuero/ert_c_ord_k",
+     "name": "Ordentliche Erteilung der Niederlassungsbewilligung (Kinder)",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Persönliche Angaben",
+      "Beilagen",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 16,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 497,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Das eForm hat den A1-Personalienblock ohne Zivilstand und Strafangaben: «Familienname», «Geburtsland», «Geburtsort», «Name Mutter», «Name Vater», «Staatsangehörigkeit», «Zemis-Nr.» und «Geschlecht». Dazu kommt «gültig bis»; einen Schritt Arbeitgeberdaten gibt es nicht. A1 (Formular 497, «01/2016») wird je Person ausgefüllt («Personalien … der Ausländerin/des Ausländers») und hat das Feld «Umwandlung B in C». Das Hilfsblatt 06.bin nennt für den Postweg nur das «Gesuchsformular A1»; eine eigene Kinder-Fassung gibt es nicht. Hinweis im eForm: «Kinder unter 12 Jahren erhalten die C-Bewilligung analog Eltern»."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "migrationsamt-familiennachzug-durch-eu-efta-staatsangehorige",
+   "service_id": 466,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button führt auf die Zwischenseite migrationsamt.sh.ch/familiennachzug-durch-eu-efta-staatsangehorige mit Hilfsblatt und dem eForm «Familiennachzug durch EU/EFTA-Staatsangehörige» (FNZ_EU). Das eForm erfasst die Personalien der gesuchstellenden Person und hat einen wiederholbaren Block (bis 99) für die nachzuziehenden Familienangehörigen.",
+   "pruefung": "bestätigt",
+   "eformulare": [
+    {
+     "id": "migrationsamt_passbuero/FNZ_EU",
+     "name": "Familiennachzug durch EU/EFTA-Staatsangehörige",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Persönliche Angaben",
+      "Beilagen",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 19,
+     "gegenstueck": {
+      "art": "pdf_kandidat",
+      "form_id": null,
+      "pdf_sha256": "d3d278a307dcd88e6f20b70cace04e0517e85662770795a119f815e43a44db80",
+      "pdf_pfad": "SHEP/live-2026-11-03/online/dateien/30.bin",
+      "pdf_url": "https://sh.ch/fileadmin/Redaktoren/MuP/A2_A1_ausfuellbar.pdf",
+      "beleg": "FNZ_EU zeigt im Schritt «Persönliche Angaben» dieselben Felder wie FNZ_CH_drittst, und sie entsprechen dem A2 in 30.bin. Der erste Block, «Personalien des Gesuchstellers/der Gesuchstellerin», fragt Zemis-Nr., Familienname, Vorname, Geburtsdatum, Adresse und Staatsangehörigkeit. Im A2 steht dafür «Name und Adresse der Gesuchstellerin/des Gesuchstellers» samt ZEMIS-Nummer. Der zweite Block, «Personalien der Familienangehörigen, deren Nachzug erwünscht wird», lässt sich mit «Weitere hinzufügen» wiederholen. Im A2 entspricht ihm «Personalien der Familienangehörigen, deren Nachzug gewünscht wird» mit Person 1–3. Gemeinsam sind Geburtsort, Geburtsland, Geschlecht, Elternnamen, Aufenthaltsadresse, Strafverfahren und Vorstrafen. Nur das eForm fragt E-Mail und Telefon. Nur das A2 fragt Pass/ID, «Ist die Einreise bereits erfolgt?», das Verwandtschaftsverhältnis und die Unterschrift. Mit dem A1 (497) teilt das eForm weder Zivilstand noch «Zweck des Aufenthaltes» noch Arbeitgeberangaben. Das Hilfsblatt 10.bin verlangt in allen drei Fallgruppen die «Gesuchsformulare A1 und A2» und verlinkt dreimal A2_A1_ausfuellbar.pdf."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "migrationsamt-kantonswechsel-fur-drittstaatsangehorige",
+   "service_id": 470,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button führt auf die Zwischenseite migrationsamt.sh.ch/kantonswechsel-fuer-drittstaatsangehoerige mit Hilfsblatt und drei eForms: C Erwachsene (drittst_c_erw), L/B Erwachsene (drittst_l_b_erw) und Kinder (drittst_k). Alle haben Personalien-Datenfelder und einen Beilagen-Schritt.",
+   "pruefung": "korrigiert: Der Beleg zu drittst_l_b_erw ist präzisiert. Den Schritt «Arbeitgeberdaten» hat die Erfassung nicht gesehen, die Entsprechung zur A1-Rückseite stützt sich nur auf den Namen. Neu: Das C-eForm bietet bei «Aktuelle Bewilligung» trotz des Titels «mit Niederlassungsbewilligung C» die Werte L, B und C. Weiter gültig: Das Kinder-eForm startet ohne Einstiegsseite (formularname_intern «KW_dritt_k_V1_0_Seite_2») und zeigt den unersetzten Platzhalter «Einleitungstext». Für C verlangt das Hilfsblatt kein A1.",
+   "eformulare": [
+    {
+     "id": "migrationsamt_passbuero/drittst_c_erw",
+     "name": "Kantonswechsel für Drittstaatsangehörige mit Niederlassungsbewilligung C (Erwachsene)",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Persönliche Angaben",
+      "Beilagen",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 22,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 497,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "A1 (Formular 497, «01/2016») hat das Ankreuzfeld «Kantonswechsel» und denselben Personalienblock. Im eForm: «Familienname», «Geburtsland», «Geburtsort», «Name Mutter», «Name Vater», «Zemis-Nr.», «Zivilstand», «Strafverfahren hängig» und «Vorstrafen». In A1: «Geburtsort Geburtsland», «Mutter: Name(n) Vorname(n)» und «ZEMIS Nummer». Das eForm fragt zusätzlich E-Mail, Telefon und «Aktuelle Bewilligung» mit der Auswahl «L B C», obwohl es nur für C gilt. Einschränkung: Das Hilfsblatt 13.bin nennt das «Gesuchsformular A1» nur unter «3.2.1 Aufenthaltsbewilligung B». Unter «3.2.2 Niederlassungsbewilligung C» stehen nur Beilagen. A1 entspricht dem eForm also nach Inhalt und Verfahren, das Hilfsblatt verlangt es für C aber nicht. Ein eigenes Papierformular für C gibt es weder in der Databank noch unter Verwaltung/."
+     }
+    },
+    {
+     "id": "migrationsamt_passbuero/drittst_l_b_erw",
+     "name": "Kantonswechsel für Drittstaatsangehörige mit L-/B-Bewilligung (Erwachsene)",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Persönliche Angaben",
+      "Arbeitgeberdaten",
+      "Beilagen",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 22,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 497,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Das Hilfsblatt 13.bin verlangt unter «3.2.1 Aufenthaltsbewilligung B» das «Gesuchsformular A1». Das ist Formular 497 mit dem Ankreuzfeld «Kantonswechsel» und den Gesuchsarten «Kurzaufenthaltsbewilligung (L)» und «Aufenthaltsbewilligung (B)». Der Personalienblock ist derselbe («Familienname», «Geburtsort», «Name Mutter», «Zemis-Nr.», «Zivilstand», «Strafverfahren hängig», «Vorstrafen»). Den Schritt «Arbeitgeberdaten» hat die Erfassung nicht gesehen. Nur sein Name deckt sich mit der A1-Rückseite «Arbeitgeberdaten BUR Nr.». Das eForm fragt zusätzlich «Aktuelle Bewilligung» (L B), E-Mail und Telefon."
+     }
+    },
+    {
+     "id": "migrationsamt_passbuero/drittst_k",
+     "name": "Kantonswechsel für Drittstaatsangehörige (Kinder)",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Persönliche Angaben",
+      "Beilagen",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 17,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 497,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Das eForm hat den A1-Personalienblock ohne Zivilstand und Strafangaben: «Familienname», «Geburtsland», «Geburtsort», «Name Mutter», «Name Vater», «Staatsangehörigkeit», «Zemis-Nr.» und «Geschlecht». Dazu kommen «Aktuelle Bewilligung» (L B C) und «gültig bis». A1 (Formular 497) wird je Person ausgefüllt und hat das Feld «Kantonswechsel». Erfasst ist nur «Schritt 1 von 2». Eine Einstiegsseite fehlt, und die Seite zeigt den Platzhalter «Einleitungstext»."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "migrationsamt-schuler-innen-und-studenten-innen-eu-efta",
+   "service_id": 476,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button führt auf die Zwischenseite migrationsamt.sh.ch/schuelerinnen-und-studentinnen-eu-efta mit Hilfsblatt und dem eForm «Schüler/innen und Studenten/Studentinnen (EU/EFTA)» (sch_stu). Das eForm hat Personalien-Datenfelder und einen Beilagen-Schritt.",
+   "pruefung": "bestätigt",
+   "eformulare": [
+    {
+     "id": "migrationsamt_passbuero/sch_stu",
+     "name": "Schüler/innen und Studenten/Studentinnen (EU/EFTA)",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Persönliche Angaben",
+      "Beilagen",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 21,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 497,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Das Hilfsblatt 16.bin verlangt für Post/Schalter das «Gesuchsformular A1». Das ist Formular 497 mit «Gesuch um Erteilung», «Aufenthaltsbewilligung (B)» und «Zweck des Aufenthaltes». Der Personalienblock ist derselbe: «Familienname», «Geburtsland», «Geburtsort», «Name Mutter», «Name Vater», «Zivilstand», «Strafverfahren hängig» und «Vorstrafen». Die ZEMIS-Nummer ist im eForm optional («Zemis-Nr. falls vorhanden»), in A1 heisst sie «ZEMIS Nummer». Nur im eForm: E-Mail, Telefon, «Reisedokument vorhanden» und «Kinder»."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "migrationsamt-umwandlung-f-in-b",
+   "service_id": 480,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button führt auf die Zwischenseite migrationsamt.sh.ch/umwandlung-f-in-b mit Hilfsblatt und dem eForm «Umwandlung F in B» (F_in_B). Das eForm hat Personalien-Datenfelder und die Schritte Arbeitgeberdaten und Beilagen.",
+   "pruefung": "korrigiert: Die Verdikte bleiben (Gegenstück keins; A1 neue_ausgabe von 497; f0e86b15 aeltere_ausgabe von 62; übrige kein_formular). Präzisiert wurde der Beleg zum Gegenstück. Das A1 erlaubt formal «Aufenthaltsbewilligung (B)». Entscheidend ist, dass Hilfsblatt U kein A1 nennt, 15 der übrigen 18 Hilfsblätter aber schon. Hilfsblatt Z gehört zu «L auf Stellensuche», nicht zu F in B. «Telefon» und «E-Mail» stehen im A1 nur bei den Arbeitgeberdaten. Die Rückseite des neuen A1 hat keinen extrahierbaren Text.",
+   "eformulare": [
+    {
+     "id": "migrationsamt_passbuero/F_in_B",
+     "name": "Umwandlung F in B",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Persönliche Angaben",
+      "Arbeitgeberdaten",
+      "Beilagen",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 21,
+     "gegenstueck": {
+      "art": "keins",
+      "form_id": null,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Das eFormular hat die Schritte «Persönliche Angaben», «Arbeitgeberdaten», «Beilagen» und «Kontrolle». Erfasst sind nur die Einstiegsseite und die Persönlichen Angaben. Diese enthalten Familienname, Vorname, Geburtsdatum, E-Mail, Telefon, Geburtsland, Geburtsort, Name und Vorname von Mutter und Vater, Staatsangehörigkeit, Zemis-Nr., «Reisedokument vorhanden», Adresse, Geschlecht, Zivilstand, Kinder, «Strafverfahren hängig», Vorstrafen und Sonstiges. 31.bin teilt davon nur Name, Vorname und Zemis-Nr. Es ist eine Erklärung, die dem Gesuch beigelegt wird, und keine Papierfassung des Gesuchs. Das Hilfsblatt U (20.bin) nennt kein weiteres Papierformular, «A1» kommt im Text gar nicht vor. Für Post und Schalter verlangt es ein freies «Gesuch, in welchem folgende Fragen ausführlich und schriftlich beantwortet werden». In der Databank deckt Formular 497 «Gesuch Ausländerbewilligung (Formular A1)» die Personalien fast vollständig ab. Es gehört zum Dienst Gesuch Arbeitsbewilligung und trägt den Vermerk «01/2016». Es hat dieselben neun Zivilstandswerte, «Strafverfahren hängig Ja Nein» und «ZEMIS Nummer». Auf der Rückseite steht «Arbeitgeberdaten BUR Nr.». Als Zweck bietet A1 aber neben anderen nur «Umwandlung B in C» an, keine Umwandlung F in B. Eine Frage zu Kindern fehlt. Weder das Hilfsblatt U noch die Migrationsamt-Seite verweisen auf A1. Die Übereinstimmung erklärt sich durch den gemeinsamen Personalien-Baustein, die Feldnamen beginnen mit «block_pers_angaben_mit_bew_ohne_akt_bew». Die Liste databank_formulare im Bundle ist leer, daher keins."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "migrationsamt-verlangerung-f-s-und-n",
+   "service_id": 484,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button führt auf die Zwischenseite migrationsamt.sh.ch/verlangerung-f-s-und-n. Sie verlinkt das eForm «Verlängerung F/N/S» (verl_F_N_S) mit der Datenseite «Persönliche Angaben» und für Post/Schalter das PDF «Formular» (Verlängerungsgesuch).",
+   "pruefung": "korrigiert: Erstens hat 511 für «Bewilligungsart» den Wert «Für Erwerbstätige», nicht F/N/S. «Für Erwerbstätige» ist im PDF eine Zwischenüberschrift; die DVSH-Ableitung hat sie als Wert übernommen. Die Gleichsetzung «(F N S)» mit 511 war darum falsch. Zweitens stehen nur 14 und nicht 16 der 17 Bezeichnungen wörtlich im PDF. Drittens enthält die Textebene den Bemerkungsblock in zwei Fassungen («Antragsstellers(in)» und «Gesuchsteller(in)»). Weiter gültig: 511 trägt submission_channel 'online_formular', bildet aber das Papierformular ab. Ausserdem fehlen 511 Ort/Datum, Unterschrift und die Beilagen-Kästchen des PDFs.",
+   "eformulare": [
+    {
+     "id": "migrationsamt_passbuero/verl_F_N_S",
+     "name": "Verlängerung F/N/S",
+     "zugang": "alle_seiten_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Persönliche Angaben",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 23,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 511,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Die Migrationsamt-Seite verlinkt für Post/Schalter das «Formular» verlaengerungsgesuch_F_S_N.pdf (23.bin, «Verlängerungsgesuch»). Die Databank hält es ohne Datei als Formular 511 «Formular (Post/Schalter)», gebaut aus der DVSH-formDefinition dieses PDFs. Gemeinsam haben eForm und 511: Name, Vorname, Adresse, Geburtsdatum, «ZEMIS-Nummer»/«Zemis-Nr.», Staatsangehörigkeit, E-Mail, Telefon, «Bewilligungsart»/«Aktuelle Bewilligung» und «Bemerkungen»/«Sonstiges». Die Werte F, N und S hat nur das PDF-Auswahlfeld. 511 führt für «Bewilligungsart» nur den Wert «Für Erwerbstätige». Nur in 511: SH-Nummer, Passnummer, Tätigkeit, Betrieb, Anstellungsdauer und Beschäftigungsgrad. Nur im eForm: Geburtsort/-land, Eltern, Geschlecht, Zivilstand, Kinder, «Arbeiten Sie aktuell?», Strafverfahren und Vorstrafen. 511 bildet das Papierformular ab, nicht das eForm 1:1. Darum ist es databank_formular und nicht databank_dvsh_eformular."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "verlangerung-g-grenzgangerbewilligung-eu-efta",
+   "service_id": 486,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button führt auf die Zwischenseite migrationsamt.sh.ch/verlangerung-g. Sie verlinkt das eForm «Verlängerung der Grenzgängerbewilligung G (EU/EFTA)» (g_ver; Personalien, Arbeitgeberdaten, Unterlagen) und für Post/Schalter das PDF «Formular» (Verlängerungsgesuch G).",
+   "pruefung": "korrigiert: Den Schritt «Arbeitgeberdaten» hat die Erfassung nicht gesehen; die Entsprechung zu den 513-Feldern stützt sich nur auf den Schrittnamen. Der Hinweis zur Meldestelle ist kein belegter Widerspruch. Das G-PDF nennt «dem kantonalen Migrationsamt», das F/S/N-PDF die «Einwohnerkontrolle Ihrer Wohngemeinde». Der Unterschied ist sachlich erklärbar, weil Grenzgänger im Ausland wohnen. Weiter gültig: Die Einstiegsseite des eForms hat keinen Erklärtext. 513 trägt submission_channel 'online_formular', bildet aber das Papierformular ab.",
+   "eformulare": [
+    {
+     "id": "migrationsamt_passbuero/g_ver",
+     "name": "Verlängerung der Grenzgängerbewilligung G (EU/EFTA)",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Persönliche Angaben",
+      "Arbeitgeberdaten",
+      "Einzureichende Unterlagen",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 21,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 513,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Die Migrationsamt-Seite verlinkt als «Formular» verlaengerungsgesuch_G.pdf (25.bin, «Verlängerungsgesuch» mit dem Kennbuchstaben «G»). Die Databank hält es ohne Datei als Formular 513 «Formular (Post/Schalter)», gebaut aus der DVSH-formDefinition dieses PDFs. Gemeinsam: Name, Vorname, Adresse, Geburtsdatum, ZEMIS, Staatsangehörigkeit, E-Mail, Telefon, Zivilstand und «Bemerkungen»/«Sonstiges». Den eForm-Schritt «Arbeitgeberdaten» hat die Erfassung nicht gesehen. Sein Name passt zu den 513-Feldern «Name und Adresse des Betriebes», «Einsatzort» und «Jetziger Aufenthaltszweck». Nur in 513: SH-Nummer und Passnummer. Nur im eForm: Geburtsort/-land, Eltern, Geschlecht, Kinder, «Reisedokument vorhanden», Strafverfahren und Vorstrafen."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "allgemeine-anderungen-bei-einer-ag-gmbh-oder-genossenschaft-beurkundung-beim-handelsregisteramt",
+   "service_id": 406,
+   "ziel_art": "eformular",
+   "ziel_befund": "«Online erledigen» führt zum eForm HRA_Aedn_Allg «Anmeldung allgemeine Änderungen (nicht für Personalmutationen allein)». Das ist die GmbH-Fassung der Handelsregisteranmeldung mit Stammanteilen. Es ist nicht das Beurkundungsgesuch, das DVSH als formDefinition dieses Service führt (Formular 406). Dasselbe eForm liegt auch hinter Service 314.",
+   "pruefung": "korrigiert: Das Gegenstück 359 stimmt. Neu beurteilt ist die bisher nicht beurteilte Word-Fassung «Anmeldeformular Allgemeine Änderungen GmbH181031.docx» unter Verwaltung/ (sha256 4520692f…, nicht in der Databank). Sie ist dieselbe Ausgabe wie 359. Der Beleg nennt jetzt auch den internen eForm-Namen ohne «_AG».",
+   "eformulare": [
+    {
+     "id": "handelsregisteramt/HRA_Aedn_Allg",
+     "name": "Anmeldung allgemeine Änderungen (nicht für Personalmutationen allein)",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Seite_1",
+      "Seite_2",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 37,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 359,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Der Titel ist gleich wie im PDF 359 «Anmeldung allgemeine Änderungen (nicht für Personalmutationen allein)». Das eForm hat «Anzahl der Stammanteile» und «Betrag (in CHF)», das PDF 359 «Anteile zu CHF». «Neue Firma(gemäss Statuten)» im eForm entspricht im PDF «\"Name\" der Gesellschaft gemäss Statuten». Die Blöcke «Ausgeschiedene Personen und erloschene Unterschriften» und «Eingetragene Personen neu oder mutierend» stimmen überein. Der interne Name ist «Anmeldung_allgemeine_Aenderungen_V1_0», die AG-Fassung heisst «…_AG_V1_0». Formular 406 ist es nicht: Dessen Felder «Art des Geschäfts», «Urkundspartei/en» und «Anzahl Urkunden» fehlen im eForm. Formular 308 (AG usw.) ist es auch nicht, denn es hat keine Stammanteile."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "anmeldung-allgemeine-anderungen-insb-abtretung-von-stammanteilen",
+   "service_id": 314,
+   "ziel_art": "eformular",
+   "ziel_befund": "«Online erledigen» führt zum eForm HRA_Aedn_Allg «Anmeldung allgemeine Änderungen (nicht für Personalmutationen allein)». Es ist die GmbH-Fassung mit Angaben zu Stammanteilen. Sie passt zum Service und zur DVSH-formDefinition «Anmeldung allgemeine Änderungen».",
+   "pruefung": "korrigiert: Das Gegenstück 359 stimmt. Neu beurteilt ist die bisher nicht beurteilte Word-Fassung desselben Formulars unter Verwaltung/ (sha256 4520692f…). Sie ist dieselbe Ausgabe wie 359.",
+   "eformulare": [
+    {
+     "id": "handelsregisteramt/HRA_Aedn_Allg",
+     "name": "Anmeldung allgemeine Änderungen (nicht für Personalmutationen allein)",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Seite_1",
+      "Seite_2",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 37,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 359,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Der Titel ist gleich wie im PDF 359 (Anmeldeformular Allgemeine Änderungen GmbH181031.pdf). Das eForm hat «Anzahl der Stammanteile» und «Betrag (in CHF)», das PDF «Anteile zu CHF». Das eForm hat «Neue Firma(gemäss Statuten)», das PDF «\"Name\" der Gesellschaft gemäss Statuten». Gleich sind «Statutenänderung», «Neuer Sitz», «Weitere Adresse: Eintrag / Löschung» sowie die ausgeschiedenen und die eingetragenen Personen. Die DVSH-80-formDefinition hat «Person 1 - Stammanteile» und «Person 1 - Anteilwert (CHF)»."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "anmeldung-anderungen-ag-genossenschaft-stiftung-verein",
+   "service_id": 322,
+   "ziel_art": "eformular",
+   "ziel_befund": "«Online erledigen» führt zum eForm HRA_Persmut_AG. Trotz der Kennung «Persmut» ist es die AG-/Genossenschafts-Fassung «Anmeldung allgemeine Änderungen (nicht für Personalmutationen allein)» ohne Stammanteile. Sie passt zum Service.",
+   "pruefung": "bestätigt",
+   "eformulare": [
+    {
+     "id": "handelsregisteramt/HRA_Persmut_AG",
+     "name": "Anmeldung allgemeine Änderungen (nicht für Personalmutationen allein)",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Seite_1",
+      "Seite_2",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 35,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 308,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Der interne Name ist «Anmeldung_allgemeine_Aenderungen_AG_V1_0_Seite_1». Das eForm hat «Neue Firmenbezeichnung» mit dem Hinweis «\"Name\" der Gesellschaft», das PDF 308 «5. Neue Firmenbezeichnung (\"Name\" der Gesellschaft)». Im PDF 359 steht zusätzlich «gemäss Statuten». Weder das eForm noch das PDF 308 haben ein Feld für Stammanteile. Gleich sind «Statutenänderung», «Neuer Sitz», «Neues Rechtsdomizil / Neue c/o- Adresse», «Weitere Adresse», «Ausgeschiedene Personen und erloschene Unterschriften» und «Eingetragene Personen neu oder mutierend». Die DVSH-71-formDefinition stimmt überein. Abweichungen: Nur das eForm hat die Auswahl «Nationalität». Das Feld «politische Gemeinde des Wohnsitzes» aus dem PDF 308 fehlt im eForm."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "anmeldung-anderungen-einzelunternehmen",
+   "service_id": 362,
+   "ziel_art": "eformular",
+   "ziel_befund": "«Online erledigen» führt zum eForm HRA_Einzel_Aend «Änderungen bei einem Einzelunternehmen (EIU)». Damit meldet man dem Handelsregisteramt Änderungen bei Firma, Sitz, Domizil, Zweck und den Personalien.",
+   "pruefung": "korrigiert: Der Beleg ist genauer. Der Domiziltext ist nicht gleich, denn das eForm ergänzt «Büros /». Das Gegenstück 362 stimmt.",
+   "eformulare": [
+    {
+     "id": "handelsregisteramt/HRA_Einzel_Aend",
+     "name": "Anmeldung an das Handelsregisteramt des Kantons Schaffhausen Änderungen bei einem Einzelunternehmen (EIU)",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Seite_1",
+      "Seite_2",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 12,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 362,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Der Titel ist gleich wie im PDF 362. Das eForm hat «Eingetragene Firma», «Neue Firma», «Neuer Sitz» und «Neuer Zweck», das PDF «0.1. Eingetragene Firma», «1. Neue Firma» und «4. Neuer Zweck». Der Domiziltext ist fast gleich: Das eForm hat «über eigene Büros / Geschäftsräumlichkeiten im Sinne der Weisung 2/15», das PDF «über eigene Geschäftsräumlichkeiten im Sinne der Weisung 2/15». Das eForm ergänzt also «Büros /». Die c/o-Option ist gleich. Das eForm hat den Block «Änderung Personalien der Geschäftsinhaberin / des Geschäftsinhabers» mit «Heimatort / Land», das PDF «5. Änderung Personalien der Geschäftsinhaberin/des Geschäftsinhabers». Die DVSH-72-formDefinition stimmt überein."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "anmeldung-auflosung-loschung-kollektivgesellschaft",
+   "service_id": 360,
+   "ziel_art": "eformular",
+   "ziel_befund": "«Online erledigen» führt zum eForm HRA_Aufloes_Loesch_KLG «Auflösung/Löschung Kollektivgesellschaft». Damit meldet man dem Handelsregisteramt die Auflösung und Löschung einer KLG.",
+   "pruefung": "bestätigt",
+   "eformulare": [
+    {
+     "id": "handelsregisteramt/HRA_Aufloes_Loesch_KLG",
+     "name": "Anmeldung an das Handelsregisteramt des Kantons Schaffhausen Auflösung/Löschung Kollektivgesellschaft",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Seite_1",
+      "Seite_2",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 6,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 360,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Der Titel ist gleich wie im PDF 360 «Auflösung/Löschung Kollektivgesellschaft». Beide haben einen Auflösungsgrund: im eForm «Auflösung durch die Gesellschafter/innen» und «Aktiven und Passiven sind keine (mehr) vorhanden», im PDF «a) Auflösungsbeschluss der Gesellschafter/innen» und «Aktiven und Passiven sind keine vorhanden». Abweichungen: Das eForm fragt die Domiziladresse (Strasse, Hausnummer, PLZ, Ort) statt «0.2. Eingetragener Sitz». Der Satz «Der Geschäftsbetrieb wurde nie aufgenommen» fehlt im eForm."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "anmeldung-neueintragung-einzelunternehmen",
+   "service_id": 316,
+   "ziel_art": "eformular",
+   "ziel_befund": "«Online erledigen» führt zum eForm HRA_Einzel_Neu «zur Neueintragung eines Einzelunternehmens». Damit meldet man ein neues Einzelunternehmen beim Handelsregisteramt an.",
+   "pruefung": "bestätigt",
+   "eformulare": [
+    {
+     "id": "handelsregisteramt/HRA_Einzel_Neu",
+     "name": "Anmeldung an das Handelsregisteramt des Kantons Schaffhausen zur Neueintragung eines Einzelunternehmens",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Seite_1",
+      "Seite_2",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 13,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 316,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Der Titel ist gleich wie im PDF 316 «zur Neueintragung eines Einzelunternehmens (EIU)». Der UID-Hinweis ist wörtlich gleich wie die Fussnote 1 im PDF: «Bitte sorgfältig abklären, ob bereits eine UID-Nummer besteht». Der Domiziltext ist gleich: «über eigene Geschäftsräumlichkeiten im Sinne der Weisung 2/15». Bei den Personalien der Geschäftsinhaberin bzw. des Geschäftsinhabers sind Name, Vorname, Geburtsdatum, Adresse und Heimatort gleich. Beide haben «zeichnet mit Einzelunterschrift»."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "anmeldung-personalmutationen",
+   "service_id": 324,
+   "ziel_art": "eformular",
+   "ziel_befund": "«Online erledigen» führt zum eForm HRA_Persmut «Anmeldung Personalmutationen (Formular nur für Personalmutationen)». Damit meldet man dem Handelsregister ausgeschiedene sowie neue oder geänderte Personen.",
+   "pruefung": "bestätigt",
+   "eformulare": [
+    {
+     "id": "handelsregisteramt/HRA_Persmut",
+     "name": "Anmeldung Personalmutationen (Formular nur für Personalmutationen)",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Seite_1",
+      "Seite_2",
+      "Seite_3",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 9,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 311,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Der Titel ist wörtlich gleich wie im PDF 311 «Anmeldung Personalmutationen (Formular nur für Personalmutationen)». Gleich sind «Firmenbezeichnung gemäss Handelsregistereintrag», «UID-Nummer» und «Eingetragener Sitz». Im Block «Ausgeschiedene Personen und erloschene Unterschriften» stimmen Name (im PDF «Familienname»), Vorname, Heimatort / Staatsangehörigkeit, Wohnort, Funktion und Zeichnungsberechtigung mit dem PDF überein. Die DVSH-157-formDefinition stimmt überein."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "erstellung-anmeldung-loschung-einzelunternehmen",
+   "service_id": 309,
+   "ziel_art": "eformular",
+   "ziel_befund": "«Online erledigen» führt zum eForm HRA_Loesch_Einzel «Löschung eines Einzelunternehmens (EIU)». Es hat eine einzige Datenseite. Damit meldet man die Löschung beim Handelsregisteramt an.",
+   "pruefung": "bestätigt",
+   "eformulare": [
+    {
+     "id": "handelsregisteramt/HRA_Loesch_Einzel",
+     "name": "Anmeldung an das Handelsregisteramt des Kantons Schaffhausen Löschung eines Einzelunternehmens (EIU)",
+     "zugang": "alle_seiten_sichtbar",
+     "schritte": [
+      "Seite_1",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 16,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 309,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Die Löschgründe sind wörtlich gleich wie im PDF 309: «Geschäftsaufgabe», «Tod des Inhabers bzw. der Inhaberin und Aufhören des Geschäftsbetriebes» und «Jährliche Roheinnahmen des Geschäftes (Umsatz ohne Abzüge) unter CHF 100'000.00». Das eForm hat Bestellungen «nach Publikation» und «vor Publikation im SHAB», das PDF Handelsregisterauszüge und Eintragungsbestätigungen. Beide haben eine Gebührenadresse und Kontaktangaben. Abweichungen: Die Optionen «Geschäftsübergang an:» und «Nichtaufnahme des Geschäftsbetriebes» fehlen im eForm. Das eForm nennt Gebühren von CHF 40.00 und 80.00."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "grundung-einer-ag-beurkundung-beim-handelsregisteramt",
+   "service_id": 646,
+   "ziel_art": "eformular",
+   "ziel_befund": "«Online erledigen» führt über das Portal (app/portal?event=view) zum eForm HRA_Gr_AG «Verbindliches Gesuch um Beurkundung: Gründung einer Aktiengesellschaft». Damit beantragt man beim Handelsregisteramt die Beurkundung einer AG-Gründung.",
+   "pruefung": "bestätigt",
+   "eformulare": [
+    {
+     "id": "handelsregisteramt/HRA_Gr_AG",
+     "name": "Verbindliches Gesuch um Beurkundung: Gründung einer Aktiengesellschaft",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Seite_1",
+      "Seite_2",
+      "Seite_3",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 13,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 307,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Der Titel ist gleich wie im PDF 307. Beide haben den Hinweis «bitte vorgängig in Zefix und Regix, www.zefix.ch, abklären». Die Gründerangaben (Name, Vornamen, Geburtsdatum, Heimatort, Adresse) und die Aktienzeichnung sind gleich. Beide verlangen die Statuten im Word-Format. Abweichung: Das PDF «130320» bietet «Namenaktien oder Inhaberaktien … zu CHF», das eForm nur «Anzahl der Namenaktien» und «Nennwert pro Aktie (in CHF, EUR, GBP, USD oder Yen)». Das eForm folgt also einem neueren Stand als die Papierausgabe."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "grundung-einer-gmbh-beurkundung-beim-handelsregisteramt",
+   "service_id": 318,
+   "ziel_art": "eformular",
+   "ziel_befund": "«Online erledigen» führt zum eForm HRA_Gr_GmbH «Verbindliches Gesuch um Beurkundung: Gründung einer Gesellschaft mit beschränkter Haftung». Damit beantragt man beim Handelsregisteramt die Beurkundung einer GmbH-Gründung.",
+   "pruefung": "bestätigt",
+   "eformulare": [
+    {
+     "id": "handelsregisteramt/HRA_Gr_GmbH",
+     "name": "Verbindliches Gesuch um Beurkundung: Gründung einer Gesellschaft mit beschränkter Haftung",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Seite_1",
+      "Seite_2",
+      "Seite_3",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 12,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 317,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Der Titel ist gleich wie im PDF 317. Beide haben den Hinweis «bitte vorgängig in Zefix und Regix». Das eForm hat «Gründer / Gesellschafter (wer zeichnet die Stammanteile)», das PDF «2 Gründer / Stammanteilzeichnung». Das eForm hat «Anzahl der Stammanteile», das PDF «zeichnet …(Anzahl) Stammanteile zu CHF». Bei den Statuten verlangt das eForm einen «Statutenentwurf als Word-Datei», im PDF «liegen im Word-Format bei». Abweichung: Im eForm ist der Nennwert «in CHF, EUR, GBP, USD oder Yen» möglich, im PDF nur in CHF."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "grundung-einer-kollektivgesellschaft-neueintragung",
+   "service_id": 363,
+   "ziel_art": "eformular",
+   "ziel_befund": "«Online erledigen» führt zum eForm HRA_neu_KLG «Neueintragung einer Kollektivgesellschaft». Damit meldet man eine neue KLG beim Handelsregisteramt an.",
+   "pruefung": "korrigiert: Der Beleg ist genauer. Der erste Ankreuztext ist nicht wörtlich gleich: Das eForm hat «an der folgenden Adresse», das PDF «an folgender Adresse». Das Gegenstück 363 stimmt. Dass 363 die ältere Ausgabe ist, ist jetzt belegt: Das PDF 363 hat keinen Ausgabevermerk und wurde laut Metadaten am 2018-11-05 erstellt. Das PDF 361 trägt den Vermerk «2022-01» und wurde am 2022-09-05 erstellt. Das eForm folgt trotzdem 363.",
+   "eformulare": [
+    {
+     "id": "handelsregisteramt/HRA_neu_KLG",
+     "name": "Neueintragung einer Kollektivgesellschaft",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Seite_1",
+      "Seite_2",
+      "Seite__3",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 5,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 363,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Der Titel ist gleich wie im PDF 363 «Neueintragung einer Kollektivgesellschaft». Die c/o-Option ist wörtlich gleich: «bei folgender Person an folgender Adresse über ein c/o Domizil». Die eigene Adresse ist fast gleich: Das eForm hat «an der folgenden Adresse über eigene Büros / Geschäftsräumlichkeiten», das PDF «an folgender Adresse über eigene Büros / Geschäftsräumlichkeiten». Die eForm-Hinweise entsprechen wörtlich den Fussnoten 1 und 2 im PDF, z. B. «muss ein administratives Leistungsangebot gewährleistet werden». Der Zweck-Hinweis «in kurzen und allgemein verständlichen Sätzen die Geschäftstätigkeit umschreiben» ist gleich wie Ziffer 4 im PDF 363. Formular 361 (Ausgabe «2022-01») ist es nicht. Es ist anders formuliert, mit «Ich / Wir erkläre/n, dass das Unternehmen» und «kurze, allgemeinverständliche Umschreibung»."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "clever-tax-quellensteuer",
+   "service_id": 439,
+   "ziel_art": "anmeldung",
+   "ziel_befund": "Der Button führt auf die Webplattform clevertax.sh.ch. Gespeichert ist nur die leere App-Hülle «clever.tax Quellensteuer». Laut Live-Seite braucht die Nutzung ein «persönliches Behörden-Login (AGOV)» und eine SSL-Nummer. DVSH führt den Endpunkt als «Login AGOV» (URL clevertax.sh.ch) mit der Quelle «Login» (auth.agov.admin.ch/SAML2/SSO/).",
+   "pruefung": "korrigiert: Die Erstprüfung schreibt, die verlinkte Datei «Anmeldeformular SSL» (sh.ch/CMS/get/file/ce338f7a-51e2-4916-a674-c603256b543a) sei nicht gespeichert. Sie liegt aber vor: SHEP/live-2026-11-03/links/ce338f7a-51e2-4916-a674-c603256b543a.bin, Dateiname «Bestellung SSL-Nummer.pdf». Ihr sha256 8343a994b53fad7add86970931e72fc4c32efb4a567fb8b52075b5139590e055 ist byte-gleich mit dem file_hash von Formular 251, also dieselbe Ausgabe. Das PDF nennt «Quellensteuerabrechnung via Online-Deklarationslösung clever.tax Quellensteuer». Es regelt den Zugang (SSL-Nummer, Aktivierungscode) und ist keine Online-Maske. Die AGOV-URL gehört zur DVSH-Quelle 4212 «Login», nicht zum submissionEndpoint «Login AGOV». Ein eFormular ist nicht sichtbar, eformulare bleibt deshalb leer. Hinweis: Formular 252 (DA-2, Anrechnung ausländischer Quellensteuern auf Dividenden und Zinsen) ist ein anderes Verfahren als die Arbeitgeber-Abrechnung über clever.tax.",
+   "eformulare": []
+  },
+  {
+   "slug": "download-steuersoftware-fur-juristische-personen",
+   "service_id": 440,
+   "ziel_art": "info",
+   "ziel_befund": "Der Button führt auf die sh.ch-Seite «Steuersoftware Juristische Personen». Das ist eine Download-Seite mit den Kacheln «STEUERSOFTWARE 2026» und «STEUERSOFTWARE 2025» (Windows, Mac OS X, Linux) sowie «Installationsanleitung» und «Systemanforderungen». Ein Online-Formular gibt es nicht. Laut Live-Seite folgt nach der Erfassung in der Software «Druck und Versand der Steuererklärung an die Steuerverwaltung per Post».",
+   "pruefung": "korrigiert: Die Seite bietet nicht nur die Software 2025 an, sondern auch die Kacheln «STEUERSOFTWARE 2026» (Windows 64-/32-Bit, Mac OS X x64/AArch64, Linux Debian/RPM). Die Ziel-Art info stimmt: DVSH führt den Endpunkt zwar als typ «eformular» mit dem Titel «Download», die Seite hat aber keine Eingabefelder. Die Databank hält für Service 440 keine Formulare.",
+   "eformulare": []
+  },
+  {
+   "slug": "download-steuersoftware-fur-naturliche-personen-und-efiling",
+   "service_id": 441,
+   "ziel_art": "info",
+   "ziel_befund": "Der Button führt auf die sh.ch-Seite «Steuersoftware Natürliche Personen». Dort gibt es Download-Kacheln für die Steuersoftware 2025 und 2024 (Windows, Mac OS X, Linux) sowie Hilfe-PDFs («Anleitung Steuern25.pdf», «Anleitung Steuern24.pdf», Installationshinweise). Ein Web-Formular gibt es nicht. Das eFiling läuft aus der installierten Software und braucht laut Live-Seite «Formular-ID und eFiling-Code».",
+   "pruefung": "korrigiert: Die Erstprüfung schreibt, die verlinkten Hilfe-PDFs seien nicht gespeichert. Sie liegen aber unter Verwaltung/Finanzdepartement /Steuerverwaltung/: «Anleitung Steuern25.pdf» (1597196 Bytes), «Anleitung Steuern24.pdf» (2830396), «Linux-Installationshinweise.pdf» (90774) und «MacOS_10.15.x_Installationshinweis .pdf» (31612). Name und Bytegrösse stimmen mit den Datei-Metadaten der Seite überein. Es sind Benutzer- und Installationsanleitungen ohne Formularfelder; die Anleitung hat 36 Seiten und keine AcroForm-Felder. Formulare sind es also nicht. Für Service 441 hat die Databank keine Formulare.",
+   "eformulare": []
+  },
+  {
+   "slug": "efristerstreckung-fur-naturliche-personen",
+   "service_id": 527,
+   "ziel_art": "fremdformular",
+   "ziel_befund": "Der Button führt auf die JavaScript-App efristerstreckung.sh.ch/steuernnp. Gespeichert ist nur die leere App-Hülle («You need to enable JavaScript to run this app.»); ihr Kopf trägt noch den Titel «Staatskalender des Kantons Schaffhausen». Laut Live-Seite ist es ein elektronisches Gesuch um Fristverlängerung. Die Authentifizierung läuft über «PID und Geburtsdatum».",
+   "pruefung": "korrigiert: 1f3985dc (sha cb9edddb…) und 9213bdc3 (sha a460fbe8…) sind gerendert nicht die Steuererklärung 101/24 bzw. 101/23. Es sind 4-seitige «Hinweise zum Ausfüllen der Steuererklärung … bei Beendigung der Steuerpflicht infolge Todesfall» 2024/2023 (Wegleitung, kein_formular). Der Text «Formular 101/24» stammt nur aus eingebetteten Formularabbildungen. Die neuere Ausgabe ist Verwaltung «Steuern 2025 - Wegleitung bei Beendigung Todesfall.pdf» (sha fbdc4af6…), nicht 101/25. Beleg des Gegenstücks entsprechend angepasst. Gegenstück «keins», übrige Urteile und ziel_befund bestätigt.",
+   "eformulare": [
+    {
+     "id": "efristerstreckung-fur-naturliche-personen",
+     "name": "eFristerstreckung",
+     "zugang": "nur_einstieg",
+     "schritte": [],
+     "n_felder_sichtbar": 0,
+     "gegenstueck": {
+      "art": "keins",
+      "form_id": null,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Websuche mit den drei Suchbegriffen, «eFristerstreckung … PID Geburtsdatum», «site:sh.ch Fristerstreckung Steuererklärung», Stadt Schaffhausen/Gemeinden, extended-Suche nach Vorlage: kein kantonales Papier- oder PDF-Formular zur Fristerstreckung natürlicher Personen, nur Formulare anderer Kantone (z.B. Basel-Landschaft, Schwyz). Die 6 heruntergeladenen sh.ch-Dateien sind kein Fristgesuch: zwei Merkblätter «Hinweise zum Ausfüllen der Steuererklärung 2024 bzw. 2023 bei Beendigung der Steuerpflicht infolge Todesfall», zwei Steuerstatistiken, eine Präsentation 2013, eine 404-Wartungsseite. Die kantonalen Unterlagen nennen nur den Online-Weg: Wegleitung 2025 (Verwaltung/Finanzdepartement /Steuerverwaltung/Steuern 2025 - Wegleitung.pdf) verlangt «Identifizierung mit der persönlichen PID-Nummer und dem Geburtsdatum»; daneben «In Ausnahmefällen können die Gesuche auch schriftlich» bei der Steuerverwaltung der Wohnsitzgemeinde eingereicht werden, ohne ein Formular zu nennen. SH Flyer E-Services 2025: «stellen Sie bitte vor Ablauf dieses Termins ein Gesuch um Fristerstreckung», via steuern.sh.ch oder QR-Code. In den gespeicherten Verwaltung-Dateien des Finanzdepartements gibt es kein Fristgesuch-Formular; die Seite «Steuerformulare Juristische Personen.html» verlinkt nur «eFristerstreckung für natürliche Personen». Die Seite «Steuerformulare herunterladen» der Stadt Schaffhausen nennt laut Websuche kein Fristformular."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "efristerstreckung-juristische-personen",
+   "service_id": 442,
+   "ziel_art": "fremdformular",
+   "ziel_befund": "Der Button führt auf die JavaScript-App efristerstreckung.sh.ch/steuernjp. Sie hat dieselbe byte-gleiche Hülle wie steuernnp mit dem Titel «Staatskalender des Kantons Schaffhausen»; eine Maske ist nicht gespeichert. Laut Live-Seite kann man «Mit der Eingabe der PID» die neue Frist bis max. 31.12. im Online-Formular eintragen.",
+   "pruefung": "bestätigt",
+   "eformulare": [
+    {
+     "id": "efristerstreckung-juristische-personen",
+     "name": "eFristerstreckung",
+     "zugang": "nur_einstieg",
+     "schritte": [],
+     "n_felder_sichtbar": 0,
+     "gegenstueck": {
+      "art": "keins",
+      "form_id": null,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Websuche mit den drei Suchbegriffen, «efristerstreckung.sh.ch steuernjp», «site:sh.ch Fristerstreckung Steuererklärung»: kein kantonales Papier- oder PDF-Formular zur Fristerstreckung juristischer Personen, nur Formulare anderer Kantone (z.B. Thurgau, Basel-Stadt, Schwyz). Die drei gefundenen sh.ch-Dateien sind Formular 7 «Steuererklärung» für Vereine/Stiftungen (2025, 2023, 2019), kein Fristgesuch. Sie verweisen nur online: «Die Frist zur Einreichung der Steuererklärung kann online erstreckt werden» (2025/2023 «▸ eFristerstreckung juristische Personen», 2019 «▸ Online-Schalter ▸ eFristerstreckungen»). Gleich lautet Verwaltung/Finanzdepartement /Steuerverwaltung/Steuern 2025 JP STE Kapitalgesellschaften.pdf. Die Wegleitung Kapitalgesellschaften 2025 beschreibt nur die eFristerstreckung über den Onlineschalter bis 31. Dezember: «Eine Bestätigung kann direkt ausgedruckt werden.» Das passt zur DVSH-Maske «Einreichung / Bestätigung» (Formular 500), nennt aber kein Papierformular."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "esteuerkonto-online-ansicht-steuerkonten",
+   "service_id": 446,
+   "ziel_art": "anmeldung",
+   "ziel_befund": "Der Button führt auf das Portal eservices.sh.ch «Mein SteuerKonto» der Kantonalen Steuerverwaltung. Die gespeicherte Startseite zeigt nur «Willkommen im Kanton Schaffhausen» und einen Login-Link (/_rtr/login, Zustand «logged-out»). Laut Live-Seite erfolgt die Registrierung «mittels AGOV-Login oder Benutzerlogin»; die Aktivierung läuft mit einem Aktivierungscode, der per Post kommt.",
+   "pruefung": "bestätigt",
+   "eformulare": []
+  },
+  {
+   "slug": "esteuerrechner-naturliche-personen",
+   "service_id": 445,
+   "ziel_art": "rechner",
+   "ziel_befund": "Der Button führt auf den Steuerrechner der ESTV (swisstaxcalculator.estv.admin.ch, Pfad «calculator/income-wealth-tax»). Gespeichert ist nur die App-Hülle «ESTV Steuerrechner». Der Rechner berechnet die Einkommens- und Vermögenssteuer; eingereicht wird nichts.",
+   "pruefung": "bestätigt",
+   "eformulare": []
+  },
+  {
+   "slug": "steuerrechner-grundstuckgewinn",
+   "service_id": 444,
+   "ziel_art": "rechner",
+   "ziel_befund": "Der Button führt auf den kantonalen «Grundstückgewinnsteuer Rechner» (steuerrechner.sh.ch/grundstueckgewinn/). Eingegeben werden Steuerjahr, Gemeinde, Anzahl Eigentümer, Konfession, Verkaufs- und Erwerbspreis sowie Besitzdauer. Nach «Berechnen» zeigt er die Steueranteile an. Eingereicht wird nichts; das Skript lädt nur «steuerfuesse.json».",
+   "pruefung": "bestätigt",
+   "eformulare": [
+    {
+     "id": "steuerrechner-grundstuckgewinn",
+     "name": "Grundstückgewinnsteuer Rechner",
+     "zugang": "alle_seiten_sichtbar",
+     "schritte": [],
+     "n_felder_sichtbar": 14,
+     "gegenstueck": {
+      "art": "databank_dvsh_eformular",
+      "form_id": 501,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Die 13 Feldnamen von Formular 501 (dvsh-formdefinition, DVSH 91) entsprechen den 13 Labels der Rechnerseite 1:1 (von «Steuerjahr» bis «Total Grundstückgewinnsteuer»). Die verlinkte «Berechnungstabelle» (37.bin) ist nur die Tariftabelle zum Ergebnis «Einfache Steuer» und hat keine Eingabefelder, ist also keine Papierfassung. Formular 263 ist die Steuererklärung für Grundstückgewinnsteuer (34 Felder wie «PID-Nr.», «Grundbuch-Nr.»), nicht der Rechner."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "steuerrechner-juristische-personen",
+   "service_id": 443,
+   "ziel_art": "rechner",
+   "ziel_befund": "Der Button führt auf den Steuerrechner der ESTV (swisstaxcalculator.estv.admin.ch, Pfad «calculator/legal-entity-tax»). Gespeichert ist nur die App-Hülle «ESTV Steuerrechner», byte-gleich mit der des Rechners für natürliche Personen. Der Rechner berechnet die Steuerbelastung juristischer Personen; eingereicht wird nichts.",
+   "pruefung": "bestätigt",
+   "eformulare": []
+  },
+  {
+   "slug": "einreichung-von-lohnunterlagen",
+   "service_id": 638,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button führt direkt auf das eFormular «Einreichung Lohnunterlagen» (eforms.sh.ch/arbeitsamt, Lohnunterlagen_V1_0) der Arbeitsmarktbeobachtung. Schritt 1 «Lohnunterbietung» fragt die Betriebsart ab, dazu Angaben zum Betrieb und zur kontrollierten Person, je nach Wahl für einen Schweizer oder einen ausländischen Betrieb. Danach folgen «Beilagen», «Kontrolle» und «Abschluss».",
+   "pruefung": "bestätigt",
+   "eformulare": [
+    {
+     "id": "arbeitsamt/Lohnunterlagen_V1_0",
+     "name": "Einreichung Lohnunterlagen",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Lohnunterbietung",
+      "Beilagen",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 67,
+     "gegenstueck": {
+      "art": "databank_dvsh_eformular",
+      "form_id": 541,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Formular 541 (dvsh-formdefinition, 34 Felder) deckt die Betriebsart und den Zweig «Ausländischer Betrieb» 1:1 ab, z. B. «Grundlohn ohne Zulagen (Währung und Betrag/Std)», «Anzahl Übernachtungen», «Staatsangehörigkeit». Die 10 Zulagen- und 6 Spesen-Checkboxen fasst es in je einem Feld zusammen. Der Adressat ist in beiden derselbe: «Arbeitsmarktbeobachtung Mühlentalstrasse 105». Es fehlen die 7 Felder des Zweigs «Schweizer Betrieb», z. B. «Erfahrungsjahre», «Voll-/Teilzeit», «Eintritt in Firma»."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "fur-kommunale-bauverwaltungen-upload-unterlagen-baubewilligung-fur-av",
+   "service_id": 451,
+   "ziel_art": "fremdformular",
+   "ziel_befund": "Der Button führt auf ein Jotform-Formular «Upload Baubewilligungsunterlagen» des Amts für Geoinformation (form.jotform.com/210183463201341). Es erfasst nur einen PDF-Upload, die Bauverwaltung und eine E-Mail-Adresse.",
+   "pruefung": "bestätigt: Das Formular ist einseitig (kein control_pagebreak). In der Formulartabelle gibt es keinen dateibasierten Treffer für Plan/Kataster/Vermessung/Geo/Baubewillig: 412 Grenzangaben und 478 TBA-Geodaten sind andere Verfahren. Verwaltung/…/Amt fuer Geoinformation enthält kein Upload-Formular. Die Jotform-Seite verlinkt keine Dateien.",
+   "eformulare": [
+    {
+     "id": "fur-kommunale-bauverwaltungen-upload-unterlagen-baubewilligung-fur-av",
+     "name": "Upload Baubewilligungsunterlagen",
+     "zugang": "alle_seiten_sichtbar",
+     "schritte": [
+      "Upload Baubewilligungsunterlagen"
+     ],
+     "n_felder_sichtbar": 3,
+     "gegenstueck": {
+      "art": "databank_dvsh_eformular",
+      "form_id": 503,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Das Jotform-Fragenschema hat genau 3 Datenfragen: qid 6 control_fileupload «Datei-Upload (PDF-Format)», qid 11 «Bauverwaltung», qid 12 control_email «E-Mail». Formular 503 «Upload Baubewilligung» (dvsh-formdefinition, DVSH 140) hat dieselben 3 Felder in derselben Reihenfolge. Die DVSH-Quelle 4454 hat dieselbe URL 210183463201341."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "geodaten-als-open-government-data-ogd",
+   "service_id": 454,
+   "ziel_art": "portal",
+   "ziel_befund": "Der Button führt auf das Datenportal opendata.swiss, gefiltert auf «Amt für Geoinformation Kanton Schaffhausen» («112 Datensätze gefunden»). Dort gibt es Datensätze als ZIP/WMS/WFS, aber kein Formular.",
+   "pruefung": "bestätigt: Die gespeicherte Seite (Abruf 200, 85170 Bytes) hat nur ein Suchfeld, Filter, eine Sortierung und die Datensatzliste. Sie erfasst keine Daten, das einzige weitere Input ist versteckt («organization»). Bei DVSH 147 sind detectedForms und formDefinitions leer, und die Datenbank hält kein Formular für Dienst 454.",
+   "eformulare": []
+  },
+  {
+   "slug": "geoportal-kanton-schaffhausen",
+   "service_id": 452,
+   "ziel_art": "portal",
+   "ziel_befund": "Der Button führt auf map.geo.sh.ch/geoportal/, den Kartenviewer «Geoportal Schaffhausen» (meta: «Basismodul - modernes und mächtiges Browser-GIS»). Das ist eine JavaScript-Kartenanwendung, kein Formular.",
+   "pruefung": "bestätigt: Der Abruf landet auf map.geo.sh.ch/geoportal/ (200, 21903 Bytes). Die Seite enthält nur «Please enable JavaScript to continue using this application.». Die Dienstseite beschreibt «Zugang zu Geodaten und den ÖREB-Kataster». Bei DVSH 141 sind detectedForms und formDefinitions leer, und die Datenbank hält kein Formular.",
+   "eformulare": []
+  },
+  {
+   "slug": "interlis-checkservice",
+   "service_id": 455,
+   "ziel_art": "anderes",
+   "ziel_befund": "Der Button führt auf upload.geo.sh.ch, die JavaScript-Anwendung «geopilot». Laut Dienstseite ist das ein «webbasiertes Prüfwerkzeug» für die Modellkonformität von INTERLIS-Daten (Upload von .xtf oder .zip). Es ist ein Validierungswerkzeug, kein Formular mit Datenfeldern.",
+   "pruefung": "korrigiert: Die Prüfnotiz war irreführend. Der DVSH-148-submissionEndpoint ist ebenfalls https://upload.geo.sh.ch/ und stimmt damit mit dem Live-Button überein. Nur die Quelle 4471 nennt noch ilicheck.geo.sh.ch. ziel_art «anderes» ist bestätigt: Die Seite (437 Bytes) enthält nur <title>geopilot</title> und ein leeres div#root. Ob ein Login nötig ist, zeigt sie nicht. Es gibt keine formDefinition und kein Datenbankformular.",
+   "eformulare": []
+  },
+  {
+   "slug": "plan-beglaubigen",
+   "service_id": 538,
+   "ziel_art": "fremdformular",
+   "ziel_befund": "Der Button führt auf das Jotform-Formular «Planbeglaubigung» des Amts für Geoinformation (zwei Seiten). Seite 1 erfasst Gemeinde, Grundbuchnummer, Anzahl Kopien und den Plan-Upload. Seite 2 erfasst die Lieferadresse, eine optionale abweichende Rechnungsadresse und die AGB-Bestätigung.",
+   "pruefung": "korrigiert: Die Schritte sind auf die zwei Seiten reduziert. Es gibt genau einen control_pagebreak. «Rechnungsadresse» ist kein eigener Schritt, sondern ein Abschnitt auf Seite 2, den eine Bedingung erst bei «Abweichende Rechnungsadresse» einblendet (ShowMultiple qid 109–119). Von den 27 Feldern sind 8 bedingt. Das Gegenstück 504 ist bestätigt. Ergänzung: Die verlinkten Dateien 584acfda… und d29ded58… sind nicht geladen. Verwaltung/…/Amt fuer Geoinformation/Merkblatt_Planbeglaubigung.pdf hat dieselben Bytes wie DVSH bb978b35 (schon kein_formular, «Checkliste für Planbeglaubigungen»). AGB_AGI_Kt_SH_210824.pdf dort hat keine Felder. Ein Papierformular gibt es nicht.",
+   "eformulare": [
+    {
+     "id": "plan-beglaubigen",
+     "name": "Planbeglaubigung",
+     "zugang": "alle_seiten_sichtbar",
+     "schritte": [
+      "Planbeglaubigung",
+      "Lieferadresse"
+     ],
+     "n_felder_sichtbar": 27,
+     "gegenstueck": {
+      "art": "databank_dvsh_eformular",
+      "form_id": 504,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Das Jotform-Schema hat 27 Datenfragen (qid 70, 89–99, 108, 111–119, 123–128): «Gemeinde», «Grundbuchnummer», «Anzahl Kopien», «Datei-Upload», «inkl. Eigentümerverzeichnis» … «Informationen gelesen». Formular 504 (dvsh-formdefinition, DVSH 151) hat dieselben 27 Felder in derselben Reihenfolge. Die DVSH-Quelle 4475 hat dieselbe URL 210544400501336."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "planbestellung-amtliche-vermessung",
+   "service_id": 539,
+   "ziel_art": "fremdformular",
+   "ziel_befund": "Der Button führt auf das Jotform-Formular «Planbestellung amtliche Vermessung» des Amts für Geoinformation (zwei Seiten). Seite 1 erfasst Produkt, Gemeinde, Ausschnitt, Adresse/Grundbuchnummer, Anzahl Kopien und Massstab. Seite 2 erfasst die Lieferadresse, eine optionale abweichende Rechnungsadresse und die AGB-Bestätigung.",
+   "pruefung": "korrigiert: Die Schritte sind auf die zwei Seiten reduziert (ein control_pagebreak). «Rechnungsadresse» ist nur ein bedingter Abschnitt auf Seite 2 (qid 109–119). Bedingt sind auch «Adresse» (qid 120) und «Grundbuchnummer» (qid 87), je nach Wahl bei «Ausschnitt». Die 35 Einzel-Controls sind bestätigt: 2 Produkt-Checkboxen sowie 5 Radios plus Textfeld bei Massstab. Gegenstück 505 bestätigt, 412 (Grenzpunkt-Rekonstruktion) und 478 (TBA-Geodaten) sind andere Verfahren. Die verlinkte AGB-Datei d29ded58… ist nicht geladen. Die AGB im Verwaltung-Ordner sind Nutzungsbedingungen ohne Felder.",
+   "eformulare": [
+    {
+     "id": "planbestellung-amtliche-vermessung",
+     "name": "Planbestellung amtliche Vermessung",
+     "zugang": "alle_seiten_sichtbar",
+     "schritte": [
+      "Planbestellung amtliche Vermessung",
+      "Lieferadresse"
+     ],
+     "n_felder_sichtbar": 29,
+     "gegenstueck": {
+      "art": "databank_dvsh_eformular",
+      "form_id": 505,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Im erfassten Jotform nachgezählt: 29 Datenfragen (Produkt, Gemeinde, Ausschnitt, Adresse, Grundbuchnummer, Anzahl Kopien, Massstab, Abweichende Rechnungsadresse, 12 Lieferadress-/Kontaktfelder, 8 Rechnungsadressfelder, «Informationen gelesen»); Formular 505 (dvsh-formdefinition, DVSH 153) hat dieselben 29 Felder in derselben Reihenfolge. Das AGB-PDF (35.bin) ist nur die per Checkbox bestätigte Geschäftsbedingung ohne Felder, also keine Papierfassung. Formular 478 «Bestellung von Geodaten» betrifft Geodaten (Perimeter, «Zu bestellende Themen»), nicht Katasterkopien."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "adoption-pflegekind-minderjahrig",
+   "service_id": 603,
+   "ziel_art": "info",
+   "ziel_befund": "Der Button führt auf eine sh.ch-CMS-Downloadseite (contentid 25088), die das Gesuch als PDF/Word zum Ausdrucken anbietet («Bitte drucken Sie es aus»). Das Gesuch geht per Post («per Post bei uns ein»), es gibt kein Online-Formular.",
+   "pruefung": "bestätigt, Beleg verstärkt: CONTENT_DATA hat «pdfupload_step2», und «data_iframe_url» ist leer («https://»). Die DVSH-Quelle 3869 hat genau die Seiten-URL /CMS/action/file/34cb35cf…, und DVSH ordnet ihr das Asset cfd97a7… zu (source_id 3869). Dessen 110602 Bytes entsprechen «filesize»:110602 auf der Seite, und es ist schon gleiche_ausgabe zu 451. Verwaltung/…/Amt fuer Justiz und Gemeinden hält dieselbe PDF (cfd97a7…) und die docx mit sha 5bc52ef… = file_hash von 451 (43959 Bytes = Word-«filesize»). Die Word-URL 24a2610a… selbst ist nicht geladen. Es gibt keine ungeprüften PDFs.",
+   "eformulare": []
+  },
+  {
+   "slug": "adoption-pflegekind-volljahrig",
+   "service_id": 287,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button führt auf das eForm «AFS - ADO_GES» mit dem Titel «Gesuch um gemeinschaftliche Adoption unseres minderjährigen Pflegekindes». Die Seite für das volljährige Pflegekind verweist also auf das Gesuch für ein minderjähriges Pflegekind (Inhalt = Formular 451, nicht Formular 287).",
+   "pruefung": "bestätigt: Gesehen ist nur Seite_1 von 2 (23 Textfelder, formularname_intern «Gesuch_gemeinschaftliche_Adoption_V1_0_Seite_1»). Auf Seite 1 fehlt «Geschlecht» beim Pflegekind, und die Kontaktadresse ist in Strasse/Hausnummer/PLZ/Ort aufgeteilt. Die Fehlverknüpfung ist bestätigt: Dienst 287 (volljährig) zeigt auf das minderjährige Gesuch. DVSH 242 hat keine formDefinition, und für 287 ist kein eigenes eForm sichtbar. Das Merkblatt 8760e2c… ist schon kein_formular. Es gibt keine ungeprüften PDFs.",
+   "eformulare": [
+    {
+     "id": "amt_justiz_gemeinden/ADO_GES",
+     "name": "Gesuch um gemeinschaftliche Adoption unseres minderjährigen Pflegekindes",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Seite_1",
+      "Seite_2",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 23,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 451,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "eForm-Seite 1 zeigt Gesuchstellerin, Gesuchsteller, Pflegekind, Kontakt. Beim Pflegekind stehen «Schule / Beruf» und «Gesetzlicher Wohnort», genau wie im 451-docx («Schule/Beruf», «Gesetzlicher Wohnort»). Das 287-docx hat beim Pflegekind «Aktueller Beruf», keinen Wohnort und stellt «Kontakt Gesuchstellende» vor das Pflegekind. Der Titel ist gleich wie bei 451 und der DVSH-241-formDefinition."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "adoption-stiefkind-minderjahrig",
+   "service_id": 602,
+   "ziel_art": "defekt",
+   "ziel_befund": "Der Button hat als Ziel nur «https://», also eine leere URL (Abruf «LEER»). Auch der DVSH-Endpunkt 3879 ist nur «https://».",
+   "pruefung": "bestätigt: Die gespeicherte Live-Seite pages/adoption-stiefkind-minderjahrig.html hat beim Button «Online erledigen» href=\"https://\". Das Papiergesuch ist Formular 450. Verwaltung/…/Amt fuer Justiz und Gemeinden hält die docx mit sha 39a4154f… = file_hash von 450 und die PDF 474e034d… (schon gleiche_ausgabe zu 450, zweitgeprüft). Das Merkblatt 6d655edd… ist schon kein_formular. Es gibt keine ungeprüften PDFs.",
+   "eformulare": []
+  },
+  {
+   "slug": "adoption-stiefkind-volljahrig",
+   "service_id": 285,
+   "ziel_art": "info",
+   "ziel_befund": "Der Button führt auf die allgemeine sh.ch-Seite «Adoption» des Amts für Justiz und Gemeinden. Sie hat einen Einleitungstext («orientieren Sie gerne über das Vorgehen und die notwendigen Dokumente») und die Schaltflächen-Blöcke «Dienstleistungen nach Themen» und «Themen A–Z». Auf der gespeicherten Seite gibt es kein Online-Formular.",
+   "pruefung": "korrigiert: ziel_art info bestätigt (kein eforms-Link, kein «ADO_», keine .docx-/.pdf-Beilage im HTML). Gestrichen ist die Aussage, es gebe keine eigene Unterseite zur Stiefkindadoption Volljähriger. Der Block «Dienstleistungen nach Themen» verweist auf 10 Inhalte (contentid 153593 … 1752922), deren Titel nicht in der Datei stehen. Lesbar sind nur die Labels «Adoption (gemeinschaftlich)», «Adoption durch eine Einzelperson» und «Voraussetzungen / Informationen». Formular 285 (.docx, Hash 7a946c90… = Verwaltung-Kopie, Titel «Gesuch um Adoption meines volljährigen Stiefkindes») ist das Papierformular. Das DVSH-Merkblatt e5ed2244… hat weder FORMTEXT noch Ankreuzfelder; kein_formular bleibt.",
+   "eformulare": []
+  },
+  {
+   "slug": "gesuch-um-bewilligung-einer-namensanderung",
+   "service_id": 281,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button öffnet das eForm ADO_NAM auf eforms.sh.ch («Namensänderung nach Art. 30 Abs. 1 ZGB - Formular zur Einreichung eines Gesuches») mit zwei Datenseiten. Erfasst ist nur Seite_1 mit Gesuchsteller(in) und gewünschter Namensführung.",
+   "pruefung": "bestätigt: Den .docx-Text von 281 habe ich selbst gelesen; Einleitung und Blöcke stimmen mit den 13 sichtbaren Controls überein. Formular 507 (Migrationsamt; Felder «ZEMIS-NR.», Reisepasskopie) ist ein anderes Verfahren. Kein weiteres Databank-Formular hat «Namens» im Titel. Das DVSH-Merkblatt cd439448… hat 7 Ankreuzfelder, aber nur als Unterlagen-Checkliste («Welche Unterlagen benötige ich für eine Namensänderung?»), ohne Personalien und ohne Unterschrift. kein_formular bleibt.",
+   "eformulare": [
+    {
+     "id": "amt_justiz_gemeinden/ADO_NAM",
+     "name": "Namensänderung nach Art. 30 Abs. 1 ZGB - Formular zur Einreichung eines Gesuches",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Seite_1",
+      "Seite_2",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 13,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 281,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Die Databank-Datei (formulare/Gesuch  um Namensänderung Art. 30 Abs. 1 ZGB.docx, Hash 5dcc1219…, gleich wie die Verwaltung-Kopie) hat dieselbe Einleitung wie das eForm: «Mit diesem Formular beantragen Sie eine Namensänderung nach Art. 30 Abs. 1 ZGB.» und «Bei mehreren Personen bitte pro Person ein Formular.» Auch die Blöcke sind gleich: «Gesuchsteller(in)» mit «Vorname(n)», «Geburtsdatum», «Heimatort/Staatsangehörigkeit», «Tel.-Nr.», «E-Mail» sowie «Gewünschte Namensführung» mit Familienname/Vorname(n). Unterschiede: Das eForm teilt die Adresse in Strasse/PLZ/Ort und fragt unter Namensführung zusätzlich PLZ/Ort. Die Blöcke «Begründung (zwingend erforderlich)» und «Unterschrift» der .docx liegen vermutlich auf der ungesehenen Seite_2."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "einreichen-von-arbeitsbemuhungen",
+   "service_id": 293,
+   "ziel_art": "portal",
+   "ziel_befund": "Der Button führt auf die Seite «home/job-seeker» des Arbeitsmarktportals Job-Room des Bundes (Seitentitel «ALV Online Services»). Gespeichert ist nur die leere App-Hülle («<alv-root>»), ohne Text, Formular oder sichtbaren Login. Das Papiergegenstück des Dienstes ist Databank-Formular 293 «Nachweis der persönlichen Arbeitsbemühungen» (716.007).",
+   "pruefung": "bestätigt: Im HTML stehen nur «<title>ALV Online Services</title>» und «alv-root»; Login, eIAM oder AGOV kommen nicht vor, deshalb portal und nicht anmeldung. Das frühere Urteil aeltere_ausgabe ist belegt: Das DVSH-Asset 9b23c268… trägt «716.007 d 06.2015», die Databank-Datei von 293 «716.007 d 09.2019», die AcroForm-Feldnamen sind gleich. Die Verwaltung-Datei «SVA Schaffhausen/716.007_neu.pdf» hat denselben Hash 2d1fa719… wie Formular 293. Die DVSH-formDefinition (15 Felder) entspricht inhaltlich dem Papierformular.",
+   "eformulare": []
+  },
+  {
+   "slug": "schwarzarbeit-melden",
+   "service_id": 559,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button öffnet das eForm «Meldung: Verdacht auf Schwarzarbeit» des Arbeitsamts (Adressat Arbeitsmarktbeobachtung) auf eforms.sh.ch. Es hat eine einzige Datenseite (Sachverhalt plus Angaben des Melders), die vollständig erfasst ist.",
+   "pruefung": "bestätigt: «Schritt 1 von 1», 17 Controls gleich den 17 Feldern von 516. Kein anderes Databank-Formular hat «Schwarzarb» im Titel. Die Verwaltung-Datei «Merkblatt Schwarzarbeit (online).pdf» (Hash 12ed7e19… = DVSH-Dokument) hat 1 Seite, keine AcroForm-Felder und keine Leerstellen, nur Erklärtext und Kontakt («schwarzarbeit@sh.ch»). kein_formular bleibt.",
+   "eformulare": [
+    {
+     "id": "arbeitsamt/Verdacht_auf_Schwarzarbeit_V1_0",
+     "name": "Meldung: Verdacht auf Schwarzarbeit",
+     "zugang": "alle_seiten_sichtbar",
+     "schritte": [
+      "Seite_1",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 17,
+     "gegenstueck": {
+      "art": "databank_dvsh_eformular",
+      "form_id": 516,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Formular 516 ist aus der DVSH-formDefinition gebaut und hat 17 Felder. Alle 17 sichtbaren Bezeichnungen stimmen der Reihe nach überein, z. B. «Verdachtsart», «Ort der Feststellung», «Bester Kontrollzeitpunkt», «Ich will anonym bleiben». Der Adressat «Arbeitsmarktbeobachtung Mühlentalstrasse 105» entspricht DVSH abgabe_an."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "vorubergehende-arbeitszeitbewilligung-beantragen",
+   "service_id": 579,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button öffnet das eForm «vorübergehende Arbeitszeitbewilligung beantragen» des Arbeitsinspektorats auf eforms.sh.ch. Es hat eine einzige Datenseite «Gesuchsteller/-in» (Bewilligungsart, Zeitraum, Betrieb, Kontaktperson, Zustell- und Rechnungsadresse, elektronische Zustellung), die vollständig erfasst ist.",
+   "pruefung": "bestätigt: 18 Controls ergeben 15 Felder, weil die 4 Checkboxen ein Feld «Bewilligung für» sind. Weder die Databank noch die Verwaltung-Sammlung hat ein Gesuchsformular für Nacht- oder Sonntagsarbeit. Die Suche nach «nacht», «feiertag», «ArGV» und «Arbeitszeit» findet nur Merkblätter, Arbeitszeiterfassungen und Formular 298 (24h-Betreuung, anderes Verfahren). Das DVSH-Dokument «Arbeit und Gesundheit - Arbeits- und Ruhezeiten.pdf» war schon als kein_formular beurteilt; dieses Urteil habe ich übernommen, die Datei aber nicht selbst geöffnet.",
+   "eformulare": [
+    {
+     "id": "arbeitsamt/Beantragung_Arbeitszeitbewilligung_V1_0",
+     "name": "vorübergehende Arbeitszeitbewilligung beantragen",
+     "zugang": "alle_seiten_sichtbar",
+     "schritte": [
+      "Gesuchsteller/-in",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 18,
+     "gegenstueck": {
+      "art": "databank_dvsh_eformular",
+      "form_id": 528,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Formular 528 ist aus der DVSH-formDefinition gebaut (15 Felder) und deckt alle 18 sichtbaren Controls ab. Die vier Checkboxen («vorübergehende Nachtarbeit» … «vorübergehender ununterbrochener Betrieb») entsprechen dem Feld «Bewilligung für». Gleich sind ausserdem «Datum von», «Datum bis», «Betrieb / Firma», «Telefon / Mobile», «Ist die Rechnungsadresse gleich der des Gesuchstellers…» und «E-Mail an die die Daten zugestellt werden sollen»."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "ratenzahlung-wehrpflichtersatzabgabe",
+   "service_id": 507,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button öffnet das eForm «Ratenzahlungsgesuch Wehrpflichtersatzabgabe» (BuA_RzW) auf eforms.sh.ch. Es hat eine einzige Datenseite «Angaben» mit Antragsteller, Angaben zur Abgabe, Ratenvorschlag und einer Bestätigung zu den Verzugszinsen; sie ist vollständig erfasst.",
+   "pruefung": "bestätigt: 17 von 17 Bezeichnungen stimmen überein. Formular 179 «Wehrpflichtersatzabgabe: Antrag Rückerstattung» ist ein anderes Verfahren. «Erläuterungen_Veranlagung_WPE_EJ2025.pdf» und «Information über die Gesetzesänderung WPE» haben 1 Seite, keine Felder und kein Wort «Rate»; eine Papierfassung des Ratenzahlungsgesuchs gibt es nicht.",
+   "eformulare": [
+    {
+     "id": "BuA/BuA_RzW",
+     "name": "Ratenzahlungsgesuch Wehrpflichtersatzabgabe",
+     "zugang": "alle_seiten_sichtbar",
+     "schritte": [
+      "Angaben",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 17,
+     "gegenstueck": {
+      "art": "databank_dvsh_eformular",
+      "form_id": 524,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Formular 524 ist aus der DVSH-formDefinition gebaut und hat 17 Felder, gleich wie die 17 sichtbaren Controls. Beispiele: «Versicherungsnummer», «Ersatzjahr», «Datum der Rechnung», «Betrag laut Rechnung», «Zahlungsvorschlag», «Fälligkeit der 1. Rate» sowie die Bestätigung «dass ich über die Verzugszinsen informiert wurde». In 524 ist diese letzte Bezeichnung bei «Anzahl der Raten un» abgeschnitten."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "move-kids-anmeldung",
+   "service_id": 494,
+   "ziel_art": "fremdformular",
+   "ziel_befund": "Der Button führt auf die Seite «MOVE-KiDS» des externen Kursportals TRAININGplus (sh.trainingplus.ch, «© 2026 by comperio.ch AG»). Gespeichert ist nur die Einstiegsseite: «Bitte wählen Sie für Ihr Kind einen der zwei Standorte…». Die Seite verlangt «Ausführen von Javascript ist zwingend erforderlich»; die Kursübersicht wird nachgeladen, das eigentliche Anmeldeformular ist nicht erfasst. Das HTML enthält nur Navigationslinks (u.a. «/de/page/login») und das Portal-Suchfeld «searchText». Abweichung: DVSH-processSteps nennen noch «drei Standorte: Schaffhausen, Neunkirch oder Thayngen».",
+   "pruefung": "korrigiert: Urteile «kein_formular» und Gegenstück «keins» halten (alle 4 PDFs gelesen, Hashes geprüft, DVSH 246 ohne documents/formDefinitions, Databank leer). Beleg präzisiert: Fachstelle-Sport-Seite …-22396878 war nur in der Kopfzeile lesbar, «verlinkt kein Dokument» war unbelegt; die Dienstseite verlinkt …-14619351. kjf-Flyer ist Flyer der ganzen Abteilung, nicht einer Fachstelle. Verwaltung-Ordner Fachstelle Sport enthält zusätzlich das Sportpolitik-Papier.",
+   "eformulare": [
+    {
+     "id": "move-kids-anmeldung",
+     "name": "MOVE-KiDS",
+     "zugang": "nur_einstieg",
+     "schritte": [],
+     "n_felder_sichtbar": 0,
+     "gegenstueck": {
+      "art": "keins",
+      "form_id": null,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Keine Papier- oder PDF-Fassung gefunden. Websuche (Anmeldung/Anmeldeformular/Anmeldetalon/Flyer zu «MOVE KiDS»/«MOVE-KIDS» mit Fachstelle Sport, Schaffhausen, Neunkirch, Thayngen, Emmersberg, Randenblick, site:sh.ch, archiv.sh.ch) brachte kein Anmeldedokument. Die gespeicherte services.sh.ch-Seite sagt «Hier können Sie Ihr Kind online anmelden.» und verlinkt nur sh.trainingplus.ch, die sh.ch-Seite Fachstelle-Sport-14619351-DE.html und sport@sh.ch, keine Datei. Eine sh.ch-Seite Fachstelle Sport (…-22396878-DE.html) war per WebFetch nur in der Kopfzeile lesbar, ihr Inhalt ist also ungeprüft; die KulturLegi-Seite und zwei schaffhausen24.ch-Artikel («Weitere Informationen und Anmeldung:» → sh.ch/move-kids) verlinken laut Suche kein Dokument. DVSH (Harvest 2026-09-03 und 2026-10-28, Dienst 246) führt «documents»: [], «detectedForms»: [] und «formDefinitions»: []; einzige Quelle ist die TRAININGplus-URL; processSteps beschreiben nur das Online-Formular: «Füllen Sie das Anmeldeformular aus und wählen Sie die Präferenz». Vier per WebFetch geladene sh.ch/schule.sh.ch-Dateien aus den Treffern (Kita-Liste, kjf-Flyer, Label bewegungsfreundliche Schule, Broschüre Gesundheitsförderung 21/22) enthalten kein «MOVE» und keine Formularfelder. Der einzige Treffer zum Angebot selbst ist die Medienmitteilung 2014-12-18-I (archiv.sh.ch), kein Formular. Databank: keine Formulare für Dienst 494, kein Titel oder Dateiname mit «MOVE»/«KiDS». Verwaltung-Sammlung: keine Datei mit «MOVE»/«KiDS»/«trainingplus»; der Ordner Fachstelle Sport hält nur 722FO035, 722FO036, das Koordinationsbeitrag-Gesuch und «Sportpolitik_im_Kt_Schaffhausen.pdf». Das TRAININGplus-Portal selbst wurde nicht geöffnet."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "gesundheitsforderung-bestellung-von-flyern-und-broschuren",
+   "service_id": 511,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button öffnet das eForm «Bestellformular Broschüren und Flyer Gesundheitsförderung und Prävention» des Gesundheitsamts auf eforms.sh.ch: kostenlose Bestellung von Stückzahlen je Broschüre. Erfasst ist Schritt 1 «Artikel»; Schritt 2 «Kontaktangaben» ist ungesehen.",
+   "pruefung": "bestätigt: 15 von 15 Bezeichnungen stimmen überein. Die anderen Bestellformulare des Gesundheitsamts in der Databank (75 Impfstoffe, 94 Gardasil 9) sind andere Verfahren. In der Verwaltung-Sammlung liegen die bestellten Artikel selbst (z. B. «PAPRICA_dep_0_9_DE_print_oS.pdf», «Zuckerflyer_Deutsch (1).pdf»), aber kein Papier-Bestellschein für Flyer.",
+   "eformulare": [
+    {
+     "id": "gesundheitsamt/Bestellformular_Flyer_Broschueren_V1_0",
+     "name": "Bestellformular Broschüren und Flyer Gesundheitsförderung und Prävention",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Artikel",
+      "Kontaktangaben",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 15,
+     "gegenstueck": {
+      "art": "databank_dvsh_eformular",
+      "form_id": 530,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Formular 530 ist aus der DVSH-formDefinition gebaut. Seine 15 Stückzahl-Felder sind identisch mit den 15 sichtbaren Zahlenfeldern, z. B. «PAPRICA Bewegungstipps 0 - 9 Monate», «Zuckerflyer», «Znüniblatt», «So wird mein Kind seelisch stark!». Die Kontaktangaben des ungesehenen Schritts 2 fehlen in 530."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "bestellung-grundbuchauszug",
+   "service_id": 488,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button öffnet das eForm «Grundbuchauszug» (GR_GrdB) des Grundbuchamts auf eforms.sh.ch mit drei Seiten. Erfasst sind die Einstiegsseite (Erklärung öffentlicher/vollständiger Auszug) und die Seite «Grundstücke» (Umfang, Versand, Gemeinde, Grundbuch-Nr.). Die Seite «Bestellende» ist ungesehen.",
+   "pruefung": "korrigiert: Im Beleg fehlte das 514-Feld «Strasse»; ausserdem ist ergänzt, dass der DVSH-Endpunkt GR_GrdB ist. Zuordnung zu 514 und Lücke bleiben: 514 fehlen Umfang, Versandart, Gemeinde und Grundbuch-Nr. des aktuellen eForms. Hinweis: Formular 521 «Eigentümerverzeichnis / Anstösserliste» (Dienst 503) hat genau dieselben 6 Felder. Diese 6 Felder sind also offenbar nur der allgemeine Block für die bestellende Person; 521 ist ein anderes Produkt und nicht das Gegenstück. Gezählt sind 5 Datenfelder, ohne Wiederholungszähler und ohne Upload «Separate Aufstellung». In der Verwaltung-Sammlung des Grundbuchamts liegen nur Merkblätter, Reisebewilligungen und «Postalische Bestellung Grundstückkaufvertrag 2019.docx» (Formular 414, anderes Verfahren).",
+   "eformulare": [
+    {
+     "id": "grundbuchamt/GR_GrdB",
+     "name": "Grundbuchauszug",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Grundstücke",
+      "Bestellende",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 5,
+     "gegenstueck": {
+      "art": "databank_dvsh_eformular",
+      "form_id": 514,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Formular 514 «Bestellung Grundbuchauszug» ist gleicher Dienst und gleiches Verfahren; DVSH nennt als submissionEndpoint genau dieses eForm (generalid=GR_GrdB). Es ist aber nur teilweise deckungsgleich. Seine 6 Felder («Name oder Firma», «Vorname / bei Firma Ansprechperson», «Strasse», «PLZ / Ort», «Telefon», «E-Mail») stammen aus der älteren DVSH-Quelle www2.sh.ch/Grundbuchauszug.4546.0.html. Keines der sichtbaren eForm-Felder («Umfang/Details», «Versandart», «Gemeinden», «Grundbuch Nr(n).») ist in 514 enthalten. 514 entspricht vermutlich nur der ungesehenen Seite «Bestellende»; das ist nicht belegt."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "bestellung-kaufvertrag-fur-grundstucke",
+   "service_id": 414,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button öffnet das eForm «Bestellformular Grundstückkaufvertrag» des Grundbuchamts / Notariats auf eforms.sh.ch (7 Datenschritte). Sichtbar waren nur die Einstiegsseite und der Schritt «Verkaufpartei».",
+   "pruefung": "bestätigt",
+   "eformulare": [
+    {
+     "id": "grundbuchamt/Gru_Kauf",
+     "name": "Bestellformular Grundstückkaufvertrag",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Verkaufpartei",
+      "Kaufpartei",
+      "Kaufobjekt",
+      "Kaufpreistilgung",
+      "Bestimmungen",
+      "Kontaktperson / Zustellung der Vertragsentwürfe",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 3,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 414,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Formular 414 «Auftrag zur Erstellung eines Grundstückkaufvertrages» (Postalische Bestellung Grundstückkaufvertrag 2019.docx, sha256 aa9de033…; die Kopie unter Verwaltung/Volkswirtschaftsdepartement/Grundbuchamt Notariat/ hat dieselben Bytes) hat dieselben Abschnitte wie die eForm-Schritte: «Verkaufpartei/en:», «Kaufpartei/en:», «Kaufobjekt / Grundstück(e)», «Kaufpreis / Kaufpreistilgung», «Weitere Vertragsbestimmungen», «Kontaktperson für Nachfragen des Grundbuchamtes», «Zustellungsart der Vertragsentwürfe». Gleiche Empfängerin «Grundbuchamt / Notariat Mühlentalstrasse 105». Gleicher Haftungshinweis: im eForm «haftet der Einsender als Auftraggeber für die Gebühren», im docx «Auftraggeber (Einsender dieses Formulars) bei Nichtzustandekommen des Vertrages». Die eForm-Frage «Benötigen Sie eine Vollmacht für die Vertragsunterzeichnung?» entspricht dem docx-Satz «grundsätzlich eine Bevollmächtigung möglich». Das sichtbare Feld «Personenart» (natürliche/juristische Person) entspricht «Name/n oder Firma». Die DVSH-formDefinition «Auftrag zur Erstellung…» (69 Felder) übernimmt die docx-Beschriftungen 1:1. Die zweite DVSH-formDefinition «Grundstückkaufvertrag» (10 Felder, beginnend mit «Personenart», Endpunkt www2.sh.ch) führt die Databank nicht als eFormular; die Form-Tabelle hat dazu nur Formular 414."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "eigentumerbestatigung-eigentumer-anstosserliste",
+   "service_id": 503,
+   "ziel_art": "defekt",
+   "ziel_befund": "Der Button führt auf www2.sh.ch/Eigentuemerverzeichnis.4545.0.html. Der Abruf landete auf der Wartungsseite wartung.ksd.ch («Dienst ist momentan leider nicht verfügbar»), das Bestellformular war also nicht erreichbar. Die Databank hält dieses Online-Formular bereits als dateiloses eFormular 521 «Eigentümerverzeichnis / Anstösserliste», aufgebaut aus der DVSH-formDefinition (6 Felder).",
+   "pruefung": "bestätigt",
+   "eformulare": []
+  },
+  {
+   "slug": "jagdpass-bestellen",
+   "service_id": 530,
+   "ziel_art": "defekt",
+   "ziel_befund": "Der Button zeigt auf die Login-Seite des Jagd-Webshops (sh.geodataweb.ch/auth/login?return_to=/hunting/order-patent). Der Abruf ergab HTTP 404 mit dem Text «Not Found». Laut der DVSH-Anleitung braucht die Patentbestellung ein Konto («Noch kein Konto? Dann registrieren Sie sich hier»). Gedacht ist also ein Login, erreichbar war das Ziel aber nicht.",
+   "pruefung": "bestätigt",
+   "eformulare": []
+  },
+  {
+   "slug": "betriebsaufgabe",
+   "service_id": 338,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button öffnet das eForm «Meldeformular Betriebsaufgabe» des Landwirtschaftsamts, Abteilung Direktzahlungen, auf eforms.sh.ch (2 Datenschritte). Sichtbar war nur Schritt 1 «Meldung» mit Betriebs- und Personendaten.",
+   "pruefung": "bestätigt",
+   "eformulare": [
+    {
+     "id": "landwirtschaftamt/Meldeformular_Betriebsaufgabe_V1_0",
+     "name": "Meldeformular Betriebsaufgabe",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Meldung",
+      "Angaben zur Betriebsaufgabe",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 10,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 338,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Formular 338 (2026_Meldeformular_Betriebsaufgabe.pdf, sha256 1f3ba2a8…; die Verwaltung-Kopie hat dieselben Bytes) hat denselben Einleitungstext wie das eForm: «Dieses Formular muss nur ausgefüllt werden, wenn der Betrieb aufgegeben wird». Dazu gleiche Felder «Betriebs-Nummer»/«Betriebsnummer (SH12345)», «Betriebsaufgabe per», «Telefon Festnetz», «Telefon Mobil»/«Mobiltelefon», «E-Mail-Adresse»/«E-Mail» unter «Personendaten Bewirtschafter». Der unsichtbare eForm-Schritt «Angaben zur Betriebsaufgabe» heisst im PDF gleich. Gleiche Adresse «Abteilung Direktzahlungen Mühlentalstrasse 105». Die DVSH-formDefinition «Meldeformular Betriebsaufgabe» deckt mit 10 Feldern die sichtbaren eForm-Felder 1:1 ab; die Databank führt sie nicht als eigenes eFormular."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "bewirtschafterwechsel",
+   "service_id": 340,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button öffnet das eForm «Meldeformular Bewirtschafterwechsel» des Landwirtschaftsamts, Abteilung Direktzahlungen, auf eforms.sh.ch (3 Datenschritte, der letzte für Beilagen). Sichtbar war nur Schritt 1 «Angaben».",
+   "pruefung": "bestätigt; Beleg ergänzt: Die Dienstnamen 339/340 in der Databank sind über Kreuz zu ihren Formularen (service.name 339 «Bewirtschafterwechsel NICHT-DZ-Betrieb» ↔ DZ-PDF).",
+   "eformulare": [
+    {
+     "id": "landwirtschaftamt/Meldeformular_Bewirtschafterwechsel_V1_0",
+     "name": "Meldeformular Bewirtschafterwechsel",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Angaben",
+      "Angaben zum neuen Bewirtschafter",
+      "Beilagen",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 15,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 339,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Das Gegenstück ist Formular 339 «Meldeformular Bewirtschafterwechsel» (Meldeformular Bewirtschafterwechsel.pdf, sha256 39506305…, in der Databank unter Dienst 339 geführt), nicht das Formular 340 dieses Dienstes. Seite 1 von 339 hat dieselben Felder wie das eForm: «Betriebs-Nummer», «Bewirtschafter bisher» «Name, Vorname», «Bewirtschafterwechsel per», «Bewirtschafter neu», «Geburtsdatum», «Bankverbindung: IBAN-Nr.», «Bankname und -Ort», «Steuerregister-Nummer (PID-Nummer)». Der Bankhinweis steht im PDF fast wortgleich: «Name oder Bezeichnung des Bankkontoinhabers müssen mit dem/den Bewirtschafternamen übereinstimmen». Im PDF folgt der Abschnitt «Beilagen», im eForm der Schritt «Beilagen». Gleiche Adresse «Abteilung Direktzahlungen». Formular 340 «Bewirtschafterwechsel Rebbetrieb ohne DZ» ist ein einseitiges Blatt ohne IBAN und ohne PID-Nummer und ist daher ein anderes Formular. Hinweis: Die Dienstnamen in der Databank sind über Kreuz: Dienst 339 heisst «Bewirtschafterwechsel NICHT-DZ-Betrieb», hält aber das DZ-Formular 339; Dienst 340 heisst «Bewirtschafterwechsel» und hält das NICHT-DZ-Formular 340."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "gesuch-um-anerkennung-einer-betriebsgemeinschaft-bg",
+   "service_id": 449,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button öffnet das eForm «Gesuch um Anerkennung einer Betriebsgemeinschaft (BG)» des Landwirtschaftsamts auf eforms.sh.ch (2 Datenschritte). Sichtbar war Schritt 1 «Mitglieder» mit zwei Pflicht-Mitgliederblöcken («Sie müssen mindestens 2 Blöcke … befüllen»): Personalien, Betriebsführung, ausserbetriebliche Tätigkeit, Arbeitsaufteilung.",
+   "pruefung": "korrigiert: Die Urteile (alle kein_formular bzw. nicht_lesbar) und «kein Gegenstück» halten der Prüfung stand; Formular 331 ist Art. 6, das eForm Art. 10 LBV. Für 47b65a4c und 64b27e1f fehlt aber eine .headers-Datei, die Dateinamen «Vernehmlassungsvorlage LwG.pdf» und «Synoptische Darstellung LwG.pdf» sind also unbelegt. Ihre Titel richten sich jetzt nach dem Inhalt. Der Suchtreffer-Titel der 404-Datei, «Link tot», die Treffer anderer Kantone und der BZG-Hinweis sind als nicht belegt gekennzeichnet bzw. abgeschwächt.",
+   "eformulare": [
+    {
+     "id": "landwirtschaftamt/Gesuchsformular_Betriebsgemeinschaft_V1_0",
+     "name": "Gesuch um Anerkennung einer Betriebsgemeinschaft (BG)",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Mitglieder",
+      "Angaben",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 48,
+     "gegenstueck": {
+      "art": "keins",
+      "form_id": null,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Kein Gegenstück. Databank: Service 449 hat kein Formular. Formular 331 «Gesuch Betriebsanerkennung» betrifft «Anerkennung als Betrieb im Sinne von Art. 6» und hat nur eine Person als Bewirtschafter/in. Das eForm stützt sich dagegen auf «Artikel 10 der Landwirtschaftlichen Begriffsverordnung» und verlangt mindestens zwei Mitglieder. Bei DVSH 126 sind detectedForms, formDefinitions und documents leer, und keiner der DVSH-Harvests nennt eine BG-Datei. Im Verwaltung-Index gibt es keine Datei zu Betriebsgemeinschaft oder Betriebszweiggemeinschaft. Die gespeicherte Service-Seite verlinkt ausser «Online erledigen» nur die Amtsseite «Landwirtschaftsamt», aber kein Dokument. Die vier aus der Websuche geladenen sh.ch-Dateien sind keine Formulare: zwei LwG-Gesetzestexte, die Broschüre «Zahlen und Fakten zur Schaffhauser Landwirtschaft» und eine 404-Seite. Nicht belegt, weil nicht gespeichert: Treffer anderer Kantone und ein Suchindex-Hinweis auf ein sh.ch-PDF zur Betriebszweiggemeinschaft. Die BZG wäre ohnehin ein anderes Verfahren: Die LBV-Kopie in Verwaltung trennt «Art. 10 Betriebsgemeinschaft» von «Art. 12 Betriebszweiggemeinschaft»."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "auflosen-einer-ag-beurkundung-beim-handelsregisteramt",
+   "service_id": 356,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button öffnet das einseitige eForm «Verbindliches Gesuch um Beurkundung: Auflösung einer Aktiengesellschaft» des Handelsregisteramts auf eforms.sh.ch. Die ganze Datenseite war sichtbar.",
+   "pruefung": "bestätigt",
+   "eformulare": [
+    {
+     "id": "handelsregisteramt/HRA_Aufl_AG",
+     "name": "Verbindliche Gesuch um Beurkundung: Auflösung einer Aktiengesellschaft",
+     "zugang": "alle_seiten_sichtbar",
+     "schritte": [
+      "Seite_1",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 27,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 356,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Formular 356 (AG Gesuch um Auflösung.pdf, sha256 b1efe7c9…; die Verwaltung-Kopie hat dieselben Bytes) trägt denselben Titel wie die eForm-Überschrift: «Verbindliches* Gesuch um Beurkundung: Auflösung einer Aktiengesellschaft». Der Seitentitel des eForms schreibt «Verbindliche Gesuch». Beide haben dieselben Blöcke «Firma», «Urkundspartei/en», «Liquidator/in» (im PDF Person 1/2, im eForm «maximal 2 Blöcke»), «Liquidationsdomizil» mit «in der ganzen Schweiz wählbar» und «Obligatorische Kontaktangaben» (Telefon, E-Mail). Der Satz «muss die Domizilhaltererklärung vorgelegt werden» steht in beiden. Die DVSH-formDefinition «ag_gesuch_auflosung» hat 11 Felder mit denselben Blöcken; die Databank hält dazu kein eigenes eFormular."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "auflosung-einer-gmbh-beurkundung-beim-handelsregisteramt",
+   "service_id": 411,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button öffnet das einseitige eForm «Verbindliches Gesuch um Beurkundung: Auflösung einer Gesellschaft mit beschränkter Haftung» des Handelsregisteramts auf eforms.sh.ch. Die ganze Datenseite war sichtbar.",
+   "pruefung": "bestätigt",
+   "eformulare": [
+    {
+     "id": "handelsregisteramt/HRA_Aufl_GmbH",
+     "name": "Verbindliches Gesuch um Beurkundung: Auflösung einer Gesellschaft mit beschränkter Haftung",
+     "zugang": "alle_seiten_sichtbar",
+     "schritte": [
+      "Seite_1",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 27,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 411,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Formular 411 (GmbH Beurkundungsgesuch um Auflösung 181031.pdf, sha256 ab3172e7…; die Verwaltung-Kopie hat dieselben Bytes) hat denselben Titel: «Verbindliches* Gesuch um Beurkundung: Auflösung einer Gesellschaft mit be-schränkter Haftung». Beide haben dieselben Blöcke «Firma», «Urkundspartei/en», «Liquidator/in» (im PDF Person 1/2, im eForm «maximal 2 Blöcke»), «Liquidationsdomizil» mit «in der ganzen Schweiz wählbar» und «Obligatorische Kontaktangaben». Beide verlangen bei einem c/o-Domizil die «Domizilhaltererklärung». Die DVSH-formDefinition «gmbh_beurkundungsgesuch_aufloesung» hat 11 Felder mit denselben Blöcken; die Databank hält dazu kein eigenes eFormular."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "beschwerdemeldung-betreffend-soziale-einrichtungen-oder-kinder-und-jugendheime",
+   "service_id": 509,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button führt zum eFormular «Beschwerdemeldung an die Abteilung Soziale Angebote» auf eforms.sh.ch (sozialamt/Meldung_V1_0). Es hat nur eine Datenseite («Schritt 1 von 1»), und sie ist ganz erfasst: Angaben zur Beschwerde und Kontaktdaten der meldenden Person.",
+   "pruefung": "bestätigt (Formular 526 und data_field nachgeprüft, die gespeicherte schritt1.html hat keine nachgeladenen Blöcke; Verwaltung-Index und DVSH-Assets inkl. .doc-Dateien nach Beschwerde/Kontaktaufnahme durchsucht, ohne Treffer)",
+   "eformulare": [
+    {
+     "id": "sozialamt/Meldung_V1_0",
+     "name": "Beschwerdemeldung",
+     "zugang": "alle_seiten_sichtbar",
+     "schritte": [
+      "Beschwerdemeldung",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 10,
+     "gegenstueck": {
+      "art": "databank_dvsh_eformular",
+      "form_id": 526,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Formular 526 ist file-less (alle data_field mit derived_by 'dvsh-formdefinition') und hat 10 Felder. Sie decken sich 1:1 mit den 10 sichtbaren Angaben, z.B. «Welches Soziale Angebot betrifft die Beschwerde?», «Ziel der Beschwerde», «Ist eine Kontaktaufnahme seitens Sozialamt erwünscht?» (enum Ja/Nein, live als Radio Ja/Nein), Name, Vorname, E-Mail, Telefon. Die Seite lädt keine weiteren Blöcke nach (nur Beschwerdemeldung_1_0.jsp und Kontakdaten_1_0.jsp). Adressat «Kantonales Sozialamt Abteilung Soziale Angebote». Ein Papierformular gibt es weder unter Verwaltung/ (Sozialamt) noch in den DVSH-Assets."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "kontaktformular-fur-beschwerden-und-anliegen-zur-opferhilfe-nummer-142",
+   "service_id": 634,
+   "ziel_art": "defekt",
+   "ziel_befund": "Der Button führt auf eine sitzungsgebundene PrivaSphere-Adresse auf erv.sh.ch: prepaid_de.jsp mit fester jsessionid und n0w=260817115536, also vom 17.08.2026. Der Abruf vom 03.11.2026 endete auf der Login-Seite index_de.jsp («Passwort Login», «Noch nicht registriert?»). Das Kontaktformular war nicht erreichbar, der Link ist also defekt.",
+   "pruefung": "korrigiert: ziel_art von «fremdformular» auf «defekt» geändert. Laut codes.txt landete der Button mit 200 auf index_de.jsp, und die gespeicherte Seite ist nur der PrivaSphere-Login ohne Kontaktformular. Der Erstprüfer schrieb selbst «vermutlich defekt». Der Eintrag mit Formular 540 als gemeintem Formular bleibt. In Verwaltung/ und den DVSH-Assets liegt kein Papierformular für 142.",
+   "eformulare": [
+    {
+     "id": "kontaktformular-fur-beschwerden-und-anliegen-zur-opferhilfe-nummer-142",
+     "name": "PrivaSphere Sicherer Mitteilungsdienst",
+     "zugang": "nur_einstieg",
+     "schritte": [],
+     "n_felder_sichtbar": 0,
+     "gegenstueck": {
+      "art": "databank_dvsh_eformular",
+      "form_id": 540,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Gemeint ist dieses Formular: Der DVSH-Endpoint und detectedForms nennen genau die Button-URL «erv.sh.ch/prepaid_de.jsp;jsessionid=62C1…». Formular 540 «Beschwerdeformular zur Opferhilfe-Telefonnummer 142» ist file-less (dvsh-formdefinition) und hat die 12 DVSH-Felder, z.B. «Von (Ihre E-Mail Adresse)», «Betreff», «Nachricht», «Anhänge hochladen». Live liess sich nichts vergleichen: Die gespeicherte HTML-Datei enthält nur «loginForm» (Felder f5438, password, csrf-Token). Formular 155 «Gesuch um Opferhilfe» ist ein anderes Verfahren."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "antrag-sperrung-der-veroffentlichung-von-halterdaten-im-autoindex",
+   "service_id": 516,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button führt zum eFormular «Gesuch um Sperrung der Halterdaten» auf eforms.sh.ch (strassenverkehrsamt/STVA_VZ). Erfasst sind die Einstiegsseite («Nach der Sperrung werden die Daten nur noch an Behörden weitergegeben») und die Angaben-Seite mit der Wahl Privatperson/Firma. Die übrigen Blöcke (block_Angaben_Person_V1_0, block_Angaben_Firma_V1_0, block_stva_V1_0, block_Bestaetigung_V1_0) stehen in schritt2.html nur als «ajax block placeholder» und erscheinen erst nach einer Eingabe.",
+   "pruefung": "korrigiert: Die Titelsuche «Halter» trifft auch 33, 313, 314, 472 und 502, nicht nur 463/468. Die CMS-Angabe «filesize 239303» steht in keiner gespeicherten Datei, der Beleg stützt sich jetzt auf DVSH-Quelle 3628 und die Wayback-CDX. Bestätigt sind PDF-Text, 10 Textfelder, alte Ausgabe, die 404-Antworten und die ajax-Platzhalter («teilweise_sichtbar»). In DVSH-Assets (PDF/Office) und im STVA-Ordner unter Verwaltung/ gibt es keinen Treffer.",
+   "eformulare": [
+    {
+     "id": "strassenverkehrsamt/STVA_VZ",
+     "name": "Gesuch um Sperrung der Halterdaten",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Angaben",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 1,
+     "gegenstueck": {
+      "art": "keins",
+      "form_id": null,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Eine Papierfassung «Antrag Sperrung der Veröffentlichung von Halterdaten im Autoindex» gibt es nur noch als Archivkopie (Wayback Machine, 25.08.2017; Absender noch «Rosengasse 8», CreationDate 26.9.2007). Der Link, den die DVSH-Quelle auf sh.ch nennt, liefert eine Wartungsseite («Maintenance Page», 404). Eine Archivkopie ist nicht die Live-Fassung und wird nicht übernommen."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "auktion-wunschschilder",
+   "service_id": 437,
+   "ziel_art": "portal",
+   "ziel_befund": "Der Button führt zum Auktionsportal des StVA (www.auktion-stva.sh.ch, «StVA Schaffhausen - Auktionen»). Es listet laufende Kontrollschild-Auktionen («Endet am: 04.11.2026, 22:00:00») mit einer Suchmaske und verlinkt «Anmelden» (/de/login) und «Registrieren» (/de/register). Ein Formular mit Datenfeldern gibt es auf der Seite nicht.",
+   "pruefung": "bestätigt (in der gespeicherten HTML-Datei gibt es nur «auction-search-form» mit Such- und Filterfeldern; DVSH hat keine formDefinitions, docType «leitfaden»; in der Datenbank kein Formular zu Auktion/Wunsch)",
+   "eformulare": []
+  },
+  {
+   "slug": "bestellung-3-kontrollschild-oder-neuanfertigung-von-kontrollschildern",
+   "service_id": 505,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button führt zum eFormular «Bestellung drittes Kontrollschild für Fahrrad- / Heckträger» auf eforms.sh.ch (strassenverkehrsamt/STVA_3KS). Erfasst sind die Einstiegsseite mit den Bedingungen (nur «Langformat (11 x 50 cm)», Ausgabe am Schalter) und die Angaben-Seite mit der Wahl Privatperson/Firma.",
+   "pruefung": "bestätigt (PDF-Text und Felder von Formular 30 gelesen. Die Datei unter Verwaltung/ hat denselben sha256 f186047008a6… wie file_hash, daher kein neues pdf_urteil. Ein eigenes Papierformular für das 3. Kontrollschild gibt es weder unter Verwaltung/ noch in den DVSH-Assets.)",
+   "eformulare": [
+    {
+     "id": "strassenverkehrsamt/STVA_3KS",
+     "name": "Bestellung drittes Kontrollschild für Fahrrad- / Heckträger",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Angaben",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 1,
+     "gegenstueck": {
+      "art": "databank_formular",
+      "form_id": 30,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Formular 30 «Neuanfertigung von Kontrollschildern in reflektierender Ausführung» (bestellung-kontrollschilder-25-2-p.pdf, «Version: 2022.11.14») hat das Ankreuzfeld «3. Kontrollschild / rot (Fahrradträger)», «hinteres Schild 50 x 11 cm» (AcroForm velotraeger/velo). Das passt zu «kann nur als Langformat (11 x 50 cm) bestellt werden». Dazu kommen Schildnummer «SH .» und «Genaue Adresse des Fahrzeughalters». Das eForm lädt nach der Wahl die Blöcke Angaben_Person/Firma und «block_STVA_3KS_Kontrollschild_V1_0». Der Service-Slug nennt «bestellung-3-kontrollschild-oder-neuanfertigung». Das Papier deckt zusätzlich weitere Schildarten ab. Formular 522 «Einreichung / Bestätigung» hat nur «Bestätigungstext» und ist nicht dieses Formular."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "gesuch-erteilung-eines-internationalen-fuhrerausweises",
+   "service_id": 639,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button führt zum eFormular «Bestellung internationaler Führerausweis» auf eforms.sh.ch (strassenverkehrsamt/Bestellung_int_ausweis). Beide Seiten «Schritt 1 von 2» und «Schritt 2 von 2» sind erfasst. Die Einstiegsseite sagt «kostenpflichtig einen internationalen Führerausweis bestellen». Die Angaben-Seite hat 9 Textfelder (Personalien, E-Mail, Telefon, «Führerausweis-Nr.») und die Bestätigungs-Checkbox. In schritt2.html bleibt eine versteckte Zeile ungesehen (def_email_1, «display:none», ajax-Zellenplatzhalter).",
+   "pruefung": "korrigiert: «existiert nicht» ist zu «nicht gefunden» abgeschwächt. FAQ-Zitat und Dateiliste der Seite 1808291 sowie die Websuche sind nicht gespeichert, der Beleg stützt sich jetzt auf Live-Seite, DVSH processSteps und den Scan des STVA-Ordners. In schritt2.html steht eine versteckte ajax-Zelle def_email_1, das ist vermerkt. Bestätigt sind 9 Textfelder und 1 Checkbox, keine nachgeladenen Blöcke und die Formulare 34/464 ohne internationalen Ausweis.",
+   "eformulare": [
+    {
+     "id": "strassenverkehrsamt/Bestellung_int_ausweis",
+     "name": "Bestellung internationaler Führerausweis",
+     "zugang": "alle_seiten_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Angaben",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 10,
+     "gegenstueck": {
+      "art": "keins",
+      "form_id": null,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Nichts heruntergeladen, weil kein SH-Papierformular gefunden wurde (dass keines existiert, ist nicht beweisbar). Gespeicherte Belege: Die Live-Seite nennt nur den Online-Weg, «Formular 'Bestellung internationaler Führerausweis' im Online-Schalter ausfüllen», und verlinkt kein PDF. DVSH führt denselben Schritt in processSteps. Bei DVSH ist documents leer und das formDefinition hat 0 Felder. Die Datenbank hat für Service 639 kein Formular. Der STVA-Ordner unter Verwaltung/ (65 PDF und External/) enthält kein solches Formular. Der Textscan findet «international» nur in exportfahrzeug-mit-best-betriebssicherheit-25-p.pdf («internationale Versicherungskarte (grüne Karte)»). Formular 34 (Lernfahr-/Führerausweis, «Umtausch eines ausländischen Führerausweises») und Formular 464 («Ausstellen eines Führerausweises») betreffen den internationalen Ausweis nicht. Die Wayback-CDX des alten Ordners (52 URLs, wb/stva_cdx.txt) enthält zum Führerausweis nur Ausstellen_eines_Fuehrerausweises.pdf und umtausch-fuehrerausweis.pdf. Die DVSH-Assets (276 Dateien, PDF- und Office-Text) haben keinen Treffer. Nicht gespeichert und daher nicht nachprüfbar sind die FAQ und die Dateiliste der sh.ch-Seite 1808291 sowie die Websuche (z. B. BS «bestellung-ifa-mit-fak»)."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "ruckerstattung-guthaben-strassenverkehrsamt",
+   "service_id": 510,
+   "ziel_art": "eformular",
+   "ziel_befund": "Der Button führt zum eFormular «Rückerstattung Guthaben» auf eforms.sh.ch (strassenverkehrsamt/STVA_ASR). Damit teilen Kunden «Ihre Kontoangaben für die Rückerstattung Ihres Guthabens» mit. Erfasst sind die Einstiegsseite und die Angaben-Seite mit der Wahl Privatperson/Firma. Die Kontoangaben folgen erst nach einer Eingabe.",
+   "pruefung": "bestätigt (Die ajax-Platzhalter in schritt2.html belegen die Kontoinformationen. Die Suche nach Rückerstattung/Guthaben in form und data_field trifft nur fremde Verfahren: 179 Wehrpflichtersatz, 249 Quellensteuer. Verwaltung/ und DVSH-Assets ohne Treffer.)",
+   "eformulare": [
+    {
+     "id": "strassenverkehrsamt/STVA_ASR",
+     "name": "Rückerstattung Guthaben",
+     "zugang": "teilweise_sichtbar",
+     "schritte": [
+      "Einstiegsseite",
+      "Angaben",
+      "Kontrolle",
+      "Abschluss"
+     ],
+     "n_felder_sichtbar": 1,
+     "gegenstueck": {
+      "art": "databank_dvsh_eformular",
+      "form_id": 529,
+      "pdf_sha256": null,
+      "pdf_pfad": null,
+      "pdf_url": null,
+      "beleg": "Formular 529 «Rückerstattung Guthaben» ist file-less (dvsh-formdefinition), sein DVSH-Endpoint ist genau die Button-URL, und es hat ein einziges Feld «Kontoangaben für Rückerstattung». Das passt zum Einstieg «Kontoangaben für die Rückerstattung Ihres Guthabens mitteilen» und zum nachgeladenen Block «block_STVA_ASR_Kontoinformationen_V1_0». Das DVSH-Modell ist grob: Die sichtbare Wahl «Handelt es sich beim Kunden um eine:» Privatperson/Firma und die Personen-/Firmenangaben fehlen darin. Ein Papierformular wurde nicht gefunden."
+     }
+    }
+   ]
+  },
+  {
+   "slug": "verschieben-des-fahrzeugprufungstermins",
+   "service_id": 438,
+   "ziel_art": "termin",
+   "ziel_befund": "Der Button führt zur Terminverwaltung sh-idispo.viacar-system.ch/home. DVSH führt sie als Endpoint «Fahrzeugprüfungstermin verschieben». Der Abruf ergab nur eine Weiterleitung (302 auf «https://sh-idispo.viacar-system.ch/»), der Seiteninhalt wurde nicht gespeichert.",
+   "pruefung": "bestätigt (codes.txt: «302 286 https://sh-idispo.viacar-system.ch/», keine gespeicherte Seite. DVSH hat keine detectedForms und keine formDefinitions. In der Datenbank gibt es kein Formular zum Verschieben; 27 und 45 betreffen andere Prüfverfahren.)",
+   "eformulare": []
+  }
+ ]
+}

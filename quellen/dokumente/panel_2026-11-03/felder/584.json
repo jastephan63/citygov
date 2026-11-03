@@ -1,0 +1,535 @@
+{
+ "form_id": 584,
+ "data_fields": [
+  {
+   "name": "ZEMIS Nr. der Gesuchstellerin/des Gesuchstellers",
+   "definition": "ZEMIS-Nummer der Gesuchstellerin bzw. des Gesuchstellers, die oder der den Nachzug der Familienangehörigen beantragt.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Name und Adresse der Gesuchstellerin/des Gesuchstellers",
+   "definition": "Personalien und Adresse der Gesuchstellerin bzw. des Gesuchstellers: Familienname(n), Vorname(n), Geburtsdatum, Adresse und Staatsangehörigkeit.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Familienname(n)",
+    "Vorname(n)",
+    "Geburtsdatum",
+    "Adresse",
+    "Staatsangehörigkeit"
+   ],
+   "format": "Geburtsdatum: Tag Monat Jahr"
+  },
+  {
+   "name": "Personalien der Familienangehörigen, deren Nachzug gewünscht wird (Ehefrau/Ehemann)",
+   "definition": "Personalien der Ehefrau bzw. des Ehemanns, deren oder dessen Nachzug gewünscht wird: Familienname(n), Vorname(n), Geburtsdatum, Geburtsort, Geburtsland und Staatsangehörigkeit (auszufüllen, wenn der Nachzug der Ehefrau bzw. des Ehemanns beantragt wird).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Familienname(n)",
+    "Vorname(n)",
+    "Geburtsdatum",
+    "Geburtsort",
+    "Geburtsland",
+    "Staatsangehörigkeit"
+   ],
+   "format": "Geburtsdatum: Tag Monat Jahr"
+  },
+  {
+   "name": "Geschlecht (Ehefrau/Ehemann)",
+   "definition": "Geschlecht der Ehefrau bzw. des Ehemanns, deren oder dessen Nachzug gewünscht wird.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "männlich",
+    "weiblich"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Mutter (Ehefrau/Ehemann)",
+   "definition": "Name(n) und Vorname(n) der Mutter der Ehefrau bzw. des Ehemanns, deren oder dessen Nachzug gewünscht wird.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name(n)",
+    "Vorname(n)"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Vater (Ehefrau/Ehemann)",
+   "definition": "Name(n) und Vorname(n) des Vaters der Ehefrau bzw. des Ehemanns, deren oder dessen Nachzug gewünscht wird.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name(n)",
+    "Vorname(n)"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Strafverfahren hängig (Ehefrau/Ehemann)",
+   "definition": "Angabe (Ja/Nein), ob gegen die Ehefrau bzw. den Ehemann ein Strafverfahren hängig ist.",
+   "data_type": "boolean",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Vorstrafen (Ehefrau/Ehemann)",
+   "definition": "Angabe (Ja/Nein), ob die Ehefrau bzw. der Ehemann Vorstrafen hat.",
+   "data_type": "boolean",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ist die Einreise bereits erfolgt? (Ehefrau/Ehemann)",
+   "definition": "Angabe (Ja/Nein), ob die Ehefrau bzw. der Ehemann bereits in die Schweiz eingereist ist.",
+   "data_type": "boolean",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Falls ja, wann (Ehefrau/Ehemann)",
+   "definition": "Datum der bereits erfolgten Einreise der Ehefrau bzw. des Ehemanns, anzugeben nur bei Ja auf die vorangehende Frage.",
+   "data_type": "date",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "Tag Monat Jahr"
+  },
+  {
+   "name": "Gegenwärtige Aufenthaltsadresse (Ehefrau/Ehemann)",
+   "definition": "Adresse, an der sich die Ehefrau bzw. der Ehemann gegenwärtig aufhält.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Pass / ID (Ehefrau/Ehemann)",
+   "definition": "Art des Ausweisdokuments der Ehefrau bzw. des Ehemanns (Pass oder ID); eine Ausweisnummer verlangt das Formular nicht.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "Pass",
+    "ID"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "gültig bis (Ehefrau/Ehemann)",
+   "definition": "Ablaufdatum des angekreuzten Ausweisdokuments (Pass oder ID) der Ehefrau bzw. des Ehemanns.",
+   "data_type": "date",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "Tag Monat Jahr"
+  },
+  {
+   "name": "Ort und Datum",
+   "definition": "Ort und Datum der Unterzeichnung durch die Gesuchstellerin bzw. den Gesuchsteller.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Ort",
+    "Datum"
+   ],
+   "format": "Datum: Tag Monat Jahr"
+  },
+  {
+   "name": "Unterschrift der Gesuchstellerin/des Gesuchstellers",
+   "definition": "Unterschrift der Gesuchstellerin bzw. des Gesuchstellers, die einzige Unterschrift des Formulars A2.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Verwandtschaftsverhältnis zur Gesuchstellerin/zum Gesuchsteller (Person 1)",
+   "definition": "Verwandtschaftsverhältnis der ersten Person der Rückseite, welche in die Schweiz einreisen soll, zur Gesuchstellerin bzw. zum Gesuchsteller (auszufüllen, wenn ein Kind oder eine weitere Person nachgezogen werden soll).",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "Kind",
+    "Vater/Mutter",
+    "Anderes"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 1)",
+   "definition": "Personalien der ersten Person, welche in die Schweiz einreisen soll: Familienname(n), Vorname(n), Geburtsdatum, Geburtsort, Geburtsland und Staatsangehörigkeit.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Familienname(n)",
+    "Vorname(n)",
+    "Geburtsdatum",
+    "Geburtsort",
+    "Geburtsland",
+    "Staatsangehörigkeit"
+   ],
+   "format": "Geburtsdatum: Tag Monat Jahr"
+  },
+  {
+   "name": "Geschlecht (Person 1)",
+   "definition": "Geschlecht der ersten Person, welche in die Schweiz einreisen soll.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "männlich",
+    "weiblich"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Mutter (Person 1)",
+   "definition": "Name(n) und Vorname(n) der Mutter der ersten Person, welche in die Schweiz einreisen soll.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name(n)",
+    "Vorname(n)"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Vater (Person 1)",
+   "definition": "Name(n) und Vorname(n) des Vaters der ersten Person, welche in die Schweiz einreisen soll.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name(n)",
+    "Vorname(n)"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Pass / ID (Person 1)",
+   "definition": "Art des Ausweisdokuments der ersten Person (Pass oder ID); eine Ausweisnummer verlangt das Formular nicht.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "Pass",
+    "ID"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "gültig bis (Person 1)",
+   "definition": "Ablaufdatum des angekreuzten Ausweisdokuments (Pass oder ID) der ersten Person.",
+   "data_type": "date",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "Tag Monat Jahr"
+  },
+  {
+   "name": "Strafverfahren hängig (Person 1)",
+   "definition": "Angabe (Ja/Nein), ob gegen die erste Person ein Strafverfahren hängig ist.",
+   "data_type": "boolean",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Vorstrafen (Person 1)",
+   "definition": "Angabe (Ja/Nein), ob die erste Person Vorstrafen hat.",
+   "data_type": "boolean",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ist die Einreise bereits erfolgt (Person 1)",
+   "definition": "Angabe (Ja/Nein), ob die erste Person bereits in die Schweiz eingereist ist.",
+   "data_type": "boolean",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Falls ja, wann (Person 1)",
+   "definition": "Datum der bereits erfolgten Einreise der ersten Person, anzugeben nur bei Ja auf die vorangehende Frage.",
+   "data_type": "date",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "Tag Monat Jahr"
+  },
+  {
+   "name": "Verwandtschaftsverhältnis zur Gesuchstellerin/zum Gesuchsteller (Person 2)",
+   "definition": "Verwandtschaftsverhältnis der zweiten Person der Rückseite, welche in die Schweiz einreisen soll, zur Gesuchstellerin bzw. zum Gesuchsteller (auszufüllen, wenn eine zweite Person nachgezogen werden soll).",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "Kind",
+    "Vater/Mutter",
+    "Anderes"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 2)",
+   "definition": "Personalien der zweiten Person, welche in die Schweiz einreisen soll: Familienname(n), Vorname(n), Geburtsdatum, Geburtsort, Geburtsland und Staatsangehörigkeit.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Familienname(n)",
+    "Vorname(n)",
+    "Geburtsdatum",
+    "Geburtsort",
+    "Geburtsland",
+    "Staatsangehörigkeit"
+   ],
+   "format": "Geburtsdatum: Tag Monat Jahr"
+  },
+  {
+   "name": "Geschlecht (Person 2)",
+   "definition": "Geschlecht der zweiten Person, welche in die Schweiz einreisen soll.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "männlich",
+    "weiblich"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Mutter (Person 2)",
+   "definition": "Name(n) und Vorname(n) der Mutter der zweiten Person, welche in die Schweiz einreisen soll.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name(n)",
+    "Vorname(n)"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Vater (Person 2)",
+   "definition": "Name(n) und Vorname(n) des Vaters der zweiten Person, welche in die Schweiz einreisen soll.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name(n)",
+    "Vorname(n)"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Pass / ID (Person 2)",
+   "definition": "Art des Ausweisdokuments der zweiten Person (Pass oder ID); eine Ausweisnummer verlangt das Formular nicht.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "Pass",
+    "ID"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "gültig bis (Person 2)",
+   "definition": "Ablaufdatum des angekreuzten Ausweisdokuments (Pass oder ID) der zweiten Person.",
+   "data_type": "date",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "Tag Monat Jahr"
+  },
+  {
+   "name": "Strafverfahren hängig (Person 2)",
+   "definition": "Angabe (Ja/Nein), ob gegen die zweite Person ein Strafverfahren hängig ist.",
+   "data_type": "boolean",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Vorstrafen (Person 2)",
+   "definition": "Angabe (Ja/Nein), ob die zweite Person Vorstrafen hat.",
+   "data_type": "boolean",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ist die Einreise bereits erfolgt (Person 2)",
+   "definition": "Angabe (Ja/Nein), ob die zweite Person bereits in die Schweiz eingereist ist.",
+   "data_type": "boolean",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Falls ja, wann (Person 2)",
+   "definition": "Datum der bereits erfolgten Einreise der zweiten Person, anzugeben nur bei Ja auf die vorangehende Frage.",
+   "data_type": "date",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "Tag Monat Jahr"
+  },
+  {
+   "name": "Verwandtschaftsverhältnis zur Gesuchstellerin/zum Gesuchsteller (Person 3)",
+   "definition": "Verwandtschaftsverhältnis der dritten Person der Rückseite, welche in die Schweiz einreisen soll, zur Gesuchstellerin bzw. zum Gesuchsteller (auszufüllen, wenn eine dritte Person nachgezogen werden soll).",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "Kind",
+    "Vater/Mutter",
+    "Anderes"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 3)",
+   "definition": "Personalien der dritten Person, welche in die Schweiz einreisen soll: Familienname(n), Vorname(n), Geburtsdatum, Geburtsort, Geburtsland und Staatsangehörigkeit.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Familienname(n)",
+    "Vorname(n)",
+    "Geburtsdatum",
+    "Geburtsort",
+    "Geburtsland",
+    "Staatsangehörigkeit"
+   ],
+   "format": "Geburtsdatum: Tag Monat Jahr"
+  },
+  {
+   "name": "Geschlecht (Person 3)",
+   "definition": "Geschlecht der dritten Person, welche in die Schweiz einreisen soll.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "männlich",
+    "weiblich"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Mutter (Person 3)",
+   "definition": "Name(n) und Vorname(n) der Mutter der dritten Person, welche in die Schweiz einreisen soll.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name(n)",
+    "Vorname(n)"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Vater (Person 3)",
+   "definition": "Name(n) und Vorname(n) des Vaters der dritten Person, welche in die Schweiz einreisen soll.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name(n)",
+    "Vorname(n)"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Pass / ID (Person 3)",
+   "definition": "Art des Ausweisdokuments der dritten Person (Pass oder ID); eine Ausweisnummer verlangt das Formular nicht.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "Pass",
+    "ID"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "gültig bis (Person 3)",
+   "definition": "Ablaufdatum des angekreuzten Ausweisdokuments (Pass oder ID) der dritten Person.",
+   "data_type": "date",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "Tag Monat Jahr"
+  },
+  {
+   "name": "Strafverfahren hängig (Person 3)",
+   "definition": "Angabe (Ja/Nein), ob gegen die dritte Person ein Strafverfahren hängig ist.",
+   "data_type": "boolean",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Vorstrafen (Person 3)",
+   "definition": "Angabe (Ja/Nein), ob die dritte Person Vorstrafen hat.",
+   "data_type": "boolean",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ist die Einreise bereits erfolgt (Person 3)",
+   "definition": "Angabe (Ja/Nein), ob die dritte Person bereits in die Schweiz eingereist ist.",
+   "data_type": "boolean",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Falls ja, wann (Person 3)",
+   "definition": "Datum der bereits erfolgten Einreise der dritten Person, anzugeben nur bei Ja auf die vorangehende Frage.",
+   "data_type": "date",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "Tag Monat Jahr"
+  }
+ ],
+ "hinweis": "KORREKTUREN: (1) «Mutter / Vater (…)» ist nicht gedruckt. Das Formular druckt in allen 4 Blöcken (Ehefrau/Ehemann, Person 1–3) zwei eigene Zeilen mit fetten Labels «Mutter:» und «Vater:». Jede Zeile hat «Name(n)» und «Vorname(n)». Darum ist das Feld je Block in zwei Composites aufgeteilt: «Mutter (…)» und «Vater (…)», je mit den Teilen «Name(n)» und «Vorname(n)». Die Rolle steht im Parent. So machen es auch die Formulare 289, 484 und 546. Aus 44 werden damit 48 Felder. (2) Die Namen der Personalien-Blöcke folgen jetzt den gedruckten Überschriften: «Personalien der Familienangehörigen, deren Nachzug gewünscht wird (Ehefrau/Ehemann)» statt «Personalien (Ehefrau/Ehemann)» und «Personalien der Personen, welche in die Schweiz einreisen sollen (Person 1/2/3)» statt «Personalien (Person n)». Alle übrigen Felder bleiben unverändert. Sie wurden einzeln gegen die Widgets geprüft (Seite 1: 41, Seite 2: 93), gegen das gerenderte Bild von Seite 1 und gegen den Text. Es fehlt keine Angabe, und keine ist erfunden. Typen, Reihenfolge, allowed_values und das Format «Tag Monat Jahr» stimmen. Die Rückseite (Person 1–3) fragt keine Aufenthaltsadresse, wie im Entwurf. KEINE ANGABEN DER PERSON: die Hinweise «Für Kinder oder weitere Personen bitte die Rückseite benutzen» und «Bei mehr als 3 Personen bitte zusätzliche Formulare ausfüllen» sowie der Ausgabevermerk 01/2016. Das A2 hat keinen Amtsblock, keine Beilagenliste und nur eine Unterschrift (Gesuchstellerin/Gesuchsteller). Die Rückseite hat keine Unterschrift. Zu «Anderes» beim Verwandtschaftsverhältnis gibt es kein Textfeld. UMFANG: Die Datei bündelt auf den Seiten 3–4 das «Gesuch Ausländerbewilligung (Formular A1)» (Vorderseite und Arbeitgeber-Rückseite mit Amtsentscheid). Es wird als eigenes Formular 497 gehalten und ist hier bewusst nicht aufgenommen (Urteil in quellen/dokumente/urteile_2026-11-03_online.json). ZU PRÜFEN (nur gemeldet, Formular nicht geändert): (a) 76 der 171 AcroForm-Felder sind Widgets mit gleichem Namen auf A2 und A1 und teilen daher ihren Wert. Seite 1↔3: «1»–«26», «Ja», «Nein», «Ja_2», «Nein_2», «männlich», «weiblich». Seite 2↔4: «44»–«79», «Ja_4»–«Nein_6». Seite 1↔4: «Ja_3», «Nein_3». Eine Eingabe im A2 erscheint deshalb im A1 an fremder Stelle. Beispiel: Der Familienname der Gesuchstellerin (Seite 1, Feld 1) wird zum Familiennamen der Ausländerin im A1 (Seite 3), und der Familienname der Ehefrau/des Ehemanns (Feld 8) landet im A1-Adressfeld. Die Angaben zu Person 1–3 füllen die Arbeitgeberfelder der A1-Rückseite. (b) «ZEMIS Nr. der Gesuchstellerin/des Gesuchstellers» trägt kein «falls vorhanden». Nach Formularregel bleibt das Feld required, obwohl Schweizer Gesuchstellende (Dienst Familiennachzug für Schweizer/innen) keine ZEMIS-Nummer haben. (c) Bedingte Angaben bleiben required, weil kein Optional-Vermerk gedruckt ist; die Bedingung steht in der Definition. Das betrifft «Falls ja, wann», den ganzen Block Ehefrau/Ehemann sowie Person 2 und 3."
+}

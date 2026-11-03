@@ -1029,7 +1029,13 @@ def korrekturen_lesen(conn, wurzel=None):
         ab = d.get("ab_formular")
         eintraege = [("teilfeld", z) for z in d.get("zuordnungen") or []] + \
                     [("feld", z) for z in d.get("urteile") or []]
-        if not eintraege:
+        # an entry a later edition made moot stays in the file under «ueberholt», with
+        # the evidence of what superseded it; it is no longer checked against the fields
+        ueberholt = d.get("ueberholt") or []
+        for z in ueberholt:
+            if not (z.get("ueberholt_durch") or "").strip():
+                fehler.append(f"Korrektur {name} {z.get('subfield_id') or z.get('feld')}: überholt ohne Beleg (ueberholt_durch)")
+        if not eintraege and not ueberholt:
             fehler.append(f"Korrektur {name}: keine Einträge")
         for art, z in eintraege:
             tag = f"Korrektur {name} {z.get('subfield_id') or z.get('feld')}"

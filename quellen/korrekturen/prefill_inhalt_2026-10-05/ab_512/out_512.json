@@ -1,8 +1,9 @@
 {
- "hinweis": "Korrekturen der eCH-Zuordnung aus der Durchsicht vom 2026-10-05 (Datenmodell, Stufe 3, Teil 1: falscher Inhalt der Vorbefüllung). Durchgesehen wurden alle Punkte, die aus dem Einwohnerregister vorbefüllbar sind oder eine Register-Stufe tragen, auf Bezeichnungen mit Zeitbezug (früher, bisherig, letzte Jahre, während, Änderung, Zuzug, Wegzug, seit, bis, neu, geplant), eine andere Person, ein Ja/Nein auf einem Wert-Element und den Wert eines früheren Ereignisses; zu jedem Kandidaten wurde der Formulartext gelesen. Hier stehen nur die Punkte, deren Element eine ANDERE Angabe nennt; jeder mit dem bisherigen Element, der Klasse, dem Grund, einem wörtlichen Zitat aus dem Formulartext und der Zweitprüfung (Gegenprobe gegen den Katalog und den Formulartext). Punkte, deren Element stimmt, die aber nach einem früheren oder künftigen Wert fragen, behalten ihr Element; sie hält die Zeitregel von scripts/register_map.py von der Vorbefüllung fern (liste «geprueft_belassen» in teilfelder.json). Geprüft von scripts/register_map.py (zeit_pruefen: Aufbau, Katalog, Stand ausstehend oder angewendet; --korrekturen: jedes Zitat im Formulartext). Diese Datei gilt nur ab Formular 512: ein namensbasiertes Urteil «Schüler(in)» träfe sonst auch das zusammengesetzte Feld gleichen Namens im Formular 471.",
+ "hinweis": "Korrekturen der eCH-Zuordnung aus der Durchsicht vom 2026-10-05 (Datenmodell, Stufe 3, Teil 1: falscher Inhalt der Vorbefüllung). Durchgesehen wurden alle Punkte, die aus dem Einwohnerregister vorbefüllbar sind oder eine Register-Stufe tragen, auf Bezeichnungen mit Zeitbezug (früher, bisherig, letzte Jahre, während, Änderung, Zuzug, Wegzug, seit, bis, neu, geplant), eine andere Person, ein Ja/Nein auf einem Wert-Element und den Wert eines früheren Ereignisses; zu jedem Kandidaten wurde der Formulartext gelesen. Hier stehen nur die Punkte, deren Element eine ANDERE Angabe nennt; jeder mit dem bisherigen Element, der Klasse, dem Grund, einem wörtlichen Zitat aus dem Formulartext und der Zweitprüfung (Gegenprobe gegen den Katalog und den Formulartext). Punkte, deren Element stimmt, die aber nach einem früheren oder künftigen Wert fragen, behalten ihr Element; sie hält die Zeitregel von scripts/register_map.py von der Vorbefüllung fern (liste «geprueft_belassen» in teilfelder.json). Geprüft von scripts/register_map.py (zeit_pruefen: Aufbau, Katalog, Stand ausstehend oder angewendet; --korrekturen: jedes Zitat im Formulartext). Diese Datei gilt nur ab Formular 512: ein namensbasiertes Urteil «Schüler(in)» träfe sonst auch das zusammengesetzte Feld gleichen Namens im Formular 471. — Stand 03.11.2026: das einzige Urteil («Schüler(in)», Feld 6077) ist überholt (siehe «ueberholt»): die Live-Datei von Formular 512 fasst die Ankreuzfelder zu einer Mehrfachauswahl zusammen.",
  "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/korrekturen/prefill_inhalt_2026-10-05/ab_512 --from=512",
  "ab_formular": 512,
- "urteile": [
+ "urteile": [],
+ "ueberholt": [
   {
    "feld": "Schüler(in)",
    "urteil": "kein_standard",
@@ -28,7 +29,8 @@
    "zweitpruefung": {
     "urteil": "bestaetigt",
     "grund": "Gegenprobe: im Formular 471 heisst ein Feld mit Teilen ebenfalls «Schüler(in)» (Personalien der Schülerin oder des Schülers) — darum wirkt dieses Urteil nur ab Formular 512, das einzige Feld dieses Namens dort ist das Ankreuzfeld. eCH-0260 (Schule) kennt keinen Aufenthaltszweck. kein_standard bestätigt."
-   }
+   },
+   "ueberholt_durch": "Feldübertragung vom 03.11.2026 auf die Live-Datei von Formular 512 (quellen/dokumente/ausgaben_2026-11-03.json, zweitgeprüft): das Formular druckt die Ankreuzfelder als eine Frage «Für Nichterwerbstätige»; Feld 6077 ist jetzt diese Mehrfachauswahl und behält das Urteil «kein Standard» (kein Element nennt den Aufenthaltszweck), die übrigen Ankreuzfelder dieses Blocks entfallen in ihr."
   }
  ]
 }

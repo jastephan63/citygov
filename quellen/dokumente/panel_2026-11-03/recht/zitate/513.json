@@ -1,0 +1,238 @@
+{
+ "form_id": 513,
+ "mappings": [
+  {
+   "data_field": "Name",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 90",
+     "beleg": "Mitwirkungspflicht: «zutreffende und vollständige Angaben über die für die Regelung des Aufenthalts wesentlichen Tatsachen machen» (lit. a). Die Identität der gesuchstellenden Person ist eine solche Tatsache."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Vorname",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 90",
+     "beleg": "«zutreffende und vollständige Angaben über die für die Regelung des Aufenthalts wesentlichen Tatsachen machen» (lit. a): Identifikation der gesuchstellenden Person."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Adresse",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 35",
+     "beleg": "Grenzgängerbewilligung: Personen mit einer Grenzgängerbewilligung «müssen mindestens einmal wöchentlich an ihren Wohnort im Ausland zurückkehren» (Abs. 2) – die Adresse belegt diesen ausländischen Wohnort."
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 90",
+     "beleg": "«zutreffende und vollständige Angaben über die für die Regelung des Aufenthalts wesentlichen Tatsachen machen» (lit. a)."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Geburtsdatum",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 90",
+     "beleg": "«zutreffende und vollständige Angaben über die für die Regelung des Aufenthalts wesentlichen Tatsachen machen» (lit. a): Identifikation der gesuchstellenden Person."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "ZEMIS-Nummer",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "SH-Nummer",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Nummer des Passes und Gültigkeitsdauer",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 89",
+     "beleg": "Ausländerinnen und Ausländer müssen während ihres Aufenthaltes in der Schweiz «im Besitz eines gültigen, nach Artikel 13 Absatz 1 anerkannten Ausweispapiers sein»."
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 90",
+     "beleg": "Mitwirkungspflicht: «Ausweispapiere (Art. 89) beschaffen oder bei deren Beschaffung durch die Behörden mitwirken» (lit. c)."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Staatsangehörigkeit",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 2",
+     "beleg": "«Für Staatsangehörige der Mitgliedstaaten der Europäischen Gemeinschaft (EG) ... gilt dieses Gesetz nur so weit, als das Abkommen ... keine abweichenden Bestimmungen enthält» (Abs. 2; Abs. 3 für EFTA): die Staatsangehörigkeit bestimmt das anwendbare Regime."
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 90",
+     "beleg": "«zutreffende und vollständige Angaben über die für die Regelung des Aufenthalts wesentlichen Tatsachen machen» (lit. a)."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "E-Mail-Adresse",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Telefonnummer",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Zivilstand",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Jetziger Aufenthaltszweck",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 11",
+     "beleg": "Bewilligungspflicht bei Erwerbstätigkeit; «Als Erwerbstätigkeit gilt jede üblicherweise gegen Entgelt ausgeübte unselbständige oder selbständige Tätigkeit» (Abs. 2)."
+    },
+    {
+     "cref": "SR 823.11",
+     "article_no": "Art. 21",
+     "beleg": "«Der Verleiher darf in der Schweiz nur Ausländer anstellen, die zur Erwerbstätigkeit zugelassen und zum Stellenwechsel berechtigt sind» (Option Personalverleih)."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Einsatzvertrag",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 13",
+     "beleg": "«Die zuständige Behörde kann ... weitere für das Verfahren notwendige Dokumente verlangen» (Abs. 2)."
+    },
+    {
+     "cref": "SR 823.11",
+     "article_no": "Art. 19",
+     "beleg": "«Der Verleiher muss den Vertrag mit dem Arbeitnehmer in der Regel schriftlich abschliessen»; zu regeln sind u. a. «der Arbeitsort sowie der Beginn des Einsatzes» (Abs. 1, Abs. 2 lit. b)."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Jetzige ausgeübte Tätigkeit",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 11",
+     "beleg": "Bewilligung für die Erwerbstätigkeit; «Als Erwerbstätigkeit gilt jede üblicherweise gegen Entgelt ausgeübte unselbständige oder selbständige Tätigkeit» (Abs. 2)."
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 90",
+     "beleg": "«zutreffende und vollständige Angaben über die für die Regelung des Aufenthalts wesentlichen Tatsachen machen» (lit. a)."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Name und Adresse des Betriebes",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 11",
+     "beleg": "Die Bewilligung «ist bei der am vorgesehenen Arbeitsort zuständigen Behörde zu beantragen» (Abs. 1); «Bei unselbständiger Erwerbstätigkeit ist die Bewilligung von der Arbeitgeberin oder vom Arbeitgeber zu beantragen» (Abs. 3)."
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 90",
+     "beleg": "«zutreffende und vollständige Angaben über die für die Regelung des Aufenthalts wesentlichen Tatsachen machen» (lit. a)."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Einsatzort",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 11",
+     "beleg": "Die Bewilligung «ist bei der am vorgesehenen Arbeitsort zuständigen Behörde zu beantragen» (Abs. 1)."
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 90",
+     "beleg": "«zutreffende und vollständige Angaben über die für die Regelung des Aufenthalts wesentlichen Tatsachen machen» (lit. a)."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Beilagen",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 13",
+     "beleg": "«Die zuständige Behörde kann ... weitere für das Verfahren notwendige Dokumente verlangen» (Abs. 2)."
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 41",
+     "beleg": "«Ausländerinnen und Ausländer erhalten mit der Bewilligung in der Regel einen entsprechenden Ausweis» (Abs. 1) — Ausländerausweis im Original."
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 89",
+     "beleg": "Pflicht, «im Besitz eines gültigen, nach Artikel 13 Absatz 1 anerkannten Ausweispapiers» zu sein — Pass/ID bzw. Konsulatsbestätigung."
+    },
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 90",
+     "beleg": "«die erforderlichen Beweismittel unverzüglich einreichen» (lit. b); «Ausweispapiere (Art. 89) beschaffen oder bei deren Beschaffung durch die Behörden mitwirken» (lit. c)."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Bemerkungen des(r) Gesuchsteller(in)",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Ort und Datum",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Unterschrift des(r) Gesuchsteller(in)",
+   "cites": [
+    {
+     "cref": "SR 142.20",
+     "article_no": "Art. 90",
+     "beleg": "«zutreffende und vollständige Angaben über die für die Regelung des Aufenthalts wesentlichen Tatsachen machen» (lit. a) — mit der Unterschrift bestätigt die Person die vollständige und wahrheitsgetreue Ausfüllung."
+    }
+   ],
+   "over_collection": false
+  }
+ ]
+}

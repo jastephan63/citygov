@@ -1,0 +1,31 @@
+{
+ "form_id": 588,
+ "mappings": [
+  {
+   "data_field": "u. ref.",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "Schaffhausen, den",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "NAME Vorname",
+   "cites": [
+    {
+     "cref": "SR 311.0",
+     "article_no": "Art. 321",
+     "beleg": "2. Der Täter ist nicht strafbar, wenn er das Geheimnis auf Grund einer Einwilligung des Berechtigten ... offenbart hat."
+    },
+    {
+     "cref": "SHR 810.100",
+     "article_no": "Art. 15",
+     "beleg": "Personen, die zur Verschwiegenheit verpflichtet sind, sind von der Schweigepflicht befreit: a) mit Einwilligung der oder des Berechtigten"
+    }
+   ],
+   "over_collection": false
+  }
+ ]
+}

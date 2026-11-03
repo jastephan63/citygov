@@ -1,0 +1,183 @@
+{
+ "hinweis": "eCH-Urteile Formular 587, Panel 2026-11-03, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-11-03/ech/587 --nur-offene=587",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Composite of the applicant's Personalien: ZEMIS-Nr., kant. Ref., Name, Vorname, Geb.-Dat, Staatsangehörigkeit and Adresse. It takes the eCH-0044 container personIdentification (verified in the catalogue), as 357 composite fields in the databank do, among them the sibling Migrationsamt form 585 «Personalien» with the same parts. Each part is judged on its own below.",
+   "feld": "Die Gesuchstellerin / Der Gesuchsteller",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Personalien of the applicant's spouse (Name, Vorname, Geb.-Dat, Staatsangehörigkeit). The pair gives the meaning: this is the partner in the marriage the permit claim is derived from («aus der ehelichen Gemeinschaft abgeleitet»). The container is eCH-0021 maritalRelationship (personAddonType, which holds partner/personIdentificationPartner). This matches practice: «Personalien EhepartnerIn» 7x, «Personalien des Ehegatten» 2x, «Ehegatte / eingetragener Partner». Parts judged separately.",
+   "feld": "die Ehepartnerin /der Ehepartnern",
+   "standard": "eCH-0021",
+   "element": "maritalRelationship"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Confirms the propagated kein_standard (ech_herkunft 'propagiert (Name 82x geprüft)'). All 84 fields named «Bemerkungen» are kein_standard. Searched all 290 standards for remark/comment/note/Bemerk. eCH-0039 and eCH-0147 comment(s) are dossier/document comments. eCH-0058 comment (headerType) is a technical message-header comment; Migrationsamt forms 508-513 map «Bemerkungen des(r) Gesuchsteller(in)» to it, but that element describes the delivery, not the declarants' statement. eCH-0129/0131/0132 remark(s) are construction, cadastral and AHV-number specific, and eCH-0178 remarks is for notarial land-register documents. None defines a free remark by the declarants on a migration declaration.",
+   "feld": "Bemerkungen"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Place and date where the applicant signs the declaration, a composite of Ort and Datum. The only catalogue element for a signing place plus date is eCH-0119 locationAndDate (attachedFormsType, string), which means the place and date of signing. The same label carries this element on the sibling Migrationsamt form 586 «Ort/Datum» and on forms 452, 579 and 580, about 30 fields in all. The parts Ort and Datum have no element of their own.",
+   "feld": "Ort/Datum (Gesuchstellerin / Gesuchsteller)",
+   "standard": "eCH-0119",
+   "element": "locationAndDate"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Handwritten signature of the applicant. Searched all 290 standards for sign/signature/signer/Unterschrift. Only two kinds of hit exist. eCH-0039 signer (documentType, a token naming a document's signer) does not represent the signature itself. eCH-0260 signatures/…SignatureConfirmation are booleans in an apprenticeship contract. Neither represents the signature on a declaration. Consistent with the 98 «Unterschrift…» fields that are kein_standard.",
+   "feld": "Unterschrift Gesuchstellerin / Gesuchstellers"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Place and date where the spouse signs the joint declaration, a composite of Ort and Datum. Mapped the same way as the applicant's Ort/Datum and the label «Ort/Datum» on forms 586, 452, 579 and 580: eCH-0119 locationAndDate (attachedFormsType), the catalogue's only signing place-plus-date element. The parts have no element of their own.",
+   "feld": "Ort/Datum (Ehegatte)",
+   "standard": "eCH-0119",
+   "element": "locationAndDate"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Handwritten signature of the spouse. Same search as for the applicant's signature (sign/signature/signer/Unterschrift across all 290 standards). eCH-0039 signer is a document's signer token and eCH-0260 signatures are apprenticeship-contract booleans, so neither is a declaration signature. No element exists, consistent with the 98 kein_standard «Unterschrift…» fields.",
+   "feld": "Unterschrift Ehegatte"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "The applicant's ZEMIS number, the person identifier in the federal migration information system. eCH-0044 otherPersonId (namedPersonIdType with personIdCategory) carries a person id from another system. Every mapped ZEMIS field uses it: forms 497, 506-513 and the part «ZEMIS Nr.» on form 474.",
+   "elternfeld": "Die Gesuchstellerin / Der Gesuchsteller",
+   "teilfeld": "Zemis-Nr.",
+   "standard": "eCH-0044",
+   "element": "otherPersonId"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«kant. Ref.: SH …» is the Migrationsamt's own cantonal person reference (the SH number), kept next to the ZEMIS number in the Personalien. eCH-0044 localPersonId is the person id in the sender's own system. The Migrationsamt «SH-Nummer» fields on forms 508-513 use it.",
+   "elternfeld": "Die Gesuchstellerin / Der Gesuchsteller",
+   "teilfeld": "kant. Ref.",
+   "standard": "eCH-0044",
+   "element": "localPersonId"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Applicant's surname. eCH-0044 officialName (baseNameType), as in 283 «Name» parts.",
+   "elternfeld": "Die Gesuchstellerin / Der Gesuchsteller",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Applicant's first name. eCH-0044 firstName (baseNameType), as in 251 «Vorname» parts.",
+   "elternfeld": "Die Gesuchstellerin / Der Gesuchsteller",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«Geb.- Dat» abbreviates Geburtsdatum, the applicant's date of birth. It is a fixed value, not a period. eCH-0044 dateOfBirth (datePartiallyKnownType), as in 240 «Geburtsdatum» parts.",
+   "elternfeld": "Die Gesuchstellerin / Der Gesuchsteller",
+   "teilfeld": "Geb.- Dat",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Applicant's nationality, the current value. eCH-0011 nationalityData (personType), as in 31 «Staatsangehörigkeit» parts, including the sibling form 585.",
+   "elternfeld": "Die Gesuchstellerin / Der Gesuchsteller",
+   "teilfeld": "Staatsangehörigkeit",
+   "standard": "eCH-0011",
+   "element": "nationalityData"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "A single full line «Adresse» with no separate PLZ/Ort, so it holds the applicant's whole current postal address (street, house number, PLZ, town). eCH-0010 addressInformation is the element that holds those parts. Mapping it to street alone, the more frequent mapping for a lone «Adresse» (63 vs 21), would understate the line. The form bundles parts that eCH-0010 keeps separate.",
+   "elternfeld": "Die Gesuchstellerin / Der Gesuchsteller",
+   "teilfeld": "Adresse",
+   "standard": "eCH-0010",
+   "element": "addressInformation"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Spouse's surname. eCH-0044 officialName, the element that eCH-0021 maritalRelationship/personIdentificationPartner (personIdentificationLightType) uses.",
+   "elternfeld": "die Ehepartnerin /der Ehepartnern",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Spouse's first name. eCH-0044 firstName (personIdentificationLightType of the partner).",
+   "elternfeld": "die Ehepartnerin /der Ehepartnern",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«Geb.- Dat» is the spouse's date of birth. eCH-0044 dateOfBirth (personIdentificationLightType of the partner).",
+   "elternfeld": "die Ehepartnerin /der Ehepartnern",
+   "teilfeld": "Geb.- Dat",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Spouse's current nationality. eCH-0011 nationalityData (personType), consistent with the 31 «Staatsangehörigkeit» parts that use it.",
+   "elternfeld": "die Ehepartnerin /der Ehepartnern",
+   "teilfeld": "Staatsangehörigkeit",
+   "standard": "eCH-0011",
+   "element": "nationalityData"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Place where the applicant signs, not an address or a place of birth, origin or marriage. Searched the catalogue for location/place/town/placeOf* elements. eCH-0010 town is a postal-address part. eCH-0119 location (concernedPersonType) is the place of a person in a tax deduction. eCH-0011/0021 placeOf* are birth, death, origin, marriage and work places. eCH-0119 locationAndDate is the combined string and sits on the parent. No atomic place-of-signing element exists, consistent with 46 kein_standard «Ort» parts under Ort/Datum parents.",
+   "elternfeld": "Ort/Datum (Gesuchstellerin / Gesuchsteller)",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Date of the applicant's signature. Searched for signature, declaration, submission and application dates (sign*, dateOf*, declarationDate, submissionDate, applicationDate, date). Every hit is domain-bound: eCH-0262 dateOfApplication is plant-protection use, and the generic date elements in eCH-0119/0129/0211/0235/0254/0259/0278 are tax, building, health and ÖREB contexts. None is a declaration's signing date. The combined eCH-0119 locationAndDate sits on the parent, consistent with 46 kein_standard «Datum» parts under Ort/Datum parents.",
+   "elternfeld": "Ort/Datum (Gesuchstellerin / Gesuchsteller)",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Place where the spouse signs. Same catalogue search as for the applicant's Ort: eCH-0010 town is an address part, eCH-0119 location is a tax deduction place, the placeOf* elements are birth, origin, marriage and work places, and locationAndDate sits on the parent. No atomic place-of-signing element.",
+   "elternfeld": "Ort/Datum (Ehegatte)",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Date of the spouse's signature. Same search for signature, declaration and application date elements as for the applicant's Datum, and only domain-bound date elements exist. None is a signing date. eCH-0119 locationAndDate sits on the parent.",
+   "elternfeld": "Ort/Datum (Ehegatte)",
+   "teilfeld": "Datum"
+  }
+ ]
+}

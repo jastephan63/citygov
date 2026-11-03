@@ -1,0 +1,43 @@
+{
+ "form_id": 586,
+ "data_fields": [
+  {
+   "name": "Die Gesuchstellerin / Der Gesuchsteller",
+   "definition": "Personalien der gesuchstellenden Person, die mit dieser Erklärung bestätigt, kein Pensionskassenkapital bezogen zu haben bzw. zu beziehen, samt ihrer Zemis-Nr. und ihrer kantonalen Referenznummer (kant. Ref.).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Zemis-Nr.",
+    "kant. Ref.",
+    "Name",
+    "Vorname",
+    "Geb.- Dat",
+    "Staatsangehörigkeit"
+   ],
+   "format": "kant. Ref. mit vorgedrucktem Präfix «SH»"
+  },
+  {
+   "name": "Ort/Datum",
+   "definition": "Ort und Datum, an dem die gesuchstellende Person die Erklärung unterzeichnet.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Ort",
+    "Datum"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Unterschrift",
+   "definition": "Unterschrift der gesuchstellenden Person, mit der sie die vorgedruckte Erklärung über die Pensionskassengelder bestätigt.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  }
+ ],
+ "hinweis": "Korrekturen: (1) Definition von «Die Gesuchstellerin / Der Gesuchsteller» präzisiert: Die Zemis-Nr. ist keine Kennnummer «beim Migrationsamt» (sie stammt aus ZEMIS). Die Definition nennt jetzt die beiden Kennungen so, wie das Formular sie druckt (Zemis-Nr., kant. Ref.). Sonst keine Korrektur. Geprüft wurde Zeile für Zeile gegen das PDF (1 Seite, 7 AcroForm-Felder: ZemisNr, kant Ref SH, Name, Vorname, GebDat, Staatsangehörigkeit, ort_datum). Alle sechs Personalien-Zeilen sind als eigene Teile vorhanden und wörtlich benannt. «Ort/Datum» ist ein einziges gedrucktes Feld mit zwei Teilen. Es gibt genau eine Unterschriftslinie, also nur eine unterzeichnende Person. Das Formular hat keine Ankreuzfelder, keine Tabelle und keine Beilagenliste. Kein Feld ist als freiwillig markiert. Keine Felder für die Person, aber im Formular: Der Satz «bestätigt hiermit ausdrücklich, kein Pensionskassenkapital bezogen zu haben bzw. zu beziehen» ist eine vorgedruckte Erklärung, die mit der Unterschrift bestätigt wird. Er hat kein eigenes Ankreuzfeld. Der Absatz zur Rechtsfolge (die Aufrechterhaltung ist nichtig, und die Rechte gehen rückwirkend unter, wenn doch Pensionskassengelder bezogen werden) ist Hinweistext. Die Erklärung ist «integrierender Bestandteil» des Gesuchs um Aufrechterhaltung der Niederlassungsbewilligung (Formular 585). Kopf: Migrationsamt und Passbüro, Mühlentalstrasse 105, Schaffhausen. Für Formular 585 ist in der Databank noch kein Feld erfasst."
+}

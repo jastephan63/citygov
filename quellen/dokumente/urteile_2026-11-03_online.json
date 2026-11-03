@@ -1,0 +1,330 @@
+{
+ "hinweis": "Die Dokumente, die die Ziele von «Online erledigen» verlinken (Seiten von migrationsamt.sh.ch und die Links in deren Hilfsblättern, die Seiten von sh.ch und Jotform), aus dem Inhalt beurteilt und zweitgeprüft.",
+ "abzug": "2026-11-03",
+ "urteile": [
+  {
+   "sha256": "067a00a0ddf2a1834e56d37371101146b9be167b580d76ba0e773e684844acbe",
+   "art": "merkblatt",
+   "urteil": "kein_formular",
+   "form_id": null,
+   "titel": "Hilfsblatt für die vorzeitige Erteilung der Niederlassungsbewilligung aufgrund erfolgreicher Integration",
+   "beleg": "https://sh.ch/fileadmin/Redaktoren/MuP/Hilfsblatt_F_Erteilung_C_vorzeitig.pdf (Hilfsblatt_F_Erteilung_C_vorzeitig.pdf). Zwei Seiten ohne AcroForm-Felder, Leerzeilen oder Unterschriftsfeld. Das Blatt erklärt Voraussetzungen und Ablauf («Dieses Hilfsblatt richtet sich an ausländische Personen») und zählt die Beilagen auf. Als das eigentliche Formular nennt es das «Gesuchsformular A1» (Formular 497).",
+   "zweitgeprueft": true
+  },
+  {
+   "sha256": "1364a900feab36bf594b8a6556957a74a04630a5db9277d3025416e56c23b6be",
+   "art": "liste",
+   "urteil": "kein_formular",
+   "form_id": null,
+   "titel": "Grundstückgewinnsteuertarif (Art. 120 Abs. 1 StG) gültig ab 01.01.2001",
+   "beleg": "https://sh.ch/CMS/get/file/ca0d9d0b-64f9-45fc-9754-a186094ed97e (Grundstückgewinnsteuertarif_2001.pdf). Sechsseitige Tariftabelle (Excel-Ausdruck «GrundstÃ¼ckgewinnsteuertarif2001-Internet.xlsx» über «Microsoft: Print To PDF», erstellt 14.02.2022, geändert 16.02.2022) mit den Spalten «Gewinn steuerpflichtig», «Einfache Steuer», «Steuersatz» von 5'000 bis 100'000 Fr., Schluss «Über 100'000 einheitlich 15%», Hinweis «Die Angaben sind unverbindlich.» Keine Felder, keine Annotationen, nichts auszufüllen. Auf der Rechnerseite als Link «Berechnungstabelle» (get/file/ca0d9d0b-…) verlinkt. Hash weder in form noch in dokument_urteil.",
+   "zweitgeprueft": true
+  },
+  {
+   "sha256": "18b0c9c3d90bc75ae9e1d3b578653a361f0d3b20c028d9e3a9ae72a1ae86a3ad",
+   "art": "merkblatt",
+   "urteil": "kein_formular",
+   "form_id": null,
+   "titel": "Hilfsblatt Familiennachzug durch Schweizer/innen",
+   "beleg": "https://sh.ch/fileadmin/Redaktoren/MuP/Hilfsblatt_I_FNZ_CH.pdf (Hilfsblatt_I_FNZ_CH.pdf). Zwei Seiten ohne AcroForm-Felder, ohne Leerzeilen und ohne Unterschrift. Das Blatt erklärt, wer nachgezogen werden kann, nennt Voraussetzungen und Nachzugsfristen und listet die Beilagen je Fall auf, z. B. «Gesuchsformulare A1 und A2». Es gibt nichts auszufüllen.",
+   "zweitgeprueft": true
+  },
+  {
+   "sha256": "21b3276a478efb78703a384bc95188f45820179cba1c0091a0f387d5abb24187",
+   "art": "merkblatt",
+   "urteil": "kein_formular",
+   "form_id": null,
+   "titel": "Hilfsblatt Kantonswechsel für Drittstaatsangehörige",
+   "beleg": "https://sh.ch/fileadmin/Redaktoren/MuP/Hilfsblatt_A__Kantonswechsel_Drittstaatsangehoerige.pdf (Hilfsblatt_A__Kantonswechsel_Drittstaatsangehoerige.pdf). 2 Seiten, keine AcroForm-Felder, keine Leerzeilen und keine Unterschriftszeile. Das Blatt enthält «1. Grundsätzliche Informationen» und Beilagenlisten für B und C. Das auszufüllende Formular ist separat («Gesuchsformular A1», Formular 497) und wird nur für B genannt. Kein Ausgabevermerk. Laut Metadaten stammt das Quelldokument vom 2014-02-27 und wurde zuletzt am 2016-06-22 gespeichert; das PDF entstand am 2025-10-23.",
+   "zweitgeprueft": true
+  },
+  {
+   "sha256": "2d8b06df78f9d5ede296545c2f258aa5f3552f67ffd02b7d2ff311b3b22d1480",
+   "art": "formular",
+   "urteil": "weiteres_formular",
+   "form_id": null,
+   "titel": "Garantieerklärung zu Vorbereitung der Heirat",
+   "beleg": "https://sh.ch/fileadmin/Redaktoren/MuP/garantieerkl_vorb_heirat.pdf (garantieerkl_vorb_heirat.pdf). Einseitiges ausfüllbares PDF, ein Scan (Creator «NRG IM C5500»). Erstellt am 15.10.2025, geändert am 23.10.2025 um 14:43; das deckt sich mit dem Header «Last-Modified: Thu, 23 Oct 2025 12:43:54 GMT». Adressiert an «Büro Einreise». 9 leere Textfelder zur künftigen Ehepartnerin bzw. zum künftigen Ehepartner: Familienname, Vorname, Geburtsdatum (Tag/Monat/Jahr), Staatsangehörigkeit, PLZ/Wohnort im Ausland, Strasse, dazu Ort/Datum. Text «die Übernahme aller anfallenden Kosten» mit Schuldanerkennung «(Art. 82 Abs. 1 SchKG)» und «(Unterschrift Gesuchsteller/in)». Hilfsblatt T verlangt «Garantieerklärung zu Vorbereitung der Heirat» in allen drei Abschnitten als eigene Beilage neben dem Gesuch. Bytegleich mit suche/…/garantieerkl_vorb_heirat.pdf. In der Databank kein Treffer nach Titel oder Hash; die einzigen «Garantie»-Titel sind KÜG-Formulare (151, 403) des Sozialamts.",
+   "zweitgeprueft": true
+  },
+  {
+   "sha256": "3233a4e847fb9348d2cf6e08d77f8ecefd6666e17125f65b78e417370f9d0d25",
+   "art": "formular",
+   "urteil": "gleiche_ausgabe",
+   "form_id": 512,
+   "titel": "C Verlängerungsgesuch",
+   "beleg": "https://sh.ch/fileadmin/Redaktoren/MuP/verlaengerungsgesuch_C.pdf (verlaengerungsgesuch_C.pdf). Zwei Seiten mit 28 AcroForm-Feldern (name, zemis, sh-nr, nummer-pass, Zivilstand, stellensuche_seit …). Gedruckt sind «Bitte in Blockschrift ausfüllen und zutreffende Felder ankreuzen» und «Ort und Datum Unterschrift des(r) Gesuchsteller(in)». Formular 512 ist die DVSH-Definition aus «verlaengerungsgesuch_C.pdf», und ihre 40 Felder geben die gedruckten Beschriftungen wieder («SH-Nummer», «Rentner(in)», «Auf Stellensuche seit»). Ein gedruckter Ausgabevermerk fehlt. Laut Metadaten wurde das PDF 2025-10-29 erstellt und 2026-02-09 geändert; der DVSH-Lauf vom 2026-06-16 liegt danach. Dieselbe Datei liegt auch Formular 510 (Service 483) zugrunde.",
+   "zweitgeprueft": true
+  },
+  {
+   "sha256": "34f12ddf8a1bd1c5a730e9532d25a81bd63775eb063b6bcec848175df4720874",
+   "art": "merkblatt",
+   "urteil": "kein_formular",
+   "form_id": null,
+   "titel": "Hilfsblatt für die vorzeitige Erteilung der Niederlassungsbewilligung an Ehegatten/innen sowie eingetragene Partner/innen von Personen, welche über die Niederlassungsbewilligung C verfügen oder die Schweizer Staatsangehörigkeit besitzen",
+   "beleg": "https://sh.ch/fileadmin/Redaktoren/MuP/Hilfsblatt_E_Erteilung_C_aufgrund_der_Ehe.pdf (Hilfsblatt_E_Erteilung_C_aufgrund_der_Ehe.pdf). Zwei Seiten Fliesstext, keine AcroForm-Felder und keine Unterschriftszeile. Acrobat PDFMaker 17 für Word, erstellt 23.10.2025. Es erklärt Voraussetzungen, Einreichung und Beilagen, z.B. «Sprachnachweis von mindestens Niveau A2 GER mündlich». Für den Post- oder Schalterweg nennt es «Vollständig ausgefülltes und unterschriebenes Gesuchsformular A1» (= Formular 497) und «Erklärung zum Gesuch um Niederlassungsbewilligung (siehe separates Formular)». Dieser Punkt verlinkt auf Seite 2 auf erkl_ges_Niederlassungsbew_ges_ansp_betr_ehe_gem.pdf (= 39.bin). Weder der Hash noch ein solcher Titel steht in der Databank (form, dokument_urteil). Laut manifest.json ist es nur aus dem Hilfsblatt C (06.bin, Dienst «ordentlich nach 10 Jahren») verlinkt. Inhaltlich gehört es aber zum Dienst «aufgrund der Ehe (vorzeitig)»: Die eForm-Einstiegsseite übernimmt Abschnitt 1.1 wörtlich. Nebenbefund: Der Text verweist auf das Hilfsblatt «aufgrund einer Niederlassungsvereinbarung», der Link führt aber auf Hilfsblatt_D_Erteilung_C_EU_EFTA.pdf.",
+   "zweitgeprueft": true
+  },
+  {
+   "sha256": "3702cbfb35c4bb3d8b91a7bd9096f08f46f45a96f0b3d19a858745f990546007",
+   "art": "formular",
+   "urteil": "gleiche_ausgabe",
+   "form_id": 513,
+   "titel": "Verlängerungsgesuch (G)",
+   "beleg": "https://sh.ch/fileadmin/Redaktoren/MuP/verlaengerungsgesuch_G.pdf (verlaengerungsgesuch_G.pdf). 2 Seiten mit 19 AcroForm-Feldern, u.a. «zemis», «sh-nr», «Zivilstand», «Aufehthaltszweck», «einsatzort» und «Ort_datum_ende». Seite 2 trägt die Beilagen-Kästchen, die Bemerkungen und die Zeile «Ort und Datum Unterschrift des(r) Gesuchsteller(in)». Formular 513 ist die dateilose DVSH-formDefinition aus «verlaengerungsgesuch_G.pdf». Alle 17 Bezeichnungen stehen wörtlich im PDF, z.B. «Jetziger Aufenthaltszweck», «Einsatzort» und «Ort und Datum». Auch die Werte von Zivilstand und Aufenthaltszweck stimmen überein. Kein gedruckter Ausgabevermerk; laut Metadaten am 2025-10-29 erstellt und am 2026-02-09 geändert. Zu 513 ist keine Datei hinterlegt (file_hash leer).",
+   "zweitgeprueft": true
+  },
+  {
+   "sha256": "386e5fdc882ee0be9e93843d696f6dd4ffc0ea22a6069a9b9f7f96eaddb7c078",
+   "art": "merkblatt",
+   "urteil": "kein_formular",
+   "form_id": null,
+   "titel": "Hilfsblatt Aufenthalt zur Stellensuche (Staatsangehörige eines EU/EFTA-Staates)",
+   "beleg": "https://sh.ch/fileadmin/Redaktoren/MuP/Hilfsblatt_Z_L_auf_Stellensuche.pdf (Hilfsblatt_Z_L_auf_Stellensuche.pdf). 1 Seite, keine AcroForm-Felder, keine Leerzeilen und keine Unterschrift. Erklärt die Bewilligung «Kurzaufenthaltsbewilligung L \"auf Stellensuche\"» und listet die Beilagen auf: «Gesuchsformular A1» (= form 497), Pass-Kopie und Finanznachweis.",
+   "zweitgeprueft": true
+  },
+  {
+   "sha256": "3b0066751c46428d2f2f12d83bf8831b57ba75874da2ecfed570d1f5a7f783d3",
+   "art": "formular",
+   "urteil": "weiteres_formular",
+   "form_id": null,
+   "titel": "Erklärung zum Gesuch um Niederlassungsbewilligung bei einem aus der ehelichen Gemeinschaft abgeleiteten gesetzlichen Anspruch",
+   "beleg": "https://sh.ch/fileadmin/Redaktoren/MuP/erkl_ges_Niederlassungsbew_ges_ansp_betr_ehe_gem.pdf (erkl_ges_Niederlassungsbew_ges_ansp_betr_ehe_gem.pdf). Einseitiges ausfüllbares Formular mit 14 AcroForm-Textfeldern: ZemisNr, kant Ref SH, Name, Vorname, GebDat, Staatsangehörigkeit, Adresse, Name_2, Vorname_2, GebDat_2, Staatsangehörigkeit_2, Bemerkungen 1, OrtDatum, OrtDatum_2. Gesuchsteller/in und Ehepartner/in erklären gemeinsam «dass wir in einer intakten ehelichen Gemeinschaft mit gemeinsamem Wohnsitz leben». Es hat zwei Unterschriftszeilen, darunter «Ort/Datum Unterschrift Ehegatte:». Word 2013, erstellt 14.01.2019, geändert 23.10.2025. Die Databank hat weder diesen Hash noch einen Titel mit «ehelich» oder «Erklärung zum Gesuch» noch passende Datenfelder. Es ist keine Ausgabe von Formular 497 (A1, Stand «01/2016»), denn Zweck und Inhalt sind anders: eine gemeinsame Beilagen-Erklärung der Ehegatten, kein Bewilligungsgesuch. Das Hilfsblatt 28.bin nennt sie als «separates Formular» und verlinkt sie direkt.",
+   "zweitgeprueft": true
+  },
+  {
+   "sha256": "3d1cb29829981ee2301d702b8f559d0e5327713cddaca263e77163cf7ef7a1f7",
+   "art": "merkblatt",
+   "urteil": "kein_formular",
+   "form_id": null,
+   "titel": "Hilfsblatt für Schüler/innen und Studenten/Studentinnen (EU/EFTA)",
+   "beleg": "https://sh.ch/fileadmin/Redaktoren/MuP/Hilfsblatt_M_Schueler_Studenten_EU_EFTA.pdf (Hilfsblatt_M_Schueler_Studenten_EU_EFTA.pdf). 1 Seite, keine AcroForm-Felder, keine Leerzeilen und keine Unterschriftszeile. Das Blatt nennt Geltungsbereich, Voraussetzungen («2.1 Finanzielle Mittel», «2.2 Krankenversicherung») und Beilagen. Das auszufüllende Formular ist separat («Gesuchsformular A1», Formular 497). Kein Ausgabevermerk; laut Metadaten am 2025-10-23 erstellt.",
+   "zweitgeprueft": true
+  },
+  {
+   "sha256": "41781e7ed54b33dd9121e2fd911f38606964a19d5c7f75466b9bc17bc68fe383",
+   "art": "formular",
+   "urteil": "gleiche_ausgabe",
+   "form_id": 511,
+   "titel": "Verlängerungsgesuch",
+   "beleg": "https://sh.ch/fileadmin/Redaktoren/MuP/verlaengerungsgesuch_F_S_N.pdf (verlaengerungsgesuch_F_S_N.pdf). 1 Seite mit 20 AcroForm-Feldern, u.a. «zemis», «sh-nr» und «nummer-pass». Das Auswahlfeld «bewilligungsart» hat die Optionen F, N und S. Dazu kommt die Zeile «Ort und Datum Unterschrift des(r) Gesuchsteller(in)». Formular 511 ist die dateilose DVSH-formDefinition aus «verlaengerungsgesuch_F_S_N.pdf». 14 ihrer 17 Bezeichnungen stehen wörtlich im PDF, z.B. «Nummer des Passes und Gültigkeitsdauer». Die beiden Bezeichnungen «Anstellungsdauer - …» sind aus «Anstellungsdauer» und «Unbefristet Befristet bis» zusammengesetzt. Die 17. heisst in DVSH «Antragssteller(in)», im PDF «Bemerkungen des(r) Antragsstellers(in)». Die Textebene enthält den Bemerkungsblock zusätzlich als «Bemerkungen des(r) Gesuchsteller(in)». Kein gedruckter Ausgabevermerk; laut Metadaten am 2025-10-28 erstellt und am 2026-02-09 geändert. Gleiche Ausgabe, weil die Bezeichnungen übereinstimmen und keine andere Fassung belegt ist. Zu 511 ist keine Datei hinterlegt (file_hash leer).",
+   "zweitgeprueft": true
+  },
+  {
+   "sha256": "4e8c137886a148ac81529ee5185b9652ff98d44e56418e87a5a8ef78e565f2a0",
+   "art": "formular",
+   "urteil": "weiteres_formular",
+   "form_id": null,
+   "titel": "Vorbereitung der Heirat",
+   "beleg": "https://sh.ch/fileadmin/Redaktoren/MuP/Gesuch_vorb_heirat.pdf (Gesuch_vorb_heirat.pdf). Einseitiges ausfüllbares PDF, ein Scan mit OCR-Textschicht (Creator «NRG IM C5500»). Erstellt am 15.10.2025, geändert am 23.10.2025; das deckt sich mit dem Server-Header «Last-Modified: Thu, 23 Oct 2025 13:04:29 GMT». 26 AcroForm-Felder, alle leer: 23 Textfelder und 3 Optionsgruppen (Geschlecht, Zivilstand, art_bewilligung L/B/C). Gedruckt sind der Titel «Vorbereitung der Heirat», die Abschnitte «Gesuchsteller/in» und «Zukünftige/r Ehefrau / Ehemann:», die Zeilen «Mutter: Name(n)», «Bestehen Vorstrafen?», «Ist ein Strafverfahren hängig?» und «CH-Vertretung», dazu die Unterschrift Gesuchsteller/in. Bei der künftigen Ehepartnerin bzw. dem künftigen Ehepartner sind Staatsangehörigkeit und Zivilstand nur gedruckt, ebenso die Ja/Nein-Kästchen zu Vorstrafen und Strafverfahren; dafür gibt es kein AcroForm-Feld. Hilfsblatt T (24.bin) verlinkt die Datei in den Abschnitten 3.1.2, 3.2.2 und 3.3 als «Gesuch Vorbereitung der Heirat». Bytegleich mit suche/…/Gesuch_vorb_heirat.pdf. In der Databank hat Dienst 487 keine form-Zeile, und weder Titel noch Hash treffen; damit gibt es keine Ausgabe, mit der man die Datei vergleichen könnte.",
+   "zweitgeprueft": true
+  },
+  {
+   "sha256": "5aa310622c216e410a70d97a7a0c17c4df5661d9a999d5cf91ed9c8c54bf15b4",
+   "art": "formular",
+   "urteil": "gleiche_ausgabe",
+   "form_id": 508,
+   "titel": "Verlängerungsgesuch B",
+   "beleg": "https://sh.ch/fileadmin/Redaktoren/MuP/verlaengerungsgesuch_B.pdf (verlaengerungsgesuch_B.pdf). Zwei Seiten mit 28 AcroForm-Feldern (name, vorname, zemis, sh-nr, nummer-pass, Aufehthaltszweck …) und den Hinweisen «Bitte in Blockschrift ausfüllen und zutreffende Felder ankreuzen» sowie «Ort und Datum Unterschrift des(r) Gesuchsteller(in)». DVSH 194 nennt genau diese Datei (verlaengerungsgesuch_B.pdf) als detectedForm. Formular 508 ist die dateilose formDefinition daraus, ihre 26 Felder stehen in derselben Reihenfolge im PDF (von «Name» über «Auf Stellensuche seit» bis «Ort und Datum»). Eine Ausgabemarke ist nicht aufgedruckt. Das PDF-ModDate 2026-02-09 liegt vor der DVSH-Erfassung (Dienst 194 angelegt 2026-06-16).",
+   "zweitgeprueft": true
+  },
+  {
+   "sha256": "5efd54fc7ea9942f684e5db5a0fcab3ead0708faf6a83d924d32f352c9f9575e",
+   "art": "merkblatt",
+   "urteil": "kein_formular",
+   "form_id": null,
+   "titel": "Hilfsblatt für eine provisorische Aufenthaltsbewilligung zur Vorbereitung der Heirat",
+   "beleg": "https://sh.ch/fileadmin/Redaktoren/MuP/Hilfsblatt_T_VDH.pdf (Hilfsblatt_T_VDH.pdf). Drei Seiten ohne AcroForm-Felder, ohne Leerzeilen und ohne Unterschrift. Das Blatt erklärt Ablauf und Abgabeort und listet die Beilagen je Staatsangehörigkeit auf. Darin sind «Gesuch Vorbereitung der Heirat» und «Garantieerklärung zu Vorbereitung der Heirat» als eigene Dokumente genannt, die nicht beiliegen. Es gibt nichts auszufüllen.",
+   "zweitgeprueft": true
+  },
+  {
+   "sha256": "67d61c3f1651305397ba98097850570bf9c365e676d71208768b31d8bede3fa2",
+   "art": "merkblatt",
+   "urteil": "kein_formular",
+   "form_id": null,
+   "titel": "Hilfsblatt Aufrechterhaltung der Niederlassungsbewilligung",
+   "beleg": "https://sh.ch/fileadmin/Redaktoren/MuP/Hilfsblatt_R_Aufrechterhaltung_C.pdf (Hilfsblatt_R_Aufrechterhaltung_C.pdf). 1 Seite, keine AcroForm-Felder, keine Leerzeilen und kein Unterschriftsfeld. Nur erklärender Text in drei Abschnitten: «1. Grundsätzliche Informationen zur Aufrechterhaltung», «2. Ablauf» und «3. Wichtige Hinweise». Für das Gesuch verweist es auf das «dafür vorgesehenen Gesuchsformular». Dieser Text ist als Link auf Ges_Aufrechterh_ausfuellbar.pdf hinterlegt, «Erklärung betreffend Pensionskassengelder» als Link auf Aufrechterhaltung_Verpflerk_PKbeit_ausfuellbar.pdf. Die vier Link-Annotationen sind die einzigen Annotationen. PDF erstellt am 23.10.2025.",
+   "zweitgeprueft": true
+  },
+  {
+   "sha256": "7820f6ccab9ea61b40a1d8348f1e7ce59e55e3aceb455ad082a3476a84d3e810",
+   "art": "merkblatt",
+   "urteil": "kein_formular",
+   "form_id": null,
+   "titel": "Hilfsblatt für Gastgeber/innen von visumspflichtigen Besucher/innen (Besuchervisum)",
+   "beleg": "https://sh.ch/fileadmin/Redaktoren/MuP/Hilfsblatt_V_Besuchervisum.pdf (Hilfsblatt_V_Besuchervisum.pdf). 2 Seiten, keine AcroForm-Felder, keine Leerzeilen und keine Unterschriftszeile. Das Blatt erklärt das Verfahren («Wie ist das weitere Vorgehen, wenn die Schweizer Vertretung …») und zählt die Beilagen auf. Es nennt die Gebühr «CHF 55.00». Auszufüllen ist die separate Verpflichtungserklärung; sie ist nicht Teil dieser Datei. Kein Ausgabevermerk; laut Metadaten am 2026-08-18 mit «Microsoft: Print To PDF» erstellt.",
+   "zweitgeprueft": true
+  },
+  {
+   "sha256": "7844657e25019e7cb24db8991b6fc728230cbc6333aa4f0abbbf471147f28930",
+   "art": "formular",
+   "urteil": "gleiche_ausgabe",
+   "form_id": 507,
+   "titel": "Namensänderungen und Nationalitätsänderungen",
+   "beleg": "https://sh.ch/fileadmin/Redaktoren/MuP/namens_nationalitaetsaenderung.pdf (namens_nationalitaetsaenderung.pdf). Eine Seite mit den AcroForm-Feldern Name, Vorname, Geburtsdatum und ZEMISNR sowie den Leerzeilen «Name: ......» bis «ZEMIS-NR.: ......». Als Beilage verlangt: «Kopie des gültigen Reisepasses mit dem geänderten Namen/geänderter Nationalität». DVSH 184 nennt genau diese Datei als detectedForm (namens_nationalitaetsaenderung.pdf). Formular 507 ist die dateilose formDefinition daraus, ihre 5 Felder stimmen wörtlich überein. Eine Ausgabemarke ist nicht aufgedruckt. Das PDF-ModDate 2025-11-21 liegt vor der DVSH-Erfassung (Dienst 184 angelegt 2026-06-16), also hat DVSH diesen Stand gelesen.",
+   "zweitgeprueft": true
+  },
+  {
+   "sha256": "798ffe52da9719135dd3d93ce190b8aba9578d3540bb4f6212c9ada0d511614b",
+   "art": "merkblatt",
+   "urteil": "kein_formular",
+   "form_id": null,
+   "titel": "Hilfsblatt für die Erteilung der Niederlassungsbewilligung aufgrund einer Niederlassungsvereinbarung oder eines Niederlassungsvertrags",
+   "beleg": "https://sh.ch/fileadmin/Redaktoren/MuP/Hilfsblatt_D_Erteilung_C_EU_EFTA.pdf (Hilfsblatt_D_Erteilung_C_EU_EFTA.pdf). 2 Seiten, keine AcroForm-Felder, keine Leerzeilen und keine Unterschrift. Erklärt die Voraussetzungen («1.1 Zeitliche Voraussetzung», «1.3 Spracherfordernisse») und listet die Beilagen auf. Darunter ist das «unterschriebenes Gesuchsformular A1», also ein separates Formular (= form 497).",
+   "zweitgeprueft": true
+  },
+  {
+   "sha256": "87600da0863506d629ea72365b9716cb93d5ce78fcfc65afbb8905e061796974",
+   "art": "formular",
+   "urteil": "gleiche_ausgabe",
+   "form_id": 506,
+   "titel": "Verlust des Ausländerausweises",
+   "beleg": "https://sh.ch/fileadmin/Redaktoren/MuP/verlustmeldung.pdf (verlustmeldung.pdf). Eine Seite mit Erklärtext und 4 AcroForm-Feldern (Name, Vorname, Geburtsdatum, ZEMISNR). Gedruckt sind Leerzeilen wie «Name: ....» und «ZEMIS-NR.: ....», als Beilage verlangt ist «Verlustmeldung der Polizei». Formular 506 ist die DVSH-Definition aus «verlustmeldung.pdf» mit genau diesen vier Beschriftungen. Ein gedruckter Ausgabevermerk fehlt. Laut Metadaten wurde das PDF 2019-08-07 erstellt und 2025-11-21 geändert. DVSH verarbeitete den Service am 2026-06-16 (lastRunAt), also nach der letzten Änderung.",
+   "zweitgeprueft": true
+  },
+  {
+   "sha256": "91e0b37242522788bbba3bcc53578c45fb592c8ec9047226691190a4a4bdec5c",
+   "art": "formular",
+   "urteil": "weiteres_formular",
+   "form_id": null,
+   "titel": "Erklärung betreffend Pensionskassengelder",
+   "beleg": "https://sh.ch/fileadmin/Redaktoren/MuP/Aufrechterhaltung_Verpflerk_PKbeit_ausfuellbar.pdf (Aufrechterhaltung_Verpflerk_PKbeit_ausfuellbar.pdf). Ausfüllbare Erklärung, 1 Seite, 7 AcroForm-Felder (ZemisNr, kant Ref SH, Name, Vorname, GebDat, Staatsangehörigkeit, ort_datum) und «Ort/Datum Unterschrift:»; Kernsatz «bestätigt hiermit ausdrücklich, kein Pensionskassenkapital bezogen zu haben»; laut Text «integrierender Bestandteil des Gesuchs um Aufrechterhaltung», aber eigene Datei, daher eigene Zeile. Kein Ausgabevermerk; PDF CreationDate 2025-10-23, SourceModified 2025-10-21, Last-Modified 23 Oct 2025. Verlinkt aus Hilfsblatt R (01.bin, zwei Link-Annotationen): «Erklärung betreffend Pensionskassengelder unterschrieben werden». Databank hält sie nicht (kein Hash-, Titel-, Datei- oder Feldtreffer; Form 365 «Austritt aus der Kantonalen Pensionskasse» ist ein anderer Gegenstand).",
+   "zweitgeprueft": true
+  },
+  {
+   "sha256": "97b7bc73575c77da66e50f09cae09f639e88f0f081d8c077ce46eb9c136d17d8",
+   "art": "formular",
+   "urteil": "weiteres_formular",
+   "form_id": null,
+   "titel": "Gesuch um Aufrechterhaltung der Niederlassungsbewilligung",
+   "beleg": "https://sh.ch/fileadmin/Redaktoren/MuP/Ges_Aufrechterh_ausfuellbar.pdf (Ges_Aufrechterh_ausfuellbar.pdf). Ausfüllbares Gesuch, 2 Seiten, 40 AcroForm-Felder (u. a. ZemisNr, kant Ref SH, Namen, Vornamen, GebDat 1, Staatsangehörigkeit, Zivilstand als Optionsgruppe, 5 Gründe-Kästchen, datum-der_Abreise, Geplantes Rückkehrdatum MonatJahr, Adresse im Ausland, Kontaktadresse, 6 Zeilen Vorname/Name/GebDat für Familienangehörige, Ort und Datum). Ausgabevermerk «Januar 2019 1/2», PDF CreationDate 2019-01-14, ModDate 2025-10-23, Last-Modified 23 Oct 2025. Inhalt: «Gründe der Aufrechterhaltung der Niederlassungsbewilligung:», «Angaben zum Auslandaufenthalt», «Kontaktadresse in der Schweiz», «Unterschrift des Gesuchstellers/der Gesuchstellerin». Verlinkt aus Hilfsblatt R (01.bin, Link-Annotation) auf «dem dafür vorgesehenen Gesuchsformular». Databank hält es nicht: kein Hash-Treffer in form oder dokument_urteil, kein Titel/Datei/Feld mit «Aufrechterh»; Service 456 hat laut notes «kein herunterladbares Formular»; Form 182 «Gesuch für Auslandurlaub» betrifft Militär (Bevölkerungsschutz und Armee), Form 497 (A1) enthält nichts zur Aufrechterhaltung.",
+   "zweitgeprueft": true
+  },
+  {
+   "sha256": "9e5cd8955ac06f078a8e1d412423766434a329d1bb04b849f28511546b440871",
+   "art": "merkblatt",
+   "urteil": "kein_formular",
+   "form_id": null,
+   "titel": "Hilfsblatt für selbständige und unselbstständige Erwerbstätige (EU/EFTA)",
+   "beleg": "https://sh.ch/fileadmin/Redaktoren/MuP/Hilfsblatt_P_Selbst_und_unselbst_Erwerbstaetige_EU-EFTA.pdf (Hilfsblatt_P_Selbst_und_unselbst_Erwerbstaetige_EU-EFTA.pdf). 2 Seiten, keine AcroForm-Felder, keine Leerzeilen und keine Unterschrift. Erklärt die Abschnitte «2. Bewilligungspflicht oder Meldepflicht?» und «3. Nachweis der Arbeitnehmereigenschaft» und listet Beilagen auf. Darunter ist das separate «Gesuchsformular A1» (= form 497).",
+   "zweitgeprueft": true
+  },
+  {
+   "sha256": "9ee68751f8f120aea391ac985d1ef4340ffc15cd14f9b8331502615e73fbfe47",
+   "art": "anderes",
+   "urteil": "kein_formular",
+   "form_id": null,
+   "titel": "Allgemeine Geschäftsbedingungen (AGB) für die Nutzung von Geodaten des Kantons Schaffhausen",
+   "beleg": "https://sh.ch/CMS/get/file/d29ded58-2747-4cb3-9410-a2d7fc55e0a0 (AGB_AGI_Kt_SH_210824.pdf). Einseitige AGB des Amts für Geoinformation («Datei: AGB_AGI_Kt_SH_210824.docx», Word 2013, erstellt 24.08.2021). Keine AcroForm-Felder, nur drei Link-Annotationen (opendata.swiss, lexfind KGeoIG/KGeoIV) und keine Ausfüllstellen; Inhalt sind Regeln wie «Die Datensätze können für kommerzielle Zwecke genutzt werden» und «Der Kanton Schaffhausen schliesst jede Haftung ... aus». Im Jotform beim Feld «Informationen gelesen» verlinkt: «Hiermit bestätige ich, dass ich die allgemeinen Geschäftsbedingungen gelesen habe»; laut manifest.json auch von plan-beglaubigen verlinkt. Hash weder in form noch in dokument_urteil.",
+   "zweitgeprueft": true
+  },
+  {
+   "sha256": "a7001359d717805cb637aa1ab93f229f2c1fc4b919c5d36f3ba4f03bd8c4386c",
+   "art": "merkblatt",
+   "urteil": "kein_formular",
+   "form_id": null,
+   "titel": "Hilfsblatt erwerbsloser Aufenthalt (EU/EFTA)",
+   "beleg": "https://sh.ch/fileadmin/Redaktoren/MuP/Hilfsblatt_J_Nichterwerbstaetige_EU_EFTA.pdf (Hilfsblatt_J_Nichterwerbstaetige_EU_EFTA.pdf). Eine Seite ohne AcroForm-Felder und ohne Leerzeilen, Namensfeld oder Unterschrift. Der Text erklärt nur «1. Wichtigste Voraussetzungen» (finanzielle Mittel, Krankenversicherung) und den Einreichungsweg. Er listet die Beilagen für Post oder Schalter auf, darunter «Gesuchsformular A1» (= Formular 497). Es gibt nichts auszufüllen.",
+   "zweitgeprueft": true
+  },
+  {
+   "sha256": "ae8ed2eb297a46dff40493d01a8c7fd74a3ac29efcf460c0a260874ff55699d9",
+   "art": "merkblatt",
+   "urteil": "kein_formular",
+   "form_id": null,
+   "titel": "Hilfsblatt Umwandlung F in B",
+   "beleg": "https://sh.ch/fileadmin/Redaktoren/MuP/Hilfsblatt_U_F_in_B.pdf (Hilfsblatt_U_F_in_B.pdf). 2 Seiten, keine AcroForm-Felder, keine Leerzeilen und keine Unterschriftszeile. Das Blatt nennt Voraussetzungen und Beilagen. Die Fragen (z.B. «Leiden Sie heute an einer chronischen Krankheit») sind in einem separaten schriftlichen Gesuch zu beantworten. Es verweist auf das eigene Formular «Entbindung der ärztlichen Schweigepflicht», das nicht in dieser Datei steckt. Ein Gesuchsformular A1 nennt es nicht. Die Nummerierung ist fehlerhaft («2. Wie kann …», dann «6.1», «6.2»). Kein Ausgabevermerk; laut Metadaten am 2025-10-23 erstellt.",
+   "zweitgeprueft": true
+  },
+  {
+   "sha256": "b59e957892902c1a2f0e2d3719328d92f6242f1101bbc7eebb288a08ea323ad3",
+   "art": "formular",
+   "urteil": "neue_ausgabe",
+   "form_id": 497,
+   "titel": "Gesuch Ausländerbewilligung (Formular A1)",
+   "beleg": "https://sh.ch/fileadmin/Redaktoren/MuP/A1_ausfuellbar.pdf (A1_ausfuellbar.pdf). Es ist dasselbe Formular wie 497. Beide tragen «Gesuch Ausländerbewilligung (Formular A1)» und auf der Rückseite «Arbeitsmarktliche Angaben (Formular A1, Rückseite)» mit denselben Feldern. Der Ausgabevermerk lautet auf beiden «01/2016» und entscheidet deshalb nicht. 29.bin ist neuer. Es stammt aus derselben InDesign-Quelle (CreationDate D:20150908091021 bei beiden), hat aber ModDate D:20251028140335 und XMP ModifyDate 2025-10-28 statt D:20160118102302 bei 497. Auch der Server meldet «last-modified: Tue, 28 Oct 2025». Der Inhalt ist überarbeitet: Auf Seite 1 fehlt der ganze Block «Vom Einwohneramt/-kontrolle auszufüllen» mit «Datum der Einreise», «Datum der Anmeldung», Pass/ID und «Stempel und Unterschrift der Gemeinde». Beim Kasten «Bei Erwerbstätigkeit ist Rückseite vom Arbeitgeber auszufüllen» fehlt der Zusatz «(Drittstaatsangehörige)». Das PDF hat 113 statt 134 AcroForm-Felder. Weggefallen sind «Genehmigen», «Bemerkungen siehe Beilage», «Ablehnen siehe beiliegende Begründung», «Pass», «ID gültig bis» sowie die Felder 27–33 und 35–43. Neue Felder gibt es keine. Die Rückseite ist jetzt ein Scanbild (2480×3507) ohne Textschicht, auf dem 56 ausfüllbare Felder liegen. Im Bild steht «EU 27/EFTA-Staatsangehörige» statt «EU 25 / EFTA-Staatsangehörige». Die Hilfsblätter 07, 08, 12 und 15–19 verlinken genau diese Datei (A1_ausfuellbar.pdf) als «Gesuchsformular A1».",
+   "zweitgeprueft": true
+  },
+  {
+   "sha256": "d10baaaf73d8ebf1dd069eac06acaaa9bfe233e9f5ba77c28393d189414e16cb",
+   "art": "merkblatt",
+   "urteil": "kein_formular",
+   "form_id": null,
+   "titel": "Hilfsblatt Familiennachzug durch Drittstaatsangehörige (Angehörige von Staaten, die nicht Mitgliedstaaten der EU/EFTA sind)",
+   "beleg": "https://sh.ch/fileadmin/Redaktoren/MuP/Hilfsblatt_H_FNZ_Drittstaat.pdf (Hilfsblatt_H_FNZ_Drittstaat.pdf). Drei Seiten ohne AcroForm-Felder, Leerzeilen oder Unterschrift. Das Blatt erklärt die Voraussetzungen («Dieses Hilfsblatt ist bestimmt für Drittstaatsangehörige») und listet die Beilagen. Als Formulare nennt es die «Gesuchsformulare A1 und A2».",
+   "zweitgeprueft": true
+  },
+  {
+   "sha256": "d3d278a307dcd88e6f20b70cace04e0517e85662770795a119f815e43a44db80",
+   "art": "formular",
+   "urteil": "weiteres_formular",
+   "form_id": null,
+   "titel": "Gesuch Familiennachzug (Formular A2)",
+   "beleg": "https://sh.ch/fileadmin/Redaktoren/MuP/A2_A1_ausfuellbar.pdf (A2_A1_ausfuellbar.pdf). Die Datei bündelt zwei Formulare. Seiten 1–2 sind das «Gesuch Familiennachzug (Formular A2)». Die Databank hält es nicht: Kein Formular in form trägt Familiennachzug oder A2 im Titel oder Dateinamen. 497 verweist nur mit dem Kästchen «Familiennachzug (Zusatzformular A2 ausfüllen)» darauf. Das A2 ist ausfüllbar. Es fragt «ZEMIS Nr. der Gesuchstellerin/des Gesuchstellers», «Name und Adresse der Gesuchstellerin/des Gesuchstellers» und «Personalien der Familienangehörigen, deren Nachzug gewünscht wird». Auf Seite 1 steht dafür zuerst «Ehefrau/Ehemann». Die Rückseite hat Person 1–3, je mit «Verwandtschaftsverhältnis zur Gesuchstellerin/zum Gesuchsteller: Kind Vater/Mutter Anderes», und den Hinweis «Bei mehr als 3 Personen bitte zusätzliche Formulare ausfüllen». Seiten 3–4 sind das A1 im überarbeiteten Stand von 29.bin, also ohne Einwohneramt-Block, und Seite 4 hat dasselbe Scanbild. Auf Seite 3 fehlt zusätzlich der Kasten «Bei Erwerbstätigkeit ist Rückseite vom Arbeitgeber auszufüllen». Die Datei enthält alle Feldnamen von 29.bin, insgesamt 171 AcroForm-Felder. Sie trägt den Ausgabevermerk «01/2016», CreationDate 2019-02-19 und ModDate 2025-10-28. Die Hilfsblätter 09, 10 und 11 verlinken sie als «Gesuchsformulare A1 und A2». Sie gehört damit zu allen drei Familiennachzug-Diensten (Drittstaatsangehörige, EU/EFTA, Schweizer/innen).",
+   "zweitgeprueft": true
+  },
+  {
+   "sha256": "d6101cd25cd8ec1da797c0084aafdbe4c1db4014e1462a0fed6e2b73f92c21fe",
+   "art": "merkblatt",
+   "urteil": "kein_formular",
+   "form_id": null,
+   "titel": "Hilfsblatt für drittstaatsangehörige Schülerinnen und Schüler (Angehörige von Staaten, die nicht Mitglieder der EU/EFTA sind)",
+   "beleg": "https://sh.ch/fileadmin/Redaktoren/MuP/Hilfsblatt_L_Schueler_Drittstaatsangehoerige.pdf (Hilfsblatt_L_Schueler_Drittstaatsangehoerige.pdf). Zwei Seiten ohne AcroForm-Felder, ohne Leerzeilen und ohne Unterschrift. Das Blatt erklärt Voraussetzungen («2.1 Wiederausreise nach dem Schulbesuch») und den Einreichungsort und listet die Beilagen auf, darunter «Gesuchsformular A1» (= Formular 497). Es gibt nichts auszufüllen.",
+   "zweitgeprueft": true
+  },
+  {
+   "sha256": "df80459e7ef9c380edb6a9abff7e8c4518160f437d1d01ddb93d2195cc3ea3a9",
+   "art": "merkblatt",
+   "urteil": "kein_formular",
+   "form_id": null,
+   "titel": "Hilfsblatt für selbständig und unselbständig erwerbstätige Grenzgänger/innen (EU/EFTA)",
+   "beleg": "https://sh.ch/fileadmin/Redaktoren/MuP/Hilfsblatt_Q_Grenzgaenger.pdf (Hilfsblatt_Q_Grenzgaenger.pdf). 2 Seiten, keine AcroForm-Felder, keine Leerzeilen und keine Unterschrift. Enthält Erklärtext und Beilagenlisten («Gesuchsformular A1», Wohnsitzbescheinigung) sowie Abschnitt «6. Mutationen von bestehenden Bewilligungen». Für Verlängerungen nennt es «Verlängerungsformular oder Gesuchformular A1». Die Formulare selbst sind separat.",
+   "zweitgeprueft": true
+  },
+  {
+   "sha256": "e1291ef776324556421dcfb0a85ca6f9ac8d90ae592075b6bd54c98603b8ebd9",
+   "art": "formular",
+   "urteil": "weiteres_formular",
+   "form_id": null,
+   "titel": "Entbindung der ärztlichen Schweigepflicht",
+   "beleg": "https://sh.ch/fileadmin/Redaktoren/MuP/Entb_aerzt_schweigepflicht_ausfuellbar.pdf (Entb_aerzt_schweigepflicht_ausfuellbar.pdf). Eine Seite vom Migrationsamt und Passbüro. Erstellt mit Acrobat PDFMaker, CreationDate 23.10.2025, ModDate 05.11.2025. Das Formular hat fünf ausfüllbare Felder: Zemis_nr, SH, Name, Vorname und Datum. Dazu kommen Unterschriftslinien. Der Text lautet «Ich entbinde meine behandelnden Ärzte» … «von der Schweigepflicht gegenüber dem Migrationsamt». Unten stehen «Schaffhausen, den» und «NAME Vorname». Auf der Seite ist kein Titel gedruckt. Das einzige Bild ist das sh.ch-Logo, und der Metadaten-Titel lautet «Dokument». Der Titel stammt deshalb aus dem Hilfsblatt U (20.bin), das die Datei verlinkt: «das Formular \" Entbindung der ärztlichen Schweigepflicht\" zu retournieren». Der Text nennt auch den «Vollzug der Wegweisung». Es ist also eine allgemeine Vorlage des Migrationsamts. Laut manifest.json ist sie aber nur im Hilfsblatt U verlinkt. Die sha256 steht weder in form noch in dokument_urteil. Die Suche nach Schweigepflicht, Entbind, ärztlich, Einwilligung und Entb fand kein passendes Formular. Formular 103 «Einwilligung zur Ausweisbestellung» gehört zum Pass, Formular 229 «Gesuchsformular für Härtefall» zur Schulzahnklinik. Beides sind andere Formulare. Im Projekt gibt es keine weitere Ausgabe dieser Datei, also ist kein Ausgabenvergleich möglich.",
+   "zweitgeprueft": true
+  },
+  {
+   "sha256": "e5f2942509e5a7693e974a04ec983ad262c2698cea8b6c9ea4869426382c2fa8",
+   "art": "merkblatt",
+   "urteil": "kein_formular",
+   "form_id": null,
+   "titel": "Hilfsblatt für die ordentliche Erteilung der Niederlassungsbewilligung",
+   "beleg": "https://sh.ch/fileadmin/Redaktoren/MuP/Hilfsblatt_C_ordentliche_Erteilung_C.pdf (Hilfsblatt_C_ordentliche_Erteilung_C.pdf). 2 Seiten, keine AcroForm-Felder, keine Leerzeilen und keine Unterschriftszeile. Das Blatt nennt Voraussetzungen («1.1 Zeitliche Voraussetzung», «1.3 Spracherfordernisse») und Beilagen. Das auszufüllende Formular ist separat: «Vollständig ausgefülltes und unterschriebenes Gesuchsformular A1», in der Databank Formular 497. Kein Ausgabevermerk; laut Metadaten am 2025-10-23 erstellt.",
+   "zweitgeprueft": true
+  },
+  {
+   "sha256": "ef0bf46d0196e0bc04626bfd9caa35655c4aa8288744feee0c6a4867c199cf5a",
+   "art": "merkblatt",
+   "urteil": "kein_formular",
+   "form_id": null,
+   "titel": "Hilfsblatt für drittstaatsangehörige Studenten/innen und Doktoranden/innen (Angehörige von Staaten, die nicht Mitgliedstaaten der EU/EFTA sind)",
+   "beleg": "https://sh.ch/fileadmin/Redaktoren/MuP/Hilfsblatt_N_Studenten_Doktoranden_Drittstaat.pdf (Hilfsblatt_N_Studenten_Doktoranden_Drittstaat.pdf). Zwei Seiten ohne AcroForm-Felder, Leerzeilen oder Unterschrift, mit dem Ausgabevermerk «Januar 2019». Das Blatt nennt Geltungsbereich, Voraussetzungen und Beilagen. Als Formular verweist es auf das «Gesuchsformular A1» (Formular 497).",
+   "zweitgeprueft": true
+  },
+  {
+   "sha256": "fbc579d0788cd244532d227f6f4518d6c42fe9630724522513665dda72479db1",
+   "art": "merkblatt",
+   "urteil": "kein_formular",
+   "form_id": null,
+   "titel": "Hilfsblatt für drittstaatsangehörige Rentner/innen (Angehörige von Staaten, die nicht Mitgliedstaaten der EU/EFTA sind)",
+   "beleg": "https://sh.ch/fileadmin/Redaktoren/MuP/Hilfsblatt_K_fuer_drittstaatsangehoerige_Rentnerinnen.pdf (Hilfsblatt_K_fuer_drittstaatsangehoerige_Rentnerinnen.pdf). 2 Seiten, keine AcroForm-Felder, keine Leerzeilen und keine Unterschrift. Erklärt «1. Voraussetzungen» (Mindestalter 55, Beziehungen zur Schweiz, finanzielle Mittel) und den Einreichungsweg und listet Beilagen auf. Darunter ist das separate «Gesuchsformular A1» (= form 497).",
+   "zweitgeprueft": true
+  },
+  {
+   "sha256": "ff4ee8f1ca63d6fe95ded06621758928098ff3d3afc9f9aa1bf1b0f4974f4641",
+   "art": "merkblatt",
+   "urteil": "kein_formular",
+   "form_id": null,
+   "titel": "Hilfsblatt Familiennachzug durch EU/EFTA-Staatsangehörige",
+   "beleg": "https://sh.ch/fileadmin/Redaktoren/MuP/Hilfsblatt_G__FNZ_EU_EFTA.pdf (Hilfsblatt_G__FNZ_EU_EFTA.pdf). 3 Seiten, keine AcroForm-Felder, keine Leerzeilen und keine Unterschriftszeile. Das Blatt erklärt den Anspruch («1. Recht auf Familiennachzug») und listet je Fallgruppe die Beilagen auf. Die auszufüllenden Formulare sind separat: «Gesuchsformulare A1 und A2». A1 ist in der Databank Formular 497, A2 fehlt. Kein Ausgabevermerk; laut Metadaten am 2025-10-23 erstellt.",
+   "zweitgeprueft": true
+  }
+ ]
+}

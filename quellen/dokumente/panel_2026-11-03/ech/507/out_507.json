@@ -1,0 +1,46 @@
+{
+ "hinweis": "eCH-Urteile Formular 507, Panel 2026-11-03, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-11-03/ech/507 --nur-offene=507",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "I checked the PDF. The field «Name:» has the tooltip «Nachname» and sits in the block that identifies the foreign person (Name, Vorname, Geburtsdatum, ZEMIS-NR.). It is not labelled as a previous or new name; the changed name comes in only through the passport copy. So it is the person's current official surname, and the current-value element applies. nameOnForeignPassport (eCH-0011/0045/0173) is not fitting, because the field does not ask for the name in the passport. eCH-0044 (Genehmigt) has officialName (id 800, personIdentificationLightType, baseNameType), copied verbatim. This matches the databank's usual mapping of «Name» (20x). It confirms the existing assignment. ech_herkunft is empty (not propagiert), so the verdict is «besser», not «korrekt».",
+   "feld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "«Vorname:» (PDF tooltip «Vorname») is the first name of the foreign person in the identification block. It is not marked as a past or changed value. eCH-0044 (Genehmigt) has firstName (id 801, personIdentificationLightType), copied verbatim. This is the usual mapping (23x). It confirms the existing assignment, which is not propagiert.",
+   "feld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "«Geburtsdatum:» is the date of birth of the foreign person (DVSH definition: «Geburtsdatum der ausländischen Person»). eCH-0044 (Genehmigt) has dateOfBirth (id 804, datePartiallyKnownType), copied verbatim. It confirms the existing assignment, which is not propagiert.",
+   "feld": "Geburtsdatum",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "The ZEMIS number identifies the person in the federal migration information system. It is not the AHV number, so vn does not fit. I searched the catalogue for zemis, foreigner and personId elements and for standard titles with ZEMIS/Ausländer/Migration: none has a dedicated ZEMIS element. eCH-0223 (Einwohnerdienst–Migrationsamt) uses only personIdentification. eCH-0044 (Genehmigt) has otherPersonId (id 795, namedPersonIdType, with personIdCategory e.g. CH.ZEMIS), the element for third-party person identifiers, copied verbatim. I verified the databank maps every ZEMIS field the same way: «ZEMIS-Nummer» on forms 497 and 508–513, «ZEMIS-NR.» on 506, form 584, and the parts «Zemis-Nr.» / «ZEMIS Nr.». It confirms the existing assignment, which is not propagiert.",
+   "feld": "ZEMIS-NR.",
+   "standard": "eCH-0044",
+   "element": "otherPersonId"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "This is a required attachment («Notwendige Unterlagen/Dokumente als Beilage einzureichen»): a copy of the passport showing the changed name or nationality. It is a file, not a value to enter, so value elements such as nameOnForeignPassport or nationalityData do not fit. I searched passport, travel and identity-document elements: none is a document container. eCH-0223 has a document element too, but it is a message-level interface element without a status. The generic dossier/document standard eCH-0039 (Genehmigt) has document (id 772, contentType, documentType), copied verbatim. This matches the databank's mapping of comparable Migrationsamt attachments («Belege» 499, «Nachweis der finanziellen Situation beilegen» 508/512) and of «Familienausweis im Original» (548). Correction to the first review: the other «Kopie des gültigen Reisepasses…» field (form 214) is not mapped, so it is not a precedent. It confirms the existing assignment, which is not propagiert.",
+   "feld": "Kopie des gültigen Reisepasses mit dem geänderten Namen/geänderter Nationalität",
+   "standard": "eCH-0039",
+   "element": "document"
+  }
+ ]
+}

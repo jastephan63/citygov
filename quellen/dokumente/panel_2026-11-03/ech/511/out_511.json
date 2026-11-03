@@ -1,0 +1,168 @@
+{
+ "hinweis": "eCH-Urteile Formular 511, Panel 2026-11-03, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-11-03/ech/511 --nur-offene=511",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Amtlicher Name der gesuchstellenden Person. Nach der Regel Name -> officialName (eCH-0044, Genehmigt). Die Databank hat diese Zuordnung schon (Element-ID 800), die Zeile ist aber nicht propagiert, deshalb 'besser' und nicht 'korrekt'. Im Korpus 20x gleich.",
+   "feld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Vorname der gesuchstellenden Person. Nach der Regel Vorname -> firstName (eCH-0044). Bestätigt die bestehende, nicht propagierte Zuordnung (23x im Korpus).",
+   "feld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Mehrzeiliges Adressfeld (Strasse, Nr., PLZ, Ort zusammen). Die Databank führt keine Teilfelder dazu. Das Sammelfeld erhält deshalb den Container eCH-0010 addressInformation (mailAddressType, addressInformationType). Seine Teile wären street/houseNumber/swissZipCode/town. Bestätigt die bestehende Zuordnung (17x im Korpus).",
+   "feld": "Adresse",
+   "standard": "eCH-0010",
+   "element": "addressInformation"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Geburtsdatum der gesuchstellenden Person. Nach der Regel Geburtsdatum -> dateOfBirth (eCH-0044). Bestätigt die bestehende Zuordnung.",
+   "feld": "Geburtsdatum",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Personennummer im Zentralen Migrationsinformationssystem des Bundes, also ein fremder Personenidentifikator mit Kategorie (namedPersonIdType). Das ist eCH-0044 otherPersonId. Gleiche Zuordnung auf allen 10 ZEMIS-Feldern im Korpus; bestätigt die bestehende Zuordnung.",
+   "feld": "ZEMIS-Nummer",
+   "standard": "eCH-0044",
+   "element": "otherPersonId"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Kantonale Personennummer der Person beim Migrationsamt Schaffhausen, also die Kennung im führenden System der Behörde -> eCH-0044 localPersonId. Bestätigt die bestehende Zuordnung (6x im Korpus).",
+   "feld": "SH-Nummer",
+   "standard": "eCH-0044",
+   "element": "localPersonId"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ein Feld ohne Teilfelder mit zwei Angaben: der Passnummer und der Gültigkeitsdauer des Passes. Für die Nummer allein ordnet der Korpus eCH-0044 otherPersonId zu (Pass-Nummer-Teilfelder). Für die Gültigkeitsdauer eines Reisedokuments gibt es aber kein Element, und es gibt auch keinen Container, der beide Angaben umfasst. Im ganzen Katalog gesucht: passport, pass, travelDoc, identityDoc, documentNumber, idCard, Ausweis, validTill, validity, expir, validUntil sowie die Standardtitel Ausweis/Reise/Identität/Migration. Die Treffer passen nicht. nameOnForeignPassport ist ein Name. eCH-0084/0086 shownDocument ist ein Dokumenttyp. eCH-0011 residencePermitValidTill ist die Gültigkeit des Ausländerausweises, nicht des Passes. eCH-0093 biometricDataExpiryDate betrifft biometrische Daten. eCH-0223 document ist ein eCH-0039-Dokument. otherPersonId würde die Gültigkeitsdauer als abgedeckt ausgeben. Gleich wie auf den 5 gleichnamigen Feldern: kein_standard.",
+   "feld": "Nummer des Passes und Gültigkeitsdauer"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Staatsangehörigkeit der Person -> eCH-0011 nationalityData (personType; nationalityStatus + countryInfo/country). Bei F/N/S-Personen sind «staatenlos» oder «unbekannt» möglich. Das deckt nur nationalityStatus ab, deshalb der Container und nicht nur country. Bestätigt die bestehende Zuordnung (7x im Korpus).",
+   "feld": "Staatsangehörigkeit",
+   "standard": "eCH-0011",
+   "element": "nationalityData"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "E-Mail-Adresse für Rückfragen. Nach der Regel E-Mail -> eCH-0046 emailAddress (emailType). Bestätigt die bestehende Zuordnung.",
+   "feld": "E-Mail-Adresse",
+   "standard": "eCH-0046",
+   "element": "emailAddress"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Telefonnummer für Rückfragen. Nach der Regel Telefon -> eCH-0046 phoneNumber (phoneType). Bestätigt die bestehende Zuordnung.",
+   "feld": "Telefonnummer",
+   "standard": "eCH-0046",
+   "element": "phoneNumber"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ausweiskategorie F/N/S, deren Verlängerung beantragt wird (Auswahl, kein Ja/Nein). Die Codeliste residencePermitType von eCH-0006 (Genehmigt) enthält 05 (F), 08 (N) und 09 (S). residencePermit ist das Element, das auch eCH-0011 residencePermitData verwendet. Bestätigt die bestehende Zuordnung.",
+   "feld": "Bewilligungsart",
+   "standard": "eCH-0006",
+   "element": "residencePermit"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die zurzeit ausgeübte berufliche Tätigkeit. Das ist ein aktueller Wert, keine frühere Tätigkeit -> eCH-0021 jobDataType/jobTitle. Bestätigt die bestehende Zuordnung (gleich wie «Ausgeübte Tätigkeit», «Beruf/gegenwärtige Tätigkeit»).",
+   "feld": "Jetzige ausgeübte Tätigkeit",
+   "standard": "eCH-0021",
+   "element": "jobTitle"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Im Abschnitt «Für Erwerbstätige» ist der Betrieb der Arbeitgeber. Das Feld ohne Teilfelder fasst zwei Angaben zusammen: den Namen (eCH-0021 employer, token) und die Adresse (eCH-0021 placeOfEmployer, addressInformationType). Die bisherige Zuordnung employer deckt nur den Namen ab. Den Container, der beide Teile enthält, gibt es: eCH-0021 occupationData (jobDataType, occupationDataType). So ist es auch bei «Angaben ArbeitgeberIn» und «Angaben zum aktuellen Arbeitgeber». Hinweis: Die 5 Geschwisterformulare führen dasselbe Feld noch unter employer.",
+   "feld": "Name und Adresse des Betriebes",
+   "standard": "eCH-0021",
+   "element": "occupationData"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ankreuzwahl zwischen Unbefristet und Befristet bis. Das ist kein Wert, deshalb kein Wert-Element. Das Enddatum steht im eigenen Feld «Befristet bis» (occupationValidTill). Im ganzen Katalog gesucht: tempor, limited, fixedTerm, permanent, indefinite, contractType, employmentType, duration, befrist sowie die Codelisten-Texte nach befrist/unbefrist/temporary/limited. eCH-0021 kindOfEmployment unterscheidet die Erwerbsart, nicht die Vertragsdauer. eCH-0260 durationFrom/durationTo/durationTrialPeriod sind Kalenderdaten bzw. die Probezeit des Lehrvertrags. Im Korpus 3x kein_standard.",
+   "feld": "Anstellungsdauer"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Das Kalenderdatum, an dem die befristete Anstellung endet. Das ist das Ende der Gültigkeit der Erwerbstätigkeit -> eCH-0021 occupationDataType/occupationValidTill (date). Bestätigt die bestehende Zuordnung (gleich wie «Anstellungsdauer befristet bis», 3x).",
+   "feld": "Anstellungsdauer - Befristet bis",
+   "standard": "eCH-0021",
+   "element": "occupationValidTill"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die Einheit steht in der Beschriftung: Stunden pro Woche. Das Feld ist eine Zahl, kein Prozentwert. Das einzige Element für wöchentliche Stunden im Katalog ist eCH-0260 workingHoursType/hoursPerWeek, die vertragliche Wochenarbeitszeit (dort im Lehrvertrag). eCH-0278 employmentPercentage ist ein Prozentwert und passt nicht zur verlangten Einheit. Bestätigt die bestehende Zuordnung (gleich auf 5 weiteren Formularen).",
+   "feld": "Beschäftigungsgrad / Arbeitszeit (Stunden pro Woche)",
+   "standard": "eCH-0260",
+   "element": "hoursPerWeek"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KORRIGIERT. Freie Bemerkung der gesuchstellenden Person zum Gesuch, mit fachlichem Inhalt. Im ganzen Katalog nach comment, remark, note und Bemerk gesucht. eCH-0058 headerType/comment (token max. 250) ist ein Kommentar im technischen Meldungskopf und beschreibt die Zustellung, nicht die Aussage der Person. Ebenso sind eCH-0039/0078/0206 comment und eCH-0147 comments Kommentare im Kopf einer Meldung, eines Dossiers oder eines Dokuments. eCH-0129/0131/0132/0178/0209 remark(s) und eCH-0072 remarkDe sind fachfremd (Vermessung, AHV-Nummer, Grundbuch u.a.). Die Korpuspraxis ist «Bemerkungen» 108x kein_standard. Frühere Prüfungen haben die Zuordnung eCH-0058 comment auf den Migrationsamt-Formularen 508-513 ausdrücklich als nicht passend benannt.",
+   "feld": "Bemerkungen des(r) Gesuchsteller(in)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "KORRIGIERT. Das Feld ist eine Ankreuz-Checkliste (multiselect) mit zwei Kästchen: «Pass/ID/Bestätigung vom Konsulat» und «Ausländerausweis im Original/Verlustmeldung». Jedes Kästchen ist eine Ja/Nein-Angabe, ob das Dokument beiliegt. Es ist nicht das Dokument selbst, deshalb kein Wert-Element. eCH-0058 headerType/attachment (anyType) ist der Anhang im Meldungskopf, also das Dokument. Im ganzen Katalog gesucht: attach, enclos, beilage, checklist, documentList, supporting. Die Treffer passen nicht: eCH-0058/0229/0278/0260 attachment und eCH-0039 document sind die Dokumente selbst. eCH-0119 attachedForms und attached* sind Ja/Nein-Felder nur für Beilagen zur Steuererklärung. eCH-0235 attachmentInformation gehört zu Entscheiden. Die Korpuspraxis für Beilagen-Ankreuzlisten ist kein_standard (56x). Frühere Prüfungen ordnen nur Felder vom Typ attachment einem Dokument-Element zu.",
+   "feld": "Beilagen"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ort und Datum der Unterzeichnung, mit den Teilen Ort und Datum. Im ganzen Katalog gesucht: sign, signature, locationAndDate, placeOfSignature, dateOfSignature, Unterschrift. Der einzige Treffer ist eCH-0119 locationAndDate. Das ist ein einzelner String nur für Beilagen zur Steuererklärung (attachedFormsType) und kein Container für die Teile Ort und Datum einer allgemeinen Unterzeichnung. Korpuspraxis: 31x kein_standard.",
+   "feld": "Ort und Datum"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Ort der Unterzeichnung, keine Adresse. eCH-0010 town bezeichnet den Ort einer Postadresse, eCH-0011 placeOfOrigin den Heimatort. Gesucht nach sign, placeOfSignature, signingPlace und locationAndDate: Nur eCH-0119 locationAndDate passt dem Wort nach, ist aber ein zusammengesetzter String für Steuerbeilagen. Kein Element für den Unterzeichnungsort.",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Kalendertag der Unterzeichnung. Gesucht nach dateOfSignature, signatureDate, sign und locationAndDate. Kein Element bezeichnet ein Unterzeichnungsdatum. eCH-0058 messageDate/eventDate meinen das Datum der elektronischen Meldung bzw. des Ereignisses, eCH-0039 openingDate die Eröffnung eines Dossiers. Konvention: kein_standard.",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Handschriftliche Unterschrift, mit der die Person vollständige und wahrheitsgetreue Angaben bestätigt. Im ganzen Katalog gesucht: sign, signature, Unterschrift. eCH-0039 signer ist der Name des Unterzeichners eines GEVER-Dokuments. eCH-0260 signatures/*SignatureConfirmation sind Ja/Nein-Felder im Lehrvertrag. Kein Element definiert die Unterschrift selbst. Korpuspraxis: kein_standard (34x und mehr).",
+   "feld": "Unterschrift des(r) Gesuchsteller(in)"
+  }
+ ]
+}

@@ -1,0 +1,1985 @@
+{
+ "hinweis": "Die Felder der Formulare, deren Live-Fassung am 03.11.2026 übernommen wurde: die neuere Ausgabe des A1 (497) und die Live-PDF der dateilosen eFormulare 506, 507, 508, 511, 512, 513, deren Felder aus dem DVSH-Modell genau dieser Dokumente stammten. Je ein Panel hat die bestehenden Felder auf das Dokument übertragen, eine skeptische Zweitprüfung hat korrigiert.",
+ "ports": [
+  {
+   "form_id": 497,
+   "felder": [
+    {
+     "id": 5794,
+     "aktion": "unveraendert",
+     "name": "Gesuchsart",
+     "definition": "Angabe, ob eine Bewilligung neu erteilt oder eine bestehende verlängert werden soll.",
+     "data_type": "enum",
+     "required": true,
+     "allowed_values": [
+      "Gesuch um Erteilung",
+      "Gesuch um Verlängerung"
+     ],
+     "subfields": [],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 5795,
+     "aktion": "unveraendert",
+     "name": "Gesuch für",
+     "definition": "Art der beantragten ausländerrechtlichen Bewilligung bzw. des Verfahrens.",
+     "data_type": "multiselect",
+     "required": true,
+     "allowed_values": [
+      "Einreisebewilligung",
+      "Kurzaufenthaltsbewilligung (L)",
+      "Aufenthaltsbewilligung (B)",
+      "Grenzgängerbewilligung (G)",
+      "Bewilligung als Dienstleistungserbringer/in (L/B)",
+      "Umwandlung B in C",
+      "Familiennachzug (Zusatzformular A2 ausfüllen)",
+      "Stellenantritt/Stellenwechsel",
+      "Kantonswechsel"
+     ],
+     "subfields": [],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 5796,
+     "aktion": "unveraendert",
+     "name": "Personalien der Ausländerin/des Ausländers",
+     "definition": "Personalien und gegenwärtige Aufenthaltsadresse der gesuchstellenden ausländischen Person.",
+     "data_type": "composite",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [
+      "Familienname(n)",
+      "Vorname(n)",
+      "Geburtsdatum",
+      "Geburtsort",
+      "Geburtsland",
+      "Adresse (gegenwärtige Aufenthaltsadresse)",
+      "Staatsangehörigkeit"
+     ],
+     "format": "Geburtsdatum: TT.MM.JJJJ",
+     "beleg": ""
+    },
+    {
+     "id": 5797,
+     "aktion": "unveraendert",
+     "name": "Eltern",
+     "definition": "Namen und Vornamen der Mutter und des Vaters der gesuchstellenden Person.",
+     "data_type": "composite",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [
+      "Mutter: Name(n)",
+      "Mutter: Vorname(n)",
+      "Vater: Name(n)",
+      "Vater: Vorname(n)"
+     ],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 5798,
+     "aktion": "unveraendert",
+     "name": "Geschlecht",
+     "definition": "Geschlecht der gesuchstellenden Person.",
+     "data_type": "enum",
+     "required": true,
+     "allowed_values": [
+      "weiblich",
+      "männlich"
+     ],
+     "subfields": [],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 5799,
+     "aktion": "unveraendert",
+     "name": "Zivilstand",
+     "definition": "Zivilstand der gesuchstellenden Person.",
+     "data_type": "enum",
+     "required": true,
+     "allowed_values": [
+      "ledig",
+      "verheiratet",
+      "verwitwet",
+      "geschieden",
+      "gerichtlich getrennt",
+      "getrennt lebend",
+      "in eingetragener Partnerschaft",
+      "durch Tod aufgelöste Partnerschaft",
+      "gerichtlich aufgelöste Partnerschaft"
+     ],
+     "subfields": [],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 5800,
+     "aktion": "unveraendert",
+     "name": "Zivilstand seit",
+     "definition": "Datum, seit wann der Zivilstand besteht (bei geschieden, gerichtlich getrennt, getrennt lebend oder aufgelöster Partnerschaft).",
+     "data_type": "date",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "TT.MM.JJJJ",
+     "beleg": ""
+    },
+    {
+     "id": 5801,
+     "aktion": "unveraendert",
+     "name": "Strafverfahren hängig",
+     "definition": "Angabe, ob gegen die gesuchstellende Person ein Strafverfahren hängig ist.",
+     "data_type": "boolean",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 5802,
+     "aktion": "unveraendert",
+     "name": "Vorstrafen",
+     "definition": "Angabe, ob die gesuchstellende Person Vorstrafen hat.",
+     "data_type": "boolean",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 5803,
+     "aktion": "unveraendert",
+     "name": "Zweck des Aufenthaltes",
+     "definition": "Zweck des beabsichtigten Aufenthalts in der Schweiz.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 5804,
+     "aktion": "unveraendert",
+     "name": "Dauer des Aufenthaltes",
+     "definition": "Beabsichtigte Aufenthaltsdauer (von/bis) oder Angabe einer unbeschränkten Dauer.",
+     "data_type": "composite",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [
+      "von",
+      "bis",
+      "Unbeschränkte Dauer"
+     ],
+     "format": "von/bis: TT.MM.JJJJ",
+     "beleg": ""
+    },
+    {
+     "id": 5805,
+     "aktion": "unveraendert",
+     "name": "ZEMIS-Nummer",
+     "definition": "Nummer der Person im Zentralen Migrationsinformationssystem ZEMIS, sofern vorhanden.",
+     "data_type": "text",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 5806,
+     "aktion": "unveraendert",
+     "name": "Schweizer Vertretung für Visumsabholung",
+     "definition": "Schweizer Auslandvertretung, bei der das Visum abgeholt wird, falls erforderlich.",
+     "data_type": "text",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 5807,
+     "aktion": "unveraendert",
+     "name": "Ort und Datum",
+     "definition": "Ort und Datum der Gesuchsunterzeichnung.",
+     "data_type": "composite",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [
+      "Ort",
+      "Datum"
+     ],
+     "format": "Datum: TT.MM.JJJJ",
+     "beleg": ""
+    },
+    {
+     "id": 5808,
+     "aktion": "unveraendert",
+     "name": "Unterschrift der Ausländerin/des Ausländers",
+     "definition": "Unterschrift der gesuchstellenden Person.",
+     "data_type": "signature",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 5809,
+     "aktion": "unveraendert",
+     "name": "Arbeitgeberdaten",
+     "definition": "Angaben zum Arbeitgeber; die Rückseite ist nur bei Erwerbstätigkeit vom Arbeitgeber auszufüllen.",
+     "data_type": "composite",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [
+      "BUR-Nr.",
+      "Name des Betriebes",
+      "Branche",
+      "GAV-Bezeichnung",
+      "Strasse/Hausnummer",
+      "PLZ/Ort",
+      "Verantwortliche Person",
+      "Telefon",
+      "Fax",
+      "E-Mail"
+     ],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 5810,
+     "aktion": "unveraendert",
+     "name": "Beschäftigung als",
+     "definition": "Bezeichnung der Tätigkeit bzw. Funktion, für die die Person angestellt wird; Angabe, ob selbständig.",
+     "data_type": "text",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 5811,
+     "aktion": "unveraendert",
+     "name": "Selbständig",
+     "definition": "Angabe, ob die Erwerbstätigkeit selbständig ausgeübt wird.",
+     "data_type": "boolean",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 5812,
+     "aktion": "geaendert",
+     "name": "Ausbildung und Berufserfahrung",
+     "definition": "Ausbildung, bisherige Tätigkeit, Berufserfahrung und Kaderfunktion der anzustellenden Person; EU-27/EFTA-Staatsangehörige müssen in diesem Abschnitt nur die mit * gekennzeichneten Felder ausfüllen.",
+     "data_type": "composite",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [
+      "Ausbildung/bisherige Tätigkeit",
+      "Dauer der Ausbildung (Jahre)",
+      "Berufserfahrung (Jahre)",
+      "Kaderfunktion (ja/nein)"
+     ],
+     "format": "",
+     "beleg": "(EU 27/EFTA-Staatsangehörige müssen in diesem Abschnitt nur die mit einem * gekennzeichneten Felder ausfüllen.) — alte Ausgabe: «EU 25/EFTA-Staatsangehörige»"
+    },
+    {
+     "id": 5813,
+     "aktion": "unveraendert",
+     "name": "Zeitpunkt des Stellenantritts",
+     "definition": "Datum des Stellenantritts.",
+     "data_type": "date",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "TT.MM.JJJJ",
+     "beleg": ""
+    },
+    {
+     "id": 5814,
+     "aktion": "unveraendert",
+     "name": "Umfang der Beschäftigung",
+     "definition": "Beschäftigungsumfang der Anstellung.",
+     "data_type": "enum",
+     "required": false,
+     "allowed_values": [
+      "Vollzeit",
+      "Teilzeit"
+     ],
+     "subfields": [],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 5815,
+     "aktion": "unveraendert",
+     "name": "Art des Arbeitsverhältnisses",
+     "definition": "Befristung des Arbeitsverhältnisses.",
+     "data_type": "enum",
+     "required": false,
+     "allowed_values": [
+      "befristet",
+      "unbefristet",
+      "auf Abruf"
+     ],
+     "subfields": [],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 5816,
+     "aktion": "unveraendert",
+     "name": "Brutto-Lohn",
+     "definition": "Bruttolohn mit Angabe, ob pro Stunde oder pro Monat, sowie die Wochenstunden.",
+     "data_type": "composite",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [
+      "Betrag",
+      "Pro Stunde / Pro Monat",
+      "Wochenstunden"
+     ],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 5817,
+     "aktion": "unveraendert",
+     "name": "Personalbestand",
+     "definition": "Heutiger Personalbestand des Betriebs und Anzahl Ausländer/-innen ohne C-Ausweis.",
+     "data_type": "composite",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [
+      "Heutiger Personalbestand",
+      "davon Ausländer ohne C-Ausweis"
+     ],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 5818,
+     "aktion": "unveraendert",
+     "name": "Stelle beim RAV gemeldet",
+     "definition": "Angabe, ob die Stelle beim zuständigen Regionalen Arbeitsvermittlungszentrum (RAV) gemeldet wurde.",
+     "data_type": "boolean",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 5819,
+     "aktion": "unveraendert",
+     "name": "RAV-Stellennummer",
+     "definition": "Stellennummer der RAV-Meldung, falls die Stelle gemeldet wurde.",
+     "data_type": "text",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 5820,
+     "aktion": "unveraendert",
+     "name": "Andere Suchbemühungen",
+     "definition": "Weitere Bemühungen des Arbeitgebers zur Besetzung der Stelle.",
+     "data_type": "text",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 5821,
+     "aktion": "unveraendert",
+     "name": "Angemessene Unterkunft vorhanden",
+     "definition": "Angabe, ob eine angemessene, einwandfreie Unterkunft zur Verfügung steht.",
+     "data_type": "boolean",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 5822,
+     "aktion": "unveraendert",
+     "name": "Frühere Tätigkeiten in der Schweiz",
+     "definition": "Angabe, ob und in welchem Zeitraum die Person früher in der Schweiz tätig war.",
+     "data_type": "composite",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [
+      "Frühere Tätigkeiten (ja/nein)",
+      "von",
+      "bis"
+     ],
+     "format": "von/bis: TT.MM.JJJJ",
+     "beleg": ""
+    },
+    {
+     "id": 5823,
+     "aktion": "unveraendert",
+     "name": "Bemerkungen",
+     "definition": "Ergänzende Bemerkungen des Arbeitgebers.",
+     "data_type": "text",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 5824,
+     "aktion": "unveraendert",
+     "name": "Ort, Datum und Unterschrift des Arbeitgebers",
+     "definition": "Ort, Datum sowie Stempel und Unterschrift des Arbeitgebers; erforderlich bei Erwerbstätigkeit.",
+     "data_type": "signature",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": ""
+    }
+   ],
+   "entfallen": [],
+   "hinweis": "Skeptische Prüfung. Ich habe beide Ausgaben gelesen und Seite für Seite visuell verglichen: die alte (497_alt.pdf, ModDate 2016-01-18) und die neue (372__A1_ausfuellbar.pdf, ModDate 2025-10-28, sha256 b59e9578… = form.file_hash). Zusätzlich habe ich die Widgets je Seite mit pypdf ausgezählt.\n\nErgebnis: Alle 31 bestehenden IDs (5794–5824) bleiben erhalten. Jede steht genau einmal und in der Reihenfolge des Formulars in der Liste. Keine ID entfällt, keine neue Angabe kommt dazu, keine ID wird für eine andere Angabe benutzt, und keine gedruckte Bezeichnung hat sich geändert. Die neue Ausgabe hat keinen Widget-Namen, den die alte nicht schon hatte. Seite 2 hat in beiden Ausgaben 56 Widgets. In der neuen Ausgabe ist Seite 2 ein eingebetteter Scan (JPEG 2480x3507), über dem die Felder liegen. Weggefallen sind nur die 21 Widgets des Amtsblocks auf Seite 1: Genehmigen, Bemerkungen siehe Beilage, Ablehnen siehe beiliegende Begründung, Pass, ID gültig bis und die Textfelder 27–43.\n\nWas sich in der Ausgabe geändert hat:\n(1) Seite 1: Der Amtsblock «Vom Einwohneramt/-kontrolle auszufüllen: (sofern Ausländerin/Ausländer bereits in der Schweiz wohnhaft)» fehlt. Er enthielt: Genehmigen / Bemerkungen (siehe Beilage) / Ablehnen (siehe beiliegende Begründung), Datum der Einreise, Datum der Anmeldung, Datum des Zuzugs bei Kantonswechsel (Drittstaatsangehörige), Ort, Pass / ID gültig bis, Datum sowie Stempel und Unterschrift der Gemeinde. Der Block war Amtsgebrauch und nie ein Feld der Person; sein Wegfall betrifft also keine Feld-ID.\n(2) Rückseite: In der Anleitung des Abschnitts «Arbeitsmarktliche Angaben» steht jetzt «EU 27/EFTA» statt «EU 25/EFTA». Feld 5812 ist als geaendert markiert, weil seine Definition noch den alten Kreis «EU-25» nannte. Geändert ist nur die Definition; Bezeichnung, Typ, Teile und Optionalität bleiben gleich. Die Markierung geaendert ist trotzdem nötig, denn sonst übernimmt migrate_ausgaben die neue Definition nicht.\n(3) Unverändert Amtsgebrauch und kein Feld der Person ist der Block «Antrag/Vorentscheid der Arbeitsmarktbehörde». Er enthält Bewilligen, Bewilligungscode, Im Rahmen bestehender Aufenthaltsbewilligung erteilen, Ablehnen, Ad acta, Auflagen/Bemerkungen, Sachbearbeiterin/Sachbearbeiter Arbeitsmarktbehörde und Datum.\nBeide Seiten tragen trotz der neuen ModDate weiterhin den Ausgabevermerk «01/2016».\n\nKorrekturen des Prüfers:\n(a) Die Portierung behauptete, mit dem Amtsblock sei auch der Zusatz «(Drittstaatsangehörige)» beim Hinweis «Bei Erwerbstätigkeit ist Rückseite vom Arbeitgeber auszufüllen» weggefallen. Das ist falsch. In der alten Ausgabe steht «(Drittstaatsangehörige)» klein unter «Datum des Zuzugs bei Kantonswechsel», also im Amtsblock. Der Hinweis zur Rückseite ist in beiden Ausgaben gleich gedruckt. Für wen die Rückseite gilt, hat sich also nicht geändert, und die Definition von 5809 bleibt richtig.\n(b) Beleg von 5812: Der alte Wortlaut ist «EU 25/EFTA-Staatsangehörige», so wie er gedruckt ist. Die Leerzeichen in «EU 25 / EFTA» kamen aus der Textextraktion.\nSonst braucht die Feldliste keine Korrektur.\n\nFür einen späteren Durchgang. Diese Punkte gab es schon in der alten Ausgabe; sie gehören deshalb nicht zu dieser Portierung, und ich habe sie bewusst nicht geändert:\n- 5824 fasst «Ort und Datum» und «Stempel und Unterschrift des Arbeitgebers» in einem Signaturfeld zusammen. Nach den heutigen Regeln wären das ein Composite (Ort, Datum) und eine eigene Unterschrift.\n- 5800 trägt das Format TT.MM.JJJJ, gedruckt ist aber nur «seit wann» mit einer Linie. Ausserdem nennt die Definition «aufgelöster Partnerschaft», gedruckt ist «seit wann» jedoch nur bei «gerichtlich aufgelöste Partnerschaft», nicht bei «durch Tod aufgelöste Partnerschaft».\n- 5796: Der Teil heisst «Adresse (gegenwärtige Aufenthaltsadresse)», gedruckt ist «Adresse».\n- 5809: Der Teil heisst «BUR-Nr.», gedruckt ist «BUR Nr.».\n- 5805 heisst «ZEMIS-Nummer», gedruckt ist «ZEMIS Nummer». Das Feld ist optional, obwohl «falls vorhanden» nicht gedruckt ist.\n- 5819 heisst «RAV-Stellennummer», gedruckt ist «Stellennummer».\n- 5797 «Eltern» ist keine gedruckte Bezeichnung; gedruckt sind «Mutter:» und «Vater:».\n- Die Definition von 5810 enthält zusätzlich «Angabe, ob selbständig» und überschneidet sich damit mit 5811."
+  },
+  {
+   "form_id": 506,
+   "felder": [
+    {
+     "id": 5953,
+     "aktion": "unveraendert",
+     "name": "Name",
+     "definition": "Name (Nachname) der ausländischen Person, deren Ausländerausweis verloren gegangen ist oder gestohlen wurde.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Name: ......"
+    },
+    {
+     "id": 5954,
+     "aktion": "unveraendert",
+     "name": "Vorname",
+     "definition": "Vorname der ausländischen Person, deren Ausländerausweis verloren gegangen ist oder gestohlen wurde.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Vorname: ......"
+    },
+    {
+     "id": 5955,
+     "aktion": "unveraendert",
+     "name": "Geburtsdatum",
+     "definition": "Geburtsdatum der ausländischen Person, deren Ausländerausweis als verloren gemeldet wird.",
+     "data_type": "date",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "TT.MM.JJJJ",
+     "beleg": "Geburtsdatum: ...... (Label, Typ und Pflicht wie bisher; das Format TT.MM.JJJJ bleibt wie in der bisherigen Ausgabe)"
+    },
+    {
+     "id": 5956,
+     "aktion": "unveraendert",
+     "name": "ZEMIS-NR.",
+     "definition": "Nummer der ausländischen Person im Zentralen Migrationsinformationssystem (ZEMIS).",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "ZEMIS-NR.: ......"
+    },
+    {
+     "id": null,
+     "aktion": "neu",
+     "name": "Verlustmeldung der Polizei",
+     "definition": "Von der Polizei ausgestellte Ausweisverlustmeldung, die dem Migrationsamt als Beilage einzureichen ist.",
+     "data_type": "attachment",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Notwendige Unterlagen/Dokumente als Beilage einzureichen • Verlustmeldung der Polizei"
+    }
+   ],
+   "entfallen": [],
+   "hinweis": "Korrekturen: 1) Geburtsdatum (5955) ist jetzt «unveraendert» statt «geaendert», und das Format TT.MM.JJJJ bleibt. Nach der Portierungsregel heisst «geaendert» nur, dass sich Label, Typ, Optionen, Teile oder Pflicht geändert haben, und das trifft hier alles nicht zu. Laut Übernahmeplan quellen/dokumente/uebernahme_2026-11-03.json (neue_ausgaben/2) ist die Datei ausserdem genau die Ausgabe, aus der DVSH das eFormular gebildet hat («gleiche Ausgabe»). Es gibt also keine Änderung durch eine neue Ausgabe. Auch frühere Portierungen (ausgaben_2026-10-28.json: 402/4740, 480/5604, 452/5174) behalten ein nicht gedrucktes TT.MM.JJJJ als «unveraendert». Das Format passt ausserdem zur kuratierten Ebene format_code «date.ch» des Feldes. Sonst gibt es keine Korrekturen: Keine id fehlt, keine id wird für eine andere Angabe verwendet, kein Label ist umbenannt, und keine neue Angabe fehlt. Die Beilage ist richtig als neues Feld aufgenommen. — Befund (am Original-PDF geprüft): Ein Blatt, Migrationsamt und Passbüro, 4 AcroForm-Textfelder (Name, Vorname, Geburtsdatum, ZEMISNR). Name, Vorname, Geburtsdatum und ZEMIS-NR. stehen ohne Blocküberschrift als vier einzelne Zeilen untereinander. Sie bleiben vier Einzelfelder und werden keine Composite, damit die ids und die kuratierten Ebenen (eCH-Elemente 800/801/804/795, Subjekt) erhalten bleiben. ZEMIS-NR. ist nicht als freiwillig markiert und bleibt Pflicht; die Formulare 497, 508 und 509 führen ihre ZEMIS-Nummer als freiwillig. Neu ist die einzige Beilage «Verlustmeldung der Polizei». Sie steht als Aufzählungspunkt ohne Ankreuzfeld unter «Notwendige Unterlagen/Dokumente als Beilage einzureichen» und ist deshalb ein attachment, keine multiselect-Liste, und Pflicht. Diese Texte sind Hinweise und keine Felder der Person: der Kopf (Adresse Migrationsamt), «Voraussetzungen» (gültiger Aufenthaltstitel, Wohnsitz im Kanton Schaffhausen) und «Ablauf» (Verlust beim Polizeiposten melden, Ausweisverlustmeldung dem Migrationsamt vorlegen, gebührenpflichtiges Duplikat). Das Formular druckt keine Unterschriftszeile, keine Zeile für Ort und Datum und kein Feld zum Ausfüllen durch das Amt."
+  },
+  {
+   "form_id": 507,
+   "felder": [
+    {
+     "id": 5957,
+     "aktion": "unveraendert",
+     "name": "Name",
+     "definition": "Nachname der ausländischen Person, deren Name oder Nationalität im Ausländerausweis geändert werden soll.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Name: ........"
+    },
+    {
+     "id": 5958,
+     "aktion": "unveraendert",
+     "name": "Vorname",
+     "definition": "Vorname der ausländischen Person, deren Name oder Nationalität im Ausländerausweis geändert werden soll.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Vorname: ........"
+    },
+    {
+     "id": 5959,
+     "aktion": "geaendert",
+     "name": "Geburtsdatum",
+     "definition": "Geburtsdatum der ausländischen Person.",
+     "data_type": "date",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Geburtsdatum: ........"
+    },
+    {
+     "id": 5960,
+     "aktion": "unveraendert",
+     "name": "ZEMIS-NR.",
+     "definition": "Personennummer der ausländischen Person im Zentralen Migrationsinformationssystem (ZEMIS).",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "ZEMIS-NR.: ........"
+    },
+    {
+     "id": 5961,
+     "aktion": "geaendert",
+     "name": "Kopie des gültigen Reisepasses mit dem geänderten Namen/geänderter Nationalität",
+     "definition": "Kopie des gültigen Reisepasses, der den geänderten Namen bzw. die geänderte Nationalität ausweist; sie ist als notwendige Beilage einzureichen.",
+     "data_type": "attachment",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Notwendige Unterlagen/Dokumente als Beilage einzureichen • Kopie des gültigen Reisepasses mit dem geänderten Namen/geänderter Nationalität"
+    }
+   ],
+   "entfallen": [],
+   "hinweis": "Korrekturen: (1) Der beleg von 5959 enthielt einen Kommentar in Klammern, der nicht auf dem Formular steht. Er lautet jetzt nur noch so, wie das Formular druckt («Geburtsdatum: ........»), die Begründung steht hier. (2) Die Definition von 5961 ist sprachlich geglättet, der Inhalt ist gleich. Sonst habe ich nichts korrigiert. Die Portierung habe ich am PDF und an den AcroForm-Widgets überprüft.\n\nBefund: Die neue Ausgabe ist ein einseitiges PDF (formulare/184__namens_nationalitaetsaenderung.pdf). Bisher war 507 ein dateiloses eFormular; derived_by ist «dvsh-formdefinition» und source_widgets sind name/vorname/geburtsdatum/zemis_nr/kopie_reisepass. Das PDF hat 4 AcroForm-Textfelder: Name mit Tooltip «Nachname», Vorname, Geburtsdatum und ZEMISNR mit Tooltip «ZEMIS-NR». Dazu kommt eine Beilage. Alle 5 bisherigen ids sind wieder dabei, in der Reihenfolge des Ausdrucks und mit den gedruckten Bezeichnungen. Keine Bezeichnung ist umbenannt, kein Feld fällt weg, und es kommt keine neue Angabe hinzu. Keine id wird für eine andere Angabe verwendet. Die eCH-Zuordnungen passen weiterhin: 800 officialName, 801 firstName, 804 dateOfBirth, 795 otherPersonId und 772 document.\n\n5959 ist geändert, weil das Format wegfällt. Das PDF druckt kein Format, und das Widget «Geburtsdatum» hat keine Formatierungsaktion (/AA fehlt). Das bisherige TT.MM.JJJJ stammt aus der DVSH-formDefinition.\n\n5961 ist geändert, weil der Typ von text zu attachment wird. Die Kopie ist der einzige Aufzählungspunkt ohne Ankreuzkästchen unter «Notwendige Unterlagen/Dokumente als Beilage einzureichen». Das ist also keine Checkliste. So wird es auch sonst gehandhabt: 11 von 13 Feldern «Kopie …» sind attachment.\n\nDie vier Angaben zur Person bleiben einzelne Felder. Das Formular druckt sie als einzelne Zeilen ohne Blocküberschrift, und an jeder id hängt ein eigenes eCH-Element.\n\nKeine Felder der Person sind: der Behördenkopf (Kanton Schaffhausen, Migrationsamt und Passbüro, Mühlentalstrasse 105, CH-8200 Schaffhausen, migrationsamt.sh.ch), die Einleitung (der Name bzw. die Nationalität im Reisepass muss mit dem Ausländerausweis übereinstimmen) und der Abschnitt «Ablauf» (Kopie einreichen; danach stellt das Migrationsamt einen neuen, gebührenpflichtigen Ausländerausweis aus). Das Formular hat keine Unterschriftszeile, keine Angabe «Ort und Datum» und keinen Vermerk für das Amt."
+  },
+  {
+   "form_id": 508,
+   "felder": [
+    {
+     "id": 5962,
+     "aktion": "unveraendert",
+     "name": "Name",
+     "definition": "Name (Nachname) der gesuchstellenden Person.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Name ____ (Seite 1)"
+    },
+    {
+     "id": 5963,
+     "aktion": "unveraendert",
+     "name": "Vorname",
+     "definition": "Vorname der gesuchstellenden Person.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Vorname ____ (Seite 1, neben «Name»)"
+    },
+    {
+     "id": 5964,
+     "aktion": "unveraendert",
+     "name": "Adresse",
+     "definition": "Wohnadresse der gesuchstellenden Person in einem freien, mehrzeiligen Feld ohne vorgedruckte Teile.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Adresse (ein grosses Feld ohne Unterteilung)"
+    },
+    {
+     "id": 5965,
+     "aktion": "unveraendert",
+     "name": "Geburtsdatum",
+     "definition": "Geburtsdatum der gesuchstellenden Person.",
+     "data_type": "date",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "TT.MM.JJJJ",
+     "beleg": "Geburtsdatum ____"
+    },
+    {
+     "id": 5966,
+     "aktion": "geaendert",
+     "name": "ZEMIS-Nummer",
+     "definition": "Personennummer der gesuchstellenden Person im Zentralen Migrationsinformationssystem (ZEMIS).",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "ZEMIS-Nummer ____ (ohne Vermerk «freiwillig» oder «falls vorhanden»)"
+    },
+    {
+     "id": 5967,
+     "aktion": "geaendert",
+     "name": "SH-Nummer",
+     "definition": "Die auf dem Formular als «SH-Nummer» erfragte kantonale Nummer der gesuchstellenden Person.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "SH-Nummer ____ (ohne Vermerk «freiwillig» oder «falls vorhanden»)"
+    },
+    {
+     "id": 5968,
+     "aktion": "geaendert",
+     "name": "Nummer des Passes und Gültigkeitsdauer",
+     "definition": "Nummer des Passes der gesuchstellenden Person und dessen Gültigkeitsdauer, gemeinsam in einem Feld erfragt.",
+     "data_type": "composite",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [
+      "Nummer des Passes",
+      "Gültigkeitsdauer"
+     ],
+     "format": "",
+     "beleg": "Nummer des Passes und Gültigkeitsdauer ____"
+    },
+    {
+     "id": 5969,
+     "aktion": "unveraendert",
+     "name": "Staatsangehörigkeit",
+     "definition": "Staatsangehörigkeit der gesuchstellenden Person.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Staatsangehörigkeit ____"
+    },
+    {
+     "id": 5970,
+     "aktion": "geaendert",
+     "name": "E-Mail-Adresse",
+     "definition": "E-Mail-Adresse der gesuchstellenden Person.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "E-Mail",
+     "beleg": "E-Mail-Adresse ____ (ohne Vermerk «freiwillig»)"
+    },
+    {
+     "id": 5971,
+     "aktion": "geaendert",
+     "name": "Telefonnummer",
+     "definition": "Telefonnummer der gesuchstellenden Person.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "Telefon",
+     "beleg": "Telefonnummer ____ (ohne Vermerk «freiwillig»)"
+    },
+    {
+     "id": 5972,
+     "aktion": "geaendert",
+     "name": "Zivilstand",
+     "definition": "Aktueller Zivilstand der gesuchstellenden Person, eine Auswahl aus acht vorgedruckten Zivilständen.",
+     "data_type": "enum",
+     "required": true,
+     "allowed_values": [
+      "Ledig",
+      "Verheiratet",
+      "In eingetragener Partnerschaft",
+      "Geschieden",
+      "Gerichtlich getrennt",
+      "verwitwet",
+      "Durch Tod aufgelöste Partnerschaft",
+      "Gerichtlich aufgelöste Partnerschaft"
+     ],
+     "subfields": [],
+     "format": "",
+     "beleg": "Zivilstand: ☐ Ledig ☐ Verheiratet ☐ In eingetragener Partnerschaft … ☐ Geschieden ☐ Gerichtlich getrennt ☐ verwitwet ☐ Durch Tod aufgelöste Partnerschaft ☐ Gerichtlich aufgelöste Partnerschaft"
+    },
+    {
+     "id": 5973,
+     "aktion": "unveraendert",
+     "name": "Ehegatte oder Partner Schweizer(in)",
+     "definition": "Angabe, ob der Ehegatte oder eingetragene Partner Schweizer(in) ist; nur bei verheirateten Personen oder in eingetragener Partnerschaft.",
+     "data_type": "boolean",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Wenn verheiratet oder in eingetragener Partnerschaft: ☐ Ehegatte oder Partner Schweizer(in)"
+    },
+    {
+     "id": 5974,
+     "aktion": "unveraendert",
+     "name": "Gemeinsamer Haushalt (zusammenwohnend)",
+     "definition": "Angabe, ob die verheiratete oder in eingetragener Partnerschaft lebende Person mit dem Ehegatten oder Partner in einem gemeinsamen Haushalt wohnt.",
+     "data_type": "boolean",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "☐ Gemeinsamer Haushalt (zusammenwohnend)"
+    },
+    {
+     "id": 5975,
+     "aktion": "unveraendert",
+     "name": "Getrennter Haushalt seit",
+     "definition": "Datum, seit dem die Ehegatten oder Partner getrennte Haushalte führen.",
+     "data_type": "date",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "TT.MM.JJJJ",
+     "beleg": "☐ Getrennter Haushalt seit ____"
+    },
+    {
+     "id": 5976,
+     "aktion": "unveraendert",
+     "name": "Adresse des Ehegatten oder Partners",
+     "definition": "Adresse des Ehegatten oder eingetragenen Partners; nur bei verheirateten Personen oder in eingetragener Partnerschaft.",
+     "data_type": "text",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Adresse des Ehegatten oder Partners ____"
+    },
+    {
+     "id": 5977,
+     "aktion": "geaendert",
+     "name": "Seit",
+     "definition": "Datum, seit dem der angekreuzte Zivilstand Geschieden, Gerichtlich getrennt, verwitwet oder aufgelöste Partnerschaft besteht.",
+     "data_type": "date",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "TT.MM.JJJJ",
+     "beleg": "Seit ____ (unter ☐ Geschieden … ☐ Gerichtlich aufgelöste Partnerschaft, Block «Zivilstand»)"
+    },
+    {
+     "id": 5978,
+     "aktion": "unveraendert",
+     "name": "Jetziger Aufenthaltszweck (Erwerbstätige)",
+     "definition": "Jetziger Aufenthaltszweck einer erwerbstätigen Person, eine Auswahl aus neun vorgedruckten Zwecken.",
+     "data_type": "enum",
+     "required": false,
+     "allowed_values": [
+      "Unselbständige Erwerbstätigkeit",
+      "Selbständige Erwerbstätigkeit",
+      "Erwerbstätigkeit ausserhalb der Schweiz",
+      "Beamter ausländischer Verwaltung (Bahn, Post, Zoll)",
+      "In der Schweiz anerkannter Flüchtling",
+      "Schüler(in)",
+      "Pflegekind",
+      "Pflegekind zur späteren Adoption",
+      "Student(in)"
+     ],
+     "subfields": [],
+     "format": "",
+     "beleg": "Für Erwerbstätige — Jetziger Aufenthaltszweck: ☐ Unselbständige Erwerbstätigkeit … ☐ Student(in) (Immatrikulationsbestätigung beilegen)"
+    },
+    {
+     "id": null,
+     "aktion": "neu",
+     "name": "Immatrikulationsbestätigung beilegen",
+     "definition": "Bestätigung der Immatrikulation, die beizulegen ist, wenn als Aufenthaltszweck «Student(in)» angekreuzt wird (bei Erwerbstätigen wie bei Nichterwerbstätigen).",
+     "data_type": "attachment",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "☐ Student(in) (Immatrikulationsbestätigung beilegen) — fett gedruckt, in beiden Blöcken «Für Erwerbstätige» und «Für Nichterwerbstätige»"
+    },
+    {
+     "id": 5979,
+     "aktion": "geaendert",
+     "name": "Name und Adresse des Betriebes",
+     "definition": "Name und Adresse des Betriebes, in dem die erwerbstätige Person arbeitet.",
+     "data_type": "composite",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [
+      "Name",
+      "Adresse"
+     ],
+     "format": "",
+     "beleg": "Berufliche Situation — Name und Adresse des Betriebes ____"
+    },
+    {
+     "id": 5980,
+     "aktion": "unveraendert",
+     "name": "Anstellungsdauer",
+     "definition": "Angabe, ob die Anstellung der erwerbstätigen Person unbefristet oder befristet ist.",
+     "data_type": "enum",
+     "required": false,
+     "allowed_values": [
+      "unbefristet",
+      "befristet"
+     ],
+     "subfields": [],
+     "format": "",
+     "beleg": "Anstellungsdauer ☐ unbefristet ☐ befristet bis ____"
+    },
+    {
+     "id": 5981,
+     "aktion": "unveraendert",
+     "name": "Befristet bis",
+     "definition": "Datum, bis zu dem eine befristete Anstellung dauert.",
+     "data_type": "date",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "TT.MM.JJJJ",
+     "beleg": "☐ befristet bis ____"
+    },
+    {
+     "id": 5982,
+     "aktion": "unveraendert",
+     "name": "Beschäftigungsgrad / Arbeitszeit (Stunden pro Woche)",
+     "definition": "Beschäftigungsgrad bzw. Arbeitszeit der erwerbstätigen Person in Stunden pro Woche.",
+     "data_type": "number",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Beschäftigungsgrad / Arbeitszeit (Stunden pro Woche) ____"
+    },
+    {
+     "id": 5983,
+     "aktion": "unveraendert",
+     "name": "Aufenthaltszweck (Nichterwerbstätige)",
+     "definition": "Aufenthaltszweck einer nichterwerbstätigen Person, eine Auswahl aus sechzehn vorgedruckten Zwecken.",
+     "data_type": "enum",
+     "required": false,
+     "allowed_values": [
+      "Schüler(in)",
+      "Student(in)",
+      "Ausbildung ausserhalb der Schweiz",
+      "Aufenthalt in medizinischer Behandlung",
+      "Privataufenthalt",
+      "In der Schweiz anerkannter Flüchtling",
+      "Ehegatte/eingetragener Partner eines Schweizerbürgers",
+      "Verbleib beim Ehegatten/Partner",
+      "Verbleib bei Eltern",
+      "Verbleib bei anderen Familienangehörigen",
+      "Pflegekind",
+      "Pflegekind zur späteren Adoption",
+      "Rentner(in)",
+      "Auf Stellensuche",
+      "Übrige nicht Erwerbstätigkeit",
+      "Sozialleistungen"
+     ],
+     "subfields": [],
+     "format": "",
+     "beleg": "Für Nichterwerbstätige: ☐ Schüler(in) ☐ Student(in) (Immatrikulationsbestätigung beilegen) … ☐ Pflegekind zur späteren Adoption — gestrichelte Linie — ☐ Rentner(in) ☐ Auf Stellensuche seit ____ ☐ Übrige nicht Erwerbstätigkeit (Detailangaben unter Bemerkung) ☐ Sozialleistungen"
+    },
+    {
+     "id": 5984,
+     "aktion": "unveraendert",
+     "name": "Auf Stellensuche seit",
+     "definition": "Datum, seit dem die nichterwerbstätige Person auf Stellensuche ist.",
+     "data_type": "date",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "TT.MM.JJJJ",
+     "beleg": "☐ Auf Stellensuche seit ____"
+    },
+    {
+     "id": 5985,
+     "aktion": "geaendert",
+     "name": "Nachweis der finanziellen Situation beilegen",
+     "definition": "Nachweis der finanziellen Situation (z. B. Rentenbescheinigung, Sozialleistungen, Vermögensnachweise, Abrechnung Arbeitslosenkasse, Gehaltsabrechnung), beizulegen, «wenn einer der obenstehenden Punkte» im Block «Für Nichterwerbstätige» angekreuzt ist; die Bedingung steht unter der Zeile Rentner(in) / Auf Stellensuche / Übrige nicht Erwerbstätigkeit / Sozialleistungen, und das Formular sagt nicht, ob sie auch für die Punkte über der gestrichelten Linie gilt.",
+     "data_type": "attachment",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "wenn einer der obenstehenden Punkte: Nachweis der finanziellen Situation beilegen (Rentenbescheinigung, Sozialleistungen, Vermögensnachweise, Abrechnung Arbeitslosenkasse, Gehaltsabrechnung, usw.) — fett, ohne Ankreuzfeld, unter der Zeile nach der gestrichelten Linie"
+    },
+    {
+     "id": null,
+     "aktion": "neu",
+     "name": "Beilagen",
+     "definition": "Ankreuzliste der mit dem Gesuch eingereichten Dokumente: Pass, Identitätskarte oder Bestätigung des Konsulats sowie Ausländerausweis im Original oder Verlustmeldung.",
+     "data_type": "multiselect",
+     "required": true,
+     "allowed_values": [
+      "Pass/ID(genügt nur bei Staatsangehörigen der EU/EFTA)/Bestätigung vom Konsulat",
+      "Ausländerausweis im Original/Verlustmeldung"
+     ],
+     "subfields": [],
+     "format": "",
+     "beleg": "Beilagen ☐ Pass/ID(genügt nur bei Staatsangehörigen der EU/EFTA)/Bestätigung vom Konsulat ☐ Ausländerausweis im Original/Verlustmeldung"
+    },
+    {
+     "id": 5986,
+     "aktion": "unveraendert",
+     "name": "Bemerkungen des(r) Gesuchsteller(in)",
+     "definition": "Freie Bemerkungen der gesuchstellenden Person, unter anderem die Detailangaben zu «Übrige nicht Erwerbstätigkeit».",
+     "data_type": "text",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Bemerkungen des(r) Gesuchsteller(in) ____"
+    },
+    {
+     "id": 5987,
+     "aktion": "geaendert",
+     "name": "Ort und Datum",
+     "definition": "Ort und Datum der Unterzeichnung des Verlängerungsgesuchs.",
+     "data_type": "composite",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [
+      "Ort",
+      "Datum"
+     ],
+     "format": "",
+     "beleg": "Ort und Datum ____ (links neben «Unterschrift des(r) Gesuchsteller(in)»)"
+    },
+    {
+     "id": null,
+     "aktion": "neu",
+     "name": "Unterschrift des(r) Gesuchsteller(in)",
+     "definition": "Unterschrift der gesuchstellenden Person, mit der sie bestätigt, das Formular vollständig und wahrheitsgetreu ausgefüllt zu haben.",
+     "data_type": "signature",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Mit der Unterschrift bestätigen Sie, das Formular vollständig und wahrheitsgetreu ausgefüllt zu haben — Unterschrift des(r) Gesuchsteller(in) ____"
+    }
+   ],
+   "entfallen": [],
+   "hinweis": "KORREKTUREN DES PRÜFERS: Ich habe die vier Kernpunkte geprüft. Keine bestehende ID fehlt, obwohl die Ausgabe die Angabe noch verlangt. Kein gedrucktes Label ist nicht übernommen. Keine neue Angabe fehlt: Jedes der 28 AcroForm-Felder und jede gedruckte Angabe ohne Widget (Immatrikulationsbestätigung, Nachweis der finanziellen Situation, Unterschriftszeile) ist einem Feld zugeordnet. Keine ID steht für eine andere Angabe. Alle 26 IDs von 5962 bis 5987 kommen genau einmal vor. Die Umbenennung von 5977 in «Seit» deckt sich mit Feld 6071 im Schwesterformular 512.\nKorrigiert habe ich nur Folgendes:\n(1) 5985, Definition und Beleg. Gedruckt steht «wenn einer der obenstehenden Punkte». Die Bedingung steht unter der Zeile nach der gestrichelten Linie: Rentner(in), Auf Stellensuche, Übrige nicht Erwerbstätigkeit, Sozialleistungen. Im AcroForm bildet genau diese Zeile eine eigene Radiogruppe (nicht_erwerbstaetigkeit). Die beispielhaft genannten Nachweise passen zu diesen Punkten: Rentenbescheinigung, Abrechnung Arbeitslosenkasse, Sozialleistungen. Die Fassung des Ports «wenn einer der Aufenthaltszwecke für Nichterwerbstätige angekreuzt ist» liest mehr hinein, als das Formular sagt. Die Definition gibt jetzt die gedruckte Bedingung wieder und nennt die offene Reichweite.\n(2) 5983, Beleg: Die gestrichelte Trennlinie vor der Zeile Rentner(in) ist jetzt vermerkt.\n(3) Hinweis: Statt «28 AcroForm-Widgets» heisst es jetzt «28 AcroForm-Felder». Die Radiogruppen haben zusammen deutlich mehr Widgets.\n(4) Hinweis: Die Aussage zu den Schwesterformularen ist berichtigt, siehe AUFFÄLLIGKEITEN.\nSonst übernehme ich den Port unverändert.\n\nGRUNDLAGE: Ich habe die PDF-Datei 194__verlaengerungsgesuch_B.pdf gelesen: 2 Seiten, mit Layout und 28 AcroForm-Feldern, geprüft mit pypdf. Die Databank führte bisher nur die Feldliste aus der DVSH-formDefinition dieses Dokuments (form.dvsh_match = dvsh-formdefinition). Alle 26 bestehenden IDs (5962–5987) stehen in der gedruckten Fassung weiterhin für dieselbe Angabe. Keine entfällt.\n\nKEINE FELDER:\n- der Einleitungstext: Das Gesuch geht spätestens 2 Wochen vor Ablauf der Bewilligung an das Migrationsamt, zusammen mit dem Ausländerausweis und einer lesbaren Kopie von Pass oder ID bzw. einer Konsulatsbestätigung. Änderungen der Personalien gehen an die Einwohnerkontrolle.\n- «Bitte in Blockschrift ausfüllen und zutreffende Felder ankreuzen»\n- die Bestätigungsformel vor der Unterschrift\n- die Kennung «B»\nEin Feld «Vom Amt auszufüllen» gibt es nicht.\n\nGEÄNDERT GEGENÜBER DEM DVSH-MODELL:\n- 5966 ZEMIS-Nummer, 5967 SH-Nummer, 5970 E-Mail-Adresse, 5971 Telefonnummer: jetzt Pflicht. Das Formular druckt bei keinem dieser Felder «freiwillig» oder «falls vorhanden». DVSH führt sie als freiwillig. Das AcroForm setzt das Pflicht-Flag (Ff 2) nur bei Name, Vorname, Adresse und Geburtsdatum; das habe ich geprüft.\n- 5968 und 5979 sind jetzt zusammengesetzte Felder. Ihr Label nennt jeweils zwei Angaben: Nummer des Passes / Gültigkeitsdauer und Name / Adresse. «Ort und Datum» (5987) teile ich nach der Praxis der Databank in Ort / Datum auf (26 von 33 gleichnamigen Feldern).\n- 5972: Die Optionen übernehme ich wörtlich. Gedruckt ist «verwitwet» mit kleinem v.\n- 5977: Der Name ist jetzt «Seit», wie gedruckt und wie in Formular 512. Der bisherige Name «Zivilstandsänderung seit» war nur die DVSH-Bezeichnung.\n- 5985: jetzt Typ Beilage statt Ja/Nein. Der Satz ist eine fett gedruckte Anweisung ohne Ankreuzfeld; auch im AcroForm gibt es dafür kein Widget.\n\nNEU:\n- «Immatrikulationsbestätigung beilegen» (Beilage, bei Student(in))\n- «Beilagen» (Ankreuzliste mit 2 Optionen, AcroForm pass_ID / ausl_ausweis)\n- «Unterschrift des(r) Gesuchsteller(in)»\nDie Reihenfolge folgt dem Layout: Die Beilagen stehen vor den Bemerkungen. Die Textextraktion setzt sie fälschlich ans Ende.\n\nBEIBEHALTEN, MIT BEGRÜNDUNG:\n- 5974 bleibt Ja/Nein, obwohl das PDF «Gemeinsamer Haushalt» und «Getrennter Haushalt» als eine Radiogruppe codiert (wenn_verheiratet). Zusammen mit dem Datum 5975 geht keine Angabe verloren. Für eine Auswahl fehlt ein gedrucktes Label der Frage.\n- In 5980 und 5983 gehören «bis» bzw. «seit» zum Datumsfeld daneben (5981, 5984). Die Klammern «(Immatrikulationsbestätigung beilegen)» und «(Detailangaben unter Bemerkung)» sind Anweisungen, keine Teile der Option.\n- Bedingte Felder bleiben freiwillig, so wie bisher in der Databank. Das sind:\n  - die Angaben im Block «Wenn verheiratet oder in eingetragener Partnerschaft»\n  - «Seit»\n  - die Felder der Blöcke Erwerbstätige und Nichterwerbstätige (es gilt genau einer der beiden)\n  - die Beilagen, die nur bei bestimmten Zwecken verlangt sind\n- Die Formatangaben TT.MM.JJJJ, E-Mail und Telefon sind nicht gedruckt. Sie stammen aus dem Bestand und bleiben stehen, damit format_code erhalten bleibt. So wurde es auch bei früheren Ports gehandhabt.\n\nAUFFÄLLIGKEITEN, nur festgestellt:\n- Der Block «Für Nichterwerbstätige» ist durch eine gestrichelte Linie zweigeteilt, und das AcroForm teilt ihn in zwei Radiogruppen: 12 Optionen, dann Rentner(in) / Stellensuche / Übrige / Sozialleistungen. Das PDF lässt also in jedem Teil ein Kreuz zu. Der Zivilstand-Block hat dieselbe Trennlinie, ist im AcroForm aber eine einzige Gruppe. Der untere Teil hat keine eigene Überschrift, deshalb bleibt es ein einziges Auswahlfeld. Wie weit die Bedingung für den Nachweis der finanziellen Situation reicht, sagt das Formular nicht eindeutig (siehe 5985).\n- Der Tooltip des Widgets «adr_ehegatte» lautet «Telefonnummer»; das habe ich geprüft. Ein Screenreader liest bei der Adresse des Ehegatten also eine falsche Bezeichnung vor.\n- Die Beilagenliste nennt weder die Immatrikulationsbestätigung noch den Nachweis der finanziellen Situation.\n- Schwesterformulare:\n  - Pflicht oder freiwillig bei ZEMIS-Nummer, SH-Nummer, E-Mail und Telefon sowie die Aufteilung von «Nummer des Passes und Gültigkeitsdauer» stellen sich auch in 511, 512 und 513. Dort sind die Felder aus DVSH als freiwillig bzw. als Text übernommen.\n  - «Ort und Datum» ist in 512 und 513 noch ein Textfeld; 511 hat kein solches Feld.\n  - Zivilstand und Aufenthaltszweck: 512 führt die Blöcke Zivilstand und Nichterwerbstätige als einzelne Ja/Nein-Felder. 513 hat Zivilstand und Aufenthaltszweck als Auswahl, 511 hat diese Blöcke nicht."
+  },
+  {
+   "form_id": 511,
+   "felder": [
+    {
+     "id": 6039,
+     "aktion": "unveraendert",
+     "name": "Name",
+     "definition": "Nachname der gesuchstellenden ausländischen Person.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Name ____"
+    },
+    {
+     "id": 6040,
+     "aktion": "unveraendert",
+     "name": "Vorname",
+     "definition": "Vorname der gesuchstellenden Person.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Vorname ____"
+    },
+    {
+     "id": 6041,
+     "aktion": "unveraendert",
+     "name": "Adresse",
+     "definition": "Wohnadresse der gesuchstellenden Person, in einem einzigen mehrzeiligen Feld ohne gedruckte Teile.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Adresse [ein mehrzeiliges Feld]"
+    },
+    {
+     "id": 6042,
+     "aktion": "geaendert",
+     "name": "Geburtsdatum",
+     "definition": "Geburtsdatum der gesuchstellenden Person.",
+     "data_type": "date",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Geburtsdatum ____ (kein Format gedruckt; «TT.MM.JJJJ» stammte aus dem DVSH-Modell)"
+    },
+    {
+     "id": 6043,
+     "aktion": "geaendert",
+     "name": "ZEMIS-Nummer",
+     "definition": "Personennummer der gesuchstellenden Person im Zentralen Migrationsinformationssystem (ZEMIS).",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "ZEMIS-Nummer ____ (nicht als freiwillig bezeichnet)"
+    },
+    {
+     "id": 6044,
+     "aktion": "geaendert",
+     "name": "SH-Nummer",
+     "definition": "Kantonale Personennummer (SH-Nummer) der gesuchstellenden Person beim Migrationsamt Schaffhausen.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "SH-Nummer ____ (nicht als freiwillig bezeichnet)"
+    },
+    {
+     "id": 6045,
+     "aktion": "unveraendert",
+     "name": "Nummer des Passes und Gültigkeitsdauer",
+     "definition": "Nummer des Reisepasses und dessen Gültigkeitsdauer, in einem einzigen Feld; nur anzugeben, wenn ein gültiger Pass vorhanden ist.",
+     "data_type": "text",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Nummer des Passes und Gültigkeitsdauer ____ ; Einleitung: «einer lesbaren Kopie des gültigen Passes (falls vorhanden)»"
+    },
+    {
+     "id": 6046,
+     "aktion": "unveraendert",
+     "name": "Staatsangehörigkeit",
+     "definition": "Staatsangehörigkeit der gesuchstellenden Person.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Staatsangehörigkeit ____"
+    },
+    {
+     "id": 6047,
+     "aktion": "geaendert",
+     "name": "E-Mail-Adresse",
+     "definition": "E-Mail-Adresse der gesuchstellenden Person für Rückfragen.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "E-Mail-Adresse ____ (nicht als freiwillig bezeichnet; kein Format gedruckt)"
+    },
+    {
+     "id": 6048,
+     "aktion": "geaendert",
+     "name": "Telefonnummer",
+     "definition": "Telefonnummer der gesuchstellenden Person für Rückfragen.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Telefonnummer ____ (nicht als freiwillig bezeichnet; kein Format gedruckt)"
+    },
+    {
+     "id": 6049,
+     "aktion": "geaendert",
+     "name": "Bewilligungsart",
+     "definition": "Ausweiskategorie der gesuchstellenden Person, deren Verlängerung beantragt wird, ausgewählt unter F, N und S.",
+     "data_type": "enum",
+     "required": true,
+     "allowed_values": [
+      "F",
+      "N",
+      "S"
+     ],
+     "subfields": [],
+     "format": "",
+     "beleg": "Bewilligungsart [Auswahlfeld mit den Optionen F / N / S, vorbelegt F]"
+    },
+    {
+     "id": 6050,
+     "aktion": "unveraendert",
+     "name": "Jetzige ausgeübte Tätigkeit",
+     "definition": "Derzeit ausgeübte berufliche Tätigkeit; nur von erwerbstätigen Personen auszufüllen (Abschnitt «Für Erwerbstätige»).",
+     "data_type": "text",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Für Erwerbstätige — Jetzige ausgeübte Tätigkeit ____"
+    },
+    {
+     "id": 6051,
+     "aktion": "unveraendert",
+     "name": "Name und Adresse des Betriebes",
+     "definition": "Name und Adresse des Arbeitgeberbetriebs in einem einzigen mehrzeiligen Feld; nur von erwerbstätigen Personen auszufüllen.",
+     "data_type": "text",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "[zweites, mehrzeiliges Feld im Abschnitt «Für Erwerbstätige», im gerenderten Blatt ohne sichtbare Beschriftung; «Name und Adresse des Betriebes» steht nur in der unsichtbaren Textebene, der Tooltip lautet «Name und Adresse des Betriebs»]"
+    },
+    {
+     "id": 6052,
+     "aktion": "geaendert",
+     "name": "Anstellungsdauer",
+     "definition": "Angabe, ob die Anstellung unbefristet oder befristet ist (Auswahl einer der beiden Optionen); nur von erwerbstätigen Personen auszufüllen.",
+     "data_type": "enum",
+     "required": false,
+     "allowed_values": [
+      "Unbefristet",
+      "Befristet bis"
+     ],
+     "subfields": [],
+     "format": "",
+     "beleg": "Anstellungsdauer ☐ Unbefristet ☐ Befristet bis ____ (Optionsgruppe: nur eines ankreuzbar)"
+    },
+    {
+     "id": 6053,
+     "aktion": "geaendert",
+     "name": "Anstellungsdauer - Befristet bis",
+     "definition": "Kalenderdatum, an dem eine befristete Anstellung endet; nur bei befristeter Anstellung anzugeben.",
+     "data_type": "date",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "☐ Befristet bis ____ (kein Format gedruckt)"
+    },
+    {
+     "id": 6054,
+     "aktion": "unveraendert",
+     "name": "Beschäftigungsgrad / Arbeitszeit (Stunden pro Woche)",
+     "definition": "Wöchentliche Arbeitszeit in Stunden; nur von erwerbstätigen Personen auszufüllen.",
+     "data_type": "number",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Beschäftigungsgrad / Arbeitszeit (Stunden pro Woche) ____"
+    },
+    {
+     "id": null,
+     "aktion": "neu",
+     "name": "Beilagen",
+     "definition": "Checkliste der dem Gesuch beigelegten Dokumente.",
+     "data_type": "multiselect",
+     "required": true,
+     "allowed_values": [
+      "Pass/ID(genügt nur bei Staatsangehörigen der EU/EFTA)/Bestätigung vom Konsulat",
+      "Ausländerausweis im Original/Verlustmeldung"
+     ],
+     "subfields": [],
+     "format": "",
+     "beleg": "Beilagen ☐ Pass/ID(genügt nur bei Staatsangehörigen der EU/EFTA)/Bestätigung vom Konsulat ☐ Ausländerausweis im Original/Verlustmeldung"
+    },
+    {
+     "id": 6055,
+     "aktion": "geaendert",
+     "name": "Bemerkungen des(r) Gesuchsteller(in)",
+     "definition": "Freie Bemerkungen der gesuchstellenden Person zum Gesuch.",
+     "data_type": "text",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Bemerkungen des(r) Gesuchsteller(in) ____"
+    },
+    {
+     "id": null,
+     "aktion": "neu",
+     "name": "Ort und Datum",
+     "definition": "Ort und Datum der Unterzeichnung des Gesuchs.",
+     "data_type": "composite",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [
+      "Ort",
+      "Datum"
+     ],
+     "format": "",
+     "beleg": "Mit der Unterschrift bestätigen Sie, das Formular vollständig und wahrheitsgetreu ausgefüllt zu haben — Ort und Datum ____"
+    },
+    {
+     "id": null,
+     "aktion": "neu",
+     "name": "Unterschrift des(r) Gesuchsteller(in)",
+     "definition": "Unterschrift der gesuchstellenden Person, mit der sie die vollständigen und wahrheitsgetreuen Angaben bestätigt.",
+     "data_type": "signature",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Unterschrift des(r) Gesuchsteller(in) ____"
+    }
+   ],
+   "entfallen": [],
+   "hinweis": "Kein altes Ausgabe-File: Die 17 bestehenden Felder stammen aus der DVSH-formDefinition genau dieses PDFs (197__verlaengerungsgesuch_F_S_N.pdf, 1 Seite, AcroForm mit 20 Feldern). Sie sind hier auf das gedruckte Formular übertragen. Alle 17 ids gehen weiter, keine entfällt. Neu sind drei Angaben, die das DVSH-Modell nicht hatte: die Checkliste «Beilagen» (AcroForm pass_ID und ausl_ausweis), «Ort und Datum» (AcroForm Ort_datum_ende) und «Unterschrift des(r) Gesuchsteller(in)» (Unterschriftslinie ohne Formularfeld).\n\nWas sich gegenüber dem DVSH-Modell ändert:\n(1) Bewilligungsart: Im PDF ist das ein Auswahlfeld (Combo, Pflichtfeld) mit den Optionen F / N / S (vorbelegt F; passt zum Dateinamen F_S_N). DVSH hatte als einzige Option «Für Erwerbstätige» eingetragen. Das ist aber nur die Überschrift des folgenden Abschnitts, keine Option.\n(2) Die zwei Kästchen der Anstellungsdauer sind im PDF eine Optionsgruppe (Radio, Zustände «unbefristet» / «befristet bis»). Deshalb wird id 6052 vom Ja/Nein-Feld «Unbefristet» zum Auswahlfeld «Anstellungsdauer» – dieselbe Angabe, nur vollständig erfasst (6052 hat keinen eCH-Bezug und keine Rechtsgrundlage). id 6053 bleibt das Kalenderdatum «Befristet bis». So ist es auch beim Schwesterformular 508 modelliert.\n(3) Bei Geburtsdatum, Befristet bis, E-Mail-Adresse und Telefonnummer ist das Format entfernt. «TT.MM.JJJJ», «E-Mail» und «Telefon» kamen aus den Eingabetypen von DVSH. Das Formular druckt kein Format, und das PDF hat auch keine Formatierungsaktion. Achtung: Die Schwesterformulare 508/512 führen noch «TT.MM.JJJJ». Das kann als Format-Divergenz erscheinen.\n(4) Pflicht: ZEMIS-Nummer, SH-Nummer, E-Mail-Adresse und Telefonnummer stehen jetzt auf Pflicht, weil das Formular sie nicht als freiwillig bezeichnet (DVSH hatte sie freiwillig, ebenso 508/512). Achtung: Das AcroForm selbst markiert nur Name, Vorname, Adresse, Geburtsdatum und Bewilligungsart als Pflichtfeld (geprüft). Die Inhaberin sollte prüfen, ob die Dienststelle diese vier wirklich verlangt.\n(5) «Nummer des Passes und Gültigkeitsdauer» bleibt freiwillig. Beleg ist die Einleitung: «Kopie des gültigen Passes (falls vorhanden)». Die Schwesterformulare 508/512 führen dieses Feld als Pflicht.\n(6) Die Felder im Abschnitt «Für Erwerbstätige» (Tätigkeit, Betrieb, Anstellungsdauer, Befristet bis, Beschäftigungsgrad) bleiben freiwillig. Sie gelten nur für Erwerbstätige, und frühere Übernahmen haben bedingte Angaben ebenso freiwillig geführt.\n(7) Bemerkungen: Die sichtbare Beschriftung lautet «Bemerkungen des(r) Gesuchsteller(in)». Der bisherige Name «...Antragssteller(in)» stand so nicht auf dem Formular.\n\nUnsichtbare Textebene: Das PDF enthält eine zweite, nicht sichtbare Ebene mit Beschriftungen. Darin stehen «Bemerkungen des(r) Antragsstellers(in)», ein doppelter Bestätigungssatz mit «Ort und Datum / Unterschrift» und eine doppelte «Adresse». Auch die Beschriftung «Name und Adresse des Betriebes» steht nur in dieser Ebene, an derselben Stelle wie «Anstellungsdauer». Der Tooltip des Feldes lautet «Name und Adresse des Betriebs». Im gerenderten Blatt hat das zweite Feld im Abschnitt «Für Erwerbstätige» keine sichtbare Beschriftung. Der bisherige Feldname bleibt.\n\nMögliche Aufteilung: «Nummer des Passes und Gültigkeitsdauer» und «Name und Adresse des Betriebes» fassen je zwei Angaben in einem einzigen Feld zusammen. Sie bleiben wie gedruckt ein Textfeld, wie bei den Schwesterformularen 508 und 512. Für die Begriffe-Prüfung sind sie Kandidaten für pruefart «aufteilen».\n\nKeine Felder der Person sind: der Titel «Verlängerungsgesuch», die Einleitung (Ausländerausweis und Passkopie spätestens 2 Wochen vor Ablauf ans Migrationsamt; Änderungen der Personalien an die Einwohnerkontrolle), «Bitte in Blockschrift ausfüllen und zutreffende Felder ankreuzen», die Abschnittsüberschrift «Für Erwerbstätige» und der Bestätigungssatz über der Unterschrift. Ein Feld «Vom Amt auszufüllen» gibt es nicht.\n\nKorrekturen der Zweitprüfung: (a) Beleg von id 6051 berichtigt. Er gab «Name und Adresse des Betriebes» als gedruckte Beschriftung aus, obwohl der eigene Hinweis (und die Textpositionen im PDF) zeigen, dass diese Beschriftung im gerenderten Blatt nicht sichtbar ist. Feld, id und Name bleiben unverändert. (b) Belege in den Hinweisen ergänzt: AcroForm-Herkunft der drei neuen Angaben, Radio- bzw. Combo-Typ, keine Formatierungsaktion im PDF, abweichende Formate und Pflicht bei den Schwesterformularen 508/512. Sonst keine. Geprüft wurde: Keine bestehende id fehlt (alle 17 genau einmal). Keine id steht für eine andere Angabe. Beschriftungen sind übernommen (6052, 6055). Keine neue Angabe fehlt (alle 20 AcroForm-Felder und die Unterschriftslinie sind abgedeckt). Die Reihenfolge entspricht dem gerenderten Blatt."
+  },
+  {
+   "form_id": 512,
+   "felder": [
+    {
+     "id": 6056,
+     "aktion": "unveraendert",
+     "name": "Name",
+     "definition": "Familienname der gesuchstellenden Person.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Name ____"
+    },
+    {
+     "id": 6057,
+     "aktion": "unveraendert",
+     "name": "Vorname",
+     "definition": "Vorname der gesuchstellenden Person.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Vorname ____"
+    },
+    {
+     "id": 6058,
+     "aktion": "unveraendert",
+     "name": "Adresse",
+     "definition": "Adresse der gesuchstellenden Person; das Formular druckt dafür ein einziges mehrzeiliges Feld ohne Teilangaben.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Adresse (ein mehrzeiliges Feld)"
+    },
+    {
+     "id": 6059,
+     "aktion": "geaendert",
+     "name": "Geburtsdatum",
+     "definition": "Geburtsdatum der gesuchstellenden Person.",
+     "data_type": "date",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Geburtsdatum ____ (kein Format vorgedruckt; das bisherige «TT.MM.JJJJ» stammt aus dem DVSH-Modell)"
+    },
+    {
+     "id": 6060,
+     "aktion": "geaendert",
+     "name": "ZEMIS-Nummer",
+     "definition": "ZEMIS-Nummer der gesuchstellenden Person.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "ZEMIS-Nummer ____ (nicht als freiwillig oder «falls vorhanden» gekennzeichnet)"
+    },
+    {
+     "id": 6061,
+     "aktion": "geaendert",
+     "name": "SH-Nummer",
+     "definition": "SH-Nummer der gesuchstellenden Person.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "SH-Nummer ____ (nicht als freiwillig oder «falls vorhanden» gekennzeichnet)"
+    },
+    {
+     "id": 6062,
+     "aktion": "unveraendert",
+     "name": "Nummer des Passes und Gültigkeitsdauer",
+     "definition": "Nummer des Passes der gesuchstellenden Person und seine Gültigkeitsdauer, auf einer gemeinsamen Zeile erfragt.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Nummer des Passes und Gültigkeitsdauer ____"
+    },
+    {
+     "id": 6063,
+     "aktion": "unveraendert",
+     "name": "Staatsangehörigkeit",
+     "definition": "Staatsangehörigkeit der gesuchstellenden Person.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Staatsangehörigkeit ____"
+    },
+    {
+     "id": 6064,
+     "aktion": "geaendert",
+     "name": "E-Mail-Adresse",
+     "definition": "E-Mail-Adresse der gesuchstellenden Person.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "E-Mail-Adresse ____ (nicht als freiwillig gekennzeichnet, kein Format vorgedruckt)"
+    },
+    {
+     "id": 6065,
+     "aktion": "geaendert",
+     "name": "Telefonnummer",
+     "definition": "Telefonnummer der gesuchstellenden Person.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Telefonnummer ____ (nicht als freiwillig gekennzeichnet, kein Format vorgedruckt)"
+    },
+    {
+     "id": 6066,
+     "aktion": "geaendert",
+     "name": "Zivilstand",
+     "definition": "Zivilstand der gesuchstellenden Person, eine der gedruckten Möglichkeiten anzukreuzen.",
+     "data_type": "enum",
+     "required": true,
+     "allowed_values": [
+      "Ledig",
+      "Verheiratet",
+      "In eingetragener Partnerschaft",
+      "Geschieden",
+      "Gerichtlich getrennt",
+      "verwitwet",
+      "Durch Tod aufgelöste Partnerschaft",
+      "Gerichtlich aufgelöste Partnerschaft"
+     ],
+     "subfields": [],
+     "format": "",
+     "beleg": "Zivilstand: ☐ Ledig ☐ Verheiratet ☐ In eingetragener Partnerschaft … ☐ Geschieden ☐ Gerichtlich getrennt ☐ verwitwet ☐ Durch Tod aufgelöste Partnerschaft ☐ Gerichtlich aufgelöste Partnerschaft (eine AcroForm-Optionsgruppe 'Zivilstand'; «verwitwet» klein gedruckt)"
+    },
+    {
+     "id": 6067,
+     "aktion": "geaendert",
+     "name": "Ehegatte oder Partner Schweizer(in)",
+     "definition": "Ob der Ehegatte oder die eingetragene Partnerin bzw. der eingetragene Partner Schweizer(in) ist; anzugeben, wenn die Person verheiratet ist oder in eingetragener Partnerschaft lebt.",
+     "data_type": "boolean",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Wenn verheiratet oder in eingetragener Partnerschaft: ☐ Ehegatte oder Partner Schweizer(in)"
+    },
+    {
+     "id": 6068,
+     "aktion": "geaendert",
+     "name": "Gemeinsamer Haushalt (zusammenwohnend)",
+     "definition": "Ob die Ehegatten bzw. die eingetragenen Partner im gemeinsamen Haushalt zusammenwohnen; Gegenstück ist «Getrennter Haushalt seit»; anzugeben, wenn die Person verheiratet ist oder in eingetragener Partnerschaft lebt.",
+     "data_type": "boolean",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "☐ Gemeinsamer Haushalt (zusammenwohnend) ☐ Getrennter Haushalt seit ____ (AcroForm-Optionsgruppe 'wenn_verheiratet': gem_haushalt / getr_haushalt)"
+    },
+    {
+     "id": 6069,
+     "aktion": "geaendert",
+     "name": "Getrennter Haushalt seit",
+     "definition": "Datum, seit dem die Ehegatten bzw. die eingetragenen Partner getrennte Haushalte führen.",
+     "data_type": "date",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "☐ Getrennter Haushalt seit ____ (kein Format vorgedruckt)"
+    },
+    {
+     "id": 6070,
+     "aktion": "geaendert",
+     "name": "Adresse des Ehegatten oder Partners",
+     "definition": "Adresse des Ehegatten oder der eingetragenen Partnerin bzw. des eingetragenen Partners, im Block «Wenn verheiratet oder in eingetragener Partnerschaft».",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Adresse des Ehegatten oder Partners ____"
+    },
+    {
+     "id": 6071,
+     "aktion": "geaendert",
+     "name": "Seit",
+     "definition": "Datum, seit dem der angekreuzte Zivilstand «Geschieden», «Gerichtlich getrennt», «verwitwet», «Durch Tod aufgelöste Partnerschaft» oder «Gerichtlich aufgelöste Partnerschaft» besteht.",
+     "data_type": "date",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Seit ____ (unter Geschieden / Gerichtlich getrennt / verwitwet / Durch Tod aufgelöste Partnerschaft / Gerichtlich aufgelöste Partnerschaft; kein Format vorgedruckt)"
+    },
+    {
+     "id": 6072,
+     "aktion": "geaendert",
+     "name": "Jetziger Aufenthaltszweck (Erwerbstätige)",
+     "definition": "Jetziger Aufenthaltszweck der erwerbstätigen gesuchstellenden Person, eine der gedruckten Möglichkeiten im Block «Für Erwerbstätige».",
+     "data_type": "enum",
+     "required": true,
+     "allowed_values": [
+      "Unselbständige Erwerbstätigkeit",
+      "Selbständige Erwerbstätigkeit",
+      "Erwerbstätigkeit ausserhalb der Schweiz",
+      "Beamter ausländischer Verwaltung (Bahn, Post, Zoll)",
+      "In der Schweiz anerkannter Flüchtling",
+      "Schüler(in)",
+      "Pflegekind",
+      "Pflegekind zur späteren Adoption",
+      "Student(in)"
+     ],
+     "subfields": [],
+     "format": "",
+     "beleg": "Für Erwerbstätige — Jetziger Aufenthaltszweck: ☐ Unselbständige Erwerbstätigkeit ☐ Selbständige Erwerbstätigkeit ☐ Erwerbstätigkeit ausserhalb der Schweiz ☐ Beamter ausländischer Verwaltung (Bahn, Post, Zoll) ☐ In der Schweiz anerkannter Flüchtling ☐ Schüler(in) ☐ Pflegekind ☐ Pflegekind zur späteren Adoption ☐ Student(in) (Immatrikulationsbestätigung beilegen) (AcroForm-Optionsgruppe 'Aufehthaltszweck')"
+    },
+    {
+     "id": null,
+     "aktion": "neu",
+     "name": "Immatrikulationsbestätigung",
+     "definition": "Immatrikulationsbestätigung, die beizulegen ist, wenn als Aufenthaltszweck «Student(in)» angekreuzt ist (in beiden Blöcken «Für Erwerbstätige» und «Für Nichterwerbstätige» gedruckt).",
+     "data_type": "attachment",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Student(in) (Immatrikulationsbestätigung beilegen) — gedruckt bei «Für Erwerbstätige» und bei «Für Nichterwerbstätige»"
+    },
+    {
+     "id": 6073,
+     "aktion": "geaendert",
+     "name": "Name und Adresse des Betriebes",
+     "definition": "Name und Adresse des Betriebes, in dem die erwerbstätige Person beschäftigt ist (Berufliche Situation); ein einziges mehrzeiliges Feld.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Berufliche Situation — Name und Adresse des Betriebes ____"
+    },
+    {
+     "id": 6074,
+     "aktion": "geaendert",
+     "name": "Anstellungsdauer",
+     "definition": "Ob die Anstellung der erwerbstätigen Person unbefristet oder befristet ist (Berufliche Situation).",
+     "data_type": "enum",
+     "required": true,
+     "allowed_values": [
+      "unbefristet",
+      "befristet bis"
+     ],
+     "subfields": [],
+     "format": "",
+     "beleg": "Anstellungsdauer ☐ unbefristet ☐ befristet bis ____ (AcroForm-Optionsgruppe 'Anstellungsdauer': /unbefristet, /befristet bis)"
+    },
+    {
+     "id": 6075,
+     "aktion": "geaendert",
+     "name": "Anstellungsdauer befristet bis",
+     "definition": "Datum, bis zu dem eine befristete Anstellung dauert.",
+     "data_type": "date",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "☐ befristet bis ____ (kein Format vorgedruckt)"
+    },
+    {
+     "id": 6076,
+     "aktion": "geaendert",
+     "name": "Beschäftigungsgrad / Arbeitszeit (Stunden pro Woche)",
+     "definition": "Beschäftigungsgrad bzw. Arbeitszeit der erwerbstätigen Person in Stunden pro Woche.",
+     "data_type": "number",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "Stunden pro Woche",
+     "beleg": "Beschäftigungsgrad / Arbeitszeit (Stunden pro Woche) ____"
+    },
+    {
+     "id": 6077,
+     "aktion": "geaendert",
+     "name": "Für Nichterwerbstätige",
+     "definition": "Aufenthaltszweck bzw. Lage der nichterwerbstätigen gesuchstellenden Person, anzukreuzen unter den gedruckten Möglichkeiten im Block «Für Nichterwerbstätige»; die zwei durch eine Strichlinie getrennten Gruppen erlauben je höchstens ein Kreuz.",
+     "data_type": "multiselect",
+     "required": true,
+     "allowed_values": [
+      "Schüler(in)",
+      "Student(in)",
+      "Ausbildung ausserhalb der Schweiz",
+      "Aufenthalt in medizinischer Behandlung",
+      "Privataufenthalt",
+      "In der Schweiz anerkannter Flüchtling",
+      "Ehegatte/eingetragener Partner eines Schweizerbürgers",
+      "Verbleib beim Ehegatten/Partner",
+      "Verbleib bei Eltern",
+      "Verbleib bei anderen Familienangehörigen",
+      "Pflegekind",
+      "Pflegekind zur späteren Adoption",
+      "Rentner(in)",
+      "Auf Stellensuche seit",
+      "Übrige nicht Erwerbstätigkeit",
+      "Sozialleistungen"
+     ],
+     "subfields": [],
+     "format": "",
+     "beleg": "Für Nichterwerbstätige: ☐ Schüler(in) ☐ Student(in) (Immatrikulationsbestätigung beilegen) ☐ Ausbildung ausserhalb der Schweiz ☐ Aufenthalt in medizinischer Behandlung ☐ Privataufenthalt ☐ In der Schweiz anerkannter Flüchtling ☐ Ehegatte/eingetragener Partner eines Schweizerbürgers ☐ Verbleib beim Ehegatten/Partner ☐ Verbleib bei Eltern ☐ Verbleib bei anderen Familienangehörigen ☐ Pflegekind ☐ Pflegekind zur späteren Adoption — ☐ Rentner(in) ☐ Auf Stellensuche seit ____ ☐ Übrige nicht Erwerbstätigkeit (Detailangaben unter Bemerkung) ☐ Sozialleistungen (AcroForm: Optionsgruppen 'Aufehthaltszweck_nichterwerbstaetig' mit 12 und 'nicht_erwerbstaetigkeit' mit 4 Optionen, beide Optionsfelder mit Ff 49152 = Radio, also je Gruppe höchstens ein Kreuz)"
+    },
+    {
+     "id": 6090,
+     "aktion": "geaendert",
+     "name": "Auf Stellensuche seit",
+     "definition": "Datum, seit dem die nichterwerbstätige Person auf Stellensuche ist.",
+     "data_type": "date",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "☐ Auf Stellensuche seit ____ (AcroForm-Textfeld 'stellensuche_seit'; kein Format vorgedruckt)"
+    },
+    {
+     "id": 6093,
+     "aktion": "geaendert",
+     "name": "Nachweis der finanziellen Situation beilegen",
+     "definition": "Nachweis der finanziellen Situation (z. B. Rentenbescheinigung, Sozialleistungen, Vermögensnachweise, Abrechnung Arbeitslosenkasse, Gehaltsabrechnung), beizulegen «wenn einer der obenstehenden Punkte» im Block «Für Nichterwerbstätige» zutrifft.",
+     "data_type": "attachment",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "wenn einer der obenstehenden Punkte: Nachweis der finanziellen Situation beilegen (Rentenbescheinigung, Sozialleistungen, Vermögensnachweise, Abrechnung Arbeitslosenkasse, Gehaltsabrechnung, usw.) — kein Kästchen, kein AcroForm-Feld"
+    },
+    {
+     "id": null,
+     "aktion": "neu",
+     "name": "Beilagen",
+     "definition": "Checkliste der Dokumente, die dem Verlängerungsgesuch beigelegt werden.",
+     "data_type": "multiselect",
+     "required": true,
+     "allowed_values": [
+      "Pass/ID(genügt nur bei Staatsangehörigen der EU/EFTA)/Bestätigung vom Konsulat",
+      "Ausländerausweis im Original/Verlustmeldung"
+     ],
+     "subfields": [],
+     "format": "",
+     "beleg": "Beilagen ☐ Pass/ID(genügt nur bei Staatsangehörigen der EU/EFTA)/Bestätigung vom Konsulat ☐ Ausländerausweis im Original/Verlustmeldung (AcroForm-Kästchen 'pass_ID', 'ausl_ausweis')"
+    },
+    {
+     "id": 6094,
+     "aktion": "unveraendert",
+     "name": "Bemerkungen des(r) Gesuchsteller(in)",
+     "definition": "Freie Bemerkungen der gesuchstellenden Person, unter anderem die Detailangaben zu «Übrige nicht Erwerbstätigkeit».",
+     "data_type": "text",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Bemerkungen des(r) Gesuchsteller(in) ____"
+    },
+    {
+     "id": 6095,
+     "aktion": "geaendert",
+     "name": "Ort und Datum",
+     "definition": "Ort und Datum der Unterzeichnung des Verlängerungsgesuchs.",
+     "data_type": "composite",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [
+      "Ort",
+      "Datum"
+     ],
+     "format": "",
+     "beleg": "Ort und Datum ____ (AcroForm-Textfeld 'Ort_datum_ende')"
+    },
+    {
+     "id": null,
+     "aktion": "neu",
+     "name": "Unterschrift des(r) Gesuchsteller(in)",
+     "definition": "Unterschrift der gesuchstellenden Person, mit der sie bestätigt, das Formular vollständig und wahrheitsgetreu ausgefüllt zu haben.",
+     "data_type": "signature",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Unterschrift des(r) Gesuchsteller(in) ________ (Unterschriftslinie, kein AcroForm-Feld)"
+    }
+   ],
+   "entfallen": [
+    {
+     "id": 6078,
+     "beleg": "Keine eigene Ja/Nein-Angabe: «Student(in) (Immatrikulationsbestätigung beilegen)» ist ein Kästchen im Block «Für Nichterwerbstätige». Das AcroForm führt es als Option '/student' der Optionsgruppe 'Aufehthaltszweck_nichterwerbstaetig'. Die Angabe lebt als Option «Student(in)» von Feld 6077 «Für Nichterwerbstätige» weiter; die Beilage steht im neuen Feld «Immatrikulationsbestätigung»."
+    },
+    {
+     "id": 6079,
+     "beleg": "Keine eigene Ja/Nein-Angabe: «Ausbildung ausserhalb der Schweiz» ist ein Kästchen im Block «Für Nichterwerbstätige», im AcroForm Option '/ausbildung' der Optionsgruppe 'Aufehthaltszweck_nichterwerbstaetig'. Weiter als Option von Feld 6077."
+    },
+    {
+     "id": 6080,
+     "beleg": "Keine eigene Ja/Nein-Angabe: «Aufenthalt in medizinischer Behandlung» ist ein Kästchen im Block «Für Nichterwerbstätige», im AcroForm Option '/medizinische Behandlung' der Optionsgruppe 'Aufehthaltszweck_nichterwerbstaetig'. Weiter als Option von Feld 6077."
+    },
+    {
+     "id": 6081,
+     "beleg": "Keine eigene Ja/Nein-Angabe: «Privataufenthalt» ist ein Kästchen im Block «Für Nichterwerbstätige», im AcroForm Option '/privataufenthalt' der Optionsgruppe 'Aufehthaltszweck_nichterwerbstaetig'. Weiter als Option von Feld 6077."
+    },
+    {
+     "id": 6082,
+     "beleg": "Keine eigene Ja/Nein-Angabe: «In der Schweiz anerkannter Flüchtling» ist ein Kästchen im Block «Für Nichterwerbstätige», im AcroForm Option '/anerkannter_fluechtling' der Optionsgruppe 'Aufehthaltszweck_nichterwerbstaetig'. Weiter als Option von Feld 6077."
+    },
+    {
+     "id": 6083,
+     "beleg": "Keine eigene Ja/Nein-Angabe: «Ehegatte/eingetragener Partner eines Schweizerbürgers» ist ein Kästchen im Block «Für Nichterwerbstätige», im AcroForm Option '/ehegatte' der Optionsgruppe 'Aufehthaltszweck_nichterwerbstaetig'. Weiter als Option von Feld 6077."
+    },
+    {
+     "id": 6084,
+     "beleg": "Keine eigene Ja/Nein-Angabe: «Verbleib beim Ehegatten/Partner» ist ein Kästchen im Block «Für Nichterwerbstätige», im AcroForm Option '/verbleib_ehegatte' der Optionsgruppe 'Aufehthaltszweck_nichterwerbstaetig'. Weiter als Option von Feld 6077."
+    },
+    {
+     "id": 6085,
+     "beleg": "Keine eigene Ja/Nein-Angabe: «Verbleib bei Eltern» ist ein Kästchen im Block «Für Nichterwerbstätige», im AcroForm Option '/verbleib_eltern' der Optionsgruppe 'Aufehthaltszweck_nichterwerbstaetig'. Weiter als Option von Feld 6077."
+    },
+    {
+     "id": 6086,
+     "beleg": "Keine eigene Ja/Nein-Angabe: «Verbleib bei anderen Familienangehörigen» ist ein Kästchen im Block «Für Nichterwerbstätige», im AcroForm Option '/verbleib_fabilienangehoerige' der Optionsgruppe 'Aufehthaltszweck_nichterwerbstaetig'. Weiter als Option von Feld 6077."
+    },
+    {
+     "id": 6087,
+     "beleg": "Keine eigene Ja/Nein-Angabe: «Pflegekind» ist ein Kästchen im Block «Für Nichterwerbstätige», im AcroForm Option '/pflegekind' der Optionsgruppe 'Aufehthaltszweck_nichterwerbstaetig'. Weiter als Option von Feld 6077."
+    },
+    {
+     "id": 6088,
+     "beleg": "Keine eigene Ja/Nein-Angabe: «Pflegekind zur späteren Adoption» ist ein Kästchen im Block «Für Nichterwerbstätige», im AcroForm Option '/pflegekind_spaetere_adoption' der Optionsgruppe 'Aufehthaltszweck_nichterwerbstaetig'. Weiter als Option von Feld 6077."
+    },
+    {
+     "id": 6089,
+     "beleg": "Keine eigene Ja/Nein-Angabe: «Rentner(in)» ist ein Kästchen unter der Strichlinie im Block «Für Nichterwerbstätige», im AcroForm Option '/rentner' der Optionsgruppe 'nicht_erwerbstaetigkeit'. Weiter als Option von Feld 6077."
+    },
+    {
+     "id": 6091,
+     "beleg": "Keine eigene Ja/Nein-Angabe: «Übrige nicht Erwerbstätigkeit (Detailangaben unter Bemerkung)» ist ein Kästchen im Block «Für Nichterwerbstätige», im AcroForm Option '/uebrige_nichterwerbstaetigkeit' der Optionsgruppe 'nicht_erwerbstaetigkeit'. Weiter als Option von Feld 6077; die Detailangaben gehen in «Bemerkungen des(r) Gesuchsteller(in)» (6094)."
+    },
+    {
+     "id": 6092,
+     "beleg": "Keine eigene Ja/Nein-Angabe: «Sozialleistungen» ist ein Kästchen im Block «Für Nichterwerbstätige», im AcroForm Option '/sozialleistungen' der Optionsgruppe 'nicht_erwerbstaetigkeit'. Weiter als Option von Feld 6077."
+    }
+   ],
+   "hinweis": "Gleiches Dokument wie das DVSH-formDefinition-Modell (198__verlaengerungsgesuch_C.pdf, sha256 3233a4e8…, 2 Seiten, 28 AcroForm-Felder mit 59 Widgets). Die Felder sind jetzt auf das gedruckte Formular übertragen. Ich habe das Original-PDF und die AcroForm-Gruppen gelesen. Die Textdatei 512.txt trennt Wörter («Ausbild ung», «Verble ib», «Pflegek ind») und stellt die Beilagen hinter die Unterschrift. Im Druck stehen die Beilagen auf Seite 2 vor «Bemerkungen des(r) Gesuchsteller(in)».\n\nGEÄNDERT GEGENÜBER DEM DVSH-MODELL:\n(1) Pflichtangaben: Das Formular kennzeichnet ausser den Bemerkungen nichts als freiwillig. Deshalb gilt required=true auch für ZEMIS-Nummer, SH-Nummer, E-Mail-Adresse, Telefonnummer und die Angaben, die nur unter einer Bedingung gefragt werden («Wenn verheiratet oder in eingetragener Partnerschaft», «Für Erwerbstätige», «Für Nichterwerbstätige», Seit, befristet bis, Stellensuche). Bisher waren diese auf false. Die Bedingung steht jeweils in der Definition. Zur Prüfung: Das AcroForm setzt das Pflicht-Flag nur bei name, vorname, adresse und geburtsdatum.\n(2) Formate: «TT.MM.JJJJ», «E-Mail» und «Telefon» sind nicht gedruckt und wurden geleert (format_code bleibt unberührt). Gedruckt ist nur «(Stunden pro Woche)» bei 6076.\n(3) Zivilstand: Die Option heisst wörtlich «verwitwet» (klein gedruckt).\n(4) Anstellungsdauer (6074): Bisher ein Ja/Nein-Feld «Anstellungsdauer unbefristet». Jetzt ein enum mit «unbefristet» / «befristet bis», weil das AcroForm eine Optionsgruppe 'Anstellungsdauer' hat und die Zeile «Anstellungsdauer» druckt. 6075 bleibt das Datum.\n(5) «Für Nichterwerbstätige»: Das DVSH-Modell hatte 16 einzelne Ja/Nein-Felder (Widget-Ebene). Logisch ist das eine einzige Angabe. Sie wird als multiselect (6077) mit den 16 gedruckten Möglichkeiten geführt. Im PDF sind es zwei Optionsgruppen, getrennt durch eine Strichlinie: 'Aufehthaltszweck_nichterwerbstaetig' mit 12 Optionen und 'nicht_erwerbstaetigkeit' mit 4 Optionen (Rentner(in), Auf Stellensuche seit, Übrige nicht Erwerbstätigkeit, Sozialleistungen). Je Gruppe ist also höchstens ein Kreuz möglich. 14 bisherige IDs fallen deshalb weg. Sie trugen alle ech_status kein_standard, keine Rechtsgrundlage, keine Teilfelder und kein subjekt. 6090 bleibt das Datum «Auf Stellensuche seit». Zur Abstimmung: Das Schwesterformular 508 (B) führt denselben Block als enum mit 16 Optionen.\n(6) «Nachweis der finanziellen Situation beilegen» (6093) ist eine Beilage ohne Kästchen und damit attachment statt boolean. «Ort und Datum» (6095) ist jetzt ein composite aus Ort und Datum (Praxis im Korpus: 27 von 33 «Ort und Datum» sind composite).\n\nNEU: «Immatrikulationsbestätigung» (attachment; «Student(in) (Immatrikulationsbestätigung beilegen)» ist in beiden Blöcken gedruckt), die Checkliste «Beilagen» (multiselect, AcroForm 'pass_ID', 'ausl_ausweis') und die Unterschriftslinie «Unterschrift des(r) Gesuchsteller(in)».\n\nUNVERÄNDERT TROTZ AUFFÄLLIGKEIT:\n- «Gemeinsamer Haushalt (zusammenwohnend)» (6068) bleibt ein Ja/Nein-Feld, ergänzt durch «Getrennter Haushalt seit» (6069). Im AcroForm sind beide eine Optionsgruppe 'wenn_verheiratet', aber ohne eigene gedruckte Fragebezeichnung (anders als «Anstellungsdauer» bei 6074).\n- «Nummer des Passes und Gültigkeitsdauer» fragt zwei Angaben auf einer Zeile ab. Das ist ein Kandidat für die Begriffe-Prüfart «aufteilen». Alle sechs Schwesterformulare 508–513 führen es ebenfalls als ein text-Feld.\n- «Name und Adresse des Betriebes» und «Adresse» sind je ein einziges Feld ohne gedruckte Teilangaben.\n- «Name» und «Vorname» bleiben getrennte Felder ohne Blocküberschrift.\n- Der Name «Jetziger Aufenthaltszweck (Erwerbstätige)» trägt die Blocküberschrift «Für Erwerbstätige». Die gedruckten Optionen umfassen dort auch Schüler(in), Pflegekind und Student(in).\n\nKEINE FELDER DER PERSON (nur Hinweis):\n- Einleitung: Das Gesuch ist mit Ausländerausweis und lesbarer Pass-/ID-Kopie bzw. Konsulatsbestätigung spätestens 2 Wochen vor Ablauf der Bewilligung dem Migrationsamt Schaffhausen zukommen zu lassen. Änderungen der Personalien sind der Einwohnerkontrolle zu melden.\n- «Bitte in Blockschrift ausfüllen und zutreffende Felder ankreuzen».\n- Die Zeile «wenn einer der obenstehenden Punkte:».\n- Der Bestätigungssatz über der Unterschrift.\nEin Feld nur für das Amt gibt es nicht.\n\nKORREKTUREN DER ZWEITPRÜFUNG:\n(a) Keine der vier Prüffragen schlägt an. Keine ID fällt weg, die die neue Ausgabe noch als eigene Angabe erfragt: Die 14 entfallenen Ja/Nein-IDs leben als Optionen von 6077 weiter. Kein gedrucktes Label fehlt. Keine neue Angabe fehlt: geprüft gegen alle 28 AcroForm-Felder und die Beilagen/Unterschrift ohne Feld. Keine ID ist für eine andere Angabe wiederverwendet: 6077 (bisher Option «Schüler(in)») und 6074 (bisher «unbefristet») werden zur Frage, zu der ihre bisherige Option gehört. Ihre Ebenen (kein_standard, subjekt natuerliche_person bei 6077) gelten unverändert. Alle 40 bisherigen IDs stehen genau einmal da (26 in felder, 14 in entfallen).\n(b) 6077 Definition präzisiert: «je eine Wahl» war falsch. Beide Gruppen sind Radio-Optionsgruppen (Ff 49152) ohne Pflicht-Flag, also «je Gruppe höchstens ein Kreuz». Der Beleg nennt das jetzt auch.\n(c) Hinweis berichtigt: 28 AcroForm-Felder mit 59 Widgets, nicht «28 AcroForm-Widgets».\n(d) Hinweis ergänzt: Die 14 entfallenen IDs haben je eine Zeile in datenpunkt_partei (Partei 1, Beleg «Für Nichterwerbstätige»). Sie ist gleich wie bei 6077, deshalb geht keine eigene Zuordnung verloren.\n(e) Zur Abstimmung ergänzt: Formular 510 (Service 483) beruht auf derselben Datei (gleicher sha256). Es ist noch im DVSH-Zuschnitt erfasst: enum «Aufenthaltszweck (Nichterwerbstätige)», boolean «Anstellungsdauer unbefristet», «Trennung/Scheidung seit», «Ort und Datum» als text und kein Feld «Auf Stellensuche seit». Ein späterer Port von 510 sollte diesem Port folgen.\n(f) Auffälligkeit des Formulars (nur melden, nicht ändern): Das AcroForm-Feld 'adr_ehegatte' (gedruckt «Adresse des Ehegatten oder Partners») hat die Kurzbeschreibung (TU) «Telefonnummer». Ein Screenreader liest dort also eine falsche Bezeichnung vor."
+  },
+  {
+   "form_id": 513,
+   "felder": [
+    {
+     "id": 6096,
+     "aktion": "unveraendert",
+     "name": "Name",
+     "definition": "Familienname der gesuchstellenden Person.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 6097,
+     "aktion": "unveraendert",
+     "name": "Vorname",
+     "definition": "Vorname der gesuchstellenden Person.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 6098,
+     "aktion": "unveraendert",
+     "name": "Adresse",
+     "definition": "Wohnadresse der gesuchstellenden Person, in einem mehrzeiligen Feld ohne gedruckte Teilangaben.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 6099,
+     "aktion": "geaendert",
+     "name": "Geburtsdatum",
+     "definition": "Geburtsdatum der gesuchstellenden Person.",
+     "data_type": "date",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "«Geburtsdatum» – das Formular druckt keine Formatangabe (bisher TT.MM.JJJJ aus dem DVSH-Modell)"
+    },
+    {
+     "id": 6100,
+     "aktion": "geaendert",
+     "name": "ZEMIS-Nummer",
+     "definition": "ZEMIS-Nummer der gesuchstellenden Person (Personennummer im Zentralen Migrationsinformationssystem).",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "«ZEMIS-Nummer» – im Formular nicht als freiwillig gekennzeichnet (DVSH-Modell: optional)"
+    },
+    {
+     "id": 6101,
+     "aktion": "geaendert",
+     "name": "SH-Nummer",
+     "definition": "Vom Formular als «SH-Nummer» verlangte Nummer der gesuchstellenden Person; das Formular erläutert sie nicht näher.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "«SH-Nummer» – im Formular nicht als freiwillig gekennzeichnet (DVSH-Modell: optional)"
+    },
+    {
+     "id": 6102,
+     "aktion": "geaendert",
+     "name": "Nummer des Passes und Gültigkeitsdauer",
+     "definition": "Nummer des Reisepasses und dessen Gültigkeitsdauer, auf einer gemeinsamen Zeile erfasst.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "«Nummer des Passes und Gültigkeitsdauer» – eine Zeile, nicht als freiwillig gekennzeichnet (DVSH-Modell: optional)"
+    },
+    {
+     "id": 6103,
+     "aktion": "unveraendert",
+     "name": "Staatsangehörigkeit",
+     "definition": "Staatsangehörigkeit der gesuchstellenden Person.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 6104,
+     "aktion": "geaendert",
+     "name": "E-Mail-Adresse",
+     "definition": "E-Mail-Adresse der gesuchstellenden Person für Rückfragen.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "«E-Mail-Adresse» – nicht als freiwillig gekennzeichnet, keine gedruckte Formatangabe (DVSH-Modell: optional, Format E-Mail)"
+    },
+    {
+     "id": 6105,
+     "aktion": "geaendert",
+     "name": "Telefonnummer",
+     "definition": "Telefonnummer der gesuchstellenden Person für Rückfragen.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "«Telefonnummer» – nicht als freiwillig gekennzeichnet, keine gedruckte Formatangabe (DVSH-Modell: optional, Format Telefon)"
+    },
+    {
+     "id": 6106,
+     "aktion": "unveraendert",
+     "name": "Zivilstand",
+     "definition": "Zivilstand der gesuchstellenden Person, eine der im Block «Zivilstand» anzukreuzenden Optionen.",
+     "data_type": "enum",
+     "required": true,
+     "allowed_values": [
+      "Ledig",
+      "Verheiratet",
+      "Getrennt",
+      "Verwitwet",
+      "Geschieden",
+      "In eingetragener Partnerschaft"
+     ],
+     "subfields": [],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 6107,
+     "aktion": "unveraendert",
+     "name": "Jetziger Aufenthaltszweck",
+     "definition": "Gegenwärtiger Aufenthaltszweck im Block «Erwerbstätigkeit», eine der anzukreuzenden Optionen.",
+     "data_type": "enum",
+     "required": true,
+     "allowed_values": [
+      "Unselbständige Erwerbstätigkeit",
+      "Private Arbeitsvermittlung und Personalverleih",
+      "Selbständige Erwerbstätigkeit"
+     ],
+     "subfields": [],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": null,
+     "aktion": "neu",
+     "name": "Einsatzvertrag",
+     "definition": "Einsatzvertrag als Beilage; nur beizulegen, wenn als Aufenthaltszweck «Private Arbeitsvermittlung und Personalverleih» angekreuzt ist.",
+     "data_type": "attachment",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "«Private Arbeitsvermittlung und Personalverleih (Einsatzvertrag beilegen)»"
+    },
+    {
+     "id": 6108,
+     "aktion": "geaendert",
+     "name": "Jetzige ausgeübte Tätigkeit",
+     "definition": "Gegenwärtig ausgeübte berufliche Tätigkeit der gesuchstellenden Person.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "«Jetzige ausgeübte Tätigkeit» – im Formular nicht als freiwillig gekennzeichnet (DVSH-Modell: optional)"
+    },
+    {
+     "id": 6109,
+     "aktion": "geaendert",
+     "name": "Name und Adresse des Betriebes",
+     "definition": "Name und Adresse des Betriebs, in dem die Tätigkeit ausgeübt wird, in einem mehrzeiligen Feld ohne gedruckte Teilangaben.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "«Name und Adresse des Betriebes» – ein Feld, nicht als freiwillig gekennzeichnet (DVSH-Modell: optional)"
+    },
+    {
+     "id": 6110,
+     "aktion": "geaendert",
+     "name": "Einsatzort",
+     "definition": "Ort, an dem die gesuchstellende Person ihre Tätigkeit ausübt.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "«Einsatzort» – im Formular nicht als freiwillig gekennzeichnet (DVSH-Modell: optional)"
+    },
+    {
+     "id": null,
+     "aktion": "neu",
+     "name": "Beilagen",
+     "definition": "Ankreuzliste der dem Gesuch beigelegten Unterlagen (Ausweisdokument bzw. Konsulatsbestätigung und Ausländerausweis).",
+     "data_type": "multiselect",
+     "required": true,
+     "allowed_values": [
+      "Pass/ID(genügt nur bei Staatsangehörigen der EU/EFTA)/Bestätigung vom Konsulat",
+      "Ausländerausweis im Original/Verlustmeldung"
+     ],
+     "subfields": [],
+     "format": "",
+     "beleg": "Seite 2: «Beilagen» mit den Kästchen «Pass/ID(genügt nur bei Staatsangehörigen der EU/EFTA)/Bestätigung vom Konsulat» und «Ausländerausweis im Original/Verlustmeldung»"
+    },
+    {
+     "id": 6111,
+     "aktion": "unveraendert",
+     "name": "Bemerkungen des(r) Gesuchsteller(in)",
+     "definition": "Freie Bemerkungen der gesuchstellenden Person zum Gesuch.",
+     "data_type": "text",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 6112,
+     "aktion": "geaendert",
+     "name": "Ort und Datum",
+     "definition": "Ort und Datum der Unterzeichnung des Gesuchs.",
+     "data_type": "composite",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [
+      "Ort",
+      "Datum"
+     ],
+     "format": "",
+     "beleg": "«Ort und Datum» – Unterschriftenblock mit Ort und Datum (bisher als einfaches Textfeld geführt)"
+    },
+    {
+     "id": null,
+     "aktion": "neu",
+     "name": "Unterschrift des(r) Gesuchsteller(in)",
+     "definition": "Unterschrift der gesuchstellenden Person, mit der sie die vollständige und wahrheitsgetreue Ausfüllung bestätigt.",
+     "data_type": "signature",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "«Mit der Unterschrift bestätigen Sie, das Formular vollständig und wahrheitsgetreu ausgefüllt zu haben» / «Unterschrift des(r) Gesuchsteller(in)»"
+    }
+   ],
+   "entfallen": [],
+   "hinweis": "Ausgabe Verlängerungsgesuch G (199__verlaengerungsgesuch_G.pdf, 2 Seiten, 19 AcroForm-Felder). Sie stimmt mit der DVSH-formDefinition überein, deshalb ist kein Feld entfallen. Alle 17 bisherigen Felder sind im gedruckten Formular vorhanden; jede bisherige ID kommt genau einmal vor, keine wird für eine andere Angabe verwendet.\n\nNeu aus dem Druck:\n- Einsatzvertrag: bedingte Beilage aus dem Klammerzusatz der Option «Private Arbeitsvermittlung und Personalverleih (Einsatzvertrag beilegen)». Die Option selbst steht ohne Klammerzusatz in allowed_values.\n- Beilagen-Ankreuzliste auf Seite 2 (AcroForm pass_ID, ausl_ausweis).\n- Unterschriftslinie.\n\nGeändert:\n- Pflichtangabe bei ZEMIS-Nummer, SH-Nummer, Nummer des Passes und Gültigkeitsdauer, E-Mail-Adresse, Telefonnummer, Jetzige ausgeübte Tätigkeit, Name und Adresse des Betriebes und Einsatzort. Der Druck kennzeichnet sie nicht als freiwillig. Das DVSH-Modell führt sie als optional; die PDF setzt das technische Pflicht-Flag nur bei Name, Vorname, Adresse und Geburtsdatum (geprüft: Ff=2 nur bei diesen vier).\n- Formatangaben TT.MM.JJJJ, E-Mail und Telefon: Sie stammen aus dem DVSH-Modell und sind nicht gedruckt (auch keine Formatierungsaktion in der PDF), daher leer.\n- «Ort und Datum» ist neu ein Block mit den Teilen Ort und Datum, wie im Korpus üblich (26 Formulare).\n\nNicht aufgeteilt:\n- Die Zeile «Nummer des Passes und Gültigkeitsdauer» bündelt zwei Angaben auf einer gedruckten Zeile.\n- Adresse sowie Name und Adresse des Betriebes sind je ein mehrzeiliges Feld ohne gedruckte Teile, wie bei den Schwesterformularen 508–512.\n\nKeine Felder der Person:\n- Einleitungstext: Gesuch mit Ausländerausweis und Kopie Pass/ID bzw. Konsulatsbestätigung spätestens 2 Wochen vor Ablauf der Bewilligung an das Migrationsamt; Meldepflicht bei Änderungen der Personalien.\n- «Bitte in Blockschrift ausfüllen und zutreffende Felder ankreuzen».\n- Die Blocküberschriften «Zivilstand» und «Erwerbstätigkeit».\n- Die Kategoriemarke «G».\n- Der Bestätigungssatz vor der Unterschrift (der Unterschrift zugeordnet).\n\nEs gibt kein Feld «Vom Amt auszufüllen».\n\nKorrekturen der skeptischen Prüfung (Feldliste, IDs, Bezeichnungen und Typen unverändert):\n1. Definition von 6101 SH-Nummer: Die Angabe «Kantonale Personennummer … beim Migrationsamt Schaffhausen» war nicht belegt. Weder Formular noch DVSH-Modell erläutern die SH-Nummer. Die Definition ist jetzt auf das Gedruckte reduziert.\n2. Definitionen von 6106 Zivilstand und 6107 Jetziger Aufenthaltszweck: «eine der angekreuzten Optionen» heisst jetzt «eine der anzukreuzenden Optionen». Die Optionen sind leer gedruckt (AcroForm-Optionsgruppen).\n\nGeprüft und bestätigt:\n- Keine bisherige ID fehlt oder ist falsch zugeordnet.\n- Alle Bezeichnungen sind wörtlich so gedruckt («Betriebes» laut Druck, der AcroForm-Tooltip schreibt «Betriebs»).\n- Die Optionen und ihre Reihenfolge entsprechen dem Druck.\n- Keine weitere neue Angabe der Ausgabe fehlt."
+  }
+ ]
+}

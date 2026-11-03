@@ -1,0 +1,94 @@
+{
+ "hinweis": "eCH-Urteile Formular 583, Panel 2026-11-03, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-11-03/ech/583 --nur-offene=583",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Der Block enthält die Personalien der zukünftigen Ehefrau oder des zukünftigen Ehemanns: Familienname, Vorname, Geburtsdatum, Staatsangehörigkeit und Wohnadresse im Ausland. Als Container gibt es eCH-0011 person (reportedPersonType, Datentyp personType, Genehmigt). Er umfasst Identifikation, Namen, Geburt und Staatsangehörigkeit. Gleich zugeordnet sind «Ehefrau» und «Ehemann» auf den Formularen 548 und 549. eCH-0021 maritalRelationship passt nicht, weil noch keine Ehe besteht; die Heirat wird erst vorbereitet. eCH-0044 personIdentification enthält keine Staatsangehörigkeit. eCH-0223 personData betrifft Meldungen zwischen Einwohnerdienst und Migrationsamt mit Schweizer Adresse und passt hier nicht.",
+   "feld": "Zukünftige/r Ehefrau / Ehemann",
+   "standard": "eCH-0011",
+   "element": "person"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Amtlicher Familienname der zukünftigen Ehepartnerin oder des zukünftigen Ehepartners. Regel Name → officialName. Das Element steht in eCH-0044 (personIdentificationType und personIdentificationLightType). So ist «Familienname» im Korpus am häufigsten zugeordnet (33-mal).",
+   "elternfeld": "Zukünftige/r Ehefrau / Ehemann",
+   "teilfeld": "Familienname",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname der zukünftigen Ehepartnerin oder des zukünftigen Ehepartners. Regel Vorname → firstName (eCH-0044, personIdentificationType). So ist «Vorname» im Korpus vorherrschend zugeordnet (251-mal).",
+   "elternfeld": "Zukünftige/r Ehefrau / Ehemann",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Geburtsdatum der zukünftigen Ehepartnerin oder des zukünftigen Ehepartners, Eingabe im Format _._._. Regel Geburtsdatum → dateOfBirth (eCH-0044, datePartiallyKnownType). Im Korpus 240-mal so zugeordnet.",
+   "elternfeld": "Zukünftige/r Ehefrau / Ehemann",
+   "teilfeld": "Geburtsdatum",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Aktuelle Staatsangehörigkeit der zukünftigen Ehepartnerin oder des zukünftigen Ehepartners. Es geht um keinen früheren oder geänderten Wert. Dafür steht eCH-0011 nationalityData (personType, Genehmigt). Das ist die einheitliche Zuordnung im Korpus (29-mal), auch auf den Migrationsamt-Formularen 508 bis 513.",
+   "elternfeld": "Zukünftige/r Ehefrau / Ehemann",
+   "teilfeld": "Staatsangehörigkeit",
+   "standard": "eCH-0011",
+   "element": "nationalityData"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Postleitzahl und Wohnort der Adresse im Ausland in einer Zeile. Wie bei «PLZ / Wohnort» im Korpus erhält der Teil das Element seines ersten Bestandteils, der PLZ (sonst 295-mal swissZipCode). Die Adresse liegt laut Formular ausdrücklich im Ausland. Darum passt eCH-0010 foreignZipCode (addressInformationType) und nicht swissZipCode. Bei ausländischen PLZ/Ort-Teilen ist das im Korpus fünfmal so gemacht.",
+   "elternfeld": "Zukünftige/r Ehefrau / Ehemann",
+   "teilfeld": "PLZ / Wohnort im Ausland",
+   "standard": "eCH-0010",
+   "element": "foreignZipCode"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Strasse der Wohnadresse im Ausland. Regel Strasse → eCH-0010 street (addressInformationType). Dieser Typ gilt für Schweizer und ausländische Adressen; swissAddressInformationType gilt nur für Schweizer Adressen. Im Korpus 134-mal so zugeordnet.",
+   "elternfeld": "Zukünftige/r Ehefrau / Ehemann",
+   "teilfeld": "Strasse",
+   "standard": "eCH-0010",
+   "element": "street"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ort und Datum der Unterzeichnung der Garantieerklärung mit Schuldanerkennung nach Art. 82 SchKG. Den propagierten Wert eCH-0119 locationAndDate bestätige ich nicht. Laut XSD eCH-0119-4-0-0 ist das Element ein freier Text. Es steht nur in attachedFormsType (neben attachedExpenses und attachedFreeText) und in listOfSecuritiesType. Es ist also die Unterschriftszeile der Steuererklärung und ihres Wertschriftenverzeichnisses. Anders als ibanNumber oder accountOwner, die auch ausserhalb von Steuerformularen verwendet werden, ist das Element an das Steuerdokument gebunden. Eine ausländerrechtliche Garantieerklärung definiert es nicht. Die Zahl «19x geprüft» spiegelt eine Spaltung im Korpus nach Wortlaut, nicht nach Bedeutung. «Ort, Datum» ist 15-mal mit locationAndDate zugeordnet. Dieselbe Angabe unter «Ort und Datum» ist rund 29-mal kein_standard, auch auf den Migrationsamt-Formularen 497, 508–510, 512 und 513. Im ganzen Katalog wurden Elementnamen mit sign, location, place, declaration, issueDate und placeAnd gesucht, dazu Standardtitel mit Signatur und Unterschrift. Treffer: eCH-0039 signer (Token für die unterzeichnende Person, ohne Ort und Datum), eCH-0119 location (concernedPersonType, Steuer) und eCH-0260 signatures (Ja/Nein-Bestätigungen im Lehrvertrag). Hinzu kommen die technischen Signaturnormen eCH-0091, 0220, 0230, 0250, 0274 und 0282 ohne Elemente. Kein Element eines gültigen Standards bildet Ort und Datum einer Unterzeichnung allgemein ab. Hinweis: Dieselbe Frage stellt sich beim Schwesterformular 582 und bei den übrigen «Ort, Datum»-Zeilen mit locationAndDate. Das liegt ausserhalb dieses Formulars.",
+   "feld": "Ort, Datum"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Ort der Unterzeichnung, also weder Adresse noch Wohnort. Das propagierte kein_standard bestätige ich. Im ganzen Katalog wurde nach location, place und sign gesucht. Gefunden wurden nur Orte mit anderer Bedeutung: Geburts-, Heimat-, Heirats- und Arbeitsort (eCH-0011/0021), eCH-0119 location (Steuer), Adress- und Gebäudeorte (eCH-0010 town, eCH-0108, eCH-0129, eCH-0211) und eCH-0262 locationOfUtilisation. eCH-0119 locationAndDate ist ein ungeteilter Text ohne eigenen Ort. Im Korpus ist der Teil «Ort» unter «Ort, Datum» bzw. «Ort und Datum» durchgehend kein_standard (46-mal).",
+   "elternfeld": "Ort, Datum",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Datum der Unterzeichnung der Garantieerklärung. Das propagierte kein_standard bestätige ich. Gesucht wurden Datumselemente mit date, sign, declaration, application und request. Gefunden wurden nur fachgebundene Daten: eCH-0039 openingDate (Eröffnung eines Dossiers), eCH-0206 requestDate und eCH-0058 messageDate (Zeitstempel elektronischer Meldungen), eCH-0216 Baudaten und eCH-0262 dateOfApplication (Pflanzenschutz). Keines bezeichnet das Datum, an dem eine Person eine Erklärung unterschreibt. Im Korpus ist der Teil «Datum» unter «Ort, Datum» bzw. «Ort und Datum» durchgehend kein_standard (46-mal).",
+   "elternfeld": "Ort, Datum",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Eigenhändige Unterschrift der garantierenden Person. Gesucht wurden Elementnamen mit sign und Signatur sowie Standardtitel mit Signatur und Unterschrift. Treffer: eCH-0039 signer, ein Token für die unterzeichnende Person eines GEVER-Dokuments und keine Unterschrift. eCH-0260 hostCompany-, apprentice- und representativeSignatureConfirmation sind Ja/Nein-Werte im Lehrvertrag. eCH-0091, 0220, 0230, 0250, 0274 und 0282 sind technische Normen zu elektronischen Signaturen ohne Elemente. Kein Element passt. Das entspricht der einheitlichen Praxis im Korpus: 98 Unterschriftsfelder sind kein_standard.",
+   "feld": "Unterschrift Gesuchsteller/in"
+  }
+ ]
+}

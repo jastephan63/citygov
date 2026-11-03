@@ -1,7 +1,7 @@
 {
  "meta": {
-  "generated_at": "2026-11-03T11:33:33",
-  "hinweis": "Verzeichnis der Bearbeitungstätigkeiten je Formular, Struktur nach KDSG Art. 17b Abs. 2 (die Führungspflicht nach Art. 17b trifft nur Polizei, Staatsanwaltschaft und Justizvollzug; für alle anderen Stellen ist dies ein Steuerungsinstrument); «FEHLT» markiert offene Inhalte ehrlich. Erfasst sind die 513 von 513 Formularen mit modellierter Datenfeld-Schicht.",
+  "generated_at": "2026-11-03T16:23:33",
+  "hinweis": "Verzeichnis der Bearbeitungstätigkeiten je Formular, Struktur nach KDSG Art. 17b Abs. 2 (die Führungspflicht nach Art. 17b trifft nur Polizei, Staatsanwaltschaft und Justizvollzug; für alle anderen Stellen ist dies ein Steuerungsinstrument); «FEHLT» markiert offene Inhalte ehrlich. Erfasst sind die 520 von 520 Formularen mit modellierter Datenfeld-Schicht.",
   "felder": {
    "verantwortliche_stelle": "Dienststelle des Services; sonst die publizierende Dienststelle des Formulars; sonst FEHLT.",
    "datenkategorien.besonders_schuetzenswert": "Kategorien besonders schützenswerter Personendaten nach KDSG Art. 2 Abs. 1 lit. d, die das Formular erhebt (Codes: gesundheit = Gesundheit, religion_weltanschauung = Religion/Weltanschauung, politik = Politische oder gewerkschaftliche Ansichten, ethnie_herkunft = Ethnische Herkunft, genetik_biometrie = Genetik/Biometrie, strafen_verfahren = Verfolgungen und Sanktionen, sozialhilfe = Massnahmen der sozialen Hilfe).",
@@ -10,7 +10,7 @@
    "dsfa_status": "Entscheid des Kantons zur Datenschutz-Folgenabschätzung (KDSG Art. 14b); FEHLT = noch nicht entschieden, die Databank setzt keinen."
   },
   "vertrag": {
-   "version": "1.0.1",
+   "version": "1.0.2",
    "schema": "schema/citygov_verzeichnis.schema.json",
    "aenderungen": "exportvertrag.json"
   }
@@ -22806,21 +22806,23 @@
    "formular_kennung": "sh:formular:1603-p-gesuchsformular-auslaenderbewilligung-a1",
    "formular": "Gesuch Ausländerbewilligung (Formular A1)",
    "verantwortliche_stelle": "Arbeitsamt",
-   "zweck": "FEHLT",
+   "zweck": "Prüfung der Voraussetzungen für die beantragte Ausländerbewilligung anhand der Personalien, hängiger Strafverfahren und Vorstrafen, des Aufenthaltszwecks und, bei Erwerbstätigkeit, der arbeitsmarktlichen Angaben des Arbeitgebers.",
    "datenkategorien": {
     "felder": 31,
-    "besonders_schuetzenswert": [],
-    "n_besonders_schuetzenswert": 0
+    "besonders_schuetzenswert": [
+     "strafen_verfahren"
+    ],
+    "n_besonders_schuetzenswert": 2
    },
    "rechtsgrundlagen": {
-    "artikel": 0,
-    "aufgabe": 0,
+    "artikel": 24,
+    "aufgabe": 4,
     "art5_offen": 0,
     "ohne": 0,
     "offen": 0,
-    "zu_ermitteln": 31,
-    "n_gedeckt": 0,
-    "n_offen": 31
+    "zu_ermitteln": 3,
+    "n_gedeckt": 28,
+    "n_offen": 3
    },
    "empfaenger": "FEHLT",
    "aufbewahrung": {
@@ -23274,21 +23276,21 @@
    "formular_kennung": "sh:formular:verlust-des-auslanderausweises",
    "formular": "Verlust des Ausländerausweises",
    "verantwortliche_stelle": "Migrationsamt und Passbüro",
-   "zweck": "FEHLT",
+   "zweck": "Prüfung der Voraussetzungen (gültiger Aufenthaltstitel, Wohnsitz im Kanton Schaffhausen) anhand von Personalien, ZEMIS-Nummer und polizeilicher Verlustmeldung sowie Erstellung eines gebührenpflichtigen Duplikats des verlorenen Ausländerausweises.",
    "datenkategorien": {
-    "felder": 4,
+    "felder": 5,
     "besonders_schuetzenswert": [],
     "n_besonders_schuetzenswert": 0
    },
    "rechtsgrundlagen": {
-    "artikel": 0,
+    "artikel": 4,
     "aufgabe": 0,
     "art5_offen": 0,
     "ohne": 0,
     "offen": 0,
-    "zu_ermitteln": 4,
-    "n_gedeckt": 0,
-    "n_offen": 4
+    "zu_ermitteln": 1,
+    "n_gedeckt": 4,
+    "n_offen": 1
    },
    "empfaenger": "FEHLT",
    "aufbewahrung": {
@@ -23326,21 +23328,21 @@
    "formular_kennung": "sh:formular:namensanderungen-und-nationalitatsanderungen",
    "formular": "Namensänderungen und Nationalitätsänderungen",
    "verantwortliche_stelle": "Migrationsamt und Passbüro",
-   "zweck": "FEHLT",
+   "zweck": "Nachführung des geänderten Namens bzw. der geänderten Nationalität der ausländischen Person anhand des heimatlichen Reisepasses und Ausstellung eines neuen Ausländerausweises.",
    "datenkategorien": {
     "felder": 5,
     "besonders_schuetzenswert": [],
     "n_besonders_schuetzenswert": 0
    },
    "rechtsgrundlagen": {
-    "artikel": 0,
+    "artikel": 4,
     "aufgabe": 0,
     "art5_offen": 0,
     "ohne": 0,
     "offen": 0,
-    "zu_ermitteln": 5,
-    "n_gedeckt": 0,
-    "n_offen": 5
+    "zu_ermitteln": 1,
+    "n_gedeckt": 4,
+    "n_offen": 1
    },
    "empfaenger": "FEHLT",
    "aufbewahrung": {
@@ -23378,21 +23380,24 @@
    "formular_kennung": "sh:formular:verlangerungsgesuch",
    "formular": "Verlängerungsgesuch",
    "verantwortliche_stelle": "Migrationsamt und Passbüro",
-   "zweck": "FEHLT",
+   "zweck": "Prüfung der Voraussetzungen für die Verlängerung der Bewilligung B durch das Migrationsamt anhand von Personalien, Zivilstand und Haushalt, Aufenthaltszweck, Erwerbstätigkeit und finanzieller Situation.",
    "datenkategorien": {
-    "felder": 26,
-    "besonders_schuetzenswert": [],
-    "n_besonders_schuetzenswert": 0
+    "felder": 29,
+    "besonders_schuetzenswert": [
+     "gesundheit",
+     "sozialhilfe"
+    ],
+    "n_besonders_schuetzenswert": 2
    },
    "rechtsgrundlagen": {
-    "artikel": 0,
-    "aufgabe": 0,
+    "artikel": 22,
+    "aufgabe": 6,
     "art5_offen": 0,
     "ohne": 0,
     "offen": 0,
-    "zu_ermitteln": 26,
-    "n_gedeckt": 0,
-    "n_offen": 26
+    "zu_ermitteln": 1,
+    "n_gedeckt": 28,
+    "n_offen": 1
    },
    "empfaenger": "FEHLT",
    "aufbewahrung": {
@@ -23532,23 +23537,23 @@
   {
    "form_id": 511,
    "formular_kennung": "sh:formular:formular-post-schalter",
-   "formular": "Formular (Post/Schalter)",
+   "formular": "Verlängerungsgesuch",
    "verantwortliche_stelle": "Migrationsamt und Passbüro",
-   "zweck": "FEHLT",
+   "zweck": "Prüfung der Voraussetzungen für die Verlängerung des Ausweises F, N oder S anhand der Personalien, der ZEMIS- und SH-Nummer, der Passangaben sowie, bei Erwerbstätigen, der aktuellen Tätigkeit und Anstellung.",
    "datenkategorien": {
-    "felder": 17,
+    "felder": 20,
     "besonders_schuetzenswert": [],
     "n_besonders_schuetzenswert": 0
    },
    "rechtsgrundlagen": {
-    "artikel": 0,
-    "aufgabe": 0,
+    "artikel": 9,
+    "aufgabe": 5,
     "art5_offen": 0,
     "ohne": 0,
     "offen": 0,
-    "zu_ermitteln": 17,
-    "n_gedeckt": 0,
-    "n_offen": 17
+    "zu_ermitteln": 6,
+    "n_gedeckt": 14,
+    "n_offen": 6
    },
    "empfaenger": "FEHLT",
    "aufbewahrung": {
@@ -23584,23 +23589,25 @@
   {
    "form_id": 512,
    "formular_kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e",
-   "formular": "Verlängerungsgesuch Ausländerausweis",
+   "formular": "C Verlängerungsgesuch",
    "verantwortliche_stelle": "Migrationsamt und Passbüro",
-   "zweck": "FEHLT",
+   "zweck": "Prüfung der Voraussetzungen für die Verlängerung des Ausländerausweises C anhand von Personalien, Reisedokument, Zivilstand, Aufenthaltszweck sowie beruflicher oder finanzieller Situation.",
    "datenkategorien": {
-    "felder": 40,
-    "besonders_schuetzenswert": [],
-    "n_besonders_schuetzenswert": 0
+    "felder": 29,
+    "besonders_schuetzenswert": [
+     "sozialhilfe"
+    ],
+    "n_besonders_schuetzenswert": 2
    },
    "rechtsgrundlagen": {
-    "artikel": 0,
-    "aufgabe": 0,
+    "artikel": 18,
+    "aufgabe": 5,
     "art5_offen": 0,
     "ohne": 0,
-    "offen": 0,
-    "zu_ermitteln": 40,
-    "n_gedeckt": 0,
-    "n_offen": 40
+    "offen": 5,
+    "zu_ermitteln": 1,
+    "n_gedeckt": 23,
+    "n_offen": 6
    },
    "empfaenger": "FEHLT",
    "aufbewahrung": {
@@ -23636,23 +23643,23 @@
   {
    "form_id": 513,
    "formular_kennung": "sh:formular:formular-post-schalter-e",
-   "formular": "Formular (Post/Schalter)",
+   "formular": "Verlängerungsgesuch",
    "verantwortliche_stelle": "Migrationsamt und Passbüro",
-   "zweck": "FEHLT",
+   "zweck": "Prüfung der fortbestehenden Voraussetzungen für die Verlängerung der Grenzgängerbewilligung anhand der Personalien, des Reisedokuments, des Ausländerausweises und der jetzigen Erwerbstätigkeit (Aufenthaltszweck, Tätigkeit, Betrieb, Einsatzort).",
    "datenkategorien": {
-    "felder": 17,
+    "felder": 20,
     "besonders_schuetzenswert": [],
     "n_besonders_schuetzenswert": 0
    },
    "rechtsgrundlagen": {
-    "artikel": 0,
-    "aufgabe": 0,
+    "artikel": 13,
+    "aufgabe": 5,
     "art5_offen": 0,
     "ohne": 0,
     "offen": 0,
-    "zu_ermitteln": 17,
-    "n_gedeckt": 0,
-    "n_offen": 17
+    "zu_ermitteln": 2,
+    "n_gedeckt": 18,
+    "n_offen": 2
    },
    "empfaenger": "FEHLT",
    "aufbewahrung": {
@@ -27208,6 +27215,376 @@
     "zu_ermitteln": 13,
     "n_gedeckt": 2,
     "n_offen": 13
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 582,
+   "formular_kennung": "sh:formular:vorbereitung-der-heirat",
+   "formular": "Vorbereitung der Heirat",
+   "verantwortliche_stelle": "Migrationsamt und Passbüro",
+   "zweck": "Prüfung der Voraussetzungen für eine L-Bewilligung von höchstens sechs Monaten anhand der Personalien beider Verlobten, des Aufenthaltsstatus der Person in der Schweiz, der Eltern der Person im Ausland und allfälliger Vorstrafen oder Strafverfahren.",
+   "datenkategorien": {
+    "felder": 18,
+    "besonders_schuetzenswert": [
+     "strafen_verfahren"
+    ],
+    "n_besonders_schuetzenswert": 2
+   },
+   "rechtsgrundlagen": {
+    "artikel": 9,
+    "aufgabe": 8,
+    "art5_offen": 0,
+    "ohne": 1,
+    "offen": 0,
+    "zu_ermitteln": 0,
+    "n_gedeckt": 17,
+    "n_offen": 0
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 583,
+   "formular_kennung": "sh:formular:garantieerklarung-zu-vorbereitung-der-heirat",
+   "formular": "Garantieerklärung zu Vorbereitung der Heirat",
+   "verantwortliche_stelle": "Migrationsamt und Passbüro",
+   "zweck": "Prüfung der Kostengarantie für Aufenthalt und Rückreise der zukünftigen Ehefrau bzw. des zukünftigen Ehemanns und Sicherung der Kostenforderung des Kantons durch Schuldanerkennung (Art. 82 Abs. 1 SchKG).",
+   "datenkategorien": {
+    "felder": 3,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 2,
+    "aufgabe": 1,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 0,
+    "n_gedeckt": 3,
+    "n_offen": 0
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 584,
+   "formular_kennung": "sh:formular:gesuch-familiennachzug-formular-a2",
+   "formular": "Gesuch Familiennachzug (Formular A2)",
+   "verantwortliche_stelle": "Migrationsamt und Passbüro",
+   "zweck": "Prüfung der Voraussetzungen für den Nachzug von Ehefrau/Ehemann, Kindern, Eltern oder weiteren Angehörigen anhand von Personalien, Verwandtschaftsverhältnis, Ausweis, bereits erfolgter Einreise, hängigen Strafverfahren und Vorstrafen.",
+   "datenkategorien": {
+    "felder": 48,
+    "besonders_schuetzenswert": [
+     "strafen_verfahren"
+    ],
+    "n_besonders_schuetzenswert": 8
+   },
+   "rechtsgrundlagen": {
+    "artikel": 33,
+    "aufgabe": 2,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 13,
+    "n_gedeckt": 35,
+    "n_offen": 13
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 585,
+   "formular_kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung",
+   "formular": "Gesuch um Aufrechterhaltung der Niederlassungsbewilligung",
+   "verantwortliche_stelle": "Migrationsamt und Passbüro",
+   "zweck": "Prüfung der Voraussetzungen für die Aufrechterhaltung der Niederlassungsbewilligung während eines Auslandaufenthalts anhand von Gründen, Abreise- und Rückkehrdatum, Auslandadresse, Kontaktadresse in der Schweiz und wegziehenden Familienangehörigen.",
+   "datenkategorien": {
+    "felder": 14,
+    "besonders_schuetzenswert": [
+     "gesundheit"
+    ],
+    "n_besonders_schuetzenswert": 2
+   },
+   "rechtsgrundlagen": {
+    "artikel": 12,
+    "aufgabe": 2,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 0,
+    "n_gedeckt": 14,
+    "n_offen": 0
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 586,
+   "formular_kennung": "sh:formular:erklarung-betreffend-pensionskassengelder",
+   "formular": "Erklärung betreffend Pensionskassengelder",
+   "verantwortliche_stelle": "Migrationsamt und Passbüro",
+   "zweck": "Prüfung des Gesuchs um Aufrechterhaltung der Niederlassungsbewilligung anhand der Erklärung, kein Pensionskassenkapital bezogen zu haben bzw. zu beziehen, unter Vorbehalt der Nichtigkeit bei widersprechendem Bezug.",
+   "datenkategorien": {
+    "felder": 3,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 1,
+    "aufgabe": 2,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 0,
+    "n_gedeckt": 3,
+    "n_offen": 0
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 587,
+   "formular_kennung": "sh:formular:erklarung-zum-gesuch-um-niederlassungsbewilligung-bei-einem-",
+   "formular": "Erklärung zum Gesuch um Niederlassungsbewilligung bei einem aus der ehelichen Gemeinschaft abgeleiteten gesetzlichen Anspruch",
+   "verantwortliche_stelle": "Migrationsamt und Passbüro",
+   "zweck": "Feststellung, ob die Ehegatten in intakter ehelicher Gemeinschaft mit gemeinsamem Wohnsitz leben und weder eine Trennung noch eine Scheidung geplant, erfolgt oder eingereicht ist, als Voraussetzung für die Niederlassungsbewilligung.",
+   "datenkategorien": {
+    "felder": 7,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 4,
+    "aufgabe": 3,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 0,
+    "n_gedeckt": 7,
+    "n_offen": 0
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 588,
+   "formular_kennung": "sh:formular:entbindung-der-arztlichen-schweigepflicht",
+   "formular": "Entbindung der ärztlichen Schweigepflicht",
+   "verantwortliche_stelle": "Migrationsamt und Passbüro",
+   "zweck": "Beizug ärztlicher Unterlagen, des Impfstatus und des Impfzertifikats bei den behandelnden Ärzten und dem medizinischen Personal durch MuP und SEM für umfassende Abklärungen, auch hinsichtlich des Vollzugs der Wegweisung.",
+   "datenkategorien": {
+    "felder": 3,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 1,
+    "aufgabe": 1,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 1,
+    "n_gedeckt": 2,
+    "n_offen": 1
    },
    "empfaenger": "FEHLT",
    "aufbewahrung": {

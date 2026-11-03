@@ -1,6 +1,6 @@
 {
  "meta": {
-  "generated_at": "2026-11-03T11:33:33",
+  "generated_at": "2026-11-03T16:23:33",
   "datenstand": {
    "build": "2026-11-03",
    "xsd_sweep": {
@@ -96,7 +96,7 @@
   },
   "quelle": "citygov.db (generated_at = Stempel von data_export.json)",
   "vertrag": {
-   "version": "1.0.2",
+   "version": "1.0.3",
    "schema": "schema/citygov_ech_schemas.schema.json",
    "aenderungen": "exportvertrag.json"
   }
@@ -89628,6 +89628,17 @@
        "angabe_kennung": "sh:angabe:eCH-0044:otherPersonId:personIdentificationKeyOnlyType"
       }
      ]
+    },
+    "eCH-0039": {
+     "contentType": [
+      {
+       "element": "document",
+       "datatype": "documentType",
+       "feld": "Verlustmeldung der Polizei",
+       "kennung": "sh:formular:verlust-des-auslanderausweises:feld:5",
+       "angabe_kennung": "sh:angabe:eCH-0039:document:contentType"
+      }
+     ]
     }
    },
    "ohne_standard": []
@@ -89694,7 +89705,7 @@
    "titel": "Verlängerungsgesuch",
    "dienststelle": "Migrationsamt und Passbüro",
    "exchange_ready": "teilweise",
-   "abdeckung_pct": 77,
+   "abdeckung_pct": 72,
    "ech": {
     "eCH-0044": {
      "personIdentificationLightType": [
@@ -89735,6 +89746,15 @@
        "kennung": "sh:formular:verlangerungsgesuch:feld:6",
        "angabe_kennung": "sh:angabe:eCH-0044:localPersonId:personIdentificationKeyOnlyType"
       }
+     ],
+     "namedPersonIdType": [
+      {
+       "element": "personId",
+       "datatype": null,
+       "feld": "Nummer des Passes",
+       "kennung": "sh:formular:verlangerungsgesuch:feld:7:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0044:personId:namedPersonIdType"
+      }
      ]
     },
     "eCH-0010": {
@@ -89769,7 +89789,7 @@
       {
        "element": "dateOfMaritalStatus",
        "datatype": "generalDateType",
-       "feld": "Zivilstandsänderung seit",
+       "feld": "Seit",
        "kennung": "sh:formular:verlangerungsgesuch:feld:16",
        "angabe_kennung": "sh:angabe:eCH-0011:dateOfMaritalStatus:maritalDataRestrictedDivorceType"
       }
@@ -89836,9 +89856,16 @@
       {
        "element": "employer",
        "datatype": null,
-       "feld": "Name und Adresse des Betriebes",
-       "kennung": "sh:formular:verlangerungsgesuch:feld:18",
+       "feld": "Name",
+       "kennung": "sh:formular:verlangerungsgesuch:feld:18:teil:1",
        "angabe_kennung": "sh:angabe:eCH-0021:employer:occupationDataType"
+      },
+      {
+       "element": "placeOfEmployer",
+       "datatype": "addressInformationType",
+       "feld": "Adresse",
+       "kennung": "sh:formular:verlangerungsgesuch:feld:18:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0021:placeOfEmployer:occupationDataType"
       },
       {
        "element": "occupationValidTill",
@@ -89846,6 +89873,24 @@
        "feld": "Befristet bis",
        "kennung": "sh:formular:verlangerungsgesuch:feld:20",
        "angabe_kennung": "sh:angabe:eCH-0021:occupationValidTill:occupationDataType"
+      }
+     ]
+    },
+    "eCH-0039": {
+     "contentType": [
+      {
+       "element": "document",
+       "datatype": "documentType",
+       "feld": "Immatrikulationsbestätigung beilegen",
+       "kennung": "sh:formular:verlangerungsgesuch:feld:27",
+       "angabe_kennung": "sh:angabe:eCH-0039:document:contentType"
+      },
+      {
+       "element": "document",
+       "datatype": "documentType",
+       "feld": "Nachweis der finanziellen Situation beilegen",
+       "kennung": "sh:formular:verlangerungsgesuch:feld:24",
+       "angabe_kennung": "sh:angabe:eCH-0039:document:contentType"
       }
      ]
     },
@@ -89857,17 +89902,6 @@
        "feld": "Beschäftigungsgrad / Arbeitszeit (Stunden pro Woche)",
        "kennung": "sh:formular:verlangerungsgesuch:feld:21",
        "angabe_kennung": "sh:angabe:eCH-0260:hoursPerWeek:workingHoursType"
-      }
-     ]
-    },
-    "eCH-0039": {
-     "contentType": [
-      {
-       "element": "document",
-       "datatype": "documentType",
-       "feld": "Nachweis der finanziellen Situation beilegen",
-       "kennung": "sh:formular:verlangerungsgesuch:feld:24",
-       "angabe_kennung": "sh:angabe:eCH-0039:document:contentType"
       }
      ]
     },
@@ -89885,8 +89919,8 @@
    },
    "ohne_standard": [
     {
-     "feld": "Nummer des Passes und Gültigkeitsdauer",
-     "kennung": "sh:formular:verlangerungsgesuch:feld:7",
+     "feld": "Gültigkeitsdauer",
+     "kennung": "sh:formular:verlangerungsgesuch:feld:7:teil:2",
      "format": ""
     },
     {
@@ -89910,8 +89944,23 @@
      "format": "TT.MM.JJJJ"
     },
     {
-     "feld": "Ort und Datum",
-     "kennung": "sh:formular:verlangerungsgesuch:feld:26",
+     "feld": "Beilagen",
+     "kennung": "sh:formular:verlangerungsgesuch:feld:28",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "kennung": "sh:formular:verlangerungsgesuch:feld:26:teil:1",
+     "format": ""
+    },
+    {
+     "feld": "Datum",
+     "kennung": "sh:formular:verlangerungsgesuch:feld:26:teil:2",
+     "format": ""
+    },
+    {
+     "feld": "Unterschrift des(r) Gesuchsteller(in)",
+     "kennung": "sh:formular:verlangerungsgesuch:feld:29",
      "format": ""
     }
    ]
@@ -90370,10 +90419,10 @@
   {
    "form_id": 511,
    "formular_kennung": "sh:formular:formular-post-schalter",
-   "titel": "Formular (Post/Schalter)",
+   "titel": "Verlängerungsgesuch",
    "dienststelle": "Migrationsamt und Passbüro",
    "exchange_ready": "teilweise",
-   "abdeckung_pct": 88,
+   "abdeckung_pct": 71,
    "ech": {
     "eCH-0044": {
      "personIdentificationLightType": [
@@ -90512,8 +90561,8 @@
       {
        "element": "comment",
        "datatype": "commentType",
-       "feld": "Bemerkungen des(r) Antragssteller(in)",
-       "kennung": "sh:formular:formular-post-schalter:feld:17",
+       "feld": "Bemerkungen des(r) Gesuchsteller(in)",
+       "kennung": "sh:formular:formular-post-schalter:feld:20",
        "angabe_kennung": "sh:angabe:eCH-0058:comment:headerType"
       }
      ]
@@ -90526,8 +90575,28 @@
      "format": ""
     },
     {
-     "feld": "Anstellungsdauer - Unbefristet",
-     "kennung": "sh:formular:formular-post-schalter:feld:14",
+     "feld": "Anstellungsdauer",
+     "kennung": "sh:formular:formular-post-schalter:feld:18",
+     "format": ""
+    },
+    {
+     "feld": "Beilagen",
+     "kennung": "sh:formular:formular-post-schalter:feld:19",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "kennung": "sh:formular:formular-post-schalter:feld:21:teil:1",
+     "format": ""
+    },
+    {
+     "feld": "Datum",
+     "kennung": "sh:formular:formular-post-schalter:feld:21:teil:2",
+     "format": ""
+    },
+    {
+     "feld": "Unterschrift des(r) Gesuchsteller(in)",
+     "kennung": "sh:formular:formular-post-schalter:feld:22",
      "format": ""
     }
    ]
@@ -90535,10 +90604,10 @@
   {
    "form_id": 512,
    "formular_kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e",
-   "titel": "Verlängerungsgesuch Ausländerausweis",
+   "titel": "C Verlängerungsgesuch",
    "dienststelle": "Migrationsamt und Passbüro",
    "exchange_ready": "teilweise",
-   "abdeckung_pct": 50,
+   "abdeckung_pct": 70,
    "ech": {
     "eCH-0044": {
      "personIdentificationLightType": [
@@ -90693,6 +90762,24 @@
       }
      ]
     },
+    "eCH-0039": {
+     "contentType": [
+      {
+       "element": "document",
+       "datatype": "documentType",
+       "feld": "Immatrikulationsbestätigung",
+       "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:41",
+       "angabe_kennung": "sh:angabe:eCH-0039:document:contentType"
+      },
+      {
+       "element": "document",
+       "datatype": "documentType",
+       "feld": "Nachweis der finanziellen Situation beilegen",
+       "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:38",
+       "angabe_kennung": "sh:angabe:eCH-0039:document:contentType"
+      }
+     ]
+    },
     "eCH-0260": {
      "workingHoursType": [
       {
@@ -90701,17 +90788,6 @@
        "feld": "Beschäftigungsgrad / Arbeitszeit (Stunden pro Woche)",
        "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:21",
        "angabe_kennung": "sh:angabe:eCH-0260:hoursPerWeek:workingHoursType"
-      }
-     ]
-    },
-    "eCH-0039": {
-     "contentType": [
-      {
-       "element": "document",
-       "datatype": "documentType",
-       "feld": "Nachweis der finanziellen Situation beilegen",
-       "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:38",
-       "angabe_kennung": "sh:angabe:eCH-0039:document:contentType"
       }
      ]
     },
@@ -90739,93 +90815,38 @@
      "format": ""
     },
     {
-     "feld": "Anstellungsdauer unbefristet",
-     "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:19",
+     "feld": "Anstellungsdauer",
+     "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:42",
      "format": ""
     },
     {
-     "feld": "Schüler(in)",
-     "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:22",
-     "format": ""
-    },
-    {
-     "feld": "Student(in)",
-     "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:23",
-     "format": ""
-    },
-    {
-     "feld": "Ausbildung ausserhalb der Schweiz",
-     "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:24",
-     "format": ""
-    },
-    {
-     "feld": "Aufenthalt in medizinischer Behandlung",
-     "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:25",
-     "format": ""
-    },
-    {
-     "feld": "Privataufenthalt",
-     "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:26",
-     "format": ""
-    },
-    {
-     "feld": "In der Schweiz anerkannter Flüchtling",
-     "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:27",
-     "format": ""
-    },
-    {
-     "feld": "Ehegatte/eingetragener Partner eines Schweizerbürgers",
-     "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:28",
-     "format": ""
-    },
-    {
-     "feld": "Verbleib beim Ehegatten/Partner",
-     "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:29",
-     "format": ""
-    },
-    {
-     "feld": "Verbleib bei Eltern",
-     "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:30",
-     "format": ""
-    },
-    {
-     "feld": "Verbleib bei anderen Familienangehörigen",
-     "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:31",
-     "format": ""
-    },
-    {
-     "feld": "Pflegekind",
-     "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:32",
-     "format": ""
-    },
-    {
-     "feld": "Pflegekind zur späteren Adoption",
-     "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:33",
-     "format": ""
-    },
-    {
-     "feld": "Rentner(in)",
-     "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:34",
+     "feld": "Für Nichterwerbstätige",
+     "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:43",
      "format": ""
     },
     {
      "feld": "Auf Stellensuche seit",
      "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:35",
-     "format": "TT.MM.JJJJ"
-    },
-    {
-     "feld": "Übrige nicht Erwerbstätigkeit",
-     "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:36",
      "format": ""
     },
     {
-     "feld": "Sozialleistungen",
-     "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:37",
+     "feld": "Beilagen",
+     "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:44",
      "format": ""
     },
     {
-     "feld": "Ort und Datum",
-     "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:40",
+     "feld": "Ort",
+     "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:40:teil:1",
+     "format": ""
+    },
+    {
+     "feld": "Datum",
+     "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:40:teil:2",
+     "format": ""
+    },
+    {
+     "feld": "Unterschrift des(r) Gesuchsteller(in)",
+     "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:45",
      "format": ""
     }
    ]
@@ -90833,10 +90854,10 @@
   {
    "form_id": 513,
    "formular_kennung": "sh:formular:formular-post-schalter-e",
-   "titel": "Formular (Post/Schalter)",
+   "titel": "Verlängerungsgesuch",
    "dienststelle": "Migrationsamt und Passbüro",
    "exchange_ready": "teilweise",
-   "abdeckung_pct": 88,
+   "abdeckung_pct": 76,
    "ech": {
     "eCH-0044": {
      "personIdentificationLightType": [
@@ -90964,6 +90985,17 @@
       }
      ]
     },
+    "eCH-0039": {
+     "contentType": [
+      {
+       "element": "document",
+       "datatype": "documentType",
+       "feld": "Einsatzvertrag",
+       "kennung": "sh:formular:formular-post-schalter-e:feld:18",
+       "angabe_kennung": "sh:angabe:eCH-0039:document:contentType"
+      }
+     ]
+    },
     "eCH-0058": {
      "headerType": [
       {
@@ -90983,8 +91015,23 @@
      "format": ""
     },
     {
-     "feld": "Ort und Datum",
-     "kennung": "sh:formular:formular-post-schalter-e:feld:17",
+     "feld": "Beilagen",
+     "kennung": "sh:formular:formular-post-schalter-e:feld:19",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "kennung": "sh:formular:formular-post-schalter-e:feld:17:teil:1",
+     "format": ""
+    },
+    {
+     "feld": "Datum",
+     "kennung": "sh:formular:formular-post-schalter-e:feld:17:teil:2",
+     "format": ""
+    },
+    {
+     "feld": "Unterschrift des(r) Gesuchsteller(in)",
+     "kennung": "sh:formular:formular-post-schalter-e:feld:20",
      "format": ""
     }
    ]
@@ -103768,6 +103815,1417 @@
      "format": ""
     }
    ]
+  },
+  {
+   "form_id": 582,
+   "formular_kennung": "sh:formular:vorbereitung-der-heirat",
+   "titel": "Vorbereitung der Heirat",
+   "dienststelle": "Migrationsamt und Passbüro",
+   "exchange_ready": "teilweise",
+   "abdeckung_pct": 79,
+   "ech": {
+    "eCH-0039": {
+     "contentType": [
+      {
+       "element": "document",
+       "datatype": "documentType",
+       "feld": "Im Brief aufgeführte Unterlagen",
+       "kennung": "sh:formular:vorbereitung-der-heirat:feld:1",
+       "angabe_kennung": "sh:angabe:eCH-0039:document:contentType"
+      }
+     ]
+    },
+    "eCH-0044": {
+     "personIdentificationLightType": [
+      {
+       "element": "officialName",
+       "datatype": "baseNameType",
+       "feld": "Familiename",
+       "kennung": "sh:formular:vorbereitung-der-heirat:feld:2:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0044:officialName:personIdentificationLightType"
+      },
+      {
+       "element": "firstName",
+       "datatype": "baseNameType",
+       "feld": "Vorname",
+       "kennung": "sh:formular:vorbereitung-der-heirat:feld:2:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0044:firstName:personIdentificationLightType"
+      },
+      {
+       "element": "originalName",
+       "datatype": "baseNameType",
+       "feld": "Mädchenfamilienname",
+       "kennung": "sh:formular:vorbereitung-der-heirat:feld:2:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0044:originalName:personIdentificationLightType"
+      },
+      {
+       "element": "sex",
+       "datatype": "sexType",
+       "feld": "Geschlecht",
+       "kennung": "sh:formular:vorbereitung-der-heirat:feld:3",
+       "angabe_kennung": "sh:angabe:eCH-0044:sex:personIdentificationLightType"
+      },
+      {
+       "element": "officialName",
+       "datatype": "baseNameType",
+       "feld": "Familiename",
+       "kennung": "sh:formular:vorbereitung-der-heirat:feld:9:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0044:officialName:personIdentificationLightType"
+      },
+      {
+       "element": "firstName",
+       "datatype": "baseNameType",
+       "feld": "Vorname",
+       "kennung": "sh:formular:vorbereitung-der-heirat:feld:9:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0044:firstName:personIdentificationLightType"
+      },
+      {
+       "element": "originalName",
+       "datatype": "baseNameType",
+       "feld": "Mädchenfamilienname",
+       "kennung": "sh:formular:vorbereitung-der-heirat:feld:9:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0044:originalName:personIdentificationLightType"
+      }
+     ]
+    },
+    "eCH-0011": {
+     "personType": [
+      {
+       "element": "birthData",
+       "datatype": "birthDataType",
+       "feld": "Geburtsdatum/-ort",
+       "kennung": "sh:formular:vorbereitung-der-heirat:feld:2:teil:4",
+       "angabe_kennung": "sh:angabe:eCH-0011:birthData:personType"
+      },
+      {
+       "element": "nationalityData",
+       "datatype": "nationalityDataType",
+       "feld": "Staatsangehörigkeit",
+       "kennung": "sh:formular:vorbereitung-der-heirat:feld:2:teil:7",
+       "angabe_kennung": "sh:angabe:eCH-0011:nationalityData:personType"
+      },
+      {
+       "element": "birthData",
+       "datatype": "birthDataType",
+       "feld": "Geburtsdatum/-ort",
+       "kennung": "sh:formular:vorbereitung-der-heirat:feld:9:teil:4",
+       "angabe_kennung": "sh:angabe:eCH-0011:birthData:personType"
+      },
+      {
+       "element": "nationalityData",
+       "datatype": "nationalityDataType",
+       "feld": "Staatsangehörigkeit",
+       "kennung": "sh:formular:vorbereitung-der-heirat:feld:9:teil:5",
+       "angabe_kennung": "sh:angabe:eCH-0011:nationalityData:personType"
+      }
+     ],
+     "maritalDataRestrictedDivorceType": [
+      {
+       "element": "maritalStatus",
+       "datatype": null,
+       "feld": "Zivilstand (Gesuchsteller / in)",
+       "kennung": "sh:formular:vorbereitung-der-heirat:feld:4",
+       "angabe_kennung": "sh:angabe:eCH-0011:maritalStatus:maritalDataRestrictedDivorceType"
+      },
+      {
+       "element": "maritalStatus",
+       "datatype": null,
+       "feld": "Zivilstand (Zukünftige/r Ehefrau / Ehemann)",
+       "kennung": "sh:formular:vorbereitung-der-heirat:feld:10",
+       "angabe_kennung": "sh:angabe:eCH-0011:maritalStatus:maritalDataRestrictedDivorceType"
+      }
+     ],
+     "residencePermitDataType": [
+      {
+       "element": "entryDate",
+       "datatype": "generalDateType",
+       "feld": "Datum der Einreise (nur Ausländer/in)",
+       "kennung": "sh:formular:vorbereitung-der-heirat:feld:5",
+       "angabe_kennung": "sh:angabe:eCH-0011:entryDate:residencePermitDataType"
+      }
+     ]
+    },
+    "eCH-0010": {
+     "addressInformationType": [
+      {
+       "element": "swissZipCode",
+       "datatype": "swissZipCodeType",
+       "feld": "PLZ / Wohnort in CH",
+       "kennung": "sh:formular:vorbereitung-der-heirat:feld:2:teil:5",
+       "angabe_kennung": "sh:angabe:eCH-0010:swissZipCode:addressInformationType"
+      },
+      {
+       "element": "street",
+       "datatype": "streetType",
+       "feld": "Strasse",
+       "kennung": "sh:formular:vorbereitung-der-heirat:feld:2:teil:6",
+       "angabe_kennung": "sh:angabe:eCH-0010:street:addressInformationType"
+      },
+      {
+       "element": "foreignZipCode",
+       "datatype": "foreignZipCodeType",
+       "feld": "PLZ / Wohnort im Ausland",
+       "kennung": "sh:formular:vorbereitung-der-heirat:feld:9:teil:6",
+       "angabe_kennung": "sh:angabe:eCH-0010:foreignZipCode:addressInformationType"
+      },
+      {
+       "element": "street",
+       "datatype": "streetType",
+       "feld": "Strasse",
+       "kennung": "sh:formular:vorbereitung-der-heirat:feld:9:teil:7",
+       "angabe_kennung": "sh:angabe:eCH-0010:street:addressInformationType"
+      }
+     ]
+    },
+    "eCH-0006": {
+     "(root)": [
+      {
+       "element": "residencePermit",
+       "datatype": "residencePermitType",
+       "feld": "Art der Bewilligung",
+       "kennung": "sh:formular:vorbereitung-der-heirat:feld:6",
+       "angabe_kennung": "sh:angabe:eCH-0006:residencePermit"
+      }
+     ]
+    },
+    "eCH-0021": {
+     "jobDataType": [
+      {
+       "element": "jobTitle",
+       "datatype": null,
+       "feld": "Beruf",
+       "kennung": "sh:formular:vorbereitung-der-heirat:feld:7",
+       "angabe_kennung": "sh:angabe:eCH-0021:jobTitle:jobDataType"
+      }
+     ],
+     "occupationDataType": [
+      {
+       "element": "employer",
+       "datatype": null,
+       "feld": "Arbeitgeber",
+       "kennung": "sh:formular:vorbereitung-der-heirat:feld:8",
+       "angabe_kennung": "sh:angabe:eCH-0021:employer:occupationDataType"
+      }
+     ],
+     "nameOfParentType": [
+      {
+       "element": "officialName",
+       "datatype": "baseNameType",
+       "feld": "Name(n)",
+       "kennung": "sh:formular:vorbereitung-der-heirat:feld:11:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0021:officialName:nameOfParentType"
+      },
+      {
+       "element": "firstName",
+       "datatype": "officialFirstNameType",
+       "feld": "Vorname(n)",
+       "kennung": "sh:formular:vorbereitung-der-heirat:feld:11:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0021:firstName:nameOfParentType"
+      },
+      {
+       "element": "officialName",
+       "datatype": "baseNameType",
+       "feld": "Name(n)",
+       "kennung": "sh:formular:vorbereitung-der-heirat:feld:12:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0021:officialName:nameOfParentType"
+      },
+      {
+       "element": "firstName",
+       "datatype": "officialFirstNameType",
+       "feld": "Vorname(n)",
+       "kennung": "sh:formular:vorbereitung-der-heirat:feld:12:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0021:firstName:nameOfParentType"
+      }
+     ]
+    }
+   },
+   "ohne_standard": [
+    {
+     "feld": "Bestehen Vorstrafen?",
+     "kennung": "sh:formular:vorbereitung-der-heirat:feld:13",
+     "format": ""
+    },
+    {
+     "feld": "Ist ein Strafverfahren hängig?",
+     "kennung": "sh:formular:vorbereitung-der-heirat:feld:14",
+     "format": ""
+    },
+    {
+     "feld": "Bemerkungen",
+     "kennung": "sh:formular:vorbereitung-der-heirat:feld:15",
+     "format": ""
+    },
+    {
+     "feld": "CH-Vertretung",
+     "kennung": "sh:formular:vorbereitung-der-heirat:feld:16",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "kennung": "sh:formular:vorbereitung-der-heirat:feld:17:teil:1",
+     "format": ""
+    },
+    {
+     "feld": "Datum",
+     "kennung": "sh:formular:vorbereitung-der-heirat:feld:17:teil:2",
+     "format": ""
+    },
+    {
+     "feld": "Unterschrift Gesuchsteller/in",
+     "kennung": "sh:formular:vorbereitung-der-heirat:feld:18",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 583,
+   "formular_kennung": "sh:formular:garantieerklarung-zu-vorbereitung-der-heirat",
+   "titel": "Garantieerklärung zu Vorbereitung der Heirat",
+   "dienststelle": "Migrationsamt und Passbüro",
+   "exchange_ready": "teilweise",
+   "abdeckung_pct": 67,
+   "ech": {
+    "eCH-0044": {
+     "personIdentificationLightType": [
+      {
+       "element": "officialName",
+       "datatype": "baseNameType",
+       "feld": "Familienname",
+       "kennung": "sh:formular:garantieerklarung-zu-vorbereitung-der-heirat:feld:1:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0044:officialName:personIdentificationLightType"
+      },
+      {
+       "element": "firstName",
+       "datatype": "baseNameType",
+       "feld": "Vorname",
+       "kennung": "sh:formular:garantieerklarung-zu-vorbereitung-der-heirat:feld:1:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0044:firstName:personIdentificationLightType"
+      },
+      {
+       "element": "dateOfBirth",
+       "datatype": "datePartiallyKnownType",
+       "feld": "Geburtsdatum",
+       "kennung": "sh:formular:garantieerklarung-zu-vorbereitung-der-heirat:feld:1:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0044:dateOfBirth:personIdentificationLightType"
+      }
+     ]
+    },
+    "eCH-0011": {
+     "personType": [
+      {
+       "element": "nationalityData",
+       "datatype": "nationalityDataType",
+       "feld": "Staatsangehörigkeit",
+       "kennung": "sh:formular:garantieerklarung-zu-vorbereitung-der-heirat:feld:1:teil:4",
+       "angabe_kennung": "sh:angabe:eCH-0011:nationalityData:personType"
+      }
+     ]
+    },
+    "eCH-0010": {
+     "addressInformationType": [
+      {
+       "element": "foreignZipCode",
+       "datatype": "foreignZipCodeType",
+       "feld": "PLZ / Wohnort im Ausland",
+       "kennung": "sh:formular:garantieerklarung-zu-vorbereitung-der-heirat:feld:1:teil:5",
+       "angabe_kennung": "sh:angabe:eCH-0010:foreignZipCode:addressInformationType"
+      },
+      {
+       "element": "street",
+       "datatype": "streetType",
+       "feld": "Strasse",
+       "kennung": "sh:formular:garantieerklarung-zu-vorbereitung-der-heirat:feld:1:teil:6",
+       "angabe_kennung": "sh:angabe:eCH-0010:street:addressInformationType"
+      }
+     ]
+    }
+   },
+   "ohne_standard": [
+    {
+     "feld": "Ort",
+     "kennung": "sh:formular:garantieerklarung-zu-vorbereitung-der-heirat:feld:2:teil:1",
+     "format": ""
+    },
+    {
+     "feld": "Datum",
+     "kennung": "sh:formular:garantieerklarung-zu-vorbereitung-der-heirat:feld:2:teil:2",
+     "format": ""
+    },
+    {
+     "feld": "Unterschrift Gesuchsteller/in",
+     "kennung": "sh:formular:garantieerklarung-zu-vorbereitung-der-heirat:feld:3",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 584,
+   "formular_kennung": "sh:formular:gesuch-familiennachzug-formular-a2",
+   "titel": "Gesuch Familiennachzug (Formular A2)",
+   "dienststelle": "Migrationsamt und Passbüro",
+   "exchange_ready": "teilweise",
+   "abdeckung_pct": 77,
+   "ech": {
+    "eCH-0044": {
+     "personIdentificationKeyOnlyType": [
+      {
+       "element": "otherPersonId",
+       "datatype": "namedPersonIdType",
+       "feld": "ZEMIS Nr. der Gesuchstellerin/des Gesuchstellers",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:1",
+       "angabe_kennung": "sh:angabe:eCH-0044:otherPersonId:personIdentificationKeyOnlyType"
+      }
+     ],
+     "personIdentificationLightType": [
+      {
+       "element": "officialName",
+       "datatype": "baseNameType",
+       "feld": "Familienname(n)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:2:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0044:officialName:personIdentificationLightType"
+      },
+      {
+       "element": "firstName",
+       "datatype": "baseNameType",
+       "feld": "Vorname(n)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:2:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0044:firstName:personIdentificationLightType"
+      },
+      {
+       "element": "dateOfBirth",
+       "datatype": "datePartiallyKnownType",
+       "feld": "Geburtsdatum",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:2:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0044:dateOfBirth:personIdentificationLightType"
+      },
+      {
+       "element": "officialName",
+       "datatype": "baseNameType",
+       "feld": "Familienname(n)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:3:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0044:officialName:personIdentificationLightType"
+      },
+      {
+       "element": "firstName",
+       "datatype": "baseNameType",
+       "feld": "Vorname(n)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:3:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0044:firstName:personIdentificationLightType"
+      },
+      {
+       "element": "dateOfBirth",
+       "datatype": "datePartiallyKnownType",
+       "feld": "Geburtsdatum",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:3:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0044:dateOfBirth:personIdentificationLightType"
+      },
+      {
+       "element": "sex",
+       "datatype": "sexType",
+       "feld": "Geschlecht (Ehefrau/Ehemann)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:4",
+       "angabe_kennung": "sh:angabe:eCH-0044:sex:personIdentificationLightType"
+      },
+      {
+       "element": "officialName",
+       "datatype": "baseNameType",
+       "feld": "Familienname(n)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:17:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0044:officialName:personIdentificationLightType"
+      },
+      {
+       "element": "firstName",
+       "datatype": "baseNameType",
+       "feld": "Vorname(n)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:17:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0044:firstName:personIdentificationLightType"
+      },
+      {
+       "element": "dateOfBirth",
+       "datatype": "datePartiallyKnownType",
+       "feld": "Geburtsdatum",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:17:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0044:dateOfBirth:personIdentificationLightType"
+      },
+      {
+       "element": "sex",
+       "datatype": "sexType",
+       "feld": "Geschlecht (Person 1)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:18",
+       "angabe_kennung": "sh:angabe:eCH-0044:sex:personIdentificationLightType"
+      },
+      {
+       "element": "officialName",
+       "datatype": "baseNameType",
+       "feld": "Familienname(n)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:28:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0044:officialName:personIdentificationLightType"
+      },
+      {
+       "element": "firstName",
+       "datatype": "baseNameType",
+       "feld": "Vorname(n)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:28:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0044:firstName:personIdentificationLightType"
+      },
+      {
+       "element": "dateOfBirth",
+       "datatype": "datePartiallyKnownType",
+       "feld": "Geburtsdatum",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:28:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0044:dateOfBirth:personIdentificationLightType"
+      },
+      {
+       "element": "sex",
+       "datatype": "sexType",
+       "feld": "Geschlecht (Person 2)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:29",
+       "angabe_kennung": "sh:angabe:eCH-0044:sex:personIdentificationLightType"
+      },
+      {
+       "element": "officialName",
+       "datatype": "baseNameType",
+       "feld": "Familienname(n)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:39:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0044:officialName:personIdentificationLightType"
+      },
+      {
+       "element": "firstName",
+       "datatype": "baseNameType",
+       "feld": "Vorname(n)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:39:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0044:firstName:personIdentificationLightType"
+      },
+      {
+       "element": "dateOfBirth",
+       "datatype": "datePartiallyKnownType",
+       "feld": "Geburtsdatum",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:39:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0044:dateOfBirth:personIdentificationLightType"
+      },
+      {
+       "element": "sex",
+       "datatype": "sexType",
+       "feld": "Geschlecht (Person 3)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:40",
+       "angabe_kennung": "sh:angabe:eCH-0044:sex:personIdentificationLightType"
+      }
+     ],
+     "namedPersonIdType": [
+      {
+       "element": "personIdCategory",
+       "datatype": "personIdCategoryType",
+       "feld": "Pass / ID (Ehefrau/Ehemann)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:12",
+       "angabe_kennung": "sh:angabe:eCH-0044:personIdCategory:namedPersonIdType"
+      },
+      {
+       "element": "personIdCategory",
+       "datatype": "personIdCategoryType",
+       "feld": "Pass / ID (Person 1)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:21",
+       "angabe_kennung": "sh:angabe:eCH-0044:personIdCategory:namedPersonIdType"
+      },
+      {
+       "element": "personIdCategory",
+       "datatype": "personIdCategoryType",
+       "feld": "Pass / ID (Person 2)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:32",
+       "angabe_kennung": "sh:angabe:eCH-0044:personIdCategory:namedPersonIdType"
+      },
+      {
+       "element": "personIdCategory",
+       "datatype": "personIdCategoryType",
+       "feld": "Pass / ID (Person 3)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:43",
+       "angabe_kennung": "sh:angabe:eCH-0044:personIdCategory:namedPersonIdType"
+      }
+     ]
+    },
+    "eCH-0010": {
+     "mailAddressType": [
+      {
+       "element": "addressInformation",
+       "datatype": "addressInformationType",
+       "feld": "Adresse",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:2:teil:4",
+       "angabe_kennung": "sh:angabe:eCH-0010:addressInformation:mailAddressType"
+      },
+      {
+       "element": "addressInformation",
+       "datatype": "addressInformationType",
+       "feld": "Gegenwärtige Aufenthaltsadresse (Ehefrau/Ehemann)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:11",
+       "angabe_kennung": "sh:angabe:eCH-0010:addressInformation:mailAddressType"
+      }
+     ]
+    },
+    "eCH-0011": {
+     "personType": [
+      {
+       "element": "nationalityData",
+       "datatype": "nationalityDataType",
+       "feld": "Staatsangehörigkeit",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:2:teil:5",
+       "angabe_kennung": "sh:angabe:eCH-0011:nationalityData:personType"
+      },
+      {
+       "element": "nationalityData",
+       "datatype": "nationalityDataType",
+       "feld": "Staatsangehörigkeit",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:3:teil:6",
+       "angabe_kennung": "sh:angabe:eCH-0011:nationalityData:personType"
+      },
+      {
+       "element": "nationalityData",
+       "datatype": "nationalityDataType",
+       "feld": "Staatsangehörigkeit",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:17:teil:6",
+       "angabe_kennung": "sh:angabe:eCH-0011:nationalityData:personType"
+      },
+      {
+       "element": "nationalityData",
+       "datatype": "nationalityDataType",
+       "feld": "Staatsangehörigkeit",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:28:teil:6",
+       "angabe_kennung": "sh:angabe:eCH-0011:nationalityData:personType"
+      },
+      {
+       "element": "nationalityData",
+       "datatype": "nationalityDataType",
+       "feld": "Staatsangehörigkeit",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:39:teil:6",
+       "angabe_kennung": "sh:angabe:eCH-0011:nationalityData:personType"
+      }
+     ],
+     "birthDataType": [
+      {
+       "element": "placeOfBirth",
+       "datatype": "generalPlaceType",
+       "feld": "Geburtsort",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:3:teil:4",
+       "angabe_kennung": "sh:angabe:eCH-0011:placeOfBirth:birthDataType"
+      },
+      {
+       "element": "placeOfBirth",
+       "datatype": "generalPlaceType",
+       "feld": "Geburtsort",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:17:teil:4",
+       "angabe_kennung": "sh:angabe:eCH-0011:placeOfBirth:birthDataType"
+      },
+      {
+       "element": "placeOfBirth",
+       "datatype": "generalPlaceType",
+       "feld": "Geburtsort",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:28:teil:4",
+       "angabe_kennung": "sh:angabe:eCH-0011:placeOfBirth:birthDataType"
+      },
+      {
+       "element": "placeOfBirth",
+       "datatype": "generalPlaceType",
+       "feld": "Geburtsort",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:39:teil:4",
+       "angabe_kennung": "sh:angabe:eCH-0011:placeOfBirth:birthDataType"
+      }
+     ],
+     "countryInfoType": [
+      {
+       "element": "country",
+       "datatype": "countryType",
+       "feld": "Geburtsland",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:3:teil:5",
+       "angabe_kennung": "sh:angabe:eCH-0011:country:countryInfoType"
+      },
+      {
+       "element": "country",
+       "datatype": "countryType",
+       "feld": "Geburtsland",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:17:teil:5",
+       "angabe_kennung": "sh:angabe:eCH-0011:country:countryInfoType"
+      },
+      {
+       "element": "country",
+       "datatype": "countryType",
+       "feld": "Geburtsland",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:28:teil:5",
+       "angabe_kennung": "sh:angabe:eCH-0011:country:countryInfoType"
+      },
+      {
+       "element": "country",
+       "datatype": "countryType",
+       "feld": "Geburtsland",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:39:teil:5",
+       "angabe_kennung": "sh:angabe:eCH-0011:country:countryInfoType"
+      }
+     ],
+     "residencePermitDataType": [
+      {
+       "element": "entryDate",
+       "datatype": "generalDateType",
+       "feld": "Falls ja, wann (Ehefrau/Ehemann)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:10",
+       "angabe_kennung": "sh:angabe:eCH-0011:entryDate:residencePermitDataType"
+      },
+      {
+       "element": "entryDate",
+       "datatype": "generalDateType",
+       "feld": "Falls ja, wann (Person 1)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:26",
+       "angabe_kennung": "sh:angabe:eCH-0011:entryDate:residencePermitDataType"
+      },
+      {
+       "element": "entryDate",
+       "datatype": "generalDateType",
+       "feld": "Falls ja, wann (Person 2)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:37",
+       "angabe_kennung": "sh:angabe:eCH-0011:entryDate:residencePermitDataType"
+      },
+      {
+       "element": "entryDate",
+       "datatype": "generalDateType",
+       "feld": "Falls ja, wann (Person 3)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:48",
+       "angabe_kennung": "sh:angabe:eCH-0011:entryDate:residencePermitDataType"
+      }
+     ]
+    },
+    "eCH-0021": {
+     "nameOfParentType": [
+      {
+       "element": "officialName",
+       "datatype": "baseNameType",
+       "feld": "Name(n)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:5:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0021:officialName:nameOfParentType"
+      },
+      {
+       "element": "firstName",
+       "datatype": "officialFirstNameType",
+       "feld": "Vorname(n)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:5:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0021:firstName:nameOfParentType"
+      },
+      {
+       "element": "officialName",
+       "datatype": "baseNameType",
+       "feld": "Name(n)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:6:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0021:officialName:nameOfParentType"
+      },
+      {
+       "element": "firstName",
+       "datatype": "officialFirstNameType",
+       "feld": "Vorname(n)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:6:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0021:firstName:nameOfParentType"
+      },
+      {
+       "element": "officialName",
+       "datatype": "baseNameType",
+       "feld": "Name(n)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:19:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0021:officialName:nameOfParentType"
+      },
+      {
+       "element": "firstName",
+       "datatype": "officialFirstNameType",
+       "feld": "Vorname(n)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:19:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0021:firstName:nameOfParentType"
+      },
+      {
+       "element": "officialName",
+       "datatype": "baseNameType",
+       "feld": "Name(n)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:20:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0021:officialName:nameOfParentType"
+      },
+      {
+       "element": "firstName",
+       "datatype": "officialFirstNameType",
+       "feld": "Vorname(n)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:20:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0021:firstName:nameOfParentType"
+      },
+      {
+       "element": "officialName",
+       "datatype": "baseNameType",
+       "feld": "Name(n)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:30:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0021:officialName:nameOfParentType"
+      },
+      {
+       "element": "firstName",
+       "datatype": "officialFirstNameType",
+       "feld": "Vorname(n)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:30:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0021:firstName:nameOfParentType"
+      },
+      {
+       "element": "officialName",
+       "datatype": "baseNameType",
+       "feld": "Name(n)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:31:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0021:officialName:nameOfParentType"
+      },
+      {
+       "element": "firstName",
+       "datatype": "officialFirstNameType",
+       "feld": "Vorname(n)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:31:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0021:firstName:nameOfParentType"
+      },
+      {
+       "element": "officialName",
+       "datatype": "baseNameType",
+       "feld": "Name(n)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:41:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0021:officialName:nameOfParentType"
+      },
+      {
+       "element": "firstName",
+       "datatype": "officialFirstNameType",
+       "feld": "Vorname(n)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:41:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0021:firstName:nameOfParentType"
+      },
+      {
+       "element": "officialName",
+       "datatype": "baseNameType",
+       "feld": "Name(n)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:42:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0021:officialName:nameOfParentType"
+      },
+      {
+       "element": "firstName",
+       "datatype": "officialFirstNameType",
+       "feld": "Vorname(n)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:42:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0021:firstName:nameOfParentType"
+      }
+     ],
+     "guardianRelationshipType": [
+      {
+       "element": "typeOfRelationship",
+       "datatype": null,
+       "feld": "Verwandtschaftsverhältnis zur Gesuchstellerin/zum Gesuchsteller (Person 1)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:16",
+       "angabe_kennung": "sh:angabe:eCH-0021:typeOfRelationship:guardianRelationshipType"
+      },
+      {
+       "element": "typeOfRelationship",
+       "datatype": null,
+       "feld": "Verwandtschaftsverhältnis zur Gesuchstellerin/zum Gesuchsteller (Person 2)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:27",
+       "angabe_kennung": "sh:angabe:eCH-0021:typeOfRelationship:guardianRelationshipType"
+      },
+      {
+       "element": "typeOfRelationship",
+       "datatype": null,
+       "feld": "Verwandtschaftsverhältnis zur Gesuchstellerin/zum Gesuchsteller (Person 3)",
+       "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:38",
+       "angabe_kennung": "sh:angabe:eCH-0021:typeOfRelationship:guardianRelationshipType"
+      }
+     ]
+    }
+   },
+   "ohne_standard": [
+    {
+     "feld": "Strafverfahren hängig (Ehefrau/Ehemann)",
+     "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:7",
+     "format": ""
+    },
+    {
+     "feld": "Vorstrafen (Ehefrau/Ehemann)",
+     "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:8",
+     "format": ""
+    },
+    {
+     "feld": "Ist die Einreise bereits erfolgt? (Ehefrau/Ehemann)",
+     "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:9",
+     "format": ""
+    },
+    {
+     "feld": "gültig bis (Ehefrau/Ehemann)",
+     "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:13",
+     "format": "Tag Monat Jahr"
+    },
+    {
+     "feld": "Ort",
+     "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:14:teil:1",
+     "format": "Datum: Tag Monat Jahr"
+    },
+    {
+     "feld": "Datum",
+     "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:14:teil:2",
+     "format": "Datum: Tag Monat Jahr"
+    },
+    {
+     "feld": "Unterschrift der Gesuchstellerin/des Gesuchstellers",
+     "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:15",
+     "format": ""
+    },
+    {
+     "feld": "gültig bis (Person 1)",
+     "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:22",
+     "format": "Tag Monat Jahr"
+    },
+    {
+     "feld": "Strafverfahren hängig (Person 1)",
+     "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:23",
+     "format": ""
+    },
+    {
+     "feld": "Vorstrafen (Person 1)",
+     "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:24",
+     "format": ""
+    },
+    {
+     "feld": "Ist die Einreise bereits erfolgt (Person 1)",
+     "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:25",
+     "format": ""
+    },
+    {
+     "feld": "gültig bis (Person 2)",
+     "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:33",
+     "format": "Tag Monat Jahr"
+    },
+    {
+     "feld": "Strafverfahren hängig (Person 2)",
+     "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:34",
+     "format": ""
+    },
+    {
+     "feld": "Vorstrafen (Person 2)",
+     "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:35",
+     "format": ""
+    },
+    {
+     "feld": "Ist die Einreise bereits erfolgt (Person 2)",
+     "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:36",
+     "format": ""
+    },
+    {
+     "feld": "gültig bis (Person 3)",
+     "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:44",
+     "format": "Tag Monat Jahr"
+    },
+    {
+     "feld": "Strafverfahren hängig (Person 3)",
+     "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:45",
+     "format": ""
+    },
+    {
+     "feld": "Vorstrafen (Person 3)",
+     "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:46",
+     "format": ""
+    },
+    {
+     "feld": "Ist die Einreise bereits erfolgt (Person 3)",
+     "kennung": "sh:formular:gesuch-familiennachzug-formular-a2:feld:47",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 585,
+   "formular_kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung",
+   "titel": "Gesuch um Aufrechterhaltung der Niederlassungsbewilligung",
+   "dienststelle": "Migrationsamt und Passbüro",
+   "exchange_ready": "teilweise",
+   "abdeckung_pct": 79,
+   "ech": {
+    "eCH-0044": {
+     "personIdentificationKeyOnlyType": [
+      {
+       "element": "otherPersonId",
+       "datatype": "namedPersonIdType",
+       "feld": "Zemis-Nr.",
+       "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:1:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0044:otherPersonId:personIdentificationKeyOnlyType"
+      },
+      {
+       "element": "localPersonId",
+       "datatype": "namedPersonIdType",
+       "feld": "kant. Ref.",
+       "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:1:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0044:localPersonId:personIdentificationKeyOnlyType"
+      }
+     ],
+     "personIdentificationLightType": [
+      {
+       "element": "officialName",
+       "datatype": "baseNameType",
+       "feld": "Name(n)",
+       "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:1:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0044:officialName:personIdentificationLightType"
+      },
+      {
+       "element": "firstName",
+       "datatype": "baseNameType",
+       "feld": "Vorname(n)",
+       "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:1:teil:4",
+       "angabe_kennung": "sh:angabe:eCH-0044:firstName:personIdentificationLightType"
+      },
+      {
+       "element": "dateOfBirth",
+       "datatype": "datePartiallyKnownType",
+       "feld": "Geb.- Dat",
+       "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:1:teil:5",
+       "angabe_kennung": "sh:angabe:eCH-0044:dateOfBirth:personIdentificationLightType"
+      },
+      {
+       "element": "firstName",
+       "datatype": "baseNameType",
+       "feld": "Vorname",
+       "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:9:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0044:firstName:personIdentificationLightType"
+      },
+      {
+       "element": "officialName",
+       "datatype": "baseNameType",
+       "feld": "Name",
+       "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:9:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0044:officialName:personIdentificationLightType"
+      },
+      {
+       "element": "dateOfBirth",
+       "datatype": "datePartiallyKnownType",
+       "feld": "Geb.- Dat",
+       "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:9:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0044:dateOfBirth:personIdentificationLightType"
+      },
+      {
+       "element": "firstName",
+       "datatype": "baseNameType",
+       "feld": "Vorname",
+       "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:10:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0044:firstName:personIdentificationLightType"
+      },
+      {
+       "element": "officialName",
+       "datatype": "baseNameType",
+       "feld": "Name",
+       "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:10:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0044:officialName:personIdentificationLightType"
+      },
+      {
+       "element": "dateOfBirth",
+       "datatype": "datePartiallyKnownType",
+       "feld": "Geb.- Dat",
+       "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:10:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0044:dateOfBirth:personIdentificationLightType"
+      }
+     ]
+    },
+    "eCH-0011": {
+     "personType": [
+      {
+       "element": "nationalityData",
+       "datatype": "nationalityDataType",
+       "feld": "Staatsangehörigkeit",
+       "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:1:teil:6",
+       "angabe_kennung": "sh:angabe:eCH-0011:nationalityData:personType"
+      }
+     ],
+     "maritalDataRestrictedDivorceType": [
+      {
+       "element": "maritalStatus",
+       "datatype": null,
+       "feld": "Zivilstand",
+       "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:2",
+       "angabe_kennung": "sh:angabe:eCH-0011:maritalStatus:maritalDataRestrictedDivorceType"
+      }
+     ],
+     "otherResidenceType": [
+      {
+       "element": "departureDate",
+       "datatype": "generalDateType",
+       "feld": "Datum der Abreise",
+       "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:5",
+       "angabe_kennung": "sh:angabe:eCH-0011:departureDate:otherResidenceType"
+      }
+     ]
+    },
+    "eCH-0039": {
+     "contentType": [
+      {
+       "element": "document",
+       "datatype": "documentType",
+       "feld": "Belege (Gründe der Aufrechterhaltung der Niederlassungsbewilligung)",
+       "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:4",
+       "angabe_kennung": "sh:angabe:eCH-0039:document:contentType"
+      },
+      {
+       "element": "document",
+       "datatype": "documentType",
+       "feld": "Beilagen",
+       "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:11",
+       "angabe_kennung": "sh:angabe:eCH-0039:document:contentType"
+      }
+     ]
+    },
+    "eCH-0010": {
+     "addressInformationType": [
+      {
+       "element": "addressLine1",
+       "datatype": "addressLineType",
+       "feld": "c/o",
+       "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:7:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0010:addressLine1:addressInformationType"
+      },
+      {
+       "element": "street",
+       "datatype": "streetType",
+       "feld": "Strasse",
+       "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:7:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0010:street:addressInformationType"
+      },
+      {
+       "element": "foreignZipCode",
+       "datatype": "foreignZipCodeType",
+       "feld": "PLZ und Wohnort",
+       "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:7:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0010:foreignZipCode:addressInformationType"
+      },
+      {
+       "element": "country",
+       "datatype": "countryType",
+       "feld": "Land",
+       "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:7:teil:4",
+       "angabe_kennung": "sh:angabe:eCH-0010:country:addressInformationType"
+      },
+      {
+       "element": "street",
+       "datatype": "streetType",
+       "feld": "Strasse",
+       "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:8:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0010:street:addressInformationType"
+      },
+      {
+       "element": "swissZipCode",
+       "datatype": "swissZipCodeType",
+       "feld": "PLZ und Wohnort",
+       "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:8:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0010:swissZipCode:addressInformationType"
+      }
+     ],
+     "organisationMailAddressInfoType": [
+      {
+       "element": "lastName",
+       "datatype": "lastNameType",
+       "feld": "Vorname und Name",
+       "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:8:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0010:lastName:organisationMailAddressInfoType"
+      }
+     ]
+    }
+   },
+   "ohne_standard": [
+    {
+     "feld": "Gründe der Aufrechterhaltung der Niederlassungsbewilligung",
+     "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:3",
+     "format": ""
+    },
+    {
+     "feld": "Geplantes Rückkehrdatum",
+     "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:6",
+     "format": "Monat/Jahr"
+    },
+    {
+     "feld": "Ort",
+     "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:12:teil:1",
+     "format": ""
+    },
+    {
+     "feld": "Datum",
+     "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:12:teil:2",
+     "format": ""
+    },
+    {
+     "feld": "Unterschrift des Gesuchstellers/der Gesuchstellerin bzw. des gesetzlichen Vertreters/der gesetzlichen Vertreterin",
+     "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:13",
+     "format": ""
+    },
+    {
+     "feld": "Wegziehende/r Partner/in",
+     "kennung": "sh:formular:gesuch-um-aufrechterhaltung-der-niederlassungsbewilligung:feld:14",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 586,
+   "formular_kennung": "sh:formular:erklarung-betreffend-pensionskassengelder",
+   "titel": "Erklärung betreffend Pensionskassengelder",
+   "dienststelle": "Migrationsamt und Passbüro",
+   "exchange_ready": "teilweise",
+   "abdeckung_pct": 67,
+   "ech": {
+    "eCH-0044": {
+     "personIdentificationKeyOnlyType": [
+      {
+       "element": "otherPersonId",
+       "datatype": "namedPersonIdType",
+       "feld": "Zemis-Nr.",
+       "kennung": "sh:formular:erklarung-betreffend-pensionskassengelder:feld:1:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0044:otherPersonId:personIdentificationKeyOnlyType"
+      },
+      {
+       "element": "localPersonId",
+       "datatype": "namedPersonIdType",
+       "feld": "kant. Ref.",
+       "kennung": "sh:formular:erklarung-betreffend-pensionskassengelder:feld:1:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0044:localPersonId:personIdentificationKeyOnlyType"
+      }
+     ],
+     "personIdentificationLightType": [
+      {
+       "element": "officialName",
+       "datatype": "baseNameType",
+       "feld": "Name",
+       "kennung": "sh:formular:erklarung-betreffend-pensionskassengelder:feld:1:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0044:officialName:personIdentificationLightType"
+      },
+      {
+       "element": "firstName",
+       "datatype": "baseNameType",
+       "feld": "Vorname",
+       "kennung": "sh:formular:erklarung-betreffend-pensionskassengelder:feld:1:teil:4",
+       "angabe_kennung": "sh:angabe:eCH-0044:firstName:personIdentificationLightType"
+      },
+      {
+       "element": "dateOfBirth",
+       "datatype": "datePartiallyKnownType",
+       "feld": "Geb.- Dat",
+       "kennung": "sh:formular:erklarung-betreffend-pensionskassengelder:feld:1:teil:5",
+       "angabe_kennung": "sh:angabe:eCH-0044:dateOfBirth:personIdentificationLightType"
+      }
+     ]
+    },
+    "eCH-0011": {
+     "personType": [
+      {
+       "element": "nationalityData",
+       "datatype": "nationalityDataType",
+       "feld": "Staatsangehörigkeit",
+       "kennung": "sh:formular:erklarung-betreffend-pensionskassengelder:feld:1:teil:6",
+       "angabe_kennung": "sh:angabe:eCH-0011:nationalityData:personType"
+      }
+     ]
+    }
+   },
+   "ohne_standard": [
+    {
+     "feld": "Ort",
+     "kennung": "sh:formular:erklarung-betreffend-pensionskassengelder:feld:2:teil:1",
+     "format": ""
+    },
+    {
+     "feld": "Datum",
+     "kennung": "sh:formular:erklarung-betreffend-pensionskassengelder:feld:2:teil:2",
+     "format": ""
+    },
+    {
+     "feld": "Unterschrift",
+     "kennung": "sh:formular:erklarung-betreffend-pensionskassengelder:feld:3",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 587,
+   "formular_kennung": "sh:formular:erklarung-zum-gesuch-um-niederlassungsbewilligung-bei-einem-",
+   "titel": "Erklärung zum Gesuch um Niederlassungsbewilligung bei einem aus der ehelichen Gemeinschaft abgeleiteten gesetzlichen Anspruch",
+   "dienststelle": "Migrationsamt und Passbüro",
+   "exchange_ready": "teilweise",
+   "abdeckung_pct": 61,
+   "ech": {
+    "eCH-0044": {
+     "personIdentificationKeyOnlyType": [
+      {
+       "element": "otherPersonId",
+       "datatype": "namedPersonIdType",
+       "feld": "Zemis-Nr.",
+       "kennung": "sh:formular:erklarung-zum-gesuch-um-niederlassungsbewilligung-bei-einem-:feld:1:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0044:otherPersonId:personIdentificationKeyOnlyType"
+      },
+      {
+       "element": "localPersonId",
+       "datatype": "namedPersonIdType",
+       "feld": "kant. Ref.",
+       "kennung": "sh:formular:erklarung-zum-gesuch-um-niederlassungsbewilligung-bei-einem-:feld:1:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0044:localPersonId:personIdentificationKeyOnlyType"
+      }
+     ],
+     "personIdentificationLightType": [
+      {
+       "element": "officialName",
+       "datatype": "baseNameType",
+       "feld": "Name",
+       "kennung": "sh:formular:erklarung-zum-gesuch-um-niederlassungsbewilligung-bei-einem-:feld:1:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0044:officialName:personIdentificationLightType"
+      },
+      {
+       "element": "firstName",
+       "datatype": "baseNameType",
+       "feld": "Vorname",
+       "kennung": "sh:formular:erklarung-zum-gesuch-um-niederlassungsbewilligung-bei-einem-:feld:1:teil:4",
+       "angabe_kennung": "sh:angabe:eCH-0044:firstName:personIdentificationLightType"
+      },
+      {
+       "element": "dateOfBirth",
+       "datatype": "datePartiallyKnownType",
+       "feld": "Geb.- Dat",
+       "kennung": "sh:formular:erklarung-zum-gesuch-um-niederlassungsbewilligung-bei-einem-:feld:1:teil:5",
+       "angabe_kennung": "sh:angabe:eCH-0044:dateOfBirth:personIdentificationLightType"
+      },
+      {
+       "element": "officialName",
+       "datatype": "baseNameType",
+       "feld": "Name",
+       "kennung": "sh:formular:erklarung-zum-gesuch-um-niederlassungsbewilligung-bei-einem-:feld:2:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0044:officialName:personIdentificationLightType"
+      },
+      {
+       "element": "firstName",
+       "datatype": "baseNameType",
+       "feld": "Vorname",
+       "kennung": "sh:formular:erklarung-zum-gesuch-um-niederlassungsbewilligung-bei-einem-:feld:2:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0044:firstName:personIdentificationLightType"
+      },
+      {
+       "element": "dateOfBirth",
+       "datatype": "datePartiallyKnownType",
+       "feld": "Geb.- Dat",
+       "kennung": "sh:formular:erklarung-zum-gesuch-um-niederlassungsbewilligung-bei-einem-:feld:2:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0044:dateOfBirth:personIdentificationLightType"
+      }
+     ]
+    },
+    "eCH-0011": {
+     "personType": [
+      {
+       "element": "nationalityData",
+       "datatype": "nationalityDataType",
+       "feld": "Staatsangehörigkeit",
+       "kennung": "sh:formular:erklarung-zum-gesuch-um-niederlassungsbewilligung-bei-einem-:feld:1:teil:6",
+       "angabe_kennung": "sh:angabe:eCH-0011:nationalityData:personType"
+      },
+      {
+       "element": "nationalityData",
+       "datatype": "nationalityDataType",
+       "feld": "Staatsangehörigkeit",
+       "kennung": "sh:formular:erklarung-zum-gesuch-um-niederlassungsbewilligung-bei-einem-:feld:2:teil:4",
+       "angabe_kennung": "sh:angabe:eCH-0011:nationalityData:personType"
+      }
+     ]
+    },
+    "eCH-0010": {
+     "mailAddressType": [
+      {
+       "element": "addressInformation",
+       "datatype": "addressInformationType",
+       "feld": "Adresse",
+       "kennung": "sh:formular:erklarung-zum-gesuch-um-niederlassungsbewilligung-bei-einem-:feld:1:teil:7",
+       "angabe_kennung": "sh:angabe:eCH-0010:addressInformation:mailAddressType"
+      }
+     ]
+    }
+   },
+   "ohne_standard": [
+    {
+     "feld": "Bemerkungen",
+     "kennung": "sh:formular:erklarung-zum-gesuch-um-niederlassungsbewilligung-bei-einem-:feld:3",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "kennung": "sh:formular:erklarung-zum-gesuch-um-niederlassungsbewilligung-bei-einem-:feld:4:teil:1",
+     "format": ""
+    },
+    {
+     "feld": "Datum",
+     "kennung": "sh:formular:erklarung-zum-gesuch-um-niederlassungsbewilligung-bei-einem-:feld:4:teil:2",
+     "format": ""
+    },
+    {
+     "feld": "Unterschrift Gesuchstellerin / Gesuchstellers",
+     "kennung": "sh:formular:erklarung-zum-gesuch-um-niederlassungsbewilligung-bei-einem-:feld:5",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "kennung": "sh:formular:erklarung-zum-gesuch-um-niederlassungsbewilligung-bei-einem-:feld:6:teil:1",
+     "format": ""
+    },
+    {
+     "feld": "Datum",
+     "kennung": "sh:formular:erklarung-zum-gesuch-um-niederlassungsbewilligung-bei-einem-:feld:6:teil:2",
+     "format": ""
+    },
+    {
+     "feld": "Unterschrift Ehegatte",
+     "kennung": "sh:formular:erklarung-zum-gesuch-um-niederlassungsbewilligung-bei-einem-:feld:7",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 588,
+   "formular_kennung": "sh:formular:entbindung-der-arztlichen-schweigepflicht",
+   "titel": "Entbindung der ärztlichen Schweigepflicht",
+   "dienststelle": "Migrationsamt und Passbüro",
+   "exchange_ready": "voll",
+   "abdeckung_pct": 100,
+   "ech": {
+    "eCH-0044": {
+     "personIdentificationKeyOnlyType": [
+      {
+       "element": "otherPersonId",
+       "datatype": "namedPersonIdType",
+       "feld": "Zemis",
+       "kennung": "sh:formular:entbindung-der-arztlichen-schweigepflicht:feld:1:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0044:otherPersonId:personIdentificationKeyOnlyType"
+      },
+      {
+       "element": "localPersonId",
+       "datatype": "namedPersonIdType",
+       "feld": "SH",
+       "kennung": "sh:formular:entbindung-der-arztlichen-schweigepflicht:feld:1:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0044:localPersonId:personIdentificationKeyOnlyType"
+      }
+     ],
+     "personIdentificationLightType": [
+      {
+       "element": "officialName",
+       "datatype": "baseNameType",
+       "feld": "NAME",
+       "kennung": "sh:formular:entbindung-der-arztlichen-schweigepflicht:feld:3:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0044:officialName:personIdentificationLightType"
+      },
+      {
+       "element": "firstName",
+       "datatype": "baseNameType",
+       "feld": "Vorname",
+       "kennung": "sh:formular:entbindung-der-arztlichen-schweigepflicht:feld:3:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0044:firstName:personIdentificationLightType"
+      }
+     ]
+    },
+    "eCH-0058": {
+     "headerType": [
+      {
+       "element": "messageDate",
+       "datatype": "messageDateType",
+       "feld": "Schaffhausen, den",
+       "kennung": "sh:formular:entbindung-der-arztlichen-schweigepflicht:feld:2",
+       "angabe_kennung": "sh:angabe:eCH-0058:messageDate:headerType"
+      }
+     ]
+    }
+   },
+   "ohne_standard": []
   }
  ]
 }

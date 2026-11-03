@@ -1,0 +1,283 @@
+{
+ "hinweis": "eCH-Urteile Formular 585, Panel 2026-11-03, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-11-03/ech/585 --nur-offene=585",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Kopfblock mit den Personalien der gesuchstellenden Person: ZEMIS-Nr., kant. Ref., Name, Vorname, Geb.-Dat und Staatsangehörigkeit. Der propagierte Container eCH-0044 personIdentification (Genehmigt, id 809) ist im Katalog vorhanden und stimmt (Konvention, 55x geprüft).",
+   "feld": "Personalien"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Die ZEMIS-Nummer ist die Personennummer im Zentralen Migrationsinformationssystem des Bundes, also eine fremde Personen-ID. Dafür steht eCH-0044 otherPersonId (namedPersonIdType mit personIdCategory). Gleiche Zuordnung bei «ZEMIS-Nummer» (7x), «ZEMIS-NR.» (2x) und «ZEMIS Nr.».",
+   "elternfeld": "Personalien",
+   "teilfeld": "Zemis-Nr.",
+   "standard": "eCH-0044",
+   "element": "otherPersonId"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«kant. Ref.: SH …» ist die kantonale Personennummer, die das Migrationsamt Schaffhausen führt. Dieses Amt gibt das Formular heraus, also ist es die lokale Personen-ID: eCH-0044 localPersonId. Auf den Verlängerungsgesuchen des Migrationsamts (Formulare 508–513) ist die gleiche «SH-Nummer» ebenfalls localPersonId. otherPersonId ist bereits mit der ZEMIS-Nummer belegt.",
+   "elternfeld": "Personalien",
+   "teilfeld": "kant. Ref.",
+   "standard": "eCH-0044",
+   "element": "localPersonId"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Amtlicher Name der gesuchstellenden Person. Die propagierte Zuordnung Name → eCH-0044 officialName (id 800) stimmt.",
+   "elternfeld": "Personalien",
+   "teilfeld": "Name(n)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Vorname(n) der gesuchstellenden Person. Die propagierte Zuordnung Vorname → eCH-0044 firstName (id 801) stimmt.",
+   "elternfeld": "Personalien",
+   "teilfeld": "Vorname(n)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Geburtsdatum der gesuchstellenden Person, bisher ohne Element. Geburtsdatum → eCH-0044 dateOfBirth. Im Korpus wird dafür meist der Kontext personIdentificationLightType verwendet (id 804, 268x), wie bei Name und Vorname auf dieser Zeile.",
+   "elternfeld": "Personalien",
+   "teilfeld": "Geb.- Dat",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Staatsangehörigkeit der gesuchstellenden Person. Die propagierte Zuordnung eCH-0011 nationalityData (personType, id 90) folgt der Konvention der Databank für «Staatsangehörigkeit» und «Nationalität» und stimmt.",
+   "elternfeld": "Personalien",
+   "teilfeld": "Staatsangehörigkeit"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Eine Option aus der vorgedruckten Zivilstandsliste. Das ist ein Codewert und keine Ja/Nein-Frage, also eCH-0011 maritalStatus. Die propagierte Zuordnung stimmt. Hinweis für die Databank: Alle 29 «Zivilstand»-Zeilen zeigen auf id 125 (Kontext maritalDataRestrictedDivorceType) statt auf den allgemeinen Kontext maritalDataType (id 114). Das sollte für alle Zeilen gemeinsam umgestellt werden, nicht auf einem einzelnen Formular, damit dieselbe Angabe überall dasselbe Element behält.",
+   "feld": "Zivilstand"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Mehrfachauswahl der Gründe für den Auslandaufenthalt, wegen denen die C-Bewilligung erhalten bleiben soll: Militärdienst, Ausbildung, Arbeitseinsatz, medizinische oder andere Gründe. Im ganzen Katalog wurde nach Elementnamen mit reason, cause, purpose, motive, military, armed, medical, abroad, absence und maintain gesucht. Durchgesehen wurden auch eCH-0006, eCH-0011, eCH-0020, eCH-0093, eCH-0185, eCH-0194 und eCH-0223 (eventType, businessComment). Kein Element codiert einen Grund für einen Auslandaufenthalt. eCH-0021 armedForcesService/Liability sind Ja/Nein-Werte zur Schweizer Dienstpflicht, die *Reason-Elemente (eCH-0011 cancelationReason, eCH-0216, eCH-0235 …) meinen anderes. Auch «Zweck des Auslandaufenthaltes» ist kein_standard.",
+   "feld": "Gründe der Aufrechterhaltung der Niederlassungsbewilligung"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Beigelegtes Nachweisdokument zum angekreuzten Grund, zum Beispiel Belege zum Militärdienst, Immatrikulationsbestätigung, Arbeitsvertrag oder Arztzeugnis. eCH-0039 (Dossiers und Dokumente, Genehmigt) bildet ein solches Dokument als document ab (contentType, id 772). Die neueren Formulare ordnen beigelegte Dokumente ebenso zu, etwa 548 und «Beilagedokumente».",
+   "feld": "Belege (Gründe der Aufrechterhaltung der Niederlassungsbewilligung)",
+   "standard": "eCH-0039",
+   "element": "document"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Kalendertag, an dem die Person ins Ausland wegzieht. Das ist der Wegzug, also eCH-0011 departureDate. Gleiche Zuordnung bei «Datum der Ausreise» und «Ausreisedatum». Es ist ein einmaliges Ereignisdatum und kein laufender Wert.",
+   "feld": "Datum der Abreise",
+   "standard": "eCH-0011",
+   "element": "departureDate"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Monat und Jahr der geplanten Rückkehr, also eine Absicht und kein eingetretener Zuzug. eCH-0011, eCH-0093 und eCH-0194 arrivalDate passen deshalb nicht. Im ganzen Katalog wurde nach return, reentry, planned, expected, intended, probable, abroad und absence gesucht, ausserdem in eCH-0011, eCH-0093, eCH-0185, eCH-0194 und eCH-0223 (comesFrom/goesTo). Es gibt kein Element für ein geplantes Rückkehrdatum. eCH-0044 yearMonth ist nur ein Datumsformat des Geburtsdatums. «Dauer des Auslandaufenthaltes» ist ebenfalls kein_standard.",
+   "feld": "Geplantes Rückkehrdatum"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Composite mit der Anschrift während des Auslandaufenthalts: c/o, Strasse, PLZ und Wohnort, Land. Der Adress-Container ist eCH-0010 addressInformation. Gleiche Zuordnung bei «Auslandadresse» und «Adresse im Ausland während des Einsatzes».",
+   "feld": "Adresse im Ausland",
+   "standard": "eCH-0010",
+   "element": "addressInformation"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Der c/o-Zusatz einer Postadresse einer Person ist in eCH-0010 die Zusatzzeile addressLine1 (addressInformationType). Gleiche Zuordnung bei «c/o» auf anderen Formularen. eCH-0108 careOfAddressLine gilt nur für Unternehmensstandorte.",
+   "elternfeld": "Adresse im Ausland",
+   "teilfeld": "c/o",
+   "standard": "eCH-0010",
+   "element": "addressLine1"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Strasse der Auslandadresse. Strasse → eCH-0010 street (addressInformationType).",
+   "elternfeld": "Adresse im Ausland",
+   "teilfeld": "Strasse",
+   "standard": "eCH-0010",
+   "element": "street"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Ein gemeinsames Feld für PLZ und Ort einer ausländischen Adresse. Nach der Konvention für kombinierte PLZ/Ort-Felder erhält es das PLZ-Element, bei einer Auslandadresse foreignZipCode statt swissZipCode. Gleich bei «Wohnadresse im Ausland | PLZ / Ort». Der Ortsteil wäre eCH-0010 town.",
+   "elternfeld": "Adresse im Ausland",
+   "teilfeld": "PLZ und Wohnort",
+   "standard": "eCH-0010",
+   "element": "foreignZipCode"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Land der Auslandadresse. Das ist eCH-0010 country (addressInformationType), die übliche Zuordnung für «Land» in Adressen.",
+   "elternfeld": "Adresse im Ausland",
+   "teilfeld": "Land",
+   "standard": "eCH-0010",
+   "element": "country"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Person und Postanschrift in der Schweiz, über die die abwesende Person erreichbar ist. Dafür gibt es eCH-0011 contactAddress (contactDataType, mailAddressType mit Person und Adresse). Gleiche Zuordnung bei «Zustelladresse» (5x) und «Andere Zustelladresse».",
+   "feld": "Kontaktadresse in der Schweiz",
+   "standard": "eCH-0011",
+   "element": "contactAddress"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Ein gemeinsames Feld für den Namen der Kontaktperson in der Postadresse (mailAddressType → person). Bei kombinierten Namensfeldern in einer Adresse erhält der Nachname das Element, hier eCH-0010 lastName. Der Vorname wäre eCH-0010 firstName. Gleiche Zuordnung bei «Zustelladresse für Postsendungen | Name, Vorname oder Firma».",
+   "elternfeld": "Kontaktadresse in der Schweiz",
+   "teilfeld": "Vorname und Name",
+   "standard": "eCH-0010",
+   "element": "lastName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Strasse der Kontaktadresse in der Schweiz. Strasse → eCH-0010 street.",
+   "elternfeld": "Kontaktadresse in der Schweiz",
+   "teilfeld": "Strasse",
+   "standard": "eCH-0010",
+   "element": "street"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Ein gemeinsames Feld für PLZ und Ort einer Schweizer Adresse. Nach der Konvention für kombinierte PLZ/Ort-Felder (über 250 Zeilen) ist das eCH-0010 swissZipCode. Der Ortsteil wäre town.",
+   "elternfeld": "Kontaktadresse in der Schweiz",
+   "teilfeld": "PLZ und Wohnort",
+   "standard": "eCH-0010",
+   "element": "swissZipCode"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Composite mit den Angaben zur mitziehenden Ehe- oder eingetragenen Partnerin bzw. zum Partner. Der Beziehungs-Container ist eCH-0021 maritalRelationship (personAddonType). Gleiche Zuordnung bei «Personalien EhepartnerIn» (7x), «Personalien des Ehegatten» und «Ehegatte / eingetragener Partner».",
+   "feld": "Ehepartner/in oder eingetragene/r Partner/in",
+   "standard": "eCH-0021",
+   "element": "maritalRelationship"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname der Ehe- bzw. eingetragenen Partnerin oder des Partners. Vorname → eCH-0044 firstName.",
+   "elternfeld": "Ehepartner/in oder eingetragene/r Partner/in",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Amtlicher Name der Ehe- bzw. eingetragenen Partnerin oder des Partners. Name → eCH-0044 officialName.",
+   "elternfeld": "Ehepartner/in oder eingetragene/r Partner/in",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Geburtsdatum der Ehe- bzw. eingetragenen Partnerin oder des Partners. Geburtsdatum → eCH-0044 dateOfBirth.",
+   "elternfeld": "Ehepartner/in oder eingetragene/r Partner/in",
+   "teilfeld": "Geb.- Dat",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Liste mit fünf Zeilen für die mitziehenden minderjährigen Kinder unter der elterlichen Sorge der unterzeichnenden Person. Das ist keine Ja/Nein-Frage, sondern eine Liste von Personen. Der Container ist eCH-0021 parentalRelationship (enthält auch care). Gleiche Zuordnung bei «Kinder» (11x).",
+   "feld": "Die unterzeichnende Person wird durch die nachgenannten, ihrer elterlichen Sorge unterstellten minderjährigen Kinder begleitet",
+   "standard": "eCH-0021",
+   "element": "parentalRelationship"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname des mitziehenden Kindes. Vorname → eCH-0044 firstName.",
+   "elternfeld": "Die unterzeichnende Person wird durch die nachgenannten, ihrer elterlichen Sorge unterstellten minderjährigen Kinder begleitet",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Amtlicher Name des mitziehenden Kindes. Name → eCH-0044 officialName.",
+   "elternfeld": "Die unterzeichnende Person wird durch die nachgenannten, ihrer elterlichen Sorge unterstellten minderjährigen Kinder begleitet",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Geburtsdatum des mitziehenden Kindes. Geburtsdatum → eCH-0044 dateOfBirth.",
+   "elternfeld": "Die unterzeichnende Person wird durch die nachgenannten, ihrer elterlichen Sorge unterstellten minderjährigen Kinder begleitet",
+   "teilfeld": "Geb.- Dat",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die im Merkblatt Aufrechterhaltung genannten Beilagen, die mit dem Gesuch einzureichen sind. Das Feld ist vom Typ attachment, also die Dokumente selbst und keine Ankreuzliste. Die vielen kein_standard-«Beilagen» sind dagegen Mehrfachauswahlen. Jede Beilage ist ein Dokument, eCH-0039 (Genehmigt) bildet es als document ab. Gleiche Zuordnung wie bei den Belegen auf diesem Formular und bei «Beilagedokumente».",
+   "feld": "Beilagen",
+   "standard": "eCH-0039",
+   "element": "document"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ort und Kalendertag der Unterzeichnung. Im ganzen Katalog wurde nach signature, signing, locationAndDate, place und date gesucht. eCH-0119 locationAndDate gilt nur für Steuerformulare. eCH-0039 openingDate und eCH-0058 messageDate/eventDate meinen anderes als die Unterzeichnung. Konvention der Databank für «Ort und Datum»: kein_standard (29x).",
+   "feld": "Ort und Datum"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Ort der Unterzeichnung, keine Adresse, deshalb passt eCH-0010 town als Adressteil nicht. Im Katalog gibt es kein Element für den Unterzeichnungsort, ausser eCH-0119 locationAndDate, das nur für Steuerformulare gilt. Konvention: kein_standard (25x).",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Kalendertag der Unterzeichnung. Kein Element im Katalog bezeichnet ein Unterzeichnungsdatum: eCH-0058 messageDate/eventDate und eCH-0039 openingDate meinen anderes. Konvention: kein_standard (25x).",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Handschriftliche Unterschrift. Im ganzen Katalog wurde nach signature, signer und Unterschrift gesucht. eCH-0039 signer ist nur ein Token für die unterzeichnende Person, eCH-0260 signature*Confirmation sind Ja/Nein-Werte der Berufsbildung. Die Standards für elektronische Signaturen (eCH-0091/0220/0230/0250/0274/0282) haben keine Elemente. Konvention für Unterschriften: kein_standard (129x).",
+   "feld": "Unterschrift des Gesuchstellers/der Gesuchstellerin bzw. des gesetzlichen Vertreters/der gesetzlichen Vertreterin"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Unterschriftszeile für die mitziehende Partnerin oder den mitziehenden Partner, also ebenfalls eine handschriftliche Unterschrift (data_type signature). Gleiche Suche wie bei der Unterschrift der gesuchstellenden Person: kein eCH-Element bildet eine Unterschrift ab, deshalb kein_standard.",
+   "feld": "Wegziehende/r Partner/in"
+  }
+ ]
+}

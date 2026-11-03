@@ -1,0 +1,312 @@
+{
+ "hinweis": "eCH-Urteile Formular 582, Panel 2026-11-03, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-11-03/ech/582 --nur-offene=582",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die im Begleitbrief verlangten Unterlagen sind zusammen mit dem Formular einzureichen (data_type attachment). Ein eingereichtes Dokument ist das Element document von eCH-0039 (contentType, documentType). So sind auch «Eingereichte Unterlagen Mutter/Vater», «Beilagedokumente» und «Belege» zugeordnet. Geprüft: Das Element steht wörtlich im Katalog, eCH-0039 ist genehmigt.",
+   "feld": "Im Brief aufgeführte Unterlagen",
+   "standard": "eCH-0039",
+   "element": "document"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Zusammengesetztes Feld mit Familienname, Vorname, Mädchenfamilienname, Geburtsdatum/-ort, Wohnadresse in der Schweiz und Staatsangehörigkeit. Der Container eCH-0011 person (reportedPersonType, personType) umfasst nameData, birthData mit Geburtsort und nationalityData. eCH-0044 personIdentification enthält weder Geburtsort noch Staatsangehörigkeit. So ist es auch bei «Ehefrau»/«Ehemann» zugeordnet. Die Teilfelder werden einzeln beurteilt.",
+   "feld": "Gesuchsteller / in",
+   "standard": "eCH-0011",
+   "element": "person"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Amtlicher Familienname der gesuchstellenden Person: eCH-0044 officialName (personIdentificationType).",
+   "elternfeld": "Gesuchsteller / in",
+   "teilfeld": "Familiename",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Die Databank hat eCH-0044 firstName übernommen. Das ist der Vorname der gesuchstellenden Person, die Zuordnung stimmt.",
+   "elternfeld": "Gesuchsteller / in",
+   "teilfeld": "Vorname"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Gemeint ist der Name vor der Heirat (Ledigname): eCH-0044 originalName. So sind auch «Ledigname» und «Mädchenname» zugeordnet.",
+   "elternfeld": "Gesuchsteller / in",
+   "teilfeld": "Mädchenfamilienname",
+   "standard": "eCH-0044",
+   "element": "originalName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bis zum Ende gelesen verlangt das Teilfeld Geburtsdatum UND Geburtsort auf einer Zeile («/-ort»). eCH-0011 birthData (birthDataType) fasst dateOfBirth und placeOfBirth zusammen, so steht es in der XSD eCH-0011-9-0. Mit dateOfBirth allein, wie es bei anderen Formularen zugeordnet ist, ginge der Ort verloren.",
+   "elternfeld": "Gesuchsteller / in",
+   "teilfeld": "Geburtsdatum/-ort",
+   "standard": "eCH-0011",
+   "element": "birthData"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Postleitzahl und Wohnort in der Schweiz. Wegen «in CH» ist es die Schweizer Postleitzahl: eCH-0010 swissZipCode (addressInformationType). So sind auch «PLZ / Wohnort» und «PLZ / Ort» zugeordnet. Der Ort gehört zu town desselben Typs.",
+   "elternfeld": "Gesuchsteller / in",
+   "teilfeld": "PLZ / Wohnort in CH",
+   "standard": "eCH-0010",
+   "element": "swissZipCode"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Strasse der Wohnadresse in der Schweiz: eCH-0010 street (addressInformationType).",
+   "elternfeld": "Gesuchsteller / in",
+   "teilfeld": "Strasse",
+   "standard": "eCH-0010",
+   "element": "street"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Staatsangehörigkeit der gesuchstellenden Person: eCH-0011 nationalityData (personType). So ist es in der Databank durchgehend zugeordnet (29x).",
+   "elternfeld": "Gesuchsteller / in",
+   "teilfeld": "Staatsangehörigkeit",
+   "standard": "eCH-0011",
+   "element": "nationalityData"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ankreuzfeld weiblich/männlich. Das ist ein Codewert und keine Ja/Nein-Frage: eCH-0044 sex (personIdentificationType).",
+   "feld": "Geschlecht",
+   "standard": "eCH-0044",
+   "element": "sex"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Aktueller Zivilstand (ledig/verheiratet/getrennt/geschieden/verwitwet): eCH-0011 maritalStatus (maritalDataType). Hinweis: «getrennt» ist in eCH-0011 kein Zivilstandscode, sondern gehört zu separationData.",
+   "feld": "Zivilstand (Gesuchsteller / in)",
+   "standard": "eCH-0011",
+   "element": "maritalStatus"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Datum der Einreise einer ausländischen Person in die Schweiz: eCH-0011 entryDate (residencePermitDataType, Einreisedatum). Das ist ein Ereignisdatum und kein aktueller Wert. arrivalDate passt nicht, es bezeichnet den Zuzug in die Gemeinde.",
+   "feld": "Datum der Einreise (nur Ausländer/in)",
+   "standard": "eCH-0011",
+   "element": "entryDate"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Angekreuzt wird der Ausländerausweis L/B/C, den die gesuchstellende Person besitzt. Die Codeliste residencePermitType von eCH-0006 enthält die Kategorien 07/02/03 (geprüft in eCH-0006-3-0.xsd). So sind auch «Bewilligungsart», «Ausländerausweis» und «Aufenthaltsbewilligung Typ» zugeordnet. residencePermitCategory wäre gleichwertig, aber residencePermit ist die übliche Zuordnung.",
+   "feld": "Art der Bewilligung",
+   "standard": "eCH-0006",
+   "element": "residencePermit"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Die Databank hat eCH-0021 jobTitle (jobDataType, Berufsbezeichnung) übernommen. Die Zuordnung stimmt.",
+   "feld": "Beruf"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Die Databank hat eCH-0021 employer (occupationDataType) übernommen. Die Zuordnung stimmt.",
+   "feld": "Arbeitgeber"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Zusammengesetztes Feld zur künftigen Ehepartnerin bzw. zum künftigen Ehepartner: Namen, Geburtsdatum/-ort, Staatsangehörigkeit und Adresse im Ausland. Container ist eCH-0011 person, wie bei «Ehefrau»/«Ehemann». eCH-0021 maritalRelationship passt nicht, weil die Ehe noch nicht besteht.",
+   "feld": "Zukünftige/r Ehefrau / Ehemann",
+   "standard": "eCH-0011",
+   "element": "person"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Amtlicher Familienname der künftigen Ehepartnerin bzw. des künftigen Ehepartners: eCH-0044 officialName.",
+   "elternfeld": "Zukünftige/r Ehefrau / Ehemann",
+   "teilfeld": "Familiename",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname der künftigen Ehepartnerin bzw. des künftigen Ehepartners: eCH-0044 firstName.",
+   "elternfeld": "Zukünftige/r Ehefrau / Ehemann",
+   "teilfeld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name vor der Heirat (Ledigname): eCH-0044 originalName.",
+   "elternfeld": "Zukünftige/r Ehefrau / Ehemann",
+   "teilfeld": "Mädchenfamilienname",
+   "standard": "eCH-0044",
+   "element": "originalName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Geburtsdatum und Geburtsort stehen auf einer Zeile: eCH-0011 birthData (birthDataType mit dateOfBirth und placeOfBirth). Mit dateOfBirth allein ginge der Ort verloren.",
+   "elternfeld": "Zukünftige/r Ehefrau / Ehemann",
+   "teilfeld": "Geburtsdatum/-ort",
+   "standard": "eCH-0011",
+   "element": "birthData"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Staatsangehörigkeit: eCH-0011 nationalityData (personType), so wie es in der Databank üblich ist.",
+   "elternfeld": "Zukünftige/r Ehefrau / Ehemann",
+   "teilfeld": "Staatsangehörigkeit",
+   "standard": "eCH-0011",
+   "element": "nationalityData"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Postleitzahl und Wohnort im Ausland. Wegen «im Ausland» ist es die ausländische Postleitzahl: eCH-0010 foreignZipCode (addressInformationType) und nicht swissZipCode. So ist es auch bei «Wohnadresse im Ausland: PLZ / Ort» zugeordnet. Der Ort gehört zu town.",
+   "elternfeld": "Zukünftige/r Ehefrau / Ehemann",
+   "teilfeld": "PLZ / Wohnort im Ausland",
+   "standard": "eCH-0010",
+   "element": "foreignZipCode"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Strasse der Wohnadresse im Ausland: eCH-0010 street (addressInformationType).",
+   "elternfeld": "Zukünftige/r Ehefrau / Ehemann",
+   "teilfeld": "Strasse",
+   "standard": "eCH-0010",
+   "element": "street"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Aktueller Zivilstand (ledig/geschieden/verwitwet): eCH-0011 maritalStatus (maritalDataType).",
+   "feld": "Zivilstand (Zukünftige/r Ehefrau / Ehemann)",
+   "standard": "eCH-0011",
+   "element": "maritalStatus"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die Databank hat parentalRelationship übernommen, das passt nicht. Verlangt sind nur Name(n) und Vorname(n) der Mutter. Das bildet eCH-0021 als nameOfParent ab (birthAddonDataType, nameOfParentType: officialName, firstName, typeOfRelationship). parentalRelationship beschreibt die Beziehung zu einer identifizierten Person mit Adresse und Sorgerecht, wie bei den Formularen 289/546, wo Geburtsdatum, Heimatort und Wohnort verlangt werden. Gleich gestaltet ist Formular 497 desselben Amts, dort sind «Mutter: Name(n)/Vorname(n)» nameOfParent-Teilen zugeordnet.",
+   "feld": "Mutter",
+   "standard": "eCH-0021",
+   "element": "nameOfParent"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Familienname der Mutter: officialName in nameOfParentType (eCH-0021), wie bei «Eltern / Mutter: Name(n)» auf Formular 497.",
+   "elternfeld": "Mutter",
+   "teilfeld": "Name(n)",
+   "standard": "eCH-0021",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname(n) der Mutter: firstName in nameOfParentType (eCH-0021), wie auf Formular 497.",
+   "elternfeld": "Mutter",
+   "teilfeld": "Vorname(n)",
+   "standard": "eCH-0021",
+   "element": "firstName"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die Databank hat parentalRelationship übernommen, das passt nicht. Verlangt sind nur Name(n) und Vorname(n) des Vaters: eCH-0021 nameOfParent (nameOfParentType). parentalRelationship beschreibt die Beziehung zu einer identifizierten Person mit Sorgerecht und Adresse. Formular 497 desselben Amts ist gleich zugeordnet.",
+   "feld": "Vater",
+   "standard": "eCH-0021",
+   "element": "nameOfParent"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Familienname des Vaters: officialName in nameOfParentType (eCH-0021).",
+   "elternfeld": "Vater",
+   "teilfeld": "Name(n)",
+   "standard": "eCH-0021",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname(n) des Vaters: firstName in nameOfParentType (eCH-0021).",
+   "elternfeld": "Vater",
+   "teilfeld": "Vorname(n)",
+   "standard": "eCH-0021",
+   "element": "firstName"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ja/Nein-Frage zu Vorstrafen, deshalb kein Wert-Element. Das Thema deckt der Basis-Datenkatalog Polizei und Justiz eCH-0051 ab (Genehmigt, ohne Element-Katalog, n_elements=0). So ist auch «Vorstrafen» auf den Formularen 34 und 497 zugeordnet.",
+   "feld": "Bestehen Vorstrafen?",
+   "standard": "eCH-0051",
+   "element": ""
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ja/Nein-Frage zu einem hängigen Strafverfahren, deshalb kein Wert-Element. Standard ist eCH-0051 (Genehmigt, 0 Elemente), wie bei «Hängiges Strafverfahren» auf den Formularen 214/216/220/497.",
+   "feld": "Ist ein Strafverfahren hängig?",
+   "standard": "eCH-0051",
+   "element": ""
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Freitext-Bemerkung. Die Databank hat kein_standard übernommen, das stimmt (84x so geprüft). eCH-0039 comment und eCH-0058 comment sind Metadaten zu einem Dokument bzw. einer Meldung, keine Bemerkung der gesuchstellenden Person.",
+   "feld": "Bemerkungen"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist die schweizerische Auslandsvertretung (Botschaft/Konsulat). Im ganzen Katalog gesucht: Elementnamen und Kontexte mit embass/consul/diplomat/visa/mission/representation/abroad, Standardtitel mit Ausland/Vertretung/Visum/Migration/Konsul/Zivilstand, die XSDs nach vertretung/embassy/consul. Gefunden wurden nur eCH-0045/0228 swissAbroad (Auslandschweizer als Stimmberechtigte), eCH-0136 officeType (Zivilstandsämter des Heimatorts), eCH-0223 (Einwohnerdienst–Migrationsamt, ohne Vertretung) und Stellvertreter-Personen (eCH-0119 representativePerson, eCH-0278 contactAndRepresentation). Keines davon ist eine diplomatische Vertretung. So ist auch «Schweizer Vertretung für Visumsabholung» auf Formular 497 beurteilt.",
+   "feld": "CH-Vertretung"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Ort und Datum der Unterzeichnung. Die Databank hat eCH-0119 locationAndDate übernommen. Das ist das einzige Katalog-Element für diese kombinierte Angabe und ist 19x so geprüft.",
+   "feld": "Ort, Datum"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Die Databank hat kein_standard übernommen, das stimmt (46x so geprüft). locationAndDate ist ein einziger String ohne Teile. Kein Element im Katalog bezeichnet nur den Ort der Unterzeichnung (gesucht: sign*, location*). eCH-0010 town ist ein Adressteil.",
+   "elternfeld": "Ort, Datum",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "Die Databank hat kein_standard übernommen, das stimmt (46x so geprüft). Für das Datum der Unterzeichnung gibt es im Katalog kein Element. eCH-0039 openingDate und eCH-0058 messageDate bedeuten etwas anderes.",
+   "elternfeld": "Ort, Datum",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Eigenhändige Unterschrift. Im ganzen Katalog nach *sign* gesucht. Gefunden wurden nur eCH-0039 signer (Metadatum zum Dokument) und eCH-0260 signatures (Ja/Nein-Bestätigungen im Lehrvertrag). Keines davon ist die Unterschrift selbst. So sind auch die anderen Unterschriftsfelder beurteilt (98x kein_standard).",
+   "feld": "Unterschrift Gesuchsteller/in"
+  }
+ ]
+}

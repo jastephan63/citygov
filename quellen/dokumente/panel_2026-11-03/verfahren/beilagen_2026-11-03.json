@@ -1,0 +1,365 @@
+{
+ "hinweis": "Panel 2026-11-03 (Zweitprüfung angewendet): Beilagen je Formular der Online-Übernahme",
+ "beilagen": [
+  {
+   "form_id": 582,
+   "bezeichnung": "im Brief aufgeführten Unterlagen",
+   "data_field_id": 7304,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "unbekannt",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 585,
+   "bezeichnung": "im Merkblatt Aufrechterhaltung genannten Beilagen",
+   "data_field_id": 7383,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "unbekannt",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 585,
+   "bezeichnung": "Belege",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "bei Grund Militärdienst",
+   "halter": "unbekannt",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 585,
+   "bezeichnung": "Immatrikulationsbestätigung, Bescheinigung der Lehranstalt",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "bei Studium, Sprachaufenthalt oder Auslandaufenthalt zu sonstigen Ausbildungszwecken",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 585,
+   "bezeichnung": "Arbeitsvertrag",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "bei Arbeitseinsatz für einen schweizerischen Arbeitgeber im Ausland",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 585,
+   "bezeichnung": "Arztzeugnis",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "bei besonderen medizinischen Gründen",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 585,
+   "bezeichnung": "separatem Schreiben",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "bei anderen Gründen (detaillierte Darlegung der Gründe)",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 585,
+   "bezeichnung": "allfällige Belege",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "bei anderen Gründen, soweit Belege vorhanden",
+   "halter": "unbekannt",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 497,
+   "bezeichnung": "Zusatzformular A2",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "bei Gesuch für Familiennachzug",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 497,
+   "bezeichnung": "Ausführliches Begründungsschreiben durch den Arbeitgeber für den Bedarf einer ausländischen Arbeitskraft",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "bei Erwerbstätigkeit; Anforderungen laut DVSH je nach Herkunftsland (EU/EFTA oder Drittstaaten) und Bewilligungstyp",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 497,
+   "bezeichnung": "Kopie des gültigen Reisepasses",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 497,
+   "bezeichnung": "Arbeitsvertrag",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "bei Erwerbstätigkeit; Anforderungen laut DVSH je nach Herkunftsland (EU/EFTA oder Drittstaaten) und Bewilligungstyp",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 497,
+   "bezeichnung": "Lebenslauf (Ausbildung und bisherige Berufsausbildung und Berufserfahrung)",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "bei Erwerbstätigkeit; Anforderungen laut DVSH je nach Herkunftsland (EU/EFTA oder Drittstaaten) und Bewilligungstyp",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 497,
+   "bezeichnung": "Diplom(e)",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "bei Erwerbstätigkeit; Anforderungen laut DVSH je nach Herkunftsland (EU/EFTA oder Drittstaaten) und Bewilligungstyp",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 497,
+   "bezeichnung": "Zeugnis(se)",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "bei Erwerbstätigkeit; Anforderungen laut DVSH je nach Herkunftsland (EU/EFTA oder Drittstaaten) und Bewilligungstyp",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 497,
+   "bezeichnung": "Nachweis erfolgloser Suchbemühungen um eine hochqualifizierte Arbeitskraft im Inland",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "bei Erwerbstätigkeit; Anforderungen laut DVSH je nach Herkunftsland (EU/EFTA oder Drittstaaten) und Bewilligungstyp",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 497,
+   "bezeichnung": "Aktueller Strafregisterauszug (USA = FBI-Auszug)",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "unbekannt",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 497,
+   "bezeichnung": "Nachweis über eine bedarfsgerechte Wohnung",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "bei Erwerbstätigkeit; Anforderungen laut DVSH je nach Herkunftsland (EU/EFTA oder Drittstaaten) und Bewilligungstyp",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 497,
+   "bezeichnung": "Businessplan",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "nur bei selbständiger Erwerbstätigkeit, vor Beginn der selbständigen Tätigkeit",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 497,
+   "bezeichnung": "Steuerfaktoren",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "bei Verlängerung bei selbständiger Erwerbstätigkeit",
+   "halter": "steuerverwaltung",
+   "fetchable": true,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 497,
+   "bezeichnung": "Bilanz und Geschäftsbericht",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "bei Verlängerung bei selbständiger Erwerbstätigkeit",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "dvsh"
+  },
+  {
+   "form_id": 506,
+   "bezeichnung": "Verlustmeldung der Polizei",
+   "data_field_id": 7400,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "kanton_andere",
+   "fetchable": true,
+   "source": "formular"
+  },
+  {
+   "form_id": 507,
+   "bezeichnung": "Kopie des gültigen Reisepasses mit dem geänderten Namen/geänderter Nationalität",
+   "data_field_id": 5961,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 508,
+   "bezeichnung": "Ausländerausweis im Original/Verlustmeldung",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "bund",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 508,
+   "bezeichnung": "Pass/ID(genügt nur bei Staatsangehörigen der EU/EFTA)/Bestätigung vom Konsulat",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 508,
+   "bezeichnung": "Immatrikulationsbestätigung",
+   "data_field_id": 7401,
+   "obligatorium": "bedingt",
+   "bedingung": "Bei Aufenthaltszweck Student(in) (bei Erwerbstätigen und bei Nichterwerbstätigen): «Immatrikulationsbestätigung beilegen»",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 508,
+   "bezeichnung": "Nachweis der finanziellen Situation",
+   "data_field_id": 5985,
+   "obligatorium": "bedingt",
+   "bedingung": "Für Nichterwerbstätige, «wenn einer der obenstehenden Punkte» (Aufenthaltszweck Nichterwerbstätige) zutrifft",
+   "halter": "unbekannt",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 511,
+   "bezeichnung": "Ausländerausweis im Original/Verlustmeldung",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "bund",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 511,
+   "bezeichnung": "Pass/ID(genügt nur bei Staatsangehörigen der EU/EFTA)/Bestätigung vom Konsulat",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "falls vorhanden (lesbare Kopie des gültigen Passes)",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 512,
+   "bezeichnung": "Pass/ID(genügt nur bei Staatsangehörigen der EU/EFTA)/Bestätigung vom Konsulat",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 512,
+   "bezeichnung": "Ausländerausweis im Original/Verlustmeldung",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "bund",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 512,
+   "bezeichnung": "Immatrikulationsbestätigung",
+   "data_field_id": 7407,
+   "obligatorium": "bedingt",
+   "bedingung": "wenn Student(in) angekreuzt ist (unter «Für Erwerbstätige» oder «Für Nichterwerbstätige»): «Student(in) (Immatrikulationsbestätigung beilegen)»",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 512,
+   "bezeichnung": "Nachweis der finanziellen Situation",
+   "data_field_id": 6093,
+   "obligatorium": "bedingt",
+   "bedingung": "Für Nichterwerbstätige, «wenn einer der obenstehenden Punkte:» angekreuzt ist; als Nachweis genannt: Rentenbescheinigung, Sozialleistungen, Vermögensnachweise, Abrechnung Arbeitslosenkasse, Gehaltsabrechnung, usw.",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 513,
+   "bezeichnung": "Ausländerausweis im Original/Verlustmeldung",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "kanton_andere",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 513,
+   "bezeichnung": "Pass/ID(genügt nur bei Staatsangehörigen der EU/EFTA)/Bestätigung vom Konsulat",
+   "data_field_id": null,
+   "obligatorium": "zwingend",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 513,
+   "bezeichnung": "Einsatzvertrag",
+   "data_field_id": 7410,
+   "obligatorium": "bedingt",
+   "bedingung": "Wenn als jetziger Aufenthaltszweck «Private Arbeitsvermittlung und Personalverleih» angekreuzt ist (Formular: «Einsatzvertrag beilegen»)",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  }
+ ]
+}

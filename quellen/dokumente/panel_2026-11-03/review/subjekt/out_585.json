@@ -1,0 +1,46 @@
+{
+ "urteile": [
+  {
+   "id": 7373,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Kopf des Formulars: ZEMIS-Nr., kant. Ref., Name(n), Vorname(n), Geb.-Dat. und Staatsangehörigkeit der gesuchstellenden ausländischen Person mit Niederlassungsbewilligung. Das ist eindeutig eine einzelne natürliche Person."
+  },
+  {
+   "id": 7374,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Zivilstand der gesuchstellenden Person (ledig, verheiratet, eingetragene Partnerschaft usw.). Einen Personenstand hat nur eine natürliche Person."
+  },
+  {
+   "id": 7377,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Abreisetag der gesuchstellenden Person für ihren eigenen Auslandaufenthalt unter «Angaben zum Auslandaufenthalt»."
+  },
+  {
+   "id": 7379,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Eigene Anschrift der gesuchstellenden Person während des Auslandaufenthalts. Der c/o-Zusatz gehört zu ihrer Postadresse, und anders als bei Formularen mit Arbeitgeber-Teilfeld wird keine Firma verlangt. Gleich beurteilt wie «Wohnadresse im Ausland» in der Databank."
+  },
+  {
+   "id": 7380,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Das Formular verlangt «Vorname und Name» mit Strasse und Wohnort, also eine bestimmte Privatperson als Kontakt in der Schweiz und keine Firma. Dass es eine Drittperson ist und nicht die gesuchstellende, regelt die Parteien-Ebene."
+  },
+  {
+   "id": 7381,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Vorname, Name und Geburtsdatum des mitwegziehenden Ehepartners oder eingetragenen Partners unter «Wegziehende Familienangehörige». Das ist eine natürliche Person."
+  },
+  {
+   "id": 7382,
+   "urteil": "bestaetigt",
+   "subjekt": "natuerliche_person",
+   "grund": "Vorname, Name und Geburtsdatum der mitreisenden minderjährigen Kinder unter elterlicher Sorge, je Kind eine Zeile. Es sind natürliche Personen, wie bei den übrigen Kinder-Feldern der Databank."
+  }
+ ]
+}

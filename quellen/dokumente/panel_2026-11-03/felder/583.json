@@ -1,0 +1,43 @@
+{
+ "form_id": 583,
+ "data_fields": [
+  {
+   "name": "Zukünftige/r Ehefrau / Ehemann",
+   "definition": "Personalien und Wohnadresse im Ausland der zukünftigen Ehefrau bzw. des zukünftigen Ehemanns, für deren bzw. dessen Aufenthaltskosten und Rückreise die unterzeichnende Person garantiert.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Familienname",
+    "Vorname",
+    "Geburtsdatum",
+    "Staatsangehörigkeit",
+    "PLZ / Wohnort im Ausland",
+    "Strasse"
+   ],
+   "format": "Geburtsdatum: ____.____.____ (drei Eingabefelder; AcroForm Geburtsdatum_tag / Geburtsdatum_mt / Geburtsdatum_jarh)"
+  },
+  {
+   "name": "Ort, Datum",
+   "definition": "Ort und Kalenderdatum, an dem die unterzeichnende Person die Garantieerklärung abgibt.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Ort",
+    "Datum"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Unterschrift Gesuchsteller/in",
+   "definition": "Unterschrift der Gesuchstellerin bzw. des Gesuchstellers, mit der sie bzw. er die Übernahme aller Aufenthalts- und Rückreisekosten garantiert und die Schuld gegenüber dem Kanton Schaffhausen anerkennt.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  }
+ ],
+ "hinweis": "Ich habe das Formular Zeile für Zeile mit dem Original-PDF abgeglichen (1 Seite, 9 AcroForm-Felder). Die Feldmenge, die Reihenfolge, die Namen, die Typen und die Pflichtangaben stimmen. Korrigiert habe ich nur eines: Das Format von Geburtsdatum war «__.__.____ (Tag.Monat.Jahr …)». Das Formular druckt aber nur drei gleich lange Leerfelder mit Punkten dazwischen. Weder «Tag.Monat.Jahr» noch Ziffernlängen 2-2-4 stehen darauf. Neu steht deshalb das gedruckte Muster im Format, mit den AcroForm-Namen Geburtsdatum_tag, Geburtsdatum_mt und Geburtsdatum_jarh als Beleg. Geprüft und gleich gelassen: (1) In der Textfassung steht verstümmelt «Familienname; Vorname:». Im PDF sind das zwei getrennte Beschriftungen mit je einer Linie, die Aufteilung ist also richtig. (2) «PLZ / Wohnort im Ausland» ist mit einer einzigen Linie gedruckt und bleibt darum ein Teilfeld. Hinweis: Die Beschriftung bündelt zwei Angaben, PLZ und Wohnort, auf einer Linie. Das ist ein Punkt des Formulars, keine Korrektur der Databank. (3) «(Ort, Datum)» ist eine Linie, nennt aber zwei Teile. Daher bleibt es ein Composite mit Ort und Datum. (4) Es gibt nur eine Unterschriftslinie. Eine zweite Person, die unterschreibt, ist nicht vorgesehen. (5) Es gibt keine Beilagen-Checkliste, keine Ankreuzfelder und keinen Amtsteil. Keine Felder der Person sind: der Briefkopf und die Empfängeradresse (Migrationsamt und Passbüro, Büro Einreise, Mühlentalstrasse 105, 8200 Schaffhausen), die Garantieformel «Ich garantiere hiermit …» und die Schuldanerkennung mit Verweis auf Art. 82 Abs. 1 SchKG. Auffällig, aber nicht als Feld erfunden: Das Formular fragt nach keiner Angabe zur garantierenden Person selbst (Name, Adresse, Geburtsdatum). Zu ihr gibt es nur die Unterschrift. Damit ist die Person, die unterschreibt, aus dem Formular allein nicht bestimmbar, obwohl ihre Schuldanerkennung nach Art. 82 SchKG gelten soll. Diese Lücke liegt beim Formular selbst."
+}

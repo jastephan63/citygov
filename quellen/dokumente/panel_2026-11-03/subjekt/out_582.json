@@ -1,0 +1,34 @@
+{
+ "verdicts": [
+  {
+   "id": 7305,
+   "subjekt": "natuerliche_person",
+   "grund": "Block «Gesuchsteller / in» mit Familienname, Vorname, Mädchenfamilienname, Geburtsdatum/-ort, Wohnort in CH und Staatsangehörigkeit. Das sind die Personalien genau einer natürlichen Person."
+  },
+  {
+   "id": 7306,
+   "subjekt": "natuerliche_person",
+   "grund": "Ankreuzfeld weiblich/männlich im Block «Gesuchsteller / in». Es betrifft das Geschlecht genau einer natürlichen Person."
+  },
+  {
+   "id": 7307,
+   "subjekt": "natuerliche_person",
+   "grund": "Zivilstand (ledig, verheiratet, getrennt, geschieden, verwitwet) im Block «Gesuchsteller / in». Das ist eine Personenangabe genau einer natürlichen Person."
+  },
+  {
+   "id": 7308,
+   "subjekt": "natuerliche_person",
+   "grund": "Im Block «Gesuchsteller / in» steht «Datum der Einreise (nur Ausländer/in)». Gemeint ist das Einreisedatum der gesuchstellenden Person, also eine Angabe genau einer natürlichen Person."
+  },
+  {
+   "id": 7312,
+   "subjekt": "natuerliche_person",
+   "grund": "Block «Zukünftige/r Ehefrau / Ehemann» mit Familienname, Vorname, Mädchenfamilienname, Geburtsdatum/-ort, Staatsangehörigkeit und Wohnadresse im Ausland. Das sind die Personalien genau einer natürlichen Person, nämlich der Verlobten bzw. des Verlobten."
+  },
+  {
+   "id": 7313,
+   "subjekt": "natuerliche_person",
+   "grund": "Zivilstand (ledig, geschieden, verwitwet) im Block «Zukünftige/r Ehefrau / Ehemann». Das ist eine Personenangabe genau einer natürlichen Person."
+  }
+ ]
+}

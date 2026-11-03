@@ -1,0 +1,216 @@
+{
+ "form_id": 582,
+ "data_fields": [
+  {
+   "name": "Im Brief aufgeführte Unterlagen",
+   "definition": "Die Unterlagen, die im Brief aufgeführt sind, und die zusammen mit diesem Formular beim Migrationsamt und Passbüro Schaffhausen abzugeben sind; das Formular nennt den Brief nicht näher.",
+   "data_type": "attachment",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Gesuchsteller / in",
+   "definition": "Personalien, Wohnadresse in der Schweiz und Staatsangehörigkeit der gesuchstellenden Person.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Familiename",
+    "Vorname",
+    "Mädchenfamilienname",
+    "Geburtsdatum/-ort",
+    "PLZ / Wohnort in CH",
+    "Strasse",
+    "Staatsangehörigkeit"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Geschlecht",
+   "definition": "Geschlecht der gesuchstellenden Person.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "weiblich",
+    "männlich"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Zivilstand (Gesuchsteller / in)",
+   "definition": "Zivilstand der gesuchstellenden Person.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "ledig",
+    "verheiratet",
+    "getrennt",
+    "geschieden",
+    "verwitwet"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Datum der Einreise (nur Ausländer/in)",
+   "definition": "Datum, an dem die gesuchstellende Person in die Schweiz eingereist ist; nur von ausländischen Gesuchstellenden anzugeben.",
+   "data_type": "date",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Art der Bewilligung",
+   "definition": "Art der ausländerrechtlichen Bewilligung, welche die gesuchstellende Person besitzt.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "L",
+    "B",
+    "C"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Beruf",
+   "definition": "Beruf der gesuchstellenden Person.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Arbeitgeber",
+   "definition": "Arbeitgeber der gesuchstellenden Person.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Zukünftige/r Ehefrau / Ehemann",
+   "definition": "Personalien, Staatsangehörigkeit und Wohnadresse im Ausland der zukünftigen Ehefrau bzw. des zukünftigen Ehemanns.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Familiename",
+    "Vorname",
+    "Mädchenfamilienname",
+    "Geburtsdatum/-ort",
+    "Staatsangehörigkeit",
+    "PLZ / Wohnort im Ausland",
+    "Strasse"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Zivilstand (Zukünftige/r Ehefrau / Ehemann)",
+   "definition": "Zivilstand der zukünftigen Ehefrau bzw. des zukünftigen Ehemanns.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "ledig",
+    "geschieden",
+    "verwitwet"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Mutter",
+   "definition": "Name(n) und Vorname(n) der Mutter; die Angabe steht im Block der zukünftigen Ehefrau / des zukünftigen Ehemanns und betrifft deren bzw. dessen Mutter.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name(n)",
+    "Vorname(n)"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Vater",
+   "definition": "Name(n) und Vorname(n) des Vaters; die Angabe steht im Block der zukünftigen Ehefrau / des zukünftigen Ehemanns und betrifft deren bzw. dessen Vater.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name(n)",
+    "Vorname(n)"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Bestehen Vorstrafen?",
+   "definition": "Angabe, ob Vorstrafen bestehen; das Formular nennt nicht, auf welche der beiden Personen sich die Frage bezieht.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "Ja",
+    "Nein"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ist ein Strafverfahren hängig?",
+   "definition": "Angabe, ob ein Strafverfahren hängig ist; das Formular nennt nicht, auf welche der beiden Personen sich die Frage bezieht.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "Ja",
+    "Nein"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Bemerkungen",
+   "definition": "Freie Bemerkungen der gesuchstellenden Person zum Gesuch.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "CH-Vertretung",
+   "definition": "Angabe der schweizerischen Vertretung im Ausland, die für das Gesuch genannt wird.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Ort, Datum",
+   "definition": "Ort und Datum der Unterzeichnung des Gesuchs.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Ort",
+    "Datum"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Unterschrift Gesuchsteller/in",
+   "definition": "Unterschrift der gesuchstellenden Person unter der Erklärung über vollständige und wahrheitsgetreue Angaben.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  }
+ ],
+ "hinweis": "Ich habe das Formular (eine Seite, Scan mit AcroForm-Feldern) Zeile für Zeile mit dem Original-PDF verglichen. Es gibt nur eine Korrektur: Die Definition von «Im Brief aufgeführte Unterlagen» nannte als Absender des Briefs das Migrationsamt. Das Formular nennt aber keinen Absender. Die Definition sagt jetzt nur noch, was gedruckt ist. Sonst ist nichts geändert: Alle anderen 17 Felder sind unverändert übernommen, und es fehlt keine Angabe. Es gibt nur eine Unterschriftszeile (Gesuchsteller/in), keine Beilagen-Checkliste und kein Feld «Vom Amt auszufüllen». Bewusst so belassen: (1) «Geburtsdatum/-ort», «PLZ / Wohnort in CH» und «PLZ / Wohnort im Ausland» sind auf dem Formular je eine einzige Zeile. Sie bleiben deshalb je ein Teil, wie in der Databank üblich (z. B. Formular 221 «Geburtsdatum/-ort», «PLZ/Wohnort» in vielen Formularen). Ein Aufteilen würde Teile erfinden; ob das Formular die Angaben trennen sollte, gehört in die Begriffe-Prüfung «aufteilen». (2) «Bestehen Vorstrafen?» und «Ist ein Strafverfahren hängig?» haben je zwei Kästchen (Ja/Nein). Sie bleiben enum, wie bei den Formularen 542–581 (z. B. 572, 579). (3) Bei Vorstrafen und Strafverfahren nennt das Formular nicht, ob die gesuchstellende Person oder die zukünftige Ehefrau bzw. der zukünftige Ehemann gemeint ist. Die Definitionen sagen das offen. (4) «Datum der Einreise (nur Ausländer/in)» und «Art der Bewilligung» gelten nur unter einer Bedingung, sind aber nicht als freiwillig markiert. Sie bleiben deshalb Pflicht. (5) Mutter und Vater stehen im Block der zukünftigen Ehefrau bzw. des zukünftigen Ehemanns. Keine Angaben der Person sind: der Titelzusatz «(L - Bewilligung für max. 6 Monate)», der Hinweis zur Abgabe beim Migrationsamt und Passbüro Schaffhausen und die gedruckte Erklärung über vollständige und wahrheitsgetreue Angaben (mit dem Hinweis auf den möglichen Widerruf). Das Formular 582 ist in der Databank noch nicht erfasst."
+}

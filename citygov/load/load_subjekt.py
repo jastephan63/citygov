@@ -13,7 +13,12 @@ person's datum:
 
 Gate: id must be a field that currently carries a register-marked unit (the
 input set), verdict must use the vocabulary, reason present. 'gemischt' is the
-conservative answer and gets no mark. Idempotent. Staging -> validate -> swap.
+conservative answer and gets no mark. The derived party layer of stage B1
+(datenpunkt_partei / formular_partei, herkunft 'regel') of a Formular whose fields
+get a verdict is dropped: it was derived from the previous subjekt state, and
+`rollen.py ableiten` (in ./build.sh) derives it again; reviewed stage-B2 rows stay
+and must agree with the verdict (the gate of validate_db). Idempotent.
+Staging -> validate -> swap.
 
     python3 scripts/load_subjekt.py <dir-with-in_*.json-and-out_*.json>
 """
@@ -38,7 +43,7 @@ def main():
     for jf in glob.glob(os.path.join(src, "in_*.json")):
         asked |= {r["id"] for r in json.load(open(jf, encoding="utf-8"))}
     n = rejected = 0
-    counts = {}
+    counts, geaendert = {}, set()
     for jf in sorted(glob.glob(os.path.join(src, "out_*.json"))):
         for v in json.load(open(jf, encoding="utf-8")).get("verdicts", []):
             fid, sj, why = v.get("id"), v.get("subjekt"), (v.get("grund") or "").strip()
@@ -48,6 +53,12 @@ def main():
             c.execute("UPDATE data_field SET subjekt=? WHERE id=?", [sj, fid])
             counts[sj] = counts.get(sj, 0) + 1
             n += 1
+            geaendert.add(fid)
+    if geaendert and c.execute("SELECT 1 FROM sqlite_master WHERE name='datenpunkt_partei'").fetchone():
+        forms = {r[0] for r in c.execute(f"SELECT DISTINCT form_id FROM data_field WHERE id IN ({','.join(map(str, geaendert))})")}
+        for f in forms:
+            c.execute("DELETE FROM datenpunkt_partei WHERE form_id=? AND herkunft='regel'", [f])
+            c.execute("DELETE FROM formular_partei WHERE form_id=? AND herkunft='regel'", [f])
     c.commit()
     errs = validate(c)
     c.close()

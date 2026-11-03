@@ -21,8 +21,11 @@ The judgements come from dokument_urteil (load_dokument_urteile.py).
 A Formular on the live portal (forms[].live.stand):
   datei_live     the portal offers these very bytes (form.file_hash)
   inhalt_live    it offers a file of the same content (judged: gleiche_ausgabe)
+  aeltere_live   it offers an older edition than the databank holds (comes before online_live:
+                 the Dienststelle replaces it there)
   neuere_live    it offers a newer edition than the databank holds
-  aeltere_live   it offers an older edition than the databank holds
+  online_live    its button «Online erledigen» leads to an online form that is this
+                 Formular (reviewed: online_formular.gegenstueck_form_id, load_online.py)
   service_live   the service has a live page, but this Formular is not offered there
   nicht_live     the service has no page on the live portal
 """
@@ -86,6 +89,11 @@ def berechne(conn, services, dvsh_rows_by_service, shep_by_service):
     for p in (_zeilen(conn, "portal_service") if "portal_service" in have else []):
         if p["service_id"] is not None:
             portal_by_service.setdefault(p["service_id"], []).append(p)
+    # the documents the targets of «Online erledigen» link (migrationsamt.sh.ch pages)
+    online_by_service = {}
+    for d in (_zeilen(conn, "online_datei") if "online_datei" in have else []):
+        if d["service_id"] is not None and d["herkunft"] == "verlinkt":
+            online_by_service.setdefault(d["service_id"], []).append(d)
     urteile = {}
     if "dokument_urteil" in have:
         cols = [r[1] for r in conn.execute("PRAGMA table_info(dokument_urteil)")]
@@ -132,6 +140,8 @@ def berechne(conn, services, dvsh_rows_by_service, shep_by_service):
             # the sh.ch files the page links under «Weiterführende Informationen»
             for d in _liste(sp.get("datei_links")):
                 add(d.get("sha256"), "Live", d.get("label"), d.get("dateiname"), "begleitend", d.get("url"))
+        for d in online_by_service.get(s["id"], []):
+            add(d["sha256"], "Online", d.get("label"), d.get("dateiname"), "begleitend", d.get("url"))
         out = []
         for sha, it in items.items():
             stand, fid = _stand(sha, held, urteile)
@@ -189,7 +199,7 @@ def berechne(conn, services, dvsh_rows_by_service, shep_by_service):
     return abgleich
 
 
-LIVE_STAENDE = ["datei_live", "inhalt_live", "neuere_live", "aeltere_live", "service_live", "nicht_live"]
+LIVE_STAENDE = ["datei_live", "inhalt_live", "aeltere_live", "neuere_live", "online_live", "service_live", "nicht_live"]
 # a judged file of the portal that is an edition of a Formular -> its live state
 _URTEIL_LIVE = {"gleiche_ausgabe": "inhalt_live", "neue_ausgabe": "neuere_live", "aeltere_ausgabe": "aeltere_live"}
 
@@ -205,7 +215,7 @@ def live(conn, services, forms):
         for fm in forms:
             fm["live"] = None
         for s in services:
-            s["portal"] = None
+            s["portal"] = s["online"] = None
         return None
     file_hash = {r[0]: r[1] for r in conn.execute("SELECT id, file_hash FROM form")}
     held = set(file_hash.values())
@@ -240,13 +250,46 @@ def live(conn, services, forms):
         s["portal"] = [{"slug": p["slug"], "url": seite(p["slug"]), "titel": p.get("title"),
                         "aktualisiert": p.get("updated"), "zuordnung": p.get("zuordnung"),
                         "aktionen": [a for a in _liste(p.get("aktionen"))]} for p in P] or None
+    # the online forms behind «Online erledigen» (load_online.py) and the Formular each one is
+    of_rows = _zeilen(conn, "online_formular") if "online_formular" in have else []
+    of_seiten = {}
+    for r in (_zeilen(conn, "online_formular_seite") if "online_formular_seite" in have else []):
+        of_seiten.setdefault(r["formular_id"], []).append(r)
+    online_by_form, online_by_service = {}, {}
+    for o in of_rows:
+        S = of_seiten.get(o["id"], [])
+        e = {"id": o["id"], "name": o["name"], "system": o["system"], "start_url": o["start_url"],
+             "zugang": o["zugang"], "schritte": _liste_s(o["schritte"]), "n_felder_sichtbar": o["n_felder_sichtbar"],
+             "gegenstueck_art": o["gegenstueck_art"], "gegenstueck_form_id": o["gegenstueck_form_id"],
+             "gegenstueck_sha256": o["gegenstueck_sha256"], "beleg": o["beleg"],
+             "seiten": [{"slug": r["slug"], "seite": seite(r["slug"]), "via": r["via"]} for r in S]}
+        for r in S:
+            if r["service_id"] is not None:
+                online_by_service.setdefault(r["service_id"], []).append(e)
+        if o["gegenstueck_form_id"] is not None and S:
+            online_by_form.setdefault(o["gegenstueck_form_id"], []).append(
+                {"slug": S[0]["slug"], "seite": seite(S[0]["slug"]), "label": o["name"], "datei": o["start_url"],
+                 "wie": "Online-Formular"})
+    ziele = _zeilen(conn, "online_ziel") if "online_ziel" in have else []
+    ziel_by_service = {}
+    for z in ziele:
+        ziel_by_service.setdefault(z["service_id"], []).append(
+            {"slug": z["slug"], "url": z["url"], "art": z["art"], "befund": z["befund"]})
+    for s in services:
+        s["online"] = {"ziele": ziel_by_service.get(s["id"], []), "formulare": online_by_service.get(s["id"], [])} \
+            if s["id"] in ziel_by_service or s["id"] in online_by_service else None
     n = {k: 0 for k in LIVE_STAENDE}
     for fm in forms:
         sha = file_hash.get(fm["id"])
         if sha and sha in angebot:
             stand, wo = "datei_live", angebot[sha]
         elif fm["id"] in ausgabe:
+            # another edition on the portal comes first: an older one is the Dienststelle's to
+            # replace there, even when the online form is live too
             stand, wo = min(ausgabe[fm["id"]], key=lambda x: LIVE_STAENDE.index(x[0]))
+            wo = wo + online_by_form.get(fm["id"], [])
+        elif fm["id"] in online_by_form:
+            stand, wo = "online_live", online_by_form[fm["id"]]
         elif fm.get("service_id") in pages_by_service:
             stand, wo = "service_live", []
         else:
@@ -303,7 +346,28 @@ def live(conn, services, forms):
             "formulare": n, "n_formulare": len(forms),
             "dateien": len(files_live), "dateien_formular": len(files_live & held),
             "aktionen": dict(sorted(aktionen.items(), key=lambda x: -x[1])),
-            "vs_shep": vs, "auffaelligkeiten": auff}
+            "vs_shep": vs, "auffaelligkeiten": auff,
+            "online": {"ziele": len(ziele), "ziel_art": _zaehle(z["art"] for z in ziele),
+                       "formulare": len(of_rows), "gegenstueck": _zaehle(o["gegenstueck_art"] for o in of_rows),
+                       "zugang": _zaehle(o["zugang"] for o in of_rows),
+                       "defekt": [{"slug": z["slug"], "seite": seite(z["slug"]), "service_id": z["service_id"],
+                                   "url": z["url"], "befund": z["befund"]} for z in ziele if z["art"] == "defekt"]}
+            if ziele else None}
+
+
+def _liste_s(v):
+    try:
+        v = json.loads(v) if isinstance(v, str) else v
+    except Exception:
+        return []
+    return [x for x in (v or []) if isinstance(x, str)]
+
+
+def _zaehle(werte):
+    out = {}
+    for w in werte:
+        out[w] = out.get(w, 0) + 1
+    return dict(sorted(out.items(), key=lambda x: -x[1]))
 
 
 def pruefen(services, abgleich):
@@ -336,4 +400,8 @@ def pruefen_live(forms, portal):
         ist[st] += 1
     if ist != portal["formulare"]:
         err.append(f"quelldokumente: Live-Stände der Formulare {ist} statt {portal['formulare']}")
+    o = portal.get("online")
+    if o and (sum(o["gegenstueck"].values()) != o["formulare"] or sum(o["zugang"].values()) != o["formulare"]
+              or sum(o["ziel_art"].values()) != o["ziele"]):
+        err.append("quelldokumente: die Online-Formulare und -Ziele ergeben nicht ihre Zahl")
     return err

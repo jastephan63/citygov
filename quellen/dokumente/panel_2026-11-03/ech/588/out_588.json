@@ -1,0 +1,62 @@
+{
+ "hinweis": "eCH-Urteile Formular 588, Panel 2026-11-03, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-11-03/ech/588 --nur-offene=588",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Composite «u. ref.: Zemis …; SH …» with two parts. The AcroForm has two fields for it, Zemis_nr and SH, and both identify the person whose dossier the Migrationsamt holds. eCH-0044 (Genehmigt) has personIdentification (id 809, type personIdentificationType), which holds localPersonId and otherPersonId. The catalogue has no global element of the key-only type, so the composite takes this container, as the person composites with a ZEMIS part do (474 «Erwerbstätige Person», 585 «Personalien») and as forms 26, 132–137 and 237 do. eCH-0058 ourBusinessReferenceId is not used because both parts are person keys, not a business case reference. The row is currently empty.",
+   "feld": "u. ref.",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "The ZEMIS number is the federal (SEM) person number from a system outside the canton, not the canton's own key. Every ZEMIS field the databank has already mapped uses eCH-0044 otherPersonId in the context personIdentificationKeyOnlyType: field «ZEMIS-Nummer/ZEMIS-NR.» on forms 497 and 506–513, and part «ZEMIS Nr.» on form 474. The ZEMIS points on forms 584–587 are still unmapped. The element exists verbatim in eCH-0044. The part is currently unmapped.",
+   "elternfeld": "u. ref.",
+   "teilfeld": "Zemis",
+   "standard": "eCH-0044",
+   "element": "otherPersonId"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«SH» is the Schaffhausen Migrationsamt's own number for the person, the key of the local system. The same SH-Nummer next to the ZEMIS-Nummer on forms 508–513 is mapped to eCH-0044 localPersonId (context personIdentificationKeyOnlyType). The element exists verbatim. The part is currently unmapped.",
+   "elternfeld": "u. ref.",
+   "teilfeld": "SH",
+   "standard": "eCH-0044",
+   "element": "localPersonId"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "The place Schaffhausen is preprinted. The only fillable box is the AcroForm field «Datum» (data_type date), the calendar date on which the declaration is issued. In the corpus, date-only signing or issue fields take eCH-0058 messageDate (Genehmigt, headerType): «Datum» on forms 477–479, 492–494, 496, 498, 539, 545, 549, 563, 565 and 573–575. eCH-0119 locationAndDate is a combined place-and-date string and does not fit a date-only field. I searched the catalogue for a signature, issue or declaration date element (name LIKE signat/issue/declaration/consent/documentDate). It only has buildingPermitIssueDate and the eCH-0260 signature booleans, and none of them fits. The row is currently empty.",
+   "feld": "Schaffhausen, den",
+   "standard": "eCH-0058",
+   "element": "messageDate"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "This composite holds the declaring person's surname and first name, in two separate AcroForm boxes («Name», «Vorname»). Its parts carry eCH-0044 officialName and firstName, so the parent takes the container eCH-0044 personIdentification (id 809), as the identical composite «Name, Vorname» on form 78 does. The parent row is currently empty.",
+   "feld": "NAME Vorname",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "The value was propagated (ech_herkunft 'propagiert', element id 800, personIdentificationLightType). NAME is the official surname of the person releasing the doctors from confidentiality, so eCH-0044 officialName is right. Form 78 maps «Name» inside «Name, Vorname» the same way.",
+   "elternfeld": "NAME Vorname",
+   "teilfeld": "NAME"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "korrekt",
+   "grund": "The value was propagated (ech_herkunft 'propagiert', element id 801, personIdentificationLightType). Vorname is the same person's first name, so eCH-0044 firstName is right. Form 78 maps it the same way.",
+   "elternfeld": "NAME Vorname",
+   "teilfeld": "Vorname"
+  }
+ ]
+}

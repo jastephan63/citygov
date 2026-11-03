@@ -1,0 +1,232 @@
+{
+ "hinweis": "eCH-Urteile Formular 512, Panel 2026-11-03, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-11-03/ech/512 --nur-offene=512",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Amtlicher Name (Nachname) der gesuchstellenden Person: eCH-0044 officialName (personIdentificationLightType, baseNameType; im Katalog geprüft). Die gespeicherte Zuordnung ist dieselbe, aber nicht propagiert. Deshalb steht hier «besser» und nicht «korrekt».",
+   "feld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Vorname der gesuchstellenden Person: eCH-0044 firstName (personIdentificationLightType; im Katalog geprüft). Die gespeicherte Zuordnung ist dieselbe, aber nicht propagiert.",
+   "feld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ein grosser Adressblock ohne Teilfelder: Strasse, Hausnummer, PLZ und Ort stehen in einem Feld. Name und Vorname haben eigene Felder, deshalb passt nicht der ganze mailAddress/personMailAddress, sondern der Adress-Container eCH-0010 addressInformation (addressInformationType; im Katalog in mailAddressType und personMailAddressType geprüft). Mit Teilfeldern wären es street, houseNumber, swissZipCode und town. Die gespeicherte Zuordnung ist dieselbe, aber nicht propagiert.",
+   "feld": "Adresse",
+   "standard": "eCH-0010",
+   "element": "addressInformation"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Geburtsdatum der gesuchstellenden Person: eCH-0044 dateOfBirth (datePartiallyKnownType, personIdentificationLightType). Die gespeicherte Zuordnung ist dieselbe, aber nicht propagiert.",
+   "feld": "Geburtsdatum",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die ZEMIS-Nummer ist ein Personenidentifikator aus dem Bundessystem des SEM. Sie ist keine AHV-Nummer (also nicht vn) und keine Kennung der Behörde vor Ort. Das Element ist eCH-0044 otherPersonId (namedPersonIdType mit personIdCategory und personId). Der Korpus ordnet alle 10 ZEMIS-Felder so zu. Die gespeicherte Zuordnung ist dieselbe, aber nicht propagiert.",
+   "feld": "ZEMIS-Nummer",
+   "standard": "eCH-0044",
+   "element": "otherPersonId"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die SH-Nummer ist die eigene Personennummer des Migrationsamts Schaffhausen, also die Kennung der zuständigen Behörde. Das Element ist eCH-0044 localPersonId (namedPersonIdType). otherPersonId trägt auf diesem Formular schon die ZEMIS-Nummer. Der Korpus ordnet alle 6 SH-Nummern so zu. Die gespeicherte Zuordnung ist dieselbe, aber nicht propagiert.",
+   "feld": "SH-Nummer",
+   "standard": "eCH-0044",
+   "element": "localPersonId"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ein einziges Textfeld bündelt die Passnummer und die Gültigkeitsdauer. Auf 512 hat es keine Teilfelder, auf 508 schon. Gesucht im ganzen Katalog (290 Standards) nach Elementnamen und Kontexten mit passport, travel, identityDoc, identityCard, documentNumber, expir, validUntil/validTo, Ausweis, legitimation und pass*, ausserdem in den Titeln nach Identit, Pass, Reise und Ausweis. Gefunden: nameOnForeignPassport (eCH-0011/0045/0084/0173/0213; das ist der Name im Pass), eCH-0093 biometricDataExpiryDate (Ablauf der biometrischen Daten), eCH-0178 originalDocumentNumber (Grundbuchbeleg) und validTo/validUntil in anderen Fachgebieten (eCH-0135, 0235, 0261). Weder ein Element noch ein Container bildet ein Reisedokument mit Nummer und Gültigkeit ab, und für die Gültigkeitsdauer gibt es kein Element. Die Nummer allein könnte eCH-0044 otherPersonId tragen, wie es der Korpus bei «Pass- oder Identitätskartennummer» tut. Für das gebündelte Feld bleibt es bei kein_standard (Korpus: 6-mal). Empfehlung: das Feld aufteilen.",
+   "feld": "Nummer des Passes und Gültigkeitsdauer"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Aktuelle Staatsangehörigkeit der gesuchstellenden Person: eCH-0011 nationalityData (personType, nationalityDataType mit nationalityStatus und countryInfo). Das ist die einheitliche Praxis im Korpus (16 Felder und 84 Teilfelder). Die gespeicherte Zuordnung ist dieselbe, aber nicht propagiert.",
+   "feld": "Staatsangehörigkeit",
+   "standard": "eCH-0011",
+   "element": "nationalityData"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "E-Mail-Adresse der gesuchstellenden Person: eCH-0046 emailAddress (emailType, emailAddressType). Die gespeicherte Zuordnung ist dieselbe, aber nicht propagiert.",
+   "feld": "E-Mail-Adresse",
+   "standard": "eCH-0046",
+   "element": "emailAddress"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Telefonnummer der gesuchstellenden Person: eCH-0046 phoneNumber (phoneType, phoneNumberType). Die gespeicherte Zuordnung ist dieselbe, aber nicht propagiert.",
+   "feld": "Telefonnummer",
+   "standard": "eCH-0046",
+   "element": "phoneNumber"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Aktueller Zivilstand mit acht Ankreuzmöglichkeiten: eCH-0011 maritalStatus. Richtig ist der Kontext maritalDataType (maritalStatusType, Codes 1–7 und 9, im Codelisten-Katalog geprüft). Gespeichert ist maritalDataRestrictedDivorceType. Laut XSD eCH-0011-9-0 lässt dieser Kontext nur Code 4 (geschieden) zu, die Zeile muss also umgehängt werden. Hinweis zu den Werten: «Gerichtlich getrennt» ist in eCH-0011 kein Zivilstand, sondern separationData/separation Code 2. Beide Arten der aufgelösten Partnerschaft sind Code 7 mit cancelationReason.",
+   "feld": "Zivilstand",
+   "standard": "eCH-0011",
+   "element": "maritalStatus"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ein Ja/Nein-Kästchen: Ist die Ehe- oder Partnerperson Schweizer(in)? Ein Ja/Nein-Kästchen nimmt kein Wertelement. Die Staatsangehörigkeit der Partnerperson selbst (eCH-0011 nationalityData) erfragt das Formular nicht, das Kästchen ist nur eine daraus abgeleitete Aussage. eCH-0021 maritalRelationship/partner führt keine Staatsangehörigkeit. Gesucht im ganzen Katalog nach swiss, nationalit und citizen mit Ja/Nein-Typ. Gefunden: eCH-0155 swiss (Wahlkandidaten), eCH-0045/0228 swiss (Stimmregister, swissDomesticType), eCH-0278 isChildAndFamilyAllowanceSwiss und isbirthAndAdoptionAllowancesSwiss (Steuern) sowie eCH-0011/0020 nationalityStatus (ein Code, kein Ja/Nein). Keines davon ist diese Angabe. Korpus: 4-mal kein_standard.",
+   "feld": "Ehegatte oder Partner Schweizer(in)"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Das Kästchen bildet mit «Getrennter Haushalt seit» die AcroForm-Optionsgruppe 'wenn_verheiratet' (gem_haushalt/getr_haushalt). Gefragt ist also, ob die Ehegatten bzw. eingetragenen Partner zusammen oder getrennt leben. eCH-0011 bildet genau das mit dem Container separationData (maritalDataType, separationDataType) ab. Er enthält separation (Code 1 getrennt, Code 2 gerichtlich getrennt), separationValidFrom und separationValidTill; fehlt er, leben die Partner zusammen. Weil separationData ein Container und kein Wertelement ist, gilt die Ja/Nein-Regel nicht; das Wertelement separation nimmt das Kästchen nicht. householdID und typeOfHousehold beschreiben die Haushaltszugehörigkeit, nicht die eheliche Trennung. Die gespeicherte Zuordnung ist dieselbe, aber nicht propagiert.",
+   "feld": "Gemeinsamer Haushalt (zusammenwohnend)",
+   "standard": "eCH-0011",
+   "element": "separationData"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Bis zum Ende gelesen ist «… seit» das Datum, an dem die Trennungsperiode begonnen hat, also seit wann getrennte Haushalte bestehen. Das Element ist eCH-0011 separationValidFrom (separationDataType, generalDateType). Es ist kein Wert des aktuellen Zivilstands. Die gespeicherte Zuordnung ist dieselbe, aber nicht propagiert.",
+   "feld": "Getrennter Haushalt seit",
+   "standard": "eCH-0011",
+   "element": "separationValidFrom"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Gefragt ist die Adresse der Ehe- oder eingetragenen Partnerperson, im Block «Wenn verheiratet oder in eingetragener Partnerschaft». Das Element ist eCH-0021 address im Kontext maritalRelationshipType (personMailAddressType). Gespeichert ist das gleichnamige Element im Kontext guardianRelationshipType (Beistand/Vormund, mailAddressType). Das ist eine andere Rolle; die Zeile muss auf den Kontext maritalRelationshipType zeigen.",
+   "feld": "Adresse des Ehegatten oder Partners",
+   "standard": "eCH-0021",
+   "element": "address"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Gemeint ist das Datum, seit dem der in der unteren Gruppe angekreuzte Zivilstand besteht (geschieden, verwitwet oder aufgelöste Partnerschaft), also das Datum des Zivilstandsereignisses. Es ist der Beginn des aktuellen Standes und kein früherer Wert. Das Element ist eCH-0011 dateOfMaritalStatus, im Kontext maritalDataType statt des gespeicherten maritalDataRestrictedDivorceType. Dieser gilt nur für die Scheidung (Code 4). Hinweis: Bei «Gerichtlich getrennt» wäre es separationValidFrom; das Formular vermischt hier beides.",
+   "feld": "Seit",
+   "standard": "eCH-0011",
+   "element": "dateOfMaritalStatus"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Bis zum Ende gelesen fragt das Feld nach dem migrationsrechtlichen Aufenthaltszweck. Die Optionen sind Unselbständige oder Selbständige Erwerbstätigkeit, Erwerbstätigkeit ausserhalb der Schweiz, Beamter ausländischer Verwaltung, anerkannter Flüchtling, Schüler(in), Pflegekind (auch zur späteren Adoption) und Student(in). eCH-0021 kindOfEmployment (gespeichert) ist nur die Erwerbsart (jobDataType, Codes 0–4) und deckt allein «selbständig/unselbständig» ab. Flüchtling, Schüler, Pflegekind, Student und ausländische Verwaltung deckt es nicht. Gesucht im ganzen Katalog nach purpose, stay, refugee, asyl, student, foster, residence und permit. eCH-0006 residencePermit/Category/Ruling sind Bewilligungskategorien (Codelisten geprüft), kein Aufenthaltszweck. eCH-0223 (Einwohnerdienst–Migrationsamt) führt nur jobData, residencePermitData und convertToResidencePermit. eCH-0041 (Einreise mit Arbeitsbewilligung) hat keine Elemente. Für den Aufenthaltszweck gibt es kein Element (Korpus: «Aufenthaltszweck» kein_standard).",
+   "feld": "Jetziger Aufenthaltszweck (Erwerbstätige)"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ein beizulegendes Dokument (Datentyp attachment), verlangt bei «Student(in)» in beiden Blöcken. Wie für die andere Beilage dieses Formulars («Nachweis der finanziellen Situation beilegen») ist das Element eCH-0039 document (contentType, documentType). Der Zeile fehlte bisher jede Zuordnung.",
+   "feld": "Immatrikulationsbestätigung",
+   "standard": "eCH-0039",
+   "element": "document"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ein einziges mehrzeiliges Feld ohne Teilfelder, das Name und Postadresse des Betriebs enthält. Das gespeicherte eCH-0021 employer (occupationDataType) trägt nur den Namen; die Adresse wäre placeOfEmployer. Name und Postadresse einer Organisation zusammen deckt der Container eCH-0010 organisationMailAdress (organisationMailAddressType, Schreibweise wörtlich aus Katalog und XSD). So ist auch «Name und Adresse des Arbeitgebers» im Korpus zugeordnet.",
+   "feld": "Name und Adresse des Betriebes",
+   "standard": "eCH-0010",
+   "element": "organisationMailAdress"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Eine Wahl zwischen «unbefristet» und «befristet bis», also die Vertragsart. Gesucht im ganzen Katalog nach limited, fixedTerm, permanent, temporar, duration, indefinite, contract und term. Gefunden: eCH-0112 beginOfContract/endOfContract (Miete), eCH-0260 contractTerminationDate und contractFormType (Lehrvertrag, ohne Befristungsangabe) sowie eCH-0278 employmentEndDate (ein Datum). Kein Element bildet befristet/unbefristet ab. Das Enddatum hat sein eigenes Feld (eCH-0021 occupationValidTill). Korpus: 3-mal kein_standard.",
+   "feld": "Anstellungsdauer"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Das Datum, bis zu dem die befristete Anstellung dauert, also das Ende der Erwerbstätigkeit beim Betrieb. Das Element ist eCH-0021 occupationValidTill (occupationDataType, date). Die gespeicherte Zuordnung ist dieselbe, aber nicht propagiert.",
+   "feld": "Anstellungsdauer befristet bis",
+   "standard": "eCH-0021",
+   "element": "occupationValidTill"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Der Beschäftigungsgrad wird laut Klammer in Stunden pro Woche verlangt (Datentyp number). Das Element für Wochenstunden ist eCH-0260 hoursPerWeek (workingHoursType); der Korpus ordnet es 15-mal so zu. Ein Prozentpensum ginge an eCH-0278 employmentPercentage, verlangt sind hier aber Stunden. Die gespeicherte Zuordnung ist dieselbe, aber nicht propagiert.",
+   "feld": "Beschäftigungsgrad / Arbeitszeit (Stunden pro Woche)",
+   "standard": "eCH-0260",
+   "element": "hoursPerWeek"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Der Aufenthaltszweck bzw. die Lage der nichterwerbstätigen Person, mit 16 Optionen: Schüler/Student, Ausbildung im Ausland, medizinische Behandlung, Privataufenthalt, Flüchtling, Ehegatte eines Schweizerbürgers, Verbleib bei Ehegatten, Eltern oder Familie, Pflegekind, Rentner(in), Stellensuche, übrige und Sozialleistungen. Dieselbe Suche wie beim Aufenthaltszweck der Erwerbstätigen (purpose, stay, refugee, student, foster, pension, retire, unemploy, residence, permit). eCH-0021 kindOfEmployment ist nur die Erwerbsart, eCH-0006 kennt nur Bewilligungskategorien, und eCH-0278/0119 retirementPension bzw. unemploymentInsurance sind Einkünfte in der Steuererklärung. Kein Element bildet diese Angabe ab (Korpus: 3-mal kein_standard).",
+   "feld": "Für Nichterwerbstätige"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Das Datum, seit dem die Person eine Stelle sucht, also der Beginn einer Periode. Gesucht im ganzen Katalog nach unemploy, jobSeek, seeking, jobless und erwerbslos. Gefunden nur eCH-0278 und eCH-0119 unemploymentInsurance (Einkünfte aus der Arbeitslosenversicherung in der Steuererklärung). eCH-0021 kindOfEmployment hat kein Beginndatum, und occupationValidFrom/occupationValidTill sind Beginn und Ende einer Erwerbstätigkeit, nicht der Stellensuche. Kein Element passt (Korpus: 3-mal kein_standard).",
+   "feld": "Auf Stellensuche seit"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ein beizulegendes Dokument (z. B. Rentenbescheinigung, Vermögensnachweise, Abrechnung der Arbeitslosenkasse, Gehaltsabrechnung), Datentyp attachment. Das Element ist eCH-0039 document (contentType, documentType). Die gespeicherte Zuordnung ist dieselbe, aber nicht propagiert.",
+   "feld": "Nachweis der finanziellen Situation beilegen",
+   "standard": "eCH-0039",
+   "element": "document"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Eine Ankreuzliste (Datentyp multiselect) mit zwei Punkten: «Pass/ID/Bestätigung vom Konsulat» und «Ausländerausweis im Original/Verlustmeldung». Jedes Kästchen bestätigt nur, dass ein Dokument beiliegt, und nimmt kein Wertelement. eCH-0039 document und eCH-0058 attachment sind Container für die Dokumente selbst, nicht für die Bestätigung. Gesucht nach attachment, document, enclosure und checklist. Korpus: «Beilagen» als multiselect 36-mal kein_standard.",
+   "feld": "Beilagen"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Eine freie Bemerkung der gesuchstellenden Person; dort stehen auch die Detailangaben zu «Übrige nicht Erwerbstätigkeit». Das gespeicherte eCH-0058 comment (headerType) ist ein Kommentar im Meldungskopf und keine Aussage der Person. eCH-0039 und eCH-0147 comment(s) sind Kommentare zu Dossier, Dokument oder Header. remark/remarks in eCH-0129, 0131, 0132, 0178, 0209, 0211, 0229 und 0276 sind fachspezifisch (Bau, Vermessung, AHV-Nummer, Grundbuch, Transaktion, Bilanz). Gesucht im ganzen Katalog nach remark, comment, note und Bemerk. Korpus: «Bemerkungen» 84-mal kein_standard.",
+   "feld": "Bemerkungen des(r) Gesuchsteller(in)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Zusammengesetzte Angabe: Ort und Datum der Unterzeichnung des Gesuchs. Es gibt keinen Container dafür. eCH-0119 locationAndDate gibt es nur bei Beilagen der Steuererklärung (attachedFormsType, listOfSecuritiesType); für ein Gesuch des Migrationsamts gilt es nicht. eCH-0058 messageDate und eCH-0039 openingDate sind Daten zur Meldung bzw. zum Dossier. Gesucht im ganzen Katalog nach sign*, signat*, placeOf*, locationAndDate und *Date. Korpus: «Ort und Datum» 31-mal kein_standard.",
+   "feld": "Ort und Datum"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist der Ort, an dem unterschrieben wird, keine Wohn- oder Postadresse; eCH-0010 town bzw. locality passen deshalb nicht. Für den Unterzeichnungsort gibt es im ganzen Katalog kein Element (Suche nach sign*, placeOf* und location*; locationAndDate gilt nur in eCH-0119 für Beilagen der Steuererklärung). Korpus: das Teilfeld 27-mal kein_standard.",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist das Datum der Unterzeichnung. eCH-0058 messageDate (Erstellung der Meldung), eCH-0039 openingDate (Dossiereröffnung) und eCH-0039 signer (Kennung der unterzeichnenden Person) sind andere Angaben. Ein Element für das Unterschriftsdatum gibt es im ganzen Katalog nicht. Korpus: das Teilfeld 27-mal kein_standard.",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Die eigenhändige Unterschrift, mit der die Person bestätigt, dass die Angaben vollständig und wahr sind. Gesucht im ganzen Katalog nach sign, signat* und unterschr*. eCH-0039 signer ist nur die Kennung der Person, die ein GEVER-Dokument unterzeichnet. eCH-0260 signatures (contractFormType) gehört zum Lehrvertrag. Die Signatur-Standards eCH-0091, 0220, 0230, 0250, 0274 und 0282 haben keine Elemente (n_elements 0). Korpus: «Unterschrift…» 104-mal kein_standard.",
+   "feld": "Unterschrift des(r) Gesuchsteller(in)"
+  }
+ ]
+}

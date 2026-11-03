@@ -5,7 +5,10 @@ quellen/dokumente/uebernahme_<date>.json, built on the content verdicts of
 quellen/dokumente/urteile_<date>.json (load_dokument_urteile.py).
 
 The files come from the read-only harvests: ../DVSH/assets_<date>/<sha256> (the
-DVSH asset store and sh.ch sources) and ../SHEP/<date>/assets/<sha256>.<ext>.
+DVSH asset store and sh.ch sources), ../SHEP/<date>/assets/<sha256>.<ext>, or the
+path a plan entry names under «pfad» (relative to the folder that holds the
+repository, e.g. SHEP/live-2026-11-03/online/dateien/21.bin for a document the
+online targets of the live portal link).
 Each one is checked against its sha256 before it is copied into formulare/
 (NFC name; an existing file of that name is never overwritten).
 
@@ -44,8 +47,9 @@ def sha256(path):
         return hashlib.sha256(fh.read()).hexdigest()
 
 
-def locate(sha, abzug):
-    for p in [os.path.join(QUELLEN, "DVSH", f"assets_{abzug}", sha)] + \
+def locate(sha, abzug, pfad=None):
+    for p in ([os.path.normpath(os.path.join(QUELLEN, pfad))] if pfad else []) + \
+             [os.path.join(QUELLEN, "DVSH", f"assets_{abzug}", sha)] + \
              glob.glob(os.path.join(QUELLEN, "SHEP", abzug, "assets", sha + ".*")):
         if os.path.isfile(p) and sha256(p) == sha:
             return p
@@ -77,7 +81,7 @@ def main():
 
     def bring(e):
         """Copy the verified file into formulare/; returns the repository path."""
-        src = locate(e["sha256"], abzug)
+        src = locate(e["sha256"], abzug, e.get("pfad"))
         if not src:
             abort(f"{e['sha256'][:12]}: Datei nicht gefunden oder Prüfsumme falsch")
         name = unicodedata.normalize("NFC", e["datei"])

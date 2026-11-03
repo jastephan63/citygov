@@ -265,7 +265,10 @@ TON_MAP = {
     # a Formular on the live portal services.sh.ch: an older edition there is the
     # Dienststelle's to replace, a newer one the databank's to take over; «service_live»
     # and «nicht_live» are facts about the portal, not a task — they carry no tone
-    "live": {"datei_live": "ok", "inhalt_live": "ok", "neuere_live": "open", "aeltere_live": "act"},
+    "live": {"datei_live": "ok", "inhalt_live": "ok", "online_live": "ok", "neuere_live": "open", "aeltere_live": "act"},
+    # an online form behind «Online erledigen»: matched to a Formular = geklärt; a paper version
+    # found but not yet taken over, or none found = the databank's homework
+    "online": {"databank_formular": "ok", "databank_dvsh_eformular": "ok", "pdf_kandidat": "open", "keins": "open"},
 }
 
 # the files DVSH and SHEP offer per service: state against the databank
@@ -278,14 +281,30 @@ DOK_ART = {"formular": "Formular", "merkblatt": "Merkblatt", "wegleitung": "Wegl
 DOK_ROLLE = {"einreichung": "zum Einreichen", "begleitend": "begleitend"}
 # a Formular on the live portal services.sh.ch (quelldokumente.live)
 LIVE_STAND = {"datei_live": "live auf services.sh.ch", "inhalt_live": "live, gleicher Inhalt",
+              "online_live": "live als Online-Formular",
               "neuere_live": "live, neuere Ausgabe", "aeltere_live": "live, ältere Ausgabe",
               "service_live": "nur der Service live", "nicht_live": "nicht auf services.sh.ch"}
 LIVE_ERKL = {"datei_live": "Das Live-Portal bietet genau diese Datei an (gleicher Fingerabdruck).",
              "inhalt_live": "Das Live-Portal bietet eine andere Datei mit demselben Inhalt an (aus dem Inhalt beurteilt).",
+             "online_live": "Die Schaltfläche «Online erledigen» des Live-Portals führt zu einem Online-Formular, das dieses Formular ist (aus Feldern und Schritten beurteilt, zweitgeprüft).",
              "neuere_live": "Das Live-Portal bietet eine neuere Ausgabe an, als die Databank hält — die Databank übernimmt sie.",
              "aeltere_live": "Das Live-Portal bietet eine ältere Ausgabe an, als die Databank hält — die Dienststelle ersetzt sie dort.",
              "service_live": "Der Service hat eine Live-Seite, dieses Formular bietet sie aber nicht an (die Seite führt zum Beispiel «Online erledigen» oder eine andere Datei).",
              "nicht_live": "Der Service hat keine Seite auf dem Live-Portal services.sh.ch."}
+# the targets of «Online erledigen» and the online forms behind them (load_online.py)
+ONLINE_ZIEL = {"eformular": "Online-Formular", "eformular_beilagen": "Online-Formular nur für Beilagen",
+               "fremdformular": "Formular eines anderen Anbieters", "anmeldung": "Anwendung mit Anmeldung",
+               "rechner": "Rechner", "termin": "Terminbuchung", "portal": "Portal (Karte, Daten, Stellen)",
+               "info": "Informationsseite ohne Formular", "defekt": "Ziel nicht erreichbar", "anderes": "anderes Ziel"}
+ONLINE_ZUGANG = {"alle_seiten_sichtbar": "alle Seiten ohne Eingabe einsehbar",
+                 "teilweise_sichtbar": "nur die ersten Seiten ohne Eingabe einsehbar",
+                 "nur_beilagen": "verlangt nur Beilagen", "nur_einstieg": "nur die Einstiegsseite einsehbar"}
+ONLINE_GEGEN = {"databank_formular": "als Formular erfasst", "databank_dvsh_eformular": "als eFormular erfasst",
+                "pdf_kandidat": "Papierfassung offen", "keins": "keine Papierfassung"}
+ONLINE_GEGEN_ERKL = {"databank_formular": "Ein Formular der Databank ist dieses Online-Formular (aus Feldern und Schritten beurteilt, zweitgeprüft).",
+                     "databank_dvsh_eformular": "Die Databank hält dieses Online-Formular als eFormular, gebildet aus dem DVSH-Modell.",
+                     "pdf_kandidat": "Eine Papierfassung wurde gefunden, ist aber noch nicht als Formular übernommen.",
+                     "keins": "Weder in der Databank noch im DVSH-Modell noch auf den verlinkten Seiten oder bei der Suche im Netz fand sich eine Papierfassung; erfasst sind Name, Schritte und die ohne Eingabe sichtbaren Felder."}
 # what does not fit on a live page (quellenabgleich.portal.auffaelligkeiten)
 LIVE_AUFF = {"link_kein_formular": "als Formular beschriftet, die verlinkte Datei ist keines",
              "ohne_aktion": "Seite ohne Schaltfläche — weder Formular noch Online-Zugang"}
@@ -391,4 +410,6 @@ def as_export():
             "stufen": [list(x) for x in STUFEN], "stufe_of_cat": STUFE_OF_CAT, "cat_order": CAT_ORDER, "aktion": AKTION, "einheit": EINHEIT,
             "todo_cats": [list(c) for c in TODO_CATS], "kontakt": KONTAKT,
             "dok_stand": DOK_STAND, "dok_art": DOK_ART, "dok_rolle": DOK_ROLLE, "feld_quelle": FELD_QUELLE,
-            "aenderung": AENDERUNG, "live_stand": LIVE_STAND, "live_erkl": LIVE_ERKL, "live_auff": LIVE_AUFF}
+            "aenderung": AENDERUNG, "live_stand": LIVE_STAND, "live_erkl": LIVE_ERKL, "live_auff": LIVE_AUFF,
+            "online_ziel": ONLINE_ZIEL, "online_zugang": ONLINE_ZUGANG, "online_gegen": ONLINE_GEGEN,
+            "online_gegen_erkl": ONLINE_GEGEN_ERKL}

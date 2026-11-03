@@ -1,0 +1,14 @@
+{
+ "verdicts": [
+  {
+   "id": 7390,
+   "subjekt": "natuerliche_person",
+   "grund": "Block «Die Gesuchstellerin / Der Gesuchsteller» mit ZEMIS-Nr., kant. Ref., Name, Vorname, Geburtsdatum, Staatsangehörigkeit und Adresse. Das sind die Personalien der einen ausländischen Person, die die Niederlassungsbewilligung beantragt. Eine Organisation kann eine solche Bewilligung nicht beantragen."
+  },
+  {
+   "id": 7391,
+   "subjekt": "natuerliche_person",
+   "grund": "Block «die Ehepartnerin / der Ehepartner» mit Name, Vorname, Geburtsdatum und Staatsangehörigkeit. Das sind die Personalien genau eines Ehegatten. Ehegatte kann nur eine natürliche Person sein, eine Organisation scheidet aus."
+  }
+ ]
+}

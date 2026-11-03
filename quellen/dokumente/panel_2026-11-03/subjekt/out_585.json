@@ -1,0 +1,39 @@
+{
+ "verdicts": [
+  {
+   "id": 7373,
+   "subjekt": "natuerliche_person",
+   "grund": "ZEMIS-Nr., Name, Vorname, Geburtsdatum und Staatsangehörigkeit der gesuchstellenden ausländischen Person, also einer natürlichen Person."
+  },
+  {
+   "id": 7374,
+   "subjekt": "natuerliche_person",
+   "grund": "Zivilstand der gesuchstellenden Person; den Zivilstand hat nur eine natürliche Person."
+  },
+  {
+   "id": 7377,
+   "subjekt": "natuerliche_person",
+   "grund": "Abreisetag der gesuchstellenden Person für ihren eigenen Auslandaufenthalt."
+  },
+  {
+   "id": 7379,
+   "subjekt": "natuerliche_person",
+   "grund": "Eigene Wohnadresse der gesuchstellenden Person während des Auslandaufenthalts (c/o, Strasse, Ort, Land)."
+  },
+  {
+   "id": 7380,
+   "subjekt": "natuerliche_person",
+   "grund": "Das Formular verlangt «Vorname und Name» samt Adresse, also eine bestimmte Privatperson als Kontakt in der Schweiz und keine Firma."
+  },
+  {
+   "id": 7381,
+   "subjekt": "natuerliche_person",
+   "grund": "Vorname, Name und Geburtsdatum des mitwegziehenden Ehe- oder eingetragenen Partners, einer natürlichen Person."
+  },
+  {
+   "id": 7382,
+   "subjekt": "natuerliche_person",
+   "grund": "Vorname, Name und Geburtsdatum der minderjährigen Kinder unter elterlicher Sorge, also natürlicher Personen."
+  }
+ ]
+}

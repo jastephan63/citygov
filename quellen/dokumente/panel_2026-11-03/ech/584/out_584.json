@@ -1,0 +1,789 @@
+{
+ "hinweis": "eCH-Urteile Formular 584, Panel 2026-11-03, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-11-03/ech/584 --nur-offene=584",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die ZEMIS-Nummer ist ein vom SEM vergebener Personenidentifikator, keine AHV-Nummer. Element eCH-0044 otherPersonId (namedPersonIdType mit personIdCategory), gleich wie bei A1 (497), 474 und 506–513.",
+   "feld": "ZEMIS Nr. der Gesuchstellerin/des Gesuchstellers",
+   "standard": "eCH-0044",
+   "element": "otherPersonId"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Komposit aus Familienname, Vorname, Geburtsdatum, Adresse und Staatsangehörigkeit. Es erhält das Container-Element eCH-0044 personIdentification wie die Personalien auf A1 (497). Die Teile sind einzeln beurteilt.",
+   "feld": "Name und Adresse der Gesuchstellerin/des Gesuchstellers",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Familienname = amtlicher Name, eCH-0044 officialName.",
+   "elternfeld": "Name und Adresse der Gesuchstellerin/des Gesuchstellers",
+   "teilfeld": "Familienname(n)",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname(n) = eCH-0044 firstName.",
+   "elternfeld": "Name und Adresse der Gesuchstellerin/des Gesuchstellers",
+   "teilfeld": "Vorname(n)",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Geburtsdatum = eCH-0044 dateOfBirth.",
+   "elternfeld": "Name und Adresse der Gesuchstellerin/des Gesuchstellers",
+   "teilfeld": "Geburtsdatum",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Die Adresse der gesuchstellenden Person ist eine Freitextzeile ohne getrennte Teile. Sie entspricht dem Adressblock eCH-0010 addressInformation, wie bei A1 (497).",
+   "elternfeld": "Name und Adresse der Gesuchstellerin/des Gesuchstellers",
+   "teilfeld": "Adresse",
+   "standard": "eCH-0010",
+   "element": "addressInformation"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Staatsangehörigkeit = eCH-0011 nationalityData, wie bei A1 (497) und der Korpuspraxis (30-mal).",
+   "elternfeld": "Name und Adresse der Gesuchstellerin/des Gesuchstellers",
+   "teilfeld": "Staatsangehörigkeit",
+   "standard": "eCH-0011",
+   "element": "nationalityData"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Komposit der Personalien (Name, Vorname, Geburtsdatum, Geburtsort, Geburtsland, Staatsangehörigkeit). Es erhält den Container eCH-0044 personIdentification wie A1 (497). Die Teile sind einzeln beurteilt.",
+   "feld": "Personalien der Familienangehörigen, deren Nachzug gewünscht wird (Ehefrau/Ehemann)",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Familienname = amtlicher Name, eCH-0044 officialName.",
+   "elternfeld": "Personalien der Familienangehörigen, deren Nachzug gewünscht wird (Ehefrau/Ehemann)",
+   "teilfeld": "Familienname(n)",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname(n) = eCH-0044 firstName.",
+   "elternfeld": "Personalien der Familienangehörigen, deren Nachzug gewünscht wird (Ehefrau/Ehemann)",
+   "teilfeld": "Vorname(n)",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Geburtsdatum = eCH-0044 dateOfBirth.",
+   "elternfeld": "Personalien der Familienangehörigen, deren Nachzug gewünscht wird (Ehefrau/Ehemann)",
+   "teilfeld": "Geburtsdatum",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Geburtsort = eCH-0011 placeOfBirth (birthDataType), wie bei A1 (497) und der Korpuspraxis (11-mal).",
+   "elternfeld": "Personalien der Familienangehörigen, deren Nachzug gewünscht wird (Ehefrau/Ehemann)",
+   "teilfeld": "Geburtsort",
+   "standard": "eCH-0011",
+   "element": "placeOfBirth"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Geburtsland = Staat des Geburtsorts, eCH-0011 country im Kontext generalPlaceType/foreignCountry (Staatencode nach eCH-0008). Nicht gemeint ist der Kontext countryInfoType der Staatsangehörigkeit.",
+   "elternfeld": "Personalien der Familienangehörigen, deren Nachzug gewünscht wird (Ehefrau/Ehemann)",
+   "teilfeld": "Geburtsland",
+   "standard": "eCH-0011",
+   "element": "country"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Staatsangehörigkeit = eCH-0011 nationalityData, wie bei A1 (497).",
+   "elternfeld": "Personalien der Familienangehörigen, deren Nachzug gewünscht wird (Ehefrau/Ehemann)",
+   "teilfeld": "Staatsangehörigkeit",
+   "standard": "eCH-0011",
+   "element": "nationalityData"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die Ankreuzwahl männlich/weiblich ist ein Geschlechtswert (sexType 1/2), keine Ja/Nein-Box. Element eCH-0044 sex wie bei A1 (497).",
+   "feld": "Geschlecht (Ehefrau/Ehemann)",
+   "standard": "eCH-0044",
+   "element": "sex"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Komposit aus Name(n) und Vorname(n) der Mutter. Element eCH-0021 nameOfParent (birthAddonDataType, typeOfRelationship 3). Es passt zum Kontext nameOfParentType der Teile, wie bei A1 (497).",
+   "feld": "Mutter (Ehefrau/Ehemann)",
+   "standard": "eCH-0021",
+   "element": "nameOfParent"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name des Elternteils = eCH-0021 officialName (nameOfParentType), wie bei A1 (497).",
+   "elternfeld": "Mutter (Ehefrau/Ehemann)",
+   "teilfeld": "Name(n)",
+   "standard": "eCH-0021",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname des Elternteils = eCH-0021 firstName (nameOfParentType), wie bei A1 (497).",
+   "elternfeld": "Mutter (Ehefrau/Ehemann)",
+   "teilfeld": "Vorname(n)",
+   "standard": "eCH-0021",
+   "element": "firstName"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Komposit aus Name(n) und Vorname(n) des Vaters. Element eCH-0021 nameOfParent (birthAddonDataType, typeOfRelationship 4), wie bei A1 (497).",
+   "feld": "Vater (Ehefrau/Ehemann)",
+   "standard": "eCH-0021",
+   "element": "nameOfParent"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name des Elternteils = eCH-0021 officialName (nameOfParentType), wie bei A1 (497).",
+   "elternfeld": "Vater (Ehefrau/Ehemann)",
+   "teilfeld": "Name(n)",
+   "standard": "eCH-0021",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname des Elternteils = eCH-0021 firstName (nameOfParentType), wie bei A1 (497).",
+   "elternfeld": "Vater (Ehefrau/Ehemann)",
+   "teilfeld": "Vorname(n)",
+   "standard": "eCH-0021",
+   "element": "firstName"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ja/Nein-Frage zu einem hängigen Strafverfahren. Im Katalog gibt es kein Element dafür (Suche nach crim/convict/penal/offence/sentence/proceeding ohne passenden Treffer). Fachlicher Standard ist eCH-0051 «Basis-Datenkatalog Polizei und Justiz» (genehmigt, ohne Elementkatalog), wie bei A1 (497) und den Formularen 34/214/216/220.",
+   "feld": "Strafverfahren hängig (Ehefrau/Ehemann)",
+   "standard": "eCH-0051",
+   "element": ""
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ja/Nein-Frage zu Vorstrafen. Im Katalog gibt es kein Element dafür. Fachlicher Standard ist eCH-0051 «Basis-Datenkatalog Polizei und Justiz» (genehmigt, ohne Elementkatalog), wie bei A1 (497) und Formular 34.",
+   "feld": "Vorstrafen (Ehefrau/Ehemann)",
+   "standard": "eCH-0051",
+   "element": ""
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ja/Nein-Feld. eCH-0011 entryDate ist ein Datumswert und darf keine Ja/Nein-Box tragen. Durchsucht wurde der ganze Katalog nach entry/arrival/einreise/immigra/comesFrom: arrivalDate und comesFrom aus eCH-0011/0020/0093/0098/0223 sind Werte zum Zuzug in die Gemeinde; eCH-0072 entryValid ist ein Staatenattribut; eCH-0041 hat keine Elemente. Kein boolesches Element zur erfolgten Einreise.",
+   "feld": "Ist die Einreise bereits erfolgt? (Ehefrau/Ehemann)"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Datum der bereits erfolgten Einreise in die Schweiz = eCH-0011 entryDate (residencePermitDataType, Einreisedatum). Das ist ein Ereignisdatum, kein Bewilligungswert wie residencePermitValidFrom/ValidTill und kein Gemeinde-Zuzugsdatum (arrivalDate).",
+   "feld": "Falls ja, wann (Ehefrau/Ehemann)",
+   "standard": "eCH-0011",
+   "element": "entryDate"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Freitext-Adresse des gegenwärtigen Aufenthalts (Schweiz oder Ausland) = eCH-0010 addressInformation. Gleich wie «Adresse (gegenwärtige Aufenthaltsadresse)» auf A1 (497) und «Aufenthaltsadresse in der Schweiz» auf Formular 247.",
+   "feld": "Gegenwärtige Aufenthaltsadresse (Ehefrau/Ehemann)",
+   "standard": "eCH-0010",
+   "element": "addressInformation"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "KORRIGIERT gegenüber kein_standard. Die Ankreuzwahl Pass/ID gibt die Art des Ausweisdokuments an. Die Erstprüfung übersah die Korpuspraxis: Dieselbe Angabe «Ausweisart» (in Formular 312 laut Fussnote «ID oder Pass») ist in den Formularen 310, 312 und 361 eCH-0044 personIdCategory (namedPersonIdType) zugeordnet. Wir übernehmen das, damit dieselbe Angabe einheitlich bleibt. Die Ausweisnummer (personId) verlangt A2 nicht.",
+   "feld": "Pass / ID (Ehefrau/Ehemann)",
+   "standard": "eCH-0044",
+   "element": "personIdCategory"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Durchsucht wurde der ganze Katalog nach validTill/validTo/validUntil/validity/expir/endDate. Gültigkeitsdaten gibt es nur für die Bewilligung (eCH-0011 residencePermitValidTill), Sperren, Kontakte, Trennung und Biometriedaten (eCH-0093 biometricDataExpiryDate). eCH-0044 namedPersonIdType enthält nur personIdCategory und personId, kein Ablaufdatum. Das «gültig bis» gehört zum Pass bzw. zur ID, nicht zur Bewilligung.",
+   "feld": "gültig bis (Ehefrau/Ehemann)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Komposit aus Ort und Datum der Unterzeichnung. eCH-0119 locationAndDate gibt es nur im Steuerkontext (attachedFormsType, listOfSecuritiesType), eCH-0260 signatures nur im Lehrvertrag. Sonst hat der ganze Katalog kein Element für Unterzeichnungsort oder -datum. Die Korpuspraxis ist 29-mal kein_standard.",
+   "feld": "Ort und Datum"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Unterzeichnungsort: Ausserhalb des Steuerkontexts gibt es kein eCH-Element (eCH-0119 locationAndDate nur in attachedFormsType/listOfSecuritiesType). Der ganze Katalog wurde nach Ort und Datum der Unterzeichnung durchsucht. Die Korpuspraxis ist 25-mal kein_standard.",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Unterzeichnungsdatum: Ausserhalb des Steuerkontexts gibt es kein eCH-Element (eCH-0119 locationAndDate nur Steuer, eCH-0260 signatures nur Lehrvertrag). Der ganze Katalog wurde durchsucht. Die Korpuspraxis ist 25-mal kein_standard.",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Eigenhändige Unterschrift. Durchsucht wurde der ganze Katalog nach signat*/signing: Treffer sind nur eCH-0260 signatures (Lehrvertrag), eCH-0039 signer (Dossier-Metadaten) und Signatur-Verfahrensstandards ohne Elemente. Es gibt kein Element für die Unterschrift der gesuchstellenden Person. Die Korpuspraxis ist 98-mal kein_standard.",
+   "feld": "Unterschrift der Gesuchstellerin/des Gesuchstellers"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die Ankreuzwahl Kind / Vater/Mutter / Anderes gibt die Art der Beziehung zur gesuchstellenden Person an. Element eCH-0021 typeOfRelationship (parentalRelationshipType, Codes 3/4 Mutter/Vater; «Kind» ist dieselbe Beziehung von der anderen Seite). Für «Anderes» hat die Codeliste keinen Code. Formulare 366 und 467 ordnen dieselbe Art von Angabe ebenfalls typeOfRelationship zu.",
+   "feld": "Verwandtschaftsverhältnis zur Gesuchstellerin/zum Gesuchsteller (Person 1)",
+   "standard": "eCH-0021",
+   "element": "typeOfRelationship"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Komposit der Personalien (Name, Vorname, Geburtsdatum, Geburtsort, Geburtsland, Staatsangehörigkeit). Es erhält den Container eCH-0044 personIdentification wie A1 (497). Die Teile sind einzeln beurteilt.",
+   "feld": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 1)",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Familienname = amtlicher Name, eCH-0044 officialName.",
+   "elternfeld": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 1)",
+   "teilfeld": "Familienname(n)",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname(n) = eCH-0044 firstName.",
+   "elternfeld": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 1)",
+   "teilfeld": "Vorname(n)",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Geburtsdatum = eCH-0044 dateOfBirth.",
+   "elternfeld": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 1)",
+   "teilfeld": "Geburtsdatum",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Geburtsort = eCH-0011 placeOfBirth (birthDataType), wie bei A1 (497).",
+   "elternfeld": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 1)",
+   "teilfeld": "Geburtsort",
+   "standard": "eCH-0011",
+   "element": "placeOfBirth"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Geburtsland = Staat des Geburtsorts, eCH-0011 country im Kontext generalPlaceType/foreignCountry (Staatencode nach eCH-0008).",
+   "elternfeld": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 1)",
+   "teilfeld": "Geburtsland",
+   "standard": "eCH-0011",
+   "element": "country"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Staatsangehörigkeit = eCH-0011 nationalityData, wie bei A1 (497).",
+   "elternfeld": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 1)",
+   "teilfeld": "Staatsangehörigkeit",
+   "standard": "eCH-0011",
+   "element": "nationalityData"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die Ankreuzwahl männlich/weiblich ist ein Geschlechtswert (sexType 1/2), keine Ja/Nein-Box. Element eCH-0044 sex wie bei A1 (497).",
+   "feld": "Geschlecht (Person 1)",
+   "standard": "eCH-0044",
+   "element": "sex"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Komposit aus Name(n) und Vorname(n) der Mutter. Element eCH-0021 nameOfParent (birthAddonDataType, typeOfRelationship 3), wie bei A1 (497).",
+   "feld": "Mutter (Person 1)",
+   "standard": "eCH-0021",
+   "element": "nameOfParent"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name des Elternteils = eCH-0021 officialName (nameOfParentType), wie bei A1 (497).",
+   "elternfeld": "Mutter (Person 1)",
+   "teilfeld": "Name(n)",
+   "standard": "eCH-0021",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname des Elternteils = eCH-0021 firstName (nameOfParentType), wie bei A1 (497).",
+   "elternfeld": "Mutter (Person 1)",
+   "teilfeld": "Vorname(n)",
+   "standard": "eCH-0021",
+   "element": "firstName"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Komposit aus Name(n) und Vorname(n) des Vaters. Element eCH-0021 nameOfParent (birthAddonDataType, typeOfRelationship 4), wie bei A1 (497).",
+   "feld": "Vater (Person 1)",
+   "standard": "eCH-0021",
+   "element": "nameOfParent"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name des Elternteils = eCH-0021 officialName (nameOfParentType), wie bei A1 (497).",
+   "elternfeld": "Vater (Person 1)",
+   "teilfeld": "Name(n)",
+   "standard": "eCH-0021",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname des Elternteils = eCH-0021 firstName (nameOfParentType), wie bei A1 (497).",
+   "elternfeld": "Vater (Person 1)",
+   "teilfeld": "Vorname(n)",
+   "standard": "eCH-0021",
+   "element": "firstName"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "KORRIGIERT gegenüber kein_standard. Die Ankreuzwahl Pass/ID gibt die Art des Ausweisdokuments an. Dieselbe Angabe «Ausweisart» (ID oder Pass) ist in den Formularen 310, 312 und 361 eCH-0044 personIdCategory (namedPersonIdType) zugeordnet. Die Zuordnung hier hält dieselbe Angabe einheitlich. Eine Ausweisnummer (personId) verlangt A2 nicht.",
+   "feld": "Pass / ID (Person 1)",
+   "standard": "eCH-0044",
+   "element": "personIdCategory"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Durchsucht wurde der ganze Katalog nach validTill/validTo/validUntil/validity/expir/endDate. Gültigkeitsdaten gibt es nur für die Bewilligung (eCH-0011 residencePermitValidTill), Sperren, Kontakte, Trennung und Biometriedaten (eCH-0093). eCH-0044 namedPersonIdType hat kein Ablaufdatum. Das «gültig bis» gehört zum Pass bzw. zur ID.",
+   "feld": "gültig bis (Person 1)"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ja/Nein-Frage zu einem hängigen Strafverfahren. Im Katalog gibt es kein Element dafür. Fachlicher Standard ist eCH-0051 «Basis-Datenkatalog Polizei und Justiz» (genehmigt, ohne Elementkatalog), wie bei A1 (497) und den Formularen 214/216/220.",
+   "feld": "Strafverfahren hängig (Person 1)",
+   "standard": "eCH-0051",
+   "element": ""
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ja/Nein-Frage zu Vorstrafen. Im Katalog gibt es kein Element dafür. Fachlicher Standard ist eCH-0051 «Basis-Datenkatalog Polizei und Justiz» (genehmigt, ohne Elementkatalog), wie bei A1 (497) und Formular 34.",
+   "feld": "Vorstrafen (Person 1)",
+   "standard": "eCH-0051",
+   "element": ""
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ja/Nein-Feld. eCH-0011 entryDate ist ein Datumswert und darf keine Ja/Nein-Box tragen. Der ganze Katalog wurde nach entry/arrival/einreise/immigra/comesFrom durchsucht (eCH-0011/0020/0072/0093/0098/0223; eCH-0041 ohne Elemente). Es gibt kein boolesches Element zur erfolgten Einreise.",
+   "feld": "Ist die Einreise bereits erfolgt (Person 1)"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Datum der bereits erfolgten Einreise in die Schweiz = eCH-0011 entryDate (residencePermitDataType, Einreisedatum). Das ist ein Ereignisdatum, kein Bewilligungs- oder Gemeinde-Zuzugswert.",
+   "feld": "Falls ja, wann (Person 1)",
+   "standard": "eCH-0011",
+   "element": "entryDate"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die Ankreuzwahl Kind / Vater/Mutter / Anderes gibt die Art der Beziehung zur gesuchstellenden Person an. Element eCH-0021 typeOfRelationship (parentalRelationshipType, Codes 3/4 Mutter/Vater; «Kind» ist dieselbe Beziehung von der anderen Seite). Für «Anderes» gibt es keinen Code.",
+   "feld": "Verwandtschaftsverhältnis zur Gesuchstellerin/zum Gesuchsteller (Person 2)",
+   "standard": "eCH-0021",
+   "element": "typeOfRelationship"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Komposit der Personalien (Name, Vorname, Geburtsdatum, Geburtsort, Geburtsland, Staatsangehörigkeit). Es erhält den Container eCH-0044 personIdentification wie A1 (497). Die Teile sind einzeln beurteilt.",
+   "feld": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 2)",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Familienname = amtlicher Name, eCH-0044 officialName.",
+   "elternfeld": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 2)",
+   "teilfeld": "Familienname(n)",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname(n) = eCH-0044 firstName.",
+   "elternfeld": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 2)",
+   "teilfeld": "Vorname(n)",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Geburtsdatum = eCH-0044 dateOfBirth.",
+   "elternfeld": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 2)",
+   "teilfeld": "Geburtsdatum",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Geburtsort = eCH-0011 placeOfBirth (birthDataType), wie bei A1 (497).",
+   "elternfeld": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 2)",
+   "teilfeld": "Geburtsort",
+   "standard": "eCH-0011",
+   "element": "placeOfBirth"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Geburtsland = Staat des Geburtsorts, eCH-0011 country im Kontext generalPlaceType/foreignCountry (Staatencode nach eCH-0008).",
+   "elternfeld": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 2)",
+   "teilfeld": "Geburtsland",
+   "standard": "eCH-0011",
+   "element": "country"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Staatsangehörigkeit = eCH-0011 nationalityData, wie bei A1 (497).",
+   "elternfeld": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 2)",
+   "teilfeld": "Staatsangehörigkeit",
+   "standard": "eCH-0011",
+   "element": "nationalityData"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die Ankreuzwahl männlich/weiblich ist ein Geschlechtswert (sexType 1/2), keine Ja/Nein-Box. Element eCH-0044 sex wie bei A1 (497).",
+   "feld": "Geschlecht (Person 2)",
+   "standard": "eCH-0044",
+   "element": "sex"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Komposit aus Name(n) und Vorname(n) der Mutter. Element eCH-0021 nameOfParent (birthAddonDataType, typeOfRelationship 3), wie bei A1 (497).",
+   "feld": "Mutter (Person 2)",
+   "standard": "eCH-0021",
+   "element": "nameOfParent"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name des Elternteils = eCH-0021 officialName (nameOfParentType), wie bei A1 (497).",
+   "elternfeld": "Mutter (Person 2)",
+   "teilfeld": "Name(n)",
+   "standard": "eCH-0021",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname des Elternteils = eCH-0021 firstName (nameOfParentType), wie bei A1 (497).",
+   "elternfeld": "Mutter (Person 2)",
+   "teilfeld": "Vorname(n)",
+   "standard": "eCH-0021",
+   "element": "firstName"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Komposit aus Name(n) und Vorname(n) des Vaters. Element eCH-0021 nameOfParent (birthAddonDataType, typeOfRelationship 4), wie bei A1 (497).",
+   "feld": "Vater (Person 2)",
+   "standard": "eCH-0021",
+   "element": "nameOfParent"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name des Elternteils = eCH-0021 officialName (nameOfParentType), wie bei A1 (497).",
+   "elternfeld": "Vater (Person 2)",
+   "teilfeld": "Name(n)",
+   "standard": "eCH-0021",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname des Elternteils = eCH-0021 firstName (nameOfParentType), wie bei A1 (497).",
+   "elternfeld": "Vater (Person 2)",
+   "teilfeld": "Vorname(n)",
+   "standard": "eCH-0021",
+   "element": "firstName"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "KORRIGIERT gegenüber kein_standard. Die Ankreuzwahl Pass/ID gibt die Art des Ausweisdokuments an. Dieselbe Angabe «Ausweisart» (ID oder Pass) ist in den Formularen 310, 312 und 361 eCH-0044 personIdCategory (namedPersonIdType) zugeordnet. Die Zuordnung hier hält dieselbe Angabe einheitlich. Eine Ausweisnummer (personId) verlangt A2 nicht.",
+   "feld": "Pass / ID (Person 2)",
+   "standard": "eCH-0044",
+   "element": "personIdCategory"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Durchsucht wurde der ganze Katalog nach validTill/validTo/validUntil/validity/expir/endDate. Gültigkeitsdaten gibt es nur für die Bewilligung (eCH-0011 residencePermitValidTill), Sperren, Kontakte, Trennung und Biometriedaten (eCH-0093). eCH-0044 namedPersonIdType hat kein Ablaufdatum. Das «gültig bis» gehört zum Pass bzw. zur ID.",
+   "feld": "gültig bis (Person 2)"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ja/Nein-Frage zu einem hängigen Strafverfahren. Im Katalog gibt es kein Element dafür. Fachlicher Standard ist eCH-0051 «Basis-Datenkatalog Polizei und Justiz» (genehmigt, ohne Elementkatalog), wie bei A1 (497) und den Formularen 214/216/220.",
+   "feld": "Strafverfahren hängig (Person 2)",
+   "standard": "eCH-0051",
+   "element": ""
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ja/Nein-Frage zu Vorstrafen. Im Katalog gibt es kein Element dafür. Fachlicher Standard ist eCH-0051 «Basis-Datenkatalog Polizei und Justiz» (genehmigt, ohne Elementkatalog), wie bei A1 (497) und Formular 34.",
+   "feld": "Vorstrafen (Person 2)",
+   "standard": "eCH-0051",
+   "element": ""
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ja/Nein-Feld. eCH-0011 entryDate ist ein Datumswert und darf keine Ja/Nein-Box tragen. Der ganze Katalog wurde nach entry/arrival/einreise/immigra/comesFrom durchsucht (eCH-0011/0020/0072/0093/0098/0223; eCH-0041 ohne Elemente). Es gibt kein boolesches Element zur erfolgten Einreise.",
+   "feld": "Ist die Einreise bereits erfolgt (Person 2)"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Datum der bereits erfolgten Einreise in die Schweiz = eCH-0011 entryDate (residencePermitDataType, Einreisedatum). Das ist ein Ereignisdatum, kein Bewilligungs- oder Gemeinde-Zuzugswert.",
+   "feld": "Falls ja, wann (Person 2)",
+   "standard": "eCH-0011",
+   "element": "entryDate"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die Ankreuzwahl Kind / Vater/Mutter / Anderes gibt die Art der Beziehung zur gesuchstellenden Person an. Element eCH-0021 typeOfRelationship (parentalRelationshipType, Codes 3/4 Mutter/Vater; «Kind» ist dieselbe Beziehung von der anderen Seite). Für «Anderes» gibt es keinen Code.",
+   "feld": "Verwandtschaftsverhältnis zur Gesuchstellerin/zum Gesuchsteller (Person 3)",
+   "standard": "eCH-0021",
+   "element": "typeOfRelationship"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Komposit der Personalien (Name, Vorname, Geburtsdatum, Geburtsort, Geburtsland, Staatsangehörigkeit). Es erhält den Container eCH-0044 personIdentification wie A1 (497). Die Teile sind einzeln beurteilt.",
+   "feld": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 3)",
+   "standard": "eCH-0044",
+   "element": "personIdentification"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Familienname = amtlicher Name, eCH-0044 officialName.",
+   "elternfeld": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 3)",
+   "teilfeld": "Familienname(n)",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname(n) = eCH-0044 firstName.",
+   "elternfeld": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 3)",
+   "teilfeld": "Vorname(n)",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Geburtsdatum = eCH-0044 dateOfBirth.",
+   "elternfeld": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 3)",
+   "teilfeld": "Geburtsdatum",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Geburtsort = eCH-0011 placeOfBirth (birthDataType), wie bei A1 (497).",
+   "elternfeld": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 3)",
+   "teilfeld": "Geburtsort",
+   "standard": "eCH-0011",
+   "element": "placeOfBirth"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Geburtsland = Staat des Geburtsorts, eCH-0011 country im Kontext generalPlaceType/foreignCountry (Staatencode nach eCH-0008).",
+   "elternfeld": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 3)",
+   "teilfeld": "Geburtsland",
+   "standard": "eCH-0011",
+   "element": "country"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Staatsangehörigkeit = eCH-0011 nationalityData, wie bei A1 (497).",
+   "elternfeld": "Personalien der Personen, welche in die Schweiz einreisen sollen (Person 3)",
+   "teilfeld": "Staatsangehörigkeit",
+   "standard": "eCH-0011",
+   "element": "nationalityData"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die Ankreuzwahl männlich/weiblich ist ein Geschlechtswert (sexType 1/2), keine Ja/Nein-Box. Element eCH-0044 sex wie bei A1 (497).",
+   "feld": "Geschlecht (Person 3)",
+   "standard": "eCH-0044",
+   "element": "sex"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Komposit aus Name(n) und Vorname(n) der Mutter. Element eCH-0021 nameOfParent (birthAddonDataType, typeOfRelationship 3), wie bei A1 (497).",
+   "feld": "Mutter (Person 3)",
+   "standard": "eCH-0021",
+   "element": "nameOfParent"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name des Elternteils = eCH-0021 officialName (nameOfParentType), wie bei A1 (497).",
+   "elternfeld": "Mutter (Person 3)",
+   "teilfeld": "Name(n)",
+   "standard": "eCH-0021",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname des Elternteils = eCH-0021 firstName (nameOfParentType), wie bei A1 (497).",
+   "elternfeld": "Mutter (Person 3)",
+   "teilfeld": "Vorname(n)",
+   "standard": "eCH-0021",
+   "element": "firstName"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Komposit aus Name(n) und Vorname(n) des Vaters. Element eCH-0021 nameOfParent (birthAddonDataType, typeOfRelationship 4), wie bei A1 (497).",
+   "feld": "Vater (Person 3)",
+   "standard": "eCH-0021",
+   "element": "nameOfParent"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name des Elternteils = eCH-0021 officialName (nameOfParentType), wie bei A1 (497).",
+   "elternfeld": "Vater (Person 3)",
+   "teilfeld": "Name(n)",
+   "standard": "eCH-0021",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorname des Elternteils = eCH-0021 firstName (nameOfParentType), wie bei A1 (497).",
+   "elternfeld": "Vater (Person 3)",
+   "teilfeld": "Vorname(n)",
+   "standard": "eCH-0021",
+   "element": "firstName"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "KORRIGIERT gegenüber kein_standard. Die Ankreuzwahl Pass/ID gibt die Art des Ausweisdokuments an. Dieselbe Angabe «Ausweisart» (ID oder Pass) ist in den Formularen 310, 312 und 361 eCH-0044 personIdCategory (namedPersonIdType) zugeordnet. Die Zuordnung hier hält dieselbe Angabe einheitlich. Eine Ausweisnummer (personId) verlangt A2 nicht.",
+   "feld": "Pass / ID (Person 3)",
+   "standard": "eCH-0044",
+   "element": "personIdCategory"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Durchsucht wurde der ganze Katalog nach validTill/validTo/validUntil/validity/expir/endDate. Gültigkeitsdaten gibt es nur für die Bewilligung (eCH-0011 residencePermitValidTill), Sperren, Kontakte, Trennung und Biometriedaten (eCH-0093). eCH-0044 namedPersonIdType hat kein Ablaufdatum. Das «gültig bis» gehört zum Pass bzw. zur ID.",
+   "feld": "gültig bis (Person 3)"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ja/Nein-Frage zu einem hängigen Strafverfahren. Im Katalog gibt es kein Element dafür. Fachlicher Standard ist eCH-0051 «Basis-Datenkatalog Polizei und Justiz» (genehmigt, ohne Elementkatalog), wie bei A1 (497) und den Formularen 214/216/220.",
+   "feld": "Strafverfahren hängig (Person 3)",
+   "standard": "eCH-0051",
+   "element": ""
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ja/Nein-Frage zu Vorstrafen. Im Katalog gibt es kein Element dafür. Fachlicher Standard ist eCH-0051 «Basis-Datenkatalog Polizei und Justiz» (genehmigt, ohne Elementkatalog), wie bei A1 (497) und Formular 34.",
+   "feld": "Vorstrafen (Person 3)",
+   "standard": "eCH-0051",
+   "element": ""
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ja/Nein-Feld. eCH-0011 entryDate ist ein Datumswert und darf keine Ja/Nein-Box tragen. Der ganze Katalog wurde nach entry/arrival/einreise/immigra/comesFrom durchsucht (eCH-0011/0020/0072/0093/0098/0223; eCH-0041 ohne Elemente). Es gibt kein boolesches Element zur erfolgten Einreise.",
+   "feld": "Ist die Einreise bereits erfolgt (Person 3)"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Datum der bereits erfolgten Einreise in die Schweiz = eCH-0011 entryDate (residencePermitDataType, Einreisedatum). Das ist ein Ereignisdatum, kein Bewilligungs- oder Gemeinde-Zuzugswert.",
+   "feld": "Falls ja, wann (Person 3)",
+   "standard": "eCH-0011",
+   "element": "entryDate"
+  }
+ ]
+}

@@ -1,0 +1,172 @@
+{
+ "hinweis": "eCH-Urteile Formular 513, Panel 2026-11-03, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-11-03/ech/513 --nur-offene=513",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Zeile «Name» neben «Vorname». Das PDF-Widget «name» hat den Tooltip «Nachname» (in den entpackten PDF-Streams nachgeprüft). Es geht um den amtlichen Familiennamen der gesuchstellenden Person = eCH-0044 officialName (personIdentificationType/LightType, baseNameType), wie bei den Schwesterformularen 508/511/512.",
+   "feld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Vorname der gesuchstellenden Person (Widget «vorname», Tooltip «Vorname») = eCH-0044 firstName (personIdentificationType, baseNameType), wie in 508/511/512.",
+   "feld": "Vorname",
+   "standard": "eCH-0044",
+   "element": "firstName"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ein grosses freies Adressfeld (Widget «adresse») ohne gedruckte Teilangaben und ohne Teilfelder in der Databank. Der Name steht separat, darum gilt hier nur der Adressbehälter (Strasse, Hausnummer, PLZ/foreignZipCode, Ort, Land, auch für Auslandadressen von Grenzgängern) = eCH-0010 addressInformation. Korpus «Adresse» 17x addressInformation, so auch 508/511/512.",
+   "feld": "Adresse",
+   "standard": "eCH-0010",
+   "element": "addressInformation"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Geburtsdatum der gesuchstellenden Person = eCH-0044 dateOfBirth (datePartiallyKnownType), wie in 508/511/512.",
+   "feld": "Geburtsdatum",
+   "standard": "eCH-0044",
+   "element": "dateOfBirth"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Widget «zemis», Tooltip «Zemis-Nr.»: Personennummer im Zentralen Migrationsinformationssystem des Bundes. Das ist ein fremder Personenidentifikator mit Kategorie, weder die AHV-Nummer (vn) noch die eigene Nummer der Datenherrin = eCH-0044 otherPersonId (namedPersonIdType). Im Katalog gibt es kein ZEMIS-eigenes Element (Suche «zemis» ohne Treffer). Korpus 10x otherPersonId.",
+   "feld": "ZEMIS-Nummer",
+   "standard": "eCH-0044",
+   "element": "otherPersonId"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Widget/Tooltip «sh-nr», im Formular nicht erläutert: die eigene Personennummer, die das Migrationsamt Schaffhausen führt, also der lokale Identifikator der Datenherrin = eCH-0044 localPersonId (namedPersonIdType). Korpus «SH-Nummer» 6x localPersonId.",
+   "feld": "SH-Nummer",
+   "standard": "eCH-0044",
+   "element": "localPersonId"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ein Textfeld (Widget «nummer-pass») für Reisepassnummer plus Gültigkeitsdauer. Das sind Angaben zu einem Ausweisdokument, nicht zur Person. Im ganzen Katalog (290 Standards) gesucht nach passport, identity, idcard, travel, document+id/number/valid/kind/type, expir, Ausweis und biometric. Gefunden wurden nur: nameOnForeignPassport (eCH-0011/0045/0084/0173/0213; ein Name), shownDocument (eCH-0084/0086; UPI-Codeliste 211/214/217 ohne Nummer/Gültigkeit), eCH-0093 biometricDataExpiryDate (biometrische Daten), eCH-0178 originalDocumentNumber (Grundbuchbeleg) und Dokumentbehälter von eCH-0039/0119/0229 (Dateien). eCH-0044 otherPersonId identifiziert die Person, nicht ein erneuerbares Dokument, und deckt die Gültigkeit nicht. Kein Element passt; 508/511/512 ebenso kein_standard.",
+   "feld": "Nummer des Passes und Gültigkeitsdauer"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Freitextzeile für die Staatsangehörigkeit(en) der gesuchstellenden Person, möglicherweise mehrere. Behälter mit nationalityStatus und countryInfo (country, nationalityValidFrom) = eCH-0011 nationalityData (personType). Korpus «Staatsangehörigkeit» 8x nationalityData.",
+   "feld": "Staatsangehörigkeit",
+   "standard": "eCH-0011",
+   "element": "nationalityData"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "E-Mail-Adresse der gesuchstellenden Person für Rückfragen = eCH-0046 emailAddress (emailType).",
+   "feld": "E-Mail-Adresse",
+   "standard": "eCH-0046",
+   "element": "emailAddress"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Telefonnummer der gesuchstellenden Person für Rückfragen = eCH-0046 phoneNumber (phoneType).",
+   "feld": "Telefonnummer",
+   "standard": "eCH-0046",
+   "element": "phoneNumber"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Einfachwahl des gegenwärtigen Zivilstands (Ledig … In eingetragener Partnerschaft, Widget-Gruppe «Zivilstand»). Das ist eine Codeliste, kein Ja/Nein-Kästchen = eCH-0011 maritalStatus (maritalDataType, maritalStatusType 1–7/9). «Getrennt» ist im eCH-Code kein Zivilstand (dort separationData). Das ist eine Abweichung der Codeliste im Formular und ändert die Zuordnung nicht.",
+   "feld": "Zivilstand",
+   "standard": "eCH-0011",
+   "element": "maritalStatus"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Unter «Erwerbstätigkeit» eine Einfachwahl Unselbständige / Private Arbeitsvermittlung und Personalverleih / Selbständige Erwerbstätigkeit (Widget-Gruppe «Aufehthaltszweck»). Das ist die Art der Erwerbstätigkeit = eCH-0021 kindOfEmployment (jobDataType, Codes 0–4 mit selbständig/unselbständig). Personalverleih fällt unter unselbständig, das ist eine Abweichung der Codeliste. «Jetziger» bedeutet aktueller Wert, das passt. eCH-0006 kennt nur Bewilligungskategorien, kein Element für den Aufenthaltszweck. Korpus 5x kindOfEmployment (508/512).",
+   "feld": "Jetziger Aufenthaltszweck",
+   "standard": "eCH-0021",
+   "element": "kindOfEmployment"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Kein Kästchen und kein Wert, sondern die Aufforderung «(Einsatzvertrag beilegen)» bei Personalverleih: ein beizulegendes Dokument. Für den Vertragsinhalt gibt es kein Element (Suche contract/Vertrag: nur eCH-0112 beim Umzug, eCH-0260 Lehrvertrag). Behälter für das beigelegte Dokument = eCH-0039 document (contentType, documentType). So sind auch die beizulegenden Nachweise in 508/512 zugeordnet. Der Korpus ist bei Beilagen gespalten (135 kein_standard, 22 eCH-0039 document, 24 eCH-0058 attachment); diese Formularfamilie verwendet eCH-0039.",
+   "feld": "Einsatzvertrag",
+   "standard": "eCH-0039",
+   "element": "document"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Gegenwärtig ausgeübte berufliche Tätigkeit als Freitext (Widget «jetzige_taetigkeit») = eCH-0021 jobTitle (jobDataType, Token ≤100). Aktueller Wert, wie in 511 (Korpus 2x jobTitle).",
+   "feld": "Jetzige ausgeübte Tätigkeit",
+   "standard": "eCH-0021",
+   "element": "jobTitle"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ein mehrzeiliges Textfeld (Widget «name_adresse_betrieb», ohne Teilfelder) bündelt Name UND Adresse des Betriebs. eCH-0021 trennt das in employer (nur Name, Token ≤100, in der XSD nachgeprüft) und placeOfEmployer (addressInformationType). Beide liegen im Behälter occupationData (jobDataType, occupationDataType). Das bisherige employer deckt die Adresse nicht ab, darum erhält das Bündelfeld den Behälter. 508/511/512 haben noch employer und weichen damit ab.",
+   "feld": "Name und Adresse des Betriebes",
+   "standard": "eCH-0021",
+   "element": "occupationData"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ort, an dem die Tätigkeit ausgeübt wird (im Abschnitt Erwerbstätigkeit, bei Personalverleih der Einsatzort) = eCH-0021 placeOfWork (occupationDataType, addressInformationType). Er ist vom Sitz des Arbeitgebers (placeOfEmployer) getrennt. Das spezifische Element im Beschäftigungskontext ist besser als das generische eCH-0010 addressInformation (Korpus 4x addressInformation, 2x placeOfWork).",
+   "feld": "Einsatzort",
+   "standard": "eCH-0021",
+   "element": "placeOfWork"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Zwei Ankreuzkästchen (Widgets «pass_ID», «ausl_ausweis»: Pass/ID/Konsulatsbestätigung; Ausländerausweis im Original/Verlustmeldung). Jedes Kreuz ist nur ein Ja/Nein-Vermerk, dass ein Dokument beiliegt, und bekommt kein Wertelement. Geprüft wurden eCH-0039 document, eCH-0058 attachment und eCH-0211/0229/0119 Anhang-/Dokumentbehälter: Sie beschreiben übermittelte Dateien, keine Checkliste von Beilagen. Die Suche nach checklist/completeness/Ausweis/passport/identity fand kein passendes Element. Korpus Beilagen 74x kein_standard (Mehrheit).",
+   "feld": "Beilagen"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Freie Bemerkung der gesuchstellenden Person zum Gesuch (Widget «bemerkungen_gesuchssteller») = Freitext-Kommentar zur Eingabe, eCH-0058 comment (headerType, commentType). Für dieses Label in 508–512 gleich zugeordnet (Korpus 6x).",
+   "feld": "Bemerkungen des(r) Gesuchsteller(in)",
+   "standard": "eCH-0058",
+   "element": "comment"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ort und Datum der Unterzeichnung (ein Widget «Ort_datum_ende», in der Databank mit Teilfeldern Ort/Datum). Katalog durchsucht nach signat*, signing, signer, locationAndDate, placeAndDate, dateOfApplication, applicationDate, submissionDate. Das einzige kombinierte Element eCH-0119 locationAndDate ist ein String im E-Tax-Filing-Kontext (attachedFormsType/listOfSecuritiesType), nicht allgemein. Kein Behälter in Kraft. eSH-0001 placeAndDate (Entwurf) ist bereits hinterlegt. Korpus 31x kein_standard (29 davon mit eSH-0001), nur 2x eCH-0119.",
+   "feld": "Ort und Datum"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Ort der Unterzeichnung (bei Grenzgängern oft im Ausland), keine Postadresse und keine Wohngemeinde. eCH-0010 town/locality und eCH-0007 municipalityName beschreiben Adress- bzw. Gemeindeangaben, nicht den Unterzeichnungsort. eCH-0119 locationAndDate ist steuerspezifisch und kombiniert. Die Suche nach signat*/placeOfSign/placeAndDate ergab kein passendes atomares Element; Korpus 27x kein_standard.",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Kalenderdatum der Unterzeichnung. eCH-0058 messageDate ist das Erstellungsdatum einer elektronischen Meldung, eCH-0039 openingDate die Eröffnung eines Dossiers/Dokuments, eCH-0262 dateOfApplication eine Pflanzenschutz-Anwendung; keines davon ist das Unterschriftsdatum. Die Suche nach signingDate/dateOfSignature/signat*/submissionDate ergab kein Element; Korpus 27x kein_standard.",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Eigenhändige Unterschrift auf einer Linie (kein Widget), mit der vollständige und wahrheitsgetreue Angaben bestätigt werden; kein Datenwert. Suche signat*/signer/Unterschrift im ganzen Katalog: eCH-0260 signatures/…SignatureConfirmation sind Ja/Nein-Vermerke im Lehrvertrag, eCH-0039 signer ist ein Token für den Namen des Unterzeichners in GEVER-Metadaten. Für die Unterschrift selbst gibt es kein Element. Korpus Unterschriften 136x kein_standard.",
+   "feld": "Unterschrift des(r) Gesuchsteller(in)"
+  }
+ ]
+}

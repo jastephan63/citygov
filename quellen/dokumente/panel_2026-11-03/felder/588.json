@@ -1,0 +1,39 @@
+{
+ "form_id": 588,
+ "data_fields": [
+  {
+   "name": "u. ref.",
+   "definition": "Referenz des Dossiers beim Migrationsamt, bestehend aus der ZEMIS-Nummer und der kantonalen SH-Nummer der Person, die die Entbindung erklärt.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Zemis",
+    "SH"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Schaffhausen, den",
+   "definition": "Kalenderdatum, an dem die Erklärung zur Entbindung der ärztlichen Schweigepflicht ausgestellt wird; der Ort Schaffhausen ist vorgedruckt.",
+   "data_type": "date",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "NAME Vorname",
+   "definition": "Name und Vorname der Person, die ihre behandelnden Ärzte und das medizinische Personal von der Schweigepflicht gegenüber MuP und SEM entbindet.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "NAME",
+    "Vorname"
+   ],
+   "format": ""
+  }
+ ],
+ "hinweis": "Korrekturen: keine. Ich habe das Formular Zeile für Zeile mit der PDF-Datei (eine Seite) und den 5 AcroForm-Feldern abgeglichen: Zemis_nr, SH, Datum, Name, Vorname. Alle drei Felder stimmen in Reihenfolge, Bezeichnung, Typ, Pflicht und Teilfeldern. Zu «NAME Vorname» sind zwei Zeilen gedruckt: Die obere ist das AcroForm-Feld «Name», die untere das Feld «Vorname». Die zweite Zeile ist also keine Unterschriftszeile. Das Formular druckt weder «Unterschrift» noch eine Unterschriftszeile, deshalb ist keine Unterschrift erfasst. Das stimmt mit form.signature_requirement='keine' überein. Es ist aber eine inhaltliche Lücke: Eine Entbindung von der Schweigepflicht wird in der Praxis unterschrieben. Ich melde das nur und ändere das Formular nicht. «u. ref.» heisst «unsere Referenz», also die Referenz des Amtes. Möglicherweise trägt das Migrationsamt sie vor der Abgabe ein. Das Formular kennzeichnet die Angabe aber nicht als vom Amt auszufüllen, deshalb bleibt sie erfasst. Keine Felder der Person sind: der Briefkopf (Migrationsamt und Passbüro mit Adresse, Telefon und E-Mail) und der vorgedruckte Erklärungstext. Dieser Text entbindet die behandelnden Ärzte und das medizinische Personal von der Schweigepflicht gegenüber dem MuP und dem SEM und erlaubt, die ärztlichen Unterlagen, den Impfstatus und das Impfzertifikat weiterzugeben. Ankreuzfelder, Tabellen, eine zweite unterzeichnende Person oder eine Beilagen-Liste gibt es nicht."
+}
