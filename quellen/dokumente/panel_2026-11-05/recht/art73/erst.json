@@ -1,0 +1,238 @@
+{
+ "felder": [
+  {
+   "id": 2563,
+   "form_id": 275,
+   "name": "Rechnungsjahr",
+   "cites": [
+    {
+     "cref": "SHR 611.100",
+     "article_no": "Art. 10",
+     "beleg": "Der Regierungsrat bzw. der Gemeinderat unterbreitet innert sechs Monaten nach Ende des Kalenderjahres dem Kantonsrat respektive der Gemeindeversammlung oder dem Einwohnerrat die Jahresrechnung zur Genehmigung.",
+     "warum": "Die Jahresrechnung wird je Kalenderjahr vorgelegt; das Rechnungsjahr bestimmt, welche Jahresrechnung per 31. Dezember die Erklärung betrifft."
+    },
+    {
+     "cref": "SHR 120.100",
+     "article_no": "Art. 68",
+     "beleg": "Die Organe der Gemeinde sind verpflichtet, der Rechnungsprüfungskommission zur Erfüllung ihrer Aufgaben Auskunft zu erteilen.",
+     "warum": "Die Erklärung bestätigt die dem Prüfungsorgan in der Prüfung erteilten Auskünfte; das Rechnungsjahr grenzt ab, für welche Prüfung sie gelten."
+    }
+   ],
+   "basis_typ": "artikel",
+   "begruendung": "Das Rechnungsjahr bezeichnet die geprüfte Jahresrechnung (FHG Art. 10 Abs. 1) und grenzt die Auskunft an das Prüfungsorgan ab (GG Art. 68 Abs. 2).",
+   "art73": "entfaellt",
+   "art73_grund": "Abs. 1–2 seit 1.1.2018 aufgehoben. Abs. 3 regelt nur die Wiedervorlage nach Nichtgenehmigung; die Erklärung an das Prüfungsorgan gehört zur Prüfung vor der Genehmigung."
+  },
+  {
+   "id": 2564,
+   "form_id": 275,
+   "name": "Körperschaft",
+   "cites": [
+    {
+     "cref": "SHR 120.100",
+     "article_no": "Art. 67",
+     "beleg": "sie prüft die Rechnungsführung der Gemeinde und ihrer unselbständigen Anstalten",
+     "warum": "Geprüft wird die Rechnungsführung einer bestimmten Gemeinde oder unselbständigen Anstalt; die Angabe benennt, wessen Rechnung erklärt wird."
+    },
+    {
+     "cref": "SHR 120.100",
+     "article_no": "Art. 68",
+     "beleg": "Die Organe der Gemeinde sind verpflichtet, der Rechnungsprüfungskommission zur Erfüllung ihrer Aufgaben Auskunft zu erteilen.",
+     "warum": "Auskunftspflichtig sind die Organe dieser Körperschaft; die Angabe benennt, für welche Körperschaft Behörde und Finanzverwaltung erklären."
+    }
+   ],
+   "basis_typ": "artikel",
+   "begruendung": "Die Körperschaft ist Gegenstand der Prüfung (GG Art. 67 Abs. 1 lit. a) und Trägerin der Auskunftspflicht ihrer Organe gegenüber dem Prüfungsorgan (GG Art. 68 Abs. 2).",
+   "art73": "entfaellt",
+   "art73_grund": "Abs. 1–2 seit 1.1.2018 aufgehoben. Abs. 3 regelt nur die Wiedervorlage nach Nichtgenehmigung; die Erklärung an das Prüfungsorgan gehört zur Prüfung vor der Genehmigung."
+  },
+  {
+   "id": 2565,
+   "form_id": 275,
+   "name": "Beilagen",
+   "cites": [
+    {
+     "cref": "SHR 120.100",
+     "article_no": "Art. 68",
+     "beleg": "Soweit es zur Erfüllung ihrer Aufgaben notwendig ist, kann die Rechnungsprüfungskommission Einsicht in Akten der Gemeinde nehmen. Die Organe der Gemeinde sind verpflichtet, der Rechnungsprüfungskommission zur Erfüllung ihrer Aufgaben Auskunft zu erteilen.",
+     "warum": "Die Beilagen (unterzeichnete Jahresrechnung, Zusammenstellung zu Punkt 5) sind Akten und Auskünfte, die dem Prüfungsorgan für die Prüfung vorgelegt werden."
+    }
+   ],
+   "basis_typ": "artikel",
+   "begruendung": "Die Beilagen belegen die Akteneinsicht und Auskunft an das Prüfungsorgan (GG Art. 68 Abs. 1–2); die Liste hält fest, was vorgelegt wurde.",
+   "art73": "entfaellt",
+   "art73_grund": "Abs. 1–2 seit 1.1.2018 aufgehoben. Abs. 3 regelt nur die Wiedervorlage nach Nichtgenehmigung; die Erklärung an das Prüfungsorgan gehört zur Prüfung vor der Genehmigung."
+  },
+  {
+   "id": 2610,
+   "form_id": 280,
+   "name": "Körperschaft",
+   "cites": [
+    {
+     "cref": "SHR 120.100",
+     "article_no": "Art. 107",
+     "beleg": "Der Zweckverband untersteht den Vorschriften über den Gemeindehaushalt und das Rechnungswesen.",
+     "warum": "Die Vorlage ist die Jahresrechnung eines Zweckverbands nach Gemeindehaushaltsrecht; die Angabe bezeichnet den Verband, dessen Rechnung vorgelegt wird."
+    },
+    {
+     "cref": "SHR 611.100",
+     "article_no": "Art. 10",
+     "beleg": "Der Regierungsrat bzw. der Gemeinderat unterbreitet innert sechs Monaten nach Ende des Kalenderjahres dem Kantonsrat respektive der Gemeindeversammlung oder dem Einwohnerrat die Jahresrechnung zur Genehmigung.",
+     "warum": "Vorgelegt wird die Jahresrechnung einer bestimmten Gemeinde bzw. eines Verbands; Name mit PLZ und Ort identifiziert die Rechnungsträgerin."
+    }
+   ],
+   "basis_typ": "artikel",
+   "begruendung": "Die Körperschaft bezeichnet, wessen Jahresrechnung zur Genehmigung vorgelegt wird (FHG Art. 10 Abs. 1), für Verbände über GG Art. 107 Abs. 2. PLZ und Ort dienen nur der Identifikation.",
+   "art73": "entfaellt",
+   "art73_grund": "Abs. 1–2 aufgehoben. Abs. 3 (Wiedervorlage einer nicht genehmigten Rechnung innert zwei Monaten) regelt diese Angabe nicht; die Vorlage kennt nur Genehmigungsbeschlüsse."
+  },
+  {
+   "id": 2611,
+   "form_id": 280,
+   "name": "Rechnungsjahr",
+   "cites": [
+    {
+     "cref": "SHR 611.100",
+     "article_no": "Art. 10",
+     "beleg": "Der Regierungsrat bzw. der Gemeinderat unterbreitet innert sechs Monaten nach Ende des Kalenderjahres dem Kantonsrat respektive der Gemeindeversammlung oder dem Einwohnerrat die Jahresrechnung zur Genehmigung.",
+     "warum": "Die Jahresrechnung wird je Kalenderjahr zur Genehmigung vorgelegt; das Rechnungsjahr bezeichnet die vorgelegte Rechnung."
+    },
+    {
+     "cref": "SHR 120.100",
+     "article_no": "Art. 107",
+     "beleg": "Der Zweckverband untersteht den Vorschriften über den Gemeindehaushalt und das Rechnungswesen.",
+     "warum": "Über diese Bestimmung gilt die jährliche Rechnungslegung nach FHG auch für den Zweckverband."
+    }
+   ],
+   "basis_typ": "artikel",
+   "begruendung": "Das Rechnungsjahr bezeichnet die vorgelegte Jahresrechnung (FHG Art. 10 Abs. 1); für den Zweckverband gilt dies über GG Art. 107 Abs. 2.",
+   "art73": "entfaellt",
+   "art73_grund": "Abs. 1–2 aufgehoben. Abs. 3 (Wiedervorlage einer nicht genehmigten Rechnung innert zwei Monaten) regelt diese Angabe nicht; die Vorlage kennt nur Genehmigungsbeschlüsse."
+  },
+  {
+   "id": 2612,
+   "form_id": 280,
+   "name": "Gemeindepräsident",
+   "cites": [
+    {
+     "cref": "SHR 120.100",
+     "article_no": "Art. 53",
+     "beleg": "Wichtige Korrespondenz ist in der Regel kollektiv von der Gemeindepräsidentin oder vom Gemeindepräsidenten und der Gemeindeschreiberin oder dem Gemeindeschreiber zu unterzeichnen.",
+     "warum": "Der Genehmigungsbeschluss der Verbandsgemeinde wird «Namens der Gemeindeversammlung» von Gemeindepräsident/in und Gemeindeschreiber/in kollektiv unterzeichnet."
+    }
+   ],
+   "basis_typ": "artikel",
+   "begruendung": "Die Angabe nennt die unterzeichnende Person des Gemeindebeschlusses; die Kollektivunterschrift von Präsidium und Schreiber regelt GG Art. 53 Abs. 1.",
+   "art73": "entfaellt",
+   "art73_grund": "Abs. 1–2 aufgehoben. Abs. 3 regelt die Wiedervorlage nach Nichtgenehmigung, nicht die Personen oder Kontakte auf der Vorlage."
+  },
+  {
+   "id": 2613,
+   "form_id": 280,
+   "name": "Gemeindeschreiber",
+   "cites": [
+    {
+     "cref": "SHR 120.100",
+     "article_no": "Art. 53",
+     "beleg": "Auszüge aus dem Protokoll sind von der Gemeindeschreiberin oder vom Gemeindeschreiber zu unterzeichnen. Wichtige Korrespondenz ist in der Regel kollektiv von der Gemeindepräsidentin oder vom Gemeindepräsidenten und der Gemeindeschreiberin oder dem Gemeindeschreiber zu unterzeichnen.",
+     "warum": "Der Genehmigungsbeschluss der Verbandsgemeinde ist ein Protokollauszug; ihn unterzeichnet der Gemeindeschreiber, kollektiv mit dem Präsidium."
+    },
+    {
+     "cref": "SHR 120.100",
+     "article_no": "Art. 62",
+     "beleg": "Führung des Protokolls der Gemeindeversammlung und des Gemeinderates",
+     "warum": "Der Gemeindeschreiber führt das Protokoll der Gemeindeversammlung, aus dem der Genehmigungsbeschluss der Verbandsgemeinde stammt."
+    }
+   ],
+   "basis_typ": "artikel",
+   "begruendung": "Die Angabe nennt den Unterzeichner des Protokollauszugs (GG Art. 53 Abs. 1), der das Protokoll der Gemeindeversammlung führt (GG Art. 62 Abs. 1 lit. a).",
+   "art73": "entfaellt",
+   "art73_grund": "Abs. 1–2 aufgehoben. Abs. 3 regelt die Wiedervorlage nach Nichtgenehmigung, nicht die Personen oder Kontakte auf der Vorlage."
+  },
+  {
+   "id": 2614,
+   "form_id": 280,
+   "name": "Finanzreferent",
+   "cites": [],
+   "basis_typ": "ohne",
+   "begruendung": "Kein Artikel verlangt die Angabe; GG Art. 54 regelt Referate, nicht diese Vorlage. Im Vorlagetext fehlt die Rolle; verantwortlich zeichnen Vorsteherschaft, Präsident/in und Rechnungsführer/in, Kontakt deckt 2616.",
+   "art73": "entfaellt",
+   "art73_grund": "Abs. 1–2 aufgehoben. Abs. 3 regelt die Wiedervorlage nach Nichtgenehmigung, nicht die Personen oder Kontakte auf der Vorlage."
+  },
+  {
+   "id": 2615,
+   "form_id": 280,
+   "name": "Finanzverwalter",
+   "cites": [],
+   "basis_typ": "ohne",
+   "begruendung": "Kein Artikel verlangt die Angabe. Im Vorlagetext fehlt die Rolle; die Rechnungsführung erfasst bereits Feld 2618 (Rechnungsführer/in), den Kontakt Feld 2616. Die Angabe wäre doppelt erhoben.",
+   "art73": "entfaellt",
+   "art73_grund": "Abs. 1–2 aufgehoben. Abs. 3 regelt die Wiedervorlage nach Nichtgenehmigung, nicht die Personen oder Kontakte auf der Vorlage."
+  },
+  {
+   "id": 2616,
+   "form_id": 280,
+   "name": "Kontaktangaben",
+   "cites": [],
+   "basis_typ": "aufgabe",
+   "begruendung": "Kein Artikel verlangt Kontaktangaben. Aufgabe: Rückfragen von Prüfungsorgan, genehmigenden Organen und Departement (Aufsicht, GG Art. 115/126) zur vorgelegten Jahresrechnung.",
+   "art73": "entfaellt",
+   "art73_grund": "Abs. 1–2 aufgehoben. Abs. 3 regelt die Wiedervorlage nach Nichtgenehmigung, nicht die Personen oder Kontakte auf der Vorlage."
+  },
+  {
+   "id": 2617,
+   "form_id": 280,
+   "name": "Präsident/in",
+   "cites": [],
+   "basis_typ": "aufgabe",
+   "begruendung": "Kein Artikel verlangt den Namen; GG Art. 69 regelt Bericht und Antrag, nicht die Person. Die Vorlage führt Präsident/in mit Gemeinde beim Zweckverband als Unterzeichner; die Angabe ordnet Antrag und Beschluss zu.",
+   "art73": "entfaellt",
+   "art73_grund": "Abs. 1–2 aufgehoben. Abs. 3 regelt die Wiedervorlage nach Nichtgenehmigung, nicht die Personen oder Kontakte auf der Vorlage."
+  },
+  {
+   "id": 2618,
+   "form_id": 280,
+   "name": "Rechnungsführer",
+   "cites": [],
+   "basis_typ": "aufgabe",
+   "begruendung": "Kein Artikel verlangt den Namen; GG Art. 69 betrifft den Bericht des Prüfungsorgans, nicht die Rechnungsführung. Aufgabe: verantwortliche Person und Ansprechstelle für die geprüfte Verbandsrechnung.",
+   "art73": "entfaellt",
+   "art73_grund": "Abs. 1–2 aufgehoben. Abs. 3 regelt die Wiedervorlage nach Nichtgenehmigung, nicht die Personen oder Kontakte auf der Vorlage."
+  },
+  {
+   "id": 2619,
+   "form_id": 280,
+   "name": "Bericht, Anträge und Beschlüsse",
+   "cites": [
+    {
+     "cref": "SHR 611.100",
+     "article_no": "Art. 40",
+     "beleg": "die Verabschiedung der Jahresrechnung zuhanden des Kantonsrates bzw. der Gemeindeversammlung oder des Einwohnerrates",
+     "warum": "Bericht und Antrag der Vorsteherschaft bzw. des Gemeinderats sind die Verabschiedung der Jahresrechnung zuhanden des beschliessenden Organs."
+    },
+    {
+     "cref": "SHR 611.100",
+     "article_no": "Art. 10",
+     "beleg": "Der Regierungsrat bzw. der Gemeinderat unterbreitet innert sechs Monaten nach Ende des Kalenderjahres dem Kantonsrat respektive der Gemeindeversammlung oder dem Einwohnerrat die Jahresrechnung zur Genehmigung.",
+     "warum": "Die Jahresrechnung wird zur Genehmigung vorgelegt; die Genehmigungsbeschlüsse von Delegiertenversammlung und Verbandsgemeinden halten diese fest."
+    },
+    {
+     "cref": "SHR 120.100",
+     "article_no": "Art. 69",
+     "beleg": "Die Rechnungsprüfungskommission erstattet der Gemeindeversammlung oder dem Einwohnerrat Bericht. Sie stellt Antrag auf Genehmigung oder Rückweisung der Rechnung und des Budgets.",
+     "warum": "Trägt den Teil «Bericht und Antrag Rechnungsprüfungsorgan» (Antrag auf Genehmigung oder Rückweisung), soweit das Feld diesen Teil umfasst."
+    },
+    {
+     "cref": "SHR 120.100",
+     "article_no": "Art. 107",
+     "beleg": "Der Zweckverband untersteht den Vorschriften über den Gemeindehaushalt und das Rechnungswesen.",
+     "warum": "Über diese Bestimmung gelten Verabschiedung, Prüfung und Genehmigung der Jahresrechnung nach Gemeindehaushaltsrecht auch für den Zweckverband."
+    }
+   ],
+   "basis_typ": "artikel",
+   "begruendung": "Bericht, Antrag und Beschlüsse zur Jahresrechnung: Verabschiedung (FHG Art. 40 lit. d), Genehmigung (FHG Art. 10 Abs. 1), Prüfungsbericht (GG Art. 69 Abs. 1), für Verbände über GG Art. 107 Abs. 2.",
+   "art73": "entfaellt",
+   "art73_grund": "Abs. 3 greift erst nach Nichtgenehmigung (Wiedervorlage mit ergänzendem Kommissionsbericht innert zwei Monaten); die Vorlage enthält nur Antrag und Beschluss auf Genehmigung."
+  }
+ ]
+}

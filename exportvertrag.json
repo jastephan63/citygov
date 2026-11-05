@@ -7,15 +7,15 @@
  },
  "exporte": {
   "citygov_datafields.jsonl": {
-   "version": "1.0.4",
+   "version": "1.0.5",
    "schema": "schema/citygov_datafields.schema.json",
-   "schema_sha256": "45a15918b770890d60f199240995a83cdbfb0402124a8d111cf0cc4dd78ccbbb",
+   "schema_sha256": "57ba2ea1902341f0c2b489aac3f3986de993595c36de68e5111100f24bee5d27",
    "version_steht": "nur hier: eine JSON-Zeilen-Datei hat keine Kopfzeile",
-   "seit": "2026-11-05T14:43:13",
+   "seit": "2026-11-05T15:48:33",
    "zaehlungen": {
     "$": 6999,
     "$.allowed_values[]": 5203,
-    "$.legal_basis[]": 8211,
+    "$.legal_basis[]": 8210,
     "$.subfields[]": 9064
    }
   },
@@ -118,11 +118,11 @@
    }
   },
   "data_export.json": {
-   "version": "1.8.1",
+   "version": "1.8.2",
    "schema": "schema/data_export.schema.json",
-   "schema_sha256": "fc119872dee3447c185acf5b22537e43f9a92da648355f94e1f89e4fefb25831",
+   "schema_sha256": "bf2bfd686efc2be12c0be05dec781e9398aac233e913f9b14e5a974fd74c5778",
    "version_steht": "vertrag.version",
-   "seit": "2026-11-05T14:43:13",
+   "seit": "2026-11-05T15:48:33",
    "zaehlungen": {
     "$.attribut_katalog[]": 2890,
     "$.begriffe[]": 470,
@@ -299,11 +299,11 @@
     "$.themenkatalog[].services_ohne_daten[]": 136,
     "$.themenkatalog[].wiederholt[]": 1363,
     "$.wirkung.gesetze[]": 103,
-    "$.wirkung.gesetze[].artikel[]": 1166,
-    "$.wirkung.gesetze[].dienststellen[]": 141,
-    "$.wirkung.gesetze[].formulare[]": 659,
+    "$.wirkung.gesetze[].artikel[]": 1171,
+    "$.wirkung.gesetze[].dienststellen[]": 142,
+    "$.wirkung.gesetze[].formulare[]": 661,
     "$.wirkung.gesetze[].pruefung.kuenftig[]": 20,
-    "$.wirkung.gesetze[].services[]": 538,
+    "$.wirkung.gesetze[].services[]": 540,
     "$.wirkung.gesetze[].weitere.bekanntgabe_formulare[]": 206,
     "$.wirkung.gesetze[].weitere.entscheid_formulare[]": 149,
     "$.wirkung.gesetze[].weitere.rechtsmittel_formulare[]": 149,
@@ -4171,6 +4171,49 @@
      "pfad": "$.meta.kennungen.nicht_aktiv[]",
      "vorher": 239,
      "nachher": 348
+    }
+   ]
+  },
+  {
+   "export": "data_export.json",
+   "version": "1.8.2",
+   "vorher": "1.8.1",
+   "stufe": "patch",
+   "stand": "2026-11-05T15:48:33",
+   "zaehlungen": [
+    {
+     "pfad": "$.wirkung.gesetze[].artikel[]",
+     "vorher": 1166,
+     "nachher": 1171
+    },
+    {
+     "pfad": "$.wirkung.gesetze[].dienststellen[]",
+     "vorher": 141,
+     "nachher": 142
+    },
+    {
+     "pfad": "$.wirkung.gesetze[].formulare[]",
+     "vorher": 659,
+     "nachher": 661
+    },
+    {
+     "pfad": "$.wirkung.gesetze[].services[]",
+     "vorher": 538,
+     "nachher": 540
+    }
+   ]
+  },
+  {
+   "export": "citygov_datafields.jsonl",
+   "version": "1.0.5",
+   "vorher": "1.0.4",
+   "stufe": "patch",
+   "stand": "2026-11-05T15:48:33",
+   "zaehlungen": [
+    {
+     "pfad": "$.legal_basis[]",
+     "vorher": 8211,
+     "nachher": 8210
     }
    ]
   }

@@ -31,7 +31,7 @@
    "datenhandhabung.scope": "allgemein=applies to every personal-data field; besonders_schuetzenswert=additionally applies to fields with a sensitive category (matching sensitive_category, or all when null); sektoral=applies only to fields whose legal basis cites the same law (match on law). The addressee is part of the claim: rules from DSG/DSV/BGA/EMBAG bind Bundesorgane, not the canton (see each rule's law and quote).",
    "process_steps / findings": "legacy service-level rows of the 2026-06 era, kept as text (process_steps mode is a code; findings are the auto-draft's notes, status as drafted, never reviewed — see retired_layer); the Verfahren facts a reader should rely on are dvsh_verfahren and forms[].verfahren."
   },
-  "generated_at": "2026-11-05T14:43:13",
+  "generated_at": "2026-11-05T15:48:33",
   "datenstand": {
    "build": "2026-11-05",
    "shep_harvest": "2026-10-28",
@@ -55,9 +55,9 @@
   },
   "zitate": {
    "verifiziert": 4070,
-   "quelle_pdf": 4141,
+   "quelle_pdf": 4140,
    "unverifiziert": 0,
-   "total": 8211
+   "total": 8210
   },
   "umfang": {
    "services": 518,
@@ -385812,12 +385812,12 @@
        "legal_basis": [
         {
          "jurisdiction": "cantonal",
-         "law_title": "Gemeindegesetz (Kanton Schaffhausen)",
-         "law_short": "GG",
-         "sr_number": "120.100",
-         "cantonal_ref": "SHR 120.100",
-         "article_no": "Art. 73",
-         "artikel_kennung": "sh:gesetz:shr-120.100:art-73",
+         "law_title": "Finanzhaushaltsgesetz",
+         "law_short": "Finanzhaushaltsgesetz",
+         "sr_number": "611.100",
+         "cantonal_ref": "SHR 611.100",
+         "article_no": "Art. 10",
+         "artikel_kennung": "sh:gesetz:shr-611.100:art-10",
          "citation_detail": null,
          "verification": "sourced_pdf"
         }
@@ -385868,8 +385868,8 @@
          "law_short": "GG",
          "sr_number": "120.100",
          "cantonal_ref": "SHR 120.100",
-         "article_no": "Art. 73",
-         "artikel_kennung": "sh:gesetz:shr-120.100:art-73",
+         "article_no": "Art. 67",
+         "artikel_kennung": "sh:gesetz:shr-120.100:art-67",
          "citation_detail": null,
          "verification": "sourced_pdf"
         }
@@ -385909,8 +385909,8 @@
          "law_short": "GG",
          "sr_number": "120.100",
          "cantonal_ref": "SHR 120.100",
-         "article_no": "Art. 73",
-         "artikel_kennung": "sh:gesetz:shr-120.100:art-73",
+         "article_no": "Art. 68",
+         "artikel_kennung": "sh:gesetz:shr-120.100:art-68",
          "citation_detail": null,
          "verification": "sourced_pdf"
         }
@@ -387832,12 +387832,23 @@
        "legal_basis": [
         {
          "jurisdiction": "cantonal",
+         "law_title": "Finanzhaushaltsgesetz",
+         "law_short": "Finanzhaushaltsgesetz",
+         "sr_number": "611.100",
+         "cantonal_ref": "SHR 611.100",
+         "article_no": "Art. 10",
+         "artikel_kennung": "sh:gesetz:shr-611.100:art-10",
+         "citation_detail": null,
+         "verification": "sourced_pdf"
+        },
+        {
+         "jurisdiction": "cantonal",
          "law_title": "Gemeindegesetz (Kanton Schaffhausen)",
          "law_short": "GG",
          "sr_number": "120.100",
          "cantonal_ref": "SHR 120.100",
-         "article_no": "Art. 73",
-         "artikel_kennung": "sh:gesetz:shr-120.100:art-73",
+         "article_no": "Art. 107",
+         "artikel_kennung": "sh:gesetz:shr-120.100:art-107",
          "citation_detail": null,
          "verification": "sourced_pdf"
         }
@@ -387903,12 +387914,23 @@
        "legal_basis": [
         {
          "jurisdiction": "cantonal",
+         "law_title": "Finanzhaushaltsgesetz",
+         "law_short": "Finanzhaushaltsgesetz",
+         "sr_number": "611.100",
+         "cantonal_ref": "SHR 611.100",
+         "article_no": "Art. 10",
+         "artikel_kennung": "sh:gesetz:shr-611.100:art-10",
+         "citation_detail": null,
+         "verification": "sourced_pdf"
+        },
+        {
+         "jurisdiction": "cantonal",
          "law_title": "Gemeindegesetz (Kanton Schaffhausen)",
          "law_short": "GG",
          "sr_number": "120.100",
          "cantonal_ref": "SHR 120.100",
-         "article_no": "Art. 73",
-         "artikel_kennung": "sh:gesetz:shr-120.100:art-73",
+         "article_no": "Art. 107",
+         "artikel_kennung": "sh:gesetz:shr-120.100:art-107",
          "citation_detail": null,
          "verification": "sourced_pdf"
         }
@@ -387959,8 +387981,8 @@
          "law_short": "GG",
          "sr_number": "120.100",
          "cantonal_ref": "SHR 120.100",
-         "article_no": "Art. 73",
-         "artikel_kennung": "sh:gesetz:shr-120.100:art-73",
+         "article_no": "Art. 53",
+         "artikel_kennung": "sh:gesetz:shr-120.100:art-53",
          "citation_detail": null,
          "verification": "sourced_pdf"
         }
@@ -388036,8 +388058,8 @@
          "law_short": "GG",
          "sr_number": "120.100",
          "cantonal_ref": "SHR 120.100",
-         "article_no": "Art. 73",
-         "artikel_kennung": "sh:gesetz:shr-120.100:art-73",
+         "article_no": "Art. 53",
+         "artikel_kennung": "sh:gesetz:shr-120.100:art-53",
          "citation_detail": null,
          "verification": "sourced_pdf"
         }
@@ -388106,22 +388128,10 @@
         "url": "https://www.ech.ch/de/ech/ech-0011",
         "standard_status": "Genehmigt"
        },
-       "legal_basis": [
-        {
-         "jurisdiction": "cantonal",
-         "law_title": "Gemeindegesetz (Kanton Schaffhausen)",
-         "law_short": "GG",
-         "sr_number": "120.100",
-         "cantonal_ref": "SHR 120.100",
-         "article_no": "Art. 73",
-         "artikel_kennung": "sh:gesetz:shr-120.100:art-73",
-         "citation_detail": null,
-         "verification": "sourced_pdf"
-        }
-       ],
+       "legal_basis": [],
        "over_collection": false,
-       "basis_typ": "artikel",
-       "basis_begruendung": null,
+       "basis_typ": "aufgabe",
+       "basis_begruendung": "Deckblatt T1 der Mappe Gemeinden nennt die Person unter «Kontakt». Kein Artikel verlangt die Angabe; das Departement braucht für Rückfragen zur Rechnung die zuständige Person im Gemeinderat (vgl. GG Art. 116).",
        "art5_offen": false,
        "subjekt": "behoerde",
        "partei": null,
@@ -388183,22 +388193,10 @@
         "url": "https://www.ech.ch/de/ech/ech-0011",
         "standard_status": "Genehmigt"
        },
-       "legal_basis": [
-        {
-         "jurisdiction": "cantonal",
-         "law_title": "Gemeindegesetz (Kanton Schaffhausen)",
-         "law_short": "GG",
-         "sr_number": "120.100",
-         "cantonal_ref": "SHR 120.100",
-         "article_no": "Art. 73",
-         "artikel_kennung": "sh:gesetz:shr-120.100:art-73",
-         "citation_detail": null,
-         "verification": "sourced_pdf"
-        }
-       ],
+       "legal_basis": [],
        "over_collection": false,
-       "basis_typ": "artikel",
-       "basis_begruendung": null,
+       "basis_typ": "aufgabe",
+       "basis_begruendung": "Deckblatt T1 der Mappe Gemeinden nennt «Finanzlverwalter/in» unter «Kontakt». Kein Artikel verlangt die Angabe; das Departement braucht für fachliche Rückfragen zur Rechnung eine Ansprechperson (vgl. GG Art. 116).",
        "art5_offen": false,
        "subjekt": "behoerde",
        "partei": null,
@@ -388263,7 +388261,7 @@
        "legal_basis": [],
        "over_collection": false,
        "basis_typ": "aufgabe",
-       "basis_begruendung": "Die Kontaktadresse der Körperschaft ist für Rückfragen und Zustellung nötig.",
+       "basis_begruendung": "Kontaktblock beider Deckblätter T1. Kein Artikel verlangt die Angabe; das Departement braucht Adresse, Telefon und E-Mail, um Akten und Auskünfte einzuholen (vgl. GG Art. 116; für Verbände Art. 126).",
        "art5_offen": false,
        "subjekt": "behoerde",
        "partei": null,
@@ -388359,22 +388357,10 @@
         "url": "https://www.ech.ch/de/ech/ech-0044",
         "standard_status": "Genehmigt"
        },
-       "legal_basis": [
-        {
-         "jurisdiction": "cantonal",
-         "law_title": "Gemeindegesetz (Kanton Schaffhausen)",
-         "law_short": "GG",
-         "sr_number": "120.100",
-         "cantonal_ref": "SHR 120.100",
-         "article_no": "Art. 69",
-         "artikel_kennung": "sh:gesetz:shr-120.100:art-69",
-         "citation_detail": null,
-         "verification": "sourced_pdf"
-        }
-       ],
+       "legal_basis": [],
        "over_collection": false,
-       "basis_typ": "artikel",
-       "basis_begruendung": null,
+       "basis_typ": "aufgabe",
+       "basis_begruendung": "Deckblatt T1 Zweckverband nennt die Person unter «Kontakt»; sie zeichnet auch Antrag (A_VS) und Beschluss (B_DV). Kein Artikel verlangt die Angabe; die Aufsicht braucht eine Ansprechperson (vgl. GG Art. 116, 126).",
        "art5_offen": false,
        "subjekt": "behoerde",
        "partei": null,
@@ -388453,22 +388439,10 @@
         "url": "https://www.ech.ch/de/ech/ech-0044",
         "standard_status": "Genehmigt"
        },
-       "legal_basis": [
-        {
-         "jurisdiction": "cantonal",
-         "law_title": "Gemeindegesetz (Kanton Schaffhausen)",
-         "law_short": "GG",
-         "sr_number": "120.100",
-         "cantonal_ref": "SHR 120.100",
-         "article_no": "Art. 69",
-         "artikel_kennung": "sh:gesetz:shr-120.100:art-69",
-         "citation_detail": null,
-         "verification": "sourced_pdf"
-        }
-       ],
+       "legal_basis": [],
        "over_collection": false,
-       "basis_typ": "artikel",
-       "basis_begruendung": null,
+       "basis_typ": "aufgabe",
+       "basis_begruendung": "Deckblatt T1 Zweckverband nennt die Person unter «Kontakt». Kein Artikel verlangt die Angabe; die Aufsicht braucht für fachliche Rückfragen zur Verbandsrechnung eine Ansprechperson (vgl. GG Art. 116, 126).",
        "art5_offen": false,
        "subjekt": "behoerde",
        "partei": null,
@@ -388550,12 +388524,23 @@
        "legal_basis": [
         {
          "jurisdiction": "cantonal",
-         "law_title": "Gemeindegesetz (Kanton Schaffhausen)",
-         "law_short": "GG",
-         "sr_number": "120.100",
-         "cantonal_ref": "SHR 120.100",
-         "article_no": "Art. 69",
-         "artikel_kennung": "sh:gesetz:shr-120.100:art-69",
+         "law_title": "Finanzhaushaltsgesetz",
+         "law_short": "Finanzhaushaltsgesetz",
+         "sr_number": "611.100",
+         "cantonal_ref": "SHR 611.100",
+         "article_no": "Art. 40",
+         "artikel_kennung": "sh:gesetz:shr-611.100:art-40",
+         "citation_detail": null,
+         "verification": "sourced_pdf"
+        },
+        {
+         "jurisdiction": "cantonal",
+         "law_title": "Finanzhaushaltsgesetz",
+         "law_short": "Finanzhaushaltsgesetz",
+         "sr_number": "611.100",
+         "cantonal_ref": "SHR 611.100",
+         "article_no": "Art. 10",
+         "artikel_kennung": "sh:gesetz:shr-611.100:art-10",
          "citation_detail": null,
          "verification": "sourced_pdf"
         },
@@ -388565,8 +388550,8 @@
          "law_short": "GG",
          "sr_number": "120.100",
          "cantonal_ref": "SHR 120.100",
-         "article_no": "Art. 73",
-         "artikel_kennung": "sh:gesetz:shr-120.100:art-73",
+         "article_no": "Art. 107",
+         "artikel_kennung": "sh:gesetz:shr-120.100:art-107",
          "citation_detail": null,
          "verification": "sourced_pdf"
         }
