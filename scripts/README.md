@@ -204,7 +204,11 @@ python3 scripts/ingest_laws.py <SHR> ... [--out <dir>]                       # c
                                                   # (an «Art. N»/«§ N» line followed by its first paragraph; a wrapped
                                                   # cross-reference «Art. 65 sinngemäss.», the change table and «…»
                                                   # (repealed) are no articles; no heading of its own -> the section
-                                                  # heading above, else the first sentence). Upserts, never deletes;
+                                                  # heading above, else the first sentence; a paragraph range «1–2» / «…»
+                                                  # repeals only those paragraphs; annex «§ A1a-2» and transitional
+                                                  # «Art. T1» provisions are articles). Upserts, never deletes; a citation
+                                                  # takes its article's verification level; a stored bare number («88»)
+                                                  # gets the notation («Art. 88»: same row, same identifier);
                                                   # a new law's title loses the line «Vom … (Stand …)», its short title
                                                   # follows the title correction (gesetz_titel.kurztitel); a title the index
                                                   # cut short is completed by load_gesetz_titel.py --lesen (pypdf), then applied
@@ -388,6 +392,14 @@ python3 scripts/migrate_2026_11_05.py             # six article rows of SHR 641.
                                                   # references the old line-index reader took for articles,
                                                   # quellen/korrekturen/artikel_artefakte_2026-11-05.json (gated on the PDF
                                                   # line and on the full-text reader); then gesetz_stand.py, kennungen.py
+python3 scripts/migrate_2026_11_05b.py            # after ingest_laws.py for every cantonal law (all 125, 2026-11-05):
+                                                  # the citations of 8 article rows that are wrapped cross-references
+                                                  # re-judged (moved to the article that governs the Formular, or dropped
+                                                  # where the field cites the provision the line stands in), Rechtsmittel
+                                                  # rule 87 moved to § 27 PolV, then the 112 rows the full-text reader does
+                                                  # not read removed (73 cross-reference lines, 39 repealed articles),
+                                                  # quellen/korrekturen/artikel_artefakte_2026-11-05b.json (quotes and lines
+                                                  # gated on the PDF text); then gesetz_stand.py, kennungen.py
 python3 scripts/apply_wortwahl.py                 # «Angabe», not «Datum», where the databank means a piece of data
                                                   # (quellen/wortwahl_datum.json, reviewed per text); idempotent
 python3 scripts/load_rechtsmittel.py quellen/rechtsmittel           # SHR 822.101 § 8/§ 9 (Arbeitsinspektorat), quotes PDF-gated
@@ -740,6 +752,7 @@ copy, so no test writes the shared database.
 | `migrate_2026_09_27.py` | One-off, idempotent: one service row per DVSH service with its own file; same-file bundles named from DVSH wording; duplicate form 475 removed |
 | `migrate_2026_10_05.py` | One-off, idempotent correction of 2026-10-05: removes the two article rows that are ingest artefacts (a footnote or Amtliche-Sammlung list as «heading», no text, nothing cites them, the real article with the same number is its own row), gated on law, number, heading, the real row and every foreign key; evidence in `quellen/korrekturen/artikel_artefakte_2026-10-05.json` |
 | `migrate_2026_11_05.py` | One-off, idempotent correction of 2026-11-05: removes six article rows of the Steuergesetz (SHR 641.100) and its Verordnung (SHR 641.111) that are wrapped lines of the law text beginning with a reference to another article («Art. 24a des Bundesgesetzes …», «§ 28 der Vollzugsverordnung …», the heading line «Art. 78 und 79», three «Art. N … StG» lines in the Verordnung, which counts «§»), gated on law, number, heading, empty text, every foreign key, the line in the PDF text and the full-text reader of `ingest_laws.py` not reading it as an article; evidence in `quellen/korrekturen/artikel_artefakte_2026-11-05.json` |
+| `migrate_2026_11_05b.py` | One-off, idempotent correction of 2026-11-05 for the other cantonal laws, after `ingest_laws.py` for all of them: re-judges the citations of the eight article rows that are wrapped cross-reference lines (EG ZGB «Art. 26d» → Art. 269d / Art. 266l and 298 OR, PolV «Art. 27a»/«Art. 27» → Art. 27a / Art. 27 PolG, GesV «Art. 42» → Art. 430 ZGB, Pflegekinderverordnung «Art. 14» → § A1a-2 for the Beilagen; dropped where the field already cites the provision the line stands in or the right one is not ingested — KLV, Art. 25a KVG), moves Rechtsmittel rule 87 to § 27 PolV, then removes the 112 rows the full-text reader does not read (cross-reference lines, repealed articles). Gates: rows, fields and rule as recorded, targets ingested and holding the recorded quote in their PDF text, no field loses its last citation, the PDF line or «…» for every removed row, the reader does not read it, nothing refers to it; evidence in `quellen/korrekturen/artikel_artefakte_2026-11-05b.json` |
 | `migrate_2026_10_01.py` | One-off, idempotent corrections from the clean-up of 2026-10-01: `file_type` of the Word Formulare, the `ech_herkunft` column, the eCH-0147 XSD pin, the auto-draft placeholder descriptions cleared, names stored in composed Unicode (NFC), the file compacted so the cleared texts are gone from it; checks that no exported column holds a local path |
 | `apply_wortwahl.py` | Reader wording: in everyday German «Datum» is a calendar date, so the databank's own naming and basis texts say «Angabe» where they mean a piece of data. Applies the reviewed whole-text rewrites of `quellen/wortwahl_datum.json`; runs last in `run_begriffe.py`; `export_json.py` stops on a naming or basis text that says «Datum» without a verdict there |
 | `deprecated/` | Retired tools, kept for the record (see its README for what replaced each) |

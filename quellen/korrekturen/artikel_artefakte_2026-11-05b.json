@@ -1,0 +1,1668 @@
+{
+ "stand": "2026-11-05",
+ "zweck": "Einlesen der übrigen kantonalen Gesetze mit dem Volltext-Leser (ingest_laws.py): Zitate auf Einleseartefakte neu beurteilt (zitate, regeln), dann die Artikelzeilen entfernt, die der Volltext-Leser nicht liest (artikel: Verweiszeilen und aufgehobene Artikel). Angewendet von scripts/migrate_2026_11_05b.py nach scripts/ingest_laws.py.",
+ "zitate": [
+  {
+   "von": 3100,
+   "felder": [
+    {
+     "form_id": 291,
+     "data_field_id": 2716,
+     "name": "Liegenschaft"
+    },
+    {
+     "form_id": 291,
+     "data_field_id": 2717,
+     "name": "Mietobjekt"
+    },
+    {
+     "form_id": 291,
+     "data_field_id": 2718,
+     "name": "Absender"
+    },
+    {
+     "form_id": 291,
+     "data_field_id": 2719,
+     "name": "Empfänger"
+    },
+    {
+     "form_id": 291,
+     "data_field_id": 2720,
+     "name": "Mietzins netto bisher"
+    },
+    {
+     "form_id": 291,
+     "data_field_id": 2721,
+     "name": "Mietzins netto neu"
+    },
+    {
+     "form_id": 291,
+     "data_field_id": 2722,
+     "name": "Nebenkosten"
+    },
+    {
+     "form_id": 291,
+     "data_field_id": 2723,
+     "name": "Mietzins brutto bisher"
+    },
+    {
+     "form_id": 291,
+     "data_field_id": 2724,
+     "name": "Mietzins brutto neu"
+    },
+    {
+     "form_id": 291,
+     "data_field_id": 2725,
+     "name": "Zeitpunkt des Inkrafttretens (Mietzins)"
+    },
+    {
+     "form_id": 291,
+     "data_field_id": 2726,
+     "name": "Begründung der Erhöhung"
+    },
+    {
+     "form_id": 291,
+     "data_field_id": 2727,
+     "name": "Erhalt von Förderbeiträgen für wertvermehrende Verbesserungen"
+    },
+    {
+     "form_id": 291,
+     "data_field_id": 2728,
+     "name": "Umschreibung der Änderung"
+    },
+    {
+     "form_id": 291,
+     "data_field_id": 2729,
+     "name": "Zeitpunkt des Inkrafttretens (Vertragsänderung)"
+    },
+    {
+     "form_id": 291,
+     "data_field_id": 2730,
+     "name": "Begründung der Änderung"
+    }
+   ],
+   "nach": [
+    {
+     "ref": "SR 220",
+     "article_no": "Art. 269d",
+     "beleg": "Er muss dem Mieter die Mietzinserhöhung mindestens zehn Tage vor Beginn der Kündigungsfrist auf einem vom Kanton genehmigten Formular mitteilen und begründen."
+    }
+   ],
+   "grund": "Die Zeile «Art. 269d OR beim Abschluss eines neuen Mietvertrages obligatorisch erklä-» steht in Art. 142b EG ZGB (Formularpflicht beim Abschluss eines NEUEN Mietvertrages bei Wohnungsmangel) und verweist auf Art. 269d OR; die Nummer «Art. 26d» ist der vom alten Leser gekürzte Verweis. Formular 291 ist das Formular zur Mitteilung von Mietzinserhöhungen und anderen einseitigen Vertragsänderungen «gemäss Art. 269d des Obligationenrechts» (Titel); DVSH nennt für den Service das Obligationenrecht. Art. 269d Abs. 1 OR verlangt die Mitteilung und Begründung auf dem vom Kanton genehmigten Formular, Abs. 3 dasselbe für andere einseitige Vertragsänderungen. Ziel daher Art. 269d OR."
+  },
+  {
+   "von": 3100,
+   "felder": [
+    {
+     "form_id": 459,
+     "data_field_id": 5228,
+     "name": "Liegenschaft"
+    },
+    {
+     "form_id": 459,
+     "data_field_id": 5229,
+     "name": "Miet-/Pachtobjekt"
+    },
+    {
+     "form_id": 459,
+     "data_field_id": 5230,
+     "name": "Absender"
+    },
+    {
+     "form_id": 459,
+     "data_field_id": 5231,
+     "name": "Empfänger (Einschreiben)"
+    },
+    {
+     "form_id": 459,
+     "data_field_id": 5232,
+     "name": "Zeitpunkt der Auflösung"
+    }
+   ],
+   "nach": [
+    {
+     "ref": "SR 220",
+     "article_no": "Art. 266l",
+     "beleg": "Der Vermieter muss mit einem Formular kündigen, das vom Kanton genehmigt ist und das angibt, wie der Mieter vorzugehen hat, wenn er die Kündigung anfechten oder eine Erstreckung des Mietverhältnisses verlangen will."
+    },
+    {
+     "ref": "SR 220",
+     "article_no": "Art. 298",
+     "beleg": "Der Verpächter muss mit einem Formular kündigen, das vom Kanton genehmigt ist und das angibt, wie der Pächter vorzugehen hat, wenn er die Kündigung anfechten oder eine Erstreckung des Pachtverhältnisses verlangen will."
+    }
+   ],
+   "grund": "Dieselbe Verweiszeile in Art. 142b EG ZGB; Art. 269d OR (Mietzinserhöhung) passt nicht auf Formular 459, das Formular zur Mitteilung der Kündigung «gemäss Art. 266l und 298 des Obligationenrechts (Miet- und Pachtverträge für Wohn- und Geschäftsräume)» (Titel); DVSH nennt für den Service das Obligationenrecht. Art. 266l Abs. 2 OR (Miete) und Art. 298 Abs. 2 OR (Pacht) verlangen die Kündigung mit dem vom Kanton genehmigten Formular. Ziel daher beide Artikel."
+  },
+  {
+   "von": 8686,
+   "felder": [
+    {
+     "form_id": 467,
+     "data_field_id": 5334,
+     "name": "Beilagen"
+    }
+   ],
+   "nach": [
+    {
+     "ref": "SHR 211.224",
+     "article_no": "§ A1a-2",
+     "beleg": "Mit dem Bewilligungsgesuch sind folgende Unterlagen einzureichen:"
+    }
+   ],
+   "grund": "Die Zeile «Art. 14 der Pflegekinderverordnung (PAVO) folgende Unterlagen einzureichen bzw.» steht in § A2-2 (Anhang 2: Betreuungseinrichtungen) und verweist auf Art. 14 PAVO (Bundesrecht, nicht eingelesen). Formular 467 ist das Gesuch um Aufnahmebewilligung für ein Pflegekind in einer Pflegefamilie (Familienpflege, § 5 Abs. 2: «Zusätzlich zu den Anforderungen gemäss Art. 4 ff. PAVO gelten für diese Familien die Bestimmungen im Anhang 1a»); DVSH nennt die Kantonale Pflegekinderverordnung. Für die Beilagen gilt daher § A1a-2 «Zusätzliche Unterlagen zum Bewilligungsgesuch» (Anhang 1a), nicht § A2-2."
+  },
+  {
+   "von": 8686,
+   "felder": [
+    {
+     "form_id": 467,
+     "data_field_id": 5301,
+     "name": "Gesuchstellende Personen"
+    },
+    {
+     "form_id": 467,
+     "data_field_id": 5302,
+     "name": "Angaben zum Pflegekind"
+    },
+    {
+     "form_id": 467,
+     "data_field_id": 5328,
+     "name": "Pflegevertrag abgeschlossen"
+    }
+   ],
+   "nach": [],
+   "grund": "Dieselbe Verweiszeile in § A2-2 (Betreuungseinrichtungen). Für die Angaben zu den gesuchstellenden Personen, zum Pflegekind und zum Pflegevertrag nennt die kantonale Verordnung keine eigene Bestimmung (§ A1a-2 verlangt nur Unterlagen); der Inhalt des Gesuchs folgt aus der PAVO (Bundesrecht, nicht eingelesen). Das Artefakt-Zitat entfällt; die Felder behalten ihr Zitat von § 5 (Familienpflege)."
+  },
+  {
+   "von": 1817,
+   "felder": [
+    {
+     "form_id": 218,
+     "data_field_id": 1741,
+     "name": "Zweigniederlassung"
+    },
+    {
+     "form_id": 218,
+     "data_field_id": 1742,
+     "name": "Verkehrsdienstleister"
+    },
+    {
+     "form_id": 218,
+     "data_field_id": 1743,
+     "name": "Handelsregister"
+    },
+    {
+     "form_id": 218,
+     "data_field_id": 1744,
+     "name": "Geschäftsführer/-in"
+    },
+    {
+     "form_id": 218,
+     "data_field_id": 1745,
+     "name": "Personalbestand"
+    },
+    {
+     "form_id": 218,
+     "data_field_id": 1746,
+     "name": "Im Gesamtarbeitsvertrag"
+    },
+    {
+     "form_id": 218,
+     "data_field_id": 1747,
+     "name": "Versicherung"
+    },
+    {
+     "form_id": 218,
+     "data_field_id": 1748,
+     "name": "Vorgesehene Dienstleistungsangebote"
+    },
+    {
+     "form_id": 218,
+     "data_field_id": 1749,
+     "name": "Beilagen"
+    },
+    {
+     "form_id": 226,
+     "data_field_id": 1805,
+     "name": "Zweigniederlassung"
+    },
+    {
+     "form_id": 226,
+     "data_field_id": 1806,
+     "name": "Zweigniederlassung ist (auch) Verkehrsdienstleister"
+    },
+    {
+     "form_id": 226,
+     "data_field_id": 1807,
+     "name": "Handelsregister"
+    },
+    {
+     "form_id": 226,
+     "data_field_id": 1808,
+     "name": "Geschäftsführer/-in"
+    },
+    {
+     "form_id": 226,
+     "data_field_id": 1809,
+     "name": "Personalbestand"
+    },
+    {
+     "form_id": 226,
+     "data_field_id": 1810,
+     "name": "Angestellte im Gesamtarbeitsvertrag"
+    },
+    {
+     "form_id": 226,
+     "data_field_id": 1811,
+     "name": "Betriebshaftpflichtversicherung"
+    },
+    {
+     "form_id": 226,
+     "data_field_id": 1812,
+     "name": "Vorgesehene Dienstleistungsangebote"
+    },
+    {
+     "form_id": 226,
+     "data_field_id": 1813,
+     "name": "Zwingende Beilagen"
+    },
+    {
+     "form_id": 226,
+     "data_field_id": 1814,
+     "name": "Bedingt zwingende Beilagen"
+    },
+    {
+     "form_id": 226,
+     "data_field_id": 1815,
+     "name": "Fakultative Beilagen"
+    }
+   ],
+   "nach": [
+    {
+     "ref": "SHR 354.100",
+     "article_no": "Art. 27a",
+     "beleg": "Einem Sicherheitsunternehmen bzw. einer Zweigniederlassung wird die Betriebsbewilligung erteilt, wenn:"
+    }
+   ],
+   "grund": "Die Zeile «Art. 27a PolG sind der Schaffhauser Polizei einzureichen.» steht in § 31a Abs. 1 PolV («Gesuche um Erteilung einer Bewilligung im Sinne von Art. 27 Abs. 1 i.V.m. Art. 27a PolG …»); die Nummer gehört zum Polizeigesetz, nicht zur Verordnung, die Paragraphen zählt. Die Formulare 218 und 226 betreffen die Betriebsbewilligung (und ihre Verlängerung) für die Zweigniederlassung eines Sicherheitsunternehmens: Art. 27a Abs. 3 PolG regelt die Voraussetzungen dieser Betriebsbewilligung. Ziel daher Art. 27a PolG (der Service ist in DVSH nicht modelliert)."
+  },
+  {
+   "von": 1818,
+   "felder": [
+    {
+     "form_id": 218,
+     "data_field_id": 1741,
+     "name": "Zweigniederlassung"
+    },
+    {
+     "form_id": 218,
+     "data_field_id": 1743,
+     "name": "Handelsregister"
+    },
+    {
+     "form_id": 218,
+     "data_field_id": 1744,
+     "name": "Geschäftsführer/-in"
+    },
+    {
+     "form_id": 226,
+     "data_field_id": 1805,
+     "name": "Zweigniederlassung"
+    },
+    {
+     "form_id": 226,
+     "data_field_id": 1806,
+     "name": "Zweigniederlassung ist (auch) Verkehrsdienstleister"
+    },
+    {
+     "form_id": 226,
+     "data_field_id": 1807,
+     "name": "Handelsregister"
+    },
+    {
+     "form_id": 226,
+     "data_field_id": 1808,
+     "name": "Geschäftsführer/-in"
+    },
+    {
+     "form_id": 226,
+     "data_field_id": 1809,
+     "name": "Personalbestand"
+    },
+    {
+     "form_id": 226,
+     "data_field_id": 1810,
+     "name": "Angestellte im Gesamtarbeitsvertrag"
+    },
+    {
+     "form_id": 226,
+     "data_field_id": 1811,
+     "name": "Betriebshaftpflichtversicherung"
+    },
+    {
+     "form_id": 226,
+     "data_field_id": 1812,
+     "name": "Vorgesehene Dienstleistungsangebote"
+    },
+    {
+     "form_id": 226,
+     "data_field_id": 1815,
+     "name": "Fakultative Beilagen"
+    }
+   ],
+   "nach": [
+    {
+     "ref": "SHR 354.100",
+     "article_no": "Art. 27",
+     "beleg": "bedürfen einer Bewilligung der Schaffhauser Polizei."
+    }
+   ],
+   "grund": "Die Zeile «Art. 27 Abs. 1 i.V.m. Art. 27a Abs. 1 PolG sind» steht in § 31a Abs. 4 lit. c PolV; die Nummer gehört zum Polizeigesetz. Art. 27 Abs. 1 PolG begründet die Bewilligungspflicht für Sicherheitsunternehmen, auf die sich die Formulare 218 und 226 beziehen. Ziel daher Art. 27 PolG (der Service ist in DVSH nicht modelliert)."
+  },
+  {
+   "von": 412,
+   "felder": [
+    {
+     "form_id": 198,
+     "data_field_id": 1434,
+     "name": "Entscheid"
+    }
+   ],
+   "nach": [],
+   "grund": "Die Zeile «Art. 26 BSG. In diesem Fall darf die Wohnsitzgemeinde keine Ersatzabgabe» steht in § 18 BSV «Feuerwehrpflicht und Ersatzabgabe» und verweist auf Art. 26 des Brandschutzgesetzes. Das Feld zitiert § 18 BSV bereits; das Artefakt-Zitat entfällt als Doppel der Bestimmung, in der die Zeile steht."
+  },
+  {
+   "von": 332,
+   "felder": [
+    {
+     "form_id": 102,
+     "data_field_id": 41,
+     "name": "Name der Einrichtung"
+    },
+    {
+     "form_id": 102,
+     "data_field_id": 42,
+     "name": "Personalien Patient"
+    },
+    {
+     "form_id": 102,
+     "data_field_id": 43,
+     "name": "Name und Adresse nahestehender Person"
+    },
+    {
+     "form_id": 102,
+     "data_field_id": 44,
+     "name": "Ort und Datum der persönlichen Untersuchung"
+    },
+    {
+     "form_id": 102,
+     "data_field_id": 45,
+     "name": "Anamnese"
+    },
+    {
+     "form_id": 102,
+     "data_field_id": 46,
+     "name": "Befund"
+    },
+    {
+     "form_id": 102,
+     "data_field_id": 47,
+     "name": "Ergebnis der persönlichen Anhörung"
+    },
+    {
+     "form_id": 102,
+     "data_field_id": 48,
+     "name": "Grund der Unterbringung"
+    },
+    {
+     "form_id": 102,
+     "data_field_id": 49,
+     "name": "Gefährdungsart"
+    }
+   ],
+   "nach": [
+    {
+     "ref": "SR 210",
+     "article_no": "Art. 430",
+     "beleg": "Der Unterbringungsentscheid enthält mindestens folgende Angaben: 1. Ort und Datum der Untersuchung; 2. Name der Ärztin oder des Arztes; 3. Befund, Gründe und Zweck der Unterbringung; 4. die Rechtsmittelbelehrung."
+    }
+   ],
+   "grund": "Die Zeile «Art. 427 Abs. 2 ZGB, wenn eine Person, die an einer psychischen Störung» steht in § 7a GesV (Fachärztepool: Zurückbehaltung freiwillig Eingetretener nach Art. 427 ZGB); die Nummer «Art. 42» ist der vom alten Leser gekürzte Verweis. Formular 102 ist die ärztliche Anordnung einer fürsorgerischen Unterbringung; DVSH nennt Gesundheitsgesetz und ZGB. Die Felder (Einrichtung, betroffene Person, nahestehende Person, Ort und Datum der Untersuchung, Anamnese, Befund, Anhörung, Grund, Gefährdung) sind die Angaben, die Art. 430 ZGB für den ärztlichen Unterbringungsentscheid verlangt (Abs. 1 Untersuchung und Anhörung, Abs. 2 Mindestangaben, Abs. 4 Exemplar für die Einrichtung, Abs. 5 Information einer nahestehenden Person). Ziel daher Art. 430 ZGB; § 6 GesV (Amtsärzte) bleibt."
+  },
+  {
+   "von": 4041,
+   "felder": [
+    {
+     "form_id": 439,
+     "data_field_id": 5005,
+     "name": "Ertrag Krankenversicherer Kostenbeteiligung"
+    },
+    {
+     "form_id": 439,
+     "data_field_id": 5007,
+     "name": "Ertrag Klientenanteil KLV-Pflegeleistung"
+    }
+   ],
+   "nach": [],
+   "grund": "Die Zeile «Art. 25a Abs. 2 KVG setzt einen entsprechenden Leistungsauftrag des» steht in Art. 10c AbPG «Akut- und Übergangspflege» und verweist auf Art. 25a KVG. Art. 10c AbPG passt nicht auf die Ertragsangaben der Spitex-Datenerhebung (Formular 439); Art. 25a KVG (Pflegeleistungen bei Krankheit) ist in der Databank nicht eingelesen (die eingelesene KVG-Fassung hat keinen Art. 25a). Das Artefakt-Zitat entfällt; die Felder behalten ihre Zitate der AbPV (§ 10, § 25, § 27). Offen: Art. 25a KVG nach einem neuen Einlesen des KVG prüfen."
+  },
+  {
+   "von": 4068,
+   "felder": [
+    {
+     "form_id": 439,
+     "data_field_id": 4997,
+     "name": "Klienten nur mit KLV-Pflegeleistung"
+    },
+    {
+     "form_id": 439,
+     "data_field_id": 4999,
+     "name": "Verrechenbare Stunden Bedarfsabklärung (Art. 7 II a KLV)"
+    },
+    {
+     "form_id": 439,
+     "data_field_id": 5000,
+     "name": "Verrechenbare Stunden Behandlungspflege (Art. 7 II b KLV)"
+    },
+    {
+     "form_id": 439,
+     "data_field_id": 5001,
+     "name": "Verrechenbare Stunden Grundpflege Mitarbeitende Spitex (Art. 7 II c KLV)"
+    },
+    {
+     "form_id": 439,
+     "data_field_id": 5002,
+     "name": "Verrechenbare Stunden Grundpflege pflegende Angehörige"
+    }
+   ],
+   "nach": [],
+   "grund": "Die Zeile «Art. 7 ff. der Krankenpflege-Leistungsverordnung (KLV), inkl. psychi-» steht in § 20 AbPV «Leistungen» (lit. c) und verweist auf Art. 7 KLV (Bundesrecht, nicht eingelesen). Die Felder zitieren § 20 AbPV bereits; das Artefakt-Zitat entfällt als Doppel der Bestimmung, in der die Zeile steht."
+  }
+ ],
+ "regeln": [
+  {
+   "tabelle": "rechtsmittel_regel",
+   "regel_id": 87,
+   "von": 1818,
+   "nach": {
+    "ref": "SHR 354.111",
+    "article_no": "§ 27"
+   },
+   "grund": "Die Regel gilt laut ihrem Hinweis «nur für § 27 (Überwachung nach BÜPF)», ihr Zitat «Zuständig für die Genehmigung der Überwachung ist das Zwangsmassnahmengericht. 4 Beschwerdeinstanz ist das Obergericht.» steht in § 27 PolV «Überwachung des Post- und Fernmeldeverkehrs bei der Notsuche und der Fahndung nach verurteilten Personen» (Abs. 3 und 4). Sie hing am Artefakt «Art. 27» (Verweiszeile in § 31a); der Volltext-Leser liest § 27 als eigenen Artikel. Ziel daher § 27 PolV."
+  }
+ ],
+ "artikel": [
+  {
+   "article_id": 8275,
+   "law_id": 363,
+   "cantonal_ref": "SHR 142.201",
+   "article_no": "Art. 4a",
+   "heading": "",
+   "art": "aufgehoben",
+   "grund": "Aufgehoben: im Gesetzestext steht unter «Art. 4a» nur «…» (der Volltext-Leser führt die Nummer als aufgehoben). Ohne Überschrift und Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 9109,
+   "law_id": 391,
+   "cantonal_ref": "SHR 160.100",
+   "article_no": "Art. 5",
+   "heading": "",
+   "art": "aufgehoben",
+   "grund": "Aufgehoben: im Gesetzestext steht unter «Art. 5» nur «…» (der Volltext-Leser führt die Nummer als aufgehoben). Ohne Überschrift und Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 9112,
+   "law_id": 391,
+   "cantonal_ref": "SHR 160.100",
+   "article_no": "Art. 8",
+   "heading": "",
+   "art": "aufgehoben",
+   "grund": "Aufgehoben: im Gesetzestext steht unter «Art. 8» nur «…» (der Volltext-Leser führt die Nummer als aufgehoben). Ohne Überschrift und Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 9136,
+   "law_id": 391,
+   "cantonal_ref": "SHR 160.100",
+   "article_no": "Art. 31",
+   "heading": "",
+   "art": "aufgehoben",
+   "grund": "Aufgehoben: im Gesetzestext steht unter «Art. 31» nur «…» (der Volltext-Leser führt die Nummer als aufgehoben). Ohne Überschrift und Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 9148,
+   "law_id": 391,
+   "cantonal_ref": "SHR 160.100",
+   "article_no": "Art. 52",
+   "heading": "",
+   "art": "aufgehoben",
+   "grund": "Aufgehoben: im Gesetzestext steht unter «Art. 52» nur «…» (der Volltext-Leser führt die Nummer als aufgehoben). Ohne Überschrift und Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 9162,
+   "law_id": 391,
+   "cantonal_ref": "SHR 160.100",
+   "article_no": "Art. 65",
+   "heading": "",
+   "art": "aufgehoben",
+   "grund": "Aufgehoben: im Gesetzestext steht unter «Art. 65» nur «…» (der Volltext-Leser führt die Nummer als aufgehoben). Ohne Überschrift und Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 9167,
+   "law_id": 391,
+   "cantonal_ref": "SHR 160.100",
+   "article_no": "Art. 70",
+   "heading": "",
+   "art": "aufgehoben",
+   "grund": "Aufgehoben: im Gesetzestext steht unter «Art. 70» nur «…» (der Volltext-Leser führt die Nummer als aufgehoben). Ohne Überschrift und Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 9172,
+   "law_id": 391,
+   "cantonal_ref": "SHR 160.100",
+   "article_no": "Art. 75",
+   "heading": "",
+   "art": "aufgehoben",
+   "grund": "Aufgehoben: im Gesetzestext steht unter «Art. 75» nur «…» (der Volltext-Leser führt die Nummer als aufgehoben). Ohne Überschrift und Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 9181,
+   "law_id": 391,
+   "cantonal_ref": "SHR 160.100",
+   "article_no": "Art. 84",
+   "heading": "",
+   "art": "aufgehoben",
+   "grund": "Aufgehoben: im Gesetzestext steht unter «Art. 84» nur «…» (der Volltext-Leser führt die Nummer als aufgehoben). Ohne Überschrift und Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 7256,
+   "law_id": 328,
+   "cantonal_ref": "SHR 172.200",
+   "article_no": "Art. 191",
+   "heading": "ff. der Schweizerischen Zivilprozessordnung2) die Beweismittel des",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 191 ff. der Schweizerischen Zivilprozessordnung2) die Beweismittel des",
+   "steht_in": "Art. 5",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in Art. 5), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 7269,
+   "law_id": 328,
+   "cantonal_ref": "SHR 172.200",
+   "article_no": "Art. 17",
+   "heading": "",
+   "art": "aufgehoben",
+   "grund": "Aufgehoben: im Gesetzestext steht unter «Art. 17» nur «…» (der Volltext-Leser führt die Nummer als aufgehoben). Ohne Überschrift und Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 7287,
+   "law_id": 328,
+   "cantonal_ref": "SHR 172.200",
+   "article_no": "Art. 292",
+   "heading": "des Schweizerischen Strafgesetzbuches vorgesehene Strafe ange-",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 292 des Schweizerischen Strafgesetzbuches vorgesehene Strafe ange-",
+   "steht_in": "Art. 33",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in Art. 33), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 7289,
+   "law_id": 328,
+   "cantonal_ref": "SHR 172.200",
+   "article_no": "Art. 34a",
+   "heading": "",
+   "art": "aufgehoben",
+   "grund": "Aufgehoben: im Gesetzestext steht unter «Art. 34a» nur «…» (der Volltext-Leser führt die Nummer als aufgehoben). Ohne Überschrift und Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 7312,
+   "law_id": 328,
+   "cantonal_ref": "SHR 172.200",
+   "article_no": "Art. 55a",
+   "heading": "",
+   "art": "aufgehoben",
+   "grund": "Aufgehoben: im Gesetzestext steht unter «Art. 55a» nur «…» (der Volltext-Leser führt die Nummer als aufgehoben). Ohne Überschrift und Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 9316,
+   "law_id": 394,
+   "cantonal_ref": "SHR 173.800",
+   "article_no": "Art. 3",
+   "heading": "",
+   "art": "aufgehoben",
+   "grund": "Aufgehoben: im Gesetzestext steht unter «Art. 3» nur «…» (der Volltext-Leser führt die Nummer als aufgehoben). Ohne Überschrift und Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 9333,
+   "law_id": 395,
+   "cantonal_ref": "SHR 173.812",
+   "article_no": "Art. 5",
+   "heading": "Abs. 3, Art. 6 Abs. 3, Art. 12 Abs. 3 Satz 2, Art. 13 Abs. 2 und Art. 14",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 5 Abs. 3, Art. 6 Abs. 3, Art. 12 Abs. 3 Satz 2, Art. 13 Abs. 2 und Art. 14",
+   "steht_in": null,
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes, die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 9335,
+   "law_id": 395,
+   "cantonal_ref": "SHR 173.812",
+   "article_no": "Art. 8",
+   "heading": "Abs. 1 lit. b BGFA vorliegen",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 8 Abs. 1 lit. b BGFA vorliegen",
+   "steht_in": "§ 1",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 1), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 9336,
+   "law_id": 395,
+   "cantonal_ref": "SHR 173.812",
+   "article_no": "Art. 7",
+   "heading": "Abs. 1 lit. a BGFA",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 7 Abs. 1 lit. a BGFA",
+   "steht_in": "§ 1",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 1), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 3096,
+   "law_id": 297,
+   "cantonal_ref": "SHR 210.100",
+   "article_no": "Art. 4",
+   "heading": "ff. ZGB und den nachfolgenden Bestimmungen.",
+   "nummer_gekuerzt": true,
+   "art": "verweiszeile",
+   "fundstelle": "Art. 450 ff. ZGB und den nachfolgenden Bestimmungen.",
+   "steht_in": "Art. 46",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in Art. 46), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Der Textauszug stammt von dieser Stelle; von keiner Tabelle zitiert.",
+   "textauszug": true
+  },
+  {
+   "article_id": 3097,
+   "law_id": 297,
+   "cantonal_ref": "SHR 210.100",
+   "article_no": "Art. 5",
+   "heading": "Abs. 1 ZGB) sowie in den Fällen, die Anlass zur Erhebung einer",
+   "nummer_gekuerzt": true,
+   "art": "verweiszeile",
+   "fundstelle": "Art. 553 Abs. 1 ZGB) sowie in den Fällen, die Anlass zur Erhebung einer",
+   "steht_in": "Art. 73",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in Art. 73), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Der Textauszug stammt von dieser Stelle; von keiner Tabelle zitiert.",
+   "textauszug": true
+  },
+  {
+   "article_id": 3098,
+   "law_id": 297,
+   "cantonal_ref": "SHR 210.100",
+   "article_no": "Art. 8",
+   "heading": "des Bundesgesetzes über das bäuerliche Bodenrecht22)",
+   "nummer_gekuerzt": true,
+   "art": "verweiszeile",
+   "fundstelle": "Art. 82 des Bundesgesetzes über das bäuerliche Bodenrecht22)",
+   "steht_in": "Art. 85",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in Art. 85), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 3099,
+   "law_id": 297,
+   "cantonal_ref": "SHR 210.100",
+   "article_no": "Art. 9a",
+   "heading": "ZGB werden monatlich im kantonalen Amtsblatt veröffentlicht. Das",
+   "nummer_gekuerzt": true,
+   "art": "verweiszeile",
+   "fundstelle": "Art. 970a ZGB werden monatlich im kantonalen Amtsblatt veröffentlicht. Das",
+   "steht_in": "Art. 135",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in Art. 135), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 3100,
+   "law_id": 297,
+   "cantonal_ref": "SHR 210.100",
+   "article_no": "Art. 26d",
+   "heading": "OR beim Abschluss eines neuen Mietvertrages obligatorisch erklä-",
+   "nummer_gekuerzt": true,
+   "art": "verweiszeile",
+   "fundstelle": "Art. 269d OR beim Abschluss eines neuen Mietvertrages obligatorisch erklä-",
+   "steht_in": "Art. 142b",
+   "grund": "Einleseartefakt: eine umbrochene Verweiszeile in Art. 142b; ihre Zitate werden zuvor nach «zitate» neu beurteilt."
+  },
+  {
+   "article_id": 9363,
+   "law_id": 397,
+   "cantonal_ref": "SHR 211.222",
+   "article_no": "Art. 39a",
+   "heading": "und Art. 42 EG ZGB2)",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 39a und Art. 42 EG ZGB2)",
+   "steht_in": "§ 2",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 2), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 8677,
+   "law_id": 379,
+   "cantonal_ref": "SHR 211.224",
+   "article_no": "§ 1",
+   "heading": "",
+   "art": "aufgehoben",
+   "grund": "Aufgehoben: im Gesetzestext steht unter «§ 1» nur «…» (der Volltext-Leser führt die Nummer als aufgehoben). Ohne Überschrift und Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 8686,
+   "law_id": 379,
+   "cantonal_ref": "SHR 211.224",
+   "article_no": "Art. 14",
+   "heading": "der Pflegekinderverordnung2) folgende Unterlagen einzureichen bzw.",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 14 der Pflegekinderverordnung2) folgende Unterlagen einzureichen bzw.",
+   "steht_in": "§ A2-2",
+   "grund": "Einleseartefakt: eine umbrochene Verweiszeile in § A2-2; ihre Zitate werden zuvor nach «zitate» neu beurteilt.",
+   "textauszug": true
+  },
+  {
+   "article_id": 8353,
+   "law_id": 366,
+   "cantonal_ref": "SHR 211.231",
+   "article_no": "Art. 70",
+   "heading": "ff. des Einführungsgesetzes zum Schweizerischen Zivilgesetzbuch",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 70 ff. des Einführungsgesetzes zum Schweizerischen Zivilgesetzbuch",
+   "steht_in": "§ 1",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 1), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 8366,
+   "law_id": 366,
+   "cantonal_ref": "SHR 211.231",
+   "article_no": "Art. 517",
+   "heading": "Abs. 2 ZGB.",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 517 Abs. 2 ZGB.",
+   "steht_in": "§ 13",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 13), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 8003,
+   "law_id": 351,
+   "cantonal_ref": "SHR 211.440",
+   "article_no": "§ 9",
+   "heading": "",
+   "art": "aufgehoben",
+   "grund": "Aufgehoben: im Gesetzestext steht unter «§ 9» nur «…» (der Volltext-Leser führt die Nummer als aufgehoben). Ohne Überschrift und Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 8031,
+   "law_id": 352,
+   "cantonal_ref": "SHR 211.500",
+   "article_no": "Art. 20",
+   "heading": "GeoIG gilt sinngemäss.",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 20 GeoIG gilt sinngemäss.",
+   "steht_in": "Art. 13",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in Art. 13), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 7375,
+   "law_id": 332,
+   "cantonal_ref": "SHR 221.101",
+   "article_no": "§ 2",
+   "heading": "",
+   "art": "aufgehoben",
+   "grund": "Aufgehoben: im Gesetzestext steht unter «§ 2» nur «…» (der Volltext-Leser führt die Nummer als aufgehoben). Ohne Überschrift und Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 4158,
+   "law_id": 325,
+   "cantonal_ref": "SHR 341.101",
+   "article_no": "Art. 31b",
+   "heading": "des Gesetzes über die Einführung des Schweizerischen Zivilgesetz-",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 31b des Gesetzes über die Einführung des Schweizerischen Zivilgesetz-",
+   "steht_in": null,
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes, die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 4181,
+   "law_id": 325,
+   "cantonal_ref": "SHR 341.101",
+   "article_no": "Art. 86",
+   "heading": "Abs. 5 StGB)",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 86 Abs. 5 StGB)",
+   "steht_in": "§ 26",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 26), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 1775,
+   "law_id": 277,
+   "cantonal_ref": "SHR 354.100",
+   "article_no": "Art. 151",
+   "heading": "und 287–297 StPO sinngemäss anwendbar, wobei an die Stelle der",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 151 und 287–297 StPO sinngemäss anwendbar, wobei an die Stelle der",
+   "steht_in": "Art. 24g",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in Art. 24g), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 1776,
+   "law_id": 277,
+   "cantonal_ref": "SHR 354.100",
+   "article_no": "Art. 298c",
+   "heading": "und 298d Abs. 1 und 3 StPO sinngemäss.",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 298c und 298d Abs. 1 und 3 StPO sinngemäss.",
+   "steht_in": "Art. 24h",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in Art. 24h), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 1811,
+   "law_id": 278,
+   "cantonal_ref": "SHR 354.111",
+   "article_no": "Art. 29",
+   "heading": "des Schweizerischen Strafgesetzbuches (StGB)4) verboten werden,",
+   "nummer_gekuerzt": true,
+   "art": "verweiszeile",
+   "fundstelle": "Art. 292 des Schweizerischen Strafgesetzbuches (StGB)4) verboten werden,",
+   "steht_in": "§ 26",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 26), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 1815,
+   "law_id": 278,
+   "cantonal_ref": "SHR 354.111",
+   "article_no": "Art. 24c",
+   "heading": "des Bundesgesetzes über die Massnahmen zur Wahrung der inne-",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 24c des Bundesgesetzes über die Massnahmen zur Wahrung der inne-",
+   "steht_in": "§ 30",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 30), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 1816,
+   "law_id": 278,
+   "cantonal_ref": "SHR 354.111",
+   "article_no": "Art. 3b",
+   "heading": "Abs. 2 Hooligan-Konkordat",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 3b Abs. 2 Hooligan-Konkordat",
+   "steht_in": "§ 30",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 30), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 1817,
+   "law_id": 278,
+   "cantonal_ref": "SHR 354.111",
+   "article_no": "Art. 27a",
+   "heading": "PolG sind der Schaffhauser Polizei einzureichen.",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 27a PolG sind der Schaffhauser Polizei einzureichen.",
+   "steht_in": "§ 31a",
+   "grund": "Einleseartefakt: eine umbrochene Verweiszeile in § 31a; ihre Zitate werden zuvor nach «zitate» neu beurteilt.",
+   "textauszug": true
+  },
+  {
+   "article_id": 1818,
+   "law_id": 278,
+   "cantonal_ref": "SHR 354.111",
+   "article_no": "Art. 27",
+   "heading": "Abs. 1 i.V.m. Art. 27a Abs. 1 PolG sind",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 27 Abs. 1 i.V.m. Art. 27a Abs. 1 PolG sind",
+   "steht_in": "§ 31a",
+   "grund": "Einleseartefakt: eine umbrochene Verweiszeile in § 31a; ihre Zitate werden zuvor nach «zitate» neu beurteilt.",
+   "textauszug": true
+  },
+  {
+   "article_id": 7591,
+   "law_id": 340,
+   "cantonal_ref": "SHR 410.100",
+   "article_no": "Art. 11",
+   "heading": "",
+   "art": "aufgehoben",
+   "grund": "Aufgehoben: im Gesetzestext steht unter «Art. 11» nur «…» (der Volltext-Leser führt die Nummer als aufgehoben). Ohne Überschrift und Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 7594,
+   "law_id": 340,
+   "cantonal_ref": "SHR 410.100",
+   "article_no": "Art. 14",
+   "heading": "",
+   "art": "aufgehoben",
+   "grund": "Aufgehoben: im Gesetzestext steht unter «Art. 14» nur «…» (der Volltext-Leser führt die Nummer als aufgehoben). Ohne Überschrift und Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 7598,
+   "law_id": 340,
+   "cantonal_ref": "SHR 410.100",
+   "article_no": "Art. 15",
+   "heading": "",
+   "art": "aufgehoben",
+   "grund": "Aufgehoben: im Gesetzestext steht unter «Art. 15» nur «…» (der Volltext-Leser führt die Nummer als aufgehoben). Ohne Überschrift und Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 7619,
+   "law_id": 340,
+   "cantonal_ref": "SHR 410.100",
+   "article_no": "Art. 31",
+   "heading": "",
+   "art": "aufgehoben",
+   "grund": "Aufgehoben: im Gesetzestext steht unter «Art. 31» nur «…» (der Volltext-Leser führt die Nummer als aufgehoben). Ohne Überschrift und Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 7648,
+   "law_id": 340,
+   "cantonal_ref": "SHR 410.100",
+   "article_no": "Art. 59",
+   "heading": "",
+   "art": "aufgehoben",
+   "grund": "Aufgehoben: im Gesetzestext steht unter «Art. 59» nur «…» (der Volltext-Leser führt die Nummer als aufgehoben). Ohne Überschrift und Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 7657,
+   "law_id": 340,
+   "cantonal_ref": "SHR 410.100",
+   "article_no": "Art. 68",
+   "heading": "",
+   "art": "aufgehoben",
+   "grund": "Aufgehoben: im Gesetzestext steht unter «Art. 68» nur «…» (der Volltext-Leser führt die Nummer als aufgehoben). Ohne Überschrift und Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 7665,
+   "law_id": 340,
+   "cantonal_ref": "SHR 410.100",
+   "article_no": "Art. 74a",
+   "heading": "",
+   "art": "aufgehoben",
+   "grund": "Aufgehoben: im Gesetzestext steht unter «Art. 74a» nur «…» (der Volltext-Leser führt die Nummer als aufgehoben). Ohne Überschrift und Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 7693,
+   "law_id": 340,
+   "cantonal_ref": "SHR 410.100",
+   "article_no": "Art. 98",
+   "heading": "",
+   "art": "aufgehoben",
+   "grund": "Aufgehoben: im Gesetzestext steht unter «Art. 98» nur «…» (der Volltext-Leser führt die Nummer als aufgehoben). Ohne Überschrift und Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 7733,
+   "law_id": 343,
+   "cantonal_ref": "SHR 411.225",
+   "article_no": "Art. 15a",
+   "heading": "und 52a des Schulgesetzes.",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 15a und 52a des Schulgesetzes.",
+   "steht_in": "§ 1",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 1), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 8658,
+   "law_id": 377,
+   "cantonal_ref": "SHR 412.103",
+   "article_no": "§ 2",
+   "heading": "",
+   "art": "aufgehoben",
+   "grund": "Aufgehoben: im Gesetzestext steht unter «§ 2» nur «…» (der Volltext-Leser führt die Nummer als aufgehoben). Ohne Überschrift und Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 7317,
+   "law_id": 329,
+   "cantonal_ref": "SHR 455.101",
+   "article_no": "Art. 720a",
+   "heading": "des Schweizerischen Zivilgesetzbuches vom 10. Dezember 1907",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 720a des Schweizerischen Zivilgesetzbuches vom 10. Dezember 1907",
+   "steht_in": null,
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes, die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 7321,
+   "law_id": 329,
+   "cantonal_ref": "SHR 455.101",
+   "article_no": "Art. 94",
+   "heading": "Abs. 2 TSchV)",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 94 Abs. 2 TSchV)",
+   "steht_in": "§ 2",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 2), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 7325,
+   "law_id": 329,
+   "cantonal_ref": "SHR 455.101",
+   "article_no": "Art. 17",
+   "heading": "TSchG wird eine ausserkantonale Kommission für Tierversuche bei-",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 17 TSchG wird eine ausserkantonale Kommission für Tierversuche bei-",
+   "steht_in": "§ 6",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 6), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 1049,
+   "law_id": 253,
+   "cantonal_ref": "SHR 455.201",
+   "article_no": "Art. 9",
+   "heading": "des Gesetzes vorliegt. Art. 9 Abs. 3 und Art. 27 Abs. 2 des Gesetzes",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 9 des Gesetzes vorliegt. Art. 9 Abs. 3 und Art. 27 Abs. 2 des Gesetzes",
+   "steht_in": "§ 4",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 4), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 1056,
+   "law_id": 253,
+   "cantonal_ref": "SHR 455.201",
+   "article_no": "Art. 8",
+   "heading": "des Gesetzes5)",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 8 des Gesetzes5)",
+   "steht_in": "§ T1",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § T1), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 8528,
+   "law_id": 369,
+   "cantonal_ref": "SHR 510.101",
+   "article_no": "Art. 207",
+   "heading": "ff. des Militärstrafgesetzes13)",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 207 ff. des Militärstrafgesetzes13)",
+   "steht_in": "§ 5",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 5), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 412,
+   "law_id": 256,
+   "cantonal_ref": "SHR 550.101",
+   "article_no": "Art. 26",
+   "heading": "BSG. In diesem Fall darf die Wohnsitzgemeinde keine Ersatzabgabe",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 26 BSG. In diesem Fall darf die Wohnsitzgemeinde keine Ersatzabgabe",
+   "steht_in": "§ 18",
+   "grund": "Einleseartefakt: eine umbrochene Verweiszeile in § 18; ihre Zitate werden zuvor nach «zitate» neu beurteilt.",
+   "textauszug": true
+  },
+  {
+   "article_id": 610,
+   "law_id": 258,
+   "cantonal_ref": "SHR 641.111",
+   "article_no": "Art. 37",
+   "heading": "StG werden entsprechend der Dauer der Steuerpflicht gewährt.",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 37 StG werden entsprechend der Dauer der Steuerpflicht gewährt.",
+   "steht_in": "§ 35",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 35), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 647,
+   "law_id": 258,
+   "cantonal_ref": "SHR 641.111",
+   "article_no": "Art. 175",
+   "heading": "StG Anwendung.",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 175 StG Anwendung.",
+   "steht_in": "§ 100",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 100), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 8289,
+   "law_id": 364,
+   "cantonal_ref": "SHR 643.100",
+   "article_no": "Art. 631",
+   "heading": "Abs. 2 ZGB",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 631 Abs. 2 ZGB",
+   "steht_in": "Art. 7",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in Art. 7), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 8306,
+   "law_id": 364,
+   "cantonal_ref": "SHR 643.100",
+   "article_no": "Art. 24",
+   "heading": "",
+   "art": "aufgehoben",
+   "grund": "Aufgehoben: im Gesetzestext steht unter «Art. 24» nur «…» (der Volltext-Leser führt die Nummer als aufgehoben). Ohne Überschrift und Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 8315,
+   "law_id": 365,
+   "cantonal_ref": "SHR 643.111",
+   "article_no": "§ 1",
+   "heading": "",
+   "art": "aufgehoben",
+   "grund": "Aufgehoben: im Gesetzestext steht unter «§ 1» nur «…» (der Volltext-Leser führt die Nummer als aufgehoben). Ohne Überschrift und Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 8325,
+   "law_id": 365,
+   "cantonal_ref": "SHR 643.111",
+   "article_no": "§ 10a",
+   "heading": "",
+   "art": "aufgehoben",
+   "grund": "Aufgehoben: im Gesetzestext steht unter «§ 10a» nur «…» (der Volltext-Leser führt die Nummer als aufgehoben). Ohne Überschrift und Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 8333,
+   "law_id": 365,
+   "cantonal_ref": "SHR 643.111",
+   "article_no": "Art. 9",
+   "heading": "Abs. 2 ErbStG",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 9 Abs. 2 ErbStG",
+   "steht_in": "§ 17",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 17), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 8337,
+   "law_id": 365,
+   "cantonal_ref": "SHR 643.111",
+   "article_no": "Art. 5",
+   "heading": "Abs. 2 lit. d dieses Gesetzes.",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 5 Abs. 2 lit. d dieses Gesetzes.",
+   "steht_in": "§ 20",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 20), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 8348,
+   "law_id": 365,
+   "cantonal_ref": "SHR 643.111",
+   "article_no": "Art. 186",
+   "heading": "des Gesetzes über die direkten Steuern6) findet sinngemäss An-",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 186 des Gesetzes über die direkten Steuern6) findet sinngemäss An-",
+   "steht_in": "§ 30",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 30), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 1004,
+   "law_id": 266,
+   "cantonal_ref": "SHR 730.101",
+   "article_no": "Art. 5",
+   "heading": "des Baugesetzes zur Anwendung kommt.",
+   "nummer_gekuerzt": true,
+   "art": "verweiszeile",
+   "fundstelle": "Art. 57 des Baugesetzes zur Anwendung kommt.",
+   "steht_in": "§ 4a",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 4a), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 1014,
+   "law_id": 266,
+   "cantonal_ref": "SHR 730.101",
+   "article_no": "Art. 13",
+   "heading": "des Energiegesetzes gelten alle Bauten und Gebäudegruppen, für",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 13 des Energiegesetzes gelten alle Bauten und Gebäudegruppen, für",
+   "steht_in": "§ 22",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 22), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 1019,
+   "law_id": 266,
+   "cantonal_ref": "SHR 730.101",
+   "article_no": "Art. 20",
+   "heading": "Abs. 2 des Energiegesetzes mit einzelnen oder mit Gruppen von Un-",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 20 Abs. 2 des Energiegesetzes mit einzelnen oder mit Gruppen von Un-",
+   "steht_in": "§ 30",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 30), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 1062,
+   "law_id": 267,
+   "cantonal_ref": "SHR 741.100",
+   "article_no": "Art. 14",
+   "heading": "des Strassengesetzes.",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 14 des Strassengesetzes.",
+   "steht_in": "Art. 5",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in Art. 5), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 7967,
+   "law_id": 348,
+   "cantonal_ref": "SHR 747.201",
+   "article_no": "§ 7",
+   "heading": "",
+   "art": "aufgehoben",
+   "grund": "Aufgehoben: im Gesetzestext steht unter «§ 7» nur «…» (der Volltext-Leser führt die Nummer als aufgehoben). Ohne Überschrift und Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 304,
+   "law_id": 247,
+   "cantonal_ref": "SHR 810.100",
+   "article_no": "Art. 377",
+   "heading": "ff. ZGB.",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 377 ff. ZGB.",
+   "steht_in": "Art. 40",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in Art. 40), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 326,
+   "law_id": 254,
+   "cantonal_ref": "SHR 810.102",
+   "article_no": "Art. 6",
+   "heading": "ff., und Betriebsbewilligungen an Institutionen im Sinne von Art. 19 ff.",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 6 ff., und Betriebsbewilligungen an Institutionen im Sinne von Art. 19 ff.",
+   "steht_in": "§ 3",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 3), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Der Textauszug stammt von dieser Stelle; von keiner Tabelle zitiert.",
+   "textauszug": true
+  },
+  {
+   "article_id": 332,
+   "law_id": 254,
+   "cantonal_ref": "SHR 810.102",
+   "article_no": "Art. 42",
+   "heading": "Abs. 2 ZGB, wenn eine Person, die an einer psychischen Störung",
+   "nummer_gekuerzt": true,
+   "art": "verweiszeile",
+   "fundstelle": "Art. 427 Abs. 2 ZGB, wenn eine Person, die an einer psychischen Störung",
+   "steht_in": "§ 7a",
+   "grund": "Einleseartefakt: eine umbrochene Verweiszeile in § 7a; ihre Zitate werden zuvor nach «zitate» neu beurteilt.",
+   "textauszug": true
+  },
+  {
+   "article_id": 362,
+   "law_id": 254,
+   "cantonal_ref": "SHR 810.102",
+   "article_no": "Art. 15",
+   "heading": "GesG.",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 15 GesG.",
+   "steht_in": "§ 38",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 38), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 8605,
+   "law_id": 374,
+   "cantonal_ref": "SHR 811.100",
+   "article_no": "Art. 29",
+   "heading": "des Berufsbildungsgesetzes (BBG)2), oder",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 29 des Berufsbildungsgesetzes (BBG)2), oder",
+   "steht_in": "Art. 1",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in Art. 1), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 8625,
+   "law_id": 375,
+   "cantonal_ref": "SHR 811.111",
+   "article_no": "Art. 1",
+   "heading": "Abs. 2 EG FAP wird dieser in Anzahl Wochen festgelegt.",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 1 Abs. 2 EG FAP wird dieser in Anzahl Wochen festgelegt.",
+   "steht_in": "§ 1",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 1), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 8638,
+   "law_id": 375,
+   "cantonal_ref": "SHR 811.111",
+   "article_no": "Art. 8",
+   "heading": "Abs. 3 EG FAP gelten insbesondere:",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 8 Abs. 3 EG FAP gelten insbesondere:",
+   "steht_in": "§ 13",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 13), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 4041,
+   "law_id": 319,
+   "cantonal_ref": "SHR 813.500",
+   "article_no": "Art. 25a",
+   "heading": "Abs. 2 KVG setzt einen entsprechenden Leistungsauftrag des",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 25a Abs. 2 KVG setzt einen entsprechenden Leistungsauftrag des",
+   "steht_in": "Art. 10c",
+   "grund": "Einleseartefakt: eine umbrochene Verweiszeile in Art. 10c; ihre Zitate werden zuvor nach «zitate» neu beurteilt.",
+   "textauszug": true
+  },
+  {
+   "article_id": 4068,
+   "law_id": 320,
+   "cantonal_ref": "SHR 813.501",
+   "article_no": "Art. 7",
+   "heading": "ff. der Krankenpflege-Leistungsverordnung (KLV)5), inkl. psychi-",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 7 ff. der Krankenpflege-Leistungsverordnung (KLV)5), inkl. psychi-",
+   "steht_in": "§ 20",
+   "grund": "Einleseartefakt: eine umbrochene Verweiszeile in § 20; ihre Zitate werden zuvor nach «zitate» neu beurteilt.",
+   "textauszug": true
+  },
+  {
+   "article_id": 4076,
+   "law_id": 320,
+   "cantonal_ref": "SHR 813.501",
+   "article_no": "Art. 9",
+   "heading": "Abs. 3 AbPG separat verrechnet werden.",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 9 Abs. 3 AbPG separat verrechnet werden.",
+   "steht_in": "§ 29",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 29), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 4078,
+   "law_id": 320,
+   "cantonal_ref": "SHR 813.501",
+   "article_no": "Art. 10",
+   "heading": "b Abs. 5 AbPG.",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 10 b Abs. 5 AbPG.",
+   "steht_in": "§ 33",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 33), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 8246,
+   "law_id": 362,
+   "cantonal_ref": "SHR 814.201",
+   "article_no": "Art. 15",
+   "heading": "lit. a und b EG GSchG",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 15 lit. a und b EG GSchG",
+   "steht_in": "§ 2",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 2), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 8247,
+   "law_id": 362,
+   "cantonal_ref": "SHR 814.201",
+   "article_no": "Art. 7",
+   "heading": "Abs. 1 und 2 GSchG unter Vorbehalt von Abs. 2 dieses Para-",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 7 Abs. 1 und 2 GSchG unter Vorbehalt von Abs. 2 dieses Para-",
+   "steht_in": "§ 2",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 2), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 8250,
+   "law_id": 362,
+   "cantonal_ref": "SHR 814.201",
+   "article_no": "Art. 14",
+   "heading": "Abs. 6 GSchG",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 14 Abs. 6 GSchG",
+   "steht_in": "§ 4",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 4), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 9590,
+   "law_id": 407,
+   "cantonal_ref": "SHR 823.201",
+   "article_no": "Art. 10",
+   "heading": "und Art. 14 Abs. 1 der Verordnung über die in die Schweiz entsand-",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 10 und Art. 14 Abs. 1 der Verordnung über die in die Schweiz entsand-",
+   "steht_in": null,
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes, die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 9591,
+   "law_id": 407,
+   "cantonal_ref": "SHR 823.201",
+   "article_no": "Art. 4",
+   "heading": "Abs. 1 und Art. 13 Abs. 1 des Bundesgesetzes über Massnahmen zur",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 4 Abs. 1 und Art. 13 Abs. 1 des Bundesgesetzes über Massnahmen zur",
+   "steht_in": null,
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes, die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 9593,
+   "law_id": 407,
+   "cantonal_ref": "SHR 823.201",
+   "article_no": "Art. 13",
+   "heading": "Abs. 1 BGSA sowie das kantonale Kontrollorgan im Sinne von Art. 4",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 13 Abs. 1 BGSA sowie das kantonale Kontrollorgan im Sinne von Art. 4",
+   "steht_in": "§ 1",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 1), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 9595,
+   "law_id": 407,
+   "cantonal_ref": "SHR 823.201",
+   "article_no": "Art. 360b",
+   "heading": "Abs. 5 des Obligationenrechts.",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 360b Abs. 5 des Obligationenrechts.",
+   "steht_in": "§ 2",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 2), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 4095,
+   "law_id": 321,
+   "cantonal_ref": "SHR 831.100",
+   "article_no": "Art. 66",
+   "heading": "Abs. 1 IVG haftbar gemacht, so steht ihm das Rückgriffsrecht nach",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 66 Abs. 1 IVG haftbar gemacht, so steht ihm das Rückgriffsrecht nach",
+   "steht_in": "Art. 9",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in Art. 9), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 8118,
+   "law_id": 357,
+   "cantonal_ref": "SHR 831.301",
+   "article_no": "Art. 10",
+   "heading": "Abs. 1 lit. a ELG angerechnet.",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 10 Abs. 1 lit. a ELG angerechnet.",
+   "steht_in": "§ 2",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 2), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 8147,
+   "law_id": 358,
+   "cantonal_ref": "SHR 832.100",
+   "article_no": "Art. 49",
+   "heading": "KVG) werden durch den Kantonsrat so festgelegt, dass ein De-",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 49 KVG) werden durch den Kantonsrat so festgelegt, dass ein De-",
+   "steht_in": "Art. 4",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in Art. 4), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 8570,
+   "law_id": 371,
+   "cantonal_ref": "SHR 837.100",
+   "article_no": "Art. 26",
+   "heading": "",
+   "art": "aufgehoben",
+   "grund": "Aufgehoben: im Gesetzestext steht unter «Art. 26» nur «…» (der Volltext-Leser führt die Nummer als aufgehoben). Ohne Überschrift und Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 8580,
+   "law_id": 372,
+   "cantonal_ref": "SHR 837.101",
+   "article_no": "Art. 23",
+   "heading": "Abs. 1 AVIG beträgt. Dieser Prozentsatz erhöht sich:",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 23 Abs. 1 AVIG beträgt. Dieser Prozentsatz erhöht sich:",
+   "steht_in": "§ 5a",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 5a), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 8590,
+   "law_id": 372,
+   "cantonal_ref": "SHR 837.101",
+   "article_no": "Art. 17",
+   "heading": "Abs. 1 lit. d des Gesetzes",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 17 Abs. 1 lit. d des Gesetzes",
+   "steht_in": "§ 14",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 14), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 8595,
+   "law_id": 372,
+   "cantonal_ref": "SHR 837.101",
+   "article_no": "§ 19",
+   "heading": "",
+   "art": "aufgehoben",
+   "grund": "Aufgehoben: im Gesetzestext steht unter «§ 19» nur «…» (der Volltext-Leser führt die Nummer als aufgehoben). Ohne Überschrift und Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 7821,
+   "law_id": 345,
+   "cantonal_ref": "SHR 910.100",
+   "article_no": "Art. 16",
+   "heading": "",
+   "art": "aufgehoben",
+   "grund": "Aufgehoben: im Gesetzestext steht unter «Art. 16» nur «…» (der Volltext-Leser führt die Nummer als aufgehoben). Ohne Überschrift und Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 7842,
+   "law_id": 345,
+   "cantonal_ref": "SHR 910.100",
+   "article_no": "Art. 37",
+   "heading": "",
+   "art": "aufgehoben",
+   "grund": "Aufgehoben: im Gesetzestext steht unter «Art. 37» nur «…» (der Volltext-Leser führt die Nummer als aufgehoben). Ohne Überschrift und Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 7846,
+   "law_id": 345,
+   "cantonal_ref": "SHR 910.100",
+   "article_no": "Art. 41",
+   "heading": "",
+   "art": "aufgehoben",
+   "grund": "Aufgehoben: im Gesetzestext steht unter «Art. 41» nur «…» (der Volltext-Leser führt die Nummer als aufgehoben). Ohne Überschrift und Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 7848,
+   "law_id": 345,
+   "cantonal_ref": "SHR 910.100",
+   "article_no": "Art. 43",
+   "heading": "",
+   "art": "aufgehoben",
+   "grund": "Aufgehoben: im Gesetzestext steht unter «Art. 43» nur «…» (der Volltext-Leser führt die Nummer als aufgehoben). Ohne Überschrift und Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 7855,
+   "law_id": 345,
+   "cantonal_ref": "SHR 910.100",
+   "article_no": "Art. 53",
+   "heading": "",
+   "art": "aufgehoben",
+   "grund": "Aufgehoben: im Gesetzestext steht unter «Art. 53» nur «…» (der Volltext-Leser führt die Nummer als aufgehoben). Ohne Überschrift und Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 7875,
+   "law_id": 347,
+   "cantonal_ref": "SHR 910.101",
+   "article_no": "Art. 12",
+   "heading": "und Art. 14 des Gesetzes über den Natur- und Heimatschutz im",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 12 und Art. 14 des Gesetzes über den Natur- und Heimatschutz im",
+   "steht_in": null,
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes, die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 7887,
+   "law_id": 347,
+   "cantonal_ref": "SHR 910.101",
+   "article_no": "Art. 17",
+   "heading": "Abs. 3 LwG.",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 17 Abs. 3 LwG.",
+   "steht_in": "§ 11",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 11), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 7906,
+   "law_id": 347,
+   "cantonal_ref": "SHR 910.101",
+   "article_no": "Art. 828",
+   "heading": "ff. OR und Art. 703 ZGB sowie den vom Volkswirtschaftsdeparte-",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 828 ff. OR und Art. 703 ZGB sowie den vom Volkswirtschaftsdeparte-",
+   "steht_in": "§ 29",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 29), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 7918,
+   "law_id": 347,
+   "cantonal_ref": "SHR 910.101",
+   "article_no": "§ 41",
+   "heading": "",
+   "art": "aufgehoben",
+   "grund": "Aufgehoben: im Gesetzestext steht unter «§ 41» nur «…» (der Volltext-Leser führt die Nummer als aufgehoben). Ohne Überschrift und Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 7946,
+   "law_id": 347,
+   "cantonal_ref": "SHR 910.101",
+   "article_no": "Art. 86",
+   "heading": "BGBB zu stellen. Dem Gesuch sind die zur Beurteilung der Begehren",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 86 BGBB zu stellen. Dem Gesuch sind die zur Beurteilung der Begehren",
+   "steht_in": "§ 57",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 57), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 7450,
+   "law_id": 336,
+   "cantonal_ref": "SHR 916.431",
+   "article_no": "§ 6",
+   "heading": "",
+   "art": "aufgehoben",
+   "grund": "Aufgehoben: im Gesetzestext steht unter «§ 6» nur «…» (der Volltext-Leser führt die Nummer als aufgehoben). Ohne Überschrift und Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 7459,
+   "law_id": 336,
+   "cantonal_ref": "SHR 916.431",
+   "article_no": "§ 15",
+   "heading": "",
+   "art": "aufgehoben",
+   "grund": "Aufgehoben: im Gesetzestext steht unter «§ 15» nur «…» (der Volltext-Leser führt die Nummer als aufgehoben). Ohne Überschrift und Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 7468,
+   "law_id": 336,
+   "cantonal_ref": "SHR 916.431",
+   "article_no": "Art. 4",
+   "heading": "TSV ohne Zoonosencharakter",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 4 TSV ohne Zoonosencharakter",
+   "steht_in": "§ 22",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 22), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 7479,
+   "law_id": 337,
+   "cantonal_ref": "SHR 922.101",
+   "article_no": "Art. 13",
+   "heading": "Abs. 2 JG.",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 13 Abs. 2 JG.",
+   "steht_in": "§ 6",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 6), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 7491,
+   "law_id": 337,
+   "cantonal_ref": "SHR 922.101",
+   "article_no": "Art. 2",
+   "heading": "Abs. 1 lit. h und lit. i. JSV.",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 2 Abs. 1 lit. h und lit. i. JSV.",
+   "steht_in": "§ 17",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 17), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  },
+  {
+   "article_id": 7511,
+   "law_id": 337,
+   "cantonal_ref": "SHR 922.101",
+   "article_no": "Art. 23",
+   "heading": "Abs. 3, Art. 25 Abs. 3, Art. 27 Abs. 1 sowie Art. 33 Abs. 2 JG zustän-",
+   "art": "verweiszeile",
+   "fundstelle": "Art. 23 Abs. 3, Art. 25 Abs. 3, Art. 27 Abs. 1 sowie Art. 33 Abs. 2 JG zustän-",
+   "steht_in": "§ 36",
+   "grund": "Einleseartefakt: eine umbrochene Zeile des Gesetzestextes (in § 36), die mit einem Verweis auf einen Artikel beginnt — der alte Zeilen-Leser nahm sie für einen Artikel, der Volltext-Leser nicht. Ohne Text, von keiner Tabelle zitiert."
+  }
+ ]
+}

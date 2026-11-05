@@ -31,7 +31,7 @@
    "datenhandhabung.scope": "allgemein=applies to every personal-data field; besonders_schuetzenswert=additionally applies to fields with a sensitive category (matching sensitive_category, or all when null); sektoral=applies only to fields whose legal basis cites the same law (match on law). The addressee is part of the claim: rules from DSG/DSV/BGA/EMBAG bind Bundesorgane, not the canton (see each rule's law and quote).",
    "process_steps / findings": "legacy service-level rows of the 2026-06 era, kept as text (process_steps mode is a code; findings are the auto-draft's notes, status as drafted, never reviewed — see retired_layer); the Verfahren facts a reader should rely on are dvsh_verfahren and forms[].verfahren."
   },
-  "generated_at": "2026-11-05T14:27:52",
+  "generated_at": "2026-11-05T14:43:13",
   "datenstand": {
    "build": "2026-11-05",
    "shep_harvest": "2026-10-28",
@@ -54,10 +54,10 @@
    "gesetzesstand_geprueft": "2026-10-05"
   },
   "zitate": {
-   "verifiziert": 4036,
-   "quelle_pdf": 4181,
+   "verifiziert": 4070,
+   "quelle_pdf": 4141,
    "unverifiziert": 0,
-   "total": 8217
+   "total": 8211
   },
   "umfang": {
    "services": 518,
@@ -2694,6 +2694,454 @@
      "abgeloest_durch": null
     },
     {
+     "kennung": "sh:gesetz:shr-142.201:art-4a",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-160.100:art-31",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-160.100:art-5",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-160.100:art-52",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-160.100:art-65",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-160.100:art-70",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-160.100:art-75",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-160.100:art-8",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-160.100:art-84",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-172.200:art-17",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-172.200:art-191",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-172.200:art-292",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-172.200:art-34a",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-172.200:art-55a",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-173.800:art-3",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-173.812:art-5",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-173.812:art-7",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-173.812:art-8",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-210.100:art-26d",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-210.100:art-4",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-210.100:art-5",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-210.100:art-8",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-210.100:art-9a",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-211.222:art-39a",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-211.224:art-14",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-211.224:par-1",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-211.231:art-517",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-211.231:art-70",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-211.440:par-9",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-211.500:art-20",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-221.101:par-2",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-341.101:art-31b",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-341.101:art-86",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-354.100:art-151",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-354.100:art-298c",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-354.111:art-24c",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-354.111:art-27a",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-354.111:art-29",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-354.111:art-3b",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-410.100:art-11",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-410.100:art-14",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-410.100:art-15",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-410.100:art-31",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-410.100:art-59",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-410.100:art-68",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-410.100:art-74a",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-410.100:art-98",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-411.225:art-15a",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-412.103:par-2",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-455.101:art-17",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-455.101:art-720a",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-455.101:art-94",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-455.201:art-8",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-455.201:art-9",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-510.101:art-207",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-550.101:art-26",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
      "kennung": "sh:gesetz:shr-641.100:art-24a",
      "art": "artikel",
      "status": "entfallen",
@@ -2726,7 +3174,431 @@
      "abgeloest_durch": null
     },
     {
+     "kennung": "sh:gesetz:shr-641.111:art-175",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
      "kennung": "sh:gesetz:shr-641.111:art-35",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-641.111:art-37",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-643.100:art-24",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-643.100:art-631",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-643.111:art-186",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-643.111:art-5",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-643.111:art-9",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-643.111:par-1",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-643.111:par-10a",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-730.101:art-5",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-741.100:art-14",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-747.201:par-7",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-810.100:art-377",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-810.102:art-15",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-810.102:art-42",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-810.102:art-6",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-811.100:art-29",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-811.111:art-1",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-811.111:art-8",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-813.500:art-25a",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-813.501:art-10",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-813.501:art-7",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-813.501:art-9",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-814.201:art-14",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-814.201:art-15",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-814.201:art-7",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-823.201:art-10",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-823.201:art-13",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-823.201:art-360b",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-823.201:art-4",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-831.100:art-66",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-831.301:art-10",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-832.100:art-49",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-837.100:art-26",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-837.101:art-17",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-837.101:art-23",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-837.101:par-19",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-910.100:art-16",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-910.100:art-37",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-910.100:art-41",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-910.100:art-43",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-910.100:art-53",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-910.101:art-12",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-910.101:art-17",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-910.101:art-828",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-910.101:art-86",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-910.101:par-41",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-916.431:art-4",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-916.431:par-15",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-916.431:par-6",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-922.101:art-13",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-922.101:art-2",
+     "art": "artikel",
+     "status": "entfallen",
+     "bis": "2026-11-05",
+     "grund": "das Objekt steht nicht mehr in der Databank",
+     "abgeloest_durch": null
+    },
+    {
+     "kennung": "sh:gesetz:shr-922.101:art-23",
      "art": "artikel",
      "status": "entfallen",
      "bis": "2026-11-05",
@@ -2760,7 +3632,7 @@
    ]
   },
   "vertrag": {
-   "version": "1.4.0",
+   "version": "1.4.1",
    "schema": "schema/citygov_llm.schema.json",
    "aenderungen": "exportvertrag.json"
   }
@@ -2808,7 +3680,7 @@
    "quote": "Das öffentliche Organ ist verpflichtet, die betroffene Person über die Be- schaffung von Personendaten zu informieren;",
    "quote_verified": true,
    "article_no": "Art. 5a",
-   "heading": "",
+   "heading": "Informationspflicht beim Beschaffen von Personendaten",
    "law_title": "Gesetz über den Schutz von Personendaten",
    "law_short": "KDSG",
    "sr_number": "174.100",
@@ -2824,7 +3696,7 @@
    "quote": "Bearbeiten mehrere öffentliche Organe Personendaten aus einem gemein- samen Informationsbestand, ist ein öffentliches Organ zu bezeichnen, das die Hauptverantwortung für den Datenschutz trägt.",
    "quote_verified": true,
    "article_no": "Art. 6",
-   "heading": "",
+   "heading": "Verantwortung",
    "law_title": "Gesetz über den Schutz von Personendaten",
    "law_short": "KDSG",
    "sr_number": "174.100",
@@ -2936,7 +3808,7 @@
    "quote": "Für die Bekanntgabe von Personendaten an ausländische Stellen der Eu- ropäischen Union sowie Vertragsstaaten des Abkommens über den Europäi- schen Wirtschaftsraum",
    "quote_verified": true,
    "article_no": "Art. 11a",
-   "heading": "",
+   "heading": "Bekanntgabe: Bekanntgabe an europäische Staaten",
    "law_title": "Gesetz über den Schutz von Personendaten",
    "law_short": "KDSG",
    "sr_number": "174.100",
@@ -2952,7 +3824,7 @@
    "quote": "An Drittstaaten dürfen Personendaten unter Vorbehalt von Art. 8 ff. nur be- kannt gegeben werden, sofern diese ein angemessenes Datenschutzniveau",
    "quote_verified": true,
    "article_no": "Art. 11b",
-   "heading": "",
+   "heading": "Bekanntgabe: Bekanntgabe von Personendaten an Drittstaaten",
    "law_title": "Gesetz über den Schutz von Personendaten",
    "law_short": "KDSG",
    "sr_number": "174.100",
@@ -3000,7 +3872,7 @@
    "quote": "Das verantwortliche öffentliche Organ kann ein anderes öffentliches Organ oder Dritte mit dem Bearbeiten von Personendaten beauftragen, wenn:",
    "quote_verified": true,
    "article_no": "Art. 13",
-   "heading": "",
+   "heading": "Bearbeiten im Auftrag",
    "law_title": "Gesetz über den Schutz von Personendaten",
    "law_short": "KDSG",
    "sr_number": "174.100",
@@ -3032,7 +3904,7 @@
    "quote": "Das öffentliche Organ meldet der Aufsichtsstelle ohne unangemessene Verzögerung eine Datenschutzverletzung, die zu einem hohen Risiko für die Grundrechte der betroffenen Person führt.",
    "quote_verified": true,
    "article_no": "Art. 14a",
-   "heading": "",
+   "heading": "Meldung von Datenschutzverletzungen",
    "law_title": "Gesetz über den Schutz von Personendaten",
    "law_short": "KDSG",
    "sr_number": "174.100",
@@ -3048,7 +3920,7 @@
    "quote": "Das öffentliche Organ informiert ausserdem die betroffene Person, wenn es zu deren Schutz erforderlich ist oder die Aufsichtsstelle dies verlangt.",
    "quote_verified": true,
    "article_no": "Art. 14a",
-   "heading": "",
+   "heading": "Meldung von Datenschutzverletzungen",
    "law_title": "Gesetz über den Schutz von Personendaten",
    "law_short": "KDSG",
    "sr_number": "174.100",
@@ -3064,7 +3936,7 @@
    "quote": "eine Bearbeitung von Personendaten, die voraussichtlich ein erhöhtes Risiko für die Grundrechte der betroffenen Person mit sich bringt, führt es eine Datenschutz-Folgenabschätzung durch.",
    "quote_verified": true,
    "article_no": "Art. 14b",
-   "heading": "",
+   "heading": "Datenschutz-Folgenabschätzung",
    "law_title": "Gesetz über den Schutz von Personendaten",
    "law_short": "KDSG",
    "sr_number": "174.100",
@@ -3080,7 +3952,7 @@
    "quote": "dass die geplante Bearbeitung ein hohes Risiko für die Grundrechte der betroffenen Person zur Folge hat, so holt das öffentliche Organ vorgängig die Stellungnahme der Aufsichtsstelle ein.",
    "quote_verified": true,
    "article_no": "Art. 14c",
-   "heading": "",
+   "heading": "Vorabkonsultation",
    "law_title": "Gesetz über den Schutz von Personendaten",
    "law_short": "KDSG",
    "sr_number": "174.100",
@@ -3128,7 +4000,7 @@
    "quote": "Das öffentliche Organ informiert die Empfängerinnen und Empfänger von Personendaten über jede Berichtigung, Löschung oder Vernichtung von Per- sonendaten",
    "quote_verified": true,
    "article_no": "Art. 17a",
-   "heading": "",
+   "heading": "Information der Empfänger von Personendaten",
    "law_title": "Gesetz über den Schutz von Personendaten",
    "law_short": "KDSG",
    "sr_number": "174.100",
@@ -3144,7 +4016,7 @@
    "quote": "Die Polizei, die Staatsanwaltschaft und die Justizvollzugsbehörde führen öffentliche Register über die Datenbearbeitungstätigkeiten in ihren Zustän- digkeitsbereichen.",
    "quote_verified": true,
    "article_no": "Art. 17b",
-   "heading": "",
+   "heading": "Strafverfolgung und Justizvollzug: Register",
    "law_title": "Gesetz über den Schutz von Personendaten",
    "law_short": "KDSG",
    "sr_number": "174.100",
@@ -3160,7 +4032,7 @@
    "quote": "Jede Person erhält auf Verlangen in allgemein verständlicher Form Aus- kunft darüber, ob und wenn ja welche Daten über sie von einem öffentlichen Organ bearbeitet werden.",
    "quote_verified": true,
    "article_no": "Art. 18",
-   "heading": "",
+   "heading": "Auskunftsrecht: Grundsatz der Transparenz und Informationsanspruch",
    "law_title": "Gesetz über den Schutz von Personendaten",
    "law_short": "KDSG",
    "sr_number": "174.100",
@@ -3352,7 +4224,7 @@
    "quote": "Das verantwortliche Organ trifft die zur Gewährleistung der Informationssi- cherheit geeigneten technischen und organisatorischen Massnahmen.",
    "quote_verified": true,
    "article_no": "§ 5",
-   "heading": "",
+   "heading": "Das verantwortliche Organ trifft die zur Gewährleistung der Informationssicherhe",
    "law_title": "Verordnung über den Schutz von Personendaten",
    "law_short": "KDSV",
    "sr_number": "174.101",
@@ -3480,7 +4352,7 @@
    "quote": "und zur Verhinderung eines Unterbruchs von Geschäftsaktivitäten müssen die Gebäude, Räume und Geräte vor Sicherheitsbedrohungen geschützt werden",
    "quote_verified": true,
    "article_no": "Art. 9",
-   "heading": "Schutz der Informatiksysteme, -anwendungen und Informatio-",
+   "heading": "Schutz der Informatiksysteme, -anwendungen und Informationen",
    "law_title": "Verordnung betreffend Informatiksicherheit (Informatiksicherheitsverordnung, ISV)",
    "law_short": "ISV",
    "sr_number": "174.102",
@@ -5224,7 +6096,7 @@
    "quote": "Besonders schützenswerte Personendaten dürfen nur bearbeitet werden oder ein Profiling darf nur vorgenommen werden, wenn:",
    "quote_verified": true,
    "article_no": "Art. 5",
-   "heading": "",
+   "heading": "Besonders schützenswerte Personendaten dürfen nur bearbeitet werden oder ein Pro",
    "law_title": "Gesetz über den Schutz von Personendaten",
    "law_short": "KDSG",
    "sr_number": "174.100",
@@ -5367,8 +6239,8 @@
    "summary": "Das Einwohnerregister darf nur die nach Art. 6 Registerharmonisierungsgesetz vorgesehenen sowie die im Gesetz aufgezählten zusätzlichen Personendaten enthalten; weitere Personendaten muss der Gemeinderat in einem allgemein verbindlichen Reglement festlegen.",
    "quote": "Der Gemeinderat legt in einem allgemein verbindlichen Reglement die zu- sätzlichen Personendaten fest, die im Einwohnerregister zur Erfüllung von kommunalen Verwaltungsaufgaben geführt werden.",
    "quote_verified": true,
-   "article_no": "88",
-   "heading": "Einwohnerregister — Grundsatz / Inhalt",
+   "article_no": "Art. 88",
+   "heading": "Grundsatz",
    "law_title": "Gemeindegesetz (Kanton Schaffhausen)",
    "law_short": "GG",
    "sr_number": "120.100",
@@ -5383,7 +6255,7 @@
    "summary": "Wer zuzieht, umzieht oder wegzieht, muss dies innert 14 Tagen der registerführenden Stelle melden, damit das Einwohnerregister nachgeführt werden kann.",
    "quote": "Wer in eine Gemeinde zuzieht, in ihr umzieht oder aus der Gemeinde weg- zieht, hat dies innert 14 Tagen der zur Führung des Einwohnerregisters zu- ständigen Stelle zu melden.",
    "quote_verified": true,
-   "article_no": "89",
+   "article_no": "Art. 89",
    "heading": "Meldepflicht",
    "law_title": "Gemeindegesetz (Kanton Schaffhausen)",
    "law_short": "GG",
@@ -169913,6 +170785,123 @@
        "rechtsmittel_quelle": null,
        "rechtsmittel_kandidaten": [
         {
+         "id": 76,
+         "law_id": 318,
+         "rechtsmittel_art": "beschwerde",
+         "frist_tage": 10,
+         "instanz": "zuständiges Gericht",
+         "gilt_fuer": "Entscheide bei fürsorgerischer Unterbringung (ärztliche Unterbringung, Zurückbehaltung, Abweisung Entlassungsgesuch, Zwangsbehandlung, Bewegungseinschränkung)",
+         "hinweis": "Gesetz spricht von 'Anrufung des Gerichts' (zehn Tage); bei Massnahmen zur Einschränkung der Bewegungsfreiheit jederzeit; Verfahren sinngemäss nach den Bestimmungen über die gerichtliche Beschwerdeinstanz (Abs. 3)",
+         "quote": "Die betroffene oder eine ihr nahestehende Person kann in folgenden Fällen schriftlich das zuständige Gericht anrufen: 1. bei ärztlich angeordneter Unterbringung; 2. bei Zurückbehaltung durch die Einrichtung; 3. bei Abweisung eines Entlassungsgesuchs durch die Einrich- tung; 4. bei Behandlung einer psychischen Störung ohne Zustimmung; 5. bei Massnahmen zur Einschränkung der Bewegungsfreiheit. 2 Die Frist zur Anrufung des Gerichts beträgt zehn Tage seit Mitteilung des Entscheids.",
+         "article_no": "Art. 439",
+         "short_title": "ZGB",
+         "law_title": "Schweizerisches Zivilgesetzbuch (ZGB)"
+        },
+        {
+         "id": 77,
+         "law_id": 318,
+         "rechtsmittel_art": "beschwerde",
+         "frist_tage": 10,
+         "instanz": null,
+         "gilt_fuer": "Entscheide der Erwachsenenschutzbehörde über vorsorgliche Massnahmen",
+         "hinweis": "Abs. 3; Frist zehn Tage; Instanz im Artikel nicht genannt (gerichtliche Beschwerdeinstanz nach Art. 450)",
+         "quote": "Gegen Entscheide über vorsorgliche Massnahmen kann innert zehn Tagen nach deren Mitteilung Beschwerde erhoben werden.",
+         "article_no": "Art. 445",
+         "short_title": "ZGB",
+         "law_title": "Schweizerisches Zivilgesetzbuch (ZGB)"
+        },
+        {
+         "id": 78,
+         "law_id": 318,
+         "rechtsmittel_art": "beschwerde",
+         "frist_tage": null,
+         "instanz": "zuständiges Gericht",
+         "gilt_fuer": "Entscheide der Erwachsenenschutzbehörde",
+         "hinweis": "Frist in Art. 450b (dreissig Tage, zehn Tage bei fürsorgerischer Unterbringung); gemäss Art. 314 Abs. 1 sinngemäss auch für die Kindesschutzbehörde anwendbar",
+         "quote": "Gegen Entscheide der Erwachsenenschutzbehörde kann Beschwerde beim zuständigen Gericht erhoben werden. 2 Zur Beschwerde befugt sind: 1. die am Verfahren beteiligten Personen; 2. die der betroffenen Person nahestehenden Personen; 3. Personen, die ein rechtlich geschütztes Interesse an der Aufhe- bung oder Änderung des angefochtenen Entscheids haben.",
+         "article_no": "Art. 450",
+         "short_title": "ZGB",
+         "law_title": "Schweizerisches Zivilgesetzbuch (ZGB)"
+        },
+        {
+         "id": 79,
+         "law_id": 318,
+         "rechtsmittel_art": "beschwerde",
+         "frist_tage": 30,
+         "instanz": null,
+         "gilt_fuer": "Entscheide der Erwachsenenschutzbehörde (Beschwerdefrist)",
+         "hinweis": "Frist dreissig Tage; zehn Tage bei Entscheiden auf dem Gebiet der fürsorgerischen Unterbringung (Abs. 2); wegen Rechtsverweigerung/-verzögerung jederzeit (Abs. 3); Instanz: zuständiges Gericht nach Art. 450",
+         "quote": "Die Beschwerdefrist beträgt dreissig Tage seit Mitteilung des Ent- scheids. Diese Frist gilt auch für beschwerdeberechtigte Personen, de- nen der Entscheid nicht mitgeteilt werden muss. 2 Bei einem Entscheid auf dem Gebiet der fürsorgerischen Unterbrin- gung beträgt die Beschwerdefrist zehn Tage seit Mitteilung des Ent- scheids.",
+         "article_no": "Art. 450b",
+         "short_title": "ZGB",
+         "law_title": "Schweizerisches Zivilgesetzbuch (ZGB)"
+        },
+        {
+         "id": 73,
+         "law_id": 318,
+         "rechtsmittel_art": "beschwerde",
+         "frist_tage": null,
+         "instanz": null,
+         "gilt_fuer": "Verweigerung der Anhörung des Kindes im Adoptionsverfahren",
+         "hinweis": "nur das urteilsfähige Kind; Instanz und Frist im Artikel nicht genannt",
+         "quote": "Über die Anhörung ist Protokoll zu führen. 3 Das urteilsfähige Kind kann die Verweigerung der Anhörung mit Be- schwerde anfechten.",
+         "article_no": "Art. 268abis",
+         "short_title": "ZGB",
+         "law_title": "Schweizerisches Zivilgesetzbuch (ZGB)"
+        },
+        {
+         "id": 74,
+         "law_id": 318,
+         "rechtsmittel_art": "beschwerde",
+         "frist_tage": null,
+         "instanz": null,
+         "gilt_fuer": "Nichtanordnung einer Kindesvertretung im Adoptionsverfahren",
+         "hinweis": "nur das urteilsfähige Kind; Instanz und Frist im Artikel nicht genannt",
+         "quote": "Stellt das urteilsfähige Kind Antrag auf eine Vertretung, so ist diese anzuordnen. 3 Das urteilsfähige Kind kann die Nichtanordnung mit Beschwerde anfechten.",
+         "article_no": "Art. 268ater",
+         "short_title": "ZGB",
+         "law_title": "Schweizerisches Zivilgesetzbuch (ZGB)"
+        },
+        {
+         "id": 75,
+         "law_id": 318,
+         "rechtsmittel_art": "beschwerde",
+         "frist_tage": null,
+         "instanz": null,
+         "gilt_fuer": "Verweigerung der Anhörung des Kindes durch die Kindesschutzbehörde",
+         "hinweis": "nur das urteilsfähige Kind; Instanz und Frist im Artikel nicht genannt (Art. 314 Abs. 1: Verfahrensbestimmungen der Erwachsenenschutzbehörde sinngemäss anwendbar)",
+         "quote": "Die Eltern werden über diese Ergeb- nisse informiert. 3 Das urteilsfähige Kind kann die Verweigerung der Anhörung mit Beschwerde anfechten.",
+         "article_no": "Art. 314a",
+         "short_title": "ZGB",
+         "law_title": "Schweizerisches Zivilgesetzbuch (ZGB)"
+        },
+        {
+         "id": 80,
+         "law_id": 318,
+         "rechtsmittel_art": "beschwerde",
+         "frist_tage": null,
+         "instanz": "vom Kanton bezeichnete Behörde",
+         "gilt_fuer": "Verfügungen des Grundbuchamts",
+         "hinweis": "Frist in Art. 956b (30 Tage); keine Beschwerde mehr gegen im Hauptbuch vollzogene Eintragungen (Abs. 3)",
+         "quote": "Gegen eine vom Grundbuchamt erlassene Verfügung kann bei der vom Kanton bezeichneten Behörde Beschwerde geführt werden; als Verfügung gilt auch das unrechtmässige Verweigern oder Verzögern einer Amtshandlung. 2 Zur Beschwerde berechtigt sind: 1. jede Person, die von einer Verfügung des Grundbuchamts be- sonders berührt ist und ein schutzwürdiges Interesse an deren Aufhebung oder Änderung hat;",
+         "article_no": "Art. 956a",
+         "short_title": "ZGB",
+         "law_title": "Schweizerisches Zivilgesetzbuch (ZGB)"
+        },
+        {
+         "id": 81,
+         "law_id": 318,
+         "rechtsmittel_art": "beschwerde",
+         "frist_tage": 30,
+         "instanz": "kantonale Beschwerdeinstanzen",
+         "gilt_fuer": "Beschwerden gegen Verfügungen des Grundbuchamts",
+         "hinweis": "bei Verweigerung oder Verzögerung einer Amtshandlung jederzeit (Abs. 2)",
+         "quote": "Die Frist für Beschwerden an die kantonalen Beschwerdeinstanzen beträgt 30 Tage. 2 Verweigert oder verzögert das Grundbuchamt eine bestimmte Amts- handlung, so kann dagegen jederzeit Beschwerde geführt werden.",
+         "article_no": "Art. 956b",
+         "short_title": "ZGB",
+         "law_title": "Schweizerisches Zivilgesetzbuch (ZGB)"
+        },
+        {
          "id": 11,
          "law_id": 247,
          "rechtsmittel_art": "verweis",
@@ -170067,15 +171056,15 @@
        },
        "legal_basis": [
         {
-         "jurisdiction": "cantonal",
-         "law_title": "Verordnung zum Gesundheitsgesetz (GesV)",
-         "law_short": "Verordnung zum Gesundheitsgesetz (GesV)",
-         "sr_number": "810.102",
-         "cantonal_ref": "SHR 810.102",
-         "article_no": "Art. 42",
-         "artikel_kennung": "sh:gesetz:shr-810.102:art-42",
+         "jurisdiction": "federal",
+         "law_title": "Schweizerisches Zivilgesetzbuch (ZGB)",
+         "law_short": "ZGB",
+         "sr_number": "210",
+         "cantonal_ref": null,
+         "article_no": "Art. 430",
+         "artikel_kennung": "sh:gesetz:sr-210:art-430",
          "citation_detail": null,
-         "verification": "sourced_pdf"
+         "verification": "verified"
         },
         {
          "jurisdiction": "cantonal",
@@ -170125,15 +171114,15 @@
        },
        "legal_basis": [
         {
-         "jurisdiction": "cantonal",
-         "law_title": "Verordnung zum Gesundheitsgesetz (GesV)",
-         "law_short": "Verordnung zum Gesundheitsgesetz (GesV)",
-         "sr_number": "810.102",
-         "cantonal_ref": "SHR 810.102",
-         "article_no": "Art. 42",
-         "artikel_kennung": "sh:gesetz:shr-810.102:art-42",
+         "jurisdiction": "federal",
+         "law_title": "Schweizerisches Zivilgesetzbuch (ZGB)",
+         "law_short": "ZGB",
+         "sr_number": "210",
+         "cantonal_ref": null,
+         "article_no": "Art. 430",
+         "artikel_kennung": "sh:gesetz:sr-210:art-430",
          "citation_detail": null,
-         "verification": "sourced_pdf"
+         "verification": "verified"
         },
         {
          "jurisdiction": "cantonal",
@@ -170247,15 +171236,15 @@
        },
        "legal_basis": [
         {
-         "jurisdiction": "cantonal",
-         "law_title": "Verordnung zum Gesundheitsgesetz (GesV)",
-         "law_short": "Verordnung zum Gesundheitsgesetz (GesV)",
-         "sr_number": "810.102",
-         "cantonal_ref": "SHR 810.102",
-         "article_no": "Art. 42",
-         "artikel_kennung": "sh:gesetz:shr-810.102:art-42",
+         "jurisdiction": "federal",
+         "law_title": "Schweizerisches Zivilgesetzbuch (ZGB)",
+         "law_short": "ZGB",
+         "sr_number": "210",
+         "cantonal_ref": null,
+         "article_no": "Art. 430",
+         "artikel_kennung": "sh:gesetz:sr-210:art-430",
          "citation_detail": null,
-         "verification": "sourced_pdf"
+         "verification": "verified"
         }
        ],
        "over_collection": false,
@@ -170294,15 +171283,15 @@
        },
        "legal_basis": [
         {
-         "jurisdiction": "cantonal",
-         "law_title": "Verordnung zum Gesundheitsgesetz (GesV)",
-         "law_short": "Verordnung zum Gesundheitsgesetz (GesV)",
-         "sr_number": "810.102",
-         "cantonal_ref": "SHR 810.102",
-         "article_no": "Art. 42",
-         "artikel_kennung": "sh:gesetz:shr-810.102:art-42",
+         "jurisdiction": "federal",
+         "law_title": "Schweizerisches Zivilgesetzbuch (ZGB)",
+         "law_short": "ZGB",
+         "sr_number": "210",
+         "cantonal_ref": null,
+         "article_no": "Art. 430",
+         "artikel_kennung": "sh:gesetz:sr-210:art-430",
          "citation_detail": null,
-         "verification": "sourced_pdf"
+         "verification": "verified"
         },
         {
          "jurisdiction": "cantonal",
@@ -170363,15 +171352,15 @@
          "verification": "sourced_pdf"
         },
         {
-         "jurisdiction": "cantonal",
-         "law_title": "Verordnung zum Gesundheitsgesetz (GesV)",
-         "law_short": "Verordnung zum Gesundheitsgesetz (GesV)",
-         "sr_number": "810.102",
-         "cantonal_ref": "SHR 810.102",
-         "article_no": "Art. 42",
-         "artikel_kennung": "sh:gesetz:shr-810.102:art-42",
+         "jurisdiction": "federal",
+         "law_title": "Schweizerisches Zivilgesetzbuch (ZGB)",
+         "law_short": "ZGB",
+         "sr_number": "210",
+         "cantonal_ref": null,
+         "article_no": "Art. 430",
+         "artikel_kennung": "sh:gesetz:sr-210:art-430",
          "citation_detail": null,
-         "verification": "sourced_pdf"
+         "verification": "verified"
         }
        ],
        "over_collection": false,
@@ -170410,15 +171399,15 @@
        },
        "legal_basis": [
         {
-         "jurisdiction": "cantonal",
-         "law_title": "Verordnung zum Gesundheitsgesetz (GesV)",
-         "law_short": "Verordnung zum Gesundheitsgesetz (GesV)",
-         "sr_number": "810.102",
-         "cantonal_ref": "SHR 810.102",
-         "article_no": "Art. 42",
-         "artikel_kennung": "sh:gesetz:shr-810.102:art-42",
+         "jurisdiction": "federal",
+         "law_title": "Schweizerisches Zivilgesetzbuch (ZGB)",
+         "law_short": "ZGB",
+         "sr_number": "210",
+         "cantonal_ref": null,
+         "article_no": "Art. 430",
+         "artikel_kennung": "sh:gesetz:sr-210:art-430",
          "citation_detail": null,
-         "verification": "sourced_pdf"
+         "verification": "verified"
         },
         {
          "jurisdiction": "cantonal",
@@ -170462,15 +171451,15 @@
        },
        "legal_basis": [
         {
-         "jurisdiction": "cantonal",
-         "law_title": "Verordnung zum Gesundheitsgesetz (GesV)",
-         "law_short": "Verordnung zum Gesundheitsgesetz (GesV)",
-         "sr_number": "810.102",
-         "cantonal_ref": "SHR 810.102",
-         "article_no": "Art. 42",
-         "artikel_kennung": "sh:gesetz:shr-810.102:art-42",
+         "jurisdiction": "federal",
+         "law_title": "Schweizerisches Zivilgesetzbuch (ZGB)",
+         "law_short": "ZGB",
+         "sr_number": "210",
+         "cantonal_ref": null,
+         "article_no": "Art. 430",
+         "artikel_kennung": "sh:gesetz:sr-210:art-430",
          "citation_detail": null,
-         "verification": "sourced_pdf"
+         "verification": "verified"
         }
        ],
        "over_collection": false,
@@ -170514,15 +171503,15 @@
        },
        "legal_basis": [
         {
-         "jurisdiction": "cantonal",
-         "law_title": "Verordnung zum Gesundheitsgesetz (GesV)",
-         "law_short": "Verordnung zum Gesundheitsgesetz (GesV)",
-         "sr_number": "810.102",
-         "cantonal_ref": "SHR 810.102",
-         "article_no": "Art. 42",
-         "artikel_kennung": "sh:gesetz:shr-810.102:art-42",
+         "jurisdiction": "federal",
+         "law_title": "Schweizerisches Zivilgesetzbuch (ZGB)",
+         "law_short": "ZGB",
+         "sr_number": "210",
+         "cantonal_ref": null,
+         "article_no": "Art. 430",
+         "artikel_kennung": "sh:gesetz:sr-210:art-430",
          "citation_detail": null,
-         "verification": "sourced_pdf"
+         "verification": "verified"
         },
         {
          "jurisdiction": "cantonal",
@@ -170569,15 +171558,15 @@
        },
        "legal_basis": [
         {
-         "jurisdiction": "cantonal",
-         "law_title": "Verordnung zum Gesundheitsgesetz (GesV)",
-         "law_short": "Verordnung zum Gesundheitsgesetz (GesV)",
-         "sr_number": "810.102",
-         "cantonal_ref": "SHR 810.102",
-         "article_no": "Art. 42",
-         "artikel_kennung": "sh:gesetz:shr-810.102:art-42",
+         "jurisdiction": "federal",
+         "law_title": "Schweizerisches Zivilgesetzbuch (ZGB)",
+         "law_short": "ZGB",
+         "sr_number": "210",
+         "cantonal_ref": null,
+         "article_no": "Art. 430",
+         "artikel_kennung": "sh:gesetz:sr-210:art-430",
          "citation_detail": null,
-         "verification": "sourced_pdf"
+         "verification": "verified"
         }
        ],
        "over_collection": false,
@@ -307887,17 +308876,6 @@
          "artikel_kennung": "sh:gesetz:shr-550.101:par-18",
          "citation_detail": null,
          "verification": "sourced_pdf"
-        },
-        {
-         "jurisdiction": "cantonal",
-         "law_title": "Brandschutzverordnung (BSV)",
-         "law_short": "Brandschutzverordnung (BSV)",
-         "sr_number": "550.101",
-         "cantonal_ref": "SHR 550.101",
-         "article_no": "Art. 26",
-         "artikel_kennung": "sh:gesetz:shr-550.101:art-26",
-         "citation_detail": null,
-         "verification": "sourced_pdf"
         }
        ],
        "over_collection": false,
@@ -327042,7 +328020,7 @@
         "element": "mainAddress",
         "hier": "Pflicht",
         "andere": "2× Pflicht, 5× optional (7 Datenpunkte) auf 5 anderen Formularen",
-        "basis": "Art. 27 Polizeiverordnung (PolV)",
+        "basis": "Art. 27 Polizeigesetz",
         "aktion": "Angleichen oder begründen: dieselbe Angabe ist anderswo optional. Eine abweichende Rechtsgrundlage rechtfertigt die Abweichung — dann gehört sie dokumentiert."
        }
       ],
@@ -327234,23 +328212,23 @@
        "legal_basis": [
         {
          "jurisdiction": "cantonal",
-         "law_title": "Polizeiverordnung (PolV)",
-         "law_short": "Polizeiverordnung (PolV)",
+         "law_title": "Polizeigesetz",
+         "law_short": "Polizeigesetz",
          "sr_number": null,
-         "cantonal_ref": "SHR 354.111",
+         "cantonal_ref": "SHR 354.100",
          "article_no": "Art. 27",
-         "artikel_kennung": "sh:gesetz:shr-354.111:art-27",
+         "artikel_kennung": "sh:gesetz:shr-354.100:art-27",
          "citation_detail": null,
          "verification": "sourced_pdf"
         },
         {
          "jurisdiction": "cantonal",
-         "law_title": "Polizeiverordnung (PolV)",
-         "law_short": "Polizeiverordnung (PolV)",
+         "law_title": "Polizeigesetz",
+         "law_short": "Polizeigesetz",
          "sr_number": null,
-         "cantonal_ref": "SHR 354.111",
+         "cantonal_ref": "SHR 354.100",
          "article_no": "Art. 27a",
-         "artikel_kennung": "sh:gesetz:shr-354.111:art-27a",
+         "artikel_kennung": "sh:gesetz:shr-354.100:art-27a",
          "citation_detail": null,
          "verification": "sourced_pdf"
         }
@@ -327384,12 +328362,12 @@
        "legal_basis": [
         {
          "jurisdiction": "cantonal",
-         "law_title": "Polizeiverordnung (PolV)",
-         "law_short": "Polizeiverordnung (PolV)",
+         "law_title": "Polizeigesetz",
+         "law_short": "Polizeigesetz",
          "sr_number": null,
-         "cantonal_ref": "SHR 354.111",
+         "cantonal_ref": "SHR 354.100",
          "article_no": "Art. 27a",
-         "artikel_kennung": "sh:gesetz:shr-354.111:art-27a",
+         "artikel_kennung": "sh:gesetz:shr-354.100:art-27a",
          "citation_detail": null,
          "verification": "sourced_pdf"
         }
@@ -327436,23 +328414,23 @@
        "legal_basis": [
         {
          "jurisdiction": "cantonal",
-         "law_title": "Polizeiverordnung (PolV)",
-         "law_short": "Polizeiverordnung (PolV)",
+         "law_title": "Polizeigesetz",
+         "law_short": "Polizeigesetz",
          "sr_number": null,
-         "cantonal_ref": "SHR 354.111",
+         "cantonal_ref": "SHR 354.100",
          "article_no": "Art. 27",
-         "artikel_kennung": "sh:gesetz:shr-354.111:art-27",
+         "artikel_kennung": "sh:gesetz:shr-354.100:art-27",
          "citation_detail": null,
          "verification": "sourced_pdf"
         },
         {
          "jurisdiction": "cantonal",
-         "law_title": "Polizeiverordnung (PolV)",
-         "law_short": "Polizeiverordnung (PolV)",
+         "law_title": "Polizeigesetz",
+         "law_short": "Polizeigesetz",
          "sr_number": null,
-         "cantonal_ref": "SHR 354.111",
+         "cantonal_ref": "SHR 354.100",
          "article_no": "Art. 27a",
-         "artikel_kennung": "sh:gesetz:shr-354.111:art-27a",
+         "artikel_kennung": "sh:gesetz:shr-354.100:art-27a",
          "citation_detail": null,
          "verification": "sourced_pdf"
         }
@@ -327575,23 +328553,23 @@
        "legal_basis": [
         {
          "jurisdiction": "cantonal",
-         "law_title": "Polizeiverordnung (PolV)",
-         "law_short": "Polizeiverordnung (PolV)",
+         "law_title": "Polizeigesetz",
+         "law_short": "Polizeigesetz",
          "sr_number": null,
-         "cantonal_ref": "SHR 354.111",
+         "cantonal_ref": "SHR 354.100",
          "article_no": "Art. 27",
-         "artikel_kennung": "sh:gesetz:shr-354.111:art-27",
+         "artikel_kennung": "sh:gesetz:shr-354.100:art-27",
          "citation_detail": null,
          "verification": "sourced_pdf"
         },
         {
          "jurisdiction": "cantonal",
-         "law_title": "Polizeiverordnung (PolV)",
-         "law_short": "Polizeiverordnung (PolV)",
+         "law_title": "Polizeigesetz",
+         "law_short": "Polizeigesetz",
          "sr_number": null,
-         "cantonal_ref": "SHR 354.111",
+         "cantonal_ref": "SHR 354.100",
          "article_no": "Art. 27a",
-         "artikel_kennung": "sh:gesetz:shr-354.111:art-27a",
+         "artikel_kennung": "sh:gesetz:shr-354.100:art-27a",
          "citation_detail": null,
          "verification": "sourced_pdf"
         }
@@ -327782,12 +328760,12 @@
        "legal_basis": [
         {
          "jurisdiction": "cantonal",
-         "law_title": "Polizeiverordnung (PolV)",
-         "law_short": "Polizeiverordnung (PolV)",
+         "law_title": "Polizeigesetz",
+         "law_short": "Polizeigesetz",
          "sr_number": null,
-         "cantonal_ref": "SHR 354.111",
+         "cantonal_ref": "SHR 354.100",
          "article_no": "Art. 27a",
-         "artikel_kennung": "sh:gesetz:shr-354.111:art-27a",
+         "artikel_kennung": "sh:gesetz:shr-354.100:art-27a",
          "citation_detail": null,
          "verification": "sourced_pdf"
         }
@@ -327921,12 +328899,12 @@
        "legal_basis": [
         {
          "jurisdiction": "cantonal",
-         "law_title": "Polizeiverordnung (PolV)",
-         "law_short": "Polizeiverordnung (PolV)",
+         "law_title": "Polizeigesetz",
+         "law_short": "Polizeigesetz",
          "sr_number": null,
-         "cantonal_ref": "SHR 354.111",
+         "cantonal_ref": "SHR 354.100",
          "article_no": "Art. 27a",
-         "artikel_kennung": "sh:gesetz:shr-354.111:art-27a",
+         "artikel_kennung": "sh:gesetz:shr-354.100:art-27a",
          "citation_detail": null,
          "verification": "sourced_pdf"
         }
@@ -327967,12 +328945,12 @@
        "legal_basis": [
         {
          "jurisdiction": "cantonal",
-         "law_title": "Polizeiverordnung (PolV)",
-         "law_short": "Polizeiverordnung (PolV)",
+         "law_title": "Polizeigesetz",
+         "law_short": "Polizeigesetz",
          "sr_number": null,
-         "cantonal_ref": "SHR 354.111",
+         "cantonal_ref": "SHR 354.100",
          "article_no": "Art. 27a",
-         "artikel_kennung": "sh:gesetz:shr-354.111:art-27a",
+         "artikel_kennung": "sh:gesetz:shr-354.100:art-27a",
          "citation_detail": null,
          "verification": "sourced_pdf"
         }
@@ -328081,12 +329059,12 @@
         },
         {
          "jurisdiction": "cantonal",
-         "law_title": "Polizeiverordnung (PolV)",
-         "law_short": "Polizeiverordnung (PolV)",
+         "law_title": "Polizeigesetz",
+         "law_short": "Polizeigesetz",
          "sr_number": null,
-         "cantonal_ref": "SHR 354.111",
+         "cantonal_ref": "SHR 354.100",
          "article_no": "Art. 27a",
-         "artikel_kennung": "sh:gesetz:shr-354.111:art-27a",
+         "artikel_kennung": "sh:gesetz:shr-354.100:art-27a",
          "citation_detail": null,
          "verification": "sourced_pdf"
         }
@@ -328143,12 +329121,12 @@
         },
         {
          "jurisdiction": "cantonal",
-         "law_title": "Polizeiverordnung (PolV)",
-         "law_short": "Polizeiverordnung (PolV)",
+         "law_title": "Polizeigesetz",
+         "law_short": "Polizeigesetz",
          "sr_number": null,
-         "cantonal_ref": "SHR 354.111",
+         "cantonal_ref": "SHR 354.100",
          "article_no": "Art. 27a",
-         "artikel_kennung": "sh:gesetz:shr-354.111:art-27a",
+         "artikel_kennung": "sh:gesetz:shr-354.100:art-27a",
          "citation_detail": null,
          "verification": "sourced_pdf"
         }
@@ -334992,7 +335970,7 @@
         "element": "mainAddress",
         "hier": "Pflicht",
         "andere": "2× Pflicht, 5× optional (7 Datenpunkte) auf 5 anderen Formularen",
-        "basis": "Art. 27 Polizeiverordnung (PolV)",
+        "basis": "Art. 27 Polizeigesetz",
         "aktion": "Angleichen oder begründen: dieselbe Angabe ist anderswo optional. Eine abweichende Rechtsgrundlage rechtfertigt die Abweichung — dann gehört sie dokumentiert."
        }
       ],
@@ -335197,23 +336175,23 @@
        "legal_basis": [
         {
          "jurisdiction": "cantonal",
-         "law_title": "Polizeiverordnung (PolV)",
-         "law_short": "Polizeiverordnung (PolV)",
+         "law_title": "Polizeigesetz",
+         "law_short": "Polizeigesetz",
          "sr_number": null,
-         "cantonal_ref": "SHR 354.111",
+         "cantonal_ref": "SHR 354.100",
          "article_no": "Art. 27",
-         "artikel_kennung": "sh:gesetz:shr-354.111:art-27",
+         "artikel_kennung": "sh:gesetz:shr-354.100:art-27",
          "citation_detail": null,
          "verification": "sourced_pdf"
         },
         {
          "jurisdiction": "cantonal",
-         "law_title": "Polizeiverordnung (PolV)",
-         "law_short": "Polizeiverordnung (PolV)",
+         "law_title": "Polizeigesetz",
+         "law_short": "Polizeigesetz",
          "sr_number": null,
-         "cantonal_ref": "SHR 354.111",
+         "cantonal_ref": "SHR 354.100",
          "article_no": "Art. 27a",
-         "artikel_kennung": "sh:gesetz:shr-354.111:art-27a",
+         "artikel_kennung": "sh:gesetz:shr-354.100:art-27a",
          "citation_detail": null,
          "verification": "sourced_pdf"
         }
@@ -335353,23 +336331,23 @@
        "legal_basis": [
         {
          "jurisdiction": "cantonal",
-         "law_title": "Polizeiverordnung (PolV)",
-         "law_short": "Polizeiverordnung (PolV)",
+         "law_title": "Polizeigesetz",
+         "law_short": "Polizeigesetz",
          "sr_number": null,
-         "cantonal_ref": "SHR 354.111",
+         "cantonal_ref": "SHR 354.100",
          "article_no": "Art. 27",
-         "artikel_kennung": "sh:gesetz:shr-354.111:art-27",
+         "artikel_kennung": "sh:gesetz:shr-354.100:art-27",
          "citation_detail": null,
          "verification": "sourced_pdf"
         },
         {
          "jurisdiction": "cantonal",
-         "law_title": "Polizeiverordnung (PolV)",
-         "law_short": "Polizeiverordnung (PolV)",
+         "law_title": "Polizeigesetz",
+         "law_short": "Polizeigesetz",
          "sr_number": null,
-         "cantonal_ref": "SHR 354.111",
+         "cantonal_ref": "SHR 354.100",
          "article_no": "Art. 27a",
-         "artikel_kennung": "sh:gesetz:shr-354.111:art-27a",
+         "artikel_kennung": "sh:gesetz:shr-354.100:art-27a",
          "citation_detail": null,
          "verification": "sourced_pdf"
         }
@@ -335411,23 +336389,23 @@
        "legal_basis": [
         {
          "jurisdiction": "cantonal",
-         "law_title": "Polizeiverordnung (PolV)",
-         "law_short": "Polizeiverordnung (PolV)",
+         "law_title": "Polizeigesetz",
+         "law_short": "Polizeigesetz",
          "sr_number": null,
-         "cantonal_ref": "SHR 354.111",
+         "cantonal_ref": "SHR 354.100",
          "article_no": "Art. 27",
-         "artikel_kennung": "sh:gesetz:shr-354.111:art-27",
+         "artikel_kennung": "sh:gesetz:shr-354.100:art-27",
          "citation_detail": null,
          "verification": "sourced_pdf"
         },
         {
          "jurisdiction": "cantonal",
-         "law_title": "Polizeiverordnung (PolV)",
-         "law_short": "Polizeiverordnung (PolV)",
+         "law_title": "Polizeigesetz",
+         "law_short": "Polizeigesetz",
          "sr_number": null,
-         "cantonal_ref": "SHR 354.111",
+         "cantonal_ref": "SHR 354.100",
          "article_no": "Art. 27a",
-         "artikel_kennung": "sh:gesetz:shr-354.111:art-27a",
+         "artikel_kennung": "sh:gesetz:shr-354.100:art-27a",
          "citation_detail": null,
          "verification": "sourced_pdf"
         }
@@ -335550,23 +336528,23 @@
        "legal_basis": [
         {
          "jurisdiction": "cantonal",
-         "law_title": "Polizeiverordnung (PolV)",
-         "law_short": "Polizeiverordnung (PolV)",
+         "law_title": "Polizeigesetz",
+         "law_short": "Polizeigesetz",
          "sr_number": null,
-         "cantonal_ref": "SHR 354.111",
+         "cantonal_ref": "SHR 354.100",
          "article_no": "Art. 27",
-         "artikel_kennung": "sh:gesetz:shr-354.111:art-27",
+         "artikel_kennung": "sh:gesetz:shr-354.100:art-27",
          "citation_detail": null,
          "verification": "sourced_pdf"
         },
         {
          "jurisdiction": "cantonal",
-         "law_title": "Polizeiverordnung (PolV)",
-         "law_short": "Polizeiverordnung (PolV)",
+         "law_title": "Polizeigesetz",
+         "law_short": "Polizeigesetz",
          "sr_number": null,
-         "cantonal_ref": "SHR 354.111",
+         "cantonal_ref": "SHR 354.100",
          "article_no": "Art. 27a",
-         "artikel_kennung": "sh:gesetz:shr-354.111:art-27a",
+         "artikel_kennung": "sh:gesetz:shr-354.100:art-27a",
          "citation_detail": null,
          "verification": "sourced_pdf"
         }
@@ -335757,23 +336735,23 @@
        "legal_basis": [
         {
          "jurisdiction": "cantonal",
-         "law_title": "Polizeiverordnung (PolV)",
-         "law_short": "Polizeiverordnung (PolV)",
+         "law_title": "Polizeigesetz",
+         "law_short": "Polizeigesetz",
          "sr_number": null,
-         "cantonal_ref": "SHR 354.111",
+         "cantonal_ref": "SHR 354.100",
          "article_no": "Art. 27",
-         "artikel_kennung": "sh:gesetz:shr-354.111:art-27",
+         "artikel_kennung": "sh:gesetz:shr-354.100:art-27",
          "citation_detail": null,
          "verification": "sourced_pdf"
         },
         {
          "jurisdiction": "cantonal",
-         "law_title": "Polizeiverordnung (PolV)",
-         "law_short": "Polizeiverordnung (PolV)",
+         "law_title": "Polizeigesetz",
+         "law_short": "Polizeigesetz",
          "sr_number": null,
-         "cantonal_ref": "SHR 354.111",
+         "cantonal_ref": "SHR 354.100",
          "article_no": "Art. 27a",
-         "artikel_kennung": "sh:gesetz:shr-354.111:art-27a",
+         "artikel_kennung": "sh:gesetz:shr-354.100:art-27a",
          "citation_detail": null,
          "verification": "sourced_pdf"
         }
@@ -335913,23 +336891,23 @@
        "legal_basis": [
         {
          "jurisdiction": "cantonal",
-         "law_title": "Polizeiverordnung (PolV)",
-         "law_short": "Polizeiverordnung (PolV)",
+         "law_title": "Polizeigesetz",
+         "law_short": "Polizeigesetz",
          "sr_number": null,
-         "cantonal_ref": "SHR 354.111",
+         "cantonal_ref": "SHR 354.100",
          "article_no": "Art. 27",
-         "artikel_kennung": "sh:gesetz:shr-354.111:art-27",
+         "artikel_kennung": "sh:gesetz:shr-354.100:art-27",
          "citation_detail": null,
          "verification": "sourced_pdf"
         },
         {
          "jurisdiction": "cantonal",
-         "law_title": "Polizeiverordnung (PolV)",
-         "law_short": "Polizeiverordnung (PolV)",
+         "law_title": "Polizeigesetz",
+         "law_short": "Polizeigesetz",
          "sr_number": null,
-         "cantonal_ref": "SHR 354.111",
+         "cantonal_ref": "SHR 354.100",
          "article_no": "Art. 27a",
-         "artikel_kennung": "sh:gesetz:shr-354.111:art-27a",
+         "artikel_kennung": "sh:gesetz:shr-354.100:art-27a",
          "citation_detail": null,
          "verification": "sourced_pdf"
         }
@@ -335965,23 +336943,23 @@
        "legal_basis": [
         {
          "jurisdiction": "cantonal",
-         "law_title": "Polizeiverordnung (PolV)",
-         "law_short": "Polizeiverordnung (PolV)",
+         "law_title": "Polizeigesetz",
+         "law_short": "Polizeigesetz",
          "sr_number": null,
-         "cantonal_ref": "SHR 354.111",
+         "cantonal_ref": "SHR 354.100",
          "article_no": "Art. 27",
-         "artikel_kennung": "sh:gesetz:shr-354.111:art-27",
+         "artikel_kennung": "sh:gesetz:shr-354.100:art-27",
          "citation_detail": null,
          "verification": "sourced_pdf"
         },
         {
          "jurisdiction": "cantonal",
-         "law_title": "Polizeiverordnung (PolV)",
-         "law_short": "Polizeiverordnung (PolV)",
+         "law_title": "Polizeigesetz",
+         "law_short": "Polizeigesetz",
          "sr_number": null,
-         "cantonal_ref": "SHR 354.111",
+         "cantonal_ref": "SHR 354.100",
          "article_no": "Art. 27a",
-         "artikel_kennung": "sh:gesetz:shr-354.111:art-27a",
+         "artikel_kennung": "sh:gesetz:shr-354.100:art-27a",
          "citation_detail": null,
          "verification": "sourced_pdf"
         }
@@ -336079,23 +337057,23 @@
        "legal_basis": [
         {
          "jurisdiction": "cantonal",
-         "law_title": "Polizeiverordnung (PolV)",
-         "law_short": "Polizeiverordnung (PolV)",
+         "law_title": "Polizeigesetz",
+         "law_short": "Polizeigesetz",
          "sr_number": null,
-         "cantonal_ref": "SHR 354.111",
+         "cantonal_ref": "SHR 354.100",
          "article_no": "Art. 27",
-         "artikel_kennung": "sh:gesetz:shr-354.111:art-27",
+         "artikel_kennung": "sh:gesetz:shr-354.100:art-27",
          "citation_detail": null,
          "verification": "sourced_pdf"
         },
         {
          "jurisdiction": "cantonal",
-         "law_title": "Polizeiverordnung (PolV)",
-         "law_short": "Polizeiverordnung (PolV)",
+         "law_title": "Polizeigesetz",
+         "law_short": "Polizeigesetz",
          "sr_number": null,
-         "cantonal_ref": "SHR 354.111",
+         "cantonal_ref": "SHR 354.100",
          "article_no": "Art. 27a",
-         "artikel_kennung": "sh:gesetz:shr-354.111:art-27a",
+         "artikel_kennung": "sh:gesetz:shr-354.100:art-27a",
          "citation_detail": null,
          "verification": "sourced_pdf"
         }
@@ -336136,12 +337114,12 @@
        "legal_basis": [
         {
          "jurisdiction": "cantonal",
-         "law_title": "Polizeiverordnung (PolV)",
-         "law_short": "Polizeiverordnung (PolV)",
+         "law_title": "Polizeigesetz",
+         "law_short": "Polizeigesetz",
          "sr_number": null,
-         "cantonal_ref": "SHR 354.111",
+         "cantonal_ref": "SHR 354.100",
          "article_no": "Art. 27a",
-         "artikel_kennung": "sh:gesetz:shr-354.111:art-27a",
+         "artikel_kennung": "sh:gesetz:shr-354.100:art-27a",
          "citation_detail": null,
          "verification": "sourced_pdf"
         },
@@ -336198,12 +337176,12 @@
        "legal_basis": [
         {
          "jurisdiction": "cantonal",
-         "law_title": "Polizeiverordnung (PolV)",
-         "law_short": "Polizeiverordnung (PolV)",
+         "law_title": "Polizeigesetz",
+         "law_short": "Polizeigesetz",
          "sr_number": null,
-         "cantonal_ref": "SHR 354.111",
+         "cantonal_ref": "SHR 354.100",
          "article_no": "Art. 27a",
-         "artikel_kennung": "sh:gesetz:shr-354.111:art-27a",
+         "artikel_kennung": "sh:gesetz:shr-354.100:art-27a",
          "citation_detail": null,
          "verification": "sourced_pdf"
         },
@@ -336257,23 +337235,23 @@
        "legal_basis": [
         {
          "jurisdiction": "cantonal",
-         "law_title": "Polizeiverordnung (PolV)",
-         "law_short": "Polizeiverordnung (PolV)",
+         "law_title": "Polizeigesetz",
+         "law_short": "Polizeigesetz",
          "sr_number": null,
-         "cantonal_ref": "SHR 354.111",
+         "cantonal_ref": "SHR 354.100",
          "article_no": "Art. 27",
-         "artikel_kennung": "sh:gesetz:shr-354.111:art-27",
+         "artikel_kennung": "sh:gesetz:shr-354.100:art-27",
          "citation_detail": null,
          "verification": "sourced_pdf"
         },
         {
          "jurisdiction": "cantonal",
-         "law_title": "Polizeiverordnung (PolV)",
-         "law_short": "Polizeiverordnung (PolV)",
+         "law_title": "Polizeigesetz",
+         "law_short": "Polizeigesetz",
          "sr_number": null,
-         "cantonal_ref": "SHR 354.111",
+         "cantonal_ref": "SHR 354.100",
          "article_no": "Art. 27a",
-         "artikel_kennung": "sh:gesetz:shr-354.111:art-27a",
+         "artikel_kennung": "sh:gesetz:shr-354.100:art-27a",
          "citation_detail": null,
          "verification": "sourced_pdf"
         }
@@ -400657,69 +401635,17 @@
        "rechtsmittel_quelle": null,
        "rechtsmittel_kandidaten": [
         {
-         "id": 97,
-         "law_id": 297,
+         "id": 125,
+         "law_id": 317,
          "rechtsmittel_art": "beschwerde",
-         "frist_tage": null,
-         "instanz": "Obergericht",
-         "gilt_fuer": "Entscheide der Kindes- und Erwachsenenschutzbehörde",
-         "hinweis": "Abschnitt 2.3.3.1 Organisation und Zuständigkeit",
-         "quote": "Das Kindes- und Erwachsenenschutzrecht wird durch die Kindes- und Er- wachsenenschutzbehörde als erstinstanzliche Entscheidbehörde und das Obergericht als Beschwerde- und Aufsichtsinstanz vollzogen.",
-         "article_no": "Art. 45",
-         "short_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "law_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches"
-        },
-        {
-         "id": 98,
-         "law_id": 297,
-         "rechtsmittel_art": "verweis",
-         "frist_tage": null,
-         "instanz": "Art. 450 ff. ZGB",
-         "gilt_fuer": "Beschwerden gegen Entscheide der Kindes- und Erwachsenenschutzbehörde",
-         "hinweis": "Abs. 2; Abs. 3: im Übrigen Zivilprozessordnung sinngemäss",
-         "quote": "Das Beschwerdeverfahren vor dem Obergericht richtet sich nach Art. 450 ff. ZGB und den nachfolgenden Bestimmungen.",
-         "article_no": "Art. 46",
-         "short_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "law_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches"
-        },
-        {
-         "id": 99,
-         "law_id": 297,
-         "rechtsmittel_art": "beschwerde",
-         "frist_tage": null,
-         "instanz": "Erbschaftsbehörde bzw. zuständiges Departement",
-         "gilt_fuer": "Verfügungen des Erbschaftsverwalters/Willensvollstreckers/Erbenvertreters sowie Anordnungen und Beschlüsse der Erbschaftsbehörde",
-         "hinweis": "Abschnitt 2.4.7 Rechtsmittel (Erbrecht)",
-         "quote": "Wo das Gesetz nicht den Entscheid des Richters vorsieht, kann Beschwer- de erhoben werden: a) b) bei der Erbschaftsbehörde gegen Verfügungen und Massnahmen des Erbschaftsverwalters (Art. 554 und 595 ZGB), des Willensvoll- streckers (Art. 517 ff. ZGB) und des Vertreters der Erbengemein- schaft (Art. 602 ZGB) beim zuständigen Departement gegen Anordnungen und Beschlüsse der Erbschaftsbehörde",
-         "article_no": "Art. 88",
-         "short_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "law_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches"
-        },
-        {
-         "id": 100,
-         "law_id": 297,
-         "rechtsmittel_art": "verweis",
-         "frist_tage": null,
-         "instanz": "Gesetz über den Rechtsschutz in Verwaltungssachen (Art. 16–29 VRG, Rekursverfahren)",
-         "gilt_fuer": "Beschwerdeverfahren in Erbschaftssachen",
-         "hinweis": "Abs. 2",
-         "quote": "Auf das Beschwerdeverfahren finden die Bestimmungen über das Rekurs- verfahren gemäss dem Gesetz über den Rechtsschutz in Verwaltungssa- chen",
-         "article_no": "Art. 88",
-         "short_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "law_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches"
-        },
-        {
-         "id": 101,
-         "law_id": 297,
-         "rechtsmittel_art": "verwaltungsgerichtsbeschwerde",
-         "frist_tage": null,
-         "instanz": "Obergericht",
-         "gilt_fuer": "Beschwerdeentscheide des Departements in Erbschaftssachen",
-         "hinweis": "Verfahren nach Art. 34–50 VRG",
-         "quote": "Gegen Beschwerdeentscheide des Departements kann Verwaltungsge- richtsbeschwerde beim Obergericht erhoben werden. Das Verfahren richtet sich nach den Bestimmungen des Gesetzes über den Rechtsschutz in Verwaltungssachen",
-         "article_no": "Art. 88a",
-         "short_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "law_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches"
+         "frist_tage": 30,
+         "instanz": "oberes kantonales Gericht (einzige Beschwerdeinstanz)",
+         "gilt_fuer": "Verfügungen der Handelsregisterämter",
+         "hinweis": "Abs. 2: jeder Kanton bezeichnet ein oberes Gericht als einzige Beschwerdeinstanz; Randtitel J. Rechtsschutz",
+         "quote": "Verfügungen der Handelsregisterämter können innert 30 Tagen nach deren Eröffnung angefochten werden.",
+         "article_no": "Art. 942",
+         "short_title": "OR",
+         "law_title": "Bundesgesetz betreffend die Ergänzung des ZGB (Obligationenrecht, OR)"
         }
        ]
       },
@@ -400845,15 +401771,15 @@
        },
        "legal_basis": [
         {
-         "jurisdiction": "cantonal",
-         "law_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "law_short": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "sr_number": null,
-         "cantonal_ref": "SHR 210.100",
-         "article_no": "Art. 26d",
-         "artikel_kennung": "sh:gesetz:shr-210.100:art-26d",
+         "jurisdiction": "federal",
+         "law_title": "Bundesgesetz betreffend die Ergänzung des ZGB (Obligationenrecht, OR)",
+         "law_short": "OR",
+         "sr_number": "220",
+         "cantonal_ref": null,
+         "article_no": "Art. 269d",
+         "artikel_kennung": "sh:gesetz:sr-220:art-269d",
          "citation_detail": null,
-         "verification": "sourced_pdf"
+         "verification": "verified"
         }
        ],
        "over_collection": false,
@@ -400892,15 +401818,15 @@
        },
        "legal_basis": [
         {
-         "jurisdiction": "cantonal",
-         "law_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "law_short": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "sr_number": null,
-         "cantonal_ref": "SHR 210.100",
-         "article_no": "Art. 26d",
-         "artikel_kennung": "sh:gesetz:shr-210.100:art-26d",
+         "jurisdiction": "federal",
+         "law_title": "Bundesgesetz betreffend die Ergänzung des ZGB (Obligationenrecht, OR)",
+         "law_short": "OR",
+         "sr_number": "220",
+         "cantonal_ref": null,
+         "article_no": "Art. 269d",
+         "artikel_kennung": "sh:gesetz:sr-220:art-269d",
          "citation_detail": null,
-         "verification": "sourced_pdf"
+         "verification": "verified"
         }
        ],
        "over_collection": false,
@@ -400939,15 +401865,15 @@
        },
        "legal_basis": [
         {
-         "jurisdiction": "cantonal",
-         "law_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "law_short": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "sr_number": null,
-         "cantonal_ref": "SHR 210.100",
-         "article_no": "Art. 26d",
-         "artikel_kennung": "sh:gesetz:shr-210.100:art-26d",
+         "jurisdiction": "federal",
+         "law_title": "Bundesgesetz betreffend die Ergänzung des ZGB (Obligationenrecht, OR)",
+         "law_short": "OR",
+         "sr_number": "220",
+         "cantonal_ref": null,
+         "article_no": "Art. 269d",
+         "artikel_kennung": "sh:gesetz:sr-220:art-269d",
          "citation_detail": null,
-         "verification": "sourced_pdf"
+         "verification": "verified"
         }
        ],
        "over_collection": false,
@@ -401016,15 +401942,15 @@
        },
        "legal_basis": [
         {
-         "jurisdiction": "cantonal",
-         "law_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "law_short": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "sr_number": null,
-         "cantonal_ref": "SHR 210.100",
-         "article_no": "Art. 26d",
-         "artikel_kennung": "sh:gesetz:shr-210.100:art-26d",
+         "jurisdiction": "federal",
+         "law_title": "Bundesgesetz betreffend die Ergänzung des ZGB (Obligationenrecht, OR)",
+         "law_short": "OR",
+         "sr_number": "220",
+         "cantonal_ref": null,
+         "article_no": "Art. 269d",
+         "artikel_kennung": "sh:gesetz:sr-220:art-269d",
          "citation_detail": null,
-         "verification": "sourced_pdf"
+         "verification": "verified"
         }
        ],
        "over_collection": false,
@@ -401087,15 +402013,15 @@
        },
        "legal_basis": [
         {
-         "jurisdiction": "cantonal",
-         "law_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "law_short": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "sr_number": null,
-         "cantonal_ref": "SHR 210.100",
-         "article_no": "Art. 26d",
-         "artikel_kennung": "sh:gesetz:shr-210.100:art-26d",
+         "jurisdiction": "federal",
+         "law_title": "Bundesgesetz betreffend die Ergänzung des ZGB (Obligationenrecht, OR)",
+         "law_short": "OR",
+         "sr_number": "220",
+         "cantonal_ref": null,
+         "article_no": "Art. 269d",
+         "artikel_kennung": "sh:gesetz:sr-220:art-269d",
          "citation_detail": null,
-         "verification": "sourced_pdf"
+         "verification": "verified"
         }
        ],
        "over_collection": false,
@@ -401133,15 +402059,15 @@
        },
        "legal_basis": [
         {
-         "jurisdiction": "cantonal",
-         "law_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "law_short": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "sr_number": null,
-         "cantonal_ref": "SHR 210.100",
-         "article_no": "Art. 26d",
-         "artikel_kennung": "sh:gesetz:shr-210.100:art-26d",
+         "jurisdiction": "federal",
+         "law_title": "Bundesgesetz betreffend die Ergänzung des ZGB (Obligationenrecht, OR)",
+         "law_short": "OR",
+         "sr_number": "220",
+         "cantonal_ref": null,
+         "article_no": "Art. 269d",
+         "artikel_kennung": "sh:gesetz:sr-220:art-269d",
          "citation_detail": null,
-         "verification": "sourced_pdf"
+         "verification": "verified"
         }
        ],
        "over_collection": false,
@@ -401179,15 +402105,15 @@
        },
        "legal_basis": [
         {
-         "jurisdiction": "cantonal",
-         "law_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "law_short": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "sr_number": null,
-         "cantonal_ref": "SHR 210.100",
-         "article_no": "Art. 26d",
-         "artikel_kennung": "sh:gesetz:shr-210.100:art-26d",
+         "jurisdiction": "federal",
+         "law_title": "Bundesgesetz betreffend die Ergänzung des ZGB (Obligationenrecht, OR)",
+         "law_short": "OR",
+         "sr_number": "220",
+         "cantonal_ref": null,
+         "article_no": "Art. 269d",
+         "artikel_kennung": "sh:gesetz:sr-220:art-269d",
          "citation_detail": null,
-         "verification": "sourced_pdf"
+         "verification": "verified"
         }
        ],
        "over_collection": false,
@@ -401281,15 +402207,15 @@
        },
        "legal_basis": [
         {
-         "jurisdiction": "cantonal",
-         "law_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "law_short": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "sr_number": null,
-         "cantonal_ref": "SHR 210.100",
-         "article_no": "Art. 26d",
-         "artikel_kennung": "sh:gesetz:shr-210.100:art-26d",
+         "jurisdiction": "federal",
+         "law_title": "Bundesgesetz betreffend die Ergänzung des ZGB (Obligationenrecht, OR)",
+         "law_short": "OR",
+         "sr_number": "220",
+         "cantonal_ref": null,
+         "article_no": "Art. 269d",
+         "artikel_kennung": "sh:gesetz:sr-220:art-269d",
          "citation_detail": null,
-         "verification": "sourced_pdf"
+         "verification": "verified"
         }
        ],
        "over_collection": false,
@@ -401327,15 +402253,15 @@
        },
        "legal_basis": [
         {
-         "jurisdiction": "cantonal",
-         "law_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "law_short": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "sr_number": null,
-         "cantonal_ref": "SHR 210.100",
-         "article_no": "Art. 26d",
-         "artikel_kennung": "sh:gesetz:shr-210.100:art-26d",
+         "jurisdiction": "federal",
+         "law_title": "Bundesgesetz betreffend die Ergänzung des ZGB (Obligationenrecht, OR)",
+         "law_short": "OR",
+         "sr_number": "220",
+         "cantonal_ref": null,
+         "article_no": "Art. 269d",
+         "artikel_kennung": "sh:gesetz:sr-220:art-269d",
          "citation_detail": null,
-         "verification": "sourced_pdf"
+         "verification": "verified"
         }
        ],
        "over_collection": false,
@@ -401373,15 +402299,15 @@
        },
        "legal_basis": [
         {
-         "jurisdiction": "cantonal",
-         "law_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "law_short": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "sr_number": null,
-         "cantonal_ref": "SHR 210.100",
-         "article_no": "Art. 26d",
-         "artikel_kennung": "sh:gesetz:shr-210.100:art-26d",
+         "jurisdiction": "federal",
+         "law_title": "Bundesgesetz betreffend die Ergänzung des ZGB (Obligationenrecht, OR)",
+         "law_short": "OR",
+         "sr_number": "220",
+         "cantonal_ref": null,
+         "article_no": "Art. 269d",
+         "artikel_kennung": "sh:gesetz:sr-220:art-269d",
          "citation_detail": null,
-         "verification": "sourced_pdf"
+         "verification": "verified"
         }
        ],
        "over_collection": false,
@@ -401419,15 +402345,15 @@
        },
        "legal_basis": [
         {
-         "jurisdiction": "cantonal",
-         "law_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "law_short": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "sr_number": null,
-         "cantonal_ref": "SHR 210.100",
-         "article_no": "Art. 26d",
-         "artikel_kennung": "sh:gesetz:shr-210.100:art-26d",
+         "jurisdiction": "federal",
+         "law_title": "Bundesgesetz betreffend die Ergänzung des ZGB (Obligationenrecht, OR)",
+         "law_short": "OR",
+         "sr_number": "220",
+         "cantonal_ref": null,
+         "article_no": "Art. 269d",
+         "artikel_kennung": "sh:gesetz:sr-220:art-269d",
          "citation_detail": null,
-         "verification": "sourced_pdf"
+         "verification": "verified"
         }
        ],
        "over_collection": false,
@@ -401471,15 +402397,15 @@
        },
        "legal_basis": [
         {
-         "jurisdiction": "cantonal",
-         "law_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "law_short": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "sr_number": null,
-         "cantonal_ref": "SHR 210.100",
-         "article_no": "Art. 26d",
-         "artikel_kennung": "sh:gesetz:shr-210.100:art-26d",
+         "jurisdiction": "federal",
+         "law_title": "Bundesgesetz betreffend die Ergänzung des ZGB (Obligationenrecht, OR)",
+         "law_short": "OR",
+         "sr_number": "220",
+         "cantonal_ref": null,
+         "article_no": "Art. 269d",
+         "artikel_kennung": "sh:gesetz:sr-220:art-269d",
          "citation_detail": null,
-         "verification": "sourced_pdf"
+         "verification": "verified"
         }
        ],
        "over_collection": false,
@@ -401512,15 +402438,15 @@
        },
        "legal_basis": [
         {
-         "jurisdiction": "cantonal",
-         "law_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "law_short": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "sr_number": null,
-         "cantonal_ref": "SHR 210.100",
-         "article_no": "Art. 26d",
-         "artikel_kennung": "sh:gesetz:shr-210.100:art-26d",
+         "jurisdiction": "federal",
+         "law_title": "Bundesgesetz betreffend die Ergänzung des ZGB (Obligationenrecht, OR)",
+         "law_short": "OR",
+         "sr_number": "220",
+         "cantonal_ref": null,
+         "article_no": "Art. 269d",
+         "artikel_kennung": "sh:gesetz:sr-220:art-269d",
          "citation_detail": null,
-         "verification": "sourced_pdf"
+         "verification": "verified"
         }
        ],
        "over_collection": false,
@@ -401558,15 +402484,15 @@
        },
        "legal_basis": [
         {
-         "jurisdiction": "cantonal",
-         "law_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "law_short": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "sr_number": null,
-         "cantonal_ref": "SHR 210.100",
-         "article_no": "Art. 26d",
-         "artikel_kennung": "sh:gesetz:shr-210.100:art-26d",
+         "jurisdiction": "federal",
+         "law_title": "Bundesgesetz betreffend die Ergänzung des ZGB (Obligationenrecht, OR)",
+         "law_short": "OR",
+         "sr_number": "220",
+         "cantonal_ref": null,
+         "article_no": "Art. 269d",
+         "artikel_kennung": "sh:gesetz:sr-220:art-269d",
          "citation_detail": null,
-         "verification": "sourced_pdf"
+         "verification": "verified"
         }
        ],
        "over_collection": false,
@@ -401604,15 +402530,15 @@
        },
        "legal_basis": [
         {
-         "jurisdiction": "cantonal",
-         "law_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "law_short": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "sr_number": null,
-         "cantonal_ref": "SHR 210.100",
-         "article_no": "Art. 26d",
-         "artikel_kennung": "sh:gesetz:shr-210.100:art-26d",
+         "jurisdiction": "federal",
+         "law_title": "Bundesgesetz betreffend die Ergänzung des ZGB (Obligationenrecht, OR)",
+         "law_short": "OR",
+         "sr_number": "220",
+         "cantonal_ref": null,
+         "article_no": "Art. 269d",
+         "artikel_kennung": "sh:gesetz:sr-220:art-269d",
          "citation_detail": null,
-         "verification": "sourced_pdf"
+         "verification": "verified"
         }
        ],
        "over_collection": false,
@@ -608740,17 +609666,6 @@
          "artikel_kennung": "sh:gesetz:shr-813.501:par-20",
          "citation_detail": null,
          "verification": "sourced_pdf"
-        },
-        {
-         "jurisdiction": "cantonal",
-         "law_title": "Verordnung zum Altersbetreuungs- und Pflegegesetz",
-         "law_short": "AbPV",
-         "sr_number": "813.501",
-         "cantonal_ref": "SHR 813.501",
-         "article_no": "Art. 7",
-         "artikel_kennung": "sh:gesetz:shr-813.501:art-7",
-         "citation_detail": null,
-         "verification": "sourced_pdf"
         }
        ],
        "over_collection": false,
@@ -608975,17 +609890,6 @@
          "law_short": "AbPV",
          "sr_number": "813.501",
          "cantonal_ref": "SHR 813.501",
-         "article_no": "Art. 7",
-         "artikel_kennung": "sh:gesetz:shr-813.501:art-7",
-         "citation_detail": null,
-         "verification": "sourced_pdf"
-        },
-        {
-         "jurisdiction": "cantonal",
-         "law_title": "Verordnung zum Altersbetreuungs- und Pflegegesetz",
-         "law_short": "AbPV",
-         "sr_number": "813.501",
-         "cantonal_ref": "SHR 813.501",
          "article_no": "§ 20",
          "artikel_kennung": "sh:gesetz:shr-813.501:par-20",
          "citation_detail": null,
@@ -609094,17 +609998,6 @@
         "standard_status": "Genehmigt"
        },
        "legal_basis": [
-        {
-         "jurisdiction": "cantonal",
-         "law_title": "Verordnung zum Altersbetreuungs- und Pflegegesetz",
-         "law_short": "AbPV",
-         "sr_number": "813.501",
-         "cantonal_ref": "SHR 813.501",
-         "article_no": "Art. 7",
-         "artikel_kennung": "sh:gesetz:shr-813.501:art-7",
-         "citation_detail": null,
-         "verification": "sourced_pdf"
-        },
         {
          "jurisdiction": "cantonal",
          "law_title": "Verordnung zum Altersbetreuungs- und Pflegegesetz",
@@ -609225,17 +610118,6 @@
          "law_short": "AbPV",
          "sr_number": "813.501",
          "cantonal_ref": "SHR 813.501",
-         "article_no": "Art. 7",
-         "artikel_kennung": "sh:gesetz:shr-813.501:art-7",
-         "citation_detail": null,
-         "verification": "sourced_pdf"
-        },
-        {
-         "jurisdiction": "cantonal",
-         "law_title": "Verordnung zum Altersbetreuungs- und Pflegegesetz",
-         "law_short": "AbPV",
-         "sr_number": "813.501",
-         "cantonal_ref": "SHR 813.501",
          "article_no": "§ 20",
          "artikel_kennung": "sh:gesetz:shr-813.501:par-20",
          "citation_detail": null,
@@ -609344,17 +610226,6 @@
         "standard_status": "Genehmigt"
        },
        "legal_basis": [
-        {
-         "jurisdiction": "cantonal",
-         "law_title": "Verordnung zum Altersbetreuungs- und Pflegegesetz",
-         "law_short": "AbPV",
-         "sr_number": "813.501",
-         "cantonal_ref": "SHR 813.501",
-         "article_no": "Art. 7",
-         "artikel_kennung": "sh:gesetz:shr-813.501:art-7",
-         "citation_detail": null,
-         "verification": "sourced_pdf"
-        },
         {
          "jurisdiction": "cantonal",
          "law_title": "Verordnung zum Altersbetreuungs- und Pflegegesetz",
@@ -609721,17 +610592,6 @@
        "legal_basis": [
         {
          "jurisdiction": "cantonal",
-         "law_title": "Altersbetreuungs- und Pflegegesetz (AbPG)",
-         "law_short": "AbPG",
-         "sr_number": null,
-         "cantonal_ref": "SHR 813.500",
-         "article_no": "Art. 25a",
-         "artikel_kennung": "sh:gesetz:shr-813.500:art-25a",
-         "citation_detail": null,
-         "verification": "sourced_pdf"
-        },
-        {
-         "jurisdiction": "cantonal",
          "law_title": "Verordnung zum Altersbetreuungs- und Pflegegesetz",
          "law_short": "AbPV",
          "sr_number": "813.501",
@@ -609977,17 +610837,6 @@
          "cantonal_ref": "SHR 813.501",
          "article_no": "§ 25",
          "artikel_kennung": "sh:gesetz:shr-813.501:par-25",
-         "citation_detail": null,
-         "verification": "sourced_pdf"
-        },
-        {
-         "jurisdiction": "cantonal",
-         "law_title": "Altersbetreuungs- und Pflegegesetz (AbPG)",
-         "law_short": "AbPG",
-         "sr_number": null,
-         "cantonal_ref": "SHR 813.500",
-         "article_no": "Art. 25a",
-         "artikel_kennung": "sh:gesetz:shr-813.500:art-25a",
          "citation_detail": null,
          "verification": "sourced_pdf"
         },
@@ -683511,69 +684360,17 @@
        "rechtsmittel_quelle": null,
        "rechtsmittel_kandidaten": [
         {
-         "id": 97,
-         "law_id": 297,
+         "id": 125,
+         "law_id": 317,
          "rechtsmittel_art": "beschwerde",
-         "frist_tage": null,
-         "instanz": "Obergericht",
-         "gilt_fuer": "Entscheide der Kindes- und Erwachsenenschutzbehörde",
-         "hinweis": "Abschnitt 2.3.3.1 Organisation und Zuständigkeit",
-         "quote": "Das Kindes- und Erwachsenenschutzrecht wird durch die Kindes- und Er- wachsenenschutzbehörde als erstinstanzliche Entscheidbehörde und das Obergericht als Beschwerde- und Aufsichtsinstanz vollzogen.",
-         "article_no": "Art. 45",
-         "short_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "law_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches"
-        },
-        {
-         "id": 98,
-         "law_id": 297,
-         "rechtsmittel_art": "verweis",
-         "frist_tage": null,
-         "instanz": "Art. 450 ff. ZGB",
-         "gilt_fuer": "Beschwerden gegen Entscheide der Kindes- und Erwachsenenschutzbehörde",
-         "hinweis": "Abs. 2; Abs. 3: im Übrigen Zivilprozessordnung sinngemäss",
-         "quote": "Das Beschwerdeverfahren vor dem Obergericht richtet sich nach Art. 450 ff. ZGB und den nachfolgenden Bestimmungen.",
-         "article_no": "Art. 46",
-         "short_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "law_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches"
-        },
-        {
-         "id": 99,
-         "law_id": 297,
-         "rechtsmittel_art": "beschwerde",
-         "frist_tage": null,
-         "instanz": "Erbschaftsbehörde bzw. zuständiges Departement",
-         "gilt_fuer": "Verfügungen des Erbschaftsverwalters/Willensvollstreckers/Erbenvertreters sowie Anordnungen und Beschlüsse der Erbschaftsbehörde",
-         "hinweis": "Abschnitt 2.4.7 Rechtsmittel (Erbrecht)",
-         "quote": "Wo das Gesetz nicht den Entscheid des Richters vorsieht, kann Beschwer- de erhoben werden: a) b) bei der Erbschaftsbehörde gegen Verfügungen und Massnahmen des Erbschaftsverwalters (Art. 554 und 595 ZGB), des Willensvoll- streckers (Art. 517 ff. ZGB) und des Vertreters der Erbengemein- schaft (Art. 602 ZGB) beim zuständigen Departement gegen Anordnungen und Beschlüsse der Erbschaftsbehörde",
-         "article_no": "Art. 88",
-         "short_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "law_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches"
-        },
-        {
-         "id": 100,
-         "law_id": 297,
-         "rechtsmittel_art": "verweis",
-         "frist_tage": null,
-         "instanz": "Gesetz über den Rechtsschutz in Verwaltungssachen (Art. 16–29 VRG, Rekursverfahren)",
-         "gilt_fuer": "Beschwerdeverfahren in Erbschaftssachen",
-         "hinweis": "Abs. 2",
-         "quote": "Auf das Beschwerdeverfahren finden die Bestimmungen über das Rekurs- verfahren gemäss dem Gesetz über den Rechtsschutz in Verwaltungssa- chen",
-         "article_no": "Art. 88",
-         "short_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "law_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches"
-        },
-        {
-         "id": 101,
-         "law_id": 297,
-         "rechtsmittel_art": "verwaltungsgerichtsbeschwerde",
-         "frist_tage": null,
-         "instanz": "Obergericht",
-         "gilt_fuer": "Beschwerdeentscheide des Departements in Erbschaftssachen",
-         "hinweis": "Verfahren nach Art. 34–50 VRG",
-         "quote": "Gegen Beschwerdeentscheide des Departements kann Verwaltungsge- richtsbeschwerde beim Obergericht erhoben werden. Das Verfahren richtet sich nach den Bestimmungen des Gesetzes über den Rechtsschutz in Verwaltungssachen",
-         "article_no": "Art. 88a",
-         "short_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "law_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches"
+         "frist_tage": 30,
+         "instanz": "oberes kantonales Gericht (einzige Beschwerdeinstanz)",
+         "gilt_fuer": "Verfügungen der Handelsregisterämter",
+         "hinweis": "Abs. 2: jeder Kanton bezeichnet ein oberes Gericht als einzige Beschwerdeinstanz; Randtitel J. Rechtsschutz",
+         "quote": "Verfügungen der Handelsregisterämter können innert 30 Tagen nach deren Eröffnung angefochten werden.",
+         "article_no": "Art. 942",
+         "short_title": "OR",
+         "law_title": "Bundesgesetz betreffend die Ergänzung des ZGB (Obligationenrecht, OR)"
         }
        ]
       },
@@ -683597,7 +684394,7 @@
         "element": "endOfContract",
         "hier": "Pflicht",
         "andere": "0× Pflicht, 2× optional (2 Datenpunkte) auf 2 anderen Formularen",
-        "basis": "Art. 26d Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
+        "basis": "Art. 266l OR",
         "aktion": "Angleichen oder begründen: dieselbe Angabe ist anderswo optional. Eine abweichende Rechtsgrundlage rechtfertigt die Abweichung — dann gehört sie dokumentiert."
        }
       ],
@@ -683720,15 +684517,26 @@
        },
        "legal_basis": [
         {
-         "jurisdiction": "cantonal",
-         "law_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "law_short": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "sr_number": null,
-         "cantonal_ref": "SHR 210.100",
-         "article_no": "Art. 26d",
-         "artikel_kennung": "sh:gesetz:shr-210.100:art-26d",
+         "jurisdiction": "federal",
+         "law_title": "Bundesgesetz betreffend die Ergänzung des ZGB (Obligationenrecht, OR)",
+         "law_short": "OR",
+         "sr_number": "220",
+         "cantonal_ref": null,
+         "article_no": "Art. 266l",
+         "artikel_kennung": "sh:gesetz:sr-220:art-266l",
          "citation_detail": null,
-         "verification": "sourced_pdf"
+         "verification": "verified"
+        },
+        {
+         "jurisdiction": "federal",
+         "law_title": "Bundesgesetz betreffend die Ergänzung des ZGB (Obligationenrecht, OR)",
+         "law_short": "OR",
+         "sr_number": "220",
+         "cantonal_ref": null,
+         "article_no": "Art. 298",
+         "artikel_kennung": "sh:gesetz:sr-220:art-298",
+         "citation_detail": null,
+         "verification": "verified"
         }
        ],
        "over_collection": false,
@@ -683767,15 +684575,26 @@
        },
        "legal_basis": [
         {
-         "jurisdiction": "cantonal",
-         "law_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "law_short": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "sr_number": null,
-         "cantonal_ref": "SHR 210.100",
-         "article_no": "Art. 26d",
-         "artikel_kennung": "sh:gesetz:shr-210.100:art-26d",
+         "jurisdiction": "federal",
+         "law_title": "Bundesgesetz betreffend die Ergänzung des ZGB (Obligationenrecht, OR)",
+         "law_short": "OR",
+         "sr_number": "220",
+         "cantonal_ref": null,
+         "article_no": "Art. 266l",
+         "artikel_kennung": "sh:gesetz:sr-220:art-266l",
          "citation_detail": null,
-         "verification": "sourced_pdf"
+         "verification": "verified"
+        },
+        {
+         "jurisdiction": "federal",
+         "law_title": "Bundesgesetz betreffend die Ergänzung des ZGB (Obligationenrecht, OR)",
+         "law_short": "OR",
+         "sr_number": "220",
+         "cantonal_ref": null,
+         "article_no": "Art. 298",
+         "artikel_kennung": "sh:gesetz:sr-220:art-298",
+         "citation_detail": null,
+         "verification": "verified"
         }
        ],
        "over_collection": false,
@@ -683814,15 +684633,26 @@
        },
        "legal_basis": [
         {
-         "jurisdiction": "cantonal",
-         "law_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "law_short": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "sr_number": null,
-         "cantonal_ref": "SHR 210.100",
-         "article_no": "Art. 26d",
-         "artikel_kennung": "sh:gesetz:shr-210.100:art-26d",
+         "jurisdiction": "federal",
+         "law_title": "Bundesgesetz betreffend die Ergänzung des ZGB (Obligationenrecht, OR)",
+         "law_short": "OR",
+         "sr_number": "220",
+         "cantonal_ref": null,
+         "article_no": "Art. 266l",
+         "artikel_kennung": "sh:gesetz:sr-220:art-266l",
          "citation_detail": null,
-         "verification": "sourced_pdf"
+         "verification": "verified"
+        },
+        {
+         "jurisdiction": "federal",
+         "law_title": "Bundesgesetz betreffend die Ergänzung des ZGB (Obligationenrecht, OR)",
+         "law_short": "OR",
+         "sr_number": "220",
+         "cantonal_ref": null,
+         "article_no": "Art. 298",
+         "artikel_kennung": "sh:gesetz:sr-220:art-298",
+         "citation_detail": null,
+         "verification": "verified"
         }
        ],
        "over_collection": false,
@@ -683908,15 +684738,26 @@
        },
        "legal_basis": [
         {
-         "jurisdiction": "cantonal",
-         "law_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "law_short": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "sr_number": null,
-         "cantonal_ref": "SHR 210.100",
-         "article_no": "Art. 26d",
-         "artikel_kennung": "sh:gesetz:shr-210.100:art-26d",
+         "jurisdiction": "federal",
+         "law_title": "Bundesgesetz betreffend die Ergänzung des ZGB (Obligationenrecht, OR)",
+         "law_short": "OR",
+         "sr_number": "220",
+         "cantonal_ref": null,
+         "article_no": "Art. 266l",
+         "artikel_kennung": "sh:gesetz:sr-220:art-266l",
          "citation_detail": null,
-         "verification": "sourced_pdf"
+         "verification": "verified"
+        },
+        {
+         "jurisdiction": "federal",
+         "law_title": "Bundesgesetz betreffend die Ergänzung des ZGB (Obligationenrecht, OR)",
+         "law_short": "OR",
+         "sr_number": "220",
+         "cantonal_ref": null,
+         "article_no": "Art. 298",
+         "artikel_kennung": "sh:gesetz:sr-220:art-298",
+         "citation_detail": null,
+         "verification": "verified"
         }
        ],
        "over_collection": false,
@@ -684002,15 +684843,26 @@
        },
        "legal_basis": [
         {
-         "jurisdiction": "cantonal",
-         "law_title": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "law_short": "Gesetz über die Einführung des Schweizerischen Zivilgesetzbuches",
-         "sr_number": null,
-         "cantonal_ref": "SHR 210.100",
-         "article_no": "Art. 26d",
-         "artikel_kennung": "sh:gesetz:shr-210.100:art-26d",
+         "jurisdiction": "federal",
+         "law_title": "Bundesgesetz betreffend die Ergänzung des ZGB (Obligationenrecht, OR)",
+         "law_short": "OR",
+         "sr_number": "220",
+         "cantonal_ref": null,
+         "article_no": "Art. 266l",
+         "artikel_kennung": "sh:gesetz:sr-220:art-266l",
          "citation_detail": null,
-         "verification": "sourced_pdf"
+         "verification": "verified"
+        },
+        {
+         "jurisdiction": "federal",
+         "law_title": "Bundesgesetz betreffend die Ergänzung des ZGB (Obligationenrecht, OR)",
+         "law_short": "OR",
+         "sr_number": "220",
+         "cantonal_ref": null,
+         "article_no": "Art. 298",
+         "artikel_kennung": "sh:gesetz:sr-220:art-298",
+         "citation_detail": null,
+         "verification": "verified"
         }
        ],
        "over_collection": false,
@@ -693092,17 +693944,6 @@
          "artikel_kennung": "sh:gesetz:shr-211.224:par-5",
          "citation_detail": null,
          "verification": "sourced_pdf"
-        },
-        {
-         "jurisdiction": "cantonal",
-         "law_title": "Kantonale Pflegekinderverordnung",
-         "law_short": "Kantonale Pflegekinderverordnung",
-         "sr_number": null,
-         "cantonal_ref": "SHR 211.224",
-         "article_no": "Art. 14",
-         "artikel_kennung": "sh:gesetz:shr-211.224:art-14",
-         "citation_detail": null,
-         "verification": "sourced_pdf"
         }
        ],
        "over_collection": false,
@@ -693280,17 +694121,6 @@
          "cantonal_ref": "SHR 211.224",
          "article_no": "§ 5",
          "artikel_kennung": "sh:gesetz:shr-211.224:par-5",
-         "citation_detail": null,
-         "verification": "sourced_pdf"
-        },
-        {
-         "jurisdiction": "cantonal",
-         "law_title": "Kantonale Pflegekinderverordnung",
-         "law_short": "Kantonale Pflegekinderverordnung",
-         "sr_number": null,
-         "cantonal_ref": "SHR 211.224",
-         "article_no": "Art. 14",
-         "artikel_kennung": "sh:gesetz:shr-211.224:art-14",
          "citation_detail": null,
          "verification": "sourced_pdf"
         }
@@ -695073,17 +695903,6 @@
          "artikel_kennung": "sh:gesetz:shr-211.224:par-5",
          "citation_detail": null,
          "verification": "sourced_pdf"
-        },
-        {
-         "jurisdiction": "cantonal",
-         "law_title": "Kantonale Pflegekinderverordnung",
-         "law_short": "Kantonale Pflegekinderverordnung",
-         "sr_number": null,
-         "cantonal_ref": "SHR 211.224",
-         "article_no": "Art. 14",
-         "artikel_kennung": "sh:gesetz:shr-211.224:art-14",
-         "citation_detail": null,
-         "verification": "sourced_pdf"
         }
        ],
        "over_collection": false,
@@ -695476,8 +696295,8 @@
          "law_short": "Kantonale Pflegekinderverordnung",
          "sr_number": null,
          "cantonal_ref": "SHR 211.224",
-         "article_no": "Art. 14",
-         "artikel_kennung": "sh:gesetz:shr-211.224:art-14",
+         "article_no": "§ A1a-2",
+         "artikel_kennung": "sh:gesetz:shr-211.224:par-a1a-2",
          "citation_detail": null,
          "verification": "sourced_pdf"
         }

@@ -83,7 +83,7 @@ LEITFADEN = [
             "aufgezählten Daten sowie allfällige vom Gemeinderat in einem allgemein "
             "verbindlichen Reglement bezeichnete Personendaten — mehr nicht. Für "
             "Adressbücher und Verzeichnisse gilt dieselbe Logik.",
-    "refs": [("120.100", "88", "speicherung"), ("431.101", "§ 1", "speicherung"),
+    "refs": [("120.100", "Art. 88", "speicherung"), ("431.101", "§ 1", "speicherung"),
              ("174.101", "§ 1", "bekanntgabe")]},
    {"text": "In die Registratur (Aktenablage) gehören nur Akten, die aus der eigenen "
             "Tätigkeit anfallen oder für die Erfüllung der eigenen Aufgaben "
