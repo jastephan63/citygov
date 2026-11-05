@@ -168,7 +168,8 @@ REQUIRED = {
     "": ("labels", "kopfzahlen", "dienststellen_uebersicht", "forms", "services", "laws",
          "zitate", "datenstand", "verlauf", "gestaltung", "parteien", "konzepte", "wirkung", "register",
          "vorbefuellung", "kennungen", "vertrag", "datenmodell", "quellenabgleich"),
-    "labels": ("ton", "ton_map", "kontakt", "dok_stand", "feld_quelle", "live_stand", "live_erkl", "live_auff", "online_ziel", "online_zugang", "online_gegen", "online_gegen_erkl"),
+    "labels": ("ton", "ton_map", "kontakt", "dok_stand", "feld_quelle", "live_stand", "live_erkl", "live_auff", "online_ziel", "online_zugang", "online_gegen", "online_gegen_erkl",
+               "korrektur_art", "korrektur_element"),
     # citygov/domain/quelldokumente.py (the hook in export_json.py)
     "quellenabgleich": ("dokumente", "n_dokumente", "quellen", "dvsh_services", "shep_seiten"),
     "kopfzahlen": ("standard_ech", "standard_einheitlich", "standard_benannt", "rechtsgrundlage",
@@ -203,8 +204,8 @@ def missing_keys(export):
     if any("ech_state" not in d or "basis_state" not in d for d in fields):
         out.append("forms[].data_fields[].ech_state / basis_state")
     if any("dokumente" not in s or "aenderungen" not in s or "portal" not in s or "online" not in s
-           for s in export.get("services") or []):
-        out.append("services[].dokumente / aenderungen / portal / online")
+           or "portal_korrekturen" not in s for s in export.get("services") or []):
+        out.append("services[].dokumente / aenderungen / portal / online / portal_korrekturen")
     if any("live" not in fm for fm in forms):
         out.append("forms[].live")
     if any("dienststelle" not in fm for fm in forms):

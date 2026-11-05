@@ -1,5 +1,5 @@
 {
- "hinweis": "Was die Schaltfläche «Online erledigen» der 87 Live-Seiten von services.sh.ch öffnet und welches Formular der Databank das Online-Formular ist (Abzug 03.11.2026). Nur gelesen: jede Seite wie im Browser geöffnet, «Weiter» nur dort gedrückt, wo nichts einzugeben war; nichts ausgefüllt, nichts abgeschickt. Urteile aus den gespeicherten Seiten, dem DVSH-Modell und den verlinkten Dokumenten, je mit skeptischer Zweitprüfung (Feld «pruefung»).",
+ "hinweis": "Was die Schaltfläche «Online erledigen» der 87 Live-Seiten von services.sh.ch öffnet und welches Formular der Databank das Online-Formular ist (Abzug 03.11.2026). Nur gelesen: jede Seite wie im Browser geöffnet, «Weiter» nur dort gedrückt, wo nichts einzugeben war; nichts ausgefüllt, nichts abgeschickt. Urteile aus den gespeicherten Seiten, dem DVSH-Modell und den verlinkten Dokumenten, je mit skeptischer Zweitprüfung (Feld «pruefung»). Nachgeprüft am 05.11.2026: die Schaltfläche «Jagdpass bestellen» ist eine Anmeldung, kein defektes Ziel.",
  "abzug": "2026-11-03",
  "ziele": [
   {
@@ -2034,9 +2034,9 @@
   {
    "slug": "jagdpass-bestellen",
    "service_id": 530,
-   "ziel_art": "defekt",
-   "ziel_befund": "Der Button zeigt auf die Login-Seite des Jagd-Webshops (sh.geodataweb.ch/auth/login?return_to=/hunting/order-patent). Der Abruf ergab HTTP 404 mit dem Text «Not Found». Laut der DVSH-Anleitung braucht die Patentbestellung ein Konto («Noch kein Konto? Dann registrieren Sie sich hier»). Gedacht ist also ein Login, erreichbar war das Ziel aber nicht.",
-   "pruefung": "bestätigt",
+   "ziel_art": "anmeldung",
+   "ziel_befund": "Die Schaltfläche führt zur Anmeldung des Jagd-Webshops (Geodata SH: «Email», «Passwort», «REGISTRIEREN», «LOGIN»), die Patentbestellung braucht ein Konto. Im Browser am 05.11.2026 erreichbar; der frühere Befund «404» kam vom Abruf ohne JavaScript.",
+   "pruefung": "korrigiert am 05.11.2026: im Browser nachgeprüft — kein defektes Ziel, sondern eine Anmeldung",
    "eformulare": []
   },
   {

@@ -1,0 +1,106 @@
+{
+ "hinweis": "eCH-Urteile Formular 590, Panel 2026-11-05, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-11-05/ech/590 --nur-offene=590",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Zweitprüfung bestätigt. PID im Formularkopf ist die kantonale Steuerregister-Nummer der steuerpflichtigen JURISTISCHEN Person. Der propagierte Wert eCH-0044 localPersonId (personIdentificationKeyOnlyType) gehört zu einer Personenidentifikation natürlicher Personen, passt also nicht zum Subjekt. eCH-0276 (Genehmigt) titleType.registerNumber (xs:long, minOccurs=1, id 7918) ist die Pflicht-Registernummer der Organisation. Ein Handelsregister-Kenner kann es nicht sein, weil er Buchstaben enthält und die UID ein eigenes Element hat. Der Name kommt in eCH-0276 nur einmal vor und wird darum eindeutig aufgelöst. cantonalRegisterNumber (0..n) ist eine Zusatznummer und wurde nicht gewählt.",
+   "feld": "PID",
+   "standard": "eCH-0276",
+   "element": "registerNumber"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Der Firmenname der juristischen Person ist eCH-0098 organisationIdentificationType.organisationName (id 1334). Der propagierte Wert ist richtig und entspricht der Praxis im Korpus (Formular 541). eCH-0276 titleType.organisationName nutzt denselben unitNameType, eine Änderung bringt also nichts.",
+   "feld": "Firmenname"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Das Composite ist die Abschreibungstabelle je Anlageobjekt. Ihr Container ist eCH-0276 contentType.depreciation (depreciationType, XSD: «Depreciation (register Q on forms)»), dessen depreciationDetailType die Zeilen 1–7 des Formulars enthält. Eine Kategorie wie depreciationMachinery (so in Formular 257/259) passt nicht, weil das Formular keine Kategorie vorgibt. ACHTUNG beim Laden: Der Name «depreciation» kommt in eCH-0276 zweimal vor. id 7760 (changesDuringTheReportingPeriodType, taxAmountType) ist ein Betragselement für Liegenschaften und hier falsch. id 7988 (contentType) ist das gemeinte Element. load_ech_verdicts_new löst (standard, name) über den Covering-Index zum ersten Treffer auf, das ist 7760. Die Zuordnung muss deshalb ausdrücklich auf id 7988 gesetzt werden.",
+   "feld": "Anlageobjekt",
+   "standard": "eCH-0276",
+   "element": "depreciation"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Freie Bemerkung zu einer bestimmten Position (den Abschreibungen). In eCH-0276 gehört dazu contentType.remarks (register H), darin structureType mit position und remark. Die Bemerkung zu einer Position ist remark (string, id 7259). Der Name ist im Standard eindeutig. generalRemarks wäre eine allgemeine Bemerkung ohne Positionsbezug. eCH-0229 contactAndAdministrationType.remarks betrifft Kontakt und Verwaltung, nicht die Abschreibungen.",
+   "feld": "Bemerkungen zu den Abschreibungen",
+   "standard": "eCH-0276",
+   "element": "remark"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Freitext-Bezeichnung des abgeschriebenen Anlageobjekts (Kopfzelle jeder Spalte). Den ganzen Katalog durchsucht: Namen und Kontexte mit depreciat*, asset*, designation, description, nameOfAsset, objectName, rate. eCH-0276 drückt das Objekt nur über 11 feste Kategorie-Elemente in depreciationType aus (depreciationMachinery … depreciationOtherIntangibleAssets) und hat dort kein Bezeichnungs-Element. freeInputFieldType.description gehört nur zu «other…»-Positionen ausserhalb von register Q. masterDataType.designation gilt nur für Liegenschaften. eCH-0229 nameOfAsset gilt nur für Abschreibungen auf früher AUFGEWERTETE Aktiven und würde eine Aufwertung behaupten, die das Formular nicht verlangt. eCH-0119 description gehört zur Segmentbilanz natürlicher Personen. Für eine freie Anlagebezeichnung in einer allgemeinen Abschreibungstabelle gibt es kein Element.",
+   "elternfeld": "Anlageobjekt",
+   "teilfeld": "Anlageobjekt"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Zeile 1: Wert zu Beginn des Geschäftsjahres ist eCH-0276 depreciationDetailType.statusAtTheBeginningOfTheBusinessYear (long, id 7866). Das ist ein eigenes Element für den Periodenanfang, kein Gegenwartswert. ACHTUNG beim Laden: Der Name kommt auch in depreciationDetailGoodwillType vor (id 7883). Die name-basierte Auflösung im Loader wählt 7883 (so schon in Formular 257 geschehen). Gemeint ist id 7866.",
+   "elternfeld": "Anlageobjekt",
+   "teilfeld": "Wert zu Beginn des Geschäftsjahres",
+   "standard": "eCH-0276",
+   "element": "statusAtTheBeginningOfTheBusinessYear"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Zeile 2 (+ Zugänge im Geschäftsjahr, eine Veränderung in der Periode) ist eCH-0276 depreciationDetailType.additions (long, id 7867). ACHTUNG beim Laden: Der Name kommt auch in depreciationDetailGoodwillType vor (id 7884), und der Loader würde 7884 wählen. Gemeint ist id 7867.",
+   "elternfeld": "Anlageobjekt",
+   "teilfeld": "Zugänge",
+   "standard": "eCH-0276",
+   "element": "additions"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Zeile 3 (– Abgänge im Geschäftsjahr) ist eCH-0276 depreciationDetailType.disposals (long, id 7869). changesDuringTheReportingPeriodType.sale gilt nur für Liegenschaften und passt nicht. ACHTUNG beim Laden: Der Name kommt auch in depreciationDetailGoodwillType vor (id 7885), und der Loader würde 7885 wählen. Gemeint ist id 7869.",
+   "elternfeld": "Anlageobjekt",
+   "teilfeld": "Abgänge",
+   "standard": "eCH-0276",
+   "element": "disposals"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Zeile 4 (Wert vor Abschreibungen = Anfangswert + Zugänge – Abgänge) ist eCH-0276 depreciationDetailType.carryingAmountBeforeDepreciation (long, id 7871). ACHTUNG beim Laden: Der Name kommt auch in depreciationDetailGoodwillType vor (id 7887), und der Loader würde 7887 wählen. Gemeint ist id 7871.",
+   "elternfeld": "Anlageobjekt",
+   "teilfeld": "Wert vor Abschreibungen",
+   "standard": "eCH-0276",
+   "element": "carryingAmountBeforeDepreciation"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Zeile 5: Die im Geschäftsjahr verbuchte (ordentliche) Abschreibung ist eCH-0276 depreciationDetailType.accountedDepreciationOrderly (long, id 7873). Vorbehalt: Der Standard führt die Sofortabschreibung getrennt (accountedDepreciationImmediately), das Formular fasst beides in einer Zeile zusammen. Ein Element für die gesamte verbuchte Abschreibung gibt es nicht. ACHTUNG beim Laden: Der Name kommt auch in depreciationDetailGoodwillType vor (id 7889), und der Loader würde 7889 wählen. Gemeint ist id 7873.",
+   "elternfeld": "Anlageobjekt",
+   "teilfeld": "Verbuchte Abschreibung",
+   "standard": "eCH-0276",
+   "element": "accountedDepreciationOrderly"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Zeile 6 (Wert am Ende des Geschäftsjahres = Zeile 4 – Zeile 5, also der Buchwert) ist eCH-0276 depreciationDetailType.valueAtTheEndOfTheBusinessYear (long, id 7875). taxValueEndFinancialYear passt nicht, weil es den Steuerwert meint und nicht den Buchwert. ACHTUNG beim Laden: Der Name kommt auch in depreciationDetailGoodwillType vor (id 7890), und der Loader würde 7890 wählen. Gemeint ist id 7875.",
+   "elternfeld": "Anlageobjekt",
+   "teilfeld": "Wert am Ende des Geschäftsjahres",
+   "standard": "eCH-0276",
+   "element": "valueAtTheEndOfTheBusinessYear"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Zeile 7 (Abschreibungssatz in %) ist eCH-0276 depreciationDetailType.permittedDepreciationRate (taxAmountPercentageType mit Prozent für Kanton und Bund, id 7865). Das ist das einzige Satz-Element im ganzen Katalog (gesucht: *rate* mit depreciat*/amorti*). Vorbehalt: Der Standard nennt den Satz, den die steuerpflichtige Person geltend macht, «zulässig». Ein eigenes Element für einen davon abweichenden angewandten Satz gibt es nicht. ACHTUNG beim Laden: Die Goodwill-Variante (id 7882) hat den Datentyp taxAmountType, also einen Betrag und keinen Prozentsatz. Die name-basierte Auflösung des Loaders würde 7882 wählen, das wäre falsch. Gemeint ist id 7865.",
+   "elternfeld": "Anlageobjekt",
+   "teilfeld": "Abschreibungssatz",
+   "standard": "eCH-0276",
+   "element": "permittedDepreciationRate"
+  }
+ ]
+}

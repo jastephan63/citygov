@@ -266,6 +266,8 @@ TON_MAP = {
     # Dienststelle's to replace, a newer one the databank's to take over; «service_live»
     # and «nicht_live» are facts about the portal, not a task — they carry no tone
     "live": {"datei_live": "ok", "inhalt_live": "ok", "online_live": "ok", "neuere_live": "open", "aeltere_live": "act"},
+    # a correction for the live portal: the Dienststelle acts
+    "korrektur": {k: "act" for k in ("leer", "falsches_ziel", "ziel_nicht_erreichbar", "sitzungslink", "aeltere_ausgabe", "falsche_datei")},
     # an online form behind «Online erledigen»: matched to a Formular = geklärt; a paper version
     # found but not yet taken over, or none found = the databank's homework
     "online": {"databank_formular": "ok", "databank_dvsh_eformular": "ok", "pdf_kandidat": "open", "keins": "open"},
@@ -282,13 +284,13 @@ DOK_ROLLE = {"einreichung": "zum Einreichen", "begleitend": "begleitend"}
 # a Formular on the live portal services.sh.ch (quelldokumente.live)
 LIVE_STAND = {"datei_live": "live auf services.sh.ch", "inhalt_live": "live, gleicher Inhalt",
               "online_live": "live als Online-Formular",
-              "neuere_live": "live, neuere Ausgabe", "aeltere_live": "live, ältere Ausgabe",
+              "neuere_live": "Portal: neuere Ausgabe", "aeltere_live": "Portal: ältere Ausgabe",
               "service_live": "nur der Service live", "nicht_live": "nicht auf services.sh.ch"}
 LIVE_ERKL = {"datei_live": "Das Live-Portal bietet genau diese Datei an (gleicher Fingerabdruck).",
              "inhalt_live": "Das Live-Portal bietet eine andere Datei mit demselben Inhalt an (aus dem Inhalt beurteilt).",
              "online_live": "Die Schaltfläche «Online erledigen» des Live-Portals führt zu einem Online-Formular, das dieses Formular ist (aus Feldern und Schritten beurteilt, zweitgeprüft).",
              "neuere_live": "Das Live-Portal bietet eine neuere Ausgabe an, als die Databank hält — die Databank übernimmt sie.",
-             "aeltere_live": "Das Live-Portal bietet eine ältere Ausgabe an, als die Databank hält — die Dienststelle ersetzt sie dort.",
+             "aeltere_live": "Die Databank hält die neuere Ausgabe; das Live-Portal bietet noch eine ältere an — die Dienststelle ersetzt sie dort (siehe «Was auf services.sh.ch zu korrigieren ist»).",
              "service_live": "Der Service hat eine Live-Seite, dieses Formular bietet sie aber nicht an (die Seite führt zum Beispiel «Online erledigen» oder eine andere Datei).",
              "nicht_live": "Der Service hat keine Seite auf dem Live-Portal services.sh.ch."}
 # the targets of «Online erledigen» and the online forms behind them (load_online.py)
@@ -305,6 +307,11 @@ ONLINE_GEGEN_ERKL = {"databank_formular": "Ein Formular der Databank ist dieses 
                      "databank_dvsh_eformular": "Die Databank hält dieses Online-Formular als eFormular, gebildet aus dem DVSH-Modell.",
                      "pdf_kandidat": "Eine Papierfassung wurde gefunden, ist aber noch nicht als Formular übernommen.",
                      "keins": "Weder in der Databank noch im DVSH-Modell noch auf den verlinkten Seiten oder bei der Suche im Netz fand sich eine Papierfassung; erfasst sind Name, Schritte und die ohne Eingabe sichtbaren Felder."}
+# what is to be corrected on the live portal (portal_korrektur, load_online.py --korrekturen)
+KORREKTUR_ART = {"leer": "Schaltfläche ohne Ziel", "falsches_ziel": "führt zum falschen Formular",
+                 "ziel_nicht_erreichbar": "Ziel nicht erreichbar", "sitzungslink": "veralteter Sitzungslink",
+                 "aeltere_ausgabe": "ältere Ausgabe angeboten", "falsche_datei": "Link liefert eine andere Datei"}
+KORREKTUR_ELEMENT = {"schaltflaeche": "Schaltfläche", "link": "Link", "datei": "Datei"}
 # what does not fit on a live page (quellenabgleich.portal.auffaelligkeiten)
 LIVE_AUFF = {"link_kein_formular": "als Formular beschriftet, die verlinkte Datei ist keines",
              "ohne_aktion": "Seite ohne Schaltfläche — weder Formular noch Online-Zugang"}
@@ -412,4 +419,5 @@ def as_export():
             "dok_stand": DOK_STAND, "dok_art": DOK_ART, "dok_rolle": DOK_ROLLE, "feld_quelle": FELD_QUELLE,
             "aenderung": AENDERUNG, "live_stand": LIVE_STAND, "live_erkl": LIVE_ERKL, "live_auff": LIVE_AUFF,
             "online_ziel": ONLINE_ZIEL, "online_zugang": ONLINE_ZUGANG, "online_gegen": ONLINE_GEGEN,
-            "online_gegen_erkl": ONLINE_GEGEN_ERKL}
+            "online_gegen_erkl": ONLINE_GEGEN_ERKL, "korrektur_art": KORREKTUR_ART,
+            "korrektur_element": KORREKTUR_ELEMENT}

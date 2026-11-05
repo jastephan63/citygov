@@ -1,0 +1,20 @@
+{
+ "hinweis": "Korrekturen bestehender eCH-Zuordnungen von Formular 512: Vorschläge des Panels vom 03.11.2026, gegen Katalog und Praxis der Databank entschieden und zweitgeprüft (05.11.2026); nur die Änderungen.",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-11-03/ech/korrektur/512 --nur=512",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Es sind dieselben 9 Optionen wie auf 508 (ausländerrechtlicher Aufenthaltszweck, u. a. Flüchtling, ausländische Verwaltung, Schüler, Pflegekind, Student). eCH-0021 kindOfEmployment (Erwerbsart, Codes 0–4) deckt davon höchstens selbständig und unselbständig ab, und im ganzen Katalog gibt es kein Zweck-Element (eCH-0006 nur Kategorien, eCH-0223 ohne Zweck, eCH-0041 ohne Elemente). Die Praxis für «Aufenthaltszweck» (238) und «Zweck des Aufenthaltes» (497) ist kein_standard, also gilt dieselbe Antwort wie auf 508.",
+   "feld": "Jetziger Aufenthaltszweck (Erwerbstätige)"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "eCH-0010 organisationMailAdress ist zwar ein Container für Name und Adresse (49× als Feld belegt, z. B. «Name und Adresse des Arbeitgebers» 108/282), passt aber nicht zu den Teilfeldern der Familie (508: eCH-0021 employer und placeOfEmployer). Für die Familie gilt eine Antwort, nämlich eCH-0021 occupationData; darin liegt auf 512 auch «Anstellungsdauer befristet bis» (occupationValidTill).",
+   "feld": "Name und Adresse des Betriebes",
+   "standard": "eCH-0021",
+   "element": "occupationData"
+  }
+ ]
+}

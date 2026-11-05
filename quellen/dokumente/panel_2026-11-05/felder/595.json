@@ -1,0 +1,59 @@
+{
+ "form_id": 595,
+ "data_fields": [
+  {
+   "name": "PID",
+   "definition": "Die im Formularkopf neben «PID:» einzutragende Identifikationsnummer der steuerpflichtigen juristischen Person.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Firmenname",
+   "definition": "Der Name der juristischen Person, deren Wertschriften und Guthaben in diesem Verzeichnis aufgeführt werden.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Wertschriften- und Guthabenverzeichnis",
+   "definition": "Die Tabelle, in der die juristische Person je Zeile einen Vermögenswert (Guthaben, Obligationen, Aktien, GmbH- und Genossenschaftsanteile, Genussscheine, Anteile an Anlagefonds und ähnliche Beteiligungsrechte, auch Darlehen an Beteiligte, Nahestehende oder verbundene Unternehmen) mit Nennwert bzw. Stückzahl, Bezeichnung, Buchwert und Bruttoertrag angibt.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Gesamter Nennwert / Bei Aktien usw.: Stückzahl",
+    "Bezeichnung der Vermögenswerte",
+    "Buchwert laut Schlussbilanz",
+    "Bruttoertrag"
+   ],
+   "format": "23 Zeilen; Buchwert laut Schlussbilanz und Bruttoertrag in CHF"
+  },
+  {
+   "name": "Total Wertschriften und Guthaben sowie Ertrag daraus",
+   "definition": "Die Summenzeile unter der Tabelle mit dem Total der Buchwerte laut Schlussbilanz und dem Total der Bruttoerträge aller aufgeführten Wertschriften und Guthaben.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Buchwert laut Schlussbilanz",
+    "Bruttoertrag"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Kopien der betreffenden Kontoauszüge",
+   "definition": "Die Kopien der Kontoauszüge, die für deklarierte Darlehen jeglicher Art an Beteiligte, Nahestehende oder verbundene Unternehmen einzureichen sind (nur wenn solche Positionen aufgeführt werden).",
+   "data_type": "attachment",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  }
+ ],
+ "hinweis": "Korrekturen: keine. Ich habe den Entwurf Zeile für Zeile mit dem Original-PDF (1 Seite, keine AcroForm-Felder) verglichen. Die Tabelle hat 23 leere Zeilen und vier Spalten (Gesamter Nennwert bzw. bei Aktien usw. Stückzahl; Bezeichnung der Vermögenswerte; Buchwert laut Schlussbilanz in CHF; Bruttoertrag in CHF). Darunter folgt eine Totalzeile mit zwei Zellen, nämlich Buchwert und Bruttoertrag. Das Formular enthält weder Ort/Datum noch eine Unterschriftslinie, eine Beilagen-Checkliste oder Ankreuzfelder. Deshalb fehlt keine Angabe, und keine wurde erfunden. «Bezeichnung der Vermögenswerte» bleibt bewusst ein einziges Teilfeld: Es ist eine einzige Freitextzelle. Die kleingedruckten Hinweise darunter (Guthaben: Art der Forderung, Schuldner/-in, Nummer des Kontos; Obligationen: Zinssatz, Titelbezeichnung, Schuldner/-in, Ausgabe- und Verfalljahr; Beteiligungsrechte: Titelbezeichnung, Name und Sitz der Firma, Nennwert pro Stück) sagen nur, was hineingehört. Es sind keine eigenen gedruckten Zellen. Ebenso ist die erste Spalte eine einzige Zelle, die einen von zwei Werten aufnimmt: den Nennwert oder, bei Aktien usw., die Stückzahl. Den Schrägstrich im Teilfeldnamen habe ich nur als Trennzeichen zwischen den zwei Zeilen des Spaltenkopfs eingesetzt. Die Kopien der Kontoauszüge sind nur verlangt, wenn Darlehen aufgeführt werden. Sie sind aber nicht als freiwillig markiert und bleiben deshalb required=true. Folgende Teile sind Anleitung und keine Angaben der Person: Der Hinweis, dass die Verrechnungssteuer direkt bei der ESTV (3003 Bern) zurückzufordern ist (Formular 25). Der Hinweis «Debitorenguthaben sind nicht aufzuführen». Die Regel, Steuerauszüge von Banken und Finanzinstituten mit einer Zeile pro Auszug samt Totalen aufzuführen. Das Formular verlangt nicht ausdrücklich, die Steuerauszüge beizulegen, deshalb gibt es dafür keine Beilage. Ein Amtsfeld (vom Amt auszufüllen) ist nicht vorhanden."
+}

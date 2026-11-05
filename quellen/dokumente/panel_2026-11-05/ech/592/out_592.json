@@ -1,0 +1,759 @@
+{
+ "hinweis": "eCH-Urteile Formular 592, Panel 2026-11-05, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-11-05/ech/592 --nur-offene=592",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die genaue Bezeichnung des Vereins oder der Stiftung ist der Name der Organisation: eCH-0098 organisationIdentificationType/organisationName. eCH-0229 organisation verweist auf das aufgehobene eCH-0097. So ist auch «Firmenname» auf den Schwesterformularen 590–598 zugeordnet.",
+   "feld": "Name (genaue Bezeichnung)",
+   "standard": "eCH-0098",
+   "element": "organisationName"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Gemeint ist der Sitz der steuerpflichtigen JP selbst, auch im Ausland («falls nicht in der Schweiz: Land»). Das passt zu eCH-0229 contactAndAdministrationType/headOffice (eCH-0046 addressType, nimmt auch ausländische Adressen auf), wie auf 252/253. Die propagierte eCH-0098 swissHeadquarter steht in secondaryResidenceType: Das ist der Hauptsitz aus Sicht einer Nebenniederlassung, und er ist nur schweizerisch. eCH-0276 headOfficeType kennt kein Land.",
+   "feld": "Hauptsitz",
+   "standard": "eCH-0229",
+   "element": "headOffice"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "PLZ, Ort und Land sind eigene Teile, also bleibt für «Adresse» die Strasse: eCH-0010 addressInformationType/street. Das ist die Korpus-Praxis für «Adresse» neben PLZ/Ort, und headOffice (eCH-0046 addressType) ist aus eCH-0010-Teilen aufgebaut.",
+   "elternfeld": "Hauptsitz",
+   "teilfeld": "Adresse",
+   "standard": "eCH-0010",
+   "element": "street"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Postleitzahl des Hauptsitzes: eCH-0010 addressInformationType/swissZipCode, wie im Korpus üblich.",
+   "elternfeld": "Hauptsitz",
+   "teilfeld": "PLZ",
+   "standard": "eCH-0010",
+   "element": "swissZipCode"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Ort des Hauptsitzes: eCH-0010 addressInformationType/town.",
+   "elternfeld": "Hauptsitz",
+   "teilfeld": "Ort",
+   "standard": "eCH-0010",
+   "element": "town"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Land bei einem Sitz ausserhalb der Schweiz: eCH-0010 addressInformationType/country. Im Korpus ist «Land» 52-mal so zugeordnet.",
+   "elternfeld": "Hauptsitz",
+   "teilfeld": "Land",
+   "standard": "eCH-0010",
+   "element": "country"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Der Zweck der JP ist die Zweckumschreibung der Organisation: eCH-0098 organisationType/activityDescription. Dieselbe Angabe ist auf «Statuten des Vereins» (570) und den HR-Anmeldungen so geprüft, und die gleiche Zuordnung erlaubt Once-Only aus dem Register. eCH-0229 purpose wäre fachlich ebenfalls möglich, bringt aber keinen Gewinn.",
+   "feld": "Zweck"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die Mehrfachauswahl (im Kanton SH, in anderen Kantonen, im Ausland) meldet die Lage der Nebensteuerdomizile (Geschäftsbetriebe, Betriebsstätten, Liegenschaften). Dafür gibt es den Container eCH-0276 titleType/secondaryTaxDomicile mit cantonSecondaryTaxDomicile, countrySecondaryTaxDomicile und typeOfPropertySecondaryTaxDomicile. Gewählt ist der Container, kein Wertelement. eCH-0229 secondaryTaxDomicile ist nur eine Adresse ohne Art der Liegenschaft.",
+   "feld": "Zweigniederlassungen",
+   "standard": "eCH-0276",
+   "element": "secondaryTaxDomicile"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Beigelegt wird das ausgefüllte Formular 8c Steuerausscheidung. Dessen Inhalt bildet eCH-0276 contentType/taxSegregation ab (Register L; mit eigenem Zweig associationsFoundations für Vereine und Stiftungen). Das ist genauer als der allgemeine Beilagen-Container attachments.",
+   "feld": "Formular 8c Steuerausscheidung",
+   "standard": "eCH-0276",
+   "element": "taxSegregation"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Kalenderdatum der Gründung der JP: eCH-0229 contactAndAdministrationType/foundationDate (xs:date). Vorbehalt: Bei Zuzug oder bei der ersten Zweigniederlassung im Kanton trägt das Formular im selben Feld ein anderes Datum ein, und dafür hat eCH-0229 kein eigenes Element.",
+   "feld": "Gründungsdatum",
+   "standard": "eCH-0229",
+   "element": "foundationDate"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Einen eigenen Container für den Zeitraum gibt es nicht. periodFrom/periodTo stehen in eCH-0229 headerType, und dessen XSD-Dokumentation nennt ausdrücklich «Dauer des Geschäftsjahres (Beginn/Ende) auf Seite 1 des Formulars». Darum bekommt das Kompositum seinen Elternknoten header.",
+   "feld": "Dauer des Geschäftsjahres",
+   "standard": "eCH-0229",
+   "element": "header"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Beginn des Geschäftsjahres: eCH-0229 headerType/periodFrom (xs:date), laut XSD «Dauer des Geschäftsjahres (Beginn)».",
+   "elternfeld": "Dauer des Geschäftsjahres",
+   "teilfeld": "Datum Beginn",
+   "standard": "eCH-0229",
+   "element": "periodFrom"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Ende des Geschäftsjahres: eCH-0229 headerType/periodTo (xs:date), laut XSD «Dauer des Geschäftsjahres (Ende)».",
+   "elternfeld": "Dauer des Geschäftsjahres",
+   "teilfeld": "Datum Ende",
+   "standard": "eCH-0229",
+   "element": "periodTo"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Organ der JP mit Name, Adresse und Telefon: eCH-0229 contactAndAdministrationType/administrativeBody. Der Typ memberOfAdministrativeBodyType ist representativeType plus role, hier role president. eCH-0276 chairmanOfTheBoardOfDirectors ist nur ein Namens-String.",
+   "feld": "Organe – Präsident/-in",
+   "standard": "eCH-0229",
+   "element": "administrativeBody"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name der Präsidentin oder des Präsidenten: representativeType.personIdentification ist eCH-0044 personIdentificationLightType, daraus officialName.",
+   "elternfeld": "Organe – Präsident/-in",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Die Spalte «Name, Adresse» hat keine eigenen PLZ/Ort-Teile, also ist die ganze Adressangabe der Person gemeint: eCH-0010 addressInformation, wie sie im eCH-0046-Kontakt des representativeType vorkommt. So auch bei «Name, Adresse, Tel.» im Korpus.",
+   "elternfeld": "Organe – Präsident/-in",
+   "teilfeld": "Adresse",
+   "standard": "eCH-0010",
+   "element": "addressInformation"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Telefonnummer der Präsidentin oder des Präsidenten: eCH-0046 phoneType/phoneNumber. Die contactInformation des representativeType ist eCH-0046 contactType.",
+   "elternfeld": "Organe – Präsident/-in",
+   "teilfeld": "Telefon",
+   "standard": "eCH-0046",
+   "element": "phoneNumber"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Geschäftsleitung als Organ mit Name, Adresse und Telefon: eCH-0229 administrativeBody (memberOfAdministrativeBodyType), hier role executive.",
+   "feld": "Organe – Geschäftsleitung",
+   "standard": "eCH-0229",
+   "element": "administrativeBody"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name der Person in der Geschäftsleitung: eCH-0044 officialName aus personIdentificationLightType im representativeType.",
+   "elternfeld": "Organe – Geschäftsleitung",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Ganze Adresse in einer Zeile ohne eigene PLZ/Ort-Teile: eCH-0010 addressInformation.",
+   "elternfeld": "Organe – Geschäftsleitung",
+   "teilfeld": "Adresse",
+   "standard": "eCH-0010",
+   "element": "addressInformation"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Telefonnummer der Geschäftsleitung: eCH-0046 phoneNumber.",
+   "elternfeld": "Organe – Geschäftsleitung",
+   "teilfeld": "Telefon",
+   "standard": "eCH-0046",
+   "element": "phoneNumber"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Kontaktstelle für Rückfragen, ausdrücklich keine Vollmacht: eCH-0229 contactAndAdministrationType/contactForInquiries (representativeType: eCH-0044-Person und eCH-0046-Kontakt). Damit passen die Teile zu officialName, phoneNumber und emailAddress. eCH-0276 contactForInquiries hätte nur einen freien Namens-String.",
+   "feld": "Rückfragen sind zu richten an",
+   "standard": "eCH-0229",
+   "element": "contactForInquiries"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name der Kontaktperson für Rückfragen: eCH-0044 officialName aus der personIdentification des representativeType.",
+   "elternfeld": "Rückfragen sind zu richten an",
+   "teilfeld": "Name",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Telefonnummer der Kontaktperson: eCH-0046 phoneNumber.",
+   "elternfeld": "Rückfragen sind zu richten an",
+   "teilfeld": "Telefon",
+   "standard": "eCH-0046",
+   "element": "phoneNumber"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "E-Mail-Adresse der Kontaktperson (gilt als Einwilligung zur Kommunikation per E-Mail): eCH-0046 emailAddress.",
+   "elternfeld": "Rückfragen sind zu richten an",
+   "teilfeld": "E-Mail",
+   "standard": "eCH-0046",
+   "element": "emailAddress"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Gemeint ist der bevollmächtigte Vertreter in der JP-Steuererklärung, mit Name und Adresse in einem Block: eCH-0229 contactAndAdministrationType/representative (representativeType: Organisation oder Person plus eCH-0046-Kontakt mit Adresse). Das entspricht «Name und Adresse des Vertreters» → eCH-0119 representativePerson bei natürlichen Personen.",
+   "feld": "Vollständige Adresse des Vertreters",
+   "standard": "eCH-0229",
+   "element": "representative"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Datum der Vollmachtserteilung. Gesucht im ganzen Katalog nach *signat*, *andate*, *uthori*, *powerOf*, *attorney* und in allen representative-Kontexten. eCH-0229/eCH-0276 representative und eCH-0119 representativePersonType haben kein Datum. eCH-0229 header/transactionDate ist der Übermittlungszeitpunkt, kein Vollmachtsdatum.",
+   "feld": "Datum (Vollmacht)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Keiner der 290 Standards hat ein Unterschrift-Element; die Suche nach *signat* trifft nur «designation». Gleiches Urteil wie bei allen Unterschriftsfeldern im Korpus.",
+   "feld": "Rechtsgültige Unterschrift (Vollmacht)"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "eCH-0229 netProfitType/taxableIncome (nicht profitAppropriationType), laut XSD «Ziff. 1 Reingewinn bzw. Verlust (-) gemäss Saldo ER des Geschäftsjahres». Der Typ taxAmountType mit cantonalTax/federalTax entspricht den beiden Spalten.",
+   "feld": "Reingewinn / -verlust (–) gemäss Erfolgsrechnung des Geschäftsjahres (Code 1110)",
+   "standard": "eCH-0229",
+   "element": "taxableIncome"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Betrag für die Kantons- und Gemeindesteuern: eCH-0229 taxAmountType/cantonalTax von taxableIncome.",
+   "elternfeld": "Reingewinn / -verlust (–) gemäss Erfolgsrechnung des Geschäftsjahres (Code 1110)",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0229",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Betrag für die direkte Bundessteuer: eCH-0229 taxAmountType/federalTax von taxableIncome.",
+   "elternfeld": "Reingewinn / -verlust (–) gemäss Erfolgsrechnung des Geschäftsjahres (Code 1110)",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0229",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die Tabelle (Codes 1121–1124) nimmt Auf- und Abrechnungen in denselben Zeilen auf. eCH-0229 und die beiden eCH-0276-Untercontainer trennen die Richtungen, nur eCH-0276 contentType/fiscalCorrections (Register D) umfasst beide. Jede Zeile entspricht dort einem otherReason…-Eintrag vom Typ taxAmountFreeInputFieldType (description, cantonalTax, federalTax).",
+   "feld": "Steuerliche Auf- / Abrechnungen",
+   "standard": "eCH-0276",
+   "element": "fiscalCorrections"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Frei eingetragene Bezeichnung der Korrektur je Zeile: eCH-0276 taxAmountFreeInputFieldType/description, das Textfeld der otherReasonTaxAdjustments…-Einträge.",
+   "elternfeld": "Steuerliche Auf- / Abrechnungen",
+   "teilfeld": "Steuerliche Auf- / Abrechnungen",
+   "standard": "eCH-0276",
+   "element": "description"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Korrekturbetrag der Zeile für die Kantons- und Gemeindesteuern: eCH-0276 taxAmountFreeInputFieldType/cantonalTax.",
+   "elternfeld": "Steuerliche Auf- / Abrechnungen",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0276",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Korrekturbetrag der Zeile für die direkte Bundessteuer: eCH-0276 taxAmountFreeInputFieldType/federalTax.",
+   "elternfeld": "Steuerliche Auf- / Abrechnungen",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0276",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ergebnis nach den Korrekturen in beiden Richtungen, aber vor dem Mitgliederbeitragsschritt (Punkt 4). In eCH-0276 fiscalCorrectionsType steht netProfitOrLossActualYear (taxAmountType) genau dort: nach Aufrechnungen und Abzügen, vor determinationOfRelevantProfitLossBeforeOffsettingLosses. eCH-0229 hat dafür nichts. sumOftaxableIncome… enthält nur Aufrechnungen, und die gleichnamige eCH-0229 netProfitOrLossActualYear liegt nach dem Abzug Ziff. 4.3 Mitgliederbeitragsüberschuss, entspricht also Code 1300.",
+   "feld": "Reingewinn / Verlust nach steuerlicher Abweichungen (Summe Punkt 1 + 2) (Code 1130)",
+   "standard": "eCH-0276",
+   "element": "netProfitOrLossActualYear"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Kantonaler Betrag von netProfitOrLossActualYear: eCH-0276 taxAmountType/cantonalTax.",
+   "elternfeld": "Reingewinn / Verlust nach steuerlicher Abweichungen (Summe Punkt 1 + 2) (Code 1130)",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0276",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bundessteuer-Betrag von netProfitOrLossActualYear: eCH-0276 taxAmountType/federalTax.",
+   "elternfeld": "Reingewinn / Verlust nach steuerlicher Abweichungen (Summe Punkt 1 + 2) (Code 1130)",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0276",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Wortgleich: eCH-0276 determinationOfRelevantProfitLossBeforeOffsettingLossesType/incomeFromMembershipFeesAccordingToTheIncomeStatement (Einzelbetrag, wie das Formularfeld). eCH-0229 statutoryMembershipFees (Ziff. 9.1) meint dasselbe, ist aber weniger genau benannt.",
+   "feld": "Einnahmen aus Mitgliederbeiträgen gemäss Erfolgsrechnung (Code 1151)",
+   "standard": "eCH-0276",
+   "element": "incomeFromMembershipFeesAccordingToTheIncomeStatement"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ordentliche Vereinsaufwendungen ohne Bezug zu steuerbarem Ertrag: eCH-0276 ordinaryAssociationExpensesNonTaxableIncome im selben Ermittlungsblock. Die eCH-0229-Entsprechung ist expensesNotRequiredToGenerateTaxableIncome (Ziff. 9.2).",
+   "feld": "Ordentliche Vereinsaufwendungen, die nicht zur Erzielung von steuerbarem Ertrag dienen (Code 1152)",
+   "standard": "eCH-0276",
+   "element": "ordinaryAssociationExpensesNonTaxableIncome"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Wortgleich «steuerfreier Mitgliederbeitragsüberschuss»: eCH-0276 taxFreeMembershipFeeSurplus. Die eCH-0229-Entsprechung ist surplusOfMembershipFees (Ziff. 9.3).",
+   "feld": "Steuerfreier Mitgliederbeitragsüberschuss (Code 1153)",
+   "standard": "eCH-0276",
+   "element": "taxFreeMembershipFeeSurplus"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Korrektur des Erstvorschlags (eCH-0276 relevantProfitLossBeforeOffsettingLosses). Dieses Element ist ein einziger xs:long und kann die beiden Spaltenbeträge nicht tragen; die Teile wären an ein taxAmountType gehängt, das unter diesem Element nicht vorkommt. eCH-0229 netProfitType/netProfitOrLossActualYear (taxAmountType, «Ziff. 5 Reingewinn bzw. Verlust (-) im Geschäftsjahr») ist dieselbe Angabe: Bei V/S zieht eCH-0229 den Mitgliederbeitragsüberschuss als Abzug Ziff. 4.3 ab (taxableResultDecreaseReasonType surplusOfMembershipFees), und Ziff. 6 Vorjahresverluste folgt. Also: Ergebnis nach allen Korrekturen, vor der Verlustverrechnung, je Steuerart.",
+   "feld": "Steuerlich massgebendes Ergebnis vor Verlustverrechnung (Code 1300)",
+   "standard": "eCH-0229",
+   "element": "netProfitOrLossActualYear"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Kantonaler Betrag von netProfitOrLossActualYear: eCH-0229 taxAmountType/cantonalTax, ein echtes Kind des Elternelements (eCH-0276 relevantProfitLossBeforeOffsettingLosses ist ein Einzelbetrag ohne Steuerart).",
+   "elternfeld": "Steuerlich massgebendes Ergebnis vor Verlustverrechnung (Code 1300)",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0229",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bundessteuer-Betrag von netProfitOrLossActualYear: eCH-0229 taxAmountType/federalTax.",
+   "elternfeld": "Steuerlich massgebendes Ergebnis vor Verlustverrechnung (Code 1300)",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0229",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Summe der verrechenbaren Verluste der sieben Vorjahre, übertragen aus Punkt 16 (Code 1400): eCH-0276 taxLossCarriedForwardType/totalTaxLossCarriedForward (taxAmountType). Das ist dieselbe Angabe wie «Verrechenbarer Verlust» in Punkt 16 und dort gleich zugeordnet. Es sind Werte vergangener Jahre, und das Element ist für diese gemacht.",
+   "feld": "Vorjahresverluste (Code 1400)",
+   "standard": "eCH-0276",
+   "element": "totalTaxLossCarriedForward"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Kantonaler Betrag von totalTaxLossCarriedForward: eCH-0276 taxAmountType/cantonalTax.",
+   "elternfeld": "Vorjahresverluste (Code 1400)",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0276",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bundessteuer-Betrag von totalTaxLossCarriedForward: eCH-0276 taxAmountType/federalTax.",
+   "elternfeld": "Vorjahresverluste (Code 1400)",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0276",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Wortgleich «steuerbarer Reingewinn nach Verlustanrechnung»: eCH-0276 taxLossCarriedForwardListType/taxableNetProfitOrLossAfterOffsettingLosses (taxAmountType).",
+   "feld": "Steuerbarer Reingewinn nach Verlustanrechnung (Code 1500)",
+   "standard": "eCH-0276",
+   "element": "taxableNetProfitOrLossAfterOffsettingLosses"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Kantonaler Betrag: eCH-0276 taxAmountType/cantonalTax.",
+   "elternfeld": "Steuerbarer Reingewinn nach Verlustanrechnung (Code 1500)",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0276",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bundessteuer-Betrag: eCH-0276 taxAmountType/federalTax.",
+   "elternfeld": "Steuerbarer Reingewinn nach Verlustanrechnung (Code 1500)",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0276",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "eCH-0229 netProfitType/foreignOrNonCantonalShareOfTaxableNetProfitOrLoss, laut XSD «Ausländischer resp. ausserkantonaler Anteil». Das deckt beide Spalten: für den Kanton ausserkantonal plus ausländisch, für den Bund ausländisch. eCH-0276 teilt in thereofTaxableAbroad und thereofTaxableInOtherCantons, ohne Summe.",
+   "feld": "Abzug für Reingewinn aus Grundeigentum und Geschäftsbetrieb ausserhalb des Kantons / Bundes (Code 1700)",
+   "standard": "eCH-0229",
+   "element": "foreignOrNonCantonalShareOfTaxableNetProfitOrLoss"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Ausserkantonaler und ausländischer Anteil für die Kantons- und Gemeindesteuern: eCH-0229 taxAmountType/cantonalTax.",
+   "elternfeld": "Abzug für Reingewinn aus Grundeigentum und Geschäftsbetrieb ausserhalb des Kantons / Bundes (Code 1700)",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0229",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Ausländischer Anteil für die direkte Bundessteuer: eCH-0229 taxAmountType/federalTax.",
+   "elternfeld": "Abzug für Reingewinn aus Grundeigentum und Geschäftsbetrieb ausserhalb des Kantons / Bundes (Code 1700)",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0229",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "eCH-0229 netProfitType/taxableNetProfitOrLoss, laut XSD «Ziff. 8 Steuerbarer Reingewinn bzw. Verlust (-) in der Schweiz bzw. im Kanton» (taxAmountType): kantonal der in SH steuerbare, beim Bund der in der Schweiz steuerbare Betrag.",
+   "feld": "Steuerbarer Reingewinn / Verlust Kanton Schaffhausen / Bund (Code 1800)",
+   "standard": "eCH-0229",
+   "element": "taxableNetProfitOrLoss"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Im Kanton steuerbarer Betrag: eCH-0229 taxAmountType/cantonalTax.",
+   "elternfeld": "Steuerbarer Reingewinn / Verlust Kanton Schaffhausen / Bund (Code 1800)",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0229",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Für die direkte Bundessteuer in der Schweiz steuerbarer Betrag: eCH-0229 taxAmountType/federalTax.",
+   "elternfeld": "Steuerbarer Reingewinn / Verlust Kanton Schaffhausen / Bund (Code 1800)",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0229",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Flüssige Mittel (Kasse, Post, Bank) am Ende des Geschäftsjahres: eCH-0276 cashAndCashEquivalentsAndCurrentAssetsWithStockMarketPriceType/cashAndCashEquivalents. Es ist dieselbe Menge.",
+   "feld": "Kassa-, Post- und Bankguthaben (Code 2110)",
+   "standard": "eCH-0276",
+   "element": "cashAndCashEquivalents"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Alle Wertschriften. Die Bilanz von eCH-0276 trennt Umlauf- und Anlagevermögen (currentAssetsWithStockMarketPrice, longTermSecurities); nur carryingAmountSecurities (Register F, Buchwert Wertschriften) umfasst alle. Den Steuerwert verlangt das Formular nur bei Liegenschaften, darum der Buchwert und nicht taxValueSecurities.",
+   "feld": "Wertschriften (Code 2120)",
+   "standard": "eCH-0276",
+   "element": "carryingAmountSecurities"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Das Formular fasst alle Forderungen samt Verrechnungssteuer-Guthaben in einem Betrag zusammen. eCH-0276 hat dafür keine Summe und verteilt sie auf tradeAndOtherCurrentReceivables (nur Forderungen aus L+L), otherShortTermReceivables und longTerm…Receivables. receivablesSecurities (Steuerausscheidung) schliesst Wertschriften ein. Gesucht im ganzen Katalog nach *eceivabl*, *ithhold* und *ecurit*: eCH-0278 totalWithHoldingTaxClaim und eCH-0119 gelten für natürliche Personen.",
+   "feld": "Ausstände und Forderungen, inkl. Verrechnungssteuer-Guthaben (Code 2130)"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "«Inventar» heisst hier nach dem Klammerzusatz bewegliche Sachanlagen, keine Vorräte. eCH-0276 machineryMovablesVehicles («Maschinen, Mobilien, Fahrzeuge») umfasst dieselbe Menge. Gemeint ist der Gesamtbetrag der JP im Kontext localisedOperationalAssetsTotalType, nicht der Betrag je Steuerdomizil. Die Bilanz (propertyPlantEquipmentType) zerlegt die Menge in machinery, furniture…, vehicles, tools… ohne Summe, und der Container propertyPlantEquipment enthielte auch die unbeweglichen Sachanlagen.",
+   "feld": "Inventar (Mobilien, Maschinen, Geräte etc.) (Code 2140)",
+   "standard": "eCH-0276",
+   "element": "machineryMovablesVehicles"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ausdrücklich der Steuerwert der Liegenschaften: eCH-0229 valuationDifferenceRealEstateType/netWorthTax, laut XSD «Vermögenssteuerwert (V/S, Ziff. 11.1)», also für Vereine und Stiftungen gemacht. Der Buchwert wäre carryingAmount (Ziff. 11.2).",
+   "feld": "Liegenschaften (Steuerwert, nicht Buchwert) (Code 2150)",
+   "standard": "eCH-0229",
+   "element": "netWorthTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Restgrösse nach den Positionen 2110–2150, und kein Element hat denselben Rest. eCH-0276 carryingAmountOtherAssets umfasst alles ausser Sachanlagen und Wertschriften, also auch flüssige Mittel und Forderungen. otherFinancialAssets, otherMobileTangibleAssets, otherIntangibleAssets und otherAssetsNotRequiredForOperations sind jeweils nur Teilmengen. eCH-0278/eCH-0119 otherAssets gelten für natürliche Personen.",
+   "feld": "Übrige Aktiven (Code 2160)"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Summe der Aktiven am Ende des Geschäftsjahres: eCH-0276 assetsType/totalAssets (Register A), nicht die gleichnamigen Elemente der Steuerausscheidung. Vorbehalt: Das Formular rechnet die Liegenschaften zum Steuerwert ein (Code 2150). Bei Liegenschaftsbesitz weicht der Betrag deshalb vom Bilanztotal ab, und ein Total zu Steuerwerten hat kein Standard.",
+   "feld": "Total Aktiven (Code 2190)",
+   "standard": "eCH-0276",
+   "element": "totalAssets"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Verbindlichkeiten aus Lieferungen und Leistungen: eCH-0276 currentLiabilitiesType/tradeAndOtherCurrentPayables. Der Container fasst diese Schulden gegenüber Dritten, verbundenen Gesellschaften und Beteiligten zusammen.",
+   "feld": "Schulden gegenüber Lieferanten (Code 2210)",
+   "standard": "eCH-0276",
+   "element": "tradeAndOtherCurrentPayables"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Bank- und Darlehensschulden ohne Hypotheken, jeder Laufzeit: Diese Kategorie quert die Gliederung der Standards. eCH-0276 trennt nach Laufzeit (currentInterestBearingLiabilities, noncurrentInterestBearingLiabilities), und die langfristigen enthalten auch Hypotheken. Gesucht im ganzen Katalog nach *iabilit*, *ebt*, *oan*; eCH-0119/eCH-0278 liabilities gelten für natürliche Personen.",
+   "feld": "Bankschulden, Darlehensschulden (Code 2220)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "eCH-0229 und eCH-0276 haben kein Hypothekenelement; Hypotheken stecken ungetrennt in noncurrentInterestBearingLiabilities. Der einzige Treffer im Katalog (*ortgage*) ist eCH-0278 liabilitiesType/mortgage. Er ist an personGroup gebunden und gehört zur Steuererklärung natürlicher Personen, nicht zur Bilanz eines Vereins.",
+   "feld": "Grundpfandschulden (Hypotheken) (Code 2230)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Restgrösse nach 2210–2230. eCH-0276 verteilt sie auf otherCurrentLieabilitiesIntrestFree, otherNoncurrentLieabilitiesIntrestFree, accruedExpenses und Rückstellungen, ohne Summe. eCH-0278 otherLiability gilt für natürliche Personen.",
+   "feld": "Übrige Schulden (Code 2240)"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "«Total Passiven» ist hier das Fremdkapital, weil Code 2400 Aktiven minus Passiven ist. Das entspricht eCH-0276 equityAndLiabilitiesChfType/totalLiabilities (Total Fremdkapital in CHF). totalEquityAndLiabilities würde das Eigenkapital einschliessen. Vorbehalt: Das Element steht nur im Umrechnungsregister H3. Die Bilanz B hat nur totalCurrentLiabilities und totalNoncurrentLiabilities ohne Gesamtsumme.",
+   "feld": "Total Passiven (Code 2290)",
+   "standard": "eCH-0276",
+   "element": "totalLiabilities"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "eCH-0229 equityType/totalEquity, laut XSD «Total EK (K/G/aP Ziff. 19) resp. Gesamtes EK (V/S Ziff. 13)»: das gesamte Eigenkapital eines Vereins oder einer Stiftung.",
+   "feld": "Gesamtes Reinvermögen / Eigenkapital (Aktiven abzüglich Passiven) (Code 2400)",
+   "standard": "eCH-0229",
+   "element": "totalEquity"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ein einziger Abzug für das gesamte Eigenkapital ausserhalb des Kantons (andere Kantone und Ausland). eCH-0276 taxableEquityAfterProfitAppropriationType teilt in thereofTaxableAbroad und thereofTaxableInOtherCantons. eCH-0229 kennt nur totalTaxableEquity/totalTaxableEquityCanton und kein Abzugselement. Der ganze Katalog wurde nach *broad*, *therCanton*, *onCantonal* durchsucht. eCH-0119 fiscalAssetsOtherCanton/Abroad gilt für natürliche Personen, und ein Gesamtelement wie beim Gewinn (Code 1700) fehlt für das Eigenkapital.",
+   "feld": "Abzug für Vermögen / Eigenkapital ausserhalb des Kantons / Bundes (Code 2600)"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "eCH-0229 equityType/totalTaxableEquityCanton, laut XSD «steuerbares EK im Kanton»: das im Kanton Schaffhausen steuerbare Eigenkapital nach den Abzügen.",
+   "feld": "Steuerbares Vermögen / Eigenkapital Kanton Schaffhausen (Code 2700)",
+   "standard": "eCH-0229",
+   "element": "totalTaxableEquityCanton"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Tabelle der Verluste je Vorjahr mit Jahr und Betrag je Steuerart. Jede Zeile entspricht eCH-0229 taxLossCarriedForwardListType/taxLossCarriedForward (maxOccurs 7) mit yearOfTaxLossCarriedForward und amountOfTaxLossCarriedForward (taxAmountType). Es sind Werte vergangener Jahre, und das Element ist für sie bestimmt. eCH-0276 kennt nur positionelle Elemente N-1…N-7 ohne Jahr.",
+   "feld": "Verlustverrechnung",
+   "standard": "eCH-0229",
+   "element": "taxLossCarriedForward"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorgedrucktes Verlustjahr der Zeile (2019 bzw. 2018/2019 … 2025 bzw. 2024/2025): eCH-0229 taxLossCarriedForwardType/yearOfTaxLossCarriedForward (gYear).",
+   "elternfeld": "Verlustverrechnung",
+   "teilfeld": "Geschäftsjahr",
+   "standard": "eCH-0229",
+   "element": "yearOfTaxLossCarriedForward"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Verlust des betreffenden Vorjahres für die Kantons- und Gemeindesteuern: cantonalTax von amountOfTaxLossCarriedForward (eCH-0229 taxAmountType).",
+   "elternfeld": "Verlustverrechnung",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0229",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Verlust des betreffenden Vorjahres für die direkte Bundessteuer: federalTax von amountOfTaxLossCarriedForward (eCH-0229 taxAmountType).",
+   "elternfeld": "Verlustverrechnung",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0229",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Zwischentotal der Vorjahresverluste vor Abzug der bereits verrechneten: eCH-0276 taxLossCarriedForwardType/subtotalTaxLossCarriedForward (taxAmountType). eCH-0229 hat kein Zwischentotal.",
+   "feld": "Zwischentotal (Summe der Vorjahresverluste)",
+   "standard": "eCH-0276",
+   "element": "subtotalTaxLossCarriedForward"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Kantonaler Betrag: eCH-0276 taxAmountType/cantonalTax.",
+   "elternfeld": "Zwischentotal (Summe der Vorjahresverluste)",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0276",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bundessteuer-Betrag: eCH-0276 taxAmountType/federalTax.",
+   "elternfeld": "Zwischentotal (Summe der Vorjahresverluste)",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0276",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Teil der Vorjahresverluste, der früher schon verrechnet wurde (ein vergangener Wert): eCH-0276 taxLossCarriedForwardType/thereofLossesAlreadyOffset.",
+   "feld": "Davon bereits verrechnete Verluste",
+   "standard": "eCH-0276",
+   "element": "thereofLossesAlreadyOffset"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Kantonaler Betrag: eCH-0276 taxAmountType/cantonalTax.",
+   "elternfeld": "Davon bereits verrechnete Verluste",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0276",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bundessteuer-Betrag: eCH-0276 taxAmountType/federalTax.",
+   "elternfeld": "Davon bereits verrechnete Verluste",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0276",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Noch verrechenbarer Verlust, also Zwischentotal minus bereits verrechnete Verluste: eCH-0276 taxLossCarriedForwardType/totalTaxLossCarriedForward. Es folgt dort direkt auf subtotal… und thereofLossesAlreadyOffset und ist dieselbe Angabe wie Code 1400 in Punkt 6.",
+   "feld": "Verrechenbarer Verlust (Übertrag auf Punkt 6 dieser Steuererklärung) (Code 1400)",
+   "standard": "eCH-0276",
+   "element": "totalTaxLossCarriedForward"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Kantonaler Betrag: eCH-0276 taxAmountType/cantonalTax.",
+   "elternfeld": "Verrechenbarer Verlust (Übertrag auf Punkt 6 dieser Steuererklärung) (Code 1400)",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0276",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bundessteuer-Betrag: eCH-0276 taxAmountType/federalTax.",
+   "elternfeld": "Verrechenbarer Verlust (Übertrag auf Punkt 6 dieser Steuererklärung) (Code 1400)",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0276",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ankreuzfeld für den Antrag auf Besteuerung wegen ideeller Zwecke: eCH-0276 variousQuestionsType/applicationForTaxationForNonmaterialPurposes. Es ist ein xs:boolean, also passend zur Ja/Nein-Box. eCH-0229 requestForPrivilegedTaxation nennt keine ideellen Zwecke.",
+   "feld": "Antrag auf privilegierte Besteuerung infolge ideellen Zwecken",
+   "standard": "eCH-0276",
+   "element": "applicationForTaxationForNonmaterialPurposes"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "IBAN für die Rückerstattung von Steuerguthaben einer JP: eCH-0276 titleType/bankDetailsForRefund, Typ bankDetailsForRefundType/iban. Das trifft «Kontoinformation für Rückerstattungen» genauer als eCH-0119 ibanNumber (E-Tax natürlicher Personen).",
+   "feld": "IBAN-Nr.",
+   "standard": "eCH-0276",
+   "element": "iban"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Freie Bemerkungen zur JP-Steuererklärung (Punkt 19). Hier hat der Fachstandard ein eigenes Element: eCH-0276 Register H «Remarks», structureType/generalRemarks (Alternative: eCH-0229 contactAndAdministrationType/remarks). Das propagierte kein_standard gilt für allgemeine Bemerkungsfelder, ist hier aber falsch, weil ein passendes Element besteht.",
+   "feld": "Bemerkungen",
+   "standard": "eCH-0276",
+   "element": "generalRemarks"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ankreuzliste der beigelegten Unterlagen (Bilanz/Erfolgsrechnung, Formular 13, weitere Zeilen): eCH-0276 contentType/attachments (Register G, documentTitle/documentFormat). Das ist der Container für Beilagen zur JP-Steuererklärung, kein Wertelement.",
+   "feld": "Beilagen",
+   "standard": "eCH-0276",
+   "element": "attachments"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ort und Datum der Unterzeichnung. eCH-0229 und eCH-0276 haben kein Element dafür. Der einzige Treffer im Katalog (*locationAndDate*) ist eCH-0119 locationAndDate in attachedFormsType/listOfSecuritiesType, also bei Beiblättern der Steuererklärung natürlicher Personen. Es ist ausserdem ein zusammengesetzter String, kein atomarer Teil. Für das Label «Ort und Datum» ist kein_standard die Mehrheitspraxis im Korpus (35 Felder).",
+   "feld": "Ort und Datum"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Ort der Unterzeichnung, keine Adressangabe (eCH-0010 town passt nicht). In eCH-0229, eCH-0276 und im übrigen Katalog gibt es kein atomares Element für den Unterzeichnungsort; Korpus-Praxis ist kein_standard.",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Datum der Unterzeichnung. eCH-0229 header/transactionDate ist der Übermittlungszeitpunkt, und ein Element für das Unterzeichnungsdatum gibt es nicht. Korpus-Praxis ist kein_standard.",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Keiner der 290 Standards hat ein Unterschrift-Element; die Suche nach *signat* trifft nur «designation». Gleiches Urteil wie bei allen Unterschriftsfeldern im Korpus.",
+   "feld": "Rechtsgültige Unterschrift (Die Richtigkeit und Vollständigkeit der Angaben bezeugt)"
+  }
+ ]
+}

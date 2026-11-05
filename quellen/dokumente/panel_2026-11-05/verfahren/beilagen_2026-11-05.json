@@ -1,0 +1,185 @@
+{
+ "hinweis": "Panel 2026-11-05 (Zweitprüfung angewendet): Beilagen je Formular der Steuerformulare (Übernahme 2026-11-05) Nicht übernommen (05.11.2026): «Formular «Angaben über Beteiligungen» (Formular 19)» als Beilage von Formular 598 — Formular 19.1 nennt Formular 19 nur für die Nummer der Beteiligung («Nummer gemäss Deklarationsreihenfolge auf dem Hilfsformular «Angaben über Beteiligungen», Formular 19») und für den Übertrag («Formular 19, Seite 2, Spalte Q»); es verlangt nicht, Formular 19 beizulegen, und load_verfahren.py konnte die Bezeichnung nicht zurückführen.",
+ "beilagen": [
+  {
+   "form_id": 589,
+   "bezeichnung": "Bilanz, Erfolgsrechnung und Anhang (mit Vorjahresvergleich)",
+   "data_field_id": null,
+   "obligatorium": "unbekannt",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 589,
+   "bezeichnung": "Kontokorrentkonto Anteilsinhaber",
+   "data_field_id": null,
+   "obligatorium": "unbekannt",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 589,
+   "bezeichnung": "Formular 6 (Abschreibungen)",
+   "data_field_id": null,
+   "obligatorium": "unbekannt",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 589,
+   "bezeichnung": "Formular 6a (Wertberichtigungen / Rückstellungen)",
+   "data_field_id": null,
+   "obligatorium": "unbekannt",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 589,
+   "bezeichnung": "Formular 8c (Steuerausscheidung)",
+   "data_field_id": null,
+   "obligatorium": "bedingt",
+   "bedingung": "bei Zweigniederlassungen (Geschäftsbetriebe, Betriebsstätten, Liegenschaften): «Formular 8c Steuerausscheidung ist ausgefüllt beizulegen»",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 589,
+   "bezeichnung": "Formular 12a (Leistungen an Gesellschafter, Verwaltungsräte, Organe und Nahestehende)",
+   "data_field_id": null,
+   "obligatorium": "unbekannt",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 589,
+   "bezeichnung": "Formular 13 (Wertschriften- und Guthabenverzeichnis)",
+   "data_field_id": null,
+   "obligatorium": "unbekannt",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 589,
+   "bezeichnung": "Formular 14a (Schuldenverzeichnis)",
+   "data_field_id": null,
+   "obligatorium": "unbekannt",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 589,
+   "bezeichnung": "Formular 19 (Angaben über Beteiligungen)",
+   "data_field_id": null,
+   "obligatorium": "unbekannt",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 589,
+   "bezeichnung": "Formular 19.1 (Kapitalgewinn aus Beteiligung)",
+   "data_field_id": null,
+   "obligatorium": "unbekannt",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 592,
+   "bezeichnung": "Formular 8c Steuerausscheidung",
+   "data_field_id": 7516,
+   "obligatorium": "bedingt",
+   "bedingung": "Wenn Zweigniederlassungen (Geschäftsbetriebe, Betriebsstätten, Liegenschaften) bestehen bzw. Abzüge ausserhalb des Kantons / Bundes geltend gemacht werden (Code 1700, 2600)",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 592,
+   "bezeichnung": "Bilanz, Erfolgsrechnung (mit Vorjahresvergleich)",
+   "data_field_id": null,
+   "obligatorium": "unbekannt",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 592,
+   "bezeichnung": "Formular 13 (Wertschriften- und Guthabenverzeichnis)",
+   "data_field_id": null,
+   "obligatorium": "unbekannt",
+   "bedingung": null,
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 594,
+   "bezeichnung": "Kopien der Lohnausweise",
+   "data_field_id": 7575,
+   "obligatorium": "bedingt",
+   "bedingung": "Je ein Lohnausweis für jedes Mitglied der Verwaltung und anderer Organe; entfällt, wenn im massgebenden Jahr keine Vergütungen ausgerichtet wurden (dann nur Formular 12a mit entsprechendem Vermerk).",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 595,
+   "bezeichnung": "Kopien der betreffenden Kontoauszüge",
+   "data_field_id": 7582,
+   "obligatorium": "bedingt",
+   "bedingung": "Wenn Darlehen an Beteiligte, Nahestehende oder verbundene Unternehmen deklariert werden («für diese Positionen sind Kopien der betreffenden Kontoauszüge einzureichen»)",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 596,
+   "bezeichnung": "Kopien der betreffenden Kontoauszüge aus der Buchhaltung",
+   "data_field_id": 7590,
+   "obligatorium": "bedingt",
+   "bedingung": "Im Falle von mit dem Code «01» zu bezeichnenden Gläubigern (Gesellschafter, Beteiligter, Mitglied eines Organs, diesen nahestehende Person oder verbundenes Unternehmen)",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 597,
+   "bezeichnung": "Formular 19.1 «Kapitalgewinn aus Beteiligung» oder eigene Aufstellung",
+   "data_field_id": 7597,
+   "obligatorium": "bedingt",
+   "bedingung": "für jede aufgeführte Beteiligung, welche während der Steuerperiode ganz oder teilweise veräussert wurde",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  },
+  {
+   "form_id": 598,
+   "bezeichnung": "Nachweis der Zuordnung",
+   "data_field_id": 7613,
+   "obligatorium": "bedingt",
+   "bedingung": "bei Teilveräusserungen (Zuordnung von Kaufdatum und Gestehungskosten zu den veräusserten Teilpaketen nach der gewählten Umschlagsmethode) sowie wo die Methode der Zuordnung nicht offensichtlich erkennbar ist",
+   "halter": "privat",
+   "fetchable": false,
+   "source": "formular"
+  }
+ ]
+}

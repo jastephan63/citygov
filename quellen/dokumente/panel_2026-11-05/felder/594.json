@@ -1,0 +1,85 @@
+{
+ "form_id": 594,
+ "data_fields": [
+  {
+   "name": "PID",
+   "definition": "Die Identifikationsnummer (PID) der steuerpflichtigen juristischen Person, oben links unter «Kanton Schaffhausen» einzutragen.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Firmenname",
+   "definition": "Der Name (Firma) der juristischen Person, die die Bescheinigung über die Bezüge ihrer Organmitglieder einreicht.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Verzeichnis",
+   "definition": "Das im Einleitungstext als «nachstehendes Verzeichnis» bezeichnete Verzeichnis sämtlicher Personen, die im Berichtsjahr Mitglieder der Verwaltung oder anderer Organe der juristischen Person waren, je mit Name / Vorname, Wohnort und den Bezügen gemäss Ziffer 11 des Lohnausweises.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name / Vorname",
+    "Wohnort",
+    "Bezüge (gemäss Ziffer 11 des Lohnausweises)"
+   ],
+   "format": "15 Zeilen (1.–15.)"
+  },
+  {
+   "name": "Bemerkungen",
+   "definition": "Freitext für ergänzende Bemerkungen der juristischen Person zur Bescheinigung.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Beilagen",
+   "definition": "Die Anzahl der dem Formular beigelegten Lohnausweise, einzutragen in die Lücke vor «Lohnausweis(e)».",
+   "data_type": "number",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "____ Lohnausweis(e)"
+  },
+  {
+   "name": "Lohnausweis(e)",
+   "definition": "Die beizulegenden Kopien der Lohnausweise, je einer für jedes im Verzeichnis aufgeführte Mitglied der Verwaltung oder eines anderen Organs; sie entfallen laut den Hinweisen, wenn im massgebenden Jahr keine Vergütungen ausgerichtet wurden.",
+   "data_type": "attachment",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "Kopien"
+  },
+  {
+   "name": "Ort und Datum",
+   "definition": "Ort und Kalenderdatum der Unterzeichnung der Bescheinigung im Feld «Die Richtigkeit und Vollständigkeit der Angaben bezeugt».",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Ort",
+    "Datum"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Rechtsgültige Unterschrift",
+   "definition": "Die rechtsgültige Unterschrift für die juristische Person, mit der die Richtigkeit und Vollständigkeit der Angaben bezeugt wird.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  }
+ ],
+ "hinweis": "Korrekturen: (1) Tabelle umbenannt von «Verzeichnis der Mitglieder der Verwaltung oder anderer Organe» in «Verzeichnis». Die Tabelle trägt keine eigene Überschrift. Gedruckt ist nur «im nachstehenden Verzeichnis», und die zusammengesetzte Bezeichnung stand so nicht im Formular (dort heisst es «Mitglieder unserer Verwaltung oder anderer Organe»). Die Definition nennt jetzt den Einleitungstext als Fundstelle. (2) «Beilagen»: Formatangabe von «Anzahl … Lohnausweis(e)» auf das Gedruckte «____ Lohnausweis(e)» korrigiert, denn «Anzahl» ist nicht gedruckt. (3) «Lohnausweis(e)»: Die Definition nennt jetzt die Ausnahme aus den Hinweisen (keine Vergütungen ausgerichtet → nur Formular 12a mit Vermerk). required bleibt true, weil das Formular die Beilage nicht als freiwillig kennzeichnet. Sonst unverändert und am PDF geprüft: «Name / Vorname» ist eine einzige gedruckte Spalte, also ein Teil (wie im Korpus, z. B. Formulare 123/146/170). Es gibt nur eine Unterschriftslinie, also keine zweite unterzeichnende Person. Es gibt keine Checkboxen, keine Beilagen-Checkliste und kein Feld für das Steuerjahr (das «Berichtsjahr» wird nur im Text genannt). Keine Felder der Person sind: der Einleitungstext mit der ausdrücklichen Erklärung über die Vollständigkeit des Verzeichnisses (wird durch die Unterschrift abgegeben), die Überschrift des Unterschriftsfelds «Die Richtigkeit und Vollständigkeit der Angaben bezeugt», die ganze Seite 2 «Hinweise und Erläuterungen» (Pflicht nach Art. 147 Abs. 1 lit. a StG und Art. 129 Abs. 1 lit. a DBG, Doppel an die steuerpflichtige Person, Wegleitung zum Lohnausweis, Tantiemen-Regel, Vermerk bei fehlenden Vergütungen, Weiterleitung an andere Kantone, Einreichung zusammen mit den übrigen Unterlagen, Strafbestimmungen). Ein Vermerk «keine Vergütungen» hat kein eigenes Feld. Er gehört vermutlich in «Bemerkungen», das druckt das Formular aber nicht aus. Ob die PID vom Amt vorgedruckt wird, lässt sich aus dem leeren Formular nicht feststellen."
+}

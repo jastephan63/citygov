@@ -1,0 +1,211 @@
+{
+ "form_id": 598,
+ "mappings": [
+  {
+   "data_field": "PID",
+   "cites": [
+    {
+     "cref": "SHR 641.111",
+     "article_no": "§ 81b",
+     "beleg": "Abs. 4: Die kantonale Steuerverwaltung stellt für elektronische Gesuche um Verlängerung der Einreichungsfrist für die Steuererklärung ein Webportal zur Verfügung, auf dem sich die steuerpflichtigen Personen durch Angabe ihrer PID und bei natürlichen Personen zudem ihres Geburtsdatums ausweisen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Firmenname",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 142",
+     "beleg": "Die steuerpflichtige Person muss die Steuererklärung wahrheitsgemäss und vollständig ausfüllen, persönlich unterzeichnen und samt den vorgeschriebenen Beilagen fristgemäss der zuständigen Behörde einreichen."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 124",
+     "beleg": "Die steuerpflichtige Person muss die Steuererklärung wahrheitsgemäss und vollständig ausfüllen, persönlich unterzeichnen und samt den vorgeschriebenen Beilagen fristgemäss der zuständigen Steuerbehörde einreichen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Bezeichnung der Beteiligung",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 77",
+     "beleg": "Abs. 4 lit. b: «wenn die veräusserte Beteiligung mindestens 10 Prozent des Grund- oder Stammkapitals einer anderen Gesellschaft betrug»"
+    },
+    {
+     "cref": "SHR 641.111",
+     "article_no": "§ 44",
+     "beleg": "Juristische Personen, die Anspruch auf die Ermässigung (Beteiligungsabzug) erheben, haben nachzuweisen ... insbesondere ... «Unterlagen über die Beteiligung und deren Erträge»"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 70",
+     "beleg": "Abs. 4 lit. b: «wenn die veräusserte Beteiligung mindestens 10 Prozent des Grund- oder Stammkapitals einer anderen Gesellschaft betrug»"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Verkaufserlöse für veräusserte Beteiligungspakete",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 77",
+     "beleg": "Abs. 4: Kapitalgewinne nur berücksichtigt «soweit der Veräusserungserlös die Gestehungskosten übersteigt» und wenn die Beteiligung mind. 10 Prozent betrug und «während mindestens eines Jahres im Besitz» war"
+    },
+    {
+     "cref": "SHR 641.111",
+     "article_no": "§ 44",
+     "beleg": "haben nachzuweisen, dass die Voraussetzungen dafür erfüllt sind ... Unterlagen über die Beteiligung und deren Erträge"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 70",
+     "beleg": "Abs. 4 lit. a/b: «soweit der Veräusserungserlös die Gestehungskosten übersteigt»; Beteiligung von mind. 10 Prozent «während mindestens eines Jahres im Besitz»"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 226",
+     "beleg": "Abs. 2: «Für Beteiligungen, die vor dem 1. Januar 2001 im Besitze der Kapitalgesellschaft oder Genossenschaft waren, gelten die Gewinnsteuerwerte zu Beginn des Geschäftsjahres, das im Kalenderjahr 2000 endet, als Gestehungskosten» (Teilangabe letztes Erwerbsdatum)"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 207a",
+     "beleg": "Abs. 2: «Für Beteiligungen, die vor dem 1. Januar 1997 im Besitze der Kapitalgesellschaft oder Genossenschaft waren, gelten die Gewinnsteuerwerte zu Beginn des Geschäftsjahres, das im Kalenderjahr 1997 endet, als Gestehungskosten» (Teilangabe letztes Erwerbsdatum, «vor 1997»)"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Total Quote und Verkaufserlös",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 77",
+     "beleg": "Abs. 4 lit. b: Beteiligung «mindestens 10 Prozent des Grund- oder Stammkapitals»; «fällt die Beteiligungsquote infolge Teilveräusserung unter 10 Prozent» ...; lit. a: Veräusserungserlös"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 70",
+     "beleg": "Abs. 4: Veräusserungserlös; «fällt die Beteiligungsquote infolge Teilveräusserung unter 10 Prozent»"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Total massgebender Verkaufserlös unter Berücksichtigung der Mindesthaltedauer",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 77",
+     "beleg": "Abs. 4: Kapitalgewinne nur berücksichtigt, soweit der Veräusserungserlös die Gestehungskosten übersteigt und die Beteiligung «während mindestens eines Jahres im Besitz» war"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 70",
+     "beleg": "Abs. 4: Veräusserungserlös; Beteiligung «während mindestens eines Jahres im Besitz der veräussernden Kapitalgesellschaft»"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Gestehungskosten für veräusserte Beteiligungspakete",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 77",
+     "beleg": "Abs. 4 lit. a: Kapitalgewinne nur berücksichtigt, «soweit der Veräusserungserlös die Gestehungskosten übersteigt»; lit. b (massgebender Anteil): Beteiligung «während mindestens eines Jahres im Besitz»"
+    },
+    {
+     "cref": "SHR 641.111",
+     "article_no": "§ 44",
+     "beleg": "haben nachzuweisen, dass die Voraussetzungen dafür erfüllt sind ... Unterlagen über die Beteiligung"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 70",
+     "beleg": "Abs. 4 lit. a: «soweit der Veräusserungserlös die Gestehungskosten übersteigt»; lit. b (massgebender Anteil): «während mindestens eines Jahres im Besitz»"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 226",
+     "beleg": "Abs. 2: «Für Beteiligungen, die vor dem 1. Januar 2001 im Besitze der Kapitalgesellschaft oder Genossenschaft waren, gelten die Gewinnsteuerwerte zu Beginn des Geschäftsjahres, das im Kalenderjahr 2000 endet, als Gestehungskosten (Art. 69 Abs. 4 und Art. 77 Abs. 4 lit. a)»"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 207a",
+     "beleg": "Abs. 2: «Für Beteiligungen, die vor dem 1. Januar 1997 im Besitze der Kapitalgesellschaft oder Genossenschaft waren, gelten die Gewinnsteuerwerte zu Beginn des Geschäftsjahres, das im Kalenderjahr 1997 endet, als Gestehungskosten (Art. 62 Abs. 4 und Art. 70 Abs. 4 Bst. a)»"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Total (Gestehungskosten)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 77",
+     "beleg": "Abs. 4 lit. a: «soweit der Veräusserungserlös die Gestehungskosten übersteigt»"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 70",
+     "beleg": "Abs. 4 lit. a: «soweit der Veräusserungserlös die Gestehungskosten übersteigt»"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Total massgebende Gestehungskosten unter Berücksichtigung der Mindesthaltedauer",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 77",
+     "beleg": "Abs. 4 lit. a: «soweit der Veräusserungserlös die Gestehungskosten übersteigt»; lit. b: Beteiligung «während mindestens eines Jahres im Besitz»"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 70",
+     "beleg": "Abs. 4 lit. a: «soweit der Veräusserungserlös die Gestehungskosten übersteigt»; lit. b: «während mindestens eines Jahres im Besitz»"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Kapitalgewinn aus der Veräusserung von Beteiligungen",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 77",
+     "beleg": "Abs. 1: «Zum Ertrag aus Beteiligungen gehören auch die Kapitalgewinne auf diesen Beteiligungen»; Abs. 4: Kapitalgewinne werden bei der Berechnung der Ermässigung nur berücksichtigt ..."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 70",
+     "beleg": "Abs. 1: «Zum Ertrag aus Beteiligungen gehören auch die Kapitalgewinne auf diesen Beteiligungen»; Abs. 4"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Umschlagsmethode",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Nachweis der Zuordnung",
+   "cites": [
+    {
+     "cref": "SHR 641.111",
+     "article_no": "§ 44",
+     "beleg": "Juristische Personen, die Anspruch auf die Ermässigung (Beteiligungsabzug) erheben, «haben nachzuweisen, dass die Voraussetzungen dafür erfüllt sind»; Beweismittel: Unterlagen über die Beteiligung"
+    }
+   ],
+   "over_collection": false
+  }
+ ]
+}

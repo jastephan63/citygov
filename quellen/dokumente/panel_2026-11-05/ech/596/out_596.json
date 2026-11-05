@@ -1,0 +1,214 @@
+{
+ "hinweis": "eCH-Urteile Formular 596, Panel 2026-11-05, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-11-05/ech/596 --nur-offene=596",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "The PID here is the tax-register number of a juristische Person. The propagated eCH-0044 localPersonId (personIdentificationKeyOnlyType) identifies natural persons, so it is wrong here. eCH-0276 (Genehmigt) has titleType/registerNumber (xs:long, minOccurs 1). I checked the standard's Beilage E-Bilanz_Deklaration_JP.pdf myself: the title page labels position Z1001 «Register-Nr. / PID-Nr.», a mandatory field. Z1002 «weitere kantonale Registernummer» is cantonalRegisterNumber, and Z1003 is the UID. eCH-0098 localSenderId was rejected because it is a key assigned by the sender, while the PID is assigned by the Steuerverwaltung.",
+   "feld": "PID",
+   "standard": "eCH-0276",
+   "element": "registerNumber"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "This is the company name of the taxpaying juristische Person. The propagated eCH-0098 organisationIdentificationType/organisationName is the base element for a company name, and the corpus uses it for Firma/Firmenname, which keeps the same-datum key across forms. eCH-0276 titleType/organisationName (Z1000 «Name der Firma») uses the same eCH-0108 unitNameType, so the propagated element is confirmed.",
+   "feld": "Firmenname"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Table A has one row per mortgage-secured debt (creditor, Stellung 01/00, collateral, closing balance, rate, interest). The propagated eCH-0278 liabilitiesType/mortgage is E-Tax NP, a natural-person tax standard that does not apply to a JP. The only per-debt record in the JP standard is eCH-0276 loansAndDebtsToRelatedPartiesType/debtsLoansAndLiabilities. In the sample declaration it is I2 «B. Schulden (Passivdarlehen)», one entry per debt with AHV/UID, Name/Firmenname, Gemeinde/Kanton/Land, type, Anfangs-/Schlussbestand, Zinssatz and verbuchte Zinsen. Caveat that must stay visible: per the XSD annotation, I2 covers related parties only («Loans and debts to related parties»), so it fits only code-01 rows. Code-00 creditors such as banks appear in eCH-0276 only as balance-sheet aggregates. eCH-0276 also has no Grundpfand distinction.",
+   "feld": "Grundpfandschulden",
+   "standard": "eCH-0276",
+   "element": "debtsLoansAndLiabilities"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "This is the creditor's name in a JP debt row. The match is eCH-0276 name in the context debtsLoansAndLiabilitiesType (I2.B «Name / Firmenname», I1700_02), not the homonyms in assetsLoansReceivableType, beneficiaryType or detailsShareholdersAssociatesType. It is the only per-creditor name for liabilities in the JP standard, and its scope is related parties (code 01). eCH-0278 debtInterestsType/creditor was rejected because it is E-Tax NP.",
+   "elternfeld": "Grundpfandschulden",
+   "teilfeld": "Name des Gläubigers",
+   "standard": "eCH-0276",
+   "element": "name"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "The creditor's postal address is one undivided part, separate from the name. The creditor can be a person or an organisation, so the generic eCH-0010 mailAddressType/addressInformation applies, matching corpus practice for undivided «Adresse» parts (43×). eCH-0276 I2.B carries only municipality/canton/country, not a postal address.",
+   "elternfeld": "Grundpfandschulden",
+   "teilfeld": "Adresse des Gläubigers",
+   "standard": "eCH-0010",
+   "element": "addressInformation"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "This part is the code for the creditor's relationship to the taxpayer (01 = Gesellschafter/Beteiligter/Organ/nahestehend/verbunden, 00 = unrelated). It is a classification, not a yes/no box on a value. eCH-0276 typeOfRelatedParty in debtsLoansAndLiabilitiesType asks the same question. Codelist divergence that must be surfaced: the eCH codes (shareholderNaturalPerson, shareholderLegalEntity, groupCompanies, subsidiaries, otherRelatedParties) together refine 01, and 00 has no eCH value because unrelated creditors are not listed individually.",
+   "elternfeld": "Grundpfandschulden",
+   "teilfeld": "Stellung des Gläubigers zur Steuerpflichtigen",
+   "standard": "eCH-0276",
+   "element": "typeOfRelatedParty"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "This is a free description of the collateral: liable properties (Gemeinde, Strasse), Wertschriften (title, Nennwert), Policen (Gesellschaft, Summe) and Bürgschaften (name and address of the Bürge). I searched element names across all 290 standards for collateral/pledge/surety/guarant/lien/hypothec/mortgag/pfand/encumbr. eCH-0276 has only guaranteeProvisions (B2630 Garantierückstellungen, a provision, not collateral), and its I2.B has no collateral element. eCH-0134 hypothecaryRight is a Grundpfandrecht in land-register notifications, not a debtor's collateral statement. eCH-0278 isMortgage is an NP boolean. eCH-0196 liabilityAccount is a bank statement with no collateral element.",
+   "elternfeld": "Grundpfandschulden",
+   "teilfeld": "Sicherheiten"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "This is the amount of one debt at the closing balance-sheet date. It maps to eCH-0276 closingBalance in debtsLoansAndLiabilitiesType (I2.B «Schlussbestand»), not openingBalance and not the assetsLoansReceivableType homonym. The scope is related-party debts. The balance-sheet positions B2100–B2560 are aggregates by party, not per debt.",
+   "elternfeld": "Grundpfandschulden",
+   "teilfeld": "Schuldbetrag laut Schlussbilanz",
+   "standard": "eCH-0276",
+   "element": "closingBalance"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "This is the interest rate of one debt in %. It maps to eCH-0276 interestRate in debtsLoansAndLiabilitiesType (I2.B «Zinssatz»), not the homonyms in assetsLoansReceivableType or bankBalancesSecuritiesLoansAndOtherInvestmentsType. eCH-0278 debtInterestsType/interestRate was rejected because it is E-Tax NP.",
+   "elternfeld": "Grundpfandschulden",
+   "teilfeld": "Zinssatz",
+   "standard": "eCH-0276",
+   "element": "interestRate"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "This is the interest on one debt for the business year, a period value. It maps to eCH-0276 accountedInterest in debtsLoansAndLiabilitiesType (I2.B «verbuchte Zinsen»), the per-debt interest of the period. interestExpenseFromLiabilities (C6900) was rejected because it is the total over all liabilities. A nuance should be noted: the form asks for interest that became due (fällig), while eCH records interest that was booked (verbucht).",
+   "elternfeld": "Grundpfandschulden",
+   "teilfeld": "Zinsen in diesem Geschäftsjahr fällig geworden",
+   "standard": "eCH-0276",
+   "element": "accountedInterest"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "This is the sum row of mortgage-secured debts. I searched eCH-0276: the balance sheet (tradeAndOtherCurrentPayables, current/noncurrentInterestBearingLiabilities, totalCurrent/NoncurrentLiabilities), I2 (no total), hidden equity (commercialLiabilities), and the Liegenschaften segregation (overalTotalInterestOnDebt). I also searched eCH-0229 (no liabilities). eCH-0276 splits liabilities by maturity, interest and party, never by Grundpfand security. eCH-0278 mortgage/totalLiability and eCH-0119 totals were rejected because they are natural-person standards. eCH-0196 has status unknown and is a bank statement.",
+   "feld": "Total Grundpfandschulden"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "This is the total closing balance of all Grundpfandschulden. eCH-0276 has no Grundpfand total. noncurrentInterestBearingLiabilities (B2400–B2460) is both broader (all long-term interest-bearing debt) and narrower (long-term only), and closingBalance is one related-party debt. eCH-0278 totalLiability/totalAmountLiabilities and eCH-0119 totalBusinessLiabilities were rejected because they are natural-person standards. Searched the whole catalogue for mortgag/hypothec/liabilit/debt.",
+   "elternfeld": "Total Grundpfandschulden",
+   "teilfeld": "Schuldbetrag laut Schlussbilanz"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "This is the total interest on Grundpfandschulden for the year. eCH-0276 interestExpenseFromLiabilities (C6900) covers interest on all liabilities. overalTotalInterestOnDebt and totalInterestOnDebt (Liegenschaften segregation L1218) are total debt interest. recordedInterestOnLiabilitiesFromRelatedParties covers related parties only. None is limited to mortgages. eCH-0278 totalAmountLiabilitiesInterests and eCH-0119 totalBusinessLiabilitiesInterest were rejected because they are natural-person standards.",
+   "elternfeld": "Total Grundpfandschulden",
+   "teilfeld": "Zinsen in diesem Geschäftsjahr fällig geworden"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Table B has one row per loan or other debt, with the same columns as table A, and was unmapped. The per-debt record of the JP standard is eCH-0276 loansAndDebtsToRelatedPartiesType/debtsLoansAndLiabilities (I2 «B. Schulden (Passivdarlehen)»), whose children match the row parts. The same caveat as for table A must stay visible: I2 covers related parties only (code 01), and unrelated creditors appear only as balance-sheet aggregates by party. eCH-0119 businessLiabilities and eCH-0278 otherLiability were rejected because they are natural-person E-Tax.",
+   "feld": "Darlehens- und andere Schulden (ohne Lieferantenschulden)",
+   "standard": "eCH-0276",
+   "element": "debtsLoansAndLiabilities"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "This is the creditor's name in a JP debt row. It maps to eCH-0276 name in the context debtsLoansAndLiabilitiesType (I2.B «Name / Firmenname»), the per-creditor name for liabilities, with related-party scope. The homonyms in other contexts do not apply. eCH-0278 creditor was rejected because it is natural persons only.",
+   "elternfeld": "Darlehens- und andere Schulden (ohne Lieferantenschulden)",
+   "teilfeld": "Name des Gläubigers",
+   "standard": "eCH-0276",
+   "element": "name"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "The creditor's postal address is one undivided part, separate from the name. The creditor can be a person or an organisation, so the generic eCH-0010 mailAddressType/addressInformation applies, per corpus practice. eCH-0276 I2.B has only municipality/canton/country.",
+   "elternfeld": "Darlehens- und andere Schulden (ohne Lieferantenschulden)",
+   "teilfeld": "Adresse des Gläubigers",
+   "standard": "eCH-0010",
+   "element": "addressInformation"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "This part is the 01/00 code for the creditor's relationship to the taxpayer. It maps to eCH-0276 typeOfRelatedParty in debtsLoansAndLiabilitiesType. The codelist divergence must be shown: the eCH codes (shareholderNaturalPerson, shareholderLegalEntity, groupCompanies, subsidiaries, otherRelatedParties) refine 01, and 00 has no eCH value.",
+   "elternfeld": "Darlehens- und andere Schulden (ohne Lieferantenschulden)",
+   "teilfeld": "Stellung des Gläubigers zur Steuerpflichtigen",
+   "standard": "eCH-0276",
+   "element": "typeOfRelatedParty"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "This is a free description of the collateral (Liegenschaften, Vorräte, Wertschriften, Policen, Bürgschaften). I searched element names across all 290 standards for collateral/pledge/surety/guarant/lien/hypothec/pfand. eCH-0276 has only guaranteeProvisions (a provision, not collateral), and I2.B has no collateral element. eCH-0134 hypothecaryRight is a land-register entry, and eCH-0278 isMortgage is an NP boolean. No element defines a debtor's collateral statement.",
+   "elternfeld": "Darlehens- und andere Schulden (ohne Lieferantenschulden)",
+   "teilfeld": "Sicherheiten"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "This is the amount of one debt at the closing balance-sheet date. It maps to eCH-0276 closingBalance in debtsLoansAndLiabilitiesType (I2.B «Schlussbestand»), not openingBalance and not the receivables context. The scope is related-party debts.",
+   "elternfeld": "Darlehens- und andere Schulden (ohne Lieferantenschulden)",
+   "teilfeld": "Schuldbetrag laut Schlussbilanz",
+   "standard": "eCH-0276",
+   "element": "closingBalance"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "This is the interest rate of one debt in %. It maps to eCH-0276 interestRate in the context debtsLoansAndLiabilitiesType (I2.B «Zinssatz»), not the receivables or investments contexts.",
+   "elternfeld": "Darlehens- und andere Schulden (ohne Lieferantenschulden)",
+   "teilfeld": "Zinssatz",
+   "standard": "eCH-0276",
+   "element": "interestRate"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "This is the interest on one debt for the business year, a period value. It maps to eCH-0276 accountedInterest in debtsLoansAndLiabilitiesType (I2.B «verbuchte Zinsen»). interestExpenseFromLiabilities was rejected because it is the total over all liabilities. The fällig vs verbucht nuance should be noted.",
+   "elternfeld": "Darlehens- und andere Schulden (ohne Lieferantenschulden)",
+   "teilfeld": "Zinsen in diesem Geschäftsjahr fällig geworden",
+   "standard": "eCH-0276",
+   "element": "accountedInterest"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "This is the sum row of table B: all debts except Grundpfand and supplier debts. I searched eCH-0276 (balance-sheet liabilities B2100–B2699, I2 without a total, hidden equity commercialLiabilities = all handelsrechtliches Fremdkapital) and eCH-0229 (no liabilities). No element covers this cut. eCH-0119 totalBusinessLiabilities and the eCH-0278 totals were rejected because they are natural-person standards.",
+   "feld": "Total Darlehens- und andere Schulden"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "This is the total closing balance of loans and other debts, excluding Grundpfand and Lieferanten. The eCH-0276 positions (current/noncurrentInterestBearingLiabilities, otherCurrent/NoncurrentLieabilitiesIntrestFree, totalCurrent/NoncurrentLiabilities) do not match this cut, and closingBalance is per debt. The NP standards eCH-0278 and eCH-0119 do not apply to a juristische Person.",
+   "elternfeld": "Total Darlehens- und andere Schulden",
+   "teilfeld": "Schuldbetrag laut Schlussbilanz"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "This is the total interest on table B debts for the year. eCH-0276 interestExpenseFromLiabilities (C6900) also includes Grundpfand interest. overalTotalInterestOnDebt is total debt interest for the segregation, and recordedInterestOnLiabilitiesFromRelatedParties covers related parties only. None equals this subtotal. eCH-0278 totalAmountLiabilitiesInterests and eCH-0119 totalBusinessLiabilitiesInterest were rejected because they are natural-person standards.",
+   "elternfeld": "Total Darlehens- und andere Schulden",
+   "teilfeld": "Zinsen in diesem Geschäftsjahr fällig geworden"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "This is the year-end total of supplier debts towards all parties, a single amount. eCH-0276 currentLiabilitiesType/tradeAndOtherCurrentPayables is the balance-sheet group «Verbindlichkeiten aus Lieferungen und Leistungen» (sample declaration B2000/B2050/B2060). eCH has no single total line: the amount is split into currentPayablesThirdParties, currentPayablesAffiliates and currentPayablesShareholders. The group also contains prepayments (B2030 Anzahlungen von Kunden), which is not part of Lieferantenschulden, and this must be noted. currentPayablesThirdParties alone was rejected because it covers third parties only.",
+   "feld": "Lieferantenschulden",
+   "standard": "eCH-0276",
+   "element": "tradeAndOtherCurrentPayables"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "These are the account-statement copies required for code-01 creditors (footnote 1), attachments to the JP tax declaration. eCH-0276 attachments (attachmentsType: documentIdentification, documentTitle, documentFormat, documentAttachedToNumber; register G) is the attachment container of the JP standard. Its document types in the sample declaration include G0518 «Kontoblatt», and it is the same standard that carries the related-party debts (I2). The generic eCH-0039 document and eCH-0058 attachment are less specific, eCH-0119 attachment is NP E-Tax, and eCH-0229 attachment is superseded in content by the newer eCH-0276.",
+   "feld": "Kopien der betreffenden Kontoauszüge aus der Buchhaltung",
+   "standard": "eCH-0276",
+   "element": "attachments"
+  }
+ ]
+}

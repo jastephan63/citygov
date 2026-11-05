@@ -1,0 +1,36 @@
+{
+ "hinweis": "eCH-Angleichung gleich beschrifteter Angaben der Steuerformulare 589–598, Formular 589, Panel 2026-11-05 mit Zweitprüfung (panel_erst_und_zweit.json)",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-11-05/ech/harmonie/589 --nur=589",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Gleiche Angabe wie auf den Formularen 6 bis 19.1. Die Excel-Beilage zu eCH-0276 beschreibt titleType/registerNumber als «Register-Nr. / PID-Nr.» der juristischen Person (Pflichtfeld). Das ist genauer als der allgemeine Identifikator eCH-0098 otherId.",
+   "feld": "PID",
+   "standard": "eCH-0276",
+   "element": "registerNumber"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Gleiche Angabe wie auf Formular 7. eCH-0276 generalRemarks ist ausdrücklich die allgemeine Bemerkung zur Deklaration, die sich auf keine bestimmte Position bezieht. eCH-0229 remarks trifft diese Unterscheidung nicht.",
+   "feld": "Bemerkungen",
+   "standard": "eCH-0276",
+   "element": "generalRemarks"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die Mehrfachauswahl wählt Dokumentarten aus. eCH-0276 documentIdentification ist der aufgezählte Dokumenttyp im Register G «Beilagen». Er ist genauer als der Sammelknoten attachments. Nicht aufgezählte Formulare fallen unter den Wert otherAttachments.",
+   "feld": "Beilagen",
+   "standard": "eCH-0276",
+   "element": "documentIdentification"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Kein Element für Ort und Datum der Unterzeichnung in eCH-0229, eCH-0276 oder einem anderen passenden Standard. eCH-0119 locationAndDate gehört zur Steuererklärung natürlicher Personen.",
+   "feld": "Ort und Datum"
+  }
+ ]
+}

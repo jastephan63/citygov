@@ -8,7 +8,9 @@ headings. Extracted headings often have footnote counters glued onto the
 number (e.g. 'Art. 91' comes out as 'Art. 911'); since article numbers only
 increase within a law, deglue() recovers the real number. Excerpts are capped,
 repeating page headers are stripped, and the DB write follows the usual
-staging -> validate -> swap pattern.
+staging -> validate -> swap pattern. A federal article the PDF segmentation does not
+find (lettered numbers such as «Art. 66a» set as superscript) is taken from the Fedlex
+XML next to the PDF (<SR>.xml) when there is one.
 
     python3 scripts/extract_quotes.py <fed-pdf-dir>
 """
@@ -95,6 +97,29 @@ def segments(pdf):
     return spans
 
 
+def xml_spans(path):
+    """{'Art. N': text} from a Fedlex Akoma-Ntoso XML next to the federal PDF (<SR>.xml): heading and
+    paragraphs of every article, footnotes (<authorialNote>) removed, inline tags joined without a
+    space («<b>Art. 66</b><i>a</i>» is «Art. 66a»). Only a fallback for an article the PDF
+    segmentation did not find (lettered numbers set as superscript)."""
+    import html as H
+    x = open(path, encoding="utf-8").read()
+    x = re.sub(r"<authorialNote\b.*?</authorialNote>", "", x, flags=re.S)
+    inline = lambda t: re.sub(r"</?(?:b|i|sup|sub|span|em|strong|inline)\b[^>]*>", "", t or "")
+    txt = lambda t: re.sub(r"\s+", " ", H.unescape(re.sub(r"<[^>]+>", " ", inline(t)))).strip()
+    out = {}
+    for m in re.finditer(r"<article\b[^>]*>(.*?)</article>", x, re.S):
+        body = m.group(1)
+        num = re.search(r"<num\b[^>]*>(.*?)</num>", body, re.S)
+        if not num:
+            continue
+        no = re.sub(r"\s+", " ", H.unescape(re.sub(r"<[^>]+>", "", num.group(1)))).strip()
+        t = txt(body[num.end():])
+        if no and t and no not in out:
+            out[no] = t[:CAP]
+    return out
+
+
 def main():
     feddir = sys.argv[1] if len(sys.argv) > 1 else "."
     idx = {g["shr"]: g["file"] for g in
@@ -121,12 +146,15 @@ def main():
             nolaw += 1
             continue
         spans = segments(pdf)
+        xml = os.path.splitext(pdf)[0] + ".xml"
+        xspans = xml_spans(xml) if L["sr"] and os.path.exists(xml) else {}
         # The DB may say 'Art. 4' where the PDF says '§ 4' (or vice versa):
         # look up the exact key first, then the same number with the other kind.
         for a in c.execute("""SELECT a.id, a.article_no FROM article a
              JOIN data_field_legal_basis d ON d.article_id=a.id WHERE a.law_id=? GROUP BY a.id""", [L["lid"]]):
             no = re.sub(r"\s+", " ", a["article_no"].strip())
-            txt = spans.get(no) or spans.get(no.replace("Art. ", "§ ")) or spans.get(no.replace("§ ", "Art. "))
+            txt = spans.get(no) or spans.get(no.replace("Art. ", "§ ")) or spans.get(no.replace("§ ", "Art. ")) \
+                or xspans.get(no)
             if txt and len(txt) > 40:
                 c.execute("UPDATE article SET text_excerpt=? WHERE id=?", [txt, a["id"]])
                 filled += 1

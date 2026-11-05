@@ -582,11 +582,26 @@ CREATE TABLE IF NOT EXISTS online_datei (          -- documents behind «Online 
     sha256     TEXT NOT NULL,
     bytes      INTEGER,
     dateiname  TEXT,
-    herkunft   TEXT NOT NULL CHECK (herkunft IN ('verlinkt','websuche')),
+    herkunft   TEXT NOT NULL CHECK (herkunft IN ('verlinkt','websuche','shch')),  -- shch: a page of sh.ch the Formulare come from
     slug       TEXT,
     service_id INTEGER REFERENCES service(id),
     label      TEXT,
     abzug      TEXT);
+
+CREATE TABLE IF NOT EXISTS portal_korrektur (      -- what is to be corrected on services.sh.ch, with the right target (load_online.py)
+    slug            TEXT NOT NULL,                     -- the live page
+    element         TEXT NOT NULL CHECK (element IN ('schaltflaeche','link','datei')),
+    bezeichnung     TEXT NOT NULL,                     -- the button / link label or the file name, as on the page
+    live_url        TEXT,                              -- where it leads today
+    art             TEXT NOT NULL CHECK (art IN ('leer','falsches_ziel','ziel_nicht_erreichbar','sitzungslink',
+                                                 'aeltere_ausgabe','falsche_datei')),
+    befund          TEXT NOT NULL,
+    richtig_url     TEXT,                              -- the right target (NULL: none is published; see richtig_hinweis)
+    richtig_form_id INTEGER REFERENCES form(id),       -- the Formular of the databank it is about
+    richtig_hinweis TEXT,
+    beleg           TEXT NOT NULL,
+    geprueft        TEXT,
+    PRIMARY KEY (slug, element, bezeichnung));
 
 CREATE TABLE IF NOT EXISTS quellen_abzug (         -- one row per harvest of DVSH / SHEP / the live portal (citygov/load/quellen_log.py)
     quelle TEXT NOT NULL CHECK (quelle IN ('DVSH','SHEP','Portal')),

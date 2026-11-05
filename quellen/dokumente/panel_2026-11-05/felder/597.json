@@ -1,0 +1,143 @@
+{
+ "form_id": 597,
+ "data_fields": [
+  {
+   "name": "PID",
+   "definition": "Kennnummer der steuerpflichtigen juristischen Person, einzutragen beim Vermerk «PID» im Kopf des Formulars (auf dem Formular nicht weiter erläutert).",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Firmenname",
+   "definition": "Firmenname der steuerpflichtigen juristischen Person, die die Angaben über ihre Beteiligungen macht.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Zusammensetzung",
+   "definition": "Tabelle der Beteiligungen an Gesellschaften oder Genossenschaften, an deren Grund- oder Stammkapital die Steuerpflichtige im Zeitpunkt des Anfalls des Beteiligungsertrages oder am Ende der Steuerperiode mit mindestens 10 % oder mit Kapitalanteilen im Verkehrswert von mindestens Fr. 1 Mio. beteiligt war; je Beteiligung eine Zeile mit den Angaben der Spalten A bis H.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Anzahl und Art der Titel (Spalte A)",
+    "Bezeichnung und Rechtsform des Unternehmens (Spalte B)",
+    "Gesamtes Grund- oder Stammkapital (Nominalbetrag) (Spalte C)",
+    "Beteiligung Nominalbetrag (Spalte D)",
+    "Beteiligung in % (Spalte E)",
+    "Beteiligung Verkehrswert (Spalte F)",
+    "Gewinnsteuerwert der Beteiligung am Ende der Steuerperiode (Spalte G)",
+    "Gewinnsteuerwert in % der Aktiven (Spalte H)"
+   ],
+   "format": "10 Zeilen; Spalten C, D, F, G in CHF; Spalten E, H in %"
+  },
+  {
+   "name": "Gewinnsteuerwert der Gesamtaktiven am Ende der Steuerperiode",
+   "definition": "Gewinnsteuerwert aller Aktiven der Steuerpflichtigen am Ende der Steuerperiode in Franken (Spalte G), auf dem Formular als Bezugsgrösse 100 % für Spalte H vorgedruckt.",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "CHF"
+  },
+  {
+   "name": "Total des Finanzierungsaufwandes in der Steuerperiode",
+   "definition": "Gesamter Finanzierungsaufwand der Steuerpflichtigen in der Steuerperiode in Franken (Spalte G), auf dem Formular als Bezugsgrösse 100 % vorgedruckt.",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "CHF"
+  },
+  {
+   "name": "Gestehungskosten",
+   "definition": "Tabelle je Beteiligung (Zeilen 1 bis 10 wie in der Zusammensetzung) mit den Angaben zum Erwerb, zu den Gestehungskosten zu Beginn, ihrer Veränderung und am Ende der Steuerperiode sowie zur Frage, ob während der Steuerperiode eine Veräusserung stattgefunden hat (Ja oder Nein je Zeile).",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Datum des ersten Erwerbs von Titeln der Beteiligung (Spalte I)",
+    "Kaufpreis für die in der Steuerperiode erworbenen Anteile (Spalte J)",
+    "Datum des letzten Erwerbs (Spalte K)",
+    "Gestehungskosten zu Beginn der Steuerperiode (Spalte L)",
+    "Veränderung Erhöhung (Spalte M)",
+    "Veränderung Verminderung (Spalte N)",
+    "Gestehungskosten am Ende der Steuerperiode (Spalte O)",
+    "Hat während der Steuerperiode eine Veräusserung stattgefunden? (Ja/Nein)"
+   ],
+   "format": "10 Zeilen; Spalten J, L, M, N, O in CHF"
+  },
+  {
+   "name": "Formular 19.1 «Kapitalgewinn aus Beteiligung» oder eigene Aufstellung",
+   "definition": "Für jede aufgeführte Beteiligung, die während der Steuerperiode ganz oder teilweise veräussert wurde, entweder ein ausgefülltes Exemplar des Formulars 19.1 «Kapitalgewinn aus Beteiligung» oder eine eingereichte eigene Aufstellung mit den entsprechenden Angaben; nur bei einer Veräusserung verlangt (Fussnote 1).",
+   "data_type": "attachment",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Nettoertrag der Beteiligungen",
+   "definition": "Tabelle je Beteiligung (Zeilen 1 bis 10) zur Ermittlung des Nettoertrags: Bruttoerträge aus Ausschüttungen und Kapitalgewinnen, damit zusammenhängende Abschreibungen, massgeblicher Ertrag, Verwaltungsaufwand (Spalte S × 5 %, 5 %-Praxis), Finanzierungsaufwand und der resultierende Nettogewinn oder Nettoverlust.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Bruttoertrag aus Ausschüttungen (Spalte P)",
+    "Bruttoertrag aus Kapitalgewinnen (Übertrag von Formular/-en 19.1) (Spalte Q)",
+    "Abschreibungen im Zusammenhang mit dem Ertrag (Spalte R)",
+    "Massgeblicher Ertrag (Spalte S)",
+    "Verwaltungsaufwand Spalte S × 5 % (5 %-Praxis) (Spalte T)",
+    "Finanzierungsaufwand (Spalte U)",
+    "Nettoertrag Nettogewinn (Spalte V)",
+    "Nettoertrag Nettoverlust (Spalte W)"
+   ],
+   "format": "10 Zeilen; CHF"
+  },
+  {
+   "name": "Nettoertrag aus Beteiligungen (Summe der Zeilen 1 bis 10)",
+   "definition": "Summenzeile der Tabelle «Nettoertrag der Beteiligungen» in Franken mit je einem Feld unter Spalte V (Nettogewinn, hervorgehoben) und Spalte W (Nettoverlust); der Betrag aus Spalte V wird gemäss den Pfeilen in die Berechnung der prozentualen Ermässigung (4.1 und 4.2) übernommen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Nettogewinn (Spalte V)",
+    "Nettoverlust (Spalte W)"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Prozentuale Ermässigung (Kantons- und Gemeindesteuern)",
+   "definition": "Berechnung des Beteiligungsabzugs für die Kantons- und Gemeindesteuern: Nettoertrag aus Beteiligungen × 100 geteilt durch den gesamten steuerbaren Reingewinn, ergibt die prozentuale Ermässigung der Gewinnsteuer.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Nettoertrag aus Beteiligungen",
+    "Gesamter steuerbarer Reingewinn",
+    "Prozentuale Ermässigung in %"
+   ],
+   "format": "CHF; % auf 3 Kommastellen genau"
+  },
+  {
+   "name": "Prozentuale Ermässigung (Direkte Bundessteuer)",
+   "definition": "Berechnung des Beteiligungsabzugs für die direkte Bundessteuer: Nettoertrag aus Beteiligungen × 100 geteilt durch den gesamten steuerbaren Reingewinn (in der Schweiz steuerbarer Reingewinn nach Verlustverrechnung und nach Ausscheidung der Auslandergebnisse), ergibt die prozentuale Ermässigung der Gewinnsteuer.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Nettoertrag aus Beteiligungen",
+    "Gesamter steuerbarer Reingewinn",
+    "Prozentuale Ermässigung in %"
+   ],
+   "format": "CHF; % auf 3 Kommastellen genau"
+  }
+ ],
+ "hinweis": "Korrekturen: (1) «Nettoertrag aus Beteiligungen (Summe der Zeilen 1 bis 10)» von money auf composite geändert, mit den Teilfeldern «Nettogewinn (Spalte V)» und «Nettoverlust (Spalte W)». Die gerenderte Seite 2 zeigt in der Summenzeile neben dem hervorgehobenen Feld unter V ein zweites, gerahmtes Feld unter W. Die Definition wurde angepasst: Nur der Betrag aus V geht über die Pfeile in 4.1 und 4.2. (2) Die Definition der Beilage «Formular 19.1 … oder eigene Aufstellung» folgt jetzt dem Wortlaut der Fussnote 1: Formular 19.1 wird «ausgefüllt», eine eigene Aufstellung wird «eingereicht». Bei 1.2 und 1.3 steht nun dazu, dass der Betrag in Spalte G gehört. Alle übrigen Felder sind unverändert übernommen und wurden Zeile für Zeile gegen die gerenderten Seiten geprüft: Spalten A–H, I–O mit Ja/Nein und P–W sind vollständig, die Reihenfolge stimmt, die Typen auch. Beibehalten mit Begründung: required=false bei Formular 19.1. Die Beilage ist nicht freiwillig, aber nur bei einer Veräusserung verlangt. So handhabt es auch der Bestand bei bedingten Beilagen (17 zu 4). Die Bedingung steht in der Definition. Spalte A «Anzahl und Art der Titel» und Spalte B «Bezeichnung und Rechtsform des Unternehmens» sind je ein Teilfeld geblieben, weil das Formular sie als eine Spalte druckt. Keine Felder der Person sind: der Hinweis «Bitte beachten Sie die Wegleitung zu Angaben über Beteiligungen», die vorgedruckten «100 %» in Spalte H bei 1.2 und 1.3, die Fussnote 1 (als Beilage erfasst), die Sternfussnote zum steuerbaren Reingewinn bei 4.2 (in die Definition aufgenommen) und der gestrichelte Kasten «Übertrag auf Steuererklärung (Formular 5, Seite 2, Punkt 10)». Dieser Kasten ist beim Ergebnis von 4.2 gedruckt und eine Anweisung, kein Eingabefeld. Das Formular druckt weder Unterschrift noch Ort und Datum noch eine Beilagen-Checkliste. Die Bedeutung von «PID» erklärt das Formular nicht. Keine Dateien und keine Einträge in der DB wurden geschrieben."
+}

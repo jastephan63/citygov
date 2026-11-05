@@ -1,0 +1,382 @@
+{
+ "hinweis": "eCH-Urteile Formular 593, Panel 2026-11-05, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-11-05/ech/593 --nur-offene=593",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Korrigiert. Die PID ist die Registernummer der steuerpflichtigen juristischen Person bei der Steuerverwaltung. eCH-0276 hat dafür ein eigenes Element: In der SSK-Formularvorlage zu eCH-0276 heisst Z1001 «Register-Nr. / PID-Nr.». Die Felder Z1000 bis Z1003 folgen genau der Reihenfolge in titleType (organisationName, registerNumber, cantonalRegisterNumber, uid). Der propagierte Wert eCH-0044 localPersonId passt nicht, er kennzeichnet natürliche Personen. eCH-0098 otherId ist nur ein allgemeiner Platz für irgendeine weitere Nummer und braucht eine Kategorie. Das ist weniger genau als das dafür bestimmte Element registerNumber.",
+   "feld": "PID",
+   "standard": "eCH-0276",
+   "element": "registerNumber"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Der Firmenname der juristischen Person ist eCH-0098 organisationIdentificationType.organisationName. Die Databank verwendet diesen Wert für Firmennamen allgemein, der propagierte Wert stimmt. eCH-0276 titleType.organisationName (Z1000 «Name der Firma») bedeutet dasselbe.",
+   "feld": "Firmenname"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Spaltenkopf jeder Ausscheidungsspalte mit Kanton bzw. Land und Ort. Das ist der Container eCH-0276 taxSegregationDetailsType.taxSegregationGeneralInformation (Register L, Kopfzeilen Kanton/Gemeinde).",
+   "feld": "Kanton und Ort",
+   "standard": "eCH-0276",
+   "element": "taxSegregationGeneralInformation"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Kantonskürzel der Ausscheidungsspalte, bei Ausland das Land. Das ist taxSegregationGeneralInformationType.cantonOfBusinessPremises (xs:string, nimmt also auch ein Land auf).",
+   "elternfeld": "Kanton und Ort",
+   "teilfeld": "Kanton",
+   "standard": "eCH-0276",
+   "element": "cantonOfBusinessPremises"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Ort (Gemeinde) der Betriebsstätte je Ausscheidungsspalte = taxSegregationGeneralInformationType.municipalityOfBusinessPremises.",
+   "elternfeld": "Kanton und Ort",
+   "teilfeld": "Ort",
+   "standard": "eCH-0276",
+   "element": "municipalityOfBusinessPremises"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Block Kapitalausscheidung (lokalisierte und mobile Aktiven, Total Aktiven, 1. Quote, steuerbares Kapital) = Container taxSegregationDetailsType.taxSegregationCapital («Steuerausscheidung Kapital» in Register L).",
+   "feld": "Kapitalausscheidung",
+   "standard": "eCH-0276",
+   "element": "taxSegregationCapital"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Erste Zeile der lokalisierten Aktiven = localisedOperationalAssetsType.operationalProperties (L1010 «Betriebliche Immobilien»).",
+   "elternfeld": "Kapitalausscheidung",
+   "teilfeld": "Immobilien",
+   "standard": "eCH-0276",
+   "element": "operationalProperties"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Maschinen, Mobilien und Fahrzeuge = localisedOperationalAssetsType.machineryMovablesVehicles (L1011, gleiche Bezeichnung).",
+   "elternfeld": "Kapitalausscheidung",
+   "teilfeld": "Maschinen, Mobilien, Fahrzeuge",
+   "standard": "eCH-0276",
+   "element": "machineryMovablesVehicles"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Dritte Zeile der lokalisierten Aktiven, im Standard localisedOperationalAssetsType.inventories (L1012 «Vorräte»). Die Zelle fasst zusammen, was eCH-0276 trennt: Beteiligungen gehören dort zu den mobilen Aktiven (mobileOperatingAssetsype.participations). Zugeordnet ist der Hauptinhalt Waren, an der Stelle, an der das Formular die Zeile führt.",
+   "elternfeld": "Kapitalausscheidung",
+   "teilfeld": "Waren, Beteiligungen",
+   "standard": "eCH-0276",
+   "element": "inventories"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Übrige lokalisierte Aktiven = localisedOperationalAssetsType.otherLocalisedAssets (L1013).",
+   "elternfeld": "Kapitalausscheidung",
+   "teilfeld": "Übrige lokalisierte Aktiven",
+   "standard": "eCH-0276",
+   "element": "otherLocalisedAssets"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Unter «B Mobile Konti» steht nur eine Betragszeile je Spalte. eCH-0276 gliedert die mobilen Aktiven weiter (liquidAssets, receivablesSecurities …). Für die eine Zeile passt deshalb nur die Summe mobileOperatingAssetsype.totalMobileOperatingAssets (L1029).",
+   "elternfeld": "Kapitalausscheidung",
+   "teilfeld": "Mobile Konten objektmässig",
+   "standard": "eCH-0276",
+   "element": "totalMobileOperatingAssets"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Summe der lokalisierten und mobilen Aktiven in der Kapitalausscheidung = totalAssetsType.totalLocalisedOperationalAssetsMobileOperatingAssetsAssetsNotRequiredForOperations (L1050 «Total Aktiven»).",
+   "elternfeld": "Kapitalausscheidung",
+   "teilfeld": "Total Aktiven",
+   "standard": "eCH-0276",
+   "element": "totalLocalisedOperationalAssetsMobileOperatingAssetsAssetsNotRequiredForOperations"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Die 1. Quote ist der Anteil der Spalte an den Total Aktiven, im Standard das Prozent-Element von totalAssetsType (L1051 «in %», percentageType).",
+   "elternfeld": "Kapitalausscheidung",
+   "teilfeld": "1. Quote %",
+   "standard": "eCH-0276",
+   "element": "totalLocalisedOperationalAssetsMobileOperatingAssetsAssetsNotRequiredForOperationsPercentage"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Steuerbares Kapital je Spalte = totalAssetsType.taxableEquity (L1060 «Steuerbares Eigenkapital»).",
+   "elternfeld": "Kapitalausscheidung",
+   "teilfeld": "Steuerbares Kapital",
+   "standard": "eCH-0276",
+   "element": "taxableEquity"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Objektmässige Ausscheidung des Liegenschaftsertrags = Container taxSegregationProfitType.objectBasedSegregationPreallocation (Register L, «8. Objektmässige Ausscheidung bzw. Vorabzuweisung»).",
+   "feld": "Ausscheidung Immobilien",
+   "standard": "eCH-0276",
+   "element": "objectBasedSegregationPreallocation"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bruttoertrag der Liegenschaften = objectBasedSegregationPreallocationType.propertyIncome (L1200 «Liegenschaftsertrag»).",
+   "elternfeld": "Ausscheidung Immobilien",
+   "teilfeld": "Bruttoertrag Liegenschaften",
+   "standard": "eCH-0276",
+   "element": "propertyIncome"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Die Zeile steht zwischen dem Bruttoertrag und den Kostenabzügen und hat kein Minuszeichen. Sie wird also zum Ertrag addiert. Das entspricht objectBasedSegregationPreallocationType.otherPropertyRelatedGrossIncome (L1201 «übrige objektmässige Bruttoerträge»). grossCapitalGains und furtherNetPropertyIncome passen nicht, sie folgen im Standard erst nach dem Nettoertrag.",
+   "elternfeld": "Ausscheidung Immobilien",
+   "teilfeld": "Objektmässig ausgeschiedener Erfolg",
+   "standard": "eCH-0276",
+   "element": "otherPropertyRelatedGrossIncome"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Unterhaltskosten der Liegenschaften = objectBasedSegregationPreallocationType.maintenanceCostsAndCharges (L1203 «Unterhaltskosten und Abgaben»).",
+   "elternfeld": "Ausscheidung Immobilien",
+   "teilfeld": "Unterhaltskosten",
+   "standard": "eCH-0276",
+   "element": "maintenanceCostsAndCharges"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Verwaltungskosten der Liegenschaften = objectBasedSegregationPreallocationType.administrativeCosts (L1202).",
+   "elternfeld": "Ausscheidung Immobilien",
+   "teilfeld": "Verwaltungskosten",
+   "standard": "eCH-0276",
+   "element": "administrativeCosts"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Abschreibungen auf Liegenschaften = objectBasedSegregationPreallocationType.depreciationOfProperties (L1217).",
+   "elternfeld": "Ausscheidung Immobilien",
+   "teilfeld": "Abschreibungen",
+   "standard": "eCH-0276",
+   "element": "depreciationOfProperties"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Steuern als Abzug im Immobilienblock = objectBasedSegregationPreallocationType.taxes (L1216 «- Steuern»).",
+   "elternfeld": "Ausscheidung Immobilien",
+   "teilfeld": "Steuern",
+   "standard": "eCH-0276",
+   "element": "taxes"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Übrige objektbezogene Aufwände = objectBasedSegregationPreallocationType.otherObjectBasedExpenses (freie Eingabefelder L1204/L12xx, freeInputFieldType).",
+   "elternfeld": "Ausscheidung Immobilien",
+   "teilfeld": "Diverses",
+   "standard": "eCH-0276",
+   "element": "otherObjectBasedExpenses"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Je Spalte wird der Anteil der Schuldzinsen abgezogen, der auf die Liegenschaften entfällt. Das ist proportionalInterestOnDebt (L1219 «proportionale Schuldzinsen»), nicht totalInterestOnDebt (L1218 «Schuldzinsen gesamt»).",
+   "elternfeld": "Ausscheidung Immobilien",
+   "teilfeld": "Schuldzinsen",
+   "standard": "eCH-0276",
+   "element": "proportionalInterestOnDebt"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Ergebnis des Immobilienblocks = objectBasedSegregationPreallocationType.netPropertyIncome (L1230 «Objektertrag netto»).",
+   "elternfeld": "Ausscheidung Immobilien",
+   "teilfeld": "Nettoertrag Liegenschaften",
+   "standard": "eCH-0276",
+   "element": "netPropertyIncome"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Block Erwerbsfaktoren = Container taxSegregationProfitType.earningFactors («4. Erwerbsfaktoren»).",
+   "feld": "Erwerbsfaktoren",
+   "standard": "eCH-0276",
+   "element": "earningFactors"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Hier ist die Zeile der Aktivenfaktor innerhalb der Erwerbsfaktoren, also earningFactorsType.operationalAssets («Betriebliche Aktiven» in Abschnitt 4). Das ist ein anderes Element als Total Aktiven in der Kapitalausscheidung.",
+   "elternfeld": "Erwerbsfaktoren",
+   "teilfeld": "Total Aktiven",
+   "standard": "eCH-0276",
+   "element": "operationalAssets"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Verlangt ist der kapitalisierte Lohnbetrag, also earningFactorsType.salariesWagesCapitalised (L1092 «Gehälter / Löhne mit 10 % kapitalisiert»). salariesWages (L1090) wäre die Lohnsumme.",
+   "elternfeld": "Erwerbsfaktoren",
+   "teilfeld": "Löhne (mit 10 % kapitalisiert)",
+   "standard": "eCH-0276",
+   "element": "salariesWagesCapitalised"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Verlangt ist der kapitalisierte Mietbetrag, also earningFactorsType.rentsCapitalised (L1093 «Mieten mit 6 % kapitalisiert»). rents (L1091) wäre die Mietsumme.",
+   "elternfeld": "Erwerbsfaktoren",
+   "teilfeld": "Mieten (mit 6 % kapitalisiert)",
+   "standard": "eCH-0276",
+   "element": "rentsCapitalised"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Total der Erwerbsfaktoren = earningFactorsType.totalEarningFactors (L1100).",
+   "elternfeld": "Erwerbsfaktoren",
+   "teilfeld": "Total Erwerbsfaktoren",
+   "standard": "eCH-0276",
+   "element": "totalEarningFactors"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Die 2. Quote ist der Anteil der Spalte an den Erwerbsfaktoren = earningFactorsType.totalEarningFactorsPercentage (L1101 «in %»).",
+   "elternfeld": "Erwerbsfaktoren",
+   "teilfeld": "2. Quote %",
+   "standard": "eCH-0276",
+   "element": "totalEarningFactorsPercentage"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Block Umsatzfaktoren = Container taxSegregationProfitType.turnoverFactors («5. Umsatzfaktoren»).",
+   "feld": "Umsatzfaktoren",
+   "standard": "eCH-0276",
+   "element": "turnoverFactors"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Umsatz je Spalte = turnoverFactorsType.turnoverFactorsAmount (L1110).",
+   "elternfeld": "Umsatzfaktoren",
+   "teilfeld": "Umsatz",
+   "standard": "eCH-0276",
+   "element": "turnoverFactorsAmount"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Die 3. Quote ist der Umsatzanteil der Spalte = turnoverFactorsType.turnoverFactorsPercentage (L1111).",
+   "elternfeld": "Umsatzfaktoren",
+   "teilfeld": "3. Quote %",
+   "standard": "eCH-0276",
+   "element": "turnoverFactorsPercentage"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Verteilung des Reingewinns (objektmässig, Voraus, nach Faktoren, Ausgleich bis zum steuerbaren Reingewinn) = Container taxSegregationProfitType.taxableFactors («9. Steuerbare Faktoren»).",
+   "feld": "Gewinnverteilung",
+   "standard": "eCH-0276",
+   "element": "taxableFactors"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Korrigiert von eCH-0229 auf eCH-0276. In Register L beginnt Abschnitt «9. Steuerbare Faktoren» mit «Steuerbarer Reingewinn / Verlust nach Verlustverrechnung D1400». D1400 ist in eCH-0276 taxLossCarriedForwardListType.taxableNetProfitOrLossAfterOffsettingLosses; die Folge D1350, D1400, D1410, D1490, D1500 entspricht genau der Reihenfolge im XSD. Das ist der Gesamtgewinn vor Abzug des ausländischen Anteils (D1410), und das Formular verteilt auch auf Länder. Damit stammt die Ausgangszeile aus demselben Standard wie der übrige Block. eCH-0229 taxableNetProfitOrLoss (Ziff. 8 «in der Schweiz bzw. im Kanton») ist für die Ausgangszeile mehrdeutig. Die Schlusszeile je Spalte ist eine andere Angabe.",
+   "elternfeld": "Gewinnverteilung",
+   "teilfeld": "Steuerbarer Reingewinn (Ausgangszeile)",
+   "standard": "eCH-0276",
+   "element": "taxableNetProfitOrLossAfterOffsettingLosses"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "In der Gewinnverteilung ist der Nettoertrag der objektmässig zugewiesene Gewinnanteil, also taxableFactorsType.allocationByObject (L1250 «Zuweisung objektmässig»). Im Immobilienblock ist derselbe Betrag dagegen netPropertyIncome.",
+   "elternfeld": "Gewinnverteilung",
+   "teilfeld": "Nettoertrag Liegenschaften",
+   "standard": "eCH-0276",
+   "element": "allocationByObject"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Betriebsgewinn = Reingewinn minus Nettoertrag Liegenschaften. Eine eigene Zelle hat er nur in der Spalte Total. Ebenso führt der Standard ihn nur in der Total-Spalte: L1251_01, taxableFactorsTotalType.operatingProfit.",
+   "elternfeld": "Gewinnverteilung",
+   "teilfeld": "Betriebsgewinn",
+   "standard": "eCH-0276",
+   "element": "operatingProfit"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Satz des Vorausanteils (Präzipuum) auf der punktierten Linie = taxSegregationProfitType.precedingInTheCantonInPercent (L1130 «Voraus im Kanton in %»).",
+   "elternfeld": "Gewinnverteilung",
+   "teilfeld": "Voraus in % (Satz)",
+   "standard": "eCH-0276",
+   "element": "precedingInTheCantonInPercent"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Betrag des zum Voraus zugewiesenen Betriebsgewinns = taxableFactorsType.allocationPreceding (L1252 «Zuweisung Voraus»).",
+   "elternfeld": "Gewinnverteilung",
+   "teilfeld": "Voraus in % (Betrag)",
+   "standard": "eCH-0276",
+   "element": "allocationPreceding"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Nach der Quote der Erwerbs- oder Umsatzfaktoren verteilter Betriebsgewinn = taxableFactorsType.allocationByFactors (L1253 «Zuweisung nach Faktoren»).",
+   "elternfeld": "Gewinnverteilung",
+   "teilfeld": "Betriebsgewinn (nach 2. oder 3. Quote verteilt)",
+   "standard": "eCH-0276",
+   "element": "allocationByFactors"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Der Ausgleich verlegt Ausscheidungsverluste zwischen den Spalten, bevor der steuerbare Reingewinn feststeht. Im Standard ist das die Verlustumlage nach dem Ergebnis und vor dem steuerbaren Gewinn (L1261 «Verlustumlage 1»), taxableFactorsType.lossAllocation1. Weil das Formular nur eine Ausgleichszeile hat, ist die erste Umlage zugeordnet.",
+   "elternfeld": "Gewinnverteilung",
+   "teilfeld": "Ausgleich",
+   "standard": "eCH-0276",
+   "element": "lossAllocation1"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Der Schlusswert ist der je Kanton bzw. Land steuerbare Reingewinn = taxableFactorsType.taxableIncome (L1265 «Steuerbarer Gewinn»).",
+   "elternfeld": "Gewinnverteilung",
+   "teilfeld": "Steuerbarer Reingewinn (Schlusszeile)",
+   "standard": "eCH-0276",
+   "element": "taxableIncome"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Der propagierte Wert kein_standard stammt von Bemerkungsfeldern ohne Fachstandard. Für die Steuerunterlagen juristischer Personen gibt es aber eCH-0276 remarksType («Remarks (register H on forms)»). Das Formular verlangt eine freie Bemerkung ohne Angabe einer Position. Das ist structureType.generalRemarks (H1100 «allgemeine Bemerkungen … ohne Bezug auf eine Position»), nicht remark (H1010, mit Position H1000).",
+   "feld": "Bemerkung",
+   "standard": "eCH-0276",
+   "element": "generalRemarks"
+  }
+ ]
+}

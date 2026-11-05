@@ -1,0 +1,1633 @@
+{
+ "hinweis": "eCH-Urteile Formular 589, Panel 2026-11-05, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-11-05/ech/589 --nur-offene=589",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "PID ist die von der Steuerverwaltung vergebene Kennnummer der steuerpflichtigen GESELLSCHAFT; die propagierte eCH-0044 localPersonId gilt nur für natürliche Personen und ist hier falsch. Für eine von einer Behörde vergebene Organisationsnummer ist eCH-0098 organisationIdentification/otherId (Kategorie + ID + Registrierungsstelle) die Praxis der Databank (SSL-Nr. der Steuerverwaltung, AHV-Abrechnungsnummer); localSenderId hat keine Vorlage und meint die ID im System des Absenders.",
+   "feld": "PID",
+   "standard": "eCH-0098",
+   "element": "otherId"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Unternehmens-Identifikationsnummer der Gesellschaft = eCH-0098 organisationIdentification/uid (Praxis: 15 UID-Felder).",
+   "feld": "UID",
+   "standard": "eCH-0098",
+   "element": "uid"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Weitere von der Steuerverwaltung vorgedruckte Kennnummer der Gesellschaft neben PID und UID; eCH-0098 organisationIdentification/otherId nimmt beliebig viele weitere Organisations-IDs mit Kategorie auf.",
+   "feld": "FID",
+   "standard": "eCH-0098",
+   "element": "otherId"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Firma (genaue Bezeichnung) = Name der Organisation, eCH-0098 organisationIdentification/organisationName (Praxis: 48 Firma-Felder).",
+   "feld": "Firma",
+   "standard": "eCH-0098",
+   "element": "organisationName"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Propagiertes eCH-0098 swissHeadquarter steht nur in secondaryResidenceType (Verweis eines Nebensitzes auf den Schweizer Hauptsitz) und kennt kein Ausland – falscher Kontext. eCH-0229 contactAndAdministration/headOffice (eCH-0046 addressType) ist der Hauptsitz in der Steuererklärung JP inkl. Ausland (so auch Formular 592 «Sitz»).",
+   "feld": "Hauptsitz",
+   "standard": "eCH-0229",
+   "element": "headOffice"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Adresszeile des Hauptsitzes ohne PLZ/Ort/Land (eigene Teile) = Strasse, eCH-0010 addressInformation/street.",
+   "elternfeld": "Hauptsitz",
+   "teilfeld": "Adresse",
+   "standard": "eCH-0010",
+   "element": "street"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Postleitzahl des Hauptsitzes, eCH-0010 swissZipCode (bei Sitz im Ausland foreignZipCode).",
+   "elternfeld": "Hauptsitz",
+   "teilfeld": "PLZ",
+   "standard": "eCH-0010",
+   "element": "swissZipCode"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Ort des Hauptsitzes, eCH-0010 town.",
+   "elternfeld": "Hauptsitz",
+   "teilfeld": "Ort",
+   "standard": "eCH-0010",
+   "element": "town"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Land des Hauptsitzes, falls nicht in der Schweiz, eCH-0010 addressInformation/country.",
+   "elternfeld": "Hauptsitz",
+   "teilfeld": "Land",
+   "standard": "eCH-0010",
+   "element": "country"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "«Zweck» der Gesellschaft in der Steuererklärung JP; eCH-0229 contactAndAdministration/purpose (string400) ist genau diese Angabe (so auch Formular 11 «Geschäftszweck»). Das propagierte eCH-0098 activityDescription ist die Tätigkeitsbeschreibung des UID-Registers und weniger genau als das Element des Steuerstandards.",
+   "feld": "Zweck",
+   "standard": "eCH-0229",
+   "element": "purpose"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ankreuzliste, wo Zweigniederlassungen/Betriebsstätten/Liegenschaften bestehen (Kanton SH, andere Kantone, Ausland); eCH-0276 titleType/secondaryTaxDomicile (mit cantonSecondaryTaxDomicile, countrySecondaryTaxDomicile) ist der Container der Nebensteuerdomizile samt Kanton/Land – kein Einzelwert auf einer Ankreuzbox.",
+   "feld": "Zweigniederlassungen",
+   "standard": "eCH-0276",
+   "element": "secondaryTaxDomicile"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Gründungsdatum (bei Zuzug Datum der Sitzverlegung) der Gesellschaft = eCH-0229 contactAndAdministration/foundationDate.",
+   "feld": "Gründungsdatum",
+   "standard": "eCH-0229",
+   "element": "foundationDate"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Zusammengesetzt aus Beginn/Ende; katalogweit kein eigener Zeitraum-Container für das Geschäftsjahr (gesucht: businessYear/fiscalYear/period/dateRange). eCH-0229 header enthält periodFrom/periodTo, deren Dokumentation ausdrücklich auf «Dauer des Geschäftsjahres» Seite 1 des Formulars verweist.",
+   "feld": "Dauer des Geschäftsjahres",
+   "standard": "eCH-0229",
+   "element": "header"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "eCH-0229 header/periodFrom: Datum gemäss «Dauer des Geschäftsjahres (Beginn)» auf Seite 1 des Formulars (XSD-Dokumentation).",
+   "elternfeld": "Dauer des Geschäftsjahres",
+   "teilfeld": "Datum Beginn",
+   "standard": "eCH-0229",
+   "element": "periodFrom"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "eCH-0229 header/periodTo: Datum gemäss «Dauer des Geschäftsjahres (Ende)» auf Seite 1 des Formulars (XSD-Dokumentation).",
+   "elternfeld": "Dauer des Geschäftsjahres",
+   "teilfeld": "Datum Ende",
+   "standard": "eCH-0229",
+   "element": "periodTo"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Organmitglied der Gesellschaft (Rolle president); eCH-0229 administrativeBody (memberOfAdministrativeBodyType, Erweiterung von representativeType mit role) ist der Container für Person und Kontakt.",
+   "feld": "Organe – Verwaltungsratspräsident/-in",
+   "standard": "eCH-0229",
+   "element": "administrativeBody"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Der Teil hält Name und Adresse der VR-Präsidentin/des VR-Präsidenten in einer Zeile; eCH-0276 titleType/chairmanOfTheBoardOfDirectors (string) ist die Textangabe genau zu diesem Organ.",
+   "elternfeld": "Organe – Verwaltungsratspräsident/-in",
+   "teilfeld": "Name, Adresse",
+   "standard": "eCH-0276",
+   "element": "chairmanOfTheBoardOfDirectors"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Telefonnummer der VR-Präsidentin/des VR-Präsidenten, eCH-0046 phoneType/phoneNumber (administrativeBody/contactInformation ist eCH-0046 contactType).",
+   "elternfeld": "Organe – Verwaltungsratspräsident/-in",
+   "teilfeld": "Telefon",
+   "standard": "eCH-0046",
+   "element": "phoneNumber"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Organmitglied der Gesellschaft (Rolle executive); eCH-0229 administrativeBody (memberOfAdministrativeBodyType) ist der Container.",
+   "feld": "Organe – Geschäftsleitung",
+   "standard": "eCH-0229",
+   "element": "administrativeBody"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name und Adresse der Geschäftsleitung in einer Zeile; eCH-0276 titleType/management (string) ist die Textangabe zur Geschäftsleitung.",
+   "elternfeld": "Organe – Geschäftsleitung",
+   "teilfeld": "Name, Adresse",
+   "standard": "eCH-0276",
+   "element": "management"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Telefonnummer der Geschäftsleitung, eCH-0046 phoneType/phoneNumber.",
+   "elternfeld": "Organe – Geschäftsleitung",
+   "teilfeld": "Telefon",
+   "standard": "eCH-0046",
+   "element": "phoneNumber"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Kontakt für Rückfragen (gilt nicht als Vollmacht); eCH-0276 titleType/contactForInquiries (nameOfContact, phoneNumberOfContact, emailAdressOfContact) entspricht den drei Teilen genau.",
+   "feld": "Rückfragen sind zu richten an",
+   "standard": "eCH-0276",
+   "element": "contactForInquiries"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name der Kontaktstelle für Rückfragen (Person oder Treuhandfirma, eine Zeile); eCH-0276 contactForInquiriesType/nameOfContact ist das atomare Element genau dafür.",
+   "elternfeld": "Rückfragen sind zu richten an",
+   "teilfeld": "Name",
+   "standard": "eCH-0276",
+   "element": "nameOfContact"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Telefon der Kontaktstelle; phoneNumberOfContact ist eCH-0046 phoneType, atomar eCH-0046 phoneNumber.",
+   "elternfeld": "Rückfragen sind zu richten an",
+   "teilfeld": "Telefon",
+   "standard": "eCH-0046",
+   "element": "phoneNumber"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "E-Mail der Kontaktstelle; emailAdressOfContact ist eCH-0046 emailType, atomar eCH-0046 emailAddress.",
+   "elternfeld": "Rückfragen sind zu richten an",
+   "teilfeld": "E-Mail",
+   "standard": "eCH-0046",
+   "element": "emailAddress"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Vollständige Adresse der bevollmächtigten Vertretung (eine Zeile mit Name und Adresse); eCH-0229 contactAndAdministration/representative (organisationIdentification/personIdentification + contactInformation) ist der Vertreter in der Steuererklärung JP (Gegenstück zu eCH-0119 representativePerson bei natürlichen Personen).",
+   "feld": "Vollständige Adresse des Vertreters",
+   "standard": "eCH-0229",
+   "element": "representative"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Unterzeichnungsdatum der Vollmacht. Katalogweit gesucht nach sign*/signature*/attorney/mandate/proxy/representative/locationAndDate: nur eCH-0229 representative (ohne Datum), eCH-0119 representativePerson, eCH-0278 proxy, eCH-0260 *SignatureConfirmation (Boolean), eCH-0119 locationAndDate (Ort+Datum als ein Text, nur Beilagen der Steuererklärung natürlicher Personen) – kein Element für das Datum einer Vollmacht.",
+   "feld": "Datum (Vollmacht)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Handschriftliche Unterschrift unter der Vollmacht. Katalogweit gesucht nach sign*/signature: nur eCH-0039 signer (Identität), eCH-0260 *SignatureConfirmation (Lehrvertrag, Boolean) – keine Unterschrift als Datenelement.",
+   "feld": "Rechtsgültige Unterschrift (Vollmacht)"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 1100 = eCH-0229 netProfitType/taxableIncome «Ziff. 1 Reingewinn bzw. Verlust (-) gemäss Saldo ER des Geschäftsjahres» (taxAmountType KGS/DBSt).",
+   "feld": "Reingewinn / -verlust (–) gemäss Erfolgsrechnung des Geschäftsjahres (Code 1100)",
+   "standard": "eCH-0229",
+   "element": "taxableIncome"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Betrag Kantons- und Gemeindesteuern = eCH-0229 taxAmountType/cantonalTax.",
+   "elternfeld": "Reingewinn / -verlust (–) gemäss Erfolgsrechnung des Geschäftsjahres (Code 1100)",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0229",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Betrag direkte Bundessteuer = eCH-0229 taxAmountType/federalTax.",
+   "elternfeld": "Reingewinn / -verlust (–) gemäss Erfolgsrechnung des Geschäftsjahres (Code 1100)",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0229",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Aufrechnungsposten, Grund-Code unjustifiedBusinessDepreciation… (K/G/aP Ziff 2.1.1): eCH-0229 taxableResultIncrease (Grund-Code + description + amount KGS/DBSt) ist der Eintrag einer einzelnen Aufrechnung.",
+   "feld": "Geschäftsmässig nicht begründete Abschreibungen (Code 2211)",
+   "standard": "eCH-0229",
+   "element": "taxableResultIncrease"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Umschreibung der Aufrechnung auf der Leerzeile = eCH-0229 taxableResultIncreaseType/description.",
+   "elternfeld": "Geschäftsmässig nicht begründete Abschreibungen (Code 2211)",
+   "teilfeld": "Umschreibung (Leerzeile ○)",
+   "standard": "eCH-0229",
+   "element": "description"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Aufrechnungsbetrag KGS = eCH-0229 taxableResultIncrease/amount/cantonalTax.",
+   "elternfeld": "Geschäftsmässig nicht begründete Abschreibungen (Code 2211)",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0229",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Aufrechnungsbetrag DBSt = eCH-0229 taxableResultIncrease/amount/federalTax.",
+   "elternfeld": "Geschäftsmässig nicht begründete Abschreibungen (Code 2211)",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0229",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Aufrechnungsposten, Grund-Code provisionsNotSubstantiatedByBusiness (Ziff 2.1.2): eCH-0229 taxableResultIncrease (Grund-Code + description + amount KGS/DBSt).",
+   "feld": "Geschäftsmässig nicht begründete Rückstellungen (Code 2221)",
+   "standard": "eCH-0229",
+   "element": "taxableResultIncrease"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Umschreibung der Aufrechnung auf der Leerzeile = eCH-0229 taxableResultIncreaseType/description.",
+   "elternfeld": "Geschäftsmässig nicht begründete Rückstellungen (Code 2221)",
+   "teilfeld": "Umschreibung (Leerzeile ○)",
+   "standard": "eCH-0229",
+   "element": "description"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Aufrechnungsbetrag KGS = eCH-0229 taxableResultIncrease/amount/cantonalTax.",
+   "elternfeld": "Geschäftsmässig nicht begründete Rückstellungen (Code 2221)",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0229",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Aufrechnungsbetrag DBSt = eCH-0229 taxableResultIncrease/amount/federalTax.",
+   "elternfeld": "Geschäftsmässig nicht begründete Rückstellungen (Code 2221)",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0229",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Aufrechnungsposten, Grund-Code unallowableDepreciationOfRevaluedAssets (Ziff 2.1.3): eCH-0229 taxableResultIncrease.",
+   "feld": "Nicht zulässige Abschreibungen auf aufgewerteten Aktiven (Code 2230)",
+   "standard": "eCH-0229",
+   "element": "taxableResultIncrease"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Aufrechnungsbetrag KGS = eCH-0229 taxableResultIncrease/amount/cantonalTax.",
+   "elternfeld": "Nicht zulässige Abschreibungen auf aufgewerteten Aktiven (Code 2230)",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0229",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Aufrechnungsbetrag DBSt = eCH-0229 taxableResultIncrease/amount/federalTax.",
+   "elternfeld": "Nicht zulässige Abschreibungen auf aufgewerteten Aktiven (Code 2230)",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0229",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Aufrechnungsposten, Grund-Code concealedProfitDistributionsAndUnjustifiedPaymentsToThirdParties (Ziff 2.1.5): eCH-0229 taxableResultIncrease.",
+   "feld": "Verdeckte Gewinnausschüttungen / geschäftsmässig nicht begründete Zuwendungen (Code 2240)",
+   "standard": "eCH-0229",
+   "element": "taxableResultIncrease"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Aufrechnungsbetrag KGS = eCH-0229 taxableResultIncrease/amount/cantonalTax.",
+   "elternfeld": "Verdeckte Gewinnausschüttungen / geschäftsmässig nicht begründete Zuwendungen (Code 2240)",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0229",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Aufrechnungsbetrag DBSt = eCH-0229 taxableResultIncrease/amount/federalTax.",
+   "elternfeld": "Verdeckte Gewinnausschüttungen / geschäftsmässig nicht begründete Zuwendungen (Code 2240)",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0229",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Aufrechnungsposten, Grund-Code excessiveGrants (Ziff 2.1.7): eCH-0229 taxableResultIncrease.",
+   "feld": "Übersetzte freiwillige Geldleistungen an steuerbefreite juristische Personen (Code 2250)",
+   "standard": "eCH-0229",
+   "element": "taxableResultIncrease"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Aufrechnungsbetrag KGS = eCH-0229 taxableResultIncrease/amount/cantonalTax.",
+   "elternfeld": "Übersetzte freiwillige Geldleistungen an steuerbefreite juristische Personen (Code 2250)",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0229",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Aufrechnungsbetrag DBSt = eCH-0229 taxableResultIncrease/amount/federalTax.",
+   "elternfeld": "Übersetzte freiwillige Geldleistungen an steuerbefreite juristische Personen (Code 2250)",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0229",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Aufrechnungsposten, Grund-Code interestOnHiddenEquity (Ziff 2.1.8): eCH-0229 taxableResultIncrease.",
+   "feld": "Zinsen auf verdecktem Eigenkapital (Code 2260)",
+   "standard": "eCH-0229",
+   "element": "taxableResultIncrease"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Aufrechnungsbetrag KGS = eCH-0229 taxableResultIncrease/amount/cantonalTax.",
+   "elternfeld": "Zinsen auf verdecktem Eigenkapital (Code 2260)",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0229",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Aufrechnungsbetrag DBSt = eCH-0229 taxableResultIncrease/amount/federalTax.",
+   "elternfeld": "Zinsen auf verdecktem Eigenkapital (Code 2260)",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0229",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Aufrechnungsposten, Grund-Code otherReason mit Beschreibung: eCH-0229 taxableResultIncrease.",
+   "feld": "Andere steuerlich nicht abzugsfähige Aufwendungen (Code 2271)",
+   "standard": "eCH-0229",
+   "element": "taxableResultIncrease"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Umschreibung der Aufrechnung auf der Leerzeile = eCH-0229 taxableResultIncreaseType/description.",
+   "elternfeld": "Andere steuerlich nicht abzugsfähige Aufwendungen (Code 2271)",
+   "teilfeld": "Umschreibung (Leerzeile ○)",
+   "standard": "eCH-0229",
+   "element": "description"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Aufrechnungsbetrag KGS = eCH-0229 taxableResultIncrease/amount/cantonalTax.",
+   "elternfeld": "Andere steuerlich nicht abzugsfähige Aufwendungen (Code 2271)",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0229",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Aufrechnungsbetrag DBSt = eCH-0229 taxableResultIncrease/amount/federalTax.",
+   "elternfeld": "Andere steuerlich nicht abzugsfähige Aufwendungen (Code 2271)",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0229",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Aufrechnungsposten, Grund-Code eliminationOfBusinessJustificationOfProvisions (Ziff 2.2.1): eCH-0229 taxableResultIncrease.",
+   "feld": "Wegfall der geschäftsmässigen Begründetheit von Rückstellungen (Code 2310)",
+   "standard": "eCH-0229",
+   "element": "taxableResultIncrease"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Aufrechnungsbetrag KGS = eCH-0229 taxableResultIncrease/amount/cantonalTax.",
+   "elternfeld": "Wegfall der geschäftsmässigen Begründetheit von Rückstellungen (Code 2310)",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0229",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Aufrechnungsbetrag DBSt = eCH-0229 taxableResultIncrease/amount/federalTax.",
+   "elternfeld": "Wegfall der geschäftsmässigen Begründetheit von Rückstellungen (Code 2310)",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0229",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Aufrechnungsposten, Grund-Code bookprofitsFromHigherValuationOfRealEstate/…OfInvestments (Ziff 2.2.2): eCH-0229 taxableResultIncrease.",
+   "feld": "Buchgewinne aus der Höherbewertung von Grundstücken und Beteiligungen (Code 2320)",
+   "standard": "eCH-0229",
+   "element": "taxableResultIncrease"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Aufrechnungsbetrag KGS = eCH-0229 taxableResultIncrease/amount/cantonalTax.",
+   "elternfeld": "Buchgewinne aus der Höherbewertung von Grundstücken und Beteiligungen (Code 2320)",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0229",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Aufrechnungsbetrag DBSt = eCH-0229 taxableResultIncrease/amount/federalTax.",
+   "elternfeld": "Buchgewinne aus der Höherbewertung von Grundstücken und Beteiligungen (Code 2320)",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0229",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Aufrechnungsposten, Grund-Code anticipatedProfits (Ziff 2.2.3): eCH-0229 taxableResultIncrease.",
+   "feld": "Unterpreisliche Leistungen an die Gesellschafter (Code 2330)",
+   "standard": "eCH-0229",
+   "element": "taxableResultIncrease"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Aufrechnungsbetrag KGS = eCH-0229 taxableResultIncrease/amount/cantonalTax.",
+   "elternfeld": "Unterpreisliche Leistungen an die Gesellschafter (Code 2330)",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0229",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Aufrechnungsbetrag DBSt = eCH-0229 taxableResultIncrease/amount/federalTax.",
+   "elternfeld": "Unterpreisliche Leistungen an die Gesellschafter (Code 2330)",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0229",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Aufrechnungsposten, Grund-Code otherReason mit Beschreibung: eCH-0229 taxableResultIncrease.",
+   "feld": "Andere nicht gutgeschriebene, steuerbare Erträge (Code 2341)",
+   "standard": "eCH-0229",
+   "element": "taxableResultIncrease"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Umschreibung der Aufrechnung auf der Leerzeile = eCH-0229 taxableResultIncreaseType/description.",
+   "elternfeld": "Andere nicht gutgeschriebene, steuerbare Erträge (Code 2341)",
+   "teilfeld": "Umschreibung (Leerzeile ○)",
+   "standard": "eCH-0229",
+   "element": "description"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Aufrechnungsbetrag KGS = eCH-0229 taxableResultIncrease/amount/cantonalTax.",
+   "elternfeld": "Andere nicht gutgeschriebene, steuerbare Erträge (Code 2341)",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0229",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Aufrechnungsbetrag DBSt = eCH-0229 taxableResultIncrease/amount/federalTax.",
+   "elternfeld": "Andere nicht gutgeschriebene, steuerbare Erträge (Code 2341)",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0229",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 2500 = eCH-0229 totalTaxableResultIncrease «sum of tax adjustments increasing the taxable result» (KGS/DBSt).",
+   "feld": "Total der Aufrechnungen (Code 2500)",
+   "standard": "eCH-0229",
+   "element": "totalTaxableResultIncrease"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Betrag KGS = eCH-0229 taxAmountType/cantonalTax.",
+   "elternfeld": "Total der Aufrechnungen (Code 2500)",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0229",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Betrag DBSt = eCH-0229 taxAmountType/federalTax.",
+   "elternfeld": "Total der Aufrechnungen (Code 2500)",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0229",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Abzugsposten, Grund-Code reversalOfTaxedUndisclosedReserves (K/G/aP Ziff 4.1.1): eCH-0229 taxableResultDecrease (Grund-Code + description + amount KGS/DBSt).",
+   "feld": "Auflösung versteuerter stiller Reserven (Nachholung aufger. Abschreibungen und Wertberichtigungen) (Code 3111)",
+   "standard": "eCH-0229",
+   "element": "taxableResultDecrease"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Umschreibung des Abzugs auf der Leerzeile = eCH-0229 taxableResultDecreaseType/description.",
+   "elternfeld": "Auflösung versteuerter stiller Reserven (Nachholung aufger. Abschreibungen und Wertberichtigungen) (Code 3111)",
+   "teilfeld": "Umschreibung (Leerzeile ○)",
+   "standard": "eCH-0229",
+   "element": "description"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Abzugsbetrag KGS = eCH-0229 taxableResultDecrease/amount/cantonalTax.",
+   "elternfeld": "Auflösung versteuerter stiller Reserven (Nachholung aufger. Abschreibungen und Wertberichtigungen) (Code 3111)",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0229",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Abzugsbetrag DBSt = eCH-0229 taxableResultDecrease/amount/federalTax.",
+   "elternfeld": "Auflösung versteuerter stiller Reserven (Nachholung aufger. Abschreibungen und Wertberichtigungen) (Code 3111)",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0229",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Abzugsposten, Grund-Code contributionsToPensionFundsForBenefitOfOwnStaff (Ziff 4.1.2): eCH-0229 taxableResultDecrease.",
+   "feld": "Zuwendungen an Vorsorgeeinrichtungen zugunsten des eigenen Personals (Code 3120)",
+   "standard": "eCH-0229",
+   "element": "taxableResultDecrease"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Abzugsbetrag KGS = eCH-0229 taxableResultDecrease/amount/cantonalTax.",
+   "elternfeld": "Zuwendungen an Vorsorgeeinrichtungen zugunsten des eigenen Personals (Code 3120)",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0229",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Abzugsbetrag DBSt = eCH-0229 taxableResultDecrease/amount/federalTax.",
+   "elternfeld": "Zuwendungen an Vorsorgeeinrichtungen zugunsten des eigenen Personals (Code 3120)",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0229",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Abzugsposten, Grund-Code grantsToTaxExemptedLegalEntitiesDomiciledInSwitzerland (Ziff 4.1.3): eCH-0229 taxableResultDecrease.",
+   "feld": "Freiwillige Geldleistungen an steuerbefreite juristische Personen mit Sitz in der Schweiz (Code 3130)",
+   "standard": "eCH-0229",
+   "element": "taxableResultDecrease"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Abzugsbetrag KGS = eCH-0229 taxableResultDecrease/amount/cantonalTax.",
+   "elternfeld": "Freiwillige Geldleistungen an steuerbefreite juristische Personen mit Sitz in der Schweiz (Code 3130)",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0229",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Abzugsbetrag DBSt = eCH-0229 taxableResultDecrease/amount/federalTax.",
+   "elternfeld": "Freiwillige Geldleistungen an steuerbefreite juristische Personen mit Sitz in der Schweiz (Code 3130)",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0229",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Abzugsposten, Grund-Code otherReason mit Beschreibung (Ziff 4.1.4): eCH-0229 taxableResultDecrease.",
+   "feld": "Andere der Erfolgsrechnung nicht belastete, steuerlich abzugsfähige Aufwendungen (Code 3141)",
+   "standard": "eCH-0229",
+   "element": "taxableResultDecrease"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Umschreibung des Abzugs auf der Leerzeile = eCH-0229 taxableResultDecreaseType/description.",
+   "elternfeld": "Andere der Erfolgsrechnung nicht belastete, steuerlich abzugsfähige Aufwendungen (Code 3141)",
+   "teilfeld": "Umschreibung (Leerzeile ○)",
+   "standard": "eCH-0229",
+   "element": "description"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Abzugsbetrag KGS = eCH-0229 taxableResultDecrease/amount/cantonalTax.",
+   "elternfeld": "Andere der Erfolgsrechnung nicht belastete, steuerlich abzugsfähige Aufwendungen (Code 3141)",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0229",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Abzugsbetrag DBSt = eCH-0229 taxableResultDecrease/amount/federalTax.",
+   "elternfeld": "Andere der Erfolgsrechnung nicht belastete, steuerlich abzugsfähige Aufwendungen (Code 3141)",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0229",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Abzugsposten, Grund-Code releaseOfTaxedHiddenReserves (Ziff 4.2.1): eCH-0229 taxableResultDecrease.",
+   "feld": "Auflösung versteuerter stiller Reserven (Rückstellungen, Aufwertungen, Kapitalgewinne) (Code 3211)",
+   "standard": "eCH-0229",
+   "element": "taxableResultDecrease"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Umschreibung des Abzugs auf der Leerzeile = eCH-0229 taxableResultDecreaseType/description.",
+   "elternfeld": "Auflösung versteuerter stiller Reserven (Rückstellungen, Aufwertungen, Kapitalgewinne) (Code 3211)",
+   "teilfeld": "Umschreibung (Leerzeile ○)",
+   "standard": "eCH-0229",
+   "element": "description"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Abzugsbetrag KGS = eCH-0229 taxableResultDecrease/amount/cantonalTax.",
+   "elternfeld": "Auflösung versteuerter stiller Reserven (Rückstellungen, Aufwertungen, Kapitalgewinne) (Code 3211)",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0229",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Abzugsbetrag DBSt = eCH-0229 taxableResultDecrease/amount/federalTax.",
+   "elternfeld": "Auflösung versteuerter stiller Reserven (Rückstellungen, Aufwertungen, Kapitalgewinne) (Code 3211)",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0229",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Abzugsposten, Grund-Code otherReason mit Beschreibung: eCH-0229 taxableResultDecrease.",
+   "feld": "Andere nicht steuerbare Erträge (Code 3221)",
+   "standard": "eCH-0229",
+   "element": "taxableResultDecrease"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Umschreibung des Abzugs auf der Leerzeile = eCH-0229 taxableResultDecreaseType/description.",
+   "elternfeld": "Andere nicht steuerbare Erträge (Code 3221)",
+   "teilfeld": "Umschreibung (Leerzeile ○)",
+   "standard": "eCH-0229",
+   "element": "description"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Abzugsbetrag KGS = eCH-0229 taxableResultDecrease/amount/cantonalTax.",
+   "elternfeld": "Andere nicht steuerbare Erträge (Code 3221)",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0229",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Abzugsbetrag DBSt = eCH-0229 taxableResultDecrease/amount/federalTax.",
+   "elternfeld": "Andere nicht steuerbare Erträge (Code 3221)",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0229",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 3500 = eCH-0229 totalTaxableResultDecrease «sum of tax adjustments decreasing the taxable result» (KGS/DBSt).",
+   "feld": "Total der Abzüge (Code 3500)",
+   "standard": "eCH-0229",
+   "element": "totalTaxableResultDecrease"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Betrag KGS = eCH-0229 taxAmountType/cantonalTax.",
+   "elternfeld": "Total der Abzüge (Code 3500)",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0229",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Betrag DBSt = eCH-0229 taxAmountType/federalTax.",
+   "elternfeld": "Total der Abzüge (Code 3500)",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0229",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 4000 (Punkt 1 + 2.3 – 3.3) = eCH-0229 netProfitOrLossActualYear «Ziff. 5 Reingewinn bzw. Verlust (-) im Geschäftsjahr».",
+   "feld": "Reingewinn / -verlust im Geschäftsjahr (Code 4000)",
+   "standard": "eCH-0229",
+   "element": "netProfitOrLossActualYear"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Betrag KGS = eCH-0229 taxAmountType/cantonalTax.",
+   "elternfeld": "Reingewinn / -verlust im Geschäftsjahr (Code 4000)",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0229",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Betrag DBSt = eCH-0229 taxAmountType/federalTax.",
+   "elternfeld": "Reingewinn / -verlust im Geschäftsjahr (Code 4000)",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0229",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 4100 = eCH-0229 taxLossCarriedForwardList/totalTaxLossCarriedForward «Ziff. 6 Total der verrechenbaren Vorjahresverluste».",
+   "feld": "Summe der verrechenbaren Verluste aus den sieben vorangegangenen Geschäftsjahren (Code 4100)",
+   "standard": "eCH-0229",
+   "element": "totalTaxLossCarriedForward"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Betrag KGS = eCH-0229 taxAmountType/cantonalTax.",
+   "elternfeld": "Summe der verrechenbaren Verluste aus den sieben vorangegangenen Geschäftsjahren (Code 4100)",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0229",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Betrag DBSt = eCH-0229 taxAmountType/federalTax.",
+   "elternfeld": "Summe der verrechenbaren Verluste aus den sieben vorangegangenen Geschäftsjahren (Code 4100)",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0229",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 4200 = eCH-0229 netProfitOrLossIncludingTaxLossesCarriedForward «Ziff. 7 Reingewinn bzw. Verlust (-) nach Verlustanrechnung».",
+   "feld": "Steuerbarer Reingewinn / -verlust nach Verlustanrechnung (Code 4200)",
+   "standard": "eCH-0229",
+   "element": "netProfitOrLossIncludingTaxLossesCarriedForward"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Betrag KGS = eCH-0229 taxAmountType/cantonalTax.",
+   "elternfeld": "Steuerbarer Reingewinn / -verlust nach Verlustanrechnung (Code 4200)",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0229",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Betrag DBSt = eCH-0229 taxAmountType/federalTax.",
+   "elternfeld": "Steuerbarer Reingewinn / -verlust nach Verlustanrechnung (Code 4200)",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0229",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 4300 = eCH-0229 foreignOrNonCantonalShareOfTaxableNetProfitOrLoss «Ausländischer resp. ausserkantonaler Anteil» – deckt beide Spalten (KGS: ausserhalb Kanton, DBSt: Ausland).",
+   "feld": "Abzug für Reingewinn aus Grundeigentum und Geschäftsbetrieb ausserhalb des Kantons / Bundes (Code 4300)",
+   "standard": "eCH-0229",
+   "element": "foreignOrNonCantonalShareOfTaxableNetProfitOrLoss"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Betrag KGS = eCH-0229 taxAmountType/cantonalTax.",
+   "elternfeld": "Abzug für Reingewinn aus Grundeigentum und Geschäftsbetrieb ausserhalb des Kantons / Bundes (Code 4300)",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0229",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Betrag DBSt = eCH-0229 taxAmountType/federalTax.",
+   "elternfeld": "Abzug für Reingewinn aus Grundeigentum und Geschäftsbetrieb ausserhalb des Kantons / Bundes (Code 4300)",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0229",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 4412 kantonaler Abzug für qualifizierte Patenterträge (nur KGS) = eCH-0276 deductionsType/patentBox.",
+   "feld": "Abzug für qualifizierte Patenterträge (Code 4412)",
+   "standard": "eCH-0276",
+   "element": "patentBox"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 4414 kantonaler F&E-Abzug (nur KGS) = eCH-0276 deductionsType/additionalDeductionForResearchAndDevelopment.",
+   "feld": "Abzug für Forschung und Entwicklung (Code 4414)",
+   "standard": "eCH-0276",
+   "element": "additionalDeductionForResearchAndDevelopment"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 4415 Abschreibung der aufgedeckten stillen Reserven aus Step-Up (nur KGS) = eCH-0276 deductionsType/depreciationStepUp.",
+   "feld": "Abschreibung aufgedeckter stiller Reserven aus altrechtlichem Step-Up (Code 4415)",
+   "standard": "eCH-0276",
+   "element": "depreciationStepUp"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 4500 = eCH-0229 taxableNetProfitOrLoss «Steuerbarer Reingewinn bzw. Verlust (-) in der Schweiz bzw. im Kanton».",
+   "feld": "Steuerbarer Reingewinn / Verlust Kanton Schaffhausen / Bund (Code 4500)",
+   "standard": "eCH-0229",
+   "element": "taxableNetProfitOrLoss"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Betrag KGS = eCH-0229 taxAmountType/cantonalTax.",
+   "elternfeld": "Steuerbarer Reingewinn / Verlust Kanton Schaffhausen / Bund (Code 4500)",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0229",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Betrag DBSt = eCH-0229 taxAmountType/federalTax.",
+   "elternfeld": "Steuerbarer Reingewinn / Verlust Kanton Schaffhausen / Bund (Code 4500)",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0229",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 4612 Beteiligungsabzug in % getrennt für KGS und DBSt; eCH-0276 netIncomeFromParticipations/participationExemptionProfitTaxInPercent (taxAmountPercentageType) bildet beide Spalten ab, eCH-0229 participationExemptionInPercent nur einen Wert.",
+   "feld": "Beteiligungsabzug in % (Code 4612)",
+   "standard": "eCH-0276",
+   "element": "participationExemptionProfitTaxInPercent"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Beteiligungsabzug % KGS = eCH-0276 taxAmountPercentageType/cantonalTax (percentageType).",
+   "elternfeld": "Beteiligungsabzug in % (Code 4612)",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0276",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Beteiligungsabzug % DBSt = eCH-0276 taxAmountPercentageType/federalTax (percentageType).",
+   "elternfeld": "Beteiligungsabzug in % (Code 4612)",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0276",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 4510 satzbestimmender Gewinn KGS/DBSt; katalogweit kein eigener Container, eCH-0276 remarks/variousQuestions enthält die beiden Werte taxableProfitCantonalAndMunicipalTaxes/taxableProfitDirectFederalTax (so auch Formular 252 «Satzbestimmender Reingewinn»).",
+   "feld": "Gewinn satzbestimmend (Code 4510)",
+   "standard": "eCH-0276",
+   "element": "variousQuestions"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Satzbestimmender Gewinn KGS = eCH-0276 variousQuestions/taxableProfitCantonalAndMunicipalTaxes.",
+   "elternfeld": "Gewinn satzbestimmend (Code 4510)",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0276",
+   "element": "taxableProfitCantonalAndMunicipalTaxes"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Satzbestimmender Gewinn DBSt = eCH-0276 variousQuestions/taxableProfitDirectFederalTax.",
+   "elternfeld": "Gewinn satzbestimmend (Code 4510)",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0276",
+   "element": "taxableProfitDirectFederalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 5100 Vorjahreswert = eCH-0229 profitAppropriation/undistributedProfitOrLossCarriedForward «Gewinnvortrag aus dem Vorjahr (Ziff. 11.1)» – das Element ist selbst der Vorjahresvortrag.",
+   "feld": "Gewinnvortrag aus dem Vorjahr (Code 5100)",
+   "standard": "eCH-0229",
+   "element": "undistributedProfitOrLossCarriedForward"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 5200 = eCH-0229 profitAppropriationType/taxableIncome «Reingewinn bzw. Verlust (-) gemäss Saldo ER des Geschäftsjahres (Ziff. 1 resp. Ziff. 11.2)».",
+   "feld": "Reingewinn / -verlust gemäss Erfolgsrechnung des Geschäftsjahres (Code 5200)",
+   "standard": "eCH-0229",
+   "element": "taxableIncome"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Auflösung gesetzlicher und freiwilliger Gewinnreserven als Zufluss zum verteilbaren Gewinn. Gesucht in eCH-0229 profitAppropriationType (nur Gewinnvortrag, Reingewinn, Totale, Verwendungsposten mit Codes distributionOf…/depositIn…/other), eCH-0276 profitAppropriationType (nur depositIn*-Zuweisungen) und katalogweit nach dissolution/release/withdrawal/reversal/Reserve: nur eCH-0276 withdrawalFrom*Funds (Fonds Vereine/Stiftungen) und changesToTheEmployerContributionReservesDissolution – kein Element dafür.",
+   "feld": "Auflösung gesetzliche und freiwillige Gewinnreserven (Code 5310)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Auflösung von Kapitalreserven als Zufluss zum verteilbaren Gewinn. Gesucht in eCH-0229/eCH-0276 profitAppropriationType und katalogweit nach dissolution/release/withdrawal/reversal/Reserve: nur Fondsentnahmen Vereine/Stiftungen und Arbeitgeberbeitragsreserven – kein Element dafür.",
+   "feld": "Auflösung Kapitalreserven (Code 5320)"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Auflösung übriger Reserven als Zufluss zum verteilbaren Gewinn. Gesucht in eCH-0229/eCH-0276 profitAppropriationType und katalogweit nach dissolution/release/withdrawal/reversal/Reserve – kein Element dafür.",
+   "feld": "Auflösung übrige (Code 5330)"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 5400 = eCH-0229 profitAppropriation/totalProfitToBeDistributed «Total zu verteilender Gewinn».",
+   "feld": "Total zu verteilender Gewinn (Code 5400)",
+   "standard": "eCH-0229",
+   "element": "totalProfitToBeDistributed"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 5510 Dividende: eCH-0229 profitAppropriationDetails mit Code distributionOfDividends «K/G/aP Ziff 11.4 Dividende, Gewinnanteile oder Anteilscheinzinsen (brutto)» ist genau diese Angabe. Das vorgeschlagene eCH-0276 distributionOfDividendsRoyalties fasst Dividenden UND Tantiemen zusammen; das Formular hat keine Tantiemen-Zeile (die gehören unter 11.10) – zu weit.",
+   "feld": "Dividende (Code 5510)",
+   "standard": "eCH-0229",
+   "element": "profitAppropriationDetails"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 5520 = eCH-0276 profitAppropriationType/depositInStatutoryProfitReserves.",
+   "feld": "Zuweisung an gesetzliche Gewinnreserven (Code 5520)",
+   "standard": "eCH-0276",
+   "element": "depositInStatutoryProfitReserves"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 5530 = eCH-0276 profitAppropriationType/depositInVoluntaryProfitReserves.",
+   "feld": "Zuweisung an freiwillige Gewinnreserven (Code 5530)",
+   "standard": "eCH-0276",
+   "element": "depositInVoluntaryProfitReserves"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 5540; eCH-0276 hat kein Wertelement dafür, eCH-0229 profitAppropriationDetails mit Code contributionsToPensionFundsForBenefitOfOwnStaff «K/G/aP Ziff 11.8».",
+   "feld": "Zuwendungen an die Vorsorgeeinrichtung des eigenen Personals (Code 5540)",
+   "standard": "eCH-0229",
+   "element": "profitAppropriationDetails"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 5550; eCH-0229 profitAppropriationDetails mit Code grantsToTaxExemptedLegalEntitiesDomiciledInSwitzerland «K/G/aP Ziff 11.9».",
+   "feld": "Freiwillige Geldleistungen an steuerbefreite juristische Personen mit Sitz in der Schweiz (Code 5550)",
+   "standard": "eCH-0229",
+   "element": "profitAppropriationDetails"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 5561 übrige Zuweisung mit Umschreibung = eCH-0276 profitAppropriationType/otherProfitAppropriation (freeInputFieldType: description, amount).",
+   "feld": "Übrige Zuweisung (Code 5561)",
+   "standard": "eCH-0276",
+   "element": "otherProfitAppropriation"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Umschreibung der übrigen Zuweisung = eCH-0276 freeInputFieldType/description.",
+   "elternfeld": "Übrige Zuweisung (Code 5561)",
+   "teilfeld": "Umschreibung (Leerzeile ○)",
+   "standard": "eCH-0276",
+   "element": "description"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Betrag der übrigen Zuweisung = eCH-0276 freeInputFieldType/amount.",
+   "elternfeld": "Übrige Zuweisung (Code 5561)",
+   "teilfeld": "CHF",
+   "standard": "eCH-0276",
+   "element": "amount"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 5600 = eCH-0229 profitAppropriation/totalProfitAppropriation «Total Gewinnverwendung».",
+   "feld": "Total Gewinnverwendung (Code 5600)",
+   "standard": "eCH-0229",
+   "element": "totalProfitAppropriation"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 5700 = eCH-0229 profitAppropriation/profitOrLossBroughtForward «Vortrag auf neue Rechnung».",
+   "feld": "Vortrag auf neue Rechnung (Code 5700)",
+   "standard": "eCH-0229",
+   "element": "profitOrLossBroughtForward"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 6100 = eCH-0229 equity/paidInCapitalOrNetAsset «Einbezahltes Grund-/Gesellschaftskapital (K/G/aP Ziff. 12)».",
+   "feld": "Einbezahltes Kapital (Code 6100)",
+   "standard": "eCH-0229",
+   "element": "paidInCapitalOrNetAsset"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 6211 (Stichtag nach Gewinnverwendung) = eCH-0276 taxableEquityType/statutoryCapitalReserves.",
+   "feld": "Gesetzliche Kapitalreserve (Code 6211)",
+   "standard": "eCH-0276",
+   "element": "statutoryCapitalReserves"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 6213 = eCH-0276 taxableEquityType/statutoryProfitReserves.",
+   "feld": "Gesetzliche Gewinnreserve (Code 6213)",
+   "standard": "eCH-0276",
+   "element": "statutoryProfitReserves"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 6214 = eCH-0276 taxableEquityType/voluntaryProfitReserves.",
+   "feld": "Freiwillige Gewinnreserve (Code 6214)",
+   "standard": "eCH-0276",
+   "element": "voluntaryProfitReserves"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 6215 weitere offene Reserve mit freier Umschreibung = eCH-0276 taxableEquityType/inputField (freeInputFieldType: description, amount).",
+   "feld": "Offene Reserven – Übrige (Code 6215)",
+   "standard": "eCH-0276",
+   "element": "inputField"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bezeichnung der offenen Reserve = eCH-0276 freeInputFieldType/description.",
+   "elternfeld": "Offene Reserven – Übrige (Code 6215)",
+   "teilfeld": "Umschreibung (nach «Übrige:»)",
+   "standard": "eCH-0276",
+   "element": "description"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestand der offenen Reserve am Ende des Geschäftsjahres (aktueller Stichtag) = eCH-0276 freeInputFieldType/amount.",
+   "elternfeld": "Offene Reserven – Übrige (Code 6215)",
+   "teilfeld": "Am Ende des Geschäftsjahres",
+   "standard": "eCH-0276",
+   "element": "amount"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 6216 weitere offene Reserve mit freier Umschreibung = eCH-0276 taxableEquityType/inputField (freeInputFieldType: description, amount).",
+   "feld": "Offene Reserven (Code 6216)",
+   "standard": "eCH-0276",
+   "element": "inputField"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bezeichnung der offenen Reserve = eCH-0276 freeInputFieldType/description.",
+   "elternfeld": "Offene Reserven (Code 6216)",
+   "teilfeld": "Umschreibung (Leerzeile)",
+   "standard": "eCH-0276",
+   "element": "description"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestand der offenen Reserve am Ende des Geschäftsjahres (aktueller Stichtag) = eCH-0276 freeInputFieldType/amount.",
+   "elternfeld": "Offene Reserven (Code 6216)",
+   "teilfeld": "Am Ende des Geschäftsjahres",
+   "standard": "eCH-0276",
+   "element": "amount"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 6217 = eCH-0229 equity/correctionForOwnShares «Korrektur eigene Kapitalanteile (K/G/aP Ziff 15)».",
+   "feld": "./. Eigene Kapitalanteile (Code 6217)",
+   "standard": "eCH-0229",
+   "element": "correctionForOwnShares"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 6220 vorzeichenbehafteter Gewinn-/Verlustvortrag am Stichtag der Schlussbilanz NACH Gewinnverwendung = Übertrag aus 11.12 (Vortrag auf neue Rechnung), eCH-0229 profitOrLossBroughtForward (long, mit Vorzeichen); eCH-0229 lossBroughtForward deckt nur den Verlust, disclosedReserves mit Code profitOrLossBroughtForward nur den Gewinn.",
+   "feld": "Gewinnvortrag + / Verlustvortrag – (Code 6220)",
+   "standard": "eCH-0229",
+   "element": "profitOrLossBroughtForward"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 6231 als Gewinn versteuerte stille Reserve = eCH-0229 taxedHiddenReservesList/taxedHiddenReserve (Bezeichnung + Wert am Periodenende).",
+   "feld": "Als Gewinn versteuerte stille Reserven (Code 6231)",
+   "standard": "eCH-0229",
+   "element": "taxedHiddenReserve"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bezeichnung der versteuerten stillen Reserve = eCH-0229 taxedHiddenReserveType/description.",
+   "elternfeld": "Als Gewinn versteuerte stille Reserven (Code 6231)",
+   "teilfeld": "Umschreibung (Leerzeile ○)",
+   "standard": "eCH-0229",
+   "element": "description"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Wert am Ende des Geschäftsjahres = eCH-0229 taxedHiddenReserveType/valueAtEndOfPeriod (nicht valueAtStartOfPeriod).",
+   "elternfeld": "Als Gewinn versteuerte stille Reserven (Code 6231)",
+   "teilfeld": "Am Ende des Geschäftsjahres",
+   "standard": "eCH-0229",
+   "element": "valueAtEndOfPeriod"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 6232 als Gewinn versteuerte stille Reserve = eCH-0229 taxedHiddenReservesList/taxedHiddenReserve.",
+   "feld": "Als Gewinn versteuerte stille Reserven (Code 6232)",
+   "standard": "eCH-0229",
+   "element": "taxedHiddenReserve"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bezeichnung der versteuerten stillen Reserve = eCH-0229 taxedHiddenReserveType/description.",
+   "elternfeld": "Als Gewinn versteuerte stille Reserven (Code 6232)",
+   "teilfeld": "Umschreibung (Leerzeile ○)",
+   "standard": "eCH-0229",
+   "element": "description"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Wert am Ende des Geschäftsjahres = eCH-0229 taxedHiddenReserveType/valueAtEndOfPeriod.",
+   "elternfeld": "Als Gewinn versteuerte stille Reserven (Code 6232)",
+   "teilfeld": "Am Ende des Geschäftsjahres",
+   "standard": "eCH-0229",
+   "element": "valueAtEndOfPeriod"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 6233 als Gewinn versteuerte stille Reserve = eCH-0229 taxedHiddenReservesList/taxedHiddenReserve.",
+   "feld": "Als Gewinn versteuerte stille Reserven (Code 6233)",
+   "standard": "eCH-0229",
+   "element": "taxedHiddenReserve"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bezeichnung der versteuerten stillen Reserve = eCH-0229 taxedHiddenReserveType/description.",
+   "elternfeld": "Als Gewinn versteuerte stille Reserven (Code 6233)",
+   "teilfeld": "Umschreibung (Leerzeile ○)",
+   "standard": "eCH-0229",
+   "element": "description"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Wert am Ende des Geschäftsjahres = eCH-0229 taxedHiddenReserveType/valueAtEndOfPeriod.",
+   "elternfeld": "Als Gewinn versteuerte stille Reserven (Code 6233)",
+   "teilfeld": "Am Ende des Geschäftsjahres",
+   "standard": "eCH-0229",
+   "element": "valueAtEndOfPeriod"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 6234 als Gewinn versteuerte stille Reserve = eCH-0229 taxedHiddenReservesList/taxedHiddenReserve.",
+   "feld": "Als Gewinn versteuerte stille Reserven (Code 6234)",
+   "standard": "eCH-0229",
+   "element": "taxedHiddenReserve"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bezeichnung der versteuerten stillen Reserve = eCH-0229 taxedHiddenReserveType/description.",
+   "elternfeld": "Als Gewinn versteuerte stille Reserven (Code 6234)",
+   "teilfeld": "Umschreibung (Leerzeile ○)",
+   "standard": "eCH-0229",
+   "element": "description"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Wert am Ende des Geschäftsjahres = eCH-0229 taxedHiddenReserveType/valueAtEndOfPeriod.",
+   "elternfeld": "Als Gewinn versteuerte stille Reserven (Code 6234)",
+   "teilfeld": "Am Ende des Geschäftsjahres",
+   "standard": "eCH-0229",
+   "element": "valueAtEndOfPeriod"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 6300 = eCH-0229 equity/hiddenEquity «Verdecktes EK (K/G/aP Ziff 16)».",
+   "feld": "Verdecktes Eigenkapital (Code 6300)",
+   "standard": "eCH-0229",
+   "element": "hiddenEquity"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 6500 = eCH-0229 equity/totalTaxableEquity «steuerbares EK Gesamt, für Kapitalgesellschaften mindestens einbezahltes Kapital».",
+   "feld": "Steuerbares Eigenkapital (Code 6500)",
+   "standard": "eCH-0229",
+   "element": "totalTaxableEquity"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 6600 Abzug für Eigenkapital ausserhalb des Kantons; eCH-0229 hat kein Element dafür, katalogweit kein Element für den zusammengefassten Abzug. eCH-0276 taxableEquityAfterProfitAppropriation/thereofTaxableInOtherCantons ist der ausserkantonale Kapitalanteil; VORBEHALT: das Formular fasst den Auslandsanteil mit ein, den eCH-0276 getrennt als thereofTaxableAbroad führt (Formular bündelt, was der Standard trennt).",
+   "feld": "Abzug für Grundeigentum und Geschäftskapital ausserhalb des Kantons / Bundes (Code 6600)",
+   "standard": "eCH-0276",
+   "element": "thereofTaxableInOtherCantons"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 6700 = eCH-0229 equity/totalTaxableEquityCanton «steuerbares EK im Kanton».",
+   "feld": "Steuerbares Eigenkapital Kanton Schaffhausen (Code 6700)",
+   "standard": "eCH-0229",
+   "element": "totalTaxableEquityCanton"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Anfangsbestand (Vorperiodenwert) der Step-Up-Reserven – ein Vorperiodenwert darf kein aktuelles Bestandselement erhalten. Katalogweit gesucht nach stepUp/disclosedHidden/hiddenReserve/statusAtTheBeginning/StartOfPeriod/EndOfPreviousPeriod: eCH-0276 disclosedHiddenReserves ist nur der aktuelle Bestand, depreciationStepUp die Abschreibung, eCH-0229 valueAtStartOfPeriod gilt nur für ALS GEWINN VERSTEUERTE stille Reserven (Step-Up-Reserven wurden steuerneutral aufgedeckt; das Formular trennt Ziff. 16 und 21), eCH-0276 statusAtTheBeginningOfTheBusinessYear/amountEndOfPreviousPeriod gehören zu Abschreibungs- bzw. Bilanztabellen – kein Element.",
+   "feld": "Aufgedeckte stille Reserven aus altrechtlichem Step-Up – Bestand am Geschäftsjahresanfang (Code 6950)"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 6960 steuerliche Abschreibung der Step-Up-Reserven im Geschäftsjahr (Periodenwert) = eCH-0276 deductions/depreciationStepUp (gleiche Angabe wie Code 4415).",
+   "feld": "Aufgedeckte stille Reserven aus altrechtlichem Step-Up – Steuerliche Abschreibung im Geschäftsjahr (Code 6960)",
+   "standard": "eCH-0276",
+   "element": "depreciationStepUp"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Code 6970 Bestand der aufgedeckten stillen Reserven am Geschäftsjahresende (aktueller Stichtag) = eCH-0276 taxableEquityAfterProfitAppropriation/disclosedHiddenReserves.",
+   "feld": "Aufgedeckte stille Reserven aus altrechtlichem Step-Up – Bestand am Geschäftsjahresende (Code 6970)",
+   "standard": "eCH-0276",
+   "element": "disclosedHiddenReserves"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Verluste der sieben Vorjahre (je vorgedrucktes Geschäftsjahr) = eCH-0229 taxLossCarriedForwardList/taxLossCarriedForward (maxOccurs 7: yearOfTaxLossCarriedForward + amountOfTaxLossCarriedForward KGS/DBSt) – Vorjahreswerte, kein aktuelles Element.",
+   "feld": "Verluste aus den sieben der Steuerperiode vorangegangenen Geschäftsjahren",
+   "standard": "eCH-0229",
+   "element": "taxLossCarriedForward"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorjahresverlust KGS = eCH-0229 amountOfTaxLossCarriedForward/cantonalTax.",
+   "elternfeld": "Verluste aus den sieben der Steuerperiode vorangegangenen Geschäftsjahren",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0229",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Vorjahresverlust DBSt = eCH-0229 amountOfTaxLossCarriedForward/federalTax.",
+   "elternfeld": "Verluste aus den sieben der Steuerperiode vorangegangenen Geschäftsjahren",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0229",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Zwischentotal der Vorjahresverluste = eCH-0276 taxLossCarriedForwardType/subtotalTaxLossCarriedForward.",
+   "feld": "Zwischentotal (Summe der Vorjahresverluste)",
+   "standard": "eCH-0276",
+   "element": "subtotalTaxLossCarriedForward"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Betrag KGS = eCH-0276 taxAmountType/cantonalTax.",
+   "elternfeld": "Zwischentotal (Summe der Vorjahresverluste)",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0276",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Betrag DBSt = eCH-0276 taxAmountType/federalTax.",
+   "elternfeld": "Zwischentotal (Summe der Vorjahresverluste)",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0276",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Bereits verrechnete Verluste = eCH-0276 taxLossCarriedForwardType/thereofLossesAlreadyOffset.",
+   "feld": "Davon bereits verrechnete Verluste",
+   "standard": "eCH-0276",
+   "element": "thereofLossesAlreadyOffset"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Betrag KGS = eCH-0276 taxAmountType/cantonalTax.",
+   "elternfeld": "Davon bereits verrechnete Verluste",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0276",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Betrag DBSt = eCH-0276 taxAmountType/federalTax.",
+   "elternfeld": "Davon bereits verrechnete Verluste",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0276",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Verrechenbarer Verlust (Übertrag auf Punkt 5, Code 4100) = eCH-0229 totalTaxLossCarriedForward, dieselbe Angabe wie das Feld Code 4100 in Punkt 5.",
+   "feld": "Verrechenbarer Verlust (Code 4100)",
+   "standard": "eCH-0229",
+   "element": "totalTaxLossCarriedForward"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Betrag KGS = eCH-0229 taxAmountType/cantonalTax.",
+   "elternfeld": "Verrechenbarer Verlust (Code 4100)",
+   "teilfeld": "Kantons- und Gemeindesteuern",
+   "standard": "eCH-0229",
+   "element": "cantonalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Betrag DBSt = eCH-0229 taxAmountType/federalTax.",
+   "elternfeld": "Verrechenbarer Verlust (Code 4100)",
+   "teilfeld": "Direkte Bundessteuer",
+   "standard": "eCH-0229",
+   "element": "federalTax"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Tabellenzeile «Abschreibung auf in früheren Geschäftsjahren aufgewerteten Aktiven» = eCH-0229 depreciationOnAssetsAppreciatedInPreviousYearsList/depreciationOnAssetsAppreciatedInPreviousYears.",
+   "feld": "Abschreibung auf in früheren Geschäftsjahren aufgewerteten Aktiven",
+   "standard": "eCH-0229",
+   "element": "depreciationOnAssetsAppreciatedInPreviousYears"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Jahr der Aufwertung = eCH-0229 yearOfAppreciation (gYear).",
+   "elternfeld": "Abschreibung auf in früheren Geschäftsjahren aufgewerteten Aktiven",
+   "teilfeld": "Jahr der Aufwertung",
+   "standard": "eCH-0229",
+   "element": "yearOfAppreciation"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bezeichnung des Aktivums = eCH-0229 nameOfAsset.",
+   "elternfeld": "Abschreibung auf in früheren Geschäftsjahren aufgewerteten Aktiven",
+   "teilfeld": "Bezeichnung des Aktivums",
+   "standard": "eCH-0229",
+   "element": "nameOfAsset"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Aufwertungsbetrag = eCH-0229 appreciationAmount.",
+   "elternfeld": "Abschreibung auf in früheren Geschäftsjahren aufgewerteten Aktiven",
+   "teilfeld": "Aufwertungsbetrag",
+   "standard": "eCH-0229",
+   "element": "appreciationAmount"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Abschreibungsbetrag = eCH-0229 depreciationAmount.",
+   "elternfeld": "Abschreibung auf in früheren Geschäftsjahren aufgewerteten Aktiven",
+   "teilfeld": "Abschreibungsbetrag",
+   "standard": "eCH-0229",
+   "element": "depreciationAmount"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ja/Nein-Frage an Immobiliengesellschaften nach Handänderung von Mehrheiten der Aktien/Stammanteile = eCH-0276 shareholdersAssociates/changeOfMajoritiesOfShares (boolean) – ein Boolean, kein Wertelement.",
+   "feld": "Haben seit der letzten Deklaration Handänderungen von Mehrheiten der Aktien oder Stammanteile stattgefunden?",
+   "standard": "eCH-0276",
+   "element": "changeOfMajoritiesOfShares"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "IBAN für Rückerstattungen von Steuerguthaben = eCH-0276 titleType/bankDetailsForRefund/iban.",
+   "feld": "IBAN-Nr.",
+   "standard": "eCH-0276",
+   "element": "iban"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die propagierte Wertung kein_standard trifft hier nicht zu: eCH-0229 contactAndAdministration/remarks (string400) ist genau das Bemerkungsfeld der Steuererklärung JP.",
+   "feld": "Bemerkungen",
+   "standard": "eCH-0229",
+   "element": "remarks"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Checkliste beigelegter Unterlagen (Bilanz/ER, Formulare 6, 6a, 8c, 12a, 13, 14a, 19, 19.1) = eCH-0276 attachments (attachmentsType mit documentIdentification je Beilage) – Container, kein Einzelwert auf den Kästchen.",
+   "feld": "Beilagen",
+   "standard": "eCH-0276",
+   "element": "attachments"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Von Hand benannte weitere Beilagen = Titel der Beilage, eCH-0276 attachmentsType/documentTitle.",
+   "feld": "Weitere Beilagen (Leerzeilen)",
+   "standard": "eCH-0276",
+   "element": "documentTitle"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Ort und Datum der Unterzeichnung. Katalogweit gesucht nach sign*/locationAndDate/placeOf*/dateOfSigning: einzig eCH-0119 locationAndDate (Ort und Datum als EIN Text, nur Beilagen/Wertschriftenverzeichnis der E-Steuererklärung natürlicher Personen); eCH-0229/eCH-0276 haben weder Ort noch Datum der Unterzeichnung (transactionDate = technischer Übermittlungszeitpunkt). Die Teile Ort/Datum sind in der Databank durchwegs kein_standard (108 Teile).",
+   "feld": "Ort und Datum"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Ort der Unterzeichnung; katalogweit nach sign*/locationAndDate/placeOf* gesucht – placeOf* sind Geburts-/Heimat-/Arbeitsorte, eCH-0119 locationAndDate nur kombiniert für Beilagen natürlicher Personen; kein Element.",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Datum der Unterzeichnung; katalogweit nach sign*/locationAndDate/dateOfSigning gesucht – eCH-0229/eCH-0276 transactionDate ist der technische Übermittlungszeitpunkt, kein Unterzeichnungsdatum; kein Element.",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Handschriftliche Unterschrift. Katalogweit gesucht nach sign*/signature: nur eCH-0039 signer (Identität), eCH-0260 *SignatureConfirmation (Lehrvertrag, Boolean) – keine Unterschrift als Datenelement.",
+   "feld": "Rechtsgültige Unterschrift – Die Richtigkeit und Vollständigkeit der Angaben bezeugt"
+  }
+ ]
+}

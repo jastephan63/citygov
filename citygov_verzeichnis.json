@@ -1,7 +1,7 @@
 {
  "meta": {
-  "generated_at": "2026-11-03T16:23:33",
-  "hinweis": "Verzeichnis der Bearbeitungstätigkeiten je Formular, Struktur nach KDSG Art. 17b Abs. 2 (die Führungspflicht nach Art. 17b trifft nur Polizei, Staatsanwaltschaft und Justizvollzug; für alle anderen Stellen ist dies ein Steuerungsinstrument); «FEHLT» markiert offene Inhalte ehrlich. Erfasst sind die 520 von 520 Formularen mit modellierter Datenfeld-Schicht.",
+  "generated_at": "2026-11-05T14:27:52",
+  "hinweis": "Verzeichnis der Bearbeitungstätigkeiten je Formular, Struktur nach KDSG Art. 17b Abs. 2 (die Führungspflicht nach Art. 17b trifft nur Polizei, Staatsanwaltschaft und Justizvollzug; für alle anderen Stellen ist dies ein Steuerungsinstrument); «FEHLT» markiert offene Inhalte ehrlich. Erfasst sind die 530 von 530 Formularen mit modellierter Datenfeld-Schicht.",
   "felder": {
    "verantwortliche_stelle": "Dienststelle des Services; sonst die publizierende Dienststelle des Formulars; sonst FEHLT.",
    "datenkategorien.besonders_schuetzenswert": "Kategorien besonders schützenswerter Personendaten nach KDSG Art. 2 Abs. 1 lit. d, die das Formular erhebt (Codes: gesundheit = Gesundheit, religion_weltanschauung = Religion/Weltanschauung, politik = Politische oder gewerkschaftliche Ansichten, ethnie_herkunft = Ethnische Herkunft, genetik_biometrie = Genetik/Biometrie, strafen_verfahren = Verfolgungen und Sanktionen, sozialhilfe = Massnahmen der sozialen Hilfe).",
@@ -10,7 +10,7 @@
    "dsfa_status": "Entscheid des Kantons zur Datenschutz-Folgenabschätzung (KDSG Art. 14b); FEHLT = noch nicht entschieden, die Databank setzt keinen."
   },
   "vertrag": {
-   "version": "1.0.2",
+   "version": "1.0.3",
    "schema": "schema/citygov_verzeichnis.schema.json",
    "aenderungen": "exportvertrag.json"
   }
@@ -27585,6 +27585,526 @@
     "zu_ermitteln": 1,
     "n_gedeckt": 2,
     "n_offen": 1
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 589,
+   "formular_kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf",
+   "formular": "Steuererklärung 2026 für Kapitalgesellschaften, Genossenschaften und ausländische Personengesamtheiten (Formular 5)",
+   "verantwortliche_stelle": "Steuerverwaltung",
+   "zweck": "Feststellung des steuerbaren Reingewinns und Eigenkapitals der Kapitalgesellschaft, Genossenschaft oder ausländischen Personengesamtheit für Kantons- und Gemeindesteuern und direkte Bundessteuer, samt Verlustverrechnung und Steuerausscheidung",
+   "datenkategorien": {
+    "felder": 90,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 80,
+    "aufgabe": 9,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 1,
+    "n_gedeckt": 89,
+    "n_offen": 1
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 590,
+   "formular_kennung": "sh:formular:abschreibungen-fur-juristische-personen-formular-6",
+   "formular": "Abschreibungen für juristische Personen (Formular 6)",
+   "verantwortliche_stelle": "Steuerverwaltung",
+   "zweck": "Prüfung der verbuchten Abschreibungen je Anlageobjekt anhand von Anfangswert, Zu- und Abgängen, Wert vor Abschreibungen, Endwert und Abschreibungssatz im Rahmen der Steuererklärung der juristischen Person.",
+   "datenkategorien": {
+    "felder": 4,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 3,
+    "aufgabe": 1,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 0,
+    "n_gedeckt": 4,
+    "n_offen": 0
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 591,
+   "formular_kennung": "sh:formular:wertberichtigungen-ruckstellungen-fur-juristische-personen-f",
+   "formular": "Wertberichtigungen Rückstellungen für juristische Personen (Formular 6a)",
+   "verantwortliche_stelle": "Steuerverwaltung",
+   "zweck": "Prüfung von Höhe und Begründung der Wertberichtigungen auf unterbewerteten Aktiven und der Rückstellungen samt Vorjahresstand, die eine juristische Person mit der Steuererklärung geltend macht.",
+   "datenkategorien": {
+    "felder": 5,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 4,
+    "aufgabe": 1,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 0,
+    "n_gedeckt": 5,
+    "n_offen": 0
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 592,
+   "formular_kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris",
+   "formular": "Steuererklärung 2026 für Vereine, Stiftungen und übrige juristische Personen (Formular 7)",
+   "verantwortliche_stelle": "Steuerverwaltung",
+   "zweck": "Ermittlung des steuerbaren Reingewinns und Eigenkapitals zur Veranlagung der Kantons- und Gemeindesteuern und der direkten Bundessteuer, einschliesslich Verlustverrechnung und Prüfung der privilegierten Besteuerung bei ideellen Zwecken.",
+   "datenkategorien": {
+    "felder": 52,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 43,
+    "aufgabe": 8,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 1,
+    "n_gedeckt": 51,
+    "n_offen": 1
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 593,
+   "formular_kennung": "sh:formular:steuerausscheidung-fur-juristische-personen-formular-8c",
+   "formular": "Steuerausscheidung für juristische Personen (Formular 8c)",
+   "verantwortliche_stelle": "Steuerverwaltung",
+   "zweck": "Feststellung der auf Schaffhausen und auf andere Kantone oder Länder entfallenden Anteile an steuerbarem Kapital und Reingewinn einer juristischen Person anhand der Aktiven, der Liegenschaftserträge sowie der Erwerbs- und Umsatzfaktoren.",
+   "datenkategorien": {
+    "felder": 9,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 8,
+    "aufgabe": 1,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 0,
+    "n_gedeckt": 9,
+    "n_offen": 0
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 594,
+   "formular_kennung": "sh:formular:bescheinigung-uber-bezuge-fur-juristische-personen-formular-",
+   "formular": "Bescheinigung über Bezüge für juristische Personen (Formular 12a)",
+   "verantwortliche_stelle": "Steuerverwaltung",
+   "zweck": "Feststellung der im Berichtsjahr an Mitglieder der Verwaltung und anderer Organe ausgerichteten Bezüge für die Veranlagungsbehörden (Art. 147 StG, Art. 129 DBG) und Weiterleitung der Lohnausweise von Personen mit Wohnsitz in anderen Kantonen.",
+   "datenkategorien": {
+    "felder": 8,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 4,
+    "aufgabe": 4,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 0,
+    "n_gedeckt": 8,
+    "n_offen": 0
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 595,
+   "formular_kennung": "sh:formular:wertschriften-und-guthabenverzeichnis-fur-juristische-person",
+   "formular": "Wertschriften- und Guthabenverzeichnis für juristische Personen (Formular 13)",
+   "verantwortliche_stelle": "Steuerverwaltung",
+   "zweck": "Feststellung der Wertschriften, Guthaben und Darlehen an Beteiligte, Nahestehende oder verbundene Unternehmen mit Buchwert laut Schlussbilanz und Bruttoertrag für die Steuerveranlagung der juristischen Person.",
+   "datenkategorien": {
+    "felder": 5,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 5,
+    "aufgabe": 0,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 0,
+    "n_gedeckt": 5,
+    "n_offen": 0
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 596,
+   "formular_kennung": "sh:formular:schuldenverzeichnis-fur-juristische-personen-formular-14a",
+   "formular": "Schuldenverzeichnis für juristische Personen (Formular 14a)",
+   "verantwortliche_stelle": "Steuerverwaltung",
+   "zweck": "Feststellung sämtlicher Schulden per Ende Geschäftsjahr und der im Geschäftsjahr angefallenen Schuldzinsen samt Gläubigern, deren Stellung zur Steuerpflichtigen und Sicherheiten zur Berücksichtigung bei der Veranlagung der juristischen Person.",
+   "datenkategorien": {
+    "felder": 8,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 8,
+    "aufgabe": 0,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 0,
+    "n_gedeckt": 8,
+    "n_offen": 0
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 597,
+   "formular_kennung": "sh:formular:angaben-uber-beteiligungen-fur-juristische-personen-formular",
+   "formular": "Angaben über Beteiligungen für juristische Personen (Formular 19)",
+   "verantwortliche_stelle": "Steuerverwaltung",
+   "zweck": "Prüfung der Voraussetzungen und der Berechnung des Beteiligungsabzugs (Ermässigung der Gewinnsteuer) bei den Kantons- und Gemeindesteuern und der direkten Bundessteuer anhand der Beteiligungen, ihrer Gestehungskosten und Nettoerträge.",
+   "datenkategorien": {
+    "felder": 11,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 10,
+    "aufgabe": 1,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 0,
+    "n_gedeckt": 11,
+    "n_offen": 0
+   },
+   "empfaenger": "FEHLT",
+   "aufbewahrung": {
+    "fristen": [],
+    "standardregime": {
+     "text": "Ohne eigene Frist im Fachgesetz gilt der Standard: Personendaten nicht länger aufbewahren, als es zur Erreichung des Zwecks erforderlich ist (KDSG Art. 4); Akten bleiben in der Registratur, solange die laufende Verwaltungstätigkeit sie braucht — Registraturperioden von in der Regel zehn bis zwanzig Jahren (ArchivV § 6, § 5); danach sind sie dem Staatsarchiv anzubieten, nicht Übernommenes wird vernichtet (ArchivV § 7).",
+     "refs": [
+      [
+       "174.100",
+       "Art. 4",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 6",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 5",
+       "aufbewahrung"
+      ],
+      [
+       "172.301",
+       "§ 7",
+       "archivierung"
+      ]
+     ]
+    }
+   },
+   "dsfa_status": "FEHLT"
+  },
+  {
+   "form_id": 598,
+   "formular_kennung": "sh:formular:kapitalgewinn-aus-beteiligungen-fur-juristische-personen-for",
+   "formular": "Kapitalgewinn aus Beteiligungen für juristische Personen (Formular 19.1)",
+   "verantwortliche_stelle": "Steuerverwaltung",
+   "zweck": "Prüfung der Abzugsberechtigung (mindestens einjährige Haltedauer, veräusserte Quote) und Ermittlung des für den Beteiligungsabzug massgebenden Kapitalgewinns je veräusserter Beteiligung aus Verkaufserlös und Gestehungskosten.",
+   "datenkategorien": {
+    "felder": 12,
+    "besonders_schuetzenswert": [],
+    "n_besonders_schuetzenswert": 0
+   },
+   "rechtsgrundlagen": {
+    "artikel": 11,
+    "aufgabe": 1,
+    "art5_offen": 0,
+    "ohne": 0,
+    "offen": 0,
+    "zu_ermitteln": 0,
+    "n_gedeckt": 12,
+    "n_offen": 0
    },
    "empfaenger": "FEHLT",
    "aufbewahrung": {

@@ -92,7 +92,7 @@ def berechne(conn, services, dvsh_rows_by_service, shep_by_service):
     # the documents the targets of «Online erledigen» link (migrationsamt.sh.ch pages)
     online_by_service = {}
     for d in (_zeilen(conn, "online_datei") if "online_datei" in have else []):
-        if d["service_id"] is not None and d["herkunft"] == "verlinkt":
+        if d["service_id"] is not None and d["herkunft"] in ("verlinkt", "shch"):
             online_by_service.setdefault(d["service_id"], []).append(d)
     urteile = {}
     if "dokument_urteil" in have:
@@ -141,7 +141,9 @@ def berechne(conn, services, dvsh_rows_by_service, shep_by_service):
             for d in _liste(sp.get("datei_links")):
                 add(d.get("sha256"), "Live", d.get("label"), d.get("dateiname"), "begleitend", d.get("url"))
         for d in online_by_service.get(s["id"], []):
-            add(d["sha256"], "Online", d.get("label"), d.get("dateiname"), "begleitend", d.get("url"))
+            # a page of sh.ch the service's Formulare come from, or a target of «Online erledigen»
+            add(d["sha256"], "sh.ch" if d["herkunft"] == "shch" else "Online", d.get("label"), d.get("dateiname"),
+                "begleitend", d.get("url"))
         out = []
         for sha, it in items.items():
             stand, fid = _stand(sha, held, urteile)
@@ -216,6 +218,7 @@ def live(conn, services, forms):
             fm["live"] = None
         for s in services:
             s["portal"] = s["online"] = None
+            s["portal_korrekturen"] = []
         return None
     file_hash = {r[0]: r[1] for r in conn.execute("SELECT id, file_hash FROM form")}
     held = set(file_hash.values())
@@ -275,9 +278,17 @@ def live(conn, services, forms):
     for z in ziele:
         ziel_by_service.setdefault(z["service_id"], []).append(
             {"slug": z["slug"], "url": z["url"], "art": z["art"], "befund": z["befund"]})
+    # what is to be corrected on the live portal, with the right target (load_online.py --korrekturen)
+    korr = _zeilen(conn, "portal_korrektur") if "portal_korrektur" in have else []
+    korr_by_service = {}
+    for k in korr:
+        sid = next((p.get("service_id") for p in portal_rows if p["slug"] == k["slug"]), None)
+        k = {**k, "service_id": sid, "seite": seite(k["slug"])}
+        korr_by_service.setdefault(sid, []).append(k)
     for s in services:
         s["online"] = {"ziele": ziel_by_service.get(s["id"], []), "formulare": online_by_service.get(s["id"], [])} \
             if s["id"] in ziel_by_service or s["id"] in online_by_service else None
+        s["portal_korrekturen"] = korr_by_service.get(s["id"], [])
     n = {k: 0 for k in LIVE_STAENDE}
     for fm in forms:
         sha = file_hash.get(fm["id"])
@@ -347,6 +358,7 @@ def live(conn, services, forms):
             "dateien": len(files_live), "dateien_formular": len(files_live & held),
             "aktionen": dict(sorted(aktionen.items(), key=lambda x: -x[1])),
             "vs_shep": vs, "auffaelligkeiten": auff,
+            "korrekturen": [k for L in korr_by_service.values() for k in L],
             "online": {"ziele": len(ziele), "ziel_art": _zaehle(z["art"] for z in ziele),
                        "formulare": len(of_rows), "gegenstueck": _zaehle(o["gegenstueck_art"] for o in of_rows),
                        "zugang": _zaehle(o["zugang"] for o in of_rows),

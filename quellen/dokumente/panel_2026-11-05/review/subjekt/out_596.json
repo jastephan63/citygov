@@ -1,0 +1,16 @@
+{
+ "urteile": [
+  {
+   "id": 7585,
+   "urteil": "bestaetigt",
+   "subjekt": "gemischt",
+   "grund": "Tabelle A listet Grundpfandschulden der juristischen Person je Gläubiger mit Name und Adresse. Laut Formular kann der Gläubiger eine Person sein (Gesellschafter, Organmitglied, nahestehende oder unbeteiligte Person) oder ein Unternehmen (verbundenes Unternehmen, Bank). Bei Baurechtszinsen ist es ein beliebiger Empfänger. Ob Person oder Organisation, steht nicht fest, also gemischt und keine once-only-Markierung."
+  },
+  {
+   "id": 7587,
+   "urteil": "bestaetigt",
+   "subjekt": "gemischt",
+   "grund": "Tabelle B listet Darlehens- und andere Schulden der juristischen Person je Gläubiger mit Name, Adresse und Code 01/00. Das Formular nennt als Gläubiger sowohl natürliche Personen (Gesellschafter, Beteiligter, Organmitglied, nahestehende Person) als auch Organisationen (verbundenes Unternehmen, Geschäftspartner, Bank). Damit ist das Feld nicht sicher einer natürlichen Person zuzuordnen, also gemischt."
+  }
+ ]
+}

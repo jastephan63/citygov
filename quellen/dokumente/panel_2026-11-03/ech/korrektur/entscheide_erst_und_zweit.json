@@ -1,0 +1,476 @@
+[
+ {
+  "batch": "A1",
+  "erst": [
+   {
+    "form_id": 497,
+    "art": "feld",
+    "punkt": "Gesuchsart",
+    "entscheid": "panel",
+    "urteil": "besser",
+    "standard": "eCH-0223",
+    "element": "eventType",
+    "grund": "Anderswo ist «Gesuchsart/Art des Gesuchs» 4× kein_standard, 2× eCH-0258 serviceName und 2× eCH-0298 zugeordnet, aber nie in einem migrationsrechtlichen Standard. eCH-0223 (Datenaustausch Einwohnerdienst–Migrationsamt) codiert mit eventType genau diesen Geschäftsfall, mit dem Wert «prolongation» für die Verlängerung. Die Erteilung hat keinen eigenen Wert, und eine Teilabdeckung ist im Katalog üblich (vgl. maritalStatus). Deshalb ist kein_standard nach der Katalogsuche nicht haltbar."
+   },
+   {
+    "form_id": 497,
+    "art": "feld",
+    "punkt": "Personalien der Ausländerin/des Ausländers",
+    "entscheid": "beibehalten",
+    "urteil": null,
+    "standard": null,
+    "element": null,
+    "grund": "174 «Personalien»-Composites und auch 587 (Niederlassungsgesuch) haben den Container eCH-0044 personIdentification. eCH-0223 personData kommt in der Datenbank nirgends vor. Die Teilfelder sind bereits atomar auf eCH-0044/0011/0010 abgebildet, deshalb bleibt der übliche Container."
+   },
+   {
+    "form_id": 497,
+    "art": "feld",
+    "punkt": "Eltern",
+    "entscheid": "beibehalten",
+    "urteil": null,
+    "standard": null,
+    "element": null,
+    "grund": "Die vier Teilfelder liegen auf officialName/firstName im Kontext nameOfParentType. Damit ist eCH-0021 nameOfParent ihr unmittelbarer Container. Er wird 16× für Eltern-Composites verwendet, das übergeordnete birthAddonData dagegen 0×."
+   },
+   {
+    "form_id": 497,
+    "art": "feld",
+    "punkt": "Strafverfahren hängig",
+    "entscheid": "beibehalten",
+    "urteil": null,
+    "standard": null,
+    "element": null,
+    "grund": "Das Feld steht schon auf eCH-0051 standard_only, der Panelvorschlag ist also mit dem Ist-Zustand identisch. Alle rund 10 Varianten von «Strafverfahren hängig» sind ebenso zugeordnet. eCH-0051 (Genehmigt) hat 0 Elemente, darum bleibt das Element null, was zur Ja/Nein-Box passt."
+   },
+   {
+    "form_id": 497,
+    "art": "feld",
+    "punkt": "Vorstrafen",
+    "entscheid": "beibehalten",
+    "urteil": null,
+    "standard": null,
+    "element": null,
+    "grund": "Das Feld ist schon eCH-0051 standard_only und entspricht damit dem Panelvorschlag. Alle 6 «Vorstrafen»-Varianten (Person 1–3, Ehegatte, «Bestehen Vorstrafen?») sind gleich zugeordnet. eCH-0051 hat 0 Elemente, deshalb bleibt das Element null."
+   },
+   {
+    "form_id": 497,
+    "art": "teilfeld",
+    "punkt": "Arbeitgeberdaten › GAV-Bezeichnung",
+    "entscheid": "beibehalten",
+    "urteil": null,
+    "standard": null,
+    "element": null,
+    "grund": "Das Teilfeld steht schon auf eCH-0256 standard_only und entspricht dem Panelvorschlag. eCH-0256 (FlaM-Vollzug) hat 0 Elemente und ist «In Arbeit», also weder aufgehoben noch abgelöst. Das vergleichbare Formular 474 (Erwerbstätigkeit B/S/F, «NAV / GAV») und die GAV-Composites 105/112 nutzen eCH-0256; die drei GAV-Teilfelder bei 105/112/130 mit kein_standard weichen davon ab."
+   },
+   {
+    "form_id": 497,
+    "art": "feld",
+    "punkt": "Selbständig",
+    "entscheid": "panel",
+    "urteil": "besser",
+    "standard": "eCH-0278",
+    "element": "isSelfEmployed",
+    "grund": "Das Feld ist eine Ja/Nein-Box. eCH-0278 isSelfEmployed ist boolean und wird für solche Boxen 6× bei Feldern (88–92, 141) und 1× bei einem Teilfeld (131) verwendet, kindOfEmployment nur 3× (84, 87, 497). eCH-0021 kindOfEmployment ist ein 5-wertiger Code und gehört zur Erwerbsart-Auswahl wie in 474 und 508/510/512/513, nicht zu einer Ja/Nein-Box."
+   },
+   {
+    "form_id": 497,
+    "art": "teilfeld",
+    "punkt": "Ausbildung und Berufserfahrung › Ausbildung/bisherige Tätigkeit",
+    "entscheid": "beibehalten",
+    "urteil": null,
+    "standard": null,
+    "element": null,
+    "grund": "Dieselbe Angabe zu Ausbildung bzw. erlerntem Beruf steht in der Praxis auf eCH-0260 profession (Berufsnummer, gleiches Element 6235): «Erlernter Beruf / Ausbildung» (541), «Ausbildung als» (440), «Fähigkeitsausweis als» (209). Die einzige Alternative, eCH-0021 jobTitle, ist ein Element für den aktuellen Wert und darf eine bisherige Tätigkeit nicht aufnehmen. Darum bleibt profession, nicht kein_standard."
+   },
+   {
+    "form_id": 497,
+    "art": "feld",
+    "punkt": "Brutto-Lohn",
+    "entscheid": "panel",
+    "urteil": "besser",
+    "standard": "eCH-0278",
+    "element": "dependentEmploymentDetail",
+    "grund": "eCH-0278 employedRevenue ist ein Wertelement (moneyType mit Betrag und currency), ein Composite darf aber nur einen Container oder den Standard tragen. Die 13 Lohn-Composites auf employedRevenue folgen dem bekannten Fehlermuster. Im XSD ist dependentEmploymentDetail der direkte Container von employedRevenue und employmentPercentage, und auf employmentPercentage liegt hier schon «Umfang der Beschäftigung»."
+   },
+   {
+    "form_id": 497,
+    "art": "teilfeld",
+    "punkt": "Brutto-Lohn › Betrag",
+    "entscheid": "panel",
+    "urteil": "besser",
+    "standard": "eCH-0278",
+    "element": "employedRevenue",
+    "grund": "eCH-0260 grossSalary1stYear ist im XSD als «Entschädigung 1. Lehrjahr» definiert und passt nicht zum Lohn einer ausländischen Arbeitskraft. Lohnbeträge stehen in 110 Teilfeldern auf eCH-0278 employedRevenue, darunter «Bruttolohn» im vergleichbaren 474 und «Betrag CHF» in 108."
+   },
+   {
+    "form_id": 497,
+    "art": "teilfeld",
+    "punkt": "Brutto-Lohn › Pro Stunde / Pro Monat",
+    "entscheid": "panel",
+    "urteil": "kein_standard",
+    "standard": null,
+    "element": null,
+    "grund": "Im ganzen Katalog gibt es für die Lohnbasis nur eCH-0260 perMonthWeekHour1st–4thYear. Sie sind als «Entschädigung pro Monat/Woche/Stunde (1. Lehrjahr)» an die Lehre gebunden und genauso unpassend wie grossSalary1stYear. Die gleiche Angabe «Bezugsgrösse (pro Stunde / pro Monat)» in 108 ist kein_standard; 474 «Lohnbasis» auf perMonthWeekHour1stYear weicht ab und sollte folgen."
+   },
+   {
+    "form_id": 497,
+    "art": "teilfeld",
+    "punkt": "Personalbestand › Heutiger Personalbestand",
+    "entscheid": "beibehalten",
+    "urteil": null,
+    "standard": null,
+    "element": null,
+    "grund": "«Personalbestand» steht 6× auf eCH-0108 sizeClassFte und nur 1× auf kein_standard, «Anzahl Mitarbeiter» 4×, dazu Dutzende Teilfelder mit Personalzahlen. Die Katalogsuche nach employee/fte/staff/headcount findet kein anderes Element zur Betriebsgrösse, deshalb bleibt sizeClassFte."
+   }
+  ],
+  "zweit": [
+   {
+    "form_id": 497,
+    "art": "feld",
+    "punkt": "Gesuchsart",
+    "entscheid": "panel",
+    "urteil": "besser",
+    "standard": "eCH-0223",
+    "element": "eventType",
+    "grund": "Nachgezählt: «Gesuchsart/Art des Gesuchs» steht 8× in der Datenbank (181/372 eCH-0258 serviceName, 34/214 eCH-0298, 484/497/518/519 kein_standard), aber auf keinem Migrationsformular. eCH-0223 eventType steht wörtlich im Katalog (personEventMessageType) und codiert «prolongation» für die Verlängerung sowie «othercaseOfMigration» für die Erteilung. Die Wahl Erteilung/Verlängerung ist ein Code und keine Ja/Nein-Box. eCH-0223 ist weder aufgehoben noch abgelöst; sein Status ist im Katalog leer, weil der Standard noch nirgends zitiert ist."
+   },
+   {
+    "form_id": 497,
+    "art": "feld",
+    "punkt": "Personalien der Ausländerin/des Ausländers",
+    "entscheid": "beibehalten",
+    "urteil": null,
+    "standard": null,
+    "element": null,
+    "grund": "Nachgezählt: 174 «Personalien»-Composites tragen den Container eCH-0044 personIdentification, auch die Migrationsformulare 584 (5×) und 587; eCH-0223 personData kommt 0× vor. Ausserdem nimmt eCH-0223 personDataType die Adresse nur als swissAddressInformationType auf, die gegenwärtige Aufenthaltsadresse liegt bei Einreisegesuchen aber oft im Ausland."
+   },
+   {
+    "form_id": 497,
+    "art": "feld",
+    "punkt": "Eltern",
+    "entscheid": "beibehalten",
+    "urteil": null,
+    "standard": null,
+    "element": null,
+    "grund": "eCH-0021 nameOfParent ist der unmittelbare Container der Teilfelder (officialName/firstName im Kontext nameOfParentType). Es steht auf 16 Feldern mit Elternnamen, davon 14 Composites, auch in den Migrationsformularen 582 (Mutter/Vater) und 584 (8×); birthAddonData kommt 0× vor. Die 6 «Personalien des anderen Elternteils» auf personIdentification meinen eine andere Angabe."
+   },
+   {
+    "form_id": 497,
+    "art": "feld",
+    "punkt": "Strafverfahren hängig",
+    "entscheid": "beibehalten",
+    "urteil": null,
+    "standard": null,
+    "element": null,
+    "grund": "Das Feld steht bereits auf eCH-0051 standard_only, der Panelvorschlag ist also mit dem Ist-Zustand identisch. Nachgezählt tragen alle 9 Ja/Nein-Felder zum hängigen Strafverfahren (214, 216, 220, 497, 582, 584 4×) eCH-0051. Der Standard hat 0 Elemente, darum bleibt das Element null, was zur Ja/Nein-Box passt."
+   },
+   {
+    "form_id": 497,
+    "art": "feld",
+    "punkt": "Vorstrafen",
+    "entscheid": "beibehalten",
+    "urteil": null,
+    "standard": null,
+    "element": null,
+    "grund": "Das Feld steht bereits auf eCH-0051 standard_only und ist damit identisch mit dem Panelvorschlag. Nachgezählt stehen alle 7 Vorstrafen-Felder (34, 497, 582, 584 4×) auf eCH-0051. eCH-0051 (Genehmigt) hat 0 Elemente, deshalb bleibt das Element null."
+   },
+   {
+    "form_id": 497,
+    "art": "teilfeld",
+    "punkt": "Arbeitgeberdaten › GAV-Bezeichnung",
+    "entscheid": "beibehalten",
+    "urteil": null,
+    "standard": null,
+    "element": null,
+    "grund": "Das Teilfeld steht bereits auf eCH-0256 standard_only und ist damit identisch mit dem Panelvorschlag. eCH-0256 (In Arbeit, 0 Elemente) ist nicht aufgehoben, und der Katalog hat kein GAV-Element. Das vergleichbare Migrationsformular 474 «NAV / GAV» und die GAV-Felder 105/112/130/226 nutzen eCH-0256; nur die GAV-Teilfelder 105/112/130 stehen auf kein_standard und sollten folgen."
+   },
+   {
+    "form_id": 497,
+    "art": "feld",
+    "punkt": "Selbständig",
+    "entscheid": "panel",
+    "urteil": "besser",
+    "standard": "eCH-0278",
+    "element": "isSelfEmployed",
+    "grund": "Im PDF ist «Selbständig» eine einzelne Ankreuzbox, also Ja/Nein. eCH-0278 isSelfEmployed (boolean) passt genau, eCH-0021 kindOfEmployment ist dagegen der Erwerbsart-Code der Auswahllisten in 474 und 508/509/510/512/513. Nachgezählt: isSelfEmployed steht auf 7 Feldern (88–92, 141, 273) und 1 Teilfeld (131), kindOfEmployment für dieselbe Box nur 4× (84, 85, 87, 497)."
+   },
+   {
+    "form_id": 497,
+    "art": "teilfeld",
+    "punkt": "Ausbildung und Berufserfahrung › Ausbildung/bisherige Tätigkeit",
+    "entscheid": "beibehalten",
+    "urteil": null,
+    "standard": null,
+    "element": null,
+    "grund": "Kein_standard ist nicht haltbar: Dieselbe Angabe steht 6× auf eCH-0260 profession (6235), nämlich 541 «Erlernter Beruf / Ausbildung», 440 «Ausbildung als», 494/495 «Ausbildung» und 209 «Fähigkeitsausweis als» (2×). Die übrigen Kandidaten passen schlechter: eCH-0021 jobTitle ist ein Element für den aktuellen Wert (332/336 «Bisherige Tätigkeit» folgen dort dem Fehlermuster), eCH-0278 educationType gehört zu den Weiterbildungskosten, und eCH-0260 firstOccupation kommt 0× vor."
+   },
+   {
+    "form_id": 497,
+    "art": "feld",
+    "punkt": "Brutto-Lohn",
+    "entscheid": "anders",
+    "urteil": "besser",
+    "standard": "eCH-0278",
+    "element": "dependentEmployment",
+    "grund": "employedRevenue ist ein Wertelement (moneyType) und darf den Composite nicht tragen; die 15 Composites auf employedRevenue folgen dem Fehlermuster. Als Container für Lohn- und Anstellungs-Composites nutzt die Datenbank 10× eCH-0278 dependentEmployment, so 130, 115 und 482 «Anstellung in der konkursiten Firma» mit denselben Teilen (Lohnbetrag employedRevenue, Stundenlohn kein_standard, Wochenstunden hoursPerWeek). dependentEmploymentDetail ist im XSD zwar der engere Container, trägt aber kein einziges Feld."
+   },
+   {
+    "form_id": 497,
+    "art": "teilfeld",
+    "punkt": "Brutto-Lohn › Betrag",
+    "entscheid": "panel",
+    "urteil": "besser",
+    "standard": "eCH-0278",
+    "element": "employedRevenue",
+    "grund": "eCH-0260 grossSalary1stYear ist im XSD die «Entschädigung 1. Lehrjahr» und wird nur hier verwendet. Lohnbeträge stehen in 110 Teilfeldern auf eCH-0278 employedRevenue, z. B. 108 «AHV-pflichtiger Grundlohn › Betrag CHF» und 482 «Monatslohn brutto (CHF)»; auch das Feld «Bruttolohn» im vergleichbaren 474 steht dort."
+   },
+   {
+    "form_id": 497,
+    "art": "teilfeld",
+    "punkt": "Brutto-Lohn › Pro Stunde / Pro Monat",
+    "entscheid": "panel",
+    "urteil": "kein_standard",
+    "standard": null,
+    "element": null,
+    "grund": "Die Suche im ganzen Katalog (period, frequency, interval, hourly, monthly, wage, salary, basis) findet nur eCH-0260 perMonthWeekHour1st–4thYear. Diese sind im XSD als «Entschädigung pro Monat/Woche/Stunde (1. Lehrjahr)» an die Lehre gebunden. Dieselbe Angabe «Bezugsgrösse (pro Stunde / pro Monat)» in 108 ist kein_standard; nur 474 «Lohnbasis» steht noch auf perMonthWeekHour1stYear und sollte folgen."
+   },
+   {
+    "form_id": 497,
+    "art": "teilfeld",
+    "punkt": "Personalbestand › Heutiger Personalbestand",
+    "entscheid": "beibehalten",
+    "urteil": null,
+    "standard": null,
+    "element": null,
+    "grund": "Nachgezählt steht «Personalbestand» 6× (217, 218, 221, 223, 226, 425) und «Anzahl Mitarbeiter» 4× (117, 119, 126, 128) auf eCH-0108 sizeClassFte, insgesamt sind es 16 Felder und 52 Teilfelder. Auf kein_standard steht nur der Composite 497 selbst. Die Katalogsuche nach employee/fte/staff/headcount/personnel/workforce findet nur Kosten- und Steuerelemente (eCH-0276/0278) und kein anderes Element für die Personalzahl."
+   }
+  ]
+ },
+ {
+  "batch": "Verlaengerung",
+  "erst": [
+   {
+    "form_id": 508,
+    "art": "feld",
+    "punkt": "Nummer des Passes und Gültigkeitsdauer",
+    "entscheid": "beibehalten",
+    "urteil": null,
+    "standard": null,
+    "element": null,
+    "grund": "eCH-0044 otherPersonId (namedPersonIdType) enthält nur personIdCategory und personId. Für die Gültigkeitsdauer eines Passes hat der ganze Katalog kein Element (die Treffer sind nur residencePermitValidTill, biometricDataExpiryDate und nameOnForeignPassport), also gibt es keinen Container für die ganze Angabe. Die Passnummer ist schon im Teilfeld als eCH-0044 personId zugeordnet, und das gleiche Feld auf 509–513 steht 5× auf kein_standard."
+   },
+   {
+    "form_id": 508,
+    "art": "feld",
+    "punkt": "Gemeinsamer Haushalt (zusammenwohnend)",
+    "entscheid": "beibehalten",
+    "urteil": null,
+    "standard": null,
+    "element": null,
+    "grund": "Die Praxis ist einheitlich: 4× eCH-0011 separationData (508/509/510/512), dazu das Gegenstück «Getrennter Haushalt seit» 4× als dessen Kind separationValidFrom. separationData ist ein Container (separationDataType mit separation, separationValidFrom und separationValidTill) und kein Wertelement, die Ja/Nein-Regel greift also nicht. Die gesuchte Alternative eCH-0278 inCohabitation meint das Konkubinat Unverheirateter und passt nicht."
+   },
+   {
+    "form_id": 508,
+    "art": "feld",
+    "punkt": "Jetziger Aufenthaltszweck (Erwerbstätige)",
+    "entscheid": "panel",
+    "urteil": "kein_standard",
+    "standard": null,
+    "element": null,
+    "grund": "Gefragt ist der migrationsrechtliche Aufenthaltszweck mit 9 Optionen, darunter Flüchtling, Beamter ausländischer Verwaltung, Schüler, Pflegekind und Student. eCH-0021 kindOfEmployment ist nur die Erwerbsart (jobDataType, Codes 0–4). Im ganzen Katalog gibt es kein Zweck-Element: eCH-0006 und residencePermit enthalten nur Bewilligungskategorien, eCH-0223 hat kein Zweck-Element, eCH-0041 hat keine Elemente. Die Praxis für «Aufenthaltszweck» (238), «Zweck des Aufenthaltes» (497) und «Aufenthaltszweck (Nichterwerbstätige)» (3×) ist kein_standard. Die bisherigen 4× kindOfEmployment (508/509/510/512) sollen einheitlich folgen; auf 513 bleibt kindOfEmployment, weil dort nur Erwerbsarten zur Wahl stehen."
+   },
+   {
+    "form_id": 508,
+    "art": "feld",
+    "punkt": "Name und Adresse des Betriebes",
+    "entscheid": "panel",
+    "urteil": "besser",
+    "standard": "eCH-0021",
+    "element": "occupationData",
+    "grund": "Das Feld ist zusammengesetzt, und seine Teilfelder sind schon employer und placeOfEmployer. Der Container dazu ist laut XSD eCH-0021 occupationData (jobDataType → occupationDataType). Das bisherige employer (5× auf 509–513) deckt nur den Namen ab. occupationData ist 31× in der Praxis belegt (z. B. «Angaben ArbeitgeberIn» 138/147), und auch die Schwesterangaben «Befristet bis» (occupationValidTill) und «Einsatzort» (placeOfWork) liegen in diesem Container."
+   },
+   {
+    "form_id": 508,
+    "art": "feld",
+    "punkt": "Bemerkungen des(r) Gesuchsteller(in)",
+    "entscheid": "beibehalten",
+    "urteil": null,
+    "standard": null,
+    "element": null,
+    "grund": "eCH-0058 comment (commentType, headerType, Genehmigt) ist die Container-Konvention der Databank für freie Bemerkungsfelder. In der ganzen Familie 508–513 ist sie einheitlich angewendet (7× comment: 508–513 und 517). Das Panel selbst hat sie auf 513 bestätigt. Die 130 anderen Bemerkungsfelder mit kein_standard und das allgemeine Argument «Meldungskopf» sind kein starker Grund, den Container nur auf einzelnen Familienformularen zu streichen."
+   },
+   {
+    "form_id": 511,
+    "art": "feld",
+    "punkt": "Name und Adresse des Betriebes",
+    "entscheid": "panel",
+    "urteil": "besser",
+    "standard": "eCH-0021",
+    "element": "occupationData",
+    "grund": "Das Textfeld bündelt den Namen (employer) und die Adresse (placeOfEmployer) des Betriebs. Ein Bündelfeld erhält den Container, und das ist laut XSD eCH-0021 occupationData. Das bisherige employer (5× auf 509–513) deckt die Adresse nicht ab. Zudem soll die Familie einheitlich bleiben: Auf 508 sind die Teile schon employer und placeOfEmployer."
+   },
+   {
+    "form_id": 511,
+    "art": "feld",
+    "punkt": "Bemerkungen des(r) Gesuchsteller(in)",
+    "entscheid": "beibehalten",
+    "urteil": null,
+    "standard": null,
+    "element": null,
+    "grund": "Für freie Bemerkungsfelder gilt die Container-Konvention eCH-0058 comment (commentType, Genehmigt). Sie ist auf allen Verlängerungsgesuchen 508–513 einheitlich angewendet (7× comment), auf 513 auch vom Panel bestätigt. Gegenüber 130 Bemerkungsfeldern mit kein_standard ausserhalb der Familie fehlt ein starker Grund, sie hier zu streichen."
+   },
+   {
+    "form_id": 512,
+    "art": "feld",
+    "punkt": "Jetziger Aufenthaltszweck (Erwerbstätige)",
+    "entscheid": "panel",
+    "urteil": "kein_standard",
+    "standard": null,
+    "element": null,
+    "grund": "Die 9 Optionen sind dieselben wie auf 508: der ZEMIS-Aufenthaltszweck, darunter Flüchtling, ausländische Verwaltung, Schüler, Pflegekind und Student. eCH-0021 kindOfEmployment (Erwerbsart, Codes 0–4) deckt davon höchstens selbständig und unselbständig ab. Im ganzen Katalog gibt es kein Zweck-Element (eCH-0006: nur Kategorien, eCH-0223: kein Zweck, eCH-0041: keine Elemente). Die Praxis für «Aufenthaltszweck» und «Zweck des Aufenthaltes» ist kein_standard, und die Entscheidung gilt gleich wie auf 508."
+   },
+   {
+    "form_id": 512,
+    "art": "feld",
+    "punkt": "Name und Adresse des Betriebes",
+    "entscheid": "anders",
+    "urteil": "besser",
+    "standard": "eCH-0021",
+    "element": "occupationData",
+    "grund": "Auch eCH-0010 organisationMailAdress wäre ein Container für Name und Adresse (49× belegt, z. B. «Name und Adresse des Arbeitgebers» 108/282), aber ohne die Rolle Arbeitgeber. Für die Familie gilt eine Antwort, und die ist eCH-0021 occupationData: Er enthält employer und placeOfEmployer und ist auf 508 bereits durch die Teilfelder vorgegeben. Auch das Schwesterfeld «Anstellungsdauer befristet bis» (occupationValidTill) liegt in diesem Container."
+   },
+   {
+    "form_id": 512,
+    "art": "feld",
+    "punkt": "Bemerkungen des(r) Gesuchsteller(in)",
+    "entscheid": "beibehalten",
+    "urteil": null,
+    "standard": null,
+    "element": null,
+    "grund": "eCH-0058 comment (commentType, Genehmigt) ist die Konvention für freie Bemerkungsfelder und auf allen Verlängerungsgesuchen 508–513 einheitlich (7× comment, auf 513 vom Panel bestätigt). Das allgemeine Argument «Meldungskopf» und die 130 Bemerkungsfelder mit kein_standard ausserhalb der Familie reichen nicht, um den Container auf einzelnen Familienformularen zu streichen."
+   },
+   {
+    "form_id": 513,
+    "art": "feld",
+    "punkt": "Name und Adresse des Betriebes",
+    "entscheid": "panel",
+    "urteil": "besser",
+    "standard": "eCH-0021",
+    "element": "occupationData",
+    "grund": "Das mehrzeilige Feld bündelt Name (employer) und Adresse (placeOfEmployer). Die XSD führt beide im Container eCH-0021 occupationData, wo auf 513 auch «Einsatzort» (placeOfWork) liegt. Das bisherige employer (5× auf 509–513) deckt nur den Namen ab, darum gilt hier die gleiche Familienantwort wie auf 508, 511 und 512."
+   }
+  ],
+  "zweit": [
+   {
+    "form_id": 508,
+    "art": "feld",
+    "punkt": "Nummer des Passes und Gültigkeitsdauer",
+    "entscheid": "beibehalten",
+    "urteil": null,
+    "standard": null,
+    "element": null,
+    "grund": "Nachgezählt: Das gleiche Feld steht in der Familie 6× (508–513) auf kein_standard. eCH-0044 otherPersonId (namedPersonIdType) enthält nur personIdCategory und personId, und für die Gültigkeitsdauer eines Passes hat der ganze Katalog kein Element (Treffer nur residencePermitValidTill, biometricDataExpiryDate, nameOnForeignPassport). Der Container deckt die zusammengesetzte Angabe also nicht ab, und die Passnummer ist auf 508 bereits im Teilfeld zugeordnet (eCH-0044 personId)."
+   },
+   {
+    "form_id": 508,
+    "art": "feld",
+    "punkt": "Gemeinsamer Haushalt (zusammenwohnend)",
+    "entscheid": "beibehalten",
+    "urteil": null,
+    "standard": null,
+    "element": null,
+    "grund": "Die Praxis ist einheitlich: 4× eCH-0011 separationData (508/509/510/512), dazu «Getrennter Haushalt seit» 4× als dessen Kind separationValidFrom. separationData ist ein Container (separationDataType mit separation, separationValidFrom und separationValidTill) und kein Wertelement, und Ja/Nein-Felder auf Containern sind auch sonst belegt (z. B. «Mitarbeit im Betrieb» → occupationData). Ein Wechsel nur auf 508 bräche die Familie. Die einzige Alternative im Katalog, eCH-0278 inCohabitation (cohabitationType), meint das Konkubinat."
+   },
+   {
+    "form_id": 508,
+    "art": "feld",
+    "punkt": "Jetziger Aufenthaltszweck (Erwerbstätige)",
+    "entscheid": "panel",
+    "urteil": "kein_standard",
+    "standard": null,
+    "element": null,
+    "grund": "Die 9 Optionen sind der ausländerrechtliche Aufenthaltszweck (u. a. Flüchtling, Beamter ausländischer Verwaltung, Schüler, Pflegekind, Student). eCH-0021 kindOfEmployment ist laut XSD nur die Erwerbsart (Codes 0–4), und der ganze Katalog hat kein Zweck-Element (eCH-0006/residencePermit nur Kategorien, eCH-0223 ohne Zweck, eCH-0041 ohne Elemente). Die Praxis bestätigt das: «Aufenthaltszweck» (238), «Zweck des Aufenthaltes» (497), «Aufenthaltszweck (Nichterwerbstätige)» 3× und «Für Nichterwerbstätige» (512) stehen alle auf kein_standard. Es gilt dieselbe Antwort wie auf 512 (509/510 sollen folgen); 513 mit nur drei Erwerbsarten ist eine andere Angabe."
+   },
+   {
+    "form_id": 508,
+    "art": "feld",
+    "punkt": "Name und Adresse des Betriebes",
+    "entscheid": "panel",
+    "urteil": "besser",
+    "standard": "eCH-0021",
+    "element": "occupationData",
+    "grund": "Die Angabe ist zusammengesetzt, ihre Teilfelder auf 508 sind schon eCH-0021 employer und placeOfEmployer, und beide liegen laut XSD in occupationDataType. Der Container ist also eCH-0021 occupationData, 31× als Feld belegt (z. B. «Angaben ArbeitgeberIn» 138/147); auch «Befristet bis» (occupationValidTill) liegt darin. Das bisherige employer (6× auf 508–513) ist ein Wertelement nur für den Namen."
+   },
+   {
+    "form_id": 508,
+    "art": "feld",
+    "punkt": "Bemerkungen des(r) Gesuchsteller(in)",
+    "entscheid": "beibehalten",
+    "urteil": null,
+    "standard": null,
+    "element": null,
+    "grund": "eCH-0058 comment (headerType, Genehmigt) ist die Container-Konvention für freie Bemerkungsfelder. Sie ist in der Familie einheitlich angewendet (7× comment: 508–513 und 517), und auf 509, 510, 513 und 517 schlägt das Panel keine Änderung vor. Die 130 Bemerkungsfelder mit kein_standard ausserhalb der Familie und das Argument «Meldungskopf» sind kein starker Grund, den Container nur auf 508, 511 und 512 zu streichen."
+   },
+   {
+    "form_id": 511,
+    "art": "feld",
+    "punkt": "Name und Adresse des Betriebes",
+    "entscheid": "panel",
+    "urteil": "besser",
+    "standard": "eCH-0021",
+    "element": "occupationData",
+    "grund": "Das Textfeld bündelt den Namen (employer) und die Adresse (placeOfEmployer) des Betriebs, und beide liegen laut XSD im Container eCH-0021 occupationData (31× als Feld belegt). Es gilt die Familienantwort wie auf 508 (Teilfelder employer/placeOfEmployer), 512 und 513; das bisherige employer (6×) deckt die Adresse nicht ab."
+   },
+   {
+    "form_id": 511,
+    "art": "feld",
+    "punkt": "Bemerkungen des(r) Gesuchsteller(in)",
+    "entscheid": "beibehalten",
+    "urteil": null,
+    "standard": null,
+    "element": null,
+    "grund": "eCH-0058 comment ist die Container-Konvention für freie Bemerkungsfelder und auf allen Verlängerungsgesuchen 508–513 sowie 517 einheitlich angewendet (7× comment, auf 513 vom Panel nicht beanstandet). Die 130 Bemerkungsfelder mit kein_standard ausserhalb der Familie sind kein starker Grund, den Container hier allein zu streichen."
+   },
+   {
+    "form_id": 512,
+    "art": "feld",
+    "punkt": "Jetziger Aufenthaltszweck (Erwerbstätige)",
+    "entscheid": "panel",
+    "urteil": "kein_standard",
+    "standard": null,
+    "element": null,
+    "grund": "Es sind dieselben 9 Optionen wie auf 508 (ausländerrechtlicher Aufenthaltszweck, u. a. Flüchtling, ausländische Verwaltung, Schüler, Pflegekind, Student). eCH-0021 kindOfEmployment (Erwerbsart, Codes 0–4) deckt davon höchstens selbständig und unselbständig ab, und im ganzen Katalog gibt es kein Zweck-Element (eCH-0006 nur Kategorien, eCH-0223 ohne Zweck, eCH-0041 ohne Elemente). Die Praxis für «Aufenthaltszweck» (238) und «Zweck des Aufenthaltes» (497) ist kein_standard, also gilt dieselbe Antwort wie auf 508."
+   },
+   {
+    "form_id": 512,
+    "art": "feld",
+    "punkt": "Name und Adresse des Betriebes",
+    "entscheid": "anders",
+    "urteil": "besser",
+    "standard": "eCH-0021",
+    "element": "occupationData",
+    "grund": "eCH-0010 organisationMailAdress ist zwar ein Container für Name und Adresse (49× als Feld belegt, z. B. «Name und Adresse des Arbeitgebers» 108/282), passt aber nicht zu den Teilfeldern der Familie (508: eCH-0021 employer und placeOfEmployer). Für die Familie gilt eine Antwort, nämlich eCH-0021 occupationData; darin liegt auf 512 auch «Anstellungsdauer befristet bis» (occupationValidTill)."
+   },
+   {
+    "form_id": 512,
+    "art": "feld",
+    "punkt": "Bemerkungen des(r) Gesuchsteller(in)",
+    "entscheid": "beibehalten",
+    "urteil": null,
+    "standard": null,
+    "element": null,
+    "grund": "eCH-0058 comment ist die Konvention für freie Bemerkungsfelder und auf allen Verlängerungsgesuchen 508–513 sowie 517 einheitlich (7× comment, auf 513 vom Panel nicht beanstandet). Das Argument «Meldungskopf» und die 130 Bemerkungsfelder mit kein_standard ausserhalb der Familie reichen nicht, um den Container auf einzelnen Familienformularen zu streichen."
+   },
+   {
+    "form_id": 513,
+    "art": "feld",
+    "punkt": "Name und Adresse des Betriebes",
+    "entscheid": "panel",
+    "urteil": "besser",
+    "standard": "eCH-0021",
+    "element": "occupationData",
+    "grund": "Das Feld bündelt Name (employer) und Adresse (placeOfEmployer), und beide liegen laut XSD im Container eCH-0021 occupationData (31× als Feld belegt); dort liegt auf 513 auch «Einsatzort» (placeOfWork). Das bisherige employer (6× auf 508–513) deckt nur den Namen ab, darum gilt die gleiche Familienantwort wie auf 508, 511 und 512."
+   }
+  ]
+ }
+]

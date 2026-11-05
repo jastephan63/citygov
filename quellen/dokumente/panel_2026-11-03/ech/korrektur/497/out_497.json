@@ -1,0 +1,46 @@
+{
+ "hinweis": "Korrekturen bestehender eCH-Zuordnungen von Formular 497: Vorschläge des Panels vom 03.11.2026, gegen Katalog und Praxis der Databank entschieden und zweitgeprüft (05.11.2026); nur die Änderungen.",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-11-03/ech/korrektur/497 --nur=497",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Nachgezählt: «Gesuchsart/Art des Gesuchs» steht 8× in der Datenbank (181/372 eCH-0258 serviceName, 34/214 eCH-0298, 484/497/518/519 kein_standard), aber auf keinem Migrationsformular. eCH-0223 eventType steht wörtlich im Katalog (personEventMessageType) und codiert «prolongation» für die Verlängerung sowie «othercaseOfMigration» für die Erteilung. Die Wahl Erteilung/Verlängerung ist ein Code und keine Ja/Nein-Box. eCH-0223 ist weder aufgehoben noch abgelöst; sein Status ist im Katalog leer, weil der Standard noch nirgends zitiert ist.",
+   "feld": "Gesuchsart",
+   "standard": "eCH-0223",
+   "element": "eventType"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Im PDF ist «Selbständig» eine einzelne Ankreuzbox, also Ja/Nein. eCH-0278 isSelfEmployed (boolean) passt genau, eCH-0021 kindOfEmployment ist dagegen der Erwerbsart-Code der Auswahllisten in 474 und 508/509/510/512/513. Nachgezählt: isSelfEmployed steht auf 7 Feldern (88–92, 141, 273) und 1 Teilfeld (131), kindOfEmployment für dieselbe Box nur 4× (84, 85, 87, 497).",
+   "feld": "Selbständig",
+   "standard": "eCH-0278",
+   "element": "isSelfEmployed"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "employedRevenue ist ein Wertelement (moneyType) und darf den Composite nicht tragen; die 15 Composites auf employedRevenue folgen dem Fehlermuster. Als Container für Lohn- und Anstellungs-Composites nutzt die Datenbank 10× eCH-0278 dependentEmployment, so 130, 115 und 482 «Anstellung in der konkursiten Firma» mit denselben Teilen (Lohnbetrag employedRevenue, Stundenlohn kein_standard, Wochenstunden hoursPerWeek). dependentEmploymentDetail ist im XSD zwar der engere Container, trägt aber kein einziges Feld.",
+   "feld": "Brutto-Lohn",
+   "standard": "eCH-0278",
+   "element": "dependentEmployment"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "eCH-0260 grossSalary1stYear ist im XSD die «Entschädigung 1. Lehrjahr» und wird nur hier verwendet. Lohnbeträge stehen in 110 Teilfeldern auf eCH-0278 employedRevenue, z. B. 108 «AHV-pflichtiger Grundlohn › Betrag CHF» und 482 «Monatslohn brutto (CHF)»; auch das Feld «Bruttolohn» im vergleichbaren 474 steht dort.",
+   "elternfeld": "Brutto-Lohn",
+   "teilfeld": "Betrag",
+   "standard": "eCH-0278",
+   "element": "employedRevenue"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Die Suche im ganzen Katalog (period, frequency, interval, hourly, monthly, wage, salary, basis) findet nur eCH-0260 perMonthWeekHour1st–4thYear. Diese sind im XSD als «Entschädigung pro Monat/Woche/Stunde (1. Lehrjahr)» an die Lehre gebunden. Dieselbe Angabe «Bezugsgrösse (pro Stunde / pro Monat)» in 108 ist kein_standard; nur 474 «Lohnbasis» steht noch auf perMonthWeekHour1stYear und sollte folgen.",
+   "elternfeld": "Brutto-Lohn",
+   "teilfeld": "Pro Stunde / Pro Monat"
+  }
+ ]
+}

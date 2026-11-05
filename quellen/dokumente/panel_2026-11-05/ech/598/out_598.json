@@ -1,0 +1,248 @@
+{
+ "hinweis": "eCH-Urteile Formular 598, Panel 2026-11-05, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-11-05/ech/598 --nur-offene=598",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die PID im Formularkopf ist die Kennnummer der steuerpflichtigen juristischen Person. Propagiert wurde eCH-0044 localPersonId (personIdentificationKeyOnlyType). Der Wert stammt von Formularen für natürliche Personen, und eCH-0044 identifiziert nur natürliche Personen. Der Standard der Steuererklärung JP, eCH-0276, führt im Kopf titleType die Pflichtangabe registerNumber (genau einmal, long) als Registernummer der Steuerpflichtigen. cantonalRegisterNumber ist dort optional und wiederholbar, uid ist die UID. Keines davon passt auf die eine PID. Element im Katalog geprüft (eCH-0276, titleType).",
+   "feld": "PID",
+   "standard": "eCH-0276",
+   "element": "registerNumber"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Der Name der steuerpflichtigen Gesellschaft entspricht eCH-0098 organisationIdentificationType/organisationName. Der propagierte Wert ist richtig und stimmt mit der Praxis im Korpus überein. eCH-0276 titleType/organisationName verwendet denselben Typ (eCH-0108 unitNameType).",
+   "feld": "Firmenname"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ziffer 1 bezeichnet, welche Beteiligung aus Formular 19 ganz oder teilweise veräussert wurde: Nummer bzw. Unternehmen und Rechtsform. Container dafür ist der Beteiligungseintrag von Formular 19, eCH-0276 participationsType/generalParticipations (generalParticipationsType mit generalParticipationsNumber und company). Die Teilfelder sind einzeln beurteilt.",
+   "feld": "Bezeichnung der Beteiligung",
+   "standard": "eCH-0276",
+   "element": "generalParticipations"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Gemeint ist die Nummer gemäss Deklarationsreihenfolge auf Formular 19, also die laufende Nummer des Beteiligungseintrags. Das ist eCH-0276 generalParticipationsType/generalParticipationsNumber (integer). Element im Katalog geprüft.",
+   "elternfeld": "Bezeichnung der Beteiligung",
+   "teilfeld": "Beteiligung Nr.",
+   "standard": "eCH-0276",
+   "element": "generalParticipationsNumber"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Das Teilfeld enthält den Namen des Beteiligungsunternehmens. Die Rechtsform ist ein eigenes Teilfeld. Das atomare Element ist eCH-0098 organisationIdentificationType/organisationName. eCH-0276 companyType/descriptionAndLegalFormOfTheCompany bündelt Name und Rechtsform in einer Angabe und ist deshalb nicht atomar.",
+   "elternfeld": "Bezeichnung der Beteiligung",
+   "teilfeld": "Bezeichnung des Unternehmens",
+   "standard": "eCH-0098",
+   "element": "organisationName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Die Rechtsform des Beteiligungsunternehmens entspricht eCH-0098 organisationIdentificationType/legalForm. Die Databank ordnet «Rechtsform» auf 10 anderen Feldern gleich zu.",
+   "elternfeld": "Bezeichnung der Beteiligung",
+   "teilfeld": "Rechtsform des Unternehmens",
+   "standard": "eCH-0098",
+   "element": "legalForm"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Das Teilfeld ist ein Freitext-Verweis auf die eigene Aufstellung, die als Beilage anstelle von Formular 19 eingereicht wurde. In eCH-0276 wird eine Beilage über attachmentsType/documentTitle (textFieldType) mit Freitext bezeichnet. documentIdentification passt nicht: Es ist eine feste Codeliste der Beilagenart (z.B. informationOnShareholdings), kein Verweis.",
+   "elternfeld": "Bezeichnung der Beteiligung",
+   "teilfeld": "Referenz auf die anstelle des Formulars 19 eingereichte eigene Aufstellung",
+   "standard": "eCH-0276",
+   "element": "documentTitle"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Tabelle 2.1 mit einer Zeile je veräussertem Paket. Gesucht im ganzen Katalog (290 Standards) nach sale, sold, sell, disposal, disposition, proceeds, alienation, acquisition, purchase, quota, holding, capitalGain und participation. eCH-0276 participationsType bildet nur Formular 19 ab (generalParticipations, netIncomeFromParticipations, primeCosts) und kennt keinen Paketverkauf; disposalDuringTaxPeriod ist nur ein Ja/Nein. eCH-0196 purchase/disposition gehört zum Bank-E-Steuerauszug. eCH-0129, eCH-0178 und eCH-0278 betreffen Grundstücke bzw. natürliche Personen. Es gibt keinen Container, und kein Teilfeld hat ein Element.",
+   "feld": "Verkaufserlöse für veräusserte Beteiligungspakete"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist das letzte Kaufdatum je veräussertem Paket für die Haltedauer. Es kann vor der Steuerperiode liegen («vor 1997» genügt). eCH-0276 acquisitionDuringTheTaxPeriodDateOfAcquisition (Formular 19, Spalte K) gilt nur für Erwerbe in der Steuerperiode und nur je Beteiligung. Laut Hinweis deckt es sich nur in diesem Sonderfall. dateOfTheFirstAcquisitionOfSharesInTheParticipation meint den ersten, nicht den letzten Erwerb. eCH-0129 accessionDate und eCH-0278 acquisitionYear betreffen Grundstücke bzw. Privatvermögen. Katalog durchsucht nach acquisition, purchase und accession.",
+   "elternfeld": "Verkaufserlöse für veräusserte Beteiligungspakete",
+   "teilfeld": "Letztes Erwerbsdatum von Titeln des veräusserten Pakets"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist das Verkaufsdatum eines Beteiligungspakets einer juristischen Person. Katalog durchsucht nach sale, disposal, disposition, alienation und transferDate. eCH-0276 disposalDuringTaxPeriod ist ein Ja/Nein ohne Datum. eCH-0196 securityPaymentType/disposition ist ein Container für Wertschriftenabgänge im Bank-E-Steuerauszug und definiert diese Angabe nicht. eCH-0263 saleFrom/saleTo betrifft Dünger und Futtermittel.",
+   "elternfeld": "Verkaufserlöse für veräusserte Beteiligungspakete",
+   "teilfeld": "Datum der Veräusserung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist die verkaufte Quote am Grund- oder Stammkapital je Paket. eCH-0276 participationInPercent (participationInformationType bzw. profitTaxValueType) ist die gehaltene Beteiligungsquote (Formular 19, Spalte E bzw. H), nicht die veräusserte. Katalog durchsucht nach quota, percent, share und disposal: kein Element für die veräusserte Quote.",
+   "elternfeld": "Verkaufserlöse für veräusserte Beteiligungspakete",
+   "teilfeld": "Veräusserte Quote (in % des Gesamtkapitals)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist der Verkaufspreis je Paket. Katalog durchsucht nach sale, salePrice, proceeds und disposal. eCH-0276 changesDuringTheReportingPeriodType/sale und grossCapitalGains/gainsOnDisposal betreffen Liegenschaften. grossIncomeFromCapitalGains ist der Gewinn, nicht der Erlös. Kein Element für den Verkaufserlös aus Beteiligungen.",
+   "elternfeld": "Verkaufserlöse für veräusserte Beteiligungspakete",
+   "teilfeld": "Verkaufserlös – Gesamt"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist der Teilerlös auf Titel mit mindestens einjähriger Haltedauer (Art. 70 DBG / Art. 77 StG SH). Weder eCH-0276 noch eCH-0229 noch ein anderer der 290 Standards kennt Haltedauer oder massgebenden Erlös. Gesucht nach holding, sale, proceeds und capitalGain; die holding…-Elemente von eCH-0276 betreffen Zinssätze von Holdinggesellschaften.",
+   "elternfeld": "Verkaufserlöse für veräusserte Beteiligungspakete",
+   "teilfeld": "Verkaufserlös – Auf Titel mit einer Haltedauer von einem Jahr oder länger entfallender Anteil (= massgebender Verkaufserlös)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist der abgeleitete Prozentanteil des massgebenden am gesamten Paketerlös. Die Prozent-Elemente in eCH-0276 (participationInPercent, participationExemption…InPercent, profitTaxValueInPercentOfAssets) und eCH-0229 participationExemptionInPercent bezeichnen andere Grössen. Katalog durchsucht nach percent und proceeds: kein passendes Element.",
+   "elternfeld": "Verkaufserlöse für veräusserte Beteiligungspakete",
+   "teilfeld": "Massgebender Verkaufserlös in Prozent des Gesamterlöses"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Summenzeile 2.2 der Paketverkäufe. Die Teilfelder (Total Quote, Total Verkaufserlös) haben kein Element, und es gibt keinen Container. Katalog durchsucht wie bei Ziffer 2.1 (sale, proceeds, disposal, quota, participation).",
+   "feld": "Total Quote und Verkaufserlös"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist die Summe der veräusserten Quoten, laut Hinweis massgebend für die Gesamtquote bei mehreren Verkäufen. eCH-0276 participationInPercent ist die gehaltene, nicht die veräusserte Quote. Im übrigen Katalog (gesucht nach quota, percent, disposal) gibt es keine Angabe zur veräusserten Quote.",
+   "elternfeld": "Total Quote und Verkaufserlös",
+   "teilfeld": "Total Quote"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist die Summe der Verkaufserlöse aus Beteiligungspaketen. Katalog durchsucht nach sale, proceeds und disposal: Weder eCH-0276 noch ein anderer Standard hat ein Element für den Veräusserungserlös aus Beteiligungen; die sale-Elemente betreffen Liegenschaften.",
+   "elternfeld": "Total Quote und Verkaufserlös",
+   "teilfeld": "Total Verkaufserlös"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist die Summe der Erlöse auf Titel mit mindestens einjähriger Haltedauer (Ziffer 2.3). Kein Standard kennt Mindesthaltedauer oder massgebenden Verkaufserlös. Gesucht im ganzen Katalog nach holding, sale, proceeds und capitalGain.",
+   "feld": "Total massgebender Verkaufserlös unter Berücksichtigung der Mindesthaltedauer"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Tabelle 3.1 hat eine Zeile je veräussertem Paket. Ihre Spalten sind Werte je Teilintervall, von Beginn der Periode bzw. vom Restbestand nach dem letzten Verkauf bis zum jeweiligen Verkauf. eCH-0276 primeCostsType/generalPrimeCosts bildet Formular 19, Spalten L–O ab: je Beteiligung und für die ganze Steuerperiode, ohne Paket- oder Teilintervallbezug. Da kein Teilfeld ein Element trägt, ist generalPrimeCosts als Container irreführend. Katalog durchsucht nach primeCost, acquisition, change, disposal, sale und holding: nichts Passendes.",
+   "feld": "Gestehungskosten für veräusserte Beteiligungspakete"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Bis zum Ende gelesen ist der Ausgangsbestand je Teilintervall gemeint. In der ersten Zeile sind das die Gestehungskosten zu Beginn der Steuerperiode, in den Folgezeilen der Restbestand nach der vorangehenden Veräusserung (Vorzeile «vor dem Verkauf» abzüglich verkauftem Anteil). eCH-0276 generalPrimeCostsType/atTheBeginningOfTheTaxPeriod (Formular 19, Spalte L) definiert nur den Stand zu Beginn der Periode. Ein veränderter Restbestand darf dieses Element nicht tragen. Katalog durchsucht nach primeCost, beginning, remaining und disposal: kein Element für den Restbestand nach Teilveräusserung.",
+   "elternfeld": "Gestehungskosten für veräusserte Beteiligungspakete",
+   "teilfeld": "Gestehungskosten für Gesamtbestand zu Beginn der Steuerperiode bzw. für Restbestand nach der letzten Veräusserung in der Steuerperiode"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist die Erhöhung (Zukauf, Kapitalerhöhung) im Teilintervall seit Beginn der Periode bzw. seit der letzten Veräusserung bis zum jeweiligen Paketverkauf. eCH-0276 generalPrimeCostsType/changeIncrease (Formular 19, Spalte M) ist die Erhöhung je Beteiligung über die ganze Steuerperiode. Das ist ein anderer Zeitraum, denn Zukäufe nach dem Verkauf fallen hinein. Katalog durchsucht nach change, increase, primeCost und acquisition: kein Element für die Veränderung je Teilintervall.",
+   "elternfeld": "Gestehungskosten für veräusserte Beteiligungspakete",
+   "teilfeld": "Veränderung seit Beginn der Steuerperiode bzw. seit der letzten Veräusserung in der Steuerperiode – Erhöhung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist die Verminderung im Teilintervall bis zum jeweiligen Paketverkauf. Der verkaufte Anteil steht in einer eigenen Spalte. eCH-0276 generalPrimeCostsType/changeDecrease (Formular 19, Spalte N) ist die Verminderung je Beteiligung über die ganze Steuerperiode, also ein anderer Zeitraum. Katalog durchsucht nach change, decrease, primeCost und disposal: kein Element für die Veränderung je Teilintervall.",
+   "elternfeld": "Gestehungskosten für veräusserte Beteiligungspakete",
+   "teilfeld": "Veränderung seit Beginn der Steuerperiode bzw. seit der letzten Veräusserung in der Steuerperiode – Verminderung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist der Stand unmittelbar vor dem jeweiligen Paketverkauf. eCH-0276 atTheEndOfTheTaxPeriod (Formular 19, Spalte O) ist der Stand am Periodenende, also ein anderer Zeitpunkt. Laut Hinweis deckt er sich nur bei Gesamtveräusserung. Kein anderes Element im Katalog passt (gesucht nach primeCost, investmentCost, acquisition und disposal).",
+   "elternfeld": "Gestehungskosten für veräusserte Beteiligungspakete",
+   "teilfeld": "Gestehungskosten vor dem Verkauf des Beteiligungspakets"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint sind die dem verkauften Paket zugeordneten Gestehungskosten. eCH-0276 generalPrimeCostsType kennt nur Anfang, Erhöhung, Verminderung, Ende und ein Ja/Nein zur Veräusserung je Beteiligung, aber keine Zuordnung auf veräusserte Pakete. Katalog durchsucht nach primeCost, disposal und sale: kein Element.",
+   "elternfeld": "Gestehungskosten für veräusserte Beteiligungspakete",
+   "teilfeld": "Auf verkauftes Beteiligungspaket entfallender Anteil (gemäss Ziffer 2.1) – Gesamt"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist der Anteil der Gestehungskosten auf Titel mit mindestens einjähriger Haltedauer. Kein Standard im Katalog modelliert Haltedauer oder massgebende Anteile. Gesucht nach holding, primeCost und participation.",
+   "elternfeld": "Gestehungskosten für veräusserte Beteiligungspakete",
+   "teilfeld": "Auf verkauftes Beteiligungspaket entfallender Anteil (gemäss Ziffer 2.1) – auf massgebenden Verkaufserlös entfallender Anteil"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Summenzeile 3.2 über die Teilintervalle der Tabelle 3.1. Keines ihrer Teilfelder trägt ein Element, denn die Summen reichen nur bis zur letzten Veräusserung bzw. sind Paketzuordnungen. eCH-0276 generalPrimeCosts (Formular 19, Spalten L–O, ganze Steuerperiode) ist daher kein passender Container. Katalog durchsucht nach primeCost, change, disposal und sale.",
+   "feld": "Total (Gestehungskosten)"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist die Summe der Erhöhungen der Teilintervalle, also von Beginn der Steuerperiode bis zur letzten Veräusserung. eCH-0276 changeIncrease (Formular 19, Spalte M) umfasst die ganze Steuerperiode samt Zukäufen nach dem letzten Verkauf. Beide decken sich nur, wenn danach nichts mehr geändert wurde. Katalog durchsucht nach change, increase und primeCost: kein Element für diese Summe.",
+   "elternfeld": "Total (Gestehungskosten)",
+   "teilfeld": "Total Erhöhung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist die Summe der Verminderungen der Teilintervalle bis zur letzten Veräusserung, ohne die verkauften Anteile (eigene Spalte). eCH-0276 changeDecrease (Formular 19, Spalte N) ist die Verminderung über die ganze Steuerperiode, also ein anderer Zeitraum. Katalog durchsucht nach change, decrease, primeCost und disposal: kein Element für diese Summe.",
+   "elternfeld": "Total (Gestehungskosten)",
+   "teilfeld": "Total Verminderung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist die Summe der Stände vor den jeweiligen Paketverkäufen, eine reine Rechengrösse des Formulars. Sie entspricht weder atTheBeginningOfTheTaxPeriod noch atTheEndOfTheTaxPeriod von eCH-0276. Katalog durchsucht nach primeCost und disposal: kein Element.",
+   "elternfeld": "Total (Gestehungskosten)",
+   "teilfeld": "Total vor dem Verkauf des Beteiligungspakets"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist die Summe der Gestehungskosten, die auf verkaufte Pakete entfallen. Kein Standard im Katalog kennt die Zuordnung von Gestehungskosten auf Verkäufe. Gesucht nach primeCost, disposal und sale.",
+   "elternfeld": "Total (Gestehungskosten)",
+   "teilfeld": "Total auf verkauftes Beteiligungspaket entfallender Anteil – Gesamt"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist die Summe der Gestehungskosten auf Titel mit mindestens einjähriger Haltedauer (Ziffer 3.3). Keiner der 290 Standards modelliert Mindesthaltedauer oder massgebende Gestehungskosten. Gesucht nach holding, primeCost und capitalGain.",
+   "feld": "Total massgebende Gestehungskosten unter Berücksichtigung der Mindesthaltedauer"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Ziffer 4.1 (Ziffer 2.3 abzüglich 3.3) ist der Bruttoertrag aus Kapitalgewinn dieser einen Beteiligung. Laut Formular wird er in Formular 19, Seite 2, Spalte Q übertragen. Das ist eCH-0276 netIncomeFromParticipationsType/grossIncomeFromCapitalGains je Beteiligung, nicht das Total totalGrossIncomeFromCapitalGains, da pro Beteiligung ein Formular ausgefüllt wird. Element im Katalog geprüft.",
+   "feld": "Kapitalgewinn aus der Veräusserung von Beteiligungen",
+   "standard": "eCH-0276",
+   "element": "grossIncomeFromCapitalGains"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Gemeint ist die bei Teilveräusserungen offenzulegende Wahl FIFO, LIFO oder HIFO. Katalog und Codelisten durchsucht nach method, FIFO, LIFO und Umschlag. Gefunden wurden nur eCH-0276 otherEliminatoryMethods (Steuerausscheidung) und die MWST-Abrechnungsmethoden von eCH-0217. Keines definiert eine Umschlagsmethode für Beteiligungen.",
+   "feld": "Umschlagsmethode"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Gemeint ist die gesondert einzureichende eigene Darstellung der Zuordnung von Kaufdaten und Gestehungskosten zu den veräusserten Paketen, also eine Beilage zur Steuererklärung der juristischen Person. In deren Standard eCH-0276 werden Beilagen über contentType/attachments (attachmentsType) übermittelt. Für diese Steuererklärung passt das besser als das generische eCH-0039 document.",
+   "feld": "Nachweis der Zuordnung",
+   "standard": "eCH-0276",
+   "element": "attachments"
+  }
+ ]
+}

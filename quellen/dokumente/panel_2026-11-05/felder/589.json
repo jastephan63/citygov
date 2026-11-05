@@ -1,0 +1,982 @@
+{
+ "form_id": 589,
+ "data_fields": [
+  {
+   "name": "PID",
+   "definition": "Kennnummer «PID» der steuerpflichtigen Gesellschaft im Kopf des Formulars, in der Regel von der Steuerverwaltung vorgedruckt.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "UID",
+   "definition": "Unternehmens-Identifikationsnummer (UID) der steuerpflichtigen Gesellschaft im Kopf des Formulars.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "FID",
+   "definition": "Kennnummer «FID» der steuerpflichtigen Gesellschaft im Kopf des Formulars, in der Regel von der Steuerverwaltung vorgedruckt.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Firma",
+   "definition": "Genaue Bezeichnung der Firma der steuerpflichtigen Kapitalgesellschaft, Genossenschaft oder ausländischen Personengesamtheit.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Hauptsitz",
+   "definition": "Adresse des Hauptsitzes der Gesellschaft mit PLZ und Ort sowie dem Land, falls der Hauptsitz nicht in der Schweiz liegt.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Adresse",
+    "PLZ",
+    "Ort",
+    "Land"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Zweck",
+   "definition": "Gesellschaftszweck der steuerpflichtigen Gesellschaft.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Zweigniederlassungen",
+   "definition": "Angabe, wo die Gesellschaft Zweigniederlassungen (Geschäftsbetriebe, Betriebsstätten, Liegenschaften) unterhält; in diesem Fall ist das Formular 8c Steuerausscheidung ausgefüllt beizulegen.",
+   "data_type": "multiselect",
+   "required": true,
+   "allowed_values": [
+    "im Kanton Schaffhausen",
+    "in anderen Kantonen",
+    "im Ausland"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Gründungsdatum",
+   "definition": "Datum der Gründung, bei Zuzug Datum der Sitzverlegung nach Schaffhausen; nur auszufüllen, wenn Gründung, Zuzug oder Begründung der ersten Zweigniederlassung im Kanton in der Deklarationsperiode erfolgt sind.",
+   "data_type": "date",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Dauer des Geschäftsjahres",
+   "definition": "Beginn und Ende des Geschäftsjahres, für das die Steuererklärung eingereicht wird.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Datum Beginn",
+    "Datum Ende"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Organe – Verwaltungsratspräsident/-in",
+   "definition": "Name, Adresse und Telefonnummer der Präsidentin oder des Präsidenten des Verwaltungsrats als Organ der Gesellschaft.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name, Adresse",
+    "Telefon"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Organe – Geschäftsleitung",
+   "definition": "Name, Adresse und Telefonnummer der Geschäftsleitung als Organ der Gesellschaft.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name, Adresse",
+    "Telefon"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Rückfragen sind zu richten an",
+   "definition": "Kontaktperson für Rückfragen der Steuerverwaltung (gilt nicht als Vollmacht); die Angabe einer E-Mail-Adresse gilt als Einwilligung zur Kommunikation via E-Mail.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name",
+    "Telefon",
+    "E-Mail"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Vollständige Adresse des Vertreters",
+   "definition": "Vollständige Adresse der Vertreterin oder des Vertreters, die oder der im Abschnitt Vollmacht für kantonale Steuern und direkte Bundessteuer bevollmächtigt wird.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Datum (Vollmacht)",
+   "definition": "Datum der Unterzeichnung der Vollmacht.",
+   "data_type": "date",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Rechtsgültige Unterschrift (Vollmacht)",
+   "definition": "Rechtsgültige Unterschrift der Gesellschaft, mit der sie die aufgeführte Vertretung bis auf schriftlichen Widerruf bevollmächtigt.",
+   "data_type": "signature",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Reingewinn / -verlust (–) gemäss Erfolgsrechnung des Geschäftsjahres (Code 1100)",
+   "definition": "Reingewinn oder Verlust (mit Minuszeichen) gemäss Erfolgsrechnung des Geschäftsjahres, je für die Kantons- und Gemeindesteuern und die direkte Bundessteuer.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Kantons- und Gemeindesteuern",
+    "Direkte Bundessteuer"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Geschäftsmässig nicht begründete Abschreibungen (Code 2211)",
+   "definition": "Aufrechnung der Erfolgsrechnung belasteter, geschäftsmässig nicht begründeter Abschreibungen mit Umschreibung auf der Leerzeile und Betrag je Steuerart.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Umschreibung (Leerzeile ○)",
+    "Kantons- und Gemeindesteuern",
+    "Direkte Bundessteuer"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Geschäftsmässig nicht begründete Rückstellungen (Code 2221)",
+   "definition": "Aufrechnung der Erfolgsrechnung belasteter, geschäftsmässig nicht begründeter Rückstellungen mit Umschreibung auf der Leerzeile und Betrag je Steuerart.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Umschreibung (Leerzeile ○)",
+    "Kantons- und Gemeindesteuern",
+    "Direkte Bundessteuer"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Nicht zulässige Abschreibungen auf aufgewerteten Aktiven (Code 2230)",
+   "definition": "Aufrechnung nicht zulässiger Abschreibungen auf aufgewerteten Aktiven, Betrag je Steuerart.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Kantons- und Gemeindesteuern",
+    "Direkte Bundessteuer"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Verdeckte Gewinnausschüttungen / geschäftsmässig nicht begründete Zuwendungen (Code 2240)",
+   "definition": "Aufrechnung verdeckter Gewinnausschüttungen und geschäftsmässig nicht begründeter Zuwendungen, Betrag je Steuerart.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Kantons- und Gemeindesteuern",
+    "Direkte Bundessteuer"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Übersetzte freiwillige Geldleistungen an steuerbefreite juristische Personen (Code 2250)",
+   "definition": "Aufrechnung übersetzter freiwilliger Geldleistungen an steuerbefreite juristische Personen, Betrag je Steuerart.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Kantons- und Gemeindesteuern",
+    "Direkte Bundessteuer"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Zinsen auf verdecktem Eigenkapital (Code 2260)",
+   "definition": "Aufrechnung der Zinsen auf verdecktem Eigenkapital, Betrag je Steuerart.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Kantons- und Gemeindesteuern",
+    "Direkte Bundessteuer"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Andere steuerlich nicht abzugsfähige Aufwendungen (Code 2271)",
+   "definition": "Aufrechnung anderer der Erfolgsrechnung belasteter, steuerlich nicht abzugsfähiger Aufwendungen mit Umschreibung auf der Leerzeile und Betrag je Steuerart.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Umschreibung (Leerzeile ○)",
+    "Kantons- und Gemeindesteuern",
+    "Direkte Bundessteuer"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Wegfall der geschäftsmässigen Begründetheit von Rückstellungen (Code 2310)",
+   "definition": "Aufrechnung des der Erfolgsrechnung nicht gutgeschriebenen, steuerbaren Ertrags aus dem Wegfall der geschäftsmässigen Begründetheit von Rückstellungen, Betrag je Steuerart.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Kantons- und Gemeindesteuern",
+    "Direkte Bundessteuer"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Buchgewinne aus der Höherbewertung von Grundstücken und Beteiligungen (Code 2320)",
+   "definition": "Aufrechnung der Erfolgsrechnung nicht gutgeschriebener Buchgewinne aus der Höherbewertung von Grundstücken und Beteiligungen, Betrag je Steuerart.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Kantons- und Gemeindesteuern",
+    "Direkte Bundessteuer"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Unterpreisliche Leistungen an die Gesellschafter (Code 2330)",
+   "definition": "Aufrechnung unterpreislicher Leistungen an die Gesellschafter als der Erfolgsrechnung nicht gutgeschriebener, steuerbarer Ertrag, Betrag je Steuerart.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Kantons- und Gemeindesteuern",
+    "Direkte Bundessteuer"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Andere nicht gutgeschriebene, steuerbare Erträge (Code 2341)",
+   "definition": "Aufrechnung anderer der Erfolgsrechnung nicht gutgeschriebener, steuerbarer Erträge mit Umschreibung auf der Leerzeile und Betrag je Steuerart.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Umschreibung (Leerzeile ○)",
+    "Kantons- und Gemeindesteuern",
+    "Direkte Bundessteuer"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Total der Aufrechnungen (Code 2500)",
+   "definition": "Total der Aufrechnungen aus den Punkten 2.1 und 2.2, je Steuerart.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Kantons- und Gemeindesteuern",
+    "Direkte Bundessteuer"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Auflösung versteuerter stiller Reserven (Nachholung aufger. Abschreibungen und Wertberichtigungen) (Code 3111)",
+   "definition": "Abzug der Erfolgsrechnung nicht belasteter Auflösung versteuerter stiller Reserven (Nachholung aufger. Abschreibungen und Wertberichtigungen) mit Umschreibung auf der Leerzeile und Betrag je Steuerart.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Umschreibung (Leerzeile ○)",
+    "Kantons- und Gemeindesteuern",
+    "Direkte Bundessteuer"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Zuwendungen an Vorsorgeeinrichtungen zugunsten des eigenen Personals (Code 3120)",
+   "definition": "Abzug der Erfolgsrechnung nicht belasteter Zuwendungen an Vorsorgeeinrichtungen zugunsten des eigenen Personals, Betrag je Steuerart.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Kantons- und Gemeindesteuern",
+    "Direkte Bundessteuer"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Freiwillige Geldleistungen an steuerbefreite juristische Personen mit Sitz in der Schweiz (Code 3130)",
+   "definition": "Abzug der Erfolgsrechnung nicht belasteter freiwilliger Geldleistungen an steuerbefreite juristische Personen mit Sitz in der Schweiz, Betrag je Steuerart.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Kantons- und Gemeindesteuern",
+    "Direkte Bundessteuer"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Andere der Erfolgsrechnung nicht belastete, steuerlich abzugsfähige Aufwendungen (Code 3141)",
+   "definition": "Abzug anderer der Erfolgsrechnung nicht belasteter, steuerlich abzugsfähiger Aufwendungen mit Umschreibung auf der Leerzeile und Betrag je Steuerart.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Umschreibung (Leerzeile ○)",
+    "Kantons- und Gemeindesteuern",
+    "Direkte Bundessteuer"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Auflösung versteuerter stiller Reserven (Rückstellungen, Aufwertungen, Kapitalgewinne) (Code 3211)",
+   "definition": "Abzug der Erfolgsrechnung gutgeschriebener, nicht steuerbarer Erträge aus der Auflösung versteuerter stiller Reserven (Rückstellungen, Aufwertungen, Kapitalgewinne) mit Umschreibung auf der Leerzeile und Betrag je Steuerart.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Umschreibung (Leerzeile ○)",
+    "Kantons- und Gemeindesteuern",
+    "Direkte Bundessteuer"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Andere nicht steuerbare Erträge (Code 3221)",
+   "definition": "Abzug anderer der Erfolgsrechnung gutgeschriebener, nicht steuerbarer Erträge mit Umschreibung auf der Leerzeile und Betrag je Steuerart.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Umschreibung (Leerzeile ○)",
+    "Kantons- und Gemeindesteuern",
+    "Direkte Bundessteuer"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Total der Abzüge (Code 3500)",
+   "definition": "Total der Abzüge aus den Punkten 3.1 und 3.2, je Steuerart.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Kantons- und Gemeindesteuern",
+    "Direkte Bundessteuer"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Reingewinn / -verlust im Geschäftsjahr (Code 4000)",
+   "definition": "Reingewinn oder Verlust im Geschäftsjahr, berechnet als Punkt 1 plus 2.3 minus 3.3, je Steuerart.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Kantons- und Gemeindesteuern",
+    "Direkte Bundessteuer"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Summe der verrechenbaren Verluste aus den sieben vorangegangenen Geschäftsjahren (Code 4100)",
+   "definition": "Abzug der Summe der verrechenbaren Verluste aus den sieben vorangegangenen Geschäftsjahren gemäss Punkt 22 dieser Steuererklärung (Verlustverrechnung), je Steuerart.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Kantons- und Gemeindesteuern",
+    "Direkte Bundessteuer"
+   ],
+   "format": "CHF (–)"
+  },
+  {
+   "name": "Steuerbarer Reingewinn / -verlust nach Verlustanrechnung (Code 4200)",
+   "definition": "Steuerbarer Reingewinn oder Verlust nach Anrechnung der Vorjahresverluste, je Steuerart.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Kantons- und Gemeindesteuern",
+    "Direkte Bundessteuer"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Abzug für Reingewinn aus Grundeigentum und Geschäftsbetrieb ausserhalb des Kantons / Bundes (Code 4300)",
+   "definition": "Abzug für den Reingewinn aus Grundeigentum und Geschäftsbetrieb ausserhalb des Kantons bzw. des Bundes gemäss Formular 8c, je Steuerart.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Kantons- und Gemeindesteuern",
+    "Direkte Bundessteuer"
+   ],
+   "format": "CHF (–)"
+  },
+  {
+   "name": "Abzug für qualifizierte Patenterträge (Code 4412)",
+   "definition": "Kantonaler Abzug für qualifizierte Patenterträge, nur in der Spalte Kantons- und Gemeindesteuern.",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "CHF (–)"
+  },
+  {
+   "name": "Abzug für Forschung und Entwicklung (Code 4414)",
+   "definition": "Kantonaler Abzug für Forschung und Entwicklung, nur in der Spalte Kantons- und Gemeindesteuern.",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "CHF (–)"
+  },
+  {
+   "name": "Abschreibung aufgedeckter stiller Reserven aus altrechtlichem Step-Up (Code 4415)",
+   "definition": "Kantonaler Abzug für die Abschreibung aufgedeckter stiller Reserven aus altrechtlichem Step-Up, nur in der Spalte Kantons- und Gemeindesteuern.",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "CHF (–)"
+  },
+  {
+   "name": "Steuerbarer Reingewinn / Verlust Kanton Schaffhausen / Bund (Code 4500)",
+   "definition": "Steuerbarer Reingewinn oder Verlust für den Kanton Schaffhausen bzw. den Bund nach den kantonalen Abzügen, je Steuerart.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Kantons- und Gemeindesteuern",
+    "Direkte Bundessteuer"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Beteiligungsabzug in % (Code 4612)",
+   "definition": "Beteiligungsabzug in Prozent gemäss Formular 19, auf drei Kommastellen genau, je Steuerart.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Kantons- und Gemeindesteuern",
+    "Direkte Bundessteuer"
+   ],
+   "format": "% (auf drei Kommastellen genau)"
+  },
+  {
+   "name": "Gewinn satzbestimmend (Code 4510)",
+   "definition": "Satzbestimmender Gewinn, berechnet als Summe der Punkte 7 und 9, je Steuerart.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Kantons- und Gemeindesteuern",
+    "Direkte Bundessteuer"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Gewinnvortrag aus dem Vorjahr (Code 5100)",
+   "definition": "Gewinnvortrag (plus) bzw. Verlustvortrag (minus) aus dem Vorjahr in der Gewinnverwendung gemäss Beschluss der General- oder Gesellschafterversammlung.",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "CHF"
+  },
+  {
+   "name": "Reingewinn / -verlust gemäss Erfolgsrechnung des Geschäftsjahres (Code 5200)",
+   "definition": "Reingewinn oder Verlust gemäss Erfolgsrechnung des Geschäftsjahres (wie Punkt 1) in der Gewinnverwendung.",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "CHF"
+  },
+  {
+   "name": "Auflösung gesetzliche und freiwillige Gewinnreserven (Code 5310)",
+   "definition": "Betrag der Auflösung gesetzlicher und freiwilliger Gewinnreserven in der Gewinnverwendung.",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "CHF"
+  },
+  {
+   "name": "Auflösung Kapitalreserven (Code 5320)",
+   "definition": "Betrag der Auflösung von Kapitalreserven in der Gewinnverwendung.",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "CHF"
+  },
+  {
+   "name": "Auflösung übrige (Code 5330)",
+   "definition": "Betrag der Auflösung übriger Reserven in der Gewinnverwendung.",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "CHF"
+  },
+  {
+   "name": "Total zu verteilender Gewinn (Code 5400)",
+   "definition": "Total des zu verteilenden Gewinns als Summe der Punkte 11.1 bis 11.3.",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "CHF"
+  },
+  {
+   "name": "Dividende (Code 5510)",
+   "definition": "Betrag der beschlossenen Dividende.",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "CHF"
+  },
+  {
+   "name": "Zuweisung an gesetzliche Gewinnreserven (Code 5520)",
+   "definition": "Betrag der Zuweisung an die gesetzlichen Gewinnreserven.",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "CHF"
+  },
+  {
+   "name": "Zuweisung an freiwillige Gewinnreserven (Code 5530)",
+   "definition": "Betrag der Zuweisung an die freiwilligen Gewinnreserven.",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "CHF"
+  },
+  {
+   "name": "Zuwendungen an die Vorsorgeeinrichtung des eigenen Personals (Code 5540)",
+   "definition": "Betrag der Zuwendungen an die Vorsorgeeinrichtung des eigenen Personals aus der Gewinnverwendung (vgl. Punkt 3.1).",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "CHF"
+  },
+  {
+   "name": "Freiwillige Geldleistungen an steuerbefreite juristische Personen mit Sitz in der Schweiz (Code 5550)",
+   "definition": "Betrag der freiwilligen Geldleistungen an steuerbefreite juristische Personen mit Sitz in der Schweiz aus der Gewinnverwendung (vgl. Punkt 3.1).",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "CHF"
+  },
+  {
+   "name": "Übrige Zuweisung (Code 5561)",
+   "definition": "Übrige Zuweisung aus der Gewinnverwendung mit Umschreibung auf der Leerzeile und Betrag in der Spalte CHF.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Umschreibung (Leerzeile ○)",
+    "CHF"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Total Gewinnverwendung (Code 5600)",
+   "definition": "Total der Gewinnverwendung als Summe der Punkte 11.5 bis 11.10.",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "CHF"
+  },
+  {
+   "name": "Vortrag auf neue Rechnung (Code 5700)",
+   "definition": "Vortrag auf neue Rechnung, berechnet als Punkt 11.4 abzüglich Punkt 11.11 und übertragen auf Punkt 15.",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "CHF"
+  },
+  {
+   "name": "Einbezahltes Kapital (Code 6100)",
+   "definition": "Einbezahltes Kapital am Ende des Geschäftsjahres (Stichtag der Schlussbilanz nach Gewinnverwendung).",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "CHF"
+  },
+  {
+   "name": "Gesetzliche Kapitalreserve (Code 6211)",
+   "definition": "Gesetzliche Kapitalreserve als offene Reserve am Ende des Geschäftsjahres.",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "CHF"
+  },
+  {
+   "name": "Gesetzliche Gewinnreserve (Code 6213)",
+   "definition": "Gesetzliche Gewinnreserve als offene Reserve am Ende des Geschäftsjahres.",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "CHF"
+  },
+  {
+   "name": "Freiwillige Gewinnreserve (Code 6214)",
+   "definition": "Freiwillige Gewinnreserve als offene Reserve am Ende des Geschäftsjahres.",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "CHF"
+  },
+  {
+   "name": "Offene Reserven – Übrige (Code 6215)",
+   "definition": "Übrige offene Reserve mit ihrer Umschreibung nach «Übrige:» und dem Bestand am Ende des Geschäftsjahres.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Umschreibung (nach «Übrige:»)",
+    "Am Ende des Geschäftsjahres"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Offene Reserven (Code 6216)",
+   "definition": "Weitere offene Reserve auf der unbeschrifteten Zeile 13.5 mit Umschreibung und Bestand am Ende des Geschäftsjahres.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Umschreibung (Leerzeile)",
+    "Am Ende des Geschäftsjahres"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "./. Eigene Kapitalanteile (Code 6217)",
+   "definition": "Abzug der eigenen Kapitalanteile am Ende des Geschäftsjahres.",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "CHF (–)"
+  },
+  {
+   "name": "Gewinnvortrag + / Verlustvortrag – (Code 6220)",
+   "definition": "Gewinnvortrag (plus) bzw. Verlustvortrag (minus) am Ende des Geschäftsjahres, übernommen aus dem Vortrag auf neue Rechnung (Punkt 11.12).",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "CHF"
+  },
+  {
+   "name": "Als Gewinn versteuerte stille Reserven (Code 6231)",
+   "definition": "Erste als Gewinn versteuerte stille Reserve mit Umschreibung auf der Leerzeile und Bestand am Ende des Geschäftsjahres.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Umschreibung (Leerzeile ○)",
+    "Am Ende des Geschäftsjahres"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Als Gewinn versteuerte stille Reserven (Code 6232)",
+   "definition": "Zweite als Gewinn versteuerte stille Reserve mit Umschreibung auf der Leerzeile und Bestand am Ende des Geschäftsjahres.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Umschreibung (Leerzeile ○)",
+    "Am Ende des Geschäftsjahres"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Als Gewinn versteuerte stille Reserven (Code 6233)",
+   "definition": "Dritte als Gewinn versteuerte stille Reserve mit Umschreibung auf der Leerzeile und Bestand am Ende des Geschäftsjahres.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Umschreibung (Leerzeile ○)",
+    "Am Ende des Geschäftsjahres"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Als Gewinn versteuerte stille Reserven (Code 6234)",
+   "definition": "Vierte als Gewinn versteuerte stille Reserve mit Umschreibung auf der Leerzeile und Bestand am Ende des Geschäftsjahres.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Umschreibung (Leerzeile ○)",
+    "Am Ende des Geschäftsjahres"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Verdecktes Eigenkapital (Code 6300)",
+   "definition": "Verdecktes Eigenkapital am Ende des Geschäftsjahres.",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "CHF"
+  },
+  {
+   "name": "Steuerbares Eigenkapital (Code 6500)",
+   "definition": "Steuerbares Eigenkapital am Ende des Geschäftsjahres, mindestens in der Höhe des einbezahlten Kapitals.",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "CHF"
+  },
+  {
+   "name": "Abzug für Grundeigentum und Geschäftskapital ausserhalb des Kantons / Bundes (Code 6600)",
+   "definition": "Abzug für Grundeigentum und Geschäftskapital ausserhalb des Kantons bzw. des Bundes gemäss Formular 8c.",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "CHF (–)"
+  },
+  {
+   "name": "Steuerbares Eigenkapital Kanton Schaffhausen (Code 6700)",
+   "definition": "Im Kanton Schaffhausen steuerbares Eigenkapital nach Abzug des ausserkantonalen Anteils.",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "CHF"
+  },
+  {
+   "name": "Aufgedeckte stille Reserven aus altrechtlichem Step-Up – Bestand am Geschäftsjahresanfang (Code 6950)",
+   "definition": "Bestand der aufgedeckten stillen Reserven aus altrechtlichem Step-Up am Anfang des Geschäftsjahres.",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Aufgedeckte stille Reserven aus altrechtlichem Step-Up – Steuerliche Abschreibung im Geschäftsjahr (Code 6960)",
+   "definition": "Steuerliche Abschreibung der aufgedeckten stillen Reserven aus altrechtlichem Step-Up im Geschäftsjahr.",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Aufgedeckte stille Reserven aus altrechtlichem Step-Up – Bestand am Geschäftsjahresende (Code 6970)",
+   "definition": "Bestand der aufgedeckten stillen Reserven aus altrechtlichem Step-Up am Ende des Geschäftsjahres.",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Verluste aus den sieben der Steuerperiode vorangegangenen Geschäftsjahren",
+   "definition": "Tabelle der Verluste der sieben der Steuerperiode vorangegangenen Geschäftsjahre für die Verlustverrechnung, je vorgedrucktes Geschäftsjahr und Steuerart.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Kantons- und Gemeindesteuern",
+    "Direkte Bundessteuer"
+   ],
+   "format": "CHF; 7 Zeilen je Geschäftsjahr (2019 bzw. 2018/2019 bis 2025 bzw. 2024/2025, vorgedruckt)"
+  },
+  {
+   "name": "Zwischentotal (Summe der Vorjahresverluste)",
+   "definition": "Summe der Vorjahresverluste aus der Tabelle der Verlustverrechnung, je Steuerart.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Kantons- und Gemeindesteuern",
+    "Direkte Bundessteuer"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Davon bereits verrechnete Verluste",
+   "definition": "Bereits mit früheren Gewinnen verrechnete Verluste, die vom Zwischentotal abgezogen werden, je Steuerart.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Kantons- und Gemeindesteuern",
+    "Direkte Bundessteuer"
+   ],
+   "format": "CHF (–)"
+  },
+  {
+   "name": "Verrechenbarer Verlust (Code 4100)",
+   "definition": "Verrechenbarer Verlust, der auf Punkt 5 dieser Steuererklärung übertragen wird, je Steuerart.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Kantons- und Gemeindesteuern",
+    "Direkte Bundessteuer"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Abschreibung auf in früheren Geschäftsjahren aufgewerteten Aktiven",
+   "definition": "Tabelle der in früheren Geschäftsjahren aufgewerteten Aktiven mit Jahr der Aufwertung, Bezeichnung des Aktivums, Aufwertungsbetrag und Abschreibungsbetrag.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Jahr der Aufwertung",
+    "Bezeichnung des Aktivums",
+    "Aufwertungsbetrag",
+    "Abschreibungsbetrag"
+   ],
+   "format": "2 Zeilen"
+  },
+  {
+   "name": "Haben seit der letzten Deklaration Handänderungen von Mehrheiten der Aktien oder Stammanteile stattgefunden?",
+   "definition": "Angabe der Immobiliengesellschaften (Frage an Immobiliengesellschaften), ob seit der letzten Deklaration Mehrheiten der Aktien oder Stammanteile die Hand gewechselt haben.",
+   "data_type": "enum",
+   "required": false,
+   "allowed_values": [
+    "Ja",
+    "Nein"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "IBAN-Nr.",
+   "definition": "IBAN des Kontos für Rückerstattungen von Steuerguthaben (Kontoinformation für Rückerstattungen).",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "21 Kästchen"
+  },
+  {
+   "name": "Bemerkungen",
+   "definition": "Freie Bemerkungen der Gesellschaft zur Steuererklärung.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Beilagen",
+   "definition": "Checkliste der beigelegten Unterlagen, je ein Kästchen pro vorgedruckte Beilage.",
+   "data_type": "multiselect",
+   "required": true,
+   "allowed_values": [
+    "Bilanz, Erfolgsrechnung und Anhang (mit Vorjahresvergleich)",
+    "Kontokorrentkonto Anteilsinhaber",
+    "Formular 6 (Abschreibungen)",
+    "Formular 6a (Wertberichtigungen / Rückstellungen)",
+    "Formular 8c (Steuerausscheidung)",
+    "Formular 12a (Leistungen an Gesellschafter, Verwaltungsräte, Organe und Nahestehende)",
+    "Formular 13 (Wertschriften- und Guthabenverzeichnis)",
+    "Formular 14a (Schuldenverzeichnis)",
+    "Formular 19 (Angaben über Beteiligungen)",
+    "Formular 19.1 (Kapitalgewinn aus Beteiligung)"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Weitere Beilagen (Leerzeilen)",
+   "definition": "Von Hand genannte weitere Beilagen auf den drei unbeschrifteten Zeilen mit Kästchen unter der vorgedruckten Beilagen-Checkliste.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "3 Zeilen mit Kästchen"
+  },
+  {
+   "name": "Ort und Datum",
+   "definition": "Ort und Datum der Unterzeichnung, mit der die Richtigkeit und Vollständigkeit der Angaben bezeugt wird.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Ort",
+    "Datum"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Rechtsgültige Unterschrift – Die Richtigkeit und Vollständigkeit der Angaben bezeugt",
+   "definition": "Rechtsgültige Unterschrift für die Gesellschaft, mit der die Richtigkeit und Vollständigkeit der Angaben in der Steuererklärung bezeugt wird.",
+   "data_type": "signature",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  }
+ ],
+ "hinweis": "Korrekturen (geprüft gegen den Text und die gerenderten PDF-Seiten 1–4): (1) Neues Feld «Weitere Beilagen (Leerzeilen)» (text, freiwillig, «3 Zeilen mit Kästchen»): Der Entwurf hatte die drei unbeschrifteten Beilagen-Zeilen mit Kästchen nur in der Definition erwähnt. Diese Angabe schreibt die Gesellschaft von Hand, und eine Multiselect-Liste kann sie nicht aufnehmen. Die Definition von «Beilagen» wurde entsprechend angepasst. Die Bezeichnung folgt den Formularen 34 und 263, weil die Zeilen keine eigene Beschriftung haben. (2) «Hauptsitz»: Der Teil «Land (falls nicht in der Schweiz)» heisst neu «Land». Gedruckt ist «falls nicht in der Schweiz: Land». Die Bedingung bleibt in der Definition, der Teil heisst so wie gedruckt. (3) «Übrige Zuweisung (Code 5561)»: Der Teil «Betrag (CHF)» heisst neu «CHF», nach dem gedruckten Spaltenkopf der Gewinnverwendung. So wird er gleich behandelt wie «Am Ende des Geschäftsjahres» in Kapital und Reserven. Alle übrigen Felder unverändert übernommen. Bewusst nicht geändert: «Name, Adresse» bei den Organen steht als ein Spaltenkopf über einer Linie und bleibt deshalb ein Teil, wie bei 12–14, 105 und 126; ein Kandidat für «aufteilen» der Begriffe. Die gedruckten Codes in der Code-Spalte bleiben als Namenszusatz, weil sonst gleich lautende Zeilen nicht unterscheidbar wären (1100/5200, 3130/5550, 6231–6234, 4100 zweimal). Die Ziffern (1, 2.1 …) sind nicht im Namen. Gedruckt ist nur eine Unterschriftslinie je Block; eine zweite unterzeichnende Person wurde nicht erfunden. Keine Felder der Person: «Einzureichen bis» (Frist, von der Steuerverwaltung gesetzt), die Adresse «Einsenden an», der Hinweis «Verlängerung der Einreichefrist» (eFristerstreckung unter www.steuern.sh.ch), der Vollmachtstext («Wir bevollmächtigen …», gilt bis auf schriftlichen Widerruf), die Abschnitts- und Zwischentitel (2, 2.1, 2.2, 3, 3.1, 3.2, 5, 8, 11, 11.3, 13, 16, 21, 22) sowie die vorgedruckte Spalte «Geschäftsjahr» in Punkt 22. Ebenso keine Felder: die grau hinterlegten Zellen der direkten Bundessteuer bei 4412–4415 (nicht auszufüllen), der Stichtag-Hinweis zu Kapital und Reserven (Schlussbilanz nach Gewinnverwendung), der Übertragspfeil von 5700 auf 6220 und der Beilagen-Hinweis «Bitte ohne Klarsichthüllen, Heft- und Büroklammern etc.». Die Formulardatei wurde nur gelesen; in die Datenbank wurde nichts geschrieben."
+}

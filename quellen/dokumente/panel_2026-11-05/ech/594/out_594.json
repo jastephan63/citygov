@@ -1,0 +1,105 @@
+{
+ "hinweis": "eCH-Urteile Formular 594, Panel 2026-11-05, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-11-05/ech/594 --nur-offene=594",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "The definition says the PID identifies the taxable JURISTISCHE Person (it sits under «Kanton Schaffhausen»). The propagated eCH-0044 localPersonId (personIdentificationKeyOnlyType) is a natural-person identifier that was copied from NP tax forms. eCH-0276 «E-Bilanz und E-Tax JP» (Genehmigt) has titleType/registerNumber (xs:long, minOccurs 1, verified in the XSD): the legal entity's number in the tax register, which is what the PID is. The other candidates are separate elements: titleType/cantonalRegisterNumber (optional, unbounded), titleType/uid and eCH-0098 otherId/localSenderId (generic).",
+   "feld": "PID",
+   "standard": "eCH-0276",
+   "element": "registerNumber"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "The company name of the legal entity. The propagated eCH-0098 organisationName (organisationIdentificationType, id 1334) exists verbatim and is the standard organisation-name element. eCH-0276 titleType/organisationName uses the same eCH-0108 unitNameType, so there is no conflict.",
+   "feld": "Firmenname"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Composite: the list of all members of the Verwaltung and other Organe with their Bezüge (the Bescheinigung under Art. 129 Abs. 1 lit. a DBG). eCH-0276 attestationType («Attestation (register J on forms)») holds beneficiary (beneficiaryType, maxOccurs unbounded; name, firstName, adress, zipCodeTown, canton, ahvNumber, role), the container for exactly this list. Use context attestationType, not bankDetailsForRefundType/beneficiary. eCH-0229 administrativeBody was checked and is worse: maxOccurs=3 (verified in the XSD).",
+   "feld": "Verzeichnis",
+   "standard": "eCH-0276",
+   "element": "beneficiary"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Name of the organ member, a natural person. By rule Name → eCH-0044 officialName (personIdentificationLightType, id 800). This matches practice for «Name / Vorname» parts (74x) and the eCH-0229 representativeType, which embeds eCH-0044 personIdentificationLightType. eCH-0276 beneficiaryType/name is an untyped xs:string, so it is not better. The part bundles two Angaben: the first name would be eCH-0044 firstName, so the form should split it (aufteilen).",
+   "elternfeld": "Verzeichnis",
+   "teilfeld": "Name / Vorname",
+   "standard": "eCH-0044",
+   "element": "officialName"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Place of residence of the organ member. It is relevant because Lohnausweise for residents of other cantons are forwarded there. Members may live abroad, so the place belongs in eCH-0010 addressInformationType/town (id 58), not in the Swiss-only type. This matches practice (Wohnort parts 39x). eCH-0276 beneficiaryType/zipCodeTown is an untyped PLZ+Ort string, so it is not better.",
+   "elternfeld": "Verzeichnis",
+   "teilfeld": "Wohnort",
+   "standard": "eCH-0010",
+   "element": "town"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Read to the end, the label means the Nettolohn per Lohnausweis Ziffer 11 that this company paid to the member in the Berichtsjahr. In the XSD, eCH-0278 dependentEmploymentType/dependentEmploymentDetail/employedRevenue (moneyType) is this amount per employer and tax period (with employer/uidEmployer; isSidelineRevenue covers board fees as a side income). The catalogue lists the element under context dependentEmploymentType. The same element is used for Nettolohn fields on forms 233, 273 and 254. eCH-0276 attestationType has only booleans and no amount, eCH-0276 salaryExpenses is the company's total salary expense, and eCH-0119 employedMainRevenue is limited to main employment.",
+   "elternfeld": "Verzeichnis",
+   "teilfeld": "Bezüge (gemäss Ziffer 11 des Lohnausweises)",
+   "standard": "eCH-0278",
+   "element": "employedRevenue"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Free text attached to this Bescheinigung; per the Hinweise, the required note goes here when no Vergütungen were paid. The propagated kein_standard (generic Bemerkungen practice) is too coarse for this Formular: eCH-0276 attestationType (register J, the Bescheinigung über Leistungen an Organe, the counterpart of Formular 12a) has the free-text element textInput (textFieldType, maxLength 500, verified in the XSD). Other candidates searched: eCH-0276 structureType/generalRemarks and remark (register H, remarks on the whole declaration), eCH-0229 contactAndAdministrationType/remarks, eCH-0058 comment. With an eCH element in place, eSH-0001 no longer applies.",
+   "feld": "Bemerkungen",
+   "standard": "eCH-0276",
+   "element": "textInput"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "A number: how many Lohnausweise are enclosed (the blank before «Lohnausweis(e)»). I searched the catalogue for any attachment or document count element (attach*, enclos*, wageStatement, numberOf*). eCH-0119 attachedWageStatement is a boolean and cannot carry a count. The eCH-0119 listOfSecuritiesType integers (attachedForms, attachedPCListOfSecurities, attachedFormDA1, attachedClearing) count securities-list forms. eCH-0276 attachmentsType, eCH-0229 attachmentType, eCH-0058/0078/0102 attachment, eCH-0235 attachmentInformation and eCH-0039 document have no count. None of the 290 standards has a count element.",
+   "feld": "Beilagen"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "The enclosed copies of the Lohnausweise, i.e. attachments to the JP tax declaration. eCH-0276 contentType/attachments (attachmentsType, «Attachments (register G on forms)») is the attachment container of the E-Tax JP standard this Formular belongs to. It is the JP counterpart of the eCH-0119 headerType/attachment used on NP tax forms, and more specific than the generic eCH-0058 attachment or eCH-0039 document.",
+   "feld": "Lohnausweis(e)",
+   "standard": "eCH-0276",
+   "element": "attachments"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Composite: place and date of signing the tax Bescheinigung. eCH-0119 attachedFormsType/locationAndDate (string, id 2024) is the catalogue's only element for the signing place and date of a tax declaration. Practice uses it at the composite for about 30 «Ort, Datum» fields, all in context attachedFormsType, including the zweitgeprüft forms 553 and 576. Neither eCH-0276 nor eCH-0229 has a signing place or date.",
+   "feld": "Ort und Datum",
+   "standard": "eCH-0119",
+   "element": "locationAndDate"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Place of signing on its own. eCH-0010 town is a postal address part, not a signing place. eCH-0119 locationAndDate combines place and date in one string and is held at the composite. Searched for signing-place elements (signat*, placeOfSign*, locationAndDate) across the catalogue: none is atomic. Matches practice (Ort under «Ort und Datum»/«Ort, Datum»: kein_standard 36x).",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Ort"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Calendar date of signing on its own. Searched: eCH-0119 locationAndDate (combined, held at the composite); eCH-0276 titleType taxPeriodFrom/taxPeriodTo (the tax period, not the signing date); eCH-0058 message dates (technical); eCH-0039 document dates; dateOfSign*/signingDate/signat* (none). No atomic signing-date element exists. Matches practice (kein_standard 36x).",
+   "elternfeld": "Ort und Datum",
+   "teilfeld": "Datum"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "The handwritten, legally valid signature for the legal entity. The signature standards eCH-0091, eCH-0220, eCH-0230, eCH-0250, eCH-0274 and eCH-0282 describe technical e-signature procedures without data elements. eCH-0260 signaturesType holds only booleans confirming signatures on apprenticeship contracts. eCH-0276, eCH-0229 and eCH-0119 have no signature element. Matches practice (Unterschrift kein_standard).",
+   "feld": "Rechtsgültige Unterschrift"
+  }
+ ]
+}

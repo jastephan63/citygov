@@ -1,0 +1,380 @@
+{
+ "hinweis": "eCH-Urteile Formular 597, Panel 2026-11-05, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-11-05/ech/597 --nur-offene=597",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die PID ist laut Definition die «Kennnummer der steuerpflichtigen juristischen Person». Sie bezeichnet also eine Organisation. Der propagierte Wert eCH-0044 localPersonId stammt aus Formularen für natürliche Personen (259, 260, 265, 271, 272, 274) und würde die Angabe fälschlich als Personendatum ausweisen. eCH-0276 (E-Bilanz und E-Tax JP, Genehmigt) führt im titleType die Registernummer der steuerpflichtigen JP als registerNumber (long, Pflicht, einmalig, id 7918, eindeutiger Name). Daneben stehen organisationName und uid. Verworfen: cantonalRegisterNumber, weil optional und wiederholbar, und eCH-0098 localSenderId, weil das die eigene Kennung des Absenders ist und nicht die Nummer der Steuerverwaltung.",
+   "feld": "PID",
+   "standard": "eCH-0276",
+   "element": "registerNumber"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Der Firmenname der steuerpflichtigen juristischen Person ist ihr Organisationsname. Der propagierte Wert eCH-0098 organisationName (organisationIdentificationType, id 1334) ist der Basisstandard für Unternehmensdaten und richtig. eCH-0276 titleType organisationName übernimmt ihn als unitNameType nur.",
+   "feld": "Firmenname"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Tabelle 1.1 mit einer Zeile je Beteiligung und den Spalten A bis H. In eCH-0276 bildet participationsType das Register I «Participations» ab. Darin ist generalParticipations (generalParticipationsType, unbounded, id 7359, eindeutiger Name) der Container je Beteiligung mit company (Spalten A bis C), participationInformation (D bis F) und profitTaxValue (G und H).",
+   "feld": "Zusammensetzung",
+   "standard": "eCH-0276",
+   "element": "generalParticipations"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Spalte A nennt Anzahl und Art der Titel. In eCH-0276 companyType ist die Anzahl numberOfSecurities (integer). Die Art führt der Standard getrennt als typeOfSecurityCode. Das Teilfeld bündelt also zwei Angaben, die der Standard trennt. Gewählt ist die Anzahl als Hauptangabe, die Bündelung bleibt ein Hinweis an das Formular.",
+   "elternfeld": "Zusammensetzung",
+   "teilfeld": "Anzahl und Art der Titel (Spalte A)",
+   "standard": "eCH-0276",
+   "element": "numberOfSecurities"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Wörtliche Entsprechung in eCH-0276 companyType: descriptionAndLegalFormOfTheCompany (string) = «Bezeichnung und Rechtsform des Unternehmens».",
+   "elternfeld": "Zusammensetzung",
+   "teilfeld": "Bezeichnung und Rechtsform des Unternehmens (Spalte B)",
+   "standard": "eCH-0276",
+   "element": "descriptionAndLegalFormOfTheCompany"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Spalte C ist das gesamte Grund- oder Stammkapital (Nominalbetrag, CHF) der Beteiligungsgesellschaft. In eCH-0276 companyType ist das nominalAmountOfTotalCapitalInDomesticCurrency (long).",
+   "elternfeld": "Zusammensetzung",
+   "teilfeld": "Gesamtes Grund- oder Stammkapital (Nominalbetrag) (Spalte C)",
+   "standard": "eCH-0276",
+   "element": "nominalAmountOfTotalCapitalInDomesticCurrency"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Spalte D ist der Nominalbetrag der eigenen Beteiligung in CHF. In eCH-0276 participationInformationType ist das nominalAmountOfTheInvestmentDomesticCurrency (long).",
+   "elternfeld": "Zusammensetzung",
+   "teilfeld": "Beteiligung Nominalbetrag (Spalte D)",
+   "standard": "eCH-0276",
+   "element": "nominalAmountOfTheInvestmentDomesticCurrency"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Spalte E ist die Beteiligungsquote in %. In eCH-0276 ist das participationInPercent in participationInformationType (id 7377, percentageType). Der Name kommt auch in profitTaxValueType vor (id 7379). Die Auflösung über den Namen ergibt nachgeprüft 7377, also den richtigen Kontext.",
+   "elternfeld": "Zusammensetzung",
+   "teilfeld": "Beteiligung in % (Spalte E)",
+   "standard": "eCH-0276",
+   "element": "participationInPercent"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Spalte F ist der Verkehrswert der Beteiligung in CHF. In eCH-0276 participationInformationType ist das marketValueOfTheInvestment (long).",
+   "elternfeld": "Zusammensetzung",
+   "teilfeld": "Beteiligung Verkehrswert (Spalte F)",
+   "standard": "eCH-0276",
+   "element": "marketValueOfTheInvestment"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Spalte G ist der Gewinnsteuerwert der einzelnen Beteiligung am Ende der Steuerperiode. In eCH-0276 steht dieser Betrag im Block profitTaxValue (profitTaxValueType) als amountInTheCurrencyOfTheFinancialStatements (taxAmountType, id 7381, eindeutiger Name). Im selben Block liegen der Anteil an den Aktiven (Spalte H) und die Wertberichtigungen. Der Block bezieht sich selbst auf das Periodenende, es wird also kein aktueller Wert unterstellt.",
+   "elternfeld": "Zusammensetzung",
+   "teilfeld": "Gewinnsteuerwert der Beteiligung am Ende der Steuerperiode (Spalte G)",
+   "standard": "eCH-0276",
+   "element": "amountInTheCurrencyOfTheFinancialStatements"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Spalte H, der Gewinnsteuerwert in % der Aktiven, entspricht wörtlich profitTaxValueInPercentOfAssets in eCH-0276 profitTaxValueType (taxAmountPercentageType).",
+   "elternfeld": "Zusammensetzung",
+   "teilfeld": "Gewinnsteuerwert in % der Aktiven (Spalte H)",
+   "standard": "eCH-0276",
+   "element": "profitTaxValueInPercentOfAssets"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Zeile 1.2 ist der Gewinnsteuerwert der gesamten Aktiven am Ende der Steuerperiode, die Bezugsgrösse 100 % für Spalte H. Die Entsprechung ist eCH-0276 generalParticipationsType incomTaxValueOfTotalAssetsAtTheEndOfTheTaxPeriod (taxAmountType). Der Name mit «incom» ist wörtlich aus dem Katalog übernommen.",
+   "feld": "Gewinnsteuerwert der Gesamtaktiven am Ende der Steuerperiode",
+   "standard": "eCH-0276",
+   "element": "incomTaxValueOfTotalAssetsAtTheEndOfTheTaxPeriod"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Zeile 1.3, der gesamte Finanzierungsaufwand in der Steuerperiode, entspricht wörtlich totalFinancingCostsDuringTheTaxPeriod in eCH-0276 generalParticipationsType (long).",
+   "feld": "Total des Finanzierungsaufwandes in der Steuerperiode",
+   "standard": "eCH-0276",
+   "element": "totalFinancingCostsDuringTheTaxPeriod"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Tabelle 2 mit den Spalten I bis O und der Veräusserung Ja/Nein je Beteiligung. Der Container in eCH-0276 participationsType ist primeCosts (primeCostsType, unbounded, eindeutiger Name). Darin deckt acquisition die Spalten I bis K ab und generalPrimeCosts die Spalten L bis O sowie die Veräusserung.",
+   "feld": "Gestehungskosten",
+   "standard": "eCH-0276",
+   "element": "primeCosts"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Spalte I, das Datum des ersten Erwerbs von Titeln der Beteiligung, entspricht wörtlich dateOfTheFirstAcquisitionOfSharesInTheParticipation (date) in eCH-0276 acquisitionType. Das Element meint genau diesen vergangenen Zeitpunkt.",
+   "elternfeld": "Gestehungskosten",
+   "teilfeld": "Datum des ersten Erwerbs von Titeln der Beteiligung (Spalte I)",
+   "standard": "eCH-0276",
+   "element": "dateOfTheFirstAcquisitionOfSharesInTheParticipation"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Spalte J steht unter «Erwerb während der Steuerperiode» und nennt den Kaufpreis der in der Steuerperiode erworbenen Anteile. Das entspricht wörtlich acquisitionDuringTheTaxPeriodPurchasePriceForTheSharesAcquiredInTheTaxPeriod (long) in eCH-0276 acquisitionType.",
+   "elternfeld": "Gestehungskosten",
+   "teilfeld": "Kaufpreis für die in der Steuerperiode erworbenen Anteile (Spalte J)",
+   "standard": "eCH-0276",
+   "element": "acquisitionDuringTheTaxPeriodPurchasePriceForTheSharesAcquiredInTheTaxPeriod"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Spalte K steht unter «Erwerb während der Steuerperiode» und nennt das Datum des letzten Erwerbs in der Periode. Die Entsprechung ist acquisitionDuringTheTaxPeriodDateOfAcquisition (date) in eCH-0276 acquisitionType.",
+   "elternfeld": "Gestehungskosten",
+   "teilfeld": "Datum des letzten Erwerbs (Spalte K)",
+   "standard": "eCH-0276",
+   "element": "acquisitionDuringTheTaxPeriodDateOfAcquisition"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Spalte L, die Gestehungskosten zu Beginn der Steuerperiode, ist atTheBeginningOfTheTaxPeriod in eCH-0276 generalPrimeCostsType. Das ist das eigene Element für den Wert zum Periodenbeginn und kein aktueller Wert.",
+   "elternfeld": "Gestehungskosten",
+   "teilfeld": "Gestehungskosten zu Beginn der Steuerperiode (Spalte L)",
+   "standard": "eCH-0276",
+   "element": "atTheBeginningOfTheTaxPeriod"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Spalte M, die Erhöhung der Gestehungskosten in der Periode, ist changeIncrease in eCH-0276 generalPrimeCostsType.",
+   "elternfeld": "Gestehungskosten",
+   "teilfeld": "Veränderung Erhöhung (Spalte M)",
+   "standard": "eCH-0276",
+   "element": "changeIncrease"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Spalte N, die Verminderung der Gestehungskosten in der Periode, ist changeDecrease in eCH-0276 generalPrimeCostsType.",
+   "elternfeld": "Gestehungskosten",
+   "teilfeld": "Veränderung Verminderung (Spalte N)",
+   "standard": "eCH-0276",
+   "element": "changeDecrease"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Spalte O, die Gestehungskosten am Ende der Steuerperiode, ist atTheEndOfTheTaxPeriod in eCH-0276 generalPrimeCostsType.",
+   "elternfeld": "Gestehungskosten",
+   "teilfeld": "Gestehungskosten am Ende der Steuerperiode (Spalte O)",
+   "standard": "eCH-0276",
+   "element": "atTheEndOfTheTaxPeriod"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Die Ja/Nein-Frage, ob in der Steuerperiode eine Veräusserung stattfand, ist ein boolescher Wert und kein Wertelement. eCH-0276 generalPrimeCostsType führt dafür genau das boolean-Element disposalDuringTaxPeriod.",
+   "elternfeld": "Gestehungskosten",
+   "teilfeld": "Hat während der Steuerperiode eine Veräusserung stattgefunden? (Ja/Nein)",
+   "standard": "eCH-0276",
+   "element": "disposalDuringTaxPeriod"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Verlangt ist eine Beilage, kein Wert: Formular 19.1 oder eine eigene Aufstellung je veräusserte Beteiligung (Fussnote 1). In der E-Tax-JP-Meldung eCH-0276 ist der Beilagen-Container attachments (contentType, attachmentsType mit documentIdentification und documentTitle, id 7974, eindeutiger Name). Einen eigenen Kapitalgewinn-Block für 19.1 hat eCH-0276 nicht: durchsucht wurden capitalGain, disposal, sale, attachment und document. Nur grossIncomeFromCapitalGains ist ein Betrag in Tabelle 3.",
+   "feld": "Formular 19.1 «Kapitalgewinn aus Beteiligung» oder eigene Aufstellung",
+   "standard": "eCH-0276",
+   "element": "attachments"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Tabelle 3 mit den Spalten P bis W je Beteiligung. Gemeint ist der Container netIncomeFromParticipations in eCH-0276 participationsType (id 7360, netIncomeFromParticipationsType, unbounded), der alle Spalten P bis W enthält. Vorsicht beim Laden: Den gleichen Namen trägt auch der Betrag in netIncomeFromParticipationsType (id 7400, taxAmountType). Der Loader löst Namen in Indexreihenfolge auf und trifft nachgeprüft 7400. Die Spalten sind als Teilfelder einzeln zugeordnet, das Sammelfeld zählt also nicht als Datenpunkt.",
+   "feld": "Nettoertrag der Beteiligungen",
+   "standard": "eCH-0276",
+   "element": "netIncomeFromParticipations"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Spalte P, der Bruttoertrag aus Ausschüttungen je Beteiligung, ist grossIncomeFromDistributions (long) in eCH-0276 netIncomeFromParticipationsType.",
+   "elternfeld": "Nettoertrag der Beteiligungen",
+   "teilfeld": "Bruttoertrag aus Ausschüttungen (Spalte P)",
+   "standard": "eCH-0276",
+   "element": "grossIncomeFromDistributions"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Spalte Q, der Bruttoertrag aus Kapitalgewinnen je Beteiligung (aus Formular 19.1 übertragen), ist grossIncomeFromCapitalGains (long) in eCH-0276 netIncomeFromParticipationsType.",
+   "elternfeld": "Nettoertrag der Beteiligungen",
+   "teilfeld": "Bruttoertrag aus Kapitalgewinnen (Übertrag von Formular/-en 19.1) (Spalte Q)",
+   "standard": "eCH-0276",
+   "element": "grossIncomeFromCapitalGains"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Spalte R, die Abschreibungen im Zusammenhang mit dem Ertrag, entspricht wörtlich depreciationAndAmortisationInConnectionWithIncome in eCH-0276 netIncomeFromParticipationsType.",
+   "elternfeld": "Nettoertrag der Beteiligungen",
+   "teilfeld": "Abschreibungen im Zusammenhang mit dem Ertrag (Spalte R)",
+   "standard": "eCH-0276",
+   "element": "depreciationAndAmortisationInConnectionWithIncome"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Spalte S, der massgebliche Ertrag je Beteiligung, ist relevantIncome in eCH-0276 netIncomeFromParticipationsType.",
+   "elternfeld": "Nettoertrag der Beteiligungen",
+   "teilfeld": "Massgeblicher Ertrag (Spalte S)",
+   "standard": "eCH-0276",
+   "element": "relevantIncome"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Spalte T, der Verwaltungsaufwand je Beteiligung (5 %-Praxis), ist administrativeExpenses in eCH-0276 netIncomeFromParticipationsType (id 7388). Der Name kommt auch in segregationPropertiesType vor (id 7717). Die Auflösung über den Namen ergibt nachgeprüft 7388.",
+   "elternfeld": "Nettoertrag der Beteiligungen",
+   "teilfeld": "Verwaltungsaufwand Spalte S × 5 % (5 %-Praxis) (Spalte T)",
+   "standard": "eCH-0276",
+   "element": "administrativeExpenses"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Spalte U, der Finanzierungsaufwand je Beteiligung, ist financingExpenses in eCH-0276 netIncomeFromParticipationsType.",
+   "elternfeld": "Nettoertrag der Beteiligungen",
+   "teilfeld": "Finanzierungsaufwand (Spalte U)",
+   "standard": "eCH-0276",
+   "element": "financingExpenses"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Spalte V, der Nettoertrag als Nettogewinn je Beteiligung, ist netIncomeProfit in eCH-0276 netIncomeFromParticipationsType. Es ist der Zeilenwert, nicht die Summe.",
+   "elternfeld": "Nettoertrag der Beteiligungen",
+   "teilfeld": "Nettoertrag Nettogewinn (Spalte V)",
+   "standard": "eCH-0276",
+   "element": "netIncomeProfit"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Spalte W, der Nettoertrag als Nettoverlust je Beteiligung, ist netIncomeLoss in eCH-0276 netIncomeFromParticipationsType. Es ist der Zeilenwert, nicht die Summe.",
+   "elternfeld": "Nettoertrag der Beteiligungen",
+   "teilfeld": "Nettoertrag Nettoverlust (Spalte W)",
+   "standard": "eCH-0276",
+   "element": "netIncomeLoss"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die Summenzeile der Tabelle 3 heisst wörtlich «Nettoertrag aus Beteiligungen». Das ist das Betragselement netIncomeFromParticipations in eCH-0276 netIncomeFromParticipationsType (id 7400, taxAmountType), auf das die Auflösung über den Namen nachgeprüft fällt. Die Spaltensummen totalNetIncomeProfit und totalNetIncomeLoss liegen im selben Typ und sind den Teilfeldern zugeordnet.",
+   "feld": "Nettoertrag aus Beteiligungen (Summe der Zeilen 1 bis 10)",
+   "standard": "eCH-0276",
+   "element": "netIncomeFromParticipations"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Hier steht die Summe der Spalte V (Nettogewinn) über die Zeilen 1 bis 10, kein Zeilenwert. Das passende Element ist totalNetIncomeProfit in eCH-0276 netIncomeFromParticipationsType.",
+   "elternfeld": "Nettoertrag aus Beteiligungen (Summe der Zeilen 1 bis 10)",
+   "teilfeld": "Nettogewinn (Spalte V)",
+   "standard": "eCH-0276",
+   "element": "totalNetIncomeProfit"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Hier steht die Summe der Spalte W (Nettoverlust) über die Zeilen 1 bis 10, kein Zeilenwert. Das passende Element ist totalNetIncomeLoss in eCH-0276 netIncomeFromParticipationsType.",
+   "elternfeld": "Nettoertrag aus Beteiligungen (Summe der Zeilen 1 bis 10)",
+   "teilfeld": "Nettoverlust (Spalte W)",
+   "standard": "eCH-0276",
+   "element": "totalNetIncomeLoss"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Block 4.1 berechnet den Beteiligungsabzug als prozentuale Ermässigung der Gewinnsteuer für die Kantons- und Gemeindesteuern. In eCH-0276 netIncomeFromParticipationsType ist das participationExemptionProfitTaxInPercent (taxAmountPercentageType, id 7401, eindeutiger Name). Der Kantonswert gehört in den Teil cantonalTax. Einen Container für alle drei Angaben gibt es nicht, denn der steuerbare Reingewinn liegt in variousQuestionsType.",
+   "feld": "Prozentuale Ermässigung (Kantons- und Gemeindesteuern)",
+   "standard": "eCH-0276",
+   "element": "participationExemptionProfitTaxInPercent"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Der Zähler in 4.1 ist der Nettoertrag aus Beteiligungen, laut Pfeil aus der Summe der Spalte V übernommen. Gemeint ist das Betragselement netIncomeFromParticipations in eCH-0276 netIncomeFromParticipationsType (id 7400, taxAmountType, Teil cantonalTax). Die Auflösung über den Namen trifft nachgeprüft 7400 und nicht den gleichnamigen Container 7360.",
+   "elternfeld": "Prozentuale Ermässigung (Kantons- und Gemeindesteuern)",
+   "teilfeld": "Nettoertrag aus Beteiligungen",
+   "standard": "eCH-0276",
+   "element": "netIncomeFromParticipations"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Der Nenner in 4.1 ist der gesamte steuerbare Reingewinn für die Kantons- und Gemeindesteuern. eCH-0276 hat dafür das eigene Element taxableProfitCantonalAndMunicipalTaxes (variousQuestionsType, long). Formular 252 ordnet den Reingewinn für die Kantons- und Gemeindesteuern gleich zu.",
+   "elternfeld": "Prozentuale Ermässigung (Kantons- und Gemeindesteuern)",
+   "teilfeld": "Gesamter steuerbarer Reingewinn",
+   "standard": "eCH-0276",
+   "element": "taxableProfitCantonalAndMunicipalTaxes"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Das Ergebnis von 4.1 ist die prozentuale Ermässigung der Gewinnsteuer auf 3 Kommastellen für die Kantons- und Gemeindesteuern. Das Element ist participationExemptionProfitTaxInPercent (taxAmountPercentageType, Wert im Teil cantonalTax). Der blosse Name cantonalTax würde über den Namen auf taxAmountFreeInputFieldType (id 7904) fallen und ist deshalb nicht gewählt.",
+   "elternfeld": "Prozentuale Ermässigung (Kantons- und Gemeindesteuern)",
+   "teilfeld": "Prozentuale Ermässigung in %",
+   "standard": "eCH-0276",
+   "element": "participationExemptionProfitTaxInPercent"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Block 4.2 berechnet den Beteiligungsabzug in Prozent für die direkte Bundessteuer. In eCH-0276 netIncomeFromParticipationsType ist das participationExemptionProfitTaxInPercent (taxAmountPercentageType); der Bundeswert gehört in den Teil federalTax. Einen Container für die drei Angaben gibt es nicht.",
+   "feld": "Prozentuale Ermässigung (Direkte Bundessteuer)",
+   "standard": "eCH-0276",
+   "element": "participationExemptionProfitTaxInPercent"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Der Zähler in 4.2 ist der Nettoertrag aus Beteiligungen, laut Pfeil aus der Summe der Spalte V übernommen. Gemeint ist das Betragselement netIncomeFromParticipations in eCH-0276 netIncomeFromParticipationsType (id 7400, taxAmountType, Teil federalTax). Die Auflösung über den Namen trifft nachgeprüft 7400.",
+   "elternfeld": "Prozentuale Ermässigung (Direkte Bundessteuer)",
+   "teilfeld": "Nettoertrag aus Beteiligungen",
+   "standard": "eCH-0276",
+   "element": "netIncomeFromParticipations"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Der Nenner in 4.2 ist laut Fussnote der in der Schweiz steuerbare Reingewinn nach Verlustverrechnung und nach Ausscheidung der Auslandergebnisse, für die direkte Bundessteuer. Das Element ist taxableProfitDirectFederalTax (eCH-0276 variousQuestionsType, long). Formular 252 ordnet es gleich zu.",
+   "elternfeld": "Prozentuale Ermässigung (Direkte Bundessteuer)",
+   "teilfeld": "Gesamter steuerbarer Reingewinn",
+   "standard": "eCH-0276",
+   "element": "taxableProfitDirectFederalTax"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Das Ergebnis von 4.2 ist die prozentuale Ermässigung der Gewinnsteuer für die direkte Bundessteuer. Das Element ist participationExemptionProfitTaxInPercent (taxAmountPercentageType, Wert im Teil federalTax). Der blosse Name federalTax würde über den Namen auf taxAmountFreeInputFieldType (id 7905) fallen und ist deshalb nicht gewählt.",
+   "elternfeld": "Prozentuale Ermässigung (Direkte Bundessteuer)",
+   "teilfeld": "Prozentuale Ermässigung in %",
+   "standard": "eCH-0276",
+   "element": "participationExemptionProfitTaxInPercent"
+  }
+ ]
+}

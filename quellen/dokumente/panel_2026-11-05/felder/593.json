@@ -1,0 +1,127 @@
+{
+ "form_id": 593,
+ "data_fields": [
+  {
+   "name": "PID",
+   "definition": "Die im Formularkopf neben «PID:» verlangte Identifikationsnummer der steuerpflichtigen juristischen Person.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Firmenname",
+   "definition": "Der Name (Firma) der juristischen Person, für die die Steuerausscheidung erstellt wird.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Kanton und Ort",
+   "definition": "Für jede der drei Ausscheidungsspalten neben der Spalte «Total» das Kantonskürzel (für Ausland das Land) und der Ort; in der ersten Spalte ist das Kürzel SH vorgedruckt, der Ort ist auch dort einzutragen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Kanton",
+    "Ort"
+   ],
+   "format": "3 Spalten (SH vorgedruckt, zwei weitere); für Ausland: Land anstelle Kantonskürzel"
+  },
+  {
+   "name": "Kapitalausscheidung",
+   "definition": "Aufteilung des Kapitals auf das Total und die einzelnen Kantone bzw. Länder: lokalisierte Aktiven (A), mobile Konten (B), Total Aktiven, 1. Quote und steuerbares Kapital.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Immobilien",
+    "Maschinen, Mobilien, Fahrzeuge",
+    "Waren, Beteiligungen",
+    "Übrige lokalisierte Aktiven",
+    "Mobile Konten objektmässig",
+    "Total Aktiven",
+    "1. Quote %",
+    "Steuerbares Kapital"
+   ],
+   "format": "4 Spalten (Total, SH, zwei weitere Kantone bzw. Länder); Beträge in CHF, 1. Quote in %"
+  },
+  {
+   "name": "Ausscheidung Immobilien",
+   "definition": "Erster Block der Gewinnausscheidung: objektmässige Ausscheidung des Liegenschaftsertrags vom Bruttoertrag über die abzuziehenden Kosten bis zum Nettoertrag Liegenschaften je Spalte.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Bruttoertrag Liegenschaften",
+    "Objektmässig ausgeschiedener Erfolg",
+    "Unterhaltskosten",
+    "Verwaltungskosten",
+    "Abschreibungen",
+    "Steuern",
+    "Diverses",
+    "Schuldzinsen",
+    "Nettoertrag Liegenschaften"
+   ],
+   "format": "4 Spalten (Total, SH, zwei weitere Kantone bzw. Länder); Beträge in CHF; Unterhaltskosten bis Schuldzinsen mit vorgedrucktem Minuszeichen (–)"
+  },
+  {
+   "name": "Erwerbsfaktoren",
+   "definition": "Block der Gewinnausscheidung mit den Erwerbsfaktoren (Total Aktiven, kapitalisierte Löhne und Mieten), ihrem Total und der daraus folgenden 2. Quote je Spalte.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Total Aktiven",
+    "Löhne (mit 10 % kapitalisiert)",
+    "Mieten (mit 6 % kapitalisiert)",
+    "Total Erwerbsfaktoren",
+    "2. Quote %"
+   ],
+   "format": "4 Spalten (Total, SH, zwei weitere Kantone bzw. Länder); Beträge in CHF, 2. Quote in %"
+  },
+  {
+   "name": "Umsatzfaktoren",
+   "definition": "Block der Gewinnausscheidung mit dem Umsatz je Spalte und der daraus folgenden 3. Quote.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Umsatz",
+    "3. Quote %"
+   ],
+   "format": "4 Spalten (Total, SH, zwei weitere Kantone bzw. Länder); Umsatz in CHF, 3. Quote in %"
+  },
+  {
+   "name": "Gewinnverteilung",
+   "definition": "Verteilung des steuerbaren Reingewinns auf die Kantone bzw. Länder über Nettoertrag Liegenschaften, Betriebsgewinn, Voraus, den nach 2. oder 3. Quote verteilten Betriebsgewinn und den Ausgleich bis zum steuerbaren Reingewinn je Spalte.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Steuerbarer Reingewinn (Ausgangszeile)",
+    "Nettoertrag Liegenschaften",
+    "Betriebsgewinn",
+    "Voraus in % (Satz)",
+    "Voraus in % (Betrag)",
+    "Betriebsgewinn (nach 2. oder 3. Quote verteilt)",
+    "Ausgleich",
+    "Steuerbarer Reingewinn (Schlusszeile)"
+   ],
+   "format": "4 Spalten (Total, SH, zwei weitere Kantone bzw. Länder); Beträge in CHF; Voraus-Satz in % auf der punktierten Linie; Betriebsgewinn und Voraus haben in der Spalte Total je eine eigene Zelle, in den drei Kantonsspalten eine gemeinsame, über beide Zeilen gezogene Zelle"
+  },
+  {
+   "name": "Bemerkung",
+   "definition": "Freie Bemerkung der juristischen Person zur Steuerausscheidung.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  }
+ ],
+ "hinweis": "Korrekturen: (1) Gewinnverteilung, format: Die Angabe «Betriebsgewinn und Voraus nur in der Spalte Total» stimmte nicht mit dem Formular überein. Im gerenderten PDF haben Betriebsgewinn und Voraus in der Spalte Total je eine eigene Zelle. In den Spalten SH und den zwei weiteren Kantonen steht dagegen je eine gemeinsame Zelle, die über beide Zeilen gezogen ist. Diese Zelle ist ausfüllbar, deshalb beschreibt das Format jetzt nur noch die Zellen, wie sie gedruckt sind, ohne Deutung. Sonst keine Korrekturen. Alle übrigen Felder, Teilfelder, Namen, Typen und Pflichtangaben wurden Zeile für Zeile am Formular (und an den Zellgrenzen im Bild) bestätigt und unverändert übernommen. Geprüft und bestätigt: «A Lokalisierte Aktiven» teilt die Zelle mit «Immobilien», «B Mobile Konti» teilt die Zelle mit «Mobile Konten objektmässig», die Überschrift «Gewinnausscheidung/Ausscheidung Immobilien» teilt die Zelle mit «Bruttoertrag Liegenschaften», und «Gewinnverteilung» teilt die Zelle mit dem ersten «Steuerbarer Reingewinn». Alle diese Zeilen sind also keine zusätzlichen Teilfelder. Die Kopfzeile «Kanton und Ort» hat unter dem Titel zwei Zeilen: Kürzel (SH vorgedruckt) und eine leere Zeile für den Ort. Die Spalte Total hat dort keine Zelle. Die Zusätze «(Ausgangszeile)», «(Schlusszeile)», «(Satz)» und «(Betrag)» stehen nicht auf dem Formular. Die Databank hat sie ergänzt, weil das Formular «Steuerbarer Reingewinn» zweimal druckt und auf der Zeile «Voraus in % …………» zwei Angaben verlangt: den Satz auf der punktierten Linie und den Betrag in der Zelle. Es sind keine zusätzlichen Angaben. Keine Felder der Person: die Gliederungsüberschriften (Kapitalausscheidung, A/B, Gewinnausscheidung), die vorgedruckten Einheiten CHF und % und die Minuszeichen sowie der Fussvermerk «Formular 8c». Das Formular hat weder Unterschrift noch Ort/Datum, keine Beilagenliste und kein Feld, das das Amt ausfüllt. Vergleichbare Formulare mit Feldern gibt es in der Databank nicht (589–598 noch ohne Felder). Die Tabelle ist nach dem Muster von Formular 403 abgebildet: Zeilen als Teilfelder, Spalten im Format."
+}

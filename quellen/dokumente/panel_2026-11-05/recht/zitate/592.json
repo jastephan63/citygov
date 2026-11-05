@@ -1,0 +1,993 @@
+{
+ "form_id": 592,
+ "mappings": [
+  {
+   "data_field": "PID",
+   "cites": [
+    {
+     "cref": "SHR 641.111",
+     "article_no": "§ 81b",
+     "beleg": "Abs. 4: Die kantonale Steuerverwaltung stellt für elektronische Gesuche um Verlängerung der Einreichungsfrist für die Steuererklärung ein Webportal zur Verfügung, auf dem sich die steuerpflichtigen Personen durch Angabe ihrer PID und bei natürlichen Personen zudem ihres Geburtsdatums ausweisen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "UID",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "FID",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Name (genaue Bezeichnung)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 142",
+     "beleg": "Die steuerpflichtige Person muss die Steuererklärung wahrheitsgemäss und vollständig ausfüllen, persönlich unterzeichnen und samt den vorgeschriebenen Beilagen fristgemäss der zuständigen Behörde einreichen."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 124",
+     "beleg": "Die steuerpflichtige Person muss die Steuererklärung wahrheitsgemäss und vollständig ausfüllen, persönlich unterzeichnen"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Hauptsitz",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 56",
+     "beleg": "Juristische Personen sind aufgrund persönlicher Zugehörigkeit steuerpflichtig, wenn sich ihr Sitz oder ihre tatsächliche Verwaltung im Kanton befindet."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 57",
+     "beleg": "Juristische Personen mit Sitz oder mit tatsächlicher Verwaltung ausserhalb des Kantons sind steuerpflichtig, wenn sie ..."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 50",
+     "beleg": "Juristische Personen sind aufgrund persönlicher Zugehörigkeit steuerpflichtig, wenn sich ihr Sitz oder ihre tatsächliche Verwaltung in der Schweiz befindet."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 51",
+     "beleg": "Juristische Personen, die weder ihren Sitz noch die tatsächliche Verwaltung in der Schweiz haben, sind aufgrund wirtschaftlicher Zugehörigkeit steuerpflichtig"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Zweck",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 73a",
+     "beleg": "Gewinne von juristischen Personen mit ideellen Zwecken werden nicht besteuert, sofern sie höchstens Fr. 20'000.00 betragen und ausschliesslich und unwiderruflich diesen Zwecken gewidmet sind."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 66a",
+     "beleg": "Gewinne von juristischen Personen mit ideellen Zwecken werden nicht besteuert, sofern sie höchstens 20 000 Franken betragen und ausschliesslich und unwiderruflich diesen Zwecken gewidmet sind."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Zweigniederlassungen",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 57",
+     "beleg": "Juristische Personen mit Sitz oder mit tatsächlicher Verwaltung ausserhalb des Kantons sind steuerpflichtig, wenn sie: ... b) im Kanton Betriebsstätten unterhalten"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 58",
+     "beleg": "Bei persönlicher Zugehörigkeit ist die Steuerpflicht unbeschränkt; sie erstreckt sich aber nicht auf Geschäftsbetriebe, Betriebsstätten und Grundstücke ausserhalb des Kantons."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 51",
+     "beleg": "Betriebsstätten sind insbesondere Zweigniederlassungen, Fabrikationsstätten, Werkstätten, Verkaufsstellen"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 52",
+     "beleg": "Bei persönlicher Zugehörigkeit ist die Steuerpflicht unbeschränkt; sie erstreckt sich aber nicht auf Geschäftsbetriebe, Betriebsstätten und Grundstücke im Ausland."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Formular 8c Steuerausscheidung",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 58",
+     "beleg": "Die Abgrenzung der Steuerpflicht für Geschäftsbetriebe, Betriebsstätten und Grundstücke erfolgt im Verhältnis zum Ausland nach den Grundsätzen des Bundesrechts über das Verbot der interkantonalen Doppelbesteuerung. ... Bei eigenen Betriebsstätten im Ausland wird bei der Ausscheidung der Steuerfaktoren dem Sitzkanton ein Voraus am Gewinn zugewiesen."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 59",
+     "beleg": "Juristische Personen, die nur für einen Teil ihres Gewinns und Kapitals im Kanton steuerpflichtig sind, entrichten die Steuern für die im Kanton steuerbaren Werte nach dem Steuersatz, der ihrem gesamten Gewinn und Kapital entspricht."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 142",
+     "beleg": "samt den vorgeschriebenen Beilagen fristgemäss der zuständigen Behörde einreichen"
+    },
+    {
+     "cref": "SHR 641.111",
+     "article_no": "§ 82",
+     "beleg": "Die Kantonale Steuerverwaltung ... bestimmt und liefert die Steuererklärungsformulare."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 52",
+     "beleg": "Die Abgrenzung der Steuerpflicht für Geschäftsbetriebe, Betriebsstätten und Grundstücke erfolgt im Verhältnis zum Ausland nach den Grundsätzen des Bundesrechts über das Verbot der interkantonalen Doppelbesteuerung."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Gründungsdatum",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 60",
+     "beleg": "Die Steuerpflicht beginnt mit der Gründung der juristischen Person, mit der Verlegung ihres Sitzes oder ihrer tatsächlichen Verwaltung in den Kanton oder mit dem Erwerb von im Kanton steuerbaren Werten."
+    },
+    {
+     "cref": "SHR 641.111",
+     "article_no": "§ 39",
+     "beleg": "Als Zeitpunkt der Gründung einer juristischen Person gilt: a) das Datum des Eintrages ins Handelsregister bei Kapitalgesellschaften und Genossenschaften b) das Datum der Errichtung der Stiftungsurkunde bei Stiftungen c) das Datum der Errichtung der Statuten bei Vereinen und den übrigen juristischen Personen"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 88",
+     "beleg": "Als Steuerperiode gilt das Geschäftsjahr. In jedem Kalenderjahr, ausgenommen im Gründungsjahr, muss ein Geschäftsabschluss mit Bilanz und Erfolgsrechnung erstellt werden."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 86",
+     "beleg": "Von der Minimalsteuer auf Grundstücken sind ausgenommen: a) neugegründete juristische Personen im Gründungsjahr und in den folgenden drei Steuerjahren, wenn sie nicht aus Umwandlungen hervorgegangen sind"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 54",
+     "beleg": "Die Steuerpflicht beginnt mit der Gründung der juristischen Person, mit der Verlegung ihres Sitzes oder ihrer tatsächlichen Verwaltung in die Schweiz oder mit dem Erwerb von in der Schweiz steuerbaren Werten."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 79",
+     "beleg": "Als Steuerperiode gilt das Geschäftsjahr. In jedem Kalenderjahr, ausgenommen im Gründungsjahr, muss ein Geschäftsabschluss mit Bilanz und Erfolgsrechnung erstellt werden."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Dauer des Geschäftsjahres",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 88",
+     "beleg": "Als Steuerperiode gilt das Geschäftsjahr. (Abs. 2; Abs. 3: in jedem Kalenderjahr, ausgenommen im Gründungsjahr, muss ein Geschäftsabschluss mit Bilanz und Erfolgsrechnung erstellt werden)"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 89",
+     "beleg": "Bei einem unter- oder überjährigen Geschäftsabschluss werden für die Bestimmung des Gewinnsteuersatzes nur die ordentlichen Gewinne auf 12 Monate umgerechnet."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 90",
+     "beleg": "Bei über- oder unterjährigen Geschäftsabschlüssen bestimmt sich die Höhe der Kapitalsteuer nach der Dauer des Geschäftsjahres."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 79",
+     "beleg": "Als Steuerperiode gilt das Geschäftsjahr."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Organe – Präsident/-in",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Organe – Geschäftsleitung",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Rückfragen sind zu richten an",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Vollständige Adresse des Vertreters",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 135",
+     "beleg": "Steuerpflichtige können sich vor den mit dem Vollzug dieses Gesetzes betrauten Behörden vertraglich vertreten lassen ... Wer jemanden in Steuersachen vertritt, braucht eine schriftliche Vollmacht."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 117",
+     "beleg": "Der Steuerpflichtige kann sich vor den mit dem Vollzug dieses Gesetzes betrauten Behörden vertraglich vertreten lassen"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Datum (Vollmacht)",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Rechtsgültige Unterschrift (Vollmacht)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 135",
+     "beleg": "Wer jemanden in Steuersachen vertritt, braucht eine schriftliche Vollmacht."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 117",
+     "beleg": "Die Behörde kann den Vertreter auffordern, sich durch schriftliche Vollmacht auszuweisen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Reingewinn / -verlust (–) gemäss Erfolgsrechnung des Geschäftsjahres (Code 1110)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 65",
+     "beleg": "Der steuerbare Reingewinn setzt sich zusammen aus: a) dem Saldo der Erfolgsrechnung unter Berücksichtigung des Saldovortrages des Vorjahres"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 89",
+     "beleg": "Der steuerbare Reingewinn bemisst sich nach dem Ergebnis der Steuerperiode."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 58",
+     "beleg": "Der steuerbare Reingewinn setzt sich zusammen aus: a. dem Saldo der Erfolgsrechnung unter Berücksichtigung des Saldovortrages des Vorjahres"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 80",
+     "beleg": "Der steuerbare Reingewinn bemisst sich nach dem Ergebnis der Steuerperiode."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Steuerliche Auf- / Abrechnungen",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 65",
+     "beleg": "allen vor Berechnung des Saldos der Erfolgsrechnung ausgeschiedenen Teilen des Geschäftsergebnisses, die nicht zur Deckung von geschäftsmässig begründetem Aufwand verwendet werden ... den der Erfolgsrechnung nicht gutgeschriebenen Erträgen"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 58",
+     "beleg": "allen vor Berechnung des Saldos der Erfolgsrechnung ausgeschiedenen Teilen des Geschäftsergebnisses, die nicht zur Deckung von geschäftsmässig begründetem Aufwand verwendet werden"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Reingewinn / Verlust nach steuerlicher Abweichungen (Summe Punkt 1 + 2) (Code 1130)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 65",
+     "beleg": "Der steuerbare Reingewinn setzt sich zusammen aus: a) dem Saldo der Erfolgsrechnung ... b) allen vor Berechnung des Saldos der Erfolgsrechnung ausgeschiedenen Teilen des Geschäftsergebnisses"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 58",
+     "beleg": "Der steuerbare Reingewinn setzt sich zusammen aus: a. dem Saldo der Erfolgsrechnung ... b. allen vor Berechnung des Saldos der Erfolgsrechnung ausgeschiedenen Teilen des Geschäftsergebnisses"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Einnahmen aus Mitgliederbeiträgen gemäss Erfolgsrechnung (Code 1151)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 73",
+     "beleg": "Die Mitgliederbeiträge an die Vereine und die Einlagen in das Vermögen der Stiftungen werden nicht zum steuerbaren Gewinn gerechnet."
+    },
+    {
+     "cref": "SHR 641.111",
+     "article_no": "§ 43",
+     "beleg": "Als Mitgliederbeiträge an Vereine gelten Beiträge der Aktiv- und Passivmitglieder, die statutarisch und für jede Mitgliederkategorie festgelegt sind."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 66",
+     "beleg": "Die Mitgliederbeiträge an die Vereine und die Einlagen in das Vermögen der Stiftungen werden nicht zum steuerbaren Gewinn gerechnet."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Ordentliche Vereinsaufwendungen, die nicht zur Erzielung von steuerbarem Ertrag dienen (Code 1152)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 73",
+     "beleg": "Von den steuerbaren Erträgen der Vereine können die zur Erzielung dieser Erträge erforderlichen Aufwendungen in vollem Umfange abgezogen werden, andere Aufwendungen nur insoweit, als sie die Mitgliederbeiträge übersteigen."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 66",
+     "beleg": "Von den steuerbaren Erträgen der Vereine können die zur Erzielung dieser Erträge erforderlichen Aufwendungen in vollem Umfange abgezogen werden, andere Aufwendungen nur insoweit, als sie die Mitgliederbeiträge übersteigen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Steuerfreier Mitgliederbeitragsüberschuss (Code 1153)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 73",
+     "beleg": "Die Mitgliederbeiträge an die Vereine ... werden nicht zum steuerbaren Gewinn gerechnet ... andere Aufwendungen nur insoweit, als sie die Mitgliederbeiträge übersteigen."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 66",
+     "beleg": "Die Mitgliederbeiträge an die Vereine ... werden nicht zum steuerbaren Gewinn gerechnet ... andere Aufwendungen nur insoweit, als sie die Mitgliederbeiträge übersteigen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Steuerlich massgebendes Ergebnis vor Verlustverrechnung (Code 1300)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 73",
+     "beleg": "Die Mitgliederbeiträge an die Vereine und die Einlagen in das Vermögen der Stiftungen werden nicht zum steuerbaren Gewinn gerechnet."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 74",
+     "beleg": "Vom Reingewinn der Steuerperiode können Verluste aus sieben der Steuerperiode vorangegangenen Geschäftsjahren abgezogen werden"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 66",
+     "beleg": "Die Mitgliederbeiträge an die Vereine und die Einlagen in das Vermögen der Stiftungen werden nicht zum steuerbaren Gewinn gerechnet."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 67",
+     "beleg": "Vom Reingewinn der Steuerperiode können Verluste aus sieben der Steuerperiode (Art. 79) vorangegangenen Geschäftsjahren abgezogen werden"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Vorjahresverluste (Code 1400)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 74",
+     "beleg": "Vom Reingewinn der Steuerperiode können Verluste aus sieben der Steuerperiode vorangegangenen Geschäftsjahren abgezogen werden, soweit sie bei der Berechnung des steuerbaren Reingewinnes dieser Jahre nicht berücksichtigt werden konnten."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 67",
+     "beleg": "Vom Reingewinn der Steuerperiode können Verluste aus sieben der Steuerperiode (Art. 79) vorangegangenen Geschäftsjahren abgezogen werden"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Steuerbarer Reingewinn nach Verlustanrechnung (Code 1500)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 74",
+     "beleg": "Vom Reingewinn der Steuerperiode können Verluste aus sieben der Steuerperiode vorangegangenen Geschäftsjahren abgezogen werden"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 67",
+     "beleg": "Vom Reingewinn der Steuerperiode können Verluste aus sieben der Steuerperiode (Art. 79) vorangegangenen Geschäftsjahren abgezogen werden"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Abzug für Reingewinn aus Grundeigentum und Geschäftsbetrieb ausserhalb des Kantons / Bundes (Code 1700)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 58",
+     "beleg": "Bei persönlicher Zugehörigkeit ist die Steuerpflicht unbeschränkt; sie erstreckt sich aber nicht auf Geschäftsbetriebe, Betriebsstätten und Grundstücke ausserhalb des Kantons. … Die Abgrenzung der Steuerpflicht für Geschäftsbetriebe, Betriebsstätten und Grundstücke erfolgt im Verhältnis zum Ausland nach den Grundsätzen des Bundesrechts über das Verbot der interkantonalen Doppelbesteuerung."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 59",
+     "beleg": "Juristische Personen, die nur für einen Teil ihres Gewinns und Kapitals im Kanton steuerpflichtig sind, entrichten die Steuern für die im Kanton steuerbaren Werte nach dem Steuersatz, der ihrem gesamten Gewinn und Kapital entspricht."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 52",
+     "beleg": "Bei persönlicher Zugehörigkeit ist die Steuerpflicht unbeschränkt; sie erstreckt sich aber nicht auf Geschäftsbetriebe, Betriebsstätten und Grundstücke im Ausland."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Steuerbarer Reingewinn / Verlust Kanton Schaffhausen / Bund (Code 1800)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 64",
+     "beleg": "Gegenstand der Gewinnsteuer ist der Reingewinn."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 57",
+     "beleg": "Gegenstand der Gewinnsteuer ist der Reingewinn."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 65",
+     "beleg": "Der steuerbare Reingewinn setzt sich zusammen aus"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 58",
+     "beleg": "Der steuerbare Reingewinn setzt sich zusammen aus"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 58",
+     "beleg": "Bei persönlicher Zugehörigkeit ist die Steuerpflicht unbeschränkt; sie erstreckt sich aber nicht auf Geschäftsbetriebe, Betriebsstätten und Grundstücke ausserhalb des Kantons. Bei wirtschaftlicher Zugehörigkeit beschränkt sich die Steuerpflicht auf die Teile des Gewinns und Kapitals, für die nach Art. 57 eine Steuerpflicht im Kanton besteht."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 52",
+     "beleg": "Bei persönlicher Zugehörigkeit ist die Steuerpflicht unbeschränkt; sie erstreckt sich aber nicht auf Geschäftsbetriebe, Betriebsstätten und Grundstücke im Ausland. Bei wirtschaftlicher Zugehörigkeit beschränkt sich die Steuerpflicht auf den Gewinn, für den nach Artikel 51 eine Steuerpflicht in der Schweiz besteht."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 59",
+     "beleg": "Juristische Personen, die nur für einen Teil ihres Gewinns und Kapitals im Kanton steuerpflichtig sind, entrichten die Steuern für die im Kanton steuerbaren Werte nach dem Steuersatz, der ihrem gesamten Gewinn und Kapital entspricht."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 74",
+     "beleg": "Vom Reingewinn der Steuerperiode können Verluste aus sieben der Steuerperiode vorangegangenen Geschäftsjahren abgezogen werden, soweit sie bei der Berechnung des steuerbaren Reingewinnes dieser Jahre nicht berücksichtigt werden konnten."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 67",
+     "beleg": "Vom Reingewinn der Steuerperiode können Verluste aus sieben der Steuerperiode (Art. 79) vorangegangenen Geschäftsjahren abgezogen werden, soweit sie bei der Berechnung des steuerbaren Reingewinnes dieser Jahre nicht berücksichtigt werden konnten."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 89",
+     "beleg": "Der steuerbare Reingewinn bemisst sich nach dem Ergebnis der Steuerperiode."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 80",
+     "beleg": "Der steuerbare Reingewinn bemisst sich nach dem Ergebnis der Steuerperiode."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 81",
+     "beleg": "Die Gewinnsteuer der Vereine, Stiftungen und übrigen juristischen Personen beträgt: a) 0% für die ersten Fr. 20'000.00 b) 2% für den Anteil des Reingewinns, der Fr. 20'000.00 übersteigt"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 71",
+     "beleg": "Die Gewinnsteuer der Vereine, Stiftungen und übrigen juristischen Personen beträgt 4,25 Prozent des Reingewinnes. Gewinne unter 5000 Franken werden nicht besteuert."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 73a",
+     "beleg": "Gewinne von juristischen Personen mit ideellen Zwecken werden nicht besteuert, sofern sie höchstens Fr. 20'000.00 betragen und ausschliesslich und unwiderruflich diesen Zwecken gewidmet sind."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 66a",
+     "beleg": "Gewinne von juristischen Personen mit ideellen Zwecken werden nicht besteuert, sofern sie höchstens 20 000 Franken betragen und ausschliesslich und unwiderruflich diesen Zwecken gewidmet sind."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Kassa-, Post- und Bankguthaben (Code 2110)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 90",
+     "beleg": "Das steuerbare Eigenkapital bemisst sich nach dem Stand am Ende der Steuerperiode."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 43",
+     "beleg": "Für die Vermögensberechnung ist ... der Verkehrswert der Vermögensstücke am Ende der Steuerperiode bzw. der Steuerpflicht massgebend."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 44",
+     "beleg": "Als Verkehrswert der Forderungen gilt in der Regel der Nennwert"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 82",
+     "beleg": "Das steuerbare Eigenkapital besteht: ... bei Vereinen, Stiftungen und den übrigen juristischen Personen aus dem Reinvermögen, wie es nach den Bestimmungen für die natürlichen Personen berechnet wird"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Wertschriften (Code 2120)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 90",
+     "beleg": "Das steuerbare Eigenkapital bemisst sich nach dem Stand am Ende der Steuerperiode."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 44",
+     "beleg": "Besteht für Wertpapiere und derivative Finanzprodukte eine regelmässige Kursnotierung, so ist der Kurswert im letzten Monat der Steuerperiode ... massgebend"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 82",
+     "beleg": "Das steuerbare Eigenkapital besteht: ... bei Vereinen, Stiftungen und den übrigen juristischen Personen aus dem Reinvermögen, wie es nach den Bestimmungen für die natürlichen Personen berechnet wird"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Ausstände und Forderungen, inkl. Verrechnungssteuer-Guthaben (Code 2130)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 90",
+     "beleg": "Das steuerbare Eigenkapital bemisst sich nach dem Stand am Ende der Steuerperiode."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 44",
+     "beleg": "Als Verkehrswert der Forderungen gilt in der Regel der Nennwert ... Bei der Bewertung bestrittener oder unsicherer Rechte und Forderungen ist dem Grade der Verlustwahrscheinlichkeit ... Rechnung zu tragen"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 82",
+     "beleg": "Das steuerbare Eigenkapital besteht: ... bei Vereinen, Stiftungen und den übrigen juristischen Personen aus dem Reinvermögen, wie es nach den Bestimmungen für die natürlichen Personen berechnet wird"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Inventar (Mobilien, Maschinen, Geräte etc.) (Code 2140)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 90",
+     "beleg": "Das steuerbare Eigenkapital bemisst sich nach dem Stand am Ende der Steuerperiode."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 44",
+     "beleg": "Immaterielle Güter und bewegliches Vermögen, die zum Geschäftsvermögen der steuerpflichtigen Person gehören, werden zu dem für die Einkommenssteuer massgeblichen Wert bewertet"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 82",
+     "beleg": "Das steuerbare Eigenkapital besteht: ... bei Vereinen, Stiftungen und den übrigen juristischen Personen aus dem Reinvermögen, wie es nach den Bestimmungen für die natürlichen Personen berechnet wird"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Liegenschaften (Steuerwert, nicht Buchwert) (Code 2150)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 90",
+     "beleg": "Das steuerbare Eigenkapital bemisst sich nach dem Stand am Ende der Steuerperiode."
+    },
+    {
+     "cref": "SHR 641.301",
+     "article_no": "§ 9",
+     "beleg": "Bei landwirtschaftlichen Grundstücken gilt der Ertragswert als Steuerwert. Bei nichtlandwirtschaftlichen Grundstücken entspricht der Steuerwert dem gewogenen Mittel aus Ertragswert und Verkehrswert."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 82",
+     "beleg": "Das steuerbare Eigenkapital besteht: ... bei Vereinen, Stiftungen und den übrigen juristischen Personen aus dem Reinvermögen, wie es nach den Bestimmungen für die natürlichen Personen berechnet wird"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 45",
+     "beleg": "Der Steuerwert von Grundstücken wird unter billiger Berücksichtigung des Verkehrs- und des Ertragswertes berechnet."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Übrige Aktiven (Code 2160)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 90",
+     "beleg": "Das steuerbare Eigenkapital bemisst sich nach dem Stand am Ende der Steuerperiode."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 43",
+     "beleg": "Für die Vermögensberechnung ist ... der Verkehrswert der Vermögensstücke am Ende der Steuerperiode bzw. der Steuerpflicht massgebend."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 82",
+     "beleg": "Das steuerbare Eigenkapital besteht: ... bei Vereinen, Stiftungen und den übrigen juristischen Personen aus dem Reinvermögen, wie es nach den Bestimmungen für die natürlichen Personen berechnet wird"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Total Aktiven (Code 2190)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 90",
+     "beleg": "Das steuerbare Eigenkapital bemisst sich nach dem Stand am Ende der Steuerperiode."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 43",
+     "beleg": "Für die Vermögensberechnung ist ... der Verkehrswert der Vermögensstücke am Ende der Steuerperiode bzw. der Steuerpflicht massgebend."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 82",
+     "beleg": "Das steuerbare Eigenkapital besteht: ... bei Vereinen, Stiftungen und den übrigen juristischen Personen aus dem Reinvermögen, wie es nach den Bestimmungen für die natürlichen Personen berechnet wird"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Schulden gegenüber Lieferanten (Code 2210)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 90",
+     "beleg": "Das steuerbare Eigenkapital bemisst sich nach dem Stand am Ende der Steuerperiode."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 82",
+     "beleg": "Das steuerbare Eigenkapital besteht: ... bei Vereinen, Stiftungen und den übrigen juristischen Personen aus dem Reinvermögen, wie es nach den Bestimmungen für die natürlichen Personen berechnet wird"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 47",
+     "beleg": "Die nachgewiesenen Schulden, für welche die steuerpflichtige Person allein haftet, werden voll abgezogen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Bankschulden, Darlehensschulden (Code 2220)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 90",
+     "beleg": "Das steuerbare Eigenkapital bemisst sich nach dem Stand am Ende der Steuerperiode."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 82",
+     "beleg": "Das steuerbare Eigenkapital besteht: ... bei Vereinen, Stiftungen und den übrigen juristischen Personen aus dem Reinvermögen, wie es nach den Bestimmungen für die natürlichen Personen berechnet wird"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 47",
+     "beleg": "Die nachgewiesenen Schulden, für welche die steuerpflichtige Person allein haftet, werden voll abgezogen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Grundpfandschulden (Hypotheken) (Code 2230)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 90",
+     "beleg": "Das steuerbare Eigenkapital bemisst sich nach dem Stand am Ende der Steuerperiode."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 82",
+     "beleg": "Das steuerbare Eigenkapital besteht: ... bei Vereinen, Stiftungen und den übrigen juristischen Personen aus dem Reinvermögen, wie es nach den Bestimmungen für die natürlichen Personen berechnet wird"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 47",
+     "beleg": "Die nachgewiesenen Schulden, für welche die steuerpflichtige Person allein haftet, werden voll abgezogen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Übrige Schulden (Code 2240)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 90",
+     "beleg": "Das steuerbare Eigenkapital bemisst sich nach dem Stand am Ende der Steuerperiode."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 82",
+     "beleg": "Das steuerbare Eigenkapital besteht: ... bei Vereinen, Stiftungen und den übrigen juristischen Personen aus dem Reinvermögen, wie es nach den Bestimmungen für die natürlichen Personen berechnet wird"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 47",
+     "beleg": "Die nachgewiesenen Schulden, für welche die steuerpflichtige Person allein haftet, werden voll abgezogen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Total Passiven (Code 2290)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 90",
+     "beleg": "Das steuerbare Eigenkapital bemisst sich nach dem Stand am Ende der Steuerperiode."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 82",
+     "beleg": "Das steuerbare Eigenkapital besteht: ... bei Vereinen, Stiftungen und den übrigen juristischen Personen aus dem Reinvermögen, wie es nach den Bestimmungen für die natürlichen Personen berechnet wird"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 47",
+     "beleg": "Die nachgewiesenen Schulden, für welche die steuerpflichtige Person allein haftet, werden voll abgezogen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Gesamtes Reinvermögen / Eigenkapital (Aktiven abzüglich Passiven) (Code 2400)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 90",
+     "beleg": "Das steuerbare Eigenkapital bemisst sich nach dem Stand am Ende der Steuerperiode."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 82",
+     "beleg": "Das steuerbare Eigenkapital besteht: ... bei Vereinen, Stiftungen und den übrigen juristischen Personen aus dem Reinvermögen, wie es nach den Bestimmungen für die natürlichen Personen berechnet wird"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Abzug für Vermögen / Eigenkapital ausserhalb des Kantons / Bundes (Code 2600)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 58",
+     "beleg": "Bei persönlicher Zugehörigkeit ist die Steuerpflicht unbeschränkt; sie erstreckt sich aber nicht auf Geschäftsbetriebe, Betriebsstätten und Grundstücke ausserhalb des Kantons."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 59",
+     "beleg": "Juristische Personen, die nur für einen Teil ihres Gewinns und Kapitals im Kanton steuerpflichtig sind, entrichten die Steuern für die im Kanton steuerbaren Werte"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Steuerbares Vermögen / Eigenkapital Kanton Schaffhausen (Code 2700)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 58",
+     "beleg": "Bei wirtschaftlicher Zugehörigkeit beschränkt sich die Steuerpflicht auf die Teile des Gewinns und Kapitals, für die nach Art. 57 eine Steuerpflicht im Kanton besteht."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 90",
+     "beleg": "Das steuerbare Eigenkapital bemisst sich nach dem Stand am Ende der Steuerperiode."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 82",
+     "beleg": "Das steuerbare Eigenkapital besteht: ... bei Vereinen, Stiftungen und den übrigen juristischen Personen aus dem Reinvermögen, wie es nach den Bestimmungen für die natürlichen Personen berechnet wird"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 84",
+     "beleg": "Die Kapitalsteuer beträgt 0.025 Promille des steuerbaren Eigenkapitals. Bei Vereinen, Stiftungen und den übrigen juristischen Personen werden Fr. 100'000.00 als steuerfreier Betrag in Abzug gebracht."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Verlustverrechnung",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 74",
+     "beleg": "Vom Reingewinn der Steuerperiode können Verluste aus sieben der Steuerperiode vorangegangenen Geschäftsjahren abgezogen werden"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 67",
+     "beleg": "Vom Reingewinn der Steuerperiode können Verluste aus sieben der Steuerperiode (Art. 79) vorangegangenen Geschäftsjahren abgezogen werden"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Zwischentotal (Summe der Vorjahresverluste)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 74",
+     "beleg": "Vom Reingewinn der Steuerperiode können Verluste aus sieben der Steuerperiode vorangegangenen Geschäftsjahren abgezogen werden"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 67",
+     "beleg": "Vom Reingewinn der Steuerperiode können Verluste aus sieben der Steuerperiode (Art. 79) vorangegangenen Geschäftsjahren abgezogen werden"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Davon bereits verrechnete Verluste",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 74",
+     "beleg": "soweit sie bei der Berechnung des steuerbaren Reingewinnes dieser Jahre nicht berücksichtigt werden konnten"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 67",
+     "beleg": "soweit sie bei der Berechnung des steuerbaren Reingewinnes dieser Jahre nicht berücksichtigt werden konnten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Verrechenbarer Verlust (Übertrag auf Punkt 6 dieser Steuererklärung) (Code 1400)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 74",
+     "beleg": "Vom Reingewinn der Steuerperiode können Verluste aus sieben der Steuerperiode vorangegangenen Geschäftsjahren abgezogen werden, soweit sie bei der Berechnung des steuerbaren Reingewinnes dieser Jahre nicht berücksichtigt werden konnten."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 67",
+     "beleg": "Vom Reingewinn der Steuerperiode können Verluste aus sieben der Steuerperiode (Art. 79) vorangegangenen Geschäftsjahren abgezogen werden, soweit sie bei der Berechnung des steuerbaren Reingewinnes dieser Jahre nicht berücksichtigt werden konnten."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Antrag auf privilegierte Besteuerung infolge ideellen Zwecken",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 73a",
+     "beleg": "Gewinne von juristischen Personen mit ideellen Zwecken werden nicht besteuert, sofern sie höchstens Fr. 20'000.00 betragen und ausschliesslich und unwiderruflich diesen Zwecken gewidmet sind."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 66a",
+     "beleg": "Gewinne von juristischen Personen mit ideellen Zwecken werden nicht besteuert, sofern sie höchstens 20 000 Franken betragen und ausschliesslich und unwiderruflich diesen Zwecken gewidmet sind."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "IBAN-Nr.",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Bemerkungen",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Beilagen",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 142",
+     "beleg": "die Steuererklärung wahrheitsgemäss und vollständig ausfüllen, persönlich unterzeichnen und samt den vorgeschriebenen Beilagen fristgemäss der zuständigen Behörde einreichen"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 143",
+     "beleg": "Natürliche Personen mit Einkommen aus selbständiger Erwerbstätigkeit und juristische Personen müssen der Steuererklärung beilegen: a) die unterzeichneten Jahresrechnungen (Bilanzen, Erfolgsrechnungen) der Steuerperiode"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 144",
+     "beleg": "Sie müssen auf Verlangen der Steuerbehörde insbesondere mündlich oder schriftlich Auskunft erteilen, Geschäftsbücher, Belege und weitere Bescheinigungen sowie Urkunden über den Geschäftsverkehr vorlegen."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 124",
+     "beleg": "die Steuererklärung wahrheitsgemäss und vollständig ausfüllen, persönlich unterzeichnen und samt den vorgeschriebenen Beilagen fristgemäss der zuständigen Steuerbehörde einreichen"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 125",
+     "beleg": "Natürliche Personen mit Einkommen aus selbständiger Erwerbstätigkeit und juristische Personen müssen der Steuererklärung beilegen: a. die unterzeichneten Jahresrechnungen (Bilanzen, Erfolgsrechnungen) der Steuerperiode"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 126",
+     "beleg": "Er muss auf Verlangen der Veranlagungsbehörde insbesondere mündlich oder schriftlich Auskunft erteilen, Geschäftsbücher, Belege und weitere Bescheinigungen sowie Urkunden über den Geschäftsverkehr vorlegen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Ort und Datum",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Rechtsgültige Unterschrift (Die Richtigkeit und Vollständigkeit der Angaben bezeugt)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 142",
+     "beleg": "Die steuerpflichtige Person muss die Steuererklärung wahrheitsgemäss und vollständig ausfüllen, persönlich unterzeichnen"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 124",
+     "beleg": "Die steuerpflichtige Person muss die Steuererklärung wahrheitsgemäss und vollständig ausfüllen, persönlich unterzeichnen"
+    }
+   ],
+   "over_collection": false
+  }
+ ]
+}

@@ -1,0 +1,1675 @@
+{
+ "form_id": 589,
+ "mappings": [
+  {
+   "data_field": "PID",
+   "cites": [
+    {
+     "cref": "SHR 641.111",
+     "article_no": "§ 81b",
+     "beleg": "Abs. 4: Die kantonale Steuerverwaltung stellt für elektronische Gesuche um Verlängerung der Einreichungsfrist für die Steuererklärung ein Webportal zur Verfügung, auf dem sich die steuerpflichtigen Personen durch Angabe ihrer PID und bei natürlichen Personen zudem ihres Geburtsdatums ausweisen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "UID",
+   "cites": [],
+   "over_collection": false
+  },
+  {
+   "data_field": "FID",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Firma",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 142",
+     "beleg": "Die steuerpflichtige Person muss die Steuererklärung wahrheitsgemäss und vollständig ausfüllen, persönlich unterzeichnen und samt den vorgeschriebenen Beilagen fristgemäss der zuständigen Behörde einreichen."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 124",
+     "beleg": "Die steuerpflichtige Person muss die Steuererklärung wahrheitsgemäss und vollständig ausfüllen, persönlich unterzeichnen und samt den vorgeschriebenen Beilagen fristgemäss der zuständigen Steuerbehörde einreichen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Hauptsitz",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 56",
+     "beleg": "Juristische Personen sind aufgrund persönlicher Zugehörigkeit steuerpflichtig, wenn sich ihr Sitz oder ihre tatsächliche Verwaltung im Kanton befindet."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 57",
+     "beleg": "Juristische Personen mit Sitz oder mit tatsächlicher Verwaltung ausserhalb des Kantons sind steuerpflichtig, wenn sie ... ; Juristische Personen mit Sitz und tatsächlicher Verwaltung im Ausland"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 50",
+     "beleg": "Juristische Personen sind aufgrund persönlicher Zugehörigkeit steuerpflichtig, wenn sich ihr Sitz oder ihre tatsächliche Verwaltung in der Schweiz befindet."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 51",
+     "beleg": "Juristische Personen, die weder ihren Sitz noch die tatsächliche Verwaltung in der Schweiz haben"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Zweck",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Zweigniederlassungen",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 57",
+     "beleg": "im Kanton Betriebsstätten unterhalten"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 58",
+     "beleg": "Bei persönlicher Zugehörigkeit ist die Steuerpflicht unbeschränkt; sie erstreckt sich aber nicht auf Geschäftsbetriebe, Betriebsstätten und Grundstücke ausserhalb des Kantons."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 51",
+     "beleg": "Betriebsstätten sind insbesondere Zweigniederlassungen, Fabrikationsstätten, Werkstätten, Verkaufsstellen"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 52",
+     "beleg": "sie erstreckt sich aber nicht auf Geschäftsbetriebe, Betriebsstätten und Grundstücke im Ausland"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Gründungsdatum",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 60",
+     "beleg": "Die Steuerpflicht beginnt mit der Gründung der juristischen Person, mit der Verlegung ihres Sitzes oder ihrer tatsächlichen Verwaltung in den Kanton oder mit dem Erwerb von im Kanton steuerbaren Werten."
+    },
+    {
+     "cref": "SHR 641.111",
+     "article_no": "§ 39",
+     "beleg": "Als Zeitpunkt der Gründung einer juristischen Person gilt: a) das Datum des Eintrages ins Handelsregister bei Kapitalgesellschaften und Genossenschaften b) das Datum der Errichtung der Stiftungsurkunde bei Stiftungen c) das Datum der Errichtung der Statuten bei Vereinen und den übrigen juristischen Personen"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 88",
+     "beleg": "Als Steuerperiode gilt das Geschäftsjahr. In jedem Kalenderjahr, ausgenommen im Gründungsjahr, muss ein Geschäftsabschluss mit Bilanz und Erfolgsrechnung erstellt werden."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 86",
+     "beleg": "Von der Minimalsteuer auf Grundstücken sind ausgenommen: a) neugegründete juristische Personen im Gründungsjahr und in den folgenden drei Steuerjahren, wenn sie nicht aus Umwandlungen hervorgegangen sind"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 54",
+     "beleg": "Die Steuerpflicht beginnt mit der Gründung der juristischen Person, mit der Verlegung ihres Sitzes oder ihrer tatsächlichen Verwaltung in die Schweiz oder mit dem Erwerb von in der Schweiz steuerbaren Werten."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 79",
+     "beleg": "Als Steuerperiode gilt das Geschäftsjahr. In jedem Kalenderjahr, ausgenommen im Gründungsjahr, muss ein Geschäftsabschluss mit Bilanz und Erfolgsrechnung erstellt werden."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Dauer des Geschäftsjahres",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 88",
+     "beleg": "Als Steuerperiode gilt das Geschäftsjahr. (Abs. 2; Abs. 3: in jedem Kalenderjahr, ausgenommen im Gründungsjahr, muss ein Geschäftsabschluss mit Bilanz und Erfolgsrechnung erstellt werden)"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 89",
+     "beleg": "Bei einem unter- oder überjährigen Geschäftsabschluss werden für die Bestimmung des Gewinnsteuersatzes nur die ordentlichen Gewinne auf 12 Monate umgerechnet."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 90",
+     "beleg": "Bei über- oder unterjährigen Geschäftsabschlüssen bestimmt sich die Höhe der Kapitalsteuer nach der Dauer des Geschäftsjahres."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 79",
+     "beleg": "Als Steuerperiode gilt das Geschäftsjahr."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Organe – Verwaltungsratspräsident/-in",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Organe – Geschäftsleitung",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Rückfragen sind zu richten an",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Vollständige Adresse des Vertreters",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 135",
+     "beleg": "Steuerpflichtige können sich vor den mit dem Vollzug dieses Gesetzes betrauten Behörden vertraglich vertreten lassen ... Wer jemanden in Steuersachen vertritt, braucht eine schriftliche Vollmacht."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 117",
+     "beleg": "Der Steuerpflichtige kann sich vor den mit dem Vollzug dieses Gesetzes betrauten Behörden vertraglich vertreten lassen"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Datum (Vollmacht)",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Rechtsgültige Unterschrift (Vollmacht)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 135",
+     "beleg": "Wer jemanden in Steuersachen vertritt, braucht eine schriftliche Vollmacht."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 117",
+     "beleg": "Die Behörde kann den Vertreter auffordern, sich durch schriftliche Vollmacht auszuweisen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Reingewinn / -verlust (–) gemäss Erfolgsrechnung des Geschäftsjahres (Code 1100)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 65",
+     "beleg": "Der steuerbare Reingewinn setzt sich zusammen aus: a) dem Saldo der Erfolgsrechnung unter Berücksichtigung des Saldovortrages des Vorjahres"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 89",
+     "beleg": "Der steuerbare Reingewinn bemisst sich nach dem Ergebnis der Steuerperiode."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 58",
+     "beleg": "Der steuerbare Reingewinn setzt sich zusammen aus: a. dem Saldo der Erfolgsrechnung unter Berücksichtigung des Saldovortrages des Vorjahres"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 80",
+     "beleg": "Der steuerbare Reingewinn bemisst sich nach dem Ergebnis der Steuerperiode."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Geschäftsmässig nicht begründete Abschreibungen (Code 2211)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 65",
+     "beleg": "2. geschäftsmässig nicht begründete Abschreibungen und Rückstellungen"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 69",
+     "beleg": "Geschäftsmässig begründete Abschreibungen von Aktiven sind zulässig, soweit sie buchmässig ... ausgewiesen sind."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 58",
+     "beleg": "geschäftsmässig nicht begründete Abschreibungen und Rückstellungen"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 62",
+     "beleg": "Geschäftsmässig begründete Abschreibungen von Aktiven sind zulässig"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Geschäftsmässig nicht begründete Rückstellungen (Code 2221)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 65",
+     "beleg": "2. geschäftsmässig nicht begründete Abschreibungen und Rückstellungen"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 70",
+     "beleg": "Rückstellungen zu Lasten der Erfolgsrechnung sind zulässig für: a) im Geschäftsjahr bestehende Verpflichtungen, deren Höhe noch unbestimmt ist"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 58",
+     "beleg": "geschäftsmässig nicht begründete Abschreibungen und Rückstellungen"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 63",
+     "beleg": "Rückstellungen zu Lasten der Erfolgsrechnung sind zulässig für"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Nicht zulässige Abschreibungen auf aufgewerteten Aktiven (Code 2230)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 69",
+     "beleg": "Abschreibungen auf Aktiven, die zum Ausgleich von Verlusten höher bewertet wurden, können nur vorgenommen werden, wenn die Aufwertungen handelsrechtlich zulässig waren und die Verluste ... verrechenbar gewesen wären."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 62",
+     "beleg": "Abschreibungen auf Aktiven, die zum Ausgleich von Verlusten höher bewertet wurden, können nur vorgenommen werden, wenn die Aufwertungen handelsrechtlich zulässig waren"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Verdeckte Gewinnausschüttungen / geschäftsmässig nicht begründete Zuwendungen (Code 2240)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 65",
+     "beleg": "5. offene und verdeckte Gewinnausschüttungen und geschäftsmässig nicht begründete Zuwendungen an Dritte"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 58",
+     "beleg": "offene und verdeckte Gewinnausschüttungen und geschäftsmässig nicht begründete Zuwendungen an Dritte"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Übersetzte freiwillige Geldleistungen an steuerbefreite juristische Personen (Code 2250)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 66",
+     "beleg": "c) die freiwilligen Leistungen von Geld und übrigen Vermögenswerten bis zu 20% des Reingewinnes an ... andere juristische Personen mit Sitz in der Schweiz, die ... von der Steuerpflicht befreit sind"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 59",
+     "beleg": "c. die freiwilligen Leistungen von Geld und übrigen Vermögenswerten bis zu 20 Prozent des Reingewinns an juristische Personen mit Sitz in der Schweiz"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Zinsen auf verdecktem Eigenkapital (Code 2260)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 72",
+     "beleg": "Zum steuerbaren Gewinn der Kapitalgesellschaften und Genossenschaften gehören auch die Schuldzinsen, die auf jenen Teil des Fremdkapitals entfallen, der nach Art. 83 zum Eigenkapital zu rechnen ist."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 65",
+     "beleg": "Zum steuerbaren Gewinn der Kapitalgesellschaften und Genossenschaften gehören auch die Schuldzinsen, die auf jenen Teil des Fremdkapitals entfallen, dem wirtschaftlich die Bedeutung von Eigenkapital zukommt."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Andere steuerlich nicht abzugsfähige Aufwendungen (Code 2271)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 65",
+     "beleg": "b) allen vor Berechnung des Saldos der Erfolgsrechnung ausgeschiedenen Teilen des Geschäftsergebnisses, die nicht zur Deckung von geschäftsmässig begründetem Aufwand verwendet werden"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 66",
+     "beleg": "Nicht zum geschäftsmässig begründeten Aufwand gehören insbesondere"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 58",
+     "beleg": "allen vor Berechnung des Saldos der Erfolgsrechnung ausgeschiedenen Teilen des Geschäftsergebnisses, die nicht zur Deckung von geschäftsmässig begründetem Aufwand verwendet werden"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 59",
+     "beleg": "Nicht zum geschäftsmässig begründeten Aufwand gehören insbesondere"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Wegfall der geschäftsmässigen Begründetheit von Rückstellungen (Code 2310)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 70",
+     "beleg": "Bisherige Rückstellungen werden dem steuerbaren Gewinn zugerechnet, soweit sie nicht mehr begründet sind."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 63",
+     "beleg": "Bisherige Rückstellungen werden dem steuerbaren Gewinn zugerechnet, soweit sie nicht mehr begründet sind."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Buchgewinne aus der Höherbewertung von Grundstücken und Beteiligungen (Code 2320)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 65",
+     "beleg": "c) den der Erfolgsrechnung nicht gutgeschriebenen Erträgen, mit Einschluss der Kapital-, Aufwertungs- und Liquidationsgewinne"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 69",
+     "beleg": "Wertberichtigungen sowie Abschreibungen auf den Gestehungskosten von Beteiligungen ... werden dem steuerbaren Gewinn zugerechnet, soweit sie nicht mehr begründet sind."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 58",
+     "beleg": "den der Erfolgsrechnung nicht gutgeschriebenen Erträgen, mit Einschluss der Kapital-, Aufwertungs- und Liquidationsgewinne"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 62",
+     "beleg": "Wertberichtigungen und Abschreibungen auf den Gestehungskosten von Beteiligungen ... werden dem steuerbaren Gewinn zugerechnet, soweit sie nicht mehr begründet sind."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Unterpreisliche Leistungen an die Gesellschafter (Code 2330)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 65",
+     "beleg": "5. offene und verdeckte Gewinnausschüttungen ... c) den der Erfolgsrechnung nicht gutgeschriebenen Erträgen"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 58",
+     "beleg": "offene und verdeckte Gewinnausschüttungen ... den der Erfolgsrechnung nicht gutgeschriebenen Erträgen"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Andere nicht gutgeschriebene, steuerbare Erträge (Code 2341)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 65",
+     "beleg": "c) den der Erfolgsrechnung nicht gutgeschriebenen Erträgen, mit Einschluss der Kapital-, Aufwertungs- und Liquidationsgewinne"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 58",
+     "beleg": "c. den der Erfolgsrechnung nicht gutgeschriebenen Erträgen"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Total der Aufrechnungen (Code 2500)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 65",
+     "beleg": "Der steuerbare Reingewinn setzt sich zusammen aus: a) dem Saldo der Erfolgsrechnung ... b) allen vor Berechnung des Saldos ... ausgeschiedenen Teilen ... c) den der Erfolgsrechnung nicht gutgeschriebenen Erträgen"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 58",
+     "beleg": "Der steuerbare Reingewinn setzt sich zusammen aus"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Auflösung versteuerter stiller Reserven (Nachholung aufger. Abschreibungen und Wertberichtigungen) (Code 3111)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 69",
+     "beleg": "Geschäftsmässig begründete Abschreibungen von Aktiven sind zulässig ... In der Regel werden die Abschreibungen nach dem tatsächlichen Wert der einzelnen Vermögensteile berechnet"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 143",
+     "beleg": "den offenen und den aus versteuertem Gewinn gebildeten stillen Reserven"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 62",
+     "beleg": "Geschäftsmässig begründete Abschreibungen von Aktiven sind zulässig"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 125",
+     "beleg": "den offenen und den aus versteuertem Gewinn gebildeten stillen Reserven"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Zuwendungen an Vorsorgeeinrichtungen zugunsten des eigenen Personals (Code 3120)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 66",
+     "beleg": "b) die Zuwendungen an Vorsorgeeinrichtungen zugunsten des eigenen Personals, sofern jede zweckwidrige Verwendung ausgeschlossen ist"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 59",
+     "beleg": "b. die Zuwendungen an Vorsorgeeinrichtungen zugunsten des eigenen Personals, sofern jede zweckwidrige Verwendung ausgeschlossen ist"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Freiwillige Geldleistungen an steuerbefreite juristische Personen mit Sitz in der Schweiz (Code 3130)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 66",
+     "beleg": "c) die freiwilligen Leistungen von Geld und übrigen Vermögenswerten bis zu 20% des Reingewinnes an ... andere juristische Personen mit Sitz in der Schweiz, die im Hinblick auf öffentliche oder gemeinnützige Zwecke von der Steuerpflicht befreit sind"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 59",
+     "beleg": "c. die freiwilligen Leistungen von Geld und übrigen Vermögenswerten bis zu 20 Prozent des Reingewinns an juristische Personen mit Sitz in der Schweiz"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Andere der Erfolgsrechnung nicht belastete, steuerlich abzugsfähige Aufwendungen (Code 3141)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 66",
+     "beleg": "Zum geschäftsmässig begründeten Aufwand gehören auch"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 59",
+     "beleg": "Zum geschäftsmässig begründeten Aufwand gehören auch"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Auflösung versteuerter stiller Reserven (Rückstellungen, Aufwertungen, Kapitalgewinne) (Code 3211)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 65",
+     "beleg": "a) dem Saldo der Erfolgsrechnung unter Berücksichtigung des Saldovortrages des Vorjahres"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 143",
+     "beleg": "den offenen und den aus versteuertem Gewinn gebildeten stillen Reserven"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 58",
+     "beleg": "dem Saldo der Erfolgsrechnung unter Berücksichtigung des Saldovortrages des Vorjahres"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 125",
+     "beleg": "den offenen und den aus versteuertem Gewinn gebildeten stillen Reserven"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Andere nicht steuerbare Erträge (Code 3221)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 67",
+     "beleg": "Kein steuerbarer Gewinn entsteht durch: a) Kapitaleinlagen von Mitgliedern von Kapitalgesellschaften und Genossenschaften ... c) Kapitalzuwachs aus Erbschaft, Vermächtnis oder Schenkung"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 60",
+     "beleg": "Kein steuerbarer Gewinn entsteht durch"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Total der Abzüge (Code 3500)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 65",
+     "beleg": "Der steuerbare Reingewinn setzt sich zusammen aus"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 58",
+     "beleg": "Der steuerbare Reingewinn setzt sich zusammen aus"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Reingewinn / -verlust im Geschäftsjahr (Code 4000)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 65",
+     "beleg": "Der steuerbare Reingewinn setzt sich zusammen aus"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 89",
+     "beleg": "Der steuerbare Reingewinn bemisst sich nach dem Ergebnis der Steuerperiode."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 58",
+     "beleg": "Der steuerbare Reingewinn setzt sich zusammen aus"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 80",
+     "beleg": "Der steuerbare Reingewinn bemisst sich nach dem Ergebnis der Steuerperiode."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Summe der verrechenbaren Verluste aus den sieben vorangegangenen Geschäftsjahren (Code 4100)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 74",
+     "beleg": "Vom Reingewinn der Steuerperiode können Verluste aus sieben der Steuerperiode vorangegangenen Geschäftsjahren abgezogen werden"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 67",
+     "beleg": "Vom Reingewinn der Steuerperiode können Verluste aus sieben der Steuerperiode (Art. 79) vorangegangenen Geschäftsjahren abgezogen werden"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Steuerbarer Reingewinn / -verlust nach Verlustanrechnung (Code 4200)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 74",
+     "beleg": "Vom Reingewinn der Steuerperiode können Verluste aus sieben der Steuerperiode vorangegangenen Geschäftsjahren abgezogen werden"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 67",
+     "beleg": "Vom Reingewinn der Steuerperiode können Verluste ... abgezogen werden"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Abzug für Reingewinn aus Grundeigentum und Geschäftsbetrieb ausserhalb des Kantons / Bundes (Code 4300)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 58",
+     "beleg": "Bei persönlicher Zugehörigkeit ist die Steuerpflicht unbeschränkt; sie erstreckt sich aber nicht auf Geschäftsbetriebe, Betriebsstätten und Grundstücke ausserhalb des Kantons. … Die Abgrenzung der Steuerpflicht für Geschäftsbetriebe, Betriebsstätten und Grundstücke erfolgt im Verhältnis zum Ausland nach den Grundsätzen des Bundesrechts über das Verbot der interkantonalen Doppelbesteuerung."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 59",
+     "beleg": "Juristische Personen, die nur für einen Teil ihres Gewinns und Kapitals im Kanton steuerpflichtig sind, entrichten die Steuern für die im Kanton steuerbaren Werte nach dem Steuersatz, der ihrem gesamten Gewinn und Kapital entspricht."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 52",
+     "beleg": "Bei persönlicher Zugehörigkeit ist die Steuerpflicht unbeschränkt; sie erstreckt sich aber nicht auf Geschäftsbetriebe, Betriebsstätten und Grundstücke im Ausland."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Abzug für qualifizierte Patenterträge (Code 4412)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 65a",
+     "beleg": "Der Reingewinn aus Patenten und vergleichbaren Rechten ... wird auf Antrag der steuerpflichtigen Person ... mit einer Ermässigung von 90 Prozent in die Berechnung des steuerbaren Reingewinns einbezogen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Abzug für Forschung und Entwicklung (Code 4414)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 66a",
+     "beleg": "Der Aufwand für Forschung und Entwicklung ... wird auf Antrag um 25 Prozent über den geschäftsmässig begründeten Forschungs- und Entwicklungsaufwand hinaus zum Abzug zugelassen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Abschreibung aufgedeckter stiller Reserven aus altrechtlichem Step-Up (Code 4415)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 238",
+     "beleg": "Abschreibungen auf stillen Reserven einschliesslich des selbstgeschaffenen Mehrwerts, die bei Ende der Besteuerung nach Art. 78 und 79 bisherigen Rechts aufgedeckt wurden, werden in die Berechnung der Entlastungsbegrenzung nach Art. 74a und 236 einbezogen."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 74a",
+     "beleg": "Allfällige Abzugsüberschüsse gemäss Abs. 1 sind in folgender Reihenfolge zu kürzen: ... 2. Abschreibungen auf aufgedeckten stillen Reserven (Art. 238 Abs. 4)"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Steuerbarer Reingewinn / Verlust Kanton Schaffhausen / Bund (Code 4500)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 64",
+     "beleg": "Gegenstand der Gewinnsteuer ist der Reingewinn."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 57",
+     "beleg": "Gegenstand der Gewinnsteuer ist der Reingewinn."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 65",
+     "beleg": "Der steuerbare Reingewinn setzt sich zusammen aus"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 58",
+     "beleg": "Der steuerbare Reingewinn setzt sich zusammen aus"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 58",
+     "beleg": "Bei persönlicher Zugehörigkeit ist die Steuerpflicht unbeschränkt; sie erstreckt sich aber nicht auf Geschäftsbetriebe, Betriebsstätten und Grundstücke ausserhalb des Kantons. Bei wirtschaftlicher Zugehörigkeit beschränkt sich die Steuerpflicht auf die Teile des Gewinns und Kapitals, für die nach Art. 57 eine Steuerpflicht im Kanton besteht."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 52",
+     "beleg": "Bei persönlicher Zugehörigkeit ist die Steuerpflicht unbeschränkt; sie erstreckt sich aber nicht auf Geschäftsbetriebe, Betriebsstätten und Grundstücke im Ausland. Bei wirtschaftlicher Zugehörigkeit beschränkt sich die Steuerpflicht auf den Gewinn, für den nach Artikel 51 eine Steuerpflicht in der Schweiz besteht."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 59",
+     "beleg": "Juristische Personen, die nur für einen Teil ihres Gewinns und Kapitals im Kanton steuerpflichtig sind, entrichten die Steuern für die im Kanton steuerbaren Werte nach dem Steuersatz, der ihrem gesamten Gewinn und Kapital entspricht."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 74",
+     "beleg": "Vom Reingewinn der Steuerperiode können Verluste aus sieben der Steuerperiode vorangegangenen Geschäftsjahren abgezogen werden, soweit sie bei der Berechnung des steuerbaren Reingewinnes dieser Jahre nicht berücksichtigt werden konnten."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 67",
+     "beleg": "Vom Reingewinn der Steuerperiode können Verluste aus sieben der Steuerperiode (Art. 79) vorangegangenen Geschäftsjahren abgezogen werden, soweit sie bei der Berechnung des steuerbaren Reingewinnes dieser Jahre nicht berücksichtigt werden konnten."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 89",
+     "beleg": "Der steuerbare Reingewinn bemisst sich nach dem Ergebnis der Steuerperiode."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 80",
+     "beleg": "Der steuerbare Reingewinn bemisst sich nach dem Ergebnis der Steuerperiode."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 75",
+     "beleg": "Die Gewinnsteuer der Kapitalgesellschaften und Genossenschaften beträgt: a) 2.7 Prozent auf den ersten Fr. 5'000'000.00 des Reingewinns"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 68",
+     "beleg": "Die Gewinnsteuer der Kapitalgesellschaften und Genossenschaften beträgt 8,5 Prozent des Reingewinns."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 69",
+     "beleg": "Die Gewinnsteuer einer Kapitalgesellschaft oder Genossenschaft ermässigt sich im Verhältnis des Nettoertrages aus den Beteiligungsrechten zum gesamten Reingewinn"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Beteiligungsabzug in % (Code 4612)",
+   "cites": [
+    {
+     "cref": "SHR 641.111",
+     "article_no": "§ 44",
+     "beleg": "Juristische Personen, die Anspruch auf die Ermässigung (Beteiligungsabzug) erheben, haben nachzuweisen, dass die Voraussetzungen dafür erfüllt sind."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 77",
+     "beleg": "Der Nettoertrag aus Beteiligungen nach Art. 76 entspricht dem Ertrag dieser Beteiligungen abzüglich des darauf entfallenden Finanzierungsaufwandes und eines Beitrages von 5%"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 69",
+     "beleg": "Die Gewinnsteuer einer Kapitalgesellschaft oder Genossenschaft ermässigt sich im Verhältnis des Nettoertrages aus den Beteiligungsrechten zum gesamten Reingewinn"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 70",
+     "beleg": "Der Nettoertrag aus Beteiligungen nach Artikel 69 entspricht dem Ertrag dieser Beteiligungen abzüglich des darauf entfallenden Finanzierungsaufwandes"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 76",
+     "beleg": "Die Gewinnsteuer einer Kapitalgesellschaft oder Genossenschaft ermässigt sich im Verhältnis des Nettoertrages aus den Beteiligungsrechten zum gesamten Reingewinn"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Gewinn satzbestimmend (Code 4510)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 59",
+     "beleg": "entrichten die Steuern für die im Kanton steuerbaren Werte nach dem Steuersatz, der ihrem gesamten Gewinn und Kapital entspricht"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 58",
+     "beleg": "In allen übrigen Fällen sind Auslandsverluste ausschliesslich satzbestimmend zu berücksichtigen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Gewinnvortrag aus dem Vorjahr (Code 5100)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 65",
+     "beleg": "a) dem Saldo der Erfolgsrechnung unter Berücksichtigung des Saldovortrages des Vorjahres"
+    },
+    {
+     "cref": "SHR 641.111",
+     "article_no": "§ 46",
+     "beleg": "Bemessungsgrundlage ist das Kapital nach Gewinnverteilung."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 58",
+     "beleg": "dem Saldo der Erfolgsrechnung unter Berücksichtigung des Saldovortrages des Vorjahres"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Reingewinn / -verlust gemäss Erfolgsrechnung des Geschäftsjahres (Code 5200)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 65",
+     "beleg": "a) dem Saldo der Erfolgsrechnung"
+    },
+    {
+     "cref": "SHR 641.111",
+     "article_no": "§ 46",
+     "beleg": "Bemessungsgrundlage ist das Kapital nach Gewinnverteilung."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 58",
+     "beleg": "a. dem Saldo der Erfolgsrechnung"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Auflösung gesetzliche und freiwillige Gewinnreserven (Code 5310)",
+   "cites": [
+    {
+     "cref": "SHR 641.111",
+     "article_no": "§ 46",
+     "beleg": "Bemessungsgrundlage ist das Kapital nach Gewinnverteilung."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 90",
+     "beleg": "Das steuerbare Eigenkapital bemisst sich nach dem Stand am Ende der Steuerperiode."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Auflösung Kapitalreserven (Code 5320)",
+   "cites": [
+    {
+     "cref": "SHR 641.111",
+     "article_no": "§ 46",
+     "beleg": "Bemessungsgrundlage ist das Kapital nach Gewinnverteilung."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 143",
+     "beleg": "den in der Handelsbilanz ausgewiesenen Einlagen, Aufgeldern und Zuschüssen im Sinne von Art. 22 Abs. 3 bis 7"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 125",
+     "beleg": "den in der Handelsbilanz ausgewiesenen Reserven aus Kapitaleinlagen nach Artikel 20 Absätze 3–7"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Auflösung übrige (Code 5330)",
+   "cites": [
+    {
+     "cref": "SHR 641.111",
+     "article_no": "§ 46",
+     "beleg": "Bemessungsgrundlage ist das Kapital nach Gewinnverteilung."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 90",
+     "beleg": "Das steuerbare Eigenkapital bemisst sich nach dem Stand am Ende der Steuerperiode."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Total zu verteilender Gewinn (Code 5400)",
+   "cites": [
+    {
+     "cref": "SHR 641.111",
+     "article_no": "§ 46",
+     "beleg": "Bemessungsgrundlage ist das Kapital nach Gewinnverteilung."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Dividende (Code 5510)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 65",
+     "beleg": "5. offene und verdeckte Gewinnausschüttungen"
+    },
+    {
+     "cref": "SHR 641.111",
+     "article_no": "§ 46",
+     "beleg": "Bemessungsgrundlage ist das Kapital nach Gewinnverteilung."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 58",
+     "beleg": "offene und verdeckte Gewinnausschüttungen"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Zuweisung an gesetzliche Gewinnreserven (Code 5520)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 65",
+     "beleg": "3. Einlagen in die Reserven"
+    },
+    {
+     "cref": "SHR 641.111",
+     "article_no": "§ 46",
+     "beleg": "Bemessungsgrundlage ist das Kapital nach Gewinnverteilung."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 58",
+     "beleg": "Einlagen in die Reserven"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Zuweisung an freiwillige Gewinnreserven (Code 5530)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 65",
+     "beleg": "3. Einlagen in die Reserven"
+    },
+    {
+     "cref": "SHR 641.111",
+     "article_no": "§ 46",
+     "beleg": "Bemessungsgrundlage ist das Kapital nach Gewinnverteilung."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 58",
+     "beleg": "Einlagen in die Reserven"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Zuwendungen an die Vorsorgeeinrichtung des eigenen Personals (Code 5540)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 66",
+     "beleg": "b) die Zuwendungen an Vorsorgeeinrichtungen zugunsten des eigenen Personals, sofern jede zweckwidrige Verwendung ausgeschlossen ist"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 59",
+     "beleg": "b. die Zuwendungen an Vorsorgeeinrichtungen zugunsten des eigenen Personals"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Freiwillige Geldleistungen an steuerbefreite juristische Personen mit Sitz in der Schweiz (Code 5550)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 66",
+     "beleg": "c) die freiwilligen Leistungen von Geld und übrigen Vermögenswerten bis zu 20% des Reingewinnes an ... juristische Personen mit Sitz in der Schweiz"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 59",
+     "beleg": "c. die freiwilligen Leistungen von Geld und übrigen Vermögenswerten bis zu 20 Prozent des Reingewinns"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Übrige Zuweisung (Code 5561)",
+   "cites": [
+    {
+     "cref": "SHR 641.111",
+     "article_no": "§ 46",
+     "beleg": "Bemessungsgrundlage ist das Kapital nach Gewinnverteilung."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 65",
+     "beleg": "5. offene und verdeckte Gewinnausschüttungen und geschäftsmässig nicht begründete Zuwendungen an Dritte"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 58",
+     "beleg": "geschäftsmässig nicht begründete Zuwendungen an Dritte"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Total Gewinnverwendung (Code 5600)",
+   "cites": [
+    {
+     "cref": "SHR 641.111",
+     "article_no": "§ 46",
+     "beleg": "Bemessungsgrundlage ist das Kapital nach Gewinnverteilung."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Vortrag auf neue Rechnung (Code 5700)",
+   "cites": [
+    {
+     "cref": "SHR 641.111",
+     "article_no": "§ 46",
+     "beleg": "Bemessungsgrundlage ist das Kapital nach Gewinnverteilung."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 65",
+     "beleg": "unter Berücksichtigung des Saldovortrages des Vorjahres"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Einbezahltes Kapital (Code 6100)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 143",
+     "beleg": "Zudem haben die Kapitalgesellschaften und Genossenschaften das ... Eigenkapital am Ende der Steuerperiode ... auszuweisen. Dieses besteht aus dem einbezahlten Grund- oder Stammkapital"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 90",
+     "beleg": "Das steuerbare Eigenkapital bemisst sich nach dem Stand am Ende der Steuerperiode."
+    },
+    {
+     "cref": "SHR 641.111",
+     "article_no": "§ 46",
+     "beleg": "Bemessungsgrundlage ist das Kapital nach Gewinnverteilung."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 125",
+     "beleg": "Dieses besteht aus dem einbezahlten Grund- oder Stammkapital"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 82",
+     "beleg": "Das steuerbare Eigenkapital besteht: a) bei Kapitalgesellschaften und Genossenschaften aus dem einbezahlten Aktien-, Grund- oder Stammkapital"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Gesetzliche Kapitalreserve (Code 6211)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 143",
+     "beleg": "den in der Handelsbilanz ausgewiesenen Einlagen, Aufgeldern und Zuschüssen im Sinne von Art. 22 Abs. 3 bis 7, den offenen ... Reserven"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 125",
+     "beleg": "den in der Handelsbilanz ausgewiesenen Reserven aus Kapitaleinlagen nach Artikel 20 Absätze 3–7"
+    },
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 959a",
+     "beleg": "3. Eigenkapital: ... b. gesetzliche Kapitalreserve"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 82",
+     "beleg": "bei Kapitalgesellschaften und Genossenschaften aus dem einbezahlten Aktien-, Grund- oder Stammkapital, dem Partizipationskapital, den offenen und den aus versteuertem Gewinn gebildeten stillen Reserven"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Gesetzliche Gewinnreserve (Code 6213)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 143",
+     "beleg": "den offenen und den aus versteuertem Gewinn gebildeten stillen Reserven"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 125",
+     "beleg": "den offenen und den aus versteuertem Gewinn gebildeten stillen Reserven"
+    },
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 959a",
+     "beleg": "3. Eigenkapital: ... c. gesetzliche Gewinnreserve"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 82",
+     "beleg": "bei Kapitalgesellschaften und Genossenschaften aus dem einbezahlten Aktien-, Grund- oder Stammkapital, dem Partizipationskapital, den offenen und den aus versteuertem Gewinn gebildeten stillen Reserven"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Freiwillige Gewinnreserve (Code 6214)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 143",
+     "beleg": "den offenen und den aus versteuertem Gewinn gebildeten stillen Reserven"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 125",
+     "beleg": "den offenen und den aus versteuertem Gewinn gebildeten stillen Reserven"
+    },
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 959a",
+     "beleg": "3. Eigenkapital: ... d. freiwillige Gewinnreserven"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 82",
+     "beleg": "bei Kapitalgesellschaften und Genossenschaften aus dem einbezahlten Aktien-, Grund- oder Stammkapital, dem Partizipationskapital, den offenen und den aus versteuertem Gewinn gebildeten stillen Reserven"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Offene Reserven – Übrige (Code 6215)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 143",
+     "beleg": "den offenen und den aus versteuertem Gewinn gebildeten stillen Reserven"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 125",
+     "beleg": "den offenen und den aus versteuertem Gewinn gebildeten stillen Reserven"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 82",
+     "beleg": "bei Kapitalgesellschaften und Genossenschaften aus dem einbezahlten Aktien-, Grund- oder Stammkapital, dem Partizipationskapital, den offenen und den aus versteuertem Gewinn gebildeten stillen Reserven"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Offene Reserven (Code 6216)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 143",
+     "beleg": "den offenen und den aus versteuertem Gewinn gebildeten stillen Reserven"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 125",
+     "beleg": "den offenen und den aus versteuertem Gewinn gebildeten stillen Reserven"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 82",
+     "beleg": "bei Kapitalgesellschaften und Genossenschaften aus dem einbezahlten Aktien-, Grund- oder Stammkapital, dem Partizipationskapital, den offenen und den aus versteuertem Gewinn gebildeten stillen Reserven"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "./. Eigene Kapitalanteile (Code 6217)",
+   "cites": [
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 959a",
+     "beleg": "3. Eigenkapital: ... e. eigene Kapitalanteile als Minusposten"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 143",
+     "beleg": "das ihrer Veranlagung zur Gewinnsteuer dienende Eigenkapital am Ende der Steuerperiode ... auszuweisen ... den in der Handelsbilanz ausgewiesenen"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Gewinnvortrag + / Verlustvortrag – (Code 6220)",
+   "cites": [
+    {
+     "cref": "SR 220",
+     "article_no": "Art. 959a",
+     "beleg": "3. Eigenkapital: ... f. Gewinnvortrag oder Verlustvortrag als Minusposten"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 143",
+     "beleg": "den offenen und den aus versteuertem Gewinn gebildeten stillen Reserven"
+    },
+    {
+     "cref": "SHR 641.111",
+     "article_no": "§ 46",
+     "beleg": "Bemessungsgrundlage ist das Kapital nach Gewinnverteilung."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Als Gewinn versteuerte stille Reserven (Code 6231)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 143",
+     "beleg": "den offenen und den aus versteuertem Gewinn gebildeten stillen Reserven"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 125",
+     "beleg": "den offenen und den aus versteuertem Gewinn gebildeten stillen Reserven"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 82",
+     "beleg": "bei Kapitalgesellschaften und Genossenschaften aus dem einbezahlten Aktien-, Grund- oder Stammkapital, dem Partizipationskapital, den offenen und den aus versteuertem Gewinn gebildeten stillen Reserven"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Als Gewinn versteuerte stille Reserven (Code 6232)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 143",
+     "beleg": "den offenen und den aus versteuertem Gewinn gebildeten stillen Reserven"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 125",
+     "beleg": "den offenen und den aus versteuertem Gewinn gebildeten stillen Reserven"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 82",
+     "beleg": "bei Kapitalgesellschaften und Genossenschaften aus dem einbezahlten Aktien-, Grund- oder Stammkapital, dem Partizipationskapital, den offenen und den aus versteuertem Gewinn gebildeten stillen Reserven"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Als Gewinn versteuerte stille Reserven (Code 6233)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 143",
+     "beleg": "den offenen und den aus versteuertem Gewinn gebildeten stillen Reserven"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 125",
+     "beleg": "den offenen und den aus versteuertem Gewinn gebildeten stillen Reserven"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 82",
+     "beleg": "bei Kapitalgesellschaften und Genossenschaften aus dem einbezahlten Aktien-, Grund- oder Stammkapital, dem Partizipationskapital, den offenen und den aus versteuertem Gewinn gebildeten stillen Reserven"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Als Gewinn versteuerte stille Reserven (Code 6234)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 143",
+     "beleg": "den offenen und den aus versteuertem Gewinn gebildeten stillen Reserven"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 125",
+     "beleg": "den offenen und den aus versteuertem Gewinn gebildeten stillen Reserven"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 82",
+     "beleg": "bei Kapitalgesellschaften und Genossenschaften aus dem einbezahlten Aktien-, Grund- oder Stammkapital, dem Partizipationskapital, den offenen und den aus versteuertem Gewinn gebildeten stillen Reserven"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Verdecktes Eigenkapital (Code 6300)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 83",
+     "beleg": "Zum steuerbaren Eigenkapital von Kapitalgesellschaften oder Genossenschaften gehört zusätzlich jener Teil des Fremdkapitals ..., dem wirtschaftlich die Bedeutung von Eigenkapital zukommt."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 143",
+     "beleg": "sowie aus jenem Teil des Fremdkapitals, dem wirtschaftlich die Bedeutung von Eigenkapital zukommt"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 125",
+     "beleg": "sowie aus jenem Teil des Fremdkapitals, dem wirtschaftlich die Bedeutung von Eigenkapital zukommt"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Steuerbares Eigenkapital (Code 6500)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 90",
+     "beleg": "Das steuerbare Eigenkapital bemisst sich nach dem Stand am Ende der Steuerperiode."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 143",
+     "beleg": "das ihrer Veranlagung zur Gewinnsteuer dienende Eigenkapital am Ende der Steuerperiode oder der Steuerpflicht auszuweisen"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 83",
+     "beleg": "Zum steuerbaren Eigenkapital von Kapitalgesellschaften oder Genossenschaften gehört zusätzlich"
+    },
+    {
+     "cref": "SHR 641.111",
+     "article_no": "§ 46",
+     "beleg": "Bemessungsgrundlage ist das Kapital nach Gewinnverteilung."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 82",
+     "beleg": "Gegenstand der Kapitalsteuer ist das Eigenkapital. ... Steuerbar ist mindestens das einbezahlte Aktien-, Grund- oder Stammkapital, einschliesslich des einbezahlten Partizipationskapitals"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Abzug für Grundeigentum und Geschäftskapital ausserhalb des Kantons / Bundes (Code 6600)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 58",
+     "beleg": "sie erstreckt sich aber nicht auf Geschäftsbetriebe, Betriebsstätten und Grundstücke ausserhalb des Kantons"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 59",
+     "beleg": "Juristische Personen, die nur für einen Teil ihres Gewinns und Kapitals im Kanton steuerpflichtig sind"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Steuerbares Eigenkapital Kanton Schaffhausen (Code 6700)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 59",
+     "beleg": "entrichten die Steuern für die im Kanton steuerbaren Werte"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 58",
+     "beleg": "beschränkt sich die Steuerpflicht auf die Teile des Gewinns und Kapitals, für die nach Art. 57 eine Steuerpflicht im Kanton besteht"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 90",
+     "beleg": "Das steuerbare Eigenkapital bemisst sich nach dem Stand am Ende der Steuerperiode."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 82",
+     "beleg": "Gegenstand der Kapitalsteuer ist das Eigenkapital."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Aufgedeckte stille Reserven aus altrechtlichem Step-Up – Bestand am Geschäftsjahresanfang (Code 6950)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 238",
+     "beleg": "Abschreibungen auf stillen Reserven einschliesslich des selbstgeschaffenen Mehrwerts, die bei Ende der Besteuerung nach Art. 78 und 79 bisherigen Rechts aufgedeckt wurden"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Aufgedeckte stille Reserven aus altrechtlichem Step-Up – Steuerliche Abschreibung im Geschäftsjahr (Code 6960)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 238",
+     "beleg": "Abschreibungen auf stillen Reserven einschliesslich des selbstgeschaffenen Mehrwerts, die bei Ende der Besteuerung nach Art. 78 und 79 bisherigen Rechts aufgedeckt wurden, werden in die Berechnung der Entlastungsbegrenzung nach Art. 74a und 236 einbezogen."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 74a",
+     "beleg": "Allfällige Abzugsüberschüsse gemäss Abs. 1 sind in folgender Reihenfolge zu kürzen: ... 2. Abschreibungen auf aufgedeckten stillen Reserven (Art. 238 Abs. 4)"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Aufgedeckte stille Reserven aus altrechtlichem Step-Up – Bestand am Geschäftsjahresende (Code 6970)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 238",
+     "beleg": "Abschreibungen auf stillen Reserven einschliesslich des selbstgeschaffenen Mehrwerts, die bei Ende der Besteuerung nach Art. 78 und 79 bisherigen Rechts aufgedeckt wurden"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Verluste aus den sieben der Steuerperiode vorangegangenen Geschäftsjahren",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 74",
+     "beleg": "Vom Reingewinn der Steuerperiode können Verluste aus sieben der Steuerperiode vorangegangenen Geschäftsjahren abgezogen werden"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 67",
+     "beleg": "Vom Reingewinn der Steuerperiode können Verluste aus sieben der Steuerperiode (Art. 79) vorangegangenen Geschäftsjahren abgezogen werden"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Zwischentotal (Summe der Vorjahresverluste)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 74",
+     "beleg": "Verluste aus sieben der Steuerperiode vorangegangenen Geschäftsjahren"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 67",
+     "beleg": "Verluste aus sieben der Steuerperiode (Art. 79) vorangegangenen Geschäftsjahren"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Davon bereits verrechnete Verluste",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 74",
+     "beleg": "soweit sie bei der Berechnung des steuerbaren Reingewinnes dieser Jahre nicht berücksichtigt werden konnten"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 67",
+     "beleg": "soweit sie bei der Berechnung des steuerbaren Reingewinnes dieser Jahre nicht berücksichtigt werden konnten"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Verrechenbarer Verlust (Code 4100)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 74",
+     "beleg": "Vom Reingewinn der Steuerperiode können Verluste ... abgezogen werden, soweit sie ... nicht berücksichtigt werden konnten."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 67",
+     "beleg": "Vom Reingewinn der Steuerperiode können Verluste ... abgezogen werden"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Abschreibung auf in früheren Geschäftsjahren aufgewerteten Aktiven",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 69",
+     "beleg": "Abschreibungen auf Aktiven, die zum Ausgleich von Verlusten höher bewertet wurden, können nur vorgenommen werden, wenn die Aufwertungen handelsrechtlich zulässig waren und die Verluste im Zeitpunkt der Abschreibung nach Art. 74 Abs. 1 verrechenbar gewesen wären."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 62",
+     "beleg": "Abschreibungen auf Aktiven, die zum Ausgleich von Verlusten höher bewertet wurden, können nur vorgenommen werden, wenn ... die Verluste im Zeitpunkt der Abschreibung nach Artikel 67 Absatz 1 verrechenbar gewesen wären."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Haben seit der letzten Deklaration Handänderungen von Mehrheiten der Aktien oder Stammanteile stattgefunden?",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 111",
+     "beleg": "Handänderungen an Grundstücken sind gleichgestellt: ... b) Rechtsgeschäfte, die bezüglich der Verfügungsgewalt über Grundstücke tatsächlich und wirtschaftlich wie Handänderungen wirken"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "IBAN-Nr.",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Bemerkungen",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Beilagen",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 142",
+     "beleg": "die Steuererklärung wahrheitsgemäss und vollständig ausfüllen, persönlich unterzeichnen und samt den vorgeschriebenen Beilagen fristgemäss der zuständigen Behörde einreichen"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 143",
+     "beleg": "Natürliche Personen mit Einkommen aus selbständiger Erwerbstätigkeit und juristische Personen müssen der Steuererklärung beilegen: a) die unterzeichneten Jahresrechnungen (Bilanzen, Erfolgsrechnungen) der Steuerperiode"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 144",
+     "beleg": "Sie müssen auf Verlangen der Steuerbehörde insbesondere mündlich oder schriftlich Auskunft erteilen, Geschäftsbücher, Belege und weitere Bescheinigungen sowie Urkunden über den Geschäftsverkehr vorlegen."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 124",
+     "beleg": "die Steuererklärung wahrheitsgemäss und vollständig ausfüllen, persönlich unterzeichnen und samt den vorgeschriebenen Beilagen fristgemäss der zuständigen Steuerbehörde einreichen"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 125",
+     "beleg": "Natürliche Personen mit Einkommen aus selbständiger Erwerbstätigkeit und juristische Personen müssen der Steuererklärung beilegen: a. die unterzeichneten Jahresrechnungen (Bilanzen, Erfolgsrechnungen) der Steuerperiode"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 126",
+     "beleg": "Er muss auf Verlangen der Veranlagungsbehörde insbesondere mündlich oder schriftlich Auskunft erteilen, Geschäftsbücher, Belege und weitere Bescheinigungen sowie Urkunden über den Geschäftsverkehr vorlegen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Weitere Beilagen (Leerzeilen)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 144",
+     "beleg": "Die Steuerpflichtigen müssen alles tun, um eine vollständige und richtige Veranlagung zu ermöglichen."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 142",
+     "beleg": "samt den vorgeschriebenen Beilagen fristgemäss der zuständigen Behörde einreichen"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 126",
+     "beleg": "Der Steuerpflichtige muss alles tun, um eine vollständige und richtige Veranlagung zu ermöglichen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Ort und Datum",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Rechtsgültige Unterschrift – Die Richtigkeit und Vollständigkeit der Angaben bezeugt",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 142",
+     "beleg": "Die steuerpflichtige Person muss die Steuererklärung wahrheitsgemäss und vollständig ausfüllen, persönlich unterzeichnen"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 124",
+     "beleg": "Die steuerpflichtige Person muss die Steuererklärung wahrheitsgemäss und vollständig ausfüllen, persönlich unterzeichnen"
+    }
+   ],
+   "over_collection": false
+  }
+ ]
+}

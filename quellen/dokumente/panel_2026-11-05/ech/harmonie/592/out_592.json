@@ -1,0 +1,71 @@
+{
+ "hinweis": "eCH-Angleichung gleich beschrifteter Angaben der Steuerformulare 589–598, Formular 592, Panel 2026-11-05 mit Zweitprüfung (panel_erst_und_zweit.json)",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-11-05/ech/harmonie/592 --nur=592",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "feld": "PID",
+   "standard": "eCH-0276",
+   "element": "registerNumber",
+   "grund": "Kopfangabe «PID:» von Formular 7, nachgetragen am 05.11.2026; dieselbe Angabe wie die PID von Formular 5 und den Beilagen 6–19.1, die die Angleichung (panel_erst_und_zweit.json, Gruppe PID) einheitlich eCH-0276 registerNumber («Register-Nr. / PID-Nr.» laut Beilage zu eCH-0276) zuordnet."
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Gleiche gedruckte Angabe wie auf Formular 5. eCH-0229 purpose ist der Zweck in der Steuerdeklaration und gilt auch für Vereine und Stiftungen. eCH-0098 activityDescription (organisationType) beschreibt die Geschäftstätigkeit im Register und passt weniger genau.",
+   "feld": "Zweck",
+   "standard": "eCH-0229",
+   "element": "purpose"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Gleicher, wortgleich gedruckter Block wie auf Formular 5. eCH-0276 contactForInquiries ist ausdrücklich die Rückfrage-Kontaktperson der Steuersache und deckt Name, Telefon und E-Mail genau ab. eCH-0229 contactForInquiries ist nur der allgemeine representativeType.",
+   "feld": "Rückfragen sind zu richten an",
+   "standard": "eCH-0276",
+   "element": "contactForInquiries"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Gleiche Zelle wie auf Formular 5. eCH-0044 officialName ist nur der Familienname einer natürlichen Person. Die Zelle verlangt den ganzen Namen der Kontaktperson, auch eines Treuhandbüros. Das ist nameOfContact.",
+   "elternfeld": "Rückfragen sind zu richten an",
+   "teilfeld": "Name",
+   "standard": "eCH-0276",
+   "element": "nameOfContact"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Gleiche Ankreuzliste wie auf Formular 5, also dasselbe Element. Die Kästchen sind Dokumenttypen. Die drei freien Zeilen entsprechen otherAttachments, ihre Bezeichnung entspricht documentTitle.",
+   "feld": "Beilagen",
+   "standard": "eCH-0276",
+   "element": "documentIdentification"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Gleiche Angabe wie auf Formular 5. Im ganzen Katalog gibt es kein Element, dessen Kontext zur Steuererklärung einer juristischen Person passt.",
+   "feld": "Ort und Datum"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Gleiche Zelle wie beim VR-Präsidenten auf Formular 5. Laut Excel-Beilage zu eCH-0276 umfasst chairmanOfTheBoardOfDirectors ausdrücklich auch Stiftungsrats- und Vereinspräsidenten. Das Element passt also für den Präsidenten eines Vereins oder einer Stiftung.",
+   "elternfeld": "Organe – Präsident/-in",
+   "teilfeld": "Name, Adresse",
+   "standard": "eCH-0276",
+   "element": "chairmanOfTheBoardOfDirectors"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Gleiche Zelle wie auf Formular 5. management ist rechtsformneutral die Geschäftsleitung im Titelteil von eCH-0276. Laut Hauptdokument enthält eCH-0276 die Angaben für alle Gesellschaftsformen, auch für Vereine und Stiftungen.",
+   "elternfeld": "Organe – Geschäftsleitung",
+   "teilfeld": "Name, Adresse",
+   "standard": "eCH-0276",
+   "element": "management"
+  }
+ ]
+}

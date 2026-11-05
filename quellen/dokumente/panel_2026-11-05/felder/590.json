@@ -1,0 +1,51 @@
+{
+ "form_id": 590,
+ "data_fields": [
+  {
+   "name": "PID",
+   "definition": "Die im Formularkopf unter «PID» einzutragende Identifikationsnummer der steuerpflichtigen juristischen Person.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Firmenname",
+   "definition": "Der Name der Firma der juristischen Person, deren Abschreibungen auf diesem Formular aufgeführt werden.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Anlageobjekt",
+   "definition": "Die Tabelle der Abschreibungen: für jedes Anlageobjekt dessen Bezeichnung, die Werte im Geschäftsjahr von Anfangswert über Zu- und Abgänge bis zum Endwert, die verbuchte Abschreibung und der Abschreibungssatz.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Anlageobjekt",
+    "Wert zu Beginn des Geschäftsjahres",
+    "Zugänge",
+    "Abgänge",
+    "Wert vor Abschreibungen",
+    "Verbuchte Abschreibung",
+    "Wert am Ende des Geschäftsjahres",
+    "Abschreibungssatz"
+   ],
+   "format": "Tabelle: 2 Blöcke zu je 4 Spalten (bis 8 Anlageobjekte); Beträge in CHF, Zugänge mit «+», Abgänge mit «–»; Abschreibungssatz in %"
+  },
+  {
+   "name": "Bemerkungen zu den Abschreibungen",
+   "definition": "Freie Bemerkungen der juristischen Person zu den aufgeführten Abschreibungen.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "6 Zeilen"
+  }
+ ],
+ "hinweis": "I checked the dictionary line by line against the original PDF, which is one page with no AcroForm fields. It is complete. All four Angaben are there in the Formular's order: PID, then Firmenname, then the table, then Bemerkungen. The extracted text lists them in a different order, but the PDF layout decides. Nothing was invented, and names, types and required flags are correct.\n\nCorrection (1): The PID definition no longer says «persönliche Identifikationsnummer». The Formular prints only «PID:» and does not spell out the abbreviation. «persönlich» also does not fit a juristische Person, so the definition now just names it as the Identifikationsnummer in the Formularkopf. Name, type and required are unchanged; the Formular does not mark the PID as optional, so required stays true. Other held tax forms are mixed on this flag.\n\nConfirmed unchanged:\n- Two table blocks: both are headed «Anlageobjekt» and have the same 7 numbered rows, so they are one repeating table, modelled as ONE composite.\n- Table subfields: the header row with the object name plus the 7 rows, each an atomic part, verbatim without numbering. The CHF heading, «+», «–» and «%» are printed on the Formular and are kept in format.\n- Bemerkungen: optional, with 6 printed lines.\n\nThe Formular prints none of the following, so none was added: no signature line, no Ort und Datum, no Geschäftsjahr or Steuerperiode field, no Beilagen checklist, no office-use box.\n\nNot fields: the title «Abschreibungen für juristische Personen», «Kanton Schaffhausen», the coat of arms and the footer «Formular 6» (the form's number) are not fields of the person. The Formular carries no instructions or legal text."
+}

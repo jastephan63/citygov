@@ -1,0 +1,63 @@
+{
+ "form_id": 590,
+ "mappings": [
+  {
+   "data_field": "PID",
+   "cites": [
+    {
+     "cref": "SHR 641.111",
+     "article_no": "§ 81b",
+     "beleg": "Abs. 4: Die kantonale Steuerverwaltung stellt für elektronische Gesuche um Verlängerung der Einreichungsfrist für die Steuererklärung ein Webportal zur Verfügung, auf dem sich die steuerpflichtigen Personen durch Angabe ihrer PID und bei natürlichen Personen zudem ihres Geburtsdatums ausweisen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Firmenname",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 142",
+     "beleg": "Die steuerpflichtige Person muss die Steuererklärung wahrheitsgemäss und vollständig ausfüllen, persönlich unterzeichnen und samt den vorgeschriebenen Beilagen fristgemäss der zuständigen Behörde einreichen."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 124",
+     "beleg": "Die steuerpflichtige Person muss die Steuererklärung wahrheitsgemäss und vollständig ausfüllen, persönlich unterzeichnen und samt den vorgeschriebenen Beilagen fristgemäss der zuständigen Steuerbehörde einreichen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Anlageobjekt",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 69",
+     "beleg": "Abs. 1: Geschäftsmässig begründete Abschreibungen von Aktiven sind zulässig, soweit sie buchmässig oder, wenn eine kaufmännische Buchhaltung fehlt, in besonderen Abschreibungstabellen ausgewiesen sind. Abs. 2: In der Regel werden die Abschreibungen nach dem tatsächlichen Wert der einzelnen Vermögensteile berechnet oder nach ihrer voraussichtlichen Gebrauchsdauer angemessen verteilt."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 65",
+     "beleg": "Abs. 1 lit. b: Der steuerbare Reingewinn setzt sich zusammen aus ... allen vor Berechnung des Saldos der Erfolgsrechnung ausgeschiedenen Teilen des Geschäftsergebnisses ..., wie insbesondere: 1. Kosten für die Anschaffung, Herstellung oder Wertvermehrung von Gegenständen des Anlagevermögens; 2. geschäftsmässig nicht begründete Abschreibungen und Rückstellungen"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 62",
+     "beleg": "Abs. 1: Geschäftsmässig begründete Abschreibungen von Aktiven sind zulässig, soweit sie buchmässig oder, bei vereinfachter Buchführung nach Artikel 957 Absatz 2 OR, in besonderen Abschreibungstabellen ausgewiesen sind. Abs. 2: In der Regel werden die Abschreibungen nach dem tatsächlichen Wert der einzelnen Vermögensteile berechnet oder nach ihrer voraussichtlichen Gebrauchsdauer angemessen verteilt."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 58",
+     "beleg": "Abs. 1 lit. b: Der steuerbare Reingewinn setzt sich zusammen aus ... allen vor Berechnung des Saldos der Erfolgsrechnung ausgeschiedenen Teilen des Geschäftsergebnisses ..., wie insbesondere: Kosten für die Anschaffung, Herstellung oder Wertvermehrung von Gegenständen des Anlagevermögens, geschäftsmässig nicht begründete Abschreibungen und Rückstellungen"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Bemerkungen zu den Abschreibungen",
+   "cites": [],
+   "over_collection": true
+  }
+ ]
+}

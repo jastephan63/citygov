@@ -1,0 +1,18 @@
+{
+ "hinweis": "eCH-Angleichung gleich beschrifteter Angaben der Steuerformulare 589–598, Formular 594, Panel 2026-11-05 mit Zweitprüfung (panel_erst_und_zweit.json)",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-11-05/ech/harmonie/594 --nur=594",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Andere Bedeutung: die Anzahl der beigelegten Lohnausweise. Im ganzen Katalog gibt es kein Zählelement dafür. eCH-0276 wageStatement ist nur ein Dokumenttyp. eCH-0119 attachedWageStatement und attachedForms gehören zur Steuererklärung natürlicher Personen.",
+   "feld": "Beilagen"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "eCH-0119 locationAndDate liegt im attachedFormsType der Steuererklärung natürlicher Personen und passt nicht zur Bescheinigung einer juristischen Person. Es ist dieselbe Angabe wie auf Formular 5 und 7, also kein_standard. Die Teile Ort und Datum sind schon kein_standard.",
+   "feld": "Ort und Datum"
+  }
+ ]
+}

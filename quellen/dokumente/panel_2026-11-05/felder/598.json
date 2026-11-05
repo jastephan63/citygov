@@ -1,0 +1,145 @@
+{
+ "form_id": 598,
+ "data_fields": [
+  {
+   "name": "PID",
+   "definition": "Kennnummer der steuerpflichtigen juristischen Person, die im Formularkopf neben «PID» einzutragen ist.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Firmenname",
+   "definition": "Name der steuerpflichtigen juristischen Person, die die Beteiligung ganz oder teilweise veräussert hat.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Bezeichnung der Beteiligung",
+   "definition": "Bezeichnung der veräusserten Beteiligung, entweder mit der Beteiligungsnummer gemäss Deklarationsreihenfolge auf dem Hilfsformular «Angaben über Beteiligungen» (Formular 19) oder, falls eine eigene Aufstellung anstelle von Formular 19 eingereicht wird, mit Bezeichnung und Rechtsform des Unternehmens und allenfalls einer Referenz auf diese Aufstellung.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Beteiligung Nr.",
+    "Bezeichnung des Unternehmens",
+    "Rechtsform des Unternehmens",
+    "Referenz auf die anstelle des Formulars 19 eingereichte eigene Aufstellung"
+   ],
+   "format": ""
+  },
+  {
+   "name": "Verkaufserlöse für veräusserte Beteiligungspakete",
+   "definition": "Tabelle mit einer Zeile je in der Steuerperiode veräussertem Paket der Beteiligung mit letztem Erwerbsdatum, Veräusserungsdatum, veräusserter Quote am Gesamtkapital sowie gesamtem und massgebendem (auf Titel mit mindestens einjähriger Haltedauer entfallendem) Verkaufserlös in CHF und dessen Anteil am Gesamterlös in Prozent.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Letztes Erwerbsdatum von Titeln des veräusserten Pakets",
+    "Datum der Veräusserung",
+    "Veräusserte Quote (in % des Gesamtkapitals)",
+    "Verkaufserlös – Gesamt",
+    "Verkaufserlös – Auf Titel mit einer Haltedauer von einem Jahr oder länger entfallender Anteil (= massgebender Verkaufserlös)",
+    "Massgebender Verkaufserlös in Prozent des Gesamterlöses"
+   ],
+   "format": "Tabelle, 4 Zeilen; Quote in %, Verkaufserlöse in CHF, Anteil in %"
+  },
+  {
+   "name": "Total Quote und Verkaufserlös",
+   "definition": "Summe der veräusserten Quoten und der gesamten Verkaufserlöse aller in der Tabelle der Verkaufserlöse aufgeführten Pakete.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Total Quote",
+    "Total Verkaufserlös"
+   ],
+   "format": "% bzw. CHF"
+  },
+  {
+   "name": "Total massgebender Verkaufserlös unter Berücksichtigung der Mindesthaltedauer",
+   "definition": "Summe der massgebenden Verkaufserlöse aus der Tabelle der Verkaufserlöse, also der Anteile auf Titeln mit einer Haltedauer von mindestens einem Jahr, eingetragen in der CHF-Spalte rechts.",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "CHF"
+  },
+  {
+   "name": "Gestehungskosten für veräusserte Beteiligungspakete",
+   "definition": "Tabelle mit einer Zeile je veräussertem Paket in der Reihenfolge der Tabelle der Verkaufserlöse mit den Gestehungskosten des Bestands zu Beginn der Steuerperiode bzw. nach der letzten Veräusserung, deren Erhöhung und Verminderung, den Gestehungskosten vor dem Verkauf und dem auf das verkaufte Paket sowie auf den massgebenden Verkaufserlös entfallenden Anteil.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Gestehungskosten für Gesamtbestand zu Beginn der Steuerperiode bzw. für Restbestand nach der letzten Veräusserung in der Steuerperiode",
+    "Veränderung seit Beginn der Steuerperiode bzw. seit der letzten Veräusserung in der Steuerperiode – Erhöhung",
+    "Veränderung seit Beginn der Steuerperiode bzw. seit der letzten Veräusserung in der Steuerperiode – Verminderung",
+    "Gestehungskosten vor dem Verkauf des Beteiligungspakets",
+    "Auf verkauftes Beteiligungspaket entfallender Anteil (gemäss Ziffer 2.1) – Gesamt",
+    "Auf verkauftes Beteiligungspaket entfallender Anteil (gemäss Ziffer 2.1) – auf massgebenden Verkaufserlös entfallender Anteil"
+   ],
+   "format": "Tabelle, 4 Zeilen; in CHF"
+  },
+  {
+   "name": "Total (Gestehungskosten)",
+   "definition": "Summenzeile der Tabelle der Gestehungskosten für die Spalten Erhöhung, Verminderung, Gestehungskosten vor dem Verkauf und gesamter auf die verkauften Pakete entfallender Anteil.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Total Erhöhung",
+    "Total Verminderung",
+    "Total vor dem Verkauf des Beteiligungspakets",
+    "Total auf verkauftes Beteiligungspaket entfallender Anteil – Gesamt"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Total massgebende Gestehungskosten unter Berücksichtigung der Mindesthaltedauer",
+   "definition": "Summe der auf den massgebenden Verkaufserlös entfallenden Gestehungskosten aus der Tabelle der Gestehungskosten, die in der CHF-Spalte rechts vom massgebenden Verkaufserlös abgezogen wird.",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "CHF"
+  },
+  {
+   "name": "Kapitalgewinn aus der Veräusserung von Beteiligungen",
+   "definition": "Bruttoertrag aus Kapitalgewinn der veräusserten Beteiligung, berechnet als Ziffer 2.3 abzüglich Ziffer 3.3 und zu übertragen auf die entsprechende Zeile von Formular 19, Seite 2, Spalte Q.",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "CHF"
+  },
+  {
+   "name": "Umschlagsmethode",
+   "definition": "Bei Teilveräusserungen einer für jede Erhöhung einzeln nachgeführten Beteiligung offenzulegende Methode, nach der Kaufdaten und Gestehungskosten den veräusserten Teilpaketen zugeordnet werden; verlangt in den Hinweisen auf Seite 2, ohne eigenes gedrucktes Eintragungsfeld.",
+   "data_type": "enum",
+   "required": true,
+   "allowed_values": [
+    "First in – First out (FIFO)",
+    "Last in – First out (LIFO)",
+    "Highest in – First out (HIFO)"
+   ],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Nachweis der Zuordnung",
+   "definition": "Gesonderte eigene Darstellung, die bei Teilveräusserungen bzw. wo die Zuordnung nicht offensichtlich erkennbar ist, die Zuordnung von Kaufdaten und Gestehungskosten (gesamt und massgebender Anteil) zu den veräusserten Teilpaketen belegt (laut Hinweisen auf Seite 2).",
+   "data_type": "attachment",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  }
+ ],
+ "hinweis": "Korrekturen: (1) Nummerierung aus allen Namen entfernt, wie die Regel «no numbering» verlangt: «1 Bezeichnung der Beteiligung» -> «Bezeichnung der Beteiligung», «2.1 …», «2.2 …», «2.3 …», «3.1 …», «3.3 …», «4.1 …» ebenso. «3.2 Total (Gestehungskosten)» -> «Total (Gestehungskosten)», mit der Blocküberschrift wie bei Formular 233 «Total (Vermögen)». In den Definitionen von 2.2, 2.3 und 3.1–3.3 stehen jetzt Beschreibungen statt Ziffernverweisen. (2) Teilfelder der Tabelle Verkaufserlöse: Die Einheiten «CHF» und «%» stehen nicht mehr in den Labels, sondern in format. Die beiden Verkaufserlös-Spalten tragen jetzt die gedruckte Spaltengruppe «Verkaufserlös – …», wie es in 3.1 schon gemacht wird. Die Spalte «%2)» heisst nach Fussnote 2 «Massgebender Verkaufserlös in Prozent des Gesamterlöses», ohne angehängtes «%». (3) Bei «Umschlagsmethode» steht in der Definition jetzt, dass es kein gedrucktes Eintragungsfeld gibt. Geprüft und unverändert: Gegen die Darstellung mit 200 dpi geprüft. 2.2 hat genau zwei Zellen (Quote, Verkaufserlös Gesamt). 2.3 ist die Summe der fett umrandeten Spalte «massgebender Verkaufserlös», per Pfeil in die CHF-Spalte rechts übertragen. 3.2 hat genau vier Zellen (Erhöhung, Verminderung, vor dem Verkauf, Gesamt). 3.3 ist die Summe der fett umrandeten Spalte «auf massgebenden Verkaufserlös entfallender Anteil» mit Minuszeichen in der CHF-Spalte. Das graue Feld bei Ziffer 4 ist nicht ausfüllbar. Auf dem Formular gibt es keine Unterschrift, kein Ort/Datum, keine Beilagen-Checkliste, keine Steuerperiode und kein Amtsfeld. Es ist ein Ergänzungsformular zu Formular 19 und wird mit der Steuererklärung unterzeichnet. Das Feld «Bezeichnung und Rechtsform des Unternehmens» ist in die zwei Angaben Bezeichnung und Rechtsform aufgeteilt, so wie das Label sie benennt. Es ist eine Alternative zu «Beteiligung Nr.». Die Referenz ist «allenfalls» anzugeben. Keine Felder sind: der Anleitungssatz oben («Für jede … Beteiligung ist ein Exemplar … auszufüllen»), die Tabellenanleitungen, der Übertragshinweis auf Formular 19 Spalte Q, die Fussnoten 1 und 2 (Art. 69/70 DBG, Art. 76/77 StG SH) sowie die Hinweise S. 2 (Kreisschreiben Nr. 27 ESTV, Art. 77 Abs. 2 StG). Beobachtungen: (a) Widerspruch im Formular: S. 1 erlaubt eine «eigene Aufstellung anstelle Formular 19», S. 2 verlangt, dass Formular 19 «zwingend» mit eingereicht wird. Die Pflicht, Formular 19 mitzureichen, ist nicht als Feld erfasst, denn Formular 19 ist ein eigenes Formular (597). (b) «Letztes Erwerbsdatum» darf laut S. 2 statt eines Kalenderdatums der Hinweis «vor 1997» sein, das Teilfeld ist also nicht rein ein Datum. (c) «Umschlagsmethode» und «Nachweis der Zuordnung» verlangen nur die Hinweise S. 2, und nur bei Teilveräusserungen mit einzeln nachgeführtem Bestand. Bei durchschnittlicher Ermittlung fällt die Umschlagsmethode weg. Nach der Regel bleibt required=true, weil das Formular die Felder bedingt und nicht als freiwillig markiert. (d) PID ist auf dem Formular nicht als freiwillig markiert, daher required=true. Die bereits erfassten Steuerformulare 259, 260, 271, 272 und 274 führen PID dagegen als freiwillig (265 als Pflicht). Das kann als Pflicht-Divergenz auftauchen."
+}

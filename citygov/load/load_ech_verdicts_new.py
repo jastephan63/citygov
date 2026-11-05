@@ -28,6 +28,8 @@ Idempotent. Staging -> validate -> swap.
 
     python3 scripts/load_ech_verdicts_new.py <dir-with-out_*.json> [--from=468]
     python3 scripts/load_ech_verdicts_new.py <dir> --nur-offene=44,164   # only never-judged or name-copied rows of these
+    python3 scripts/load_ech_verdicts_new.py <dir> --nur=497   # every row of these Formulare, judged ones too:
+                                                                # reviewed corrections of existing assignments
 """
 import glob, json, os, re, shutil, sys
 from citygov.core.common import DB_PATH, connect, norm_ascii as norm
@@ -112,7 +114,13 @@ def main():
     # --nur-offene=<ids>: rows of these Formulare that were never judged or only copied by
     # name (a ported edition's new Angaben) — every judged row stays as it is
     nur = next((a.split("=", 1)[1] for a in sys.argv if a.startswith("--nur-offene=")), None)
-    if nur:
+    # --nur=<ids>: every row of these Formulare, including judged ones — for a reviewed decision
+    # that corrects an existing assignment (the input holds only those decisions)
+    nur_alle = next((a.split("=", 1)[1] for a in sys.argv if a.startswith("--nur=")), None)
+    if nur_alle:
+        ids = ",".join(str(int(x)) for x in nur_alle.split(",") if x.strip())
+        f_where, s_where, f_args, s_args = f"form_id IN ({ids})", f"d.form_id IN ({ids})", [], []
+    elif nur:
         ids = ",".join(str(int(x)) for x in nur.split(",") if x.strip())
         f_where = f"form_id IN ({ids}) AND (ech_status IS NULL OR ech_herkunft LIKE 'propagiert%')"
         s_where = (f"d.form_id IN ({ids}) AND (s.ech_status IS NULL OR s.ech_herkunft LIKE 'propagiert%')")
@@ -135,7 +143,8 @@ def main():
     if errs:
         os.remove(st); print("ABORT:", *errs[:3], sep="\n  "); sys.exit(1)
     os.replace(st, DB_PATH)
-    scope = f"offene Zeilen der Formulare {nur}" if nur else f"Formulare ab #{from_form}"
+    scope = (f"alle Zeilen der Formulare {nur_alle}" if nur_alle else
+             f"offene Zeilen der Formulare {nur}" if nur else f"Formulare ab #{from_form}")
     print(f"Urteile ({scope}): {ok} korrekt, {len(fld)} Feldnamen und {len(sub)} Teilfeld-Paare "
           f"geändert -> {nf} Felder, {ns} Teilfelder; {rejected} REJECTED")
 

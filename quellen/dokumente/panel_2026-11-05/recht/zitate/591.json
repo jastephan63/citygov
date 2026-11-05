@@ -1,0 +1,79 @@
+{
+ "form_id": 591,
+ "mappings": [
+  {
+   "data_field": "PID",
+   "cites": [
+    {
+     "cref": "SHR 641.111",
+     "article_no": "§ 81b",
+     "beleg": "Abs. 4: Die kantonale Steuerverwaltung stellt für elektronische Gesuche um Verlängerung der Einreichungsfrist für die Steuererklärung ein Webportal zur Verfügung, auf dem sich die steuerpflichtigen Personen durch Angabe ihrer PID und bei natürlichen Personen zudem ihres Geburtsdatums ausweisen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Firmenname",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 142",
+     "beleg": "Die steuerpflichtige Person muss die Steuererklärung wahrheitsgemäss und vollständig ausfüllen, persönlich unterzeichnen und samt den vorgeschriebenen Beilagen fristgemäss der zuständigen Behörde einreichen."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 124",
+     "beleg": "Die steuerpflichtige Person muss die Steuererklärung wahrheitsgemäss und vollständig ausfüllen, persönlich unterzeichnen und samt den vorgeschriebenen Beilagen fristgemäss der zuständigen Steuerbehörde einreichen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Wertberichtigungen durch Unterbewertung der Aktiven",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 69",
+     "beleg": "Abs. 1: Geschäftsmässig begründete Abschreibungen von Aktiven sind zulässig, soweit sie buchmässig ... ausgewiesen sind. Abs. 2: In der Regel werden die Abschreibungen nach dem tatsächlichen Wert der einzelnen Vermögensteile berechnet ... Abs. 4: Wertberichtigungen sowie Abschreibungen auf den Gestehungskosten von Beteiligungen ... werden dem steuerbaren Gewinn zugerechnet, soweit sie nicht mehr begründet sind."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 70",
+     "beleg": "Abs. 1: Rückstellungen zu Lasten der Erfolgsrechnung sind zulässig für: ... b) Verlustrisiken, die mit Aktiven des Umlaufvermögens, insbesondere mit Waren und Debitoren, verbunden sind"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 62",
+     "beleg": "Abs. 1: Geschäftsmässig begründete Abschreibungen von Aktiven sind zulässig, soweit sie buchmässig ... ausgewiesen sind. Abs. 2: In der Regel werden die Abschreibungen nach dem tatsächlichen Wert der einzelnen Vermögensteile berechnet ... Abs. 4: Wertberichtigungen und Abschreibungen auf den Gestehungskosten von Beteiligungen ... werden dem steuerbaren Gewinn zugerechnet, soweit sie nicht mehr begründet sind."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 63",
+     "beleg": "Abs. 1: Rückstellungen zu Lasten der Erfolgsrechnung sind zulässig für: ... b. Verlustrisiken, die mit Aktiven des Umlaufvermögens, insbesondere mit Waren und Debitoren, verbunden sind"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Rückstellungen unter den Passiven",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 70",
+     "beleg": "Abs. 1: Rückstellungen zu Lasten der Erfolgsrechnung sind zulässig für: ... Abs. 2: Bisherige Rückstellungen werden dem steuerbaren Gewinn zugerechnet, soweit sie nicht mehr begründet sind."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 63",
+     "beleg": "Abs. 1: Rückstellungen zu Lasten der Erfolgsrechnung sind zulässig für: ... Abs. 2: Bisherige Rückstellungen werden dem steuerbaren Gewinn zugerechnet, soweit sie nicht mehr begründet sind."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Begründungen / Bemerkungen zu den Rückstellungen / Wertberichtigungen",
+   "cites": [],
+   "over_collection": true
+  }
+ ]
+}

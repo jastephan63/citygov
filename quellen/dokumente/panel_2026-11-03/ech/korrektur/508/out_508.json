@@ -1,0 +1,20 @@
+{
+ "hinweis": "Korrekturen bestehender eCH-Zuordnungen von Formular 508: Vorschläge des Panels vom 03.11.2026, gegen Katalog und Praxis der Databank entschieden und zweitgeprüft (05.11.2026); nur die Änderungen.",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-11-03/ech/korrektur/508 --nur=508",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Die 9 Optionen sind der ausländerrechtliche Aufenthaltszweck (u. a. Flüchtling, Beamter ausländischer Verwaltung, Schüler, Pflegekind, Student). eCH-0021 kindOfEmployment ist laut XSD nur die Erwerbsart (Codes 0–4), und der ganze Katalog hat kein Zweck-Element (eCH-0006/residencePermit nur Kategorien, eCH-0223 ohne Zweck, eCH-0041 ohne Elemente). Die Praxis bestätigt das: «Aufenthaltszweck» (238), «Zweck des Aufenthaltes» (497), «Aufenthaltszweck (Nichterwerbstätige)» 3× und «Für Nichterwerbstätige» (512) stehen alle auf kein_standard. Es gilt dieselbe Antwort wie auf 512 (509/510 sollen folgen); 513 mit nur drei Erwerbsarten ist eine andere Angabe.",
+   "feld": "Jetziger Aufenthaltszweck (Erwerbstätige)"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die Angabe ist zusammengesetzt, ihre Teilfelder auf 508 sind schon eCH-0021 employer und placeOfEmployer, und beide liegen laut XSD in occupationDataType. Der Container ist also eCH-0021 occupationData, 31× als Feld belegt (z. B. «Angaben ArbeitgeberIn» 138/147); auch «Befristet bis» (occupationValidTill) liegt darin. Das bisherige employer (6× auf 508–513) ist ein Wertelement nur für den Namen.",
+   "feld": "Name und Adresse des Betriebes",
+   "standard": "eCH-0021",
+   "element": "occupationData"
+  }
+ ]
+}

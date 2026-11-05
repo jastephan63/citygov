@@ -1,0 +1,108 @@
+{
+ "hinweis": "eCH-Urteile Formular 591, Panel 2026-11-05, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-11-05/ech/591 --nur-offene=591",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die PID im Kopf von Formular 6a ist die Steuerregister-Nummer der steuerpflichtigen juristischen Person. Formular 339 schreibt «Steuerregister-Nummer (PID-Nummer)». Übernommen wurde eCH-0044 localPersonId. Dieses Element stammt aus der Personenidentifikation natürlicher Personen, und alle Vorbilder (259, 260, 265, 271, 272, 274) sind Formulare für natürliche Personen. Für juristische Personen gilt eCH-0276 «E-Bilanz und E-Tax JP» (Genehmigt). Dort steht in titleType neben organisationName und uid die Pflichtangabe registerNumber (xs:long, minOccurs=1). cantonalRegisterNumber ist dort optional und wiederholbar. Bei natürlichen Personen entspricht ihr eCH-0278 cantonalRegisterNumber (252, 253 «Register-Nr.»). Geprüft und verworfen: eCH-0098 localSenderId und otherId. Beide sind allgemeine Kennungen und keine Nummer im Steuerregister.",
+   "feld": "PID",
+   "standard": "eCH-0276",
+   "element": "registerNumber"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "«Firmenname» ist der Name der juristischen Person, zu deren Steuererklärung das Formular gehört. Die Databank hat eCH-0098 organisationName (organisationIdentificationType, Genehmigt) übernommen (propagiert). Das ist das Basiselement für den Namen einer Organisation. eCH-0276 titleType verwendet denselben Typ (eCH-0108 unitNameType). Die Übernahme ist richtig.",
+   "feld": "Firmenname"
+  },
+  {
+   "art": "feld",
+   "urteil": "kein_standard",
+   "grund": "Tabelle A listet je Aktivposition den massgebenden Wert, den Buchwert, die Wertberichtigung und den Prozentsatz. Durchsucht wurde der ganze Katalog von 290 Standards: Titel mit Steuer, Bilanz, Finanz, Rechnung, Unternehmen; ech_element mit valueAdjust, valuation, allowance, impairment, provision, bookValue, carrying, marketValue, hiddenReserve. eCH-0276 kennt Wertberichtigungen nur als einzelne Beträge je Kategorie, verteilt auf verschiedene Typen: valueAdjustmentInventories, valueAdjustmentTradeAndOtherCurrentReceivables und die Elemente valueAdjustmentTradeReceivables…. Einen Container für ein Verzeichnis je Position gibt es nicht. assets umfasst die ganze Aktivseite (Register A) und ist zu weit. eCH-0229 taxedHiddenReservesList erfasst versteuerte stille Reserven und nicht Wertberichtigungen. Die Teile werden einzeln beurteilt.",
+   "feld": "Wertberichtigungen durch Unterbewertung der Aktiven"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«Position» ist die frei geschriebene Bezeichnung der Aktivposition, deren Wert berichtigt wird, etwa Warenlager oder Debitoren. eCH-0276 (Genehmigt) führt für die Bezeichnung einer frei erfassten Betragszeile description (freeInputFieldType, textFieldType). Die Databank ordnet dieses Element schon Bezeichnungen solcher Zeilen zu: 258 «Bezeichnung 1/2», 260 «Bezeichnung», 269 «Übrige - Art». structureType position gehört zu den Bemerkungen (Register H) und bezeichnet dort die Stelle, auf die sich eine Bemerkung bezieht. Ein eigenes Element für den Namen einer beliebigen Bilanzposition gibt es nicht.",
+   "elternfeld": "Wertberichtigungen durch Unterbewertung der Aktiven",
+   "teilfeld": "Position",
+   "standard": "eCH-0276",
+   "element": "description"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Zeile 1 ist der massgebende Wert vor der Wertberichtigung. Zeile 2 wird davon abgezogen. Laut Fussnote 1) ist dieser Wert je nach Posten verschieden: bei Warenlagern die Anschaffungs- oder Herstellungskosten bzw. der tiefere Marktwert, bei Debitoren der Nominalwert, sonst der Anschaffungswert oder der niedrigere Verkehrswert. Durchsucht wurden alle 290 Standards, ech_element nach valuation, marketValue, nominalValue, acquisition, carrying und inventories. Nicht passend: eCH-0276 marketValue und nominalValue (nur Wertschriften bzw. zinslose Guthaben), carryingAmountBeforeDepreciation (Anlagevermögen in Register Q), inventories (Bilanzbestand). Jedes davon würde eine engere Bedeutung behaupten.",
+   "elternfeld": "Wertberichtigungen durch Unterbewertung der Aktiven",
+   "teilfeld": "Wert von Wertberichtigung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Zeile 2 ist der aktuelle Buchwert der Aktivposition in der Bilanz. Er wird vom massgebenden Wert abgezogen (vorgedrucktes «–»). eCH-0276 (Genehmigt) führt bookValueAtBalanceSheetDate (balanceSheetDateBusinessYearType, long). Es ist das einzige nicht kategoriegebundene Element für einen Buchwert am Bilanzstichtag. carryingAmountOtherAssets und bookValue (Liegenschaften) sind an eine Kategorie gebunden. Die Databank ordnet «Buchwert» bei Formular 252 schon so zu. Einschränkung: Im XSD verweist kein anderes Element auf den Typ. Das Element steht aber im Katalog.",
+   "elternfeld": "Wertberichtigungen durch Unterbewertung der Aktiven",
+   "teilfeld": "Buchwert",
+   "standard": "eCH-0276",
+   "element": "bookValueAtBalanceSheetDate"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Zeile 3 ist der Betrag der Wertberichtigung (Zeile 1 minus Zeile 2) für eine frei bezeichnete Aktivposition. eCH-0276 kennt Wertberichtigungen nur an eine Kategorie gebunden: valueAdjustmentInventories, valueAdjustmentTradeAndOtherCurrentReceivables und valueAdjustmentTradeReceivables…. Für das Anlagevermögen gibt es depreciationValueAdjustment… in der Erfolgsrechnung, für Beteiligungen depreciationValueAdjustments. Weil die Position frei ist, würde jedes dieser Elemente eine falsche Kategorie behaupten. Durchsucht wurden alle 290 Standards, ech_element nach valueAdjust, impairment, allowance und valuation. In eCH-0229, eCH-0119 und eCH-0278 gab es keinen passenden Treffer.",
+   "elternfeld": "Wertberichtigungen durch Unterbewertung der Aktiven",
+   "teilfeld": "Wertberichtigung"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "kein_standard",
+   "grund": "Zeile 4 ist der Anteil der Wertberichtigung in Prozent des massgebenden Werts. Alle Prozent-Elemente von eCH-0276 sind an andere Inhalte gebunden, z. B. participationInPercent, equalisationAmountPercent, permittedDepreciationRate und taxableEquityPercentage. percentageType ist nur ein Typ und kein Element. Auch eCH-0229, eCH-0119 und eCH-0278 haben kein Element für einen Wertberichtigungssatz. Durchsucht wurden alle 290 Standards, ech_element nach percent, rate und valueAdjust.",
+   "elternfeld": "Wertberichtigungen durch Unterbewertung der Aktiven",
+   "teilfeld": "Wertberichtigung in %"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Tabelle B ist das Verzeichnis der Rückstellungen auf der Passivseite. Der Container für Rückstellungen in eCH-0276 (Genehmigt) ist provisionsAndSimilarItemsStipulatedByLaw (noncurrentLiabilitiesType, Typ provisionsAndSimilarItemsStipulatedByLawType). Er gliedert die Rückstellungen in guaranteeProvisions, provisionForMajorRepairs, provisionsForResearchAndDevelopment, provisionForRestructuringAndEnvironmentalProtection, provisionForTaxes und otherProvisions. Einschränkung: Kurzfristige Rückstellungen führt eCH-0276 nur als einzelnen Betrag (currentProvisions) ausserhalb dieses Containers. equityAndLiabilities (die ganze Passivseite) wäre zu weit. Ein umfassenderer Container nur für Rückstellungen existiert nicht. Die Teile werden einzeln beurteilt.",
+   "feld": "Rückstellungen unter den Passiven",
+   "standard": "eCH-0276",
+   "element": "provisionsAndSimilarItemsStipulatedByLaw"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "«Position» ist die frei geschriebene Bezeichnung der einzelnen Rückstellung, etwa Garantierückstellung. eCH-0276 (Genehmigt) führt für die Bezeichnung einer frei erfassten Betragszeile description (freeInputFieldType). Das entspricht der Zuordnung in Tabelle A und der bisherigen Zuordnung von Bezeichnungen (258, 260, 269). Die Elemente von provisionsAndSimilarItemsStipulatedByLawType sind Beträge je Kategorie und keine Bezeichnungen.",
+   "elternfeld": "Rückstellungen unter den Passiven",
+   "teilfeld": "Position",
+   "standard": "eCH-0276",
+   "element": "description"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Korrektur des ersten Urteils (bookValueAtBalanceSheetDate). Zeile 1 ist der aktuelle Betrag der Rückstellung am Bilanzstichtag, Zeile 2 der Betrag derselben Rückstellung am Ende des Vorjahres. eCH-0276 (Genehmigt) bildet genau dieses Paar ab: amountCurrentPreviousPeriodType («Amount for current and previous period») mit amountEndOfCurrentPeriod und amountEndOfPreviousPeriod (long). In eCH-0276 trägt dieser Typ Beträge der Passivseite, z. B. totalLiabilities und commercialLiabilities. bookValueAtBalanceSheetDate dagegen steht neben rateAccordingToRateList, taxValueOnTheBalanceSheetDate und grossIncomeWithoutAnyDeduction, also den Spalten eines Wertschriftenverzeichnisses. Ausserdem bekäme der Buchwert einer Rückstellung sonst dasselbe Element wie der Buchwert einer Aktivposition in Tabelle A. Kategorie-Elemente wie guaranteeProvisions oder otherProvisions würden bei einer frei bezeichneten Position eine bestimmte Art behaupten.",
+   "elternfeld": "Rückstellungen unter den Passiven",
+   "teilfeld": "Buchwert der Rückstellung",
+   "standard": "eCH-0276",
+   "element": "amountEndOfCurrentPeriod"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Zeile 2 ist der Stand der Rückstellung am Ende des Vorjahres. Das ist ein vergangener Wert, also kommt kein Element für den aktuellen Wert in Frage. eCH-0276 (Genehmigt) unterscheidet im allgemeinen Typ amountCurrentPreviousPeriodType («Amount for current and previous period») amountEndOfCurrentPeriod und amountEndOfPreviousPeriod (long). Der Betrag am Ende der Vorperiode ist amountEndOfPreviousPeriod. Er bildet mit Zeile 1 (amountEndOfCurrentPeriod) das Paar desselben Typs.",
+   "elternfeld": "Rückstellungen unter den Passiven",
+   "teilfeld": "Rückstellung am Ende des Vorjahres",
+   "standard": "eCH-0276",
+   "element": "amountEndOfPreviousPeriod"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Abschnitt C ist ein freier Text. Darin begründet oder erläutert die juristische Person die Rückstellungen und Wertberichtigungen aus den Tabellen A und B, also Bemerkungen zu bestimmten Bilanzpositionen. eCH-0276 (Genehmigt) hat dafür Register H «Remarks» (remarksType → structure, structureType). Dieser Typ enthält position und remark (xs:string) für eine Bemerkung zu einer Position und daneben generalRemarks für allgemeine Bemerkungen. Weil sich C auf die Positionen von A und B bezieht, passt remark besser als generalRemarks. Bei Steuerformularen natürlicher Personen blieb «Bemerkungen» bisher ohne Standard. Für juristische Personen hat eCH-0276 aber ein eigenes Element.",
+   "feld": "Begründungen / Bemerkungen zu den Rückstellungen / Wertberichtigungen",
+   "standard": "eCH-0276",
+   "element": "remark"
+  }
+ ]
+}

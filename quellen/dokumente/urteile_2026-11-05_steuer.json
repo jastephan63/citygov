@@ -1,0 +1,114 @@
+{
+ "hinweis": "Die Dateien der sh.ch-Seite «Steuerformulare Juristische Personen» (Stand 29.07.2026): 10 Formulare (5, 6, 6a, 7, 8c, 12a, 13, 14a, 19, 19.1), die die Databank nicht hielt, und 2 Wegleitungen — Titel und Art aus den gerenderten Seiten beurteilt, zweitgeprüft.",
+ "abzug": "2026-11-05",
+ "urteile": [
+  {
+   "sha256": "3c3bbffe3176150111f93cf03a08d88274ee5341849bc67924a64ce460a95863",
+   "art": "formular",
+   "urteil": "weiteres_formular",
+   "form_id": null,
+   "titel": "Steuererklärung 2026 für Kapitalgesellschaften, Genossenschaften und ausländische Personengesamtheiten (Formular 5)",
+   "zweitgeprueft": true,
+   "beleg": "https://sh.ch/CMS/get/file/f3bb8f83-b798-446d-aedb-7f77b59d4fcd (05 SH JP STE Kapital 2026_DEF.pdf), sh.ch-Seite «Steuerformulare Juristische Personen», Stand 29.07.2026. Vierseitiges Erklärungsformular mit Eingabezeilen, Code-Feldern (z. B. 1100, 4500, 6700), Ja/Nein-Kästchen, IBAN-Feld, Vollmacht mit Unterschrift und Beilagen-Kästchen; der Kopf druckt «Steuererklärung 2026», die Fusszeile «Formular 5», und es schliesst mit «Die Richtigkeit und Vollständigkeit der Angaben bezeugt:»."
+  },
+  {
+   "sha256": "0cf8727cb4499d2d4d0391b7f44c58ead971e53614ff0ae84f45420257f650fc",
+   "art": "formular",
+   "urteil": "weiteres_formular",
+   "form_id": null,
+   "titel": "Abschreibungen für juristische Personen (Formular 6)",
+   "zweitgeprueft": true,
+   "beleg": "https://sh.ch/CMS/get/file/437a7f4e-7a54-490d-8d5f-f6543d56bee0 (06 SH JP Abschreibungen_DEF.pdf), sh.ch-Seite «Steuerformulare Juristische Personen», Stand 29.07.2026. Einseitiges Beilageformular mit Feld «Firmenname», zwei leeren Tabellen mit je vier Spalten «Anlageobjekt» in CHF (Zeilen «Wert zu Beginn des Geschäftsjahres» bis «Abschreibungssatz») und Leerzeilen «Bemerkungen zu den Abschreibungen»; Fusszeile «Formular 6», kein Steuerjahr oder Ausgabevermerk gedruckt."
+  },
+  {
+   "sha256": "20af8fa47ace8855944e975ba000942e59ad3801a073d194952ed79429ffa3a3",
+   "art": "formular",
+   "urteil": "weiteres_formular",
+   "form_id": null,
+   "titel": "Wertberichtigungen Rückstellungen für juristische Personen (Formular 6a)",
+   "zweitgeprueft": true,
+   "beleg": "https://sh.ch/CMS/get/file/6c2e7698-ec26-4a12-929d-d87126571769 (06a SH JP Wertberichtigungen-Rückstellungen_DEF.pdf), sh.ch-Seite «Steuerformulare Juristische Personen», Stand 29.07.2026. Einseitiges Beilageformular mit Feld «Firmenname» und leeren CHF-Tabellen zu «A Wertberichtigungen durch Unterbewertung der Aktiven» und «B Rückstellungen unter den Passiven» sowie Leerzeilen für Begründungen; der Titel steht zweizeilig ohne Schrägstrich, Fusszeile «Formular 6a», kein Steuerjahr oder Ausgabevermerk gedruckt."
+  },
+  {
+   "sha256": "04252d78521842c280a58c49d3fa7da28c1665ab2b9fed6a1ca9a2fb06ad48fa",
+   "art": "formular",
+   "urteil": "weiteres_formular",
+   "form_id": null,
+   "titel": "Steuererklärung 2026 für Vereine, Stiftungen und übrige juristische Personen (Formular 7)",
+   "zweitgeprueft": true,
+   "beleg": "https://sh.ch/CMS/get/file/1107809d-a275-4cee-aa47-d305cbc4a26b (07 SH JP STE Vereine 2026_DEF.pdf), sh.ch-Seite «Steuerformulare Juristische Personen», Stand 29.07.2026. Vierseitiges Erklärungsformular mit Eingabezeilen, Code-Feldern (z. B. 1110, 1800, 2700), Antragskästchen, IBAN-Feld, Vollmacht mit Unterschrift und Beilagen-Kästchen; der Kopf druckt «Steuererklärung 2026», die Fusszeile von Seite 1 «Formular 7», und es schliesst mit «Die Richtigkeit und Vollständigkeit der Angaben bezeugt:»."
+  },
+  {
+   "sha256": "efc98810d504657186e39d7597369809651a1177eaffa2bd651bb9b14cd95ffe",
+   "art": "formular",
+   "urteil": "weiteres_formular",
+   "form_id": null,
+   "titel": "Steuerausscheidung für juristische Personen (Formular 8c)",
+   "zweitgeprueft": true,
+   "beleg": "https://sh.ch/CMS/get/file/59829bfd-b509-478d-b39e-691f3b18c02b (08c SH JP Steuerausscheidung_DEF.pdf), sh.ch-Seite «Steuerformulare Juristische Personen», Stand 29.07.2026. Einseitiges Beilageformular mit Feld «Firmenname» und leerer Tabelle «Kapitalausscheidung» / «Gewinnausscheidung» mit Spalten «Total» und «Kanton und Ort» in CHF und Quoten in %; Fusszeile «Formular 8c», kein Steuerjahr oder Ausgabevermerk gedruckt."
+  },
+  {
+   "sha256": "b54636aa61330a260e3f307930222f5abb8216499ec737f3eb316db2556e6bcf",
+   "art": "formular",
+   "urteil": "weiteres_formular",
+   "form_id": null,
+   "titel": "Bescheinigung über Bezüge für juristische Personen (Formular 12a)",
+   "zweitgeprueft": true,
+   "beleg": "https://sh.ch/CMS/get/file/ff3eb60f-e4c8-4276-ad0f-185ac9ff7d0f (12a SH JP Bescheinigung Bezüge_DEF.pdf), sh.ch-Seite «Steuerformulare Juristische Personen», Stand 29.07.2026. Zweiseitiges Formular: Seite 1 mit Feld «Firmenname», 15-zeiliger Tabelle «Name / Vorname», «Wohnort», «Bezüge» und Unterschriftsfeld, Seite 2 mit «Hinweise und Erläuterungen», wonach «Das Formular 12a ist unterzeichnet zusammen mit den übrigen Unterlagen» einzureichen ist; Fusszeile auf beiden Seiten «Formular 12a», kein Steuerjahr oder Ausgabevermerk gedruckt."
+  },
+  {
+   "sha256": "52106e8c6a60e3a464ea7fa05651bbb5931f1201e860704ca4411dda09a98c3b",
+   "art": "formular",
+   "urteil": "weiteres_formular",
+   "form_id": null,
+   "titel": "Wertschriften- und Guthabenverzeichnis für juristische Personen (Formular 13)",
+   "zweitgeprueft": true,
+   "beleg": "https://sh.ch/CMS/get/file/a729071e-d9b6-467b-ba6b-ad967b016b89 (13 SH JP WV-Gutshabenverzeichnis_DEF.pdf), sh.ch-Seite «Steuerformulare Juristische Personen», Stand 29.07.2026. Einseitiges Formular mit den Feldern «PID:» und «Firmenname» sowie einer leeren Tabelle (Gesamter Nennwert bzw. Stückzahl, Bezeichnung der Vermögenswerte, Buchwert, Bruttoertrag) mit Totalzeile, das ausdrücklich zur Deklaration auffordert: «Zu deklarieren sind auch Darlehen jeglicher Art an Beteiligte»; ein Steuerjahr oder eine Ausgabe ist nicht aufgedruckt (nur Fusszeile «Formular 13»)."
+  },
+  {
+   "sha256": "922f8f0342400d57495eb30575901b9001e74e01f3dba68658a793184852260d",
+   "art": "formular",
+   "urteil": "weiteres_formular",
+   "form_id": null,
+   "titel": "Schuldenverzeichnis für juristische Personen (Formular 14a)",
+   "zweitgeprueft": true,
+   "beleg": "https://sh.ch/CMS/get/file/5256e61e-2978-4190-b6bf-6f8acf75771f (14a SH JP Schuldenverzeichnis_DEF.pdf), sh.ch-Seite «Steuerformulare Juristische Personen», Stand 29.07.2026. Zweiseitiges Formular mit je zehn leeren Zeilen für «A Grundpfandschulden» und «B Darlehens- und andere Schulden» sowie einem Betragsfeld «C Lieferantenschulden», eingeleitet mit «Auf diesem Formular sind sämtliche Schulden … zu deklarieren»; kein Steuerjahr oder Ausgabevermerk aufgedruckt (nur Fusszeile «Formular 14a»)."
+  },
+  {
+   "sha256": "e3f1d4734e48363c5da0686882f73e3b4937bbc334092faa0211c2d16bf0573f",
+   "art": "formular",
+   "urteil": "weiteres_formular",
+   "form_id": null,
+   "titel": "Angaben über Beteiligungen für juristische Personen (Formular 19)",
+   "zweitgeprueft": true,
+   "beleg": "https://sh.ch/CMS/get/file/88400902-654d-4901-a5fc-e4cef104ac3f (19 SH JP Angaben-Beteiligungen_DEF.pdf), sh.ch-Seite «Steuerformulare Juristische Personen», Stand 29.07.2026. Zweiseitiges Formular mit leeren Tabellen (Spalten A bis W, Zeilen 1–10), Ja/Nein-Kästchen zur Veräusserung auf Seite 1 und Berechnungszeilen zum Beteiligungsabzug auf Seite 2, mit dem Hinweis «Bitte beachten Sie die Wegleitung zu Angaben über Beteiligungen»; kein Steuerjahr oder Ausgabevermerk aufgedruckt (nur Fusszeile «Formular 19»)."
+  },
+  {
+   "sha256": "56a9d63ddba16867b29dfea25cdc3df6e1475bcc885bc3fd7f2b44f4248411d2",
+   "art": "formular",
+   "urteil": "weiteres_formular",
+   "form_id": null,
+   "titel": "Kapitalgewinn aus Beteiligungen für juristische Personen (Formular 19.1)",
+   "zweitgeprueft": true,
+   "beleg": "https://sh.ch/CMS/get/file/7e2230d1-b019-4fe9-82d3-ee61fe6ee3bc (19.1 SH JP Kapitalgewinn-Beteiligungen_DEF.pdf), sh.ch-Seite «Steuerformulare Juristische Personen», Stand 29.07.2026. Seite 1 enthält leere Tabellen zu Veräusserungserlös und Gestehungskosten mit der Anweisung «Für jede ganz oder teilweise veräusserte Beteiligung ist ein Exemplar des Formulars auszufüllen», Seite 2 nur «Hinweise und Erläuterungen»; kein Steuerjahr oder Ausgabevermerk aufgedruckt (nur Fusszeile «Formular 19.1»)."
+  },
+  {
+   "sha256": "08538d76051ac8fa25c7a61cd626b0b7ca9015bef351daf49f8d89d312b4cccf",
+   "art": "wegleitung",
+   "urteil": "kein_formular",
+   "form_id": null,
+   "titel": "Wegleitung Angaben über Beteiligungen für juristische Personen",
+   "zweitgeprueft": true,
+   "beleg": "https://sh.ch/CMS/get/file/1fb193a1-ddaa-4979-b455-230d6dc10bd2 (SH JP Wegleitung_Angaben-Beteiligungen_DEF.pdf), sh.ch-Seite «Steuerformulare Juristische Personen», Stand 29.07.2026. Dreiseitiger Erläuterungstext ohne Eingabefelder, der Punkt für Punkt und Spalte für Spalte das Formular 19 erklärt: «Die Seiten-, Punkt- und Spaltenangaben beziehen sich auf das Formular «Angaben über Beteiligungen» (Formular 19)»; kein Steuerjahr oder Ausgabevermerk aufgedruckt."
+  },
+  {
+   "sha256": "02d81f6ef8fb26a164fddc6b61e593f2f0ca7b8e44d66a76421037b9c2ebd59b",
+   "art": "wegleitung",
+   "urteil": "kein_formular",
+   "form_id": null,
+   "titel": "Wegleitung für Kapitalgesellschaften",
+   "zweitgeprueft": true,
+   "beleg": "https://sh.ch/CMS/get/file/27e6e064-cd29-4b6a-bd72-1e3f78ce5389 (SH JP Wegleitung_Kapitalgesellschaften_DEF.pdf), sh.ch-Seite «Steuerformulare Juristische Personen», Stand 29.07.2026. Dreiseitiger Erläuterungstext ohne Eingabefelder zu den Punkten der Steuererklärung (Reingewinn, Eigenkapital, Steuerberechnung, Straffolgen bei Widerhandlungen), der mit «Sie ersparen sich oder Ihren Kunden Rückfragen, wenn Sie diese Wegleitung … lesen» beginnt; kein Steuerjahr oder Ausgabevermerk aufgedruckt."
+  }
+ ]
+}

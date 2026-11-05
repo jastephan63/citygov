@@ -1,8 +1,8 @@
 {
  "meta": {
-  "generated_at": "2026-11-03T16:23:33",
+  "generated_at": "2026-11-05T14:27:52",
   "datenstand": {
-   "build": "2026-11-03",
+   "build": "2026-11-05",
    "xsd_sweep": {
     "date": "2026-09-26",
     "n": 116,
@@ -96,7 +96,7 @@
   },
   "quelle": "citygov.db (generated_at = Stempel von data_export.json)",
   "vertrag": {
-   "version": "1.0.3",
+   "version": "1.0.4",
    "schema": "schema/citygov_ech_schemas.schema.json",
    "aenderungen": "exportvertrag.json"
   }
@@ -87851,6 +87851,17 @@
    "exchange_ready": "teilweise",
    "abdeckung_pct": 63,
    "ech": {
+    "eCH-0223": {
+     "personEventMessageType": [
+      {
+       "element": "eventType",
+       "datatype": "eventTypeType",
+       "feld": "Gesuchsart",
+       "kennung": "sh:formular:1603-p-gesuchsformular-auslaenderbewilligung-a1:feld:1",
+       "angabe_kennung": "sh:angabe:eCH-0223:eventType:personEventMessageType"
+      }
+     ]
+    },
     "eCH-0006": {
      "(root)": [
       {
@@ -88038,13 +88049,6 @@
        "feld": "Beschäftigung als",
        "kennung": "sh:formular:1603-p-gesuchsformular-auslaenderbewilligung-a1:feld:17",
        "angabe_kennung": "sh:angabe:eCH-0021:jobTitle:jobDataType"
-      },
-      {
-       "element": "kindOfEmployment",
-       "datatype": null,
-       "feld": "Selbständig",
-       "kennung": "sh:formular:1603-p-gesuchsformular-auslaenderbewilligung-a1:feld:18",
-       "angabe_kennung": "sh:angabe:eCH-0021:kindOfEmployment:jobDataType"
       }
      ],
      "occupationDataType": [
@@ -88136,6 +88140,33 @@
       }
      ]
     },
+    "eCH-0278": {
+     "personalDetailType": [
+      {
+       "element": "isSelfEmployed",
+       "datatype": "boolean",
+       "feld": "Selbständig",
+       "kennung": "sh:formular:1603-p-gesuchsformular-auslaenderbewilligung-a1:feld:18",
+       "angabe_kennung": "sh:angabe:eCH-0278:isSelfEmployed:personalDetailType"
+      }
+     ],
+     "dependentEmploymentType": [
+      {
+       "element": "employmentPercentage",
+       "datatype": "percentageType",
+       "feld": "Umfang der Beschäftigung",
+       "kennung": "sh:formular:1603-p-gesuchsformular-auslaenderbewilligung-a1:feld:21",
+       "angabe_kennung": "sh:angabe:eCH-0278:employmentPercentage:dependentEmploymentType"
+      },
+      {
+       "element": "employedRevenue",
+       "datatype": "moneyType",
+       "feld": "Betrag",
+       "kennung": "sh:formular:1603-p-gesuchsformular-auslaenderbewilligung-a1:feld:23:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0278:employedRevenue:dependentEmploymentType"
+      }
+     ]
+    },
     "eCH-0260": {
      "QPgradesResponsesType": [
       {
@@ -88144,22 +88175,6 @@
        "feld": "Ausbildung/bisherige Tätigkeit",
        "kennung": "sh:formular:1603-p-gesuchsformular-auslaenderbewilligung-a1:feld:19:teil:1",
        "angabe_kennung": "sh:angabe:eCH-0260:profession:QPgradesResponsesType"
-      }
-     ],
-     "salaryType": [
-      {
-       "element": "grossSalary1stYear",
-       "datatype": null,
-       "feld": "Betrag",
-       "kennung": "sh:formular:1603-p-gesuchsformular-auslaenderbewilligung-a1:feld:23:teil:1",
-       "angabe_kennung": "sh:angabe:eCH-0260:grossSalary1stYear:salaryType"
-      },
-      {
-       "element": "perMonthWeekHour1stYear",
-       "datatype": null,
-       "feld": "Pro Stunde / Pro Monat",
-       "kennung": "sh:formular:1603-p-gesuchsformular-auslaenderbewilligung-a1:feld:23:teil:2",
-       "angabe_kennung": "sh:angabe:eCH-0260:perMonthWeekHour1stYear:salaryType"
       }
      ],
      "workingHoursType": [
@@ -88171,25 +88186,9 @@
        "angabe_kennung": "sh:angabe:eCH-0260:hoursPerWeek:workingHoursType"
       }
      ]
-    },
-    "eCH-0278": {
-     "dependentEmploymentType": [
-      {
-       "element": "employmentPercentage",
-       "datatype": "percentageType",
-       "feld": "Umfang der Beschäftigung",
-       "kennung": "sh:formular:1603-p-gesuchsformular-auslaenderbewilligung-a1:feld:21",
-       "angabe_kennung": "sh:angabe:eCH-0278:employmentPercentage:dependentEmploymentType"
-      }
-     ]
     }
    },
    "ohne_standard": [
-    {
-     "feld": "Gesuchsart",
-     "kennung": "sh:formular:1603-p-gesuchsformular-auslaenderbewilligung-a1:feld:1",
-     "format": ""
-    },
     {
      "feld": "Strafverfahren hängig",
      "kennung": "sh:formular:1603-p-gesuchsformular-auslaenderbewilligung-a1:feld:8",
@@ -88253,6 +88252,11 @@
     {
      "feld": "Art des Arbeitsverhältnisses",
      "kennung": "sh:formular:1603-p-gesuchsformular-auslaenderbewilligung-a1:feld:22",
+     "format": ""
+    },
+    {
+     "feld": "Pro Stunde / Pro Monat",
+     "kennung": "sh:formular:1603-p-gesuchsformular-auslaenderbewilligung-a1:feld:23:teil:2",
      "format": ""
     },
     {
@@ -89705,7 +89709,7 @@
    "titel": "Verlängerungsgesuch",
    "dienststelle": "Migrationsamt und Passbüro",
    "exchange_ready": "teilweise",
-   "abdeckung_pct": 72,
+   "abdeckung_pct": 69,
    "ech": {
     "eCH-0044": {
      "personIdentificationLightType": [
@@ -89843,15 +89847,6 @@
        "angabe_kennung": "sh:angabe:eCH-0021:address:guardianRelationshipType"
       }
      ],
-     "jobDataType": [
-      {
-       "element": "kindOfEmployment",
-       "datatype": null,
-       "feld": "Jetziger Aufenthaltszweck (Erwerbstätige)",
-       "kennung": "sh:formular:verlangerungsgesuch:feld:17",
-       "angabe_kennung": "sh:angabe:eCH-0021:kindOfEmployment:jobDataType"
-      }
-     ],
      "occupationDataType": [
       {
        "element": "employer",
@@ -89926,6 +89921,11 @@
     {
      "feld": "Ehegatte oder Partner Schweizer(in)",
      "kennung": "sh:formular:verlangerungsgesuch:feld:12",
+     "format": ""
+    },
+    {
+     "feld": "Jetziger Aufenthaltszweck (Erwerbstätige)",
+     "kennung": "sh:formular:verlangerungsgesuch:feld:17",
      "format": ""
     },
     {
@@ -90526,16 +90526,16 @@
        "feld": "Jetzige ausgeübte Tätigkeit",
        "kennung": "sh:formular:formular-post-schalter:feld:12",
        "angabe_kennung": "sh:angabe:eCH-0021:jobTitle:jobDataType"
+      },
+      {
+       "element": "occupationData",
+       "datatype": "occupationDataType",
+       "feld": "Name und Adresse des Betriebes",
+       "kennung": "sh:formular:formular-post-schalter:feld:13",
+       "angabe_kennung": "sh:angabe:eCH-0021:occupationData:jobDataType"
       }
      ],
      "occupationDataType": [
-      {
-       "element": "employer",
-       "datatype": null,
-       "feld": "Name und Adresse des Betriebes",
-       "kennung": "sh:formular:formular-post-schalter:feld:13",
-       "angabe_kennung": "sh:angabe:eCH-0021:employer:occupationDataType"
-      },
       {
        "element": "occupationValidTill",
        "datatype": "date",
@@ -90607,7 +90607,7 @@
    "titel": "C Verlängerungsgesuch",
    "dienststelle": "Migrationsamt und Passbüro",
    "exchange_ready": "teilweise",
-   "abdeckung_pct": 70,
+   "abdeckung_pct": 67,
    "ech": {
     "eCH-0044": {
      "personIdentificationLightType": [
@@ -90738,21 +90738,14 @@
      ],
      "jobDataType": [
       {
-       "element": "kindOfEmployment",
-       "datatype": null,
-       "feld": "Jetziger Aufenthaltszweck (Erwerbstätige)",
-       "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:17",
-       "angabe_kennung": "sh:angabe:eCH-0021:kindOfEmployment:jobDataType"
+       "element": "occupationData",
+       "datatype": "occupationDataType",
+       "feld": "Name und Adresse des Betriebes",
+       "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:18",
+       "angabe_kennung": "sh:angabe:eCH-0021:occupationData:jobDataType"
       }
      ],
      "occupationDataType": [
-      {
-       "element": "employer",
-       "datatype": null,
-       "feld": "Name und Adresse des Betriebes",
-       "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:18",
-       "angabe_kennung": "sh:angabe:eCH-0021:employer:occupationDataType"
-      },
       {
        "element": "occupationValidTill",
        "datatype": "date",
@@ -90812,6 +90805,11 @@
     {
      "feld": "Ehegatte oder Partner Schweizer(in)",
      "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:12",
+     "format": ""
+    },
+    {
+     "feld": "Jetziger Aufenthaltszweck (Erwerbstätige)",
+     "kennung": "sh:formular:verlangerungsgesuch-auslanderausweis-e:feld:17",
      "format": ""
     },
     {
@@ -90966,16 +90964,16 @@
        "feld": "Jetzige ausgeübte Tätigkeit",
        "kennung": "sh:formular:formular-post-schalter-e:feld:13",
        "angabe_kennung": "sh:angabe:eCH-0021:jobTitle:jobDataType"
+      },
+      {
+       "element": "occupationData",
+       "datatype": "occupationDataType",
+       "feld": "Name und Adresse des Betriebes",
+       "kennung": "sh:formular:formular-post-schalter-e:feld:14",
+       "angabe_kennung": "sh:angabe:eCH-0021:occupationData:jobDataType"
       }
      ],
      "occupationDataType": [
-      {
-       "element": "employer",
-       "datatype": null,
-       "feld": "Name und Adresse des Betriebes",
-       "kennung": "sh:formular:formular-post-schalter-e:feld:14",
-       "angabe_kennung": "sh:angabe:eCH-0021:employer:occupationDataType"
-      },
       {
        "element": "placeOfWork",
        "datatype": "addressInformationType",
@@ -105226,6 +105224,3041 @@
     }
    },
    "ohne_standard": []
+  },
+  {
+   "form_id": 589,
+   "formular_kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf",
+   "titel": "Steuererklärung 2026 für Kapitalgesellschaften, Genossenschaften und ausländische Personengesamtheiten (Formular 5)",
+   "dienststelle": "Steuerverwaltung",
+   "exchange_ready": "teilweise",
+   "abdeckung_pct": 94,
+   "ech": {
+    "eCH-0276": {
+     "titleType": [
+      {
+       "element": "registerNumber",
+       "datatype": "long",
+       "feld": "PID",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:registerNumber:titleType"
+      },
+      {
+       "element": "secondaryTaxDomicile",
+       "datatype": "secondaryTaxDomicileType",
+       "feld": "Zweigniederlassungen",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:7",
+       "angabe_kennung": "sh:angabe:eCH-0276:secondaryTaxDomicile:titleType"
+      },
+      {
+       "element": "chairmanOfTheBoardOfDirectors",
+       "datatype": "string",
+       "feld": "Name, Adresse",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:10:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:chairmanOfTheBoardOfDirectors:titleType"
+      },
+      {
+       "element": "management",
+       "datatype": "string",
+       "feld": "Name, Adresse",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:11:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:management:titleType"
+      }
+     ],
+     "contactForInquiriesType": [
+      {
+       "element": "nameOfContact",
+       "datatype": "string",
+       "feld": "Name",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:12:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:nameOfContact:contactForInquiriesType"
+      }
+     ],
+     "deductionsType": [
+      {
+       "element": "patentBox",
+       "datatype": "long",
+       "feld": "Abzug für qualifizierte Patenterträge (Code 4412)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:40",
+       "angabe_kennung": "sh:angabe:eCH-0276:patentBox:deductionsType"
+      },
+      {
+       "element": "additionalDeductionForResearchAndDevelopment",
+       "datatype": "long",
+       "feld": "Abzug für Forschung und Entwicklung (Code 4414)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:41",
+       "angabe_kennung": "sh:angabe:eCH-0276:additionalDeductionForResearchAndDevelopment:deductionsType"
+      },
+      {
+       "element": "depreciationStepUp",
+       "datatype": "long",
+       "feld": "Abschreibung aufgedeckter stiller Reserven aus altrechtlichem Step-Up (Code 4415)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:42",
+       "angabe_kennung": "sh:angabe:eCH-0276:depreciationStepUp:deductionsType"
+      },
+      {
+       "element": "depreciationStepUp",
+       "datatype": "long",
+       "feld": "Aufgedeckte stille Reserven aus altrechtlichem Step-Up – Steuerliche Abschreibung im Geschäftsjahr (Code 6960)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:77",
+       "angabe_kennung": "sh:angabe:eCH-0276:depreciationStepUp:deductionsType"
+      }
+     ],
+     "taxAmountFreeInputFieldType": [
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:44:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:cantonalTax:taxAmountFreeInputFieldType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:44:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0276:federalTax:taxAmountFreeInputFieldType"
+      },
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:80:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:cantonalTax:taxAmountFreeInputFieldType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:80:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0276:federalTax:taxAmountFreeInputFieldType"
+      },
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:81:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:cantonalTax:taxAmountFreeInputFieldType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:81:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0276:federalTax:taxAmountFreeInputFieldType"
+      }
+     ],
+     "variousQuestionsType": [
+      {
+       "element": "taxableProfitCantonalAndMunicipalTaxes",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:45:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:taxableProfitCantonalAndMunicipalTaxes:variousQuestionsType"
+      },
+      {
+       "element": "taxableProfitDirectFederalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:45:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0276:taxableProfitDirectFederalTax:variousQuestionsType"
+      }
+     ],
+     "profitAppropriationType": [
+      {
+       "element": "depositInStatutoryProfitReserves",
+       "datatype": "long",
+       "feld": "Zuweisung an gesetzliche Gewinnreserven (Code 5520)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:53",
+       "angabe_kennung": "sh:angabe:eCH-0276:depositInStatutoryProfitReserves:profitAppropriationType"
+      },
+      {
+       "element": "depositInVoluntaryProfitReserves",
+       "datatype": "long",
+       "feld": "Zuweisung an freiwillige Gewinnreserven (Code 5530)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:54",
+       "angabe_kennung": "sh:angabe:eCH-0276:depositInVoluntaryProfitReserves:profitAppropriationType"
+      }
+     ],
+     "freeInputFieldType": [
+      {
+       "element": "description",
+       "datatype": "textFieldType",
+       "feld": "Umschreibung (Leerzeile ○)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:57:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:description:freeInputFieldType"
+      },
+      {
+       "element": "description",
+       "datatype": "textFieldType",
+       "feld": "Umschreibung (nach «Übrige:»)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:64:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:description:freeInputFieldType"
+      },
+      {
+       "element": "description",
+       "datatype": "textFieldType",
+       "feld": "Umschreibung (Leerzeile)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:65:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:description:freeInputFieldType"
+      }
+     ],
+     "detailsShareholdersAssociatesType": [
+      {
+       "element": "amount",
+       "datatype": "integer",
+       "feld": "CHF",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:57:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0276:amount:detailsShareholdersAssociatesType"
+      },
+      {
+       "element": "amount",
+       "datatype": "integer",
+       "feld": "Am Ende des Geschäftsjahres",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:64:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0276:amount:detailsShareholdersAssociatesType"
+      },
+      {
+       "element": "amount",
+       "datatype": "integer",
+       "feld": "Am Ende des Geschäftsjahres",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:65:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0276:amount:detailsShareholdersAssociatesType"
+      }
+     ],
+     "taxableEquityType": [
+      {
+       "element": "statutoryCapitalReserves",
+       "datatype": "long",
+       "feld": "Gesetzliche Kapitalreserve (Code 6211)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:61",
+       "angabe_kennung": "sh:angabe:eCH-0276:statutoryCapitalReserves:taxableEquityType"
+      },
+      {
+       "element": "statutoryProfitReserves",
+       "datatype": "long",
+       "feld": "Gesetzliche Gewinnreserve (Code 6213)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:62",
+       "angabe_kennung": "sh:angabe:eCH-0276:statutoryProfitReserves:taxableEquityType"
+      },
+      {
+       "element": "voluntaryProfitReserves",
+       "datatype": "long",
+       "feld": "Freiwillige Gewinnreserve (Code 6214)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:63",
+       "angabe_kennung": "sh:angabe:eCH-0276:voluntaryProfitReserves:taxableEquityType"
+      }
+     ],
+     "taxLossCarriedForwardListType": [
+      {
+       "element": "thereofTaxableInOtherCantons",
+       "datatype": "long",
+       "feld": "Abzug für Grundeigentum und Geschäftskapital ausserhalb des Kantons / Bundes (Code 6600)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:74",
+       "angabe_kennung": "sh:angabe:eCH-0276:thereofTaxableInOtherCantons:taxLossCarriedForwardListType"
+      }
+     ],
+     "taxableEquityAfterProfitAppropriationType": [
+      {
+       "element": "disclosedHiddenReserves",
+       "datatype": "long",
+       "feld": "Aufgedeckte stille Reserven aus altrechtlichem Step-Up – Bestand am Geschäftsjahresende (Code 6970)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:78",
+       "angabe_kennung": "sh:angabe:eCH-0276:disclosedHiddenReserves:taxableEquityAfterProfitAppropriationType"
+      }
+     ],
+     "shareholdersAssociatesType": [
+      {
+       "element": "changeOfMajoritiesOfShares",
+       "datatype": "boolean",
+       "feld": "Haben seit der letzten Deklaration Handänderungen von Mehrheiten der Aktien oder Stammanteile stattgefunden?",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:84",
+       "angabe_kennung": "sh:angabe:eCH-0276:changeOfMajoritiesOfShares:shareholdersAssociatesType"
+      }
+     ],
+     "bankDetailsForRefundType": [
+      {
+       "element": "iban",
+       "datatype": "ibanType",
+       "feld": "IBAN-Nr.",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:85",
+       "angabe_kennung": "sh:angabe:eCH-0276:iban:bankDetailsForRefundType"
+      }
+     ],
+     "structureType": [
+      {
+       "element": "generalRemarks",
+       "datatype": "string",
+       "feld": "Bemerkungen",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:86",
+       "angabe_kennung": "sh:angabe:eCH-0276:generalRemarks:structureType"
+      }
+     ],
+     "attachmentsType": [
+      {
+       "element": "documentIdentification",
+       "datatype": "documentIdentificationType",
+       "feld": "Beilagen",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:87",
+       "angabe_kennung": "sh:angabe:eCH-0276:documentIdentification:attachmentsType"
+      },
+      {
+       "element": "documentTitle",
+       "datatype": "textFieldType",
+       "feld": "Weitere Beilagen (Leerzeilen)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:88",
+       "angabe_kennung": "sh:angabe:eCH-0276:documentTitle:attachmentsType"
+      }
+     ]
+    },
+    "eCH-0098": {
+     "organisationIdentificationType": [
+      {
+       "element": "uid",
+       "datatype": "uidType",
+       "feld": "UID",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:2",
+       "angabe_kennung": "sh:angabe:eCH-0098:uid:organisationIdentificationType"
+      },
+      {
+       "element": "otherId",
+       "datatype": "otherIdType",
+       "feld": "FID",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:3",
+       "angabe_kennung": "sh:angabe:eCH-0098:otherId:organisationIdentificationType"
+      },
+      {
+       "element": "organisationName",
+       "datatype": "unitNameType",
+       "feld": "Firma",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:4",
+       "angabe_kennung": "sh:angabe:eCH-0098:organisationName:organisationIdentificationType"
+      }
+     ]
+    },
+    "eCH-0010": {
+     "addressInformationType": [
+      {
+       "element": "street",
+       "datatype": "streetType",
+       "feld": "Adresse",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:5:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0010:street:addressInformationType"
+      },
+      {
+       "element": "swissZipCode",
+       "datatype": "swissZipCodeType",
+       "feld": "PLZ",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:5:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0010:swissZipCode:addressInformationType"
+      },
+      {
+       "element": "town",
+       "datatype": "townType",
+       "feld": "Ort",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:5:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0010:town:addressInformationType"
+      },
+      {
+       "element": "country",
+       "datatype": "countryType",
+       "feld": "Land",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:5:teil:4",
+       "angabe_kennung": "sh:angabe:eCH-0010:country:addressInformationType"
+      }
+     ]
+    },
+    "eCH-0229": {
+     "contactAndAdministrationType": [
+      {
+       "element": "purpose",
+       "datatype": "string400",
+       "feld": "Zweck",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:6",
+       "angabe_kennung": "sh:angabe:eCH-0229:purpose:contactAndAdministrationType"
+      },
+      {
+       "element": "foundationDate",
+       "datatype": "date",
+       "feld": "Gründungsdatum",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:8",
+       "angabe_kennung": "sh:angabe:eCH-0229:foundationDate:contactAndAdministrationType"
+      },
+      {
+       "element": "representative",
+       "datatype": "representativeType",
+       "feld": "Vollständige Adresse des Vertreters",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:13",
+       "angabe_kennung": "sh:angabe:eCH-0229:representative:contactAndAdministrationType"
+      }
+     ],
+     "headerType": [
+      {
+       "element": "periodFrom",
+       "datatype": "date",
+       "feld": "Datum Beginn",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:9:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0229:periodFrom:headerType"
+      },
+      {
+       "element": "periodTo",
+       "datatype": "date",
+       "feld": "Datum Ende",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:9:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0229:periodTo:headerType"
+      }
+     ],
+     "taxAmountType": [
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:16:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0229:cantonalTax:taxAmountType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:16:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0229:federalTax:taxAmountType"
+      },
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:17:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0229:cantonalTax:taxAmountType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:17:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0229:federalTax:taxAmountType"
+      },
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:18:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0229:cantonalTax:taxAmountType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:18:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0229:federalTax:taxAmountType"
+      },
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:19:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0229:cantonalTax:taxAmountType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:19:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0229:federalTax:taxAmountType"
+      },
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:20:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0229:cantonalTax:taxAmountType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:20:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0229:federalTax:taxAmountType"
+      },
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:21:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0229:cantonalTax:taxAmountType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:21:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0229:federalTax:taxAmountType"
+      },
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:22:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0229:cantonalTax:taxAmountType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:22:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0229:federalTax:taxAmountType"
+      },
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:23:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0229:cantonalTax:taxAmountType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:23:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0229:federalTax:taxAmountType"
+      },
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:24:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0229:cantonalTax:taxAmountType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:24:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0229:federalTax:taxAmountType"
+      },
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:25:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0229:cantonalTax:taxAmountType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:25:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0229:federalTax:taxAmountType"
+      },
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:26:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0229:cantonalTax:taxAmountType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:26:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0229:federalTax:taxAmountType"
+      },
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:27:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0229:cantonalTax:taxAmountType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:27:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0229:federalTax:taxAmountType"
+      },
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:28:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0229:cantonalTax:taxAmountType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:28:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0229:federalTax:taxAmountType"
+      },
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:29:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0229:cantonalTax:taxAmountType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:29:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0229:federalTax:taxAmountType"
+      },
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:30:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0229:cantonalTax:taxAmountType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:30:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0229:federalTax:taxAmountType"
+      },
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:31:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0229:cantonalTax:taxAmountType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:31:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0229:federalTax:taxAmountType"
+      },
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:32:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0229:cantonalTax:taxAmountType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:32:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0229:federalTax:taxAmountType"
+      },
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:33:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0229:cantonalTax:taxAmountType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:33:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0229:federalTax:taxAmountType"
+      },
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:34:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0229:cantonalTax:taxAmountType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:34:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0229:federalTax:taxAmountType"
+      },
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:35:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0229:cantonalTax:taxAmountType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:35:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0229:federalTax:taxAmountType"
+      },
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:36:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0229:cantonalTax:taxAmountType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:36:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0229:federalTax:taxAmountType"
+      },
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:37:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0229:cantonalTax:taxAmountType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:37:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0229:federalTax:taxAmountType"
+      },
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:38:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0229:cantonalTax:taxAmountType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:38:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0229:federalTax:taxAmountType"
+      },
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:39:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0229:cantonalTax:taxAmountType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:39:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0229:federalTax:taxAmountType"
+      },
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:43:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0229:cantonalTax:taxAmountType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:43:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0229:federalTax:taxAmountType"
+      },
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:79:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0229:cantonalTax:taxAmountType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:79:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0229:federalTax:taxAmountType"
+      },
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:82:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0229:cantonalTax:taxAmountType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:82:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0229:federalTax:taxAmountType"
+      }
+     ],
+     "disclosedReservesType": [
+      {
+       "element": "description",
+       "datatype": "string400",
+       "feld": "Umschreibung (Leerzeile ○)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:17:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0229:description:disclosedReservesType"
+      },
+      {
+       "element": "description",
+       "datatype": "string400",
+       "feld": "Umschreibung (Leerzeile ○)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:18:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0229:description:disclosedReservesType"
+      },
+      {
+       "element": "description",
+       "datatype": "string400",
+       "feld": "Umschreibung (Leerzeile ○)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:23:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0229:description:disclosedReservesType"
+      },
+      {
+       "element": "description",
+       "datatype": "string400",
+       "feld": "Umschreibung (Leerzeile ○)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:27:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0229:description:disclosedReservesType"
+      },
+      {
+       "element": "description",
+       "datatype": "string400",
+       "feld": "Umschreibung (Leerzeile ○)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:29:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0229:description:disclosedReservesType"
+      },
+      {
+       "element": "description",
+       "datatype": "string400",
+       "feld": "Umschreibung (Leerzeile ○)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:32:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0229:description:disclosedReservesType"
+      },
+      {
+       "element": "description",
+       "datatype": "string400",
+       "feld": "Umschreibung (Leerzeile ○)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:33:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0229:description:disclosedReservesType"
+      },
+      {
+       "element": "description",
+       "datatype": "string400",
+       "feld": "Umschreibung (Leerzeile ○)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:34:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0229:description:disclosedReservesType"
+      },
+      {
+       "element": "description",
+       "datatype": "string400",
+       "feld": "Umschreibung (Leerzeile ○)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:68:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0229:description:disclosedReservesType"
+      },
+      {
+       "element": "description",
+       "datatype": "string400",
+       "feld": "Umschreibung (Leerzeile ○)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:69:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0229:description:disclosedReservesType"
+      },
+      {
+       "element": "description",
+       "datatype": "string400",
+       "feld": "Umschreibung (Leerzeile ○)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:70:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0229:description:disclosedReservesType"
+      },
+      {
+       "element": "description",
+       "datatype": "string400",
+       "feld": "Umschreibung (Leerzeile ○)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:71:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0229:description:disclosedReservesType"
+      }
+     ],
+     "profitAppropriationType": [
+      {
+       "element": "undistributedProfitOrLossCarriedForward",
+       "datatype": "long",
+       "feld": "Gewinnvortrag aus dem Vorjahr (Code 5100)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:46",
+       "angabe_kennung": "sh:angabe:eCH-0229:undistributedProfitOrLossCarriedForward:profitAppropriationType"
+      },
+      {
+       "element": "totalProfitToBeDistributed",
+       "datatype": "long",
+       "feld": "Total zu verteilender Gewinn (Code 5400)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:51",
+       "angabe_kennung": "sh:angabe:eCH-0229:totalProfitToBeDistributed:profitAppropriationType"
+      },
+      {
+       "element": "profitAppropriationDetails",
+       "datatype": "profitAppropriationDetailType",
+       "feld": "Dividende (Code 5510)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:52",
+       "angabe_kennung": "sh:angabe:eCH-0229:profitAppropriationDetails:profitAppropriationType"
+      },
+      {
+       "element": "profitAppropriationDetails",
+       "datatype": "profitAppropriationDetailType",
+       "feld": "Zuwendungen an die Vorsorgeeinrichtung des eigenen Personals (Code 5540)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:55",
+       "angabe_kennung": "sh:angabe:eCH-0229:profitAppropriationDetails:profitAppropriationType"
+      },
+      {
+       "element": "profitAppropriationDetails",
+       "datatype": "profitAppropriationDetailType",
+       "feld": "Freiwillige Geldleistungen an steuerbefreite juristische Personen mit Sitz in der Schweiz (Code 5550)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:56",
+       "angabe_kennung": "sh:angabe:eCH-0229:profitAppropriationDetails:profitAppropriationType"
+      },
+      {
+       "element": "totalProfitAppropriation",
+       "datatype": "long",
+       "feld": "Total Gewinnverwendung (Code 5600)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:58",
+       "angabe_kennung": "sh:angabe:eCH-0229:totalProfitAppropriation:profitAppropriationType"
+      },
+      {
+       "element": "profitOrLossBroughtForward",
+       "datatype": "long",
+       "feld": "Vortrag auf neue Rechnung (Code 5700)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:59",
+       "angabe_kennung": "sh:angabe:eCH-0229:profitOrLossBroughtForward:profitAppropriationType"
+      },
+      {
+       "element": "profitOrLossBroughtForward",
+       "datatype": "long",
+       "feld": "Gewinnvortrag + / Verlustvortrag – (Code 6220)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:67",
+       "angabe_kennung": "sh:angabe:eCH-0229:profitOrLossBroughtForward:profitAppropriationType"
+      }
+     ],
+     "netProfitType": [
+      {
+       "element": "taxableIncome",
+       "datatype": "taxAmountType",
+       "feld": "Reingewinn / -verlust gemäss Erfolgsrechnung des Geschäftsjahres (Code 5200)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:47",
+       "angabe_kennung": "sh:angabe:eCH-0229:taxableIncome:netProfitType"
+      }
+     ],
+     "equityType": [
+      {
+       "element": "paidInCapitalOrNetAsset",
+       "datatype": "taxAmountType",
+       "feld": "Einbezahltes Kapital (Code 6100)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:60",
+       "angabe_kennung": "sh:angabe:eCH-0229:paidInCapitalOrNetAsset:equityType"
+      },
+      {
+       "element": "correctionForOwnShares",
+       "datatype": "taxAmountType",
+       "feld": "./. Eigene Kapitalanteile (Code 6217)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:66",
+       "angabe_kennung": "sh:angabe:eCH-0229:correctionForOwnShares:equityType"
+      },
+      {
+       "element": "hiddenEquity",
+       "datatype": "taxAmountType",
+       "feld": "Verdecktes Eigenkapital (Code 6300)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:72",
+       "angabe_kennung": "sh:angabe:eCH-0229:hiddenEquity:equityType"
+      },
+      {
+       "element": "totalTaxableEquity",
+       "datatype": "long",
+       "feld": "Steuerbares Eigenkapital (Code 6500)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:73",
+       "angabe_kennung": "sh:angabe:eCH-0229:totalTaxableEquity:equityType"
+      },
+      {
+       "element": "totalTaxableEquityCanton",
+       "datatype": "long",
+       "feld": "Steuerbares Eigenkapital Kanton Schaffhausen (Code 6700)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:75",
+       "angabe_kennung": "sh:angabe:eCH-0229:totalTaxableEquityCanton:equityType"
+      }
+     ],
+     "taxedHiddenReserveType": [
+      {
+       "element": "valueAtEndOfPeriod",
+       "datatype": "taxAmountType",
+       "feld": "Am Ende des Geschäftsjahres",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:68:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0229:valueAtEndOfPeriod:taxedHiddenReserveType"
+      },
+      {
+       "element": "valueAtEndOfPeriod",
+       "datatype": "taxAmountType",
+       "feld": "Am Ende des Geschäftsjahres",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:69:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0229:valueAtEndOfPeriod:taxedHiddenReserveType"
+      },
+      {
+       "element": "valueAtEndOfPeriod",
+       "datatype": "taxAmountType",
+       "feld": "Am Ende des Geschäftsjahres",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:70:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0229:valueAtEndOfPeriod:taxedHiddenReserveType"
+      },
+      {
+       "element": "valueAtEndOfPeriod",
+       "datatype": "taxAmountType",
+       "feld": "Am Ende des Geschäftsjahres",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:71:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0229:valueAtEndOfPeriod:taxedHiddenReserveType"
+      }
+     ],
+     "depreciationOnAssetsAppreciatedInPreviousYearsType": [
+      {
+       "element": "yearOfAppreciation",
+       "datatype": "gYear",
+       "feld": "Jahr der Aufwertung",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:83:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0229:yearOfAppreciation:depreciationOnAssetsAppreciatedInPreviousYearsType"
+      },
+      {
+       "element": "nameOfAsset",
+       "datatype": "string400",
+       "feld": "Bezeichnung des Aktivums",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:83:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0229:nameOfAsset:depreciationOnAssetsAppreciatedInPreviousYearsType"
+      },
+      {
+       "element": "appreciationAmount",
+       "datatype": "long",
+       "feld": "Aufwertungsbetrag",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:83:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0229:appreciationAmount:depreciationOnAssetsAppreciatedInPreviousYearsType"
+      },
+      {
+       "element": "depreciationAmount",
+       "datatype": "long",
+       "feld": "Abschreibungsbetrag",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:83:teil:4",
+       "angabe_kennung": "sh:angabe:eCH-0229:depreciationAmount:depreciationOnAssetsAppreciatedInPreviousYearsType"
+      }
+     ]
+    },
+    "eCH-0046": {
+     "phoneType": [
+      {
+       "element": "phoneNumber",
+       "datatype": "phoneNumberType",
+       "feld": "Telefon",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:10:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0046:phoneNumber:phoneType"
+      },
+      {
+       "element": "phoneNumber",
+       "datatype": "phoneNumberType",
+       "feld": "Telefon",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:11:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0046:phoneNumber:phoneType"
+      },
+      {
+       "element": "phoneNumber",
+       "datatype": "phoneNumberType",
+       "feld": "Telefon",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:12:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0046:phoneNumber:phoneType"
+      }
+     ],
+     "emailType": [
+      {
+       "element": "emailAddress",
+       "datatype": "emailAddressType",
+       "feld": "E-Mail",
+       "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:12:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0046:emailAddress:emailType"
+      }
+     ]
+    }
+   },
+   "ohne_standard": [
+    {
+     "feld": "Datum (Vollmacht)",
+     "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:14",
+     "format": ""
+    },
+    {
+     "feld": "Rechtsgültige Unterschrift (Vollmacht)",
+     "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:15",
+     "format": ""
+    },
+    {
+     "feld": "Auflösung gesetzliche und freiwillige Gewinnreserven (Code 5310)",
+     "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:48",
+     "format": "CHF"
+    },
+    {
+     "feld": "Auflösung Kapitalreserven (Code 5320)",
+     "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:49",
+     "format": "CHF"
+    },
+    {
+     "feld": "Auflösung übrige (Code 5330)",
+     "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:50",
+     "format": "CHF"
+    },
+    {
+     "feld": "Aufgedeckte stille Reserven aus altrechtlichem Step-Up – Bestand am Geschäftsjahresanfang (Code 6950)",
+     "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:76",
+     "format": ""
+    },
+    {
+     "feld": "Ort",
+     "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:89:teil:1",
+     "format": ""
+    },
+    {
+     "feld": "Datum",
+     "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:89:teil:2",
+     "format": ""
+    },
+    {
+     "feld": "Rechtsgültige Unterschrift – Die Richtigkeit und Vollständigkeit der Angaben bezeugt",
+     "kennung": "sh:formular:steuererklarung-2026-fur-kapitalgesellschaften-genossenschaf:feld:90",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 590,
+   "formular_kennung": "sh:formular:abschreibungen-fur-juristische-personen-formular-6",
+   "titel": "Abschreibungen für juristische Personen (Formular 6)",
+   "dienststelle": "Steuerverwaltung",
+   "exchange_ready": "teilweise",
+   "abdeckung_pct": 91,
+   "ech": {
+    "eCH-0276": {
+     "titleType": [
+      {
+       "element": "registerNumber",
+       "datatype": "long",
+       "feld": "PID",
+       "kennung": "sh:formular:abschreibungen-fur-juristische-personen-formular-6:feld:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:registerNumber:titleType"
+      }
+     ],
+     "depreciationDetailGoodwillType": [
+      {
+       "element": "statusAtTheBeginningOfTheBusinessYear",
+       "datatype": "long",
+       "feld": "Wert zu Beginn des Geschäftsjahres",
+       "kennung": "sh:formular:abschreibungen-fur-juristische-personen-formular-6:feld:3:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0276:statusAtTheBeginningOfTheBusinessYear:depreciationDetailGoodwillType"
+      },
+      {
+       "element": "additions",
+       "datatype": "long",
+       "feld": "Zugänge",
+       "kennung": "sh:formular:abschreibungen-fur-juristische-personen-formular-6:feld:3:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0276:additions:depreciationDetailGoodwillType"
+      },
+      {
+       "element": "disposals",
+       "datatype": "long",
+       "feld": "Abgänge",
+       "kennung": "sh:formular:abschreibungen-fur-juristische-personen-formular-6:feld:3:teil:4",
+       "angabe_kennung": "sh:angabe:eCH-0276:disposals:depreciationDetailGoodwillType"
+      },
+      {
+       "element": "carryingAmountBeforeDepreciation",
+       "datatype": "long",
+       "feld": "Wert vor Abschreibungen",
+       "kennung": "sh:formular:abschreibungen-fur-juristische-personen-formular-6:feld:3:teil:5",
+       "angabe_kennung": "sh:angabe:eCH-0276:carryingAmountBeforeDepreciation:depreciationDetailGoodwillType"
+      },
+      {
+       "element": "accountedDepreciationOrderly",
+       "datatype": "long",
+       "feld": "Verbuchte Abschreibung",
+       "kennung": "sh:formular:abschreibungen-fur-juristische-personen-formular-6:feld:3:teil:6",
+       "angabe_kennung": "sh:angabe:eCH-0276:accountedDepreciationOrderly:depreciationDetailGoodwillType"
+      },
+      {
+       "element": "valueAtTheEndOfTheBusinessYear",
+       "datatype": "long",
+       "feld": "Wert am Ende des Geschäftsjahres",
+       "kennung": "sh:formular:abschreibungen-fur-juristische-personen-formular-6:feld:3:teil:7",
+       "angabe_kennung": "sh:angabe:eCH-0276:valueAtTheEndOfTheBusinessYear:depreciationDetailGoodwillType"
+      },
+      {
+       "element": "permittedDepreciationRate",
+       "datatype": "taxAmountType",
+       "feld": "Abschreibungssatz",
+       "kennung": "sh:formular:abschreibungen-fur-juristische-personen-formular-6:feld:3:teil:8",
+       "angabe_kennung": "sh:angabe:eCH-0276:permittedDepreciationRate:depreciationDetailGoodwillType"
+      }
+     ],
+     "structureType": [
+      {
+       "element": "remark",
+       "datatype": "string",
+       "feld": "Bemerkungen zu den Abschreibungen",
+       "kennung": "sh:formular:abschreibungen-fur-juristische-personen-formular-6:feld:4",
+       "angabe_kennung": "sh:angabe:eCH-0276:remark:structureType"
+      }
+     ]
+    },
+    "eCH-0098": {
+     "organisationIdentificationType": [
+      {
+       "element": "organisationName",
+       "datatype": "unitNameType",
+       "feld": "Firmenname",
+       "kennung": "sh:formular:abschreibungen-fur-juristische-personen-formular-6:feld:2",
+       "angabe_kennung": "sh:angabe:eCH-0098:organisationName:organisationIdentificationType"
+      }
+     ]
+    }
+   },
+   "ohne_standard": [
+    {
+     "feld": "Anlageobjekt",
+     "kennung": "sh:formular:abschreibungen-fur-juristische-personen-formular-6:feld:3:teil:1",
+     "format": "Tabelle: 2 Blöcke zu je 4 Spalten (bis 8 Anlageobjekte); Beträge in CHF, Zugänge"
+    }
+   ]
+  },
+  {
+   "form_id": 591,
+   "formular_kennung": "sh:formular:wertberichtigungen-ruckstellungen-fur-juristische-personen-f",
+   "titel": "Wertberichtigungen Rückstellungen für juristische Personen (Formular 6a)",
+   "dienststelle": "Steuerverwaltung",
+   "exchange_ready": "teilweise",
+   "abdeckung_pct": 73,
+   "ech": {
+    "eCH-0276": {
+     "titleType": [
+      {
+       "element": "registerNumber",
+       "datatype": "long",
+       "feld": "PID",
+       "kennung": "sh:formular:wertberichtigungen-ruckstellungen-fur-juristische-personen-f:feld:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:registerNumber:titleType"
+      }
+     ],
+     "freeInputFieldType": [
+      {
+       "element": "description",
+       "datatype": "textFieldType",
+       "feld": "Position",
+       "kennung": "sh:formular:wertberichtigungen-ruckstellungen-fur-juristische-personen-f:feld:3:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:description:freeInputFieldType"
+      },
+      {
+       "element": "description",
+       "datatype": "textFieldType",
+       "feld": "Position",
+       "kennung": "sh:formular:wertberichtigungen-ruckstellungen-fur-juristische-personen-f:feld:4:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:description:freeInputFieldType"
+      }
+     ],
+     "balanceSheetDateBusinessYearType": [
+      {
+       "element": "bookValueAtBalanceSheetDate",
+       "datatype": "long",
+       "feld": "Buchwert",
+       "kennung": "sh:formular:wertberichtigungen-ruckstellungen-fur-juristische-personen-f:feld:3:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0276:bookValueAtBalanceSheetDate:balanceSheetDateBusinessYearType"
+      }
+     ],
+     "amountCurrentPreviousPeriodType": [
+      {
+       "element": "amountEndOfCurrentPeriod",
+       "datatype": "long",
+       "feld": "Buchwert der Rückstellung",
+       "kennung": "sh:formular:wertberichtigungen-ruckstellungen-fur-juristische-personen-f:feld:4:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0276:amountEndOfCurrentPeriod:amountCurrentPreviousPeriodType"
+      },
+      {
+       "element": "amountEndOfPreviousPeriod",
+       "datatype": "long",
+       "feld": "Rückstellung am Ende des Vorjahres",
+       "kennung": "sh:formular:wertberichtigungen-ruckstellungen-fur-juristische-personen-f:feld:4:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0276:amountEndOfPreviousPeriod:amountCurrentPreviousPeriodType"
+      }
+     ],
+     "structureType": [
+      {
+       "element": "remark",
+       "datatype": "string",
+       "feld": "Begründungen / Bemerkungen zu den Rückstellungen / Wertberichtigungen",
+       "kennung": "sh:formular:wertberichtigungen-ruckstellungen-fur-juristische-personen-f:feld:5",
+       "angabe_kennung": "sh:angabe:eCH-0276:remark:structureType"
+      }
+     ]
+    },
+    "eCH-0098": {
+     "organisationIdentificationType": [
+      {
+       "element": "organisationName",
+       "datatype": "unitNameType",
+       "feld": "Firmenname",
+       "kennung": "sh:formular:wertberichtigungen-ruckstellungen-fur-juristische-personen-f:feld:2",
+       "angabe_kennung": "sh:angabe:eCH-0098:organisationName:organisationIdentificationType"
+      }
+     ]
+    }
+   },
+   "ohne_standard": [
+    {
+     "feld": "Wert von Wertberichtigung",
+     "kennung": "sh:formular:wertberichtigungen-ruckstellungen-fur-juristische-personen-f:feld:3:teil:2",
+     "format": "CHF (Zeilen 1–3); % (Zeile 4); 2 Tabellenblöcke à 4 Positionsspalten"
+    },
+    {
+     "feld": "Wertberichtigung",
+     "kennung": "sh:formular:wertberichtigungen-ruckstellungen-fur-juristische-personen-f:feld:3:teil:4",
+     "format": "CHF (Zeilen 1–3); % (Zeile 4); 2 Tabellenblöcke à 4 Positionsspalten"
+    },
+    {
+     "feld": "Wertberichtigung in %",
+     "kennung": "sh:formular:wertberichtigungen-ruckstellungen-fur-juristische-personen-f:feld:3:teil:5",
+     "format": "CHF (Zeilen 1–3); % (Zeile 4); 2 Tabellenblöcke à 4 Positionsspalten"
+    }
+   ]
+  },
+  {
+   "form_id": 592,
+   "formular_kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris",
+   "titel": "Steuererklärung 2026 für Vereine, Stiftungen und übrige juristische Personen (Formular 7)",
+   "dienststelle": "Steuerverwaltung",
+   "exchange_ready": "teilweise",
+   "abdeckung_pct": 85,
+   "ech": {
+    "eCH-0276": {
+     "titleType": [
+      {
+       "element": "registerNumber",
+       "datatype": "long",
+       "feld": "PID",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:registerNumber:titleType"
+      },
+      {
+       "element": "secondaryTaxDomicile",
+       "datatype": "secondaryTaxDomicileType",
+       "feld": "Zweigniederlassungen",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:7",
+       "angabe_kennung": "sh:angabe:eCH-0276:secondaryTaxDomicile:titleType"
+      },
+      {
+       "element": "chairmanOfTheBoardOfDirectors",
+       "datatype": "string",
+       "feld": "Name, Adresse",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:11:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:chairmanOfTheBoardOfDirectors:titleType"
+      },
+      {
+       "element": "management",
+       "datatype": "string",
+       "feld": "Name, Adresse",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:12:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:management:titleType"
+      }
+     ],
+     "contentType": [
+      {
+       "element": "taxSegregation",
+       "datatype": "taxSegregationType",
+       "feld": "Formular 8c Steuerausscheidung",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:8",
+       "angabe_kennung": "sh:angabe:eCH-0276:taxSegregation:contentType"
+      }
+     ],
+     "contactForInquiriesType": [
+      {
+       "element": "nameOfContact",
+       "datatype": "string",
+       "feld": "Name",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:13:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:nameOfContact:contactForInquiriesType"
+      }
+     ],
+     "freeInputFieldType": [
+      {
+       "element": "description",
+       "datatype": "textFieldType",
+       "feld": "Steuerliche Auf- / Abrechnungen",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:18:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:description:freeInputFieldType"
+      }
+     ],
+     "taxAmountFreeInputFieldType": [
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:18:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0276:cantonalTax:taxAmountFreeInputFieldType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:18:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0276:federalTax:taxAmountFreeInputFieldType"
+      },
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:19:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:cantonalTax:taxAmountFreeInputFieldType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:19:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0276:federalTax:taxAmountFreeInputFieldType"
+      },
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:24:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:cantonalTax:taxAmountFreeInputFieldType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:24:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0276:federalTax:taxAmountFreeInputFieldType"
+      },
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:25:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:cantonalTax:taxAmountFreeInputFieldType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:25:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0276:federalTax:taxAmountFreeInputFieldType"
+      },
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:44:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:cantonalTax:taxAmountFreeInputFieldType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:44:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0276:federalTax:taxAmountFreeInputFieldType"
+      },
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:45:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:cantonalTax:taxAmountFreeInputFieldType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:45:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0276:federalTax:taxAmountFreeInputFieldType"
+      },
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:46:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:cantonalTax:taxAmountFreeInputFieldType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:46:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0276:federalTax:taxAmountFreeInputFieldType"
+      }
+     ],
+     "determinationOfRelevantProfitLossBeforeOffsettingLossesType": [
+      {
+       "element": "incomeFromMembershipFeesAccordingToTheIncomeStatement",
+       "datatype": "long",
+       "feld": "Einnahmen aus Mitgliederbeiträgen gemäss Erfolgsrechnung (Code 1151)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:20",
+       "angabe_kennung": "sh:angabe:eCH-0276:incomeFromMembershipFeesAccordingToTheIncomeStatement:determinationOfRelevantProfitLossBeforeOffsettingLossesType"
+      },
+      {
+       "element": "ordinaryAssociationExpensesNonTaxableIncome",
+       "datatype": "long",
+       "feld": "Ordentliche Vereinsaufwendungen, die nicht zur Erzielung von steuerbarem Ertrag dienen (Code 1152)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:21",
+       "angabe_kennung": "sh:angabe:eCH-0276:ordinaryAssociationExpensesNonTaxableIncome:determinationOfRelevantProfitLossBeforeOffsettingLossesType"
+      },
+      {
+       "element": "taxFreeMembershipFeeSurplus",
+       "datatype": "long",
+       "feld": "Steuerfreier Mitgliederbeitragsüberschuss (Code 1153)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:22",
+       "angabe_kennung": "sh:angabe:eCH-0276:taxFreeMembershipFeeSurplus:determinationOfRelevantProfitLossBeforeOffsettingLossesType"
+      }
+     ],
+     "cashAndCashEquivalentsAndCurrentAssetsWithStockMarketPriceType": [
+      {
+       "element": "cashAndCashEquivalents",
+       "datatype": "long",
+       "feld": "Kassa-, Post- und Bankguthaben (Code 2110)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:28",
+       "angabe_kennung": "sh:angabe:eCH-0276:cashAndCashEquivalents:cashAndCashEquivalentsAndCurrentAssetsWithStockMarketPriceType"
+      }
+     ],
+     "taxableEquityAfterProfitAppropriationType": [
+      {
+       "element": "carryingAmountSecurities",
+       "datatype": "long",
+       "feld": "Wertschriften (Code 2120)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:29",
+       "angabe_kennung": "sh:angabe:eCH-0276:carryingAmountSecurities:taxableEquityAfterProfitAppropriationType"
+      }
+     ],
+     "localisedOperationalAssetsTotalType": [
+      {
+       "element": "machineryMovablesVehicles",
+       "datatype": "taxAmountType",
+       "feld": "Inventar (Mobilien, Maschinen, Geräte etc.) (Code 2140)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:31",
+       "angabe_kennung": "sh:angabe:eCH-0276:machineryMovablesVehicles:localisedOperationalAssetsTotalType"
+      }
+     ],
+     "assetsType": [
+      {
+       "element": "totalAssets",
+       "datatype": "long",
+       "feld": "Total Aktiven (Code 2190)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:34",
+       "angabe_kennung": "sh:angabe:eCH-0276:totalAssets:assetsType"
+      }
+     ],
+     "currentLiabilitiesType": [
+      {
+       "element": "tradeAndOtherCurrentPayables",
+       "datatype": "tradeAndOtherCurrentPayablesType",
+       "feld": "Schulden gegenüber Lieferanten (Code 2210)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:35",
+       "angabe_kennung": "sh:angabe:eCH-0276:tradeAndOtherCurrentPayables:currentLiabilitiesType"
+      }
+     ],
+     "equityAndLiabilitiesChfType": [
+      {
+       "element": "totalLiabilities",
+       "datatype": "amountCurrentPreviousPeriodType",
+       "feld": "Total Passiven (Code 2290)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:39",
+       "angabe_kennung": "sh:angabe:eCH-0276:totalLiabilities:equityAndLiabilitiesChfType"
+      }
+     ],
+     "variousQuestionsType": [
+      {
+       "element": "applicationForTaxationForNonmaterialPurposes",
+       "datatype": "boolean",
+       "feld": "Antrag auf privilegierte Besteuerung infolge ideellen Zwecken",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:47",
+       "angabe_kennung": "sh:angabe:eCH-0276:applicationForTaxationForNonmaterialPurposes:variousQuestionsType"
+      }
+     ],
+     "bankDetailsForRefundType": [
+      {
+       "element": "iban",
+       "datatype": "ibanType",
+       "feld": "IBAN-Nr.",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:48",
+       "angabe_kennung": "sh:angabe:eCH-0276:iban:bankDetailsForRefundType"
+      }
+     ],
+     "structureType": [
+      {
+       "element": "generalRemarks",
+       "datatype": "string",
+       "feld": "Bemerkungen",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:49",
+       "angabe_kennung": "sh:angabe:eCH-0276:generalRemarks:structureType"
+      }
+     ],
+     "attachmentsType": [
+      {
+       "element": "documentIdentification",
+       "datatype": "documentIdentificationType",
+       "feld": "Beilagen",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:50",
+       "angabe_kennung": "sh:angabe:eCH-0276:documentIdentification:attachmentsType"
+      }
+     ]
+    },
+    "eCH-0098": {
+     "organisationIdentificationType": [
+      {
+       "element": "uid",
+       "datatype": "uidType",
+       "feld": "UID",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:2",
+       "angabe_kennung": "sh:angabe:eCH-0098:uid:organisationIdentificationType"
+      },
+      {
+       "element": "otherId",
+       "datatype": "otherIdType",
+       "feld": "FID",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:3",
+       "angabe_kennung": "sh:angabe:eCH-0098:otherId:organisationIdentificationType"
+      },
+      {
+       "element": "organisationName",
+       "datatype": "unitNameType",
+       "feld": "Name (genaue Bezeichnung)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:4",
+       "angabe_kennung": "sh:angabe:eCH-0098:organisationName:organisationIdentificationType"
+      }
+     ]
+    },
+    "eCH-0010": {
+     "addressInformationType": [
+      {
+       "element": "street",
+       "datatype": "streetType",
+       "feld": "Adresse",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:5:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0010:street:addressInformationType"
+      },
+      {
+       "element": "swissZipCode",
+       "datatype": "swissZipCodeType",
+       "feld": "PLZ",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:5:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0010:swissZipCode:addressInformationType"
+      },
+      {
+       "element": "town",
+       "datatype": "townType",
+       "feld": "Ort",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:5:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0010:town:addressInformationType"
+      },
+      {
+       "element": "country",
+       "datatype": "countryType",
+       "feld": "Land",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:5:teil:4",
+       "angabe_kennung": "sh:angabe:eCH-0010:country:addressInformationType"
+      }
+     ]
+    },
+    "eCH-0229": {
+     "contactAndAdministrationType": [
+      {
+       "element": "purpose",
+       "datatype": "string400",
+       "feld": "Zweck",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:6",
+       "angabe_kennung": "sh:angabe:eCH-0229:purpose:contactAndAdministrationType"
+      },
+      {
+       "element": "foundationDate",
+       "datatype": "date",
+       "feld": "Gründungsdatum",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:9",
+       "angabe_kennung": "sh:angabe:eCH-0229:foundationDate:contactAndAdministrationType"
+      },
+      {
+       "element": "representative",
+       "datatype": "representativeType",
+       "feld": "Vollständige Adresse des Vertreters",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:14",
+       "angabe_kennung": "sh:angabe:eCH-0229:representative:contactAndAdministrationType"
+      }
+     ],
+     "headerType": [
+      {
+       "element": "periodFrom",
+       "datatype": "date",
+       "feld": "Datum Beginn",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:10:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0229:periodFrom:headerType"
+      },
+      {
+       "element": "periodTo",
+       "datatype": "date",
+       "feld": "Datum Ende",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:10:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0229:periodTo:headerType"
+      }
+     ],
+     "taxAmountType": [
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:17:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0229:cantonalTax:taxAmountType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:17:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0229:federalTax:taxAmountType"
+      },
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:23:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0229:cantonalTax:taxAmountType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:23:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0229:federalTax:taxAmountType"
+      },
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:26:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0229:cantonalTax:taxAmountType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:26:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0229:federalTax:taxAmountType"
+      },
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:27:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0229:cantonalTax:taxAmountType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:27:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0229:federalTax:taxAmountType"
+      },
+      {
+       "element": "cantonalTax",
+       "datatype": "long",
+       "feld": "Kantons- und Gemeindesteuern",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:43:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0229:cantonalTax:taxAmountType"
+      },
+      {
+       "element": "federalTax",
+       "datatype": "long",
+       "feld": "Direkte Bundessteuer",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:43:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0229:federalTax:taxAmountType"
+      }
+     ],
+     "valuationDifferenceRealEstateType": [
+      {
+       "element": "netWorthTax",
+       "datatype": "long",
+       "feld": "Liegenschaften (Steuerwert, nicht Buchwert) (Code 2150)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:32",
+       "angabe_kennung": "sh:angabe:eCH-0229:netWorthTax:valuationDifferenceRealEstateType"
+      }
+     ],
+     "equityType": [
+      {
+       "element": "totalEquity",
+       "datatype": "taxAmountType",
+       "feld": "Gesamtes Reinvermögen / Eigenkapital (Aktiven abzüglich Passiven) (Code 2400)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:40",
+       "angabe_kennung": "sh:angabe:eCH-0229:totalEquity:equityType"
+      },
+      {
+       "element": "totalTaxableEquityCanton",
+       "datatype": "long",
+       "feld": "Steuerbares Vermögen / Eigenkapital Kanton Schaffhausen (Code 2700)",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:42",
+       "angabe_kennung": "sh:angabe:eCH-0229:totalTaxableEquityCanton:equityType"
+      }
+     ],
+     "taxLossCarriedForwardType": [
+      {
+       "element": "yearOfTaxLossCarriedForward",
+       "datatype": "gYear",
+       "feld": "Geschäftsjahr",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:43:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0229:yearOfTaxLossCarriedForward:taxLossCarriedForwardType"
+      }
+     ]
+    },
+    "eCH-0046": {
+     "phoneType": [
+      {
+       "element": "phoneNumber",
+       "datatype": "phoneNumberType",
+       "feld": "Telefon",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:11:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0046:phoneNumber:phoneType"
+      },
+      {
+       "element": "phoneNumber",
+       "datatype": "phoneNumberType",
+       "feld": "Telefon",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:12:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0046:phoneNumber:phoneType"
+      },
+      {
+       "element": "phoneNumber",
+       "datatype": "phoneNumberType",
+       "feld": "Telefon",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:13:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0046:phoneNumber:phoneType"
+      }
+     ],
+     "emailType": [
+      {
+       "element": "emailAddress",
+       "datatype": "emailAddressType",
+       "feld": "E-Mail",
+       "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:13:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0046:emailAddress:emailType"
+      }
+     ]
+    }
+   },
+   "ohne_standard": [
+    {
+     "feld": "Datum (Vollmacht)",
+     "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:15",
+     "format": ""
+    },
+    {
+     "feld": "Rechtsgültige Unterschrift (Vollmacht)",
+     "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:16",
+     "format": ""
+    },
+    {
+     "feld": "Ausstände und Forderungen, inkl. Verrechnungssteuer-Guthaben (Code 2130)",
+     "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:30",
+     "format": "CHF"
+    },
+    {
+     "feld": "Übrige Aktiven (Code 2160)",
+     "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:33",
+     "format": "CHF"
+    },
+    {
+     "feld": "Bankschulden, Darlehensschulden (Code 2220)",
+     "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:36",
+     "format": "CHF"
+    },
+    {
+     "feld": "Grundpfandschulden (Hypotheken) (Code 2230)",
+     "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:37",
+     "format": "CHF"
+    },
+    {
+     "feld": "Übrige Schulden (Code 2240)",
+     "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:38",
+     "format": "CHF"
+    },
+    {
+     "feld": "Abzug für Vermögen / Eigenkapital ausserhalb des Kantons / Bundes (Code 2600)",
+     "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:41",
+     "format": "CHF"
+    },
+    {
+     "feld": "Ort",
+     "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:51:teil:1",
+     "format": ""
+    },
+    {
+     "feld": "Datum",
+     "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:51:teil:2",
+     "format": ""
+    },
+    {
+     "feld": "Rechtsgültige Unterschrift (Die Richtigkeit und Vollständigkeit der Angaben bezeugt)",
+     "kennung": "sh:formular:steuererklarung-2026-fur-vereine-stiftungen-und-ubrige-juris:feld:52",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 593,
+   "formular_kennung": "sh:formular:steuerausscheidung-fur-juristische-personen-formular-8c",
+   "titel": "Steuerausscheidung für juristische Personen (Formular 8c)",
+   "dienststelle": "Steuerverwaltung",
+   "exchange_ready": "voll",
+   "abdeckung_pct": 100,
+   "ech": {
+    "eCH-0276": {
+     "titleType": [
+      {
+       "element": "registerNumber",
+       "datatype": "long",
+       "feld": "PID",
+       "kennung": "sh:formular:steuerausscheidung-fur-juristische-personen-formular-8c:feld:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:registerNumber:titleType"
+      }
+     ],
+     "taxSegregationGeneralInformationType": [
+      {
+       "element": "cantonOfBusinessPremises",
+       "datatype": "string",
+       "feld": "Kanton",
+       "kennung": "sh:formular:steuerausscheidung-fur-juristische-personen-formular-8c:feld:3:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:cantonOfBusinessPremises:taxSegregationGeneralInformationType"
+      },
+      {
+       "element": "municipalityOfBusinessPremises",
+       "datatype": "string",
+       "feld": "Ort",
+       "kennung": "sh:formular:steuerausscheidung-fur-juristische-personen-formular-8c:feld:3:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0276:municipalityOfBusinessPremises:taxSegregationGeneralInformationType"
+      }
+     ],
+     "localisedOperationalAssetsTotalType": [
+      {
+       "element": "operationalProperties",
+       "datatype": "taxAmountType",
+       "feld": "Immobilien",
+       "kennung": "sh:formular:steuerausscheidung-fur-juristische-personen-formular-8c:feld:4:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:operationalProperties:localisedOperationalAssetsTotalType"
+      },
+      {
+       "element": "machineryMovablesVehicles",
+       "datatype": "taxAmountType",
+       "feld": "Maschinen, Mobilien, Fahrzeuge",
+       "kennung": "sh:formular:steuerausscheidung-fur-juristische-personen-formular-8c:feld:4:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0276:machineryMovablesVehicles:localisedOperationalAssetsTotalType"
+      },
+      {
+       "element": "otherLocalisedAssets",
+       "datatype": "taxAmountType",
+       "feld": "Übrige lokalisierte Aktiven",
+       "kennung": "sh:formular:steuerausscheidung-fur-juristische-personen-formular-8c:feld:4:teil:4",
+       "angabe_kennung": "sh:angabe:eCH-0276:otherLocalisedAssets:localisedOperationalAssetsTotalType"
+      }
+     ],
+     "inventoriesAndWorkInProgressType": [
+      {
+       "element": "inventories",
+       "datatype": "long",
+       "feld": "Waren, Beteiligungen",
+       "kennung": "sh:formular:steuerausscheidung-fur-juristische-personen-formular-8c:feld:4:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0276:inventories:inventoriesAndWorkInProgressType"
+      }
+     ],
+     "mobileOperatingAssetsype": [
+      {
+       "element": "totalMobileOperatingAssets",
+       "datatype": "taxAmountType",
+       "feld": "Mobile Konten objektmässig",
+       "kennung": "sh:formular:steuerausscheidung-fur-juristische-personen-formular-8c:feld:4:teil:5",
+       "angabe_kennung": "sh:angabe:eCH-0276:totalMobileOperatingAssets:mobileOperatingAssetsype"
+      }
+     ],
+     "totalAssetsTotalType": [
+      {
+       "element": "totalLocalisedOperationalAssetsMobileOperatingAssetsAssetsNotRequiredForOperations",
+       "datatype": "taxAmountType",
+       "feld": "Total Aktiven",
+       "kennung": "sh:formular:steuerausscheidung-fur-juristische-personen-formular-8c:feld:4:teil:6",
+       "angabe_kennung": "sh:angabe:eCH-0276:totalLocalisedOperationalAssetsMobileOperatingAssetsAssetsNotRequiredForOperations:totalAssetsTotalType"
+      }
+     ],
+     "totalAssetsType": [
+      {
+       "element": "totalLocalisedOperationalAssetsMobileOperatingAssetsAssetsNotRequiredForOperationsPercentage",
+       "datatype": "percentageType",
+       "feld": "1. Quote %",
+       "kennung": "sh:formular:steuerausscheidung-fur-juristische-personen-formular-8c:feld:4:teil:7",
+       "angabe_kennung": "sh:angabe:eCH-0276:totalLocalisedOperationalAssetsMobileOperatingAssetsAssetsNotRequiredForOperationsPercentage:totalAssetsType"
+      }
+     ],
+     "taxableEquityAfterProfitAppropriationType": [
+      {
+       "element": "taxableEquity",
+       "datatype": "taxableEquityType",
+       "feld": "Steuerbares Kapital",
+       "kennung": "sh:formular:steuerausscheidung-fur-juristische-personen-formular-8c:feld:4:teil:8",
+       "angabe_kennung": "sh:angabe:eCH-0276:taxableEquity:taxableEquityAfterProfitAppropriationType"
+      }
+     ],
+     "objectBasedSegregationPreallocationTotalType": [
+      {
+       "element": "propertyIncome",
+       "datatype": "long",
+       "feld": "Bruttoertrag Liegenschaften",
+       "kennung": "sh:formular:steuerausscheidung-fur-juristische-personen-formular-8c:feld:5:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:propertyIncome:objectBasedSegregationPreallocationTotalType"
+      },
+      {
+       "element": "otherPropertyRelatedGrossIncome",
+       "datatype": "long",
+       "feld": "Objektmässig ausgeschiedener Erfolg",
+       "kennung": "sh:formular:steuerausscheidung-fur-juristische-personen-formular-8c:feld:5:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0276:otherPropertyRelatedGrossIncome:objectBasedSegregationPreallocationTotalType"
+      },
+      {
+       "element": "maintenanceCostsAndCharges",
+       "datatype": "long",
+       "feld": "Unterhaltskosten",
+       "kennung": "sh:formular:steuerausscheidung-fur-juristische-personen-formular-8c:feld:5:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0276:maintenanceCostsAndCharges:objectBasedSegregationPreallocationTotalType"
+      },
+      {
+       "element": "administrativeCosts",
+       "datatype": "long",
+       "feld": "Verwaltungskosten",
+       "kennung": "sh:formular:steuerausscheidung-fur-juristische-personen-formular-8c:feld:5:teil:4",
+       "angabe_kennung": "sh:angabe:eCH-0276:administrativeCosts:objectBasedSegregationPreallocationTotalType"
+      },
+      {
+       "element": "depreciationOfProperties",
+       "datatype": "taxAmountType",
+       "feld": "Abschreibungen",
+       "kennung": "sh:formular:steuerausscheidung-fur-juristische-personen-formular-8c:feld:5:teil:5",
+       "angabe_kennung": "sh:angabe:eCH-0276:depreciationOfProperties:objectBasedSegregationPreallocationTotalType"
+      },
+      {
+       "element": "taxes",
+       "datatype": "long",
+       "feld": "Steuern",
+       "kennung": "sh:formular:steuerausscheidung-fur-juristische-personen-formular-8c:feld:5:teil:6",
+       "angabe_kennung": "sh:angabe:eCH-0276:taxes:objectBasedSegregationPreallocationTotalType"
+      },
+      {
+       "element": "otherObjectBasedExpenses",
+       "datatype": "freeInputFieldType",
+       "feld": "Diverses",
+       "kennung": "sh:formular:steuerausscheidung-fur-juristische-personen-formular-8c:feld:5:teil:7",
+       "angabe_kennung": "sh:angabe:eCH-0276:otherObjectBasedExpenses:objectBasedSegregationPreallocationTotalType"
+      },
+      {
+       "element": "proportionalInterestOnDebt",
+       "datatype": "taxAmountType",
+       "feld": "Schuldzinsen",
+       "kennung": "sh:formular:steuerausscheidung-fur-juristische-personen-formular-8c:feld:5:teil:8",
+       "angabe_kennung": "sh:angabe:eCH-0276:proportionalInterestOnDebt:objectBasedSegregationPreallocationTotalType"
+      },
+      {
+       "element": "netPropertyIncome",
+       "datatype": "long",
+       "feld": "Nettoertrag Liegenschaften",
+       "kennung": "sh:formular:steuerausscheidung-fur-juristische-personen-formular-8c:feld:5:teil:9",
+       "angabe_kennung": "sh:angabe:eCH-0276:netPropertyIncome:objectBasedSegregationPreallocationTotalType"
+      }
+     ],
+     "earningFactorsTotalType": [
+      {
+       "element": "operationalAssets",
+       "datatype": "taxAmountType",
+       "feld": "Total Aktiven",
+       "kennung": "sh:formular:steuerausscheidung-fur-juristische-personen-formular-8c:feld:6:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:operationalAssets:earningFactorsTotalType"
+      },
+      {
+       "element": "salariesWagesCapitalised",
+       "datatype": "long",
+       "feld": "Löhne (mit 10 % kapitalisiert)",
+       "kennung": "sh:formular:steuerausscheidung-fur-juristische-personen-formular-8c:feld:6:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0276:salariesWagesCapitalised:earningFactorsTotalType"
+      },
+      {
+       "element": "rentsCapitalised",
+       "datatype": "long",
+       "feld": "Mieten (mit 6 % kapitalisiert)",
+       "kennung": "sh:formular:steuerausscheidung-fur-juristische-personen-formular-8c:feld:6:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0276:rentsCapitalised:earningFactorsTotalType"
+      },
+      {
+       "element": "totalEarningFactors",
+       "datatype": "taxAmountType",
+       "feld": "Total Erwerbsfaktoren",
+       "kennung": "sh:formular:steuerausscheidung-fur-juristische-personen-formular-8c:feld:6:teil:4",
+       "angabe_kennung": "sh:angabe:eCH-0276:totalEarningFactors:earningFactorsTotalType"
+      }
+     ],
+     "earningFactorsType": [
+      {
+       "element": "totalEarningFactorsPercentage",
+       "datatype": "percentageType",
+       "feld": "2. Quote %",
+       "kennung": "sh:formular:steuerausscheidung-fur-juristische-personen-formular-8c:feld:6:teil:5",
+       "angabe_kennung": "sh:angabe:eCH-0276:totalEarningFactorsPercentage:earningFactorsType"
+      }
+     ],
+     "turnoverFactorsTotalType": [
+      {
+       "element": "turnoverFactorsAmount",
+       "datatype": "taxAmountType",
+       "feld": "Umsatz",
+       "kennung": "sh:formular:steuerausscheidung-fur-juristische-personen-formular-8c:feld:7:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:turnoverFactorsAmount:turnoverFactorsTotalType"
+      }
+     ],
+     "turnoverFactorsType": [
+      {
+       "element": "turnoverFactorsPercentage",
+       "datatype": "percentageType",
+       "feld": "3. Quote %",
+       "kennung": "sh:formular:steuerausscheidung-fur-juristische-personen-formular-8c:feld:7:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0276:turnoverFactorsPercentage:turnoverFactorsType"
+      }
+     ],
+     "taxLossCarriedForwardListType": [
+      {
+       "element": "taxableNetProfitOrLossAfterOffsettingLosses",
+       "datatype": "taxAmountType",
+       "feld": "Steuerbarer Reingewinn (Ausgangszeile)",
+       "kennung": "sh:formular:steuerausscheidung-fur-juristische-personen-formular-8c:feld:8:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:taxableNetProfitOrLossAfterOffsettingLosses:taxLossCarriedForwardListType"
+      }
+     ],
+     "taxableFactorsTotalType": [
+      {
+       "element": "allocationByObject",
+       "datatype": "long",
+       "feld": "Nettoertrag Liegenschaften",
+       "kennung": "sh:formular:steuerausscheidung-fur-juristische-personen-formular-8c:feld:8:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0276:allocationByObject:taxableFactorsTotalType"
+      },
+      {
+       "element": "operatingProfit",
+       "datatype": "long",
+       "feld": "Betriebsgewinn",
+       "kennung": "sh:formular:steuerausscheidung-fur-juristische-personen-formular-8c:feld:8:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0276:operatingProfit:taxableFactorsTotalType"
+      },
+      {
+       "element": "allocationPreceding",
+       "datatype": "taxAmountType",
+       "feld": "Voraus in % (Betrag)",
+       "kennung": "sh:formular:steuerausscheidung-fur-juristische-personen-formular-8c:feld:8:teil:5",
+       "angabe_kennung": "sh:angabe:eCH-0276:allocationPreceding:taxableFactorsTotalType"
+      },
+      {
+       "element": "allocationByFactors",
+       "datatype": "taxAmountType",
+       "feld": "Betriebsgewinn (nach 2. oder 3. Quote verteilt)",
+       "kennung": "sh:formular:steuerausscheidung-fur-juristische-personen-formular-8c:feld:8:teil:6",
+       "angabe_kennung": "sh:angabe:eCH-0276:allocationByFactors:taxableFactorsTotalType"
+      },
+      {
+       "element": "taxableIncome",
+       "datatype": "taxAmountType",
+       "feld": "Steuerbarer Reingewinn (Schlusszeile)",
+       "kennung": "sh:formular:steuerausscheidung-fur-juristische-personen-formular-8c:feld:8:teil:8",
+       "angabe_kennung": "sh:angabe:eCH-0276:taxableIncome:taxableFactorsTotalType"
+      }
+     ],
+     "taxSegregationProfitType": [
+      {
+       "element": "precedingInTheCantonInPercent",
+       "datatype": "taxAmountPercentageType",
+       "feld": "Voraus in % (Satz)",
+       "kennung": "sh:formular:steuerausscheidung-fur-juristische-personen-formular-8c:feld:8:teil:4",
+       "angabe_kennung": "sh:angabe:eCH-0276:precedingInTheCantonInPercent:taxSegregationProfitType"
+      }
+     ],
+     "otherIncomeTotalType": [
+      {
+       "element": "lossAllocation1",
+       "datatype": "taxAmountType",
+       "feld": "Ausgleich",
+       "kennung": "sh:formular:steuerausscheidung-fur-juristische-personen-formular-8c:feld:8:teil:7",
+       "angabe_kennung": "sh:angabe:eCH-0276:lossAllocation1:otherIncomeTotalType"
+      }
+     ],
+     "structureType": [
+      {
+       "element": "generalRemarks",
+       "datatype": "string",
+       "feld": "Bemerkung",
+       "kennung": "sh:formular:steuerausscheidung-fur-juristische-personen-formular-8c:feld:9",
+       "angabe_kennung": "sh:angabe:eCH-0276:generalRemarks:structureType"
+      }
+     ]
+    },
+    "eCH-0098": {
+     "organisationIdentificationType": [
+      {
+       "element": "organisationName",
+       "datatype": "unitNameType",
+       "feld": "Firmenname",
+       "kennung": "sh:formular:steuerausscheidung-fur-juristische-personen-formular-8c:feld:2",
+       "angabe_kennung": "sh:angabe:eCH-0098:organisationName:organisationIdentificationType"
+      }
+     ]
+    }
+   },
+   "ohne_standard": []
+  },
+  {
+   "form_id": 594,
+   "formular_kennung": "sh:formular:bescheinigung-uber-bezuge-fur-juristische-personen-formular-",
+   "titel": "Bescheinigung über Bezüge für juristische Personen (Formular 12a)",
+   "dienststelle": "Steuerverwaltung",
+   "exchange_ready": "teilweise",
+   "abdeckung_pct": 64,
+   "ech": {
+    "eCH-0276": {
+     "titleType": [
+      {
+       "element": "registerNumber",
+       "datatype": "long",
+       "feld": "PID",
+       "kennung": "sh:formular:bescheinigung-uber-bezuge-fur-juristische-personen-formular-:feld:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:registerNumber:titleType"
+      }
+     ],
+     "attestationType": [
+      {
+       "element": "textInput",
+       "datatype": "textFieldType",
+       "feld": "Bemerkungen",
+       "kennung": "sh:formular:bescheinigung-uber-bezuge-fur-juristische-personen-formular-:feld:4",
+       "angabe_kennung": "sh:angabe:eCH-0276:textInput:attestationType"
+      }
+     ],
+     "contentType": [
+      {
+       "element": "attachments",
+       "datatype": "attachmentsType",
+       "feld": "Lohnausweis(e)",
+       "kennung": "sh:formular:bescheinigung-uber-bezuge-fur-juristische-personen-formular-:feld:6",
+       "angabe_kennung": "sh:angabe:eCH-0276:attachments:contentType"
+      }
+     ]
+    },
+    "eCH-0098": {
+     "organisationIdentificationType": [
+      {
+       "element": "organisationName",
+       "datatype": "unitNameType",
+       "feld": "Firmenname",
+       "kennung": "sh:formular:bescheinigung-uber-bezuge-fur-juristische-personen-formular-:feld:2",
+       "angabe_kennung": "sh:angabe:eCH-0098:organisationName:organisationIdentificationType"
+      }
+     ]
+    },
+    "eCH-0044": {
+     "personIdentificationLightType": [
+      {
+       "element": "officialName",
+       "datatype": "baseNameType",
+       "feld": "Name / Vorname",
+       "kennung": "sh:formular:bescheinigung-uber-bezuge-fur-juristische-personen-formular-:feld:3:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0044:officialName:personIdentificationLightType"
+      }
+     ]
+    },
+    "eCH-0010": {
+     "addressInformationType": [
+      {
+       "element": "town",
+       "datatype": "townType",
+       "feld": "Wohnort",
+       "kennung": "sh:formular:bescheinigung-uber-bezuge-fur-juristische-personen-formular-:feld:3:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0010:town:addressInformationType"
+      }
+     ]
+    },
+    "eCH-0278": {
+     "dependentEmploymentType": [
+      {
+       "element": "employedRevenue",
+       "datatype": "moneyType",
+       "feld": "Bezüge (gemäss Ziffer 11 des Lohnausweises)",
+       "kennung": "sh:formular:bescheinigung-uber-bezuge-fur-juristische-personen-formular-:feld:3:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0278:employedRevenue:dependentEmploymentType"
+      }
+     ]
+    }
+   },
+   "ohne_standard": [
+    {
+     "feld": "Beilagen",
+     "kennung": "sh:formular:bescheinigung-uber-bezuge-fur-juristische-personen-formular-:feld:5",
+     "format": "____ Lohnausweis(e)"
+    },
+    {
+     "feld": "Ort",
+     "kennung": "sh:formular:bescheinigung-uber-bezuge-fur-juristische-personen-formular-:feld:7:teil:1",
+     "format": ""
+    },
+    {
+     "feld": "Datum",
+     "kennung": "sh:formular:bescheinigung-uber-bezuge-fur-juristische-personen-formular-:feld:7:teil:2",
+     "format": ""
+    },
+    {
+     "feld": "Rechtsgültige Unterschrift",
+     "kennung": "sh:formular:bescheinigung-uber-bezuge-fur-juristische-personen-formular-:feld:8",
+     "format": ""
+    }
+   ]
+  },
+  {
+   "form_id": 595,
+   "formular_kennung": "sh:formular:wertschriften-und-guthabenverzeichnis-fur-juristische-person",
+   "titel": "Wertschriften- und Guthabenverzeichnis für juristische Personen (Formular 13)",
+   "dienststelle": "Steuerverwaltung",
+   "exchange_ready": "voll",
+   "abdeckung_pct": 100,
+   "ech": {
+    "eCH-0276": {
+     "titleType": [
+      {
+       "element": "registerNumber",
+       "datatype": "long",
+       "feld": "PID",
+       "kennung": "sh:formular:wertschriften-und-guthabenverzeichnis-fur-juristische-person:feld:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:registerNumber:titleType"
+      }
+     ],
+     "bankBalancesSecuritiesLoansAndOtherInvestmentsType": [
+      {
+       "element": "totalNominalValue",
+       "datatype": "long",
+       "feld": "Gesamter Nennwert / Bei Aktien usw.: Stückzahl",
+       "kennung": "sh:formular:wertschriften-und-guthabenverzeichnis-fur-juristische-person:feld:3:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:totalNominalValue:bankBalancesSecuritiesLoansAndOtherInvestmentsType"
+      },
+      {
+       "element": "descriptionOfInvestment",
+       "datatype": "string",
+       "feld": "Bezeichnung der Vermögenswerte",
+       "kennung": "sh:formular:wertschriften-und-guthabenverzeichnis-fur-juristische-person:feld:3:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0276:descriptionOfInvestment:bankBalancesSecuritiesLoansAndOtherInvestmentsType"
+      },
+      {
+       "element": "carryingAmountSecuritiesGrossIncomeWithoutAnyDeduction",
+       "datatype": "long",
+       "feld": "Bruttoertrag",
+       "kennung": "sh:formular:wertschriften-und-guthabenverzeichnis-fur-juristische-person:feld:4:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0276:carryingAmountSecuritiesGrossIncomeWithoutAnyDeduction:bankBalancesSecuritiesLoansAndOtherInvestmentsType"
+      }
+     ],
+     "balanceSheetDateBusinessYearType": [
+      {
+       "element": "bookValueAtBalanceSheetDate",
+       "datatype": "long",
+       "feld": "Buchwert laut Schlussbilanz",
+       "kennung": "sh:formular:wertschriften-und-guthabenverzeichnis-fur-juristische-person:feld:3:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0276:bookValueAtBalanceSheetDate:balanceSheetDateBusinessYearType"
+      },
+      {
+       "element": "grossIncomeWithoutAnyDeduction",
+       "datatype": "long",
+       "feld": "Bruttoertrag",
+       "kennung": "sh:formular:wertschriften-und-guthabenverzeichnis-fur-juristische-person:feld:3:teil:4",
+       "angabe_kennung": "sh:angabe:eCH-0276:grossIncomeWithoutAnyDeduction:balanceSheetDateBusinessYearType"
+      }
+     ],
+     "taxableEquityAfterProfitAppropriationType": [
+      {
+       "element": "carryingAmountSecurities",
+       "datatype": "long",
+       "feld": "Buchwert laut Schlussbilanz",
+       "kennung": "sh:formular:wertschriften-und-guthabenverzeichnis-fur-juristische-person:feld:4:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:carryingAmountSecurities:taxableEquityAfterProfitAppropriationType"
+      }
+     ],
+     "contentType": [
+      {
+       "element": "attachments",
+       "datatype": "attachmentsType",
+       "feld": "Kopien der betreffenden Kontoauszüge",
+       "kennung": "sh:formular:wertschriften-und-guthabenverzeichnis-fur-juristische-person:feld:5",
+       "angabe_kennung": "sh:angabe:eCH-0276:attachments:contentType"
+      }
+     ]
+    },
+    "eCH-0098": {
+     "organisationIdentificationType": [
+      {
+       "element": "organisationName",
+       "datatype": "unitNameType",
+       "feld": "Firmenname",
+       "kennung": "sh:formular:wertschriften-und-guthabenverzeichnis-fur-juristische-person:feld:2",
+       "angabe_kennung": "sh:angabe:eCH-0098:organisationName:organisationIdentificationType"
+      }
+     ]
+    }
+   },
+   "ohne_standard": []
+  },
+  {
+   "form_id": 596,
+   "formular_kennung": "sh:formular:schuldenverzeichnis-fur-juristische-personen-formular-14a",
+   "titel": "Schuldenverzeichnis für juristische Personen (Formular 14a)",
+   "dienststelle": "Steuerverwaltung",
+   "exchange_ready": "teilweise",
+   "abdeckung_pct": 73,
+   "ech": {
+    "eCH-0276": {
+     "titleType": [
+      {
+       "element": "registerNumber",
+       "datatype": "long",
+       "feld": "PID",
+       "kennung": "sh:formular:schuldenverzeichnis-fur-juristische-personen-formular-14a:feld:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:registerNumber:titleType"
+      }
+     ],
+     "assetsLoansReceivableType": [
+      {
+       "element": "name",
+       "datatype": "string",
+       "feld": "Name des Gläubigers",
+       "kennung": "sh:formular:schuldenverzeichnis-fur-juristische-personen-formular-14a:feld:3:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:name:assetsLoansReceivableType"
+      },
+      {
+       "element": "typeOfRelatedParty",
+       "datatype": "typeOfRelatedPartyType",
+       "feld": "Stellung des Gläubigers zur Steuerpflichtigen",
+       "kennung": "sh:formular:schuldenverzeichnis-fur-juristische-personen-formular-14a:feld:3:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0276:typeOfRelatedParty:assetsLoansReceivableType"
+      },
+      {
+       "element": "closingBalance",
+       "datatype": "taxAmountType",
+       "feld": "Schuldbetrag laut Schlussbilanz",
+       "kennung": "sh:formular:schuldenverzeichnis-fur-juristische-personen-formular-14a:feld:3:teil:5",
+       "angabe_kennung": "sh:angabe:eCH-0276:closingBalance:assetsLoansReceivableType"
+      },
+      {
+       "element": "interestRate",
+       "datatype": "taxAmountType",
+       "feld": "Zinssatz",
+       "kennung": "sh:formular:schuldenverzeichnis-fur-juristische-personen-formular-14a:feld:3:teil:6",
+       "angabe_kennung": "sh:angabe:eCH-0276:interestRate:assetsLoansReceivableType"
+      },
+      {
+       "element": "accountedInterest",
+       "datatype": "taxAmountType",
+       "feld": "Zinsen in diesem Geschäftsjahr fällig geworden",
+       "kennung": "sh:formular:schuldenverzeichnis-fur-juristische-personen-formular-14a:feld:3:teil:7",
+       "angabe_kennung": "sh:angabe:eCH-0276:accountedInterest:assetsLoansReceivableType"
+      },
+      {
+       "element": "name",
+       "datatype": "string",
+       "feld": "Name des Gläubigers",
+       "kennung": "sh:formular:schuldenverzeichnis-fur-juristische-personen-formular-14a:feld:5:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:name:assetsLoansReceivableType"
+      },
+      {
+       "element": "typeOfRelatedParty",
+       "datatype": "typeOfRelatedPartyType",
+       "feld": "Stellung des Gläubigers zur Steuerpflichtigen",
+       "kennung": "sh:formular:schuldenverzeichnis-fur-juristische-personen-formular-14a:feld:5:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0276:typeOfRelatedParty:assetsLoansReceivableType"
+      },
+      {
+       "element": "closingBalance",
+       "datatype": "taxAmountType",
+       "feld": "Schuldbetrag laut Schlussbilanz",
+       "kennung": "sh:formular:schuldenverzeichnis-fur-juristische-personen-formular-14a:feld:5:teil:5",
+       "angabe_kennung": "sh:angabe:eCH-0276:closingBalance:assetsLoansReceivableType"
+      },
+      {
+       "element": "interestRate",
+       "datatype": "taxAmountType",
+       "feld": "Zinssatz",
+       "kennung": "sh:formular:schuldenverzeichnis-fur-juristische-personen-formular-14a:feld:5:teil:6",
+       "angabe_kennung": "sh:angabe:eCH-0276:interestRate:assetsLoansReceivableType"
+      },
+      {
+       "element": "accountedInterest",
+       "datatype": "taxAmountType",
+       "feld": "Zinsen in diesem Geschäftsjahr fällig geworden",
+       "kennung": "sh:formular:schuldenverzeichnis-fur-juristische-personen-formular-14a:feld:5:teil:7",
+       "angabe_kennung": "sh:angabe:eCH-0276:accountedInterest:assetsLoansReceivableType"
+      }
+     ],
+     "currentLiabilitiesType": [
+      {
+       "element": "tradeAndOtherCurrentPayables",
+       "datatype": "tradeAndOtherCurrentPayablesType",
+       "feld": "Lieferantenschulden",
+       "kennung": "sh:formular:schuldenverzeichnis-fur-juristische-personen-formular-14a:feld:7",
+       "angabe_kennung": "sh:angabe:eCH-0276:tradeAndOtherCurrentPayables:currentLiabilitiesType"
+      }
+     ],
+     "contentType": [
+      {
+       "element": "attachments",
+       "datatype": "attachmentsType",
+       "feld": "Kopien der betreffenden Kontoauszüge aus der Buchhaltung",
+       "kennung": "sh:formular:schuldenverzeichnis-fur-juristische-personen-formular-14a:feld:8",
+       "angabe_kennung": "sh:angabe:eCH-0276:attachments:contentType"
+      }
+     ]
+    },
+    "eCH-0098": {
+     "organisationIdentificationType": [
+      {
+       "element": "organisationName",
+       "datatype": "unitNameType",
+       "feld": "Firmenname",
+       "kennung": "sh:formular:schuldenverzeichnis-fur-juristische-personen-formular-14a:feld:2",
+       "angabe_kennung": "sh:angabe:eCH-0098:organisationName:organisationIdentificationType"
+      }
+     ]
+    },
+    "eCH-0010": {
+     "mailAddressType": [
+      {
+       "element": "addressInformation",
+       "datatype": "addressInformationType",
+       "feld": "Adresse des Gläubigers",
+       "kennung": "sh:formular:schuldenverzeichnis-fur-juristische-personen-formular-14a:feld:3:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0010:addressInformation:mailAddressType"
+      },
+      {
+       "element": "addressInformation",
+       "datatype": "addressInformationType",
+       "feld": "Adresse des Gläubigers",
+       "kennung": "sh:formular:schuldenverzeichnis-fur-juristische-personen-formular-14a:feld:5:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0010:addressInformation:mailAddressType"
+      }
+     ]
+    }
+   },
+   "ohne_standard": [
+    {
+     "feld": "Sicherheiten",
+     "kennung": "sh:formular:schuldenverzeichnis-fur-juristische-personen-formular-14a:feld:3:teil:4",
+     "format": "10 Zeilen; Stellung: Code 01 / 00; Schuldbetrag und Zinsen in CHF; Zinssatz in %"
+    },
+    {
+     "feld": "Schuldbetrag laut Schlussbilanz",
+     "kennung": "sh:formular:schuldenverzeichnis-fur-juristische-personen-formular-14a:feld:4:teil:1",
+     "format": "CHF"
+    },
+    {
+     "feld": "Zinsen in diesem Geschäftsjahr fällig geworden",
+     "kennung": "sh:formular:schuldenverzeichnis-fur-juristische-personen-formular-14a:feld:4:teil:2",
+     "format": "CHF"
+    },
+    {
+     "feld": "Sicherheiten",
+     "kennung": "sh:formular:schuldenverzeichnis-fur-juristische-personen-formular-14a:feld:5:teil:4",
+     "format": "10 Zeilen; Stellung: Code 01 / 00; Schuldbetrag und Zinsen in CHF; Zinssatz in %"
+    },
+    {
+     "feld": "Schuldbetrag laut Schlussbilanz",
+     "kennung": "sh:formular:schuldenverzeichnis-fur-juristische-personen-formular-14a:feld:6:teil:1",
+     "format": "CHF"
+    },
+    {
+     "feld": "Zinsen in diesem Geschäftsjahr fällig geworden",
+     "kennung": "sh:formular:schuldenverzeichnis-fur-juristische-personen-formular-14a:feld:6:teil:2",
+     "format": "CHF"
+    }
+   ]
+  },
+  {
+   "form_id": 597,
+   "formular_kennung": "sh:formular:angaben-uber-beteiligungen-fur-juristische-personen-formular",
+   "titel": "Angaben über Beteiligungen für juristische Personen (Formular 19)",
+   "dienststelle": "Steuerverwaltung",
+   "exchange_ready": "voll",
+   "abdeckung_pct": 100,
+   "ech": {
+    "eCH-0276": {
+     "titleType": [
+      {
+       "element": "registerNumber",
+       "datatype": "long",
+       "feld": "PID",
+       "kennung": "sh:formular:angaben-uber-beteiligungen-fur-juristische-personen-formular:feld:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:registerNumber:titleType"
+      }
+     ],
+     "companyType": [
+      {
+       "element": "numberOfSecurities",
+       "datatype": "integer",
+       "feld": "Anzahl und Art der Titel (Spalte A)",
+       "kennung": "sh:formular:angaben-uber-beteiligungen-fur-juristische-personen-formular:feld:3:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:numberOfSecurities:companyType"
+      },
+      {
+       "element": "descriptionAndLegalFormOfTheCompany",
+       "datatype": "string",
+       "feld": "Bezeichnung und Rechtsform des Unternehmens (Spalte B)",
+       "kennung": "sh:formular:angaben-uber-beteiligungen-fur-juristische-personen-formular:feld:3:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0276:descriptionAndLegalFormOfTheCompany:companyType"
+      },
+      {
+       "element": "nominalAmountOfTotalCapitalInDomesticCurrency",
+       "datatype": "long",
+       "feld": "Gesamtes Grund- oder Stammkapital (Nominalbetrag) (Spalte C)",
+       "kennung": "sh:formular:angaben-uber-beteiligungen-fur-juristische-personen-formular:feld:3:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0276:nominalAmountOfTotalCapitalInDomesticCurrency:companyType"
+      }
+     ],
+     "participationInformationType": [
+      {
+       "element": "nominalAmountOfTheInvestmentDomesticCurrency",
+       "datatype": "long",
+       "feld": "Beteiligung Nominalbetrag (Spalte D)",
+       "kennung": "sh:formular:angaben-uber-beteiligungen-fur-juristische-personen-formular:feld:3:teil:4",
+       "angabe_kennung": "sh:angabe:eCH-0276:nominalAmountOfTheInvestmentDomesticCurrency:participationInformationType"
+      },
+      {
+       "element": "participationInPercent",
+       "datatype": "percentageType",
+       "feld": "Beteiligung in % (Spalte E)",
+       "kennung": "sh:formular:angaben-uber-beteiligungen-fur-juristische-personen-formular:feld:3:teil:5",
+       "angabe_kennung": "sh:angabe:eCH-0276:participationInPercent:participationInformationType"
+      },
+      {
+       "element": "marketValueOfTheInvestment",
+       "datatype": "long",
+       "feld": "Beteiligung Verkehrswert (Spalte F)",
+       "kennung": "sh:formular:angaben-uber-beteiligungen-fur-juristische-personen-formular:feld:3:teil:6",
+       "angabe_kennung": "sh:angabe:eCH-0276:marketValueOfTheInvestment:participationInformationType"
+      }
+     ],
+     "profitTaxValueType": [
+      {
+       "element": "amountInTheCurrencyOfTheFinancialStatements",
+       "datatype": "taxAmountType",
+       "feld": "Gewinnsteuerwert der Beteiligung am Ende der Steuerperiode (Spalte G)",
+       "kennung": "sh:formular:angaben-uber-beteiligungen-fur-juristische-personen-formular:feld:3:teil:7",
+       "angabe_kennung": "sh:angabe:eCH-0276:amountInTheCurrencyOfTheFinancialStatements:profitTaxValueType"
+      },
+      {
+       "element": "profitTaxValueInPercentOfAssets",
+       "datatype": "taxAmountPercentageType",
+       "feld": "Gewinnsteuerwert in % der Aktiven (Spalte H)",
+       "kennung": "sh:formular:angaben-uber-beteiligungen-fur-juristische-personen-formular:feld:3:teil:8",
+       "angabe_kennung": "sh:angabe:eCH-0276:profitTaxValueInPercentOfAssets:profitTaxValueType"
+      }
+     ],
+     "generalParticipationsType": [
+      {
+       "element": "incomTaxValueOfTotalAssetsAtTheEndOfTheTaxPeriod",
+       "datatype": "taxAmountType",
+       "feld": "Gewinnsteuerwert der Gesamtaktiven am Ende der Steuerperiode",
+       "kennung": "sh:formular:angaben-uber-beteiligungen-fur-juristische-personen-formular:feld:4",
+       "angabe_kennung": "sh:angabe:eCH-0276:incomTaxValueOfTotalAssetsAtTheEndOfTheTaxPeriod:generalParticipationsType"
+      },
+      {
+       "element": "totalFinancingCostsDuringTheTaxPeriod",
+       "datatype": "long",
+       "feld": "Total des Finanzierungsaufwandes in der Steuerperiode",
+       "kennung": "sh:formular:angaben-uber-beteiligungen-fur-juristische-personen-formular:feld:5",
+       "angabe_kennung": "sh:angabe:eCH-0276:totalFinancingCostsDuringTheTaxPeriod:generalParticipationsType"
+      }
+     ],
+     "acquisitionType": [
+      {
+       "element": "dateOfTheFirstAcquisitionOfSharesInTheParticipation",
+       "datatype": "date",
+       "feld": "Datum des ersten Erwerbs von Titeln der Beteiligung (Spalte I)",
+       "kennung": "sh:formular:angaben-uber-beteiligungen-fur-juristische-personen-formular:feld:6:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:dateOfTheFirstAcquisitionOfSharesInTheParticipation:acquisitionType"
+      },
+      {
+       "element": "acquisitionDuringTheTaxPeriodPurchasePriceForTheSharesAcquiredInTheTaxPeriod",
+       "datatype": "long",
+       "feld": "Kaufpreis für die in der Steuerperiode erworbenen Anteile (Spalte J)",
+       "kennung": "sh:formular:angaben-uber-beteiligungen-fur-juristische-personen-formular:feld:6:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0276:acquisitionDuringTheTaxPeriodPurchasePriceForTheSharesAcquiredInTheTaxPeriod:acquisitionType"
+      },
+      {
+       "element": "acquisitionDuringTheTaxPeriodDateOfAcquisition",
+       "datatype": "date",
+       "feld": "Datum des letzten Erwerbs (Spalte K)",
+       "kennung": "sh:formular:angaben-uber-beteiligungen-fur-juristische-personen-formular:feld:6:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0276:acquisitionDuringTheTaxPeriodDateOfAcquisition:acquisitionType"
+      }
+     ],
+     "generalPrimeCostsType": [
+      {
+       "element": "atTheBeginningOfTheTaxPeriod",
+       "datatype": "taxAmountType",
+       "feld": "Gestehungskosten zu Beginn der Steuerperiode (Spalte L)",
+       "kennung": "sh:formular:angaben-uber-beteiligungen-fur-juristische-personen-formular:feld:6:teil:4",
+       "angabe_kennung": "sh:angabe:eCH-0276:atTheBeginningOfTheTaxPeriod:generalPrimeCostsType"
+      },
+      {
+       "element": "changeIncrease",
+       "datatype": "taxAmountType",
+       "feld": "Veränderung Erhöhung (Spalte M)",
+       "kennung": "sh:formular:angaben-uber-beteiligungen-fur-juristische-personen-formular:feld:6:teil:5",
+       "angabe_kennung": "sh:angabe:eCH-0276:changeIncrease:generalPrimeCostsType"
+      },
+      {
+       "element": "changeDecrease",
+       "datatype": "taxAmountType",
+       "feld": "Veränderung Verminderung (Spalte N)",
+       "kennung": "sh:formular:angaben-uber-beteiligungen-fur-juristische-personen-formular:feld:6:teil:6",
+       "angabe_kennung": "sh:angabe:eCH-0276:changeDecrease:generalPrimeCostsType"
+      },
+      {
+       "element": "atTheEndOfTheTaxPeriod",
+       "datatype": "taxAmountType",
+       "feld": "Gestehungskosten am Ende der Steuerperiode (Spalte O)",
+       "kennung": "sh:formular:angaben-uber-beteiligungen-fur-juristische-personen-formular:feld:6:teil:7",
+       "angabe_kennung": "sh:angabe:eCH-0276:atTheEndOfTheTaxPeriod:generalPrimeCostsType"
+      },
+      {
+       "element": "disposalDuringTaxPeriod",
+       "datatype": "boolean",
+       "feld": "Hat während der Steuerperiode eine Veräusserung stattgefunden? (Ja/Nein)",
+       "kennung": "sh:formular:angaben-uber-beteiligungen-fur-juristische-personen-formular:feld:6:teil:8",
+       "angabe_kennung": "sh:angabe:eCH-0276:disposalDuringTaxPeriod:generalPrimeCostsType"
+      }
+     ],
+     "contentType": [
+      {
+       "element": "attachments",
+       "datatype": "attachmentsType",
+       "feld": "Formular 19.1 «Kapitalgewinn aus Beteiligung» oder eigene Aufstellung",
+       "kennung": "sh:formular:angaben-uber-beteiligungen-fur-juristische-personen-formular:feld:7",
+       "angabe_kennung": "sh:angabe:eCH-0276:attachments:contentType"
+      }
+     ],
+     "netIncomeFromParticipationsType": [
+      {
+       "element": "grossIncomeFromDistributions",
+       "datatype": "long",
+       "feld": "Bruttoertrag aus Ausschüttungen (Spalte P)",
+       "kennung": "sh:formular:angaben-uber-beteiligungen-fur-juristische-personen-formular:feld:8:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:grossIncomeFromDistributions:netIncomeFromParticipationsType"
+      },
+      {
+       "element": "grossIncomeFromCapitalGains",
+       "datatype": "long",
+       "feld": "Bruttoertrag aus Kapitalgewinnen (Übertrag von Formular/-en 19.1) (Spalte Q)",
+       "kennung": "sh:formular:angaben-uber-beteiligungen-fur-juristische-personen-formular:feld:8:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0276:grossIncomeFromCapitalGains:netIncomeFromParticipationsType"
+      },
+      {
+       "element": "depreciationAndAmortisationInConnectionWithIncome",
+       "datatype": "taxAmountType",
+       "feld": "Abschreibungen im Zusammenhang mit dem Ertrag (Spalte R)",
+       "kennung": "sh:formular:angaben-uber-beteiligungen-fur-juristische-personen-formular:feld:8:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0276:depreciationAndAmortisationInConnectionWithIncome:netIncomeFromParticipationsType"
+      },
+      {
+       "element": "relevantIncome",
+       "datatype": "taxAmountType",
+       "feld": "Massgeblicher Ertrag (Spalte S)",
+       "kennung": "sh:formular:angaben-uber-beteiligungen-fur-juristische-personen-formular:feld:8:teil:4",
+       "angabe_kennung": "sh:angabe:eCH-0276:relevantIncome:netIncomeFromParticipationsType"
+      },
+      {
+       "element": "administrativeExpenses",
+       "datatype": "long",
+       "feld": "Verwaltungsaufwand Spalte S × 5 % (5 %-Praxis) (Spalte T)",
+       "kennung": "sh:formular:angaben-uber-beteiligungen-fur-juristische-personen-formular:feld:8:teil:5",
+       "angabe_kennung": "sh:angabe:eCH-0276:administrativeExpenses:netIncomeFromParticipationsType"
+      },
+      {
+       "element": "financingExpenses",
+       "datatype": "long",
+       "feld": "Finanzierungsaufwand (Spalte U)",
+       "kennung": "sh:formular:angaben-uber-beteiligungen-fur-juristische-personen-formular:feld:8:teil:6",
+       "angabe_kennung": "sh:angabe:eCH-0276:financingExpenses:netIncomeFromParticipationsType"
+      },
+      {
+       "element": "netIncomeProfit",
+       "datatype": "taxAmountType",
+       "feld": "Nettoertrag Nettogewinn (Spalte V)",
+       "kennung": "sh:formular:angaben-uber-beteiligungen-fur-juristische-personen-formular:feld:8:teil:7",
+       "angabe_kennung": "sh:angabe:eCH-0276:netIncomeProfit:netIncomeFromParticipationsType"
+      },
+      {
+       "element": "netIncomeLoss",
+       "datatype": "taxAmountType",
+       "feld": "Nettoertrag Nettoverlust (Spalte W)",
+       "kennung": "sh:formular:angaben-uber-beteiligungen-fur-juristische-personen-formular:feld:8:teil:8",
+       "angabe_kennung": "sh:angabe:eCH-0276:netIncomeLoss:netIncomeFromParticipationsType"
+      },
+      {
+       "element": "totalNetIncomeProfit",
+       "datatype": "taxAmountType",
+       "feld": "Nettogewinn (Spalte V)",
+       "kennung": "sh:formular:angaben-uber-beteiligungen-fur-juristische-personen-formular:feld:9:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:totalNetIncomeProfit:netIncomeFromParticipationsType"
+      },
+      {
+       "element": "totalNetIncomeLoss",
+       "datatype": "taxAmountType",
+       "feld": "Nettoverlust (Spalte W)",
+       "kennung": "sh:formular:angaben-uber-beteiligungen-fur-juristische-personen-formular:feld:9:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0276:totalNetIncomeLoss:netIncomeFromParticipationsType"
+      },
+      {
+       "element": "netIncomeFromParticipations",
+       "datatype": "taxAmountType",
+       "feld": "Nettoertrag aus Beteiligungen",
+       "kennung": "sh:formular:angaben-uber-beteiligungen-fur-juristische-personen-formular:feld:10:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:netIncomeFromParticipations:netIncomeFromParticipationsType"
+      },
+      {
+       "element": "participationExemptionProfitTaxInPercent",
+       "datatype": "taxAmountPercentageType",
+       "feld": "Prozentuale Ermässigung in %",
+       "kennung": "sh:formular:angaben-uber-beteiligungen-fur-juristische-personen-formular:feld:10:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0276:participationExemptionProfitTaxInPercent:netIncomeFromParticipationsType"
+      },
+      {
+       "element": "netIncomeFromParticipations",
+       "datatype": "taxAmountType",
+       "feld": "Nettoertrag aus Beteiligungen",
+       "kennung": "sh:formular:angaben-uber-beteiligungen-fur-juristische-personen-formular:feld:11:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:netIncomeFromParticipations:netIncomeFromParticipationsType"
+      },
+      {
+       "element": "participationExemptionProfitTaxInPercent",
+       "datatype": "taxAmountPercentageType",
+       "feld": "Prozentuale Ermässigung in %",
+       "kennung": "sh:formular:angaben-uber-beteiligungen-fur-juristische-personen-formular:feld:11:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0276:participationExemptionProfitTaxInPercent:netIncomeFromParticipationsType"
+      }
+     ],
+     "variousQuestionsType": [
+      {
+       "element": "taxableProfitCantonalAndMunicipalTaxes",
+       "datatype": "long",
+       "feld": "Gesamter steuerbarer Reingewinn",
+       "kennung": "sh:formular:angaben-uber-beteiligungen-fur-juristische-personen-formular:feld:10:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0276:taxableProfitCantonalAndMunicipalTaxes:variousQuestionsType"
+      },
+      {
+       "element": "taxableProfitDirectFederalTax",
+       "datatype": "long",
+       "feld": "Gesamter steuerbarer Reingewinn",
+       "kennung": "sh:formular:angaben-uber-beteiligungen-fur-juristische-personen-formular:feld:11:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0276:taxableProfitDirectFederalTax:variousQuestionsType"
+      }
+     ]
+    },
+    "eCH-0098": {
+     "organisationIdentificationType": [
+      {
+       "element": "organisationName",
+       "datatype": "unitNameType",
+       "feld": "Firmenname",
+       "kennung": "sh:formular:angaben-uber-beteiligungen-fur-juristische-personen-formular:feld:2",
+       "angabe_kennung": "sh:angabe:eCH-0098:organisationName:organisationIdentificationType"
+      }
+     ]
+    }
+   },
+   "ohne_standard": []
+  },
+  {
+   "form_id": 598,
+   "formular_kennung": "sh:formular:kapitalgewinn-aus-beteiligungen-fur-juristische-personen-for",
+   "titel": "Kapitalgewinn aus Beteiligungen für juristische Personen (Formular 19.1)",
+   "dienststelle": "Steuerverwaltung",
+   "exchange_ready": "teilweise",
+   "abdeckung_pct": 28,
+   "ech": {
+    "eCH-0276": {
+     "titleType": [
+      {
+       "element": "registerNumber",
+       "datatype": "long",
+       "feld": "PID",
+       "kennung": "sh:formular:kapitalgewinn-aus-beteiligungen-fur-juristische-personen-for:feld:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:registerNumber:titleType"
+      }
+     ],
+     "generalParticipationsType": [
+      {
+       "element": "generalParticipationsNumber",
+       "datatype": "integer",
+       "feld": "Beteiligung Nr.",
+       "kennung": "sh:formular:kapitalgewinn-aus-beteiligungen-fur-juristische-personen-for:feld:3:teil:1",
+       "angabe_kennung": "sh:angabe:eCH-0276:generalParticipationsNumber:generalParticipationsType"
+      }
+     ],
+     "attachmentsType": [
+      {
+       "element": "documentTitle",
+       "datatype": "textFieldType",
+       "feld": "Referenz auf die anstelle des Formulars 19 eingereichte eigene Aufstellung",
+       "kennung": "sh:formular:kapitalgewinn-aus-beteiligungen-fur-juristische-personen-for:feld:3:teil:4",
+       "angabe_kennung": "sh:angabe:eCH-0276:documentTitle:attachmentsType"
+      }
+     ],
+     "netIncomeFromParticipationsType": [
+      {
+       "element": "grossIncomeFromCapitalGains",
+       "datatype": "long",
+       "feld": "Kapitalgewinn aus der Veräusserung von Beteiligungen",
+       "kennung": "sh:formular:kapitalgewinn-aus-beteiligungen-fur-juristische-personen-for:feld:10",
+       "angabe_kennung": "sh:angabe:eCH-0276:grossIncomeFromCapitalGains:netIncomeFromParticipationsType"
+      }
+     ],
+     "contentType": [
+      {
+       "element": "attachments",
+       "datatype": "attachmentsType",
+       "feld": "Nachweis der Zuordnung",
+       "kennung": "sh:formular:kapitalgewinn-aus-beteiligungen-fur-juristische-personen-for:feld:12",
+       "angabe_kennung": "sh:angabe:eCH-0276:attachments:contentType"
+      }
+     ]
+    },
+    "eCH-0098": {
+     "organisationIdentificationType": [
+      {
+       "element": "organisationName",
+       "datatype": "unitNameType",
+       "feld": "Firmenname",
+       "kennung": "sh:formular:kapitalgewinn-aus-beteiligungen-fur-juristische-personen-for:feld:2",
+       "angabe_kennung": "sh:angabe:eCH-0098:organisationName:organisationIdentificationType"
+      },
+      {
+       "element": "organisationName",
+       "datatype": "unitNameType",
+       "feld": "Bezeichnung des Unternehmens",
+       "kennung": "sh:formular:kapitalgewinn-aus-beteiligungen-fur-juristische-personen-for:feld:3:teil:2",
+       "angabe_kennung": "sh:angabe:eCH-0098:organisationName:organisationIdentificationType"
+      },
+      {
+       "element": "legalForm",
+       "datatype": "legalFormType",
+       "feld": "Rechtsform des Unternehmens",
+       "kennung": "sh:formular:kapitalgewinn-aus-beteiligungen-fur-juristische-personen-for:feld:3:teil:3",
+       "angabe_kennung": "sh:angabe:eCH-0098:legalForm:organisationIdentificationType"
+      }
+     ]
+    }
+   },
+   "ohne_standard": [
+    {
+     "feld": "Letztes Erwerbsdatum von Titeln des veräusserten Pakets",
+     "kennung": "sh:formular:kapitalgewinn-aus-beteiligungen-fur-juristische-personen-for:feld:4:teil:1",
+     "format": "Tabelle, 4 Zeilen; Quote in %, Verkaufserlöse in CHF, Anteil in %"
+    },
+    {
+     "feld": "Datum der Veräusserung",
+     "kennung": "sh:formular:kapitalgewinn-aus-beteiligungen-fur-juristische-personen-for:feld:4:teil:2",
+     "format": "Tabelle, 4 Zeilen; Quote in %, Verkaufserlöse in CHF, Anteil in %"
+    },
+    {
+     "feld": "Veräusserte Quote (in % des Gesamtkapitals)",
+     "kennung": "sh:formular:kapitalgewinn-aus-beteiligungen-fur-juristische-personen-for:feld:4:teil:3",
+     "format": "Tabelle, 4 Zeilen; Quote in %, Verkaufserlöse in CHF, Anteil in %"
+    },
+    {
+     "feld": "Verkaufserlös – Gesamt",
+     "kennung": "sh:formular:kapitalgewinn-aus-beteiligungen-fur-juristische-personen-for:feld:4:teil:4",
+     "format": "Tabelle, 4 Zeilen; Quote in %, Verkaufserlöse in CHF, Anteil in %"
+    },
+    {
+     "feld": "Verkaufserlös – Auf Titel mit einer Haltedauer von einem Jahr oder länger entfallender Anteil (= massgebender Verkaufserlös)",
+     "kennung": "sh:formular:kapitalgewinn-aus-beteiligungen-fur-juristische-personen-for:feld:4:teil:5",
+     "format": "Tabelle, 4 Zeilen; Quote in %, Verkaufserlöse in CHF, Anteil in %"
+    },
+    {
+     "feld": "Massgebender Verkaufserlös in Prozent des Gesamterlöses",
+     "kennung": "sh:formular:kapitalgewinn-aus-beteiligungen-fur-juristische-personen-for:feld:4:teil:6",
+     "format": "Tabelle, 4 Zeilen; Quote in %, Verkaufserlöse in CHF, Anteil in %"
+    },
+    {
+     "feld": "Total Quote",
+     "kennung": "sh:formular:kapitalgewinn-aus-beteiligungen-fur-juristische-personen-for:feld:5:teil:1",
+     "format": "% bzw. CHF"
+    },
+    {
+     "feld": "Total Verkaufserlös",
+     "kennung": "sh:formular:kapitalgewinn-aus-beteiligungen-fur-juristische-personen-for:feld:5:teil:2",
+     "format": "% bzw. CHF"
+    },
+    {
+     "feld": "Total massgebender Verkaufserlös unter Berücksichtigung der Mindesthaltedauer",
+     "kennung": "sh:formular:kapitalgewinn-aus-beteiligungen-fur-juristische-personen-for:feld:6",
+     "format": "CHF"
+    },
+    {
+     "feld": "Gestehungskosten für Gesamtbestand zu Beginn der Steuerperiode bzw. für Restbestand nach der letzten Veräusserung in der Steuerperiode",
+     "kennung": "sh:formular:kapitalgewinn-aus-beteiligungen-fur-juristische-personen-for:feld:7:teil:1",
+     "format": "Tabelle, 4 Zeilen; in CHF"
+    },
+    {
+     "feld": "Veränderung seit Beginn der Steuerperiode bzw. seit der letzten Veräusserung in der Steuerperiode – Erhöhung",
+     "kennung": "sh:formular:kapitalgewinn-aus-beteiligungen-fur-juristische-personen-for:feld:7:teil:2",
+     "format": "Tabelle, 4 Zeilen; in CHF"
+    },
+    {
+     "feld": "Veränderung seit Beginn der Steuerperiode bzw. seit der letzten Veräusserung in der Steuerperiode – Verminderung",
+     "kennung": "sh:formular:kapitalgewinn-aus-beteiligungen-fur-juristische-personen-for:feld:7:teil:3",
+     "format": "Tabelle, 4 Zeilen; in CHF"
+    },
+    {
+     "feld": "Gestehungskosten vor dem Verkauf des Beteiligungspakets",
+     "kennung": "sh:formular:kapitalgewinn-aus-beteiligungen-fur-juristische-personen-for:feld:7:teil:4",
+     "format": "Tabelle, 4 Zeilen; in CHF"
+    },
+    {
+     "feld": "Auf verkauftes Beteiligungspaket entfallender Anteil (gemäss Ziffer 2.1) – Gesamt",
+     "kennung": "sh:formular:kapitalgewinn-aus-beteiligungen-fur-juristische-personen-for:feld:7:teil:5",
+     "format": "Tabelle, 4 Zeilen; in CHF"
+    },
+    {
+     "feld": "Auf verkauftes Beteiligungspaket entfallender Anteil (gemäss Ziffer 2.1) – auf massgebenden Verkaufserlös entfallender Anteil",
+     "kennung": "sh:formular:kapitalgewinn-aus-beteiligungen-fur-juristische-personen-for:feld:7:teil:6",
+     "format": "Tabelle, 4 Zeilen; in CHF"
+    },
+    {
+     "feld": "Total Erhöhung",
+     "kennung": "sh:formular:kapitalgewinn-aus-beteiligungen-fur-juristische-personen-for:feld:8:teil:1",
+     "format": "CHF"
+    },
+    {
+     "feld": "Total Verminderung",
+     "kennung": "sh:formular:kapitalgewinn-aus-beteiligungen-fur-juristische-personen-for:feld:8:teil:2",
+     "format": "CHF"
+    },
+    {
+     "feld": "Total vor dem Verkauf des Beteiligungspakets",
+     "kennung": "sh:formular:kapitalgewinn-aus-beteiligungen-fur-juristische-personen-for:feld:8:teil:3",
+     "format": "CHF"
+    },
+    {
+     "feld": "Total auf verkauftes Beteiligungspaket entfallender Anteil – Gesamt",
+     "kennung": "sh:formular:kapitalgewinn-aus-beteiligungen-fur-juristische-personen-for:feld:8:teil:4",
+     "format": "CHF"
+    },
+    {
+     "feld": "Total massgebende Gestehungskosten unter Berücksichtigung der Mindesthaltedauer",
+     "kennung": "sh:formular:kapitalgewinn-aus-beteiligungen-fur-juristische-personen-for:feld:9",
+     "format": "CHF"
+    },
+    {
+     "feld": "Umschlagsmethode",
+     "kennung": "sh:formular:kapitalgewinn-aus-beteiligungen-fur-juristische-personen-for:feld:11",
+     "format": ""
+    }
+   ]
   }
  ]
 }

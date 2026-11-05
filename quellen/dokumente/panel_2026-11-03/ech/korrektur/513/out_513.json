@@ -1,0 +1,14 @@
+{
+ "hinweis": "Korrekturen bestehender eCH-Zuordnungen von Formular 513: Vorschläge des Panels vom 03.11.2026, gegen Katalog und Praxis der Databank entschieden und zweitgeprüft (05.11.2026); nur die Änderungen.",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-11-03/ech/korrektur/513 --nur=513",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Das Feld bündelt Name (employer) und Adresse (placeOfEmployer), und beide liegen laut XSD im Container eCH-0021 occupationData (31× als Feld belegt); dort liegt auf 513 auch «Einsatzort» (placeOfWork). Das bisherige employer (6× auf 508–513) deckt nur den Namen ab, darum gilt die gleiche Familienantwort wie auf 508, 511 und 512.",
+   "feld": "Name und Adresse des Betriebes",
+   "standard": "eCH-0021",
+   "element": "occupationData"
+  }
+ ]
+}

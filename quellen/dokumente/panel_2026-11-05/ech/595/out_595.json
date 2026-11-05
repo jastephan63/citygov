@@ -1,0 +1,98 @@
+{
+ "hinweis": "eCH-Urteile Formular 595, Panel 2026-11-05, Zweitprüfung angewendet",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-11-05/ech/595 --nur-offene=595",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Bestätigt und belegt. Der amtliche Feldkatalog von eCH-0276 (Beilage BEIL_d_f_…_E_Bilanz_E-Tax.xlsx, Register header) beschriftet registerNumber (titleType, Z1001, 1..1) wörtlich mit «Register-Nr. / PID-Nr.». Das Beispiel-XML des Standards trägt dort 123456 bei Veranlagungsgemeinde Schaffhausen. Der übernommene Wert eCH-0044 localPersonId identifiziert natürliche Personen und passt deshalb nicht zur juristischen Person. cantonalRegisterNumber habe ich verworfen: Das ist laut Katalog eine «weitere kantonale Registernummer».",
+   "feld": "PID",
+   "standard": "eCH-0276",
+   "element": "registerNumber"
+  },
+  {
+   "art": "feld",
+   "urteil": "korrekt",
+   "grund": "Der Firmenname ist der Name der juristischen Person. Der übernommene Wert eCH-0098 organisationName (organisationIdentificationType, Genehmigt) ist das Basiselement für Organisationsnamen. Er stimmt mit den Formularen 541 und 590–598 überein. eCH-0276 titleType organisationName («Name der Firma», Z1000) ist gleichwertig und hat denselben Typ unitNameType, darum ist kein Wechsel nötig.",
+   "feld": "Firmenname"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die Tabelle mit einer Zeile pro Guthaben, Obligation, Beteiligungsrecht oder Darlehen entspricht der wiederholbaren Zeile von Register I in eCH-0276 (Genehmigt). Der Feldkatalog beschriftet bankBalancesSecuritiesLoansAndOtherInvestments (0..x) mit «A. Bankguthaben, Wertschriften, Darlehen und sonstige Kapitalanlagen». Das Element ist der Container für die Teilfelder.",
+   "feld": "Wertschriften- und Guthabenverzeichnis",
+   "standard": "eCH-0276",
+   "element": "bankBalancesSecuritiesLoansAndOtherInvestments"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Bestätigt durch den amtlichen Feldkatalog von eCH-0276. Die Spalte totalNominalValue heisst dort wörtlich «Gesamter Nennwert» und darunter «bei Aktien usw.: Stückzahl», also genau wie im Formular. investmentsAndSecuritiesNumber ist laut Katalog die Spalte «Nr.» (Positionsnummer). Die Zuordnung der gleichen Spalte zu diesem Element in Formular 252 ist darum falsch und sollte dort korrigiert werden.",
+   "elternfeld": "Wertschriften- und Guthabenverzeichnis",
+   "teilfeld": "Gesamter Nennwert / Bei Aktien usw.: Stückzahl",
+   "standard": "eCH-0276",
+   "element": "totalNominalValue"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Der Feldkatalog von eCH-0276 beschriftet descriptionOfInvestment (bankBalancesSecuritiesLoansAndOtherInvestmentsType) mit «Bezeichnung der Kapitalanlagen» und nennt dazu «Postkonto- und Bankguthaben, Obligationen, Aktien, Anteilscheine, Genussscheine usw.». Das deckt die Freitextzelle des Formulars ab.",
+   "elternfeld": "Wertschriften- und Guthabenverzeichnis",
+   "teilfeld": "Bezeichnung der Vermögenswerte",
+   "standard": "eCH-0276",
+   "element": "descriptionOfInvestment"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Der Feldkatalog von eCH-0276 führt in der Zeile von Register I unter «Bilanzstichtag / Geschäftsjahr» die Spalte bookValueAtBalanceSheetDate mit «1 Buchwert am Bilanzstichtag CHF». Das ist der Buchwert laut Schlussbilanz pro Position. Hinweis: Die XSD definiert balanceSheetDateBusinessYearType, bindet ihn aber nicht in die Zeile ein. Das Element steht trotzdem verbatim im Katalog dieses Standards.",
+   "elternfeld": "Wertschriften- und Guthabenverzeichnis",
+   "teilfeld": "Buchwert laut Schlussbilanz",
+   "standard": "eCH-0276",
+   "element": "bookValueAtBalanceSheetDate"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Der Feldkatalog von eCH-0276 beschriftet die Spalte grossIncomeWithoutAnyDeduction (balanceSheetDateBusinessYearType) mit «3 Bruttoertrag ohne jeden Abzug CHF». Das ist der Ertrag der Position im Geschäftsjahr und entspricht der Spalte «Bruttoertrag CHF».",
+   "elternfeld": "Wertschriften- und Guthabenverzeichnis",
+   "teilfeld": "Bruttoertrag",
+   "standard": "eCH-0276",
+   "element": "grossIncomeWithoutAnyDeduction"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die Summenzeile gehört zu Register I als Ganzem. Dessen Container in eCH-0276 ist investmentsAndSecurities (contentType, «I. Kapitalanlagen und Wertschriften»). Einen eigenen Container nur für die Totalzeile gibt es nicht. Ihre zwei Zellen haben eigene Summen-Elemente (siehe Teilfelder).",
+   "feld": "Total Wertschriften und Guthaben sowie Ertrag daraus",
+   "standard": "eCH-0276",
+   "element": "investmentsAndSecurities"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Korrigiert. Der Feldkatalog von eCH-0276 nennt für die Summenzeile von Register I «Summe Buchwert resp. Summe Bruttoertrag» mit den Positionen F1160 und I1883. F1160 ist carryingAmountSecurities (taxableEquityAfterProfitAppropriationType, «Buchwert Wertschriften»). Der Standard überträgt die Buchwert-Summe also ausdrücklich ins Register F. Dasselbe Muster gilt für «Steuerwert Kanton» F1161, das kein eigenes Register-I-Element hat. Die Ablehnung, F1160 decke die Guthaben nicht, widerspricht diesem Katalog. bookValueAtBalanceSheetDate würde die Summe mit dem Buchwert einer einzelnen Position gleichsetzen.",
+   "elternfeld": "Total Wertschriften und Guthaben sowie Ertrag daraus",
+   "teilfeld": "Buchwert laut Schlussbilanz",
+   "standard": "eCH-0276",
+   "element": "carryingAmountSecurities"
+  },
+  {
+   "art": "teilfeld",
+   "urteil": "besser",
+   "grund": "Korrigiert. Laut Feldkatalog von eCH-0276 ist carryingAmountSecuritiesGrossIncomeWithoutAnyDeduction (bankBalancesSecuritiesLoansAndOtherInvestmentsType) das Element der Summenzeile von Register I. Es hat die Bezeichnung «Summe Buchwert resp. Summe Bruttoertrag» und die Position I1883. Weil die Buchwert-Summe als F1160 übertragen wird, trägt dieses Element die Summe der Bruttoerträge. Der Name ist ungewöhnlich, die Bedeutung ist aber im Katalog eindeutig. grossIncomeWithoutAnyDeduction ist der Wert pro Position, investmentIncome gehört zur Erfolgsrechnung.",
+   "elternfeld": "Total Wertschriften und Guthaben sowie Ertrag daraus",
+   "teilfeld": "Bruttoertrag",
+   "standard": "eCH-0276",
+   "element": "carryingAmountSecuritiesGrossIncomeWithoutAnyDeduction"
+  },
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Die Beilage gehört zur Steuererklärung der juristischen Person. eCH-0276 attachments (contentType, «G. BEILAGEN») ist der Beilagen-Container des Standards, in dem auch die übrigen Angaben dieses Formulars stehen. Seine Dokumenttypen nennen «Kontoblatt» (518) als Codewert. eCH-0119 attachment habe ich verworfen, weil es für natürliche Personen gilt. eCH-0229 attachment wäre möglich, liegt aber ausserhalb des Standards dieses Formulars.",
+   "feld": "Kopien der betreffenden Kontoauszüge",
+   "standard": "eCH-0276",
+   "element": "attachments"
+  }
+ ]
+}

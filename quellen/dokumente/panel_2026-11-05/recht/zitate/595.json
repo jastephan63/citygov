@@ -1,0 +1,100 @@
+{
+ "form_id": 595,
+ "mappings": [
+  {
+   "data_field": "PID",
+   "cites": [
+    {
+     "cref": "SHR 641.111",
+     "article_no": "§ 81b",
+     "beleg": "Abs. 4: Die kantonale Steuerverwaltung stellt für elektronische Gesuche um Verlängerung der Einreichungsfrist für die Steuererklärung ein Webportal zur Verfügung, auf dem sich die steuerpflichtigen Personen durch Angabe ihrer PID und bei natürlichen Personen zudem ihres Geburtsdatums ausweisen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Firmenname",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 142",
+     "beleg": "Die steuerpflichtige Person muss die Steuererklärung wahrheitsgemäss und vollständig ausfüllen, persönlich unterzeichnen und samt den vorgeschriebenen Beilagen fristgemäss der zuständigen Behörde einreichen."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 124",
+     "beleg": "Die steuerpflichtige Person muss die Steuererklärung wahrheitsgemäss und vollständig ausfüllen, persönlich unterzeichnen und samt den vorgeschriebenen Beilagen fristgemäss der zuständigen Steuerbehörde einreichen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Wertschriften- und Guthabenverzeichnis",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 143",
+     "beleg": "Natürliche Personen mit Einkommen aus selbständiger Erwerbstätigkeit und juristische Personen müssen der Steuererklärung beilegen: a) die unterzeichneten Jahresrechnungen (Bilanzen, Erfolgsrechnungen) der Steuerperiode (Abs. 2)"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 144",
+     "beleg": "Die Steuerpflichtigen müssen alles tun, um eine vollständige und richtige Veranlagung zu ermöglichen. Sie müssen auf Verlangen der Steuerbehörde insbesondere mündlich oder schriftlich Auskunft erteilen (Abs. 1-2)"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 125",
+     "beleg": "Natürliche Personen mit Einkommen aus selbständiger Erwerbstätigkeit und juristische Personen müssen der Steuererklärung beilegen: a. die unterzeichneten Jahresrechnungen (Bilanzen, Erfolgsrechnungen) der Steuerperiode (Abs. 2)"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 126",
+     "beleg": "Der Steuerpflichtige muss alles tun, um eine vollständige und richtige Veranlagung zu ermöglichen. Er muss auf Verlangen der Veranlagungsbehörde insbesondere mündlich oder schriftlich Auskunft erteilen (Abs. 1-2)"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Total Wertschriften und Guthaben sowie Ertrag daraus",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 143",
+     "beleg": "juristische Personen müssen der Steuererklärung beilegen: a) die unterzeichneten Jahresrechnungen (Bilanzen, Erfolgsrechnungen) der Steuerperiode (Abs. 2)"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 144",
+     "beleg": "Die Steuerpflichtigen müssen alles tun, um eine vollständige und richtige Veranlagung zu ermöglichen. Sie müssen auf Verlangen der Steuerbehörde insbesondere mündlich oder schriftlich Auskunft erteilen (Abs. 1-2)"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 125",
+     "beleg": "juristische Personen müssen der Steuererklärung beilegen: a. die unterzeichneten Jahresrechnungen (Bilanzen, Erfolgsrechnungen) der Steuerperiode (Abs. 2)"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 126",
+     "beleg": "Der Steuerpflichtige muss alles tun, um eine vollständige und richtige Veranlagung zu ermöglichen. Er muss auf Verlangen der Veranlagungsbehörde insbesondere mündlich oder schriftlich Auskunft erteilen (Abs. 1-2)"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Kopien der betreffenden Kontoauszüge",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 144",
+     "beleg": "Sie müssen auf Verlangen der Steuerbehörde insbesondere mündlich oder schriftlich Auskunft erteilen, Geschäftsbücher, Belege und weitere Bescheinigungen sowie Urkunden über den Geschäftsverkehr vorlegen. (Abs. 2)"
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 126",
+     "beleg": "Er muss auf Verlangen der Veranlagungsbehörde insbesondere mündlich oder schriftlich Auskunft erteilen, Geschäftsbücher, Belege und weitere Bescheinigungen sowie Urkunden über den Geschäftsverkehr vorlegen. (Abs. 2)"
+    }
+   ],
+   "over_collection": false
+  }
+ ]
+}

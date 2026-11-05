@@ -1,0 +1,702 @@
+{
+ "hinweis": "Angleichung der Teile von Formular 7 (592) an die gedruckte Spalte und an Formular 5 (589), 05.11.2026: die Felderprüfung hatte bei 592 die gedruckte Zelle «Name, Adresse» der Organe in «Name» und «Adresse» geteilt, bei 589 nicht. Alle Felder behalten ihre id; nur die Teile der zwei Organ-Zeilen ändern. Dazu die drei Kopfangaben PID, UID und FID von Formular 7, die die Felderprüfung übersehen hatte.",
+ "ports": [
+  {
+   "form_id": 592,
+   "felder": [
+    {
+     "id": null,
+     "aktion": "neu",
+     "name": "PID",
+     "definition": "Kennnummer «PID» der steuerpflichtigen juristischen Person im Kopf des Formulars, in der Regel von der Steuerverwaltung vorgedruckt.",
+     "data_type": "text",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Kopf von Formular 7, Seite 1, unter «Kanton Schaffhausen»: «PID:», «UID:», «FID:» (wie Formular 5, 589); im Textauszug weiter unten, darum von der Felderprüfung übersehen — am gerenderten Formular geprüft"
+    },
+    {
+     "id": null,
+     "aktion": "neu",
+     "name": "UID",
+     "definition": "Unternehmens-Identifikationsnummer (UID) der steuerpflichtigen juristischen Person im Kopf des Formulars.",
+     "data_type": "text",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Kopf von Formular 7, Seite 1, unter «Kanton Schaffhausen»: «PID:», «UID:», «FID:» (wie Formular 5, 589); im Textauszug weiter unten, darum von der Felderprüfung übersehen — am gerenderten Formular geprüft"
+    },
+    {
+     "id": null,
+     "aktion": "neu",
+     "name": "FID",
+     "definition": "Kennnummer «FID» der steuerpflichtigen juristischen Person im Kopf des Formulars, in der Regel von der Steuerverwaltung vorgedruckt.",
+     "data_type": "text",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": "Kopf von Formular 7, Seite 1, unter «Kanton Schaffhausen»: «PID:», «UID:», «FID:» (wie Formular 5, 589); im Textauszug weiter unten, darum von der Felderprüfung übersehen — am gerenderten Formular geprüft"
+    },
+    {
+     "id": 7512,
+     "aktion": "unveraendert",
+     "name": "Name (genaue Bezeichnung)",
+     "definition": "Genaue Bezeichnung des Vereins, der Stiftung oder der übrigen juristischen Person, die die Steuererklärung einreicht.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 7513,
+     "aktion": "unveraendert",
+     "name": "Hauptsitz",
+     "definition": "Adresse des Hauptsitzes der juristischen Person mit PLZ und Ort, bei Sitz ausserhalb der Schweiz zusätzlich das Land.",
+     "data_type": "composite",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [
+      "Adresse",
+      "PLZ",
+      "Ort",
+      "Land"
+     ],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 7514,
+     "aktion": "unveraendert",
+     "name": "Zweck",
+     "definition": "Zweck der juristischen Person; für den Antrag auf privilegierte Besteuerung infolge ideeller Zwecke (Punkt 17) muss diese Angabe zwingend ausgefüllt sein.",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 7515,
+     "aktion": "unveraendert",
+     "name": "Zweigniederlassungen",
+     "definition": "Ankreuzen, wo die juristische Person Zweigniederlassungen (Geschäftsbetriebe, Betriebsstätten, Liegenschaften) hat.",
+     "data_type": "multiselect",
+     "required": true,
+     "allowed_values": [
+      "im Kanton Schaffhausen",
+      "in anderen Kantonen",
+      "im Ausland"
+     ],
+     "subfields": [],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 7516,
+     "aktion": "unveraendert",
+     "name": "Formular 8c Steuerausscheidung",
+     "definition": "Ausgefülltes Formular 8c Steuerausscheidung, das bei Zweigniederlassungen (und für die Abzüge mit Code 1700 und 2600) beizulegen ist.",
+     "data_type": "attachment",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 7517,
+     "aktion": "unveraendert",
+     "name": "Gründungsdatum",
+     "definition": "Datum der Gründung, bei Zuzug Datum der Sitzverlegung nach Schaffhausen; nur auszufüllen, wenn Gründung, Zuzug oder Begründung der ersten Zweigniederlassung im Kanton in der Deklarationsperiode erfolgt sind.",
+     "data_type": "date",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 7518,
+     "aktion": "unveraendert",
+     "name": "Dauer des Geschäftsjahres",
+     "definition": "Beginn und Ende des deklarierten Geschäftsjahres, je als Kalenderdatum.",
+     "data_type": "composite",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [
+      "Datum Beginn",
+      "Datum Ende"
+     ],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 7519,
+     "aktion": "geaendert",
+     "name": "Organe – Präsident/-in",
+     "definition": "Name, Adresse und Telefon der Präsidentin oder des Präsidenten als Organ der juristischen Person.",
+     "data_type": "composite",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [
+      "Name, Adresse",
+      "Telefon"
+     ],
+     "format": "",
+     "beleg": "Formular 7 druckt im Block «Organe» eine Spalte «Name, Adresse» und eine Spalte «Telefon» (Zeilen «– Präsident/-in», «– Geschäftsleitung»), genau wie Formular 5 (589); eine gedruckte Zelle bleibt ein Teil (wie «Geburtsdatum/-ort»)"
+    },
+    {
+     "id": 7520,
+     "aktion": "geaendert",
+     "name": "Organe – Geschäftsleitung",
+     "definition": "Name, Adresse und Telefon der Geschäftsleitung als Organ der juristischen Person.",
+     "data_type": "composite",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [
+      "Name, Adresse",
+      "Telefon"
+     ],
+     "format": "",
+     "beleg": "Formular 7 druckt im Block «Organe» eine Spalte «Name, Adresse» und eine Spalte «Telefon» (Zeilen «– Präsident/-in», «– Geschäftsleitung»), genau wie Formular 5 (589); eine gedruckte Zelle bleibt ein Teil (wie «Geburtsdatum/-ort»)"
+    },
+    {
+     "id": 7521,
+     "aktion": "unveraendert",
+     "name": "Rückfragen sind zu richten an",
+     "definition": "Kontaktperson für Rückfragen der Steuerverwaltung (gilt nicht als Vollmacht); die Angabe einer E-Mail-Adresse gilt als Einwilligung zur Kommunikation via E-Mail.",
+     "data_type": "composite",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [
+      "Name",
+      "Telefon",
+      "E-Mail"
+     ],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 7522,
+     "aktion": "unveraendert",
+     "name": "Vollständige Adresse des Vertreters",
+     "definition": "Vollständige Adresse des Vertreters, den die juristische Person mit der Vollmacht für alle kantonalen Steuern und die direkte Bundessteuer bevollmächtigt.",
+     "data_type": "text",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 7523,
+     "aktion": "unveraendert",
+     "name": "Datum (Vollmacht)",
+     "definition": "Datum, an dem die Vollmacht an den Vertreter erteilt wird.",
+     "data_type": "date",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 7524,
+     "aktion": "unveraendert",
+     "name": "Rechtsgültige Unterschrift (Vollmacht)",
+     "definition": "Rechtsgültige Unterschrift der juristischen Person unter die Vollmacht an den Vertreter.",
+     "data_type": "signature",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 7525,
+     "aktion": "unveraendert",
+     "name": "Reingewinn / -verlust (–) gemäss Erfolgsrechnung des Geschäftsjahres (Code 1110)",
+     "definition": "Reingewinn oder Reinverlust gemäss Erfolgsrechnung des Geschäftsjahres (Code 1110), je für die Kantons- und Gemeindesteuern und die direkte Bundessteuer.",
+     "data_type": "composite",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [
+      "Kantons- und Gemeindesteuern",
+      "Direkte Bundessteuer"
+     ],
+     "format": "CHF",
+     "beleg": ""
+    },
+    {
+     "id": 7526,
+     "aktion": "unveraendert",
+     "name": "Steuerliche Auf- / Abrechnungen",
+     "definition": "Tabelle der steuerlichen Aufrechnungen und Abrechnungen zum Ergebnis der Erfolgsrechnung (Codes 1121–1124): je Zeile die frei einzutragende Bezeichnung (Zeile ohne eigene Beschriftung) und der Betrag je Steuerart.",
+     "data_type": "composite",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [
+      "Steuerliche Auf- / Abrechnungen",
+      "Kantons- und Gemeindesteuern",
+      "Direkte Bundessteuer"
+     ],
+     "format": "Tabelle (4 Zeilen, Codes 1121–1124); CHF",
+     "beleg": ""
+    },
+    {
+     "id": 7527,
+     "aktion": "unveraendert",
+     "name": "Reingewinn / Verlust nach steuerlicher Abweichungen (Summe Punkt 1 + 2) (Code 1130)",
+     "definition": "Reingewinn oder Verlust nach den steuerlichen Auf- und Abrechnungen als Summe der Punkte 1 und 2 (Code 1130), je Steuerart.",
+     "data_type": "composite",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [
+      "Kantons- und Gemeindesteuern",
+      "Direkte Bundessteuer"
+     ],
+     "format": "CHF",
+     "beleg": ""
+    },
+    {
+     "id": 7528,
+     "aktion": "unveraendert",
+     "name": "Einnahmen aus Mitgliederbeiträgen gemäss Erfolgsrechnung (Code 1151)",
+     "definition": "Einnahmen aus Mitgliederbeiträgen gemäss Erfolgsrechnung (Code 1151) zur Ermittlung eines allfälligen Mitgliederbeitragsüberschusses.",
+     "data_type": "money",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "CHF",
+     "beleg": ""
+    },
+    {
+     "id": 7529,
+     "aktion": "unveraendert",
+     "name": "Ordentliche Vereinsaufwendungen, die nicht zur Erzielung von steuerbarem Ertrag dienen (Code 1152)",
+     "definition": "Abzuziehende ordentliche Vereinsaufwendungen, die nicht zur Erzielung von steuerbarem Ertrag dienen, z.B. Verwaltungsaufwand, Vereinsaufwand (Code 1152).",
+     "data_type": "money",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "CHF",
+     "beleg": ""
+    },
+    {
+     "id": 7530,
+     "aktion": "unveraendert",
+     "name": "Steuerfreier Mitgliederbeitragsüberschuss (Code 1153)",
+     "definition": "Steuerfreier Überschuss der Mitgliederbeiträge über die Vereinsaufwendungen (Code 1153; mindestens null, keine Negativwerte), der in beide Steuerspalten übertragen wird.",
+     "data_type": "money",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "CHF",
+     "beleg": ""
+    },
+    {
+     "id": 7531,
+     "aktion": "unveraendert",
+     "name": "Steuerlich massgebendes Ergebnis vor Verlustverrechnung (Code 1300)",
+     "definition": "Steuerlich massgebendes Ergebnis vor der Verrechnung von Vorjahresverlusten (Code 1300), je Steuerart.",
+     "data_type": "composite",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [
+      "Kantons- und Gemeindesteuern",
+      "Direkte Bundessteuer"
+     ],
+     "format": "CHF",
+     "beleg": ""
+    },
+    {
+     "id": 7532,
+     "aktion": "unveraendert",
+     "name": "Vorjahresverluste (Code 1400)",
+     "definition": "Summe der verrechenbaren Verluste aus den sieben vorangegangenen Geschäftsjahren gemäss Punkt 16 (Code 1400, Übertrag des verrechenbaren Verlusts), je Steuerart.",
+     "data_type": "composite",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [
+      "Kantons- und Gemeindesteuern",
+      "Direkte Bundessteuer"
+     ],
+     "format": "CHF",
+     "beleg": ""
+    },
+    {
+     "id": 7533,
+     "aktion": "unveraendert",
+     "name": "Steuerbarer Reingewinn nach Verlustanrechnung (Code 1500)",
+     "definition": "Steuerbarer Reingewinn nach Anrechnung der Vorjahresverluste (Code 1500), je Steuerart.",
+     "data_type": "composite",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [
+      "Kantons- und Gemeindesteuern",
+      "Direkte Bundessteuer"
+     ],
+     "format": "CHF",
+     "beleg": ""
+    },
+    {
+     "id": 7534,
+     "aktion": "unveraendert",
+     "name": "Abzug für Reingewinn aus Grundeigentum und Geschäftsbetrieb ausserhalb des Kantons / Bundes (Code 1700)",
+     "definition": "Abzug für den Reingewinn aus Grundeigentum und Geschäftsbetrieb ausserhalb des Kantons bzw. des Bundes gemäss Formular 8c (Code 1700), je Steuerart.",
+     "data_type": "composite",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [
+      "Kantons- und Gemeindesteuern",
+      "Direkte Bundessteuer"
+     ],
+     "format": "CHF",
+     "beleg": ""
+    },
+    {
+     "id": 7535,
+     "aktion": "unveraendert",
+     "name": "Steuerbarer Reingewinn / Verlust Kanton Schaffhausen / Bund (Code 1800)",
+     "definition": "Im Kanton Schaffhausen bzw. beim Bund steuerbarer Reingewinn oder Verlust (Code 1800), je Steuerart.",
+     "data_type": "composite",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [
+      "Kantons- und Gemeindesteuern",
+      "Direkte Bundessteuer"
+     ],
+     "format": "CHF",
+     "beleg": ""
+    },
+    {
+     "id": 7536,
+     "aktion": "unveraendert",
+     "name": "Kassa-, Post- und Bankguthaben (Code 2110)",
+     "definition": "Kassa-, Post- und Bankguthaben am Ende des Geschäftsjahres (Code 2110).",
+     "data_type": "money",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "CHF",
+     "beleg": ""
+    },
+    {
+     "id": 7537,
+     "aktion": "unveraendert",
+     "name": "Wertschriften (Code 2120)",
+     "definition": "Wertschriften am Ende des Geschäftsjahres (Code 2120).",
+     "data_type": "money",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "CHF",
+     "beleg": ""
+    },
+    {
+     "id": 7538,
+     "aktion": "unveraendert",
+     "name": "Ausstände und Forderungen, inkl. Verrechnungssteuer-Guthaben (Code 2130)",
+     "definition": "Ausstände und Forderungen einschliesslich Verrechnungssteuer-Guthaben am Ende des Geschäftsjahres (Code 2130).",
+     "data_type": "money",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "CHF",
+     "beleg": ""
+    },
+    {
+     "id": 7539,
+     "aktion": "unveraendert",
+     "name": "Inventar (Mobilien, Maschinen, Geräte etc.) (Code 2140)",
+     "definition": "Inventar wie Mobilien, Maschinen und Geräte am Ende des Geschäftsjahres (Code 2140).",
+     "data_type": "money",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "CHF",
+     "beleg": ""
+    },
+    {
+     "id": 7540,
+     "aktion": "unveraendert",
+     "name": "Liegenschaften (Steuerwert, nicht Buchwert) (Code 2150)",
+     "definition": "Liegenschaften zum Steuerwert (nicht zum Buchwert) am Ende des Geschäftsjahres (Code 2150).",
+     "data_type": "money",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "CHF",
+     "beleg": ""
+    },
+    {
+     "id": 7541,
+     "aktion": "unveraendert",
+     "name": "Übrige Aktiven (Code 2160)",
+     "definition": "Übrige Aktiven am Ende des Geschäftsjahres (Code 2160).",
+     "data_type": "money",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "CHF",
+     "beleg": ""
+    },
+    {
+     "id": 7542,
+     "aktion": "unveraendert",
+     "name": "Total Aktiven (Code 2190)",
+     "definition": "Summe aller Aktiven am Ende des Geschäftsjahres (Code 2190).",
+     "data_type": "money",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "CHF",
+     "beleg": ""
+    },
+    {
+     "id": 7543,
+     "aktion": "unveraendert",
+     "name": "Schulden gegenüber Lieferanten (Code 2210)",
+     "definition": "Schulden gegenüber Lieferanten am Ende des Geschäftsjahres (Code 2210).",
+     "data_type": "money",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "CHF",
+     "beleg": ""
+    },
+    {
+     "id": 7544,
+     "aktion": "unveraendert",
+     "name": "Bankschulden, Darlehensschulden (Code 2220)",
+     "definition": "Bank- und Darlehensschulden am Ende des Geschäftsjahres (Code 2220).",
+     "data_type": "money",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "CHF",
+     "beleg": ""
+    },
+    {
+     "id": 7545,
+     "aktion": "unveraendert",
+     "name": "Grundpfandschulden (Hypotheken) (Code 2230)",
+     "definition": "Grundpfandschulden (Hypotheken) am Ende des Geschäftsjahres (Code 2230).",
+     "data_type": "money",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "CHF",
+     "beleg": ""
+    },
+    {
+     "id": 7546,
+     "aktion": "unveraendert",
+     "name": "Übrige Schulden (Code 2240)",
+     "definition": "Übrige Schulden am Ende des Geschäftsjahres (Code 2240).",
+     "data_type": "money",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "CHF",
+     "beleg": ""
+    },
+    {
+     "id": 7547,
+     "aktion": "unveraendert",
+     "name": "Total Passiven (Code 2290)",
+     "definition": "Summe aller Passiven am Ende des Geschäftsjahres (Code 2290).",
+     "data_type": "money",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "CHF",
+     "beleg": ""
+    },
+    {
+     "id": 7548,
+     "aktion": "unveraendert",
+     "name": "Gesamtes Reinvermögen / Eigenkapital (Aktiven abzüglich Passiven) (Code 2400)",
+     "definition": "Gesamtes Reinvermögen bzw. Eigenkapital als Total Aktiven abzüglich Total Passiven am Ende des Geschäftsjahres (Code 2400).",
+     "data_type": "money",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "CHF",
+     "beleg": ""
+    },
+    {
+     "id": 7549,
+     "aktion": "unveraendert",
+     "name": "Abzug für Vermögen / Eigenkapital ausserhalb des Kantons / Bundes (Code 2600)",
+     "definition": "Abzug für Vermögen bzw. Eigenkapital ausserhalb des Kantons bzw. des Bundes gemäss Formular 8c (Code 2600).",
+     "data_type": "money",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "CHF",
+     "beleg": ""
+    },
+    {
+     "id": 7550,
+     "aktion": "unveraendert",
+     "name": "Steuerbares Vermögen / Eigenkapital Kanton Schaffhausen (Code 2700)",
+     "definition": "Im Kanton Schaffhausen steuerbares Vermögen bzw. Eigenkapital nach den Abzügen (Code 2700).",
+     "data_type": "money",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "CHF",
+     "beleg": ""
+    },
+    {
+     "id": 7551,
+     "aktion": "unveraendert",
+     "name": "Verlustverrechnung",
+     "definition": "Tabelle der Verluste aus den sieben der Steuerperiode vorangegangenen Geschäftsjahren, je Geschäftsjahr (vorgedruckt) und Steuerart.",
+     "data_type": "composite",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [
+      "Geschäftsjahr",
+      "Kantons- und Gemeindesteuern",
+      "Direkte Bundessteuer"
+     ],
+     "format": "Tabelle (7 vorgedruckte Zeilen: Geschäftsjahre 2019 bzw. 2018/2019 bis 2025 bzw.",
+     "beleg": ""
+    },
+    {
+     "id": 7552,
+     "aktion": "unveraendert",
+     "name": "Zwischentotal (Summe der Vorjahresverluste)",
+     "definition": "Summe der in der Verlustverrechnung aufgeführten Vorjahresverluste, je Steuerart.",
+     "data_type": "composite",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [
+      "Kantons- und Gemeindesteuern",
+      "Direkte Bundessteuer"
+     ],
+     "format": "CHF",
+     "beleg": ""
+    },
+    {
+     "id": 7553,
+     "aktion": "unveraendert",
+     "name": "Davon bereits verrechnete Verluste",
+     "definition": "Anteil der Vorjahresverluste, der bereits mit früheren Gewinnen verrechnet wurde und vom Zwischentotal abgezogen wird, je Steuerart.",
+     "data_type": "composite",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [
+      "Kantons- und Gemeindesteuern",
+      "Direkte Bundessteuer"
+     ],
+     "format": "CHF",
+     "beleg": ""
+    },
+    {
+     "id": 7554,
+     "aktion": "unveraendert",
+     "name": "Verrechenbarer Verlust (Übertrag auf Punkt 6 dieser Steuererklärung) (Code 1400)",
+     "definition": "Noch verrechenbarer Verlust (Code 1400) als Zwischentotal abzüglich der bereits verrechneten Verluste, je Steuerart; wird auf Punkt 6 (Vorjahresverluste) übertragen.",
+     "data_type": "composite",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [
+      "Kantons- und Gemeindesteuern",
+      "Direkte Bundessteuer"
+     ],
+     "format": "CHF",
+     "beleg": ""
+    },
+    {
+     "id": 7555,
+     "aktion": "unveraendert",
+     "name": "Antrag auf privilegierte Besteuerung infolge ideellen Zwecken",
+     "definition": "Ankreuzen, wenn die juristische Person die privilegierte Besteuerung infolge ideeller Zwecke beantragt (Zweck auf Seite 1 muss zwingend ausgefüllt sein).",
+     "data_type": "boolean",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 7556,
+     "aktion": "unveraendert",
+     "name": "IBAN-Nr.",
+     "definition": "IBAN des Kontos für Rückerstattungen von Steuerguthaben (Kontoinformation für Rückerstattungen von Steuerguthaben).",
+     "data_type": "text",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "21 Kästchen (5 Gruppen zu 4, dann 1)",
+     "beleg": ""
+    },
+    {
+     "id": 7557,
+     "aktion": "unveraendert",
+     "name": "Bemerkungen",
+     "definition": "Freie Bemerkungen der juristischen Person zur Steuererklärung.",
+     "data_type": "text",
+     "required": false,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 7558,
+     "aktion": "unveraendert",
+     "name": "Beilagen",
+     "definition": "Ankreuzen der beigelegten Unterlagen; drei zusätzliche unbeschriftete Zeilen mit Kästchen dienen der Bezeichnung weiterer Beilagen.",
+     "data_type": "multiselect",
+     "required": true,
+     "allowed_values": [
+      "Bilanz, Erfolgsrechnung (mit Vorjahresvergleich)",
+      "Formular 13 (Wertschriften- und Guthabenverzeichnis)"
+     ],
+     "subfields": [],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 7559,
+     "aktion": "unveraendert",
+     "name": "Ort und Datum",
+     "definition": "Ort und Datum der Bestätigung der Richtigkeit und Vollständigkeit der Angaben.",
+     "data_type": "composite",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [
+      "Ort",
+      "Datum"
+     ],
+     "format": "",
+     "beleg": ""
+    },
+    {
+     "id": 7560,
+     "aktion": "unveraendert",
+     "name": "Rechtsgültige Unterschrift (Die Richtigkeit und Vollständigkeit der Angaben bezeugt)",
+     "definition": "Rechtsgültige Unterschrift der juristischen Person, mit der sie die Richtigkeit und Vollständigkeit der Angaben bezeugt.",
+     "data_type": "signature",
+     "required": true,
+     "allowed_values": [],
+     "subfields": [],
+     "format": "",
+     "beleg": ""
+    }
+   ],
+   "entfallen": [],
+   "hinweis": "7519 und 7520 geändert (Teile «Name, Adresse», «Telefon»); neu die drei Kopfangaben PID, UID, FID, die Formular 7 wie Formular 5 druckt (die Zweitprüfung der Rechtsgrundlagen hat sie bemerkt, am gerenderten Formular bestätigt); alle anderen Felder unverändert."
+  }
+ ]
+}

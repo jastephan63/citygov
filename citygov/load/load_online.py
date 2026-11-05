@@ -17,6 +17,13 @@ sent; the session expires unused. The harvest directory holds
     suche/manifest.json           documents found by a web search for the paper version
     andere/codes.txt              the fetch result of every other target
 
+Two optional inputs: --shch <manifest> (repeatable) — documents of a page of the canton's
+website (sh.ch) a service's Formulare come from, e.g. «Steuerformulare Juristische
+Personen» (herkunft 'shch'); --korrekturen <file> — the reviewed record of what is to be
+corrected on the live portal (a button without or with the wrong target, an older file,
+a link that serves another file), each with the right target as sh.ch, the DVSH model or
+the portal prove it (portal_korrektur).
+
 The facts (name, steps, visible fields) are read from the saved pages here; the
 judgements (what a target is, which Formular or document is the same form) come from
 the reviewed evidence quellen/dokumente/online_<date>.json (panel + sceptical second
@@ -26,7 +33,8 @@ every button of the evidence exists in the harvest; a named form_id exists; a na
 document is one of the harvest's documents. Idempotent (tables rebuilt). Staging ->
 validate -> swap.
 
-    python3 scripts/load_online.py ../SHEP/live-2026-11-03/online quellen/dokumente/online_2026-11-03.json
+    python3 scripts/load_online.py ../SHEP/live-2026-11-03/online quellen/dokumente/online_2026-11-03.json \
+        [--shch ../SHEP/live-2026-11-05/steuer/manifest.json] [--korrekturen quellen/korrekturen/portal_korrekturen_2026-11-05.json]
 """
 import glob, html, json, os, re, shutil, sys
 from citygov.core.common import DB_PATH, connect
@@ -76,12 +84,27 @@ CREATE TABLE IF NOT EXISTS online_datei (
     sha256     TEXT NOT NULL,
     bytes      INTEGER,
     dateiname  TEXT,
-    herkunft   TEXT NOT NULL CHECK (herkunft IN ('verlinkt','websuche')),
+    herkunft   TEXT NOT NULL CHECK (herkunft IN ('verlinkt','websuche','shch')),
     slug       TEXT,
     service_id INTEGER REFERENCES service(id),
     label      TEXT,
     abzug      TEXT);
+CREATE TABLE IF NOT EXISTS portal_korrektur (
+    slug            TEXT NOT NULL,
+    element         TEXT NOT NULL CHECK (element IN ('schaltflaeche','link','datei')),
+    bezeichnung     TEXT NOT NULL,
+    live_url        TEXT,
+    art             TEXT NOT NULL CHECK (art IN ('leer','falsches_ziel','ziel_nicht_erreichbar','sitzungslink',
+                                                 'aeltere_ausgabe','falsche_datei')),
+    befund          TEXT NOT NULL,
+    richtig_url     TEXT,
+    richtig_form_id INTEGER REFERENCES form(id),
+    richtig_hinweis TEXT,
+    beleg           TEXT NOT NULL,
+    geprueft        TEXT,
+    PRIMARY KEY (slug, element, bezeichnung));
 """
+KORR_ART = ("leer", "falsches_ziel", "ziel_nicht_erreichbar", "sitzungslink", "aeltere_ausgabe", "falsche_datei")
 TAG = re.compile(r"<[^>]+>")
 
 
@@ -111,7 +134,11 @@ def seite(p):
 
 
 def main():
-    src, ev_path = sys.argv[1], sys.argv[2]
+    argv = sys.argv[1:]
+    opt = lambda k: [argv[i + 1] for i, a in enumerate(argv) if a == k and i + 1 < len(argv)]
+    pos = [a for i, a in enumerate(argv) if not a.startswith("--") and (i == 0 or argv[i - 1] not in ("--shch", "--korrekturen"))]
+    src, ev_path = pos[0], pos[1]
+    shch, korr_paths = opt("--shch"), opt("--korrekturen")
     m = re.search(r"\d{4}-\d{2}-\d{2}", os.path.abspath(src))
     abzug = m.group(0) if m else None
     Z = {z["slug"]: z for z in json.load(open(os.path.join(src, "ziele.json"), encoding="utf-8"))}
@@ -122,8 +149,8 @@ def main():
         k, _, rest = ln.strip().partition(" ")
         codes[k] = rest
     docs = {}
-    for name, herkunft in (("dateien", "verlinkt"), ("suche", "websuche")):
-        mf = os.path.join(src, name, "manifest.json")
+    for mf, herkunft in [(os.path.join(src, "dateien", "manifest.json"), "verlinkt"),
+                         (os.path.join(src, "suche", "manifest.json"), "websuche")] + [(m, "shch") for m in shch]:
         for u, d in (json.load(open(mf, encoding="utf-8"))["dateien"].items() if os.path.exists(mf) else []):
             docs[u] = {**d, "herkunft": herkunft}
     ev = json.load(open(ev_path, encoding="utf-8"))
@@ -132,9 +159,10 @@ def main():
         os.remove(st)
     shutil.copy2(DB_PATH, st)
     c = connect(st)
+    # the tables are rebuilt wholesale: dropping them also brings in a changed definition
+    for t in ("online_formular_seite", "online_formular", "online_ziel", "online_datei", "portal_korrektur"):
+        c.execute(f"DROP TABLE IF EXISTS {t}")
     c.executescript(DDL)
-    for t in ("online_formular_seite", "online_formular", "online_ziel", "online_datei"):
-        c.execute(f"DELETE FROM {t}")
     forms = {r[0] for r in c.execute("SELECT id FROM form")}
     held = {r[0]: r[1] for r in c.execute("SELECT file_hash, id FROM form WHERE file_hash IS NOT NULL")}
     shas = {d["sha256"] for d in docs.values()}
@@ -201,6 +229,23 @@ def main():
                 if slug in Z:
                     c.execute("INSERT OR IGNORE INTO online_formular_seite VALUES(?,?,?,?)",
                               [e["id"], slug, Z[slug]["service_id"], v])
+    # what is to be corrected on the live portal, with the right target
+    slugs_live = {r[0] for r in c.execute("SELECT slug FROM portal_service")}
+    for kp in korr_paths:
+        K = json.load(open(kp, encoding="utf-8"))
+        for k in K["korrekturen"]:
+            if k["slug"] not in slugs_live:
+                stop(f"Korrektur {k['slug']}: keine Live-Seite"); continue
+            if k["art"] not in KORR_ART or k["element"] not in ("schaltflaeche", "link", "datei"):
+                stop(f"Korrektur {k['slug']}: art/element"); continue
+            if k.get("richtig_form_id") is not None and k["richtig_form_id"] not in forms:
+                stop(f"Korrektur {k['slug']}: Formular {k['richtig_form_id']} unbekannt"); continue
+            if not (k.get("befund") or "").strip() or not (k.get("beleg") or "").strip() or \
+                    not (k.get("richtig_url") or k.get("richtig_hinweis")):
+                stop(f"Korrektur {k['slug']}: Befund, Beleg oder richtiges Ziel fehlt"); continue
+            c.execute("INSERT INTO portal_korrektur VALUES(?,?,?,?,?,?,?,?,?,?,?)",
+                      [k["slug"], k["element"], k["bezeichnung"], k.get("live_url"), k["art"], k["befund"],
+                       k.get("richtig_url"), k.get("richtig_form_id"), k.get("richtig_hinweis"), k["beleg"], K.get("geprueft")])
     missing = set(Z) - {it["slug"] for it in ev["ziele"]}
     if missing:
         stop(f"{len(missing)} Buttons ohne Urteil: {sorted(missing)[:3]}")
@@ -210,14 +255,14 @@ def main():
     c.commit()
     errs = validate(c)
     n = {t: c.execute(f"SELECT COUNT(*) FROM {t}").fetchone()[0]
-         for t in ("online_ziel", "online_formular", "online_formular_seite", "online_datei")}
+         for t in ("online_ziel", "online_formular", "online_formular_seite", "online_datei", "portal_korrektur")}
     g = dict(c.execute("SELECT gegenstueck_art, COUNT(*) FROM online_formular GROUP BY 1").fetchall())
     c.close()
     if errs:
         os.remove(st); print("ABORT:", *errs[:5], sep="\n  "); sys.exit(1)
     os.replace(st, DB_PATH)
     print(f"online: {n['online_ziel']} Buttons, {n['online_formular']} Online-Formulare ({n['online_formular_seite']} Seiten), "
-          f"{n['online_datei']} Dokumente — Gegenstück {g}")
+          f"{n['online_datei']} Dokumente, {n['portal_korrektur']} Korrekturen für das Portal — Gegenstück {g}")
 
 
 if __name__ == "__main__":

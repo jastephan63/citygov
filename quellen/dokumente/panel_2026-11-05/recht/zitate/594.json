@@ -1,0 +1,84 @@
+{
+ "form_id": 594,
+ "mappings": [
+  {
+   "data_field": "PID",
+   "cites": [
+    {
+     "cref": "SHR 641.111",
+     "article_no": "§ 81b",
+     "beleg": "Abs. 4: Die kantonale Steuerverwaltung stellt für elektronische Gesuche um Verlängerung der Einreichungsfrist für die Steuererklärung ein Webportal zur Verfügung, auf dem sich die steuerpflichtigen Personen durch Angabe ihrer PID und bei natürlichen Personen zudem ihres Geburtsdatums ausweisen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Firmenname",
+   "cites": [
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 129",
+     "beleg": "Den Veranlagungsbehörden müssen für jede Steuerperiode eine Bescheinigung einreichen: a. juristische Personen über die den Mitgliedern der Verwaltung und anderer Organe ausgerichteten Leistungen"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 147",
+     "beleg": "Den Steuerbehörden müssen für jede Steuerperiode eine Bescheinigung einreichen: a) juristische Personen über die den Mitgliedern der Verwaltung und anderer Organe ausgerichteten Leistungen"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Verzeichnis",
+   "cites": [
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 129",
+     "beleg": "juristische Personen über die den Mitgliedern der Verwaltung und anderer Organe ausgerichteten Leistungen"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 147",
+     "beleg": "juristische Personen über die den Mitgliedern der Verwaltung und anderer Organe ausgerichteten Leistungen"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Bemerkungen",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Beilagen",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Lohnausweis(e)",
+   "cites": [
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 129",
+     "beleg": "eine Bescheinigung einreichen: a. juristische Personen über die den Mitgliedern der Verwaltung und anderer Organe ausgerichteten Leistungen"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 147",
+     "beleg": "eine Bescheinigung einreichen: a) juristische Personen über die den Mitgliedern der Verwaltung und anderer Organe ausgerichteten Leistungen"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Ort und Datum",
+   "cites": [],
+   "over_collection": true
+  },
+  {
+   "data_field": "Rechtsgültige Unterschrift",
+   "cites": [],
+   "over_collection": true
+  }
+ ]
+}

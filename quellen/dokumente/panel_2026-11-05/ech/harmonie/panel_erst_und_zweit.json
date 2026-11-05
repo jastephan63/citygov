@@ -1,0 +1,726 @@
+{
+ "erst": {
+  "gruppen": [
+   {
+    "gruppe": "PID",
+    "gleiche_angabe": true,
+    "begruendung": "Auf allen neun Formularen steht im Kopf dasselbe «PID:» und meint dieselbe Angabe: die kantonale Kennnummer der steuerpflichtigen juristischen Person im Register der Steuerverwaltung Schaffhausen. Auf den natürlichen-Personen-Formularen ist das eCH-0044 localPersonId. Dafür gibt es ein genaues Element: eCH-0276 titleType/registerNumber, die Pflicht-Registernummer der juristischen Person auf der Titelseite der E-Tax-JP-Deklaration. Dieser Titelteil gilt für die ganze Deklaration mit allen Beilageformularen. eCH-0098 otherId ist dagegen nur ein allgemeiner Fremdidentifikator ohne Steuerbezug. Darum erhält Formular 5 dasselbe Element wie die acht Beilageformulare.",
+    "urteile": [
+     {
+      "form_id": 589,
+      "art": "feld",
+      "feld": "PID",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "besser",
+      "standard": "eCH-0276",
+      "element": "registerNumber",
+      "grund": "Gleiche Angabe wie auf den Formularen 6–19.1. eCH-0276 titleType/registerNumber ist die Registernummer der steuerpflichtigen juristischen Person in der E-Tax-JP-Deklaration (Pflichtfeld) und damit genauer als der allgemeine eCH-0098 otherId."
+     },
+     {
+      "form_id": 590,
+      "art": "feld",
+      "feld": "PID",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "korrekt",
+      "standard": "eCH-0276",
+      "element": "registerNumber",
+      "grund": "Hat bereits das gewählte Element: die Registernummer der juristischen Person aus dem Titelteil von eCH-0276."
+     },
+     {
+      "form_id": 591,
+      "art": "feld",
+      "feld": "PID",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "korrekt",
+      "standard": "eCH-0276",
+      "element": "registerNumber",
+      "grund": "Hat bereits das gewählte Element: die Registernummer der juristischen Person aus dem Titelteil von eCH-0276."
+     },
+     {
+      "form_id": 593,
+      "art": "feld",
+      "feld": "PID",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "korrekt",
+      "standard": "eCH-0276",
+      "element": "registerNumber",
+      "grund": "Hat bereits das gewählte Element: die Registernummer der juristischen Person aus dem Titelteil von eCH-0276."
+     },
+     {
+      "form_id": 594,
+      "art": "feld",
+      "feld": "PID",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "korrekt",
+      "standard": "eCH-0276",
+      "element": "registerNumber",
+      "grund": "Hat bereits das gewählte Element: die Registernummer der juristischen Person aus dem Titelteil von eCH-0276."
+     },
+     {
+      "form_id": 595,
+      "art": "feld",
+      "feld": "PID",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "korrekt",
+      "standard": "eCH-0276",
+      "element": "registerNumber",
+      "grund": "Hat bereits das gewählte Element: die Registernummer der juristischen Person aus dem Titelteil von eCH-0276."
+     },
+     {
+      "form_id": 596,
+      "art": "feld",
+      "feld": "PID",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "korrekt",
+      "standard": "eCH-0276",
+      "element": "registerNumber",
+      "grund": "Hat bereits das gewählte Element: die Registernummer der juristischen Person aus dem Titelteil von eCH-0276."
+     },
+     {
+      "form_id": 597,
+      "art": "feld",
+      "feld": "PID",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "korrekt",
+      "standard": "eCH-0276",
+      "element": "registerNumber",
+      "grund": "Hat bereits das gewählte Element: die Registernummer der juristischen Person aus dem Titelteil von eCH-0276."
+     },
+     {
+      "form_id": 598,
+      "art": "feld",
+      "feld": "PID",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "korrekt",
+      "standard": "eCH-0276",
+      "element": "registerNumber",
+      "grund": "Hat bereits das gewählte Element: die Registernummer der juristischen Person aus dem Titelteil von eCH-0276."
+     }
+    ]
+   },
+   {
+    "gruppe": "Zweck",
+    "gleiche_angabe": true,
+    "begruendung": "Auf Formular 5 und Formular 7 steht dieselbe Zeile «Zweck» an derselben Stelle der Seite 1. Gemeint ist der statutarische Zweck der juristischen Person. Dass Formular 7 diese Angabe für den Antrag auf ideelle Besteuerung zwingend verlangt, ändert die Bedeutung nicht. eCH-0229 contactAndAdministrationType/purpose (string400, Pflicht) ist genau diese Angabe der SSK-Steuererklärung für juristische Personen. Laut XSD gilt sie für Kapitalgesellschaften wie für Vereine und Stiftungen; die Rechtsform unterscheidet legalForm. eCH-0276 hat kein Zweck-Element. eCH-0098 activityDescription beschreibt die Geschäftstätigkeit im Unternehmensregister, nicht den Zweck in der Steuererklärung.",
+    "urteile": [
+     {
+      "form_id": 589,
+      "art": "feld",
+      "feld": "Zweck",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "korrekt",
+      "standard": "eCH-0229",
+      "element": "purpose",
+      "grund": "Hat bereits das gewählte Element: den Zweck der juristischen Person in der Steuererklärung (contactAndAdministrationType)."
+     },
+     {
+      "form_id": 592,
+      "art": "feld",
+      "feld": "Zweck",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "besser",
+      "standard": "eCH-0229",
+      "element": "purpose",
+      "grund": "Gleiche gedruckte Angabe wie auf Formular 5. eCH-0229 purpose ist der Zweck in der Steuererklärung und gilt ausdrücklich auch für Vereine und Stiftungen. eCH-0098 activityDescription (organisationType) beschreibt die Geschäftstätigkeit im Register und passt daher weniger genau."
+     }
+    ]
+   },
+   {
+    "gruppe": "Rückfragen sind zu richten an",
+    "gleiche_angabe": false,
+    "begruendung": "Formular 5 und Formular 7 drucken denselben Block wortgleich. Er gilt nicht als Vollmacht, und eine E-Mail-Adresse gilt als Einwilligung. Pro Ebene ist es also dieselbe Angabe auf beiden Formularen, aber das Sammelfeld und sein Teil «Name» sind verschiedene Einheiten. Für das Sammelfeld ist eCH-0276 titleType/contactForInquiries am genauesten: Sein Typ enthält genau nameOfContact, phoneNumberOfContact und emailAdressOfContact, also eins zu eins die gedruckten Zellen Name, Telefon und E-Mail. Der titleType gilt auch für die Deklaration der Vereine und Stiftungen. eCH-0229 contactForInquiries ist nur der allgemeine representativeType (Organisation, Person, Kontakt). Für den Teil «Name» passt eCH-0276 nameOfContact. eCH-0044 officialName ist dagegen nur der Familienname einer natürlichen Person, die Zelle nimmt aber den ganzen Namen der Kontaktperson auf, auch den eines Treuhandbüros.",
+    "urteile": [
+     {
+      "form_id": 589,
+      "art": "feld",
+      "feld": "Rückfragen sind zu richten an",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "korrekt",
+      "standard": "eCH-0276",
+      "element": "contactForInquiries",
+      "grund": "Hat bereits das gewählte Element. contactForInquiriesType bildet genau die gedruckten Zellen Name, Telefon und E-Mail ab."
+     },
+     {
+      "form_id": 592,
+      "art": "feld",
+      "feld": "Rückfragen sind zu richten an",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "besser",
+      "standard": "eCH-0276",
+      "element": "contactForInquiries",
+      "grund": "Gleicher, wortgleich gedruckter Block wie auf Formular 5. eCH-0276 contactForInquiries passt mit Name, Telefon und E-Mail genau. eCH-0229 contactForInquiries ist nur der allgemeine representativeType."
+     },
+     {
+      "form_id": 589,
+      "art": "teilfeld",
+      "feld": null,
+      "elternfeld": "Rückfragen sind zu richten an",
+      "teilfeld": "Name",
+      "urteil": "korrekt",
+      "standard": "eCH-0276",
+      "element": "nameOfContact",
+      "grund": "Hat bereits das gewählte Element: den Namen der Kontaktperson für Rückfragen in contactForInquiriesType."
+     },
+     {
+      "form_id": 592,
+      "art": "teilfeld",
+      "feld": null,
+      "elternfeld": "Rückfragen sind zu richten an",
+      "teilfeld": "Name",
+      "urteil": "besser",
+      "standard": "eCH-0276",
+      "element": "nameOfContact",
+      "grund": "Gleiche Zelle wie auf Formular 5. eCH-0044 officialName ist nur der Familienname einer natürlichen Person. Die Zelle verlangt aber den ganzen Namen der Kontaktperson, auch eines Treuhandbüros, und das ist nameOfContact."
+     }
+    ]
+   },
+   {
+    "gruppe": "Bemerkungen",
+    "gleiche_angabe": false,
+    "begruendung": "Auf Formular 5 (Ziffer 26) und Formular 7 (Ziffer 19) ist «Bemerkungen:» dieselbe Angabe: eine freie, allgemeine Bemerkung zur ganzen Steuererklärung. Sie erhält ein einziges Element, nämlich eCH-0276 remarks/structure/generalRemarks. eCH-0276 trennt im Register H «Bemerkungen» Bemerkungen zu einzelnen Positionen (position, remark) von allgemeinen Bemerkungen (generalRemarks). Dieses Register H nutzen Formular 5 und Formular 7 schon für «Gewinn satzbestimmend» und den Antrag auf ideelle Besteuerung. eCH-0229 remarks ist nur ein einzelner, nicht unterschiedener Text im Block contactAndAdministration und darum weniger genau. Auf Formular 12a meint «Bemerkungen» etwas anderes: Bemerkungen zur Bescheinigung über Bezüge, etwa den Vermerk, dass keine Vergütungen ausgerichtet wurden (Hinweise S. 2). Dafür bleibt eCH-0276 attestationType/textInput, der Freitext des Registers J «Bescheinigung».",
+    "urteile": [
+     {
+      "form_id": 589,
+      "art": "feld",
+      "feld": "Bemerkungen",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "besser",
+      "standard": "eCH-0276",
+      "element": "generalRemarks",
+      "grund": "Gleiche Angabe wie auf Formular 7. eCH-0276 generalRemarks ist ausdrücklich die allgemeine, nicht positionsbezogene Bemerkung zur Deklaration. eCH-0229 remarks unterscheidet das nicht."
+     },
+     {
+      "form_id": 592,
+      "art": "feld",
+      "feld": "Bemerkungen",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "korrekt",
+      "standard": "eCH-0276",
+      "element": "generalRemarks",
+      "grund": "Hat bereits das gewählte Element: die allgemeine Bemerkung im Register H von eCH-0276."
+     },
+     {
+      "form_id": 594,
+      "art": "feld",
+      "feld": "Bemerkungen",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "korrekt",
+      "standard": "eCH-0276",
+      "element": "textInput",
+      "grund": "Andere Bedeutung: Bemerkung zur Bescheinigung über Bezüge an Organe, etwa der Vermerk, dass keine Vergütungen ausgerichtet wurden. Das ist der Freitext des Registers J «Bescheinigung» (attestationType/textInput), also bleibt das Element."
+     }
+    ]
+   },
+   {
+    "gruppe": "Beilagen",
+    "gleiche_angabe": false,
+    "begruendung": "Auf Formular 5 und Formular 7 ist «Beilagen» dieselbe Angabe: eine Ankreuzliste, welche Unterlagen beiliegen. Gewählt wird eCH-0276 attachments/documentIdentification. Es ist der aufgezählte Dokumenttyp im Register G «Beilagen», mit den Werten balanceSheetIncomeStatementNotes, depreciation, taxSegregation, financialAssets, informationOnShareholdings, accountSheet, otherAttachments usw. Diese Werte codieren genau die angekreuzten Beilagen. Das ist genauer als der Sammelknoten attachments, denn die Angabe selbst ist eine Auswahl von Dokumentarten. Die freien Leerzeilen sind otherAttachments mit documentTitle, so wie «Weitere Beilagen (Leerzeilen)» auf Formular 5 schon documentTitle trägt. Auf Formular 12a meint «Beilagen» etwas anderes: die Anzahl der beigelegten Lohnausweise, eine Zahl. Im ganzen Katalog gibt es kein Element für eine Anzahl beigelegter Lohnausweise einer juristischen Person. eCH-0119 attachedForms und Verwandte sind Zähler im Wertschriftenverzeichnis natürlicher Personen. Darum bleibt es dort bei kein_standard.",
+    "urteile": [
+     {
+      "form_id": 589,
+      "art": "feld",
+      "feld": "Beilagen",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "besser",
+      "standard": "eCH-0276",
+      "element": "documentIdentification",
+      "grund": "Die Mehrfachauswahl wählt Dokumentarten aus. eCH-0276 attachmentsType/documentIdentification führt genau diese Beilagenarten der JP-Deklaration als Aufzählung und ist darum genauer als der Sammelknoten attachments."
+     },
+     {
+      "form_id": 592,
+      "art": "feld",
+      "feld": "Beilagen",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "besser",
+      "standard": "eCH-0276",
+      "element": "documentIdentification",
+      "grund": "Gleiche Ankreuzliste wie auf Formular 5, also dasselbe Element. Die drei freien Zeilen entsprechen otherAttachments, ihre Bezeichnung documentTitle."
+     },
+     {
+      "form_id": 594,
+      "art": "feld",
+      "feld": "Beilagen",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "kein_standard",
+      "standard": null,
+      "element": null,
+      "grund": "Andere Bedeutung: die Anzahl der beigelegten Lohnausweise. Im ganzen Katalog gibt es kein Zählelement dafür für juristische Personen. eCH-0119 attachedWageStatement ist ein Ja/Nein der natürlichen Person, attachedForms ein Zähler des Wertschriftenverzeichnisses natürlicher Personen."
+     }
+    ]
+   },
+   {
+    "gruppe": "Ort und Datum",
+    "gleiche_angabe": true,
+    "begruendung": "Auf allen drei Formularen steht «Ort und Datum» im Feld «Die Richtigkeit und Vollständigkeit der Angaben bezeugt». Gemeint sind Ort und Kalenderdatum der Unterzeichnung, also dieselbe Angabe. Weder eCH-0229 noch eCH-0276 kennt ein Element für Ort und Datum der Unterzeichnung; eCH-0229 transactionDate ist der Zeitstempel der Übermittlung. Das einzige Element im Katalog, eCH-0119 locationAndDate, liegt im attachedFormsType bzw. listOfSecuritiesType der «SSK Steuererklärung natürliche Personen». Sein Kontext passt nicht zur Steuererklärung einer juristischen Person. Die Suche über den ganzen Katalog (sign*, locationAndDate, place*, *date*) ergab nichts Passendes. Darum gilt auf allen drei Formularen kein_standard, und Formular 12a verliert eCH-0119.",
+    "urteile": [
+     {
+      "form_id": 589,
+      "art": "feld",
+      "feld": "Ort und Datum",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "kein_standard",
+      "standard": null,
+      "element": null,
+      "grund": "Kein Element für Ort und Datum der Unterzeichnung in eCH-0229, eCH-0276 oder einem anderen passenden Standard. eCH-0119 locationAndDate gehört zur Steuererklärung natürlicher Personen."
+     },
+     {
+      "form_id": 592,
+      "art": "feld",
+      "feld": "Ort und Datum",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "kein_standard",
+      "standard": null,
+      "element": null,
+      "grund": "Gleiche Angabe wie auf Formular 5. Im ganzen Katalog gibt es kein Element, dessen Kontext zur Steuererklärung einer juristischen Person passt."
+     },
+     {
+      "form_id": 594,
+      "art": "feld",
+      "feld": "Ort und Datum",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "kein_standard",
+      "standard": null,
+      "element": null,
+      "grund": "eCH-0119 locationAndDate liegt im attachedFormsType der Steuererklärung natürlicher Personen. Dieser Kontext passt nicht zur Bescheinigung einer juristischen Person. Gleiche Angabe wie auf Formular 5 und 7, also kein_standard. Die Teile Ort und Datum sind schon kein_standard."
+     }
+    ]
+   },
+   {
+    "gruppe": "Organe – Name, Adresse (Teil)",
+    "gleiche_angabe": false,
+    "begruendung": "Die Gruppe enthält zwei verschiedene Angaben, jeweils als Paar (Eltern, Teil). Erstens Name und Adresse des Präsidenten bzw. der Präsidentin des obersten Leitungsorgans: Verwaltungsratspräsident/-in auf Formular 5, Präsident/-in auf Formular 7. Zweitens Name und Adresse der Geschäftsleitung. Innerhalb jedes Paars ist es dieselbe gedruckte Zelle mit derselben Bedeutung. Die freie Zelle «Name, Adresse» passt eins zu eins zu den Textelementen chairmanOfTheBoardOfDirectors und management im eCH-0276 titleType. eCH-0229 hat dafür nur die zusammengesetzten Teile personIdentification und contactInformation, die je nur die Hälfte abdecken. Zum Element des VR-Präsidenten: Es passt auch für Vereine und Stiftungen. eCH-0276 hat einen einzigen titleType für alle juristischen Personen und veröffentlicht eigene Deklarationen für Vereine und Stiftungen auf demselben XSD. Dort ist chairmanOfTheBoardOfDirectors das einzige Element für den Vorsitz des obersten Leitungsorgans (Vorstand, Stiftungsrat). Auch eCH-0229 kennt nur eine rechtsformneutrale Rolle «president». Der englische Name ist zwar von der AG geprägt, die Funktion ist aber dieselbe.",
+    "urteile": [
+     {
+      "form_id": 589,
+      "art": "teilfeld",
+      "feld": null,
+      "elternfeld": "Organe – Verwaltungsratspräsident/-in",
+      "teilfeld": "Name, Adresse",
+      "urteil": "korrekt",
+      "standard": "eCH-0276",
+      "element": "chairmanOfTheBoardOfDirectors",
+      "grund": "Hat bereits das gewählte Element: Name und Adresse des VR-Präsidenten als Freitext im Titelteil der E-Tax-JP-Deklaration."
+     },
+     {
+      "form_id": 589,
+      "art": "teilfeld",
+      "feld": null,
+      "elternfeld": "Organe – Geschäftsleitung",
+      "teilfeld": "Name, Adresse",
+      "urteil": "korrekt",
+      "standard": "eCH-0276",
+      "element": "management",
+      "grund": "Hat bereits das gewählte Element: die Geschäftsleitung als Freitext im Titelteil der E-Tax-JP-Deklaration."
+     },
+     {
+      "form_id": 592,
+      "art": "teilfeld",
+      "feld": null,
+      "elternfeld": "Organe – Präsident/-in",
+      "teilfeld": "Name, Adresse",
+      "urteil": "besser",
+      "standard": "eCH-0276",
+      "element": "chairmanOfTheBoardOfDirectors",
+      "grund": "Gleiche Zelle wie beim VR-Präsidenten auf Formular 5. Der eCH-0276 titleType gilt auch für die Deklaration der Vereine und Stiftungen, und chairmanOfTheBoardOfDirectors ist dort das einzige Element für den Vorsitz des obersten Leitungsorgans (Vorstand, Stiftungsrat). Es passt also auch für den Präsidenten eines Vereins oder einer Stiftung."
+     },
+     {
+      "form_id": 592,
+      "art": "teilfeld",
+      "feld": null,
+      "elternfeld": "Organe – Geschäftsleitung",
+      "teilfeld": "Name, Adresse",
+      "urteil": "besser",
+      "standard": "eCH-0276",
+      "element": "management",
+      "grund": "Gleiche Zelle wie auf Formular 5. management ist rechtsformneutral die Geschäftsleitung bzw. Geschäftsführung im Titelteil von eCH-0276, das auch Vereine und Stiftungen abdeckt."
+     }
+    ]
+   }
+  ],
+  "hinweis": "Grundlage: die XSDs von eCH-0229 (SSK Steuererklärung JP, 2019) und eCH-0276 (SSK E-Bilanz und E-Tax JP, 2024), beide «Genehmigt», sowie die Formular-PDFs. Die PDF-Texte wurden in (Arbeitskopie der Prüfung) ausgelesen. Für registerNumber, chairmanOfTheBoardOfDirectors und documentIdentification enthält das XSD keine Erläuterung. Das Hauptdokument und die Beilagen von eCH-0276 (Excel-Zuordnung, Beispielformulare) wurden nicht heruntergeladen; das Urteil stützt sich auf Kontext und Typ im XSD.\n\nAusserhalb der verlangten Zeilen sind mir aufgefallen:\n(1) Formular 7 (592) druckt im Kopf «PID:», «UID:» und «FID:», hat dafür aber keine data_field-Zeilen. Werden sie ergänzt, gehört PID auf eCH-0276 registerNumber.\n(2) In der übrigen Datenbank tragen 21 Formulare für «Ort und Datum» eCH-0119 locationAndDate, 40 dagegen kein_standard. eCH-0119 ist die Steuererklärung natürlicher Personen; das lohnt eine eigene Konsistenzprüfung.\n(3) FID auf Formular 5 bleibt auf eCH-0098 otherId; es war nicht Teil dieser Gruppen.\n(4) Die Teile Telefon und E-Mail von «Rückfragen» und «Organe» tragen auf beiden Formularen gleich eCH-0046 phoneNumber/emailAddress. Das ist stimmig, weil eCH-0276 phoneNumberOfContact und emailAdressOfContact die eCH-0046-Typen verwenden."
+ },
+ "zweit": {
+  "gruppen": [
+   {
+    "gruppe": "PID",
+    "gleiche_angabe": true,
+    "begruendung": "Auf allen neun Formularen steht im Kopf dasselbe «PID:». Gemeint ist überall dieselbe Angabe: die Kennnummer der steuerpflichtigen juristischen Person bei der Steuerverwaltung Schaffhausen. Das genaueste Element ist eCH-0276 titleType/registerNumber (xs:long, Pflichtfeld). Die Excel-Beilage zu eCH-0276 beschreibt es wörtlich als «Register-Nr. / PID-Nr.» (Position Z1001). Der titleType ist der Kopfteil der ganzen E-Tax-JP-Deklaration. Die Beilageformulare 6 bis 19.1 gehören zu dieser Deklaration, darum gilt das Element auch für sie. eCH-0098 otherId ist nur ein allgemeiner Fremdidentifikator ohne Steuerbezug. Formular 5 erhält deshalb dasselbe Element wie die acht Beilageformulare.",
+    "urteile": [
+     {
+      "form_id": 589,
+      "art": "feld",
+      "feld": "PID",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "besser",
+      "standard": "eCH-0276",
+      "element": "registerNumber",
+      "grund": "Gleiche Angabe wie auf den Formularen 6 bis 19.1. Die Excel-Beilage zu eCH-0276 beschreibt titleType/registerNumber als «Register-Nr. / PID-Nr.» der juristischen Person (Pflichtfeld). Das ist genauer als der allgemeine Identifikator eCH-0098 otherId."
+     },
+     {
+      "form_id": 590,
+      "art": "feld",
+      "feld": "PID",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "korrekt",
+      "standard": "eCH-0276",
+      "element": "registerNumber",
+      "grund": "Hat bereits das gewählte Element: die «Register-Nr. / PID-Nr.» im Titelteil von eCH-0276."
+     },
+     {
+      "form_id": 591,
+      "art": "feld",
+      "feld": "PID",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "korrekt",
+      "standard": "eCH-0276",
+      "element": "registerNumber",
+      "grund": "Hat bereits das gewählte Element: die «Register-Nr. / PID-Nr.» im Titelteil von eCH-0276."
+     },
+     {
+      "form_id": 593,
+      "art": "feld",
+      "feld": "PID",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "korrekt",
+      "standard": "eCH-0276",
+      "element": "registerNumber",
+      "grund": "Hat bereits das gewählte Element: die «Register-Nr. / PID-Nr.» im Titelteil von eCH-0276."
+     },
+     {
+      "form_id": 594,
+      "art": "feld",
+      "feld": "PID",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "korrekt",
+      "standard": "eCH-0276",
+      "element": "registerNumber",
+      "grund": "Hat bereits das gewählte Element: die «Register-Nr. / PID-Nr.» im Titelteil von eCH-0276."
+     },
+     {
+      "form_id": 595,
+      "art": "feld",
+      "feld": "PID",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "korrekt",
+      "standard": "eCH-0276",
+      "element": "registerNumber",
+      "grund": "Hat bereits das gewählte Element: die «Register-Nr. / PID-Nr.» im Titelteil von eCH-0276."
+     },
+     {
+      "form_id": 596,
+      "art": "feld",
+      "feld": "PID",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "korrekt",
+      "standard": "eCH-0276",
+      "element": "registerNumber",
+      "grund": "Hat bereits das gewählte Element: die «Register-Nr. / PID-Nr.» im Titelteil von eCH-0276."
+     },
+     {
+      "form_id": 597,
+      "art": "feld",
+      "feld": "PID",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "korrekt",
+      "standard": "eCH-0276",
+      "element": "registerNumber",
+      "grund": "Hat bereits das gewählte Element: die «Register-Nr. / PID-Nr.» im Titelteil von eCH-0276."
+     },
+     {
+      "form_id": 598,
+      "art": "feld",
+      "feld": "PID",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "korrekt",
+      "standard": "eCH-0276",
+      "element": "registerNumber",
+      "grund": "Hat bereits das gewählte Element: die «Register-Nr. / PID-Nr.» im Titelteil von eCH-0276."
+     }
+    ]
+   },
+   {
+    "gruppe": "Zweck",
+    "gleiche_angabe": true,
+    "begruendung": "Formular 5 und Formular 7 drucken auf Seite 1 an derselben Stelle die Zeile «Zweck». Gemeint ist der statutarische Zweck der juristischen Person. Formular 7 verlangt die Angabe zwingend, wenn ein Antrag auf ideelle Besteuerung gestellt wird. Das ändert die Bedeutung nicht. Das passende Element ist eCH-0229 contactAndAdministrationType/purpose (string400, Pflicht) aus der Steuerdeklaration für juristische Personen. Laut einem Kommentar im XSD unterscheidet eCH-0229 Vereine und Kapitalgesellschaften über legalForm, und es enthält eigene Typen nur für Vereine. Das Element gilt also auch für Vereine und Stiftungen. eCH-0276 hat kein Element für den Zweck. eCH-0098 activityDescription beschreibt die Geschäftstätigkeit im Unternehmensregister, nicht den Zweck in der Steuererklärung.",
+    "urteile": [
+     {
+      "form_id": 589,
+      "art": "feld",
+      "feld": "Zweck",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "korrekt",
+      "standard": "eCH-0229",
+      "element": "purpose",
+      "grund": "Hat bereits das gewählte Element: den Zweck der juristischen Person in der Steuerdeklaration (contactAndAdministrationType)."
+     },
+     {
+      "form_id": 592,
+      "art": "feld",
+      "feld": "Zweck",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "besser",
+      "standard": "eCH-0229",
+      "element": "purpose",
+      "grund": "Gleiche gedruckte Angabe wie auf Formular 5. eCH-0229 purpose ist der Zweck in der Steuerdeklaration und gilt auch für Vereine und Stiftungen. eCH-0098 activityDescription (organisationType) beschreibt die Geschäftstätigkeit im Register und passt weniger genau."
+     }
+    ]
+   },
+   {
+    "gruppe": "Rückfragen sind zu richten an",
+    "gleiche_angabe": false,
+    "begruendung": "Formular 5 und Formular 7 drucken den Block wortgleich: «gilt nicht als Vollmacht», und eine E-Mail-Adresse gilt als Einwilligung. Auf jeder Ebene ist es auf beiden Formularen dieselbe Angabe. Das Sammelfeld und sein Teil «Name» sind aber verschiedene Einheiten, darum hat die Gruppe nicht ein Element für alle Zeilen. Für das Sammelfeld passt eCH-0276 titleType/contactForInquiries am genauesten. Die Excel-Beilage beschreibt es als «Rückfragen in dieser Steuersache sind zu richten an (Gilt nicht als vertragliche Vertretung.)». Es besteht genau aus nameOfContact, phoneNumberOfContact und emailAdressOfContact, also aus den gedruckten Zellen Name, Telefon und E-Mail. Laut Hauptdokument enthält eCH-0276 die Angaben für alle Gesellschaftsformen, auch für Vereine und Stiftungen. eCH-0229 contactForInquiries ist nur der allgemeine representativeType. Für den Teil «Name» passt eCH-0276 nameOfContact (Z1400 «Name»). eCH-0044 officialName ist nur der Familienname einer natürlichen Person. Die Zelle nimmt aber den ganzen Namen der Kontaktperson auf, auch den eines Treuhandbüros.",
+    "urteile": [
+     {
+      "form_id": 589,
+      "art": "feld",
+      "feld": "Rückfragen sind zu richten an",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "korrekt",
+      "standard": "eCH-0276",
+      "element": "contactForInquiries",
+      "grund": "Hat bereits das gewählte Element. contactForInquiriesType bildet genau die gedruckten Zellen Name, Telefon und E-Mail ab."
+     },
+     {
+      "form_id": 592,
+      "art": "feld",
+      "feld": "Rückfragen sind zu richten an",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "besser",
+      "standard": "eCH-0276",
+      "element": "contactForInquiries",
+      "grund": "Gleicher, wortgleich gedruckter Block wie auf Formular 5. eCH-0276 contactForInquiries ist ausdrücklich die Rückfrage-Kontaktperson der Steuersache und deckt Name, Telefon und E-Mail genau ab. eCH-0229 contactForInquiries ist nur der allgemeine representativeType."
+     },
+     {
+      "form_id": 589,
+      "art": "teilfeld",
+      "feld": null,
+      "elternfeld": "Rückfragen sind zu richten an",
+      "teilfeld": "Name",
+      "urteil": "korrekt",
+      "standard": "eCH-0276",
+      "element": "nameOfContact",
+      "grund": "Hat bereits das gewählte Element: den Namen der Kontaktperson für Rückfragen in contactForInquiriesType."
+     },
+     {
+      "form_id": 592,
+      "art": "teilfeld",
+      "feld": null,
+      "elternfeld": "Rückfragen sind zu richten an",
+      "teilfeld": "Name",
+      "urteil": "besser",
+      "standard": "eCH-0276",
+      "element": "nameOfContact",
+      "grund": "Gleiche Zelle wie auf Formular 5. eCH-0044 officialName ist nur der Familienname einer natürlichen Person. Die Zelle verlangt den ganzen Namen der Kontaktperson, auch eines Treuhandbüros. Das ist nameOfContact."
+     }
+    ]
+   },
+   {
+    "gruppe": "Bemerkungen",
+    "gleiche_angabe": false,
+    "begruendung": "Auf Formular 5 (Ziffer 26) und Formular 7 (Ziffer 19) ist «Bemerkungen:» dieselbe Angabe: eine freie, allgemeine Bemerkung zur ganzen Steuererklärung. Dafür gibt es ein einziges Element, eCH-0276 remarks/structure/generalRemarks. Die Excel-Beilage beschreibt es als «allgemeine Bemerkungen (Bemerkung, welche sich nicht auf eine Position bezieht)». eCH-0229 remarks ist nur ein einzelner Text ohne Beschreibung im Block contactAndAdministration und darum weniger genau. Auf Formular 12a meint «Bemerkungen» etwas anderes. Es ist eine Bemerkung zur eigens unterzeichneten Bescheinigung über Bezüge der Organe. Dazu gehört etwa der Vermerk, dass keine Vergütungen ausgerichtet wurden (Hinweise auf Seite 2). Formular 12a entspricht dem Register J «Bescheinigung» von eCH-0276. Dessen Freitext ist attestationType/textInput («Freie Texteingabe», J1000_37). Darum bleibt das Element auf Formular 12a.",
+    "urteile": [
+     {
+      "form_id": 589,
+      "art": "feld",
+      "feld": "Bemerkungen",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "besser",
+      "standard": "eCH-0276",
+      "element": "generalRemarks",
+      "grund": "Gleiche Angabe wie auf Formular 7. eCH-0276 generalRemarks ist ausdrücklich die allgemeine Bemerkung zur Deklaration, die sich auf keine bestimmte Position bezieht. eCH-0229 remarks trifft diese Unterscheidung nicht."
+     },
+     {
+      "form_id": 592,
+      "art": "feld",
+      "feld": "Bemerkungen",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "korrekt",
+      "standard": "eCH-0276",
+      "element": "generalRemarks",
+      "grund": "Hat bereits das gewählte Element: die allgemeine Bemerkung im Register H von eCH-0276."
+     },
+     {
+      "form_id": 594,
+      "art": "feld",
+      "feld": "Bemerkungen",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "korrekt",
+      "standard": "eCH-0276",
+      "element": "textInput",
+      "grund": "Andere Bedeutung: Bemerkung zur Bescheinigung über Bezüge an Organe, nicht zur ganzen Steuererklärung. Das ist die freie Texteingabe im Register J «Bescheinigung» (attestationType/textInput). Das Element bleibt."
+     }
+    ]
+   },
+   {
+    "gruppe": "Beilagen",
+    "gleiche_angabe": false,
+    "begruendung": "Auf Formular 5 und Formular 7 ist «Beilagen» dieselbe Angabe: eine Ankreuzliste der beigelegten Unterlagen, jeweils mit drei freien Zeilen. Der Wert dieser Mehrfachauswahl ist eine Menge von Dokumentarten. Darum ist eCH-0276 attachmentsType/documentIdentification genauer als der Sammelknoten attachments, der das ganze Register G mit Datei, Titel und Format meint. documentIdentification ist die Aufzählung der Dokumenttypen G0500 bis G0999. Diese Werte decken die gedruckten Kästchen nur teilweise genau ab. Genau passen balanceSheetIncomeStatementNotes, depreciation, taxSegregation und informationOnShareholdings. Ungefähr passen accountSheet für das Kontokorrentkonto und financialAssets für Formular 13. Die Formulare 6a, 12a, 14a und 19.1 fallen unter otherAttachments, mit documentTitle als Bezeichnung. Die freien Zeilen sind ebenfalls otherAttachments mit documentTitle. Auf Formular 5 trägt die eigene Zeile «Weitere Beilagen (Leerzeilen)» schon documentTitle. Auf Formular 12a meint «Beilagen» etwas anderes, nämlich die Anzahl der beigelegten Lohnausweise, also eine Zahl. Ein Zählelement dafür gibt es im ganzen Katalog nicht. eCH-0276 kennt nur den Dokumenttyp wageStatement, aber keine Anzahl. eCH-0119 attachedWageStatement (Ja/Nein) und attachedForms (Zähler) gehören zur Steuererklärung natürlicher Personen. Darum bleibt es dort bei kein_standard.",
+    "urteile": [
+     {
+      "form_id": 589,
+      "art": "feld",
+      "feld": "Beilagen",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "besser",
+      "standard": "eCH-0276",
+      "element": "documentIdentification",
+      "grund": "Die Mehrfachauswahl wählt Dokumentarten aus. eCH-0276 documentIdentification ist der aufgezählte Dokumenttyp im Register G «Beilagen». Er ist genauer als der Sammelknoten attachments. Nicht aufgezählte Formulare fallen unter den Wert otherAttachments."
+     },
+     {
+      "form_id": 592,
+      "art": "feld",
+      "feld": "Beilagen",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "besser",
+      "standard": "eCH-0276",
+      "element": "documentIdentification",
+      "grund": "Gleiche Ankreuzliste wie auf Formular 5, also dasselbe Element. Die Kästchen sind Dokumenttypen. Die drei freien Zeilen entsprechen otherAttachments, ihre Bezeichnung entspricht documentTitle."
+     },
+     {
+      "form_id": 594,
+      "art": "feld",
+      "feld": "Beilagen",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "kein_standard",
+      "standard": null,
+      "element": null,
+      "grund": "Andere Bedeutung: die Anzahl der beigelegten Lohnausweise. Im ganzen Katalog gibt es kein Zählelement dafür. eCH-0276 wageStatement ist nur ein Dokumenttyp. eCH-0119 attachedWageStatement und attachedForms gehören zur Steuererklärung natürlicher Personen."
+     }
+    ]
+   },
+   {
+    "gruppe": "Ort und Datum",
+    "gleiche_angabe": true,
+    "begruendung": "Auf allen drei Formularen steht «Ort und Datum» unter «Die Richtigkeit und Vollständigkeit der Angaben bezeugt». Gemeint sind Ort und Kalenderdatum der Unterzeichnung des jeweiligen Formulars, also dieselbe Angabe. Weder eCH-0229 noch eCH-0276 hat ein Element für Ort und Datum der Unterzeichnung. eCH-0229 transactionDate ist der Zeitstempel der Übermittlung. Die Datumselemente in eCH-0276 betreffen Steuerperiode, Kurse, Erwerb und Betriebsstätten. Das einzige namentlich passende Element im Katalog ist eCH-0119 locationAndDate. Es steht in attachedFormsType bzw. listOfSecuritiesType der E-Tax-Filing-Steuererklärung natürlicher Personen. Dieser Kontext passt nicht zu einer juristischen Person. Die Suche über den ganzen Katalog nach sign*, locationAndDate, place*, location*, *date* und nach Kontexten mit Unterschrift, Bestätigung oder Deklaration ergab sonst nur eCH-0260 (Lehrvertrag) und eCH-0278. Darum gilt auf allen drei Formularen kein_standard, und Formular 12a verliert eCH-0119.",
+    "urteile": [
+     {
+      "form_id": 589,
+      "art": "feld",
+      "feld": "Ort und Datum",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "kein_standard",
+      "standard": null,
+      "element": null,
+      "grund": "Kein Element für Ort und Datum der Unterzeichnung in eCH-0229, eCH-0276 oder einem anderen passenden Standard. eCH-0119 locationAndDate gehört zur Steuererklärung natürlicher Personen."
+     },
+     {
+      "form_id": 592,
+      "art": "feld",
+      "feld": "Ort und Datum",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "kein_standard",
+      "standard": null,
+      "element": null,
+      "grund": "Gleiche Angabe wie auf Formular 5. Im ganzen Katalog gibt es kein Element, dessen Kontext zur Steuererklärung einer juristischen Person passt."
+     },
+     {
+      "form_id": 594,
+      "art": "feld",
+      "feld": "Ort und Datum",
+      "elternfeld": null,
+      "teilfeld": null,
+      "urteil": "kein_standard",
+      "standard": null,
+      "element": null,
+      "grund": "eCH-0119 locationAndDate liegt im attachedFormsType der Steuererklärung natürlicher Personen und passt nicht zur Bescheinigung einer juristischen Person. Es ist dieselbe Angabe wie auf Formular 5 und 7, also kein_standard. Die Teile Ort und Datum sind schon kein_standard."
+     }
+    ]
+   },
+   {
+    "gruppe": "Organe – Name, Adresse (Teil)",
+    "gleiche_angabe": false,
+    "begruendung": "Die Gruppe enthält zwei verschiedene Angaben, jeweils als Paar aus Eltern und Teil. Erstens Name und Adresse der Präsidentin bzw. des Präsidenten des obersten Leitungsorgans: Verwaltungsratspräsident/-in auf Formular 5, Präsident/-in auf Formular 7. Zweitens Name und Adresse der Geschäftsleitung. Innerhalb jedes Paars ist es dieselbe gedruckte Zelle mit derselben Bedeutung. Die freie Zelle «Name, Adresse» entspricht den Textelementen chairmanOfTheBoardOfDirectors (Z1300) und management (Z1201) im eCH-0276 titleType. eCH-0229 hat dafür nur die zusammengesetzten Teile personIdentification und contactInformation, die je nur die Hälfte abdecken. Das Element des VR-Präsidenten passt auch für Vereine und Stiftungen. Die Excel-Beilage zu eCH-0276 beschreibt chairmanOfTheBoardOfDirectors ausdrücklich als «Verwaltungsratspräsident/in / Stiftungsrats- / Vereinspräsident/in o. ä.». Es ist nicht auf Kapitalgesellschaften beschränkt. Der englische Name ist zwar von der AG geprägt, das Element deckt aber ausdrücklich den Präsidenten eines Vereins oder einer Stiftung ab. management ist rechtsformneutral die «Geschäftsleitung». Hinweis: Die Beilage nennt für beide Elemente als Inhalt «Name». Die Adresse passt nur deshalb hinein, weil beide Elemente freie Texte (xs:string) sind. Ein genaueres Element gibt es nicht.",
+    "urteile": [
+     {
+      "form_id": 589,
+      "art": "teilfeld",
+      "feld": null,
+      "elternfeld": "Organe – Verwaltungsratspräsident/-in",
+      "teilfeld": "Name, Adresse",
+      "urteil": "korrekt",
+      "standard": "eCH-0276",
+      "element": "chairmanOfTheBoardOfDirectors",
+      "grund": "Hat bereits das gewählte Element: Name und Adresse des VR-Präsidenten als Freitext im Titelteil der E-Tax-JP-Deklaration."
+     },
+     {
+      "form_id": 589,
+      "art": "teilfeld",
+      "feld": null,
+      "elternfeld": "Organe – Geschäftsleitung",
+      "teilfeld": "Name, Adresse",
+      "urteil": "korrekt",
+      "standard": "eCH-0276",
+      "element": "management",
+      "grund": "Hat bereits das gewählte Element: die Geschäftsleitung als Freitext im Titelteil der E-Tax-JP-Deklaration."
+     },
+     {
+      "form_id": 592,
+      "art": "teilfeld",
+      "feld": null,
+      "elternfeld": "Organe – Präsident/-in",
+      "teilfeld": "Name, Adresse",
+      "urteil": "besser",
+      "standard": "eCH-0276",
+      "element": "chairmanOfTheBoardOfDirectors",
+      "grund": "Gleiche Zelle wie beim VR-Präsidenten auf Formular 5. Laut Excel-Beilage zu eCH-0276 umfasst chairmanOfTheBoardOfDirectors ausdrücklich auch Stiftungsrats- und Vereinspräsidenten. Das Element passt also für den Präsidenten eines Vereins oder einer Stiftung."
+     },
+     {
+      "form_id": 592,
+      "art": "teilfeld",
+      "feld": null,
+      "elternfeld": "Organe – Geschäftsleitung",
+      "teilfeld": "Name, Adresse",
+      "urteil": "besser",
+      "standard": "eCH-0276",
+      "element": "management",
+      "grund": "Gleiche Zelle wie auf Formular 5. management ist rechtsformneutral die Geschäftsleitung im Titelteil von eCH-0276. Laut Hauptdokument enthält eCH-0276 die Angaben für alle Gesellschaftsformen, auch für Vereine und Stiftungen."
+     }
+    ]
+   }
+  ],
+  "hinweis": "Alle 28 Zeilen haben genau ein Urteil. Alle gewählten Elemente stehen wörtlich im Katalog: eCH-0276 registerNumber 7918, contactForInquiries 7936, nameOfContact 7961, generalRemarks 7260, textInput 7453, documentIdentification 7251, chairmanOfTheBoardOfDirectors 7933, management 7934 sowie eCH-0229 purpose 5285. Jeder Name kommt im jeweiligen Standard nur einmal vor. eCH-0229 hat ebenfalls ein documentIdentification (5259), das ist aber ein anderes Element. Beide Standards sind «Genehmigt». Die Urteile des Erstgutachtens bleiben in der Sache unverändert.\n\nMeine Korrekturen:\n(1) Die Quellenangabe war falsch. Das Erstgutachten schreibt, die Excel-Beilage zu eCH-0276 sei nicht heruntergeladen worden und das XSD erkläre registerNumber, chairmanOfTheBoardOfDirectors und documentIdentification nicht. Die Excel-Beilage liegt aber als Textauszug vor: (Arbeitskopie der Prüfung) Das Hauptdokument liegt unter (Arbeitskopie der Prüfung) Die Beilage bestätigt die Urteile direkt, nicht nur über den Typ im XSD:\n- registerNumber = «Register-Nr. / PID-Nr.»\n- chairmanOfTheBoardOfDirectors = «Verwaltungsratspräsident/in / Stiftungsrats- / Vereinspräsident/in o. ä.»\n- contactForInquiries = «Rückfragen in dieser Steuersache sind zu richten an»\n- generalRemarks = allgemeine Bemerkung ohne Bezug auf eine Position\n- textInput = «Freie Texteingabe» im Register J «Bescheinigung»\nDie Begründungen stützen sich jetzt auf diese Belege. Zur Gruppe Organe: Die indirekte Herleitung («einziges Element, eigene Deklarationen auf demselben XSD») ist durch den ausdrücklichen Wortlaut der Beilage ersetzt.\n(2) Beilagen: Die Behauptung, die Werte von documentIdentification codierten «genau die angekreuzten Beilagen», war überzogen. Nur ein Teil der Kästchen hat einen genauen Wert (Jahresrechnung, Abschreibungen, Steuerausscheidung, Beteiligungen). Zwei passen nur ungefähr (Kontokorrent → accountSheet, Formular 13 → financialAssets). Die Formulare 6a, 12a, 14a und 19.1 fallen unter otherAttachments. Das Urteil «besser» bleibt, weil der Wert der Mehrfachauswahl ein Dokumenttyp ist. Auf Formular 7 umfasst das Feld auch die drei freien Zeilen, auf Formular 5 sind sie ein eigenes Feld. Das ändert die Bedeutung der Ankreuzliste nicht.\n(3) Ort und Datum: Die Katalogsuche ist erweitert und belegt (Kontexte mit sign, confirm, declaration, attest; Datums- und Ortselemente in eCH-0276). Es gibt weiterhin kein passendes Element.\n\nAusserhalb der verlangten Zeilen sind mir aufgefallen:\n(a) Hinweis (4) des Erstgutachtens nannte eCH-0046 phoneNumber und emailAddress für Telefon und E-Mail stimmig. Für «Rückfragen» ist das nach derselben Logik wie beim Namen nicht der genaueste Treffer. Für die Teile Telefon und E-Mail von «Rückfragen sind zu richten an» (589: 8954/8955, 592: 9075/9076) wären eCH-0276 phoneNumberOfContact (7962) und emailAdressOfContact (7963) genauer als eCH-0046 phoneNumber/emailAddress. Das sollte eine eigene Prüfung klären.\n(b) FID auf Formular 5 (7415) trägt eCH-0098 otherId. Zu prüfen ist, ob eCH-0276 cantonalRegisterNumber («weitere kantonale Registernummer», 7919) gemeint ist. Das hängt davon ab, was FID bei der Steuerverwaltung Schaffhausen bezeichnet.\n(c) Wie im Erstgutachten: Formular 7 (592) druckt «PID:», «UID:» und «FID:», hat dafür aber keine data_field-Zeilen. 21 Formulare tragen für «Ort und Datum» noch eCH-0119 locationAndDate, auch ausserhalb der Steuer natürlicher Personen. Das lohnt eine eigene Konsistenzprüfung."
+ }
+}

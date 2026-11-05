@@ -1,0 +1,223 @@
+{
+ "form_id": 596,
+ "mappings": [
+  {
+   "data_field": "PID",
+   "cites": [
+    {
+     "cref": "SHR 641.111",
+     "article_no": "§ 81b",
+     "beleg": "Abs. 4: Die kantonale Steuerverwaltung stellt für elektronische Gesuche um Verlängerung der Einreichungsfrist für die Steuererklärung ein Webportal zur Verfügung, auf dem sich die steuerpflichtigen Personen durch Angabe ihrer PID und bei natürlichen Personen zudem ihres Geburtsdatums ausweisen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Firmenname",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 142",
+     "beleg": "Die steuerpflichtige Person muss die Steuererklärung wahrheitsgemäss und vollständig ausfüllen, persönlich unterzeichnen und samt den vorgeschriebenen Beilagen fristgemäss der zuständigen Behörde einreichen."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 124",
+     "beleg": "Die steuerpflichtige Person muss die Steuererklärung wahrheitsgemäss und vollständig ausfüllen, persönlich unterzeichnen und samt den vorgeschriebenen Beilagen fristgemäss der zuständigen Steuerbehörde einreichen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Grundpfandschulden",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 143",
+     "beleg": "Abs. 2: «… und juristische Personen müssen der Steuererklärung beilegen: die unterzeichneten Jahresrechnungen (Bilanzen, Erfolgsrechnungen) der Steuerperiode»; Abs. 3: Eigenkapital auszuweisen «… sowie aus jenem Teil des Fremdkapitals, dem wirtschaftlich die Bedeutung von Eigenkapital zukommt»"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 83",
+     "beleg": "«Zum steuerbaren Eigenkapital von Kapitalgesellschaften oder Genossenschaften gehört zusätzlich jener Teil des Fremdkapitals, der von ihren Gesellschaftern oder Genossenschaftern oder diesen nahestehenden Personen zur Verfügung gestellt worden ist» (Stellung des Gläubigers, Schuldbetrag)"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 72",
+     "beleg": "«Zum steuerbaren Gewinn der Kapitalgesellschaften und Genossenschaften gehören auch die Schuldzinsen, die auf jenen Teil des Fremdkapitals entfallen, der nach Art. 83 zum Eigenkapital zu rechnen ist» (Zinssatz, fällig gewordene Zinsen)"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 144",
+     "beleg": "«Die Steuerpflichtigen müssen alles tun, um eine vollständige und richtige Veranlagung zu ermöglichen.»"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 47",
+     "beleg": "Abs. 1: «Die nachgewiesenen Schulden, für welche die steuerpflichtige Person allein haftet, werden voll abgezogen.» (für Vereine, Stiftungen und übrige juristische Personen anwendbar über Art. 82 Abs. 2 lit. b)"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 82",
+     "beleg": "Abs. 2 lit. b: das steuerbare Eigenkapital besteht «bei Vereinen, Stiftungen und den übrigen juristischen Personen aus dem Reinvermögen, wie es nach den Bestimmungen für die natürlichen Personen berechnet wird»"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 145",
+     "beleg": "Abs. 1 lit. b: zur Ausstellung schriftlicher Bescheinigungen verpflichtet sind «Gläubiger bzw. Gläubigerinnen und Schuldner bzw. Schuldnerinnen über Bestand, Höhe, Verzinsung und Sicherstellung von Forderungen»"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Total Grundpfandschulden",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 143",
+     "beleg": "Abs. 2: juristische Personen müssen beilegen «die unterzeichneten Jahresrechnungen (Bilanzen, Erfolgsrechnungen) der Steuerperiode»"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 83",
+     "beleg": "«Das Fremdkapital darf höchstens 85% des Verkehrswertes der Aktiven ausmachen.»"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 72",
+     "beleg": "«… die Schuldzinsen, die auf jenen Teil des Fremdkapitals entfallen, der nach Art. 83 zum Eigenkapital zu rechnen ist»"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 47",
+     "beleg": "Abs. 1: «Die nachgewiesenen Schulden, für welche die steuerpflichtige Person allein haftet, werden voll abgezogen.» (für Vereine, Stiftungen und übrige juristische Personen anwendbar über Art. 82 Abs. 2 lit. b)"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 82",
+     "beleg": "Abs. 2 lit. b: das steuerbare Eigenkapital besteht «bei Vereinen, Stiftungen und den übrigen juristischen Personen aus dem Reinvermögen, wie es nach den Bestimmungen für die natürlichen Personen berechnet wird»"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Darlehens- und andere Schulden (ohne Lieferantenschulden)",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 143",
+     "beleg": "Abs. 2: «… und juristische Personen müssen der Steuererklärung beilegen: die unterzeichneten Jahresrechnungen (Bilanzen, Erfolgsrechnungen) der Steuerperiode»; Abs. 3: Eigenkapital auszuweisen «… sowie aus jenem Teil des Fremdkapitals, dem wirtschaftlich die Bedeutung von Eigenkapital zukommt»"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 83",
+     "beleg": "«Zum steuerbaren Eigenkapital von Kapitalgesellschaften oder Genossenschaften gehört zusätzlich jener Teil des Fremdkapitals, der von ihren Gesellschaftern oder Genossenschaftern oder diesen nahestehenden Personen zur Verfügung gestellt worden ist» (Stellung des Gläubigers, Schuldbetrag)"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 72",
+     "beleg": "«Zum steuerbaren Gewinn der Kapitalgesellschaften und Genossenschaften gehören auch die Schuldzinsen, die auf jenen Teil des Fremdkapitals entfallen, der nach Art. 83 zum Eigenkapital zu rechnen ist» (Zinssatz, fällig gewordene Zinsen)"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 144",
+     "beleg": "«Die Steuerpflichtigen müssen alles tun, um eine vollständige und richtige Veranlagung zu ermöglichen.»"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 47",
+     "beleg": "Abs. 1: «Die nachgewiesenen Schulden, für welche die steuerpflichtige Person allein haftet, werden voll abgezogen.» (für Vereine, Stiftungen und übrige juristische Personen anwendbar über Art. 82 Abs. 2 lit. b)"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 82",
+     "beleg": "Abs. 2 lit. b: das steuerbare Eigenkapital besteht «bei Vereinen, Stiftungen und den übrigen juristischen Personen aus dem Reinvermögen, wie es nach den Bestimmungen für die natürlichen Personen berechnet wird»"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 145",
+     "beleg": "Abs. 1 lit. b: zur Ausstellung schriftlicher Bescheinigungen verpflichtet sind «Gläubiger bzw. Gläubigerinnen und Schuldner bzw. Schuldnerinnen über Bestand, Höhe, Verzinsung und Sicherstellung von Forderungen»"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Total Darlehens- und andere Schulden",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 143",
+     "beleg": "Abs. 2: juristische Personen müssen beilegen «die unterzeichneten Jahresrechnungen (Bilanzen, Erfolgsrechnungen) der Steuerperiode»"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 83",
+     "beleg": "«Das Fremdkapital darf höchstens 85% des Verkehrswertes der Aktiven ausmachen.»"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 72",
+     "beleg": "«… die Schuldzinsen, die auf jenen Teil des Fremdkapitals entfallen, der nach Art. 83 zum Eigenkapital zu rechnen ist»"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 47",
+     "beleg": "Abs. 1: «Die nachgewiesenen Schulden, für welche die steuerpflichtige Person allein haftet, werden voll abgezogen.» (für Vereine, Stiftungen und übrige juristische Personen anwendbar über Art. 82 Abs. 2 lit. b)"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 82",
+     "beleg": "Abs. 2 lit. b: das steuerbare Eigenkapital besteht «bei Vereinen, Stiftungen und den übrigen juristischen Personen aus dem Reinvermögen, wie es nach den Bestimmungen für die natürlichen Personen berechnet wird»"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Lieferantenschulden",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 143",
+     "beleg": "Abs. 2: juristische Personen müssen beilegen «die unterzeichneten Jahresrechnungen (Bilanzen, Erfolgsrechnungen) der Steuerperiode»"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 83",
+     "beleg": "«Das Fremdkapital darf höchstens 85% des Verkehrswertes der Aktiven ausmachen.»"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 144",
+     "beleg": "«Die Steuerpflichtigen müssen alles tun, um eine vollständige und richtige Veranlagung zu ermöglichen.»"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 47",
+     "beleg": "Abs. 1: «Die nachgewiesenen Schulden, für welche die steuerpflichtige Person allein haftet, werden voll abgezogen.» (für Vereine, Stiftungen und übrige juristische Personen anwendbar über Art. 82 Abs. 2 lit. b)"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 82",
+     "beleg": "Abs. 2 lit. b: das steuerbare Eigenkapital besteht «bei Vereinen, Stiftungen und den übrigen juristischen Personen aus dem Reinvermögen, wie es nach den Bestimmungen für die natürlichen Personen berechnet wird»"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Kopien der betreffenden Kontoauszüge aus der Buchhaltung",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 144",
+     "beleg": "Abs. 2: «Sie müssen auf Verlangen der Steuerbehörde insbesondere … Geschäftsbücher, Belege und weitere Bescheinigungen sowie Urkunden über den Geschäftsverkehr vorlegen.»"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 83",
+     "beleg": "«… jener Teil des Fremdkapitals, der von ihren Gesellschaftern oder Genossenschaftern oder diesen nahestehenden Personen zur Verfügung gestellt worden ist» (Code-01-Gläubiger)"
+    }
+   ],
+   "over_collection": false
+  }
+ ]
+}

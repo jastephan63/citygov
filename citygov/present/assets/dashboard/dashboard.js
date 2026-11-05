@@ -2771,7 +2771,17 @@ const dokBadge=d=>stBadge(tonOf('dok',d.stand),esc(lab(DOK_STAND,d.stand)),
   (d.titel_gedruckt?'Titel auf dem Dokument: '+d.titel_gedruckt+'\n':'')+(d.zweitgeprueft?'Urteil aus dem Inhalt, zweitgeprüft':d.stand==='erfasst'?'dieselbe Datei wie ein Formular der Databank (gleicher Fingerabdruck)':''));
 const QUELLE_DE={DVSH:['DVSH','im DVSH-Dienstleistungsmodell hinterlegt'],SHEP:['SHEP','auf dem SHEP-Portal (shep.meetfrida.agency) verlinkt'],
   Live:['Live','auf dem Live-Portal services.sh.ch angeboten'],Portal:['Live-Portal','services.sh.ch, das Service-Portal im Betrieb'],
-  Online:['Online','auf der Seite verlinkt, zu der «Online erledigen» des Live-Portals führt']};
+  Online:['Online','auf der Seite verlinkt, zu der «Online erledigen» des Live-Portals führt'],
+  'sh.ch':['sh.ch','auf der Seite des Kantons (sh.ch) angeboten, aus der die Formulare dieses Services stammen']};
+// ---- what is to be corrected on services.sh.ch (portal_korrektur, load_online.py --korrekturen)
+const KORR_ART=LAB.korrektur_art||{}, KORR_EL=LAB.korrektur_element||{};
+function korrekturZeile(k,mitService){
+  const f=k.richtig_form_id!=null?formById[k.richtig_form_id]:null;
+  const sv=mitService&&k.service_id!=null&&svcById[k.service_id]?svcLink(k.service_id,esc(svcById[k.service_id].name))+' · ':'';
+  return `<li>${sv}${stBadge(tonOf('korrektur',k.art),esc(lab(KORR_ART,k.art)),k.beleg||'')}
+    ${esc(lab(KORR_EL,k.element))} «${esc(k.bezeichnung)}» (<a class="dlink" href="${esc(k.seite)}" target="_blank" rel="noreferrer">Live-Seite ↗</a>): ${esc(k.befund)}
+    <div class="small"><b>So wäre es richtig:</b> ${k.richtig_url?`<a class="dlink" href="${esc(k.richtig_url)}" target="_blank" rel="noreferrer">richtiges Ziel ↗</a> — `:''}${esc(k.richtig_hinweis||'')}${f?` · ${formLink(f.service_id,f.id,esc(f.title))}`:''}</div></li>`;
+}
 const qBadge=q=>mkBadge(esc((QUELLE_DE[q]||[q])[0]),(QUELLE_DE[q]||[])[1]);
 // ---- the live portal services.sh.ch: is the Formular offered there? (forms[].live, services[].portal)
 const LIVE_STAND=LAB.live_stand||{}, LIVE_ERKL=LAB.live_erkl||{}, LIVE_AUFF=LAB.live_auff||{}, QP=QA.portal||null;
@@ -2812,11 +2822,13 @@ function liveBadge(fm){
 function portalLine(s){
   if(!QP) return '';
   const P=s.portal||[];
-  if(!P.length) return `<div class="hint aendline">${qBadge('Portal')} keine Seite auf services.sh.ch (Abzug vom ${esc(fmtDate(QP.abzug))})</div>`;
+  const K=(s.portal_korrekturen||[]);
+  const korr=K.length?`<div class="hint aendline"><b>Auf services.sh.ch zu korrigieren:</b><ul class="small">${K.map(k=>korrekturZeile(k,false)).join('')}</ul></div>`:'';
+  if(!P.length) return `<div class="hint aendline">${qBadge('Portal')} keine Seite auf services.sh.ch (Abzug vom ${esc(fmtDate(QP.abzug))})</div>`+korr;
   return `<div class="hint aendline">${P.map(p=>`${qBadge('Portal')} <a class="dlink" href="${esc(p.url)}" target="_blank" rel="noreferrer">Live-Seite ↗</a>${
     p.aktualisiert?` <span class="muted">aktualisiert ${esc(p.aktualisiert)}</span>`:''}${(p.aktionen||[]).length?' · Schaltfläche'+((p.aktionen||[]).length>1?'n':'')+': '+p.aktionen.map(a=>
       /^(https?:|\/)/.test(a.url||'')?`<a class="dlink" href="${esc(/^\//.test(a.url)?QP.basis+a.url:a.url)}" target="_blank" rel="noreferrer">«${esc(a.art)}» ↗</a>`:`«${esc(a.art)}»`).join(' · '):' · <span class="muted">keine Schaltfläche</span>'}${
-    p.zuordnung&&p.zuordnung!=='slug'?` <span class="muted small" title="${esc(p.zuordnung)}">(Seite umbenannt)</span>`:''}`).join('<br>')}</div>`;
+    p.zuordnung&&p.zuordnung!=='slug'?` <span class="muted small" title="${esc(p.zuordnung)}">(Seite umbenannt)</span>`:''}`).join('<br>')}</div>`+korr;
 }
 function dokName(d){
   const n=esc(d.titel||d.datei||d.sha256.slice(0,12));
@@ -2918,6 +2930,9 @@ function viewAbgleich(){
       ${(V.nur_shep||[]).length?`<div class="small"><b>Nur auf SHEP:</b> ${V.nur_shep.map(svN).join(' · ')}</div>`:''}
       ${(V.geaendert||[]).length?`<div class="tscroll"><table class="ft fit"><thead><tr><th>Service</th><th>Live anders als SHEP</th></tr></thead><tbody>${V.geaendert.map(e=>`<tr><td>${svN(e)}</td><td class="small">${esc(e.felder.map(f=>lab(FELD_QUELLE,f)).join(', '))}</td></tr>`).join('')}</tbody></table></div>`:''}
     </div>
+    ${(QP.korrekturen||[]).length?`<div class="card" id="korrekturen"><h4 style="margin-top:0">Was auf services.sh.ch zu korrigieren ist (${nf(QP.korrekturen.length)})</h4>
+      <p class="hint">Schaltflächen und Links, die ins Leere oder zum falschen Formular führen, und Dateien in älterer Ausgabe — je mit dem richtigen Ziel, wie es die Seiten des Kantons (sh.ch), das DVSH-Modell oder das Portal selbst belegen. Am Portal ist nichts geändert; die Dienststelle korrigiert es dort.</p>
+      <ul class="small">${QP.korrekturen.map(k=>korrekturZeile(k,true)).join('')}</ul></div>`:''}
     ${onlineBlock()}
     ${A.length?`<div class="card"><h4 style="margin-top:0">Was auf den Live-Seiten nicht passt (${nf(A.length)})</h4>
       <p class="hint">Befunde über die Seiten, nichts daran wurde geändert — die Dienststelle entscheidet.</p><ul class="small">${A.map(a=>`<li>${a.service_id!=null&&svcById[a.service_id]?svcLink(a.service_id,esc(svcById[a.service_id].name)):esc(a.slug)}

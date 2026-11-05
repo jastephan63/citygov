@@ -1,0 +1,100 @@
+{
+ "form_id": 596,
+ "data_fields": [
+  {
+   "name": "PID",
+   "definition": "Die im Kopf des Schuldenverzeichnisses neben «PID:» einzutragende Kennnummer der steuerpflichtigen juristischen Person.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Firmenname",
+   "definition": "Der Firmenname der steuerpflichtigen juristischen Person, deren Schulden das Verzeichnis aufführt.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Grundpfandschulden",
+   "definition": "Tabelle A der grundpfandgesicherten Schulden per 31.12. bzw. per Ende Geschäftsjahr (gegebenenfalls einschliesslich Baurechtszinsen nach Art. 779 ZGB), je Gläubiger mit Name, Adresse, Stellung zur Steuerpflichtigen (Code 01 oder 00), Sicherheiten, Schuldbetrag laut Schlussbilanz, Zinssatz und den im Geschäftsjahr fällig gewordenen Zinsen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name des Gläubigers",
+    "Adresse des Gläubigers",
+    "Stellung des Gläubigers zur Steuerpflichtigen",
+    "Sicherheiten",
+    "Schuldbetrag laut Schlussbilanz",
+    "Zinssatz",
+    "Zinsen in diesem Geschäftsjahr fällig geworden"
+   ],
+   "format": "10 Zeilen; Stellung: Code 01 / 00; Schuldbetrag und Zinsen in CHF; Zinssatz in %"
+  },
+  {
+   "name": "Total Grundpfandschulden",
+   "definition": "Die Summenzeile der Tabelle A mit dem gesamten Schuldbetrag laut Schlussbilanz und den gesamten im Geschäftsjahr fällig gewordenen Zinsen der Grundpfandschulden.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Schuldbetrag laut Schlussbilanz",
+    "Zinsen in diesem Geschäftsjahr fällig geworden"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Darlehens- und andere Schulden (ohne Lieferantenschulden)",
+   "definition": "Tabelle B der Darlehens- und anderen Schulden ohne Lieferantenschulden per 31.12. bzw. per Ende Geschäftsjahr, je Gläubiger mit Name, Adresse, Stellung zur Steuerpflichtigen (Code 01 oder 00), Sicherheiten, Schuldbetrag laut Schlussbilanz, Zinssatz und den im Geschäftsjahr fällig gewordenen Zinsen.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Name des Gläubigers",
+    "Adresse des Gläubigers",
+    "Stellung des Gläubigers zur Steuerpflichtigen",
+    "Sicherheiten",
+    "Schuldbetrag laut Schlussbilanz",
+    "Zinssatz",
+    "Zinsen in diesem Geschäftsjahr fällig geworden"
+   ],
+   "format": "10 Zeilen; Stellung: Code 01 / 00; Schuldbetrag und Zinsen in CHF; Zinssatz in %"
+  },
+  {
+   "name": "Total Darlehens- und andere Schulden",
+   "definition": "Die Summenzeile der Tabelle B mit dem gesamten Schuldbetrag laut Schlussbilanz und den gesamten im Geschäftsjahr fällig gewordenen Zinsen der Darlehens- und anderen Schulden.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Schuldbetrag laut Schlussbilanz",
+    "Zinsen in diesem Geschäftsjahr fällig geworden"
+   ],
+   "format": "CHF"
+  },
+  {
+   "name": "Lieferantenschulden",
+   "definition": "Der Gesamtbetrag der Lieferantenschulden (Abschnitt C), eingetragen im Feld der Spalte «Schuldbetrag laut Schlussbilanz».",
+   "data_type": "money",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": "CHF"
+  },
+  {
+   "name": "Kopien der betreffenden Kontoauszüge aus der Buchhaltung",
+   "definition": "Bei Gläubigern, die mit dem Code «01» bezeichnet sind (Gesellschafter, Beteiligte, Organmitglieder, nahestehende Personen oder verbundene Unternehmen), einzureichende Kopien der betreffenden Kontoauszüge aus der Buchhaltung (Fussnote 1).",
+   "data_type": "attachment",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  }
+ ],
+ "hinweis": "Ich habe die Originaldatei geprüft. Die beiden Seiten habe ich als Bild gerendert, denn die PDF hat keine AcroForm-Felder. Alle 8 Felder stimmen mit dem Formular überein: Reihenfolge, Namen, Typen, Pflicht und Teilfelder.\n\nKorrektur (1):\n1. Die Definition von «Darlehens- und andere Schulden (ohne Lieferantenschulden)» ist angepasst. Der Entwurf ordnete die «Schulden gegenüber Beteiligten aus Darlehen, Privatkonti und Kontokorrent» ausdrücklich Tabelle B zu. Das Formular erwähnt diese Schulden aber nur im Einleitungstext unter «sämtliche Schulden». Eine solche Schuld kann auch grundpfandgesichert sein und gehört dann in Tabelle A. Ich habe die Zuordnung deshalb gestrichen. Neu steht in der Definition der Stichtag «per 31.12. bzw. per Ende Geschäftsjahr», wie bei Tabelle A.\n\nBestätigt:\n- Es gibt keine Unterschrift, kein Ort und Datum und keine Beilagen-Checkliste. Darum fehlt hier auch kein Feld.\n- Die Spalte «Name, Adresse und Stellung des Gläubigers zur Steuerpflichtigen» ist korrekt in drei Teile zerlegt. Name und Adresse stehen auf je einer unbeschrifteten Linie, die Stellung in einem eigenen Code-Kästchen (= 01 / = 00, mit Pfeil).\n- Die Spalte «Zins-satz» ist nur am Zeilenende getrennt gedruckt; der Name ist «Zinssatz».\n- Die beiden Total-Kästchen liegen unter den Spalten Schuldbetrag und Zinsen. Das Kästchen von C liegt nur unter der Spalte Schuldbetrag.\n- Die Beilage aus Fussnote 1 gilt nur für Gläubiger mit Code 01, also bedingt. Ich habe sie auf Pflicht gelassen, weil das Formular sie nicht als freiwillig kennzeichnet.\n\nKeine Felder der Person, da nur Anleitung:\n- Einleitungstext: alle Schulden inkl. Lieferantenschulden per 31.12. bzw. Ende Geschäftsjahr und die Schuldzinsen ohne Amortisationen.\n- Hinweis, dass Zinsquittungen, Beweismittel und Gläubigerbescheinigungen erst auf Verlangen im Veranlagungsverfahren vorzulegen sind. Das ist keine Beilage dieses Formulars.\n- Fussnote 2 sagt, was zu den Sicherheiten anzugeben ist, je nach Liegenschaft, Wertschrift, Versicherungspolice oder Bürgschaft. Ich habe daraus keine eigenen Teilfelder gemacht, weil das Formular dafür keine Felder druckt.\n- Fussnote 3 betrifft Baurechtszinsen nach Art. 779 ZGB, einzutragen in Spalte 1 als «Baurechtszins zugunsten von …».\n- Kantonswappen und die Fusszeile «Formular 14a».\n\nOffen: Ob die PID von der Steuerverwaltung vorgedruckt oder von der Person eingetragen wird, lässt sich aus dem Formular nicht erkennen. Ich habe sie als Angabe der Person belassen."
+}

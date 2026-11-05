@@ -1,0 +1,78 @@
+{
+ "hinweis": "Was auf dem Live-Portal services.sh.ch zu korrigieren ist: Schaltflächen und Links, die ins Leere oder auf das falsche Ziel führen, und eine veraltete Datei — je mit dem richtigen Ziel, wie es die Seiten des Kantons (sh.ch), das DVSH-Modell oder das Portal selbst belegen. Nur gelesen, am 05.11.2026 im Browser nachgeprüft; am Portal ist nichts geändert. Die Korrektur nimmt die Dienststelle vor.",
+ "geprueft": "2026-11-05",
+ "korrekturen": [
+  {
+   "slug": "adoption-stiefkind-minderjahrig",
+   "element": "schaltflaeche",
+   "bezeichnung": "Online erledigen",
+   "live_url": "https://",
+   "art": "leer",
+   "befund": "Die Schaltfläche hat kein Ziel (nur «https://»); auch der Endpunkt im DVSH-Modell ist leer.",
+   "richtig_url": "https://sh.ch/CMS/frontend/index.html?contentid=25103&language=DE&globalshared=true",
+   "richtig_form_id": 450,
+   "richtig_hinweis": "Die Seite «Adoption Stiefkind (minderjährig)» auf sh.ch mit dem Gesuch zum Herunterladen — wie bei der Schwesterseite «Adoption Pflegekind (minderjährig)», deren Schaltfläche auf die entsprechende sh.ch-Seite (contentid 25088) führt.",
+   "beleg": "sh.ch, Amt für Justiz und Gemeinden, Seite «Adoption» › «Adoption Stiefkind (minderjährig)» (contentid 25103, am 05.11.2026 geöffnet); die DVSH-Quelle nennt das Gesuch «Gesuch_um_Adoption_minderjaehriges_Stiefkind.pdf», dieselbe Ausgabe wie Formular 450."
+  },
+  {
+   "slug": "adoption-pflegekind-volljahrig",
+   "element": "schaltflaeche",
+   "bezeichnung": "Online erledigen",
+   "live_url": "https://eforms.sh.ch/amt_justiz_gemeinden/app/portal?event=view&generalid=ADO_GES",
+   "art": "falsches_ziel",
+   "befund": "Die Schaltfläche der Seite für das VOLLJÄHRIGE Pflegekind öffnet das eForm «Gesuch um gemeinschaftliche Adoption unseres minderjährigen Pflegekindes»; das DVSH-Modell (DVSH 242) nennt denselben Endpunkt.",
+   "richtig_url": "https://sh.ch/CMS/frontend/index.html?contentid=1749832&language=DE&globalshared=true",
+   "richtig_form_id": 287,
+   "richtig_hinweis": "Die Seite «Adoption Pflegekind (volljährig)» auf sh.ch: «Das Gesuchsformular steht als Download für Sie bereit» — das Gesuch um gemeinschaftliche Adoption unseres volljährigen Pflegekindes (Formular 287).",
+   "beleg": "Titel des eForms ADO_GES auf eforms.sh.ch (am 03.11.2026 ohne Eingabe geöffnet): «Gesuch um gemeinschaftliche Adoption unseres minderjährigen Pflegekindes»; sh.ch-Seite contentid 1749832 am 05.11.2026 geöffnet."
+  },
+  {
+   "slug": "eigentumerbestatigung-eigentumer-anstosserliste",
+   "element": "schaltflaeche",
+   "bezeichnung": "Online erledigen",
+   "live_url": "https://www2.sh.ch/Eigentuemerverzeichnis.4545.0.html",
+   "art": "ziel_nicht_erreichbar",
+   "befund": "Das Ziel liefert am 03.11. und am 05.11.2026 nur die Wartungsseite wartung.ksd.ch («Dienst ist momentan leider nicht verfügbar»). Dieselbe Adresse steht auf der Seite des Grundbuchamts auf sh.ch und im DVSH-Modell — ein anderer Online-Weg ist nicht veröffentlicht.",
+   "richtig_url": null,
+   "richtig_form_id": 521,
+   "richtig_hinweis": "Bis das Bestellformular wieder erreichbar ist: Bestellung per E-Mail an gbamt@sh.ch (Kontakt der Live-Seite und des DVSH-Modells). Die Databank hält das Online-Formular als eFormular 521.",
+   "beleg": "Abruf von https://www2.sh.ch/Eigentuemerverzeichnis.4545.0.html am 03.11. und 05.11.2026 (Weiterleitung auf https://wartung.ksd.ch/); sh.ch-Seite «Grundbuchamt / Notariat», Schaltfläche «Eigentümerverzeichnis bestellen» mit derselben Adresse."
+  },
+  {
+   "slug": "kontaktformular-fur-beschwerden-und-anliegen-zur-opferhilfe-nummer-142",
+   "element": "schaltflaeche",
+   "bezeichnung": "Online erledigen",
+   "live_url": "https://erv.sh.ch/prepaid_de.jsp;jsessionid=62C19584A42CC205EBD4573E0E9B19E7?n0w=260817115536",
+   "art": "sitzungslink",
+   "befund": "Die Schaltfläche trägt eine sitzungsgebundene Adresse vom 17.08.2026 (jsessionid, n0w); sie führt heute auf die Anmeldeseite von erv.sh.ch, nicht auf das Kontaktformular. Auch ohne Sitzungsteil landet sie dort.",
+   "richtig_url": null,
+   "richtig_form_id": 540,
+   "richtig_hinweis": "Eine dauerhafte Adresse des Formulars ist auf sh.ch nicht veröffentlicht (die Seite der Fachstelle zeigt das sichere Kontaktformular nur als QR-Code). Kontakt laut Live-Seite und DVSH: info.soza@sh.ch, +41 52 632 76 85.",
+   "beleg": "Abruf der Schaltflächen-Adresse am 03.11.2026 und von https://erv.sh.ch/prepaid_de.jsp am 05.11.2026 (beide auf index_de.jsp «Passwort Login»); Seite der Fachstelle für Gleichstellung, Gewaltprävention und Gewaltschutz auf sh.ch am 05.11.2026 durchgesehen."
+  },
+  {
+   "slug": "gesuch-arbeitsbewilligung",
+   "element": "datei",
+   "bezeichnung": "1603_P_Gesuchsformular_Auslaenderbewilligung_A1.pdf",
+   "live_url": "https://services.sh.ch/api/catalog/assets/26bb70acc866829b3c241edf6ad7352e89c7ca36a70343c2696d5a30ba70a962.pdf",
+   "art": "aeltere_ausgabe",
+   "befund": "Die Live-Seite bietet das Gesuchsformular A1 in der Ausgabe vom 18.01.2016 an.",
+   "richtig_url": "https://sh.ch/fileadmin/Redaktoren/MuP/A1_ausfuellbar.pdf",
+   "richtig_form_id": 497,
+   "richtig_hinweis": "Die Ausgabe vom 28.10.2025, die die Hilfsblätter des Migrationsamts verlinken und die die Databank als Formular 497 hält (ohne den Block «Vom Einwohneramt/-kontrolle auszufüllen»).",
+   "beleg": "Zweitgeprüftes Urteil «neue Ausgabe» (quellen/dokumente/urteile_2026-11-03_online.json): ModDate 2025-10-28 gegenüber 2016-01-18 bei gleichem Vermerk «01/2016»."
+  },
+  {
+   "slug": "trichinenuntersuchung-pferde-wildschwein",
+   "element": "link",
+   "bezeichnung": "Formular Untersuchungsantrag Trichinellen",
+   "live_url": "https://sh.ch/CMS/get/file/59ed6a73-072b-416d-b00c-c880e401f853",
+   "art": "falsche_datei",
+   "befund": "Der Link «Formular Untersuchungsantrag Trichinellen» liefert das Merkblatt «2023 MB Annahme Trichinenproben.pdf» — dieselbe Datei wie der Link «Merkblatt Annahme Trichinenproben».",
+   "richtig_url": "https://services.sh.ch/api/catalog/assets/c7cf702a4f36bb5fc3e8859637cee5edac03aaa702bfe0a886e71265b224f10a.pdf",
+   "richtig_form_id": 159,
+   "richtig_hinweis": "Das Formular «Untersuchungsantrag auf Trichinellen», das dieselbe Seite über die Schaltfläche «Formular» anbietet (Formular 159).",
+   "beleg": "Beide Links am 03.11.2026 geladen: gleicher Fingerabdruck b2a3c2733a71…, Dateiname «2023 MB Annahme Trichinenproben.pdf»."
+  }
+ ]
+}

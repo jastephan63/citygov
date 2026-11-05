@@ -1,0 +1,61 @@
+{
+ "form_id": 591,
+ "data_fields": [
+  {
+   "name": "PID",
+   "definition": "Die im Kopf des Formulars unter «Kanton Schaffhausen» verlangte Identifikationsnummer (PID) der steuerpflichtigen juristischen Person.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Firmenname",
+   "definition": "Der Name der juristischen Person, zu deren Steuererklärung dieses Formular 6a gehört.",
+   "data_type": "text",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  },
+  {
+   "name": "Wertberichtigungen durch Unterbewertung der Aktiven",
+   "definition": "Tabelle A, in der die juristische Person je Aktivposition den massgebenden Wert, den Buchwert, die daraus folgende Wertberichtigung und deren Anteil in Prozent angibt.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Position",
+    "Wert von Wertberichtigung",
+    "Buchwert",
+    "Wertberichtigung",
+    "Wertberichtigung in %"
+   ],
+   "format": "CHF (Zeilen 1–3); % (Zeile 4); 2 Tabellenblöcke à 4 Positionsspalten"
+  },
+  {
+   "name": "Rückstellungen unter den Passiven",
+   "definition": "Tabelle B, in der die juristische Person je Rückstellung den Buchwert und den Stand der Rückstellung am Ende des Vorjahres angibt.",
+   "data_type": "composite",
+   "required": true,
+   "allowed_values": [],
+   "subfields": [
+    "Position",
+    "Buchwert der Rückstellung",
+    "Rückstellung am Ende des Vorjahres"
+   ],
+   "format": "CHF (Zeilen 1–2); 2 Tabellenblöcke à 4 Positionsspalten"
+  },
+  {
+   "name": "Begründungen / Bemerkungen zu den Rückstellungen / Wertberichtigungen",
+   "definition": "Abschnitt C, in dem die juristische Person die angegebenen Rückstellungen und Wertberichtigungen in freiem Text begründet oder erläutert.",
+   "data_type": "text",
+   "required": false,
+   "allowed_values": [],
+   "subfields": [],
+   "format": ""
+  }
+ ],
+ "hinweis": "Ich habe das Original-PDF Zeile für Zeile gegen den Entwurf geprüft (eine Seite, ohne AcroForm). Der Entwurf stimmt im Kern: Die fünf Angaben sind vollständig und stehen in der Reihenfolge des Formulars. Nichts ist erfunden. Die Namen sind wörtlich übernommen, die Teilfelder entsprechen den gedruckten Zeilenbeschriftungen, Typen und Pflicht sind richtig.\n\nKorrekturen:\n(1) PID, Definition: «PID:» steht unter «Kanton Schaffhausen», nicht daneben. Den Wortlaut habe ich angepasst.\n(2) Tabelle A, format: Die Angabe CHF gilt nur für die Zeilen 1–3. Zeile 4 ist in %, und «Position» ist Text. Neu: «CHF (Zeilen 1–3); % (Zeile 4); 2 Tabellenblöcke à 4 Positionsspalten».\n(3) Tabelle B, format: Präzisiert zu «CHF (Zeilen 1–2); 2 Tabellenblöcke à 4 Positionsspalten».\n\nGeprüft und unverändert:\n- Die zwei Blöcke je Tabelle bleiben ein Composite. Der zweite Block hat keine eigene Überschrift und führt dieselbe Tabelle fort (insgesamt 8 Positionen).\n- PID ist Pflicht, weil das Formular sie nicht als freiwillig markiert. In der Databank sind die PID-Felder anderer Steuerformulare (259, 260, 271, 272, 274) als freiwillig (required=0) erfasst, obwohl auch dort kein Freiwilligkeitsvermerk gedruckt ist (bei 259, 271 und 274 geprüft). Diese Abweichung ist nur gemeldet, nicht korrigiert.\n- Abschnitt C ist freiwillig, weil die Überschrift «Bemerkungen» enthält. Das entspricht Formular 263 («Bemerkungen und Begründungen», required=0).\n\nKeine Felder der Person:\n- Fussnote 1) ist eine Anleitung: Sie bestimmt den massgebenden Wert, etwa bei Warenlagern die Anschaffungs- oder Herstellungskosten bzw. einen tieferen Marktwert, bei Debitoren den Nominalwert und bei andern Posten den Anschaffungswert oder einen niedrigeren Verkehrswert.\n- Das vorgedruckte «–» in der Zeile Buchwert zeigt die Rechnung Zeile 3 = Zeile 1 − Zeile 2. Zeile 4 ist der Anteil in Prozent. Beide sind also aus den Zeilen 1 und 2 berechenbar.\n- Die Kopfzeile «Kanton Schaffhausen» und der Formulartitel sind kein Feld.\n\nDas Formular verlangt weder Steuerjahr noch Ort und Datum, Unterschrift oder eine Beilagen-Checkliste. Dafür gibt es deshalb keine Felder."
+}

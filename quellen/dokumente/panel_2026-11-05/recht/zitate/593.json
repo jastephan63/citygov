@@ -1,0 +1,158 @@
+{
+ "form_id": 593,
+ "mappings": [
+  {
+   "data_field": "PID",
+   "cites": [
+    {
+     "cref": "SHR 641.111",
+     "article_no": "§ 81b",
+     "beleg": "Abs. 4: Die kantonale Steuerverwaltung stellt für elektronische Gesuche um Verlängerung der Einreichungsfrist für die Steuererklärung ein Webportal zur Verfügung, auf dem sich die steuerpflichtigen Personen durch Angabe ihrer PID und bei natürlichen Personen zudem ihres Geburtsdatums ausweisen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Firmenname",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 142",
+     "beleg": "Die steuerpflichtige Person muss die Steuererklärung wahrheitsgemäss und vollständig ausfüllen, persönlich unterzeichnen und samt den vorgeschriebenen Beilagen fristgemäss der zuständigen Behörde einreichen."
+    },
+    {
+     "cref": "SR 642.11",
+     "article_no": "Art. 124",
+     "beleg": "Die steuerpflichtige Person muss die Steuererklärung wahrheitsgemäss und vollständig ausfüllen, persönlich unterzeichnen und samt den vorgeschriebenen Beilagen fristgemäss der zuständigen Steuerbehörde einreichen."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Kanton und Ort",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 58",
+     "beleg": "Abs. 1: Bei persönlicher Zugehörigkeit ist die Steuerpflicht unbeschränkt; sie erstreckt sich aber nicht auf Geschäftsbetriebe, Betriebsstätten und Grundstücke ausserhalb des Kantons. Abs. 3: Die Abgrenzung der Steuerpflicht für Geschäftsbetriebe, Betriebsstätten und Grundstücke erfolgt im Verhältnis zum Ausland nach den Grundsätzen des Bundesrechts über das Verbot der interkantonalen Doppelbesteuerung."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 57",
+     "beleg": "Juristische Personen mit Sitz oder mit tatsächlicher Verwaltung ausserhalb des Kantons sind steuerpflichtig, wenn sie: ... b) im Kanton Betriebsstätten unterhalten c) an Grundstücken im Kanton Eigentum ... haben"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 128",
+     "beleg": "Ist eine Person mit Wohnsitz oder Sitz im Kanton aufgrund der Steuererklärung auch in einem andern Kanton steuerpflichtig, gibt die Steuerbehörde des Kantons Schaffhausen der Steuerbehörde des andern Kantons Kenntnis von der Veranlagung durch Zustellung der Steuerausscheidung."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 195",
+     "beleg": "Abs. 1: Die Steuerausscheidung bei Steuerpflicht in mehreren Gemeinden erfolgt in sinngemässer Anwendung der Grundsätze des Bundesrechts über das Verbot der interkantonalen Doppelbesteuerung."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Kapitalausscheidung",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 58",
+     "beleg": "Bei wirtschaftlicher Zugehörigkeit beschränkt sich die Steuerpflicht auf die Teile des Gewinns und Kapitals, für die nach Art. 57 eine Steuerpflicht im Kanton besteht. (Abs. 1: erstreckt sich aber nicht auf Geschäftsbetriebe, Betriebsstätten und Grundstücke ausserhalb des Kantons)"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 59",
+     "beleg": "Juristische Personen, die nur für einen Teil ihres Gewinns und Kapitals im Kanton steuerpflichtig sind, entrichten die Steuern für die im Kanton steuerbaren Werte nach dem Steuersatz, der ihrem gesamten Gewinn und Kapital entspricht."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 90",
+     "beleg": "Das steuerbare Eigenkapital bemisst sich nach dem Stand am Ende der Steuerperiode."
+    },
+    {
+     "cref": "SHR 641.111",
+     "article_no": "§ 1",
+     "beleg": "Das Bundesrecht umfasst neben den Bundeserlassen und den Staatsverträgen auch die bundesgerichtliche Rechtsprechung zum Verbot der interkantonalen Doppelbesteuerung."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Ausscheidung Immobilien",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 57",
+     "beleg": "Juristische Personen mit Sitz oder mit tatsächlicher Verwaltung ausserhalb des Kantons sind steuerpflichtig, wenn sie: ... c) an Grundstücken im Kanton Eigentum, dingliche Rechte oder diesen wirtschaftlich gleichzuachtende persönliche Nutzungsrechte haben"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 58",
+     "beleg": "Bei persönlicher Zugehörigkeit ist die Steuerpflicht unbeschränkt; sie erstreckt sich aber nicht auf Geschäftsbetriebe, Betriebsstätten und Grundstücke ausserhalb des Kantons. (Abs. 5: Verluste aus ausländischen Liegenschaften können nur dann berücksichtigt werden, wenn im betreffenden Land auch eine Betriebsstätte unterhalten wird.)"
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Erwerbsfaktoren",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 58",
+     "beleg": "Abs. 2: Bei wirtschaftlicher Zugehörigkeit beschränkt sich die Steuerpflicht auf die Teile des Gewinns und Kapitals, für die nach Art. 57 eine Steuerpflicht im Kanton besteht. Abs. 3: Die Abgrenzung der Steuerpflicht für Geschäftsbetriebe, Betriebsstätten und Grundstücke erfolgt im Verhältnis zum Ausland nach den Grundsätzen des Bundesrechts über das Verbot der interkantonalen Doppelbesteuerung."
+    },
+    {
+     "cref": "SHR 641.111",
+     "article_no": "§ 1",
+     "beleg": "Das Bundesrecht umfasst neben den Bundeserlassen und den Staatsverträgen auch die bundesgerichtliche Rechtsprechung zum Verbot der interkantonalen Doppelbesteuerung."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Umsatzfaktoren",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 58",
+     "beleg": "Abs. 2: Bei wirtschaftlicher Zugehörigkeit beschränkt sich die Steuerpflicht auf die Teile des Gewinns und Kapitals, für die nach Art. 57 eine Steuerpflicht im Kanton besteht. Abs. 3: Die Abgrenzung der Steuerpflicht für Geschäftsbetriebe, Betriebsstätten und Grundstücke erfolgt im Verhältnis zum Ausland nach den Grundsätzen des Bundesrechts über das Verbot der interkantonalen Doppelbesteuerung."
+    },
+    {
+     "cref": "SHR 641.111",
+     "article_no": "§ 1",
+     "beleg": "Das Bundesrecht umfasst neben den Bundeserlassen und den Staatsverträgen auch die bundesgerichtliche Rechtsprechung zum Verbot der interkantonalen Doppelbesteuerung."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Gewinnverteilung",
+   "cites": [
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 58",
+     "beleg": "Bei eigenen Betriebsstätten im Ausland wird bei der Ausscheidung der Steuerfaktoren dem Sitzkanton ein Voraus am Gewinn zugewiesen. (Abs. 2: beschränkt sich die Steuerpflicht auf die Teile des Gewinns und Kapitals, für die nach Art. 57 eine Steuerpflicht im Kanton besteht)"
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 59",
+     "beleg": "entrichten die Steuern für die im Kanton steuerbaren Werte nach dem Steuersatz, der ihrem gesamten Gewinn und Kapital entspricht."
+    },
+    {
+     "cref": "SHR 641.100",
+     "article_no": "Art. 89",
+     "beleg": "Der steuerbare Reingewinn bemisst sich nach dem Ergebnis der Steuerperiode."
+    }
+   ],
+   "over_collection": false
+  },
+  {
+   "data_field": "Bemerkung",
+   "cites": [],
+   "over_collection": true
+  }
+ ]
+}

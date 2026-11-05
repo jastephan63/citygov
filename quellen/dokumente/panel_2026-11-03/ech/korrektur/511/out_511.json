@@ -1,0 +1,14 @@
+{
+ "hinweis": "Korrekturen bestehender eCH-Zuordnungen von Formular 511: Vorschläge des Panels vom 03.11.2026, gegen Katalog und Praxis der Databank entschieden und zweitgeprüft (05.11.2026); nur die Änderungen.",
+ "anwenden": "python3 scripts/load_ech_verdicts_new.py quellen/dokumente/panel_2026-11-03/ech/korrektur/511 --nur=511",
+ "urteile": [
+  {
+   "art": "feld",
+   "urteil": "besser",
+   "grund": "Das Textfeld bündelt den Namen (employer) und die Adresse (placeOfEmployer) des Betriebs, und beide liegen laut XSD im Container eCH-0021 occupationData (31× als Feld belegt). Es gilt die Familienantwort wie auf 508 (Teilfelder employer/placeOfEmployer), 512 und 513; das bisherige employer (6×) deckt die Adresse nicht ab.",
+   "feld": "Name und Adresse des Betriebes",
+   "standard": "eCH-0021",
+   "element": "occupationData"
+  }
+ ]
+}
