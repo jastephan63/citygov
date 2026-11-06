@@ -123,7 +123,7 @@ def dossier_slug(service):
 # absolute macOS home or temp paths. A URL path («admin.ch/…/home/…») is not
 # one: the absolute paths count only where no host name runs into them.
 # Exporters call assert_no_local_paths() on the exact text they are about to write.
-LOCAL_PATH = _re.compile(r"\.\./(?:Verwaltung|Gesetze|DVSH|formflows)\b|(?<![\w.%-])/(?:Users|private)/")
+LOCAL_PATH = _re.compile(r"\.\./(?:Verwaltung|Gesetze|DVSH|SHEP|formflows)\b|(?<![\w.%-])/(?:Users|private)/")
 
 
 def assert_no_local_paths(name, text):

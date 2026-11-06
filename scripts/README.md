@@ -1,5 +1,9 @@
 # scripts/ — how the databank is built and loaded
 
+New here? Start with `MAINTAINING.md` (set-up, publishing, the rules that are never relaxed, the
+harvests, the intake recipe and the open work); the review protocol of an intake is
+`docs/pruefprotokoll.md`.
+
 `citygov.db` is the only data source. `./build.sh` regenerates every file it
 lists from it (its first three steps, `init_register.py`, `kennungen.py` and
 `rollen.py ableiten`, rewrite only derived data inside the DB, each through
@@ -192,7 +196,8 @@ SVG (both counted, see `--verbose`), and whatever appears only after a click
 ## Load or refresh data (in this order)
 
 The loaders read the canton's source folders next to the repository
-(`../Gesetze`, `../Verwaltung`, `../DVSH`), which are not part of it. Text
+(`../Gesetze`, `../Verwaltung`, `../DVSH`, `../SHEP`; `MAINTAINING.md` says what each holds and how
+it is produced), which are not part of it. Text
 extraction from law PDFs (`extract_law.py`) and from Word files needs macOS.
 `scan_gestaltung.py` reads the Formular files from `formulare/` only and needs no macOS.
 
@@ -235,6 +240,9 @@ python3 scripts/load_portal.py ../SHEP/live-<date>   # the LIVE portal services.
                                                   # (one GET per slug of /de/services) and links/manifest.json (the sh.ch files
                                                   # the pages link, each fetched once, with sha256) -> portal_service, log 'Portal'
 python3 scripts/migrate_2026_11_03.py             # harvest-log entry the old SHEP parser produced (quellen/korrekturen/quellen_log_2026-11-03.json)
+python3 scripts/capture_eforms.py ziele|abrufen ../SHEP/live-<date>/online   # the eForms behind «Online erledigen»,
+                                                  # opened READ-ONLY (start page + one «Weiter» only where page 1 asks for
+                                                  # nothing; never typed, ticked, uploaded or sent) -> eforms/<mandant>__<kennung>/
 python3 scripts/load_online.py ../SHEP/live-<date>/online quellen/dokumente/online_<date>.json \
         [--shch <manifest.json> ...] [--korrekturen quellen/korrekturen/portal_korrekturen_<date>.json]
                                                   # what «Online erledigen» of each live page leads to, every eForm behind
@@ -285,8 +293,9 @@ python3 scripts/load_subfield_ech.py <dir|file.json> [--inputs=<dir>]   # per (p
 python3 scripts/load_ech_verdicts.py <dir>        # sceptical second pass on the assignments
 python3 scripts/load_ech_gaps.py <dir>
 python3 scripts/propagate_ech_names.py            # consistent name-keyed verdicts -> new forms (ech_herkunft 'propagiert')
-python3 scripts/load_ech_verdicts_new.py <dir> [--from=<form_id> | --nur=<id>,<id>]   # verification, newest forms
-                                                  # only (--from) or exactly the named forms, judged rows included (--nur)
+python3 scripts/load_ech_verdicts_new.py <dir> [--from=<form_id> | --nur=<id>,<id> | --nur-offene=<id>]   # verification:
+                                                  # newest forms only (--from), exactly the named forms with their judged
+                                                  # rows (--nur), or only the not yet judged rows of one form (--nur-offene)
 python3 scripts/load_esh.py <katalog.json> <dir>  # the cantonal DRAFT standard where eCH has nothing
 python3 scripts/sweep_ech_xsd.py [--offline]      # XSD versions + code lists (files in ech_xsd/)
 
@@ -341,6 +350,10 @@ python3 scripts/load_rechtsmittel_verdicts.py <dir>   # which provision governs 
                                                   # a new verdict carries the review mark 'offen' until load_panel_reviews.py
 python3 scripts/load_panel_reviews.py <dir>       # second opinions on basis_typ / subjekt / remedies
                                                   # (<dir> holds basis/ subjekt/ rmrules/ rmverdicts/)
+python3 scripts/apply_panel.py <layer> quellen/dokumente/panel_<date> <panel-output.json>   # an intake's reviewed
+                                                  # panel outputs -> evidence files + the loaders above, layer by layer:
+                                                  # felder, ech, verfahren, recht (ersetzen first for a completion or an
+                                                  # Angleichung), subjekt, rechtsmittel — docs/pruefprotokoll.md
 
 # 5. naming and topic groups — ONE chain, in this order only (the steps refuse to run alone)
 python3 scripts/load_themenkatalog.py             # eCH-0049 catalogue, verbatim-gated against quellen/ech-0049/*.pdf
@@ -733,6 +746,7 @@ copy, so no test writes the shared database.
 | `ingest_laws.py` / `ingest_fed.py` / `ingest_bigcode.py` / `fetch_rechtsbuch.py` / `build_gesetze_index.py` / `extract_quotes.py` | The law chain (step 1 above) |
 | `load_dvsh_harvest.py` / `load_shep.py` / `consolidate_services.py` / `apply_consolidation.py` / `link_dvsh_eforms.py` | Service universe from DVSH and SHEP (read-only harvests). Both harvest loaders call `citygov/load/quellen_log.py` (a helper, no command) before they replace their mirror table: it compares the rows the databank held with the rows just loaded and writes what is new, removed or changed (`quellen_aenderung`, one row per DVSH id / SHEP slug, with the changed columns) and one row per harvest (`quellen_abzug`); a harvest already logged is not compared again. `--vorher <date>` names the earlier harvest when the log has none yet. `load_shep.parse()` also reads the action buttons verbatim («Formular», «Online erledigen», «Per E-Mail erledigen», «Zum Angebot» …; the Formular link is the «Formular» button) and the sh.ch files a page links |
 | `load_portal.py` | The live portal services.sh.ch, the production site of the SHEP template, harvested read-only into `../SHEP/live-<date>/` (`pages/<slug>.html`, one plain GET per slug of the overview `/de/services`; `links/manifest.json` with the sha256 of every sh.ch file the pages link, each fetched once) and parsed with `load_shep.parse()` into `portal_service`: action buttons, asset files (sha256), linked sh.ch files (sha256), the sections. Matched by the DVSH slug; a slug the DVSH harvest does not know is matched to the SHEP page it replaced only when that slug is gone from the portal and title and teaser are equal (`zuordnung`). The harvest log records it as source 'Portal' (`quellen_log.py` widens the source check of an older databank). `quelldokumente.live()` computes per Formular `forms[].live` (`datei_live` the portal offers these bytes / `inhalt_live` / `neuere_live` / `aeltere_live` a judged edition / `service_live` only the service page / `nicht_live`), `services[].portal` and `quellenabgleich.portal` (live vs. SHEP pages, what does not fit on a live page); `_summen_pruefen` checks that the states sum to the Formulare. Idempotent |
+| `capture_eforms.py` | Opens the eForms behind the live portal's «Online erledigen» READ-ONLY and saves what a visitor sees for `load_online.py`: `ziele` collects every eforms.sh.ch form (aforms2web AFS) the buttons and the migrationsamt.sh.ch pages reach, with its canonical start URL (a stale session link reduced to its original request); `abrufen` opens each like a browser — start page, the JavaScript-detection redirect and one «Weiter» only where the first page shows no data control, with nothing but the page's own hidden fields — one request per second, each step saved with the number of visible controls. Never types, ticks, uploads or sends (owner rule of 2026-11-03) |
 | `load_online.py` | The targets of the live portal's button «Online erledigen» (87 pages on 2026-11-03), harvested read-only into `../SHEP/live-<date>/online/` — the owner's rule «it is important we do not actually submit any of these forms online»: every eForm (eforms.sh.ch, aforms2web AFS) is opened like a browser, «Weiter» is pressed only where the first page asks for nothing, nothing is typed, ticked, uploaded or sent. Facts (name, steps, visible fields) come from the saved pages; the judgements (what a target is, which Formular of the databank or which linked document is the same form) from the reviewed `quellen/dokumente/online_<date>.json`. Writes `online_ziel`, `online_formular`, `online_formular_seite`, `online_datei` (the documents the intermediate migrationsamt.sh.ch pages and their Hilfsblätter link, each fetched once, `dateien/manifest.json`); a document a Formular now holds is linked to it. Gates: vocabularies, every eForm/button of the evidence in the harvest, a named form exists, a named document is one of the harvest's. `quelldokumente.live()` turns it into `services[].online`, the live state «live als Online-Formular» and `quellenabgleich.portal.online`. `--shch <manifest>` adds documents fetched from a sh.ch page a live page names (2026-11-05: the 12 files of «Steuerformulare Juristische Personen», the page the live service «Download Steuersoftware für juristische Personen» points to), `--korrekturen <file>` the reviewed list of what is wrong on the live portal (a button without target, to the wrong Formular, unreachable, a stale session link, an older edition, a link that serves another file) with the right target and the evidence → `portal_korrektur`, shown per service and on #abgleich as «Was auf services.sh.ch zu korrigieren ist»; the portal itself is never changed. Gates also: the slug is a live page, the right Formular exists, every correction has a finding, evidence and a right target or hint. Idempotent |
 | `migrate_2026_11_03.py` | Harvest-log entries that a parser error produced, not the source (`quellen/korrekturen/quellen_log_2026-11-03.json`): the field is taken out of the logged row, a row left without a field goes. Idempotent |
 | `load_dokument_urteile.py` | The files DVSH, SHEP and the live portal offer that no Formular holds (by sha256): what each is, judged from its content by a panel with a sceptical second review — Merkblatt or other Begleitdokument, the same / an older / a newer edition of a held Formular, a Formular not yet held — with verbatim evidence; rebuilt from `quellen/dokumente/urteile_*.json` (gates: a file a DVSH/SHEP/live-portal row names, vocabularies, an existing Formular for an edition verdict). `citygov/domain/quelldokumente.py` (standard library only, called by `export_json.py`) computes from it and from `form.file_hash` the state of every file per service (`services[].dokumente`), the changes of the latest harvests (`services[].aenderungen`) and the overview `quellenabgleich` — page «Abgleich DVSH, SHEP & Live» (`#abgleich`), the block «Dateien laut DVSH, SHEP und Live-Portal», the change line and the live-page line of every service page, the live badge of every Formular |
@@ -747,6 +761,7 @@ copy, so no test writes the shared database.
 | `load_ech_map.py` / `load_subfield_ech.py` / `load_ech_verdicts*.py` / `load_ech_gaps.py` / `propagate_ech_names.py` / `load_esh.py` / `sweep_ech_xsd.py` | Standards |
 | `load_field_legal.py` / `load_basis_typ.py` / `load_subjekt.py` / `load_data_rules.py` / `init_register.py` / `load_register.py` | Law layer per field, rules, register |
 | `load_rechtsmittel.py` / `load_rechtsmittel_verdicts.py` / `load_panel_reviews.py` | Remedies and second opinions |
+| `apply_panel.py` | The glue of an intake: turns each reviewed panel output (first judgement + sceptical second review) into the evidence files under `quellen/dokumente/panel_<date>/` and runs the loaders of that layer — `felder` (load_data_fields, init_subfields --nur-neue, propagate_ech_names), `ech` (load_ech_verdicts_new --nur-offene per Formular), `verfahren` (load_verfahren and load_register --nur), `recht` (load_field_legal, load_basis_typ, load_panel_reviews, load_sensitiv; stops on a «Datum» text not listed as «behalten»), `ersetzen` (folds a completion or an Angleichung into a record by field id), `subjekt` (load_subjekt), `rechtsmittel` (load_rechtsmittel_verdicts, load_panel_reviews, load_rechtsmittel; stops on a reason over 400 characters or with internal review wording). Shapes and instructions: `docs/pruefprotokoll.md` |
 | `load_themenkatalog.py` / `run_begriffe.py` (+ `load_begriffe.py`, `load_pruefart.py`, `load_vorschlag_check.py`, `load_begriff_konsistenz.py`, `load_begriff_rollen.py`, `load_themen.py`, `load_korrekturen.py`) | Naming («Eine Angabe, ein Name») and Themengruppen |
 | `check_online.py` / `load_currency.py` | Is our copy still the current edition? |
 | `gesetz_stand.py` | Loader: per law the edition («Stand») the databank read its articles from, from evidence only — the Stand recorded when the articles were read (`article.last_checked`, `law.last_checked`, `law.source_note`), the Stand printed in the head of the PDF the loaders read (cantonal: the file of `inventory/gesetze_index.json`, as `ingest_laws.py` and `extract_quotes.py` pick it; federal: `../Gesetze/Bund/<SR>.pdf`), and how many cited article texts occur in that file. All sources agree → `belegt`; they disagree → `widerspruch`, none → `unbekannt` (Stand NULL, reason in `grund`). Writes `gesetz_stand` (idempotent; «nichts zu tun» leaves `citygov.db` untouched). Its `pruefen(conn)` is the gate `validate_db.py` runs on `gesetz_stand` and `gesetz_stand_pruefung`; a row whose `basis` no longer matches the databank is stale (shown «veraltet», renewed by the next run), never an error. Needs macOS PDFKit; `--trocken`, `--zeigen <law>`, `--pruefen` |
